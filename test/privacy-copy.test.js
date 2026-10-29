@@ -791,7 +791,7 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.');
   const connected = {
     shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
-    agreed: false, on: false, askedAgain: false, suspended: false, hasStream: true, recordProblem: null,
+    agreed: false, on: false, askedAgain: false, suspended: false, hasStream: true, recordProblem: null, recordUnreadable: false,
     backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null },
   };
   // G. Consent suspended by an erase.
@@ -824,6 +824,9 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     assert.equal(section(html, '<p class="rail-hint setgroup-note" id="transfer-summary">', '</p>', state),
       'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.');
   }
+  // F. A record that fails its checks.
+  assert.equal(cloudCardStatus({ ...connected, recordUnreadable: true }),
+    'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an

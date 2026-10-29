@@ -1539,6 +1539,41 @@ test('a page that dies during an erase leaves backups stopped and says so, until
   assert.deepEqual([env.transport.created.length, (await next.protocol.record()).suspended], [made + 1, null], 'turned on by the person, it backs up');
 });
 
+// A record that fails its checks is said on the card, and turning on replaces it with a new stream, so its
+// files are then another device's. A record the browser could not read at all is not called unreadable,
+// because turning on may find it intact and go on with it (stage 3 review, S3b-7).
+test('only a record that fails its checks is called unreadable, and turning on then starts a new stream', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const first = page({ env });
+  await first.cloud.enter();
+  await first.cloud.turnOn();
+  await first.run(0);
+  const held = await first.protocol.record();
+
+  await first.protocol.records.close();
+  env.idb.faults.open = 'error';
+  const lost = await first.cloud.refresh();
+  env.idb.faults.open = null;
+  assert.deepEqual([lost.recordProblem, lost.recordUnreadable, lost.on], ['This browser could not keep its cloud backup record.', false, false]);
+  assert.equal(cloudCardStatus(lost), 'Connected to OneDrive as reader@example.test.', 'it may be intact');
+
+  await createCloudRecordStore(env.idb).write(() => ({ ...held, nextGeneration: 0 }));
+  const shown = await first.cloud.refresh();
+  assert.deepEqual([shown.recordUnreadable, shown.agreed, shown.on], [true, false, false]);
+  assert.match(cloudCardStatus(shown), /could not read its cloud backup settings, so backups have stopped\./);
+  assert.equal(cloudCardWarns(shown), true);
+
+  const on = await first.cloud.turnOn();
+  await first.run(0);
+  assert.deepEqual([on.recordUnreadable, on.on], [false, true]);
+  const { stream } = await first.protocol.record();
+  assert.notEqual(stream, held.stream, 'a new stream');
+  const found = await first.cloud.discover();
+  assert.deepEqual(found.discovery.result.devices.map((entry) => [entry.stream, entry.own]), [[stream, true], [held.stream, false]],
+    'the earlier backups are listed as another device\'s');
+});
+
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {
   const env = harness();
   windowsHost(env.transport);

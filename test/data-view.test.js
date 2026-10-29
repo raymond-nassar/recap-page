@@ -438,7 +438,7 @@ const FOUND = Object.freeze({
 });
 const CLOUD = Object.freeze({
   shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, signInExpiresAt: null,
-  agreed: false, on: false, askedAgain: false, hasStream: false, recordProblem: null,
+  agreed: false, on: false, askedAgain: false, hasStream: false, recordProblem: null, recordUnreadable: false,
   backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null },
   discovery: { state: 'idle', connection: null, result: null, message: null, code: null },
 });
@@ -641,6 +641,22 @@ test('the card announces each change a person must hear once, as it happens, and
   card.show({ ...CLOUD, agreed: true, askedAgain: true });
   assert.deepEqual([/connected again since this browser agreed/.test(spoken.at(-1)), warned()], [true, true], 'asked again: backups stopped');
   assert.equal(spoken.length, 5, 'one announcement for each of the five changes, and none for the rest');
+});
+
+// A record that fails its checks stops backups until automatic backup is turned on again, which starts a
+// new stream; the owner's words, approved 2026-10-28 (stage 3 review, S3b-7). A record the browser could
+// not read at all may be intact, so the card says nothing about it that it cannot know.
+test('a record that fails its checks is said in the status line, as a warning heard once', () => {
+  const unreadable = { ...CLOUD, recordProblem: 'This browser\'s cloud backup record cannot be read.', recordUnreadable: true };
+  assert.equal(cloudCardStatus(unreadable),
+    'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
+  assert.equal(cloudCardStatus({ ...CLOUD, recordProblem: 'This browser could not keep its cloud backup record.' }),
+    'Connected to OneDrive as reader@example.test.', 'a record that could not be read at all may be intact');
+  const spoken = [];
+  const card = cloudCard({ ...CLOUD }, { announce: (text) => spoken.push(text) });
+  card.show(unreadable);
+  card.show(unreadable);
+  assert.deepEqual([spoken, card.nodes.status.classList.contains('notice-warn')], [[cloudCardStatus(unreadable)], true]);
 });
 
 test('what backups are doing is said in words for every state the coordinator reports', () => {

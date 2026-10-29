@@ -71,6 +71,10 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
       if (model.suspended) {
         return `${account} Automatic backup stopped while this browser's data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.`;
       }
+      // A record that fails its checks (stage 3 review, S3b-7); the owner's words, approved 2026-10-28.
+      if (model.recordUnreadable) {
+        return `${account} This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser's earlier backups will then be listed as another device's.`;
+      }
       if (!model.on) return account;
       return `${account} ${cloudBackupStatus(model.backup, { name, when, at })}`;
     }
@@ -83,7 +87,7 @@ export function cloudCardWarns(model) {
   const { host } = model;
   if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
   if (host === 'not-connected') return Boolean(model.message);
-  if (host === 'connected') return Boolean(model.askedAgain || model.suspended || (model.on && model.backup.phase === 'failed'));
+  if (host === 'connected') return Boolean(model.askedAgain || model.suspended || model.recordUnreadable || (model.on && model.backup.phase === 'failed'));
   return false;
 }
 
@@ -96,6 +100,7 @@ function noticeOf(model, previous) {
   if (previous === 'signing-in' && host === 'connected') return 'signed-in';
   if (host === 'unavailable' && model.agreed) return `unavailable:${model.message}`;
   if (host === 'connected' && model.askedAgain) return 'asked-again';
+  if (host === 'connected' && model.recordUnreadable) return 'record-unreadable';
   if (host === 'connected' && model.on && model.backup.phase === 'failed') return `failed:${model.backup.code}`;
   return null;
 }

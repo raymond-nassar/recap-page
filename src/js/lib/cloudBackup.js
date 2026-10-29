@@ -10,7 +10,7 @@
 // Backup & settings costs one status request that such a build answers 404.
 
 import { CLOUD_BACKUP_DATABASE } from '../storage.js';
-import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel } from './cloudProtocol.js';
+import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel, isUnreadableRecord } from './cloudProtocol.js';
 import { CloudBackupCoordinator } from './cloudCoordinator.js';
 
 export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
@@ -50,6 +50,7 @@ export function createCloudBackup({
   let status = null;
   let record = null;
   let recordProblem = null;
+  let recordUnreadable = false;
   let coordinator = null;
   let discovery = IDLE;
   let discoveries = 0;
@@ -96,6 +97,8 @@ export function createCloudBackup({
       suspended: Boolean(record && record.consent === null && record.suspended),
       hasStream: record !== null,
       recordProblem,
+      // Turning on starts a new stream only for a record that fails its checks (stage 3 review, S3b-7).
+      recordUnreadable,
       backup: coordinator?.state ?? OFF,
       discovery,
     });
@@ -149,11 +152,15 @@ export function createCloudBackup({
       try { status = await transport.status(); } catch { status = NOT_ANSWERING; }
       const exists = await recordExists();
       recordProblem = null;
+      recordUnreadable = false;
       record = null;
       // A build without cloud backup never opens the database: it is read only where it already exists,
       // or where the browser cannot say and the host answers.
       if (exists === true || (exists === null && enabled())) {
-        try { record = await protocol.record(); } catch (error) { recordProblem = error?.message ?? null; }
+        try { record = await protocol.record(); } catch (error) {
+          recordProblem = error?.message ?? null;
+          recordUnreadable = isUnreadableRecord(error);
+        }
       }
       // A host that did not answer, or was too busy to, is not a host that said no: backups this browser
       // agreed to keep running, or start, and their own backoff carries the outage until it answers. Only

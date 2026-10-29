@@ -77,6 +77,12 @@ function refuse(message, code) { throw new CloudBackupError(message, code); }
 const RECORD_LOST = 'This browser could not keep its cloud backup record.';
 const RECORD_UNREADABLE = 'This browser\'s cloud backup record cannot be read.';
 const recordLost = () => new CloudBackupError(RECORD_LOST, 'storage');
+// A record that is there but fails its checks, as against one the browser could not read at all: turning
+// cloud backup on replaces the first with a new stream, and may find the second intact (stage 3 review,
+// S3b-7).
+export function isUnreadableRecord(error) {
+  return error instanceof CloudBackupError && error.message === RECORD_UNREADABLE;
+}
 async function saying(consequence, operation) {
   try { return await operation(); }
   catch (error) {
