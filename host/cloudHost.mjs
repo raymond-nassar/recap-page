@@ -290,16 +290,32 @@ export function createCloudHost({
       fetchImpl, clock, tracker, accessToken: tokenFor(input.connection), folder: current.folder,
       onFolder: (id) => learnFolder(current, id),
     });
-    const gone = async (error) => {
+    const settled = async (error) => {
       if (error?.code === 'folder-gone') await forgetFolder(current);
+      if (error?.code === 'needs-sign-in') await signInAgain(current);
       throw error;
     };
     return {
-      list: () => onedrive.list().catch(gone),
-      read: (id) => onedrive.read(id),
-      create: (name, bytes) => onedrive.create(name, bytes).catch(gone),
-      delete: (id) => onedrive.delete(id),
+      list: () => onedrive.list().catch(settled),
+      read: (id) => onedrive.read(id).catch(settled),
+      create: (name, bytes) => onedrive.create(name, bytes).catch(settled),
+      delete: (id) => onedrive.delete(id).catch(settled),
     };
+  }
+
+  // OneDrive refused a token the host had just renewed, so the sign-in itself is no longer any good, as when
+  // a refresh is refused: the record says so, status asks for a sign-in again, and Connect starts one
+  // (stage 2 review, L3). The connection stays, so signing in again to the same account carries on. Matched
+  // by connection rather than identity, because a refresh within the same operation replaces the record.
+  async function signInAgain(current) {
+    await serial(async () => {
+      const latest = record;
+      if (!latest || latest.connection !== current.connection || !latest.refreshToken) return;
+      const next = { ...latest, refreshToken: null, savedAt: Math.floor(clock()) };
+      await store.save(next).catch(() => {});
+      record = next;
+      access = null;
+    });
   }
 
   // The person deleted the app folder in OneDrive, which the transport contract treats as consent

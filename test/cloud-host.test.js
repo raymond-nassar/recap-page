@@ -1072,6 +1072,29 @@ test('a disconnect that lands while the stored sign-in is being read is never un
   }
 });
 
+// OneDrive can refuse a token the host has just renewed. That sign-in is no longer any good, so the host
+// says so as it does for a refused refresh: status asks for a sign-in again and Connect starts one, rather
+// than answering connected to a person who has just been told to sign in (stage 2 review, L3).
+test('a token OneDrive refuses even after renewing it asks for a sign-in again, and Connect starts one', async () => {
+  const fetch = microsoft();
+  fetch.routes.unshift({ method: 'GET', url: /^https:\/\/graph\.microsoft\.com\//, reply: () => json(401, {}) });
+  const store = memoryStore({ ...RECORD });
+  const env = host({ store, fetch });
+  const api = await hostServer(env.instance);
+  try {
+    assert.equal((await api.call('list', { connection: RECORD.connection })).body.error.code, 'needs-sign-in');
+    const status = (await api.call('status')).body.status;
+    assert.deepEqual([status.state, status.connection], ['needs-sign-in', RECORD.connection], 'asked for, and the connection stays');
+    assert.equal(store.saved.refreshToken, null);
+    assert.equal(store.saved.connection, RECORD.connection);
+    assert.equal((await api.call('connect')).body.status.state, 'signing-in', 'Connect starts the sign-in it asks for');
+    await until(() => env.opened.length === 1, 'the browser was asked to open the sign-in');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
 // ------------------------------------------------------------------ the page's transport
 
 // The browser's part of a request from the served page: the absolute address, and the Origin and fetch
