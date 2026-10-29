@@ -76,6 +76,8 @@ export default [
       'src/vendor/**',
       'packaging/android/**/build/**',
       'packaging/android/.gradle/**',
+      'packaging/ios/build/**',
+      'packaging/ios/DerivedData/**',
       // Generated from src/data/hickman_full.json and consumed only by the static design
       // mockups. It is embedded JSON, so normalising its quotes would be undone the next
       // time it is regenerated.
@@ -92,10 +94,16 @@ export default [
     rules: { ...stylisticRules, ...correctnessRules },
   },
   {
-    // Everything served out of src/ runs in the browser.
-    files: ['src/**/*.js', 'packaging/android/web/*.js'],
+    // Everything served out of src/ runs in the browser, and so do the app shells' own web files.
+    files: ['src/**/*.js', 'packaging/android/web/*.js', 'packaging/ios/web/*.js'],
     languageOptions: { globals: globals.browser },
     rules: noEmDashInShippedCopy,
+  },
+  {
+    // Run in the app's page by the iOS tests and never shipped, so browser globals without the
+    // shipped-copy rule.
+    files: ['packaging/ios/probes/*.js'],
+    languageOptions: { globals: globals.browser },
   },
   {
     files: ['src/**/*.js'],

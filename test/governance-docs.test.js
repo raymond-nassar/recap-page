@@ -25,6 +25,7 @@ const documents = [
   'docs/MAINTAINING.md',
   'docs/BATCH_READING_LIST_DELIVERY.md',
   'docs/RELEASING.md',
+  'docs/IOS.md',
   '.github/copilot-instructions.md',
   '.github/PULL_REQUEST_TEMPLATE.md',
 ];

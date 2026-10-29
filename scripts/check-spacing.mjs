@@ -235,13 +235,13 @@ export function checkAll(source) {
 //
 // #827 carries this gate past spacing to the other values both stylesheets draw with. Each is a token
 // declared once, in the shared `:root` block of src/styles.css, with the value listed here, and a
-// governed declaration in either stylesheet may name a value of its family only through one of them.
+// governed declaration in any of the stylesheets may name a value of its family only through one of them.
 // The first step changed nothing on screen: every value in use became a token equal to itself. A value
 // on #827's scales took that scale's token; every other value kept a token of its own, named for what
 // wears it, so a later move onto a scale is a change to one token's value, made one screen at a time. A
 // scale step may wait for its first consumer. A kept token exists only for the declarations that wear
 // it, so it has to have one.
-export const TOKEN_SHEETS = ['src/styles.css', 'packaging/android/web/mobile.css'];
+export const TOKEN_SHEETS = ['src/styles.css', 'packaging/android/web/mobile.css', 'packaging/ios/web/ios.css'];
 const onScale = (family, value) => ({ family, value, scale: true });
 const kept = (family, value, role) => ({ family, value, scale: false, role });
 
@@ -554,7 +554,7 @@ function main() {
   }
   const families = new Set([...TOKENS.values()].map(({ family }) => family)).size;
   console.log(`${SCALE.size} spacing steps; 0 raw, unclassified or unused governed values`);
-  console.log(`${TOKENS.size} design tokens in ${families} ${families === 1 ? 'family' : 'families'}; 0 raw, unclassified or unused values in either stylesheet`);
+  console.log(`${TOKENS.size} design tokens in ${families} ${families === 1 ? 'family' : 'families'}; 0 raw, unclassified or unused values in any of the ${TOKEN_SHEETS.length} stylesheets`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();
