@@ -2359,7 +2359,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   margin: 0 0 var(--space-2); padding: var(--space-5) 0 var(--space-5);
 }
 /* The filter pills wrap with width and text size; their real height is the scroll obstruction. */
-:root:has(#view-read:not([hidden]) #full[open]) {
+:root:has(#view-read:not([hidden]) #full[open] #rows :focus) {
   scroll-padding-top: var(--reading-filter-height, 0px);
 }
 #rows [data-act], .row-actions > .ract {
