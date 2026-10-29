@@ -66,8 +66,18 @@ enum WebTestSupport {
 
     static func loadAppPage(_ webView: WKWebView, assets: AppAssets) async throws {
         webView.load(URLRequest(url: assets.appPageURL))
-        try await waitFor(webView, "location.origin === '\(AppAssets.permanentOrigin)' && document.readyState === 'complete'")
+        try await waitFor(
+            webView,
+            "location.origin === '\(AppAssets.permanentOrigin)' && document.readyState === 'complete'",
+            timeout: pageLoadTimeout)
     }
+
+    /// How long the app page may take to load. The first web view a test run builds also starts
+    /// WebKit's own processes in a Simulator booted moments before, and that start is the slow part.
+    /// Measured over nine jobs on both runtimes: the test that loads the first page took 5.7 to 40.1 s
+    /// when it passed and once outran a 30 s wait on its load alone, while the termination test, which
+    /// loads a later page, ends its process and reloads it, took under 5 s whenever it passed.
+    static let pageLoadTimeout: TimeInterval = 120
 
     /// Writes a probe's result to the test log, where CI keeps it, and attaches it to the result bundle.
     static func record(_ name: String, _ json: String, in testCase: XCTestCase) {

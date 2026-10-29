@@ -13,7 +13,8 @@ final class TerminationTests: XCTestCase {
         let webView = try XCTUnwrap(controller.webView)
         try await WebTestSupport.waitFor(
             webView,
-            "location.origin === '\(AppAssets.permanentOrigin)' && document.readyState === 'complete' && Boolean(document.getElementById('ios-report'))")
+            "location.origin === '\(AppAssets.permanentOrigin)' && document.readyState === 'complete' && Boolean(document.getElementById('ios-report'))",
+            timeout: WebTestSupport.pageLoadTimeout)
         // The first load's own completion is reported after readyState settles; let it arrive before
         // the ending, so the notice can only come from the reload.
         while webView.isLoading { try await Task.sleep(nanoseconds: 100_000_000) }
