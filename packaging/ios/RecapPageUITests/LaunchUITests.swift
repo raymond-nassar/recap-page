@@ -164,10 +164,18 @@ final class LaunchUITests: XCTestCase {
 
         for expected in 1...2 {
             read.tap()
+            let close = app.buttons["ios-read-sheet-close"]
             XCTAssertTrue(
-                app.buttons["ios-read-sheet-close"].waitForExistence(timeout: 30),
+                close.waitForExistence(timeout: 30),
                 "Read launch \(expected) appeared in a sheet with a Close control")
             _ = try handOffRecord(of: app, launches: expected, handoffs: expected)
+            let dismissed = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"),
+                object: close)
+            XCTAssertEqual(
+                XCTWaiter.wait(for: [dismissed], timeout: 30),
+                .completed,
+                "Read launch \(expected) sheet dismissed after hand-off")
         }
 
         let result = try handOffRecord(of: app, launches: 2, handoffs: 2)
@@ -351,6 +359,9 @@ final class LaunchUITests: XCTestCase {
       const text = document.getElementById('ios-report')?.textContent ?? '';
       return /cancelled|not confirmed saved/i.test(text) ? text : null;
     }, 30000);
+    const reports = ['ios-report', 'save-report', 'app-report']
+      .map((id) => document.getElementById(id)?.textContent?.trim() ?? '')
+      .filter(Boolean);
     document.getElementById('btn-start-fresh').click();
     const dialog = await until(() => document.querySelector('dialog[open]'), 10000);
     const confirmation = [...(dialog?.querySelectorAll('button') ?? [])]
@@ -362,7 +373,8 @@ final class LaunchUITests: XCTestCase {
       original,
       after: localStorage.getItem('mrt.state.v2'),
       blocked: !document.getElementById('blocked-banner').hidden,
-      exportReport,
+      exportReport: exportReport ?? reports.join(' | '),
+      nativeExportBridge: typeof window.webkit?.messageHandlers?.recap?.postMessage === 'function',
       confirmationFound: Boolean(confirmation),
     });
     """#

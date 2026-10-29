@@ -73,7 +73,7 @@ struct NavigationPolicy {
     func decideLauncher(url: URL?, isMainFrame: Bool, opensNewWindow: Bool) -> Decision {
         guard let url, isMainFrame else { return .refuse }
         if !opensNewWindow && isLauncherPage(url) { return .allow }
-        if isWebLink(url) { return .openExternally }
+        if !opensNewWindow && isWebLink(url) { return .openExternally }
         return .refuse
     }
 }
