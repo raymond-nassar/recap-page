@@ -119,3 +119,105 @@ refused only the restore with text above Latin-1. The measurements are recorded 
   app's privacy text says so.
 - Checks that need a real device, such as Read handing a comic to a browser, run on the owner's iPad
   with iOS 18; checks that need an iPhone stay unverified until one is available.
+
+## Signing and internal TestFlight
+
+The manual **iOS TestFlight** workflow is tooling, not a delivered build. It has not yet proved
+cloud signing, Apple processing, installation or an update on a device. Nothing here changes saved
+reading data. It cannot be dispatched until its workflow is on main. Merge the native-feature
+work first, then this tooling, then reserve builds against the intended source already on main.
+
+### Owner setup, in order, from Windows
+
+Do these steps yourself in the Apple and GitHub websites. Never put a private key, certificate,
+team identifier, key identifier or issuer identifier in a repository file, Issue, pull request or
+chat. The permanent app names above are public app configuration, not account identifiers.
+
+1. Wait for Apple to confirm the Developer Program membership is active. In Certificates,
+   Identifiers & Profiles, register an explicit App ID using the permanent bundle identifier
+   above. Enable iCloud and register and associate the permanent container above; CloudKit schema
+   setup belongs to the later iCloud phase, not this first TestFlight build.
+2. In App Store Connect, create an iOS app record called **Recap Page**, selecting that App ID.
+   Choose the primary language and your own private SKU. Do not copy the SKU into the repository.
+3. In the app's TestFlight tab, create an **internal** testing group for yourself. Keep automatic
+   distribution off so you choose when a processed build reaches the group. No external group,
+   public invitation link or App Store submission is part of this phase.
+4. In Users and Access, Integrations, request App Store Connect API access if needed. Create a
+   **team API key with Admin access**, needed for cloud-managed signing. An individual key is not
+   assumed to support this route. Download the private key once and keep it in secure local
+   custody. Team keys can affect all apps on the team; revoke it promptly if compromised. Never
+   paste it into a chat. No account password or two-factor code is needed by the workflow.
+5. In this repository's Settings, Environments, create **ios-testflight** yourself. Require
+   **raymond-nassar**, and nobody else, as its reviewer. Turn off administrator bypass. Leave
+   prevention of self-review off so you can approve a run you started. Set deployment branches
+   and tags to selected branches only: one **branch** rule, exactly **main**, with no tag rule.
+   The workflow checks these settings before it enters the environment and again after approval;
+   a missing or unreadable protection setting stops the run, rather than creating an environment.
+6. Add these **environment secrets**, never repository or organization secrets: **ASC_PRIVATE_KEY**
+   (the complete downloaded key text), **ASC_KEY_ID**, **ASC_ISSUER_ID**, and **APPLE_TEAM_ID**.
+   Read the last three directly from your Apple account. Do not send them to an agent. The key
+   text is written only to a private runner-temporary file, removed in an always-run step, and
+   excluded from retained artifacts.
+
+### Each build: reserve, export, seal, upload
+
+Follow the [iOS exact-artifact contract](RELEASING.md#ios-allocation-and-exact-artifact-contract).
+Reserve a fresh number through a pull request, merge it, then start **iOS TestFlight** on **main**
+in **export** mode with that number. Review and approve the environment deployment yourself.
+This first approval allows cloud signing and export, **not upload**.
+
+The run uses Xcode 26.3 on macOS 15, matching the toolchain whose Simulator build is tested on
+iOS 18 by the minimum job. It archives the pinned source in Release and exports a signed IPA to
+disk with destination **export**, never destination upload. The artifact contains the IPA, its
+public-safe record and a proposed ledger seal. Artifacts last **30 days**; complete the seal and
+upload before they expire, or preserve the exact packet securely before expiry. Expired artifacts
+cannot be rebuilt with the same number.
+
+Review the proposed seal and merge only the matching entry's artifact fields into the latest
+ledger, preserving later reservations. Start a **new** workflow run in **upload** mode with the
+same build number and the successful export run ID. Review and approve that deployment separately.
+It fetches that run's packet and checks its name, size, hash and source against the current merged
+seal before invoking Apple's altool. No signing or rebuilding happens during upload.
+
+Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain
+attempts block another attempt in that mode. Investigate Apple processing before deciding what
+happened; a failed export consumes its number, and a failed or uncertain upload is not retried
+automatically. Use a fresh reservation for a new build. Upload in allocation order and check
+App Store Connect before approving, especially after an uncertain result.
+
+After Apple finishes processing, resolve any compliance questions yourself, add the build to
+your internal group, and install it through TestFlight on the iPad. A successful upload is not
+proof that processing, installation, offline start or saved-data-preserving updates work. Record
+the two-build update and recovery checks on #949, and leave iPhone-only checks pending if there
+is no iPhone available.
+
+### Renewal and fallbacks
+
+TestFlight builds expire after **90 days** and then stop opening. The upload receipt records the
+upload time and an estimated expiry of upload plus 90 days; confirm the actual expiration shown
+by TestFlight after processing. Before that date, reserve, export, seal and separately approve
+the upload of a new build. A newer build is intended to update in place without losing reading
+progress; that remains a device acceptance check until the first two builds prove it. Keep an
+exported backup outside the app. Renew the Developer Program membership **yearly** and keep the
+API key's access and the environment's protection under review.
+
+If cloud signing fails, stop and retain the failed number as consumed. The fallback is an Apple
+Distribution certificate and matching App Store provisioning profile: generate a private key and
+certificate signing request locally on Windows with OpenSSL, submit only the signing request in
+Apple's Certificates portal, download the issued certificate, and export a password-protected
+PKCS#12 locally. Create a distribution profile for this App ID and certificate in the portal.
+Keep all signing material outside the repository. This fallback is documented, **not implemented
+or tested**: it needs a reviewed workflow change to import the certificate into a temporary
+keychain, install the profile, sign, and always remove both. Do not place certificate material in
+the API-key secret or bypass the approval/seal sequence to get past a signing failure.
+
+If altool is unavailable or fails, stop, inspect the outcome and obtain a fresh owner decision
+before an upload attempt. Apple's Transporter command line and the App Store Connect Build
+Upload API are supported alternatives, but not automatic retries. They must use the same verified
+sealed IPA with separate approval, never rebuild or re-sign it.
+
+Official references, retrieved 2026-10-29:
+[cloud-managed certificates](https://developer.apple.com/help/account/certificates/cloud-managed-certificates/),
+[API keys](https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-api/),
+[upload methods and Xcode requirements](https://developer.apple.com/help/app-store-connect/manage-builds/upload-builds/),
+and [TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/).
