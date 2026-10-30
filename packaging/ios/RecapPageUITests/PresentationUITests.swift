@@ -802,7 +802,7 @@ final class PresentationUITests: XCTestCase {
             if allowsPassiveGuard, issue.auditType == .hitRegion, let element = issue.element,
                element.elementType == .staticText {
                 do {
-                    if try acceptPassiveFinding(element, in: app, routeState: routeState) {
+                    if try self.acceptPassiveFinding(element, in: app, routeState: routeState) {
                         print("T03 accepted proven passive-text hitRegion finding: \(element.label)")
                         return true
                     }
