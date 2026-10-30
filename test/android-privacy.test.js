@@ -63,6 +63,38 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.doesNotMatch(links[0][0], /onclick=|data-view=/);
 });
 
+// Cloud backup on Android (#810, P03-T03): the sentences the replacement writes come in the shared off and
+// on variants, so a build with cloud backup does not say nothing is uploaded, and the card's privacy
+// paragraph names this device rather than a Windows account.
+test('Android About and the cloud card say what an Android build with cloud backup does', () => {
+  const spans = [...yourData(generated).matchAll(/<span data-cloud-copy="(on|off)"(\s+hidden)?>([\s\S]*?)<\/span>/g)]
+    .map(([, state, hidden, inner]) => [state, Boolean(hidden), prose(inner)]);
+  const intro = spans.slice(0, 2);
+  assert.deepEqual(intro, [
+    ['off', false, 'There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.'],
+    ['on', true, 'There is no Recap Page account to create, and no analytics or tracking. Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive, where they are as private as anything else you keep there. Recap Page\'s developer has no access to them.'],
+  ]);
+  assert.doesNotMatch(generated, /Windows account/);
+  const card = generated.match(/<p class="rail-hint" id="cloud-backup-privacy">([\s\S]*?)<\/p>/);
+  assert.ok(card, 'the cloud card keeps its privacy paragraph');
+  assert.match(prose(card[1]), /Disconnecting stops cloud backup on this device; backups already in OneDrive stay until you delete them here or in OneDrive\.$/);
+});
+
+test('Android cloud help uses the exact approved device wording without changing Windows', () => {
+  const pairs = [
+    ['Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', 'Your reading progress lives in this app on this device, and is sent only to your own OneDrive, if you turn on cloud backup below.'],
+    ['Back up this browser automatically', 'Back up automatically'],
+    ['A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this browser are kept, and older ones go to OneDrive\'s recycle bin. Restoring one replaces everything it holds.', 'A backup is made shortly after you make changes, and when you leave Recap Page. The two newest made on this device are kept, and older ones go to OneDrive\'s recycle bin. Restoring one replaces everything it holds.'],
+    ['The choice is stored in this browser alongside your other settings and is sent only inside a cloud backup to your own OneDrive, if you turn cloud backup on. High contrast mode and reduced motion are still honoured whichever you pick.', 'The choice is stored on this device alongside your other settings and is sent only inside a cloud backup to your own OneDrive, if you turn cloud backup on. High contrast mode and reduced motion are still honoured whichever you pick.'],
+    ['Cloud backup is the one exception, and only once you turn it on. After you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes. It also lists and reads the backups there, to check them and to offer them for restoring, and deletes this browser\'s older ones. Microsoft sees those backups, as it sees anything in your OneDrive.', 'Cloud backup is the one exception, and only once you turn it on. After you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes. It also lists and reads the backups there, to check them and to offer them for restoring, and deletes the older ones made on this device. Microsoft sees those backups, as it sees anything in your OneDrive.'],
+  ];
+  for (const [windows, android] of pairs) {
+    assert.ok(prose(desktop).includes(windows), windows);
+    assert.ok(prose(generated).includes(android), android);
+    assert.ok(!prose(generated).includes(windows), windows);
+  }
+});
+
 test('public privacy policy names the actual platform, search, provider and erase boundaries', async () => {
   const text = prose(await readFile(new URL('../PRIVACY.md', import.meta.url), 'utf8'));
   assert.match(text, /Android[^.]*private WebView storage/i);
@@ -85,9 +117,10 @@ test('Android privacy preparation preserves desktop HTML, shared behavior and fi
   assert.equal(config.origin, 'http://127.0.0.1:8787');
   assert.match(desktop, /<script type="module" src="\.\/js\/app\.js"><\/script>/);
   assert.doesNotMatch(desktop, /Privacy policy \(opens in your browser\)|private Android app storage/);
-  const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0];
+  const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0]
+    ?.replace(/<span data-cloud-copy="on" hidden>[\s\S]*?<\/span>/, '');
   assert.ok(details(desktop));
-  assert.equal(details(generated), details(desktop), 'Keep the existing request-by-request enumeration');
+  assert.equal(details(generated), details(desktop), 'Keep the request-by-request enumeration outside the approved cloud wording');
   for (const path of ['js/main.js', 'js/storage.js', 'js/reader.js', 'js/lib/model.js', 'js/lib/download.js', 'js/views/completion.js']) {
     assert.deepEqual(await readFile(join(scratch, 'assets', path)), await readFile(join('src', path)), path);
   }

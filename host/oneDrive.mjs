@@ -124,6 +124,15 @@ const transferMs = (bytes) => 60_000 + Math.ceil(bytes / 65_536) * 1000;
 // Uploads under way and upload sessions that could not be settled, kept by the host across operations and
 // connections: a list waits for the first and cancels the second, so nothing a reply said had failed can
 // appear in the account after a list that missed it.
+// Only the host authorizes a Graph request. Header names are not case sensitive, so a caller's Authorization
+// in any case would travel beside the host's as a second header, and is refused instead (#996, S5-2).
+export function graphHeaders(headers, token) {
+  if (Object.keys(headers).some((name) => name.toLowerCase() === 'authorization')) {
+    throw new TypeError('Only the host sets Authorization on a Graph request.');
+  }
+  return { ...headers, authorization: `Bearer ${token}` };
+}
+
 export function createUploadTracker() {
   return { inflight: new Set(), unsettled: new Map() };
 }
@@ -139,7 +148,7 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
       let response;
       try {
         response = await fetchImpl(`${GRAPH}${path}`, {
-          method, headers: { ...headers, authorization: `Bearer ${token}` }, body, redirect: 'manual', signal: AbortSignal.timeout(timeoutMs),
+          method, headers: graphHeaders(headers, token), body, redirect: 'manual', signal: AbortSignal.timeout(timeoutMs),
         });
       } catch (error) {
         throw networkFailure(error, 'OneDrive');

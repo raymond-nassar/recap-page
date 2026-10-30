@@ -25,6 +25,22 @@ if (!(nativeTestBuildType in ['debug', 'release'])) {
 }
 def nativeTestTarget = nativeTestBuildType == 'release' ?
     'io.github.raymondnassar.recappage' : 'io.github.raymondnassar.recappage.prototype'
+// Cloud backup is in a build only when it is handed the client configuration and the signature hash of the
+// redirect registered for the build type, as -PrecapCloudClientConfig=<path> and
+// -PrecapCloudRedirectHashDebug=<hash> or -PrecapCloudRedirectHashRelease=<hash>. Neither is committed
+// (OD-06). The hash is the registered string, never read from the signer, so a Play-signed install and a test
+// copy built here each sign in at their own registered redirect (OD-07). Without them a build is unchanged.
+def cloudConfigPath = providers.gradleProperty('recapCloudClientConfig').orNull
+def cloudHashArguments = ['debug', 'release'].findAll {
+    providers.gradleProperty("recapCloudRedirectHash${it.capitalize()}").isPresent()
+}.collect { "${it}=${providers.gradleProperty("recapCloudRedirectHash${it.capitalize()}").get()}" }
+if (cloudConfigPath == null && !cloudHashArguments.isEmpty()) {
+    throw new GradleException('A cloud redirect hash needs recapCloudClientConfig too')
+}
+def cloudClient = cloudConfigPath == null ? null : new JsonSlurper().parseText(providers.exec {
+    workingDir repositoryRoot
+    commandLine(['node', 'scripts/android-cloud-client.mjs', new File(cloudConfigPath).absolutePath] + cloudHashArguments)
+}.standardOutput.asText.get())
 
 android {
     enableKotlin = false
@@ -99,6 +115,12 @@ def prepareIcon = tasks.register('prepareAndroidIcon', PrepareAndroidIcon) {
 androidComponents.onVariants(androidComponents.selector().all()) { variant ->
     variant.sources.assets.addGeneratedSourceDirectory(prepareAssets) { it.outputDirectory }
     variant.sources.res.addGeneratedSourceDirectory(prepareIcon) { it.outputDirectory }
+    def cloudHash = cloudClient?.redirectHashes?.get(variant.buildType)
+    if (cloudHash != null) {
+        variant.sources.manifests.addStaticManifestFile('src/cloud/AndroidManifest.xml')
+        variant.manifestPlaceholders.put('recapCloudClient', cloudClient.clientId)
+        variant.manifestPlaceholders.put('recapCloudRedirectHash', cloudHash)
+    }
 }
 
 // No JUnit dependency is needed for the platform-independent navigation boundary.
@@ -115,4 +137,23 @@ tasks.register('policyTest', JavaExec) {
     classpath = files(layout.buildDirectory.dir('policy-tests'))
     mainClass = 'io.github.raymondnassar.recappage.prototype.NavigationPolicyTest'
 }
-tasks.named('check').configure { dependsOn 'policyTest' }
+// The cloud account and its OneDrive client are plain Java behind small interfaces, so the sign-in, token
+// and request rules run here on a JVM against a scripted network, with no device and no test library. The
+// Android adapters around them are named without the Cloud prefix so they stay out of this compile.
+tasks.register('compileCloudTests', JavaCompile) {
+    source fileTree('src/main/java') { include '**/Cloud*.java' },
+        'src/test/java/io/github/raymondnassar/recappage/prototype/CloudTest.java'
+    classpath = files()
+    destinationDirectory = layout.buildDirectory.dir('cloud-tests')
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
+tasks.register('cloudTest', JavaExec) {
+    dependsOn 'compileCloudTests'
+    classpath = files(layout.buildDirectory.dir('cloud-tests'))
+    mainClass = 'io.github.raymondnassar.recappage.prototype.CloudTest'
+    // Smaller than a phone app's heap, so a create at the size cap meets the memory limit here as it can on
+    // a device, where running out of memory on an uncaught path ends the whole app.
+    maxHeapSize = '128m'
+}
+tasks.named('check').configure { dependsOn 'policyTest', 'cloudTest' }

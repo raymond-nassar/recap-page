@@ -30,7 +30,7 @@
 // Modern Timeline contract is the exception: its boundary and aggregate assertions intentionally
 // run against the checked-in snapshot because the exact first entry and totals are the contract.
 
-import { retiredReaderHelp, retiredManualLink, legacyReaderBackup } from './browser-marvel-interim.mjs';
+import { retiredReaderHelp, retiredManualLink, legacyReaderBackup, dismissClosureNotice } from './browser-marvel-interim.mjs';
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
@@ -2045,6 +2045,11 @@ async function checkOfflineSelectedList(browser, origin, t) {
 // they run in cannot matter. A scenario that passed only because the one before it left the right
 // state behind is not evidence either.
 const SCENARIOS = [
+  {
+    id: 'notice-dismissal',
+    title: 'Home notice dismisses locally with version, failure and keyboard safety',
+    run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click }),
+  },
   {
     id: 'home-updates',
     title: 'Quiet Home highlights preserve reading, focus, layout and real-worker offline content',
@@ -8687,14 +8692,14 @@ const SCENARIOS = [
       // group down from about 200 and asked only that its guidance be roughly halved.
       t.check('Data safety leads with a short transfer summary and keeps its warnings on screen, explanations closed',
         guidance.summary?.startsWith('Moving to another device:')
-          && guidance.summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.')
+          && guidance.summary.includes('The reading data, completion history and import draft backups below each hold one kind of data, without settings.')
           && guidance.warnings.every(Boolean) && guidance.described.every(Boolean) && guidance.closed.every(Boolean)
           && guidance.words <= 84,
         JSON.stringify(guidance));
-      t.check('the import draft group still names retained draft source and the backups that leave it out',
+      t.check('the import draft group still says what it holds and which backups include it',
         await page.evaluate(() => {
           const draft = document.querySelector('#btn-export-draft').closest('.card').textContent;
-          return draft.includes('retained draft source') && draft.includes('Reading-data and completion-history backups do not include it');
+          return draft.includes('It holds your pasted lists and chosen matches') && draft.includes('Only this backup and a complete backup include it.');
         }));
       t.check('healthy history keeps troubleshooting behind a closed native disclosure',
         await page.$eval('#history-troubleshooting', (node) => !node.open && node.contains(document.querySelector('#btn-copy-history'))
@@ -11646,7 +11651,7 @@ const SCENARIOS = [
       t.check('the switch is labelled and describes its local-only boundary',
         await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.trim() === 'Enable D to mark as read and continue'
           && input.getAttribute('aria-describedby') === 'reading-shortcut-help reading-shortcut-storage-help')
-        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress, and only a complete backup includes it')));
+        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('Only a complete backup includes this choice.')));
       await click(page, '#opt-reading-shortcut');
       t.check('off removes shortcut metadata and changes the reference without touching progress',
         disabled(await presentation())
@@ -19584,6 +19589,31 @@ async function cloudCard(page) {
   });
 }
 
+// Where each cloud Restore button is drawn against the backup it restores. The owner could not tell which
+// backup a Restore belonged to on a phone (#810, P03-T04 session): wrapped under its line, the button sat
+// further from its own backup than from the next one. So each row must draw its own edge around its text
+// and its button, and the button must sit nearer its own text than the closest the next row's text can be.
+async function restoreRows(page) {
+  return page.evaluate(() => [...document.querySelectorAll('#cloud-discovery-list button[data-cloud-copy]')].map((button) => {
+    const row = button.closest('li');
+    const text = row?.querySelector(':scope > span');
+    const style = row ? getComputedStyle(row) : null;
+    const box = (node) => node.getBoundingClientRect();
+    const [r, b, s] = [row, button, text].map((node) => (node ? box(node) : null));
+    const inside = (outer, inner) => inner.left >= outer.left && inner.right <= outer.right && inner.top >= outer.top && inner.bottom <= outer.bottom;
+    const apart = (one, two) => Math.hypot(Math.max(0, one.left - two.right, two.left - one.right), Math.max(0, one.top - two.bottom, two.top - one.bottom));
+    const edge = style ? parseFloat(style.borderTopWidth) + parseFloat(style.paddingTop) : 0;
+    const gap = row ? parseFloat(getComputedStyle(row.parentElement).rowGap) || 0 : 0;
+    return {
+      label: button.getAttribute('aria-label'),
+      edged: Boolean(style) && parseFloat(style.borderBottomWidth) > 0 && style.borderBottomStyle !== 'none' && parseFloat(style.borderTopWidth) > 0,
+      holds: Boolean(r && s) && inside(r, b) && inside(r, s) && Boolean(text?.textContent.trim()),
+      own: s ? Math.round(apart(b, s)) : null,
+      next: r ? Math.round(r.bottom - b.bottom + gap + edge) : null,
+    };
+  }));
+}
+
 async function cloudDatabases(page) {
   return page.evaluate(async () => (await indexedDB.databases()).map((entry) => entry.name).filter((name) => name === 'mrt-cloud-backup-v1'));
 }
@@ -19788,6 +19818,14 @@ SCENARIOS.push({
         && listed.restores[0].shown && listed.restores[0].enabled
         && await page.$eval('#cloud-discovery-list', (node) => node.textContent.includes('(this browser)')),
       JSON.stringify(listed.restores));
+    const rowsWide = await restoreRows(page);
+    await page.setViewport({ width: 360, height: 800 });
+    const rowsNarrow = await restoreRows(page);
+    await page.setViewport({ width: 1280, height: 900 });
+    t.check('each Restore sits in its own backup\'s outlined row, nearer that backup\'s line than the next row, wide and at phone width',
+      rowsWide.length === 1 && rowsNarrow.length === 1
+        && [...rowsWide, ...rowsNarrow].every((row) => row.edged && row.holds && row.own < row.next),
+      JSON.stringify({ rowsWide, rowsNarrow }));
     await page.$eval('#cloud-discovery', (node) => { node.open = false; });
     await completePresentation(page, t, {
       label: 'the cloud backup card with backups on',
@@ -19881,8 +19919,8 @@ SCENARIOS.push({
     const remove = await ask('#btn-cloud-delete');
     t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
       remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
-        && remove.body.includes('every backup it made in the OneDrive account reader@example.test.')
-        && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied'),
+        && remove.body.includes('every backup this browser made in the OneDrive account reader@example.test.')
+        && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days'),
       JSON.stringify(remove));
     await click(page, '#ask-ok');
     await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);

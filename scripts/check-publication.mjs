@@ -163,6 +163,12 @@ export const ALLOWED = new Map([
     'the fixed browser-version literal after a ternary colon in the reporter fixture, not an assigned credential'],
   ['test/google-play-publisher.test.js|a secret assigned in code|' + 'token' + " = 'fixture-token-never-recorded'",
     'the fixed noncredential bearer sentinel used only by the mocked Play transport tests'],
+  ['packaging/android/app/src/test/java/io/github/raymondnassar/recappage/prototype/CloudTest.java'
+    + '|a session or workspace identifier|00000000-0000-0000-0000-' + '00000000abcd',
+  'the fabricated OneDrive client id of the Android cloud account tests, not a registration or identity'],
+  ['packaging/android/app/src/test/java/io/github/raymondnassar/recappage/prototype/CloudTest.java'
+    + '|a bearer token written out|Bearer ' + 'ACCESS-TOKEN-never-shown',
+  'the fixed noncredential access-token sentinel the Android cloud tests assert never reaches the page'],
 ]);
 
 export function findings(label, text, sink) {

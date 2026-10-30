@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:795-802`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:796-803`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1309,7 +1309,12 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .cloud-device { margin-top: var(--space-5); }
 .cloud-device h4 { margin: 0 0 var(--space-2); font-size: var(--t-body); font-weight: 600; }
 .cloud-copies { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
-.cloud-copy { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+/* Each backup is its own outlined row with its Restore button inside it. Spread across the card, the
+   buttons wrapped away from their lines on a phone, and the owner could not tell which backup each one
+   restored (#810, P03-T04 session). */
+.cloud-copy { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); }
+.cloud-copy > span { flex: 1 1 14rem; }
 #cloud-discovery-list > .btn { margin-top: var(--space-4); }
 
 /* A settings row. The header and its one line description sit in the text column, and the control
@@ -2834,3 +2839,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .rail-header.bar-two-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rail-header.bar-two-rows :is(.brand, .mobile-link, .rail-toggle) { flex-direction: row; gap: var(--space-3); }
 }
+
+#reader-closure-notice { position: relative; }
+#reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
+#reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }

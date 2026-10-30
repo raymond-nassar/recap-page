@@ -3633,7 +3633,7 @@ async function homeContinueCheck(page, label, viewport) {
   const walk = (node) => { if (!node) return; tree.push(node); (node.children || []).forEach(walk); };
   walk(await page.accessibility.snapshot());
   const cardName = await page.$eval('#chero-h', (node) => node.textContent.trim());
-  const notice = await page.$eval('#reader-closure-notice', (node) => ({ text: node.textContent, className: node.className }));
+  const notice = await page.$eval('#reader-closure-notice', (node) => ({ text: node.querySelector('#reader-closure-text').textContent, className: node.className }));
   const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
   const noticeAt = tree.findIndex((node) => node.name === notice.text);
   check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
@@ -3722,6 +3722,23 @@ async function homeContinueCheck(page, label, viewport) {
     check(focused.focus === id && control.top >= 0 && control.bottom <= focused.fold,
       `${name}: Tab brings ${id === 'btn-chero-read' ? 'Read' : 'Done'} into view clear of the bottom bar ${JSON.stringify({ control, fold: focused.fold, path })}`);
   }
+  await page.focus('#reader-closure-dismiss');
+  await settle();
+  const dismissalTarget = await page.$eval('#reader-closure-dismiss', (node) => {
+    const box = node.getBoundingClientRect();
+    const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+    const bar = document.querySelector('.rail-header').getBoundingClientRect();
+    return { width: box.width, height: box.height, top: box.top, bottom: box.bottom,
+      fold: bar.top > innerHeight / 2 ? bar.top : innerHeight, reached: node === hit || node.contains(hit) };
+  });
+  check(dismissalTarget.width >= (viewport.desktop ? 44 : 48) && dismissalTarget.height >= (viewport.desktop ? 44 : 48)
+    && dismissalTarget.top >= 0 && dismissalTarget.bottom <= dismissalTarget.fold && dismissalTarget.reached,
+  `${name}: notice dismiss target is reachable above the bottom bar ${JSON.stringify(dismissalTarget)}`);
+  const readingBeforeDismiss = await readCount();
+  await page.keyboard.press('Enter');
+  check(await page.evaluate(() => document.querySelector('#reader-closure-notice').hidden
+    && document.activeElement.id === 'home-h') && await readCount() === readingBeforeDismiss,
+  `${name}: keyboard dismissal hides only the notice and focuses Home`);
   if (!viewport.readAbove) {
     console.log(`CHECKED ${name}: Continue reading reached by focus ${JSON.stringify({ read: opened.read, fold: opened.fold })}`);
     return;
@@ -4923,6 +4940,11 @@ try {
           if (message.kind === 'save') {
             harness.requests.push(message);
             if (harness.autoSave) harness.reply(message, 'saved');
+          } else if (message.kind === 'cloud') {
+            // A dormant build: native answers every cloud request 404 with no body, and the page then
+            // hides the card. Kept apart from replies, which the back checks read from the end.
+            harness.cloud = [...(harness.cloud || []), message];
+            channel.port1.postMessage(JSON.stringify({ v: 1, kind: 'cloud-result', id: message.id, status: 404, body: null }));
           } else harness.replies.push(message);
         };
         window.dispatchEvent(new MessageEvent('message', {

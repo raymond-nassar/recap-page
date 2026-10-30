@@ -12,6 +12,7 @@
 import { CLOUD_BACKUP_DATABASE } from '../storage.js';
 import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel, isUnreadableRecord } from './cloudProtocol.js';
 import { CloudBackupCoordinator } from './cloudCoordinator.js';
+import { cloudErrorText } from './cloudCopy.js';
 
 export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
 // How often the card asks whether a sign-in in the browser has finished. The host answers from memory.
@@ -24,15 +25,20 @@ const IDLE = Object.freeze({ state: 'idle', connection: null, result: null, mess
 const NOT_LINKED = 'Cloud backup is not connected to an account right now, so nothing was changed.';
 // The owner's words, approved 2026-10-28 (stage 3 review, S3a-1), and pinned in the privacy copy tests.
 export const ERASE_HOST_SILENT = 'The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account.';
+// The same, from the Android app, whose sign-in reaches only this device (#810, P03-T03).
+export const ERASE_HOST_SILENT_DEVICE = 'The Recap Page app did not answer, so cloud backup may still be connected on this device.';
 // Why an erase did not start, after "Nothing was erased." (stage 4 review, S4c-1). The owner's words,
 // approved 2026-10-29 with an edit, and pinned in the privacy copy tests.
+// Added to that refusal when the consent the erase set aside could not be put back.
+export const ERASE_LEFT_OFF = 'Automatic backup is now off until you turn it on again.';
 export const ERASE_NOT_STOPPED = 'Automatic backup could not be stopped first, so erasing now could let a backup of the erased data replace your earlier backups.';
 // The host states the erase question names as disconnected, as cloudEraseNote reads them.
 const DISCONNECT_NAMED = new Set(['connected', 'needs-sign-in', 'signing-in', 'unavailable']);
 
-// What other devices see in discovery: the browser's brand and the system it runs on, from the client
-// hints Chromium gives every page, or the protocol's default where there are none.
-export function browserDeviceLabel(nav = globalThis.navigator) {
+// The Android app's approved name avoids exposing the unfamiliar WebView brand. Windows keeps the
+// browser's client hints, or the protocol's default where there are none.
+export function browserDeviceLabel(nav = globalThis.navigator, scope) {
+  if (scope === 'device') return 'Recap Page on Android';
   const hints = nav?.userAgentData;
   const brands = Array.isArray(hints?.brands) ? hints.brands.map((entry) => String(entry?.brand ?? '').trim()) : [];
   const brand = brands.find((name) => name && !/^chromium$|^not.?a.?brand$/i.test(name))
@@ -44,12 +50,15 @@ export function browserDeviceLabel(nav = globalThis.navigator) {
 export function createCloudBackup({
   transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
-  device = browserDeviceLabel(), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
+  device = browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
   coordinator: coordinatorOptions = {}, onChange = () => {},
 } = {}) {
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
     throw new TypeError('Cloud backup on this page needs a transport that reports the account and can connect and disconnect it.');
   }
+  // Where a sign-in reaches: every browser profile on the Windows account the host runs in, or, from the
+  // Android app, this device alone. The card and the erase say which.
+  const scope = transport.scope === 'device' ? 'device' : 'profiles';
   let status = null;
   let record = null;
   let recordProblem = null;
@@ -104,6 +113,7 @@ export function createCloudBackup({
       recordUnreadable,
       backup: coordinator?.state ?? OFF,
       discovery,
+      scope,
     });
   }
 
@@ -340,8 +350,9 @@ export function createCloudBackup({
     // with it and leaves consent set aside, which the card says. Callers await this before the first write.
     // It resolves to null once the record is confirmed to give no tab a number: no consent in it, consent
     // set aside and read back, or a record that fails its checks, from which no tab takes one and which the
-    // erase forgets. Otherwise it puts back what it did and resolves to why, and the caller erases nothing,
-    // because the lock alone ends with the page that holds it (stage 4 review, S4c-1).
+    // erase forgets. Otherwise it resolves to why, and the caller erases nothing, because the lock alone ends
+    // with the page that holds it (stage 4 review, S4c-1). Before that it puts back any consent it set aside,
+    // and when it cannot, why also says automatic backup is now off (#996, S5-1).
     beforeErase() {
       held = true;
       wasRunning = Boolean(coordinator?.active);
@@ -351,18 +362,45 @@ export function createCloudBackup({
         const exists = await recordExists();
         if (exists === true || (exists === null && (record !== null || enabled()))) {
           let why = null;
+          let mine = false;
           try {
             releaseErase = await protocol.hold();
-            setAside = await protocol.suspendConsent();
+            setAside = await protocol.suspendConsent(() => { mine = true; });
           } catch (error) {
             // Only a record that fails its checks, read under the lock, lets the erase go on: no tab takes a
             // number from it, and the erase forgets it.
             if (!(releaseErase && isUnreadableRecord(error))) {
-              why = error instanceof CloudBackupError ? `${ERASE_NOT_STOPPED} ${error.message}` : ERASE_NOT_STOPPED;
+              why = error instanceof CloudBackupError ? `${ERASE_NOT_STOPPED} ${cloudErrorText(error.message, scope)}` : ERASE_NOT_STOPPED;
             }
           }
           if (why !== null) {
-            const resume = wasRunning;
+            let resume = wasRunning;
+            // Setting consent aside can commit before its read-back fails, so whatever is still set aside goes
+            // back under the same lock, but only when this erase found consent to set aside. Consent an earlier
+            // erase left set aside when its page died stays so, because putting it back would back up partly
+            // erased data (S3a-7). When even that fails, the refusal says backups are off rather than leaving
+            // it to be found later (#996, S5-1).
+            if (releaseErase && mine) {
+              try {
+                if (await protocol.resumeConsent()) {
+                  resume = true;
+                  announce();
+                }
+              } catch {
+                // A resume that failed only because storage is failing may have nothing to put back: the
+                // sentence is added only when the record still shows consent set aside, or cannot be read.
+                let off = true;
+                try {
+                  const now = await protocol.record();
+                  off = Boolean(now && now.consent === null && now.suspended !== null);
+                } catch { /* unread, so it may be off */ }
+                if (off) {
+                  why = `${why} ${ERASE_LEFT_OFF}`;
+                  resume = true;
+                  announce();
+                }
+              }
+            }
             releaseErase?.();
             releaseErase = null;
             held = false;
@@ -416,7 +454,7 @@ export function createCloudBackup({
         had = had || await protocol.record().then((value) => value !== null, () => true);
         try { await protocol.forget(); } catch (error) {
           kept = true;
-          problems.push(error?.message ?? 'This browser could not forget its cloud backup record.');
+          problems.push(cloudErrorText(error?.message ?? 'This browser could not forget its cloud backup record.', scope));
           // Consent given in another tab during the erase too, so the erased state is never backed up under it.
           await protocol.withdrawConsent().catch(() => {});
         }
@@ -434,7 +472,7 @@ export function createCloudBackup({
         try {
           const now = await transport.status();
           if (now.enabled && now.state !== 'not-connected') await transport.disconnect();
-          else if (!now.enabled && expected) problems.push(ERASE_HOST_SILENT);
+          else if (!now.enabled && expected) problems.push(scope === 'device' ? ERASE_HOST_SILENT_DEVICE : ERASE_HOST_SILENT);
         } catch (error) {
           problems.push(error?.message ?? 'Cloud backup could not be disconnected.');
         }

@@ -32,7 +32,9 @@ export function validateExport({ filename, type, text }) {
   }
 }
 
-export function createAndroidBridge({ host, report, handleBack }) {
+// cloud, when given, is the page's half of the cloud backup route (cloudPort.js): it is handed each port
+// the app connects and every cloud answer, and loses the port when the page does (#810, P03-T03).
+export function createAndroidBridge({ host, report, handleBack, cloud = null }) {
   let port = null;
   let pending = null;
   let sequence = 0;
@@ -46,6 +48,7 @@ export function createAndroidBridge({ host, report, handleBack }) {
 
   function closePort(message) {
     finish(false, message);
+    cloud?.detach();
     port?.close();
     port = null;
   }
@@ -65,6 +68,10 @@ export function createAndroidBridge({ host, report, handleBack }) {
     }
     if (message?.v !== 1 || typeof message.id !== 'string') {
       finish(false, 'Android sent an unsupported response. Reopen the app and try again.');
+      return;
+    }
+    if (message.kind === 'cloud-result') {
+      cloud?.receive(message);
       return;
     }
     if (message.kind === 'back') {
@@ -96,6 +103,7 @@ export function createAndroidBridge({ host, report, handleBack }) {
       closePort('The Android download connection failed. Reopen the app and try again.');
     };
     port.start();
+    cloud?.attach(activePort);
   }
 
   host.addEventListener('message', connect);

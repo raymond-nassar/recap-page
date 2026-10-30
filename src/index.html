@@ -173,7 +173,7 @@
               </details>
             </div>
 
-            <p id="reader-closure-notice" class="notice notice-warn">Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.</p>
+            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.</span><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
 
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">
@@ -933,14 +933,14 @@
 
             <section class="setgroup">
               <h2>Data safety</h2>
-              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.</p>
+              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data, without settings.</p>
               <div class="card card-static addpri" id="complete-backup">
                 <h3>Complete backup</h3>
                 <div class="field-row">
                   <button type="button" id="btn-export-complete" class="btn">Download complete backup</button>
                 </div>
                 <label class="backup-restore-label" for="restore-complete">Restore a complete backup</label>
-                <p class="rail-hint" id="restore-complete-hint">Restoring replaces everything it holds after confirmation and cannot be undone as a whole.</p>
+                <p class="rail-hint" id="restore-complete-hint">Restoring replaces everything it holds, once you confirm, and cannot be undone.</p>
                 <p class="rail-hint" id="complete-restore-unavailable" hidden></p>
                 <div class="field-row">
                   <input type="file" id="restore-complete" accept="application/json,.json" aria-describedby="restore-complete-hint complete-restore-unavailable complete-backup-report" />
@@ -958,8 +958,8 @@
                 </section>
                 <details class="setting-more">
                   <summary>About complete backups</summary>
-                  <p class="rail-hint" id="complete-backup-contents">A complete backup holds everything the reading data, completion history and import draft backups hold, plus cover art, theme, reading filter, reading shortcut, story summary and sidebar choices. The metadata source under Advanced is not included, so a backup can never change which service the app asks for comic details.</p>
-                  <p class="rail-hint">Versions before this one cannot read a complete backup. Close other Recap Page tabs before restoring one. If a restore is interrupted, this card offers to finish it, put the earlier data back, or download an exact copy of the data from before it. This version cannot restore that copy: it is for recovering the earlier data by hand or with help.</p>
+                  <p class="rail-hint" id="complete-backup-contents">It holds everything the other backups hold, plus your cover art, theme, reading filter, reading shortcut, story summary and sidebar choices, but not the metadata source under Advanced.</p>
+                  <p class="rail-hint">Close other Recap Page tabs before restoring. If a restore is interrupted, this card offers to finish it or put the earlier data back.</p>
                 </details>
               </div>
               <!-- Cloud backup (#810). Hidden until the page learns this build has it, which it asks when this
@@ -987,8 +987,8 @@
                 <div id="cloud-backup-report" class="results" tabindex="-1"></div>
                 <details class="setting-more">
                   <summary>About cloud backup</summary>
-                  <p class="rail-hint">A backup is made once changes have been quiet for ten seconds, at most once every five minutes, and at once when you leave Recap Page. The two newest backups of this browser are kept, and older ones go to OneDrive's recycle bin. Restoring one replaces everything it holds, as restoring a complete backup file does.</p>
-                  <p class="rail-hint" id="cloud-backup-privacy">Backups go to a folder of their own in your OneDrive, and that folder is all of your OneDrive that Recap Page can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page's developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.</p>
+                  <p class="rail-hint">A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this browser are kept, and older ones go to OneDrive's recycle bin. Restoring one replaces everything it holds.</p>
+                  <p class="rail-hint" id="cloud-backup-privacy">Backups go to Recap Page's own folder in your OneDrive, the only part of it the app can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page's developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.</p>
                 </details>
               </div>
               <div class="card card-static addpri">
@@ -1008,7 +1008,7 @@
                 <details class="setting-more">
                   <summary>About reading-data backups</summary>
                   <p class="rail-hint" id="backup-contents"></p>
-                  <p class="rail-hint">Undo is offered once in this tab. After Undo or reload, use the clearly named saved-copy action instead. Restoring leaves completion and enjoyment history unchanged.</p>
+                  <p class="rail-hint">Undo is offered once, until you reload; after that, download the saved copy instead. Restoring leaves completion and enjoyment history unchanged.</p>
                 </details>
                 <details class="field-disclosure action-disclosure" id="backup-export-options">
                   <summary>Checklist and sharing options</summary>
@@ -1017,7 +1017,7 @@
                       <button type="button" id="btn-export-md-2" class="btn btn-g">Export personal checklist</button>
                       <button type="button" id="btn-export-order-2" class="btn btn-g" aria-describedby="export-order-hint">Export order only</button>
                     </div>
-                    <p class="rail-hint" id="export-order-hint">Order-only Markdown excludes notes, descriptions, reading progress and availability overrides. Personal Markdown includes notes and read checkboxes, but notes do not re-import. JSON is the lossless reader-data backup.</p>
+                    <p class="rail-hint" id="export-order-hint">The order-only export leaves out notes, summaries, progress and availability overrides. The personal checklist includes notes and read marks, but notes do not import back.</p>
                   </div>
                 </details>
               </div>
@@ -1036,7 +1036,7 @@
                 <div id="draft-transfer-report" class="results" tabindex="-1"></div>
                 <details class="setting-more">
                   <summary>About import-draft backups</summary>
-                  <p class="rail-hint">The separate import-draft file includes exact pasted source, source positions, selected matches and retained previous sources, with no automatic expiry. Reading-data and completion-history backups do not include it. Download it whenever a draft or retained draft source is present. Restoring reading data keeps the draft but requires review before applying more comics.</p>
+                  <p class="rail-hint">It holds your pasted lists and chosen matches, and never expires. Only this backup and a complete backup include it. Restoring reading data keeps the draft, but you review it before adding more comics.</p>
                 </details>
               </div>
 
@@ -1048,8 +1048,7 @@
                 <details class="setting-more">
                   <summary>Where these copies live</summary>
                   <p class="rail-hint">
-                    Those copies are kept until you remove them here, and they sit in the same browser
-                    storage as your lists and progress.
+                    They are kept with your lists and progress until you remove them here.
                   </p>
                 </details>
                 <div id="salvage-list"></div>
@@ -1067,7 +1066,7 @@
                 </p>
                 <details class="setting-more">
                   <summary>About this preference</summary>
-                  <p class="rail-hint" id="reading-shortcut-storage-help">Done still works. Your choice is kept in this browser, separately from reading progress, and only a complete backup includes it.</p>
+                  <p class="rail-hint" id="reading-shortcut-storage-help">The Done button still works. Only a complete backup includes this choice.</p>
                 </details>
                 <div id="reading-shortcut-report" class="results"></div>
               </div>
@@ -1078,11 +1077,9 @@
                 <details class="setting-more">
                   <summary>How covers are requested</summary>
                   <p class="rail-hint">
-                    Covers load straight from Marvel's image servers. The metadata service reports each
-                    address, but one naming any other host is refused before a request is made. This app
-                    stores only the address, never the image itself, and never proxies or re-hosts
-                    artwork. Switch covers off and every cover becomes a plain typographic tile, and no
-                    cover is requested at all.
+                    Covers load straight from Marvel's image servers; an address naming any other host is
+                    never requested. Recap Page stores only the address, never the image. Switch covers
+                    off and no cover is requested at all.
                   </p>
                 </details>
               </div>
@@ -1115,10 +1112,9 @@
                 <details class="setting-more">
                   <summary>What this choice changes</summary>
                   <p class="rail-hint">
-                    Turn off to show already-fetched summaries without Show and Hide controls.
-                    This does not identify spoilers or filter titles and covers.
-                    Changing this choice resets individual reveal choices, not fetched text.
-                    The preference is saved in this browser, separately from progress, and only a complete backup includes it.
+                    Turn off to show loaded summaries without Show and Hide.
+                    It does not hide spoilers in titles or covers.
+                    Only a complete backup includes this choice.
                   </p>
                 </details>
                 <div id="description-hiding-report" class="results"></div>
@@ -1173,8 +1169,7 @@
                     <details class="setting-more">
                       <summary>Why this can be changed</summary>
                       <p class="rail-hint">
-                        The default is the community API this was built against. If it disappears the
-                        upstream is self-hostable, so you can point this at your own copy.
+                        If the default community API goes away, you can point this at your own copy of it.
                       </p>
                     </details>
                   </div>

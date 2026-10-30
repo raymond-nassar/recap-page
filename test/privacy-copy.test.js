@@ -776,7 +776,7 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
   // The card shows only where cloud backup is, so its privacy paragraph has one variant.
   assert.equal(
     section(html, '<p class="rail-hint" id="cloud-backup-privacy">', '</p>', 'on'),
-    'Backups go to a folder of their own in your OneDrive, and that folder is all of your OneDrive that Recap Page can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page\'s developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.',
+    'Backups go to Recap Page\'s own folder in your OneDrive, the only part of it the app can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page\'s developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.',
   );
 });
 
@@ -799,7 +799,7 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'Connected to OneDrive as reader@example.test. Automatic backup stopped while this browser\'s data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.');
   // B. Delete this device's cloud backups: the question and its four reports.
   assert.equal(cloudDeleteQuestion(connected),
-    'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
+    'This turns automatic backup off and deletes every backup this browser made in the OneDrive account reader@example.test. Backups from other devices or other accounts are kept; delete those in OneDrive. Deleted backups stay in OneDrive\'s recycle bin for up to 30 days, but Recap Page cannot bring them back.');
   assert.equal(cloudDeleteReport({ deleted: 2, failed: [] }, connected),
     'Deleted 2 backups of this browser from the OneDrive account reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.');
   assert.equal(cloudDeleteReport({ deleted: 1, failed: [] }, connected),
@@ -808,7 +808,7 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'No backups of this browser were in the OneDrive account reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.');
   assert.equal(cloudDeleteReport({ deleted: 1, failed: [{ id: 'x', name: 'x', code: 'timeout' }] }, connected),
     'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off for this browser; delete again to finish.');
-  assert.match(cloudDeleteQuestion({ ...connected, account: null }), /every backup it made in this OneDrive account\. /);
+  assert.match(cloudDeleteQuestion({ ...connected, account: null }), /every backup this browser made in this OneDrive account\. /);
   // C. A deletion that fails before deleting anything.
   assert.equal(cloudDeleteFailure('The Recap Page app did not answer in time.', true),
     'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.');
@@ -822,16 +822,85 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
   const html = read('src/index.html');
   for (const state of STATES) {
     assert.equal(section(html, '<p class="rail-hint setgroup-note" id="transfer-summary">', '</p>', state),
-      'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.');
+      'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data, without settings.');
   }
   // F. A record that fails its checks.
   assert.equal(cloudCardStatus({ ...connected, recordUnreadable: true }),
     'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
 });
 
+// On Android one app holds one sign-in, so the sentences that name every browser profile on a Windows
+// account say "on this device" there instead (#810, P03-T03). The Windows words above stay as approved.
+// These are proposed to the owner with pull request 3, so changing them needs the owner's approval too.
+test('the cloud backup sentences that name where a sign-in reaches say this device on Android', async () => {
+  const { ERASE_HOST_SILENT_DEVICE } = await import('../src/js/lib/cloudBackup.js');
+  const { cloudDisconnectQuestion, cloudEraseNote, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  const device = {
+    shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
+    agreed: false, on: false, askedAgain: false, suspended: false, hasStream: false, recordProblem: null, recordUnreadable: false,
+    backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null }, scope: 'device',
+  };
+  assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT_DEVICE] }).trim(),
+    'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected on this device. Check Cloud backup in Backup & settings.');
+  assert.equal(cloudEraseNote(device), 'Cloud backup is disconnected too, on this device. Backups already in OneDrive stay there.');
+  assert.equal(cloudDisconnectQuestion(device, false),
+    'Recap Page forgets the OneDrive sign-in on this device, and automatic backup stops. Backups already in OneDrive stay there.');
+});
+
 // Why an erase was refused, said after "Nothing was erased." when cloud backup could not be stopped first
 // (stage 4 review, S4c-1). The owner approved these words, with an edit, on 2026-10-29 (#810), so changing
 // them needs the owner's approval again.
+test('Windows cloud statuses keep their approved browser wording', async () => {
+  const { cloudCardStatus } = await import('../src/js/views/cloud.js');
+  const model = { host: 'connected', provider: 'onedrive', account: 'reader@example.test' };
+  const account = 'Connected to OneDrive as reader@example.test.';
+  assert.equal(cloudCardStatus({ ...model, host: 'not-answering' }), 'Automatic backup is on in this browser, but the Recap Page app is not answering for it, so backups wait until it does.');
+  assert.equal(cloudCardStatus({ ...model, on: true, backup: { phase: 'failed', code: 'unsupported' } }), `${account} This browser cannot make cloud backups, so backups have stopped.`);
+  assert.equal(cloudCardStatus({ ...model, on: true, backup: { phase: 'failed', code: 'storage' } }), `${account} This browser could not read its saved data or its cloud backup record, so backups have stopped.`);
+  assert.equal(cloudCardStatus({ ...model, askedAgain: true }), `${account} OneDrive was connected again since this browser agreed to back up, so check the backups below before turning automatic backup on again.`);
+});
+
+test('Android cloud statuses and deletion outcomes use the approved words', async () => {
+  const { cloudCardStatus, cloudEraseNote, cloudDeleteQuestion, cloudDeleteReport, cloudDeleteFailure } = await import('../src/js/views/cloud.js');
+  const model = { shown: true, host: 'connected', provider: 'onedrive', account: 'reader@example.test', scope: 'device' };
+  const account = 'Connected to OneDrive as reader@example.test.';
+  assert.equal(cloudCardStatus({ ...model, host: 'not-answering' }), "Automatic backup is on, but the app's cloud backup is not answering, so backups wait until it does.");
+  assert.equal(cloudCardStatus({ ...model, on: true, backup: { phase: 'failed', code: 'unsupported' } }), `${account} Cloud backup cannot work on this device, so backups have stopped.`);
+  for (const code of ['storage', 'unreadable']) assert.equal(cloudCardStatus({ ...model, on: true, backup: { phase: 'failed', code } }), `${account} Recap Page could not read its saved data or its cloud backup record, so backups have stopped.`);
+  assert.equal(cloudCardStatus({ ...model, askedAgain: true }), `${account} OneDrive was connected again after you turned on automatic backup, so check the backups below before turning it on again.`);
+  assert.equal(cloudCardStatus({ ...model, suspended: true }), `${account} Automatic backup stopped while Recap Page's data on this device was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.`);
+  assert.equal(cloudCardStatus({ ...model, recordUnreadable: true }), `${account} Recap Page could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. Backups made earlier on this device will then be listed as another device's.`);
+  assert.equal(cloudEraseNote({ ...model, host: 'not-connected', agreed: true }), 'Cloud backup settings are erased too. Backups already in OneDrive stay there.');
+  assert.equal(cloudDeleteQuestion(model), "This turns automatic backup off and deletes every backup made on this device in the OneDrive account reader@example.test. Backups from other devices or other accounts are kept; delete those in OneDrive. Deleted backups stay in OneDrive's recycle bin for up to 30 days, but Recap Page cannot bring them back.");
+  assert.equal(cloudDeleteReport({ deleted: 0, failed: [] }, model), 'No backups made on this device were in the OneDrive account reader@example.test. Any made in another account are still there. Automatic backup is off.');
+  for (const count of [1, 2]) {
+    assert.equal(cloudDeleteReport({ deleted: count, failed: [] }, model), `Deleted ${count} ${count === 1 ? 'backup' : 'backups'} made on this device from the OneDrive account reader@example.test, where ${count === 1 ? 'it stays' : 'they stay'} in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off.`);
+  }
+  assert.equal(cloudDeleteReport({ deleted: 1, failed: [{ code: 'timeout' }] }, model), 'Deleted 1 of 2 backups made on this device from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off; delete again to finish.');
+  assert.equal(cloudDeleteFailure('The Recap Page app did not answer in time.', true, model), 'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off.');
+  assert.equal(cloudDeleteFailure('Nothing was deleted. Sign in again.', true, model), 'Nothing was deleted. Sign in again. Automatic backup is off.');
+  assert.equal(cloudDeleteFailure('Sign in again.', false, model), 'Nothing was deleted. Sign in again.');
+});
+
+test('cloud error reports use Android wording and leave Windows errors unchanged', async () => {
+  const { cloudCardStatus } = await import('../src/js/views/cloud.js');
+  const pairs = [
+    ['Cloud backup is not turned on for this browser, so nothing was uploaded.', 'Cloud backup is not turned on, so nothing was uploaded.'],
+    ['This browser could not keep its cloud backup record.', 'Recap Page could not keep its cloud backup record.'],
+    ["This browser's cloud backup record cannot be read.", "Recap Page's cloud backup record cannot be read."],
+    ['A backup with this number was already in the account, perhaps made by a device restored from this one, so this browser now starts its backups afresh, and this one will be made again.', 'A backup with this number was already in the account, perhaps made by a device restored from this one, so Recap Page now starts its backups afresh, and this one will be made again.'],
+    ['This browser cannot make random ids, so cloud backup is unavailable here.', 'Cloud backup cannot work on this device, because it cannot make random ids.'],
+    ['This browser cannot compress or check cloud backups, so cloud backup is unavailable here.', 'Cloud backup cannot work on this device, because it cannot compress or check backups.'],
+    ['This browser could not forget its cloud backup record.', 'Recap Page could not forget its cloud backup record.'],
+  ];
+  for (const [windows, android] of pairs) {
+    for (const suffix of ['', ' Cloud backup was not turned on.']) {
+      assert.equal(cloudCardStatus({ host: 'unavailable', message: windows + suffix }), windows + suffix);
+      assert.equal(cloudCardStatus({ host: 'unavailable', scope: 'device', message: windows + suffix }), android + suffix);
+    }
+  }
+});
+
 test('the sentence an erase gives when cloud backup could not be stopped first is the owner\'s approved words', async () => {
   const { ERASE_NOT_STOPPED } = await import('../src/js/lib/cloudBackup.js');
   assert.equal(ERASE_NOT_STOPPED,

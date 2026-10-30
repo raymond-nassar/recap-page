@@ -60,6 +60,7 @@ import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
 import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
+import { createNoticeDismissal } from './lib/noticeDismissal.js';
 import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
@@ -81,7 +82,7 @@ import {
 } from './lib/completeBackup.js';
 import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.js';
 import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
-import { createCloudHostTransport } from './lib/cloudHostTransport.js';
+import { cloudTransport } from './lib/cloudTransports.js';
 import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -2386,12 +2387,13 @@ const completeBackupView = createCompleteBackupView({
   onFinished: reloadWithNotice,
 });
 
-// Cloud backup (#810). This is the one place the page is given a cloud backup transport: here the
-// Windows host's control API, on this origin. The Android and iOS apps install their own bridges at this
-// point, behind the same four operations (CQ-2), and nothing else in the page names a provider. A build
+// Cloud backup (#810). This is the one place the page is given a cloud backup transport: the Windows
+// host's control API on this origin, unless an app installed its own bridge first through
+// cloudTransports.js, as the Android app does, behind the same four operations (CQ-2). Nothing else in the
+// page names a provider. A build
 // without cloud backup answers 404 there, so it shows nothing and starts nothing.
 const cloudBackup = createCloudBackup({
-  transport: createCloudHostTransport(),
+  transport: cloudTransport(),
   capture: () => captureCompleteBackup({ storage: localStorage, importDraft }),
   // Every complete-restore phase but open, so no capture mixes restored data with earlier data.
   isBlocked: () => completeRestore.state.phase !== 'open',
@@ -2972,9 +2974,18 @@ export function boot() {
   readingView.wire();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
+  const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
+  const closureNotice = $('#reader-closure-notice');
+  $('#reader-closure-dismiss').addEventListener('click', () => {
+    closureDismissal.dismiss();
+    closureNotice.hidden = true;
+    $('#home-h').setAttribute('tabindex', '-1');
+    $('#home-h').focus({ preventScroll: true });
+  });
   let readerDayTimer;
   const refreshReaderDestinations = () => {
-    $('#reader-closure-notice').textContent = readerClosureNotice();
+    $('#reader-closure-text').textContent = readerClosureNotice();
+    closureNotice.hidden = closureDismissal.dismissed();
     readingView.refreshReader();
     homeView.refreshReader();
     issueView.refreshReader();

@@ -723,11 +723,10 @@ test('deleting this device\'s backups asks first, names the account, says the re
   await settled();
   const [question] = card.state.asked;
   assert.deepEqual([question.title, question.confirmLabel, question.danger], ['Delete this device\'s cloud backups?', 'Delete cloud backups', true]);
-  // The owner's words, approved 2026-10-28 (stage 3 review, S3a-2 and S3b-5).
-  assert.equal(question.body, 'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account '
-    + 'reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete '
-    + 'those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle '
-    + 'bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
+  // The owner's words, shortened with the owner's approval on 2026-10-30 (#810, P03-T04).
+  assert.equal(question.body, 'This turns automatic backup off and deletes every backup this browser made in the OneDrive account '
+    + 'reader@example.test. Backups from other devices or other accounts are kept; delete those in OneDrive. Deleted backups stay in '
+    + 'OneDrive\'s recycle bin for up to 30 days, but Recap Page cannot bring them back.');
   assert.deepEqual(card.state.calls, [], 'Cancel deletes nothing');
 
   const deleting = async (result, model = { ...CLOUD, agreed: true, on: true, hasStream: true }, after = null) => {
@@ -834,7 +833,9 @@ test('the erase question names cloud backup only while erasing changes it', asyn
 test('the cloud card imports nothing that stores, sends or restores', () => {
   const source = readFileSync(join(ROOT, 'src/js/views/cloud.js'), 'utf8');
   const imported = [...source.matchAll(/\bfrom\s+['"]([^'"]+)['"]/g)].map((match) => match[1]);
-  assert.deepEqual(imported, ['./data.js'], 'only the shared restore wording');
+  assert.deepEqual(imported, ['./data.js', '../lib/cloudCopy.js'], 'only shared restore and platform wording');
+  const wording = readFileSync(join(ROOT, 'src/js/lib/cloudCopy.js'), 'utf8');
+  assert.doesNotMatch(wording, /\b(?:import|fetch|indexedDB|localStorage|sessionStorage|globalThis|window|document)\b/, 'platform wording stays free of imports and I/O');
 });
 
 // The privacy sentences' two variants (P02-T06): the cloud words only on the host's answer or this browser's
