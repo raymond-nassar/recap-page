@@ -340,20 +340,26 @@ final class PresentationUITests: XCTestCase {
       inlineHandlers: ['onclick', 'onmousedown', 'onmouseup', 'onpointerdown', 'ontouchstart']
         .filter((name) => typeof element[name] === 'function'),
     });
-    const evidence = (key, selector, containerSelector, containerLabel) => {
+    const evidence = (key, selector, containerSelector, containerLabel, expectedLabel, directText = false) => {
       const element = document.querySelector(selector);
       if (!element) return { key, selector, safe: false, visible: false,
         error: `Missing reviewed passive text: ${selector}` };
+      const textNode = directText ? [...element.childNodes].find((node) =>
+        node.nodeType === Node.TEXT_NODE && node.textContent.trim() === expectedLabel) : null;
+      if (directText && !textNode) return { key, selector, safe: false, visible: false,
+        error: `Missing reviewed direct text: ${expectedLabel}` };
       const ancestors = [];
       for (let node = element; node; node = node.parentElement) ancestors.push(describe(node));
-      const rect = element.getBoundingClientRect();
+      const range = document.createRange();
+      if (textNode) range.selectNodeContents(textNode);
+      const rect = textNode ? range.getBoundingClientRect() : element.getBoundingClientRect();
       const interactiveAncestor = element.closest(interactiveSelector);
-      const label = element.textContent.trim();
+      const label = (textNode || element).textContent.trim();
       const interactiveDescendant = element.querySelector(interactiveSelector);
       const safe = !interactiveAncestor && !interactiveDescendant && ancestors.every((node) =>
         node.tabindex === null && node.inlineHandlers.length === 0
         && ['', 'heading', 'navigation', 'complementary', 'main', 'region'].includes(node.role))
-        && (key === 'sidebar-reading' ? label === 'Reading' : label === '0')
+        && label === expectedLabel
         && Boolean(element.closest(containerSelector));
       return {
         key, selector, containerSelector, containerLabel, label, ancestors, safe,
@@ -361,7 +367,7 @@ final class PresentationUITests: XCTestCase {
         interactiveDescendant: interactiveDescendant ? describe(interactiveDescendant) : null,
         visible: element.checkVisibility({ checkVisibilityCSS: true })
           && !element.closest('[hidden], [inert]')
-          && (key !== 'sidebar-reading' || window.matchMedia('(min-width: 881px)').matches)
+          && (!key.startsWith('sidebar-') || window.matchMedia('(min-width: 881px)').matches)
           && rect.width > 0 && rect.height > 0,
         rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
         cursor: getComputedStyle(element).cursor,
@@ -377,9 +383,19 @@ final class PresentationUITests: XCTestCase {
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
         cases: [
-          evidence('sidebar-reading', '#sidebar #rail-reading', '#sidebar-nav', 'Main'),
+          evidence('sidebar-reading', '#sidebar #rail-reading', '#sidebar-nav', 'Main', 'Reading'),
+          evidence('sidebar-app', '#sidebar-nav > .nav-foot > h2.rail-h', '#sidebar-nav', 'Main', 'App'),
           evidence('home-read-count', '#home-continue #chero-count > b.glance-n',
-            '#home-continue', document.getElementById('chero-h').textContent.trim()),
+            '#home-continue', document.getElementById('chero-h').textContent.trim(), '0'),
+          evidence('home-count-total', '#home-continue #chero-count',
+            '#home-continue', document.getElementById('chero-h').textContent.trim(), 'of 0 issues', true),
+          evidence('home-count-word', '#home-continue #chero-count > .glance-end',
+            '#home-continue', document.getElementById('chero-h').textContent.trim(), 'read'),
+          evidence('home-next-caption', '#home-continue #chero-next',
+            '#home-continue', document.getElementById('chero-h').textContent.trim(),
+            'No issues in this Reading List yet. Open it to add comics.'),
+          evidence('home-lists-summary', '#home-yours > .sec-h > .sec-note',
+            '#home-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
         ],
       };
       passiveMonitor.setAttribute('aria-label', `recap-passive-probe ${JSON.stringify(state)}`);
@@ -458,11 +474,14 @@ final class PresentationUITests: XCTestCase {
         var accepted: [XCUIElement] = []
         for item in cases where item["visible"] as? Bool == true {
             let key = try XCTUnwrap(item["key"] as? String)
-            XCTAssertTrue(["sidebar-reading", "home-read-count"].contains(key), "only reviewed cases are tested")
+            XCTAssertTrue([
+                "sidebar-reading", "sidebar-app", "home-read-count", "home-count-total",
+                "home-count-word", "home-next-caption", "home-lists-summary",
+            ].contains(key), "only enumerated reviewed cases are tested")
             XCTAssertEqual(item["safe"] as? Bool, true, "the exact DOM node and ancestry remain passive: \(item)")
             let containerLabel = try XCTUnwrap(item["containerLabel"] as? String)
             let domLabel = try XCTUnwrap(item["label"] as? String)
-            let label = key == "sidebar-reading" ? "READING" : domLabel
+            let label = key.hasPrefix("sidebar-") ? domLabel.uppercased() : domLabel
             let container = app.webViews.firstMatch.otherElements.matching(
                 NSPredicate(format: "label == %@ OR label == %@ OR label == %@",
                             containerLabel, "\(containerLabel), navigation", "\(containerLabel), region"))
@@ -471,6 +490,7 @@ final class PresentationUITests: XCTestCase {
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
+            XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
             let before = try passiveState(of: app)
             element.tap()
             let postTapSample = try passiveState(of: app)

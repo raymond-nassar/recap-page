@@ -128,11 +128,18 @@ final class WebViewController: UIViewController, WKUIDelegate {
     private static let accessibleTargetScript = #"""
     (() => {
       const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle, #btn-home-browse, #btn-home-add';
+      const additionalTargets = '#sidebar-nav a.ri[data-view="library"], #sidebar-nav a.ri[data-view="add"], '
+        + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
+        + '#btn-chero-open, .app-footer > a[data-view="about"]';
       const applyAccessibleTargets = () => {
-        for (const target of document.querySelectorAll(selector)) {
-          if (target.dataset.iosAccessibleTarget === 'true') continue;
-          const label = (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
+        for (const target of document.querySelectorAll(`${selector}, ${additionalTargets}`)) {
+          const label = (target.id === 'btn-chero-open' ? target.getAttribute('aria-label') : null)
+            || (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
           if (!label) continue;
+          if (target.dataset.iosAccessibleTarget === 'true') {
+            if (target.getAttribute('aria-label') !== label) target.setAttribute('aria-label', label);
+            continue;
+          }
           for (const child of target.children) child.setAttribute('aria-hidden', 'true');
           for (const node of [...target.childNodes]) {
             if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;

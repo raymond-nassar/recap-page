@@ -35,6 +35,13 @@
   pointer-events: auto;
 }
 
+:root .app-footer > a[data-view="about"] {
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--target);
+  min-height: var(--target);
+}
+
 :root[data-ios-largest-text="true"] #view-home > .head {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

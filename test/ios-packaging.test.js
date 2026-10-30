@@ -528,7 +528,7 @@ test('T03 accessibility audit and More-sheet failures retain actionable diagnost
   assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
 });
 
-test('T03 accepts only the two reviewed passive-text hit-region findings after no-op taps', () => {
+test('T03 accepts only enumerated reviewed passive-text hit-region findings after no-op taps', () => {
   assert.doesNotMatch(presentationTests, /NSStringFromCGRect/);
   assert.match(presentationTests, /"nativeFrame": NSCoder\.string\(for: element\.frame\)/);
   assert.match(presentationTests, /"frame": NSCoder\.string\(for: link\.frame\)/);
@@ -540,6 +540,11 @@ test('T03 accepts only the two reviewed passive-text hit-region findings after n
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
   assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
+  for (const key of ['sidebar-app', 'home-count-total', 'home-count-word', 'home-next-caption', 'home-lists-summary']) {
+    assert.ok(presentationTests.includes(`'${key}'`), `exact reviewed candidate ${key}`);
+  }
+  assert.match(presentationTests, /node\.nodeType === Node\.TEXT_NODE && node\.textContent\.trim\(\) === expectedLabel/);
+  assert.match(presentationTests, /container\.frame\.contains\(element\.frame\)/);
   assert.match(presentationTests, /interactiveAncestor/);
   assert.match(presentationTests, /tabindex/);
   assert.match(presentationTests, /element\.tap\(\)/);
@@ -604,6 +609,9 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
   assert.match(tests, /for _ in 0\.\.<4[\s\S]*?link\.frame\.maxY <= usableBottom[\s\S]*?webView\.swipeUp\(\)/);
+  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=']) {
+    assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
+  }
 });
 
 test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {

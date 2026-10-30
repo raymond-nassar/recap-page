@@ -52,12 +52,15 @@ iPhone SE Simulator, WebKit otherwise let the native selector's single-line text
 correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
 adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
 
-The presentation audit has two enumerated, maintainer-accepted hit-region findings, not a general
+The presentation audit has seven enumerated, maintainer-reviewed hit-region candidates, not a general
 exemption for text: the iPad sidebar's `h2#rail-reading` ("READING") inside the Main navigation,
-and Home's `#chero-count > b.glance-n` read count inside the named Continue region. Neither node
-has a tabindex, interactive role, interactive ancestor or descendant. The heading's ancestor
+its App heading (`#sidebar-nav > .nav-foot > h2.rail-h`), Home's `#chero-count > b.glance-n` read count,
+the direct "of 0 issues" text and `.glance-end` "read" suffix in that count, the empty-list
+`#chero-next` caption inside the named Continue region, and the `#home-yours > .sec-h > .sec-note`
+summary inside Your Reading Lists. That summary is beside the list, not inside a tile link.
+These fixture-specific nodes have no tabindex, interactive role, interactive ancestor or descendant. The heading's ancestor
 roles are heading, navigation and complementary; the count's are region and main. Generated-bundle
-inspection found no click, mousedown or mouseup listener on either ancestry, including the document
+inspection found no click, mousedown or mouseup listener on any candidate ancestry, including the document
 and window. Document-level pointerdown listeners exist for keyboard styling and closing supplemental
 panels, but this is not evidence of a click action on either text node.
 
@@ -67,9 +70,15 @@ an unignored text object can be returned by hit testing even when activation has
 This source was inspected on October 29, 2026; Apple's internal audit-selection logic is not
 observable here. The native tests must tap each exact visible text node, require unchanged
 navigation and no focus moving to a control, then match the audit element by its static-text type,
-label, named container and frame. Only a hit-region finding on one of those verified nodes is
-accepted. All other elements, audit types and interactive descendants still fail. These new tap
-checks remain under hosted validation; they are not a claim of device VoiceOver acceptance.
+exact label, named container and frame, with its frame contained by that container. Only a hit-region
+finding on a node that passes those checks is accepted. All other elements, audit types and interactive
+descendants still fail. The original two no-op taps passed on the newest-runtime iPhone and iPad;
+the additional candidates remain under hosted validation. This is not device VoiceOver acceptance.
+
+The four sidebar navigation links and the Continue card's Open the list link use the same accessible
+parent-target treatment, preserving their names and actions rather than exempting nested text.
+The footer's About link also uses that treatment and the shared `--target` token for its minimum
+width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
