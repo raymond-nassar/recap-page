@@ -2975,7 +2975,6 @@ export function boot() {
   homeView.wire();
   const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
   const closureNotice = $('#reader-closure-notice');
-  closureNotice.hidden = closureDismissal.dismissed();
   $('#reader-closure-dismiss').addEventListener('click', () => {
     closureDismissal.dismiss();
     closureNotice.hidden = true;
@@ -2985,6 +2984,7 @@ export function boot() {
   let readerDayTimer;
   const refreshReaderDestinations = () => {
     $('#reader-closure-text').textContent = readerClosureNotice();
+    closureNotice.hidden = closureDismissal.dismissed();
     readingView.refreshReader();
     homeView.refreshReader();
     issueView.refreshReader();

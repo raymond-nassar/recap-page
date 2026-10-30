@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
-import { createNoticeDismissal, NOTICE_DISMISSAL_KEY, READER_CLOSURE_NOTICE } from '../src/js/lib/noticeDismissal.js';
+import { createNoticeDismissal, NOTICE_DISMISSAL_KEY, readerClosureNoticeId } from '../src/js/lib/noticeDismissal.js';
+
+const BEFORE = new Date(2026, 11, 6, 23, 59, 59, 999);
+const AFTER = new Date(2026, 11, 7);
+const READER_CLOSURE_NOTICE = readerClosureNoticeId();
 import { captureCompleteBackup, prepareCompleteRestore, RESTORE_KEYS } from '../src/js/lib/completeBackup.js';
 import { KEY, Store } from '../src/js/storage.js';
 import { createEmptyState, exportBackup } from '../src/js/lib/model.js';
@@ -98,4 +102,41 @@ test('complete/cloud capture excludes dismissal and recovery writes never replac
   assert.equal(reader.restore(JSON.stringify(exportBackup(createEmptyState()))).ok, true);
   assert.equal(h.map.get(NOTICE_DISMISSAL_KEY), READER_CLOSURE_NOTICE);
   assert.equal(createNoticeDismissal(h).dismissed(), true);
+});
+
+test('each reader phase has its own notice identity', () => {
+  assert.equal(readerClosureNoticeId(BEFORE), 'marvel-unlimited-closure-unlimited');
+  assert.equal(readerClosureNoticeId(AFTER), 'marvel-unlimited-closure-comics');
+});
+
+test('a dismissal before the cutoff does not hide the notice after it', () => {
+  const h = fixture();
+  let now = BEFORE;
+  const seen = createNoticeDismissal({ ...h, notice: () => readerClosureNoticeId(now) });
+  seen.dismiss();
+  assert.equal(seen.dismissed(), true);
+  now = AFTER;
+  assert.equal(seen.dismissed(), false, 'the page left open across the cutoff shows the new notice');
+  assert.equal(createNoticeDismissal({ ...h, notice: () => readerClosureNoticeId(AFTER) }).dismissed(), false,
+    'a reload after the cutoff shows the new notice');
+});
+
+test('a dismissal after the cutoff stays dismissed across reloads', () => {
+  const h = fixture();
+  const notice = () => readerClosureNoticeId(AFTER);
+  createNoticeDismissal({ ...h, notice }).dismiss();
+  assert.equal(h.map.get(NOTICE_DISMISSAL_KEY), 'marvel-unlimited-closure-comics');
+  assert.equal(createNoticeDismissal({ ...h, notice }).dismissed(), true);
+  for (const raw of ['marvel-unlimited-closure-v1', 'marvel-unlimited-closure-unlimited']) {
+    assert.equal(createNoticeDismissal({ ...fixture(raw), notice }).dismissed(), false, raw);
+  }
+});
+
+test('a page-only dismissal before the cutoff does not hide the notice after it', () => {
+  let now = BEFORE;
+  const seen = createNoticeDismissal({ storage: undefined, notice: () => readerClosureNoticeId(now) });
+  seen.dismiss();
+  assert.equal(seen.dismissed(), true);
+  now = AFTER;
+  assert.equal(seen.dismissed(), false);
 });

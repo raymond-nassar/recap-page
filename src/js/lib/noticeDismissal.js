@@ -1,22 +1,42 @@
-export const NOTICE_DISMISSAL_KEY = 'mrt.readerClosure.dismissed.v1';
-export const READER_CLOSURE_NOTICE = 'marvel-unlimited-closure-v1';
+import { readerDestination } from './readerDestination.js';
 
-// An acknowledgement belongs to this device, like Home updates seen state, not to
-// portable settings. A new notice identity must be acknowledged independently.
-export function createNoticeDismissal({ storage, notice = READER_CLOSURE_NOTICE } = {}) {
-  let dismissed = false;
-  try {
-    dismissed = storage?.getItem(NOTICE_DISMISSAL_KEY) === notice;
-  } catch {
-    // An unreadable acknowledgement cannot hide information.
+export const NOTICE_DISMISSAL_KEY = 'mrt.readerClosure.dismissed.v1';
+
+// The notice says something materially different once reading in Marvel Unlimited has ended, so
+// each phase is its own identity: dismissing the warning before December 7 must not hide the
+// later explanation of why Read now opens the Marvel Comics website.
+export function readerClosureNoticeId(now = new Date()) {
+  return `marvel-unlimited-closure-${readerDestination(now)}`;
+}
+
+// An acknowledgement belongs to this device, like Home updates seen state, not to portable
+// settings. The identity is read on every check, so a page left open across the cutoff shows the
+// new notice without a reload.
+export function createNoticeDismissal({ storage, notice = () => readerClosureNoticeId() } = {}) {
+  const current = typeof notice === 'function' ? notice : () => notice;
+  let dismissedThisPage = null;
+
+  function stored() {
+    try {
+      return storage?.getItem(NOTICE_DISMISSAL_KEY) ?? null;
+    } catch {
+      // An unreadable acknowledgement cannot hide information.
+      return null;
+    }
+  }
+
+  function dismissed() {
+    const id = current();
+    return dismissedThisPage === id || stored() === id;
   }
 
   function dismiss() {
-    dismissed = true;
+    const id = current();
+    dismissedThisPage = id;
     try {
       if (!storage) throw new Error('Browser storage is unavailable.');
-      storage.setItem(NOTICE_DISMISSAL_KEY, notice);
-      if (storage.getItem(NOTICE_DISMISSAL_KEY) !== notice) {
+      storage.setItem(NOTICE_DISMISSAL_KEY, id);
+      if (storage.getItem(NOTICE_DISMISSAL_KEY) !== id) {
         return { remembered: false, reason: 'write-unverified', error: null };
       }
       return { remembered: true, reason: 'remembered', error: null };
@@ -25,5 +45,5 @@ export function createNoticeDismissal({ storage, notice = READER_CLOSURE_NOTICE 
     }
   }
 
-  return { dismissed: () => dismissed, dismiss };
+  return { dismissed, dismiss };
 }

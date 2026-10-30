@@ -1,6 +1,13 @@
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
 
 export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
+  await localClock(page);
+  // A reload resets the injected clock to the day before the cutoff, so a later day that must
+  // survive a reload is carried in session storage.
+  await page.evaluateOnNewDocument(() => {
+    const later = sessionStorage.getItem('marvel-clock');
+    if (later) window.__marvelClock = Number(later);
+  });
   await seedFixtureState(page);
   await route(page, '#/home', '#view-home:not([hidden])');
   const button = '#reader-closure-dismiss';
@@ -12,7 +19,7 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   }));
   const before = await snapshot();
   const key = 'mrt.readerClosure.dismissed.v1';
-  const identity = 'marvel-unlimited-closure-v1';
+  const identity = 'marvel-unlimited-closure-unlimited';
   const ax = await page.createCDPSession();
   const { nodes } = await ax.send('Accessibility.getFullAXTree');
   await ax.detach();
@@ -58,7 +65,23 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   t.check('dismissal leaves saved reader facts unchanged', JSON.stringify(await snapshot()) === JSON.stringify(before));
   await page.reload({ waitUntil: 'load' });
   t.check('dismissal survives reload', await page.$eval('#reader-closure-notice', (node) => node.hidden));
-  await page.evaluate((key) => localStorage.setItem(key, 'marvel-unlimited-closure-v2'), key);
+  t.check('a pre-cutoff dismissal is remembered under its own phase',
+    await page.evaluate((key) => localStorage.getItem(key), key) === identity);
+  const shown = () => page.$eval('#reader-closure-notice', (node) => !node.hidden
+    && node.querySelector('#reader-closure-text').textContent.startsWith('Reading in Marvel Unlimited ended'));
+  await page.evaluate(() => {
+    window.__marvelClock = new Date(2026, 11, 7).getTime();
+    dispatchEvent(new Event('focus'));
+  });
+  t.check('a page left open across the cutoff shows the new notice without a reload', await shown());
+  await page.evaluate(() => sessionStorage.setItem('marvel-clock', String(new Date(2026, 11, 7).getTime())));
+  await page.reload({ waitUntil: 'load' });
+  t.check('a pre-cutoff dismissal does not hide the post-cutoff notice after reload', await shown());
+  await click(page, button);
+  await page.reload({ waitUntil: 'load' });
+  t.check('a post-cutoff dismissal stays hidden after reload', await page.$eval('#reader-closure-notice', (node) => node.hidden)
+    && await page.evaluate((key) => localStorage.getItem(key), key) === 'marvel-unlimited-closure-comics');
+  await page.evaluate(() => sessionStorage.removeItem('marvel-clock'));
   await page.reload({ waitUntil: 'load' });
   t.check('a different notice identity cannot hide this notice', await page.$eval('#reader-closure-notice', (node) => !node.hidden));
   await page.evaluate((key) => localStorage.setItem(key, '{malformed'), key);

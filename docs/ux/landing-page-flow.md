@@ -36,7 +36,8 @@ The Marvel Unlimited closure notice keeps its approved wording and warning symbo
 dismissed. Its corner button is named **Dismiss the Marvel Unlimited notice**, with the same
 hover and focus hint. Dismissing returns focus to Home's heading without scrolling. The choice
 is remembered only on this device, outside reading data and all backups; if storage fails it
-lasts only for this page view. A new notice identity shows again. About retains the December 7
+lasts only for this page view. Dismissing before December 7 does not hide the different notice
+that replaces it on that date, even on a page left open overnight. About retains the December 7
 explanation independently. On phones the notice stays below Continue reading, when present.
 
 Both Home states keep a quiet **What's new** entry beside the heading. Its native disclosure is
