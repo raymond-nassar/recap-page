@@ -152,5 +152,8 @@ tasks.register('cloudTest', JavaExec) {
     dependsOn 'compileCloudTests'
     classpath = files(layout.buildDirectory.dir('cloud-tests'))
     mainClass = 'io.github.raymondnassar.recappage.prototype.CloudTest'
+    // Smaller than a phone app's heap, so a create at the size cap meets the memory limit here as it can on
+    // a device, where running out of memory on an uncaught path ends the whole app.
+    maxHeapSize = '128m'
 }
 tasks.named('check').configure { dependsOn 'policyTest', 'cloudTest' }

@@ -680,7 +680,7 @@ final class CloudAccount {
         try {
             String body = text == null ? "" : text;
             int limit = operation.equals("create") ? CREATE_BODY : SMALL_BODY;
-            if (body.getBytes(StandardCharsets.UTF_8).length > limit) {
+            if (utf8Length(body) > limit) {
                 return refuse(413, "size", "That request is larger than this operation accepts.");
             }
             Object parsed;
@@ -688,6 +688,10 @@ final class CloudAccount {
                 parsed = body.isEmpty() ? new LinkedHashMap<String, Object>() : CloudJson.parse(body);
             } catch (CloudJson.Invalid error) {
                 return refuse(400, "json", "That request is not readable JSON.");
+            } catch (OutOfMemoryError error) {
+                // The cap is the Windows host's, and a phone's heap can be smaller than reading a body at it
+                // takes. Failing this one request is recoverable; the error escaping would end the app.
+                return refuse(413, "size", TOO_LARGE_HERE);
             }
             if (!(parsed instanceof Map)) return refuse(400, "json", "That request is not a JSON object.");
             @SuppressWarnings("unchecked")
@@ -711,6 +715,28 @@ final class CloudAccount {
         } finally {
             inFlight.decrementAndGet();
         }
+    }
+
+    static final String TOO_LARGE_HERE = "That request is too large for this device to read.";
+
+    // The body's size in UTF-8 without encoding a copy of it, which at the create cap is tens of megabytes.
+    // An unpaired surrogate counts as three bytes, never fewer than the encoder would write.
+    static long utf8Length(String text) {
+        long length = 0;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c < 0x80) {
+                length += 1;
+            } else if (c < 0x800) {
+                length += 2;
+            } else if (Character.isHighSurrogate(c) && i + 1 < text.length() && Character.isLowSurrogate(text.charAt(i + 1))) {
+                length += 4;
+                i += 1;
+            } else {
+                length += 3;
+            }
+        }
+        return length;
     }
 
     // The app is going away: a sign-in under way ends, and nothing it would have saved is saved.

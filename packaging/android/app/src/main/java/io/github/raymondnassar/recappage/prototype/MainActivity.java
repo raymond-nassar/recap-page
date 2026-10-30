@@ -595,6 +595,11 @@ public final class MainActivity extends Activity {
                 CloudAccount.Reply reply = CloudAccount.refuse(400, "json", "That request is not readable JSON.");
                 cloudResult(source, page, id, reply.status, reply.body);
                 return;
+            } catch (OutOfMemoryError error) {
+                // A body under the cap can still be more than this phone's heap reads; answer, do not crash.
+                CloudAccount.Reply reply = CloudAccount.refuse(413, "size", CloudAccount.TOO_LARGE_HERE);
+                cloudResult(source, page, id, reply.status, reply.body);
+                return;
             }
             AndroidCloud cloud = AndroidCloud.get(this);
             if (cloud == null) {

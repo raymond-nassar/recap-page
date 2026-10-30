@@ -245,6 +245,7 @@ public final class CloudTest {
         signInEndings();
         storedRecord();
         deadline();
+        largeCreate();
         if (firstFailure != null) throw new AssertionError(firstFailure);
         for (String reply : replies) {
             for (String secret : new String[] {ACCESS, REFRESH, RENEWED, NEXT_REFRESH, "CODE1"}) {
@@ -525,6 +526,22 @@ public final class CloudTest {
         h.call("create", "{\"connection\":\"" + fresh + "\",\"name\":\"recap-page-e\",\"bytes\":\"YQ==\"}");
         check(h.vault.stored.contains("\"folder\":\"FOLDER2\""), "The new folder is learned");
         h.http.done("Folder gone");
+    }
+
+    // A create the size check lets through can still be more than the heap holds while it is read. That
+    // must answer the page, not end the app.
+    static void largeCreate() {
+        Harness h = connected();
+        String head = "{\"connection\":\"" + h.connection() + "\",\"name\":\"notes.txt\",\"bytes\":\"";
+        String body = head + "A".repeat(CloudAccount.CREATE_BODY - head.length() - 2) + "\"}";
+        Object status;
+        try {
+            status = h.call("create", body).get("_status");
+        } catch (Throwable error) {
+            status = error.getClass().getSimpleName();
+        }
+        check(Double.valueOf(413).equals(status) || Double.valueOf(200).equals(status),
+                "A create at the size cap is answered on a small heap, not thrown: " + status);
     }
 
     static void requests() {
