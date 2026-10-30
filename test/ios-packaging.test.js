@@ -535,6 +535,7 @@ test('T03 accepts only the two reviewed passive-text hit-region findings after n
   assert.match(presentationTests, /element\.elementType == \.staticText/);
   assert.match(presentationTests, /candidate\.frame == element\.frame/);
   assert.match(presentationTests, /candidate\.label == element\.label/);
+  assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
   assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
@@ -601,6 +602,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
+  assert.match(tests, /for _ in 0\.\.<4[\s\S]*?link\.frame\.maxY <= usableBottom[\s\S]*?webView\.swipeUp\(\)/);
 });
 
 test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {

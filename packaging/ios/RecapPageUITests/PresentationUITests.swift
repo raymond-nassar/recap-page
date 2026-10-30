@@ -461,12 +461,13 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(["sidebar-reading", "home-read-count"].contains(key), "only reviewed cases are tested")
             XCTAssertEqual(item["safe"] as? Bool, true, "the exact DOM node and ancestry remain passive: \(item)")
             let containerLabel = try XCTUnwrap(item["containerLabel"] as? String)
-            let container = app.webViews.firstMatch.otherElements.matching(
-                NSPredicate(format: "label == %@ OR label == %@ OR label == %@",
-                            containerLabel, "\(containerLabel), navigation", "\(containerLabel), region")).firstMatch
-            XCTAssertTrue(container.waitForExistence(timeout: 30), "the named AX container exists for \(key)")
             let domLabel = try XCTUnwrap(item["label"] as? String)
             let label = key == "sidebar-reading" ? "READING" : domLabel
+            let container = app.webViews.firstMatch.otherElements.matching(
+                NSPredicate(format: "label == %@ OR label == %@ OR label == %@",
+                            containerLabel, "\(containerLabel), navigation", "\(containerLabel), region"))
+                .containing(.staticText, identifier: label).firstMatch
+            XCTAssertTrue(container.waitForExistence(timeout: 30), "the named AX container exists for \(key)")
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
@@ -643,9 +644,23 @@ final class PresentationUITests: XCTestCase {
                                "\(label) has no separate undersized text target")
                 XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(label) retains its native target width")
                 XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(label) retains its native target height")
+                let webView = app.webViews.firstMatch
+                let toggle = moreToggle(of: app)
+                let usableBottom = toggle.exists
+                    ? min(webView.frame.maxY, toggle.frame.minY)
+                    : webView.frame.maxY
+                for _ in 0..<4 {
+                    if link.isHittable && link.frame.minY >= webView.frame.minY
+                        && link.frame.maxY <= usableBottom { break }
+                    webView.swipeUp()
+                }
+                XCTAssertTrue(link.isHittable, "\(label) is hittable after native scrolling")
+                XCTAssertGreaterThanOrEqual(link.frame.minY, webView.frame.minY)
+                XCTAssertLessThanOrEqual(link.frame.maxY, usableBottom, "\(label) is above bottom navigation before tapping")
                 try record("t03-first-run-\(category.rawValue)-\(label)", [
                     "label": link.label, "frame": NSCoder.string(for: link.frame),
                 ])
+                capture(app, named: "t03-first-run-\(category.rawValue)-\(label)-before-tap")
                 link.tap()
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", destination)).firstMatch
