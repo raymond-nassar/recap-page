@@ -821,10 +821,10 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /container\.frame\.contains\(element\.frame\)/);
   assert.match(presentationTests, /interactiveAncestor/);
   assert.match(presentationTests, /tabindex/);
-  assert.match(presentationTests, /element\.tap\(\)/);
-  assert.match(presentationTests, /XCTAssertEqual\(after\["href"\] as\? String, before\["href"\] as\? String/);
-  assert.match(presentationTests, /XCTAssertEqual\(after\["view"\] as\? String, before\["view"\] as\? String/);
-  assert.match(presentationTests, /XCTAssertEqual\(after\["focusIsControl"\] as\? Bool, false/);
+  assert.match(presentationTests, /acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(presentationTests, /after\["href"\] as\? String == before\["href"\] as\? String/);
+  assert.match(presentationTests, /after\["view"\] as\? String == before\["view"\] as\? String/);
+  assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.width,\s*44/);
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.height,\s*44/);
 });
@@ -854,6 +854,25 @@ test('T03 ARIA association exceptions require hidden DOM controls and native AX 
   for (const name of ['hidden-button positive', 'visible-button negative', 'exposed-input negative', 'hidden-checkbox-label negative']) {
     assert.ok(presentationTests.includes(name), `association fixture ${name}`);
   }
+});
+
+test('T03 fixtures settle inserted DOM before measuring passivity and legacy positives use the full guard', () => {
+  assert.match(presentationTests, /const add = async[\s\S]*?configure\(wrapper, text\);\s*await nextFrame\(\)/);
+  assert.match(presentationTests, /await add\('plain positive'/);
+  assert.match(presentationTests, /querySelector\('#ios-aria-hidden-control'\)\.style\.display = 'none';\s*await nextFrame\(\)/);
+  const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
+    presentationTests.indexOf('private func freshPassiveState'));
+  assert.match(legacy, /acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.doesNotMatch(legacy, /element\.tap\(\)/);
+});
+
+test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {
+  assert.match(presentationTests, /summary: \[String: Any\]\? = nil/);
+  assert.match(presentationTests, /JSONSerialization\.data\(withJSONObject: summary \?\? value/);
+  assert.match(presentationTests, /let attachment = XCTAttachment\(string: json\)/);
+  assert.match(presentationTests, /record\("t03-read-close-before-/);
+  assert.match(presentationTests, /"hittable": close\.isHittable/);
+  assert.match(presentationTests, /XCTWaiter\.wait\(for: \[closeReady\], timeout: 30\)[\s\S]*?close\.tap\(\)/);
 });
 
 test('iOS restore warnings stay visible as descriptions of real file controls, not passive exemptions', () => {

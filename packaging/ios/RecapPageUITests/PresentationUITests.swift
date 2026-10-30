@@ -403,35 +403,36 @@ final class PresentationUITests: XCTestCase {
     fixture.id = 'ios-passive-fixtures';
     fixture.style.cssText = 'position:fixed;z-index:10000;top:100px;left:20px;right:20px;background:white';
     document.getElementById('view-home').prepend(fixture);
-    const add = (name, html, configure = () => {}) => {
+    const add = async (name, html, configure = () => {}) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = html;
       fixture.append(wrapper);
       const text = wrapper.querySelector('span');
       configure(wrapper, text);
+      await nextFrame();
       guardFixtures.push({ name, passive: guard.passive(text), display: getComputedStyle(text).display,
         rect: text.getBoundingClientRect().toJSON(), diagnostics: guard.explain(text),
         globalValid: guard.globalInventoryValid() });
       return text;
     };
     if (fixtureMode === 'guard-structural') {
-      add('plain positive', '<span>Guard plain text</span>');
-      add('link text child', '<a href="#/library"><span>Guard link</span></a>');
-      add('button text', '<button type="button"><span>Guard button</span></button>');
-      add('own click handler', '<span>Guard click</span>', (_, text) =>
+      await add('plain positive', '<span>Guard plain text</span>');
+      await add('link text child', '<a href="#/library"><span>Guard link</span></a>');
+      await add('button text', '<button type="button"><span>Guard button</span></button>');
+      await add('own click handler', '<span>Guard click</span>', (_, text) =>
         text.addEventListener('click', () => {}));
-      add('hidden node', '<span hidden>Guard hidden</span>');
-      add('display none node', '<span>Guard display none</span>', (_, text) => {
+      await add('hidden node', '<span hidden>Guard hidden</span>');
+      await add('display none node', '<span>Guard display none</span>', (_, text) => {
         text.style.display = 'none';
         if (getComputedStyle(text).display !== 'none') throw new Error('Display-none fixture is visible');
       });
-      add('ancestor click handler', '<div><span>Guard ancestor click</span></div>', wrapper =>
+      await add('ancestor click handler', '<div><span>Guard ancestor click</span></div>', wrapper =>
         wrapper.firstElementChild.addEventListener('click', () => {}));
-      add('ancestor keydown handler', '<div><span>Guard ancestor key</span></div>', wrapper =>
+      await add('ancestor keydown handler', '<div><span>Guard ancestor key</span></div>', wrapper =>
         wrapper.firstElementChild.addEventListener('keydown', () => {}));
       const overlap = (_, text) => { text.style.cssText = 'position:fixed;top:200px;left:20px'; };
-      const duplicateFirst = add('duplicate first', '<span>Guard duplicate</span>', overlap);
-      const duplicateSecond = add('duplicate second', '<span>Guard duplicate</span>', overlap);
+      const duplicateFirst = await add('duplicate first', '<span>Guard duplicate</span>', overlap);
+      const duplicateSecond = await add('duplicate second', '<span>Guard duplicate</span>', overlap);
       if (JSON.stringify(duplicateFirst.getBoundingClientRect().toJSON())
         !== JSON.stringify(duplicateSecond.getBoundingClientRect().toJSON())) {
         throw new Error('Ambiguous duplicate fixtures do not overlap');
@@ -453,6 +454,7 @@ final class PresentationUITests: XCTestCase {
         '<input id="ios-aria-checkbox" type="checkbox" hidden>',
       ].join('');
       fixture.querySelector('#ios-aria-hidden-control').style.display = 'none';
+      await nextFrame();
       for (const [name, id, expected] of [
         ['hidden-button positive', 'ios-aria-hidden-text', true],
         ['visible-button negative', 'ios-aria-visible-text', false],
@@ -463,7 +465,7 @@ final class PresentationUITests: XCTestCase {
         guardFixtures.push({ name, label: text.textContent, expected, passive: guard.passive(text) });
       }
     } else {
-      const text = add('tap fixture', '<span id="ios-guard-tap-text">Guard tap text</span>', (_, text) => {
+      const text = await add('tap fixture', '<span id="ios-guard-tap-text">Guard tap text</span>', (_, text) => {
         text.style.cssText = 'display:block;min-height:48px;line-height:48px';
       });
       if (fixtureMode === 'guard-tooltip') {
@@ -605,10 +607,11 @@ final class PresentationUITests: XCTestCase {
         return try XCTUnwrap(object, label)
     }
 
-    private func record(_ name: String, _ value: [String: Any]) throws {
+    private func record(_ name: String, _ value: [String: Any], summary: [String: Any]? = nil) throws {
         let data = try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys])
         let json = String(decoding: data, as: UTF8.self)
-        print("RECAP_PROBE_RESULT \(name) \(json)")
+        let summaryData = try JSONSerialization.data(withJSONObject: summary ?? value, options: [.sortedKeys])
+        print("RECAP_PROBE_RESULT \(name) \(String(decoding: summaryData, as: UTF8.self))")
         let attachment = XCTAttachment(string: json)
         attachment.name = "\(name).json"
         attachment.lifetime = .keepAlways
@@ -704,30 +707,12 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
             XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
-            let before = try passiveState(of: app)
-            element.tap()
-            let postTapSample = try passiveState(of: app)
-            let oldTick = try XCTUnwrap(postTapSample["tick"] as? Int)
-            let monitor = app.descendants(matching: .any).matching(
-                NSPredicate(format: "label BEGINSWITH %@", "recap-passive-probe ")).firstMatch
-            let refreshed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
-                guard let monitor = object as? XCUIElement,
-                      let value = layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "),
-                      let tick = value["tick"] as? Int else { return false }
-                return tick > oldTick
-            }, object: monitor)
-            XCTAssertEqual(XCTWaiter.wait(for: [refreshed], timeout: 30), .completed, "a post-tap DOM sample arrived")
-            let after = try passiveState(of: app)
-            XCTAssertEqual(after["href"] as? String, before["href"] as? String, "tapping \(key) does not navigate")
-            XCTAssertEqual(after["view"] as? String, before["view"] as? String, "tapping \(key) does not switch views")
-            XCTAssertEqual(after["focusIsControl"] as? Bool, false, "tapping \(key) does not focus a control")
-            let afterCases = try XCTUnwrap(after["cases"] as? [[String: Any]])
-            let afterCase = try XCTUnwrap(afterCases.first { $0["key"] as? String == key })
-            XCTAssertEqual(afterCase["safe"] as? Bool, true, "the reviewed node remains passive after its tap")
+            let proved = try acceptPassiveFinding(element, in: app, routeState: state)
+            XCTAssertTrue(proved, "the reviewed positive requires the same exact native no-op proof: \(key)")
             try record("t03-passive-\(key)", [
                 "dom": item, "nativeLabel": element.label,
-                "nativeFrame": NSCoder.string(for: element.frame), "before": before, "after": after,
-            ])
+                "nativeFrame": NSCoder.string(for: element.frame), "proved": proved,
+            ], summary: ["key": key, "label": element.label, "proved": proved])
             accepted.append(element)
         }
         if homeVisible {
@@ -874,7 +859,8 @@ final class PresentationUITests: XCTestCase {
             "candidate": candidate, "nativeLabel": element.label,
             "nativeFrame": NSCoder.string(for: nativeFrame), "before": before, "after": after,
             "nativeTapPoint": NSCoder.string(for: point),
-        ])
+        ], summary: ["label": element.label, "nativeFrame": NSCoder.string(for: nativeFrame),
+                     "nativeTapPoint": NSCoder.string(for: point), "proved": true])
         return true
     }
 
@@ -933,7 +919,9 @@ final class PresentationUITests: XCTestCase {
                       retryState["view"] as? String == expectedView else {
                     throw error
                 }
-                try record("t03-accessibility-retry", ["attempt": attempt + 2, "state": retryState])
+                try record("t03-accessibility-retry", ["attempt": attempt + 2, "state": retryState],
+                           summary: ["attempt": attempt + 2, "route": retryState["href"] ?? NSNull(),
+                                     "view": retryState["view"] ?? NSNull(), "tick": retryState["tick"] ?? NSNull()])
             }
         }
         continueAfterFailure = previousFailurePolicy
@@ -1359,7 +1347,15 @@ final class PresentationUITests: XCTestCase {
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
             let closeRecorder = app.staticTexts["ios-handoff-recorder"]
-            app.buttons["ios-read-sheet-close"].tap()
+            let close = app.buttons["ios-read-sheet-close"]
+            let closeReady = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == true AND hittable == true"), object: close)
+            XCTAssertEqual(XCTWaiter.wait(for: [closeReady], timeout: 30), .completed)
+            try record("t03-read-close-before-\(category.rawValue)", [
+                "exists": close.exists, "hittable": close.isHittable,
+                "frame": NSCoder.string(for: close.frame), "events": closeRecorder.label,
+            ])
+            close.tap()
             let sheetClosed = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"),
                 object: app.buttons["ios-read-sheet-close"])
