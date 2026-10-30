@@ -1889,8 +1889,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1527|0": {
-    "anchor": "src/index.html:1527",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1522|0": {
+    "anchor": "src/index.html:1522",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2139,8 +2139,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1230-1234|0": {
-    "anchor": "src/index.html:1230-1234",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1225-1229|0": {
+    "anchor": "src/index.html:1225-1229",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2414,8 +2414,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2244-2246|0": {
-    "anchor": "src/styles.css:2244-2246",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2249-2251|0": {
+    "anchor": "src/styles.css:2249-2251",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2439,8 +2439,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2244-2246|0": {
-    "anchor": "src/styles.css:2244-2246",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2249-2251|0": {
+    "anchor": "src/styles.css:2249-2251",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2494,8 +2494,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2657-2658|0": {
-    "anchor": "src/styles.css:2657-2658",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2662-2663|0": {
+    "anchor": "src/styles.css:2662-2663",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2564,8 +2564,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2244-2246|0": {
-    "anchor": "src/styles.css:2244-2246",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2249-2251|0": {
+    "anchor": "src/styles.css:2249-2251",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2644,8 +2644,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1247-1258|0": {
-    "anchor": "src/index.html:1247-1258",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1242-1253|0": {
+    "anchor": "src/index.html:1242-1253",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
@@ -6254,23 +6254,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1959-1961|0": {
-    "anchor": "src/styles.css:1959-1961",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1964-1966|0": {
+    "anchor": "src/styles.css:1964-1966",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1977-1979|0": {
-    "anchor": "src/styles.css:1977-1979",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1982-1984|0": {
+    "anchor": "src/styles.css:1982-1984",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2284|0": {
-    "anchor": "src/styles.css:2284",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2289|0": {
+    "anchor": "src/styles.css:2289",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2308|0": {
-    "anchor": "src/styles.css:2308",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2313|0": {
+    "anchor": "src/styles.css:2313",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
