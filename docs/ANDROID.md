@@ -3,7 +3,8 @@
 Recap Page for Android is available on
 [Google Play](https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage).
 It is the same app and reading lists as on Windows, with larger text and touch targets. There are
-no accounts or synchronization, and its saved data stays on the phone, separate from desktop.
+no Recap Page accounts. Saved data stays on the phone, separate from desktop, and can be copied to
+your own OneDrive only if you turn on backup. Restoring a backup replaces data rather than merging it.
 
 The sections below cover how the Android app works, how it is built and released, and the checks
 made for release. The [beta checklist](ANDROID_BETA.md) and

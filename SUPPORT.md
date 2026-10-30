@@ -36,7 +36,7 @@ Enter a public list/guide title or link, or **Custom list**, then the comic seri
 the correction. Do not include private names, notes, progress, backups, credentials or personal
 information. Reports are reviewed privately with manual raw-dashboard cleanup within 30 days;
 no personal reply is promised because contact details are not collected. Microsoft processes the
-form visit and report; see [list-feedback privacy](PRIVACY.md#optional-reading-list-feedback).
+form visit and report; see [list-feedback privacy](PRIVACY.md#requests-the-app-makes-to-other-services).
 If the form is unavailable, try again later. General support still uses repository issues.
 
 Reading-data loss/corruption or a suspected vulnerability belongs in the
@@ -76,9 +76,8 @@ Recap Page cannot fix its outages, rate limits, or incorrect source data.
 You can point the app at your own self-hosted metadata mirror in settings.
 
 **Comics published after 2025.** The bundled snapshot ends in 2025, so newer comics start without
-bundled details or a cover. Add them by hand, use the optional Marvel Fandom lookup, or paste a
-Marvel Unlimited reader link. Missing newer comics are expected; losing or changing details you
-supplied is a problem worth reporting.
+bundled details or a cover. Add them by hand or use the optional Marvel Fandom lookup. Missing newer
+comics are expected; losing or changing details you supplied is a problem worth reporting.
 
 ## Asking for a change
 

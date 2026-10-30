@@ -35,6 +35,12 @@ The retained producer report is deliberately limited: synthetic native coverage 
 device, production signer, API 26 runtime or upgrade acceptance. An accepted API commit is not
 proof that a release is available to users.
 
+For 4.3.0, the owner must remove the existing About screenshot and submit the approved Data safety
+answers before the OneDrive-enabled closed-testing build is available. The owner separately
+chooses when to publish the approved listing text and approves each Console and publication step.
+Wait for Console changes to finish review and publication before the protected uploader starts;
+its API commit cannot isolate itself from other pending Console work.
+
 ## Keyless authentication and protection
 
 The owner creates and independently verifies the **existing** GitHub environment
@@ -269,25 +275,124 @@ Neither testing access nor a successful GitHub workflow grants those.
 
 ## Approved 4.3.0 listing draft
 
-The owner approved this text on 2026-10-28 for #950. It is a repository draft, not a live listing
-edit or an authorization to submit, upload or promote a release. Each operation still needs
-separate owner approval.
+The owner approved the text below on 2026-10-30 for #810 and #950. It is a repository draft,
+not a live listing edit or an authorization to submit, upload or promote a release. Each operation
+still needs separate owner approval. Headings retain the reviewed packet's labels.
+
+### App name
+
+Recap Page
 
 ### Short description
 
-Track Marvel reading orders and progress. Comics are not included.
+Track Marvel reading orders, with optional backup to your own OneDrive.
 
 ### Full description
 
-Follow a Marvel story across series and keep your place with credited reading orders. Mark comics read yourself, resume at the next unread issue, and keep private notes and custom entries.
+Follow any Marvel story across series and pick up at your next unread comic. Recap Page gives you credited reading orders for events, eras and characters, with private progress, notes and ratings.
 
-Reading in Marvel Unlimited ends December 7, 2026. Until that date, Read opens the recorded comic in its web reader when a link is known, or uses a comic details page as the fallback. Android opens an installed browser, not the Marvel Unlimited app. From December 7, Read opens the general Marvel Comics website, not a single-comic link. Comics are not included, and Marvel determines access to its services.
+Mark comics read as you go, or mark a whole list read at once. Save everything to a backup file, or turn on automatic backup to your own OneDrive. OneDrive is optional and off until you choose it. Microsoft can read your backups, your account protects them, and the developer never receives them.
 
-Your lists and progress stay on your device. JSON backup and restore preserve your saved data. Historical Marvel Unlimited badges are records, not proof of access to Marvel Comics. Pasted Marvel Unlimited reader links are no longer accepted.
+Comics are not included. Reading in Marvel Unlimited ends December 7, 2026. Until then, Read opens its web reader in your browser when a link is known. After that, Read opens the Marvel Comics website. Pasted Marvel Unlimited reader links are no longer accepted.
 
-Cover art is optional and loads directly from Marvel's image servers. Search and issue details use a community metadata service. An optional manual lookup sends your title to Marvel Fandom only when you choose it. No account, ads, analytics or telemetry.
+No Recap Page account, ads, analytics or telemetry. Covers and comic details load from Marvel and a community comics information service.
 
-Curated lists credit Comic Book Herald and Comic Book Reading Orders where their guides supply the issue selection and sequence. This is an unofficial fan companion, not affiliated with or endorsed by Marvel or Disney.
+Reading orders credit Comic Book Herald and Comic Book Reading Orders where their guides supply the issues and order. This is an unofficial fan companion, not affiliated with or endorsed by Marvel or Disney.
+
+### Privacy-policy URL
+
+https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md
+
+### Release notes: proposed exact field
+
+Back up automatically to your own OneDrive, or move devices with one backup file. Mark a whole list read at once. Explore the new Professor X spotlight and reading path. Marvel Unlimited reading ends December 7, 2026, and Read then opens the Marvel Comics website.
+
+## Approved 4.3.0 Play Data safety selections
+
+These answers and deletion instructions were approved with the listing text. The labels below
+retain the reviewed packet's wording; they do not imply that approval is still pending. Applying
+them in Play Console is a separate owner action.
+
+### Top-level answers
+
+| Question | Proposed exact answer |
+|---|---|
+| Does the app collect or share any of the required user data types? | Yes |
+| Is all collected user data encrypted in transit? | Yes, for the Android app's off-device requests; this is transport protection, not end-to-end encryption or unreadable OneDrive storage. |
+| Can users request deletion of data? | Yes: the app supplies direct deletion of this installation's OneDrive backups and provider deletion routes. This is not a promise to purge third-party request logs or every recoverable copy. |
+| Account creation in the app, if asked | The app does not let users create a Recap Page account. Optional sign-in uses an existing personal Microsoft account. |
+| Independent security review or Families commitment badge | Do not claim either based on this work. |
+
+### Per-type selections for coordinator review
+
+All rows below select **Users can choose whether this data is collected**, **No**
+to ephemeral processing, and **App functionality** as the collection purpose.
+Select no Analytics, Advertising or marketing, Developer communications,
+Personalization, or Account management purposes for these transfers. Microsoft
+authentication is functionality, not a developer-provided account.
+
+| Data type | Collection | Sharing | What this covers |
+|---|---|---|---|
+| Files and docs | Collected | Not shared for OneDrive backup | Complete cloud backup files and their filenames. The prominent in-app disclosure and consent identify the user's own OneDrive as destination. |
+| App activity: Other user-generated content | Collected | Not shared for OneDrive backup | Saved notes, private list/custom-entry text, unfinished import source, and the chosen backup label inside cloud files. |
+| App activity: Other actions | Collected | Not shared for OneDrive backup | Read markers, ratings, completion dates, enjoyment choices and saved preferences in the complete backup; these are saved choices, not analytics events. |
+| Device or other IDs | Collected | Not shared for OneDrive backup | Random installation/backup-stream identity carried in filenames and cloud envelopes; not a hardware or advertising identifier. |
+| App activity: In-app search history | Collected | Shared; purpose App functionality | Existing direct search text sent to the metadata service and optional wiki lookup, including import-title matching. We do not claim a sharing exemption for these existing requests. This is an existing-flow correction, not new OneDrive behavior. |
+| App activity: App interactions | Collected | Shared; purpose App functionality | Background detail filling sends missing comic identities to the metadata service, prioritizing the current list's unread comics. That request order can reveal reading progress. No separate user action initiates each request, and no recipient-retention evidence supports an ephemeral exemption. This is an existing-flow correction, not new OneDrive behavior. |
+
+For **In-app search history** and **App interactions**, select App functionality
+for sharing purpose as well as collection purpose. All other listed types have
+no sharing purpose selected for the OneDrive transfer. Do not select all
+remaining types as No merely to preserve the old top-level No.
+
+**Resolved checkpoint 1, Personal info: User IDs: not declared.** Revision 1's
+conservative row is withdrawn because no user identifier leaves the device from the
+app. Neither authorization request includes login_hint or another account
+identifier: Windows authorizationUrl and Android CloudAuthorization.url send
+client configuration, redirect, scope, state, nonce and PKCE parameters, plus
+prompt=select_account. Both OneDrive transports address the drive as `/me` with a
+bearer token (host/oneDrive.mjs and the Android CloudOneDrive class).
+The account identifier and display hint are decoded from
+Microsoft's returned token and held only in the native connection record (the
+Android CloudAccount and CloudMicrosoft classes, and the Windows host); the page
+code under src/js never reads them and the cloud envelope never carries them.
+Microsoft's own sign-in page runs in an external browser, which Google exempts as
+open-web navigation. The token exchange sends an authorization code and refresh
+token, which are credentials rather than a listed data type. The Account creation
+answer above already states that sign-in uses an existing Microsoft account.
+
+**Resolved checkpoint 2, App interactions: declared, optional and shared.**
+Background detail filling orders requests around saved read markers, so the
+sequence can reveal reading progress even without sending a read-marker field.
+Google's App interactions definition covers information about use of the app.
+The user-initiated sharing exception does not cover the automatic request sequence.
+
+The optional selection is supported by all callers: main.js passes Hydrator.start
+only to the Add view's hydrate callback and the Reading view's explicit Fetch
+details action. The Add view starts it after a successful checklist import or
+after saving selected comics from its builders, not on ordinary startup or
+opening a curated list. The builder path can also hydrate previously pending
+issues elsewhere in the library. hydrationOrder prioritizes up to six unread
+pending comics (lookahead 5 plus the next comic), then the other pending issues.
+A reader can use bundled curated lists without importing, building a list,
+or choosing Fetch details. Synopsis requests are separately confirmed. Thus
+App interactions collection is optional, not required for all users.
+
+Names and email display hints are received and stored locally for account display;
+the app does not purposefully include them in cloud files. Do not add Name or
+Email address solely because an identity token can contain them. Arbitrary user
+text is covered as Other user-generated content unless the app purposefully
+collects another type from it. No location, contacts, photos, audio, messages,
+payment data, advertising identifiers or diagnostic/crash logs are added by
+OneDrive backup.
+
+### Exact deletion instructions for a form field or linked policy
+
+In Backup & settings, choose Delete this device's cloud backups. When you disconnect OneDrive, you can also choose Also delete this device's cloud backups. If deletion fails, try again or delete the files in OneDrive yourself. OneDrive keeps deleted files in its recycle bin for up to 30 days. To end the app's access, remove it from your Microsoft account's app permissions. Erasing local data, uninstalling, or disconnecting without choosing to delete does not delete cloud backups. This control does not delete other devices' backups or other services' logs.
+
+If a deletion-information URL is requested, use:
+https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md#deleting-your-data
+after the approved replacement is merged and publicly reachable.
 
 ## References
 
