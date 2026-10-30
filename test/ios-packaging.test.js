@@ -774,6 +774,15 @@ test('T03 accessibility audit and More-sheet failures retain actionable diagnost
   assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
 });
 
+test('iOS presentation checks retain comic-page WebKit accessibility under display contents', () => {
+  assert.match(presentationTests, /func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes/);
+  assert.match(presentationTests, /#\/issue\/2092\?order=house-of-m/);
+  assert.match(presentationTests, /getComputedStyle\(card\)\.display/);
+  assert.match(presentationTests, /XCTAssertEqual\(comic\["cardDisplay"\] as\? String, "contents"/);
+  assert.match(presentationTests, /app\.webViews\.firstMatch\.buttons\.matching\(NSPredicate\(format: "label == %@", actionName\)\)/);
+  assert.match(presentationTests, /"nativeHierarchy": app\.debugDescription/);
+});
+
 test('T03 accepts only enumerated reviewed passive-text hit-region findings after no-op taps', () => {
   assert.doesNotMatch(presentationTests, /NSStringFromCGRect/);
   assert.match(presentationTests, /"nativeFrame": NSCoder\.string\(for: element\.frame\)/);

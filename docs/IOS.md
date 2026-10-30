@@ -1,14 +1,16 @@
 # iOS app
 
 Recap Page for iPhone and iPad is in development under
-[#949](https://github.com/raymond-nassar/recap-page/issues/949). It is not on TestFlight or the App
-Store yet. Like the [Android app](ANDROID.md), it is the existing web app inside a small native
+[#949](https://github.com/raymond-nassar/recap-page/issues/949). Build 4 (4.2.0) is in internal
+TestFlight and has been installed on the owner's iPad since October 29, 2026. It is not on the App
+Store, and there are no external testers yet. Like the [Android app](ANDROID.md), it is the existing web app inside a small native
 shell, so every fix to the shared app reaches iOS too, and it adds no account, server or upload.
 
-**Nothing here is in anyone's hands yet.** The shell is built and tested in the iOS Simulator on
+The shell is built and tested in the iOS Simulator on
 GitHub's macOS runners for every pull request. Files export and restore, Read, text size, iPad
-windowing and the missing-data notice are being implemented and tested in P02 of #949. Signed
-builds for TestFlight follow in P03, with their own checks.
+windowing and the missing-data notice are under automated validation. The installed build starts
+offline and keeps progress across relaunch, as recorded on #949. Update-in-place and the remaining
+device checks wait for build 5 and later steps of #949.
 
 ## How it works
 
@@ -84,6 +86,12 @@ The Simulator presentation tests cover both default and largest text sizes, ligh
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
 presentation corrections is in progress. VoiceOver, hardware keyboard, pointer, actual Files picker
 and external-link hand-off behavior still need the owner's device checks.
+
+A separate comic-page scenario uses a bundled comic with requests blocked and cover art off.
+It checks that WebKit still exposes the comic's heading, reader action and issue-page link when the
+shared phone layout gives `#issue-focus-card` `display: contents`, at default and largest text sizes.
+Its native hierarchy and screenshot are recorded for review; the next hosted run must establish
+the result. The owner's iPad VoiceOver check of this page remains required before release.
 
 ## Permanent names
 
@@ -212,12 +220,12 @@ pending until the presentation checks pass.
 
 ## Signing and internal TestFlight
 
-The manual **iOS TestFlight** workflow is tooling, not a delivered build. It has not yet proved
-cloud signing, Apple processing, installation or an update on a device. Nothing here changes saved
-reading data. It cannot be dispatched until its workflow is on main. The owner chose to prove the
-signing route with an early first build from main as soon as Apple and GitHub setup is complete,
-before the native-feature work merges. Reserve that build against the current main source; after
-the native features merge, reserve the second build for the update-in-place check.
+The manual **iOS TestFlight** workflow has delivered build 4 (4.2.0), built from `7b39b9d3`, to the
+internal testing group. Cloud signing, Apple processing and installation on the owner's iPad are
+confirmed on #949. The installed build starts offline and retains progress across relaunch.
+Update-in-place still waits for build 5, and iPhone-only device checks remain pending until an
+iPhone is available. The reservation, export, seal and upload procedure below remains required for
+each new build; delivery does not authorize another build or upload without its separate approvals.
 
 ### Owner setup, in order, from Windows
 

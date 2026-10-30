@@ -58,7 +58,18 @@ final class PresentationUITests: XCTestCase {
 
     private static func layoutProbe(route: String) -> String {
         let routeScript: String
-        if route == "all" {
+        if route == "comic" {
+            routeScript = """
+            const covers = document.getElementById('opt-covers');
+            if (covers.checked) covers.click();
+            location.hash = '#/issue/2092?order=house-of-m';
+            await waitFor(() => !document.getElementById('view-issue').hidden
+              && !document.getElementById('issue-focus-card').hidden
+              && document.getElementById('issue-focus-h').textContent === 'House of M (2005) #1', 'bundled comic');
+            await nextFrame();
+            screens.push(snapshot('view-issue'));
+            """
+        } else if route == "all" {
             routeScript = """
             for (const route of routes) {
               await openRoute(route);
@@ -137,6 +148,17 @@ final class PresentationUITests: XCTestCase {
           viewportWidth: document.documentElement.clientWidth,
           documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
+          comic: (() => {
+            const card = document.getElementById('issue-focus-card');
+            const action = document.getElementById('btn-issue-read');
+            const details = document.getElementById('btn-issue-info');
+            return {
+              cardDisplay: getComputedStyle(card).display,
+              title: document.getElementById('issue-focus-h').textContent,
+              actionName: action.getAttribute('aria-label'),
+              detailsName: details.getAttribute('aria-label'),
+            };
+          })(),
           homeHeader: (() => {
             const header = document.querySelector('#view-home > .head');
             if (!header) return null;
@@ -548,6 +570,42 @@ final class PresentationUITests: XCTestCase {
         }
         continueAfterFailure = previousFailurePolicy
         XCTAssertEqual(unreviewedFindings, 0, "every finding outside the enumerated passive cases remains a failure")
+    }
+
+    func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes() throws {
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, route: "comic")
+            let result = try probeResult(of: app)
+            let screens = try XCTUnwrap(result["screens"] as? [[String: Any]])
+            let screen = try XCTUnwrap(screens.first)
+            XCTAssertEqual(screen["view"] as? String, "view-issue")
+            let comic = try XCTUnwrap(screen["comic"] as? [String: Any])
+            XCTAssertEqual(comic["cardDisplay"] as? String, "contents",
+                           "the shared phone layout flattens the card without removing its accessible children")
+            let title = try XCTUnwrap(comic["title"] as? String)
+            XCTAssertEqual(title, "House of M (2005) #1")
+            let heading = app.webViews.firstMatch.staticTexts.matching(NSPredicate(format: "label == %@", title)).firstMatch
+            XCTAssertTrue(heading.waitForExistence(timeout: 30), "WebKit retains the named comic heading")
+            let actionName = try XCTUnwrap(comic["actionName"] as? String)
+            XCTAssertTrue(actionName.contains(title), "the launcher-owned action retains its comic context")
+            let action = app.webViews.firstMatch.buttons.matching(NSPredicate(format: "label == %@", actionName)).firstMatch
+            XCTAssertTrue(action.waitForExistence(timeout: 30), "WebKit retains the comic's reader action")
+            XCTAssertTrue(action.isEnabled)
+            let detailsName = try XCTUnwrap(comic["detailsName"] as? String)
+            XCTAssertTrue(detailsName.contains(title))
+            let details = app.webViews.firstMatch.links.matching(NSPredicate(format: "label == %@", detailsName)).firstMatch
+            XCTAssertTrue(details.waitForExistence(timeout: 30), "WebKit retains the comic's details link")
+            XCTAssertLessThanOrEqual(
+                try XCTUnwrap(screen["documentWidth"] as? Double),
+                try XCTUnwrap(screen["viewportWidth"] as? Double),
+                "the merged comic layout has no horizontal overflow")
+            try record("t03-comic-tree-\(category.rawValue)", [
+                "screen": screen, "nativeHierarchy": app.debugDescription,
+                "heading": heading.label, "action": action.label, "details": details.label,
+            ])
+            capture(app, named: "t03-comic-tree-\(category.rawValue)")
+            app.terminate()
+        }
     }
 
     func testDynamicTypeReflowsCoreScreensAtBothAppearances() throws {
