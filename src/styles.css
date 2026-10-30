@@ -1894,7 +1894,11 @@ progress { accent-color: var(--accent); height: 6px; }
 .continue-empty .chero-in { grid-template-columns: 1fr; }
 .continue-empty .art { display: none; }
 @media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
-.chero h2 { font-size: var(--t-title); margin: var(--space-2) 0 var(--space-5); font-weight: 600; letter-spacing: -.02em; }
+/* `anywhere` rather than `break-word` (#998). Both wrap "presentation" at iOS's largest text, but the
+   heading sits in a grid track sized from its min-content, which `break-word` leaves at the longest
+   word: measured in Edge on the Windows layout at 320px, that track still pushed the heading 16px past
+   the card. Where every word fits, the track is unchanged. */
+.chero h2 { font-size: var(--t-title); margin: var(--space-2) 0 var(--space-5); font-weight: 600; letter-spacing: -.02em; overflow-wrap: anywhere; }
 .chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-lg); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* The shared fallback is sized for the reading view's larger cover, so it is scaled down

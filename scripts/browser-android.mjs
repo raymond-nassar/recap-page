@@ -3536,7 +3536,7 @@ async function homeContinueFixtures(page, viewport) {
 }
 
 async function homeContinueCheck(page, label, viewport) {
-  const name = `${label} ${viewport.theme}${viewport.listName ? ' two-line name' : ''}`;
+  const name = `${label} ${viewport.theme}${viewport.listName ? ` ${viewport.nameLabel || 'two-line name'}` : ''}`;
   const settle = () => page.evaluate(() => new Promise((resolve) => {
     requestAnimationFrame(() => requestAnimationFrame(resolve));
   }));
@@ -3586,9 +3586,13 @@ async function homeContinueCheck(page, label, viewport) {
     const center = (headBox.left + parseFloat(headStyle.paddingLeft) + headBox.right - parseFloat(headStyle.paddingRight)) / 2;
     const read = document.querySelector('#btn-chero-read');
     const done = document.querySelector('#btn-chero-done');
+    const title = document.querySelector('#chero-h');
+    const card = document.querySelector('#home-continue').getBoundingClientRect();
     return {
       scrollY: Math.round(scrollY), fold: barred ? Math.round(innerHeight - bar.height) : innerHeight,
       read: box(read), done: box(done), reachRead: reaches(read), reachDone: reaches(done),
+      title: { ...box(title), client: title.clientWidth, scroll: title.scrollWidth, cardRight: Math.round(card.right) },
+      scrollWidth: document.documentElement.scrollWidth,
       heading: box(document.querySelector('#home-h')), toggle: box(document.querySelector('#home-updates-toggle')),
       panel: document.querySelector('#home-updates').open ? box(document.querySelector('#home-updates-panel')) : null,
       offCenter: Math.round(Math.abs((heading.left + heading.right) / 2 - center) * 10) / 10,
@@ -3599,6 +3603,14 @@ async function homeContinueCheck(page, label, viewport) {
   });
   const opened = await measure();
   await screenshot(page, name, 'home-continue');
+  // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
+  // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The
+  // heading's box is logged at every size so normal text can be compared before and after.
+  console.log(`TITLE ${name}: ${JSON.stringify({ ...opened.title, page: opened.scrollWidth, width: opened.width })}`);
+  if (viewport.longWord) {
+    check(opened.title.scroll <= opened.title.client && opened.title.right <= opened.title.cardRight && !opened.overflow,
+      `${name}: the list name's long word wraps inside the card and the page does not scroll sideways ${JSON.stringify({ ...opened.title, page: opened.scrollWidth, width: opened.width })}`);
+  }
   if (viewport.readAbove) {
     // The Issue requires Read fully visible above the bar. Done, stacked under Read on a portrait phone,
     // must start above it and take a tap there; its last 5px stay under the bar at 320 by 740.
@@ -4714,6 +4726,11 @@ try {
     { width: 800, height: 360, textScale: 2, theme: 'light', oneRow: true },
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
+    // #998: iOS's largest accessibility text in Edge's Android layout, as the iOS lane reproduced it,
+    // Android's largest font setting, and the Windows narrow layout with a word wider than its line.
+    { width: 375, height: 667, textScale: 3.117647, theme: 'light', listName: 'Phase two presentation', nameLabel: 'long-word name', longWord: true },
+    { width: 360, height: 800, textScale: 2, theme: 'dark', listName: 'Phase two presentation', nameLabel: 'long-word name', longWord: true },
+    { width: 320, height: 740, desktop: true, theme: 'dark', listName: 'Counterrevolutionaries reading order', nameLabel: 'Windows long-word name', longWord: true },
   ];
   // #876: the phone sizes the Issue names, with and without 200% text, and the short landscape screen
   // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text.
