@@ -2,13 +2,13 @@
 // operations on the app's own folder that the shared protocol needs, list, read, create and delete.
 //
 // What each request looks like rests on what was observed rather than assumed. Creating goes through an
-// upload session whose JSON body asks to fail on an existing name, then one PUT of every byte to the
-// address it returns, without the Authorization header. The body is where Microsoft's createUploadSession
-// reference puts conflict behavior, and it documents a 409 nameAlreadyExists for a taken name (retrieved
-// 2026-10-29). Asked only in the URL, as the driveItem reference says to, OneDrive replaced an existing
-// file in the owner's own folder on 2026-10-29 (B8 in the P02-T07 session). The stopped session's bodies of
-// 2026-10-22, answered 400, also named the item, and its record does not say what content type they
-// carried; this body names nothing and says it is JSON. Reading follows exactly one redirect to a
+// upload session whose JSON body asks to fail on an existing name, then one PUT of every byte to the address
+// it returns, without the Authorization header. The body is where Microsoft's createUploadSession reference
+// puts conflict behavior, and it documents a 409 nameAlreadyExists for a taken name (retrieved 2026-10-29).
+// Asked only in the URL, as the driveItem reference says to, OneDrive replaced an existing file in the
+// owner's own folder on 2026-10-29 (B8 in the P02-T07 session); asked in this body, it refused a second
+// create of the same name that evening and kept the first file. The stopped session's bodies of 2026-10-22,
+// answered 400, also named the item; this one names nothing. Reading follows exactly one redirect to a
 // preauthenticated address, again without Authorization (B10 in the P02-T01 facts, retrieved 2026-10-28).
 
 import { ProviderError, capabilityUrl, discard, networkFailure, readBounded, readJson, retryAfterMs } from './cloudSignIn.mjs';
