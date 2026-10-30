@@ -152,6 +152,15 @@ final class PresentationUITests: XCTestCase {
               scrollWidth: heading.scrollWidth,
             };
           }),
+          themeSelect: (() => {
+            const select = document.getElementById('opt-theme');
+            const style = getComputedStyle(select);
+            return {
+              whiteSpace: style.whiteSpace,
+              scrollWidth: select.scrollWidth,
+              clientWidth: select.clientWidth,
+            };
+          })(),
           dataCardDiagnostics: [...document.querySelectorAll('#view-data .setgroup > .card')].map((card) => {
             const cardRect = card.getBoundingClientRect();
             const cardStyle = getComputedStyle(card);
@@ -409,6 +418,12 @@ final class PresentationUITests: XCTestCase {
                         try XCTUnwrap(personalization["scrollWidth"] as? Int),
                         try XCTUnwrap(personalization["clientWidth"] as? Int),
                         "the Personalization heading wraps within its section")
+                    let themeSelect = try XCTUnwrap(data["themeSelect"] as? [String: Any])
+                    XCTAssertEqual(themeSelect["whiteSpace"] as? String, "normal")
+                    XCTAssertLessThanOrEqual(
+                        try XCTUnwrap(themeSelect["scrollWidth"] as? Int),
+                        try XCTUnwrap(themeSelect["clientWidth"] as? Int),
+                        "the iOS Theme selection stays inside its field at largest text")
                 }
 
                 let home = try XCTUnwrap(screens.first { $0["view"] as? String == "view-home" })
@@ -472,7 +487,7 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertGreaterThanOrEqual(brandLink.frame.height, 44, "the brand link target is at least 44 points high")
 
                     let updatesToggle = app.descendants(matching: .any).matching(
-                        NSPredicate(format: "label == %@", "What's new")).firstMatch
+                        NSPredicate(format: "label BEGINSWITH[c] %@", "What's new")).firstMatch
                     XCTAssertTrue(updatesToggle.waitForExistence(timeout: 30), "What's new is one accessible disclosure target")
                     XCTAssertFalse(app.staticTexts["What's new"].exists, "the disclosure has no separate text target")
                     XCTAssertGreaterThanOrEqual(updatesToggle.frame.height, 44, "the What's new target is at least 44 points high")
@@ -625,7 +640,7 @@ final class PresentationUITests: XCTestCase {
 
     private func moreToggle(of app: XCUIApplication) -> XCUIElement {
         let more = NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")
-        return app.otherElements.matching(more).firstMatch
+        return app.buttons.matching(more).firstMatch
     }
 
     private func readSheetStyleProbe(of app: XCUIApplication) throws -> [String: Any] {

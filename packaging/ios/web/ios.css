@@ -54,3 +54,7 @@
 :root[data-ios-largest-text="true"] #view-data .setgroup > h2 {
   overflow-wrap: anywhere;
 }
+
+:root[data-ios-largest-text="true"] #view-data #opt-theme {
+  white-space: normal;
+}

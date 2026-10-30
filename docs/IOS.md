@@ -41,6 +41,10 @@ shared `--target` token for a 44-point hit region, and the standalone Read links
 and hides its presentation-only text wrapper from assistive technology, so the link target is not
 represented by a smaller nested text element. At the largest accessibility text size, the Backup &
 settings section headings can wrap within their existing column rather than widening the page.
+At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
+iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
+correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
+adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current

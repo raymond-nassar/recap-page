@@ -513,7 +513,7 @@ test('iOS presentation diagnostics use DOM target geometry and observed accessib
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
   assert.doesNotMatch(presentationTests, /manualLink\.frame\.width/);
   assert.match(presentationTests, /elements\[id\][\s\S]*?element\["height"\]/);
-  assert.match(presentationTests, /return app\.otherElements\.matching\(more\)\.firstMatch/);
+  assert.match(presentationTests, /return app\.buttons\.matching\(more\)\.firstMatch/);
   assert.match(presentationTests, /let close = app\.buttons\.matching\(NSPredicate\(format: "label == %@", "Close"\)\)\.firstMatch/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["more-sheet-close"\]/);
@@ -574,6 +574,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /app\.staticTexts\["Recap Page"\]\.exists/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(brandLink\.frame\.height,\s*44/);
   assert.match(tests, /app\.staticTexts\["What's new"\]\.exists/);
+  assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
 });
 
@@ -583,7 +584,10 @@ test('largest-text data headings wrap and overflow diagnostics identify heading 
   const docs = read('docs/IOS.md');
 
   assert.match(overlay, /:root\[data-ios-largest-text="true"\]\s+#view-data \.setgroup > h2\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
+  assert.match(overlay, /:root\[data-ios-largest-text="true"\]\s+#view-data #opt-theme\s*\{[^}]*white-space:\s*normal;/s);
   assert.match(tests, /dataSectionHeadings/);
+  assert.match(tests, /XCTAssertEqual\(themeSelect\["whiteSpace"\] as\? String,\s*"normal"/);
+  assert.match(tests, /XCTAssertLessThanOrEqual\(.*?themeSelect\["scrollWidth"\].*?themeSelect\["clientWidth"\]/s);
   assert.match(tests, /text:\s*heading\.textContent\.trim\(\)/);
   assert.match(tests, /textContent\.trim\(\)\.replace\(\/\\\\s\+\/g,\s*' '\)\.slice\(0,\s*100\)/);
   assert.match(tests, /XCTAssertEqual\(personalization\["overflowWrap"\] as\? String,\s*"anywhere"/);
