@@ -606,8 +606,15 @@ public final class MainActivity extends Activity {
                 cloudResult(source, page, id, 404, null);
                 return;
             }
-            CloudAccount.Reply reply = cloud.account.handle(operation, body);
-            cloudResult(source, page, id, reply.status, reply.body);
+            try {
+                CloudAccount.Reply reply = cloud.account.handle(operation, body);
+                cloudResult(source, page, id, reply.status, reply.body);
+            } catch (OutOfMemoryError error) {
+                // The reply is copied once more into the message, so a read the account answered can still
+                // be more than the heap holds here. The page hears the item is too large; the app goes on.
+                CloudAccount.Reply reply = CloudAccount.refuse(200, "too-large", CloudAccount.TOO_LARGE_TO_READ);
+                cloudResult(source, page, id, reply.status, reply.body);
+            }
         };
         if (!AndroidCloud.run(work)) {
             CloudAccount.Reply reply = CloudAccount.refuse(429, "unavailable", "Too many cloud requests at once.");

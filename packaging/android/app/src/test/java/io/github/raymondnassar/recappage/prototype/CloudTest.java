@@ -246,6 +246,7 @@ public final class CloudTest {
         storedRecord();
         deadline();
         largeCreate();
+        largeRead();
         if (firstFailure != null) throw new AssertionError(firstFailure);
         for (String reply : replies) {
             for (String secret : new String[] {ACCESS, REFRESH, RENEWED, NEXT_REFRESH, "CODE1"}) {
@@ -542,6 +543,23 @@ public final class CloudTest {
         }
         check(Double.valueOf(413).equals(status) || Double.valueOf(200).equals(status),
                 "A create at the size cap is answered on a small heap, not thrown: " + status);
+    }
+
+    // The read direction of the same: an item at the cap, made where the heap is larger, is encoded and
+    // serialized for the page, and running out of memory there must also answer rather than end the app.
+    static void largeRead() {
+        Harness h = connected();
+        String body = "{\"connection\":\"" + h.connection() + "\",\"id\":\"R1\"}";
+        h.http.then(request -> json(302, "", "Location", "https://download.example.com/r1"))
+                .then(request -> new CloudHttp.Response(200, Collections.emptyMap(), new byte[CloudRules.MAX_ITEM_BYTES]));
+        String outcome;
+        try {
+            CloudAccount.Reply reply = h.account.handle("read", body);
+            outcome = reply.status + " " + (reply.body.length() < 4096 ? reply.body : reply.body.length() + " characters");
+        } catch (Throwable error) {
+            outcome = error.getClass().getSimpleName();
+        }
+        check(outcome.startsWith("200 "), "A read at the size cap is answered on a small heap, not thrown: " + outcome);
     }
 
     static void requests() {

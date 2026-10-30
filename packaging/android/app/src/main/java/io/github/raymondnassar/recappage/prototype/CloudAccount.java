@@ -711,13 +711,21 @@ final class CloudAccount {
                 out.put("ok", false);
                 out.put("error", failure);
             }
-            return new Reply(200, CloudJson.write(out));
+            try {
+                return new Reply(200, CloudJson.write(out));
+            } catch (OutOfMemoryError error) {
+                // A read at the cap is held as bytes, as base64 and as the reply around it at once, which a
+                // phone's heap may not fit. Measured at a 128 MB heap, a 32 MB item ends here.
+                out.clear();
+                return refuse(200, "too-large", TOO_LARGE_TO_READ);
+            }
         } finally {
             inFlight.decrementAndGet();
         }
     }
 
     static final String TOO_LARGE_HERE = "That request is too large for this device to read.";
+    static final String TOO_LARGE_TO_READ = "That backup is too large for this device to read.";
 
     // The body's size in UTF-8 without encoding a copy of it, which at the create cap is tens of megabytes.
     // An unpaired surrogate counts as three bytes, never fewer than the encoder would write.
