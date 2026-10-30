@@ -795,6 +795,11 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom/);
   assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
   assert.match(presentationTests, /settledProof\["dom"\] as\? String == proof\["dom"\]/);
+  assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", element\.label\)\)/);
+  assert.doesNotMatch(presentationTests, /\.containing\(\.staticText, identifier: element\.label\)/);
+  assert.match(presentationTests, /candidate\["hitRects"\] as\? \[\[String: Any\]\]/);
+  assert.match(presentationTests, /\.contains\(nativeCenter\)/);
+  assert.match(presentationTests, /element\.coordinate\(withNormalizedOffset: CGVector\(dx: 0\.5, dy: 0\.5\)\)\.tap\(\)/);
   assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
@@ -926,6 +931,9 @@ test('iOS backup controls keep file label activation and full-sized native summa
   const webController = read('packaging/ios/RecapPage/WebViewController.swift');
   const iosCss = read('packaging/ios/web/ios.css');
   assert.match(webController, /#view-data summary/);
+  assert.match(webController, /#view-data \.backup-restore-label/);
+  assert.match(webController, /target\.matches\('\.backup-restore-label'\)[\s\S]*?setAttribute\('role', 'button'\)[\s\S]*?setAttribute\('tabindex', '0'\)/);
+  assert.match(webController, /event\.key === 'Enter' \|\| event\.key === ' '[\s\S]*?target\.click\(\)/);
   assert.match(iosCss, /:root #view-data \.backup-restore-label\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
   assert.doesNotMatch(webController, /label.*setAttribute\('aria-hidden'/);
 });
@@ -937,7 +945,21 @@ test('native expanded More disclosure records actual open and closed geometry at
   assert.match(presentationTests, /summary\.tap\(\)/);
   assert.match(presentationTests, /for expectedOpen in \[true, false\]/);
   assert.match(presentationTests, /"expanded More has no sideways overflow"/);
+  assert.match(presentationTests, /XCTAssertEqual\(document, viewport,/);
+  assert.match(presentationTests, /"summaryOverflow": summaryScroll - summaryWidth/);
+  assert.doesNotMatch(presentationTests, /XCTAssertLessThanOrEqual\(summaryScroll, summaryWidth/);
   assert.match(presentationTests, /"t03-more-methods-/);
+});
+
+test('native passive fixtures establish hidden and ambiguous geometry under the real CSP', () => {
+  const fixtures = presentationTests.match(/private static let passiveGuardFixtures = #"""([\s\S]*?)"""#/)?.[1];
+  assert.ok(fixtures);
+  assert.doesNotMatch(fixtures, /style="/);
+  assert.match(fixtures, /text\.style\.display = 'none'/);
+  assert.match(fixtures, /getComputedStyle\(text\)\.display/);
+  assert.match(fixtures, /text\.style\.cssText = 'position:fixed;top:200px;left:20px'/);
+  assert.match(fixtures, /duplicateFirst\.getBoundingClientRect\(\)/);
+  assert.match(fixtures, /duplicateSecond\.getBoundingClientRect\(\)/);
 });
 
 test('native journal recovery reveals its action above navigation before asking for confirmation', () => {

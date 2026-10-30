@@ -409,7 +409,8 @@ final class PresentationUITests: XCTestCase {
       fixture.append(wrapper);
       const text = wrapper.querySelector('span');
       configure(wrapper, text);
-      guardFixtures.push({ name, passive: guard.passive(text) });
+      guardFixtures.push({ name, passive: guard.passive(text), display: getComputedStyle(text).display,
+        rect: text.getBoundingClientRect().toJSON() });
       return text;
     };
     if (fixtureMode === 'guard-structural') {
@@ -419,20 +420,30 @@ final class PresentationUITests: XCTestCase {
       add('own click handler', '<span>Guard click</span>', (_, text) =>
         text.addEventListener('click', () => {}));
       add('hidden node', '<span hidden>Guard hidden</span>');
-      add('display none node', '<span style="display:none">Guard display none</span>');
+      add('display none node', '<span>Guard display none</span>', (_, text) => {
+        text.style.display = 'none';
+        if (getComputedStyle(text).display !== 'none') throw new Error('Display-none fixture is visible');
+      });
       add('ancestor click handler', '<div><span>Guard ancestor click</span></div>', wrapper =>
         wrapper.firstElementChild.addEventListener('click', () => {}));
       add('ancestor keydown handler', '<div><span>Guard ancestor key</span></div>', wrapper =>
         wrapper.firstElementChild.addEventListener('keydown', () => {}));
-      add('duplicate first', '<span style="position:fixed;top:200px;left:20px">Guard duplicate</span>');
-      add('duplicate second', '<span style="position:fixed;top:200px;left:20px">Guard duplicate</span>');
+      const overlap = (_, text) => { text.style.cssText = 'position:fixed;top:200px;left:20px'; };
+      const duplicateFirst = add('duplicate first', '<span>Guard duplicate</span>', overlap);
+      const duplicateSecond = add('duplicate second', '<span>Guard duplicate</span>', overlap);
+      if (JSON.stringify(duplicateFirst.getBoundingClientRect().toJSON())
+        !== JSON.stringify(duplicateSecond.getBoundingClientRect().toJSON())) {
+        throw new Error('Ambiguous duplicate fixtures do not overlap');
+      }
       const duplicates = guard.candidates().filter(candidate => candidate.label === 'Guard duplicate');
       guardFixtures.push({ name: 'ambiguous duplicate label', rejected: duplicates.length === 0 });
       document.addEventListener('click', () => {});
       guardFixtures.push({ name: 'unreviewed global click', rejected: !guard.globalInventoryValid()
         && guard.candidates().length === 0 && !guard.passive(fixture.querySelector('span')) });
     } else {
-      const text = add('tap fixture', '<span id="ios-guard-tap-text" style="display:block;min-height:48px;line-height:48px">Guard tap text</span>');
+      const text = add('tap fixture', '<span id="ios-guard-tap-text">Guard tap text</span>', (_, text) => {
+        text.style.cssText = 'display:block;min-height:48px;line-height:48px';
+      });
       if (fixtureMode === 'guard-tooltip') {
         text.className = 'has-tooltip';
         text.dataset.tooltip = 'Guard tooltip changed the DOM';
@@ -720,7 +731,7 @@ final class PresentationUITests: XCTestCase {
     ) throws -> Bool {
         guard element.exists, element.elementType == .staticText else { return false }
         for controls in [app.webViews.firstMatch.buttons, app.webViews.firstMatch.links] {
-            let parents = controls.containing(.staticText, identifier: element.label).allElementsBoundByIndex
+            let parents = controls.containing(NSPredicate(format: "label == %@", element.label)).allElementsBoundByIndex
             if parents.contains(where: { $0.exists && $0.frame.contains(element.frame) }) {
                 print("T03 passive guard rejected a native control's StaticText child: \(element.debugDescription)")
                 return false
@@ -748,6 +759,7 @@ final class PresentationUITests: XCTestCase {
             guard candidate["label"] as? String == element.label,
                   let container = candidate["container"] as? String,
                   container == before["view"] as? String || container == "sidebar-nav",
+                  let hitRects = candidate["hitRects"] as? [[String: Any]],
                   let rect = candidate["rect"] as? [String: Any],
                   let x = (rect["x"] as? NSNumber)?.doubleValue,
                   let y = (rect["y"] as? NSNumber)?.doubleValue,
@@ -755,8 +767,18 @@ final class PresentationUITests: XCTestCase {
                   let height = (rect["height"] as? NSNumber)?.doubleValue else { return false }
             let domFrame = CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
                                   width: width * scale, height: height * scale)
+            let nativeCenter = CGPoint(x: nativeFrame.midX, y: nativeFrame.midY)
+            let hitsText = hitRects.contains { rect in
+                guard let x = (rect["x"] as? NSNumber)?.doubleValue,
+                      let y = (rect["y"] as? NSNumber)?.doubleValue,
+                      let width = (rect["width"] as? NSNumber)?.doubleValue,
+                      let height = (rect["height"] as? NSNumber)?.doubleValue else { return false }
+                return CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
+                              width: width * scale, height: height * scale)
+                    .insetBy(dx: -1, dy: -1).contains(nativeCenter)
+            }
             return width > 0 && height > 0 && nativeFrame.width > 0 && nativeFrame.height > 0
-                && webFrame.contains(nativeFrame)
+                && webFrame.contains(nativeFrame) && hitsText
                 && domFrame.insetBy(dx: -1, dy: -1).contains(nativeFrame)
         }
         guard matches.count == 1, let candidate = matches.first,
@@ -764,7 +786,7 @@ final class PresentationUITests: XCTestCase {
             print("T03 passive guard rejected unmatched or ambiguous label/container/frame: \(element.debugDescription)")
             return false
         }
-        element.tap()
+        element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         let after = try freshPassiveState(of: app)
         guard after["view"] as? String == before["view"] as? String,
               after["href"] as? String == before["href"] as? String,
@@ -1142,12 +1164,13 @@ final class PresentationUITests: XCTestCase {
                 let viewport = try XCTUnwrap((metrics["viewportWidth"] as? NSNumber)?.doubleValue)
                 let document = try XCTUnwrap((metrics["documentWidth"] as? NSNumber)?.doubleValue)
                 XCTAssertGreaterThan(viewport, 0)
-                XCTAssertLessThanOrEqual(document, viewport, "expanded More has no sideways overflow")
+                XCTAssertEqual(document, viewport, "expanded More has no sideways overflow")
                 let summaryWidth = try XCTUnwrap((more["summaryClientWidth"] as? NSNumber)?.doubleValue)
                 let summaryScroll = try XCTUnwrap((more["summaryScrollWidth"] as? NSNumber)?.doubleValue)
                 XCTAssertGreaterThan(summaryWidth, 0)
-                XCTAssertLessThanOrEqual(summaryScroll, summaryWidth, "the disclosure summary does not overflow")
-                try record("t03-more-methods-\(category.rawValue)-\(expectedOpen)", metrics)
+                try record("t03-more-methods-\(category.rawValue)-\(expectedOpen)", [
+                    "metrics": metrics, "summaryOverflow": summaryScroll - summaryWidth,
+                ])
                 capture(app, named: "t03-more-methods-\(category.rawValue)-\(expectedOpen)")
             }
             app.terminate()

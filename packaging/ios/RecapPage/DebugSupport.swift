@@ -239,13 +239,17 @@ enum DebugSupport {
               const rect = texts.length === 1 && element.children.length === 0
                 ? element.getBoundingClientRect() : range.getBoundingClientRect();
               if (!rect.width || !rect.height) continue;
-              const left = Math.max(0, rect.left), right = Math.min(innerWidth, rect.right);
-              const top = Math.max(0, rect.top), bottom = Math.min(innerHeight, rect.bottom);
-              if (right <= left || bottom <= top) continue;
-              const hit = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
+              const hitRects = [...range.getClientRects()].flatMap(fragment => {
+                const left = Math.max(0, fragment.left), right = Math.min(innerWidth, fragment.right);
+                const top = Math.max(0, fragment.top), bottom = Math.min(innerHeight, fragment.bottom);
+                if (right <= left || bottom <= top) return [];
+                const hit = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
+                return hit && element.contains(hit) && passiveDom(hit)
+                  ? [{ x: left, y: top, width: right - left, height: bottom - top }] : [];
+              });
               found.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
                 selector: path(element), container: container.id, label: labelOf(text.textContent, element),
-                hitSafe: Boolean(hit && element.contains(hit) && passiveDom(hit)),
+                hitSafe: hitRects.length > 0, hitRects,
                 rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height } });
             }
           }

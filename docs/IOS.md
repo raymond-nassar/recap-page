@@ -67,7 +67,8 @@ breadcrumb span (`.breadcrumb [aria-current=page]`) inside Breadcrumb navigation
 case uses the fixed Library, Search or Backup & settings label for the active audited page;
 breadcrumb links are controls, not passive candidates.
 Only a hit-region finding on native StaticText can enter the guard. On the current settled route,
-the native label, container and frame must uniquely match a visible DOM text node. Hidden, inert,
+the native label, container and frame must uniquely match a visible DOM text node. The native tap
+center must lie in a hit-safe text fragment, not a gap inside a multiline span's bounding box. Hidden, inert,
 collapsed, stale, unmatched or ambiguous text fails. The node, its in-page ancestors and descendants
 must have no interactive element or role, tabindex, label association, editable content or click,
 double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler. Tracking starts
@@ -108,9 +109,10 @@ The footer's About link also uses that treatment and the shared `--target` token
 width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
 The same parent-target treatment covers breadcrumb links, Library's ratings and tool links,
 Search's tool links and More ways to add summary, and Backup & settings' disclosure summaries.
-The backup-file labels retain their native label-to-file-input association and activation, with
-line boxes and minimum height using the shared `--target` token rather than treating them as passive
-text. Breadcrumb links also use the shared `--target`
+The backup-file labels retain their label-to-file-input association and file-picker activation.
+The iOS overlay exposes each as one named button, with Enter and Space activation, and line boxes
+and minimum height using the shared `--target` token rather than treating the text as passive.
+Breadcrumb links also use the shared `--target`
 token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
 breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.
 The 375-point default/largest-text reflow checks and native audit own this iOS-only deviation.
@@ -122,8 +124,10 @@ and showing each action.
 
 A separate native More ways to add scenario opens and closes the disclosure with actual taps at
 default and largest text sizes. It records the active Search route, open state, summary geometry,
-viewport and document widths, and screenshots. Both the document and summary must remain free of
-sideways overflow, including the iPhone SE and iPad checks of the shared rotating-chevron correction.
+viewport and document widths, and screenshots. Document width must equal viewport width in both
+states and sizes, including iPhone SE and iPad. Summary scroll width is recorded, not asserted:
+WebKit includes the rotated chevron's unpainted line box, about ten extra pixels at default text.
+The Edge `disclosure-chevron-reflow` check owns painted containment at the largest text scale.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current

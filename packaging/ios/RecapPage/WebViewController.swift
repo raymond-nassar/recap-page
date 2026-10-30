@@ -136,7 +136,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
         + '#btn-chero-open, .app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
-        + '#view-add .search-hub-card, #view-add summary, #view-data summary';
+        + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {
@@ -150,6 +150,22 @@ final class WebViewController: UIViewController, WKUIDelegate {
           if (target.dataset.iosAccessibleTarget === 'true') {
             if (target.getAttribute('aria-label') !== label) target.setAttribute('aria-label', label);
             continue;
+          }
+          if (target.matches('.backup-restore-label')) {
+            target.setAttribute('role', 'button');
+            target.setAttribute('tabindex', '0');
+            target.addEventListener('keydown', event => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                if (event.key === 'Enter') target.click();
+              }
+            });
+            target.addEventListener('keyup', event => {
+              if (event.key === ' ') {
+                event.preventDefault();
+                target.click();
+              }
+            });
           }
           for (const child of target.children) child.setAttribute('aria-hidden', 'true');
           for (const node of [...target.childNodes]) {
