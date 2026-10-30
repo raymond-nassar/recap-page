@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -103,8 +103,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 3, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
-  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 8,
-    'the two unit tests, two iPhone UI suites, iPad presentation, optional 375-point presentation, opt-in CORS test, and fault-disabled mutation each run separately');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 9,
+    'the two unit tests, newest UI, minimum launch and presentation, iPad and SE presentation, CORS, and fault-disabled mutation run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
@@ -234,6 +234,46 @@ function stepScript(source, label) {
     .map((line) => line.slice(10)).join('\n') + '\n';
 }
 
+test('minimum runtime builds once and each UI group uses its exact test run and destination', async () => {
+  const source = jobSource('minimum');
+  const build = stepScript(source, 'Build for testing');
+  assert.equal(source.match(/xcodebuild build-for-testing/g)?.length, 1);
+  for (const [label, group, destination, result] of [
+    ['Run the UI tests', 'LaunchUITests', '"$DESTINATION"', 'minimum-ui'],
+    ['Run presentation UI tests on the minimum iPhone', 'PresentationUITests', '"$DESTINATION"', 'minimum-presentation'],
+    ['Run presentation UI tests on iPhone SE (3rd generation)', 'PresentationUITests',
+      '"platform=iOS Simulator,id=$IPHONE_375_UDID"', 'minimum-iphone-se-ui'],
+  ]) {
+    const script = stepScript(source, label);
+    assert.match(script, /xcodebuild test-without-building/);
+    assert.match(script, /-xctestrun "\$XCTESTRUN"/);
+    assert.ok(script.includes(`-destination ${destination}`));
+    assert.ok(script.includes(`-only-testing:RecapPageUITests/${group}`));
+    assert.ok(script.includes(`RecapPage-${result}-$attempt.xcresult`));
+    assert.doesNotMatch(script, /-project|-scheme|-derivedDataPath/);
+  }
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-test-run-'));
+  try {
+    const products = join(root, 'DerivedData', 'Build', 'Products');
+    await mkdir(products, { recursive: true });
+    const script = `xcodebuild() { return 0; }\n${build}`;
+    const env = { GITHUB_ENV: join(root, 'github-env') };
+    assert.notEqual((await runScript(root, script, env)).status, 0, 'missing test run fails');
+    const chosen = join(products, 'RecapPage_iphonesimulator.xctestrun');
+    await writeFile(chosen, '');
+    assert.notEqual((await runScript(root, script, env)).status, 0, 'empty test run fails');
+    await writeFile(chosen, 'built test run');
+    const valid = await runScript(root, script, env);
+    assert.equal(valid.status, 0, valid.stderr);
+    assert.equal(await readFile(env.GITHUB_ENV, 'utf8'),
+      `XCTESTRUN=${root}/DerivedData/Build/Products/RecapPage_iphonesimulator.xctestrun\n`);
+    await writeFile(join(products, 'stale.xctestrun'), 'other test run');
+    assert.notEqual((await runScript(root, script, env)).status, 0, 'ambiguous test runs fail');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.exe' : '/bin/bash';
 const infrastructure = [
   'The test runner failed to initialize for UI testing.',
@@ -252,6 +292,7 @@ async function runScript(root, script, env = {}) {
       RUNNER_TEMP: root,
       DESTINATION: 'platform=iOS Simulator,id=chosen-device',
       IPAD_DESTINATION: 'platform=iOS Simulator,id=chosen-ipad',
+      XCTESTRUN: 'matching-runtime.xctestrun',
       ...env,
     },
   });
@@ -264,7 +305,7 @@ test('the iPhone jobs boot and wait for the chosen Simulator before building and
     const source = jobSource(job.name);
     const boot = stepScript(source, 'Boot the Simulator before building');
     assert.ok(source.indexOf('Boot the Simulator before building') < source.indexOf('name: Build for testing'));
-    const expectedBuilds = job.name === 'newest' ? 6 : 3;
+    const expectedBuilds = job.name === 'newest' ? 6 : 4;
     assert.equal((source.match(/-destination "\$DESTINATION"/g) ?? []).length, expectedBuilds);
     assert.doesNotMatch(source, /simctl (?:shutdown|erase)|retry-tests-on-failure|continue-on-error/);
     assert.match(source, new RegExp(`runner.temp \\}\\}/RecapPage-${job.name}-\\*\\.xcresult`));
@@ -413,7 +454,7 @@ test('the iPhone SE presentation step runs after UI failure unless cancelled and
   const seUI = source.split('      - name: Run presentation UI tests on iPhone SE (3rd generation)\n')[1]
     ?.split('      - name: Summarize the probe results')[0];
   assert.match(source,
-    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}\n {8}timeout-minutes: 20/);
+    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}\n {8}timeout-minutes: 45/);
   assert.ok(mainUI, 'the main iPhone UI step remains required');
   assert.ok(seUI, 'the independent SE step remains present');
   assert.doesNotMatch(mainUI, /continue-on-error/);
@@ -485,21 +526,26 @@ ${scenario.teeFailure ? 'tee() { command tee "$@"; return 23; }\n' : ''}`;
   }
 });
 
-test('the iPad presentation suite retries only the recognized UI infrastructure failures', async (t) => {
-  const script = stepScript(jobSource('ipad'), 'Run presentation UI tests on iPad');
+test('the separate presentation suites retry only the recognized UI infrastructure failures', async (t) => {
   const scenarios = [
     { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
     { name: 'infrastructure recovers', logs: [infrastructure[0], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
     { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
   ];
-  for (const scenario of scenarios) {
-    await t.test(scenario.name, async () => {
-      const root = await mkdtemp(join(tmpdir(), 'recap-ios-ipad-retry-'));
-      try {
-        for (const [index, log] of scenario.logs.entries()) {
-          await writeFile(join(root, `fixture-${index + 1}.log`), log + '\n');
-        }
-        const stub = `xcodebuild() {
+  for (const [job, label, bundle, log, destination] of [
+    ['ipad', 'Run presentation UI tests on iPad', 'ipad-ui', 'ui-ipad', 'chosen-ipad'],
+    ['minimum', 'Run presentation UI tests on the minimum iPhone',
+      'minimum-presentation', 'ui-minimum-presentation', 'chosen-device'],
+  ]) {
+    const script = stepScript(jobSource(job), label);
+    for (const scenario of scenarios) {
+      await t.test(`${job}: ${scenario.name}`, async () => {
+        const root = await mkdtemp(join(tmpdir(), 'recap-ios-ipad-retry-'));
+        try {
+          for (const [index, log] of scenario.logs.entries()) {
+            await writeFile(join(root, `fixture-${index + 1}.log`), log + '\n');
+          }
+          const stub = `xcodebuild() {
   printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
   invocation=$(wc -l < "$RUNNER_TEMP/calls" | tr -d ' ')
   cat "$RUNNER_TEMP/fixture-$invocation.log"
@@ -510,22 +556,23 @@ test('the iPad presentation suite retries only the recognized UI infrastructure 
   esac
 }
 `;
-        const result = await runScript(root, stub + script);
-        assert.equal(result.status, scenario.exit, result.stderr + result.stdout);
-        const calls = (await readFile(join(root, 'calls'), 'utf8')).trim().split('\n');
-        assert.equal(calls.length, scenario.calls);
-        for (const [index, call] of calls.entries()) {
-          assert.match(call, /^test-without-building /);
-          assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
-          assert.ok(call.includes('-destination platform=iOS Simulator,id=chosen-ipad'));
-          assert.ok(call.includes(`RecapPage-ipad-ui-${index + 1}.xcresult`));
-          assert.equal(await readFile(join(root, `ui-ipad-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');
+          const result = await runScript(root, stub + script);
+          assert.equal(result.status, scenario.exit, result.stderr + result.stdout);
+          const calls = (await readFile(join(root, 'calls'), 'utf8')).trim().split('\n');
+          assert.equal(calls.length, scenario.calls);
+          for (const [index, call] of calls.entries()) {
+            assert.match(call, /^test-without-building /);
+            assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
+            assert.ok(call.includes(`-destination platform=iOS Simulator,id=${destination}`));
+            assert.ok(call.includes(`RecapPage-${bundle}-${index + 1}.xcresult`));
+            assert.equal(await readFile(join(root, `${log}-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');
+          }
+          assert.equal((result.stdout.match(/::warning::/g) ?? []).length, scenario.calls - 1);
+        } finally {
+          await rm(root, { recursive: true, force: true });
         }
-        assert.equal((result.stdout.match(/::warning::/g) ?? []).length, scenario.calls - 1);
-      } finally {
-        await rm(root, { recursive: true, force: true });
-      }
-    });
+      });
+    }
   }
 });
 

@@ -866,6 +866,13 @@ test('T03 fixtures settle inserted DOM before measuring passivity and legacy pos
   assert.doesNotMatch(legacy, /element\.tap\(\)/);
 });
 
+test('T03 reveals each enumerated native target before demanding its unchanged in-viewport no-op proof', () => {
+  const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
+    presentationTests.indexOf('private func freshPassiveState'));
+  assert.match(legacy, /revealNativeTarget\(element, in: app\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
+});
+
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {
   assert.match(presentationTests, /summary: \[String: Any\]\? = nil/);
   assert.match(presentationTests, /JSONSerialization\.data\(withJSONObject: summary \?\? value/);

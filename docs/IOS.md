@@ -12,6 +12,10 @@ windowing and the missing-data notice are under automated validation. The instal
 offline and keeps progress across relaunch, as recorded on #949. Update-in-place and the remaining
 device checks wait for build 5 and later steps of #949.
 
+On the minimum runtime, the launch and presentation classes run separately from the same
+nonempty `.xctestrun` produced by one build. The matching iPhone SE presentation invocation
+reuses that runtime's build too. Each invocation keeps its own result bundle and proof attachments.
+
 ## How it works
 
 `npm run ios:prepare` writes the bundled web app into `packaging/ios/build/generated/web`, which is
@@ -80,6 +84,10 @@ The containing box is the passive text's owning element, since iOS can crop a mu
 finding to the full block width even when a direct text range is narrower. The tap must still
 hit an actual fragment of that exact text inside the native crop; the containing box alone
 cannot justify acceptance.
+
+The positive-fixture driver reveals each offscreen target before requesting that same strict
+proof. The guard itself still rejects an offscreen finding; scrolling is preparation for a
+fixture tap, not an audit exemption.
 
 ARIA references from a control still reject text unless every referencing control is absent
 from rendering and accessibility on that settled route. The control or an ancestor must be

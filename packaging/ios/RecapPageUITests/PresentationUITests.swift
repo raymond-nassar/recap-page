@@ -706,6 +706,7 @@ final class PresentationUITests: XCTestCase {
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
+            revealNativeTarget(element, in: app)
             XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
             let proved = try acceptPassiveFinding(element, in: app, routeState: state)
             XCTAssertTrue(proved, "the reviewed positive requires the same exact native no-op proof: \(key)")

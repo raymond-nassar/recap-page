@@ -350,8 +350,9 @@ jobs:
     # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
     # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
     runs-on: macos-15
-    # Optional 375-point coverage adds 31 minutes; keep the job deadline outside its 106 step minutes.
-    timeout-minutes: 110
+    # Separate launch/presentation groups declare 162 step minutes; one additional minute keeps
+    # the job backstop outside every step deadline.
+    timeout-minutes: 163
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
       SIMULATOR_NAME: iPhone 16e
@@ -431,11 +432,17 @@ jobs:
 
       - name: Build for testing
         timeout-minutes: 20
-        run: >-
-          xcodebuild build-for-testing
-          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
-          -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
-          CODE_SIGNING_ALLOWED=NO
+        run: |
+          xcodebuild build-for-testing \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO
+          runs=("$RUNNER_TEMP"/DerivedData/Build/Products/*.xctestrun)
+          if [ "${#runs[@]}" -ne 1 ] || [ ! -s "${runs[0]}" ]; then
+            echo "::error::The runtime build must produce exactly one nonempty test run."
+            exit 1
+          fi
+          echo "XCTESTRUN=${runs[0]}" >> "$GITHUB_ENV"
 
       - name: Wait for the 375-point iPhone SE Simulator after the build
         if: steps.iphone-se.outputs.available == 'true'
@@ -451,23 +458,22 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild test-without-building \
-            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
-            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
             -only-testing:RecapPageTests \
             -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-unit.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
 
+      # Run 41085967083: launch cases 10m34s plus 3m26s margin, without presentation.
       - name: Run the UI tests
-        timeout-minutes: 18
+        timeout-minutes: 14
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
-                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
-                -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-                -only-testing:RecapPageUITests \
+                -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
+                -only-testing:RecapPageUITests/LaunchUITests \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               exit 0
@@ -482,20 +488,50 @@ jobs:
                 grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
               exit 1
             fi
-            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+            echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator"
           done
 
+      # Complete presentation reference from run 41085967083: iPad 24m49s plus 10m11s.
+      # Minimum's interrupted suite is not a complete-duration measurement.
+      - name: Run presentation UI tests on the minimum iPhone
+        if: ${{ !cancelled() }}
+        timeout-minutes: 35
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-minimum-presentation-$attempt.log"
+            if xcodebuild test-without-building \
+                -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
+                -only-testing:RecapPageUITests/PresentationUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-presentation-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+              exit 1
+            fi
+            echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
+          done
+
+      # SE startup in run 41085967083 was about 12m, not a second compilation.
+      # Add the complete iPad presentation reference 24m49s and an 8m11s margin.
       - name: Run presentation UI tests on iPhone SE (3rd generation)
         if: ${{ !cancelled() && steps.iphone-se.outputs.available == 'true' }}
-        timeout-minutes: 20
+        timeout-minutes: 45
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-iphone-se-$attempt.log"
             if xcodebuild test-without-building \
-                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
-                -destination "platform=iOS Simulator,id=$IPHONE_375_UDID" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -xctestrun "$XCTESTRUN" -destination "platform=iOS Simulator,id=$IPHONE_375_UDID" \
                 -only-testing:RecapPageUITests/PresentationUITests \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-iphone-se-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
