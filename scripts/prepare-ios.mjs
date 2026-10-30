@@ -148,6 +148,9 @@ export function iosIndex(html, build) {
                 An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files.
               </p>
               <p class="rail-hint">
+                If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.
+              </p>
+              <p class="rail-hint">
                 <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
               </p>`);
 }

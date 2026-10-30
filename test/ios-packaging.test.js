@@ -219,6 +219,7 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(text, /Backups of this device to iCloud or to a computer include this app's saved data/);
   assert.ok(text.includes('Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.'));
   assert.ok(text.includes("An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files."));
+  assert.ok(text.includes('If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.'));
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
   const links = [...yourData(page).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
   assert.equal(links.length, 1, 'the added disclosure has one explicit policy destination');
@@ -693,6 +694,13 @@ test('the shipping iOS web view installs a reply-capable download handler', () =
   assert.match(handler, /isTrustedPage\(/);
   assert.match(handler, /UIDocumentPickerViewController\(forExporting:\s*\[fileURL\],\s*asCopy:\s*true\)/);
   assert.match(handler, /case \.cancelled: status = "cancelled"/);
+});
+
+test('iOS external-link status does not promise a browser destination', () => {
+  const entry = read('packaging/ios/web/app.js');
+  assert.match(entry, /'Opening the link outside Recap Page\.'/);
+  assert.match(entry, /'The link could not be opened\. Try again\.'/);
+  assert.doesNotMatch(entry, /Opening the link in your browser|Check your browser and try again/);
 });
 
 test('the Read child is guarded before its launcher can navigate', () => {

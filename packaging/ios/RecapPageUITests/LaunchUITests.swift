@@ -558,7 +558,7 @@ final class LaunchUITests: XCTestCase {
         let urls = try XCTUnwrap(result["handoffs"] as? [String])
         XCTAssertEqual(urls.count, 1)
         XCTAssertEqual(try XCTUnwrap(URL(string: urls[0])).scheme, "https")
-        XCTAssertTrue(app.staticTexts["Opening the link in your browser."].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Opening the link outside Recap Page."].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["About this app"].exists, "the app stayed on its About page")
         XCTAssertTrue(app.links["Comic Book Herald"].exists, "the original credit link remains in the app")
         try record("credit-link-hand-off", result)

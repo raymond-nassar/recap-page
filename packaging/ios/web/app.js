@@ -108,8 +108,8 @@ Storage.prototype.setItem = function (key, value) {
 window.addEventListener('recapios:external-open', (event) => {
   report.hidden = false;
   report.textContent = event.detail?.status === 'opened'
-    ? 'Opening the link in your browser.'
-    : 'The link could not be opened. Check your browser and try again.';
+    ? 'Opening the link outside Recap Page.'
+    : 'The link could not be opened. Try again.';
 });
 
 const downloadBridge = createIosBridge({

@@ -25,9 +25,12 @@ headers are the Windows app's server's, with `frame-src 'none'` and `worker-src 
 content security policy, as the Android app serves it. There is no listening server and nothing to
 keep running.
 
-Only the app page loads in the web view. A link you follow to the web, such as the privacy policy or
-a source credit, opens in your default browser, and any other navigation is refused. If iOS ends the
-page's process, which it can do to an app in the background, the app reloads the page and says that
+Only the app page loads in the web view. Read and other web links are handed to iOS to open outside
+Recap Page. Depending on the link and your device settings, iOS may open your browser or an installed
+app, such as Marvel Unlimited. Recap Page does not choose which app receives the link or confirm that
+it opens the right comic. Other navigation inside the web view is refused.
+
+If iOS ends the page's process, which it can do to an app in the background, the app reloads the page and says that
 saved reading progress is retained: saved data lives outside that process.
 
 ## Text size and windowing
@@ -71,7 +74,7 @@ checks remain under hosted validation; they are not a claim of device VoiceOver 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
 presentation corrections is in progress. VoiceOver, hardware keyboard, pointer, actual Files picker
-and browser hand-off behavior still need the owner's device checks.
+and external-link hand-off behavior still need the owner's device checks.
 
 ## Permanent names
 
@@ -188,12 +191,12 @@ pending until the presentation checks pass.
 ## Known limits
 
 - Files export and restore, Read hand-off, Dynamic Type, iPad window sizing and the missing-data
-  notice are implemented and under hosted Simulator validation. Actual Files picker, browser
+  notice are implemented and under hosted Simulator validation. Actual Files picker, external-link
   hand-off and assistive-technology behavior remain device checks.
 - iOS can remove an app's website data when the device runs very low on space, and this app cannot
   opt out of that. The About text recommends keeping an export outside the app, explains that it can
   include progress and notes, and says that deleting the app does not remove exported files.
 - iPhone and iPad device backups, to iCloud or to a computer, include this app's saved data. The
   app's privacy text says so.
-- Checks that need a real device, such as Read handing a comic to a browser, run on the owner's iPad
+- Checks that need a real device, such as Read opening the correct comic outside Recap Page, run on the owner's iPad
   with iOS 18; checks that need an iPhone stay unverified until one is available.
