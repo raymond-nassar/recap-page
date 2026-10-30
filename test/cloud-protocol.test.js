@@ -1610,6 +1610,48 @@ test('an erase that cannot take the lock or set consent aside erases nothing, an
   assert.deepEqual([(await first.protocol.record()).consent, second.cloud.model.suspended], [null, true]);
 });
 
+// Setting consent aside can commit and then fail its read-back, when the record is lost or storage fails for
+// a moment. The erase is refused, and the consent it set aside goes back, so a refused erase leaves backups as
+// it found them. When even that fails, the refusal says automatic backup is now off (#996, S5-1).
+test('a refused erase whose read-back fails puts consent back, or says automatic backup is now off', async () => {
+  const { ERASE_NOT_STOPPED } = await import('../src/js/lib/cloudBackup.js');
+  for (const putBack of [true, false]) {
+    const env = harness();
+    windowsHost(env.transport);
+    const tab = page({ env });
+    await tab.cloud.enter();
+    await tab.cloud.turnOn();
+    await tab.run(0);
+    const made = env.transport.created.length;
+    const agreed = await tab.protocol.record();
+    const { suspendConsent, resumeConsent } = tab.protocol;
+    const lost = () => new CloudBackupError('This browser could not keep its cloud backup record.', 'storage');
+    tab.protocol.suspendConsent = async function suspendThenLose() {
+      const { record } = this;
+      this.record = async () => { this.record = record; throw lost(); };
+      return suspendConsent.call(this);
+    };
+    if (!putBack) tab.protocol.resumeConsent = async () => { throw lost(); };
+    const refused = await tab.cloud.beforeErase();
+    tab.protocol.suspendConsent = suspendConsent;
+    tab.protocol.resumeConsent = resumeConsent;
+    assert.equal(env.locks.held(CLOUD_BACKUP_LOCK), 0, 'the erase let go of the lock');
+    if (putBack) {
+      assert.equal(refused, `${ERASE_NOT_STOPPED} This browser could not keep its cloud backup record.`);
+      assert.deepEqual(await tab.protocol.record(), agreed, 'the consent set aside went back');
+      assert.deepEqual([tab.cloud.model.on, tab.cloud.model.backup.phase !== 'off'], [true, true], 'backups go on');
+      tab.home.mark(31);
+      tab.cloud.notify();
+      await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+      assert.equal(env.transport.created.length, made + 1, 'and back up the next change');
+    } else {
+      assert.equal(refused, `${ERASE_NOT_STOPPED} This browser could not keep its cloud backup record. `
+        + 'Automatic backup is now off until you turn it on again.');
+      assert.deepEqual([tab.cloud.model.on, tab.cloud.model.suspended], [false, true], 'the card shows it stopped');
+    }
+  }
+});
+
 // A record that fails its checks is said on the card, and turning on replaces it with a new stream, so its
 // files are then another device's. A record the browser could not read at all is not called unreadable,
 // because turning on may find it intact and go on with it (stage 3 review, S3b-7).

@@ -26,6 +26,8 @@ const NOT_LINKED = 'Cloud backup is not connected to an account right now, so no
 export const ERASE_HOST_SILENT = 'The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account.';
 // Why an erase did not start, after "Nothing was erased." (stage 4 review, S4c-1). The owner's words,
 // approved 2026-10-29 with an edit, and pinned in the privacy copy tests.
+// Added to that refusal when the consent the erase set aside could not be put back.
+export const ERASE_LEFT_OFF = 'Automatic backup is now off until you turn it on again.';
 export const ERASE_NOT_STOPPED = 'Automatic backup could not be stopped first, so erasing now could let a backup of the erased data replace your earlier backups.';
 // The host states the erase question names as disconnected, as cloudEraseNote reads them.
 const DISCONNECT_NAMED = new Set(['connected', 'needs-sign-in', 'signing-in', 'unavailable']);
@@ -340,8 +342,9 @@ export function createCloudBackup({
     // with it and leaves consent set aside, which the card says. Callers await this before the first write.
     // It resolves to null once the record is confirmed to give no tab a number: no consent in it, consent
     // set aside and read back, or a record that fails its checks, from which no tab takes one and which the
-    // erase forgets. Otherwise it puts back what it did and resolves to why, and the caller erases nothing,
-    // because the lock alone ends with the page that holds it (stage 4 review, S4c-1).
+    // erase forgets. Otherwise it resolves to why, and the caller erases nothing, because the lock alone ends
+    // with the page that holds it (stage 4 review, S4c-1). Before that it puts back any consent it set aside,
+    // and when it cannot, why also says automatic backup is now off (#996, S5-1).
     beforeErase() {
       held = true;
       wasRunning = Boolean(coordinator?.active);
@@ -362,7 +365,32 @@ export function createCloudBackup({
             }
           }
           if (why !== null) {
-            const resume = wasRunning;
+            let resume = wasRunning;
+            // Setting consent aside can commit before its read-back fails, so whatever is still set aside goes
+            // back under the same lock. Only consent still set aside is touched, so this is safe when nothing
+            // was written. When even that fails, the refusal says backups are off rather than leaving it to
+            // be found later (#996, S5-1).
+            if (releaseErase) {
+              try {
+                if (await protocol.resumeConsent()) {
+                  resume = true;
+                  announce();
+                }
+              } catch {
+                // A resume that failed only because storage is failing may have nothing to put back: the
+                // sentence is added only when the record still shows consent set aside, or cannot be read.
+                let off = true;
+                try {
+                  const now = await protocol.record();
+                  off = Boolean(now && now.consent === null && now.suspended !== null);
+                } catch { /* unread, so it may be off */ }
+                if (off) {
+                  why = `${why} ${ERASE_LEFT_OFF}`;
+                  resume = true;
+                  announce();
+                }
+              }
+            }
             releaseErase?.();
             releaseErase = null;
             held = false;
