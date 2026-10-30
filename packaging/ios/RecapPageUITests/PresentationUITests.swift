@@ -492,7 +492,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(afterCase["safe"] as? Bool, true, "the reviewed node remains passive after its tap")
             try record("t03-passive-\(key)", [
                 "dom": item, "nativeLabel": element.label,
-                "nativeFrame": NSStringFromCGRect(element.frame), "before": before, "after": after,
+                "nativeFrame": NSCoder.string(for: element.frame), "before": before, "after": after,
             ])
             accepted.append(element)
         }
@@ -644,7 +644,7 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(label) retains its native target width")
                 XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(label) retains its native target height")
                 try record("t03-first-run-\(category.rawValue)-\(label)", [
-                    "label": link.label, "frame": NSStringFromCGRect(link.frame),
+                    "label": link.label, "frame": NSCoder.string(for: link.frame),
                 ])
                 link.tap()
                 let heading = app.webViews.firstMatch.staticTexts.matching(

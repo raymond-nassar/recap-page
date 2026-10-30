@@ -528,6 +528,9 @@ test('T03 accessibility audit and More-sheet failures retain actionable diagnost
 });
 
 test('T03 accepts only the two reviewed passive-text hit-region findings after no-op taps', () => {
+  assert.doesNotMatch(presentationTests, /NSStringFromCGRect/);
+  assert.match(presentationTests, /"nativeFrame": NSCoder\.string\(for: element\.frame\)/);
+  assert.match(presentationTests, /"frame": NSCoder\.string\(for: link\.frame\)/);
   assert.match(presentationTests, /issue\.auditType == \.hitRegion/);
   assert.match(presentationTests, /element\.elementType == \.staticText/);
   assert.match(presentationTests, /candidate\.frame == element\.frame/);
