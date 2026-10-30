@@ -21,7 +21,7 @@ import {
   ProviderError, browserLaunch, capabilityUrl, newAuthorization, openBrowser, retryAfterMs, startCallback,
 } from '../host/cloudSignIn.mjs';
 import {
-  GRAPH, MICROSOFT_LOGIN, authorizationUrl, createOneDrive, idTokenClaims, redeemCode, refreshTokens,
+  GRAPH, MICROSOFT_LOGIN, authorizationUrl, createOneDrive, graphHeaders, idTokenClaims, redeemCode, refreshTokens,
 } from '../host/oneDrive.mjs';
 import { CLOUD_API_HEADER, CLOUD_API_PREFIX, HOST_DEADLINES_MS, createCloudHost } from '../host/cloudHost.mjs';
 import { CloudBackupError, CLOUD_TRANSPORT_DEADLINES_MS } from '../src/js/lib/cloudProtocol.js';
@@ -506,6 +506,18 @@ test('creating opens an upload session whose JSON body asks to fail on an existi
   ]);
   await assert.rejects(late.onedrive.create(NAME, bytes), { code: 'exists' });
   assert.deepEqual(late.calls.map((call) => call.method), ['POST', 'PUT', 'DELETE'], 'the refused session is cancelled');
+});
+
+// Header names are not case sensitive, so a caller's differently cased Authorization would have travelled as
+// a second header beside the host's own. Only the host sets it, and a caller's is refused (#996, S5-2).
+test('a Graph request carries exactly one Authorization, the host\'s, and refuses a caller\'s in any case', () => {
+  const headers = graphHeaders({ 'Content-Type': 'application/json' }, 'token-one');
+  assert.deepEqual(Object.keys(headers).filter((name) => name.toLowerCase() === 'authorization'), ['authorization']);
+  assert.equal(new Headers(headers).get('authorization'), 'Bearer token-one');
+  assert.equal(headers['Content-Type'], 'application/json');
+  for (const name of ['Authorization', 'authorization', 'AUTHORIZATION', 'aUtHoRiZaTiOn']) {
+    assert.throws(() => graphHeaders({ [name]: 'Bearer someone-else' }, 'token-one'), /Authorization/, name);
+  }
 });
 
 test('an upload that gets no answer is settled before the reply: cancelled first, then looked up', async () => {
