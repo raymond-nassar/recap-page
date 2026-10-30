@@ -20042,10 +20042,34 @@ async function killBrowser(browser) {
   });
 }
 
+// The runner prints only an error's name, so #1004 reached its owner as a bare "code=TypeError" twice
+// before anyone could say what threw. This scenario prints the message and stack as well, with the
+// home directory folded to "~" so no local path or account name reaches a log.
+function completeRestoreErrorText(err) {
+  const home = homedir();
+  const fold = (text) => [pathToFileURL(home).href, home, home.replaceAll('\\', '/')]
+    .reduce((out, prefix) => out.split(prefix).join('~').split(prefix.toLowerCase()).join('~'), String(text));
+  const name = typeof err?.name === 'string' ? err.name : 'unknown';
+  const message = fold(err?.message ?? err).replace(/\s+/g, ' ').trim();
+  const stack = typeof err?.stack === 'string'
+    ? fold(err.stack).split(/\r?\n/).filter((line) => /^\s+at /.test(line)).map((line) => line.trim()).join(' | ')
+    : 'none';
+  return `name=${name} message=${JSON.stringify(message)} stack=${JSON.stringify(stack || 'none')}`;
+}
+
 SCENARIOS.push({
   id: 'complete-restore',
   title: 'an interrupted complete restore survives a browser kill, another tab and a back-forward return without losing or overwriting data',
+  operations: ['hold-restore-lock', 'release-restore-lock'],
   async run(page, t) {
+    try {
+      await this.steps(page, t);
+    } catch (err) {
+      console.log(`DIAGNOSTIC scenario=complete-restore ${completeRestoreErrorText(err)}`);
+      throw err;
+    }
+  },
+  async steps(page, t) {
     const origin = page.__origin;
     await open(page, '/#/data');
     await seedCompleteData(page, { list: 'local', theme: 'light', apiBase: 'https://metadata.example.test', sidebar: false });
@@ -20078,9 +20102,16 @@ SCENARIOS.push({
     await peer.close();
 
     // A tab opened while another holds the restore lock waits, saves nothing, and reloads after.
+    // peer.close() resolves before the browser lets go of the closed tab's shared lock, so this request
+    // can still be queued when the late tab opens. Under load it stayed queued for seconds (#1004), the
+    // late tab rightly paused behind the queued request, and the release hook did not exist yet. So the
+    // lock is held, not merely requested, before the late tab opens, as the check below claims.
     await page.goto(`${origin}/js/app.js`, { waitUntil: 'load' });
-    await page.evaluate(() => {
-      navigator.locks.request('mrt.complete-restore.lock.v1', { mode: 'exclusive' }, () => new Promise((resolve) => { window.__releaseRestoreLock = resolve; }));
+    await t.step('hold-restore-lock', async () => {
+      await page.evaluate(() => {
+        navigator.locks.request('mrt.complete-restore.lock.v1', { mode: 'exclusive' }, () => new Promise((resolve) => { window.__releaseRestoreLock = resolve; }));
+      });
+      await page.waitForFunction(() => typeof window.__releaseRestoreLock === 'function', { timeout: 15000 });
     });
     const late = await page.browserContext().newPage();
     late.__denyExternal = true;
@@ -20092,7 +20123,7 @@ SCENARIOS.push({
     await late.waitForFunction(() => document.querySelector('#reading-shortcut-report').textContent.includes('could not be saved'));
     t.check('a tab opened during a restore pauses saving and writes nothing',
       JSON.stringify(await savedComplete(late)) === JSON.stringify(before));
-    await Promise.all([late.waitForNavigation({ waitUntil: 'load' }), page.evaluate(() => window.__releaseRestoreLock())]);
+    await t.step('release-restore-lock', () => Promise.all([late.waitForNavigation({ waitUntil: 'load' }), page.evaluate(() => window.__releaseRestoreLock())]));
     await late.waitForSelector('#view-data:not([hidden])');
     t.check('and reloads once the restore lets go, rather than writing what it held from before',
       await late.evaluate(() => window.__beforeRestoreReload === undefined && !document.querySelector('#app-report').textContent.includes('restoring')));
