@@ -92,6 +92,33 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   await media.send('Emulation.setEmulatedMedia', {
     features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
   });
+  await page.setViewport({ width: 320, height: 900 });
+  await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+  for (const forced of [true, false]) {
+    await media.send('Emulation.setEmulatedMedia', {
+      features: [{ name: 'forced-colors', value: forced ? 'active' : 'none' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+    });
+    t.check(`320px at 200% text${forced ? ' in forced colors' : ''} wraps below the button without overlap`,
+      await page.$eval(button, (node) => {
+        const box = node.getBoundingClientRect(), notice = node.parentElement;
+        const prose = document.createRange();
+        prose.selectNodeContents(document.querySelector('#reader-closure-text'));
+        const rects = [...prose.getClientRects()];
+        const height = notice.getBoundingClientRect().height;
+        const previous = notice.style.paddingInlineEnd;
+        notice.style.paddingInlineEnd = 'calc(var(--space-11) + var(--space-5))';
+        const columnHeight = notice.getBoundingClientRect().height;
+        notice.style.paddingInlineEnd = previous;
+        return getComputedStyle(notice).display === 'block'
+          && rects.every((rect) => rect.right <= box.left || rect.top >= box.bottom || rect.bottom <= box.top)
+          && rects.some((rect) => rect.top >= box.bottom && rect.right > box.left)
+          && height < columnHeight
+          && document.documentElement.scrollWidth <= innerWidth;
+      }));
+  }
+  await media.send('Emulation.setEmulatedMedia', {
+    features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+  });
   await page.focus(button);
   t.check('forced colors retains a visible focus outline', await page.$eval(button, (node) => {
     const style = getComputedStyle(node);
@@ -100,6 +127,8 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   await media.send('Emulation.setEmulatedMedia', { features: [] });
   await media.detach();
   await page.emulateMediaFeatures([]);
+  await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
+  await page.setViewport({ width: 1280, height: 900 });
   for (const fault of ['read', 'write']) {
     const faulty = await page.browserContext().newPage();
     try {

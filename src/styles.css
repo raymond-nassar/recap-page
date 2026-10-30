@@ -2835,5 +2835,6 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .rail-header.bar-two-rows :is(.brand, .mobile-link, .rail-toggle) { flex-direction: row; gap: var(--space-3); }
 }
 
-#reader-closure-notice { position: relative; padding-inline-end: calc(var(--space-11) + var(--space-5)); }
+#reader-closure-notice { position: relative; }
+#reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
