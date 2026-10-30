@@ -1,8 +1,7 @@
 import UIKit
 import XCTest
 
-private func layoutMetrics(from label: String) -> [String: Any]? {
-    let prefix = "recap-layout-probe "
+private func layoutMetrics(from label: String, prefix: String = "recap-layout-probe ") -> [String: Any]? {
     guard label.hasPrefix(prefix) else { return nil }
     let suffix = ", application status"
     let reported = String(label.dropFirst(prefix.count))
@@ -32,7 +31,8 @@ final class PresentationUITests: XCTestCase {
         category: UIContentSizeCategory = .large,
         appearance: String = "Light",
         route: String = "home",
-        readHandoffTest: Bool = false
+        readHandoffTest: Bool = false,
+        emptyHomeTest: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = [
@@ -41,6 +41,13 @@ final class PresentationUITests: XCTestCase {
         ]
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(route: route)
+        if route == "all" {
+            app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
+        }
+        if emptyHomeTest {
+            app.launchEnvironment["RECAP_IOS_RESTORE_TEST_SEED"] = "1"
+            app.launchEnvironment["RECAP_IOS_DATA_LOSS_RESET"] = "1"
+        }
         if readHandoffTest {
             app.launchEnvironment["RECAP_IOS_READ_HANDOFF_TEST"] = "1"
             app.launchEnvironment["RECAP_IOS_RECORD_HANDOFFS"] = "1"
@@ -294,6 +301,7 @@ final class PresentationUITests: XCTestCase {
         refreshMonitor();
         const screens = [];
         \(routeScript)
+        \(route == "all" ? Self.passiveAuditProbe : "")
         const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
         return JSON.stringify({
           scale: Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ios-text-scale')),
@@ -308,6 +316,77 @@ final class PresentationUITests: XCTestCase {
         });
         """
     }
+
+    private static let passiveAuditProbe = #"""
+    const passiveMonitor = document.createElement('p');
+    passiveMonitor.setAttribute('role', 'status');
+    passiveMonitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden';
+    document.body.append(passiveMonitor);
+    const controlSelector = [
+      'a[href]', 'button', 'summary', 'input', 'select', 'textarea',
+      '[contenteditable]:not([contenteditable="false"])',
+      '[role="button"]', '[role="link"]', '[role="checkbox"]', '[role="radio"]',
+      '[role="switch"]', '[role="tab"]', '[role="textbox"]', '[role="combobox"]',
+      '[role="listbox"]', '[role="option"]', '[role^="menuitem"]', '[role="slider"]',
+      '[role="spinbutton"]', '[role="treeitem"]',
+    ].join(',');
+    const interactiveSelector = `${controlSelector},[tabindex]`;
+    const describe = (element) => ({
+      tag: element.tagName.toLowerCase(), id: element.id,
+      role: element.getAttribute('role') || ({
+        H2: 'heading', NAV: 'navigation', ASIDE: 'complementary', MAIN: 'main',
+      }[element.tagName]) || (element.matches('section[aria-labelledby]') ? 'region' : ''),
+      tabindex: element.getAttribute('tabindex'),
+      inlineHandlers: ['onclick', 'onmousedown', 'onmouseup', 'onpointerdown', 'ontouchstart']
+        .filter((name) => typeof element[name] === 'function'),
+    });
+    const evidence = (key, selector, containerSelector, containerLabel) => {
+      const element = document.querySelector(selector);
+      if (!element) return { key, selector, safe: false, visible: false,
+        error: `Missing reviewed passive text: ${selector}` };
+      const ancestors = [];
+      for (let node = element; node; node = node.parentElement) ancestors.push(describe(node));
+      const rect = element.getBoundingClientRect();
+      const interactiveAncestor = element.closest(interactiveSelector);
+      const label = element.textContent.trim();
+      const interactiveDescendant = element.querySelector(interactiveSelector);
+      const safe = !interactiveAncestor && !interactiveDescendant && ancestors.every((node) =>
+        node.tabindex === null && node.inlineHandlers.length === 0
+        && ['', 'heading', 'navigation', 'complementary', 'main', 'region'].includes(node.role))
+        && (key === 'sidebar-reading' ? label === 'Reading' : label === '0')
+        && Boolean(element.closest(containerSelector));
+      return {
+        key, selector, containerSelector, containerLabel, label, ancestors, safe,
+        interactiveAncestor: interactiveAncestor ? describe(interactiveAncestor) : null,
+        interactiveDescendant: interactiveDescendant ? describe(interactiveDescendant) : null,
+        visible: element.checkVisibility({ checkVisibilityCSS: true })
+          && !element.closest('[hidden], [inert]')
+          && (key !== 'sidebar-reading' || window.matchMedia('(min-width: 881px)').matches)
+          && rect.width > 0 && rect.height > 0,
+        rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+        cursor: getComputedStyle(element).cursor,
+      };
+    };
+    let passiveTick = 0;
+    const refreshPassiveMonitor = () => {
+      const active = document.activeElement;
+      const state = {
+        tick: ++passiveTick,
+        href: location.href,
+        view: document.querySelector('.view:not([hidden])')?.id,
+        focus: active ? describe(active) : null,
+        focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
+        cases: [
+          evidence('sidebar-reading', '#sidebar #rail-reading', '#sidebar-nav', 'Main'),
+          evidence('home-read-count', '#home-continue #chero-count > b.glance-n',
+            '#home-continue', document.getElementById('chero-h').textContent.trim()),
+        ],
+      };
+      passiveMonitor.setAttribute('aria-label', `recap-passive-probe ${JSON.stringify(state)}`);
+    };
+    refreshPassiveMonitor();
+    window.setInterval(refreshPassiveMonitor, 500);
+    """#
 
     private func probeResult(of app: XCUIApplication) throws -> [String: Any] {
         let element = app.staticTexts["recap-probe-result"]
@@ -345,6 +424,9 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(
                 toggle.waitForExistence(timeout: 30),
                 "the narrow navigation toggle is available: \(app.debugDescription)")
+            XCTAssertEqual(toggle.label, "More", "the type-independent query still selects More")
+            XCTAssertGreaterThanOrEqual(toggle.frame.width, 44, "More retains its native target width")
+            XCTAssertGreaterThanOrEqual(toggle.frame.height, 44, "More retains its native target height")
             toggle.tap()
             let closeVisible = close.waitForExistence(timeout: 30)
             if !closeVisible {
@@ -360,13 +442,91 @@ final class PresentationUITests: XCTestCase {
         XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
     }
 
-    private func performAccessibilityAudit(of app: XCUIApplication) throws {
+    private func passiveState(of app: XCUIApplication) throws -> [String: Any] {
+        let monitor = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label BEGINSWITH %@", "recap-passive-probe ")).firstMatch
+        XCTAssertTrue(monitor.waitForExistence(timeout: 30), "the passive-text DOM evidence is available")
+        return try XCTUnwrap(layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "))
+    }
+
+    private func verifyPassiveAuditTexts(in app: XCUIApplication, homeVisible: Bool) throws -> [XCUIElement] {
+        let state = try passiveState(of: app)
+        let cases = try XCTUnwrap(state["cases"] as? [[String: Any]])
+        for item in cases {
+            XCTAssertNil(item["error"], "the exact reviewed DOM node remains present: \(item)")
+        }
+        var accepted: [XCUIElement] = []
+        for item in cases where item["visible"] as? Bool == true {
+            let key = try XCTUnwrap(item["key"] as? String)
+            XCTAssertTrue(["sidebar-reading", "home-read-count"].contains(key), "only reviewed cases are tested")
+            XCTAssertEqual(item["safe"] as? Bool, true, "the exact DOM node and ancestry remain passive: \(item)")
+            let containerLabel = try XCTUnwrap(item["containerLabel"] as? String)
+            let container = app.webViews.firstMatch.otherElements.matching(
+                NSPredicate(format: "label == %@ OR label == %@ OR label == %@",
+                            containerLabel, "\(containerLabel), navigation", "\(containerLabel), region")).firstMatch
+            XCTAssertTrue(container.waitForExistence(timeout: 30), "the named AX container exists for \(key)")
+            let domLabel = try XCTUnwrap(item["label"] as? String)
+            let label = key == "sidebar-reading" ? "READING" : domLabel
+            let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
+            XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
+            XCTAssertEqual(element.elementType, .staticText)
+            let before = try passiveState(of: app)
+            element.tap()
+            let postTapSample = try passiveState(of: app)
+            let oldTick = try XCTUnwrap(postTapSample["tick"] as? Int)
+            let monitor = app.descendants(matching: .any).matching(
+                NSPredicate(format: "label BEGINSWITH %@", "recap-passive-probe ")).firstMatch
+            let refreshed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+                guard let monitor = object as? XCUIElement,
+                      let value = layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "),
+                      let tick = value["tick"] as? Int else { return false }
+                return tick > oldTick
+            }, object: monitor)
+            XCTAssertEqual(XCTWaiter.wait(for: [refreshed], timeout: 30), .completed, "a post-tap DOM sample arrived")
+            let after = try passiveState(of: app)
+            XCTAssertEqual(after["href"] as? String, before["href"] as? String, "tapping \(key) does not navigate")
+            XCTAssertEqual(after["view"] as? String, before["view"] as? String, "tapping \(key) does not switch views")
+            XCTAssertEqual(after["focusIsControl"] as? Bool, false, "tapping \(key) does not focus a control")
+            let afterCases = try XCTUnwrap(after["cases"] as? [[String: Any]])
+            let afterCase = try XCTUnwrap(afterCases.first { $0["key"] as? String == key })
+            XCTAssertEqual(afterCase["safe"] as? Bool, true, "the reviewed node remains passive after its tap")
+            try record("t03-passive-\(key)", [
+                "dom": item, "nativeLabel": element.label,
+                "nativeFrame": NSStringFromCGRect(element.frame), "before": before, "after": after,
+            ])
+            accepted.append(element)
+        }
+        if homeVisible {
+            XCTAssertTrue(cases.contains { $0["key"] as? String == "home-read-count" && $0["visible"] as? Bool == true },
+                          "the deterministic Home count fixture exercises the accepted count case")
+        }
+        return accepted
+    }
+
+    private func performAccessibilityAudit(of app: XCUIApplication, acceptedTexts: [XCUIElement] = []) throws {
+        let previousFailurePolicy = continueAfterFailure
+        continueAfterFailure = true
+        defer { continueAfterFailure = previousFailurePolicy }
+        var unreviewedFindings = 0
         try app.performAccessibilityAudit { issue in
             print("T03 accessibility audit issue: \(issue.compactDescription)")
             print("T03 accessibility audit details: \(issue.detailedDescription)")
             print("T03 accessibility audit element: \(issue.element.debugDescription)")
+            if issue.auditType == .hitRegion, let element = issue.element,
+               element.elementType == .staticText,
+               acceptedTexts.contains(where: { candidate in
+                   candidate.exists && candidate.elementType == .staticText
+                       && candidate.label == element.label && candidate.identifier == element.identifier
+                       && candidate.frame == element.frame
+               }) {
+                print("T03 accepted enumerated passive-text hitRegion finding: \(element.label)")
+                return true
+            }
+            unreviewedFindings += 1
             return false
         }
+        continueAfterFailure = previousFailurePolicy
+        XCTAssertEqual(unreviewedFindings, 0, "every finding outside the enumerated passive cases remains a failure")
     }
 
     func testDynamicTypeReflowsCoreScreensAtBothAppearances() throws {
@@ -465,6 +625,43 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
+    func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes() throws {
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, emptyHomeTest: true)
+            _ = try probeResult(of: app)
+            let firstRun = app.webViews.firstMatch.otherElements.matching(
+                NSPredicate(format: "label == %@ OR label == %@",
+                            "Where do you want to start?", "Where do you want to start?, region")).firstMatch
+            for (label, destination) in [
+                ("Start with Modern Timeline", "Modern Timeline"),
+                ("Search", "Search"),
+            ] {
+                XCTAssertTrue(firstRun.waitForExistence(timeout: 30), "the empty-Home section is visible")
+                let link = firstRun.links.matching(NSPredicate(format: "label == %@", label)).firstMatch
+                XCTAssertTrue(link.waitForExistence(timeout: 30), "\(label) is one native link target")
+                XCTAssertFalse(firstRun.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch.exists,
+                               "\(label) has no separate undersized text target")
+                XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(label) retains its native target width")
+                XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(label) retains its native target height")
+                try record("t03-first-run-\(category.rawValue)-\(label)", [
+                    "label": link.label, "frame": NSStringFromCGRect(link.frame),
+                ])
+                link.tap()
+                let heading = app.webViews.firstMatch.staticTexts.matching(
+                    NSPredicate(format: "label == %@", destination)).firstMatch
+                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(label) opens \(destination)")
+                if label == "Start with Modern Timeline" {
+                    let home = app.links.matching(
+                        NSPredicate(format: "label CONTAINS[c] %@ OR label == %@", "Recap Page", "Home")).firstMatch
+                    XCTAssertTrue(home.waitForExistence(timeout: 30), "Home remains reachable")
+                    home.tap()
+                }
+            }
+            capture(app, named: "t03-first-run-\(category.rawValue)")
+            app.terminate()
+        }
+    }
+
     func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category, route: "all")
@@ -509,8 +706,12 @@ final class PresentationUITests: XCTestCase {
                 ])
                 XCTAssertGreaterThanOrEqual(skipLinkWidth, 44, "the skip link meets the 44-point width")
                 XCTAssertGreaterThanOrEqual(skipLinkHeight, 44, "the skip link meets the 44-point height")
-                try performAccessibilityAudit(of: app)
-                try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
+                let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: name == "home")
+                try performAccessibilityAudit(of: app, acceptedTexts: acceptedTexts)
+                try record("t03-accessibility-\(category.rawValue)-\(name)", [
+                    "audit": "passed", "category": category.rawValue,
+                    "reviewedPassiveCases": acceptedTexts.map(\.label),
+                ])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
                 if let nextLink, let nextHeadingLabel {
                     navigate(app, linkName: nextLink, headingLabel: nextHeadingLabel)
@@ -640,7 +841,7 @@ final class PresentationUITests: XCTestCase {
 
     private func moreToggle(of app: XCUIApplication) -> XCUIElement {
         let more = NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")
-        return app.buttons.matching(more).firstMatch
+        return app.descendants(matching: .any).matching(more).firstMatch
     }
 
     private func readSheetStyleProbe(of app: XCUIApplication) throws -> [String: Any] {
@@ -657,7 +858,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertEqual(
             XCTWaiter.wait(for: [probeReady], timeout: 30),
             .completed,
-            "the Read sheet recorded its stylesheet probe")
+            "the Read sheet recorded its stylesheet probe; recorder: \(recorder.label)")
         let data = try XCTUnwrap(recorder.label.data(using: .utf8))
         let record = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
         let probe = try XCTUnwrap(record["readSheetStyleProbe"] as? [String: Any])

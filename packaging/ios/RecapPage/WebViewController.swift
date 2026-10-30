@@ -98,6 +98,12 @@ final class WebViewController: UIViewController, WKUIDelegate {
             injectionTime: .atDocumentEnd,
             forMainFrameOnly: true))
         #if DEBUG
+        if DebugSupport.seedsPresentationTest {
+            controller.addUserScript(WKUserScript(
+                source: DebugSupport.presentationTestSeedScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
         if DebugSupport.seedsRestoreTest {
             controller.addUserScript(WKUserScript(
                 source: DebugSupport.restoreTestSeedScript,
@@ -121,22 +127,27 @@ final class WebViewController: UIViewController, WKUIDelegate {
 
     private static let accessibleTargetScript = #"""
     (() => {
-      const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle';
-      for (const target of document.querySelectorAll(selector)) {
-        if (target.dataset.iosAccessibleTarget === 'true') continue;
-        const label = (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
-        if (!label) continue;
-        for (const child of target.children) child.setAttribute('aria-hidden', 'true');
-        for (const node of [...target.childNodes]) {
-          if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;
-          const visualText = document.createElement('span');
-          visualText.setAttribute('aria-hidden', 'true');
-          node.replaceWith(visualText);
-          visualText.append(node);
+      const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle, #btn-home-browse, #btn-home-add';
+      const applyAccessibleTargets = () => {
+        for (const target of document.querySelectorAll(selector)) {
+          if (target.dataset.iosAccessibleTarget === 'true') continue;
+          const label = (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
+          if (!label) continue;
+          for (const child of target.children) child.setAttribute('aria-hidden', 'true');
+          for (const node of [...target.childNodes]) {
+            if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;
+            const visualText = document.createElement('span');
+            visualText.setAttribute('aria-hidden', 'true');
+            node.replaceWith(visualText);
+            visualText.append(node);
+          }
+          target.setAttribute('aria-label', label);
+          target.dataset.iosAccessibleTarget = 'true';
         }
-        target.setAttribute('aria-label', label);
-        target.dataset.iosAccessibleTarget = 'true';
-      }
+      };
+      applyAccessibleTargets();
+      new MutationObserver(applyAccessibleTargets).observe(document.documentElement,
+        { childList: true, subtree: true });
     })();
     """#
 

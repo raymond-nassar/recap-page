@@ -10,6 +10,7 @@ enum DebugSupport {
     static let exportPickerOutcomeKey = "RECAP_IOS_EXPORT_PICKER"
     static let unreadableRecoveryKey = "RECAP_IOS_UNREADABLE_RECOVERY"
     static let restoreTestSeedKey = "RECAP_IOS_RESTORE_TEST_SEED"
+    static let presentationTestSeedKey = "RECAP_IOS_PRESENTATION_TEST_SEED"
     static let readHandoffTestKey = "RECAP_IOS_READ_HANDOFF_TEST"
     static let recordHandOffsKey = "RECAP_IOS_RECORD_HANDOFFS"
     static let liveCorsCheckKey = "RECAP_IOS_LIVE_CORS_CHECK"
@@ -49,6 +50,10 @@ enum DebugSupport {
 
     static var seedsRestoreTest: Bool {
         environment[restoreTestSeedKey] == "1"
+    }
+
+    static var seedsPresentationTest: Bool {
+        environment[presentationTestSeedKey] == "1"
     }
 
     static var readHandoffTestEnabled: Bool {
@@ -143,6 +148,19 @@ enum DebugSupport {
     };
     localStorage.setItem('mrt.state.v2', '{unreadable');
     localStorage.removeItem('mrt.state.salvage');
+    """
+
+    static let presentationTestSeedScript = """
+    localStorage.setItem('mrt.state.v2', JSON.stringify({
+      schemaVersion: 4, issues: {}, read: {}, overrides: {}, notes: {}, ratings: {},
+      lists: {
+        'ios-presentation': {
+          id: 'ios-presentation', name: 'iOS presentation fixture', description: '', note: '',
+          created: 1, catalogId: null, itemIds: [], collectedIn: {}, deferredIssueIds: []
+        }
+      },
+      listOrder: ['ios-presentation'], active: 'ios-presentation'
+    }));
     """
 
     static let restoreTestSeedScript = """

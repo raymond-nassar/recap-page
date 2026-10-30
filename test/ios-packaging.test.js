@@ -492,6 +492,8 @@ test('the Read-sheet probe reports stylesheet loading, matching rules and target
   assert.match(readSheet, /func webView\(_ webView: WKWebView, didFinish navigation: WKNavigation!\)/);
   assert.match(readSheet, /DebugSupport\.readSheetStyleProbeEnabled/);
   assert.match(readSheet, /DebugSupport\.recordReadSheetStyleProbe/);
+  assert.match(readSheet, /case \.openExternally:\s*#if DEBUG[\s\S]*?recordReadSheetStylesForTesting\(\)[\s\S]*?#endif/);
+  assert.match(readSheet, /func webView\(_ webView: WKWebView, didFinish navigation: WKNavigation!\)[\s\S]*?recordReadSheetStylesForTesting\(\)/);
   assert.match(presentationTests, /readSheetStyleProbe\(of: app\)/);
   assert.match(presentationTests, /ios\/launcher\.css/);
   assert.match(presentationTests, /minHeight/);
@@ -513,16 +515,34 @@ test('iOS presentation diagnostics use DOM target geometry and observed accessib
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
   assert.doesNotMatch(presentationTests, /manualLink\.frame\.width/);
   assert.match(presentationTests, /elements\[id\][\s\S]*?element\["height"\]/);
-  assert.match(presentationTests, /return app\.buttons\.matching\(more\)\.firstMatch/);
+  assert.match(presentationTests, /return app\.descendants\(matching: \.any\)\.matching\(more\)\.firstMatch/);
   assert.match(presentationTests, /let close = app\.buttons\.matching\(NSPredicate\(format: "label == %@", "Close"\)\)\.firstMatch/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["more-sheet-close"\]/);
 });
 
 test('T03 accessibility audit and More-sheet failures retain actionable diagnostics', () => {
-  assert.match(presentationTests, /private func performAccessibilityAudit\(of app: XCUIApplication\)[\s\S]*?issue\.compactDescription[\s\S]*?issue\.detailedDescription[\s\S]*?issue\.element\.debugDescription[\s\S]*?return false/);
-  assert.match(presentationTests, /performAccessibilityAudit\(of: app\)/);
+  assert.match(presentationTests, /private func performAccessibilityAudit\(of app: XCUIApplication,[\s\S]*?issue\.compactDescription[\s\S]*?issue\.detailedDescription[\s\S]*?issue\.element\.debugDescription[\s\S]*?return false/);
+  assert.match(presentationTests, /performAccessibilityAudit\(of: app, acceptedTexts: acceptedTexts\)/);
   assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
+});
+
+test('T03 accepts only the two reviewed passive-text hit-region findings after no-op taps', () => {
+  assert.match(presentationTests, /issue\.auditType == \.hitRegion/);
+  assert.match(presentationTests, /element\.elementType == \.staticText/);
+  assert.match(presentationTests, /candidate\.frame == element\.frame/);
+  assert.match(presentationTests, /candidate\.label == element\.label/);
+  assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
+  assert.match(presentationTests, /#sidebar #rail-reading/);
+  assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
+  assert.match(presentationTests, /interactiveAncestor/);
+  assert.match(presentationTests, /tabindex/);
+  assert.match(presentationTests, /element\.tap\(\)/);
+  assert.match(presentationTests, /XCTAssertEqual\(after\["href"\] as\? String, before\["href"\] as\? String/);
+  assert.match(presentationTests, /XCTAssertEqual\(after\["view"\] as\? String, before\["view"\] as\? String/);
+  assert.match(presentationTests, /XCTAssertEqual\(after\["focusIsControl"\] as\? Bool, false/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.width,\s*44/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.height,\s*44/);
 });
 
 test('T03 Read close diagnostics distinguish the action, callback, and UIKit completion', () => {
@@ -560,7 +580,8 @@ test('iOS web controls expose one accessible target without changing visible lay
 
   assert.match(controller, /private static let accessibleTargetScript = #"""/);
   assert.match(controller, /source:\s*Self\.accessibleTargetScript,[\s\S]*?injectionTime:\s*\.atDocumentEnd/);
-  assert.match(controller, /const selector = '\.skip-link, #fallback, #return, \.brand, #home-updates-toggle'/);
+  assert.match(controller, /const selector = '\.skip-link, #fallback, #return, \.brand, #home-updates-toggle, #btn-home-browse, #btn-home-add'/);
+  assert.match(controller, /new MutationObserver\(applyAccessibleTargets\)\.observe\(document\.documentElement,\s*\{ childList: true, subtree: true \}\)/);
   assert.match(controller, /target\.dataset\.iosAccessibleTarget === 'true'/);
   assert.match(controller, /target\.innerText \|\| target\.textContent/);
   assert.match(controller, /child\.setAttribute\('aria-hidden', 'true'\)/);
@@ -576,6 +597,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /app\.staticTexts\["What's new"\]\.exists/);
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
+  assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
 });
 
 test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {

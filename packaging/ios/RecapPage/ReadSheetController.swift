@@ -75,14 +75,20 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         #if DEBUG
+        recordReadSheetStylesForTesting()
+        #endif
+    }
+
+    #if DEBUG
+    private func recordReadSheetStylesForTesting() {
         guard DebugSupport.readSheetStyleProbeEnabled else { return }
         webView.evaluateJavaScript(DebugSupport.readSheetStyleProbeScript) { value, error in
             Task { @MainActor in
                 DebugSupport.recordReadSheetStyleProbe(value, error: error)
             }
         }
-        #endif
     }
+    #endif
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         let decision = policy.decideLauncher(
@@ -102,6 +108,10 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
         case .allow:
             return .allow
         case .openExternally:
+            #if DEBUG
+            // The launcher may replace its URL before didFinish reaches the delegate.
+            recordReadSheetStylesForTesting()
+            #endif
             guard let url = navigationAction.request.url else { return .cancel }
             openExternally(url) { [weak self] _ in self?.close() }
             return .cancel

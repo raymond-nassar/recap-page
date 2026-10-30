@@ -39,12 +39,34 @@ to the iOS bundle; the shared Windows and Android styles do not change. The iOS 
 shared `--target` token for a 44-point hit region, and the standalone Read links use the shared
 `--target-touch` token for 48-point regions. The native shell gives each link its accessible name
 and hides its presentation-only text wrapper from assistive technology, so the link target is not
-represented by a smaller nested text element. At the largest accessibility text size, the Backup &
+represented by a smaller nested text element. This also covers the two first-run Home links,
+Start with Modern Timeline and Search, including when Home inserts them after the page loads. The empty-Home
+native scenario checks both links' names, target sizes and destinations independently of the
+populated audit fixture. At the largest accessibility text size, the Backup &
 settings section headings can wrap within their existing column rather than widening the page.
 At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
 iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
 correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
 adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
+
+The presentation audit has two enumerated, maintainer-accepted hit-region findings, not a general
+exemption for text: the iPad sidebar's `h2#rail-reading` ("READING") inside the Main navigation,
+and Home's `#chero-count > b.glance-n` read count inside the named Continue region. Neither node
+has a tabindex, interactive role, interactive ancestor or descendant. The heading's ancestor
+roles are heading, navigation and complementary; the count's are region and main. Generated-bundle
+inspection found no click, mousedown or mouseup listener on either ancestry, including the document
+and window. Document-level pointerdown listeners exist for keyboard styling and closing supplemental
+panels, but this is not evidence of a click action on either text node.
+
+WebKit's public iOS accessibility wrapper handles
+[accessibility hit testing separately from activation](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm):
+an unignored text object can be returned by hit testing even when activation has no action.
+This source was inspected on October 29, 2026; Apple's internal audit-selection logic is not
+observable here. The native tests must tap each exact visible text node, require unchanged
+navigation and no focus moving to a control, then match the audit element by its static-text type,
+label, named container and frame. Only a hit-region finding on one of those verified nodes is
+accepted. All other elements, audit types and interactive descendants still fail. These new tap
+checks remain under hosted validation; they are not a claim of device VoiceOver acceptance.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
@@ -91,9 +113,11 @@ The tests prove, on both runtimes:
 - an ended page process reloads and the reader is told nothing saved was lost;
 - how much saved data fits, as described under [Storage capacity](#storage-capacity).
 
-The tests block every http and https request, so a test run never contacts a third party. That
-blocking, and the probe interface the UI tests read results through, exist only in Debug builds. A
-repository test reads every Swift file in the app's folder and fails if any of it, any use of it, or
+The ordinary tests block every http and https request. A separate, explicitly opted-in manual CORS
+check contacts the metadata service from the app's origin and requires a real result rather than a
+skipped test. The request blocking, and the probe interface the UI tests read results through,
+exist only in Debug builds. A repository test reads every Swift file in the app's folder and fails
+if any of it, any use of it, or
 any call that reaches a method by its name, which is how WebKit's private test hooks are reached,
 could reach a Release build.
 
@@ -130,6 +154,36 @@ the restore into an empty app fits. Until reading data is stored at one byte per
 restore of data this size on iOS has to go into an empty app: export, erase, then restore. Playwright's
 WebKit build on Windows, measured first as a stand-in, holds Latin-1 data in its one-byte form, so it
 refused only the restore with text above Latin-1. The measurements are recorded on #949.
+
+### Capacity sweep and interrupted writes
+
+The P02 size sweep grows valid notes containing text above Latin-1. The newest-runtime and iOS 18.5
+jobs in hosted run
+[40980346397](https://github.com/raymond-nassar/recap-page/actions/runs/40980346397)
+recorded the same thresholds. These are UTF-8 backup-file bytes, not WebKit's charged storage bytes.
+They are the largest passing and first failing **sampled** sizes, not an exact binary-search limit.
+
+| Operation | Largest sampled pass (bytes) | First sampled refusal (bytes) |
+|---|---:|---:|
+| Ordinary save | 4,954,711 | 5,574,047 |
+| Reading-data restore into an empty app | 1,362,541 | 1,486,408 |
+| Complete restore into an empty app | 1,362,868 | 1,486,735 |
+| Reading-data restore into an app holding data | None at or above the owner-size sample | 1,238,660 |
+| Complete restore into an app holding data | None at or above the owner-size sample | 1,238,987 |
+
+The generated reading-data owner-size baseline was 1,238,675 bytes. The next 10-percent growth
+sample restored into an empty app; the 20-percent sample was refused. That observed file-size
+headroom is not a storage guarantee: note characters change the relationship between UTF-8 file
+bytes and WebKit's two-byte storage, and the original owner-size dataset left only about 5 percent
+of the quota free while restoring.
+
+The Simulator checks also force the app to end at 0, 250 and 750 milliseconds after a save, both
+while foregrounded and after moving it to the background. Every observed saved-data hash matched
+the whole earlier or later state on both runtimes. A separate complete-restore test fails the
+fifth journal write, ends the app, then requires an interrupted, matching recovery with two
+completed journal writes and both recovery actions available. These results do not replace
+real-device storage-pressure or Files-picker acceptance. The separate fault-disabled proof remains
+pending until the presentation checks pass.
 
 ## Known limits
 
