@@ -802,8 +802,9 @@ final class PresentationUITests: XCTestCase {
         _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
     ) throws -> Bool {
         guard element.exists, element.elementType == .staticText else { return false }
+        let nativeLabel = element.label
         for controls in [app.webViews.firstMatch.buttons, app.webViews.firstMatch.links] {
-            let parents = controls.containing(NSPredicate(format: "label == %@", element.label)).allElementsBoundByIndex
+            let parents = controls.containing(NSPredicate(format: "label == %@", nativeLabel)).allElementsBoundByIndex
             if parents.contains(where: { $0.exists && $0.frame.contains(element.frame) }) {
                 print("T03 passive guard rejected a native control's StaticText child: \(element.debugDescription)")
                 return false
@@ -828,7 +829,7 @@ final class PresentationUITests: XCTestCase {
         let scale = webFrame.width / viewport
         let nativeFrame = element.frame
         let matches = candidates.compactMap { candidate -> (candidate: [String: Any], point: CGPoint)? in
-            guard candidate["label"] as? String == element.label,
+            guard candidate["label"] as? String == nativeLabel,
                   let container = candidate["container"] as? String,
                   container == before["view"] as? String || container == "sidebar-nav",
                   let hitPoints = candidate["hitPoints"] as? [[String: Any]],
@@ -854,9 +855,9 @@ final class PresentationUITests: XCTestCase {
         guard matches.count == 1, let match = matches.first else {
             print("T03 passive guard rejected unmatched or ambiguous label/container/frame: \(element.debugDescription)")
             try record("t03-passive-guard-unmatched", [
-                "label": element.label, "nativeFrame": NSCoder.string(for: nativeFrame),
+                "label": nativeLabel, "nativeFrame": NSCoder.string(for: nativeFrame),
                 "webFrame": NSCoder.string(for: webFrame),
-                "matchingCandidates": candidates.filter { $0["label"] as? String == element.label },
+                "matchingCandidates": candidates.filter { $0["label"] as? String == nativeLabel },
                 "diagnostics": proof["diagnostics"] ?? [],
             ])
             return false
@@ -891,7 +892,7 @@ final class PresentationUITests: XCTestCase {
               ariaControlsAbsentFromNativeTree(candidate, in: app),
               NSDictionary(dictionary: afterMatches[0]).isEqual(NSDictionary(dictionary: candidate)) else {
             try record("t03-passive-guard-rejected-tap", [
-                "candidate": candidate, "nativeLabel": element.label,
+                "candidate": candidate, "nativeLabel": nativeLabel,
                 "nativeFrame": NSCoder.string(for: nativeFrame),
                 "nativeTapPoint": NSCoder.string(for: point),
                 "beforeDOM": proof["dom"] ?? NSNull(),
@@ -905,10 +906,10 @@ final class PresentationUITests: XCTestCase {
             return false
         }
         try record("t03-passive-guard", [
-            "candidate": candidate, "nativeLabel": element.label,
+            "candidate": candidate, "nativeLabel": nativeLabel,
             "nativeFrame": NSCoder.string(for: nativeFrame), "before": before, "after": after,
             "nativeTapPoint": NSCoder.string(for: point),
-        ], summary: ["label": element.label, "nativeFrame": NSCoder.string(for: nativeFrame),
+        ], summary: ["label": nativeLabel, "nativeFrame": NSCoder.string(for: nativeFrame),
                      "nativeTapPoint": NSCoder.string(for: point), "proved": true])
         return true
     }
@@ -1254,43 +1255,48 @@ final class PresentationUITests: XCTestCase {
         let owner = CGRect(x: 29, y: 316.453125 + 20, width: 40.55377197265625, height: 76)
         let measured = CGRect(x: 29, y: 336, width: 41, height: 78)
         XCTAssertTrue(domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 2))
-        let mutationOptions = XCTExpectedFailure.Options()
-        mutationOptions.isStrict = true
-        mutationOptions.issueMatcher = { issue in
-            issue.type == .assertionFailure && issue.compactDescription.contains("owner-bound-mutant")
-        }
-        XCTExpectFailure("The old one-point bound rejects the measured SE frame", options: mutationOptions) {
-            XCTAssertTrue(self.domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 1),
-                          "owner-bound-mutant: measured SE acceptance")
-        }
-        let beyond = CGFloat(2.001)
-        let outside = [
-            ("left", CGRect(x: owner.minX - beyond, y: owner.minY,
-                            width: owner.width + beyond, height: owner.height)),
-            ("right", CGRect(x: owner.minX, y: owner.minY,
-                             width: owner.width + beyond, height: owner.height)),
-            ("top", CGRect(x: owner.minX, y: owner.minY - beyond,
-                           width: owner.width, height: owner.height + beyond)),
-            ("bottom", CGRect(x: owner.minX, y: owner.minY,
-                              width: owner.width, height: owner.height + beyond)),
-        ]
-        var boundaries: [[String: Any]] = []
-        for (edge, frame) in outside {
-            let accepted = domOwnerContainsNativeFrame(frame, ownerFrame: owner, allowance: 2)
-            XCTAssertFalse(accepted, "\(edge) beyond two points must fail")
-            XCTExpectFailure("An oversized bound misses the \(edge) rejection", options: mutationOptions) {
-                XCTAssertFalse(self.domOwnerContainsNativeFrame(frame, ownerFrame: owner, allowance: 3),
-                               "owner-bound-mutant: \(edge) rejection")
+        do {
+            let previousContinuation = continueAfterFailure
+            continueAfterFailure = true
+            defer { continueAfterFailure = previousContinuation }
+            let mutationOptions = XCTExpectedFailure.Options()
+            mutationOptions.isStrict = true
+            mutationOptions.issueMatcher = { issue in
+                issue.type == .assertionFailure && issue.compactDescription.contains("owner-bound-mutant")
             }
-            boundaries.append(["edge": edge, "frame": NSCoder.string(for: frame), "accepted": accepted])
+            XCTExpectFailure("The old one-point bound rejects the measured SE frame", options: mutationOptions) {
+                XCTAssertTrue(self.domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 1),
+                              "owner-bound-mutant: measured SE acceptance")
+            }
+            let beyond = CGFloat(2.001)
+            let outside = [
+                ("left", CGRect(x: owner.minX - beyond, y: owner.minY,
+                                width: owner.width + beyond, height: owner.height)),
+                ("right", CGRect(x: owner.minX, y: owner.minY,
+                                 width: owner.width + beyond, height: owner.height)),
+                ("top", CGRect(x: owner.minX, y: owner.minY - beyond,
+                               width: owner.width, height: owner.height + beyond)),
+                ("bottom", CGRect(x: owner.minX, y: owner.minY,
+                                  width: owner.width, height: owner.height + beyond)),
+            ]
+            var boundaries: [[String: Any]] = []
+            for (edge, frame) in outside {
+                let accepted = domOwnerContainsNativeFrame(frame, ownerFrame: owner, allowance: 2)
+                XCTAssertFalse(accepted, "\(edge) beyond two points must fail")
+                XCTExpectFailure("An oversized bound misses the \(edge) rejection", options: mutationOptions) {
+                    XCTAssertFalse(self.domOwnerContainsNativeFrame(frame, ownerFrame: owner, allowance: 3),
+                                   "owner-bound-mutant: \(edge) rejection")
+                }
+                boundaries.append(["edge": edge, "frame": NSCoder.string(for: frame), "accepted": accepted])
+            }
+            try record("t03-native-owner-boundary", [
+                "ownerFrame": NSCoder.string(for: owner), "nativeFrame": NSCoder.string(for: measured),
+                "bottomExcess": measured.maxY - owner.maxY,
+                "oldOnePointAccepted": domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 1),
+                "measuredAccepted": domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 2),
+                "boundaries": boundaries,
+            ])
         }
-        try record("t03-native-owner-boundary", [
-            "ownerFrame": NSCoder.string(for: owner), "nativeFrame": NSCoder.string(for: measured),
-            "bottomExcess": measured.maxY - owner.maxY,
-            "oldOnePointAccepted": domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 1),
-            "measuredAccepted": domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 2),
-            "boundaries": boundaries,
-        ])
         let app = launch(route: "guard-structural")
         let result = try probeResult(of: app)
         let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])

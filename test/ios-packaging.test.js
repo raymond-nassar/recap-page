@@ -790,13 +790,13 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /issue\.auditType == \.hitRegion/);
   assert.match(presentationTests, /element\.elementType == \.staticText/);
   assert.match(presentationTests, /domOwnerContainsNativeFrame\(nativeFrame, ownerFrame: domFrame, allowance: 2\)/);
-  assert.match(presentationTests, /candidate\["label"\] as\? String == element\.label/);
+  assert.match(presentationTests, /candidate\["label"\] as\? String == nativeLabel/);
   assert.match(presentationTests, /matches\.count == 1/);
   assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom/);
   assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
   assert.match(presentationTests, /settledProof\["dom"\] as\? String == proof\["dom"\]/);
-  assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", element\.label\)\)/);
-  assert.doesNotMatch(presentationTests, /\.containing\(\.staticText, identifier: element\.label\)/);
+  assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", nativeLabel\)\)/);
+  assert.doesNotMatch(presentationTests, /\.containing\(\.staticText, identifier: nativeLabel\)/);
   assert.match(presentationTests, /candidate\["hitPoints"\] as\? \[\[String: Any\]\]/);
   assert.match(presentationTests, /nativeFrame\.contains\(point\)/);
   assert.match(presentationTests, /app\.coordinate\(withNormalizedOffset: \.zero\)\s*\.withOffset\(CGVector\(dx: point\.x, dy: point\.y\)\)\.tap\(\)/);
@@ -906,6 +906,24 @@ test('T03 keeps the approved native owner bound separate and mutation-proves eve
   assert.match(presentationTests, /ownerFrame: owner, allowance: 3/);
   assert.match(presentationTests, /nativeFrame\.contains\(point\) && webFrame\.contains\(point\)/);
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
+});
+
+test('T03 restores fail-fast before launching structural fixtures after expected boundary failures', () => {
+  const structural = presentationTests.slice(
+    presentationTests.indexOf('func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures()'),
+    presentationTests.indexOf('func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps()'));
+  assert.match(structural, /do \{\s*let previousContinuation = continueAfterFailure\s*continueAfterFailure = true/);
+  assert.match(structural, /defer \{ continueAfterFailure = previousContinuation \}/);
+  assert.match(structural, /"boundaries": boundaries,[\s\S]*?\]\)\s*\}\s*let app = launch\(route: "guard-structural"\)/);
+});
+
+test('T03 pins the native label before any guard tap instead of dereferencing a stale AX query afterward', () => {
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.match(guard, /let nativeLabel = element\.label/);
+  assert.equal((guard.match(/element\.label/g) || []).length, 1);
+  assert.match(guard, /candidate\["label"\] as\? String == nativeLabel/);
+  assert.match(guard, /"candidate": candidate, "nativeLabel": nativeLabel/);
 });
 
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {

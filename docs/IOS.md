@@ -96,7 +96,9 @@ extended 1.546875 points beyond the owner. The computed font and line height wer
 Canvas font ascent 60 plus descent 16 also equaled 76. The native height of 78 is unexplained,
 not established as rounding. Fixtures accept this measured case and reject just over two points
 on every edge. Strict expected failures exercise only deliberate one-point and oversized
-fixture bounds, never a live audit. Text-fragment tap points, native/WebView containment,
+fixture bounds, never a live audit. Assertion continuation is enabled only in that fixture
+block and restored before launching the app, so the first expected failure cannot skip the
+remaining boundaries or structural negatives. Text-fragment tap points, native/WebView containment,
 unique identity, passivity and the complete native no-op remain unchanged. A missing candidate,
 such as the separate minimum-iPhone "Reading data" finding, cannot use this allowance.
 
