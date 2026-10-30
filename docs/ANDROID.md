@@ -51,8 +51,12 @@ apart and first while comics are queued and **Remove from library** apart and la
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
 Android Back, Escape or a tap outside dismisses the sheet without taking action.
 
-Read and **Done** stay together. **About this comic** opens reader-focused details with Read
-near the title, useful comic information and optional, spoiler-protected story summaries.
+Read and **Done** stay together. **About this comic** opens the comic's own page, which leads with
+its cover: centered above the title on an upright screen, and in a column beside the title and
+everything under it on a screen turned on its side or a wide one. **Read** follows the title, then
+useful comic information and optional, spoiler-protected story summaries. With cover art off, the
+cover's stand-in takes the same place and size. A short split-screen window keeps the details card
+with **Read** first.
 **More comic actions** contains deferral and the external comic page.
 **Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
 putting availability in the main comic details. An active temporary-link warning stays

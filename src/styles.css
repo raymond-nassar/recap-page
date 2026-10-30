@@ -2495,6 +2495,49 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 }
 .cover-fallback.cover-fallback.one-initial::after { content: ''; }
 .cover-fallback.cover-fallback > * { position: relative; z-index: 2; }
+/* #979: drawn behind the text, the initials met any series name long enough to wrap. On the 96px tile
+   of a phone's next-issue card FICTIONAL: LANTERN HARBOR took a third line, and HARBOR sat under the
+   large F. A tile that carries text now stacks three bands: the series name at the head, the initials
+   in the band between, and the number at the foot, where a catalog card's title also sits. A band
+   holds only its own part, so no name length or text size can bring them together: the initials are
+   clipped to their band top and bottom and give way when large text leaves it no height, and the
+   name keeps three lines at most, which keeps the number's band in the tile. Clipped across as well,
+   the second initial lost its shadow's right edge, and at the free initials' line height its foot
+   hung below its box, so it takes a line height of 1. Each initial's box rises into the gap under the
+   name and stops that gap short of the number, so the band gives up one gap rather than two. Tiles
+   without text keep the free initials above. Each display is set for the shown tile only, so a hidden
+   one stays hidden. */
+body.nocovers :is(.fallback, .tf, .of).cover-fallback, :is(.fallback, .tf, .of).cover-fallback.show { display: grid; }
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback {
+  grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; gap: 0;
+}
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::before,
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::after {
+  position: static; grid-row: 2; grid-column: 1; min-height: 0; display: flex;
+  overflow: hidden; overflow: visible clip;
+  margin-block: calc(-1 * var(--space-3)) var(--space-3);
+}
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::before { align-items: flex-start; justify-content: flex-start; }
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::after { align-items: flex-end; justify-content: flex-end; line-height: 1; }
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback.one-initial::before { align-items: center; justify-content: center; }
+.fallback .fs, .tile .tf .s {
+  grid-row: 1; margin-bottom: var(--space-3);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; overflow-wrap: anywhere;
+}
+.fallback .fn, .tile .tf .n, .ocard-art .of .ofs { grid-row: 3; }
+/* The narrowest tiles that carry a name, the Reading List's 96px next issue and the comic page's in a
+   narrow desktop window, have room for two lines of name above whole initials, and for a single
+   initial a little smaller than a pair's: a third line left the band 33px where a letter and its
+   shadow need 40px, and a single initial at its usual size lost the foot of its shadow. Measured in
+   Edge across the five tiles that carry a name, every letter is then drawn whole, except that a Q,
+   O or J, which reach below the line, loses up to 28 square pixels in the comic page's 64px-wide
+   desktop tile. In rem, so the same tiles qualify on desktop, where the tile's own text is smaller,
+   and in em, so larger text keeps two lines in wider tiles: at 200% a third line no longer fitted
+   the comic page's 128px stand-in, which showed a third of it. */
+@container (max-width: 5.5rem) or (max-width: 5.5em) {
+  .fallback .fs, .tile .tf .s { -webkit-line-clamp: 2; }
+  .fallback.cover-fallback.cover-fallback.one-initial::before { font-size: 54cqw; }
+}
 
 /* Tooltips supplement the accessible name for icon-only actions and reveal shortcuts without
    carrying permanent keycaps. They never replace the control's visible or accessible label. */

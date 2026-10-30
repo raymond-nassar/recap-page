@@ -114,8 +114,9 @@ export function createIssueView({
       ? 'The list or bundled order in this link no longer contains this issue. Showing issue details without that context.'
       : '';
     nodes.card.hidden = false;
-    paintCover(nodes.image, nodes.fallback, issue, 'portrait_uncanny');
-    nodes.image.alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
+    const variant = issueCoverVariant(nodes.image);
+    paintCover(nodes.image, nodes.fallback, issue, variant);
+    nodes.image.alt = coverUrl(issue, variant) ? `Cover of ${issue.title}` : '';
     nodes.series.textContent = seriesOnly(issue.seriesName);
     nodes.number.textContent = presentation.number;
     paintBackground(nodes.background, issue);
@@ -342,4 +343,14 @@ export function createIssueView({
     result: () => currentResult,
     wire,
   };
+}
+
+// #980: the phone layer shows this cover up to 320px wide, where the 300px portrait_uncanny image was
+// stretched 1.6 to 2.6 times on the measured phones. That layer names Marvel's 500px detail image in a
+// custom property, so the stylesheet that sizes the cover also picks its image. Desktop never loads
+// that layer, so it keeps portrait_uncanny, as does any value other than detail.
+export function issueCoverVariant(image) {
+  const view = image?.ownerDocument?.defaultView;
+  const named = view?.getComputedStyle?.(image)?.getPropertyValue('--issue-cover-variant').trim();
+  return named === 'detail' ? 'detail' : 'portrait_uncanny';
 }
