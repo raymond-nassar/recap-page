@@ -206,7 +206,7 @@ test('the generated catalog replaces the parent with every child and the owner-o
 
   const ownerPath = raw.paths.find((entry) => entry.id === ledger.path.id);
   assert.deepEqual(ownerPath, family.path);
-  assert.equal(raw.paths.length, 3);
+  assert.equal(raw.paths.length, 4);
 });
 
 test('the child overlap matrix is current, disjoint and aggregates to the parent peers', async () => {
@@ -244,7 +244,7 @@ test('the child overlap matrix is current, disjoint and aggregates to the parent
       pinned.internalChildOverlapCount,
       pinned.matrixSha256,
     ],
-    [86, 51, 26, 462, 0, 'f4d5fbac219caf47149f4df0f41e9983510dfed26b3c02f379b966b04e4c3aa0'],
+    [88, 51, 27, 466, 0, 'f9fcd9add7a3c407fea8792715e2f73eeff0b6af8b2ebe8a4d596026d967bcae'],
   );
 });
 

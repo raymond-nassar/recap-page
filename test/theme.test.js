@@ -297,6 +297,12 @@ test('the production inventory discovers every tracked paint occurrence and reje
   assert.ok(findings.some((message) => message.includes('src/styles.css') && message.includes('::2::--line') && message.includes('no watcher consumes it')));
   assert.ok(inventoryFindings({ sources: new Map(), occurrences: [] })
     .some((finding) => finding.message.includes('is watched as a colour source but no longer paints a colour')));
+  // A provider logo is owned only as its owner published it (#810, OD-12): the real one raises nothing, and
+  // the same file with one square recoloured is owned no longer.
+  const logo = 'src/brands/ms-symbollockup_mssymbol_19.svg';
+  assert.ok(!findings.some((message) => message.includes(logo)), 'the logo as Microsoft published it');
+  const recoloured = discoverPaintInventory({ runGit, readSource: (path) => (path === logo ? read(path).replace('#f25022', '#f25023') : readSource(path)) });
+  assert.ok(inventoryFindings(recoloured).some((finding) => finding.message.includes(`${logo}|`) && finding.message.includes('no watcher consumes it')));
 
   assert.throws(
     () => discoverPaintInventory({ runGit: () => { throw new Error('git failed'); }, readSource }),

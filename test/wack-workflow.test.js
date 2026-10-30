@@ -53,6 +53,7 @@ test('WACK and installed proof run when package behavior changes', () => {
       'package.json',
       'packaging/windows/**',
       'server.mjs',
+      'host/**',
       'src/**',
       'scripts/inspect-msix.mjs',
       'scripts/build-native-launcher.ps1',
@@ -130,6 +131,9 @@ test('WACK builds exact clean package inputs at the canonical version', () => {
   ]) {
     assert.match(workflow, new RegExp(input.replaceAll('.', '\\.')));
   }
+  // The cloud backup host ships in the package, so a change to it is a dirty input too. Checked inside
+  // the command, because the bare word also appears in loopback addresses.
+  assert.match(workflow, /git diff --exit-code --[^\n]*\n(?:\s+[\w./-]+ `\r?\n)*?\s+host `\r?\n/);
   assert.doesNotMatch(workflow, /RecapPage_2\.0\.0\.0/);
   assert.match(workflow, /\$storeVersion = "\$appVersion\.0"/);
   assert.match(workflow, /id: package-paths/);

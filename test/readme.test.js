@@ -22,7 +22,7 @@ function pngDimensions(path) {
 }
 
 test('the README overview stays count-free as the catalog grows', () => {
-  assert.match(README, /Follow a Marvel story across series, open the next unread comic, and keep your place/);
+  assert.match(README, /Follow a Marvel story across series and keep your place with credited reading orders/);
   assert.doesNotMatch(
     README,
     /\b\d[\d,]*\s+(?:curated\s+)?(?:reading orders?|reading lists?|issues?|cards?)\b/i,

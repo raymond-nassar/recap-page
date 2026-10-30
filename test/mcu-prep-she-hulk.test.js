@@ -137,7 +137,7 @@ test('She-Hulk binds post-refresh approval to every current-library peer', async
   };
   const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
+  })), { presentIds: [id] });
   assert.equal(report.comparisonCount, 290);
   assert.equal(report.libraryDigest, recordedDigest,
     'Post-refresh authority binds actual current descriptions without a historical inverse');

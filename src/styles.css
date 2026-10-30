@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:787-794`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:795-802`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -948,6 +948,10 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .facts { display: flex; gap: var(--space-8); flex-wrap: wrap; margin: 0 0 var(--space-7); }
 .facts > div { min-width: 0; }
 .facts dt { font-size: var(--t-caption); letter-spacing: .11em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+/* The record's note sits inside its term so it is read with the label it qualifies, and there it
+   inherited the label's capitals, tracking and weight (#978). Its one sentence took three lines of
+   spaced capitals on a 360px Android screen, measured in Edge, and takes two set as a sentence. */
+.facts dt > .rail-hint { text-transform: none; letter-spacing: normal; font-weight: 400; }
 .facts dd { margin: var(--space-1) 0 0; font-size: var(--t-body); font-weight: 600; }
 .facts dd.ok { color: var(--teal); }
 .facts dd.warn { color: var(--amber); }
@@ -1202,6 +1206,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
 .badge-unknown, .badge-pending, .badge-norecord { color: var(--muted); }
 .badge-override-unavailable { color: var(--red-fg); border-color: rgb(var(--red-line) / 33.333%); }
+.badge.availability-record { white-space: normal; overflow-wrap: anywhere; }
 
 .row-actions { position: relative; justify-self: end; text-align: right; }
 .row-actions-toggle { display: inline-flex; align-items: center; min-height: var(--target); padding: var(--space-3) var(--space-4); }
@@ -1219,10 +1224,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    the menu a sixth row taller and put its first group under the sticky filters once centred; a rule
    with 6px either side still sets groups further apart than the 8px between commands within one. */
 .ract-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
-.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--space-3); }
 .ract-group[hidden] { display: none; }
 .ract-group:not([hidden]) ~ .ract-group { border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-3); }
-.row-actions .ract-group > .rail-hint { grid-column: 1 / -1; text-align: left; }
+.row-actions .ract-group > .rail-hint { grid-column: 1 / -1; margin: 0; text-align: left; }
 .mini {
   border: var(--stroke-1) solid var(--line-2); background: none; color: var(--muted);
   border-radius: var(--radius-compact); padding: var(--space-1) var(--space-4); font-size: var(--t-caption); text-decoration: none;
@@ -1244,6 +1249,18 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .row-actions .mini-label { display: inline; }
 @media (max-width: 620px) {
   .ract-group, .ract-availability { grid-template-columns: minmax(0, 1fr); }
+}
+/* At 640x450 the historical note pushed Remove under the bottom navigation. Sharing the first
+   row keeps both named groups intact and every command between the filters and navigation. */
+@media (min-width: 621px) {
+  .row-actions.is-open > .ract { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ract > .ract-group { grid-column: 1 / -1; }
+  .ract > .ract-group:first-child:not([hidden]),
+  .ract > .ract-group:first-child:not([hidden]) + .ract-group { grid-column: auto; }
+  .ract > .ract-group:first-child:not([hidden]) + .ract-group {
+    border-top: 0; padding-top: 0;
+    border-left: var(--stroke-1) solid var(--line); padding-left: var(--space-3);
+  }
 }
 
 /* ============================================================ forms, cards, results */
@@ -1281,6 +1298,19 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 #view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
+
+/* Cloud backup (#810). Its rows and its switch set their own display, which would otherwise defeat the
+   hidden attribute that keeps each out of the states it does not belong to. Each backup found in the
+   account is one line with its Restore beside it, under the device that made it. */
+#cloud-backup :is(.field-row, .checkbox)[hidden] { display: none; }
+#cloud-backup-status { margin: var(--space-4) 0; max-width: 62ch; }
+#cloud-backup progress { width: 100%; }
+#btn-cloud-sign-in > img { flex: none; }
+.cloud-device { margin-top: var(--space-5); }
+.cloud-device h4 { margin: 0 0 var(--space-2); font-size: var(--t-body); font-weight: 600; }
+.cloud-copies { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.cloud-copy { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+#cloud-discovery-list > .btn { margin-top: var(--space-4); }
 
 /* A settings row. The header and its one line description sit in the text column, and the control
    that changes the setting is pinned to the right of the card rather than stacked underneath it,
@@ -2158,8 +2188,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: var(--target); }
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
-.markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
-.markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
+:is(.markdown-export, .ask-choice) .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
+:is(.markdown-export, .ask-choice) input[type="checkbox"] { width: auto; min-height: auto; }
 
 .rating-trigger {
   display: inline-flex; align-items: center; gap: var(--space-4);
@@ -2207,6 +2237,13 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Edge paints an indeterminate bar's movement itself, out of reach of the rule above: measured at
+   1280x900 under reduced motion, 8 distinct frames of 8. There the cloud backup bar is hidden, and its
+   status line alone says a backup is running. */
+@media (prefers-reduced-motion: reduce) {
+  #cloud-backup-progress { display: none; }
 }
 
 @media (forced-colors: active) {
@@ -2346,8 +2383,11 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   margin: 0 0 var(--space-2); padding: var(--space-5) 0 var(--space-5);
 }
 /* The filter pills wrap with width and text size; their real height is the scroll obstruction. */
+:root:has(#view-read:not([hidden]) #full[open] #rows :focus) {
+  scroll-padding-top: var(--reading-filter-height, 0px);
+}
 #rows [data-act], .row-actions > .ract {
-  scroll-margin-top: calc(var(--reading-filter-height, 0px) + var(--space-4));
+  scroll-margin-top: var(--space-4);
 }
 
 /* A finished collected edition already dims its name. Its count takes the positive colour too, so
@@ -2475,6 +2515,49 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 }
 .cover-fallback.cover-fallback.one-initial::after { content: ''; }
 .cover-fallback.cover-fallback > * { position: relative; z-index: 2; }
+/* #979: drawn behind the text, the initials met any series name long enough to wrap. On the 96px tile
+   of a phone's next-issue card FICTIONAL: LANTERN HARBOR took a third line, and HARBOR sat under the
+   large F. A tile that carries text now stacks three bands: the series name at the head, the initials
+   in the band between, and the number at the foot, where a catalog card's title also sits. A band
+   holds only its own part, so no name length or text size can bring them together: the initials are
+   clipped to their band top and bottom and give way when large text leaves it no height, and the
+   name keeps three lines at most, which keeps the number's band in the tile. Clipped across as well,
+   the second initial lost its shadow's right edge, and at the free initials' line height its foot
+   hung below its box, so it takes a line height of 1. Each initial's box rises into the gap under the
+   name and stops that gap short of the number, so the band gives up one gap rather than two. Tiles
+   without text keep the free initials above. Each display is set for the shown tile only, so a hidden
+   one stays hidden. */
+body.nocovers :is(.fallback, .tf, .of).cover-fallback, :is(.fallback, .tf, .of).cover-fallback.show { display: grid; }
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback {
+  grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; gap: 0;
+}
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::before,
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::after {
+  position: static; grid-row: 2; grid-column: 1; min-height: 0; display: flex;
+  overflow: hidden; overflow: visible clip;
+  margin-block: calc(-1 * var(--space-3)) var(--space-3);
+}
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::before { align-items: flex-start; justify-content: flex-start; }
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback::after { align-items: flex-end; justify-content: flex-end; line-height: 1; }
+:is(.fallback, .tf, .of).cover-fallback.cover-fallback.one-initial::before { align-items: center; justify-content: center; }
+.fallback .fs, .tile .tf .s {
+  grid-row: 1; margin-bottom: var(--space-3);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; overflow-wrap: anywhere;
+}
+.fallback .fn, .tile .tf .n, .ocard-art .of .ofs { grid-row: 3; }
+/* The narrowest tiles that carry a name, the Reading List's 96px next issue and the comic page's in a
+   narrow desktop window, have room for two lines of name above whole initials, and for a single
+   initial a little smaller than a pair's: a third line left the band 33px where a letter and its
+   shadow need 40px, and a single initial at its usual size lost the foot of its shadow. Measured in
+   Edge across the five tiles that carry a name, every letter is then drawn whole, except that a Q,
+   O or J, which reach below the line, loses up to 28 square pixels in the comic page's 64px-wide
+   desktop tile. In rem, so the same tiles qualify on desktop, where the tile's own text is smaller,
+   and in em, so larger text keeps two lines in wider tiles: at 200% a third line no longer fitted
+   the comic page's 128px stand-in, which showed a third of it. */
+@container (max-width: 5.5rem) or (max-width: 5.5em) {
+  .fallback .fs, .tile .tf .s { -webkit-line-clamp: 2; }
+  .fallback.cover-fallback.cover-fallback.one-initial::before { font-size: 54cqw; }
+}
 
 /* Tooltips supplement the accessible name for icon-only actions and reveal shortcuts without
    carrying permanent keycaps. They never replace the control's visible or accessible label. */

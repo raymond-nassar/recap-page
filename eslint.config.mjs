@@ -115,8 +115,8 @@ export default [
     rules: { 'no-alert': 'off' },
   },
   {
-    // The server, the build scripts and the tests run in Node.
-    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
+    // The server, the Windows host, the build scripts and the tests run in Node.
+    files: ['server.mjs', 'host/**/*.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
     languageOptions: { globals: globals.node },
   },
   {
@@ -134,6 +134,7 @@ export default [
       'scripts/browser-check.mjs',
       'scripts/browser-android.mjs',
       'scripts/browser-android-catalog-cards.mjs',
+      'scripts/browser-android-issue-poster.mjs',
       'scripts/browser-reader-first.mjs',
       'scripts/browser-defer.mjs',
       'scripts/browser-done-undo.mjs',
@@ -171,6 +172,7 @@ export default [
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/browser-owner-guide.mjs',
       'scripts/browser-young-readers.mjs',
+      'scripts/browser-marvel-interim.mjs',
       'scripts/browser-selection-bar.mjs',
       'scripts/browser-category-accents.mjs',
       'scripts/browser-theme-color.mjs',

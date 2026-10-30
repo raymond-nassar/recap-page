@@ -118,9 +118,10 @@ test('the maintainer browser instructions match the runner interface', () => {
   assert.deepEqual([...documented].sort(), ['MRT_EDGE', 'MRT_PUPPETEER']);
   for (const name of documented) assert.ok(supported.has(name), `${name} is not read by the browser runner`);
   assert.match(section, /--only=<scenario-name>/);
+  assert.match(section, /--ephemeral/);
   assert.doesNotMatch(section, /--scenario/);
   assert.match(section, /ephemeral port/);
-  const fixedPortExpression = /const port = \[([^\]]+)\]\.includes\(only\) \? DEFAULT_PORT : 0;/
+  const fixedPortExpression = /const port = !process\.argv\.includes\('--ephemeral'\) && \[([^\]]+)\]\.includes\(only\) \? DEFAULT_PORT : 0;/
     .exec(browserRunner);
   assert.ok(fixedPortExpression, 'the browser runner no longer exposes its fixed-port exceptions');
   const fixedPortScenarios = [...fixedPortExpression[1].matchAll(/'([^']+)'/g)]

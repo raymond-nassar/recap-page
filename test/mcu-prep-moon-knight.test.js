@@ -19,7 +19,7 @@ import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-ove
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import {
   historicalMcuDescriptionEntry, historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
-  loadHistoricalReadingChoiceLibrary,
+  loadHistoricalReadingChoiceLibrary, pathsWithinLists,
 } from './helpers/reading-choice-history.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -158,7 +158,7 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(card.emptyRecordCount, 0);
   assert.deepEqual(legacyOwnerPeers(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
     .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id)), expectedScreenIds);
-  assert.equal(shelfLists(catalog.lists, 'spotlights').length, 71);
+  assert.equal(shelfLists(catalog.lists, 'spotlights').length, 72);
   assert.ok(!shelfLists(catalog.lists, 'spotlights').some((item) => item.id === id));
   assert.equal(catalog.paths.some((path) => path.steps.includes(id)), false);
   assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${id}`), false);
@@ -271,9 +271,10 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
   recordedVisibleOrders.splice(archivedPosition, 0, {
     id: archived.id, issueIds: issueIdsFromValue(await readJson('src', 'data', archived.file)).map(String),
   });
+  const visibleLists = legacyOwnerPeers(recordedVisible).filter((entry) => !laterIds.includes(entry.id))
+    .map(historicalReadingChoiceCatalogEntry);
   const visibleDigest = libraryDigestFor({
-    lists: legacyOwnerPeers(recordedVisible).filter((entry) => !laterIds.includes(entry.id))
-      .map(historicalReadingChoiceCatalogEntry), paths: catalog.paths,
+    lists: visibleLists, paths: pathsWithinLists(catalog.paths, visibleLists),
   }, legacyOwnerPeers(recordedVisibleOrders).filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
     ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
   })));

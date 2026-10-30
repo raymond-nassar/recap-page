@@ -199,9 +199,9 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
     ['character-run', 'partial', 'other', null]);
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
-  assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 86);
+  assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 87);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run'
-    && entry.id !== id).length, 85);
+    && entry.id !== id).length, 86);
   assert.equal(catalog.lists.filter((entry) => entry.sourceLicense != null).length, 0);
   assert.equal(manifest.lists.find((entry) => entry.id === id).sourceLicense, null);
   const inventoryEntry = inventory.find((entry) => entry.id === id);
@@ -216,9 +216,9 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
     assert.equal(entry.sourceOrigin, "Compiled for this project from Comic Book Herald's guide");
     assert.equal(entry.sourceLicense, null);
   }
-  assert.equal(partition.pairCount, 86);
-  assert.equal(partition.existingListCount, 26);
-  assert.equal(partition.sharedOccurrenceCount, 462);
+  assert.equal(partition.pairCount, 88);
+  assert.equal(partition.existingListCount, 27);
+  assert.equal(partition.sharedOccurrenceCount, 466);
   assert.deepEqual(partition.pairs.filter((row) => row.existingListId === id), [{
     chapterId: 'marvel-knights-to-planet-x-26',
     existingListId: id,

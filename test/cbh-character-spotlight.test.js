@@ -866,7 +866,7 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships 59 character runs, two creators and two era guides, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships 61 character runs, two creators and two era guides, and records five approved reuses', async () => {
 
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
@@ -878,17 +878,17 @@ test('the character inventory preserves every central disposition, ships 59 char
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 57);
+  assert.equal(dispositionCounts.deferred, 56);
   assert.equal(dispositionCounts.excluded, 6);
   assert.equal(dispositionCounts.blocked ?? 0, 0);
-  assert.equal(dispositionCounts['pilot-approved'], 65);
+  assert.equal(dispositionCounts['pilot-approved'], 66);
 
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.reduce((counts, record) => ({
     ...counts, [record.guideType]: (counts[record.guideType] ?? 0) + 1,
-  }), {}), { 'character-run': 60, 'creator-run': 2, era: 2, event: 1 });
+  }), {}), { 'character-run': 61, 'creator-run': 2, era: 2, event: 1 });
   assert.deepEqual(shipped.map((record) => record.id), [
     abominationCandidateId,
     'adam-warlock-reading-order',
@@ -930,6 +930,7 @@ test('the character inventory preserves every central disposition, ships 59 char
     'nova-reading-order',
     'phalanx-reading-order',
     'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
+    'professor-x-reading-order',
     'punisher-reading-order',
     'rocket-raccoon-reading-order',
     'runaways-reading-order',
@@ -2283,15 +2284,16 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 5].id, 'xmen-claremont');
   assert.equal(manifest.lists[doctorIndex + 6].id, 'xmen-claremont-complete');
   assert.equal(manifest.lists[doctorIndex + 7].id, 'shadow-king-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 8].id, captainMarvelCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 9].id, 'ms-marvel-kamala-khan-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 10].id, 'captain-america-best-of');
-  assert.equal(manifest.lists[doctorIndex + 11].id, 'captain-america-reading-order-modern-marvel-era');
-  assert.equal(manifest.lists[doctorIndex + 12].id, 'doctor-doom-primer');
-  assert.equal(manifest.lists[doctorIndex + 13].id, 'spider-man-best-of');
-  assert.equal(manifest.lists[doctorIndex + 14].id, 'thor-best-of');
-  assert.equal(manifest.lists[doctorIndex + 15].id, 'deadpool-best-of');
-  assert.equal(manifest.lists[doctorIndex + 16].id, 'scarlet-witch-best-of');
+  assert.equal(manifest.lists[doctorIndex + 8].id, 'professor-x-reading-order');
+  assert.equal(manifest.lists[doctorIndex + 9].id, captainMarvelCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 10].id, 'ms-marvel-kamala-khan-reading-order');
+  assert.equal(manifest.lists[doctorIndex + 11].id, 'captain-america-best-of');
+  assert.equal(manifest.lists[doctorIndex + 12].id, 'captain-america-reading-order-modern-marvel-era');
+  assert.equal(manifest.lists[doctorIndex + 13].id, 'doctor-doom-primer');
+  assert.equal(manifest.lists[doctorIndex + 14].id, 'spider-man-best-of');
+  assert.equal(manifest.lists[doctorIndex + 15].id, 'thor-best-of');
+  assert.equal(manifest.lists[doctorIndex + 16].id, 'deadpool-best-of');
+  assert.equal(manifest.lists[doctorIndex + 17].id, 'scarlet-witch-best-of');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -4710,8 +4712,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
   assert.equal(new Set(allBatchIds).size, 81);
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 86);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 85);
+  assert.equal(characterRuns.length, 87);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 86);
 
 });
 

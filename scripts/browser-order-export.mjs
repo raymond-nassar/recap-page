@@ -45,14 +45,17 @@ export const orderOnlyExport = {
         sessionStorage.setItem('export-seeded', 'yes');
       }
       window.__exportFetches = 0;
+      // Backup & settings asks the cloud backup host whether this build has it (#810), kept apart.
+      window.__cloudQuestions = [];
       window.__exportFilenames = [];
       document.addEventListener('click', (event) => {
         if (event.target.matches('a[download]')) window.__exportFilenames.push(event.target.download);
       }, true);
       const real = window.fetch.bind(window);
       window.fetch = async (input, init) => {
-        window.__exportFetches += 1;
         const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+        if (url.pathname.startsWith('/__recap_cloud__/v1/')) window.__cloudQuestions.push(url.pathname.slice('/__recap_cloud__/v1/'.length));
+        else window.__exportFetches += 1;
         const response = await real(input, init);
         if (url.pathname.endsWith('/catalog.json')) {
           const catalog = await response.json();
@@ -79,7 +82,7 @@ export const orderOnlyExport = {
     t.check('Reading export choices open from a keyboard-reachable disclosure',
       await page.$eval('#list-export', (node) => node.open));
     const before = await page.evaluate(() => ({
-      state: localStorage.getItem('mrt.state.v2'), calls: window.__exportFetches,
+      state: localStorage.getItem('mrt.state.v2'), calls: window.__exportFetches, cloud: window.__cloudQuestions.length,
     }));
     const external = [];
     const observeRequest = (request) => {
@@ -131,7 +134,7 @@ export const orderOnlyExport = {
     t.check('mixed official, manual and unresolved positions retain their exact order and labels',
       JSON.stringify(rows.map((row) => [row.issueId ?? null, row.title, row.section])) === JSON.stringify([
         [900001, items[0].title, 'Volume one'], [null, items[1].title, 'Volume one'],
-        [bookId, items[2].title, 'Volume two'], [900003, items[3].title, null],
+        [null, items[2].title, 'Volume two'], [900003, items[3].title, null],
       ]), JSON.stringify(rows));
     t.check('the loaded exact-catalog credit and source URL survive',
       markdown.includes('Source: Synthetic curator') && markdown.includes(sourceUrl)
@@ -146,9 +149,13 @@ export const orderOnlyExport = {
     t.check('JSON reader-data backup contents are unchanged by exporting',
       JSON.stringify(backupBefore) === JSON.stringify(backupAfter)
         && backupAfter.lists['order-export'].deferredIssueIds.join() === '900003');
+    // Backup & settings, opened once above, asks the host once, and no export may add a question
+    // (stage 3 review, S3b-9).
     t.check('all export actions leave the original stored bytes and network counters unchanged',
       await page.evaluate((snapshot) => localStorage.getItem('mrt.state.v2') === snapshot.state
-        && window.__exportFetches === snapshot.calls, before), JSON.stringify(external));
+        && window.__exportFetches === snapshot.calls && window.__cloudQuestions.length === snapshot.cloud + 1
+        && window.__cloudQuestions.every((operation) => operation === 'status'), before),
+      JSON.stringify({ external, asked: before.cloud, cloud: await page.evaluate(() => window.__cloudQuestions) }));
     t.check('export sent zero external requests', external.length === 0, JSON.stringify(external));
     page.off('request', observeRequest);
 
@@ -167,7 +174,7 @@ export const orderOnlyExport = {
       document.querySelector('#import-new-list').checked = true;
       document.querySelector('#form-import').requestSubmit();
     }, markdown);
-    await page.waitForFunction(() => /Imported 3 issues/.test(document.querySelector('#import-report').textContent));
+    await page.waitForFunction(() => /Imported 2 issues/.test(document.querySelector('#import-report').textContent));
     const imported = await page.evaluate(() => {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
       return {
@@ -179,24 +186,28 @@ export const orderOnlyExport = {
     });
     const list = imported.saved.lists[imported.saved.active];
     t.check('fresh import keeps supported identities and sections in their original order',
-      JSON.stringify(list.itemIds) === JSON.stringify([900001, bookId, 900003])
+      JSON.stringify(list.itemIds) === JSON.stringify([900001, 900003])
       && list.collectedIn[900001] === 'Volume one'
-      && list.collectedIn[bookId] === 'Volume two'
+      && !list.collectedIn[bookId]
       && !list.collectedIn[900003], JSON.stringify(list));
-    t.check('fresh import keeps the official detail link and reserved reader identity',
+    t.check('fresh import keeps the official detail link without minting a retired reader identity',
       imported.saved.issues[900003].url === items[3].url
-      && imported.saved.issues[bookId].digitalId === 129648
-      && imported.saved.issues[bookId].source === 'manual');
+      && !imported.saved.issues[bookId]);
     t.check('fresh import contains no read marks, notes, overrides or deferrals',
       Object.keys(imported.saved.read).length === 0 && Object.keys(imported.saved.notes).length === 0
       && Object.keys(imported.saved.overrides).length === 0 && !list.note
       && list.deferredIssueIds.length === 0, JSON.stringify(imported.saved));
-    t.check('the unresolved manual position remains explicitly offered for resolution',
-      imported.unresolved.length === 1 && imported.unresolved[0] === `Find match: ${items[1].title}`
+    t.check('unresolved manual and historical reader positions remain explicitly offered for resolution',
+      JSON.stringify(imported.unresolved) === JSON.stringify([`Find match: ${items[1].title}`, `Find match: ${items[2].title}`])
       && imported.draft.occurrences[1].title === items[1].title
       && imported.draft.occurrences[1].choice === null
       && !imported.draft.occurrences[1].applied
-      && imported.report.includes(items[1].title), imported.report);
+      && imported.draft.occurrences[2].title === items[2].title
+      && imported.draft.occurrences[2].section === 'Volume two'
+      && imported.draft.occurrences[2].read === false
+      && imported.draft.occurrences[2].choice === null
+      && !imported.draft.occurrences[2].applied
+      && imported.report.includes(items[1].title) && imported.report.includes(items[2].title), imported.report);
 
     await page.evaluate(() => {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));

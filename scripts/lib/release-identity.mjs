@@ -44,9 +44,13 @@ export function assertSourceUnchanged(identity, root = ROOT) {
   'source changed during packaging');
 }
 
+// A Windows build records the SHA-256 of the cloud backup client configuration it carries, or null for
+// none, and never the configuration itself (#810, P02-T01 section 3.2). Android records it from P03.
+const WINDOWS = new Set(['windows-portable', 'windows-msix']);
+
 export function validateIdentity(value) {
   keys(value, ['schemaVersion', 'productVersion', 'platform', 'packageVersion', 'channel',
-    'sourceRevision', 'sourceTree', 'sourceDirty']);
+    'sourceRevision', 'sourceTree', 'sourceDirty', ...(WINDOWS.has(value?.platform) ? ['cloudClient'] : [])]);
   requireValue(value.schemaVersion === 1 && VERSION.test(value.productVersion), 'invalid product version');
   requireValue(SHA.test(value.sourceRevision) && SHA.test(value.sourceTree)
     && typeof value.sourceDirty === 'boolean', 'invalid source identity');
@@ -62,17 +66,19 @@ export function validateIdentity(value) {
     const expected = value.platform === 'windows-portable' ? value.productVersion
       : `${value.productVersion}.${value.channel === 'proof' ? 1 : 0}`;
     requireValue(value.packageVersion === expected, 'invalid Windows package version');
+    requireValue(value.cloudClient === null || HASH.test(value.cloudClient), 'invalid cloud client digest');
   }
   requireValue(value.channel !== 'candidate' || !value.sourceDirty, 'candidate source must be clean');
   return value;
 }
 
-export async function buildIdentity(platform, packageVersion, channel, root = ROOT) {
+export async function buildIdentity(platform, packageVersion, channel, root = ROOT, { cloudClient = null } = {}) {
   const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
   const source = sourceIdentity(root);
   return validateIdentity({
     schemaVersion: 1, productVersion: version, platform, packageVersion,
     channel: channel ?? (source.sourceDirty ? 'development' : 'candidate'), ...source,
+    ...(WINDOWS.has(platform) ? { cloudClient } : {}),
   });
 }
 
@@ -158,10 +164,20 @@ export async function androidBuild({
   };
 }
 
-export async function iosBuild({ root = ROOT } = {}) {
-  // Reserved TestFlight builds arrive with the signing tooling and its ledger. Until then every iOS
-  // build is a development build, which is also what keeps one from ever being uploaded.
+export async function iosBuild({
+  root = ROOT, number = process.env.RECAP_IOS_BUILD_NUMBER,
+  ledgerPath = process.env.RECAP_IOS_LEDGER ?? join(root, 'packaging', 'ios', 'build-numbers.json'),
+} = {}) {
   const identity = await buildIdentity('ios', DEVELOPMENT_IOS_BUILD, 'development', root);
+  if (number !== undefined) {
+    const { iosReservation } = await import('../ios-release.mjs');
+    const entry = iosReservation(JSON.parse(await readFile(ledgerPath, 'utf8')), number);
+    requireValue(entry.artifact === null && !identity.sourceDirty
+      && entry.productVersion === identity.productVersion && entry.sourceRevision === identity.sourceRevision
+      && entry.sourceTree === identity.sourceTree, 'iOS reservation is sealed or does not match clean source');
+    identity.packageVersion = entry.buildNumber;
+    identity.channel = 'candidate';
+  }
   return { identity, buildNumber: identity.packageVersion };
 }
 

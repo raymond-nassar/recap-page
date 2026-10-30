@@ -193,12 +193,12 @@ test('manifest and generated paths resolve end to end', async () => {
   const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
   const { paths, errors } = parseManifest(manifest);
   assert.deepEqual(errors, []);
-  assert.equal(paths.length, 2);
+  assert.equal(paths.length, 3);
 
   const catalogRaw = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
   const catalog = parseCatalog(catalogRaw);
   assert.equal(catalog.dropped, 0);
-  assert.equal(catalog.paths.length, 3);
+  assert.equal(catalog.paths.length, 4);
   const generated = catalog.paths.find((readingPath) => readingPath.id === 'marvel-knights-to-planet-x');
   assert.equal(generated.steps.length, 78);
   const placed = pathPlacements(catalog.paths, catalog.lists);
@@ -256,7 +256,7 @@ test('no two stops on a shipped path share an issue, at any reading depth', asyn
       }
     }
   }
-  assert.equal(pairs, 3114);
+  assert.equal(pairs, 3120);
 });
 
 test('aggregate paths retain shared stories independently with catalog-ordered siblings', () => {

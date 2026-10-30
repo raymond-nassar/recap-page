@@ -5,8 +5,8 @@ sealed Android App Bundle. It never builds, signs, allocates a code, creates a P
 changes account permissions or publishes from a push, tag, merge or GitHub release event.
 It rejects production tracks. Production eligibility and permission remain separate owner decisions.
 
-This is maintainer tooling only. Readers still need no Recap Page account; their progress,
-notes and backups are not uploaded. The app's storage origin, schema and runtime dependencies
+This is maintainer tooling only. Readers still need no Recap Page account, and this tooling never
+uploads their progress, notes or backups. The app's storage origin, schema and runtime dependencies
 are unchanged.
 
 ## Prerequisites
@@ -266,6 +266,28 @@ its artifact record and distribution approval are separate from this uploader.
 Production also requires app-specific eligibility, the applicable testing/access process,
 owner product/privacy/device acceptance and a separately reviewed production-permission path.
 Neither testing access nor a successful GitHub workflow grants those.
+
+## Approved 4.3.0 listing draft
+
+The owner approved this text on 2026-10-28 for #950. It is a repository draft, not a live listing
+edit or an authorization to submit, upload or promote a release. Each operation still needs
+separate owner approval.
+
+### Short description
+
+Track Marvel reading orders and progress. Comics are not included.
+
+### Full description
+
+Follow a Marvel story across series and keep your place with credited reading orders. Mark comics read yourself, resume at the next unread issue, and keep private notes and custom entries.
+
+Reading in Marvel Unlimited ends December 7, 2026. Until that date, Read opens the recorded comic in its web reader when a link is known, or uses a comic details page as the fallback. Android opens an installed browser, not the Marvel Unlimited app. From December 7, Read opens the general Marvel Comics website, not a single-comic link. Comics are not included, and Marvel determines access to its services.
+
+Your lists and progress stay on your device. JSON backup and restore preserve your saved data. Historical Marvel Unlimited badges are records, not proof of access to Marvel Comics. Pasted Marvel Unlimited reader links are no longer accepted.
+
+Cover art is optional and loads directly from Marvel's image servers. Search and issue details use a community metadata service. An optional manual lookup sends your title to Marvel Fandom only when you choose it. No account, ads, analytics or telemetry.
+
+Curated lists credit Comic Book Herald and Comic Book Reading Orders where their guides supply the issue selection and sequence. This is an unofficial fan companion, not affiliated with or endorsed by Marvel or Disney.
 
 ## References
 

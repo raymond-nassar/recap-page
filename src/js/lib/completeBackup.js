@@ -38,7 +38,7 @@ export const PREPARED_FORMAT = 'recap-page-complete-restore-prepared';
 const SETTINGS_FIELDS = [...PORTABLE_SETTINGS, 'sidebarCollapsed'];
 const COMPONENTS = ['reader', 'history', 'settings', 'draft'];
 const FILE_FIELDS = ['components', 'digest', 'format', 'version'];
-const CAPTURE_KEYS = [KEY, LIST_HISTORY_KEY, SETTINGS_KEY, SIDEBAR_KEY, IMPORT_DRAFT_KEY];
+export const CAPTURE_KEYS = Object.freeze([KEY, LIST_HISTORY_KEY, SETTINGS_KEY, SIDEBAR_KEY, IMPORT_DRAFT_KEY]);
 const HEX = /^[a-f0-9]{64}$/;
 
 // Each component's keys, in the order its writes are made. The reader's stage and saved-copy keys are
@@ -141,15 +141,15 @@ function portableDraft(input) {
   if (input === null) return null;
   if (!exactFields(input, PORTABLE_DRAFT_FIELDS) || input.format !== DRAFT_FORMAT || input.version !== DRAFT_VERSION
     || !Array.isArray(input.occurrences)) refuse('The import draft in this file has unsupported fields.');
-  let source;
-  try { source = sourceOccurrences(input.rawText); }
+  let sources;
+  try { sources = [sourceOccurrences(input.rawText), sourceOccurrences(input.rawText, { legacyReaderLinks: true })]; }
   catch { refuse('The import draft source in this file is not usable.'); }
-  if (source.length !== input.occurrences.length) refuse('The import draft source positions in this file do not match its source.');
-  const occurrences = source.map((entry, index) => ({
-    ...entry,
+  if (sources.some((source) => source.length !== input.occurrences.length)) refuse('The import draft source positions in this file do not match its source.');
+  const occurrences = sources[0].map((entry, index) => sources.map((source) => ({
+    ...source[index],
     choice: input.occurrences[index]?.choice === null ? null : normalizeIssue(input.occurrences[index]?.choice),
     applied: input.occurrences[index]?.applied,
-  }));
+  })).find((candidate) => canonical(candidate) === canonical(input.occurrences[index])) ?? entry);
   if (canonical(occurrences) !== canonical(input.occurrences)) refuse('The import draft source or its selections were changed.');
   try { validateImportDraft(bounded(JSON.stringify(lifecycle({ ...input, occurrences })), 'The import draft')); }
   catch (error) {

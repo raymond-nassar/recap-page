@@ -7,7 +7,7 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       name="description"
-      content="Find your next Marvel comic and keep track of what you've read. Explore Recap Page for desktop and the Android app in development."
+      content="Track Marvel reading orders and progress. Comics are not included."
     />
     <title>Recap Page project home</title>
     <link
@@ -24,7 +24,7 @@
         <p class="site-name">Recap Page</p>
         <nav class="section-nav" aria-label="Page sections">
           <ul>
-            <li><a href="#android">Android preview</a></li>
+            <li><a href="#android">Android</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#getting-started">Get started</a></li>
             <li><a href="#documentation">Guides</a></li>
@@ -41,10 +41,10 @@
           <p class="lede">
             Find Marvel reading lists and keep track of what you've read.
           </p>
-          <p class="platform-status">On desktop today. Android in development.</p>
+          <p class="platform-status">Available for Windows and Android. Coming soon for iPhone and iPad.</p>
           <p class="action-row">
             <a class="button" href="#getting-started">Get started</a>
-            <a href="#android">See the Android preview</a>
+            <a href="#android">See the Android app</a>
           </p>
         </div>
         <img
@@ -58,7 +58,9 @@
         />
         <p class="overview-boundary">
           No Recap Page account. No automatic device sync or offline comic reading.
-          Comics and a Marvel Unlimited subscription aren't included.
+        </p>
+        <p class="overview-boundary">
+          Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.
         </p>
       </section>
 
@@ -67,20 +69,16 @@
           <div class="android-intro">
             <div class="section-heading">
               <h2 id="android-title">Recap Page for Android</h2>
-              <p class="platform-status">Android in development</p>
               <p>
                 No computer needed. Built-in lists and saved progress work offline.
                 Search and Marvel reading need an internet connection.
               </p>
-              <p>
-                Not available on Google Play. The beta doesn't include all the features shown here.
-              </p>
               <p class="action-row">
-                <a class="button" href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
-                  About the Android app
+                <a class="button" href="https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage">
+                  Open Google Play
                 </a>
-                <a href="https://github.com/raymond-nassar/recap-page/releases/tag/android-v3.0.1-beta.2">
-                  Try the beta
+                <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
+                  About the Android app
                 </a>
               </p>
             </div>
@@ -91,8 +89,7 @@
                 Press Back to close menus.
               </li>
               <li>
-                <strong>Read in Marvel Unlimited.</strong>
-                If a comic won't open, choose <strong>Open in browser</strong>.
+                Android's Read uses an installed browser, not the Marvel Unlimited app.
               </li>
               <li>
                 <strong>Move between devices.</strong>
@@ -121,7 +118,7 @@
                 width="1080"
                 height="1920"
                 loading="lazy"
-                alt="Android reading view with a fictional next issue, a Done button, 3 of 8 read, unknown availability, About this comic, and More comic actions, above the bottom navigation"
+                alt="Android reading view with a fictional next issue, a Done button, 3 of 8 read, no recorded Unlimited date, and position 4 of 8, above the bottom navigation"
               />
               <figcaption>
                 <strong>Your next comic.</strong>
@@ -139,7 +136,7 @@
       <section id="features" class="section shell" aria-labelledby="features-title">
         <div class="section-heading">
           <h2 id="features-title">Read your way</h2>
-          <p>On desktop and in the Android preview.</p>
+          <p>On desktop and Android.</p>
         </div>
         <div class="feature-grid">
           <article>
@@ -164,10 +161,10 @@
             </p>
           </article>
           <article>
-            <h3>Check availability</h3>
+            <h3>Marvel Unlimited record</h3>
             <p>
-              See what's unknown, scheduled, or expected, and record your own available or unavailable
-              checks. Missing guide entries stay visible.
+              This is a historical record, not availability in Marvel Comics.
+              Missing guide entries stay visible.
             </p>
           </article>
           <article>
@@ -175,13 +172,6 @@
             <p>
               Save a JSON backup or preview a Markdown checklist. Share an order without notes,
               reading history, or availability choices.
-            </p>
-          </article>
-          <article>
-            <h3>New guides</h3>
-            <p>
-              Try Iron Fist, Namor, Shang-Chi, Nova, Ms. Marvel, Hawkeye, Age of Apocalypse,
-              Onslaught, or Greg Pak's Hulk. All include source credits.
             </p>
           </article>
         </div>
@@ -208,8 +198,7 @@
               <strong>Civil War (2006) #7</strong> is next.
             </li>
             <li>
-              <strong>Choose Read.</strong> Open the reader in a separate tab, or an official issue
-              page if no reader link is found. A link doesn't guarantee access.
+              <strong>Choose Read.</strong> Until December 7, 2026, the Marvel Unlimited web reader opens in a separate tab when a link is recorded, with a comic details page as the fallback. From that date, Read opens the general Marvel Comics website, not a single-comic link.
             </li>
             <li>
               <strong>Mark it read.</strong> Return and choose <strong>Done</strong>.
@@ -243,7 +232,7 @@
                 width="960"
                 height="900"
                 loading="lazy"
-                alt="Avengers Disassembled showing the next issue, reading progress, and upcoming comics"
+                alt="Avengers Disassembled showing the next issue, Read and Done buttons, and reading progress"
               />
               <figcaption>
                 See what to read next.
@@ -269,8 +258,8 @@
           <article class="card route-card">
             <h3>Android</h3>
             <p>Android 8 or later, with an up-to-date Android System WebView.</p>
-            <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID_BETA.md">
-              Set up the Android beta
+            <a class="button" href="https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage">
+              Open Google Play
             </a>
           </article>
           <article class="card route-card">
@@ -289,6 +278,10 @@
               Source setup guide
             </a>
           </article>
+          <article class="card route-card">
+            <h3>iPhone and iPad</h3>
+            <p>Coming soon.</p>
+          </article>
         </div>
         <aside class="origin-warning" aria-labelledby="origin-warning-title">
           <h3 id="origin-warning-title">Keep your desktop progress</h3>
@@ -303,8 +296,7 @@
           <span>Already running?</span>
         </p>
         <p class="platform-note">
-          Save and check a backup before switching Android apps. The beta and future official app
-          save separately. Uninstalling deletes the app's data.
+          Uninstalling the Android app deletes its saved data. Save and check a backup first.
         </p>
       </section>
 
@@ -314,13 +306,6 @@
             <h2 id="troubleshooting-title">Need help?</h2>
           </div>
           <div class="route-list">
-            <a
-              class="route"
-              href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID_BETA.md#send-back-a-short-report"
-            >
-              <strong>Android beta help</strong>
-              <span>Tell us what went wrong.</span>
-            </a>
             <a
               class="route"
               href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md#troubleshooting"
@@ -349,7 +334,7 @@
         </div>
         <div class="link-grid">
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
-            <strong>Android app</strong><span>What we're building.</span>
+            <strong>Android app</strong><span>Setup and features.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page#readme">
             <strong>Overview</strong><span>Start here.</span>

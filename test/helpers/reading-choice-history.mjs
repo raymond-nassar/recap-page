@@ -113,23 +113,35 @@ export function historicalMcuDescriptionPayloadText(file, text) {
   return text.replace(header, () => `  "description": ${JSON.stringify(revision.before)},`);
 }
 
+// A path naming a list that a reconstructed library leaves out was itself added after that review,
+// so it leaves with the list, as libraryDigestExcludingOrders already drops it for CBH evidence.
+// The owner pipeline differs: loadCurrentOwnerLibrary removes the guide under review from the lists
+// but keeps every path, so owner reconstructions name that guide and its peers as present.
+export function pathsWithinLists(paths, lists, presentIds = []) {
+  if (!Array.isArray(paths)) return paths;
+  const ids = new Set([...lists.map((entry) => entry.id), ...presentIds]);
+  return paths.filter((entry) => (entry.steps ?? []).every((step) => ids.has(step)));
+}
+
 // Source approvals bind the original names and vectors, not the later catalog's renamed choices.
 export function historicalReadingChoiceManifest(manifest) {
+  const lists = historicalMcuDescriptionManifest(manifest).lists
+    .filter(({ id }) => id !== 'avengers-doomsday-secret-wars'
+      && !registeredOwnerAdditionIds.includes(id) && !registeredCuratedGuideIds.has(id))
+    .map((entry) => {
+      if (entry.id === spiderRevision.manifestEntry.id) {
+        if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
+          && JSON.stringify(entry) !== JSON.stringify(spiderRevision.manifestEntry)) {
+          throw new Error('Spider-Man manifest differs from both captured selection contracts.');
+        }
+        return structuredClone(spiderRevision.manifestEntry);
+      }
+      return entries.has(entry.id) ? structuredClone(entries.get(entry.id)) : entry;
+    });
   return {
     ...manifest,
-    lists: historicalMcuDescriptionManifest(manifest).lists
-      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars'
-        && !registeredOwnerAdditionIds.includes(id) && !registeredCuratedGuideIds.has(id))
-      .map((entry) => {
-        if (entry.id === spiderRevision.manifestEntry.id) {
-          if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
-            && JSON.stringify(entry) !== JSON.stringify(spiderRevision.manifestEntry)) {
-            throw new Error('Spider-Man manifest differs from both captured selection contracts.');
-          }
-          return structuredClone(spiderRevision.manifestEntry);
-        }
-        return entries.has(entry.id) ? structuredClone(entries.get(entry.id)) : entry;
-      }),
+    lists,
+    ...(Object.hasOwn(manifest, 'paths') ? { paths: pathsWithinLists(manifest.paths, lists) } : {}),
   };
 }
 
@@ -147,7 +159,7 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
   return id === 'hickman-minimal' ? evidence.issueIds.map(String) : currentIds;
 }
 
-export function historicalSpiderManSelectionLibraryDigest(manifest, orders) {
+export function historicalSpiderManSelectionLibraryDigest(manifest, orders, { presentIds = [] } = {}) {
   manifest = { ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)) };
   orders = beforeIdentityOrders(orders);
   const earlier = new Map(manifest.lists.filter((entry) =>
@@ -181,6 +193,9 @@ export function historicalSpiderManSelectionLibraryDigest(manifest, orders) {
     issueIds: entry.id === spiderRevision.manifestEntry.id
       ? historicalReadingChoiceIssueIds(entry.id, entry.issueIds) : entry.issueIds,
   }));
+  if (Object.hasOwn(recordedManifest, 'paths')) {
+    recordedManifest.paths = pathsWithinLists(recordedManifest.paths, recordedManifest.lists, presentIds);
+  }
   return libraryDigestFor(recordedManifest, recordedOrders);
 }
 

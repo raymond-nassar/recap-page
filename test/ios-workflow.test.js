@@ -5,6 +5,7 @@ import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { assertExportRun, assertInvocation, assertProtection, assertRunHistory } from '../scripts/ios-release.mjs';
 
 // The iOS workflow builds and tests unsigned Simulator builds on every pull request. What makes it
 // safe and useful is cheap to lose in a one-line edit: no path filter, no secret, no signing, a
@@ -580,4 +581,145 @@ test('the parser accounts for every step and deadline the iOS workflow declares'
   assert.ok(declaredSteps > 0 && declaredDeadlines > 0);
   assert.equal(foundSteps, declaredSteps, 'the parser found every step opener in the file');
   assert.equal(foundDeadlines, declaredDeadlines, 'every deadline in the file belongs to a job or a step');
+});
+
+const testflight = readFileSync(new URL('../.github/workflows/ios-testflight.yml', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+const deliveryJobs = parseJobs(testflight);
+const deliverySource = readFileSync(new URL('../scripts/ios-release.mjs', import.meta.url), 'utf8');
+
+test('TestFlight is dispatch-only, serialized, read-only and refuses every job outside its main workflow', () => {
+  const triggers = testflight.split('\non:\n')[1].split('\npermissions:')[0];
+  assert.deepEqual(triggers.split('\n').filter((line) => /^ {2}\S/.test(line)), ['  workflow_dispatch:']);
+  assert.match(triggers, /options: \[export, upload\]/);
+  assert.match(triggers, /build_number:/);
+  assert.match(triggers, /export_run:/);
+  assert.match(testflight, /permissions:\n {2}contents: read\n {2}actions: read\n/);
+  assert.match(testflight, /group: ios-testflight\n {2}cancel-in-progress: false/);
+  assert.deepEqual(deliveryJobs.map((job) => job.name), ['preflight', 'deliver']);
+  for (const job of deliveryJobs) {
+    const source = testflight.split(`\n  ${job.name}:\n`)[1].split(/\n {2}\w+:\n/)[0];
+    assert.match(source, /github\.event_name == 'workflow_dispatch'/);
+    assert.match(source, /github\.ref == 'refs\/heads\/main'/);
+    assert.match(source, /github\.workflow_ref == format\('\{0\}\/\.github\/workflows\/ios-testflight\.yml@refs\/heads\/main', github\.repository\)/);
+    const total = job.steps.reduce((sum, step) => {
+      assert.ok(Number.isInteger(step.timeout) && step.timeout > 0, `${job.name}: ${step.label}`);
+      return sum + step.timeout;
+    }, 0);
+    assert.ok(job.timeout > total, `${job.name}: job deadline must exceed all steps' deadlines`);
+  }
+  assert.equal(deliveryJobs.flatMap((job) => job.steps).length,
+    testflight.split('\n').filter((line) => /^ {6}- /.test(line)).length);
+  for (const match of testflight.matchAll(/uses: ([^\s]+)([^\n]*)/g)) {
+    assert.match(match[1], /@[0-9a-f]{40}$/);
+    assert.match(match[2], /# v\d/);
+  }
+  assert.doesNotMatch(testflight, /continue-on-error|pull_request_target|write-all|contents: write/);
+});
+
+test('TestFlight secrets are confined to the owner-protected sign and upload steps and keys are always removed', () => {
+  const preflight = testflight.split('\n  preflight:\n')[1].split('\n  deliver:\n')[0];
+  const deliver = testflight.split('\n  deliver:\n')[1];
+  assert.doesNotMatch(preflight, /secrets\.|^ {4}environment:/m);
+  assert.match(deliver, /^ {4}environment: \$\{\{ needs.preflight.outputs.environment \}\}$/m);
+  assert.match(deliver, /needs.preflight.outputs.environment == 'ios-testflight'/);
+  assert.match(deliverySource, /environment=\$\{environment\}/);
+  const secretSteps = deliver.split(/\n {6}- /).filter((step) => /secrets\./.test(step));
+  assert.equal(secretSteps.length, 2);
+  assert.match(secretSteps[0], /if: inputs.mode == 'export'/);
+  assert.match(secretSteps[1], /if: inputs.mode == 'upload'/);
+  for (const step of secretSteps) {
+    assert.deepEqual([...step.matchAll(/secrets\.(\w+)/g)].map((match) => match[1]).sort(),
+      ['APPLE_TEAM_ID', 'ASC_ISSUER_ID', 'ASC_KEY_ID', 'ASC_PRIVATE_KEY']);
+  }
+  const cleanup = deliver.split('name: Remove the private API key\n')[1].split(/\n {6}- /)[0];
+  assert.match(cleanup, /if: always\(\)/);
+  assert.match(cleanup, /rm -f "\$RUNNER_TEMP"\/ios-private-keys\/AuthKey_\*\.p8/);
+  const artifactPaths = [...deliver.matchAll(/path: \|\n((?: {12}.*\n)+)/g)].map((match) => match[1]).join('');
+  assert.doesNotMatch(artifactPaths, /private|archive|plist|log|xcarchive/);
+  assert.match(artifactPaths, /ios-artifact\.json/);
+  assert.match(artifactPaths, /build-numbers\.proposed\.json/);
+  assert.match(deliver, /retention-days: 30/);
+  assert.match(deliver, /retention-days: 90/);
+  assert.ok(deliver.indexOf('Recheck current protection') < deliver.indexOf('Fetch the exact successful export packet'));
+});
+
+test('TestFlight export uses the iOS-18-tested toolchain and upload downloads and checks the sealed bytes', () => {
+  const minimum = jobs.find((job) => job.name === 'minimum');
+  assert.equal(deliveryJobs.find((job) => job.name === 'deliver').runsOn, minimum.runsOn);
+  assert.equal(deliveryJobs.find((job) => job.name === 'deliver').env.DEVELOPER_DIR, minimum.env.DEVELOPER_DIR);
+  assert.match(testflight, /ref: \$\{\{ needs.preflight.outputs.source_sha \}\}\n {10}path: application/);
+  assert.match(testflight, /run-id: \$\{\{ inputs.export_run \}\}/);
+  assert.match(testflight, /name: ios-export-\$\{\{ inputs.build_number \}\}-\$\{\{ inputs.export_run \}\}/);
+  assert.match(deliverySource, /<key>destination<\/key><string>export<\/string>/);
+  assert.match(deliverySource, /<key>manageAppVersionAndBuildNumber<\/key><false\/>/);
+  assert.match(deliverySource, /'-configuration', 'Release'/);
+  assert.match(deliverySource, /'-allowProvisioningUpdates', '-authenticationKeyPath'/);
+  assert.match(deliverySource, /await verifyIosUpload\(path, record, ledger\);\s+run\('xcrun', \['altool', '--upload-app'/);
+  assert.match(deliverySource, /git\('fetch', 'origin', 'main:refs\/remotes\/origin\/main'\)/);
+  assert.match(deliverySource, /API_PRIVATE_KEYS_DIR: keyDir/);
+  assert.doesNotMatch(deliverySource, /destination<\/key><string>upload|--upload-app[\s\S]*catch/);
+});
+
+test('TestFlight invocation refuses wrong refs, workflow copies, automatic events, reruns and unknown modes', () => {
+  const env = {
+    GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/main',
+    GITHUB_REPOSITORY: 'raymond-nassar/recap-page',
+    GITHUB_WORKFLOW_REF: 'raymond-nassar/recap-page/.github/workflows/ios-testflight.yml@refs/heads/main',
+    GITHUB_RUN_ATTEMPT: '1', IOS_MODE: 'export',
+  };
+  assertInvocation(env);
+  assertInvocation({ ...env, IOS_MODE: 'upload' });
+  for (const [field, value] of [
+    ['GITHUB_EVENT_NAME', 'push'], ['GITHUB_REF', 'refs/heads/feature'],
+    ['GITHUB_WORKFLOW_REF', env.GITHUB_WORKFLOW_REF.replace('@refs/heads/main', '@refs/heads/feature')],
+    ['GITHUB_WORKFLOW_REF', env.GITHUB_WORKFLOW_REF.replace('ios-testflight.yml', 'copy.yml')],
+    ['GITHUB_RUN_ATTEMPT', '2'], ['IOS_MODE', 'rehearsal'],
+  ]) assert.throws(() => assertInvocation({ ...env, [field]: value }), /required|invalid/);
+});
+
+test('TestFlight protection refuses missing, bypassable, other-reviewer, team-reviewer or broad branch rules', () => {
+  const value = { can_admins_bypass: false,
+    protection_rules: [{ type: 'required_reviewers', prevent_self_review: false, reviewers: [
+      { type: 'User', reviewer: { login: 'raymond-nassar' } },
+    ] }],
+    deployment_branch_policy: { custom_branch_policies: true, protected_branches: false } };
+  const policies = { branch_policies: [{ name: 'main', type: 'branch' }] };
+  assertProtection(value, policies);
+  for (const change of [
+    { protection_rules: [] }, { can_admins_bypass: true },
+    { protection_rules: [{ ...value.protection_rules[0], prevent_self_review: true }] },
+    { protection_rules: [{ type: 'required_reviewers', reviewers: [{ type: 'Team', reviewer: { login: 'raymond-nassar' } }] }] },
+    { protection_rules: [{ type: 'required_reviewers', reviewers: [{ type: 'User', reviewer: { login: 'someone' } }] }] },
+    { deployment_branch_policy: null },
+  ]) assert.throws(() => assertProtection({ ...value, ...change }, policies), /environment/);
+  for (const branch_policies of [[], [{ name: '*', type: 'branch' }], [{ name: 'main', type: 'tag' }],
+    [...policies.branch_policies, { name: 'other', type: 'branch' }]]) {
+    assert.throws(() => assertProtection(value, { branch_policies }), /main branch/);
+  }
+});
+
+test('TestFlight refuses replayed export/upload attempts and uploading older allocations after newer attempts', () => {
+  const env = { GITHUB_RUN_ID: '123', IOS_MODE: 'export' };
+  const current = { id: 123, display_title: 'iOS export build 2' };
+  assertRunHistory([current], env, 2);
+  for (const status of ['completed', 'queued', 'in_progress']) {
+    const previous = { ...current, id: 122, status, conclusion: 'failure' };
+    assert.throws(() => assertRunHistory([previous, current], env, 2), /already attempted/);
+  }
+  const upload = { ...env, IOS_MODE: 'upload' };
+  assertRunHistory([current, { id: 123, display_title: 'iOS upload build 2' }], upload, 2);
+  assert.throws(() => assertRunHistory([{ id: 122, display_title: 'iOS upload build 2' }], upload, 2), /already attempted/);
+  assert.throws(() => assertRunHistory([{ id: 124, display_title: 'iOS upload build 3' }], upload, 2), /newer build/);
+  assertRunHistory([{ id: 122, display_title: 'iOS upload build 2' }], upload, 3);
+});
+
+test('TestFlight packet selection requires the same build from a successful manual main export of this workflow', () => {
+  const run = { path: '.github/workflows/ios-testflight.yml', head_branch: 'main',
+    event: 'workflow_dispatch', conclusion: 'success', display_title: 'iOS export build 2' };
+  assertExportRun(run, 2);
+  for (const [field, value] of [
+    ['path', '.github/workflows/copy.yml'], ['head_branch', 'feature'], ['event', 'push'],
+    ['conclusion', 'failure'], ['conclusion', null], ['display_title', 'iOS export build 3'],
+    ['display_title', 'iOS upload build 2'],
+  ]) assert.throws(() => assertExportRun({ ...run, [field]: value }, 2), /unsuccessful export/);
 });

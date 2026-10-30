@@ -7,17 +7,20 @@ To use the app, start with [the running guide](docs/RUNNING.md).
 
 ## What this project is trying to be
 
-A local-first Marvel Unlimited companion that keeps your place in reading orders. There are no
-accounts, hosted backends, analytics, or automatic uploads of saved reading data. Desktop uses a local
-server and browser storage; Android has separate app storage. Readers can export their own backups.
-Silent loss or corruption of saved reading progress is treated as a security issue.
+A local-first Marvel Unlimited companion that keeps your place in reading orders. There are no Recap
+Page accounts, hosted backends or analytics, and saved reading data is uploaded only by cloud backup,
+which a reader turns on for their own cloud storage account (#810). Desktop uses a local server and
+browser storage; Android has separate app storage. Readers can export their own backups. Silent loss
+or corruption of saved reading progress is treated as a security issue.
 
 ## What will be declined, and why
 
 Check these constraints before starting. Changes that break them will be declined.
 
 - **Reading-data uploads, accounts, or new services.** Saved data stays local unless the reader
-  explicitly exports it.
+  explicitly exports it or turns on cloud backup, the one exception, which sends it only to a cloud
+  storage account of the reader's own (#810). The project runs no service and holds no account or
+  copy of anyone's data.
 - **Comic artwork in app-controlled storage.** Store cover URLs, never image bytes. Do not host,
   proxy, or cache comic artwork.
 - **Scraping Marvel's sites.** Link to them; get details from the third-party metadata service.
@@ -31,8 +34,8 @@ Check these constraints before starting. Changes that break them will be decline
   [the reasons](docs/WHY_A_BROWSER_APP.md) are hardware findings rather than preferences.
 
 The bundled metadata snapshot ends in 2025. Newer comics start without bundled covers or details.
-Readers can add them by hand, request a Marvel Fandom lookup, or paste a Marvel Unlimited reader
-link. The snapshot boundary is not a defect.
+Readers can add them by hand or request a Marvel Fandom lookup. Pasted Marvel Unlimited reader
+links are no longer accepted. The snapshot boundary is not a defect.
 
 ## Before you write anything
 

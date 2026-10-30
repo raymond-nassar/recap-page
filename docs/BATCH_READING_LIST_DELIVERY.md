@@ -132,9 +132,14 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:8-92` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:191-217` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:200-226` require registered contracts, current approval
 evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
-registration without a frozen whole-library peer-approval digest.
+registration without a frozen whole-library peer-approval digest. A new Reading Path changes every
+reconstructed review library that keeps today's paths, so the shared history helpers drop any path
+that names a list the reconstruction leaves out, the rule `libraryDigestExcludingOrders` already
+applies to CBH evidence. An owner review is the exception: it records every path, including one
+that names the guide under review or a peer reviewed beside it, so an owner reconstruction keeps
+that path.
 
 For an owner event, declare `surface: "modern-timeline"` in its owner-delivery registration and
 independent contract; omission retains the MCU default. Use the reviewed local-checklist route,
@@ -159,7 +164,10 @@ position, with its exact identity and collection qualifier. Later publication
 still requires the owner's exact comic URL confirmation and separate proposal
 approval. Synthetic preparation belongs only in tests. Do not regenerate these
 registrations to erase a later publication: retain the original capture and add
-an exact historical inverse when updating its assertions.
+an exact historical inverse when updating its assertions. A later Comic Book Herald
+guide that shares issues with one of them needs no owner registration: the identity
+updater accepts that guide's own approved review as the reciprocal authority, but only
+while its digests hold and its approved relationship is the exact inverse of the one observed.
 
 The maintained capture is [the baseline registration tool](../scripts/register-cbh-owner-baselines.mjs);
 its [eligibility checks](../test/older-owner-guides.test.js) bind the proposed

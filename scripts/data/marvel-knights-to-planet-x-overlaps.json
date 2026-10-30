@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-10-26T18:18:08.617Z",
-  "pairCount": 86,
+  "generatedAt": "2026-10-29T23:07:39.400Z",
+  "pairCount": 88,
   "chapterCountWithOverlap": 51,
-  "existingListCount": 26,
-  "sharedOccurrenceCount": 462,
+  "existingListCount": 27,
+  "sharedOccurrenceCount": 466,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "f4d5fbac219caf47149f4df0f41e9983510dfed26b3c02f379b966b04e4c3aa0",
+  "matrixSha256": "f9fcd9add7a3c407fea8792715e2f73eeff0b6af8b2ebe8a4d596026d967bcae",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -71,6 +71,10 @@
     {
       "id": "modern-x-men-fast-track",
       "sharedCount": 42
+    },
+    {
+      "id": "professor-x-reading-order",
+      "sharedCount": 4
     },
     {
       "id": "punisher-reading-order",
@@ -189,6 +193,16 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-05",
+      "existingListId": "professor-x-reading-order",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        14933,
+        14934,
+        14935
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-05",
       "existingListId": "wolverine-reading-order",
       "sharedCount": 3,
       "sharedIssueIds": [
@@ -292,6 +306,14 @@
         14939,
         14940,
         14941
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-12",
+      "existingListId": "professor-x-reading-order",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        14940
       ]
     },
     {

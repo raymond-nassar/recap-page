@@ -664,7 +664,7 @@ which is the failure this recovery undid.
 | 10 | Market-facing framing does not apply. This is a single-user private app, so segments, growth, retention, funnels, and A/B tests are out of scope. |
 | 11 | Match repository writing conventions. Shipped surfaces contain no em dashes. |
 
-Three notes on the table, none of which alter it.
+Four notes on the table, none of which alter it.
 
 - **The finding inside constraint 6 is closed, and the row's wording predates the fix.** The row
   tells you to record a disagreement between the comment above the enum in
@@ -680,6 +680,12 @@ Three notes on the table, none of which alter it.
   says in the page that the snapshot ends in 2025. Constraint 9's hardware evidence is in
   `docs/WHY_A_BROWSER_APP.md`, which `README.md` links precisely so the emulator route is not
   retried.
+- **Constraint 3 has one owner-approved exception, cloud backup (#810).** A reader may turn on
+  backups of their saved data to a cloud storage account of their own. Nothing goes to an account,
+  server or store of the project's own, no saved data is sent before the reader turns it on for that
+  browser, and a build without a release's client configuration has no cloud backup at all. Every
+  other upload, account, cloud service, analytics and telemetry is still declined under constraint
+  3, and the row is unchanged because it records what the gate lines were checked against.
 
 **A hypothesis that was tested and refuted.** While 8 and 9 were unrecovered, the two rules below
 were the leading candidates for them, because exactly two were unmapped and exactly two numbers were

@@ -173,6 +173,8 @@
               </details>
             </div>
 
+            <p id="reader-closure-notice" class="notice notice-warn">Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.</p>
+
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">
               <div class="chero-in">
@@ -354,11 +356,18 @@
                    pointer on a desktop (UX-10, #836). It still shows from the first saved list until
                    the first saved progress. -->
               <aside id="save-education" class="card card-static save-education" hidden>
+                <!-- The privacy sentences come in two variants (#810, P02-T06): data-cloud-copy="off" is what a
+                     build without cloud backup says, and "on", hidden until the page learns this build has
+                     cloud backup, replaces it there. js/views/cloud.js switches them; the words are pinned in
+                     test/privacy-copy.test.js. -->
                 <p class="rail-hint">
-                  Your lists and progress save automatically in this browser. This is browser storage,
-                  not cookies, an account, or a cloud copy, and nothing is uploaded. Use the JSON backup
-                  in Backup &amp; settings to protect your progress or move it to another browser profile
-                  or computer.
+                  Your lists and progress save automatically in this browser.
+                  <span data-cloud-copy="off">This is browser storage, not cookies, an account, or a cloud
+                  copy, and nothing is uploaded.</span><span data-cloud-copy="on" hidden>This is browser
+                  storage, not cookies or an account. Your lists and progress are uploaded only if you turn
+                  on cloud backup, and then only to your own OneDrive.</span>
+                  Use the JSON backup in Backup &amp; settings to protect your progress or move it to another
+                  browser profile or computer.
                 </p>
                 <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
               </aside>
@@ -462,7 +471,6 @@
                       <p id="issue-rating-status" class="rail-hint" hidden></p>
                     </div>
                   </div>
-                  <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
                 </div>
                 <div class="art">
                   <img id="issue-focus-img" alt="" />
@@ -491,33 +499,10 @@
                   </div>
                   <section id="reader-link-root" class="reader-link" aria-labelledby="reader-link-heading" hidden>
                     <details class="field-disclosure action-disclosure" id="reader-link-help">
-                      <summary id="reader-link-heading">Trouble opening this comic?</summary>
+                      <summary id="reader-link-heading">Where Read opens</summary>
                       <div class="stack">
                         <p id="reader-link-summary" class="rail-hint"></p>
-                        <div class="cta">
-                          <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
-                          <button type="button" class="btn btn-g" id="reader-link-revert" hidden>Use original link</button>
-                        </div>
-                        <form id="reader-link-form" class="stack" hidden>
-                          <label id="reader-link-label" for="reader-link-input">Marvel Unlimited reader address</label>
-                          <input id="reader-link-input" type="url" autocomplete="off" spellcheck="false" />
-                          <p class="rail-hint">Use only a link for this exact comic. Paste an http or https address on read.marvel.com with a /#/book/ numeric reference (up to 12 digits). Comic information pages, other hosts and custom ports are not accepted.</p>
-                          <p id="reader-link-preview" class="rail-hint"></p>
-                          <p id="reader-link-error" class="report"></p>
-                          <div class="cta">
-                            <button id="reader-link-apply" type="submit" class="btn">Use temporarily</button>
-                            <button id="reader-link-cancel" type="button" class="btn btn-g">Cancel</button>
-                          </div>
-                        </form>
-                        <p id="reader-link-status" class="rail-hint"></p>
-                        <button id="reader-link-reportToggle" type="button" class="btn btn-g">Report details</button>
-                        <div id="reader-link-reportPanel" class="stack" hidden>
-                          <p id="reader-link-reportStatus" class="rail-hint"></p>
-                          <textarea id="reader-link-reportText" rows="8" spellcheck="false"></textarea>
-                          <button id="reader-link-regenerate" type="button" class="btn btn-g">Regenerate report details</button>
-                          <p id="reader-link-reportDisclosure" class="rail-hint"></p>
-                          <a id="reader-link-reportLink" class="btn btn-g" href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open GitHub correction form (new tab)</a>
-                        </div>
+                        <p class="rail-hint">Marvel Unlimited reader links are no longer accepted. Saved comics and JSON backups keep their recorded references.</p>
                       </div>
                     </details>
                   </section>
@@ -925,12 +910,12 @@
                   </details>
                   <div id="manual-candidates" class="results"></div>
                   <details class="field-disclosure">
-                    <summary>Add a reader link (optional)</summary>
+                    <summary>Add a comic details link (optional)</summary>
                     <div class="stack">
-                      <label for="manual-url">marvel.com or Marvel Unlimited address</label>
-                      <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://read.marvel.com/#/book/…" />
+                      <label for="manual-url">marvel.com comic details address</label>
+                      <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://www.marvel.com/comics/issue/…" />
                       <p class="rail-hint" id="manual-url-hint">
-                        Paste its Marvel Unlimited address to make Read open the book directly.
+                        Marvel Unlimited reader links are no longer accepted. The title alone is enough to add a comic.
                       </p>
                     </div>
                   </details>
@@ -943,12 +928,12 @@
           <!-- ---------------------------------------- data view -->
           <section id="view-data" class="view" hidden aria-labelledby="data-h">
             <div class="head"><div class="head-left"><h1 id="data-h">Backup &amp; settings</h1>
-              <div class="sub">Your reading progress lives in this browser, at this exact address, and is never sent anywhere.</div>
+              <div class="sub"><span data-cloud-copy="off">Your reading progress lives in this browser, at this exact address, and is never sent anywhere.</span><span data-cloud-copy="on" hidden>Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.</span></div>
             </div></div>
 
             <section class="setgroup">
               <h2>Data safety</h2>
-              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The backups below each hold one kind of data. Settings are not included in them.</p>
+              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.</p>
               <div class="card card-static addpri" id="complete-backup">
                 <h3>Complete backup</h3>
                 <div class="field-row">
@@ -962,7 +947,7 @@
                 </div>
                 <div id="complete-backup-report" class="results" tabindex="-1"></div>
                 <section id="complete-restore-recovery" aria-labelledby="complete-restore-recovery-h" hidden>
-                  <h4 id="complete-restore-recovery-h">Unfinished complete restore</h4>
+                  <h4 id="complete-restore-recovery-h">Complete restore needs a choice</h4>
                   <p class="rail-hint" id="complete-restore-recovery-status"></p>
                   <div class="field-row">
                     <button type="button" id="btn-complete-prior-copy" class="btn btn-g">Download exact prior copy</button>
@@ -973,8 +958,37 @@
                 </section>
                 <details class="setting-more">
                   <summary>About complete backups</summary>
-                  <p class="rail-hint" id="complete-backup-contents">A complete backup holds everything the three backups below hold, plus cover art, theme, reading filter, reading shortcut, story summary and sidebar choices. The metadata source under Advanced is not included, so a backup can never change which service the app asks for comic details.</p>
+                  <p class="rail-hint" id="complete-backup-contents">A complete backup holds everything the reading data, completion history and import draft backups hold, plus cover art, theme, reading filter, reading shortcut, story summary and sidebar choices. The metadata source under Advanced is not included, so a backup can never change which service the app asks for comic details.</p>
                   <p class="rail-hint">Versions before this one cannot read a complete backup. Close other Recap Page tabs before restoring one. If a restore is interrupted, this card offers to finish it, put the earlier data back, or download an exact copy of the data from before it. This version cannot restore that copy: it is for recovering the earlier data by hand or with help.</p>
+                </details>
+              </div>
+              <!-- Cloud backup (#810). Hidden until the page learns this build has it, which it asks when this
+                   view opens, so a build without cloud backup never shows the card. The sign-in button carries
+                   Microsoft's logo, unaltered, beside its own words, as Microsoft's branding guidance asks;
+                   src/brands/README.md records where the logo came from. -->
+              <div class="card card-static addpri" id="cloud-backup" hidden>
+                <h3>Cloud backup</h3>
+                <p class="rail-hint" id="cloud-backup-intro">Keep a complete backup in your own OneDrive, made automatically as you read.</p>
+                <p id="cloud-backup-status" tabindex="-1"></p>
+                <progress id="cloud-backup-progress" aria-hidden="true" hidden></progress>
+                <div class="field-row" id="cloud-backup-primary">
+                  <button type="button" id="btn-cloud-sign-in" class="btn btn-g" hidden><img src="./brands/ms-symbollockup_mssymbol_19.svg" alt="" width="21" height="21" loading="lazy" />Sign in with Microsoft</button>
+                  <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
+                </div>
+                <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
+                <details class="setting-more" id="cloud-discovery" hidden>
+                  <summary id="cloud-discovery-summary">Backups in this OneDrive</summary>
+                  <div id="cloud-discovery-list"></div>
+                </details>
+                <div class="field-row" id="cloud-backup-actions">
+                  <button type="button" id="btn-cloud-delete" class="btn btn-g" hidden>Delete this device's cloud backups</button>
+                  <button type="button" id="btn-cloud-disconnect" class="btn btn-g" hidden>Disconnect</button>
+                </div>
+                <div id="cloud-backup-report" class="results" tabindex="-1"></div>
+                <details class="setting-more">
+                  <summary>About cloud backup</summary>
+                  <p class="rail-hint">A backup is made once changes have been quiet for ten seconds, at most once every five minutes, and at once when you leave Recap Page. The two newest backups of this browser are kept, and older ones go to OneDrive's recycle bin. Restoring one replaces everything it holds, as restoring a complete backup file does.</p>
+                  <p class="rail-hint" id="cloud-backup-privacy">Backups go to a folder of their own in your OneDrive, and that folder is all of your OneDrive that Recap Page can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page's developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.</p>
                 </details>
               </div>
               <div class="card card-static addpri">
@@ -1084,8 +1098,11 @@
                 <details class="setting-more">
                   <summary>What the choice affects</summary>
                   <p class="rail-hint">
-                    The choice is stored in this browser alongside your other settings and is never sent
-                    anywhere. High contrast mode and reduced motion are still honoured whichever you pick.
+                    <span data-cloud-copy="off">The choice is stored in this browser alongside your other
+                    settings and is never sent anywhere.</span><span data-cloud-copy="on" hidden>The choice
+                    is stored in this browser alongside your other settings and is sent only inside a cloud
+                    backup to your own OneDrive, if you turn cloud backup on.</span>
+                    High contrast mode and reduced motion are still honoured whichever you pick.
                   </p>
                 </details>
               </div>
@@ -1198,8 +1215,12 @@
               <h3>Metadata and links only</h3>
               <p class="rail-hint">
                 No comic content is stored, copied, proxied, or served. The app tracks which issues you
-                have read and links out to Marvel's own site and reader. Reading an issue requires your
-                own Marvel Unlimited subscription. Cover images load directly from Marvel's own servers,
+                have read and links out to Marvel's own services. Reading in Marvel Unlimited ends
+                December 7, 2026. Before that date, Read uses the web reader when a link is recorded,
+                with your own subscription. From that date, Read opens the general Marvel Comics
+                website, not a single-comic link. Access is determined by Marvel, not this tracker.
+                Availability badges are historical Marvel Unlimited records, not proof of access
+                to Marvel Comics. Cover images load directly from Marvel's own servers,
                 and an address on any other host is refused rather than requested.
                 Switching cover art off stops them being requested.
               </p>
@@ -1226,7 +1247,7 @@
               <h3>Keyboard shortcuts</h3>
               <table class="keys">
                 <tbody>
-                  <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
+                  <tr><th scope="row"><kbd>↵</kbd></th><td>Use the current comic's reader action</td></tr>
                   <tr><th scope="row"><kbd>D</kbd></th><td id="reading-shortcut-description">Mark as read and continue. Turn off in Backup &amp; settings.</td></tr>
                   <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the desktop sidebar, or show and hide Navigation on narrow screens</td></tr>
                 </tbody>
@@ -1239,9 +1260,15 @@
               <h3>Your data</h3>
               <p class="rail-hint">
                 Everything you save lives in this browser, at this exact address: your lists, your
-                reading progress and your notes. There is no account to create, and no analytics or
-                tracking of any kind. Your progress and your notes are never sent anywhere. Clearing
-                site data for this address erases them, so export a backup regularly.
+                reading progress and your notes.
+                <span data-cloud-copy="off">There is no account to create, and no analytics or tracking
+                of any kind. Your progress and your notes are never sent anywhere. Clearing site data for
+                this address erases them, so export a backup regularly.</span><span data-cloud-copy="on"
+                hidden>Clearing site data for this address erases them here, so keep a backup. There is no
+                Recap Page account to create, and no analytics or tracking of any kind. Your lists,
+                progress and notes are uploaded only if you turn on cloud backup in Backup &amp; settings,
+                and then only to your own OneDrive, where they are as private as anything else you keep
+                there. Recap Page's developer has no access to them.</span>
               </p>
               <details class="setting-more">
                 <summary>What leaves this machine, request by request</summary>
@@ -1259,14 +1286,22 @@
                   issues are on screen; switching cover art off stops them being requested at all.
                   Those are the only servers a cover is ever asked of: an address the metadata API
                   reports on any other host is refused before anything is fetched.
-                  Pressing Read opens Marvel's reader at read.marvel.com when its direct reader link
-                  is known. With a matching issue-page link but a refused reader-ID lookup, Read
-                  opens the exact Marvel issue page on marvel.com directly. Otherwise the launch
-                  tab asks the metadata API for a missing reader link and opens Marvel's reader if
-                  found, or the issue page if not.
+                  Before December 7, 2026, pressing Read opens Marvel's web reader when its direct
+                  reader link is known. With a matching issue-page link but a refused reader-ID lookup,
+                  Read opens the exact Marvel issue page directly. Otherwise the launch tab asks
+                  the metadata API for a missing reader link and opens the web reader if found,
+                  or the issue page if not. From the start of December 7 on your device's local
+                  clock, Read opens the general Marvel Comics website without a reader-link lookup.
+                  Android uses your installed browser, not the Marvel Unlimited app, on both sides
+                  of that date. Recap Page no longer contacts Bifrost.
                   Adding an issue by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.
+                  <span data-cloud-copy="on" hidden>Cloud backup is the one exception, and only once you
+                  turn it on. After you sign in on Microsoft's own page, Recap Page sends a complete backup
+                  of what you save to your own OneDrive after you make changes. It also lists and reads the
+                  backups there, to check them and to offer them for restoring, and deletes this browser's
+                  older ones. Microsoft sees those backups, as it sees anything in your OneDrive.</span>
                 </p>
               </details>
 
@@ -1417,6 +1452,11 @@
         <p id="ask-area-field" hidden>
           <label for="ask-area" id="ask-area-label"></label>
           <textarea id="ask-area" rows="5" maxlength="2000" autocomplete="off"></textarea>
+        </p>
+        <!-- One choice beside a confirmation, unchecked every time it is asked. Only the answer it leads
+             to has no way back, so the answer's label and its danger appearance follow it (#810). -->
+        <p id="ask-choice-field" class="ask-choice" hidden>
+          <label class="checkbox"><input type="checkbox" id="ask-choice" /> <span id="ask-choice-label"></span></label>
         </p>
         <div class="ask-foot dialog-foot">
           <button type="button" class="btn btn-g" id="ask-cancel">Cancel</button>

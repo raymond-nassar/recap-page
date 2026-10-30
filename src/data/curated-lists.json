@@ -4780,6 +4780,38 @@
       "timeline": null
     },
     {
+      "id": "professor-x-reading-order",
+      "name": "Professor X (Charles Xavier)",
+      "description": "Professor X's essential comics as Comic Book Herald's guide selects them, from Uncanny X-Men #12 through X-Men: Legacy #225. It keeps the guide's crucial issues from the Silver Age, the Claremont years and New X-Men, then Deadly Genesis, the Rise and Fall of the Shi'ar Empire, New Avengers: Illuminati and X-Men: Legacy, in the guide's order. Onslaught, Jonathan Hickman's Krakoa era and its 2024 finale continue on the Professor X and the X-Men path in Modern Timeline. In memory of Sir Patrick Stewart (1940 to 2026), who brought Professor X to life on screen.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "selected",
+      "beginner": false,
+      "coverIssueId": 12436,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "professor-x-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/professor-x-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "professor_x_reading_order.json",
+      "characters": [
+        "Professor X",
+        "Charles Xavier",
+        "X-Men"
+      ],
+      "keywords": [
+        "Professor X",
+        "Charles Xavier",
+        "Xavier",
+        "X-Men",
+        "Comic Book Herald"
+      ],
+      "expect": 58,
+      "timeline": null
+    },
+    {
       "id": "captain-marvel-ms-marvel-reading-order",
       "name": "Captain Marvel / Ms. Marvel",
       "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
@@ -8435,6 +8467,18 @@
         "x-men-age-of-x",
         "x-men-schism",
         "x-men-regenesis"
+      ]
+    },
+    {
+      "id": "professor-x-and-the-x-men",
+      "name": "Professor X and the X-Men",
+      "description": "Professor X's essential comics first, then the X-Men stories that carry his part further: Onslaught, Jonathan Hickman's Krakoa era and its 2024 finale. Messiah Complex, which the guide also names, opens the X-Men: Messiah Complex to Avengers vs. X-Men path. No two stops share an issue, so nothing is read twice.",
+      "sourceOrigin": "Compiled for this project. The first three stops follow Comic Book Herald's Professor X guide; the fourth is placed by its start year.",
+      "steps": [
+        "professor-x-reading-order",
+        "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "hickman-x-men",
+        "fall-house-x-rise-powers-x"
       ]
     }
   ]

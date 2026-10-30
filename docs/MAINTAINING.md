@@ -166,8 +166,9 @@ stays untouched. The targeted `cache-generations`,
 `import-draft-lifecycle`, `reading-state-clarity`, `storylines-discovery-actual-data`,
 `discovery-priorities`, `mcu-prep-organization` and `local-server-recovery` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
-Stop the normal app server before any targeted run so the runner can bind that port. Each journey
-prints its own assertion and timing totals.
+For isolated targeted work on a shared machine, add `--ephemeral` to keep that server running.
+These runs do not establish fixed-origin acceptance. Without this flag, stop the normal app server
+before a targeted fixed-port run. Each journey prints its own assertion and timing totals.
 
 The runner prints progress before creating each browser context and reports results as they
 finish. Browser and cleanup failures preserve completed results and the primary failing stage.
@@ -1254,8 +1255,8 @@ the two phone layouts are selected, inspected copies from `npm run play:assets`,
 the source revision recorded in [the asset provenance](project-home-assets.json). That record
 binds the source, renderer, fictional fixture and image hashes; it is not deployed with the site.
 The page labels these as desktop-rendered development previews, not native-device screenshots
-or approved Play assets. Keep that distinction and the earlier-beta warning visible. A new
-capture does not authorize a store listing, release or publication.
+or approved Play assets. Keep that distinction visible. A new capture does not authorize a store
+listing, release or publication.
 
 Refresh these copies deliberately, with the provenance and image contracts in
 `test/pages-home.test.js`. The original generated preview packet remains ignored; never

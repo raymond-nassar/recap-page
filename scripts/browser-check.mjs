@@ -22,6 +22,7 @@
 // story. The app-origin scenarios are the exceptions because their acceptance
 // explicitly requires the app origin. Their targeted runs use 127.0.0.1:8787 inside Edge's temporary
 // automation profile, not the person's installed browser profile.
+// Use --ephemeral on a shared machine to leave an installed app's listener alone.
 //
 // **The data is fixtures, not the catalog.** The scenarios assert what the interface does, and
 // the vendored orders have their own gates. Stubbing `fetch` for the two data files keeps this
@@ -29,6 +30,7 @@
 // Modern Timeline contract is the exception: its boundary and aggregate assertions intentionally
 // run against the checked-in snapshot because the exact first entry and totals are the contract.
 
+import { retiredReaderHelp, retiredManualLink, legacyReaderBackup } from './browser-marvel-interim.mjs';
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
@@ -2364,307 +2366,8 @@ const SCENARIOS = [
   },
   {
     id: 'temporary-reader-link',
-    title: '453 temporary same-comic links and deliberate manual reporting never change saved facts',
-    async run(page, t) {
-      const errors = [];
-      page.on('pageerror', (error) => errors.push(error.message));
-      await page.evaluateOnNewDocument(() => {
-        window.__mrtBlockExternal = true;
-        window.__link453 = { opens: [] };
-        window.open = (...args) => { window.__link453.opens.push(args); return {}; };
-      });
-      await seedFixtureState(page);
-      const go = async (hash, selector) => {
-        await page.evaluate((next) => {
-          // Keep the synthetic route and its notification together: a background repaint can
-          // otherwise restore the previous hash before the queued hashchange is delivered.
-          history.pushState(null, '', next);
-          dispatchEvent(new HashChangeEvent('hashchange'));
-        }, hash);
-        try {
-          await page.waitForSelector(selector);
-        } catch (error) {
-          const state = await page.evaluate(() => ({
-            hash: location.hash,
-            status: document.querySelector('#issue-focus-status')?.textContent,
-            heading: document.querySelector('#issue-focus-h')?.textContent,
-            saved: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2') ?? '{}').issues ?? {}),
-          }));
-          throw new Error(`${error.message}; temporary route ${JSON.stringify(state)}; errors ${JSON.stringify(errors)}`, { cause: error });
-        }
-        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-      };
-      const focusIssue = (id) => go(`#/issue/${id}`, '#issue-focus-card:not([hidden])');
-      const reading = () => go('#/read/fixture', '#view-read:not([hidden])');
-      const openHelp = async () => {
-        if (!await page.$eval('#reader-link-help', (node) => node.open)) {
-          await click(page, '#reader-link-heading');
-        }
-      };
-      const paste = async (value) => page.$eval('#reader-link-input', (input, text) => {
-        input.value = text;
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      }, value);
-      const use = async (id, book) => {
-        await focusIssue(id);
-        await openHelp();
-        await click(page, '#reader-link-edit');
-        await paste(`https://read.marvel.com/#/book/${book}`);
-        await click(page, '#reader-link-apply');
-      };
-      const rendered = (selector) => page.$eval(selector, (node) => node.getClientRects().length > 0);
-      const closed = async (selector) => page.$eval(selector, (node) => {
-        const controls = [...node.querySelectorAll('input,button,textarea,a[href]')];
-        const before = document.activeElement;
-        const excluded = controls.every((control) => {
-          control.focus();
-          return document.activeElement !== control;
-        });
-        before?.focus();
-        return !node.getClientRects().length && excluded;
-      });
-      const readLabel = async (selector, context, temporary = false, statusSelector = null) => {
-        const actual = await page.$eval(selector, (button, selectedStatus) => {
-          const status = selectedStatus ? document.querySelector(selectedStatus)
-            : button.closest('.ract, .tile')?.querySelector('[data-reader-temporary]');
-          return {
-            text: button.textContent.trim(),
-            name: button.getAttribute('aria-label') || button.textContent.trim(),
-            visible: button.getClientRects().length > 0,
-            status: status?.textContent.trim() ?? '',
-            statusVisible: Boolean(status?.getClientRects().length),
-          };
-        }, statusSelector);
-        const predicates = {
-          label: actual.text === 'Read',
-          name: actual.name.startsWith('Read') && actual.name.includes(context),
-          visible: actual.visible,
-          temporaryContext: !temporary || (/temporary link/.test(actual.name)
-            && /temporary reader link/i.test(actual.status) && actual.statusVisible),
-        };
-        console.log(`READER-LABEL ${JSON.stringify({ selector, context, temporary, actual, predicates })}`);
-        t.check(`${selector} keeps the Read label and ${temporary ? 'visible temporary' : 'comic'} context`,
-          Object.values(predicates).every(Boolean), JSON.stringify(actual));
-      };
-      await go('#/home', '#view-home:not([hidden])');
-      await readLabel('#btn-chero-read', ORDER.items[0].title);
-      await reading();
-      await readLabel('#btn-hero-read', ORDER.items[0].title);
-      const done = await page.$eval('#btn-hero-done', (button) => ({
-        text: button.textContent.trim(), shortcut: button.getAttribute('aria-keyshortcuts'),
-        help: button.dataset.tooltip,
-      }));
-      console.log(`READER-DONE ${JSON.stringify(done)}`);
-      t.check('Done remains the distinct mark-read-and-continue control',
-        done.text === 'Done' && done.shortcut === 'd'
-          && done.help === 'Mark as read and continue. Keyboard shortcut: D', JSON.stringify(done));
-      await focusIssue(ORDER.items[0].issueId);
-      await readLabel('#btn-issue-read', ORDER.items[0].title);
-      const seed = fixtureReadingState();
-      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
-      seed.lists.fixture.itemIds.unshift(-8);
-      seed.notes[-8] = 'Private note excluded from reports';
-      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
-      await page.reload({ waitUntil: 'load' });
-      await focusIssue(-8);
-      t.check('closed editor and report are unrendered and keyboard excluded', await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
-      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-      t.check('manual comic without an original reference has editor but no Read', await page.$eval(
-        '#btn-issue-read', (node) => node.hidden,
-      ) && await page.$eval('#reader-link-edit', (node) => !node.disabled));
-      await openHelp();
-      await click(page, '#reader-link-edit');
-      t.check('explicit Edit renders the editor only', await rendered('#reader-link-form') && await closed('#reader-link-reportPanel'));
-      await paste('https://wrong.example/reader/44');
-      await click(page, '#reader-link-apply');
-      t.check('invalid address retains draft and URL focus', await page.$eval('#reader-link-input', (node) => (
-        node.value.includes('wrong.example') && node.getAttribute('aria-invalid') === 'true' && document.activeElement === node
-      )));
-      await paste('http://read.marvel.com/#/book/00044/page/9');
-      t.check('canonical numeric destination is shown before deliberate use', await page.$eval(
-        '#reader-link-preview', (node) => node.textContent.includes('https://read.marvel.com/#/book/44'),
-      ));
-      await click(page, '#reader-link-apply');
-      t.check('Apply really hides editor controls', await closed('#reader-link-form'));
-      t.check('Use is memory only and does not launch', await page.evaluate((before) => (
-        localStorage.getItem('mrt.state.v2') === before && window.__link453.opens.length === 0
-        && document.activeElement.id === 'reader-link-edit'
-      ), saved));
-      t.check('manual Read becomes usable while Info and original reference stay absent', await page.evaluate(() => (
-        !document.querySelector('#btn-issue-read').hidden && document.querySelector('#btn-issue-info').hidden
-        && document.querySelector('#reader-link-summary').textContent.includes('No original reader reference')
-      )));
-      await readLabel('#btn-issue-read', seed.issues[-8].title, true, '#reader-link-temporary');
-      await click(page, '#reader-link-reportToggle');
-      t.check('explicit report opening renders its controls', await rendered('#reader-link-reportPanel'));
-      t.check('report context excludes notes and local negative identity', await page.$eval('#reader-link-reportText', (node) => (
-        node.value.includes('/#/book/44') && !node.value.includes('-8') && !node.value.includes('Private note')
-      )));
-      t.check('GitHub form has fixed URL and no-referrer with no automatic submission', await page.$eval(
-        '#reader-link-reportLink', (node) => node.href === 'https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml'
-          && node.target === '_blank' && node.rel === 'noopener noreferrer' && node.referrerPolicy === 'no-referrer',
-      ));
-      await page.$eval('#reader-link-reportText', (node) => { node.value = 'Only my reviewed details'; });
-      await page.focus('#reader-link-reportText');
-      await page.keyboard.press('Tab');
-      t.check('manual report remains editable with keyboard navigation', await page.$eval(
-        '#reader-link-reportText', (node) => node.value === 'Only my reviewed details',
-      ));
-      await click(page, '#btn-issue-read');
-      await reading();
-      t.check('context leave really hides the owned root and both panels', await closed('#reader-link-root') && await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
-      await readLabel('#btn-hero-read', seed.issues[-8].title, true, '#hero-reader-temporary');
-      await click(page, '#btn-hero-read');
-      await page.focus('#order-name');
-      await page.keyboard.press('Enter');
-      await openFullOrder(page);
-      const toggle = '#rows [data-key="-8"][data-act="more"]';
-      if (await page.$eval(toggle, (button) => button.getAttribute('aria-expanded') !== 'true')) await click(page, toggle);
-      await readLabel('#rows [data-key="-8"][data-act="open"]', seed.issues[-8].title, true);
-      await click(page, '#rows [data-key="-8"][data-act="open"]');
-      await go('#/home', '#view-home:not([hidden])');
-      await readLabel('#btn-chero-read', seed.issues[-8].title, true, '#chero-next');
-      await click(page, '#btn-chero-read');
-      t.check('Issue, hero, Enter, row and Home open independently with numeric temporary destination', await page.evaluate(() => (
-        window.__link453.opens.length === 5 && window.__link453.opens.every(([url, target, features]) => (
-          new URL(url).searchParams.get('d') === '44' && !new URL(url).searchParams.has('i')
-          && target === '_blank' && features === 'noopener'
-        ))
-      )));
-      const positive = ORDER.items[0].issueId;
-      await use(positive, 55);
-      await reading();
-      await readLabel(`#shelf [data-key="${positive}"][data-act="open"]`, 'Browser Check #1 2026', true);
-      await click(page, `#shelf [data-key="${positive}"][data-act="open"]`);
-      t.check('upcoming shelf uses the same temporary resolver', await page.evaluate(() => (
-        new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
-      )));
-      await focusIssue(-8);
-      await openHelp();
-      await click(page, '#reader-link-edit');
-      await paste('https://read.marvel.com/#/book/66');
-      await page.keyboard.press('Escape');
-      t.check('Cancel really hides editor controls', await closed('#reader-link-form'));
-      t.check('Cancel retains active link and restores Edit focus', await page.evaluate(() => (
-        document.querySelector('#reader-link-form').hidden && document.activeElement.id === 'reader-link-edit'
-        && document.querySelector('#reader-link-summary').textContent.includes('/#/book/44')
-      )));
-      await page.evaluate(() => {
-        const before = localStorage.getItem('mrt.state.v2');
-        const state = JSON.parse(before);
-        state.read[999999] = 1;
-        const raw = JSON.stringify(state);
-        localStorage.setItem('mrt.state.v2', raw);
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue: before, newValue: raw }));
-      });
-      await page.waitForFunction(() => document.querySelector('#reader-link-summary').textContent.includes('/#/book/44'));
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      t.check('unrelated foreign progress preserves active temporary mapping', await page.$eval(
-        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
-      ));
-      await click(page, '#reader-link-edit');
-      await page.evaluate(() => {
-        const raw = localStorage.getItem('mrt.state.v2');
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: raw }));
-      });
-      await page.waitForFunction(() => document.querySelector('#reader-link-apply').disabled);
-      t.check('foreign record adoption invalidates only the open draft', await page.$eval(
-        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
-      ));
-      await click(page, '#reader-link-cancel');
-      const restore = async (text) => {
-        await go('#/data', '#view-data:not([hidden])');
-        await page.evaluate((raw) => {
-          document.querySelector('#restore-report').replaceChildren();
-          const transfer = new DataTransfer();
-          transfer.items.add(new File([raw], 'synthetic-reader-link-backup.json', { type: 'application/json' }));
-          const input = document.querySelector('#restore-file');
-          input.files = transfer.files;
-          input.dispatchEvent(new Event('change', { bubbles: true }));
-        }, text);
-        if (text !== 'invalid json') {
-          await page.waitForSelector('#ask[open]');
-          await click(page, '#ask-ok');
-        }
-        await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
-        await focusIssue(-8);
-      };
-      await restore('invalid json');
-      t.check('known-unchanged restore refusal retains temporary link', await page.$eval(
-        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
-      ));
-      const backup = await page.evaluate(() => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        state.lists.fixture.name = 'Synthetic replacement with same comic IDs';
-        return JSON.stringify(state);
-      });
-      await restore(backup);
-      t.check('actual same-identity restore clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await use(-8, 44);
-      await go('#/data', '#view-data:not([hidden])');
-      await click(page, '#btn-undo-restore');
-      await page.waitForSelector('#ask[open]');
-      await click(page, '#ask-ok');
-      await focusIssue(-8);
-      t.check('Undo restore also clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await use(-8, 44);
-      await click(page, '#reader-link-revert');
-      t.check('Use original removes only the temporary destination', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await use(-8, 44);
-      await page.setViewport({ width: 390, height: 900 });
-      await click(page, '#reader-link-edit');
-      await page.focus('#reader-link-input');
-      t.check('narrow form stays in viewport and retains a visible focus outline', await page.evaluate(() => {
-        const input = document.querySelector('#reader-link-input');
-        const rect = input.getBoundingClientRect();
-        return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth
-          && getComputedStyle(input).outlineStyle !== 'none';
-      }));
-      t.check('forced colors retains a visible editor boundary when active', await page.evaluate(() => (
-        !matchMedia('(forced-colors: active)').matches
-        || getComputedStyle(document.querySelector('#reader-link-help')).borderTopStyle !== 'none'
-      )));
-      await page.setViewport({ width: 1280, height: 900 });
-      await page.reload({ waitUntil: 'load' });
-      await page.waitForSelector('#issue-focus-card:not([hidden])');
-      t.check('reload clears link and draft without changing saved base', await page.evaluate(() => (
-        document.querySelector('#btn-issue-read').hidden && document.querySelector('#reader-link-form').hidden
-        && JSON.parse(localStorage.getItem('mrt.state.v2')).issues[-8].digitalId === null
-      )));
-      for (const control of ['btn-issue-read', 'reader-link-edit', 'reader-link-revert', 'reader-link-input']) {
-        await restore(backup);
-        await use(-8, 44);
-        if (control === 'reader-link-input') await click(page, '#reader-link-edit');
-        await page.focus(`#${control}`);
-        await page.evaluate(() => {
-          localStorage.removeItem('mrt.state.v2');
-          dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
-        });
-        await page.waitForFunction(() => document.querySelector('#reader-link-edit').disabled);
-        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-        t.check(`foreign invalidation rescues disappearing ${control} focus`, await page.evaluate(() => {
-          const active = document.activeElement;
-          return active.id === 'issue-focus-h' && active.getClientRects().length > 0;
-        }));
-      }
-      t.check('actual foreign erase withdraws stale Read and editor', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await restore(backup);
-      await use(-8, 44);
-      await go('#/data', '#view-data:not([hidden])');
-      await click(page, '#metadata-settings > summary');
-      await page.focus('#api-base');
-      await page.waitForSelector('#list-nav .ri');
-      await page.evaluate(() => {
-        localStorage.removeItem('mrt.state.v2');
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
-      });
-      await page.waitForFunction(() => document.querySelectorAll('#list-nav .ri').length === 0);
-      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-      t.check('hidden Issue controls do not steal unrelated settings input focus', await page.evaluate(() => (
-        document.activeElement.id === 'api-base' && document.activeElement.getClientRects().length > 0
-      )));
-      t.check('no runtime error in temporary flow', errors.length === 0, errors);
-    },
+    title: 'retired reader help and both local-clock handoffs preserve saved facts',
+    run: (page, t) => retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order: ORDER }),
   },
   {
     id: 'reorientation-445',
@@ -4156,14 +3859,14 @@ const SCENARIOS = [
         complete: await readSubset('complete-guide'),
         bestOf: await readSubset('best-of'),
       };
-      // #897 moved the fifteen young readers' lists from All to Young readers, their one screen.
+      // #897 moved the fifteen young readers' lists from All to Young readers; #981 adds a Best of.
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 71 && desktop.all.stories === 70
-        && desktop.all.cards === 71 && desktop.all.adamCards === 1
+        desktop.all.readings === 72 && desktop.all.stories === 71
+        && desktop.all.cards === 72 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
-        && desktop.bestOf.readings === 8 && desktop.bestOf.stories === 8
-        && desktop.bestOf.cards === 8 && desktop.bestOf.adamCards === 0,
+        && desktop.bestOf.readings === 9 && desktop.bestOf.stories === 9
+        && desktop.bestOf.cards === 9 && desktop.bestOf.adamCards === 0,
         JSON.stringify(desktop));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -4174,12 +3877,12 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 71 && narrow.all.stories === 70
-        && narrow.all.cards === 71 && narrow.all.adamCards === 1
+        narrow.all.readings === 72 && narrow.all.stories === 71
+        && narrow.all.cards === 72 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
-        && narrow.bestOf.readings === 8 && narrow.bestOf.stories === 8
-        && narrow.bestOf.cards === 8 && narrow.bestOf.adamCards === 0
+        && narrow.bestOf.readings === 9 && narrow.bestOf.stories === 9
+        && narrow.bestOf.cards === 9 && narrow.bestOf.adamCards === 0
         && !narrow.overflow,
         JSON.stringify(narrow));
 
@@ -5709,7 +5412,7 @@ const SCENARIOS = [
         ])
         && timeline.featureImageSrc === null
         && timeline.featureImageHidden === true
-        && timeline.featureFallbackDisplay === 'flex'
+        && timeline.featureFallbackDisplay === 'grid'
         && timeline.oldPlainAction === false
         && timeline.setupCards === 1,
         JSON.stringify(timeline));
@@ -6130,7 +5833,7 @@ const SCENARIOS = [
         ])
         && ageFeature.imageSrc === null
         && ageFeature.imageHidden === true
-        && ageFeature.fallbackDisplay === 'flex'
+        && ageFeature.fallbackDisplay === 'grid'
         && ageFeature.inResults === false,
         JSON.stringify(ageFeature));
 
@@ -8938,7 +8641,7 @@ const SCENARIOS = [
       });
       t.check('reading data, completion history and the import draft each keep their download, restore and report together',
         groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
-          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Cloud backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
         JSON.stringify(groups));
       const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
         const input = document.getElementById(id);
@@ -8979,10 +8682,14 @@ const SCENARIOS = [
           }),
         };
       });
+      // The ceiling sits at the count. It was 80 until the owner approved a note naming the three
+      // single-kind backups on 2026-10-28 (#810, stage 3, S3b-8), which added 4 words; #835 brought this
+      // group down from about 200 and asked only that its guidance be roughly halved.
       t.check('Data safety leads with a short transfer summary and keeps its warnings on screen, explanations closed',
-        guidance.summary?.startsWith('Moving to another device:') && guidance.summary.includes('Settings are not included')
+        guidance.summary?.startsWith('Moving to another device:')
+          && guidance.summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.')
           && guidance.warnings.every(Boolean) && guidance.described.every(Boolean) && guidance.closed.every(Boolean)
-          && guidance.words <= 80,
+          && guidance.words <= 84,
         JSON.stringify(guidance));
       t.check('the import draft group still names retained draft source and the backups that leave it out',
         await page.evaluate(() => {
@@ -9721,8 +9428,8 @@ const SCENARIOS = [
         .endsWith('Opening Browser Check (2026) #2 in a new tab and looking up its Unlimited link.'), { timeout: 5000 });
       placed('hero Read', await press('#btn-hero-read', '#hero-primary-actions'));
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab.', { timeout: 5000 });
-      t.check('the spoken announcement is unchanged', true);
+        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab. Reading ends December 7, 2026.', { timeout: 5000 });
+      t.check('the spoken announcement includes the approved reading deadline', true);
       await page.evaluate(() => document.querySelector('#btn-hero-done').click());
       await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Browser Check (2026) #2');
       t.check('Done retires the hint', await hintCount() === 0);
@@ -11239,193 +10946,14 @@ const SCENARIOS = [
   },
   {
     id: 'manual-book-id',
-    title: 'a pasted reader address becomes a working Read button, and a marvel.com address says so',
-    async run(page, t) {
-      await open(page, '/');
-      await click(page, '[data-view="add-manual"]');
-      await page.evaluate(() => {
-        const d = document.querySelector('#manual-url')?.closest('details');
-        if (d && !d.open) d.open = true;
-      });
-      await page.waitForSelector('#manual-url', { timeout: 15000 });
-
-      // The hint is the only place that says which of the two addresses gets you a working Read
-      // button, and the field points at it, so a screen reader reaches that from the field rather
-      // than only by reading past it. This is the first aria-describedby in the page.
-      const hint = await page.evaluate(() => {
-        const input = document.querySelector('#manual-url');
-        const ids = (input?.getAttribute('aria-describedby') ?? '').split(/\s+/);
-        const p = ids.includes('manual-url-hint') ? document.getElementById('manual-url-hint') : null;
-        return { ids, text: (p?.textContent ?? '').replace(/\s+/g, ' ').trim() };
-      });
-      t.check('the address field names its own explanation', hint.ids.includes('manual-url-hint'), JSON.stringify(hint.ids));
-      t.check('and that explanation says where to get the address',
-        /paste.*Marvel Unlimited.*Read/i.test(hint.text), hint.text.slice(0, 100));
-
-      await addByHand(page, 'All-New Spider-Gwen: The Ghost-Spider (2026) #9', 'https://read.marvel.com/#/book/129648');
-      const readerSaid = await manualReport(page);
-      t.check('a reader address is reported as reaching Marvel Unlimited',
-        readerSaid.includes('Read opens it in Marvel Unlimited'), readerSaid);
-
-      const afterReader = await readState(page);
-      const byReader = Object.values(afterReader?.issues ?? {}).find((i) => i.digitalId === 129648) ?? null;
-      t.check('the book id was read off the address and saved', Boolean(byReader),
-        JSON.stringify(Object.values(afterReader?.issues ?? {}).map((i) => i.digitalId)));
-      // A reader address kept as the issue url would light up Info, which says marvel.com and
-      // would open the reader the Read button already opens. Nothing offers it, so nothing to see.
-      t.check('and the reader address was not kept as a detail page',
-        (byReader?.url ?? null) === null, JSON.stringify(byReader?.url));
-
-      await addByHand(page, 'Secret Wars (2015) #1', 'https://www.marvel.com/comics/issue/52447/secret_wars');
-      const detailSaid = await manualReport(page);
-      t.check('a marvel.com address is reported without promising the reader',
-        detailSaid.includes('Availability shows as unknown') && !detailSaid.includes('Read opens it'), detailSaid);
-
-      const afterDetail = await readState(page);
-      const byDetail = afterDetail?.issues?.['52447'] ?? null;
-      t.check('that one keeps the marvel.com address it was given',
-        String(byDetail?.url ?? '').includes('/comics/issue/52447'), JSON.stringify(byDetail?.url));
-      t.check('and carries no book id, because none was stated',
-        (byDetail?.digitalId ?? null) === null, JSON.stringify(byDetail?.digitalId));
-    },
+    title: 'retired reader paste keeps its invalid draft while comic details still save',
+    run: (page, t) => retiredManualLink(page, t, { open, click, addByHand, manualReport, readState }),
   },
   {
     id: 'reader-round-trip',
     nativeDownloads: 1,
-    title: 'an imported reader address survives export and reload without provider requests',
-    async run(page, t) {
-      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'refuse'; });
-      await open(page, '/');
-      await click(page, '[data-view="add-import"]');
-
-      const source = [
-        '# Future issues',
-        '',
-        '## Ghost-Spider',
-        '',
-        '- [x] [All-New Spider-Gwen: The Ghost-Spider (2026) #9](http://read.marvel.com/#/book/129648/page/4)',
-      ].join('\n');
-      await page.evaluate((text) => {
-        document.querySelector('#import-text').value = text;
-        document.querySelector('#import-new-list').checked = false;
-        document.querySelector('#form-import').requestSubmit();
-      }, source);
-      await page.waitForFunction(
-        () => /^Imported 1 issue/.test(document.querySelector('#import-report')?.textContent.trim() ?? ''),
-        { timeout: 15000 },
-      );
-
-      await page.evaluate(() => document.querySelector('#form-import').requestSubmit());
-      await page.waitForFunction(
-        () => /Imported 0 issues, 1 already present/.test(document.querySelector('#import-report')?.textContent ?? ''),
-        { timeout: 15000 },
-      );
-
-      const first = await page.evaluate((issueId) => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        const list = state.lists[state.active];
-        const issue = state.issues[issueId];
-        return {
-          issue,
-          itemIds: list?.itemIds ?? [],
-          read: Object.hasOwn(state.read, issueId),
-          section: list?.collectedIn?.[issueId] ?? null,
-          requests: window.__mrtIssueRequests ?? 0,
-          hydrateHidden: document.querySelector('#btn-hydrate')?.hidden ?? null,
-        };
-      }, READER_ISSUE_ID);
-      t.check('the pasted address is one reserved URL-null reader record',
-        first.issue?.issueId === READER_ISSUE_ID
-          && first.issue?.digitalId === READER_DIGITAL_ID
-          && first.issue?.url === null
-          && first.issue?.source === 'manual'
-          && first.issue?.hydrated === true
-          && first.itemIds.length === 1,
-        JSON.stringify(first));
-      t.check('repeat import keeps its read mark and collected edition',
-        first.read && first.section === 'Ghost-Spider', JSON.stringify(first));
-      t.check('hydration offers and requests nothing for the reader record',
-        first.hydrateHidden && first.requests === 0, JSON.stringify(first));
-
-      await click(page, '#list-nav a[data-act="open"]');
-      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
-      await openFullOrder(page);
-      const actions = await page.evaluate((issueId) => ({
-        read: Boolean(document.querySelector(`button[data-act="open"][data-key="${issueId}"]`)),
-        info: Boolean(document.querySelector(`a[data-act="info"][data-key="${issueId}"]`)),
-      }), READER_ISSUE_ID);
-      t.check('the row offers Read and no duplicate Info destination',
-        actions.read && !actions.info, JSON.stringify(actions));
-
-      await page.evaluate(() => { window.__opened = []; });
-      await click(page, `button[data-act="open"][data-key="${READER_ISSUE_ID}"]`);
-      const opened = await page.evaluate(() => window.__opened);
-      const launch = new URL(opened[0]?.url ?? '', page.__origin);
-      t.check('Read launches directly with the book id and no provider issue lookup',
-        launch.searchParams.get('d') === String(READER_DIGITAL_ID)
-          && launch.searchParams.get('i') === null,
-        JSON.stringify(opened));
-
-      await click(page, '#btn-synopsis');
-      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
-      await click(page, '#ask-ok');
-      await new Promise((resolve) => setTimeout(resolve, 550));
-      const synopsisRequests = await page.evaluate(() => window.__mrtIssueRequests ?? 0);
-      t.check('a synopsis run makes zero provider requests for the reader record',
-        synopsisRequests === 0, String(synopsisRequests));
-
-      await click(page, '#list-export > summary');
-      await page.focus('#btn-export-md');
-      await click(page, '#btn-export-md');
-      await page.waitForSelector('#markdown-export[open]');
-      await click(page, '#markdown-export input[name="includeLinks"]');
-      await click(page, '#markdown-export input[name="includeSections"]');
-      await click(page, '#markdown-export button[type="submit"]');
-      await page.waitForFunction(() => (window.__mrtDownloads ?? []).length > 0, { timeout: 15000 });
-      const markdown = await page.evaluate(() => window.__mrtDownloads.at(-1)?.text ?? '');
-      const exportedLinks = [...markdown.matchAll(/\]\(([^)]+)\)/g)].map((match) => match[1]);
-      t.check('export writes the canonical HTTPS reader address',
-        exportedLinks.length === 1
-          && exportedLinks[0] === `https://read.marvel.com/#/book/${READER_DIGITAL_ID}`,
-        JSON.stringify(exportedLinks));
-
-      await page.evaluate(() => {
-        localStorage.removeItem('mrt.state.v2');
-        localStorage.removeItem('mrt.import.draft.v1');
-      });
-      await open(page, '/');
-      await click(page, '[data-view="add-import"]');
-      await page.evaluate((text) => {
-        document.querySelector('#import-text').value = text;
-        document.querySelector('#import-new-list').checked = true;
-        document.querySelector('#form-import').requestSubmit();
-      }, markdown);
-      await page.waitForFunction(
-        () => /^Imported 1 issue/.test(document.querySelector('#import-report')?.textContent.trim() ?? ''),
-        { timeout: 15000 },
-      );
-      await page.reload({ waitUntil: 'load' });
-
-      const restored = await page.evaluate((issueId) => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        const list = state.lists[state.active];
-        return {
-          issue: state.issues[issueId],
-          read: Object.hasOwn(state.read, issueId),
-          section: list?.collectedIn?.[issueId] ?? null,
-          requests: window.__mrtIssueRequests ?? 0,
-        };
-      }, READER_ISSUE_ID);
-      t.check('re-import and reload preserve identity, book id, read state, and section',
-        restored.issue?.issueId === READER_ISSUE_ID
-          && restored.issue?.digitalId === READER_DIGITAL_ID
-          && restored.issue?.url === null
-          && restored.read
-          && restored.section === 'Ghost-Spider',
-        JSON.stringify(restored));
-      t.check('re-import and reload still make zero provider requests',
-        restored.requests === 0, JSON.stringify(restored));
-    },
+    title: 'legacy JSON restores exactly and historical Markdown rows require review',
+    run: (page, t) => legacyReaderBackup(page, t, { seedFixtureState, click, openFullOrder, readerId: READER_ISSUE_ID, digitalId: READER_DIGITAL_ID }),
   },
   {
     id: 'undo-delete-dismiss',
@@ -12557,7 +12085,13 @@ const SCENARIOS = [
     async run(page, t) {
       const browserErrors = [];
       page.on('console', (message) => {
-        if (message.type() === 'error') browserErrors.push(message.text());
+        if (message.type() !== 'error') return;
+        // This journey boots into About, which asks a build without cloud backup one status question that it
+        // answers 404 like any unknown path (#810), and Chromium reports every 404 as a failed resource. That
+        // answer is the expected one, so it alone is set aside; any other error still counts.
+        const at = new URL(message.location()?.url || 'about:blank', page.__origin).pathname;
+        if (at.startsWith('/__recap_cloud__/v1/') && /^Failed to load resource: .*\b404\b/.test(message.text())) return;
+        browserErrors.push(message.text());
       });
       page.on('pageerror', (error) => browserErrors.push(error.message));
 
@@ -15057,6 +14591,47 @@ const SCENARIOS = [
       const { tmpdir } = await import('node:os');
       const { buildPages } = await import('./build-pages.mjs');
       const temporary = await mkdtemp(join(tmpdir(), 'recap-page-pages-browser-'));
+      const playListing = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
+      const platformCards = ['Windows', 'Android', 'Windows download', 'Run from source', 'iPhone and iPad'];
+      const platformGrid = () => page.$eval('#getting-started .platform-grid', (grid) => ({
+        width: innerWidth,
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+        cards: [...grid.querySelectorAll('.route-card')].map((card) => {
+          const box = card.getBoundingClientRect();
+          const link = card.querySelector('a');
+          const linkBox = link?.getBoundingClientRect();
+          return {
+            name: card.querySelector('h3')?.textContent.trim() ?? '',
+            left: Math.round(box.left),
+            top: Math.round(box.top),
+            clipped: card.scrollWidth - card.clientWidth > 1,
+            link: link ? {
+              name: link.textContent.trim(),
+              href: link.getAttribute('href'),
+              button: link.classList.contains('button'),
+              height: linkBox.height,
+              inside: linkBox.left >= box.left - 0.5 && linkBox.right <= box.right + 0.5,
+            } : null,
+          };
+        }),
+      }));
+      const platformWraps = (grid, columns) => {
+        const [windows, android, , source, iPhone] = grid.cards;
+        return grid.overflow <= 1
+          && grid.columns === columns
+          && JSON.stringify(grid.cards.map(({ name }) => name)) === JSON.stringify(platformCards)
+          && grid.cards.every((card) => !card.clipped
+            && (card.link === null || (card.link.inside && card.link.height >= 24)))
+          && windows.link?.button === true && windows.link.height >= 44
+          && android.link?.name === 'Open Google Play' && android.link.href === playListing
+          && android.link.button && android.link.height >= 44
+          && iPhone.link === null
+          && iPhone.left === windows.left
+          && (columns === 1
+            ? grid.cards.every((card, index) => index === 0 || card.top > grid.cards[index - 1].top)
+            : android.top === windows.top && iPhone.top > source.top);
+      };
       const webRequests = [];
       const browserErrors = [];
       page.on('request', (request) => {
@@ -15158,19 +14733,52 @@ const SCENARIOS = [
           webRequests.length === 0,
           webRequests.join(' / '));
 
+        const overview = await page.evaluate(() => ({
+          navigation: [...document.querySelectorAll('.section-nav a')].map((link) => link.textContent.trim()),
+          status: document.querySelector('#overview .platform-status')?.textContent.trim() ?? null,
+          actions: [...document.querySelectorAll('#overview .action-row a')].map((link) => ({
+            name: link.textContent.trim(),
+            href: link.getAttribute('href'),
+          })),
+        }));
+        t.check('the overview names where the app is available and where it is coming',
+          JSON.stringify(overview.navigation)
+            === JSON.stringify(['Android', 'Features', 'Get started', 'Guides', 'Feedback'])
+          && overview.status === 'Available for Windows and Android. Coming soon for iPhone and iPad.'
+          && JSON.stringify(overview.actions) === JSON.stringify([
+            { name: 'Get started', href: '#getting-started' },
+            { name: 'See the Android app', href: '#android' },
+          ]),
+          JSON.stringify(overview));
+
         await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.hash === '#android');
         const android = await page.$eval('#android', (section) => ({
           copy: section.innerText.replace(/\s+/g, ' '),
+          actions: [...section.querySelectorAll('.action-row a')].map((link) => ({
+            name: link.textContent.trim(),
+            href: link.getAttribute('href'),
+            button: link.classList.contains('button'),
+            // Under --forced-colors the plain link reported a painted background too, since forced
+            // colours paint every element Canvas. The primary action's border survives there.
+            bordered: Number.parseFloat(getComputedStyle(link).borderTopWidth) > 0,
+            height: link.getBoundingClientRect().height,
+          })),
           previews: [...section.querySelectorAll('figcaption a')].map((link) => ({
             href: link.getAttribute('href'),
             height: link.getBoundingClientRect().height,
           })),
         }));
-        t.check('Android navigation explains development status and offers usable full-size previews',
-          /Not available on Google Play/.test(android.copy)
-          && /The beta doesn't include all the features shown here/.test(android.copy)
+        t.check('Android navigation leads with Google Play and keeps browser reading and preview caveats',
+          android.actions.length === 2
+          && android.actions[0].name === 'Open Google Play'
+          && android.actions[0].href === playListing
+          && android.actions[0].button && android.actions[0].bordered && android.actions[0].height >= 44
+          && android.actions[1].name === 'About the Android app'
+          && !android.actions[1].button && !android.actions[1].bordered && android.actions[1].height >= 24
+          && !/beta/i.test(android.copy)
+          && /Android's Read uses an installed browser, not the Marvel Unlimited app/.test(android.copy)
           && /previews made in a desktop browser, not on a phone/.test(android.copy)
           && android.previews.length === 2
           && android.previews.every((link) => link.href.startsWith('./assets/') && link.height >= 44),
@@ -15186,6 +14794,18 @@ const SCENARIOS = [
         t.check('keyboard section navigation reaches the maintained-document routes',
           documentation.visible && documentation.links === 12,
           JSON.stringify(documentation));
+
+        const wideGrid = await platformGrid();
+        t.check('the five Get started cards wrap cleanly in two columns at desktop width',
+          platformWraps(wideGrid, 2),
+          JSON.stringify(wideGrid));
+
+        await page.setViewport({ width: 768, height: 900 });
+        await page.waitForFunction(() => innerWidth === 768);
+        const middleGrid = await platformGrid();
+        t.check('the five Get started cards keep two clean columns at a middle width',
+          platformWraps(middleGrid, 2),
+          JSON.stringify(middleGrid));
 
         await page.setViewport({ width: 320, height: 900 });
         await page.waitForFunction(() => innerWidth === 320);
@@ -15222,6 +14842,10 @@ const SCENARIOS = [
             item.visible && item.height >= 44 && item.width >= 44 && item.width <= 296
           )),
           JSON.stringify(narrow.navigation));
+        const narrowGrid = await platformGrid();
+        t.check('the five Get started cards stack in one column at 320 CSS pixels',
+          platformWraps(narrowGrid, 1),
+          JSON.stringify(narrowGrid));
 
         const client = await page.createCDPSession();
         const forcedColorsRequested = process.argv.includes('--forced-colors');
@@ -15282,9 +14906,9 @@ const SCENARIOS = [
       const actions = [
         ['up', 'Move up'],
         ['down', 'Move down'],
-        ['override-available', 'Mark as available'],
-        ['override-unavailable', 'Mark as unavailable'],
-        ['override-clear', 'Clear availability override'],
+        ['override-available', 'Record as available in Unlimited'],
+        ['override-unavailable', 'Record as unavailable in Unlimited'],
+        ['override-clear', 'Clear your Unlimited record'],
         ['remove', 'Remove from list'],
       ];
       const metadata = [
@@ -15410,11 +15034,11 @@ SCENARIOS.push({
 
     const filter = await page.$eval('input[name="filter"][value="unlimited"]', (input) => input.parentElement.textContent.trim());
     t.check('the unchanged availability filter predicate has a visibly hedged label',
-      filter === 'Expected or marked available', filter);
+      filter === 'Past Unlimited date or marked available', filter);
     for (const [act, badge, text] of [
-      ['override-unavailable', 'override-unavailable', 'You marked unavailable'],
-      ['override-available', 'override-available', 'You marked available'],
-      ['override-clear', 'expected', 'Expected in Unlimited'],
+      ['override-unavailable', 'override-unavailable', 'You marked it unavailable in Unlimited'],
+      ['override-available', 'override-available', 'You marked it available in Unlimited'],
+      ['override-clear', 'expected', `Unlimited date: ${first.mu.slice(0, 10)} (passed)`],
     ]) {
       await click(page, row(first.issueId, act));
       const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
@@ -15426,19 +15050,18 @@ SCENARIOS.push({
     await click(page, '#btn-hero-inspect');
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     t.check('availability is visible normal metadata with no troubleshooting disclosure',
-      await page.$eval('#issue-focus-facts', (node) => node.textContent.includes('Expected in Unlimited'))
+      await page.$eval('#issue-focus-facts', (node, date) => node.textContent.includes(`Unlimited date: ${date} (passed)`), first.mu.slice(0, 10))
       && !await page.$eval('#reader-link-help', (node) => node.open));
     t.check('metadata hydration does not claim the story summary has already been fetched',
       await page.$eval('#issue-focus-desc', (node) => node.textContent === 'Story summary has not been loaded.'));
-    t.check('original-link help has no temporary lifetime until an editor is explicitly opened',
+    t.check('reader help has no temporary lifetime or retired editor',
       !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
     await click(page, '#reader-link-heading');
-    await click(page, '#reader-link-edit');
-    t.check('a current draft explains its temporary lifetime',
-      await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
-    await click(page, '#reader-link-cancel');
-    t.check('cancel withdraws the lifetime claim for the original link',
-      !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+    t.check('opening help cannot offer a new pasted reader link',
+      await page.$eval('#reader-link-help', (node) => node.open && !node.querySelector('input, form, button')));
+    await click(page, '#reader-link-heading');
+    t.check('closing help restores the quiet comic context',
+      !await page.$eval('#reader-link-help', (node) => node.open));
 
     const opened = await readState(page);
     await page.focus('#btn-issue-mark-read');
@@ -16001,10 +15624,10 @@ SCENARIOS.push({
         }
       }
       const points = [[.5, .5], [.05, .15], [.95, .15], [.05, .85], [.95, .85]];
-      const hits = points.every(([x, y]) => {
-        const hit = document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y);
-        return hit === control || control.contains(hit);
-      });
+      const hitTargets = points.map(([x, y]) => document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y));
+      const hits = hitTargets.every((hit) => hit === control || control.contains(hit));
+      const blockedBy = hits ? [] : hitTargets.filter((hit) => hit !== control && !control.contains(hit))
+        .map((hit) => ({ tag: hit?.tagName, id: hit?.id, class: hit?.className }));
       const ringHits = !focused || [
         [bounds.left + .5, rect.top + rect.height / 2],
         [bounds.right - .5, rect.top + rect.height / 2],
@@ -16015,7 +15638,7 @@ SCENARIOS.push({
         return hit === control || control.contains(hit) || hit?.contains(control);
       });
       const filterBounds = document.querySelector('#reading-filters').getBoundingClientRect();
-      return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+      return { act: control.dataset.act, focused, ring, clips, hits, blockedBy, ringHits, bounds,
         filterBottom: filterBounds.bottom,
         scrollPaddingTop: getComputedStyle(document.documentElement).scrollPaddingTop,
         visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
@@ -16186,7 +15809,8 @@ SCENARIOS.push({
       const style = getComputedStyle(group);
       return {
         role: group.getAttribute('role'), name: group.getAttribute('aria-label'), shown: group.checkVisibility(),
-        rule: style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+        rule: Math.max(style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+          style.borderLeftStyle === 'solid' ? parseFloat(style.borderLeftWidth) : 0),
         acts: [...group.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
           .map((control) => control.dataset.act),
       };
@@ -16205,7 +15829,7 @@ SCENARIOS.push({
       for (const child of node?.children ?? []) visit(child);
     };
     visit(ax);
-    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Availability']),
+    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Marvel Unlimited record']),
       JSON.stringify(named));
 
     const pressed = async () => {
@@ -19243,7 +18867,7 @@ SCENARIOS.push(responsiveOwner({
       await page.setViewport({ width, height: 900 });
       await open(page, '/#/data');
       await responsiveFrames(page);
-      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.map((label) => {
+      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.filter((label) => label.getClientRects().length).map((label) => {
         const input = label.querySelector('input[type="checkbox"]');
         const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
         const range = document.createRange();
@@ -19875,6 +19499,461 @@ SCENARIOS.push({
   },
 });
 
+// Cloud backup (#810, P02-T05). The static server under test carries no client configuration, so it is
+// the dormant build: its 404 is what a release without cloud backup answers. The second scenario stands a
+// host in for it, answering the control API inside the page through a function in this process, so its
+// state outlives the reload a restore ends in.
+const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
+
+function cloudFixtureHost() {
+  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null };
+  const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
+  const status = () => ({
+    provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
+    message: null, reason: linked() ? host.reason : null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
+  });
+  const refuse = (code, message) => ({ ok: false, error: { code, message } });
+  const guard = (input) => {
+    if (!linked()) return refuse('not-connected', 'Cloud backup is not connected on this computer.');
+    return input.connection === host.connection ? null : refuse('needs-consent', host.reason ?? 'Cloud backup was connected again.');
+  };
+  const shape = ({ id, name, size, created }) => ({ id, name, size, created });
+  function handle(operation, input) {
+    // A create held until the check lets it go, so the card can be seen while a backup runs.
+    if (operation === 'create' && host.gate) {
+      const gate = host.gate;
+      host.gate = null;
+      return gate.then(() => handle(operation, input));
+    }
+    host.calls.push(operation);
+    if (operation === 'status') return { ok: true, status: status() };
+    if (operation === 'connect') {
+      if (host.state === 'not-connected' || host.state === 'needs-sign-in') host.state = 'signing-in';
+      return { ok: true, status: status() };
+    }
+    if (operation === 'disconnect') {
+      Object.assign(host, { state: 'not-connected', connection: null, account: null, reason: null });
+      return { ok: true, status: status() };
+    }
+    const refused = guard(input);
+    if (refused) return refused;
+    if (operation === 'list') return { ok: true, items: [...host.items.values()].map(shape) };
+    if (operation === 'read') {
+      const item = host.items.get(input.id);
+      return item ? { ok: true, bytes: item.bytes } : refuse('not-found', 'That item is no longer in OneDrive.');
+    }
+    if (operation === 'create') {
+      if ([...host.items.values()].some((item) => item.name === input.name)) return refuse('exists', 'OneDrive already holds an item with that name.');
+      const item = { id: `item-${host.next++}`, name: input.name, bytes: input.bytes, size: Buffer.from(input.bytes, 'base64').length, created: Date.now() };
+      host.items.set(item.id, item);
+      return { ok: true, item: shape(item) };
+    }
+    if (operation === 'delete') {
+      host.items.delete(input.id);
+      return { ok: true };
+    }
+    return refuse('invalid', 'There is no such cloud operation.');
+  }
+  return {
+    host, handle,
+    signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test', reason: null }); },
+    // The person deleted the Recap Page folder, and another browser's backup found it gone: the host forgot
+    // the folder, started a new connection and says why, as host/cloudHost.mjs does.
+    folderDeleted() {
+      host.items.clear();
+      Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
+    },
+  };
+}
+
+async function cloudCard(page) {
+  return page.evaluate(() => {
+    const card = document.querySelector('#cloud-backup');
+    const shown = (selector) => { const node = document.querySelector(selector); return Boolean(node && !node.closest('[hidden]') && node.getClientRects().length); };
+    return {
+      hidden: card.hidden,
+      status: document.querySelector('#cloud-backup-status').textContent,
+      report: document.querySelector('#cloud-backup-report').textContent,
+      signIn: shown('#btn-cloud-sign-in'), auto: shown('#opt-cloud-auto'), checked: document.querySelector('#opt-cloud-auto').checked,
+      discovery: shown('#cloud-discovery'), remove: shown('#btn-cloud-delete'), disconnect: shown('#btn-cloud-disconnect'),
+      restores: [...document.querySelectorAll('#cloud-discovery-list button[data-cloud-copy]')].map((button) => ({
+        id: button.id, text: button.textContent, label: button.getAttribute('aria-label'),
+        shown: !button.closest('[hidden]') && button.getClientRects().length > 0, enabled: !button.disabled,
+      })),
+    };
+  });
+}
+
+async function cloudDatabases(page) {
+  return page.evaluate(async () => (await indexedDB.databases()).map((entry) => entry.name).filter((name) => name === 'mrt-cloud-backup-v1'));
+}
+
+// About's privacy statement as it is shown: the Your data paragraph as read, and which variants of the
+// switched sentences are showing (P02-T06), read from their hidden state because the request list sits in
+// a closed details element, where innerText would also read the hidden variant.
+async function aboutPrivacy(page) {
+  return page.evaluate(() => {
+    const view = document.querySelector('#view-about');
+    const heading = [...view.querySelectorAll('h3')].find((node) => node.textContent === 'Your data');
+    return {
+      data: heading.nextElementSibling.innerText.replace(/\s+/g, ' ').trim(),
+      cloud: [...view.querySelectorAll('[data-cloud-copy="on"]')].map((node) => !node.hidden),
+      local: [...view.querySelectorAll('[data-cloud-copy="off"]')].map((node) => !node.hidden),
+    };
+  });
+}
+
+SCENARIOS.push({
+  id: 'cloud-dormant',
+  title: 'a build without cloud backup shows no card, asks the server once when Backup & settings opens, and stores nothing',
+  async run(page, t) {
+    const asked = [];
+    const answered = [];
+    const logos = [];
+    const ours = (url) => new URL(url).pathname.startsWith(CLOUD_PREFIX_PATH);
+    page.on('request', (request) => {
+      if (ours(request.url())) asked.push(`${request.method()} ${new URL(request.url()).pathname}`);
+      if (new URL(request.url()).pathname.startsWith('/brands/')) logos.push(new URL(request.url()).pathname);
+    });
+    page.on('response', (response) => { if (ours(response.url())) answered.push(response.status()); });
+    // Counts the startup check for a cloud backup record, so "asks nothing" is read only after it ran.
+    await page.evaluateOnNewDocument(() => {
+      const factory = window.indexedDB;
+      const listed = factory.databases.bind(factory);
+      window.__mrtCloudChecks = 0;
+      factory.databases = () => { window.__mrtCloudChecks += 1; return listed(); };
+    });
+    await seedFixtureState(page);
+    await page.waitForFunction(() => window.__mrtCloudChecks > 0, { timeout: 15000 });
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    t.check('starting the app looks for a cloud backup record without creating one, and asks nothing',
+      asked.length === 0 && (await cloudDatabases(page)).length === 0, JSON.stringify(asked));
+    await open(page, '/#/data');
+    await page.waitForSelector('#view-data:not([hidden])');
+    for (const end = Date.now() + 10_000; answered.length === 0 && Date.now() < end;) {
+      await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+    }
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 1000); }));
+    t.check('opening Backup & settings asks once, and the server answers 404, as for any unknown address',
+      JSON.stringify(asked) === JSON.stringify([`POST ${CLOUD_PREFIX_PATH}status`]) && JSON.stringify(answered) === '[404]',
+      JSON.stringify({ asked, answered }));
+    t.check('the card stays hidden, and no cloud backup database exists',
+      (await cloudCard(page)).hidden && (await cloudDatabases(page)).length === 0);
+    t.check('the provider\'s logo is never downloaded while the card it sits in is hidden',
+      logos.length === 0, JSON.stringify(logos));
+    const subtitle = await page.$eval('#view-data .head .sub', (node) => node.innerText.trim());
+    t.check('the privacy promise keeps the words a build without cloud backup has always said',
+      subtitle === 'Your reading progress lives in this browser, at this exact address, and is never sent anywhere.', subtitle);
+    await click(page, '#btn-wipe');
+    await page.waitForSelector('#ask[open]');
+    const body = await page.$eval('#ask-body', (node) => node.textContent);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 0
+      && !document.querySelector('#btn-wipe').disabled, { timeout: 15000 });
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    t.check('the erase question says nothing of cloud backup, and erasing asks nothing and stores nothing',
+      !/cloud/i.test(body) && asked.length === 1 && (await cloudDatabases(page)).length === 0,
+      JSON.stringify({ asked, body: body.slice(-160) }));
+
+    // About carries the full privacy statement, so it asks too: the same one request, answered 404.
+    await open(page, '/#/about');
+    await page.waitForSelector('#view-about:not([hidden])');
+    for (const end = Date.now() + 10_000; answered.length < 2 && Date.now() < end;) {
+      await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+    }
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    const about = await aboutPrivacy(page);
+    t.check('opening About asks once more, answered 404, and its privacy statement keeps the words it has always had',
+      JSON.stringify(answered) === '[404,404]' && asked.length === 2
+        && about.data.endsWith('Your progress and your notes are never sent anywhere. Clearing site data for this address erases them, so export a backup regularly.')
+        && about.cloud.length === 2 && about.cloud.every((shown) => !shown) && about.local.every(Boolean),
+      JSON.stringify({ asked, answered, about }));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-backup',
+  title: 'cloud backup signs in beside Microsoft\'s logo, shows the account before asking, backs up at once, restores through the complete restore engine, and asks Cancel first before anything without a way back',
+  async run(page, t) {
+    const fixture = cloudFixtureHost();
+    await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
+    await page.evaluateOnNewDocument((prefix) => {
+      const prior = window.fetch;
+      window.fetch = async (input, init = {}) => {
+        const url = new URL(typeof input === 'string' ? input : input?.url ?? String(input), location.href);
+        if (url.origin !== location.origin || !url.pathname.startsWith(prefix)) return prior(input, init);
+        const answer = await window.__mrtCloudHost(url.pathname.slice(prefix.length), init.body ? JSON.parse(init.body) : {});
+        return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
+      };
+    }, CLOUD_PREFIX_PATH);
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page);
+    await open(page, '/#/data');
+    await page.waitForSelector('#cloud-backup:not([hidden])');
+    const subtitle = await page.$eval('#view-data .head .sub', (node) => node.innerText.trim());
+    t.check('a build with cloud backup says so in the promise at the top of Backup & settings, before anyone connects',
+      subtitle === 'Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', subtitle);
+    // The logo is lazy, so it loads once the card is shown and near the window, and not before.
+    await page.$eval('#cloud-backup', (node) => node.scrollIntoView({ block: 'center' }));
+    const loaded = await page.waitForFunction(() => {
+      const image = document.querySelector('#btn-cloud-sign-in img');
+      return image.complete && image.naturalWidth > 0;
+    }, { timeout: 5000 }).then(() => true, () => false);
+    const signedOut = await cloudCard(page);
+    const logo = await page.$eval('#btn-cloud-sign-in', (button) => ({
+      text: button.textContent.trim(), width: button.querySelector('img').naturalWidth, alt: button.querySelector('img').getAttribute('alt'),
+    }));
+    t.check('signed out, the card says what it does and offers Sign in with Microsoft, with Microsoft\'s logo loaded beside the words',
+      signedOut.signIn && !signedOut.auto && !signedOut.discovery && logo.text === 'Sign in with Microsoft' && loaded && logo.width === 21 && logo.alt === '',
+      JSON.stringify({ signedOut, logo, loaded }));
+    await completePresentation(page, t, {
+      label: 'the cloud backup card signed out',
+      root: '#cloud-backup',
+      order: ['#btn-cloud-sign-in', '#cloud-backup > details:last-of-type > summary'],
+      names: { '#btn-cloud-sign-in': 'Sign in with Microsoft' },
+    });
+
+    await page.focus('#btn-cloud-sign-in');
+    await click(page, '#btn-cloud-sign-in');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Finish signing in'));
+    const handed = await page.waitForFunction(() => document.activeElement?.id === 'cloud-backup-status', { timeout: 3000 })
+      .then(() => true, () => false);
+    t.check('signing in says where to finish, and moves focus to that line rather than losing it',
+      handed, await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+    fixture.signedIn();
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'), { timeout: 15000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    const connected = await cloudCard(page);
+    t.check('connected, the account and what it holds come first, with automatic backup still off',
+      connected.status === 'Connected to OneDrive as reader@example.test.' && connected.auto && !connected.checked
+        && connected.discovery && await page.$eval('#cloud-discovery', (node) => node.open) && fixture.host.items.size === 0,
+      JSON.stringify(connected));
+    // UX-23 (#835), as RC10 holds the settings switches a build without cloud backup shows.
+    const switchAt = [];
+    for (const width of [1280, 360]) {
+      await page.setViewport({ width, height: 900 });
+      switchAt.push(await page.$eval('#cloud-auto', (label, at) => {
+        const input = label.querySelector('input[type="checkbox"]');
+        const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        const words = range.getBoundingClientRect();
+        const track = input.getBoundingClientRect();
+        const box = label.getBoundingClientRect();
+        const card = label.closest('.card').getBoundingClientRect();
+        const style = getComputedStyle(label);
+        return {
+          width: at, height: box.height,
+          unboxed: [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth].every((value) => value === '0px'),
+          beside: track.right <= words.left + 0.5 && track.bottom > words.top && track.top < words.bottom,
+          inside: words.right <= box.right + 0.5 && box.left >= card.left - 0.5 && box.right <= card.right + 0.5,
+        };
+      }, width));
+    }
+    await page.setViewport({ width: 1280, height: 900 });
+    t.check('the automatic backup switch is set out as the other settings switches are, track first and its label beside it, unboxed, at 1280 and 360 pixels',
+      switchAt.every((entry) => entry.unboxed && entry.beside && entry.inside && entry.height >= 24), JSON.stringify(switchAt));
+
+    // The first backup is held at its create, so the card can be seen while one runs. Edge paints an
+    // indeterminate bar's movement itself, out of reach of the rule that stops CSS animation, so under
+    // reduced motion the bar is hidden and the status line alone says a backup is running (stage 3
+    // review, S3b-4).
+    let release = () => {};
+    fixture.host.gate = new Promise((resolve) => { release = resolve; });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
+    const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
+    const motion = { moving: await bar() };
+    const media = await page.createCDPSession();
+    await media.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+    motion.reduced = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+    motion.still = !(await bar());
+    await media.send('Emulation.setEmulatedMedia', { features: [] });
+    await media.detach();
+    t.check('while a backup runs the card shows a moving bar beside its words, and under reduced motion the words alone',
+      motion.moving && motion.reduced && motion.still, JSON.stringify(motion));
+    release();
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    t.check('turning automatic backup on makes the first backup at once, read back and counted',
+      fixture.host.items.size === 1 && [...fixture.host.items.values()][0].name.startsWith('recap-page-backup-v1-')
+        && (await cloudCard(page)).report.includes('Automatic backup is on for this browser.'),
+      JSON.stringify(fixture.host.calls));
+
+    await click(page, '#cloud-discovery-list button[data-cloud-action="check"]');
+    await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]');
+    const listed = await cloudCard(page);
+    t.check('the account now lists this browser\'s backup, with a shown, enabled Restore named for the copy it restores',
+      listed.restores.length === 1 && listed.restores[0].text === 'Restore' && listed.restores[0].label.startsWith('Restore the newest backup from ')
+        && listed.restores[0].shown && listed.restores[0].enabled
+        && await page.$eval('#cloud-discovery-list', (node) => node.textContent.includes('(this browser)')),
+      JSON.stringify(listed.restores));
+    await page.$eval('#cloud-discovery', (node) => { node.open = false; });
+    await completePresentation(page, t, {
+      label: 'the cloud backup card with backups on',
+      root: '#cloud-backup',
+      order: ['#opt-cloud-auto', '#cloud-discovery > summary', '#btn-cloud-delete', '#btn-cloud-disconnect', '#cloud-backup > details:last-of-type > summary'],
+      names: {
+        '#opt-cloud-auto': 'Back up this browser automatically',
+        '#btn-cloud-delete': 'Delete this device\'s cloud backups',
+        '#btn-cloud-disconnect': 'Disconnect',
+      },
+    });
+
+    // Each question: what it says, and its answer as it looks, reads and takes focus. Escape backs out.
+    const ask = async (opener, read = () => null) => {
+      await click(page, opener);
+      await page.waitForSelector('#ask[open]');
+      const answer = await page.evaluate(questionAnswer);
+      const body = await page.$eval('#ask-body', (node) => node.textContent);
+      const extra = await read();
+      return { ...answer, body, extra };
+    };
+    const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.$eval('#cloud-discovery', (node) => { node.open = true; });
+    const restore = await ask('#cloud-discovery-list button[data-cloud-copy="current"]');
+    await escapeShellDialog(page, '#ask');
+    t.check('restoring asks first, with the danger answer after a Cancel that keeps focus, and Cancel changes nothing',
+      restore.label === 'Restore this backup' && restore.danger && restore.focus === 'ask-cancel'
+        && JSON.stringify(restore.order) === JSON.stringify(['ask-cancel', 'ask-ok']) && restore.ratio >= 4.5
+        && restore.body.includes('this backup\'s 1 list') && !restore.body.includes('file')
+        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved,
+      JSON.stringify(restore));
+
+    const erase = await ask('#btn-wipe');
+    await escapeShellDialog(page, '#ask');
+    t.check('while connected, the erase question says cloud backup is disconnected for every profile',
+      erase.body.includes('Cloud backup is disconnected too, for every browser profile on this Windows account.'), erase.body.slice(-200));
+
+    const leave = await ask('#btn-cloud-disconnect', async () => {
+      const before = await page.evaluate(() => ({ shown: !document.querySelector('#ask-choice-field').hidden, checked: document.querySelector('#ask-choice').checked }));
+      await page.$eval('#ask-choice', (box) => box.click());
+      const chosen = await page.evaluate(questionAnswer);
+      await page.$eval('#ask-choice', (box) => box.click());
+      const plain = await page.evaluate(questionAnswer);
+      return { before, chosen, plain };
+    });
+    await escapeShellDialog(page, '#ask');
+    t.check('disconnecting offers deleting this device\'s backups as an unchecked choice; only the checked answer wears the danger look',
+      leave.label === 'Disconnect' && !leave.danger && leave.focus === 'ask-cancel' && leave.extra.before.shown && !leave.extra.before.checked
+        && leave.extra.chosen.label === 'Delete and disconnect' && leave.extra.chosen.danger && leave.extra.chosen.ratio >= 4.5
+        && leave.extra.plain.label === 'Disconnect' && !leave.extra.plain.danger && fixture.host.state === 'connected',
+      JSON.stringify(leave));
+
+    // Restoring for real, through the complete restore engine. The saved data is changed first and the
+    // page started again, as a later session would leave it, so the restore has something to replace.
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      state.lists.fixture.name = 'Changed after the backup';
+      localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto:checked', { timeout: 15000 });
+    await page.$eval('#cloud-discovery', (node) => { node.open = true; });
+    // Pressed as a person presses it: with the mouse, where the button is drawn, after checking it is what
+    // sits under the pointer there. A click by script reached the button while the owner's session found
+    // every Restore hidden (P02-T07, step 9).
+    const newest = '#cloud-discovery-list button[data-cloud-copy="current"]';
+    const visible = await page.waitForSelector(newest, { visible: true, timeout: 15000 }).then(() => true, () => false);
+    const press = visible ? await page.$eval(newest, (button) => {
+      button.scrollIntoView({ block: 'center' });
+      const box = button.getBoundingClientRect();
+      const x = box.left + box.width / 2;
+      const y = box.top + box.height / 2;
+      return { x, y, enabled: !button.disabled, under: button.contains(document.elementFromPoint(x, y)) };
+    }) : null;
+    t.check('the newest backup\'s Restore button is shown, enabled and under the pointer where it is drawn',
+      visible && press.enabled && press.under, JSON.stringify({ visible, press }));
+    if (press) await page.mouse.click(press.x, press.y);
+    await page.waitForSelector('#ask[open]');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+    await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Backup restored from OneDrive.'), { timeout: 15000 });
+    const restored = await readState(page);
+    t.check('confirming restores the backup through the complete restore engine, replacing the change made after it',
+      restored?.lists?.fixture?.name === ORDER.name && JSON.stringify(restored.listOrder) === JSON.stringify(['fixture']),
+      JSON.stringify({ name: restored?.lists?.fixture?.name, order: restored?.listOrder }));
+    await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto', { timeout: 15000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'), { timeout: 15000 });
+    t.check('after the restore this browser still backs up: its consent is not part of what a restore replaces',
+      (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
+
+    const stored = fixture.host.items.size;
+    const remove = await ask('#btn-cloud-delete');
+    t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
+      remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
+        && remove.body.includes('every backup it made in the OneDrive account reader@example.test.')
+        && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied'),
+      JSON.stringify(remove));
+    await click(page, '#ask-ok');
+    await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
+    t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
+      stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
+        && (await cloudCard(page)).report.includes('from the OneDrive account reader@example.test, where')
+        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied'),
+      `${stored}: ${(await cloudCard(page)).report}`);
+
+    await page.focus('#btn-cloud-disconnect');
+    await click(page, '#btn-cloud-disconnect');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Disconnected from OneDrive.'), { timeout: 15000 });
+    const gone = await cloudCard(page);
+    t.check('disconnecting signs out for every profile and offers the sign-in again',
+      fixture.host.state === 'not-connected' && gone.signIn && !gone.auto && !gone.discovery, JSON.stringify(gone));
+    // The button and the status line are both gone now, so focus goes to the report (stage 3 review, S3b-1).
+    const landed = await page.waitForFunction(() => document.activeElement?.id === 'cloud-backup-report', { timeout: 3000 })
+      .then(() => true, () => false);
+    t.check('after Disconnect, focus lands on the report of it rather than falling to the page',
+      landed, await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+
+    // About asks the host too, so its privacy statement names cloud backup, and what it sends and to whom.
+    await open(page, '/#/about');
+    await page.waitForSelector('#view-about:not([hidden])');
+    const shown = await page.waitForFunction(() => [...document.querySelectorAll('#view-about [data-cloud-copy="on"]')].every((node) => !node.hidden),
+      { timeout: 10000 }).then(() => true, () => false);
+    const about = await aboutPrivacy(page);
+    t.check('About\'s privacy statement takes its cloud backup words, and its request list adds what cloud backup sends',
+      shown && about.cloud.length === 2 && about.cloud.every(Boolean) && about.local.every((visible) => !visible)
+        && about.data.includes('Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive')
+        && !about.data.includes('never sent anywhere'),
+      JSON.stringify(about));
+
+    // The person deletes the Recap Page folder in OneDrive while this browser backs up, and another
+    // browser's backup finds it gone first. Opening Backup & settings asks the host, and the card says the
+    // folder was deleted rather than that anyone signed in again (P02-T07 decision 2).
+    fixture.signedIn();
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to OneDrive as reader@example.test.'
+      && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    // Every announcement from here on, as the page's announcer receives it (stage 3 review, S3b-2).
+    await page.evaluate(() => {
+      window.__cloudSpoken = [];
+      const node = document.querySelector('#announcer');
+      new MutationObserver(() => { if (node.textContent) window.__cloudSpoken.push(node.textContent); })
+        .observe(node, { childList: true, characterData: true, subtree: true });
+    });
+    fixture.folderDeleted();
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    const deleted = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.endsWith(reason),
+      { timeout: 15000 }, deleted).then(() => true, () => false);
+    const asked = await cloudCard(page);
+    t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
+      told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
+    t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
+    await page.waitForFunction((reason) => window.__cloudSpoken.some((text) => text.includes(reason)), { timeout: 3000 }, deleted).catch(() => {});
+    await new Promise((resolve) => { setTimeout(resolve, 300); });
+    const spoken = await page.evaluate(() => window.__cloudSpoken);
+    const warned = await page.$eval('#cloud-backup-status', (node) => node.classList.contains('notice') && node.classList.contains('notice-warn'));
+    t.check('stopped backups are announced once and the status line wears the warning notice',
+      spoken.filter((text) => text.includes(deleted)).length === 1 && warned, JSON.stringify({ spoken, warned }));
+    t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
 // A second browser with a profile of its own, so it can be killed outright and started again on the
 // same storage: the one way to see what a browser-process kill leaves behind.
 async function launchProfileBrowser(userDataDir) {
@@ -20489,7 +20568,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = !process.argv.includes('--ephemeral') && ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -22655,14 +22734,16 @@ async function ux11Preload(page, fixture) {
 }
 
 const UX11_TITLES = {
-  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited',
+  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited web reader',
+  comics: 'Opening Marvel Comics website',
   page: 'Opening Marvel issue page', 'no-reader-link': 'No direct reader link',
   'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
   'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
 };
 const UX11_CAPTIONS = {
-  pending: 'Looking up the recorded Marvel Unlimited link for this issue.',
-  resolved: 'Opening the recorded reader link. Reading progress has not changed.',
+  pending: 'Looking up the Marvel Unlimited link for this issue. Reading ends December 7, 2026.',
+  resolved: 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.',
+  comics: 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.',
   page: 'Opening the Marvel issue page. Reading progress has not changed.',
   'no-reader-link': 'No direct reader link is recorded. Opening the Marvel issue page instead.',
   'lookup-error': 'The metadata lookup failed. Opening the Marvel issue page instead.',
@@ -22694,6 +22775,8 @@ async function runReaderLauncherFeedback(page, t) {
     { id: 'L16', readDenied: true, theme: 'system', state: 'lookup-unavailable', intended: slug },
     { id: 'L17', theme: 'unexpected', mode: 'hold', state: 'resolved', intended: book,
       apiBase: 'https://ux11-api.invalid/v1', expectedLookup: 'https://ux11-api.invalid/v1/issues/900002' },
+    { id: 'L18', query: 'd=700001&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
+    { id: 'L19', query: 'i=900002&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
   ];
   const rawState = {};
   let useTap = false;
@@ -22709,7 +22792,8 @@ async function runReaderLauncherFeedback(page, t) {
     Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
       selected: localStorage.getItem('mrt.selectedList') })));
     for (const f of fixtures) {
-      const query = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
+      const baseQuery = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
+      const query = baseQuery.includes('r=comics') ? baseQuery : `${baseQuery}&r=unlimited`;
       const nonce = `${f.id}-${Date.now()}`;
       const expectedUrl = `${page.__origin}/open.html?${query}`;
       page.__ux11Visit = { ...f, nonce, network: f.intended ? f.intended.split('#')[0] : null,

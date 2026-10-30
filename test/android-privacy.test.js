@@ -45,7 +45,10 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.match(text, /clearing app data or uninstalling[^.]*removes/i);
   assert.match(text, /keep a backup outside the app/i);
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
-  assert.match(text, /digital issue ID to Marvel's Bifrost service/);
+  assert.match(text, /no longer contacts Bifrost/);
+  assert.match(text, /installed browser, not the Marvel Unlimited app/);
+  assert.match(text, /general Marvel Comics website without a reader-link lookup/);
+  assert.doesNotMatch(text, /sends a known digital issue ID to Marvel's Bifrost/);
   assert.match(text, /Open in browser/);
   assert.match(text, /Searching for issues sends what you typed/);
   assert.match(text, /series or creators is answered from files already on this machine/);

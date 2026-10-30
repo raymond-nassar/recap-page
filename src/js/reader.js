@@ -13,6 +13,7 @@
 // upstream repo README is stale for at least issue 52447.
 
 import { issuePageUrl } from './lib/issuePageUrl.js';
+import { readerDestination } from './lib/readerDestination.js';
 
 export const READER_PREFIX = 'https://read.marvel.com/#/book/';
 
@@ -60,8 +61,9 @@ export function isLaunchable(issue) {
 
 // Builds the same-origin launch URL. A known book ID skips lookup; a previously refused
 // issue with a matching pinned page skips the same lookup without inventing a book ID.
-export function launchUrl(issue, origin = location.origin) {
+export function launchUrl(issue, origin = location.origin, { now = new Date() } = {}) {
   const params = new URLSearchParams();
+  params.set('r', readerDestination(now));
   const digitalId = referenceId(issue?.digitalId);
   const issueId = referenceId(issue?.issueId);
   if (digitalId) params.set('d', digitalId);
@@ -82,12 +84,12 @@ export function launchUrl(issue, origin = location.origin) {
 // Must be called synchronously from a user gesture, or the browser will block the tab.
 // Returns { ok, target }, where `target` is 'reader', 'page' or 'lookup',
 // and null when there was no reference.
-export function openIssue(issue, { origin = location.origin } = {}) {
+export function openIssue(issue, { origin = location.origin, now = new Date() } = {}) {
   if (!isLaunchable(issue)) {
     return { ok: false, target: null, reason: 'no-reference' };
   }
 
-  const url = launchUrl(issue, origin);
+  const url = launchUrl(issue, origin, { now });
   const params = new URL(url).searchParams;
   let win;
   try {
@@ -100,7 +102,8 @@ export function openIssue(issue, { origin = location.origin } = {}) {
   // is not proof of a block. Treat it as opened; the launcher page reports its own failures.
   return {
     ok: true,
-    target: params.has('d') ? 'reader' : params.get('p') === '1' ? 'page' : 'lookup',
+    target: params.get('r') === 'comics' ? 'comics'
+      : params.has('d') ? 'reader' : params.get('p') === '1' ? 'page' : 'lookup',
     window: win,
   };
 }

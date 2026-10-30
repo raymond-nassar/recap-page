@@ -1,4 +1,5 @@
 import { labelledName } from '../lib/accname.js';
+import { readerAction, readerContext } from '../lib/readerDestination.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { isDeferred, isRead } from '../lib/model.js';
@@ -113,15 +114,16 @@ export function createIssueView({
       ? 'The list or bundled order in this link no longer contains this issue. Showing issue details without that context.'
       : '';
     nodes.card.hidden = false;
-    paintCover(nodes.image, nodes.fallback, issue, 'portrait_uncanny');
-    nodes.image.alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
+    const variant = issueCoverVariant(nodes.image);
+    paintCover(nodes.image, nodes.fallback, issue, variant);
+    nodes.image.alt = coverUrl(issue, variant) ? `Cover of ${issue.title}` : '';
     nodes.series.textContent = seriesOnly(issue.seriesName);
     nodes.number.textContent = presentation.number;
     paintBackground(nodes.background, issue);
     nodes.byline.textContent = presentation.byline;
     paintDescription(issue);
     nodes.facts.replaceChildren(...presentation.facts.map((item) => (
-      fact(item.key, item.value, item.className)
+      fact(item.key, item.value, item.className, item.hint)
     )));
     nodes.note.textContent = context?.note ?? '';
     nodes.note.hidden = !nodes.note.textContent;
@@ -268,11 +270,11 @@ export function createIssueView({
     }
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
-    const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
+    const { launchable } = readerPresentation(currentResult.issue, currentResult.source);
     nodes.read.hidden = !launchable;
-    nodes.read.textContent = 'Read';
-    nodes.read.setAttribute('aria-label', labelledName('Read',
-      `${currentResult.issue.title} in Marvel Unlimited${temporary ? ' with temporary link' : ''}`));
+    nodes.read.textContent = readerAction();
+    nodes.read.setAttribute('aria-label', labelledName(readerAction(),
+      readerContext(currentResult.issue.title)));
     if (focused && !launchable) {
       nodes.heading.setAttribute('tabindex', '-1');
       nodes.heading.focus({ preventScroll: true });
@@ -341,4 +343,14 @@ export function createIssueView({
     result: () => currentResult,
     wire,
   };
+}
+
+// #980: the phone layer shows this cover up to 320px wide, where the 300px portrait_uncanny image was
+// stretched 1.6 to 2.6 times on the measured phones. That layer names Marvel's 500px detail image in a
+// custom property, so the stylesheet that sizes the cover also picks its image. Desktop never loads
+// that layer, so it keeps portrait_uncanny, as does any value other than detail.
+export function issueCoverVariant(image) {
+  const view = image?.ownerDocument?.defaultView;
+  const named = view?.getComputedStyle?.(image)?.getPropertyValue('--issue-cover-variant').trim();
+  return named === 'detail' ? 'detail' : 'portrait_uncanny';
 }

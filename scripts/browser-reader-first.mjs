@@ -218,35 +218,22 @@ try {
       }
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       check(await page.$eval('#reader-link-help', (node) => !node.open), prefix('troubleshooting starts closed'));
-      check(await page.$eval('#reader-link-edit', (node) => !node.checkVisibility()), prefix('technical controls are not rendered while closed'));
+      check(await page.evaluate(() => !document.querySelector('#reader-link-edit')), prefix('retired reader-link controls are absent'));
       check(await page.evaluate(() => {
-        const availability = document.querySelector('#issue-focus-availability');
-        return !availability.checkVisibility() && availability.textContent.includes('In Unlimited')
-          && !document.querySelector('#issue-focus-facts').textContent.includes('In Unlimited');
-      }), prefix('availability is retained in closed troubleshooting, not the main facts'));
+        const facts = document.querySelector('#issue-focus-facts');
+        return facts.textContent.includes('Marvel Unlimited record')
+          && facts.textContent.includes('This is a historical record, not availability in Marvel Comics.');
+      }), prefix('historical availability stays visible in the main facts'));
       await click(page, '#reader-link-heading');
-      check(await page.$eval('#issue-focus-availability', (node) => node.checkVisibility()),
-        prefix('availability becomes readable when troubleshooting opens'));
-      await click(page, '#reader-link-edit');
-      await page.$eval('#reader-link-input', (node) => {
-        node.value = 'https://read.marvel.com/#/book/22';
-        node.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      await click(page, '#reader-link-apply');
+      check(await page.$eval('#reader-link-help', (node) => node.open && !node.querySelector('input, form, button')),
+        prefix('reader help describes the destination without accepting links'));
       await click(page, '#reader-link-heading');
-      const temporary = await page.evaluate(() => {
-        const node = document.querySelector('#reader-link-temporary');
-        return { visible: !!node.getClientRects().length, insideHelp: !!node.closest('details'), text: node.textContent };
-      });
-      check(temporary.visible && !temporary.insideHelp && /does not verify comic identity or access/.test(temporary.text),
-        prefix('active temporary-link lifetime and warning remain outside closed help'), temporary);
+      check(await page.evaluate(() => !document.querySelector('#reader-link-temporary')),
+        prefix('retired temporary-link warning is absent'));
       check(await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, before),
-        prefix('comic details and temporary editing preserve saved data'));
-      await click(page, '#reader-link-heading');
-      await click(page, '#reader-link-edit');
-      await page.keyboard.press('Escape');
-      check(await page.evaluate(() => document.querySelector('#reader-link-form').hidden
-        && document.activeElement.id === 'reader-link-edit'), prefix('Escape closes editing and restores visible focus'));
+        prefix('comic details and destination help preserve saved data'));
+      check(await page.$eval('#reader-link-help', (node) => !node.open),
+        prefix('help closes without leaving hidden editing focus'));
       check(await page.evaluate(() => window.__readerFirst.searches === 0), prefix('inspecting does not fetch a story summary'));
     }
 

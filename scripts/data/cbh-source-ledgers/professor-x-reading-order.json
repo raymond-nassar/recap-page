@@ -1,0 +1,245 @@
+{
+  "guide": {
+    "id": "professor-x-reading-order",
+    "title": "Professor X (Charles Xavier)",
+    "scopeIssue": 981,
+    "inventoryPosition": 92
+  },
+  "source": {
+    "canonicalUrl": "https://www.comicbookherald.com/professor-x-reading-order/",
+    "endpoint": "https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=professor-x-reading-order&_fields=id,date,modified,slug,link,title,content",
+    "retrievalDate": "2026-10-29",
+    "retrievedAt": "2026-10-29T22:25:13Z",
+    "wordpressPostId": 41783,
+    "wordpressDate": "2019-08-07T05:08:47",
+    "wordpressModified": "2024-02-08T14:58:10",
+    "contentSha256": "1c86c4e3428507af92499af5ebf63c910f18d2045c187c76da77690d5065f6ba",
+    "contentLength": 27107,
+    "contentDefinition": "SHA-256 of the WordPress content.rendered HTML string, UTF-8, as retrieved; the HTML is not stored.",
+    "issueBearingBlocksSha256": "205517bdb55a26cf05e9aff4079040cfc0beab96fc2c24d3ad5b31e2ffd2d9f0",
+    "issueBearingDefinition": "The 2026-08-23 intake method of .copilot-tracking/research/tools/extract-character-guide-boundaries.mjs: h1-h6, p and li blocks with tags removed, entities decoded and whitespace collapsed; blocks naming Collects, Includes or Contents or a #number; joined with LF; UTF-8 SHA-256.",
+    "blockCount": 102,
+    "headingCount": 12,
+    "issueBearingBlockCount": 35,
+    "intakeComparison": {
+      "intakeRetrievedAt": "2026-08-23",
+      "intakeContentSha256": "02b4c9fba28079e64ecca05043f5dce8495755937f677c3ab8859b7d795bb98b",
+      "intakeContentLength": 26895,
+      "intakeIssueBearingBlocksSha256": "205517bdb55a26cf05e9aff4079040cfc0beab96fc2c24d3ad5b31e2ffd2d9f0",
+      "finding": "The rendered HTML is 212 characters longer than at intake and hashes differently, while the WordPress modified time, block count, heading count and issue-bearing block digest are unchanged, so the issue-bearing text is the same as at intake."
+    }
+  },
+  "articleSections": [
+    "Professor X at the Dawn of the X-Men",
+    "Professor X During Claremont's X-Men",
+    "90's Events and Professor X",
+    "My Name Is Charles Xavier, and I am a Mutant",
+    "The Dark Past of Professor X",
+    "The Legacy of Professor X",
+    "Alternate Realities and Returns",
+    "House of X - The New Status Quo of Professor X",
+    "Latest Additions:"
+  ],
+  "orderedSelections": [
+    {
+      "section": "Professor X at the Dawn of the X-Men",
+      "block": "Crucial-issue picks: Uncanny X-Men #12 to #16",
+      "selectionPolicy": "explicit-pick",
+      "issues": [
+        "Uncanny X-Men #12-16"
+      ]
+    },
+    {
+      "section": "Professor X During Claremont's X-Men",
+      "block": "Crucial Issues",
+      "selectionPolicy": "explicit-pick",
+      "issues": [
+        "Giant Size X-Men #1",
+        "Uncanny X-Men #94-95",
+        "Classic X-Men #31",
+        "Uncanny X-Men #117",
+        "New Mutants #26-28"
+      ]
+    },
+    {
+      "section": "My Name Is Charles Xavier, and I am a Mutant",
+      "block": "Crucial Issues",
+      "selectionPolicy": "explicit-pick",
+      "issues": [
+        "New X-Men #114-116",
+        "New X-Men #121"
+      ]
+    },
+    {
+      "section": "The Dark Past of Professor X",
+      "block": "X-Men: Deadly Genesis #1 - #6",
+      "selectionPolicy": "full-selection",
+      "issues": [
+        "X-Men: Deadly Genesis #1-6"
+      ]
+    },
+    {
+      "section": "The Dark Past of Professor X",
+      "block": "Uncanny X-Men: Rise and Fall of the Shi'ar Empire #475 - #486",
+      "selectionPolicy": "full-selection",
+      "issues": [
+        "Uncanny X-Men #475-486"
+      ]
+    },
+    {
+      "section": "The Dark Past of Professor X",
+      "block": "Bonus 2000's Reads: New Avengers: Illuminati",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "New Avengers: Illuminati #1-5"
+      ]
+    },
+    {
+      "section": "The Legacy of Professor X",
+      "block": "X-Men: Legacy - Divided He Stands",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "X-Men: Legacy #208-218"
+      ]
+    },
+    {
+      "section": "The Legacy of Professor X",
+      "block": "X-Men: Legacy - Salvage",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "X-Men Legacy #219-225"
+      ]
+    }
+  ],
+  "ownerTableVerification": {
+    "source": "Owner-provided table quoted in Issue #981; its marvel.com links were never fetched (constraint 2), and its IDs were used only as candidate lookup keys.",
+    "rows": [
+      {
+        "owner": "X-Men (1963) #12",
+        "candidateKey": 12436,
+        "verified": "Uncanny X-Men (1963) #12, series 2258",
+        "result": "match"
+      },
+      {
+        "owner": "X-Men (1963) #14",
+        "candidateKey": 12458,
+        "verified": "Uncanny X-Men (1963) #14, series 2258",
+        "result": "match"
+      },
+      {
+        "owner": "Giant-Size X-Men (1975) #1",
+        "candidateKey": 8797,
+        "verified": "Giant-Size X-Men (1975) #1, series 2016",
+        "result": "match"
+      },
+      {
+        "owner": "X-Men (1963) #94",
+        "candidateKey": 12548,
+        "verified": "Uncanny X-Men (1963) #94, series 2258",
+        "result": "match"
+      },
+      {
+        "owner": "X-Men (1963) #117",
+        "candidateKey": 12433,
+        "verified": "Uncanny X-Men (1963) #117, series 2258, on sale 1979-01-01",
+        "result": "match; the supplied link names a 1981 series, but the issue belongs to the 1963 series"
+      },
+      {
+        "owner": "Classic X-Men (1986) #31",
+        "candidateKey": 20587,
+        "verified": "Classic X-Men (1986) #31, series 3751",
+        "result": "match; the page lists it before Uncanny X-Men #117, so the list follows the page order"
+      },
+      {
+        "owner": "New Mutants (1983) #26",
+        "candidateKey": 10362,
+        "verified": "New Mutants (1983) #26, series 2055",
+        "result": "match"
+      },
+      {
+        "owner": "New Mutants (1983) #27",
+        "candidateKey": 10363,
+        "verified": "New Mutants (1983) #27, series 2055",
+        "result": "match"
+      },
+      {
+        "owner": "New Mutants (1983) #28",
+        "candidateKey": 10364,
+        "verified": "New Mutants (1983) #28, series 2055",
+        "result": "match"
+      },
+      {
+        "owner": "New X-Men (2001) #114",
+        "candidateKey": 14933,
+        "verified": "New X-Men (2001) #114, series 2281",
+        "result": "match"
+      },
+      {
+        "owner": "New X-Men (2001) #121",
+        "candidateKey": 14940,
+        "verified": "New X-Men (2001) #121, series 2281",
+        "result": "match"
+      },
+      {
+        "owner": "X-Men: Deadly Genesis (2005) #1",
+        "candidateKey": 3591,
+        "verified": "X-Men: Deadly Genesis (2005) #1, series 345",
+        "result": "match"
+      },
+      {
+        "owner": "X-Men: Deadly Genesis (2005) #2",
+        "candidateKey": 3593,
+        "verified": "X-Men: Deadly Genesis (2005) #2, series 345",
+        "result": "match"
+      },
+      {
+        "owner": "New Avengers: Illuminati (2006) #1 (5-issue series)",
+        "candidateKey": 5723,
+        "verified": "New Avengers: Illuminati (2006) #1, series 1137, on sale 2006-12-20; not the April 2006 one-shot, issue 3984",
+        "result": "match; the page selects #1-5"
+      },
+      {
+        "owner": "X-Men Legacy (2008) #219",
+        "candidateKey": 22857,
+        "verified": "X-Men Legacy (2008) #219, series 3754",
+        "result": "match"
+      }
+    ],
+    "seriesWithoutKeys": "Uncanny X-Men #13, #15, #16, #95 and #475-486; New X-Men #115-116; X-Men: Deadly Genesis #3-6; X-Men: Legacy #208-218 and #220-225 were resolved from pinned metadata or the configured provider series listings below."
+  },
+  "providerLookupDigestDefinition": "bodyJsonSha256 is the UTF-8 SHA-256 of JSON.stringify of the parsed response body; the bodies are not stored.",
+  "providerLookups": [
+    {
+      "url": "https://marvel.emreparker.com/v1/series/3751/issues?limit=200&offset=0",
+      "retrievedAt": "2026-10-29T22:29:02.044Z",
+      "bodyJsonSha256": "37b7ff19195594345ed2c0faa235c05eaf499204323fc08890b72f49b25c61be",
+      "result": "Classic X-Men (1986) #31 is issue 20587."
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/345/issues?limit=200&offset=0",
+      "retrievedAt": "2026-10-29T22:29:02.373Z",
+      "bodyJsonSha256": "c3bf56dad7a797dbc68d3203a02c4c3f27e213ba59f1b811710ab20a9881676c",
+      "result": "X-Men: Deadly Genesis (2005) #1-6 are issues 3591, 3593, 3595, 3629, 3999 and 3628."
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/2258/issues?limit=200&offset=0",
+      "retrievedAt": "2026-10-29T22:29:02.565Z",
+      "bodyJsonSha256": "2ebd3550b48f337cb858da701d94c95a75d92fbb52fb88f605ca7eb6c6942782",
+      "result": "Uncanny X-Men (1963) #475-486 are issues 4434, 4435, 4753, 5049, 5201, 5498, 5631, 5777, 5942, 6077, 6223 and 13423."
+    }
+  ],
+  "pinnedMetadata": "The other 39 identities were found in pinned payloads under src/data, each by series ID and issue number, before any provider request.",
+  "counts": {
+    "issueBearingBlocks": 35,
+    "selectedBlocks": 8,
+    "excludedReferences": 20,
+    "canonicalIssueRows": 58,
+    "sourceGaps": 0
+  },
+  "notes": [
+    "Positions count the selected issue sequence only; excluded blocks are owner-directed follow-ons or edition context, not gaps.",
+    "The checklist is an ordinary issue order without collected-edition headings, because two crucial picks sit in no edition the page names.",
+    "On 2026-10-29 the owner kept New Avengers: Illuminati whole, #1-5 (decision d, recorded on Issue #981). The frozen packet and mapping still say the decision is pending, because that is how it stood when the source was reviewed and approved."
+  ],
+  "status": "approved"
+}

@@ -1,14 +1,15 @@
-import test from 'node:test';
+import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { createIssueView } from '../src/js/views/issue.js';
+import { createIssueView, issueCoverVariant } from '../src/js/views/issue.js';
 import { ApiError } from '../src/js/api.js';
 import { createSynopsisDisclosure } from '../src/js/lib/synopsisDisclosure.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+beforeEach((t) => t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 1, 12) }));
 
 function node(textContent = '') {
   return {
@@ -64,6 +65,7 @@ function harness({
     breadcrumbs: 0,
     cancelSynopsis: 0,
     covers: 0,
+    coverVariants: [],
     read: [],
     stale: [],
     startSynopsis: 0,
@@ -95,7 +97,7 @@ function harness({
     onStaleContext: (route) => calls.stale.push(route),
     onStartSynopsis: onStartSynopsis ?? (() => { calls.startSynopsis += 1; }),
     paintBackground: () => {},
-    paintCover: () => { calls.covers += 1; },
+    paintCover: (_image, _fallback, _issue, variant) => { calls.covers += 1; calls.coverVariants.push(variant); },
     renderBreadcrumbs: () => { calls.breadcrumbs += 1; },
     seriesOnly: (name) => name.replace(/\s+\(.*/, ''),
     synopsisFallback: (_issue, entry) => entry ?? 'No synopsis.',
@@ -138,9 +140,9 @@ test('comic availability stays intact in normal metadata instead of troubleshoot
     const h = harness({ state });
     await h.view.render({ issueId: 42, context: null });
     assert.equal(h.nodes.read.textContent, 'Read');
-    assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited');
-    assert.equal(h.nodes.facts.children.filter((item) => item.key === 'Unlimited availability').length, 1);
-    labels.push(h.nodes.facts.children.find((item) => item.key === 'Unlimited availability').value);
+    assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
+    assert.equal(h.nodes.facts.children.filter((item) => item.key === 'Marvel Unlimited record').length, 1);
+    labels.push(h.nodes.facts.children.find((item) => item.key === 'Marvel Unlimited record').value);
   }
   assert.equal(new Set(labels).size, 5, 'The five availability meanings must remain distinct');
 });
@@ -365,7 +367,7 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   h.view.refreshReader();
   assert.equal(h.nodes.read.hidden, false);
   assert.equal(h.nodes.read.textContent, 'Read');
-  assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited with temporary link');
+  assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
   assert.equal(h.nodes.facts.children, facts);
   assert.equal(h.nodes.info.href, info);
   assert.equal(h.nodes.description.textContent, '');
@@ -717,4 +719,48 @@ test('main constructs Issue Details once and delegates without moving shared pol
   assert.match(navigation, /history\.pushState/);
   assert.match(main, /const store = new Store\(\{/);
   assert.match(main, /const synopsisRunner = new SynopsisRunner\(\{/);
+});
+
+// #980: the phone layer names the cover image it sizes; desktop never loads that layer.
+function styled(value) {
+  const image = node();
+  image.ownerDocument = {
+    defaultView: {
+      getComputedStyle: (target) => ({
+        getPropertyValue: (name) => target === image && name === '--issue-cover-variant' ? value : '',
+      }),
+    },
+  };
+  return image;
+}
+
+test('#980 the issue cover asks for the detail image only when the phone layer names it', () => {
+  assert.equal(issueCoverVariant(styled(' detail')), 'detail', 'a declared value keeps its leading space in some engines');
+  assert.equal(issueCoverVariant(styled('detail')), 'detail');
+  for (const value of ['', 'portrait_uncanny', 'clean', 'portrait_xlarge', 'detail2', 'DETAIL']) {
+    assert.equal(issueCoverVariant(styled(value)), 'portrait_uncanny', `${JSON.stringify(value)} keeps today's image`);
+  }
+  assert.equal(issueCoverVariant(node()), 'portrait_uncanny', 'a node with no window keeps today\'s image');
+  assert.equal(issueCoverVariant(null), 'portrait_uncanny');
+});
+
+test('#980 Issue view paints the cover with the variant the page names, once per paint', async () => {
+  const saved = () => ({ issues: { 42: issue() }, lists: {}, read: {}, notes: {}, overrides: {} });
+  const desktop = harness({ state: saved() });
+  await desktop.view.render({ issueId: 42 });
+  assert.deepEqual(desktop.calls.coverVariants, ['portrait_uncanny'], 'without the phone layer the request is unchanged');
+
+  const phone = harness({ state: saved() });
+  const asked = [];
+  phone.nodes.image.ownerDocument.defaultView = {
+    getComputedStyle: (target) => ({
+      getPropertyValue: (name) => {
+        asked.push([target, name]);
+        return name === '--issue-cover-variant' ? 'detail' : '';
+      },
+    }),
+  };
+  await phone.view.render({ issueId: 42 });
+  assert.deepEqual(phone.calls.coverVariants, ['detail']);
+  assert.deepEqual(asked, [[phone.nodes.image, '--issue-cover-variant']], 'the image itself is read');
 });

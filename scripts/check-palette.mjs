@@ -12,6 +12,7 @@
 
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, extname, join } from 'node:path';
 
@@ -160,7 +161,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2265`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2302`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -223,7 +224,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2241`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2278`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -233,12 +234,12 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:972`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:976`',
   },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:1923-1925`) and 19% over the raised card on hover
-  // (`src/styles.css:1941-1943`).
+  // card at rest (`src/styles.css:1953-1955`) and 19% over the raised card on hover
+  // (`src/styles.css:1971-1973`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
@@ -292,6 +293,13 @@ const EQUALITY_CONTRACTS = [
   { path: 'src/index.html', owner: '.ring-track::stroke', themeProperty: '--line' },
   { path: 'src/index.html', owner: '#ring-arc::stroke', themeProperty: '--accent-text' },
 ];
+// Provider logos (#810, OD-12) paint their owners' colours. No theme sets those and no floor governs
+// them: a logo sits beside the words that name its button and is hidden from assistive technology. Each
+// is owned only while it is byte for byte the file its owner published, with the digest recorded in
+// src/brands/README.md, so a recoloured or redrawn logo is a finding here as well as in the settings test.
+export const PROVIDER_LOGOS = new Map([
+  ['src/brands/ms-symbollockup_mssymbol_19.svg', '929f48f88c8ca7f3f5d294be47ec4caf51acc28ac25340c19a903125d7ecd84a'],
+]);
 const WATCHED_PAINT_FILES = new Set([
   'src/dev-faults.css',
   'src/dev-faults.js',
@@ -300,6 +308,7 @@ const WATCHED_PAINT_FILES = new Set([
   'src/manifest.webmanifest',
   'src/open.css',
   'src/styles.css',
+  ...PROVIDER_LOGOS.keys(),
 ]);
 const DEVELOPMENT_PAINTS = new Map([
   ['src/dev-faults.css|body::background|#12131a', 'fault-harness page fill'],
@@ -343,6 +352,10 @@ const DEVELOPMENT_PAINTS = new Map([
 
 function generatedIconMatches(source) {
   return source?.replace(/\r\n/g, '\n') === SVG_CONTENT;
+}
+
+function providerLogoMatches(path, source) {
+  return typeof source === 'string' && createHash('sha256').update(source, 'utf8').digest('hex') === PROVIDER_LOGOS.get(path);
 }
 
 function normaliseHex(value) {
@@ -512,6 +525,7 @@ function ownedPaint(paint, inventory) {
   if (paint.path === 'src/icons/icon.svg') {
     return generatedIconMatches(inventory.sources.get(paint.path));
   }
+  if (PROVIDER_LOGOS.has(paint.path)) return providerLogoMatches(paint.path, inventory.sources.get(paint.path));
   return DEVELOPMENT_PAINTS.has(paint.key);
 }
 
@@ -778,7 +792,7 @@ export function checkAll(css) {
 // carries the bar's extent at 3:1 against what is behind it, measured above on the card, the raised
 // card, the rail and the selected rail item, and the fill only has to clear those same surfaces,
 // which `--accent` does. The bar is also never the only way to read progress, because the same
-// numbers are stated as text beside it, at `src/js/main.js:1734` in the rail and
+// numbers are stated as text beside it, at `src/js/main.js:1747` in the rail and
 // `src/js/views/shared/saved-lists.js:35` in the saved lists.
 //
 // The list stays, empty, because a gate that quietly tolerates its own findings is not a gate. The

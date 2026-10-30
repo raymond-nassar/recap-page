@@ -58,9 +58,18 @@ test('an unknown override value is ignored', () => {
 
 test('describe never asserts availability as fact', () => {
   const text = describe({ mu: '2020-01-01T00:00:00+0000' }, { today: '2026-08-03' });
-  assert.match(text, /Expected/);
+  assert.match(text, /Unlimited date: 2020-01-01 \(passed\)/);
   assert.doesNotMatch(text, /^Available$/);
   assert.match(describe({ mu: '2030-01-01' }, { today: '2026-08-03' }), /2030-01-01/);
+  const examples = [
+    [{}, {}, 'No recorded Unlimited date'],
+    [{ mu: '2030-01-01' }, {}, 'Unlimited date: 2030-01-01 (future)'],
+    [{ mu: '2020-01-01' }, {}, 'Unlimited date: 2020-01-01 (passed)'],
+    [{}, { override: 'available' }, 'You marked it available in Unlimited'],
+    [{}, { override: 'unavailable' }, 'You marked it unavailable in Unlimited'],
+  ];
+  assert.equal(new Set(examples.map(([issue, options]) => describe(issue, { today: '2026-12-07', ...options }))).size, 5);
+  for (const [issue, options, expected] of examples) assert.equal(describe(issue, { today: '2026-12-07', ...options }), expected);
 });
 
 // ------------------------------------------------------------------ sort

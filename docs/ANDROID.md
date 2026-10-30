@@ -1,20 +1,13 @@
-# Android prototype
+# Recap Page for Android
 
-This experimental version of Recap Page can be sideloaded on Android. It is not a Google Play
-release. It uses the existing app and reading lists with larger text and touch targets, without
-adding accounts, synchronization or reading features, or changing the saved-data format. The supported
-desktop installation and Windows release process are unchanged.
+Recap Page for Android is available on
+[Google Play](https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage).
+It is the same app and reading lists as on Windows, with larger text and touch targets. There are
+no accounts or synchronization, and its saved data stays on the phone, separate from desktop.
 
-Give volunteer testers [the short Android beta checklist](ANDROID_BETA.md). No development tools
-are needed. Restore tests are optional and use throwaway data.
-
-[Google Play asset previews](GOOGLE_PLAY_ASSETS.md) has original artwork and fictional, cover-free
-phone layouts for maintainers. These desktop-rendered previews are not native device acceptance
-or an approved Play listing.
-
-**Android viability is not yet confirmed on a physical device.** Building an APK and checking
-web screens in a desktop browser do not prove Android file pickers, background recovery or
-Marvel Unlimited reader compatibility. Complete the device checks below before distribution.
+The sections below cover how the Android app works, how it is built and released, and the checks
+made for release. The [beta checklist](ANDROID_BETA.md) and
+[Google Play asset previews](GOOGLE_PLAY_ASSETS.md) are kept from the earlier sideloaded beta.
 
 ## How it works
 
@@ -58,8 +51,12 @@ apart and first while comics are queued and **Remove from library** apart and la
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
 Android Back, Escape or a tap outside dismisses the sheet without taking action.
 
-Read and **Done** stay together. **About this comic** opens reader-focused details with Read
-near the title, useful comic information and optional, spoiler-protected story summaries.
+Read and **Done** stay together. **About this comic** opens the comic's own page, which leads with
+its cover: centered above the title on an upright screen, and in a column beside the title and
+everything under it on a screen turned on its side or a wide one. **Read** follows the title, then
+useful comic information and optional, spoiler-protected story summaries. With cover art off, the
+cover's stand-in takes the same place and size. A short split-screen window keeps the details card
+with **Read** first.
 **More comic actions** contains deferral and the external comic page.
 **Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
 putting availability in the main comic details. An active temporary-link warning stays
@@ -78,43 +75,42 @@ Touch navigation keeps screen-reader heading focus without a focus rectangle. Ke
 stays visible. Wider Android windows keep inline list actions and the full breadcrumb trail.
 These phone navigation controls do not change desktop layout or saved data.
 
-### Marvel Unlimited app links
+### Browser reading links and the December 7 switch
 
-**Read** opens the isolated local launcher immediately. If no digital issue ID is recorded and
+**Read** opens the isolated local launcher immediately, after synchronously selecting its
+destination from the device's local clock. Before December 7, 2026, a known digital issue ID
+opens the exact Marvel Unlimited web comic in an installed browser. If no digital issue ID is recorded and
 metadata lookup was already refused for an exact matching Marvel issue page, it opens that page
 in a browser without another lookup. Otherwise, a missing digital issue ID is requested from the
 configured metadata service.
 
-The launcher then asks Marvel's anonymous Bifrost legacy resolver for the app's issue identifier.
-It opens only a validated issue link in the `com.marvel.unlimited` package. The combined lookup
-has an eight-second timeout. Empty, ambiguous or invalid results and failed requests show an
-explanation, not a guessed link.
+The metadata lookup has an eight-second timeout. Invalid results and failed requests show an
+explanation and keep a comic-details fallback, not a guessed reader link.
 
-The launcher stays open after handing off to Marvel Unlimited. If Marvel shows a loading error
-or the wrong screen, return to Recap Page and choose **Open in browser**.
-**Try Marvel Unlimited again** reuses the validated link without another lookup.
+From the local start of December 7, Read opens the general Marvel Comics website without a
+reader-link lookup. It is not a single-comic link. The destination choice lives in one shared
+helper so a separately verified future update can use new comic links without changing saved data.
+The clock is not checked over the network. Marvel Unlimited app dispatch and Bifrost requests
+have been removed.
 
-Browser escape uses an installed browser, with a choice when several are available. It does not
+Both destinations use an installed browser, with a choice when several are available. It does not
 send the fallback to an arbitrary app-link handler. Cancellation, a missing browser or a failed
 launch leaves the launcher usable. Choosing a browser during lookup cancels the lookup and
-prevents a delayed app launch.
+prevents a delayed browser launch.
 
 Browser discovery requests all choices with a hostless HTTPS query, not the comic's domain.
 An approved app-link handler or default browser therefore cannot hide other browsers. The comic
 URL is attached only when launching the selected browser.
 
-Recap Page does not sign in to Marvel, embed comic pages or verify what Marvel's app displays.
-Opening the app or issue page does not prove the comic loaded. Record progress manually with
+Recap Page does not sign in to Marvel, embed comic pages or verify what the external site displays.
+Opening the browser or issue page does not prove the comic loaded. Record progress manually with
 **Done**. Desktop uses the same validated issue-page fallback without a redundant metadata
 lookup.
 
-The extra request sends the digital ID and exposes your network address to `bifrost.marvel.com`.
-It omits credentials and referrers and uses no-store. Recap Page does not save the returned
-identifier or send lists, notes or progress. The endpoint is undocumented; support, coverage and
-usage limits are not guaranteed. Browser escape remains available if the service, app or comic
-cannot be opened. See [the privacy policy](../PRIVACY.md).
+Recap Page does not send lists, notes or progress to external reading services.
+See [the privacy policy](../PRIVACY.md).
 
-The resolver mechanism was discovered through
+The retired resolver mechanism was discovered through
 [Naouak/reading-lists](https://github.com/Naouak/reading-lists/blob/158a6366269966c79fe3a4daeed89cace5edc9fa/backend/library/views/redirects.py),
 inspected on 2026-09-28. This implementation is independently authored; no upstream source was
 copied or translated. No source-reuse license was found for that repository, and this reference
@@ -638,7 +634,7 @@ is blocked; fabricated reading state and an in-device loopback fixture supply da
 provider checks exact-byte restore and write refusal. Reader destinations are checked through
 intercepted Android intents without signing into Marvel or rendering comics.
 These test doubles keep the production navigation policy and native message port. The reader
-test uses the real popup client, substituting only its fixed synthetic Bifrost response.
+test uses the real popup client and synthetic metadata, rejecting any Bifrost request.
 
 Tap proof keeps real touchscreen injection and trusted pointer/click, target/focus and
 no-context-menu checks. A temporary non-consuming public touch listener measures DOWN/UP
@@ -714,15 +710,16 @@ somebody performs them on a physical device:
   and reopening the app.
 - [ ] Add a list, mark and defer issues, edit notes, search/add comics, change availability
   overrides, and confirm all existing actions remain reachable.
-- [ ] Open a known reader link and one needing metadata lookup. Confirm separate launches,
-  no opener access to the tracker, one on-demand app-identifier lookup, visible lookup/launch
+- [ ] Before the cutoff, open a known reader link and one needing metadata lookup. Confirm separate launches,
+  no opener access to the tracker, no Bifrost request or Marvel Unlimited app dispatch, visible lookup/launch
   failures, and no remote document rendered inside the app's WebViews.
 - [ ] With a real subscription, confirm the correct comic opens and returning to Recap Page
-  keeps the current reading place. Check **Open in browser** from the retained launcher, including
-  after an app loading error; confirm a browser, not Marvel Unlimited, receives that action.
-  Record browser and Marvel-app handling separately.
-- [ ] With Marvel Unlimited absent or disabled, confirm a visible failure and working browser
-  escape. Do not uninstall an app holding important data merely for this check.
+  keeps the current reading place. Check **Open in browser** after a cancelled browser choice;
+  confirm an installed browser, not a domain app-link handler, receives the exact comic.
+- [ ] Inject both sides of local December 7 in tests. After cutoff, confirm the general Marvel
+  Comics website, no metadata lookup and an honest no-single-comic label.
+- [ ] With no browser or a failed browser launch, confirm a visible failure and working retry.
+  Do not uninstall an app holding important data merely for this check.
 - [ ] Save JSON, personal Markdown, order-only Markdown and an unreadable-data copy; inspect
   the files. Cancel a picker and exercise a failed write. Neither may be reported as saved.
 - [ ] Restore valid JSON, refuse oversized/invalid JSON, and use Undo last restore. Check that

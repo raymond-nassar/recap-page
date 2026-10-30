@@ -1,4 +1,4 @@
-import test from 'node:test';
+import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -29,6 +29,7 @@ import {
 } from '../src/js/views/reading.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+beforeEach((t) => t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 1, 12) }));
 
 function classList(value = '') {
   const names = new Set(value.split(/\s+/).filter(Boolean));
@@ -709,7 +710,7 @@ test('UX05 rows keep expected access hedged and offer explicit yes no and clear 
       if (entry.className?.includes('badge-expected')) badge = entry;
       if (entry.dataset?.key === 2 && entry.dataset?.act?.startsWith('override')) actions.push(entry);
     });
-    assert.equal(badge.childNodes[0], 'Expected in Unlimited');
+    assert.equal(badge.childNodes[0], 'Unlimited date: 2000-01-01 (passed)');
     assert.deepEqual(actions.map((entry) => entry.dataset.act), ['override-available', 'override-unavailable', 'override-clear']);
     const before = structuredClone(h.state().read);
     actions[1].fire('click');
@@ -747,7 +748,7 @@ test('UX-13 row commands come in named groups, show the override in force as pre
     assert.deepEqual(groups.map((group) => [group.role ?? null, group.getAttribute('aria-label') ?? null, acts(group)]), [
       ['group', 'Open', ['open', 'info']],
       ['group', 'Order', ['up', 'down']],
-      ['group', 'Availability', ['override-available', 'override-unavailable', 'override-clear']],
+      ['group', 'Marvel Unlimited record', ['override-available', 'override-unavailable', 'override-clear']],
       [null, null, ['defer']],
       [null, null, ['remove']],
     ]);
@@ -1000,7 +1001,7 @@ test('453 reader presentation invalidates memoized buttons without changing stor
     h.view.refreshReader();
     assert.equal(h.nodes.btnHeroRead.hidden, false);
     assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
-    assert.match(h.nodes.btnHeroRead.attributes['aria-label'], /^Read: .* with temporary link$/);
+    assert.match(h.nodes.btnHeroRead.attributes['aria-label'], /^Read: .* in Marvel Unlimited \(reading ends December 7, 2026\)$/);
     assert.equal(h.nodes.heroReaderTemporary.hidden, false);
     assert.equal(h.nodes.heroReaderTemporary.textContent, 'Using a temporary reader link.');
     assert.notDeepEqual(h.nodes.rows.childNodes, oldRows, 'effective presentation participates in cache key');
@@ -1011,7 +1012,7 @@ test('453 reader presentation invalidates memoized buttons without changing stor
       assert.equal(action.hidden, false);
       // This double keeps append() text in childNodes instead of aggregating textContent.
       assert.equal(action.textContent || action.childNodes.join(''), 'Read');
-      assert.match(action.attributes['aria-label'], /temporary/);
+      assert.match(action.attributes['aria-label'], /reading ends December 7, 2026/);
       action.fire('click', {});
       assert.equal(h.calls.launch.at(-1)[2], 'saved');
     }
@@ -1048,7 +1049,7 @@ test('wire and render build reading controls and call launch inside the same ges
     assert.equal(h.nodes.btnListNote.textContent, 'Edit note');
     assert.equal(h.nodes.heroTitle.textContent, 'Issue Two');
     assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
-    assert.equal(h.nodes.btnHeroRead.attributes['aria-label'], 'Read: Issue Two in Marvel Unlimited');
+    assert.equal(h.nodes.btnHeroRead.attributes['aria-label'], 'Read: Issue Two in Marvel Unlimited (reading ends December 7, 2026)');
     assert.equal(h.nodes.heroReaderTemporary.hidden, true);
     assert.equal(h.nodes.readingFilters.querySelectorAll('input[name="filter"]').length, READING_FILTERS.length);
     assert.equal(typeof h.nodes.btnHeroRead.listeners.click[0], 'function');

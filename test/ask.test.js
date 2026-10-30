@@ -86,7 +86,7 @@ function makeDialog() {
   return dlg;
 }
 
-function installDom({ withDialog = true } = {}) {
+function installDom({ withDialog = true, withChoice = true } = {}) {
   const parts = {
     ask: withDialog ? makeDialog() : null,
     'ask-form': makeElement(),
@@ -98,6 +98,7 @@ function installDom({ withDialog = true } = {}) {
     'ask-error': makeElement(),
     'ask-ok': makeElement(),
     'ask-cancel': makeElement(),
+    ...(withChoice ? { 'ask-choice-field': makeElement({ hidden: true }), 'ask-choice-label': makeElement(), 'ask-choice': makeElement({ checked: false }) } : {}),
   };
   globalThis.document = { activeElement: null, getElementById: (id) => parts[id] ?? null };
   return parts;
@@ -251,26 +252,33 @@ test('only a danger question wears the danger answer, and the next question does
   }
 });
 
-// The seven answers with no way back, by their own copy: Erase everything, the completion-history restore
+// The ten answers with no way back, by their own copy: Erase everything, the completion-history restore
 // ("There is no automatic Undo"), discarding an import source, removing a salvage copy ("nothing else
 // to recover it from"), and the complete restore's three: restoring a complete backup and finishing an
 // interrupted one ("cannot be undone as a whole"), and keeping current data, which deletes the recovery
-// copy. Every other question has an Undo, keeps a copy or changes nothing, so it stays plain.
-test('exactly the seven irreversible questions ask with danger', async () => {
+// copy. Cloud backup adds three (#810): restoring a backup from the account, as a complete backup file's
+// restore does, deleting this device's cloud backups, which the app cannot bring back, and disconnecting
+// with that deletion chosen. A question with a choice wears the danger look only on its chosen answer,
+// so both of its answers are read. Every other question has an Undo, keeps a copy or changes nothing,
+// so it stays plain.
+test('exactly the ten irreversible answers ask with danger', async () => {
   const { readFile, readdir } = await import('node:fs/promises');
   const root = new URL('../src/js/', import.meta.url);
   const files = (await readdir(root, { recursive: true })).filter((file) => file.endsWith('.js'));
   const asked = [];
   for (const file of files) {
     const source = await readFile(new URL(file.replaceAll('\\', '/'), root), 'utf8');
-    for (const [, call] of source.matchAll(/askConfirm\(\{([\s\S]*?)\n\s*\}\);/g)) {
-      asked.push({ label: call.match(/confirmLabel: ([^\n]+),/)?.[1], danger: /\n\s*danger: true,/.test(call) });
+    for (const [, choice, call] of source.matchAll(/askConfirm(Choice)?\(\{([\s\S]*?)\n\s*\}\);/g)) {
+      if (choice) {
+        asked.push({ label: call.match(/\bconfirmLabel: ('[^']*')/)?.[1], danger: false });
+        asked.push({ label: call.match(/\bchoiceConfirmLabel: ('[^']*')/)?.[1], danger: true });
+      } else asked.push({ label: call.match(/confirmLabel: ([^\n]+),/)?.[1], danger: /\n\s*danger: true,/.test(call) });
     }
   }
-  assert.ok(asked.length >= 10, `found the confirmations (${asked.length})`);
+  assert.ok(asked.length >= 14, `found the confirmations (${asked.length})`);
   assert.deepEqual(asked.filter((entry) => entry.danger).map((entry) => entry.label).sort(), [
-    "'Discard draft'", "'Erase everything'", "'Finish restore'", "'Keep current data'", "'Remove copy'",
-    "'Restore complete backup'", "'Restore completion history'",
+    "'Delete and disconnect'", "'Delete cloud backups'", "'Discard draft'", "'Erase everything'", "'Finish restore'",
+    "'Keep current data'", "'Remove copy'", "'Restore complete backup'", "'Restore completion history'", "'Restore this backup'",
   ]);
 });
 
@@ -552,6 +560,83 @@ test('the field is shown and selected for a name, and hidden and optional for a 
     assert.equal(parts['ask-body'].hidden, true, 'an empty body left an empty paragraph on screen');
     dlg.close('');
     await within(confirmed, 'confirmed to settle');
+  } finally {
+    clearDom();
+  }
+});
+
+// Disconnecting cloud backup can also delete this device's backups (#810, P02-T05). Only that answer has
+// no way back, so the choice starts unchecked on every question, and the answer's label and danger
+// appearance follow it rather than the question.
+const DISCONNECT = {
+  title: 'Disconnect cloud backup?', body: 'Backups already made stay in OneDrive.', confirmLabel: 'Disconnect',
+  choiceLabel: 'Also delete this device\'s cloud backups', choiceConfirmLabel: 'Disconnect and delete',
+};
+
+test('a choice starts unchecked every time, and only while it is checked is the answer the danger one', async () => {
+  try {
+    const { askConfirm, askConfirmChoice, dlg, parts } = await wired();
+    const [field, box, ok, cancel] = [parts['ask-choice-field'], parts['ask-choice'], parts['ask-ok'], parts['ask-cancel']];
+    const tick = (checked) => { box.checked = checked; box.fire('change'); };
+
+    const chosen = askConfirmChoice(DISCONNECT);
+    assert.deepEqual([field.hidden, parts['ask-choice-label'].textContent, box.checked], [false, DISCONNECT.choiceLabel, false]);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect', false]);
+    assert.equal(globalThis.document.activeElement, cancel, 'Cancel has focus, not the choice the dialog would focus first');
+    assert.equal(dlg.attributes['data-question'], 'confirm');
+    tick(true);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect and delete', true]);
+    tick(false);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect', false]);
+    tick(true);
+    dlg.close('ok');
+    assert.deepEqual(await within(chosen, 'the chosen answer to settle'), { choice: true });
+
+    const again = askConfirmChoice(DISCONNECT);
+    assert.equal(box.checked, false, 'the last answer\'s choice is not carried into this one');
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect', false]);
+    dlg.close('ok');
+    assert.deepEqual(await within(again, 'the plain answer to settle'), { choice: false });
+
+    for (const backOut of [() => { tick(true); dlg.pressEscape(); }, () => { tick(true); cancel.fire('click'); }]) {
+      const answer = askConfirmChoice(DISCONNECT);
+      backOut();
+      assert.equal(await within(answer, 'backing out to settle'), null, 'a checked choice is nothing without the answer');
+    }
+
+    const plain = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
+    assert.deepEqual([field.hidden, parts['ask-choice-label'].textContent, box.checked], [true, '', false]);
+    tick(true);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Delete', false], 'a question without a choice ignores the box');
+    dlg.close('ok');
+    assert.equal(await within(plain, 'the plain question to settle'), true);
+  } finally {
+    clearDom();
+  }
+});
+
+test('a question that needs a choice backs out where it cannot be asked, and wedges nothing after it', async () => {
+  try {
+    const { askConfirm, askConfirmChoice, dlg, parts } = await wired();
+    dlg.isOpen = true;
+    assert.equal(await within(askConfirmChoice(DISCONNECT), 'the refused question to settle'), null);
+    dlg.isOpen = false;
+    const next = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
+    parts['ask-choice'].checked = true;
+    parts['ask-choice'].fire('change');
+    assert.equal(parts['ask-ok'].textContent, 'Delete', 'the failed choice question left nothing behind');
+    dlg.close('ok');
+    assert.equal(await within(next, 'the next question to settle'), true);
+  } finally {
+    clearDom();
+  }
+  try {
+    const { askConfirm, askConfirmChoice, dlg } = await wired({ withChoice: false });
+    assert.equal(await within(askConfirmChoice(DISCONNECT), 'the question to settle'), null);
+    assert.equal(dlg.showModalCalls, 0, 'nothing was asked without the choice it needed');
+    const next = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
+    dlg.close('ok');
+    assert.equal(await within(next, 'the next question to settle'), true);
   } finally {
     clearDom();
   }
