@@ -102,22 +102,42 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
 });
 
 test('only explicit main release preparation exposes the protected package configuration', () => {
-  const expression = workflow.match(/^ {4}environment: \$\{\{ (.+) \}\}/m)?.[1];
-  const secretExpression = workflow.match(/RECAP_ONEDRIVE_CLIENT_ID: \$\{\{ (.+secrets\.RECAP_ONEDRIVE_CLIENT_ID.+) \}\}/)?.[1];
-  assert.ok(expression && secretExpression);
-  for (const [event, ref, preparation, enabled] of [
-    ['workflow_dispatch', 'refs/heads/main', true, true],
-    ['workflow_dispatch', 'refs/heads/feature', true, false],
-    ['workflow_dispatch', 'refs/heads/main', false, false],
-    ['pull_request', 'refs/heads/main', true, false],
-  ]) {
-    const context = {
-      github: { event_name: event, ref }, inputs: { release_preparation: preparation },
-      secrets: { RECAP_ONEDRIVE_CLIENT_ID: 'synthetic-protected-value' },
-    };
-    assert.equal(runInNewContext(expression, context), enabled ? 'microsoft-store-production' : '');
-    assert.equal(runInNewContext(secretExpression, context), enabled ? 'synthetic-protected-value' : '');
+  const gate = "github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main'";
+  const secretExpression = `${gate} && secrets.RECAP_ONEDRIVE_CLIENT_ID || ''`;
+  const jobs = [...workflow.matchAll(/^ {2}([a-z][a-z-]*):\r?$/gm)];
+  const jobSource = (name) => {
+    const index = jobs.findIndex((match) => match[1] === name);
+    assert.notEqual(index, -1, `${name} job is missing`);
+    return workflow.slice(jobs[index].index, jobs[index + 1]?.index ?? workflow.length);
+  };
+  assert.equal((workflow.match(/secrets\.RECAP_ONEDRIVE_CLIENT_ID/g) ?? []).length, 3);
+  for (const name of ['certify', 'installed']) {
+    const source = jobSource(name);
+    const expressions = [...source.matchAll(/RECAP_ONEDRIVE_CLIENT_ID: (\$\{\{[^\r\n]*\}\})/g)];
+    assert.deepEqual(expressions.map((match) => match[1]), [`\${{ ${secretExpression} }}`], name);
+    const environment = source.match(/^ {4}environment: \$\{\{ (.+) \}\}/m)?.[1];
+    assert.equal(environment, `${gate} && 'microsoft-store-production' || ''`, name);
+    for (const event of ['workflow_dispatch', 'pull_request']) {
+      for (const ref of ['refs/heads/main', 'refs/heads/feature']) {
+        for (const preparation of [true, false]) {
+          const enabled = event === 'workflow_dispatch' && ref === 'refs/heads/main' && preparation;
+          const context = {
+            github: { event_name: event, ref }, inputs: { release_preparation: preparation },
+            secrets: { RECAP_ONEDRIVE_CLIENT_ID: 'synthetic-protected-value' },
+          };
+          assert.equal(runInNewContext(environment, context), enabled ? 'microsoft-store-production' : '', name);
+          assert.equal(runInNewContext(expressions[0][1].slice(4, -3), context),
+            enabled ? 'synthetic-protected-value' : '', name);
+        }
+      }
+    }
   }
+  const preparation = jobSource('preparation');
+  assert.deepEqual(
+    [...preparation.matchAll(/RECAP_ONEDRIVE_CLIENT_ID: (\$\{\{[^\r\n]*\}\})/g)].map((match) => match[1]),
+    ['${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}'],
+  );
+  assert.match(preparation, /^ {4}environment: microsoft-store-production\r?$/m);
   assert.equal((workflow.match(/environment: \$\{\{/g) ?? []).length, 2);
   assert.match(workflow, /\$env:GITHUB_REF -ne 'refs\/heads\/main'/);
 });
