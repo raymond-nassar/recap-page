@@ -869,7 +869,7 @@ test('T03 fixtures settle inserted DOM before measuring passivity and legacy pos
 test('T03 reveals each enumerated native target before demanding its unchanged in-viewport no-op proof', () => {
   const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
     presentationTests.indexOf('private func freshPassiveState'));
-  assert.match(legacy, /revealNativeTarget\(element, in: app\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(legacy, /revealNativeTarget\(element, in: app, bottomClearance: 44\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
 
@@ -924,6 +924,23 @@ test('T03 pins the native label before any guard tap instead of dereferencing a 
   assert.equal((guard.match(/element\.label/g) || []).length, 1);
   assert.match(guard, /candidate\["label"\] as\? String == nativeLabel/);
   assert.match(guard, /"candidate": candidate, "nativeLabel": nativeLabel/);
+});
+
+test('T03 prepares positive fixtures away from native bottom navigation without scrolling audit findings', () => {
+  assert.match(presentationTests, /bottomClearance: CGFloat = 0/);
+  assert.match(presentationTests, /min\(webView\.frame\.maxY, toggle\.frame\.minY\) - bottomClearance/);
+  assert.match(presentationTests, /revealNativeTarget\(element, in: app, bottomClearance: 44\)/);
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
+});
+
+test('T03 unmatched-text diagnostics retain actual Range fragments and the same sampled DOM hit targets', () => {
+  assert.match(debugSupport, /textGeometry: texts\.map/);
+  assert.match(debugSupport, /fragments: \[\.\.\.range\.getClientRects\(\)\]/);
+  assert.match(debugSupport, /points: fragmentPoints\(fragment\)\.map/);
+  assert.match(debugSupport, /ownerContains: element\.contains\(hit\)/);
+  assert.match(debugSupport, /selector: path\(hit\)/);
 });
 
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {

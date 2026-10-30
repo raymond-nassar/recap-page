@@ -103,8 +103,12 @@ unique identity, passivity and the complete native no-op remain unchanged. A mis
 such as the separate minimum-iPhone "Reading data" finding, cannot use this allowance.
 
 The positive-fixture driver reveals each offscreen target before requesting that same strict
-proof. The guard itself still rejects an offscreen finding; scrolling is preparation for a
-fixture tap, not an audit exemption.
+proof. On narrow windows it also leaves 44 points above the bottom navigation's More target:
+a DOM-hit-tested passive-text tap near that navigation has navigated to Search natively on SE,
+and correctly failed the no-op proof. The guard itself still rejects an offscreen finding;
+scrolling is preparation for a fixture tap, not an audit exemption. Unmatched-text diagnostics
+record actual Range fragments and sampled DOM hit targets; those observations do not grant
+acceptance.
 
 ARIA references from a control still reject text unless every referencing control is absent
 from rendering and accessibility on that settled route. The control or an ancestor must be

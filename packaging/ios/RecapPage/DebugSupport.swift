@@ -226,6 +226,12 @@ enum DebugSupport {
         return [...element.querySelectorAll('*')].every(safeElement);
       };
       const passive = element => globalInventoryValid() && passiveDom(element);
+      const fragmentPoints = fragment => {
+        const x = fragment.x + fragment.width / 2;
+        const inset = Math.min(1, fragment.height / 4);
+        return [fragment.y + fragment.height / 2, fragment.y + inset,
+          fragment.y + fragment.height - inset].map(y => ({ x, y }));
+      };
       const explain = element => {
         const ancestors = [];
         for (let node = element; node; node = node.parentElement) {
@@ -234,8 +240,24 @@ enum DebugSupport {
             hidden: node.hidden, ariaHidden: node.getAttribute('aria-hidden'), inert: node.inert,
             display: style.display, visibility: style.visibility, opacity: style.opacity });
         }
+        const texts = [...element.childNodes].filter(node =>
+          node.nodeType === Node.TEXT_NODE && node.textContent.trim());
         return { label: element.textContent.trim(), visible: visible(element),
           passive: passive(element), rect: element.getBoundingClientRect().toJSON(),
+          viewport: { width: innerWidth, height: innerHeight },
+          textGeometry: texts.map(text => {
+            const range = document.createRange();
+            range.selectNodeContents(text);
+            return { text: text.textContent.trim(),
+              fragments: [...range.getClientRects()].map(fragment => ({
+                rect: fragment.toJSON(),
+                points: fragmentPoints(fragment).map(point => {
+                  const hit = document.elementFromPoint(point.x, point.y);
+                  return { ...point, hit: hit ? { selector: path(hit), ownerContains: element.contains(hit),
+                    passive: passiveDom(hit) } : null };
+                }),
+              })) };
+          }),
           ancestors };
       };
       const path = element => {
@@ -267,12 +289,6 @@ enum DebugSupport {
               range.selectNodeContents(text);
               const rect = element.getBoundingClientRect();
               if (!rect.width || !rect.height) continue;
-              const fragmentPoints = fragment => {
-                const x = fragment.x + fragment.width / 2;
-                const inset = Math.min(1, fragment.height / 4);
-                return [fragment.y + fragment.height / 2, fragment.y + inset,
-                  fragment.y + fragment.height - inset].map(y => ({ x, y }));
-              };
               const pointHitsText = point => {
                 const hit = document.elementFromPoint(point.x, point.y);
                 return Boolean(hit && element.contains(hit) && passiveDom(hit));

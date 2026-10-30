@@ -13,11 +13,12 @@ private func layoutMetrics(from label: String, prefix: String = "recap-layout-pr
 }
 
 @MainActor
-func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication) {
+func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, bottomClearance: CGFloat = 0) {
     let webView = app.webViews.firstMatch
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
-    let usableBottom = toggle.exists ? min(webView.frame.maxY, toggle.frame.minY) : webView.frame.maxY
+    let usableBottom = toggle.exists
+        ? min(webView.frame.maxY, toggle.frame.minY) - bottomClearance : webView.frame.maxY
     let usableFrame = CGRect(
         x: webView.frame.minX, y: webView.frame.minY,
         width: webView.frame.width, height: usableBottom - webView.frame.minY)
@@ -749,7 +750,7 @@ final class PresentationUITests: XCTestCase {
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
-            revealNativeTarget(element, in: app)
+            revealNativeTarget(element, in: app, bottomClearance: 44)
             XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
             let proved = try acceptPassiveFinding(element, in: app, routeState: state)
             XCTAssertTrue(proved, "the reviewed positive requires the same exact native no-op proof: \(key)")
