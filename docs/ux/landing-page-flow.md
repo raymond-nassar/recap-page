@@ -32,6 +32,13 @@ App launch, or selecting the brand lockup in the sidebar.
 
 ## Optional Home Highlights
 
+The Marvel Unlimited closure notice keeps its approved wording and warning symbol until
+dismissed. Its corner button is named **Dismiss the Marvel Unlimited notice**, with the same
+hover and focus hint. Dismissing returns focus to Home's heading without scrolling. The choice
+is remembered only on this device, outside reading data and all backups; if storage fails it
+lasts only for this page view. A new notice identity shows again. About retains the December 7
+explanation independently. On phones the notice stays below Continue reading, when present.
+
 Both Home states keep a quiet **What's new** entry beside the heading. Its native disclosure is
 closed on arrival, creates no route or history entry, and never interrupts reading. The compact
 panel describes improvements included in the running copy and exact newly added Reading Lists,

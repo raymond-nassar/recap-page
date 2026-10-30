@@ -60,6 +60,7 @@ import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
 import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
+import { createNoticeDismissal } from './lib/noticeDismissal.js';
 import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
@@ -2972,9 +2973,18 @@ export function boot() {
   readingView.wire();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
+  const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
+  const closureNotice = $('#reader-closure-notice');
+  closureNotice.hidden = closureDismissal.dismissed();
+  $('#reader-closure-dismiss').addEventListener('click', () => {
+    closureDismissal.dismiss();
+    closureNotice.hidden = true;
+    $('#home-h').setAttribute('tabindex', '-1');
+    $('#home-h').focus({ preventScroll: true });
+  });
   let readerDayTimer;
   const refreshReaderDestinations = () => {
-    $('#reader-closure-notice').textContent = readerClosureNotice();
+    $('#reader-closure-text').textContent = readerClosureNotice();
     readingView.refreshReader();
     homeView.refreshReader();
     issueView.refreshReader();

@@ -1,5 +1,116 @@
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
 
+export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
+  await seedFixtureState(page);
+  await route(page, '#/home', '#view-home:not([hidden])');
+  const button = '#reader-closure-dismiss';
+  await page.waitForSelector(button, { timeout: 5000 });
+  const snapshot = () => page.evaluate(() => ({
+    reader: localStorage.getItem('mrt.state.v2'),
+    history: localStorage.getItem('mrt.list-history.v1'),
+    settings: localStorage.getItem('mrt.settings'),
+  }));
+  const before = await snapshot();
+  const key = 'mrt.readerClosure.dismissed.v1';
+  const identity = 'marvel-unlimited-closure-v1';
+  const ax = await page.createCDPSession();
+  const { nodes } = await ax.send('Accessibility.getFullAXTree');
+  await ax.detach();
+  t.check('screen-reader tree names one button without speaking the decorative glyph',
+    nodes.filter((node) => !node.ignored && node.role?.value === 'button'
+      && node.name?.value === 'Dismiss the Marvel Unlimited notice').length === 1);
+  for (const theme of ['light', 'dark', 'system']) {
+    for (const width of [1280, 320]) {
+      await page.setViewport({ width, height: 900 });
+      await page.evaluate((theme) => {
+        if (theme === 'system') document.documentElement.removeAttribute('data-theme');
+        else document.documentElement.dataset.theme = theme;
+      }, theme);
+      t.check(`${theme} at ${width}px keeps the corner control clear of the text and inside the notice`,
+        await page.$eval(button, (node) => {
+          const box = node.getBoundingClientRect(), notice = node.parentElement.getBoundingClientRect();
+          const prose = document.createRange();
+          prose.selectNodeContents(document.querySelector('#reader-closure-text'));
+          return box.left >= notice.left && box.right <= notice.right && box.top >= notice.top
+            && box.bottom <= notice.bottom && box.width >= 44 && box.height >= 44
+            && [...prose.getClientRects()].every((rect) => rect.right <= box.left || rect.top >= box.bottom)
+            && document.documentElement.scrollWidth <= innerWidth;
+        }));
+    }
+  }
+  await page.setViewport({ width: 1280, height: 900 });
+  await page.evaluate(() => document.documentElement.removeAttribute('data-theme'));
+  await page.evaluate(() => dispatchEvent(new Event('focus')));
+  t.check('reader destination refresh preserves the dismiss control', await page.$(button) !== null);
+  await page.focus(button);
+  const focus = await page.$eval(button, (node) => {
+    const style = getComputedStyle(node), box = node.getBoundingClientRect();
+    return { ring: style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+      width: box.width, height: box.height, hint: node.dataset.tooltip };
+  });
+  t.check('keyboard focus and target size use shared icon-button conventions',
+    focus.ring && focus.width >= 24 && focus.height >= 24 && focus.hint === 'Dismiss the Marvel Unlimited notice', JSON.stringify(focus));
+  const scroll = await page.evaluate(() => scrollY);
+  await page.keyboard.press('Enter');
+  t.check('Enter hides the notice and orients focus without scrolling', await page.evaluate((y) =>
+    document.querySelector('#reader-closure-notice').hidden && document.activeElement.id === 'home-h'
+    && scrollY === y, scroll));
+  t.check('dismissal leaves saved reader facts unchanged', JSON.stringify(await snapshot()) === JSON.stringify(before));
+  await page.reload({ waitUntil: 'load' });
+  t.check('dismissal survives reload', await page.$eval('#reader-closure-notice', (node) => node.hidden));
+  await page.evaluate((key) => localStorage.setItem(key, 'marvel-unlimited-closure-v2'), key);
+  await page.reload({ waitUntil: 'load' });
+  t.check('a different notice identity cannot hide this notice', await page.$eval('#reader-closure-notice', (node) => !node.hidden));
+  await page.evaluate((key) => localStorage.setItem(key, '{malformed'), key);
+  await page.reload({ waitUntil: 'load' });
+  t.check('malformed dismissal shows the notice', await page.$eval('#reader-closure-notice', (node) => !node.hidden));
+  await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+  const media = await page.createCDPSession();
+  await media.send('Emulation.setEmulatedMedia', {
+    features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+  });
+  await page.focus(button);
+  t.check('forced colors retains a visible focus outline', await page.$eval(button, (node) => {
+    const style = getComputedStyle(node);
+    return style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0;
+  }));
+  await media.send('Emulation.setEmulatedMedia', { features: [] });
+  await media.detach();
+  await page.emulateMediaFeatures([]);
+  for (const fault of ['read', 'write']) {
+    const faulty = await page.browserContext().newPage();
+    try {
+      await faulty.setViewport({ width: 1280, height: 900 });
+      await faulty.evaluateOnNewDocument((key, fault) => {
+        const get = Storage.prototype.getItem, set = Storage.prototype.setItem;
+        Storage.prototype.getItem = function (name) {
+          if (name === key && fault === 'read') throw new Error('read refused');
+          return get.call(this, name);
+        };
+        Storage.prototype.setItem = function (name, value) {
+          if (name === key && fault === 'write') throw new Error('write refused');
+          return set.call(this, name, value);
+        };
+      }, key, fault);
+      await page.evaluate((key, identity) => localStorage.setItem(key, identity), key, identity);
+      if (fault === 'write') await page.evaluate((key) => localStorage.removeItem(key), key);
+      await faulty.goto(new URL('/#/home', page.url()).href, { waitUntil: 'load' });
+      await faulty.waitForSelector(button);
+      t.check(`${fault} failure shows the notice`, await faulty.$eval('#reader-closure-notice', (node) => !node.hidden));
+      await click(faulty, button);
+      t.check(`${fault} failure still dismisses for this page without an alarming notice`,
+        await faulty.evaluate(() => document.querySelector('#reader-closure-notice').hidden
+          && !document.querySelector('#app-report .notice-error')));
+      await faulty.reload({ waitUntil: 'load' });
+      t.check(`${fault} failure shows again on reload`, await faulty.$eval('#reader-closure-notice', (node) => !node.hidden));
+    } finally { await faulty.close(); }
+  }
+  await page.evaluate((key) => localStorage.removeItem(key), key);
+  await route(page, '#/about', '#view-about:not([hidden])');
+  t.check('About keeps the cutoff explanation independently', await page.$eval('#view-about',
+    (node) => node.textContent.includes('December 7, 2026') && node.textContent.includes('not a single-comic link')));
+}
+
 async function localClock(page) {
   await page.evaluateOnNewDocument(() => {
     const Clock = Date;
