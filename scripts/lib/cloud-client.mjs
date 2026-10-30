@@ -13,6 +13,13 @@ import { ROOT } from './release-identity.mjs';
 
 export const CLOUD_CLIENT_ARGUMENT = '--cloud-client=';
 
+export function verifyCloudClientDigest(identity, bytes) {
+  const digest = bytes === null ? null : createHash('sha256').update(bytes).digest('hex');
+  if (bytes !== null) parseCloudClient(bytes.toString('utf8'));
+  if (identity.cloudClient !== digest) throw new Error('cloud client: packaged configuration differs from its build identity');
+  return digest;
+}
+
 // null when no configuration was asked for, which is every build until cloud backup is turned on.
 export function cloudClientInjection(argv = process.argv.slice(2), root = ROOT) {
   const given = argv.filter((arg) => arg.startsWith(CLOUD_CLIENT_ARGUMENT));

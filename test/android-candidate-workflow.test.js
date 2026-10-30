@@ -53,6 +53,17 @@ test('upload secrets are confined to the external signer step and never enter re
   assert.match(shell, /--ks-pass="file:\$WORK\/proof-secret\/password" --key-pass="file:\$WORK\/proof-secret\/password"/);
   assert.match(shell, /--ks-pass env:RECAP_PROOF_PASSWORD --key-pass env:RECAP_PROOF_PASSWORD/);
   assert.doesNotMatch(shell, /pass:\$|set -x|--scan|--debug/);
+  const prepare = candidate.slice(candidate.indexOf('      - name: Recheck actual approval'),
+    candidate.indexOf('      - name: Sign with'));
+  for (const name of ['RECAP_ONEDRIVE_CLIENT_ID', 'RECAP_ONEDRIVE_PLAY_REDIRECT_HASH']) {
+    assert.equal(workflow.split(`secrets.${name}`).length - 1, 1);
+    assert.ok(prepare.includes(`secrets.${name}`));
+    assert.ok(!candidate.replace(prepare, '').includes(`secrets.${name}`));
+  }
+  assert.match(shell, /-PrecapCloudRedirectHashReleaseFile=\$cloud\/redirect-hash/);
+  assert.match(shell, /> "\$cloud\/gradle\.log" 2>&1/);
+  assert.match(shell, /rm -f -- "\$cloud\/gradle\.log"/);
+  assert.match(shell, /release-cloud-client\.mjs" cleanup/);
 });
 
 test('same-AAB proof and cleanup precede exact allowlisted retention with no Play upload', () => {

@@ -1,6 +1,5 @@
 // The cloud backup client configuration's path into a release (#810, P02-T01 section 3.2, OD-06): put in
-// when a release build is made, from a protected secret, and never committed. Until P05 wires the release
-// workflow, no build asks for one, so cloud backup stays dormant in every artifact this repository makes.
+// when an approved release build is made, from a protected secret, and never committed.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -17,11 +16,15 @@ const CONFIG = JSON.stringify({
 });
 const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8' });
 
-test('no build asks for a client configuration, none is committed, and a copy left here is ignored', () => {
+test('only protected release workflows ask for configuration, none is committed, and a copy left here is ignored', () => {
   assert.deepEqual(git('ls-files').split(/\r?\n/).filter((path) => /(^|\/)cloud-client\.json$/.test(path)), []);
   const workflows = join(ROOT, '.github', 'workflows');
   for (const name of readdirSync(workflows)) {
-    assert.ok(!readFileSync(join(workflows, name), 'utf8').includes(CLOUD_CLIENT_ARGUMENT), `${name} asks for none until P05`);
+    const source = readFileSync(join(workflows, name), 'utf8');
+    assert.ok(!source.includes(CLOUD_CLIENT_ARGUMENT), `${name} uses the checked release wrapper, not raw injection`);
+    if (!['wack.yml', 'microsoft-store-release.yml', 'android-release-candidate.yml'].includes(name)) {
+      assert.doesNotMatch(source, /secrets\.RECAP_ONEDRIVE_|release-cloud-client\.mjs/);
+    }
   }
   for (const path of ['cloud-client.json', 'host/cloud-client.json', 'dist/cloud-client.json']) {
     assert.match(git('check-ignore', '--no-index', '-v', path), /cloud-client\.json/, path);

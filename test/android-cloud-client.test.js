@@ -33,6 +33,12 @@ test('An Android build reads its client id from the configuration and its redire
     // Gradle reads the answer from standard output, so the script itself is held to the same shape.
     const printed = JSON.parse(execFileSync(process.execPath, ['scripts/android-cloud-client.mjs', path, `release=${HASH}`], { encoding: 'utf8' }));
     assert.deepEqual(printed, { clientId: 'test-client.recap-page', redirectHashes: { release: HASH } });
+    const file = join(path, '..', 'redirect-hash');
+    writeFileSync(file, HASH);
+    assert.deepEqual(androidCloudClient(path, [`release-file=${file}`]), printed);
+    assert.throws(() => androidCloudClient(path, [`release-file=${file}`, `release=${HASH}`]), /given once/);
+    writeFileSync(file, `${HASH}\n`);
+    assert.throws(() => androidCloudClient(path, [`release-file=${file}`]), /not a signature hash/);
   });
 });
 

@@ -234,7 +234,7 @@ export function validateQualification(report, record, recordBytes, spec, produce
   const { artifact, ...identity } = record;
   object(report, ['schemaVersion', 'kind', 'source', 'workflow', 'ledgerCommit', 'approval',
     'bundle', 'proofSignerSha256', 'native', 'scope', 'tools', 'artifactRecordSha256']);
-  demand(report.schemaVersion === 1 && report.kind === 'qualified-candidate'
+  demand([1, 2].includes(report.schemaVersion) && report.kind === 'qualified-candidate'
     && report.artifactRecordSha256 === digest(recordBytes)
     && artifact && canonical(report.source) === canonical(identity),
   'QUALIFICATION_IDENTITY_MISMATCH');
@@ -244,7 +244,9 @@ export function validateQualification(report, record, recordBytes, spec, produce
     && SHA.test(report.ledgerCommit) && canonical(report.approval) === canonical(approval),
   'QUALIFICATION_APPROVAL_MISMATCH');
   object(report.bundle, ['bundleSha256', 'bundleSignerSha256', 'structure', 'manifest',
-    'resources', 'assets', 'nativeLibraries', 'apkSignatures']);
+    'resources', 'assets', 'nativeLibraries', 'apkSignatures', ...(report.schemaVersion === 2 ? ['cloudClient'] : [])]);
+  if (report.schemaVersion === 2) demand(typeof report.bundle.cloudClient === 'string'
+    && HASH.test(report.bundle.cloudClient), 'CLOUD_QUALIFICATION_REQUIRED');
   demand(report.bundle.bundleSha256 === record.artifact.sha256
     && report.bundle.bundleSignerSha256 === spec.signer
     && ['structure', 'manifest', 'resources', 'assets', 'apkSignatures'].every((key) => report.bundle[key] === true)

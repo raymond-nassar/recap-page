@@ -40,6 +40,9 @@ on:
       - scripts/build-native-launcher.ps1
       - scripts/lib/native-launcher.mjs
       - scripts/lib/startup-contract.mjs
+      - scripts/lib/cloud-client.mjs
+      - scripts/lib/release-identity.mjs
+      - scripts/release-cloud-client.mjs
       - scripts/msix-proof.mjs
       - scripts/native-startup-proof.ps1
       - scripts/pack-msix.mjs
@@ -48,13 +51,16 @@ on:
       - scripts/test-wack-report.ps1
       - scripts/wack-report.ps1
       - test/msix-packaging.test.js
+      - test/cloud-config.test.js
+      - test/release-cloud-client.test.js
       - test/microsoft-store-release.test.js
       - test/native/**
       - test/server-contract.test.js
       - test/startup-contract.test.js
       - test/wack-workflow.test.js
 
-# WACK needs no repository write, package publication, identity token, or secret.
+# Ordinary WACK stays secret-free. Manual release preparation uses the main-only
+# protected Store environment for the enabled packages; it never publishes them.
 permissions:
   contents: read
 
@@ -90,6 +96,10 @@ jobs:
           if ($env:RELEASE_PREPARATION -eq 'true' -and
               ($env:NATIVE_ONLY -eq 'true' -or $env:DIAGNOSTIC_ONLY -eq 'true')) {
             throw 'release_preparation requires the complete Windows proof.'
+          }
+          if ($env:RELEASE_PREPARATION -eq 'true' -and
+              ($env:GITHUB_EVENT_NAME -ne 'workflow_dispatch' -or $env:GITHUB_REF -ne 'refs/heads/main')) {
+            throw 'Enabled release preparation requires the reviewed main workflow.'
           }
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
               $env:NATIVE_ONLY -eq 'true' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
@@ -291,8 +301,9 @@ jobs:
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
     needs: native
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && 'microsoft-store-production' || '' }}
     if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
-    timeout-minutes: 110
+    timeout-minutes: 112
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
     steps:
@@ -384,7 +395,21 @@ jobs:
 
       - name: Build ephemeral certification packages
         timeout-minutes: 15
-        run: npm run msix:pack
+        shell: pwsh
+        env:
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && secrets.RECAP_ONEDRIVE_CLIENT_ID || '' }}
+        run: |
+          if ($env:RELEASE_PREPARATION -eq 'true') {
+            node scripts/release-cloud-client.mjs windows-msix
+          } else {
+            npm run msix:pack
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Package build failed.' }
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
 
       - name: Inspect every certification package without executing foreign runtimes
         timeout-minutes: 5
@@ -472,6 +497,7 @@ jobs:
     name: Installed functionality on ${{ matrix.architecture }}
     runs-on: ${{ matrix.runner }}
     needs: native
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && 'microsoft-store-production' || '' }}
     if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
     timeout-minutes: 99
     env:
@@ -558,7 +584,21 @@ jobs:
 
       - name: Build ephemeral packages
         timeout-minutes: 15
-        run: npm run msix:pack
+        shell: pwsh
+        env:
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && secrets.RECAP_ONEDRIVE_CLIENT_ID || '' }}
+        run: |
+          if ($env:RELEASE_PREPARATION -eq 'true') {
+            node scripts/release-cloud-client.mjs windows-msix
+          } else {
+            npm run msix:pack
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Package build failed.' }
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
 
       - name: Inspect every installed-proof package without executing foreign runtimes
         timeout-minutes: 5
@@ -725,6 +765,7 @@ jobs:
   preparation:
     name: Prepare the portable release candidate
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true && inputs.diagnostic_target != 'ordinary-browser' && inputs.diagnostic_target != 'ordinary-browser-context-isolation' && inputs.diagnostic_target != 'ordinary-browser-download-completion' && inputs.diagnostic_target != 'ordinary-browser-export-acceptance' && inputs.diagnostic_target != 'ordinary-browser-recovery-completion' && inputs.diagnostic_target != 'ordinary-browser-ratings-acceptance' && inputs.diagnostic_target != 'ordinary-browser-interaction-acceptance' }}
+    environment: microsoft-store-production
     runs-on: windows-2022
     timeout-minutes: 120
     steps:
@@ -792,7 +833,13 @@ jobs:
         run: npm run store:check
       - name: Build only the portable ZIP
         timeout-minutes: 10
-        run: npm run pack
+        env:
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}
+        run: node scripts/release-cloud-client.mjs windows-portable
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
       - name: Verify portable bytes and record candidate provenance
         timeout-minutes: 10
         shell: pwsh
