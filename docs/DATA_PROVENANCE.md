@@ -1931,16 +1931,18 @@ X-Men: Legacy #208-225. That is 58 exact original issues with no source gaps. Th
 Classic X-Men #31 before Uncanny X-Men #117, so the checklist does too, although the table had them
 the other way round. Issue 12433 is Uncanny X-Men (1963) #117, on sale in 1979, although the table's
 link for it names a 1981 series. Illuminati is the 2006 to 2007 limited series, not the April 2006
-one-shot, and keeps the guide's whole five-issue collection pending the owner's decision recorded on
-the Issue. Thirty-nine identities came from pinned payloads and 19 from the configured provider's
+one-shot, and keeps the guide's whole five-issue collection, which the owner confirmed on 2026-10-29
+on the Issue. Thirty-nine identities came from pinned payloads and 19 from the configured provider's
 series listings, and the provider returned details for all 58 when the order was vendored.
 
 The guide's event collections, its other bonus reads, the alternate-reality section, House of X
 and Latest Additions are 20 named exclusions in the
 [frozen packet](../scripts/data/cbh-packets/professor-x-reading-order.json), each naming the
-Reading List that carries it where one exists. The checklist is an ordinary issue order without
-collected-edition headings, because two of the guide's crucial picks belong to no edition the page
-names. The [source ledger](../scripts/data/cbh-source-ledgers/professor-x-reading-order.json)
+Reading List that carries it where one exists. At the owner's direction, six of the follow-ons are
+filed as Reading List requests, Issues [#989](https://github.com/raymond-nassar/recap-page/issues/989)
+to [#994](https://github.com/raymond-nassar/recap-page/issues/994). The checklist is an ordinary
+issue order without collected-edition headings, because two of the guide's crucial picks belong to
+no edition the page names. The [source ledger](../scripts/data/cbh-source-ledgers/professor-x-reading-order.json)
 records the page digests, the selection blocks, every table row's verification and each provider
 listing used.
 

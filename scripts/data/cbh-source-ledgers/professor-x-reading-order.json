@@ -89,7 +89,7 @@
     {
       "section": "The Dark Past of Professor X",
       "block": "Bonus 2000's Reads: New Avengers: Illuminati",
-      "selectionPolicy": "full-collection-pending-owner-decision",
+      "selectionPolicy": "full-collection",
       "issues": [
         "New Avengers: Illuminati #1-5"
       ]
@@ -239,7 +239,7 @@
   "notes": [
     "Positions count the selected issue sequence only; excluded blocks are owner-directed follow-ons or edition context, not gaps.",
     "The checklist is an ordinary issue order without collected-edition headings, because two crucial picks sit in no edition the page names.",
-    "Owner decision d (Issue #981) may narrow New Avengers: Illuminati back to #1; that would renew this packet, its mapping and its relationship review."
+    "On 2026-10-29 the owner kept New Avengers: Illuminati whole, #1-5 (decision d, recorded on Issue #981). The frozen packet and mapping still say the decision is pending, because that is how it stood when the source was reviewed and approved."
   ],
   "status": "approved"
 }
