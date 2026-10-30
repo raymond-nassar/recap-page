@@ -46,6 +46,11 @@
   min-width: var(--target);
 }
 
+:root #view-data .backup-restore-label {
+  min-height: var(--target);
+  line-height: max(var(--target), 1.5em);
+}
+
 :root[data-ios-largest-text="true"] #view-home > .head {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

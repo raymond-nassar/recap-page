@@ -54,8 +54,9 @@ iPhone SE Simulator, WebKit otherwise let the native selector's single-line text
 correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
 adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
 
-The presentation audit has ten enumerated, maintainer-reviewed hit-region candidates, not a general
-exemption for text: the iPad sidebar's `h2#rail-reading` ("READING") inside the Main navigation,
+The presentation audit uses a fail-closed passive-text guard, approved in #1005, not a blanket
+exemption for text. Ten previously reviewed cases remain positive fixtures: the iPad sidebar's
+`h2#rail-reading` ("READING") inside the Main navigation,
 its App heading (`#sidebar-nav > .nav-foot > h2.rail-h`), Home's `#chero-count > b.glance-n` read count,
 the direct "of 0 issues" text and `.glance-end` "read" suffix in that count, the empty-list
 `#chero-next` caption inside the named Continue region, and the `#home-yours > .sec-h > .sec-note`
@@ -65,31 +66,51 @@ its `#library-rated-shelf-status` empty caption in Top-rated comics, and the cur
 breadcrumb span (`.breadcrumb [aria-current=page]`) inside Breadcrumb navigation. The breadcrumb
 case uses the fixed Library, Search or Backup & settings label for the active audited page;
 breadcrumb links are controls, not passive candidates.
-These fixture-specific nodes have no tabindex, interactive role, interactive ancestor or descendant. The heading's ancestor
-roles are heading, navigation and complementary; the count's are region and main. Generated-bundle
-inspection found no click, mousedown or mouseup listener on any candidate ancestry, including the document
-and window. Document-level pointerdown listeners exist for keyboard styling and closing supplemental
-panels, but this is not evidence of a click action on either text node.
+Only a hit-region finding on native StaticText can enter the guard. On the current settled route,
+the native label, container and frame must uniquely match a visible DOM text node. Hidden, inert,
+collapsed, stale, unmatched or ambiguous text fails. The node, its in-page ancestors and descendants
+must have no interactive element or role, tabindex, label association, editable content or click,
+double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler. Tracking starts
+before the document's scripts run and includes registered and inline handlers.
+
+Document and window are checked separately against an exact reviewed inventory of thirteen handlers,
+all on document and none on window. The inventory pins event type, target, capture, passive and once
+options, script URL and enclosing registering function, not line or column. It contains rated-comics'
+capture pointerdown, keydown and touchmove handlers; mobile-ui's capture pointerdown and keydown;
+home-updates' capture keydown and bubbling pointerdown; tooltips' capture keydown and bubbling
+pointerover, pointerout and pointermove; and the sidebar and reading shortcuts' bubbling keydown
+handlers. No global activation delegation is permitted. An unreviewed global registration or changed
+inventory rejects every candidate until reviewed. The keyboard handlers do not make a non-focusable
+text node a key target. The pointer and tooltip handlers still have to survive the native tap proof.
 
 WebKit's public iOS accessibility wrapper handles
 [accessibility hit testing separately from activation](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm):
 an unignored text object can be returned by hit testing even when activation has no action.
 This source was inspected on October 29, 2026; Apple's internal audit-selection logic is not
-observable here. The native tests must tap each exact visible text node, require unchanged
-navigation and no focus moving to a control, then match the audit element by its static-text type,
-exact label, named container and frame, with its frame contained by that container. Only a hit-region
-finding on a node that passes those checks is accepted. All other elements, audit types and interactive
-descendants still fail. The original two no-op taps passed on the newest-runtime iPhone and iPad;
-the additional Library and breadcrumb candidates remain under hosted validation. Every native
-audit now waits for a fresh DOM sample confirming both the active view and hash route; a native
-heading name alone can match stale or navigation text. This is not device VoiceOver acceptance.
+observable here. Every candidate must survive a real native no-op tap with route, focus and DOM
+unchanged, using fresh before-and-after samples. A tooltip appearing or any other DOM change rejects
+the node. All other elements and audit types still fail. The ten original positive cases passed on
+the newest iPhone, iPad and iPhone SE at default text before this general guard; the guard itself
+still requires hosted confirmation. Negative fixtures cover link and button text, own and ancestor
+handlers, hidden content, ambiguous duplicate text, unreviewed globals and DOM-changing pointer or
+tooltip taps. Every native audit waits for a fresh DOM sample confirming both the active view and
+hash route; a native heading name alone can match stale or navigation text. This is not device
+VoiceOver acceptance.
+
+Handler tracking and guard instrumentation are compiled only into Debug presentation-test builds.
+The existing Release Simulator build also scans every file of the built app, including the
+executable and resources as bytes, for both guard identifiers. A missing app or missing or empty
+executable fails that check rather than passing without inspecting anything.
 
 The four sidebar navigation links and the Continue card's Open the list link use the same accessible
 parent-target treatment, preserving their names and actions rather than exempting nested text.
 The footer's About link also uses that treatment and the shared `--target` token for its minimum
 width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
 The same parent-target treatment covers breadcrumb links, Library's ratings and tool links,
-Search's tool links and More ways to add summary. Breadcrumb links also use the shared `--target`
+Search's tool links and More ways to add summary, and Backup & settings' disclosure summaries.
+The backup-file labels retain their native label-to-file-input association and activation, with
+line boxes and minimum height using the shared `--target` token rather than treating them as passive
+text. Breadcrumb links also use the shared `--target`
 token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
 breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.
 The 375-point default/largest-text reflow checks and native audit own this iOS-only deviation.
@@ -98,6 +119,11 @@ addresses WebKit on iOS 18 exposing unnamed button remnants when an empty list h
 showing an action removes that extra accessibility hiding. Native tests require the empty card to
 contain no button nodes, with hosted confirmation pending. Generated-bundle checks exercise hiding
 and showing each action.
+
+A separate native More ways to add scenario opens and closes the disclosure with actual taps at
+default and largest text sizes. It records the active Search route, open state, summary geometry,
+viewport and document widths, and screenshots. Both the document and summary must remain free of
+sideways overflow, including the iPhone SE and iPad checks of the shared rotating-chevron correction.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current

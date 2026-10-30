@@ -100,6 +100,10 @@ final class WebViewController: UIViewController, WKUIDelegate {
         #if DEBUG
         if DebugSupport.seedsPresentationTest {
             controller.addUserScript(WKUserScript(
+                source: DebugSupport.passiveAuditTrackingScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+            controller.addUserScript(WKUserScript(
                 source: DebugSupport.presentationTestSeedScript,
                 injectionTime: .atDocumentStart,
                 forMainFrameOnly: true))
@@ -132,7 +136,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
         + '#btn-chero-open, .app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
-        + '#view-add .search-hub-card, #view-add summary';
+        + '#view-add .search-hub-card, #view-add summary, #view-data summary';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {

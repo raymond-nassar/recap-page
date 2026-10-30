@@ -770,7 +770,7 @@ test('iOS presentation diagnostics use DOM target geometry and observed accessib
 
 test('T03 accessibility audit and More-sheet failures retain actionable diagnostics', () => {
   assert.match(presentationTests, /private func performAccessibilityAudit\(of app: XCUIApplication,[\s\S]*?issue\.compactDescription[\s\S]*?issue\.detailedDescription[\s\S]*?issue\.element\.debugDescription[\s\S]*?return false/);
-  assert.match(presentationTests, /performAccessibilityAudit\(of: app, acceptedTexts: acceptedTexts\)/);
+  assert.match(presentationTests, /performAccessibilityAudit\(of: app, allowsPassiveGuard: true\)/);
   assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
 });
 
@@ -783,14 +783,18 @@ test('iOS presentation checks retain comic-page WebKit accessibility under displ
   assert.match(presentationTests, /"nativeHierarchy": app\.debugDescription/);
 });
 
-test('T03 accepts only enumerated reviewed passive-text hit-region findings after no-op taps', () => {
+test('T03 retains ten reviewed positives and accepts only complete passive-text hit-region proofs', () => {
   assert.doesNotMatch(presentationTests, /NSStringFromCGRect/);
   assert.match(presentationTests, /"nativeFrame": NSCoder\.string\(for: element\.frame\)/);
   assert.match(presentationTests, /"frame": NSCoder\.string\(for: link\.frame\)/);
   assert.match(presentationTests, /issue\.auditType == \.hitRegion/);
   assert.match(presentationTests, /element\.elementType == \.staticText/);
-  assert.match(presentationTests, /candidate\.frame == element\.frame/);
-  assert.match(presentationTests, /candidate\.label == element\.label/);
+  assert.match(presentationTests, /domFrame\.insetBy\(dx: -1, dy: -1\)\.contains\(nativeFrame\)/);
+  assert.match(presentationTests, /candidate\["label"\] as\? String == element\.label/);
+  assert.match(presentationTests, /matches\.count == 1/);
+  assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom/);
+  assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
+  assert.match(presentationTests, /settledProof\["dom"\] as\? String == proof\["dom"\]/);
   assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
@@ -903,6 +907,37 @@ test('iOS Library and Search controls retain one named parent target', () => {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
   assert.match(read('packaging/ios/web/ios.css'), /:root \.breadcrumb a\s*\{[^}]*min-width:\s*var\(--target\);/s);
+});
+
+test('passive audit guard tracks events only from document start in Debug presentation builds', () => {
+  const support = read('packaging/ios/RecapPage/DebugSupport.swift');
+  const controller = read('packaging/ios/RecapPage/WebViewController.swift');
+  assert.match(support, /static let passiveAuditTrackingScript = #"""/);
+  assert.match(support, /EventTarget\.prototype\.addEventListener/);
+  assert.match(support, /EventTarget\.prototype\.removeEventListener/);
+  assert.match(support, /globalInventoryValid/);
+  assert.match(support, /enclosingFunction/);
+  assert.match(controller, /source: DebugSupport\.passiveAuditTrackingScript,\s*injectionTime: \.atDocumentStart/);
+  const withoutDebug = controller.replace(/#if DEBUG[\s\S]*?#endif/g, '');
+  assert.doesNotMatch(withoutDebug, /passiveAuditTrackingScript|__recapPassiveGuard/);
+});
+
+test('iOS backup controls keep file label activation and full-sized native summary targets', () => {
+  const webController = read('packaging/ios/RecapPage/WebViewController.swift');
+  const iosCss = read('packaging/ios/web/ios.css');
+  assert.match(webController, /#view-data summary/);
+  assert.match(iosCss, /:root #view-data \.backup-restore-label\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
+  assert.doesNotMatch(webController, /label.*setAttribute\('aria-hidden'/);
+});
+
+test('native expanded More disclosure records actual open and closed geometry at both text sizes', () => {
+  assert.match(presentationTests, /func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes/);
+  assert.match(presentationTests, /moreMethods: \(\(\) =>/);
+  assert.match(presentationTests, /disclosure\.open/);
+  assert.match(presentationTests, /summary\.tap\(\)/);
+  assert.match(presentationTests, /for expectedOpen in \[true, false\]/);
+  assert.match(presentationTests, /"expanded More has no sideways overflow"/);
+  assert.match(presentationTests, /"t03-more-methods-/);
 });
 
 test('native journal recovery reveals its action above navigation before asking for confirmation', () => {

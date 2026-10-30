@@ -67,7 +67,7 @@ final class PresentationUITests: XCTestCase {
         ]
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(route: route)
-        if route == "all" {
+        if route == "all" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
         if emptyHomeTest {
@@ -94,6 +94,12 @@ final class PresentationUITests: XCTestCase {
               && document.getElementById('issue-focus-h').textContent === 'House of M (2005) #1', 'bundled comic');
             await nextFrame();
             screens.push(snapshot('view-issue'));
+            """
+        } else if route.hasPrefix("guard-") {
+            routeScript = """
+            await openRoute(routes[0]);
+            const fixtureMode = '\(route)';
+            \(Self.passiveGuardFixtures)
             """
         } else if route == "all" {
             routeScript = """
@@ -171,6 +177,21 @@ final class PresentationUITests: XCTestCase {
         document.body.append(monitor);
         const snapshot = (view) => ({
           view,
+          activeView: document.querySelector('.view:not([hidden])')?.id,
+          href: location.href,
+          moreMethods: (() => {
+            const disclosure = document.getElementById('add-other-methods');
+            const summary = disclosure.querySelector('summary');
+            const rect = summary.getBoundingClientRect();
+            return {
+              open: disclosure.open,
+              summaryWidth: rect.width,
+              summaryHeight: rect.height,
+              summaryScrollWidth: summary.scrollWidth,
+              summaryClientWidth: summary.clientWidth,
+              chevronContent: getComputedStyle(summary, '::after').content,
+            };
+          })(),
           viewportWidth: document.documentElement.clientWidth,
           documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
@@ -350,12 +371,15 @@ final class PresentationUITests: XCTestCase {
           monitor.setAttribute('aria-label', `recap-layout-probe ${monitor.textContent}`);
         };
         window.addEventListener('resize', refreshMonitor);
+        document.getElementById('add-other-methods').addEventListener('toggle', refreshMonitor);
         window.visualViewport?.addEventListener('resize', refreshMonitor);
         new ResizeObserver(refreshMonitor).observe(document.documentElement);
         refreshMonitor();
         const screens = [];
+        const guardFixtures = [];
         \(routeScript)
-        \(route == "all" ? Self.passiveAuditProbe : "")
+        refreshMonitor();
+        \(route == "all" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
         const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
         return JSON.stringify({
           scale: Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ios-text-scale')),
@@ -367,12 +391,60 @@ final class PresentationUITests: XCTestCase {
             live: restartRegion?.getAttribute('aria-live'),
           },
           screens,
+          guardFixtures,
         });
         """
     }
 
+    private static let passiveGuardFixtures = #"""
+    const guard = window.__recapPassiveGuard;
+    if (!guard?.globalInventoryValid()) throw new Error('Reviewed global inventory missing before fixtures');
+    const fixture = document.createElement('section');
+    fixture.id = 'ios-passive-fixtures';
+    fixture.style.cssText = 'position:fixed;z-index:10000;top:100px;left:20px;right:20px;background:white';
+    document.getElementById('view-home').prepend(fixture);
+    const add = (name, html, configure = () => {}) => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+      fixture.append(wrapper);
+      const text = wrapper.querySelector('span');
+      configure(wrapper, text);
+      guardFixtures.push({ name, passive: guard.passive(text) });
+      return text;
+    };
+    if (fixtureMode === 'guard-structural') {
+      add('plain positive', '<span>Guard plain text</span>');
+      add('link text child', '<a href="#/library"><span>Guard link</span></a>');
+      add('button text', '<button type="button"><span>Guard button</span></button>');
+      add('own click handler', '<span>Guard click</span>', (_, text) =>
+        text.addEventListener('click', () => {}));
+      add('hidden node', '<span hidden>Guard hidden</span>');
+      add('display none node', '<span style="display:none">Guard display none</span>');
+      add('ancestor click handler', '<div><span>Guard ancestor click</span></div>', wrapper =>
+        wrapper.firstElementChild.addEventListener('click', () => {}));
+      add('ancestor keydown handler', '<div><span>Guard ancestor key</span></div>', wrapper =>
+        wrapper.firstElementChild.addEventListener('keydown', () => {}));
+      add('duplicate first', '<span style="position:fixed;top:200px;left:20px">Guard duplicate</span>');
+      add('duplicate second', '<span style="position:fixed;top:200px;left:20px">Guard duplicate</span>');
+      const duplicates = guard.candidates().filter(candidate => candidate.label === 'Guard duplicate');
+      guardFixtures.push({ name: 'ambiguous duplicate label', rejected: duplicates.length === 0 });
+      document.addEventListener('click', () => {});
+      guardFixtures.push({ name: 'unreviewed global click', rejected: !guard.globalInventoryValid()
+        && guard.candidates().length === 0 && !guard.passive(fixture.querySelector('span')) });
+    } else {
+      const text = add('tap fixture', '<span id="ios-guard-tap-text" style="display:block;min-height:48px;line-height:48px">Guard tap text</span>');
+      if (fixtureMode === 'guard-tooltip') {
+        text.className = 'has-tooltip';
+        text.dataset.tooltip = 'Guard tooltip changed the DOM';
+      } else if (fixtureMode === 'guard-global-pointer') {
+        document.addEventListener('pointerdown', () => { text.dataset.changedByPointer = 'true'; }, true);
+      } else throw new Error('Unknown guard fixture mode');
+    }
+    """#
+
     private static let passiveAuditProbe = #"""
     const passiveMonitor = document.createElement('p');
+    passiveMonitor.setAttribute('data-recap-passive-monitor', '');
     passiveMonitor.setAttribute('role', 'status');
     passiveMonitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden';
     document.body.append(passiveMonitor);
@@ -428,7 +500,11 @@ final class PresentationUITests: XCTestCase {
       };
     };
     let passiveTick = 0;
-    const refreshPassiveMonitor = () => {
+    let refreshingPassive = false;
+    const refreshPassiveMonitor = async () => {
+      if (refreshingPassive) return;
+      refreshingPassive = true;
+      try {
       const active = document.activeElement;
       const currentView = document.querySelector('.view:not([hidden])')?.id;
       const breadcrumbLabel = {
@@ -440,6 +516,14 @@ final class PresentationUITests: XCTestCase {
         view: currentView,
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
+        guard: window.__recapPassiveGuard ? {
+          valid: window.__recapPassiveGuard.globalInventoryValid(),
+          inventory: window.__recapPassiveGuard.inventory(),
+          candidates: window.__recapPassiveGuard.candidates(),
+          focus: window.__recapPassiveGuard.focus(),
+          dom: await window.__recapPassiveGuard.domDigest(),
+          viewportWidth: document.documentElement.clientWidth,
+        } : { valid: false, error: 'Document-start passive guard missing' },
         cases: [
           evidence('sidebar-reading', '#sidebar #rail-reading', '#sidebar-nav', 'Main', 'Reading'),
           evidence('sidebar-app', '#sidebar-nav > .nav-foot > h2.rail-h', '#sidebar-nav', 'Main', 'App'),
@@ -466,6 +550,9 @@ final class PresentationUITests: XCTestCase {
         ],
       };
       passiveMonitor.setAttribute('aria-label', `recap-passive-probe ${JSON.stringify(state)}`);
+      } finally {
+        refreshingPassive = false;
+      }
     };
     refreshPassiveMonitor();
     window.setInterval(refreshPassiveMonitor, 500);
@@ -555,6 +642,8 @@ final class PresentationUITests: XCTestCase {
     private func verifyPassiveAuditTexts(in app: XCUIApplication, homeVisible: Bool) throws -> [XCUIElement] {
         let state = try passiveState(of: app)
         let cases = try XCTUnwrap(state["cases"] as? [[String: Any]])
+        let guardProof = try XCTUnwrap(state["guard"] as? [String: Any])
+        XCTAssertEqual(guardProof["valid"] as? Bool, true, "the exact reviewed global-handler inventory")
         for item in cases {
             XCTAssertNil(item["error"], "the exact reviewed DOM node remains present: \(item)")
         }
@@ -612,30 +701,120 @@ final class PresentationUITests: XCTestCase {
         return accepted
     }
 
-    private func performAccessibilityAudit(of app: XCUIApplication, acceptedTexts: [XCUIElement] = []) throws {
+    private func freshPassiveState(of app: XCUIApplication) throws -> [String: Any] {
+        let tick = try XCTUnwrap(passiveState(of: app)["tick"] as? Int)
+        let monitor = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label BEGINSWITH %@", "recap-passive-probe ")).firstMatch
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+            guard let element = object as? XCUIElement,
+                  let state = layoutMetrics(from: element.label, prefix: "recap-passive-probe "),
+                  let next = state["tick"] as? Int else { return false }
+            return next > tick
+        }, object: monitor)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 30), .completed, "a fresh passive-guard sample")
+        return try passiveState(of: app)
+    }
+
+    private func acceptPassiveFinding(
+        _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
+    ) throws -> Bool {
+        guard element.exists, element.elementType == .staticText else { return false }
+        for controls in [app.webViews.firstMatch.buttons, app.webViews.firstMatch.links] {
+            let parents = controls.containing(.staticText, identifier: element.label).allElementsBoundByIndex
+            if parents.contains(where: { $0.exists && $0.frame.contains(element.frame) }) {
+                print("T03 passive guard rejected a native control's StaticText child: \(element.debugDescription)")
+                return false
+            }
+        }
+        let settled = try freshPassiveState(of: app)
+        let before = try freshPassiveState(of: app)
+        guard before["view"] as? String == routeState["view"] as? String,
+              before["href"] as? String == routeState["href"] as? String,
+              let proof = before["guard"] as? [String: Any], proof["valid"] as? Bool == true,
+              let settledProof = settled["guard"] as? [String: Any],
+              settledProof["valid"] as? Bool == true,
+              settled["href"] as? String == before["href"] as? String,
+              settled["view"] as? String == before["view"] as? String,
+              settledProof["dom"] as? String == proof["dom"] as? String,
+              let candidates = proof["candidates"] as? [[String: Any]],
+              let viewport = (proof["viewportWidth"] as? NSNumber)?.doubleValue, viewport > 0 else {
+            print("T03 passive guard rejected route or global inventory: \(before)")
+            return false
+        }
+        let webFrame = app.webViews.firstMatch.frame
+        let scale = webFrame.width / viewport
+        let nativeFrame = element.frame
+        let matches = candidates.filter { candidate in
+            guard candidate["label"] as? String == element.label,
+                  let container = candidate["container"] as? String,
+                  container == before["view"] as? String || container == "sidebar-nav",
+                  let rect = candidate["rect"] as? [String: Any],
+                  let x = (rect["x"] as? NSNumber)?.doubleValue,
+                  let y = (rect["y"] as? NSNumber)?.doubleValue,
+                  let width = (rect["width"] as? NSNumber)?.doubleValue,
+                  let height = (rect["height"] as? NSNumber)?.doubleValue else { return false }
+            let domFrame = CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
+                                  width: width * scale, height: height * scale)
+            return width > 0 && height > 0 && nativeFrame.width > 0 && nativeFrame.height > 0
+                && webFrame.contains(nativeFrame)
+                && domFrame.insetBy(dx: -1, dy: -1).contains(nativeFrame)
+        }
+        guard matches.count == 1, let candidate = matches.first,
+              let key = candidate["key"] as? String else {
+            print("T03 passive guard rejected unmatched or ambiguous label/container/frame: \(element.debugDescription)")
+            return false
+        }
+        element.tap()
+        let after = try freshPassiveState(of: app)
+        guard after["view"] as? String == before["view"] as? String,
+              after["href"] as? String == before["href"] as? String,
+              let afterProof = after["guard"] as? [String: Any],
+              afterProof["valid"] as? Bool == true,
+              let dom = proof["dom"] as? String, !dom.isEmpty, afterProof["dom"] as? String == dom,
+              afterProof["focus"] as? String == proof["focus"] as? String,
+              let afterCandidates = afterProof["candidates"] as? [[String: Any]],
+              afterCandidates.filter({ $0["key"] as? String == key }).count == 1 else {
+            print("T03 passive guard rejected a changing native tap: before=\(before), after=\(after)")
+            return false
+        }
+        try record("t03-passive-guard", [
+            "candidate": candidate, "nativeLabel": element.label,
+            "nativeFrame": NSCoder.string(for: nativeFrame), "before": before, "after": after,
+        ])
+        return true
+    }
+
+    private func performAccessibilityAudit(of app: XCUIApplication, allowsPassiveGuard: Bool = false) throws {
         let previousFailurePolicy = continueAfterFailure
         continueAfterFailure = true
         defer { continueAfterFailure = previousFailurePolicy }
+        let routeState: [String: Any]
+        if allowsPassiveGuard {
+            routeState = try freshPassiveState(of: app)
+        } else {
+            routeState = [:]
+        }
         var unreviewedFindings = 0
         try app.performAccessibilityAudit { issue in
             print("T03 accessibility audit issue: \(issue.compactDescription)")
             print("T03 accessibility audit details: \(issue.detailedDescription)")
             print("T03 accessibility audit element: \(issue.element.debugDescription)")
-            if issue.auditType == .hitRegion, let element = issue.element,
-               element.elementType == .staticText,
-               acceptedTexts.contains(where: { candidate in
-                   candidate.exists && candidate.elementType == .staticText
-                       && candidate.label == element.label && candidate.identifier == element.identifier
-                       && candidate.frame == element.frame
-               }) {
-                print("T03 accepted enumerated passive-text hitRegion finding: \(element.label)")
-                return true
+            if allowsPassiveGuard, issue.auditType == .hitRegion, let element = issue.element,
+               element.elementType == .staticText {
+                do {
+                    if try acceptPassiveFinding(element, in: app, routeState: routeState) {
+                        print("T03 accepted proven passive-text hitRegion finding: \(element.label)")
+                        return true
+                    }
+                } catch {
+                    XCTFail("Passive guard evidence failed: \(error)")
+                }
             }
             unreviewedFindings += 1
             return false
         }
         continueAfterFailure = previousFailurePolicy
-        XCTAssertEqual(unreviewedFindings, 0, "every finding outside the enumerated passive cases remains a failure")
+        XCTAssertEqual(unreviewedFindings, 0, "every finding without a complete passive guard proof remains a failure")
     }
 
     func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes() throws {
@@ -870,7 +1049,7 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(skipLinkWidth, 44, "the skip link meets the 44-point width")
                 XCTAssertGreaterThanOrEqual(skipLinkHeight, 44, "the skip link meets the 44-point height")
                 let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: name == "home")
-                try performAccessibilityAudit(of: app, acceptedTexts: acceptedTexts)
+                try performAccessibilityAudit(of: app, allowsPassiveGuard: true)
                 try record("t03-accessibility-\(category.rawValue)-\(name)", [
                     "audit": "passed", "category": category.rawValue,
                     "reviewedPassiveCases": acceptedTexts.map(\.label),
@@ -880,6 +1059,96 @@ final class PresentationUITests: XCTestCase {
                     try navigate(
                         app, linkName: nextLink, headingLabel: nextHeadingLabel, view: nextView, route: nextRoute)
                 }
+            }
+            app.terminate()
+        }
+    }
+
+    func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures() throws {
+        let app = launch(route: "guard-structural")
+        let result = try probeResult(of: app)
+        let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])
+        XCTAssertEqual(fixtures.count, 12)
+        let positives = ["plain positive", "duplicate first", "duplicate second"]
+        for fixture in fixtures {
+            let name = try XCTUnwrap(fixture["name"] as? String)
+            if fixture["rejected"] != nil {
+                XCTAssertEqual(fixture["rejected"] as? Bool, true, name)
+            } else {
+                XCTAssertEqual(fixture["passive"] as? Bool, positives.contains(name), name)
+            }
+        }
+        try record("t03-guard-negative-fixtures", ["fixtures": fixtures])
+        app.terminate()
+    }
+
+    func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps() throws {
+        for route in ["guard-tooltip", "guard-global-pointer"] {
+            let app = launch(route: route)
+            _ = try probeResult(of: app)
+            let element = app.webViews.firstMatch.staticTexts.matching(
+                NSPredicate(format: "label == %@", "Guard tap text")).firstMatch
+            XCTAssertTrue(element.waitForExistence(timeout: 30))
+            let before = try freshPassiveState(of: app)
+            if route == "guard-tooltip" {
+                let accepted = try acceptPassiveFinding(element, in: app, routeState: before)
+                XCTAssertFalse(accepted, "a tooltip-changing native tap is not passive")
+            } else {
+                let proof = try XCTUnwrap(before["guard"] as? [String: Any])
+                XCTAssertEqual(proof["valid"] as? Bool, false, "an unknown global handler rejects every node")
+                element.tap()
+            }
+            let after = try freshPassiveState(of: app)
+            let beforeProof = try XCTUnwrap(before["guard"] as? [String: Any])
+            let afterProof = try XCTUnwrap(after["guard"] as? [String: Any])
+            let originalDOM = try XCTUnwrap(beforeProof["dom"] as? String)
+            let changedDOM = try XCTUnwrap(afterProof["dom"] as? String)
+            XCTAssertNotEqual(originalDOM, changedDOM, "the native tap actually changed the DOM, not a vacuous rejection")
+            try record("t03-\(route)", ["before": before, "after": after])
+            app.terminate()
+        }
+    }
+
+    func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes() throws {
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, route: "search")
+            _ = try probeResult(of: app)
+            let summary = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", "More ways to add")).firstMatch
+            XCTAssertTrue(summary.waitForExistence(timeout: 30))
+            let monitor = layoutMonitor(of: app)
+            let initial = try XCTUnwrap(layoutMetrics(from: monitor.label))
+            XCTAssertEqual(initial["activeView"] as? String, "view-add")
+            let initialMore = try XCTUnwrap(initial["moreMethods"] as? [String: Any])
+            XCTAssertEqual(initialMore["open"] as? Bool, false)
+            for expectedOpen in [true, false] {
+                revealNativeTarget(summary, in: app)
+                XCTAssertGreaterThanOrEqual(summary.frame.width, 44)
+                XCTAssertGreaterThanOrEqual(summary.frame.height, 44)
+                summary.tap()
+                let changed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+                    guard let monitor = object as? XCUIElement,
+                          let state = layoutMetrics(from: monitor.label),
+                          state["activeView"] as? String == "view-add",
+                          let href = state["href"] as? String,
+                          URL(string: href)?.fragment?.split(separator: "/").first == "add",
+                          let more = state["moreMethods"] as? [String: Any] else { return false }
+                    return more["open"] as? Bool == expectedOpen
+                }, object: monitor)
+                XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 30), .completed)
+                let metrics = try XCTUnwrap(layoutMetrics(from: monitor.label))
+                let more = try XCTUnwrap(metrics["moreMethods"] as? [String: Any])
+                XCTAssertEqual(more["open"] as? Bool, expectedOpen)
+                let viewport = try XCTUnwrap((metrics["viewportWidth"] as? NSNumber)?.doubleValue)
+                let document = try XCTUnwrap((metrics["documentWidth"] as? NSNumber)?.doubleValue)
+                XCTAssertGreaterThan(viewport, 0)
+                XCTAssertLessThanOrEqual(document, viewport, "expanded More has no sideways overflow")
+                let summaryWidth = try XCTUnwrap((more["summaryClientWidth"] as? NSNumber)?.doubleValue)
+                let summaryScroll = try XCTUnwrap((more["summaryScrollWidth"] as? NSNumber)?.doubleValue)
+                XCTAssertGreaterThan(summaryWidth, 0)
+                XCTAssertLessThanOrEqual(summaryScroll, summaryWidth, "the disclosure summary does not overflow")
+                try record("t03-more-methods-\(category.rawValue)-\(expectedOpen)", metrics)
+                capture(app, named: "t03-more-methods-\(category.rawValue)-\(expectedOpen)")
             }
             app.terminate()
         }

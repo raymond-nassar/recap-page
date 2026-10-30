@@ -94,7 +94,8 @@ jobs:
           -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
           -configuration Release -destination "$DESTINATION"
           -derivedDataPath "$RUNNER_TEMP/ReleaseDerivedData"
-          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_ALLOWED=NO &&
+          node packaging/ios/check-release-surface.mjs "$RUNNER_TEMP/ReleaseDerivedData/Build/Products/Release-iphonesimulator/RecapPage.app"
 
       - name: Build for testing
         timeout-minutes: 20
