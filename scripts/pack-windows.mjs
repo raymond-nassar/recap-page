@@ -19,6 +19,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { artifactRecord, assertSourceUnchanged, buildIdentity, writeBuildIdentity } from './lib/release-identity.mjs';
+import { cloudClientInjection } from './lib/cloud-client.mjs';
 import { APP_VERSION } from '../src/js/lib/version.js';
 
 // Pinned by the test matrix rather than by the engines floor. package.json asks for Node 20 or
@@ -82,13 +83,14 @@ async function fetchRuntime(architecture = NODE_ARCH) {
 // What goes in is derived from git rather than listed here. A list is a thing someone has to keep
 // complete, and the failure it produces is an archive missing a file nobody noticed, on a machine
 // nobody here is sitting at. The rule is what the running app touches: the server, everything it
-// serves, the launcher it is started by, and the licences.
+// serves, the cloud backup host it loads, the launcher it is started by, and the licences.
 function appFiles() {
   const tracked = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' })
     .split(/\r?\n/)
     .filter(Boolean);
 
   const wanted = tracked.filter((path) => path.startsWith('src/')
+    || path.startsWith('host/')
     || path === 'server.mjs'
     || path === 'Start on Windows.cmd'
     || path === 'LICENSE');
@@ -101,31 +103,47 @@ function appFiles() {
 }
 
 // The reader has just extracted a folder and is looking at it. This is the only thing in the
-// archive written to be read before anything is run.
-const readMe = [
-  'Recap Page',
-  '',
-  'To start: double-click "Start on Windows.cmd" in this folder.',
-  '',
-  'A small window opens and stays open, and your browser opens the tracker by itself.',
-  'That window is the tracker running, so leave it alone until you are finished.',
-  'To stop, click that window and press Ctrl+C.',
-  '',
-  'Nothing needs installing. Everything the tracker needs is in this folder, including',
-  'the runtime, which is in "runtime". Nothing is uploaded anywhere and no account is',
-  'needed. Your reading progress is kept by your browser, so stopping the tracker never',
-  'loses it.',
-  '',
-  'Windows may ask you to confirm the first time, because this folder arrived from the',
-  'internet. That prompt is expected.',
-  '',
-  'The tracker itself is covered by LICENSE. The bundled runtime is Node.js, and its own',
-  'licence, covering everything inside it, is runtime\\LICENSE-node.txt.',
-  '',
-].join('\r\n');
+// archive written to be read before anything is run. Its privacy sentence is true of the build it ships
+// in, as the app's own is (P02-T06): a package given a cloud client configuration has cloud backup, and
+// says what that sends and where, while one without says nothing is uploaded, exactly as before.
+function readMeFor({ cloudBackup = false } = {}) {
+  return [
+    'Recap Page',
+    '',
+    'To start: double-click "Start on Windows.cmd" in this folder.',
+    '',
+    'A small window opens and stays open, and your browser opens the tracker by itself.',
+    'That window is the tracker running, so leave it alone until you are finished.',
+    'To stop, click that window and press Ctrl+C.',
+    '',
+    ...(cloudBackup ? [
+      'Nothing needs installing. Everything the tracker needs is in this folder, including',
+      'the runtime, which is in "runtime". No Recap Page account is needed, and what you',
+      'save is uploaded only if you turn on cloud backup, and then only to your own',
+      'OneDrive. Your reading progress is kept by your browser, so stopping the tracker',
+      'never loses it.',
+    ] : [
+      'Nothing needs installing. Everything the tracker needs is in this folder, including',
+      'the runtime, which is in "runtime". Nothing is uploaded anywhere and no account is',
+      'needed. Your reading progress is kept by your browser, so stopping the tracker never',
+      'loses it.',
+    ]),
+    '',
+    'Windows may ask you to confirm the first time, because this folder arrived from the',
+    'internet. That prompt is expected.',
+    '',
+    'The tracker itself is covered by LICENSE. The bundled runtime is Node.js, and its own',
+    'licence, covering everything inside it, is runtime\\LICENSE-node.txt.',
+    '',
+  ].join('\r\n');
+}
+
+const readMe = readMeFor();
 
 async function main() {
-  const identity = await buildIdentity('windows-portable', APP_VERSION);
+  // Asked for by argument only, and never by default: see scripts/lib/cloud-client.mjs.
+  const cloudClient = cloudClientInjection();
+  const identity = await buildIdentity('windows-portable', APP_VERSION, undefined, ROOT, { cloudClient: cloudClient?.sha256 ?? null });
   const staging = await mkdtemp(join(tmpdir(), 'mrt-pack-'));
   // Staged outside the repository on purpose. A copy of src/ inside the tree would be walked by
   // the licence boundary test, which counts item-bearing files across everything that is not
@@ -159,7 +177,8 @@ async function main() {
       await mkdir(dirname(destination), { recursive: true });
       await copyFile(join(ROOT, file), destination);
     }
-    await writeFile(join(payload, 'Read this first.txt'), readMe);
+    await writeFile(join(payload, 'Read this first.txt'), readMeFor({ cloudBackup: cloudClient !== null }));
+    if (cloudClient) await writeFile(join(payload, cloudClient.name), cloudClient.bytes);
     await writeBuildIdentity(join(payload, 'src'), identity);
 
     say('compressing');
@@ -187,6 +206,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 }
 
 export {
-  NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, fetchRuntime,
+  NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, readMeFor, fetchRuntime,
   runtimeArchiveName,
 };

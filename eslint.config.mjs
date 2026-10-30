@@ -115,8 +115,8 @@ export default [
     rules: { 'no-alert': 'off' },
   },
   {
-    // The server, the build scripts and the tests run in Node.
-    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
+    // The server, the Windows host, the build scripts and the tests run in Node.
+    files: ['server.mjs', 'host/**/*.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
     languageOptions: { globals: globals.node },
   },
   {

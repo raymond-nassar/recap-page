@@ -39,8 +39,13 @@ export const readableMarkdownExport = {
       }));
       const fetch = window.fetch.bind(window);
       window.__exportRequests = 0;
+      // Backup & settings asks the cloud backup host whether this build has it (#810). That question is
+      // kept apart, so the export's own count stays exact and anything else asked of the host shows.
+      window.__cloudQuestions = [];
       window.fetch = (...args) => {
-        window.__exportRequests += 1;
+        const path = new URL(typeof args[0] === 'string' ? args[0] : args[0]?.url ?? String(args[0]), location.href).pathname;
+        if (path.startsWith('/__recap_cloud__/v1/')) window.__cloudQuestions.push(path.slice('/__recap_cloud__/v1/'.length));
+        else window.__exportRequests += 1;
         return fetch(...args);
       };
     }, SCHEMA_VERSION);
@@ -58,6 +63,7 @@ export const readableMarkdownExport = {
     const before = await page.evaluate(() => ({
       state: localStorage.getItem('mrt.state.v2'),
       requests: window.__exportRequests,
+      cloud: window.__cloudQuestions.length,
     }));
     const open = async (selector) => {
       await page.focus(selector);
@@ -150,11 +156,15 @@ export const readableMarkdownExport = {
     const after = await page.evaluate(() => ({
       state: localStorage.getItem('mrt.state.v2'),
       requests: window.__exportRequests,
+      cloud: window.__cloudQuestions,
     }));
     t.check('export, option changes and cancellation leave saved data byte-for-byte unchanged',
       after.state === before.state);
-    t.check('the export flow makes no fetch requests', after.requests === before.requests,
-      JSON.stringify({ before: before.requests, after: after.requests }));
+    // Backup & settings, opened once above, asks the host once, and no export may add a question
+    // (stage 3 review, S3b-9).
+    t.check('the export flow makes no fetch requests',
+      after.requests === before.requests && after.cloud.length === before.cloud + 1 && after.cloud.every((operation) => operation === 'status'),
+      JSON.stringify({ before: before.requests, after: after.requests, asked: before.cloud, cloud: after.cloud }));
     await page.focus('#btn-export-json');
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => window.__mrtDownloads.length === 4);

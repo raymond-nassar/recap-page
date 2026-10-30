@@ -32,7 +32,7 @@ const HISTORY = sliceElement(
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'completion-history-controls')?.start,
 );
 
-const HEADING_LEVELS = [1, 2, 3, 4, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 4, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'transfer-summary',
@@ -48,6 +48,22 @@ const REQUIRED_IDS = [
   'btn-complete-finish',
   'btn-complete-restore-prior',
   'btn-complete-keep',
+  'cloud-backup',
+  'cloud-backup-intro',
+  'cloud-backup-status',
+  'cloud-backup-progress',
+  'cloud-backup-primary',
+  'btn-cloud-sign-in',
+  'btn-cloud-retry',
+  'cloud-auto',
+  'opt-cloud-auto',
+  'cloud-discovery',
+  'cloud-discovery-summary',
+  'cloud-discovery-list',
+  'cloud-backup-actions',
+  'btn-cloud-delete',
+  'btn-cloud-disconnect',
+  'cloud-backup-report',
   'btn-export-json',
   'backup-contents',
   'btn-export-md-2',
@@ -270,7 +286,7 @@ test('normal reading, history and draft transfers precede exceptional recovery w
   const summary = sliceElement(VIEW, 'p', openingTags(VIEW, 'p').find((entry) => getAttribute(entry.open, 'id') === 'transfer-summary').start);
   assert.ok(summary.includes('<strong>Moving to another device:</strong>'), summary);
   assert.ok(summary.includes('download a complete backup and restore it there.'), summary);
-  assert.ok(summary.includes('The backups below each hold one kind of data. Settings are not included in them.'), summary);
+  assert.ok(summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.'), summary);
   assert.match(VIEW, /draft or retained draft source/);
   const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
     .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
@@ -293,6 +309,9 @@ test('each backup group keeps its download, labelled restore and report together
   assert.ok(reading && draft && reading !== draft, 'reading data and the import draft are separate groups');
   assert.ok(complete && complete !== reading && complete.end < reading.start, 'the complete backup is its own group, first');
   assert.equal(headingText(complete.html, 3), 'Complete backup');
+  // The recovery section shows a restore that stopped, one that finished but was lost, and a cleanup
+  // after one that finished, so its heading names the choice rather than an unfinished restore (#947).
+  assert.equal(headingText(complete.html, 4), 'Complete restore needs a choice');
   assert.equal(headingText(reading.html, 3), 'Reading data');
   assert.equal(headingText(draft.html, 3), 'Import draft');
   assert.equal(headingText(HISTORY, 3), 'Completion history');
@@ -315,6 +334,45 @@ test('each backup group keeps its download, labelled restore and report together
   const mount = idPosition(VIEW, 'normal-backup-history');
   assert.ok(reading.end < mount && mount < draft.start, 'completion history mounts between the other two groups');
   assert.ok(!cards.some((card) => card.start < mount && mount < card.end), 'and inside no other group');
+});
+
+// #810, P02-T05: cloud backup keeps a complete backup in the person's own account, so its card follows
+// the complete backup's. It starts hidden, because only a build with cloud backup ever shows it, and its
+// sign-in button carries Microsoft's logo exactly as Microsoft publishes it (OD-12), beside words that
+// are the button's name.
+test('the cloud backup card follows the complete backup, starts hidden, and signs in beside Microsoft\'s logo unaltered', async () => {
+  const { createHash } = await import('node:crypto');
+  const cards = elementsWithClass(VIEW, 'div', 'card');
+  const cardOf = (id) => {
+    const at = idPosition(VIEW, id);
+    return cards.find((card) => card.start < at && at < card.end) ?? null;
+  };
+  const cloud = cardOf('btn-cloud-sign-in');
+  const complete = cardOf('btn-export-complete');
+  const reading = cardOf('btn-export-json');
+  assert.ok(complete.end < cloud.start && cloud.end < reading.start, 'after the complete backup, before the reading data');
+  assert.equal(getAttribute(cloud.open, 'id'), 'cloud-backup');
+  assert.match(cloud.open, /\shidden[\s>]/, 'hidden until the page learns this build has cloud backup');
+  assert.equal(headingText(cloud.html, 3), 'Cloud backup');
+  for (const id of ['cloud-backup-status', 'btn-cloud-retry', 'opt-cloud-auto', 'cloud-discovery-list', 'btn-cloud-delete', 'btn-cloud-disconnect', 'cloud-backup-report']) {
+    assert.equal(cardOf(id), cloud, `${id} belongs with the cloud backup card`);
+  }
+  const signIn = sliceElement(cloud.html, 'button', openingTags(cloud.html, 'button').find((entry) => getAttribute(entry.open, 'id') === 'btn-cloud-sign-in').start);
+  // Read from the button's text nodes rather than by deleting its tags, which CodeQL reports as an
+  // incomplete sanitizer even in a test (alert #25 on #970).
+  const words = [...signIn.matchAll(/>([^<]*)</g)].map((match) => match[1]).join('').trim();
+  assert.equal(words, 'Sign in with Microsoft', 'the words are the button\'s name');
+  const logo = openingTags(signIn, 'img')[0]?.open ?? '';
+  assert.deepEqual(['src', 'alt', 'width', 'height'].map((name) => getAttribute(logo, name)),
+    ['./brands/ms-symbollockup_mssymbol_19.svg', '', '21', '21'], 'the logo at its own size, with nothing to say the words do not');
+  // An eager image downloads even inside the hidden card, which a build without cloud backup did on every
+  // start, four times in the browser check's four loads. A lazy one inside a hidden card never loads.
+  assert.equal(getAttribute(logo, 'loading'), 'lazy', 'and downloaded only once the card shows');
+  const bytes = readFileSync(new URL('../src/brands/ms-symbollockup_mssymbol_19.svg', import.meta.url));
+  const digest = createHash('sha256').update(bytes).digest('hex');
+  assert.equal(digest, '929f48f88c8ca7f3f5d294be47ec4caf51acc28ac25340c19a903125d7ecd84a', 'the file Microsoft published on 2026-10-28');
+  assert.ok(readFileSync(new URL('../src/brands/README.md', import.meta.url), 'utf8').includes(`\`${digest}\``), 'and the digest its provenance records');
+  assert.match(readFileSync(new URL('../.gitattributes', import.meta.url), 'utf8'), /^src\/brands\/\*\.svg -text$/m, 'no checkout converts it');
 });
 
 // The two fields that had only an aria-label now carry the visible label the completion-history

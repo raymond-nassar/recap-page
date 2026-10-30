@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:788-795`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:795-802`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1299,6 +1299,19 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 #view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
 
+/* Cloud backup (#810). Its rows and its switch set their own display, which would otherwise defeat the
+   hidden attribute that keeps each out of the states it does not belong to. Each backup found in the
+   account is one line with its Restore beside it, under the device that made it. */
+#cloud-backup :is(.field-row, .checkbox)[hidden] { display: none; }
+#cloud-backup-status { margin: var(--space-4) 0; max-width: 62ch; }
+#cloud-backup progress { width: 100%; }
+#btn-cloud-sign-in > img { flex: none; }
+.cloud-device { margin-top: var(--space-5); }
+.cloud-device h4 { margin: 0 0 var(--space-2); font-size: var(--t-body); font-weight: 600; }
+.cloud-copies { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.cloud-copy { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+#cloud-discovery-list > .btn { margin-top: var(--space-4); }
+
 /* A settings row. The header and its one line description sit in the text column, and the control
    that changes the setting is pinned to the right of the card rather than stacked underneath it,
    so a column of settings reads as a column of settings rather than as an article with buttons in
@@ -2175,8 +2188,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: var(--target); }
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
-.markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
-.markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
+:is(.markdown-export, .ask-choice) .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
+:is(.markdown-export, .ask-choice) input[type="checkbox"] { width: auto; min-height: auto; }
 
 .rating-trigger {
   display: inline-flex; align-items: center; gap: var(--space-4);
@@ -2224,6 +2237,13 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Edge paints an indeterminate bar's movement itself, out of reach of the rule above: measured at
+   1280x900 under reduced motion, 8 distinct frames of 8. There the cloud backup bar is hidden, and its
+   status line alone says a backup is running. */
+@media (prefers-reduced-motion: reduce) {
+  #cloud-backup-progress { display: none; }
 }
 
 @media (forced-colors: active) {

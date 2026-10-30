@@ -55,7 +55,7 @@ export const RESTORE_MESSAGES = Object.freeze({
   checking: 'Recap Page is checking an earlier complete restore, so saving is paused for a moment.',
   cleaning: 'Recap Page is finishing an earlier complete restore. Close other Recap Page tabs and saving starts again.',
   recovery: 'A complete restore did not finish, so saving is paused. Open Backup & settings to finish it or keep the data that is here.',
-  cleanupFailed: 'Recap Page could not finish cleaning up after an earlier complete restore, so saving is paused. Reload the page to try again, or keep the data that is here in Backup & settings.',
+  cleanupFailed: 'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Reload the page to try again, or open Backup & settings and keep the data that is here.',
   closeTabs: 'Close other Recap Page tabs and windows, including ones running an older version, then try again. Nothing was replaced.',
   busy: 'A complete restore action is already running. Wait for it to finish.',
   noLocks: 'This browser cannot coordinate Recap Page tabs, so complete restore is turned off here. Every other backup still works.',
@@ -67,7 +67,16 @@ export const RESTORE_MESSAGES = Object.freeze({
   copyReadable: 'The recovery copy can be read now, so nothing was removed. Download the exact prior copy before you choose again.',
   copyChanged: 'The recovery copy changed after these choices were shown, so nothing was removed. Choose again from the options shown now.',
   keepNotOffered: 'Keeping the data that is here now is not offered for this restore, so nothing was removed. Finish it or restore the prior data.',
+  finishNotOffered: 'Finishing this restore is not offered now, so nothing was replaced. Choose again from the options shown now.',
+  priorNotOffered: 'Restoring the prior data is not offered for this restore now, so nothing was replaced. Choose again from the options shown now.',
   copyUnchecked: 'The app could not check for a recovery copy kept by a complete restore, so one may still be in this browser.',
+  // A copy that can be read but not removed, as on a full disk, waits with its marker for a later start.
+  copyKept: 'The recovery copy could not be removed, perhaps because storage is full, so a later start tries again.',
+  // A copy that fails its checks cannot wait that way: the next start clears its marker and pauses on it
+  // again, so it is said as what happens, a copy offered again until it can be removed (#954).
+  copyOffered: 'The recovery copy could not be removed, perhaps because storage is full, so the next start offers it again.',
+  copyStuck: 'Recap Page could not remove the recovery copy from an earlier complete restore, perhaps because storage is full, so complete restore is off until a later start removes it. Every other backup still works.',
+  copyStuckOffered: 'Recap Page could not remove a recovery copy it cannot read, perhaps because storage is full, so complete restore is off and the next start offers that copy again. Every other backup still works.',
   reloading: 'Another Recap Page tab changed saved data, so this page is reloading to show it.',
 });
 
@@ -78,7 +87,7 @@ const RECOVERY_TEXT = {
   missing: 'A complete restore did not finish, and its recovery copy is missing. Saving is paused until you keep the data that is here now.',
   invalid: 'The recovery copy from an earlier complete restore cannot be read. Saving is paused. Download it if you want it, then keep the data that is here now.',
   unchecked: 'A complete restore did not finish, and its recovery copy could not be checked just now, so saving is paused. Reload the page to try again. Keeping the data that is here now leaves the copy in place, and a later start offers it again if it can.',
-  cleanup: 'Recap Page could not finish cleaning up after an earlier complete restore, so saving is paused. Reload the page to try again, or keep the data that is here now.',
+  cleanup: 'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Reload the page to try again, or keep the data that is here now.',
 };
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
@@ -355,6 +364,7 @@ export class CompleteRestore {
     // makes itself. Any other difference means another tab changed saved data under this page.
     this.markerSeen = null;
     this.journalUnchecked = false;
+    this.copyStuck = false;
     this.stale = false;
     this.unavailableReason = !this.locks ? RESTORE_MESSAGES.noLocks
       : this.journal?.available ? null : RESTORE_MESSAGES.noJournal;
@@ -414,7 +424,8 @@ export class CompleteRestore {
     else if (!this.capable) phase = 'unavailable';
     else if (!this.shared) { phase = 'pending'; message = RESTORE_MESSAGES.starting; }
     this.phase = phase;
-    const unavailableReason = this.unavailableReason ?? (this.journalUnchecked ? RESTORE_MESSAGES.journalUnchecked : null);
+    const unavailableReason = this.unavailableReason ?? (this.journalUnchecked ? RESTORE_MESSAGES.journalUnchecked : null)
+      ?? (this.copyStuck === 'offered' ? RESTORE_MESSAGES.copyStuckOffered : this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
     this.state = Object.freeze({
       phase, message, recovery: this.recovery,
       available: this.capable && !unavailableReason && !this.recovery && phase === 'open',
@@ -581,21 +592,35 @@ export class CompleteRestore {
     this.refresh();
     const result = await this.withExclusive(maintain, { wait: Boolean(decision.wait), quiet: true });
     this.cleaning = false;
-    // Only a cleaning: marker waits, so what failed here is a cleanup, and it is said as one: the restore
-    // it follows finished or was kept, and its copy is still there.
-    if (result?.ok === false && decision.wait) this.recovery = recoveryOf('cleanup', { kind: 'absent' }).recovery;
+    // A copy that cannot be removed waits with its marker for a later start, as one that cannot be read
+    // does. Pausing on it would pause every start, because every recovery action ends in a reload (#947).
+    // Only a cleaning: marker waits, so any other failure here is a cleanup, and it is said as one: the
+    // restore it follows finished or was kept.
+    if (result?.ok === false && decision.wait && !result.copyKept) this.recovery = recoveryOf('cleanup', { kind: 'absent' }).recovery;
   }
 
-  async removeJournal() {
-    if (await this.journal.remove() !== true) throw new Error('The recovery copy could not be removed. It is still kept.');
-    if (await this.journal.read() !== null) throw new Error('The recovery copy could not be removed. It is still kept.');
+  async removeJournal({ offered = false } = {}) {
+    let gone;
+    try { gone = await this.journal.remove() === true && await this.journal.read() === null; }
+    catch { gone = false; }
+    if (!gone) throw Object.assign(new Error(offered ? RESTORE_MESSAGES.copyOffered : RESTORE_MESSAGES.copyKept), { copyKept: true, offered });
+    this.copyStuck = false;
+  }
+
+  // Keeping and erase end the pause even when the copy cannot be removed yet: the cleaning: marker
+  // already written stays with it, so a later start finishes the cleanup, and complete restore is off
+  // until then. Nothing else is left half done, because the person's choice was made before the cleanup.
+  // A copy that fails its checks is offered again by the next start instead, which is what it says.
+  leaveCopyForLater(offered = false) {
+    this.recovery = null;
+    this.copyStuck = offered ? 'offered' : true;
   }
 
   // Cleanup order: the marker says cleaning, the journal goes and is checked gone, then the marker
   // goes. A marker never outlives its journal except as "cleaning", which the next start finishes.
-  async cleanUp(id, { journal = true } = {}) {
+  async cleanUp(id, { journal = true, offered = false } = {}) {
     this.markOwn(`cleaning:${id ?? NO_ID}`);
-    if (journal) await this.removeJournal();
+    if (journal) await this.removeJournal({ offered });
     this.markOwn(null);
   }
 
@@ -623,7 +648,12 @@ export class CompleteRestore {
       try {
         return (await operation()) ?? { ok: true };
       } catch (error) {
-        return { ok: false, changed: error && 'changed' in error ? error.changed : false, error: error?.message || 'The complete restore could not continue.' };
+        if (error?.copyKept) this.copyStuck = error.offered ? 'offered' : true;
+        return {
+          ok: false, changed: error && 'changed' in error ? error.changed : false,
+          error: error?.message || 'The complete restore could not continue.',
+          ...(error?.copyKept ? { copyKept: true } : {}),
+        };
       } finally {
         this.exclusiveHeld = false;
       }
@@ -773,8 +803,16 @@ export class CompleteRestore {
     else this.recovery = recoveryOf(journal.kind === 'unreadable' ? 'unchecked' : 'missing', journal).recovery;
   }
 
+  // Finish and Restore prior data act only on the recovery that was shown, and only in a direction it
+  // offers, decided again under the lock as keeping is. The card hides both where a recovery leaves
+  // them out, but a stale or scripted call used to reach past that: during the cleanup after a finished
+  // restore, Restore prior data wrote the earlier data back over the restored data (#947).
   async recover(direction) {
     if (!['forward', 'prior'].includes(direction)) return { ok: false, changed: false, error: 'Choose Finish restore or Restore prior data.' };
+    const offers = (offer) => (direction === 'forward' ? offer?.canFinish : offer?.canRestorePrior) === true;
+    const notOffered = direction === 'forward' ? RESTORE_MESSAGES.finishNotOffered : RESTORE_MESSAGES.priorNotOffered;
+    const shown = this.recovery;
+    if (!offers(shown)) return { ok: false, changed: false, error: notOffered };
     return this.withExclusive(async () => {
       const marker = readMarker(this.raw);
       const found = await this.readJournal();
@@ -790,6 +828,15 @@ export class CompleteRestore {
       if (check.foreign) {
         await this.settleFailure();
         throw new Error('Saved data changed after the restore stopped, so it was not replaced. Download the exact prior copy, then keep the data that is here now.');
+      }
+      // Where the fresh decision offers something else, its choices are shown instead. Where it offers
+      // no choice at all, the shown one stays until keeping or a reload settles it, so a refusal here
+      // never removes or rewrites anything.
+      const fresh = decideRestoreState(marker, found, this.raw, this.clock());
+      const offer = fresh.kind === 'recovery' ? fresh.recovery : null;
+      if (!offers(offer) || offer.id !== shown.id) {
+        if (offer) this.recovery = offer;
+        throw new Error(notOffered);
       }
       const record = { ...found.record, direction, phase: 'applying', finishedAt: null };
       await this.checkpoint(record);
@@ -818,9 +865,14 @@ export class CompleteRestore {
       if (fresh.kind !== 'recovery') {
         // Nothing waits for a choice any more; whatever upkeep that leaves is finished here. Upkeep that
         // fails leaves saving paused with the choices that were shown, and upkeep that uncovers another
-        // restore's journal shows that journal's choices rather than ending recovery over it.
+        // restore's journal shows that journal's choices rather than ending recovery over it. A copy that
+        // cannot be removed is the exception: it waits for a later start, and the pause ends.
         try { await this.act(fresh, { inside: true }); }
         catch (error) {
+          if (error?.copyKept) {
+            this.leaveCopyForLater(error.offered);
+            return { ok: true, changed: false, copyKept: true, ...(error.offered ? { offered: true } : {}) };
+          }
           this.recovery = shown ?? (fresh.wait ? recoveryOf('cleanup', { kind: 'absent' }).recovery : null);
           throw error;
         }
@@ -836,9 +888,18 @@ export class CompleteRestore {
         this.recovery = offer;
         throw new Error(RESTORE_MESSAGES.keepNotOffered);
       }
-      // A journal IndexedDB cannot read is left for a later start rather than guessed at.
+      // A journal IndexedDB cannot read is left for a later start rather than guessed at, and so is one
+      // it can read but not remove, once its cleaning: marker says so. One that fails its checks and
+      // cannot be removed is offered again by the next start, which clears that marker (#954).
       if (journal.kind === 'unreadable') this.clearOverUnchecked();
-      else await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID);
+      else {
+        try { await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID, { offered: journal.kind === 'invalid' }); }
+        catch (error) {
+          if (!error?.copyKept) throw error;
+          this.leaveCopyForLater(error.offered);
+          return { ok: true, changed: false, copyKept: true, ...(error.offered ? { offered: true } : {}) };
+        }
+      }
       this.recovery = null;
       return { ok: true, changed: false };
     });
@@ -888,10 +949,11 @@ export class CompleteRestore {
       try {
         const present = found.kind === 'valid' || found.kind === 'invalid';
         const id = found.kind === 'valid' ? found.record.id : held.id ?? NO_ID;
-        await this.cleanUp(id, { journal: present });
+        await this.cleanUp(id, { journal: present, offered: found.kind === 'invalid' });
         this.recovery = null;
         return { ok: true, erased: true, copyRemoved: present };
       } catch (error) {
+        if (error?.copyKept) this.leaveCopyForLater(error.offered);
         return { ok: true, erased: true, copyRemoved: false, error: error.message };
       }
     };

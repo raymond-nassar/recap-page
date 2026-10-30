@@ -159,24 +159,51 @@ async function populateStartupLayout(fixture, architecture = 'x64', version = '2
 }
 
 test('startup expectations bind three package variants and reject an unlisted executable import', async (t) => {
-  const { startupSourceInputs } = await import('../scripts/lib/startup-contract.mjs');
+  const { SOURCE_FILES, startupSourceInputs } = await import('../scripts/lib/startup-contract.mjs');
   for (const [architecture, version] of [['x64', '2.0.3.0'], ['arm64', '2.0.3.0'], ['x64', '2.0.3.1']]) {
     const fixture = startupLayoutFixture();
     try {
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 10);
+      assert.equal(variant.files.length, 16);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
   try {
-    for (const path of ['packaging/windows/Launcher.mjs', 'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js']) {
-      fixture.put(path, readFileSync(join(ROOT, ...path.split('/'))));
-    }
+    for (const [, source] of SOURCE_FILES) fixture.put(source, readFileSync(join(ROOT, ...source.split('/'))));
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')) + "\nimport './unexpected.mjs';\n");
     assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')));
+    // The cloud backup host imports only its own modules and the Node built-ins listed for each, and
+    // server.mjs imports it once, by name. A built-in that loads code from elsewhere, such as createRequire's
+    // node:module, is refused as unlisted, and the two routes that need no import at all, by name (stage 2
+    // review, S1a finding 3).
+    const cloudHost = read(join(ROOT, 'host', 'cloudHost.mjs'));
+    for (const altered of [
+      `${cloudHost}\nimport 'left-pad';\n`, `${cloudHost}\nimport './unlisted.mjs';\n`, `${cloudHost}\nimport('./oneDrive.mjs');\n`,
+      `${cloudHost}\nimport { createRequire } from 'node:module';\ncreateRequire(import.meta.url)('left-pad');\n`,
+      `${cloudHost}\nimport { createRequire as make } from 'node:module';\nconst load = make(import.meta.url);\nload('left-pad');\n`,
+      `${cloudHost}\nimport { Worker } from 'node:worker_threads';\nexport { Worker };\n`,
+      `${cloudHost}\nimport vm from 'node:vm';\nexport { vm };\n`,
+      `${cloudHost}\nprocess.getBuiltinModule('node:module').createRequire(import.meta.url)('left-pad');\n`,
+      `${cloudHost}\nconst { getBuiltinModule: builtIn } = process;\nbuiltIn('node:vm');\n`,
+      `${cloudHost}\nprocess['dlopen']({ exports: {} }, './addon.node');\n`,
+    ]) {
+      fixture.put('host/cloudHost.mjs', altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+    }
+    fixture.put('host/cloudHost.mjs', cloudHost);
+    const server = read(join(ROOT, 'server.mjs'));
+    for (const altered of [
+      `${server}\nimport('./host/cloudHost.mjs');\n`, server.replace("import('./host/cloudHost.mjs')", "import('./host/' + 'cloudHost.mjs')"),
+      `${server}\nimport { createRequire } from 'node:module';\nexport const load = createRequire(import.meta.url);\n`,
+    ]) {
+      fixture.put('server.mjs', altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+    }
+    fixture.put('server.mjs', server);
+    t.diagnostic('startup-host-imports fixtures=13 rejected=13');
     const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
     fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
     fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);
@@ -206,7 +233,7 @@ export { apparentImport, apparentRequire };
       .replace(/^import /gm, '  import /* declaration */ ')
       .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
       + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
-    assert.equal(startupSourceInputs(fixture.root).length, 4);
+    assert.equal(startupSourceInputs(fixture.root).length, 10);
     t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
@@ -216,7 +243,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 10);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 16);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);
@@ -771,16 +798,18 @@ test('the MSIX lane adds ARM64 without changing the ZIP runtime target', () => {
   assert.match(zip, /marvel-reading-tracker-windows\.zip/);
 });
 
-test('the package coordinator clears origin-changing environment values case-insensitively', async () => {
+test('the package coordinator clears origin-changing environment values and the cloud client path case-insensitively', async () => {
   const { packageEnvironment } = await import('../packaging/windows/Launcher.mjs');
+  // A packaged server never reads the cloud client path; it is left out as well, so a variable set for a
+  // checkout cannot reach a release by any later change (stage 2 review, S1a finding 2).
   for (const blocked of [
-    { MRT_PORT: '8788', MRT_NO_OPEN: '1' },
-    { mrt_port: '8788', mrt_no_open: '1' },
-    { Mrt_Port: '8788', Mrt_No_Open: '1' },
+    { MRT_PORT: '8788', MRT_NO_OPEN: '1', MRT_CLOUD_CLIENT_CONFIG: 'C:\\elsewhere\\client.json' },
+    { mrt_port: '8788', mrt_no_open: '1', mrt_cloud_client_config: 'C:\\elsewhere\\client.json' },
+    { Mrt_Port: '8788', Mrt_No_Open: '1', Mrt_Cloud_Client_Config: 'C:\\elsewhere\\client.json' },
   ]) {
     const env = packageEnvironment({ ...blocked, KEEP_ME: 'yes' });
     assert.deepEqual(
-      Object.keys(env).filter((key) => /^(MRT_PORT|MRT_NO_OPEN)$/i.test(key)),
+      Object.keys(env).filter((key) => /^(MRT_PORT|MRT_NO_OPEN|MRT_CLOUD_CLIENT_CONFIG)$/i.test(key)),
       ['MRT_NO_OPEN'],
     );
     assert.equal(env.MRT_NO_OPEN, '1');
