@@ -2316,6 +2316,11 @@ async function alignmentCheck(page, profile) {
     `${id}: populated reading fixture on Home`);
   } else {
     check(await page.$eval('#btn-home-add', (node) => !!node.getClientRects().length), `${id}: current fresh Home actions`);
+    // #985: phones move the closure notice below Continue reading, which a fresh Home does not show,
+    // so here the notice stays Home's first content on every platform.
+    check(await page.$eval('#view-home', (view) => [...view.children]
+      .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
+    `${id}: the closure notice stays first on a Home without Continue reading`);
   }
   const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', ...(compactHome ? [] : ['.home-action']),
     '#home-categories', '.brand[data-view="home"]']);
@@ -3622,6 +3627,18 @@ async function homeContinueCheck(page, label, viewport) {
   });
   const opened = await measure();
   await screenshot(page, name, 'home-continue');
+  // #985: on a phone the closure notice is the same element moved below the card, so the accessibility
+  // tree reads the card first; Windows keeps the notice first. Its words and class do not change.
+  const tree = [];
+  const walk = (node) => { if (!node) return; tree.push(node); (node.children || []).forEach(walk); };
+  walk(await page.accessibility.snapshot());
+  const cardName = await page.$eval('#chero-h', (node) => node.textContent.trim());
+  const notice = await page.$eval('#reader-closure-notice', (node) => ({ text: node.textContent, className: node.className }));
+  const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
+  const noticeAt = tree.findIndex((node) => node.name === notice.text);
+  check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
+    && notice.className === 'notice notice-warn' && notice.text.startsWith('Marvel Unlimited reading ends'),
+  `${name}: the accessibility tree reads ${viewport.desktop ? 'the closure notice, then Continue reading' : 'Continue reading, then the closure notice'} ${JSON.stringify({ cardAt, noticeAt, ...notice })}`);
   // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
   // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The
   // heading's box is logged at every size so normal text can be compared before and after.
