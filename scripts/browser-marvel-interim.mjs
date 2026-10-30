@@ -1,3 +1,5 @@
+import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
+
 async function localClock(page) {
   await page.evaluateOnNewDocument(() => {
     const Clock = Date;
@@ -17,6 +19,33 @@ async function route(page, hash, selector) {
     dispatchEvent(new HashChangeEvent('hashchange'));
   }, hash);
   await page.waitForSelector(selector);
+}
+
+// The note sits inside the record's term so it is read with its label, and there it took on the
+// label's capitals (#978). Edge put those capitals in the accessibility tree as well, so the
+// rendered text and the term's accessible name are both read here, not only the computed style.
+async function recordNote(page, t, facts) {
+  const seen = await page.$eval(facts, (node) => {
+    const term = node.querySelector('dt');
+    const note = term.querySelector('.rail-hint');
+    const label = getComputedStyle(term), sentence = getComputedStyle(note);
+    return {
+      label: [term.firstChild.textContent, label.textTransform],
+      note: [note.innerText, sentence.textTransform, sentence.letterSpacing, sentence.fontWeight],
+    };
+  });
+  t.check(`${facts} keeps the record label in capitals and sets its note as a sentence`,
+    JSON.stringify(seen) === JSON.stringify({
+      label: [RECORD_HEADING, 'uppercase'], note: [RECORD_NOTE, 'none', 'normal', '400'],
+    }), JSON.stringify(seen));
+  const ax = await page.createCDPSession();
+  const { nodes } = await ax.send('Accessibility.getFullAXTree');
+  await ax.detach();
+  const terms = nodes.filter((node) => !node.ignored && node.role?.value === 'term'
+    && node.name?.value?.toLowerCase().startsWith(RECORD_HEADING.toLowerCase()));
+  t.check(`${facts} names the record's term with its label and then the note as a sentence`,
+    terms.length === 1 && terms[0].name.value === `${RECORD_HEADING.toUpperCase()} ${RECORD_NOTE}`,
+    JSON.stringify(terms.map((node) => node.name.value)));
 }
 
 export async function retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order }) {
@@ -72,6 +101,9 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
     return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth && document.documentElement.scrollWidth <= innerWidth;
   }));
   await page.setViewport({ width: 1280, height: 900 });
+  await recordNote(page, t, '#issue-focus-facts');
+  await route(page, '#/read/fixture', '#view-read:not([hidden])');
+  await recordNote(page, t, '#hero-facts');
   const historical = [
     'No recorded Unlimited date',
     'Unlimited date: 2027-01-01 (future)',

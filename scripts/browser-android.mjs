@@ -19,6 +19,7 @@ import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
+import { POSTER_COVER_SVG, issuePosterCheck, issuePosterFixtures, issuePosterProfiles } from './browser-android-issue-poster.mjs';
 import { ERA_TILES, ratio } from './check-palette.mjs';
 import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
@@ -34,7 +35,7 @@ const allowedModes = new Set([
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
-  'confirmations',
+  'confirmations', 'issue-poster',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -68,6 +69,7 @@ const longListName = process.argv.includes('--only=long-list-name');
 const confirmations = process.argv.includes('--only=confirmations');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
+const issuePoster = process.argv.includes('--only=issue-poster');
 const alignment = process.argv.includes('--only=alignment');
 const alignmentBaseline = process.argv.includes('--alignment-baseline');
 const alignmentMutation = process.argv.includes('--alignment-without-centering');
@@ -1588,7 +1590,9 @@ async function categoryLabelReadability(page, label, viewport) {
   }
 }
 
-const NOTE_REFERENCE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+// Long enough to need an emergency wrap at every phone width. At 36 characters it fit on one line at
+// 412px once #980 gave the note the width the card's padding had taken.
+const NOTE_REFERENCE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJ';
 const NOTE_CASES = [
   ['prose', 'Synthetic note with ordinary words that should wrap at spaces and stay fully readable.'],
   ['reference', `Synthetic note with ordinary words and an unbroken reference: ${NOTE_REFERENCE}`],
@@ -1645,11 +1649,18 @@ async function issueNoteReadability(page, label, desktop) {
         const { left, right, top, bottom, width } = element.getBoundingClientRect();
         return { left, right, top, bottom, width };
       };
+      // #980: an element with `display: contents` has no box, so it clips nothing even where its
+      // computed overflow says clip. On a phone the card is one now, so the walk goes past it and
+      // finds nothing in the page that clips the note: the screen does, which scrolls the page down
+      // but never sideways. The note is then held to the view's column too, where the card's
+      // contents now lay out.
       let clip = node.parentElement;
-      while (clip && !/(hidden|clip|auto|scroll)/.test(
+      while (clip && (getComputedStyle(clip).display === 'contents' || !/(hidden|clip|auto|scroll)/.test(
         `${getComputedStyle(clip).overflowX} ${getComputedStyle(clip).overflowY}`,
-      )) clip = clip.parentElement;
-      const noteBox = bounds(node), clipBox = clip && bounds(clip);
+      ))) clip = clip.parentElement;
+      const column = bounds(document.querySelector('#view-issue'));
+      const screen = { left: 0, right: document.documentElement.clientWidth, top: -Infinity, bottom: Infinity };
+      const noteBox = bounds(node), clipBox = clip ? bounds(clip) : screen;
       const inside = (rect, box) => box && rect.left >= box.left - 1 && rect.right <= box.right + 1
         && rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1;
       const textRects = [], brokenWords = [], tokenLines = [];
@@ -1671,7 +1682,8 @@ async function issueNoteReadability(page, label, desktop) {
         }
       }
       return {
-        text: node.textContent, noteBox, clipBox, clipId: clip?.id,
+        text: node.textContent, noteBox, clipBox, clipId: clip ? clip.id : 'screen',
+        inColumn: noteBox.left >= column.left - 1 && noteBox.right <= column.right + 1,
         textRight: Math.max(...textRects.map((rect) => rect.right)),
         lines: textRects.length, words, brokenWords, tokenLines,
         outsideNote: textRects.filter((rect) => !inside(rect, noteBox)).length,
@@ -1688,9 +1700,10 @@ async function issueNoteReadability(page, label, desktop) {
       `${prefix}: incumbent entry and body size retained (${result.body}px)`);
     check(result.lines > 0 && result.words > 5 && result.brokenWords.length === 0,
       `${prefix}: ordinary words retain natural wrapping ${JSON.stringify(result.brokenWords)}`);
-    check(result.clipId === 'issue-focus-card', `${prefix}: measured nearest clipping hero, not just page width`);
+    check(result.clipId === (desktop ? 'issue-focus-card' : 'screen') && (desktop || result.inColumn),
+      `${prefix}: measured the nearest box that clips the note, the card on desktop and the screen on a phone, where the card has no box (#980)`);
     check((desktop || result.outsideNote === 0) && result.outsideClip === 0,
-      `${prefix}: all descendant text rectangles fit ${desktop ? 'clipping hero' : 'note and clipping hero'} ${JSON.stringify(result)}`);
+      `${prefix}: all descendant text rectangles fit ${desktop ? 'clipping card' : 'note and screen'} ${JSON.stringify(result)}`);
     check(!result.overflow, `${prefix}: no horizontal document overflow`);
     check(desktop ? result.wrap === 'normal' : name === 'prose' || result.tokenLines.some((lines) => lines > 1),
       `${prefix}: ${desktop ? 'desktop wrapping unchanged' : 'long reference or URL emergency wraps'}`);
@@ -4650,6 +4663,7 @@ try {
     ? catalogCardProfiles.filter((profile) => ['M11', 'M16'].includes(profile.id))
     : catalogCardProfiles;
   if (readingComposition) viewports = readingFactsAx ? readingProfiles.filter((profile) => !profile.desktop) : readingProfiles;
+  if (issuePoster) viewports = issuePosterProfiles;
   if (spotlightControls) viewports = [
     { width: 320, height: 740 },
     { width: 360, height: 800 },
@@ -4744,7 +4758,7 @@ try {
   if (homeUpdatesOnly) viewports = newsProfiles;
   else if (!onlyArgs.length && !noStyle) viewports.push(...newsProfiles);
   const onlyCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice('--case='.length);
-  if ((catalogReadability || alignment) && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
+  if ((catalogReadability || alignment || issuePoster) && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
@@ -4762,11 +4776,13 @@ try {
     let appLookups = 0;
     let metadataLookups = 0;
     const browserIntents = [];
+    const imageRequests = [];
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
     if (readingComposition) await readingFixtures(page, viewport);
+    if (issuePoster) await issuePosterFixtures(page, viewport);
     if (alignment) await alignmentFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
     if (doneHint) await doneHintFixtures(page);
@@ -4796,13 +4812,18 @@ try {
         });
       }
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
+      // Every request is counted, not deduplicated, so a second fetch of one cover shows.
+      if (issuePoster && new URL(request.url()).host === 'i.annihil.us') {
+        imageRequests.push(request.url());
+        return request.respond({ status: 200, contentType: 'image/svg+xml', body: POSTER_COVER_SVG });
+      }
       if ((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -4824,7 +4845,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -4855,7 +4876,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -5035,6 +5056,12 @@ try {
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       if (failures.length > failuresBefore) break;
+      continue;
+    }
+    if (issuePoster) {
+      await issuePosterCheck({ page, profile: viewport, check, imageRequests });
+      check(errors.length === 0, `${viewport.id}: page errors ${errors.join('; ')}`);
+      await context.close();
       continue;
     }
     if (readingComposition) {

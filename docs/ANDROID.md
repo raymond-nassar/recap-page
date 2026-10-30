@@ -1,20 +1,13 @@
-# Android prototype
+# Recap Page for Android
 
-This experimental version of Recap Page can be sideloaded on Android. It is not a Google Play
-release. It uses the existing app and reading lists with larger text and touch targets, without
-adding accounts, synchronization or reading features, or changing the saved-data format. The supported
-desktop installation and Windows release process are unchanged.
+Recap Page for Android is available on
+[Google Play](https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage).
+It is the same app and reading lists as on Windows, with larger text and touch targets. There are
+no accounts or synchronization, and its saved data stays on the phone, separate from desktop.
 
-Give volunteer testers [the short Android beta checklist](ANDROID_BETA.md). No development tools
-are needed. Restore tests are optional and use throwaway data.
-
-[Google Play asset previews](GOOGLE_PLAY_ASSETS.md) has original artwork and fictional, cover-free
-phone layouts for maintainers. These desktop-rendered previews are not native device acceptance
-or an approved Play listing.
-
-**Android viability is not yet confirmed on a physical device.** Building an APK and checking
-web screens in a desktop browser do not prove Android file pickers, background recovery or
-Marvel Unlimited reader compatibility. Complete the device checks below before distribution.
+The sections below cover how the Android app works, how it is built and released, and the checks
+made for release. The [beta checklist](ANDROID_BETA.md) and
+[Google Play asset previews](GOOGLE_PLAY_ASSETS.md) are kept from the earlier sideloaded beta.
 
 ## How it works
 
@@ -58,8 +51,12 @@ apart and first while comics are queued and **Remove from library** apart and la
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
 Android Back, Escape or a tap outside dismisses the sheet without taking action.
 
-Read and **Done** stay together. **About this comic** opens reader-focused details with Read
-near the title, useful comic information and optional, spoiler-protected story summaries.
+Read and **Done** stay together. **About this comic** opens the comic's own page, which leads with
+its cover: centered above the title on an upright screen, and in a column beside the title and
+everything under it on a screen turned on its side or a wide one. **Read** follows the title, then
+useful comic information and optional, spoiler-protected story summaries. With cover art off, the
+cover's stand-in takes the same place and size. A short split-screen window keeps the details card
+with **Read** first.
 **More comic actions** contains deferral and the external comic page.
 **Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
 putting availability in the main comic details. An active temporary-link warning stays

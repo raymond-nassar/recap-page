@@ -320,3 +320,78 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
 @media (max-width: 880px) and (max-height: 500px) {
   #home-continue #done-result { left: max(24rem, calc(100vw - var(--space-4) - 26rem)); }
 }
+
+/* #980, the owner's choice on 2026-10-29: a comic's own page leads with its cover, because the cover
+   is what catches a reader's eye. It was a 112px thumbnail under the commands. A portrait screen
+   shows it as a poster, centered above the title with Read under the title; a landscape or wide one
+   gives it a column beside the title and everything under it. The card's frame and blurred backdrop
+   go, so the cover, title and commands read as one page.
+   Nothing moves in the markup. `display: contents` and the placements below change only where boxes
+   are painted, so Tab and the screen reader still meet the title, Read, Mark as read, Add note, Rate,
+   the cover and the details in that order, as #830 left them: measured in Edge, both orders match the
+   same page with these rules removed. Each display rule is written for the shown state, so `hidden`
+   on the view or the card still hides it, and a loading or unavailable comic shows nothing of the
+   last one.
+   The cover asks for Marvel's 500px detail image rather than the 300px one, which these sizes would
+   stretch up to 2.6 times. The backdrop already asked for that image; it is no longer drawn here. */
+.issue-focus { --issue-cover-variant: detail; }
+@media (max-width: 880px) and (min-height: 600px), (min-width: 560px) {
+  #issue-focus-card:not([hidden]), #issue-focus-card > .hero-in { display: contents; }
+  #issue-focus-card > .hero-bg, #issue-focus-card > .hero-fade { display: none; }
+  #issue-focus-card .art { max-width: none; }
+  /* The stand-in takes the cover's own box, so switching cover art off moves nothing. */
+  .issue-focus .cover-fallback.cover-fallback { aspect-ratio: 2 / 3; min-height: 0; }
+}
+/* The poster. Its width is the height left above the bottom bar once the page head, a two-line title
+   and both Read and Mark as read are placed, as a 2:3 box, capped at 62% of the screen and 320px and
+   never below 128px or 40% of the screen. The 25em reserve is that head and those two 48px rows,
+   403px at 16px text at 360 by 800, where it leaves a 223px cover with Mark as read ending above the
+   bar. Being in em, it grows with the system text size, so larger text shrinks the cover before it
+   takes room from Read. Under 600px tall that budget leaves no cover worth the space: a short window
+   that is also narrow, such as split screen, keeps today's card with the commands first. */
+@media (max-width: 880px) and (min-height: 600px) {
+  #view-issue:not([hidden]) { display: flex; flex-direction: column; }
+  #view-issue > .breadcrumb { order: -2; }
+  #issue-focus-card .art {
+    order: -1; align-self: center; margin-bottom: var(--space-7);
+    width: max(min(40vw, 8rem), min(calc((100dvh - var(--mobile-nav-height, 80px) - 25em) * 2 / 3), 62vw, 20rem));
+  }
+  /* Centered under a centered cover. Scoped to this page: every other page keeps its heading at the
+     start, where #830 aligned the headings of every view. */
+  #view-issue > .head { justify-content: center; text-align: center; }
+  #view-issue > .head .sub { margin-inline: auto; }
+  #btn-issue-retry { align-self: flex-start; }
+  #issue-focus-card .issue-reading-controls { margin-bottom: var(--space-7); }
+}
+/* Where the commands share one row they center under the title. On a phone Read spans the width and
+   the rest wrap under it, which reads as a list, so they keep to the start there. */
+@media (min-width: 481px) and (max-width: 880px) and (min-height: 600px) {
+  #issue-focus-card .issue-actions { justify-content: center; }
+}
+/* Beside: the cover takes the first column from the heading down, and the rest of the page the second.
+   Every row is named, because the parent link is absent for some routes and auto-placement would then
+   lift the status line above the heading. The last row takes whatever height the cover needs beyond
+   the text, so a short page never spreads its rows apart. The gap is the cover's own margin, so while
+   a comic loads, with no cover yet, the heading starts at the edge rather than after an empty column.
+   On a phone on its side the cover is sized to the band above the bottom bar: 148px at 800 by 360,
+   ending above the bar beside the title and Read. */
+@media (min-width: 560px) and (max-width: 880px) and (max-height: 599px), (min-width: 881px) {
+  #view-issue:not([hidden]) {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: repeat(6, auto) 1fr;
+    align-items: start;
+  }
+  #view-issue > .breadcrumb { grid-area: 1 / 1 / 2 / -1; }
+  #view-issue > .head { grid-area: 2 / 2; }
+  #issue-focus-status { grid-area: 3 / 2; }
+  #btn-issue-retry { grid-area: 4 / 2; justify-self: start; }
+  #issue-focus-card .issue-reading-controls { grid-area: 5 / 2; margin-bottom: var(--space-6); }
+  #issue-focus-card .hero-body { grid-area: 6 / 2; }
+  #issue-focus-card .art {
+    grid-area: 2 / 1 / -1 / 2; margin-right: var(--space-8);
+    width: clamp(7rem, calc((100dvh - var(--mobile-nav-height, 80px) - 5em) * 2 / 3), 14rem);
+  }
+}
+/* Wide windows, iPads and tablets on their side, have no bottom bar and room for the full size. */
+@media (min-width: 881px) {
+  #issue-focus-card .art { margin-right: var(--space-9); width: clamp(13.5rem, calc((100dvh - 8rem) * 2 / 3), 20rem); }
+}
