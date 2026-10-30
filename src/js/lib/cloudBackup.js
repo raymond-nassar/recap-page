@@ -360,9 +360,10 @@ export function createCloudBackup({
         const exists = await recordExists();
         if (exists === true || (exists === null && (record !== null || enabled()))) {
           let why = null;
+          let mine = false;
           try {
             releaseErase = await protocol.hold();
-            setAside = await protocol.suspendConsent();
+            setAside = await protocol.suspendConsent(() => { mine = true; });
           } catch (error) {
             // Only a record that fails its checks, read under the lock, lets the erase go on: no tab takes a
             // number from it, and the erase forgets it.
@@ -373,10 +374,11 @@ export function createCloudBackup({
           if (why !== null) {
             let resume = wasRunning;
             // Setting consent aside can commit before its read-back fails, so whatever is still set aside goes
-            // back under the same lock. Only consent still set aside is touched, so this is safe when nothing
-            // was written. When even that fails, the refusal says backups are off rather than leaving it to
-            // be found later (#996, S5-1).
-            if (releaseErase) {
+            // back under the same lock, but only when this erase found consent to set aside. Consent an earlier
+            // erase left set aside when its page died stays so, because putting it back would back up partly
+            // erased data (S3a-7). When even that fails, the refusal says backups are off rather than leaving
+            // it to be found later (#996, S5-1).
+            if (releaseErase && mine) {
               try {
                 if (await protocol.resumeConsent()) {
                   resume = true;

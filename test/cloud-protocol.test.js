@@ -1651,10 +1651,10 @@ test('a refused erase whose read-back fails puts consent back, or says automatic
     const agreed = await tab.protocol.record();
     const { suspendConsent, resumeConsent } = tab.protocol;
     const lost = () => new CloudBackupError('This browser could not keep its cloud backup record.', 'storage');
-    tab.protocol.suspendConsent = async function suspendThenLose() {
+    tab.protocol.suspendConsent = async function suspendThenLose(...args) {
       const { record } = this;
       this.record = async () => { this.record = record; throw lost(); };
-      return suspendConsent.call(this);
+      return suspendConsent.apply(this, args);
     };
     if (!putBack) tab.protocol.resumeConsent = async () => { throw lost(); };
     const refused = await tab.cloud.beforeErase();
@@ -1675,6 +1675,38 @@ test('a refused erase whose read-back fails puts consent back, or says automatic
       assert.deepEqual([tab.cloud.model.on, tab.cloud.model.suspended], [false, true], 'the card shows it stopped');
     }
   }
+});
+
+// Consent an earlier erase left set aside, when its page died part way, stays set aside through a later erase
+// that is refused before it sets anything aside itself: putting it back would back up the partly erased data
+// over the good copies, which is what leaving it set aside prevents (stage 3 review, S3a-7; #996 stage 2 review).
+test('a refused erase puts back only the consent it set aside, never one an interrupted erase left', async () => {
+  const { ERASE_NOT_STOPPED } = await import('../src/js/lib/cloudBackup.js');
+  const env = harness();
+  windowsHost(env.transport);
+  const first = page({ env });
+  await first.cloud.enter();
+  await first.cloud.turnOn();
+  await first.run(0);
+  await first.protocol.suspendConsent();
+  first.home.mark(21);
+  const made = env.transport.created.length;
+  const left = await first.protocol.record();
+
+  const next = page({ env, home: first.home });
+  await next.cloud.resume();
+  const { suspendConsent } = next.protocol;
+  next.protocol.suspendConsent = async () => { throw new CloudBackupError('This browser could not keep its cloud backup record.', 'storage'); };
+  const refused = await next.cloud.beforeErase();
+  next.protocol.suspendConsent = suspendConsent;
+  assert.equal(refused, `${ERASE_NOT_STOPPED} This browser could not keep its cloud backup record.`);
+  assert.equal(env.locks.held(CLOUD_BACKUP_LOCK), 0, 'the erase let go of the lock');
+  assert.deepEqual(await next.protocol.record(), left, 'the consent the interrupted erase set aside is still set aside');
+  next.cloud.notify();
+  await next.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made, 'the partly erased data was not backed up');
+  const shown = await next.cloud.enter();
+  assert.deepEqual([shown.on, shown.suspended], [false, true], 'the card still says backups stopped during an erase');
 });
 
 // A record that fails its checks is said on the card, and turning on replaces it with a new stream, so its

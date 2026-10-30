@@ -428,13 +428,16 @@ export class CloudBackupProtocol {
   // allocate takes a number while it is, and what was verified and the counter stay. The erase then forgets
   // the record, or, having erased nothing, puts the same consent back. A page that dies in between leaves it
   // set aside, and nothing puts it back by itself, because a part-way erase must not be backed up over the
-  // good copies (stage 3 review, S3a-7). True when there was consent to set aside.
-  async suspendConsent() {
+  // good copies (stage 3 review, S3a-7). True when there was consent to set aside. `found` is called once the
+  // write has found consent to set aside, before it commits, so a caller whose read-back then fails knows any
+  // consent still set aside may be its own, and that one set aside earlier is not (#996 stage 2 review).
+  async suspendConsent(found = () => {}) {
     let suspended = null;
     await this.records.write((current) => {
       const record = current === null ? null : checkRecord(current);
       if (!record?.consent) return undefined;
       suspended = record.consent;
+      found();
       return { ...record, consent: null, suspended };
     });
     if (suspended === null) return false;
