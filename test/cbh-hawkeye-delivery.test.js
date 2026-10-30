@@ -27,6 +27,7 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   historicalReadingChoiceManifest,
   historicalReadingChoiceIssueIds,
+  pathsWithinLists,
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'hawkeye-reading-order';
@@ -258,11 +259,12 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
     orderId: entry.id,
     issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))),
   })));
-  const libraryDigest = libraryDigestFor({ ...manifest, lists: existing },
-    orders.map((order) => ({
-      id: order.orderId,
-      issueIds: order.issueIds.map(String),
-    })));
+  const libraryDigest = libraryDigestFor({
+    ...manifest, lists: existing, paths: pathsWithinLists(manifest.paths, existing),
+  }, orders.map((order) => ({
+    id: order.orderId,
+    issueIds: order.issueIds.map(String),
+  })));
   const comparisons = buildComparisonReport({
     candidateIds: mapping.rows.map((row) => String(row.selectedIssueId)),
     orders,

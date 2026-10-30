@@ -512,8 +512,8 @@ partition: its 99 quoted source positions and 487 metadata-complete issues remai
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
 against the current visible catalog rather than copied into historical reports. Its current
-report records 86 overlapping child-and-peer pairs across 26 visible peers, including the
-three-issue Iron Fist, nine-issue Daredevil, seven-issue Fantastic Four and six-issue Brand New Day and Hulk companion relationships,
+report records 88 overlapping child-and-peer pairs across 27 visible peers, including the
+four-issue Professor X, three-issue Iron Fist, nine-issue Daredevil, seven-issue Fantastic Four and six-issue Brand New Day and Hulk companion relationships,
 while preserving all earlier pairs.
 
 ### Secret Wars fast track and MCU Prep
@@ -1090,12 +1090,12 @@ the book id out of an address the reader pastes.
 
 ## Reading-path provenance
 
-The generated catalog currently publishes three independent Reading Paths with 100 stops: two
-authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:8401-8440`, plus the 78-stop Marvel Knights to Planet X path generated
+The generated catalog currently publishes four independent Reading Paths with 104 stops: three
+authored paths with 10, 12 and 4 stops from the curated manifest at
+`src/data/curated-lists.json:8433-8484`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
-`scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12765-12890`.
+`scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
+`src/data/catalog.json:12804-12941`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1912,6 +1912,54 @@ Operation: Zero Tolerance, retaining the distinct 1996 Heroes Reborn Iron Man #6
 Only factual provider details, including issue identities, creator credits and cover URLs,
 are retained; the source's editorial prose, comic image bytes and inferred reader
 availability are not copied.
+
+## Professor X source boundary
+
+The [Professor X guide](https://www.comicbookherald.com/professor-x-reading-order/) was
+retrieved on 2026-10-29 from its WordPress record, post 41783, last modified 2024-02-08. Its 35
+issue-bearing blocks hash to the digest recorded at the 2026-08-23 intake, so the selection it
+offers has not changed since then; only its rendered markup differs. The owner supplied a table of
+the guide's Professor X picks with [Issue #981](https://github.com/raymond-nassar/recap-page/issues/981)
+and asked for the X-Men stories that continue his story to be offered as their own Reading Lists
+rather than copied inside this one. The table's marvel.com links were never opened: its issue IDs
+served only as candidate lookup keys.
+
+The published `best-of` spotlight keeps the owner's selection as verified against the page, in the
+page's order: the crucial issues the guide names for its Silver Age, Claremont and New X-Men
+sections, X-Men: Deadly Genesis #1-6, Uncanny X-Men #475-486, New Avengers: Illuminati #1-5 and
+X-Men: Legacy #208-225. That is 58 exact original issues with no source gaps. The page lists
+Classic X-Men #31 before Uncanny X-Men #117, so the checklist does too, although the table had them
+the other way round. Issue 12433 is Uncanny X-Men (1963) #117, on sale in 1979, although the table's
+link for it names a 1981 series. Illuminati is the 2006 to 2007 limited series, not the April 2006
+one-shot, and keeps the guide's whole five-issue collection, which the owner confirmed on 2026-10-29
+on the Issue. Thirty-nine identities came from pinned payloads and 19 from the configured provider's
+series listings, and the provider returned details for all 58 when the order was vendored.
+
+The guide's event collections, its other bonus reads, the alternate-reality section, House of X
+and Latest Additions are 20 named exclusions in the
+[frozen packet](../scripts/data/cbh-packets/professor-x-reading-order.json), each naming the
+Reading List that carries it where one exists. At the owner's direction, six of the follow-ons are
+filed as Reading List requests, Issues [#989](https://github.com/raymond-nassar/recap-page/issues/989)
+to [#994](https://github.com/raymond-nassar/recap-page/issues/994). The checklist is an ordinary
+issue order without collected-edition headings, because two of the guide's crucial picks belong to
+no edition the page names. The [source ledger](../scripts/data/cbh-source-ledgers/professor-x-reading-order.json)
+records the page digests, the selection blocks, every table row's verification and each provider
+listing used.
+
+The complete-library review compared all 254 earlier source orders, later additions and the hidden
+Marvel Knights to Planet X parent included. It approved 15 partial relationships and 239 with no
+shared issue; none is an exact duplicate or a subset. Six of the partial relationships come only
+from New Avengers: Illuminati. One of those is with the Namor guide, whose owner identity updates
+now accept this guide's own approved reciprocal review in place of an owner registration. The
+Marvel Knights to Planet X overlap matrix gains two pairs, for New X-Men #114-116 and #121.
+
+The Professor X and the X-Men Reading Path starts at this spotlight and continues to X-Men:
+Onslaught, Jonathan Hickman's X-Men and Fall of the House of X & Rise of the Powers of X.
+Messiah Complex, which the guide also names, stays the first stop of the existing X-Men: Messiah
+Complex to Avengers vs. X-Men path, because a stop on two paths would offer two next stops when it
+is finished. Age of Apocalypse is not on the path: its last issue, X-Men Prime #1, opens the
+Onslaught list, and no two stops on a path may share an issue. The description's closing sentence
+honors Sir Patrick Stewart in the wording the owner approved on the Issue.
 
 ## Owner-authored MCU Prep: Daredevil: Born Again
 

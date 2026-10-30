@@ -197,7 +197,7 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
       && identityRevisions.reviewLibrarySnapshots.some((entry) => entry.libraryDigest === report.libraryDigest);
     const recordedDigest = isCapturedBrandReview
       ? capturedReviewLibraryDigest(recordedIssueIds, report.libraryDigest)
-      : historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedIssueIds);
+      : historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedIssueIds, { presentIds: [id] });
     assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
       recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
     assertApprovedRelationshipReview({

@@ -17,13 +17,25 @@ import { normalizeCover } from '../../src/js/lib/model.js';
 import {
   currentReadingCensus, registeredCuratedGuides, registeredOwnerBaselineRows, registeredOwnerContracts,
 } from './current-reading-library.mjs';
-import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
+import { historicalSpiderManSelectionLibraryDigest, pathsWithinLists } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
+
+// An owner review records every current path, including one naming the guide under review or a
+// peer reviewed beside it, so a rebuilt record drops only a path naming a list that review never saw.
+export function recordedOwnerManifest(manifest, recordedIds, { candidateId, peerIds = [] }) {
+  const lists = manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id));
+  return {
+    ...manifest,
+    lists,
+    ...(Object.hasOwn(manifest, 'paths')
+      ? { paths: pathsWithinLists(manifest.paths, lists, [candidateId, ...peerIds]) } : {}),
+  };
+}
 
 export async function assertOwnerDeliveryContract(contract, {
   root = fileURLToPath(new URL('../..', import.meta.url)),
@@ -148,10 +160,7 @@ export async function assertOwnerDeliveryContract(contract, {
   }));
   const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
     recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
-  const recordedManifest = {
-    ...library.manifest,
-    lists: library.manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id)),
-  };
+  const recordedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds });
   const digestLibrary = contract.libraryDigest == null
     ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
   const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
@@ -169,7 +178,7 @@ export async function assertOwnerDeliveryContract(contract, {
     : (contract.libraryDigest === recordedCurrentDigest
       ? recordedCurrentDigest
       : (contract.libraryDigest != null && contract.libraryDigest === plainRecordedDigest
-        ? plainRecordedDigest : digestLibrary(recordedManifest, recordedVectors)));
+        ? plainRecordedDigest : digestLibrary(recordedManifest, recordedVectors, { presentIds: [id, ...peerIds] })));
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
   assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
     recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
@@ -264,9 +273,7 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   // since is held to the same registered-later-peer rule as an ordinary owner guide.
   const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
   const orders = allOrders.filter((entry) => recordedIds.has(entry.orderId));
-  const recordedManifest = {
-    ...library.manifest, lists: library.manifest.lists.filter((entry) => recordedIds.has(entry.id)),
-  };
+  const recordedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id });
   const current = {
     candidateId: id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest,
     libraryDigest: libraryDigestFor(recordedManifest,

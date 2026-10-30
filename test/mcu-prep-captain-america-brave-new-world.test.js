@@ -162,7 +162,7 @@ test('Brave New World binds every current peer and the actual three-partial inde
   };
   const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
+  })), { presentIds: [id] });
   assert.equal(report.comparisonCount, 292);
   assert.equal(report.libraryDigest, recordedDigest,
     'Actual post-Ms.Marvel descriptions and vectors remain the authority basis');

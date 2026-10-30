@@ -13,7 +13,7 @@ import { catalogEntries, HOME_CATEGORIES, parseCatalog, shelfKey } from '../src/
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
-  historicalReadingChoiceIssueIds, historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds, historicalReadingChoiceManifest, pathsWithinLists,
 } from './helpers/reading-choice-history.mjs';
 
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -187,7 +187,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: historicalReadingChoiceIssueIds(row.id,
       issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file)))),
   })));
-  const baselineManifest = { ...manifest, lists: entries };
+  const baselineManifest = { ...manifest, lists: entries, paths: pathsWithinLists(manifest.paths, entries) };
   const digest = libraryDigestFor(baselineManifest, orders);
   assert.equal(digest, report.libraryDigest);
   const actual = buildComparisonReport({ candidateIds: fixture.issueIds, orders });

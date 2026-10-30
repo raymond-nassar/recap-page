@@ -728,3 +728,50 @@ test('Agatha accepts only the recorded reciprocal Contest of Chaos prelude autho
   rejected.contract.approvalDigest = rejected.mapping.relationshipReview.approvalDigest;
   assert.throws(() => assertRelationshipReportExtension(previous, current, [rejected]));
 });
+
+// #981: Professor X is a Comic Book Herald guide, not an owner registration, and shares the five
+// New Avengers: Illuminati issues with Namor. Its own approved review is the reciprocal authority.
+test('Namor accepts a later Comic Book Herald guide only through its exact approved reciprocal review', async () => {
+  const jsonAt = (file) => readJson(path.join(REPOSITORY_ROOT, file));
+  const later = {
+    registeredId: 'professor-x-reading-order',
+    mapping: await jsonAt('scripts/data/cbh-mappings/professor-x-reading-order.json'),
+    report: await jsonAt('scripts/data/cbh-overlaps/professor-x-reading-order.json'),
+  };
+  const previous = { candidateId: 'namor-sub-mariner-reading-order', comparisons: [] };
+  const overlap = {
+    orderId: 'professor-x-reading-order', sharedCount: 5,
+    sharedIds: ['5723', '5864', '13481', '15968', '17254'], relationship: 'partial',
+  };
+  const current = { ...previous, comparisons: [overlap] };
+  assert.doesNotThrow(() => assertRelationshipReportExtension(previous, current, [], [later]));
+  assert.throws(() => assertRelationshipReportExtension(previous, current), /registered reciprocal review/);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [], [{
+    ...later, registeredId: 'unregistered-guide',
+  }]), /registered reciprocal review/);
+  assert.throws(() => assertRelationshipReportExtension(previous, {
+    ...current, comparisons: [{ ...overlap, sharedIds: ['5723', '5864', '13481', '15968', '999999'] }],
+  }, [], [later]));
+  assert.throws(() => assertRelationshipReportExtension(previous, {
+    ...current, comparisons: [{ ...overlap, relationship: 'existing-subset' }],
+  }, [], [later]));
+  assert.throws(() => assertRelationshipReportExtension({ ...previous, candidateId: 'another-guide' }, {
+    ...current, candidateId: 'another-guide',
+  }, [], [later]), /must include this earlier guide/);
+  const staleMapping = structuredClone(later);
+  staleMapping.mapping.mappingDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [], [staleMapping]));
+  const staleReport = structuredClone(later);
+  staleReport.report.reportDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [], [staleReport]));
+  const staleApproval = structuredClone(later);
+  staleApproval.mapping.relationshipReview.approvalDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [], [staleApproval]));
+  for (const change of [{ decision: 'rejected' }, { authorityType: 'policy' }]) {
+    const weakened = structuredClone(later);
+    Object.assign(weakened.mapping.relationshipReview.dispositions.find(({ orderId }) =>
+      orderId === previous.candidateId), change);
+    weakened.mapping.relationshipReview.approvalDigest = approvalDigestFor(weakened.mapping.relationshipReview);
+    assert.throws(() => assertRelationshipReportExtension(previous, current, [], [weakened]));
+  }
+});

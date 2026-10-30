@@ -3287,13 +3287,31 @@
     "url": "https://www.comicbookherald.com/professor-x-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The owner's Professor X selection publishes 58 exact issues in the page's order, with no source gaps. The complete 254-list review approves 15 partial relationships and 239 with no shared issues; every other issue-bearing block is an owner-directed follow-on recorded in the packet.",
+    "sourceRetrievedAt": "2026-10-29",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "civil-war-avengers",
+      "doctor-strange-multiverse-of-madness",
+      "emma-frost-reading-order",
+      "hawkeye-reading-order",
+      "inhumans-reading-order",
+      "magneto-reading-order",
+      "marvel-knights-to-planet-x",
+      "modern-x-men-fast-track",
+      "namor-sub-mariner-reading-order",
+      "shadow-king-reading-order",
+      "wolverine-reading-order",
+      "x-men-divided-we-stand",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "professor-x-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Professor X (Charles Xavier)"
     ],
@@ -3301,9 +3319,9 @@
       93
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "02b4c9fba28079e64ecca05043f5dce8495755937f677c3ab8859b7d795bb98b",
+    "sourceContentSha256": "1c86c4e3428507af92499af5ebf63c910f18d2045c187c76da77690d5065f6ba",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 93,

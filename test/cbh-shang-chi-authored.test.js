@@ -18,6 +18,7 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   historicalReadingChoiceManifest,
   historicalReadingChoiceIssueIds,
+  pathsWithinLists,
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'shang-chi-master-of-kung-fu-reading-order';
@@ -209,7 +210,9 @@ test('Shang-Chi requires its renewed independent relationship approval against a
     id: entry.id,
     issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))).map(String),
   })));
-  const peerDigest = libraryDigestFor({ ...manifest, lists: published }, orders);
+  const peerDigest = libraryDigestFor({
+    ...manifest, lists: published, paths: pathsWithinLists(manifest.paths, published),
+  }, orders);
   assert.equal(peerDigest, report.libraryDigest);
   const expectedOrderIds = published.map((entry) => entry.id);
   assert.equal(report.comparisonCount, expectedOrderIds.length);

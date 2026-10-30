@@ -2049,8 +2049,8 @@
     "fp": "9e58652eb9767e57",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:191-217|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:191-217",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:200-226|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:200-226",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
@@ -2114,14 +2114,14 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12765-12890|0": {
-    "anchor": "src/data/catalog.json:12765-12890",
-    "fp": "a679899453ea002c",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12804-12941|0": {
+    "anchor": "src/data/catalog.json:12804-12941",
+    "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:8401-8440|0": {
-    "anchor": "src/data/curated-lists.json:8401-8440",
-    "fp": "1b133fe2f7d008e4",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:8433-8484|0": {
+    "anchor": "src/data/curated-lists.json:8433-8484",
+    "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },
   "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/issue.js:109|0": {

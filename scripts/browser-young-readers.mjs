@@ -69,7 +69,7 @@ export const youngReadersActualData = {
     t.check('Young readers is the one screen for all fifteen young readers\' lists',
       homeCard.title === 'Young readers' && homeCard.count === '15 Reading Lists'
       && youngShelf.heading === 'Young readers' && isDeepStrictEqual([...youngShelf.cards].sort(), everyYoung)
-      && spotlightCards.length === 71 && !spotlightCards.some((story) => everyYoung.includes(story)),
+      && spotlightCards.length === 72 && !spotlightCards.some((story) => everyYoung.includes(story)),
       JSON.stringify({ homeCard, young: youngShelf.cards.length, spotlights: spotlightCards.length }));
 
     const stored = (catalogId) => page.evaluate((key, id) => {

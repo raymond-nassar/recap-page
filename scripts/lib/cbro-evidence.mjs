@@ -143,6 +143,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'mcu-prep-moon-knight',
   'spider-man-no-way-home-owner-selected',
   'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
+  'professor-x-reading-order', 'professor-x-and-the-x-men',
   ...registeredOwnerAdditionIds,
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';

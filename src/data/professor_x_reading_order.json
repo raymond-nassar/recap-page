@@ -1,0 +1,1803 @@
+{
+  "id": "professor-x-reading-order",
+  "name": "Professor X (Charles Xavier)",
+  "description": "Professor X's essential comics as Comic Book Herald's guide selects them, from Uncanny X-Men #12 through X-Men: Legacy #225. It keeps the guide's crucial issues from the Silver Age, the Claremont years and New X-Men, then Deadly Genesis, the Rise and Fall of the Shi'ar Empire, New Avengers: Illuminati and X-Men: Legacy, in the guide's order. Onslaught, Jonathan Hickman's Krakoa era and its 2024 finale continue on the Professor X and the X-Men path in Modern Timeline. In memory of Sir Patrick Stewart (1940 to 2026), who brought Professor X to life on screen.",
+  "source": "https://www.comicbookherald.com/professor-x-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-29T23:07:39.400Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 58,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12436,
+      "title": "Uncanny X-Men (1963) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/12436/uncanny_x-men_1963_12",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4d49e226c7d51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Toth",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12447,
+      "title": "Uncanny X-Men (1963) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/12447/uncanny_x-men_1963_13",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4d49e19e06f5a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12458,
+      "title": "Uncanny X-Men (1963) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/12458/uncanny_x-men_1963_14",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4d49e28fe2a3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12461,
+      "title": "Uncanny X-Men (1963) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/12461/uncanny_x-men_1963_15",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4d49e09b91dd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12462,
+      "title": "Uncanny X-Men (1963) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/12462/uncanny_x-men_1963_16",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4d49e11f8e30e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8797,
+      "title": "Giant-Size X-Men (1975) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/8797/giant-size_x-men_1975_1",
+      "seriesId": 2016,
+      "seriesName": "Giant-Size X-Men (1975)",
+      "onSale": "1975-07-01T00:00:00+0000",
+      "mu": "1975-07-01T00:00:00+0000",
+      "digitalId": 1931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5b314996e924c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Cockrum",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12548,
+      "title": "Uncanny X-Men (1963) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/12548/uncanny_x-men_1963_94",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1975-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1327,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/58a60168b290d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12549,
+      "title": "Uncanny X-Men (1963) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/12549/uncanny_x-men_1963_95",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1975-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/58a60348b8f59",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20587,
+      "title": "Classic X-Men (1986) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/20587/classic_x-men_1986_31",
+      "seriesId": 3751,
+      "seriesName": "Classic X-Men (1986 - 1990)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 53091,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5dcef34fc4eec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Bolton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Lightle",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12433,
+      "title": "Uncanny X-Men (1963) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/12433/uncanny_x-men_1963_117",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1979-01-01T00:00:00+0000",
+      "mu": "2004-01-01T00:00:00+0000",
+      "digitalId": 4482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/5372ae70d2317",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10362,
+      "title": "New Mutants (1983) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/10362/new_mutants_1983_26",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-04-01T00:00:00+0000",
+      "mu": "1985-04-01T00:00:00+0000",
+      "digitalId": 12170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb4f73b171d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10363,
+      "title": "New Mutants (1983) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/10363/new_mutants_1983_27",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-05-01T00:00:00+0000",
+      "mu": "1985-05-01T00:00:00+0000",
+      "digitalId": 13259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/57d86b4217a30",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10364,
+      "title": "New Mutants (1983) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/10364/new_mutants_1983_28",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-06-01T00:00:00+0000",
+      "mu": "1985-06-01T00:00:00+0000",
+      "digitalId": 13264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/57d86a7834aa8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14933,
+      "title": "New X-Men (2001) #114",
+      "number": "114",
+      "url": "https://www.marvel.com/comics/issue/14933/new_x-men_2001_114",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-05-16T00:00:00+0000",
+      "mu": "2001-05-16T00:00:00+0000",
+      "digitalId": 3049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14934,
+      "title": "New X-Men (2001) #115",
+      "number": "115",
+      "url": "https://www.marvel.com/comics/issue/14934/new_x-men_2001_115",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-07-11T00:00:00+0000",
+      "mu": "2001-07-11T00:00:00+0000",
+      "digitalId": 6566,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4bb793db72171",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14935,
+      "title": "New X-Men (2001) #116",
+      "number": "116",
+      "url": "https://www.marvel.com/comics/issue/14935/new_x-men_2001_116",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-08-22T00:00:00+0000",
+      "mu": "2001-08-22T00:00:00+0000",
+      "digitalId": 6567,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4c35efa48c052",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14940,
+      "title": "New X-Men (2001) #121",
+      "number": "121",
+      "url": "https://www.marvel.com/comics/issue/14940/new_x-men_2001_121",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-01-02T00:00:00+0000",
+      "mu": "2002-01-02T00:00:00+0000",
+      "digitalId": 6571,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/577c150a481a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Quitely",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3591,
+      "title": "X-Men: Deadly Genesis (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/3591/x-men_deadly_genesis_2005_1",
+      "seriesId": 345,
+      "seriesName": "X-Men: Deadly Genesis (2005 - 2006)",
+      "onSale": "2005-11-16T00:00:00+0000",
+      "mu": "2005-11-16T00:00:00+0000",
+      "digitalId": 1194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/570293252a4f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Garry Leach",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pete Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Trevor Hairsine",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3593,
+      "title": "X-Men: Deadly Genesis (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/3593/x-men_deadly_genesis_2005_2",
+      "seriesId": 345,
+      "seriesName": "X-Men: Deadly Genesis (2005 - 2006)",
+      "onSale": "2005-12-21T00:00:00+0000",
+      "mu": "2005-12-21T00:00:00+0000",
+      "digitalId": 2868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/57028d991e836",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pete Woods",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Trevor Hairsine",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3595,
+      "title": "X-Men: Deadly Genesis (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/3595/x-men_deadly_genesis_2005_3",
+      "seriesId": 345,
+      "seriesName": "X-Men: Deadly Genesis (2005 - 2006)",
+      "onSale": "2006-01-25T00:00:00+0000",
+      "mu": "2006-01-25T00:00:00+0000",
+      "digitalId": 10057,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/570292fcb9f63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pete Woods",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Trevor Hairsine",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3629,
+      "title": "X-Men: Deadly Genesis (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/3629/x-men_deadly_genesis_2005_4",
+      "seriesId": 345,
+      "seriesName": "X-Men: Deadly Genesis (2005 - 2006)",
+      "onSale": "2006-02-15T00:00:00+0000",
+      "mu": "2006-02-15T00:00:00+0000",
+      "digitalId": 7827,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/570292f318eed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pete Woods",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Trevor Hairsine",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3999,
+      "title": "X-Men: Deadly Genesis (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/3999/x-men_deadly_genesis_2005_5",
+      "seriesId": 345,
+      "seriesName": "X-Men: Deadly Genesis (2005 - 2006)",
+      "onSale": "2006-03-29T00:00:00+0000",
+      "mu": "2006-03-29T00:00:00+0000",
+      "digitalId": 7828,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/570292c8e5217",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3628,
+      "title": "X-Men: Deadly Genesis (2005) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/3628/x-men_deadly_genesis_2005_6",
+      "seriesId": 345,
+      "seriesName": "X-Men: Deadly Genesis (2005 - 2006)",
+      "onSale": "2006-05-10T00:00:00+0000",
+      "mu": "2006-05-10T00:00:00+0000",
+      "digitalId": 4851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/4bb7c309cc1a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Trevor Hairsine",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4434,
+      "title": "Uncanny X-Men (1963) #475",
+      "number": "475",
+      "url": "https://www.marvel.com/comics/issue/4434/uncanny_x-men_1963_475",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-07-05T00:00:00+0000",
+      "mu": "2008-03-05T00:00:00+0000",
+      "digitalId": 2735,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/4d24f578060ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 4435,
+      "title": "Uncanny X-Men (1963) #476",
+      "number": "476",
+      "url": "https://www.marvel.com/comics/issue/4435/uncanny_x-men_1963_476",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-07-19T00:00:00+0000",
+      "mu": "2008-02-20T00:00:00+0000",
+      "digitalId": 7458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4bb846781bced",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 4753,
+      "title": "Uncanny X-Men (1963) #477",
+      "number": "477",
+      "url": "https://www.marvel.com/comics/issue/4753/uncanny_x-men_1963_477",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-08-02T00:00:00+0000",
+      "mu": "2009-04-08T00:00:00+0000",
+      "digitalId": 7459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4d24ee0233bc6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5049,
+      "title": "Uncanny X-Men (1963) #478",
+      "number": "478",
+      "url": "https://www.marvel.com/comics/issue/5049/uncanny_x-men_1963_478",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-09-06T00:00:00+0000",
+      "mu": "2009-04-15T00:00:00+0000",
+      "digitalId": 7460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4d24ec6a0c942",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5201,
+      "title": "Uncanny X-Men (1963) #479",
+      "number": "479",
+      "url": "https://www.marvel.com/comics/issue/5201/uncanny_x-men_1963_479",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-10-11T00:00:00+0000",
+      "mu": "2009-04-22T00:00:00+0000",
+      "digitalId": 7461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4d24dfec21b27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5498,
+      "title": "Uncanny X-Men (1963) #480",
+      "number": "480",
+      "url": "https://www.marvel.com/comics/issue/5498/uncanny_x-men_1963_480",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-11-01T00:00:00+0000",
+      "mu": "2009-07-29T00:00:00+0000",
+      "digitalId": 7462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/4d2518318fab4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5631,
+      "title": "Uncanny X-Men (1963) #481",
+      "number": "481",
+      "url": "https://www.marvel.com/comics/issue/5631/uncanny_x-men_1963_481",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-12-06T00:00:00+0000",
+      "mu": "2009-12-09T00:00:00+0000",
+      "digitalId": 7463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4d24e37fd830f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5777,
+      "title": "Uncanny X-Men (1963) #482",
+      "number": "482",
+      "url": "https://www.marvel.com/comics/issue/5777/uncanny_x-men_1963_482",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2007-01-03T00:00:00+0000",
+      "mu": "2009-12-16T00:00:00+0000",
+      "digitalId": 8729,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/4bb87f8fa5824",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5942,
+      "title": "Uncanny X-Men (1963) #483",
+      "number": "483",
+      "url": "https://www.marvel.com/comics/issue/5942/uncanny_x-men_1963_483",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2007-02-07T00:00:00+0000",
+      "mu": "2009-12-23T00:00:00+0000",
+      "digitalId": 8730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4d24fb528a44c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6077,
+      "title": "Uncanny X-Men (1963) #484",
+      "number": "484",
+      "url": "https://www.marvel.com/comics/issue/6077/uncanny_x-men_1963_484",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2007-03-07T00:00:00+0000",
+      "mu": "2010-03-22T00:00:00+0000",
+      "digitalId": 8731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/4d24e144d8cca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 6223,
+      "title": "Uncanny X-Men (1963) #485",
+      "number": "485",
+      "url": "https://www.marvel.com/comics/issue/6223/uncanny_x-men_1963_485",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2007-04-11T00:00:00+0000",
+      "mu": "2010-03-23T00:00:00+0000",
+      "digitalId": 8732,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4d2521eeb27be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13423,
+      "title": "Uncanny X-Men (1963) #486",
+      "number": "486",
+      "url": "https://www.marvel.com/comics/issue/13423/uncanny_x-men_1963_486",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2007-05-16T00:00:00+0000",
+      "mu": "2010-03-24T00:00:00+0000",
+      "digitalId": 8733,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/59243d1e1c437",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5723,
+      "title": "New Avengers: Illuminati (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5723/new_avengers_illuminati_2006_1",
+      "seriesId": 1137,
+      "seriesName": "New Avengers: Illuminati (2006 - 2008)",
+      "onSale": "2006-12-20T00:00:00+0000",
+      "mu": "2011-06-23T12:53:00+0000",
+      "digitalId": 6525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/570e6223be57c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5864,
+      "title": "New Avengers: Illuminati (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/5864/new_avengers_illuminati_2006_2",
+      "seriesId": 1137,
+      "seriesName": "New Avengers: Illuminati (2006 - 2008)",
+      "onSale": "2007-02-21T00:00:00+0000",
+      "mu": "2007-02-21T00:00:00+0000",
+      "digitalId": 8447,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/570e66a49ca66",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13481,
+      "title": "New Avengers: Illuminati (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/13481/new_avengers_illuminati_2006_3",
+      "seriesId": 1137,
+      "seriesName": "New Avengers: Illuminati (2006 - 2008)",
+      "onSale": "2007-05-30T00:00:00+0000",
+      "mu": "2007-05-30T00:00:00+0000",
+      "digitalId": 8448,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/570e66638cb8d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15968,
+      "title": "New Avengers: Illuminati (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15968/new_avengers_illuminati_2006_4",
+      "seriesId": 1137,
+      "seriesName": "New Avengers: Illuminati (2006 - 2008)",
+      "onSale": "2007-08-01T00:00:00+0000",
+      "mu": "2007-08-01T00:00:00+0000",
+      "digitalId": 8449,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/570e66cbea8a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17254,
+      "title": "New Avengers: Illuminati (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/17254/new_avengers_illuminati_2006_5",
+      "seriesId": 1137,
+      "seriesName": "New Avengers: Illuminati (2006 - 2008)",
+      "onSale": "2007-11-07T00:00:00+0000",
+      "mu": "2007-11-07T00:00:00+0000",
+      "digitalId": 8450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/570e6712c9775",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20632,
+      "title": "X-Men Legacy (2008) #208",
+      "number": "208",
+      "url": "https://www.marvel.com/comics/issue/20632/x-men_legacy_2008_208",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-02-27T00:00:00+0000",
+      "mu": "2008-09-13T00:00:00+0000",
+      "digitalId": 10148,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/51a4dd1fe56ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20819,
+      "title": "X-Men Legacy (2008) #209",
+      "number": "209",
+      "url": "https://www.marvel.com/comics/issue/20819/x-men_legacy_2008_209",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-03-26T00:00:00+0000",
+      "mu": "2009-02-04T00:00:00+0000",
+      "digitalId": 11871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/51a4dd101e3f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20957,
+      "title": "X-Men Legacy (2008) #210",
+      "number": "210",
+      "url": "https://www.marvel.com/comics/issue/20957/x-men_legacy_2008_210",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-04-30T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 11872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/51a4dd09edec2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21166,
+      "title": "X-Men Legacy (2008) #211",
+      "number": "211",
+      "url": "https://www.marvel.com/comics/issue/21166/x-men_legacy_2008_211",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-05-14T00:00:00+0000",
+      "mu": "2009-04-22T00:00:00+0000",
+      "digitalId": 11873,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/51a4dd19ba351",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21167,
+      "title": "X-Men Legacy (2008) #212",
+      "number": "212",
+      "url": "https://www.marvel.com/comics/issue/21167/x-men_legacy_2008_212",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-05-29T00:00:00+0000",
+      "mu": "2010-01-13T00:00:00+0000",
+      "digitalId": 11874,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/51a4dcfbaa3b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21317,
+      "title": "X-Men Legacy (2008) #213",
+      "number": "213",
+      "url": "https://www.marvel.com/comics/issue/21317/x-men_legacy_2008_213",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-11-25T00:00:00+0000",
+      "digitalId": 10605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/51a4ddd7aca62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Scot George Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21495,
+      "title": "X-Men Legacy (2008) #214",
+      "number": "214",
+      "url": "https://www.marvel.com/comics/issue/21495/x-men_legacy_2008_214",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-07-23T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 11875,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/51a4ddc814075",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Scot George Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21698,
+      "title": "X-Men Legacy (2008) #215",
+      "number": "215",
+      "url": "https://www.marvel.com/comics/issue/21698/x-men_legacy_2008_215",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2009-07-08T00:00:00+0000",
+      "digitalId": 11876,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/51a4ddc2e991e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Scot George Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21923,
+      "title": "X-Men Legacy (2008) #216",
+      "number": "216",
+      "url": "https://www.marvel.com/comics/issue/21923/x-men_legacy_2008_216",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-09-24T00:00:00+0000",
+      "mu": "2009-08-19T00:00:00+0000",
+      "digitalId": 11877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/51a4deceae670",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22254,
+      "title": "X-Men Legacy (2008) #217",
+      "number": "217",
+      "url": "https://www.marvel.com/comics/issue/22254/x-men_legacy_2008_217",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-10-22T00:00:00+0000",
+      "mu": "2008-10-22T00:00:00+0000",
+      "digitalId": 11878,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/51a4dec24e6b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Isanove",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22462,
+      "title": "X-Men Legacy (2008) #218",
+      "number": "218",
+      "url": "https://www.marvel.com/comics/issue/22462/x-men_legacy_2008_218",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-11-19T00:00:00+0000",
+      "mu": "2008-11-19T00:00:00+0000",
+      "digitalId": 11879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/f0/51a4debaefbc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22857,
+      "title": "X-Men Legacy (2008) #219",
+      "number": "219",
+      "url": "https://www.marvel.com/comics/issue/22857/x-men_legacy_2008_219",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2008-12-17T00:00:00+0000",
+      "mu": "2008-12-17T00:00:00+0000",
+      "digitalId": 11880,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/51a4deae50c5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23073,
+      "title": "X-Men Legacy (2008) #220",
+      "number": "220",
+      "url": "https://www.marvel.com/comics/issue/23073/x-men_legacy_2008_220",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-01-21T00:00:00+0000",
+      "mu": "2009-01-21T00:00:00+0000",
+      "digitalId": 13506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/51a4dea6e7691",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Bermejo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23563,
+      "title": "X-Men Legacy (2008) #221",
+      "number": "221",
+      "url": "https://www.marvel.com/comics/issue/23563/x-men_legacy_2008_221",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-02-18T00:00:00+0000",
+      "mu": "2009-02-18T00:00:00+0000",
+      "digitalId": 14197,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/58bebaced08f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Bermejo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23734,
+      "title": "X-Men Legacy (2008) #222",
+      "number": "222",
+      "url": "https://www.marvel.com/comics/issue/23734/x-men_legacy_2008_222",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-03-18T00:00:00+0000",
+      "mu": "2009-03-18T00:00:00+0000",
+      "digitalId": 14185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/58bebcdcd6be8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Bermejo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23917,
+      "title": "X-Men Legacy (2008) #223",
+      "number": "223",
+      "url": "https://www.marvel.com/comics/issue/23917/x-men_legacy_2008_223",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-04-15T00:00:00+0000",
+      "mu": "2009-04-15T00:00:00+0000",
+      "digitalId": 14190,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/58bebf48a1e17",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Bermejo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24129,
+      "title": "X-Men Legacy (2008) #224",
+      "number": "224",
+      "url": "https://www.marvel.com/comics/issue/24129/x-men_legacy_2008_224",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-05-28T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 12497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/58bec0a853cb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Bermejo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot George Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27342,
+      "title": "X-Men Legacy (2008) #225",
+      "number": "225",
+      "url": "https://www.marvel.com/comics/issue/27342/x-men_legacy_2008_225",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-06-17T00:00:00+0000",
+      "mu": "2009-06-17T00:00:00+0000",
+      "digitalId": 14191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/58bec1c00822b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniel Acuna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

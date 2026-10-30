@@ -139,8 +139,11 @@ test('the Comic Book Herald inventory, packets and relationship approvals stay c
   const manifest = await readJson('src/data/curated-lists.json');
   const library = await loadLibrarySnapshot();
   // The approvals were given before the owner lists existed, so the reviewed library is today's
-  // without any of the fifteen.
-  const reviewedDigest = libraryDigestExcludingOrders(library, [...cbhIds, ...ownerIds]);
+  // without any of the fifteen, or any curated guide registered after them.
+  const registry = await readJson('test/fixtures/curated-guide-additions.json');
+  const later = registry.guides.slice(registry.guides.findLastIndex((guide) => cbhIds.includes(guide.id)) + 1)
+    .map((guide) => guide.id);
+  const reviewedDigest = libraryDigestExcludingOrders(library, [...cbhIds, ...ownerIds, ...later]);
   const mappings = Object.fromEntries(await Promise.all(cbhIds.map(async (id) => [id,
     await readJson(`scripts/data/cbh-mappings/${id}.json`)])));
   for (const record of inventory) {

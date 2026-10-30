@@ -42,10 +42,10 @@ const stops = catalogEntries(catalog.lists).filter((story) => placements.has(sto
 
 test('no path stop\'s card draws a path line or links anywhere but its source', () => {
   // The count this decision was made on: 98 cards on Modern Timeline, 7 on Storylines and 1 on
-  // Character spotlights.
+  // Character spotlights. Professor X and the X-Men (#981) added two, one and one.
   const byShelf = {};
   for (const story of stops) byShelf[shelfKey(story)] = (byShelf[shelfKey(story)] ?? 0) + 1;
-  assert.deepEqual(byShelf, { catalog: 98, lines: 7, spotlights: 1 });
+  assert.deepEqual(byShelf, { catalog: 100, lines: 8, spotlights: 2 });
 
   for (const story of stops) {
     const card = presentation.catalogCard(story, { surface: shelfKey(story) });
@@ -61,7 +61,9 @@ test('no path stop\'s card draws a path line or links anywhere but its source', 
 
 test('every bundled path is still followed at its address and at the retired page\'s', () => {
   const paths = resolveReadingPaths(catalog.paths, catalog.lists);
-  assert.deepEqual(paths.map(({ id }) => id), ['modern-avengers', 'x-men-messiah-to-avx', 'marvel-knights-to-planet-x']);
+  assert.deepEqual(paths.map(({ id }) => id), [
+    'modern-avengers', 'x-men-messiah-to-avx', 'professor-x-and-the-x-men', 'marvel-knights-to-planet-x',
+  ]);
   for (const { id } of paths) {
     const hash = formatRoute({ view: 'catalog', pathId: id });
     assert.equal(hash, `#/catalog?path=${id}`);
