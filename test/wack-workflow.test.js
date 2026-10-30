@@ -59,6 +59,9 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/build-native-launcher.ps1',
       'scripts/lib/native-launcher.mjs',
       'scripts/lib/startup-contract.mjs',
+      'scripts/lib/cloud-client.mjs',
+      'scripts/lib/release-identity.mjs',
+      'scripts/release-cloud-client.mjs',
       'scripts/msix-proof.mjs',
       'scripts/native-startup-proof.ps1',
       'scripts/pack-msix.mjs',
@@ -67,6 +70,8 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/test-wack-report.ps1',
       'scripts/wack-report.ps1',
       'test/msix-packaging.test.js',
+      'test/cloud-config.test.js',
+      'test/release-cloud-client.test.js',
       'test/microsoft-store-release.test.js',
       'test/native/**',
       'test/server-contract.test.js',
@@ -88,16 +93,59 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
   assert.ok(workflow.indexOf('Get-FileHash') < workflow.indexOf('Expand-Archive'));
   assert.ok(workflow.indexOf('Expand-Archive') < workflow.indexOf('winapp.exe'));
   assert.doesNotMatch(workflow, /setup-WinAppCli/);
-  assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write|secrets\./);
+  assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write/);
+  const protectedSecrets = [...workflow.matchAll(/secrets\.([A-Z_]+)/g)].map((match) => match[1]);
+  assert.deepEqual(protectedSecrets, Array(3).fill('RECAP_ONEDRIVE_CLIENT_ID'));
   assert.match(runner, /PROCESSOR_ARCHITECTURE -ne 'AMD64'/);
   assert.match(runner, /SessionId/);
   assert.match(runner, /10\.0\.20348/);
 });
 
+test('only explicit main release preparation exposes the protected package configuration', () => {
+  const gate = "github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main'";
+  const secretExpression = `${gate} && secrets.RECAP_ONEDRIVE_CLIENT_ID || ''`;
+  const jobs = [...workflow.matchAll(/^ {2}([a-z][a-z-]*):\r?$/gm)];
+  const jobSource = (name) => {
+    const index = jobs.findIndex((match) => match[1] === name);
+    assert.notEqual(index, -1, `${name} job is missing`);
+    return workflow.slice(jobs[index].index, jobs[index + 1]?.index ?? workflow.length);
+  };
+  assert.equal((workflow.match(/secrets\.RECAP_ONEDRIVE_CLIENT_ID/g) ?? []).length, 3);
+  for (const name of ['certify', 'installed']) {
+    const source = jobSource(name);
+    const expressions = [...source.matchAll(/RECAP_ONEDRIVE_CLIENT_ID: (\$\{\{[^\r\n]*\}\})/g)];
+    assert.deepEqual(expressions.map((match) => match[1]), [`\${{ ${secretExpression} }}`], name);
+    const environment = source.match(/^ {4}environment: \$\{\{ (.+) \}\}/m)?.[1];
+    assert.equal(environment, `${gate} && 'microsoft-store-production' || ''`, name);
+    for (const event of ['workflow_dispatch', 'pull_request']) {
+      for (const ref of ['refs/heads/main', 'refs/heads/feature']) {
+        for (const preparation of [true, false]) {
+          const enabled = event === 'workflow_dispatch' && ref === 'refs/heads/main' && preparation;
+          const context = {
+            github: { event_name: event, ref }, inputs: { release_preparation: preparation },
+            secrets: { RECAP_ONEDRIVE_CLIENT_ID: 'synthetic-protected-value' },
+          };
+          assert.equal(runInNewContext(environment, context), enabled ? 'microsoft-store-production' : '', name);
+          assert.equal(runInNewContext(expressions[0][1].slice(4, -3), context),
+            enabled ? 'synthetic-protected-value' : '', name);
+        }
+      }
+    }
+  }
+  const preparation = jobSource('preparation');
+  assert.deepEqual(
+    [...preparation.matchAll(/RECAP_ONEDRIVE_CLIENT_ID: (\$\{\{[^\r\n]*\}\})/g)].map((match) => match[1]),
+    ['${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}'],
+  );
+  assert.match(preparation, /^ {4}environment: microsoft-store-production\r?$/m);
+  assert.equal((workflow.match(/environment: \$\{\{/g) ?? []).length, 2);
+  assert.match(workflow, /\$env:GITHUB_REF -ne 'refs\/heads\/main'/);
+});
+
 test('the supported Windows job executes parser fixtures before certification', () => {
   const ordinary = workflow.slice(workflow.indexOf('\n  certify:'));
   const fixtures = ordinary.indexOf('run: ./scripts/test-wack-report.ps1');
-  const builds = [...ordinary.matchAll(/run: npm run msix:pack/g)].map((match) => match.index);
+  const builds = [...ordinary.matchAll(/node scripts\/release-cloud-client\.mjs windows-msix/g)].map((match) => match.index);
   const inspections = [...ordinary.matchAll(
     /run: npm run msix:inspect -- --structural/g,
   )].map((match) => match.index);
@@ -786,7 +834,8 @@ test('portable preparation excludes nonmanual and incomplete proof executions', 
   assert.match(preparation, /runs-on: windows-2022/);
   assert.match(preparation, /fetch-depth: 0/);
   assert.match(preparation, /persist-credentials: false/);
-  assert.doesNotMatch(preparation, /needs:|secrets\.|msix:|winapp|build-native|native-startup|continue-on-error/);
+  assert.doesNotMatch(preparation, /needs:|msix:|winapp|build-native|native-startup|continue-on-error/);
+  assert.match(preparation, /environment: microsoft-store-production/);
 });
 
 test('portable preparation runs the bounded release commands and cleans independently', () => {
@@ -795,8 +844,10 @@ test('portable preparation runs the bounded release commands and cleans independ
     'npm ci --ignore-scripts', 'npm run lint', 'npm test', 'npm run counts',
     'npm run sizes', 'npm run anchors', 'npm run spacing', 'npm run palette',
     'npm run publication', 'npm run contract', 'npm run browser', 'npm run upgrade',
-    'npm run store:check', 'npm run pack',
+    'npm run store:check',
   ]);
+  assert.match(preparation, /run: node scripts\/release-cloud-client\.mjs windows-portable/);
+  assert.match(preparation, /if: always\(\)[\s\S]*run: node scripts\/release-cloud-client\.mjs cleanup/);
   assert.match(preparation, /\.github\/browser-proof/);
   assert.match(preparation, /npm ci --prefix \$root --ignore-scripts\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
   const exports = [...preparation.matchAll(/"MRT_PUPPETEER=\$(\w+)" >> \$env:GITHUB_ENV/g)];

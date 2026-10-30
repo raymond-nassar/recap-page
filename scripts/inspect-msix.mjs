@@ -13,6 +13,8 @@ import {
   PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, bundlePath, packagePath, proofPackagePath,
 } from './pack-msix.mjs';
 import { NODE_VERSION } from './pack-windows.mjs';
+import { verifyCloudClientDigest } from './lib/cloud-client.mjs';
+import { buildIdentity, validateIdentity } from './lib/release-identity.mjs';
 import {
   NATIVE_NAME, VERIFIER_NAME, exactExecutablePayloads, nativePe, verifyNativeArtifact,
 } from './lib/native-launcher.mjs';
@@ -61,6 +63,14 @@ export function externalUpdaterFindings(entries) {
     }
   }
   return findings;
+}
+
+export async function inspectCloudClient(layout, files, identity) {
+  const path = join(layout, 'cloud-client.json');
+  if (files.some((file) => file.toLowerCase() === path.toLowerCase() && file !== path)) {
+    throw new Error('cloud client: packaged configuration filename is not canonical');
+  }
+  return verifyCloudClientDigest(identity, files.includes(path) ? await readFile(path) : null);
 }
 
 function run(command, args) {
@@ -242,6 +252,13 @@ async function inspectPackage(path, target, hashes, {
     }
 
     const files = await filesUnder(unpacked);
+    const build = validateIdentity(JSON.parse(await readFile(join(unpacked, 'src', 'build-info.json'), 'utf8')));
+    const cloudClient = await inspectCloudClient(unpacked, files, build);
+    const expectedBuild = await buildIdentity('windows-msix', version,
+      version === PROOF_UPDATE_VERSION ? 'proof' : undefined, ROOT, { cloudClient });
+    if (JSON.stringify(build) !== JSON.stringify(expectedBuild)) {
+      throw new Error(`${basename(path)} build identity differs from the selected source`);
+    }
     await assertNoExternalUpdater(unpacked, files, basename(path));
     exactExecutablePayloads(files.map((file) => relative(unpacked, file)));
     const signed = files.some((file) => basename(file).toLowerCase() === 'appxsignature.p7x');
@@ -300,6 +317,7 @@ async function inspectPackage(path, target, hashes, {
       nodePeMachine: `0x${nodeMachine.toString(16)}`,
       nodeSha256: nodeHash,
       generation,
+      cloudClient,
       startupInputs,
       runtimeProcess: measure ? await measureRuntime(unpacked, target.id) : undefined,
     };
