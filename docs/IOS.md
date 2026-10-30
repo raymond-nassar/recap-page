@@ -84,6 +84,9 @@ The containing box is the passive text's owning element, since iOS can crop a mu
 finding to the full block width even when a direct text range is narrower. The tap must still
 hit an actual fragment of that exact text inside the native crop; the containing box alone
 cannot justify acceptance.
+The same center, top-inset and bottom-inset points are hit-tested individually before admitting
+a fragment. A covered center does not discard a visible top or bottom point; a fully covered
+fragment still fails.
 
 The positive-fixture driver reveals each offscreen target before requesting that same strict
 proof. The guard itself still rejects an offscreen finding; scrolling is preparation for a

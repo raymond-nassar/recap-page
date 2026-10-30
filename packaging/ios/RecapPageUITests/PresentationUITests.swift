@@ -439,6 +439,31 @@ final class PresentationUITests: XCTestCase {
       }
       const duplicates = guard.candidates().filter(candidate => candidate.label === 'Guard duplicate');
       guardFixtures.push({ name: 'ambiguous duplicate label', rejected: duplicates.length === 0 });
+      const cropped = document.createElement('span');
+      cropped.id = 'ios-partial-fragment';
+      cropped.textContent = 'Guard cropped heading';
+      cropped.style.cssText = 'position:fixed;top:250px;left:20px;width:332px;font:20px/30px sans-serif;z-index:100001';
+      document.getElementById('view-home').append(cropped);
+      await nextFrame();
+      const croppedRange = document.createRange();
+      croppedRange.selectNodeContents(cropped);
+      const croppedRect = croppedRange.getBoundingClientRect();
+      const cover = document.createElement('div');
+      cover.setAttribute('role', 'button');
+      const cutoff = croppedRect.top + 5;
+      cover.style.cssText = `position:fixed;left:0;right:0;top:${cutoff}px;bottom:0;z-index:100002;background:white`;
+      document.getElementById('view-home').append(cover);
+      await nextFrame();
+      const partial = guard.candidates().filter(candidate => candidate.selector === '#ios-partial-fragment');
+      guardFixtures.push({ name: 'partially occluded text', accepted: partial.length === 1
+        && partial[0].hitPoints.length > 0 && partial[0].hitPoints.every(point => point.y < cutoff),
+        candidates: partial });
+      cover.style.top = `${croppedRect.top - 1}px`;
+      await nextFrame();
+      guardFixtures.push({ name: 'fully occluded text', rejected: !guard.candidates()
+        .some(candidate => candidate.selector === '#ios-partial-fragment') });
+      cropped.remove();
+      cover.remove();
       document.addEventListener('click', () => {});
       guardFixtures.push({ name: 'unreviewed global click', rejected: !guard.globalInventoryValid()
         && guard.candidates().length === 0 && !guard.passive(fixture.querySelector('span')) });
@@ -501,6 +526,8 @@ final class PresentationUITests: XCTestCase {
       inlineHandlers: ['onclick', 'onmousedown', 'onmouseup', 'onpointerdown', 'ontouchstart']
         .filter((name) => typeof element[name] === 'function'),
     });
+    const fontContext = document.createElement('canvas').getContext('2d');
+    if (!fontContext) throw new Error('Font geometry canvas unavailable');
     const evidence = (key, selector, containerSelector, containerLabel, expectedLabel, directText = false) => {
       const element = document.querySelector(selector);
       if (!element) return { key, selector, safe: false, visible: false,
@@ -512,8 +539,11 @@ final class PresentationUITests: XCTestCase {
       const ancestors = [];
       for (let node = element; node; node = node.parentElement) ancestors.push(describe(node));
       const range = document.createRange();
-      if (textNode) range.selectNodeContents(textNode);
+      range.selectNodeContents(textNode || element);
       const rect = textNode ? range.getBoundingClientRect() : element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      fontContext.font = [style.fontStyle, style.fontWeight, style.fontSize, style.fontFamily].join(' ');
+      const metrics = fontContext.measureText((textNode || element).textContent.trim());
       const interactiveAncestor = element.closest(interactiveSelector);
       const label = (textNode || element).textContent.trim();
       const interactiveDescendant = element.querySelector(interactiveSelector);
@@ -531,6 +561,19 @@ final class PresentationUITests: XCTestCase {
           && (!key.startsWith('sidebar-') || window.matchMedia('(min-width: 881px)').matches)
           && rect.width > 0 && rect.height > 0,
         rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+        rangeRects: [...range.getClientRects()].map(fragment => fragment.toJSON()),
+        fontGeometry: {
+          font: style.font, canvasFont: fontContext.font, fontSize: style.fontSize,
+          fontVariantNumeric: style.fontVariantNumeric, fontFeatureSettings: style.fontFeatureSettings,
+          fontVariationSettings: style.fontVariationSettings,
+          lineHeight: style.lineHeight, letterSpacing: style.letterSpacing,
+          textSizeAdjust: style.getPropertyValue('-webkit-text-size-adjust'),
+          width: metrics.width, actualBoundingBoxAscent: metrics.actualBoundingBoxAscent,
+          actualBoundingBoxDescent: metrics.actualBoundingBoxDescent,
+          fontBoundingBoxAscent: metrics.fontBoundingBoxAscent ?? null,
+          fontBoundingBoxDescent: metrics.fontBoundingBoxDescent ?? null,
+          parentRect: element.parentElement?.getBoundingClientRect().toJSON(),
+        },
         cursor: getComputedStyle(element).cursor,
       };
     };
@@ -1206,12 +1249,14 @@ final class PresentationUITests: XCTestCase {
         let app = launch(route: "guard-structural")
         let result = try probeResult(of: app)
         let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])
-        XCTAssertEqual(fixtures.count, 12)
+        XCTAssertEqual(fixtures.count, 14)
         try record("t03-guard-negative-fixtures", ["fixtures": fixtures])
         let positives = ["plain positive", "duplicate first", "duplicate second"]
         for fixture in fixtures {
             let name = try XCTUnwrap(fixture["name"] as? String)
-            if fixture["rejected"] != nil {
+            if fixture["accepted"] != nil {
+                XCTAssertEqual(fixture["accepted"] as? Bool, true, name)
+            } else if fixture["rejected"] != nil {
                 XCTAssertEqual(fixture["rejected"] as? Bool, true, name)
             } else {
                 XCTAssertEqual(fixture["passive"] as? Bool, positives.contains(name), name)

@@ -267,23 +267,24 @@ enum DebugSupport {
               range.selectNodeContents(text);
               const rect = element.getBoundingClientRect();
               if (!rect.width || !rect.height) continue;
+              const fragmentPoints = fragment => {
+                const x = fragment.x + fragment.width / 2;
+                const inset = Math.min(1, fragment.height / 4);
+                return [fragment.y + fragment.height / 2, fragment.y + inset,
+                  fragment.y + fragment.height - inset].map(y => ({ x, y }));
+              };
+              const pointHitsText = point => {
+                const hit = document.elementFromPoint(point.x, point.y);
+                return Boolean(hit && element.contains(hit) && passiveDom(hit));
+              };
               const hitRects = [...range.getClientRects()].flatMap(fragment => {
                 const left = Math.max(0, fragment.left), right = Math.min(innerWidth, fragment.right);
                 const top = Math.max(0, fragment.top), bottom = Math.min(innerHeight, fragment.bottom);
                 if (right <= left || bottom <= top) return [];
-                const hit = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
-                return hit && element.contains(hit) && passiveDom(hit)
-                  ? [{ x: left, y: top, width: right - left, height: bottom - top }] : [];
+                const clipped = { x: left, y: top, width: right - left, height: bottom - top };
+                return fragmentPoints(clipped).some(pointHitsText) ? [clipped] : [];
               });
-              const hitPoints = hitRects.flatMap(fragment => {
-                const x = fragment.x + fragment.width / 2;
-                const inset = Math.min(1, fragment.height / 4);
-                return [fragment.y + fragment.height / 2, fragment.y + inset,
-                  fragment.y + fragment.height - inset].map(y => ({ x, y })).filter(point => {
-                  const hit = document.elementFromPoint(point.x, point.y);
-                  return hit && element.contains(hit) && passiveDom(hit);
-                });
-              });
+              const hitPoints = hitRects.flatMap(fragment => fragmentPoints(fragment).filter(pointHitsText));
               const associated = new Set([...element.querySelectorAll('*')].flatMap(referencedControls));
               for (let node = element; node; node = node.parentElement) {
                 for (const control of referencedControls(node)) associated.add(control);

@@ -873,6 +873,22 @@ test('T03 reveals each enumerated native target before demanding its unchanged i
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
 
+test('T03 diagnoses reviewed text font and range geometry without changing the guard tolerance', () => {
+  assert.match(presentationTests, /fontGeometry:/);
+  assert.match(presentationTests, /fontBoundingBoxAscent/);
+  assert.match(presentationTests, /actualBoundingBoxAscent/);
+  assert.match(presentationTests, /rangeRects:/);
+  assert.match(presentationTests, /domFrame\.insetBy\(dx: -1, dy: -1\)\.contains\(nativeFrame\)/);
+});
+
+test('T03 admits a fragment only through individually checked existing tap points and rejects full occlusion', () => {
+  assert.match(debugSupport, /fragmentPoints\(clipped\)\.some\(pointHitsText\)/);
+  assert.match(debugSupport, /fragmentPoints\(fragment\)\.filter\(pointHitsText\)/);
+  assert.match(presentationTests, /name: 'partially occluded text', accepted:/);
+  assert.match(presentationTests, /name: 'fully occluded text', rejected:/);
+  assert.match(presentationTests, /XCTAssertEqual\(fixtures\.count, 14\)/);
+});
+
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {
   assert.match(presentationTests, /summary: \[String: Any\]\? = nil/);
   assert.match(presentationTests, /JSONSerialization\.data\(withJSONObject: summary \?\? value/);

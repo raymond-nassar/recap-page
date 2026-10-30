@@ -491,8 +491,8 @@ jobs:
             echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator"
           done
 
-      # Complete presentation reference from run 41085967083: iPad 24m49s plus 10m11s.
-      # Minimum's interrupted suite is not a complete-duration measurement.
+      # Run 41099816344: minimum presentation step 21m30s plus 13m30s margin.
+      # All scenarios completed, but largest core audits still stopped at a guard failure.
       - name: Run presentation UI tests on the minimum iPhone
         if: ${{ !cancelled() }}
         timeout-minutes: 35
@@ -520,8 +520,8 @@ jobs:
             echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
           done
 
-      # SE startup in run 41085967083 was about 12m, not a second compilation.
-      # Add the complete iPad presentation reference 24m49s and an 8m11s margin.
+      # Run 41099816344: SE step rounded up to 22m17s plus 22m43s margin.
+      # Raw timestamps include startup; a guard failure still cut short largest core audits.
       - name: Run presentation UI tests on iPhone SE (3rd generation)
         if: ${{ !cancelled() && steps.iphone-se.outputs.available == 'true' }}
         timeout-minutes: 45
