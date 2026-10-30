@@ -1485,7 +1485,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .field-disclosure > .rail-hint { margin: 0; padding: 0 0 var(--space-5); max-width: 62ch; }
 .action-disclosure > summary { min-height: var(--target-touch); gap: var(--space-4); }
 #view-data .action-disclosure > summary > h3 { margin: 0; font: inherit; }
-.action-disclosure > summary::after { content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); }
+/* The rotated line box exceeded the viewport at 312% text. Reserve its enlarged bearing;
+   shortening the line box instead moved the ordinary painted glyph by about 0.6 pixels. */
+.action-disclosure > summary::after { --disclosure-chevron-bearing: max(0px, calc(1lh - var(--space-9))); content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); margin-right: var(--disclosure-chevron-bearing); }
 .action-disclosure[open] > summary::after { transform: rotate(90deg); }
 .action-disclosure > .search-hub-grid { padding-bottom: var(--space-5); }
 .progress-method { margin: 0 0 var(--space-6); }

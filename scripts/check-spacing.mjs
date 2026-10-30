@@ -25,6 +25,10 @@ const CANDIDATES = new Map([
   ['quarter-rem-7', [4, 8, 12, 16, 24, 32, 48]],
 ]);
 const SEMANTIC = new Map([
+  ['--disclosure-chevron-bearing', {
+    value: 'max(0px, calc(1lh - var(--space-9)))',
+    consumers: [{ selector: '.action-disclosure > summary::after', property: 'margin-right' }],
+  }],
   ['--setting-control-reserve', {
     value: '15rem',
     consumers: [{ selector: '.setting', property: 'padding-right' }],
