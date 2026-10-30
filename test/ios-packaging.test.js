@@ -804,6 +804,7 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /NSDictionary\(dictionary: settledMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
   assert.match(presentationTests, /NSDictionary\(dictionary: afterMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
   assert.match(debugSupport, /const hitPoints = hitRects\.flatMap/);
+  assert.match(debugSupport, /const rect = element\.getBoundingClientRect\(\);/);
   assert.match(debugSupport, /return \[fragment\.y \+ fragment\.height \/ 2, fragment\.y \+ inset,/);
   assert.match(debugSupport, /document\.elementFromPoint\(point\.x, point\.y\)/);
   assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
@@ -837,6 +838,22 @@ test('T03 retries only one finding-free XCTest audit timeout after a settled-rou
   assert.match(presentationTests, /guard retry else \{ throw error \}/);
   assert.match(presentationTests, /waitForActiveView\(app, view: expectedView, route: expectedRoute\)/);
   assert.match(presentationTests, /record\("t03-accessibility-retry"/);
+});
+
+test('T03 ARIA association exceptions require hidden DOM controls and native AX absence, never label exceptions', () => {
+  assert.match(debugSupport, /const hiddenAriaControl = control =>/);
+  assert.match(debugSupport, /control\.getClientRects\(\)\.length !== 0/);
+  assert.match(debugSupport, /control\.contains\(document\.activeElement\)/);
+  assert.match(debugSupport, /getComputedStyle\(node\)\.display === 'none'/);
+  assert.match(debugSupport, /hitRects, hitPoints, ariaControls/);
+  assert.match(debugSupport, /referencedControls\(node\)/);
+  assert.match(presentationTests, /private func ariaControlsAbsentFromNativeTree/);
+  assert.match(presentationTests, /identifier == %@ OR label == %@/);
+  assert.match(presentationTests, /ariaControlsAbsentFromNativeTree\(candidate, in: app\)/);
+  assert.match(presentationTests, /func testPassiveGuardChecksHiddenARIAControlsWithoutExemptingLabels/);
+  for (const name of ['hidden-button positive', 'visible-button negative', 'exposed-input negative', 'hidden-checkbox-label negative']) {
+    assert.ok(presentationTests.includes(name), `association fixture ${name}`);
+  }
 });
 
 test('iOS restore warnings stay visible as descriptions of real file controls, not passive exemptions', () => {

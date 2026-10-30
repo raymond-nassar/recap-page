@@ -410,7 +410,8 @@ final class PresentationUITests: XCTestCase {
       const text = wrapper.querySelector('span');
       configure(wrapper, text);
       guardFixtures.push({ name, passive: guard.passive(text), display: getComputedStyle(text).display,
-        rect: text.getBoundingClientRect().toJSON() });
+        rect: text.getBoundingClientRect().toJSON(), diagnostics: guard.explain(text),
+        globalValid: guard.globalInventoryValid() });
       return text;
     };
     if (fixtureMode === 'guard-structural') {
@@ -440,6 +441,27 @@ final class PresentationUITests: XCTestCase {
       document.addEventListener('click', () => {});
       guardFixtures.push({ name: 'unreviewed global click', rejected: !guard.globalInventoryValid()
         && guard.candidates().length === 0 && !guard.passive(fixture.querySelector('span')) });
+    } else if (fixtureMode === 'guard-aria') {
+      fixture.innerHTML = [
+        '<p id="ios-aria-hidden-text">Guard hidden-button description</p>',
+        '<button id="ios-aria-hidden-control" aria-describedby="ios-aria-hidden-text">Guard hidden control</button>',
+        '<p id="ios-aria-visible-text">Guard visible-button description</p>',
+        '<button id="ios-aria-visible-control" aria-describedby="ios-aria-visible-text">Guard visible control</button>',
+        '<p id="ios-aria-exposed-text">Guard exposed-input description</p>',
+        '<input id="ios-aria-exposed-control" class="visually-hidden" aria-label="Guard exposed control" aria-describedby="ios-aria-exposed-text">',
+        '<label id="ios-aria-checkbox-label" for="ios-aria-checkbox">Guard hidden-checkbox label</label>',
+        '<input id="ios-aria-checkbox" type="checkbox" hidden>',
+      ].join('');
+      fixture.querySelector('#ios-aria-hidden-control').style.display = 'none';
+      for (const [name, id, expected] of [
+        ['hidden-button positive', 'ios-aria-hidden-text', true],
+        ['visible-button negative', 'ios-aria-visible-text', false],
+        ['exposed-input negative', 'ios-aria-exposed-text', false],
+        ['hidden-checkbox-label negative', 'ios-aria-checkbox-label', false],
+      ]) {
+        const text = document.getElementById(id);
+        guardFixtures.push({ name, label: text.textContent, expected, passive: guard.passive(text) });
+      }
     } else {
       const text = add('tap fixture', '<span id="ios-guard-tap-text">Guard tap text</span>', (_, text) => {
         text.style.cssText = 'display:block;min-height:48px;line-height:48px';
@@ -531,6 +553,9 @@ final class PresentationUITests: XCTestCase {
           valid: window.__recapPassiveGuard.globalInventoryValid(),
           inventory: window.__recapPassiveGuard.inventory(),
           candidates: window.__recapPassiveGuard.candidates(),
+          diagnostics: currentView === 'view-data'
+            ? [...document.querySelectorAll('#view-data h3, #restore-copy-summary')]
+              .map(element => window.__recapPassiveGuard.explain(element)) : [],
           focus: window.__recapPassiveGuard.focus(),
           dom: await window.__recapPassiveGuard.domDigest(),
           viewportWidth: document.documentElement.clientWidth,
@@ -726,6 +751,19 @@ final class PresentationUITests: XCTestCase {
         return try passiveState(of: app)
     }
 
+    private func ariaControlsAbsentFromNativeTree(_ candidate: [String: Any], in app: XCUIApplication) -> Bool {
+        guard let controls = candidate["ariaControls"] as? [[String: Any]] else { return false }
+        for control in controls {
+            guard let identifier = control["id"] as? String, !identifier.isEmpty,
+                  let name = control["name"] as? String, !name.isEmpty else { return false }
+            if app.webViews.firstMatch.descendants(matching: .any).matching(
+                NSPredicate(format: "identifier == %@ OR label == %@", identifier, name)).firstMatch.exists {
+                return false
+            }
+        }
+        return true
+    }
+
     private func acceptPassiveFinding(
         _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
     ) throws -> Bool {
@@ -781,10 +819,20 @@ final class PresentationUITests: XCTestCase {
         }
         guard matches.count == 1, let match = matches.first else {
             print("T03 passive guard rejected unmatched or ambiguous label/container/frame: \(element.debugDescription)")
+            try record("t03-passive-guard-unmatched", [
+                "label": element.label, "nativeFrame": NSCoder.string(for: nativeFrame),
+                "webFrame": NSCoder.string(for: webFrame),
+                "matchingCandidates": candidates.filter { $0["label"] as? String == element.label },
+                "diagnostics": proof["diagnostics"] ?? [],
+            ])
             return false
         }
         let candidate = match.candidate
         let point = match.point
+        guard ariaControlsAbsentFromNativeTree(candidate, in: app) else {
+            print("T03 passive guard rejected an associated control exposed in the native tree")
+            return false
+        }
         let settledMatches = (settledProof["candidates"] as? [[String: Any]] ?? [])
             .filter { $0["key"] as? String == candidate["key"] as? String }
         guard settledMatches.count == 1,
@@ -806,6 +854,7 @@ final class PresentationUITests: XCTestCase {
               let dom = proof["dom"] as? String, !dom.isEmpty, afterProof["dom"] as? String == dom,
               afterProof["focus"] as? String == proof["focus"] as? String,
               afterMatches.count == 1,
+              ariaControlsAbsentFromNativeTree(candidate, in: app),
               NSDictionary(dictionary: afterMatches[0]).isEqual(NSDictionary(dictionary: candidate)) else {
             try record("t03-passive-guard-rejected-tap", [
                 "candidate": candidate, "nativeLabel": element.label,
@@ -1138,11 +1187,38 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
+    func testPassiveGuardChecksHiddenARIAControlsWithoutExemptingLabels() throws {
+        let app = launch(route: "guard-aria")
+        let result = try probeResult(of: app)
+        let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])
+        XCTAssertEqual(fixtures.count, 4)
+        XCTAssertFalse(app.buttons["Guard hidden control"].exists)
+        XCTAssertTrue(app.buttons["Guard visible control"].exists)
+        XCTAssertTrue(app.textFields["Guard exposed control"].exists)
+        for fixture in fixtures {
+            let name = try XCTUnwrap(fixture["name"] as? String)
+            let expected = try XCTUnwrap(fixture["expected"] as? Bool)
+            XCTAssertEqual(fixture["passive"] as? Bool, expected, name)
+            let label = try XCTUnwrap(fixture["label"] as? String)
+            let element = app.webViews.firstMatch.staticTexts.matching(
+                NSPredicate(format: "label == %@", label)).firstMatch
+            if expected {
+                XCTAssertTrue(element.waitForExistence(timeout: 30))
+                let before = try freshPassiveState(of: app)
+                let accepted = try acceptPassiveFinding(element, in: app, routeState: before)
+                XCTAssertTrue(accepted, name)
+            }
+        }
+        try record("t03-guard-aria-fixtures", ["fixtures": fixtures])
+        app.terminate()
+    }
+
     func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures() throws {
         let app = launch(route: "guard-structural")
         let result = try probeResult(of: app)
         let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])
         XCTAssertEqual(fixtures.count, 12)
+        try record("t03-guard-negative-fixtures", ["fixtures": fixtures])
         let positives = ["plain positive", "duplicate first", "duplicate second"]
         for fixture in fixtures {
             let name = try XCTUnwrap(fixture["name"] as? String)
@@ -1152,7 +1228,6 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertEqual(fixture["passive"] as? Bool, positives.contains(name), name)
             }
         }
-        try record("t03-guard-negative-fixtures", ["fixtures": fixtures])
         app.terminate()
     }
 

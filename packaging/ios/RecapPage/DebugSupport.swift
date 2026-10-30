@@ -186,13 +186,29 @@ enum DebugSupport {
           && observedType.test(name.slice(2))).some(name => typeof element[name] === 'function')
         || [...element.attributes].some(attribute =>
           attribute.name.startsWith('on') && observedType.test(attribute.name.slice(2)));
+      const referencedControls = element => !element.id ? [] :
+        [...document.querySelectorAll('[aria-labelledby], [aria-describedby]')].filter(control =>
+          (control.matches(interactive) || !passiveRoles.has((control.getAttribute('role') || '').toLowerCase()))
+          && `${control.getAttribute('aria-labelledby') || ''} ${control.getAttribute('aria-describedby') || ''}`
+            .split(/\s+/).includes(element.id));
+      const hiddenAriaControl = control => {
+        if (control.matches('label') || control.getClientRects().length !== 0
+          || control.contains(document.activeElement)) return null;
+        let hidden = false;
+        for (let node = control; node; node = node.parentElement) {
+          if (node.hidden || getComputedStyle(node).display === 'none') hidden = true;
+        }
+        const name = (control.getAttribute('aria-label')
+          || (control.getAttribute('aria-labelledby') || '').split(/\s+/)
+            .map(id => document.getElementById(id)?.textContent || '').join(' ').trim()
+          || [...(control.labels || [])].map(label => label.textContent).join(' ').trim()
+          || control.textContent.trim()).replace(/\s+/g, ' ');
+        return hidden && control.id && name ? { id: control.id, name } : null;
+      };
       const safeElement = element => !element.matches(interactive) && !element.isContentEditable
         && !element.labels?.length && passiveRoles.has((element.getAttribute('role') || '').toLowerCase())
         && (!element.id || !document.querySelector(`label[for="${CSS.escape(element.id)}"]`))
-        && (!element.id || ![...document.querySelectorAll('[aria-labelledby], [aria-describedby]')].some(control =>
-          (control.matches(interactive) || !passiveRoles.has((control.getAttribute('role') || '').toLowerCase()))
-          && `${control.getAttribute('aria-labelledby') || ''} ${control.getAttribute('aria-describedby') || ''}`
-            .split(/\s+/).includes(element.id)))
+        && referencedControls(element).every(control => hiddenAriaControl(control))
         && !hasHandler(element);
       const visible = element => {
         if (!element.isConnected || element.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
@@ -210,6 +226,18 @@ enum DebugSupport {
         return [...element.querySelectorAll('*')].every(safeElement);
       };
       const passive = element => globalInventoryValid() && passiveDom(element);
+      const explain = element => {
+        const ancestors = [];
+        for (let node = element; node; node = node.parentElement) {
+          const style = getComputedStyle(node);
+          ancestors.push({ tag: node.localName, id: node.id, safe: safeElement(node),
+            hidden: node.hidden, ariaHidden: node.getAttribute('aria-hidden'), inert: node.inert,
+            display: style.display, visibility: style.visibility, opacity: style.opacity });
+        }
+        return { label: element.textContent.trim(), visible: visible(element),
+          passive: passive(element), rect: element.getBoundingClientRect().toJSON(),
+          ancestors };
+      };
       const path = element => {
         const parts = [];
         for (let node = element; node; node = node.parentElement) {
@@ -237,8 +265,7 @@ enum DebugSupport {
             for (const text of texts) {
               const range = document.createRange();
               range.selectNodeContents(text);
-              const rect = texts.length === 1 && element.children.length === 0
-                ? element.getBoundingClientRect() : range.getBoundingClientRect();
+              const rect = element.getBoundingClientRect();
               if (!rect.width || !rect.height) continue;
               const hitRects = [...range.getClientRects()].flatMap(fragment => {
                 const left = Math.max(0, fragment.left), right = Math.min(innerWidth, fragment.right);
@@ -257,9 +284,15 @@ enum DebugSupport {
                   return hit && element.contains(hit) && passiveDom(hit);
                 });
               });
+              const associated = new Set([...element.querySelectorAll('*')].flatMap(referencedControls));
+              for (let node = element; node; node = node.parentElement) {
+                for (const control of referencedControls(node)) associated.add(control);
+              }
+              const ariaControls = [...associated].map(hiddenAriaControl);
+              if (ariaControls.some(control => !control)) continue;
               found.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
                 selector: path(element), container: container.id, label: labelOf(text.textContent, element),
-                hitSafe: hitPoints.length > 0, hitRects, hitPoints,
+                hitSafe: hitPoints.length > 0, hitRects, hitPoints, ariaControls,
                 rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height } });
             }
           }
@@ -283,7 +316,7 @@ enum DebugSupport {
         return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
       };
       window.__recapPassiveGuard = Object.freeze({
-        candidates, passive, inventory, globalInventoryValid, domDigest,
+        candidates, passive, inventory, globalInventoryValid, domDigest, explain,
         focus: () => document.activeElement ? path(document.activeElement) : null,
       });
     })();

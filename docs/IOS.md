@@ -76,6 +76,19 @@ collapsed, stale, unmatched or ambiguous text fails. The node, its in-page ances
 must have no interactive element or role, tabindex, label association, editable content or click,
 double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler. Tracking starts
 before the document's scripts run and includes registered and inline handlers.
+The containing box is the passive text's owning element, since iOS can crop a multiline text
+finding to the full block width even when a direct text range is narrower. The tap must still
+hit an actual fragment of that exact text inside the native crop; the containing box alone
+cannot justify acceptance.
+
+ARIA references from a control still reject text unless every referencing control is absent
+from rendering and accessibility on that settled route. The control or an ancestor must be
+hidden or `display:none`, have no client rectangles and be unable to take focus. The test also
+requires an identifiable control with no matching identifier or name in the native accessibility
+tree, before and after the tap. A visually hidden but exposed input still rejects the text.
+This exception applies only to `aria-describedby` and `aria-labelledby`. A nested label or
+`for` association always rejects text, even when its checkbox or input is hidden. The mandatory
+native no-op tap and every other guard condition remain unchanged.
 
 Document and window are checked separately against an exact reviewed inventory of thirteen handlers,
 all on document and none on window. The inventory pins event type, target, capture, passive and once
@@ -121,7 +134,8 @@ The iOS overlay exposes each as one named button, with Enter and Space activatio
 and minimum height using the shared `--target` token rather than treating the text as passive.
 The associated restore warnings stay visibly unchanged and become descriptions of those buttons,
 not separate native text targets. The original file inputs keep their descriptions as well.
-Text that labels or describes an interactive control cannot enter the passive guard.
+Text that labels a control, or describes a rendered or accessibility-exposed control, cannot
+enter the passive guard.
 Breadcrumb links also use the shared `--target`
 token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
 breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.
