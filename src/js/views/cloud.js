@@ -126,12 +126,13 @@ function accountIn(model) {
 }
 
 // Deleting this device's backups, in the owner's words approved 2026-10-28 (stage 3 review, S3a-2 and
-// S3b-5): the deletion reaches only the account the host holds now, so the question and the reports name
+// S3b-5) and shortened with the owner's approval on 2026-10-30 (#810, P03-T04 session): the deletion reaches only the account the host holds now, so the question and the reports name
 // it, and say where any backups made in another account are.
 export function cloudDeleteQuestion(model) {
   const name = cloudProviderName(model);
-  if (model.scope === 'device') return `This turns automatic backup off and deletes every backup made on this device in ${accountIn(model)}. Backups from other devices are kept, and so are any made on this device in another ${name} account. To delete those, connect to that account and delete them here, or delete them in ${name} itself. Deleted backups stay in ${name}'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.`;
-  return `This turns automatic backup off for this browser and deletes every backup it made in ${accountIn(model)}. Backups from other devices are kept, and so are any this browser made in another ${name} account. To delete those, connect to that account and delete them here, or delete them in ${name} itself. Deleted backups stay in ${name}'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.`;
+  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. Deleted backups stay in ${name}'s recycle bin for up to 30 days, but Recap Page cannot bring them back.`;
+  if (model.scope === 'device') return `This turns automatic backup off and deletes every backup made on this device in ${accountIn(model)}. ${rest}`;
+  return `This turns automatic backup off and deletes every backup this browser made in ${accountIn(model)}. ${rest}`;
 }
 
 export function cloudDeleteReport({ deleted, failed }, model) {

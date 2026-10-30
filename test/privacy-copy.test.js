@@ -776,7 +776,7 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
   // The card shows only where cloud backup is, so its privacy paragraph has one variant.
   assert.equal(
     section(html, '<p class="rail-hint" id="cloud-backup-privacy">', '</p>', 'on'),
-    'Backups go to a folder of their own in your OneDrive, and that folder is all of your OneDrive that Recap Page can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page\'s developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.',
+    'Backups go to Recap Page\'s own folder in your OneDrive, the only part of it the app can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page\'s developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.',
   );
 });
 
@@ -799,7 +799,7 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'Connected to OneDrive as reader@example.test. Automatic backup stopped while this browser\'s data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.');
   // B. Delete this device's cloud backups: the question and its four reports.
   assert.equal(cloudDeleteQuestion(connected),
-    'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
+    'This turns automatic backup off and deletes every backup this browser made in the OneDrive account reader@example.test. Backups from other devices or other accounts are kept; delete those in OneDrive. Deleted backups stay in OneDrive\'s recycle bin for up to 30 days, but Recap Page cannot bring them back.');
   assert.equal(cloudDeleteReport({ deleted: 2, failed: [] }, connected),
     'Deleted 2 backups of this browser from the OneDrive account reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.');
   assert.equal(cloudDeleteReport({ deleted: 1, failed: [] }, connected),
@@ -808,7 +808,7 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'No backups of this browser were in the OneDrive account reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.');
   assert.equal(cloudDeleteReport({ deleted: 1, failed: [{ id: 'x', name: 'x', code: 'timeout' }] }, connected),
     'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off for this browser; delete again to finish.');
-  assert.match(cloudDeleteQuestion({ ...connected, account: null }), /every backup it made in this OneDrive account\. /);
+  assert.match(cloudDeleteQuestion({ ...connected, account: null }), /every backup this browser made in this OneDrive account\. /);
   // C. A deletion that fails before deleting anything.
   assert.equal(cloudDeleteFailure('The Recap Page app did not answer in time.', true),
     'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.');
@@ -822,7 +822,7 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
   const html = read('src/index.html');
   for (const state of STATES) {
     assert.equal(section(html, '<p class="rail-hint setgroup-note" id="transfer-summary">', '</p>', state),
-      'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.');
+      'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data, without settings.');
   }
   // F. A record that fails its checks.
   assert.equal(cloudCardStatus({ ...connected, recordUnreadable: true }),
@@ -871,7 +871,7 @@ test('Android cloud statuses and deletion outcomes use the approved words', asyn
   assert.equal(cloudCardStatus({ ...model, suspended: true }), `${account} Automatic backup stopped while Recap Page's data on this device was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.`);
   assert.equal(cloudCardStatus({ ...model, recordUnreadable: true }), `${account} Recap Page could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. Backups made earlier on this device will then be listed as another device's.`);
   assert.equal(cloudEraseNote({ ...model, host: 'not-connected', agreed: true }), 'Cloud backup settings are erased too. Backups already in OneDrive stay there.');
-  assert.equal(cloudDeleteQuestion(model), "This turns automatic backup off and deletes every backup made on this device in the OneDrive account reader@example.test. Backups from other devices are kept, and so are any made on this device in another OneDrive account. To delete those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive's recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.");
+  assert.equal(cloudDeleteQuestion(model), "This turns automatic backup off and deletes every backup made on this device in the OneDrive account reader@example.test. Backups from other devices or other accounts are kept; delete those in OneDrive. Deleted backups stay in OneDrive's recycle bin for up to 30 days, but Recap Page cannot bring them back.");
   assert.equal(cloudDeleteReport({ deleted: 0, failed: [] }, model), 'No backups made on this device were in the OneDrive account reader@example.test. Any made in another account are still there. Automatic backup is off.');
   for (const count of [1, 2]) {
     assert.equal(cloudDeleteReport({ deleted: count, failed: [] }, model), `Deleted ${count} ${count === 1 ? 'backup' : 'backups'} made on this device from the OneDrive account reader@example.test, where ${count === 1 ? 'it stays' : 'they stay'} in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off.`);

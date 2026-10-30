@@ -109,7 +109,7 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   const cloudCopy = [
     ['Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', 'Your reading progress lives in this app on this device, and is sent only to your own OneDrive, if you turn on cloud backup below.'],
     ['Back up this browser automatically', 'Back up automatically'],
-    ['The two newest backups of this browser are kept', 'The two newest backups made on this device are kept'],
+    ['The two newest from this browser are kept', 'The two newest made on this device are kept'],
     ['The choice\n                    is stored in this browser alongside your other settings and is sent only inside a cloud', 'The choice\n                    is stored on this device alongside your other settings and is sent only inside a cloud'],
     ["and deletes this browser's\n                  older ones.", 'and deletes the older ones made on this device.'],
   ];

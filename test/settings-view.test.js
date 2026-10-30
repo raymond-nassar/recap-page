@@ -286,8 +286,8 @@ test('normal reading, history and draft transfers precede exceptional recovery w
   const summary = sliceElement(VIEW, 'p', openingTags(VIEW, 'p').find((entry) => getAttribute(entry.open, 'id') === 'transfer-summary').start);
   assert.ok(summary.includes('<strong>Moving to another device:</strong>'), summary);
   assert.ok(summary.includes('download a complete backup and restore it there.'), summary);
-  assert.ok(summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.'), summary);
-  assert.match(VIEW, /draft or retained draft source/);
+  assert.ok(summary.includes('The reading data, completion history and import draft backups below each hold one kind of data, without settings.'), summary);
+  assert.match(VIEW, /Restoring reading data keeps the draft, but you review it before adding more comics\./);
   const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
     .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
   assert.ok(details.includes('btn-copy-history') && details.includes('btn-retry-history'));
@@ -402,7 +402,7 @@ function disclosureHolding(fragment, marker) {
 // disclosures that start closed.
 test('restore warnings stay visible with their fields while explanations start closed', () => {
   for (const [fragment, field, hint, warning] of [
-    [VIEW, 'restore-complete', 'restore-complete-hint', 'Restoring replaces everything it holds after confirmation and cannot be undone as a whole.'],
+    [VIEW, 'restore-complete', 'restore-complete-hint', 'Restoring replaces everything it holds, once you confirm, and cannot be undone.'],
     [VIEW, 'restore-file', 'restore-file-hint', 'Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces.'],
     [HISTORY, 'restore-history-file', 'restore-history-hint', 'Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.'],
   ]) {
@@ -414,8 +414,8 @@ test('restore warnings stay visible with their fields while explanations start c
   assert.equal(disclosureHolding(VIEW, 'id="transfer-summary"'), null, 'the transfer summary stays on screen');
   for (const [fragment, marker] of [
     [VIEW, 'id="backup-contents"'],
-    [VIEW, 'Undo is offered once in this tab.'],
-    [VIEW, 'Reading-data and completion-history backups do not include it.'],
+    [VIEW, 'Undo is offered once, until you reload'],
+    [VIEW, 'Only this backup and a complete backup include it.'],
     [HISTORY, 'Completion dates and enjoyment are saved separately'],
   ]) {
     const holder = disclosureHolding(fragment, marker);
