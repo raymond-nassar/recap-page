@@ -54,12 +54,17 @@ iPhone SE Simulator, WebKit otherwise let the native selector's single-line text
 correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
 adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
 
-The presentation audit has seven enumerated, maintainer-reviewed hit-region candidates, not a general
+The presentation audit has ten enumerated, maintainer-reviewed hit-region candidates, not a general
 exemption for text: the iPad sidebar's `h2#rail-reading` ("READING") inside the Main navigation,
 its App heading (`#sidebar-nav > .nav-foot > h2.rail-h`), Home's `#chero-count > b.glance-n` read count,
 the direct "of 0 issues" text and `.glance-end` "read" suffix in that count, the empty-list
 `#chero-next` caption inside the named Continue region, and the `#home-yours > .sec-h > .sec-note`
 summary inside Your Reading Lists. That summary is beside the list, not inside a tile link.
+The three further cases are Library's `#library-yours .sec-note` summary in Your Reading Lists,
+its `#library-rated-shelf-status` empty caption in Top-rated comics, and the current-page
+breadcrumb span (`.breadcrumb [aria-current=page]`) inside Breadcrumb navigation. The breadcrumb
+case uses the fixed Library, Search or Backup & settings label for the active audited page;
+breadcrumb links are controls, not passive candidates.
 These fixture-specific nodes have no tabindex, interactive role, interactive ancestor or descendant. The heading's ancestor
 roles are heading, navigation and complementary; the count's are region and main. Generated-bundle
 inspection found no click, mousedown or mouseup listener on any candidate ancestry, including the document
@@ -75,12 +80,19 @@ navigation and no focus moving to a control, then match the audit element by its
 exact label, named container and frame, with its frame contained by that container. Only a hit-region
 finding on a node that passes those checks is accepted. All other elements, audit types and interactive
 descendants still fail. The original two no-op taps passed on the newest-runtime iPhone and iPad;
-the additional candidates remain under hosted validation. This is not device VoiceOver acceptance.
+the additional Library and breadcrumb candidates remain under hosted validation. Every native
+audit now waits for a fresh DOM sample confirming both the active view and hash route; a native
+heading name alone can match stale or navigation text. This is not device VoiceOver acceptance.
 
 The four sidebar navigation links and the Continue card's Open the list link use the same accessible
 parent-target treatment, preserving their names and actions rather than exempting nested text.
 The footer's About link also uses that treatment and the shared `--target` token for its minimum
 width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
+The same parent-target treatment covers breadcrumb links, Library's ratings and tool links,
+Search's tool links and More ways to add summary. Breadcrumb links also use the shared `--target`
+token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
+breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.
+The 375-point default/largest-text reflow checks and native audit own this iOS-only deviation.
 The four Continue actions also mirror their hidden state into their accessibility state. This
 addresses WebKit on iOS 18 exposing unnamed button remnants when an empty list hides those actions;
 showing an action removes that extra accessibility hiding. Native tests require the empty card to

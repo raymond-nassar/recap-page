@@ -795,7 +795,10 @@ test('T03 accepts only enumerated reviewed passive-text hit-region findings afte
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
   assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
-  for (const key of ['sidebar-app', 'home-count-total', 'home-count-word', 'home-next-caption', 'home-lists-summary']) {
+  for (const key of [
+    'sidebar-app', 'home-count-total', 'home-count-word', 'home-next-caption', 'home-lists-summary',
+    'library-lists-summary', 'library-ratings-caption', 'current-breadcrumb',
+  ]) {
     assert.ok(presentationTests.includes(`'${key}'`), `exact reviewed candidate ${key}`);
   }
   assert.match(presentationTests, /node\.nodeType === Node\.TEXT_NODE && node\.textContent\.trim\(\) === expectedLabel/);
@@ -880,6 +883,26 @@ test('iOS hidden Continue actions leave the native tree and return when shown', 
   assert.match(controller, /attributeFilter: \['hidden'\]/);
   assert.match(presentationTests, /"hiddenContinueActions"/);
   assert.match(presentationTests, /"hidden Continue actions have no native Button nodes"/);
+});
+
+test('native screen audits wait for the expected live DOM route after navigation', () => {
+  assert.match(presentationTests, /private func waitForActiveView/);
+  assert.match(presentationTests, /state\["view"\] as\? String == view/);
+  assert.match(presentationTests, /state\["tick"\] as\? Int[\s\S]*?tick > previousTick/);
+  assert.match(presentationTests, /state\["href"\] as\? String[\s\S]*?url\.fragment/);
+  assert.match(presentationTests, /link\.tap\(\)[\s\S]*?waitForActiveView\(app, view: view, route: route\)/);
+  assert.match(presentationTests, /waitForActiveView\(app, view: view, route: route\)[\s\S]*?verifyPassiveAuditTexts/);
+});
+
+test('iOS Library and Search controls retain one named parent target', () => {
+  const controller = appSource('WebViewController');
+  for (const selector of [
+    '.breadcrumb a', '#library-rated-shelf .btn', '#view-library .search-hub-card',
+    '#view-add .search-hub-card', '#view-add summary',
+  ]) {
+    assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
+  }
+  assert.match(read('packaging/ios/web/ios.css'), /:root \.breadcrumb a\s*\{[^}]*min-width:\s*var\(--target\);/s);
 });
 
 test('native journal recovery reveals its action above navigation before asking for confirmation', () => {

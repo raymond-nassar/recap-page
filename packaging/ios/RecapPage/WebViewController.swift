@@ -130,7 +130,9 @@ final class WebViewController: UIViewController, WKUIDelegate {
       const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle, #btn-home-browse, #btn-home-add';
       const additionalTargets = '#sidebar-nav a.ri[data-view="library"], #sidebar-nav a.ri[data-view="add"], '
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
-        + '#btn-chero-open, .app-footer > a[data-view="about"]';
+        + '#btn-chero-open, .app-footer > a[data-view="about"], '
+        + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
+        + '#view-add .search-hub-card, #view-add summary';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {

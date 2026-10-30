@@ -430,10 +430,14 @@ final class PresentationUITests: XCTestCase {
     let passiveTick = 0;
     const refreshPassiveMonitor = () => {
       const active = document.activeElement;
+      const currentView = document.querySelector('.view:not([hidden])')?.id;
+      const breadcrumbLabel = {
+        'view-library': 'Library', 'view-add': 'Search', 'view-data': 'Backup & settings',
+      }[currentView];
       const state = {
         tick: ++passiveTick,
         href: location.href,
-        view: document.querySelector('.view:not([hidden])')?.id,
+        view: currentView,
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
         cases: [
@@ -450,6 +454,15 @@ final class PresentationUITests: XCTestCase {
             'No issues in this Reading List yet. Open it to add comics.'),
           evidence('home-lists-summary', '#home-yours > .sec-h > .sec-note',
             '#home-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
+          evidence('library-lists-summary', '#library-yours > .sec-h > .sec-note',
+            '#library-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
+          evidence('library-ratings-caption', '#library-rated-shelf-status',
+            '#library-rated-shelf', 'Top-rated comics',
+            'Comics you rate from their Issue details will appear here.'),
+          ...(breadcrumbLabel ? [
+            evidence('current-breadcrumb', '.view:not([hidden]) > .breadcrumb [aria-current="page"]',
+              '.breadcrumb', 'Breadcrumb', breadcrumbLabel),
+          ] : []),
         ],
       };
       passiveMonitor.setAttribute('aria-label', `recap-passive-probe ${JSON.stringify(state)}`);
@@ -486,7 +499,26 @@ final class PresentationUITests: XCTestCase {
         add(attachment)
     }
 
-    private func navigate(_ app: XCUIApplication, linkName: String, headingLabel: String) {
+    private func waitForActiveView(_ app: XCUIApplication, view: String, route: String) throws {
+        let previousTick = try XCTUnwrap(passiveState(of: app)["tick"] as? Int)
+        let monitor = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label BEGINSWITH %@", "recap-passive-probe ")).firstMatch
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+            guard let monitor = object as? XCUIElement,
+                  let state = layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "),
+                  state["view"] as? String == view,
+                  let tick = state["tick"] as? Int, tick > previousTick,
+                  let href = state["href"] as? String, let url = URL(string: href) else { return false }
+            return url.fragment?.split(separator: "/").first == Substring(route)
+        }, object: monitor)
+        XCTAssertEqual(
+            XCTWaiter.wait(for: [settled], timeout: 30), .completed,
+            "a fresh DOM sample confirms \(view) and its route before native inspection: \(monitor.label)")
+    }
+
+    private func navigate(
+        _ app: XCUIApplication, linkName: String, headingLabel: String, view: String, route: String
+    ) throws {
         let link = app.links.matching(identifier: linkName).firstMatch
         if !link.isHittable {
             let toggle = moreToggle(of: app)
@@ -507,6 +539,7 @@ final class PresentationUITests: XCTestCase {
         }
         XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
         link.tap()
+        try waitForActiveView(app, view: view, route: route)
         let heading = app.webViews.firstMatch.staticTexts.matching(
             NSPredicate(format: "label == %@", headingLabel)).firstMatch
         XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
@@ -531,6 +564,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue([
                 "sidebar-reading", "sidebar-app", "home-read-count", "home-count-total",
                 "home-count-word", "home-next-caption", "home-lists-summary",
+                "library-lists-summary", "library-ratings-caption", "current-breadcrumb",
             ].contains(key), "only enumerated reviewed cases are tested")
             XCTAssertEqual(item["safe"] as? Bool, true, "the exact DOM node and ancestry remain passive: \(item)")
             let containerLabel = try XCTUnwrap(item["containerLabel"] as? String)
@@ -725,11 +759,11 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertEqual(restartLiveRegion["live"], "polite", "the restart notice is announced without interrupting")
 
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-home")
-                navigate(app, linkName: "Library", headingLabel: "Library")
+                try navigate(app, linkName: "Library", headingLabel: "Library", view: "view-library", route: "library")
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-library")
-                navigate(app, linkName: "Search", headingLabel: "Search")
+                try navigate(app, linkName: "Search", headingLabel: "Search", view: "view-add", route: "add")
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-search")
-                navigate(app, linkName: "Backup & settings", headingLabel: "Backup & settings")
+                try navigate(app, linkName: "Backup & settings", headingLabel: "Backup & settings", view: "view-data", route: "data")
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-data")
                 app.terminate()
             }
@@ -780,12 +814,13 @@ final class PresentationUITests: XCTestCase {
             let app = launch(category: category, route: "all")
             let probe = try probeResult(of: app)
             let screens = try XCTUnwrap(probe["screens"] as? [[String: Any]])
-            for (name, headingLabel, view, nextLink, nextHeadingLabel) in [
-                ("home", "RECAP PAGE!", "view-home", "Library", "Library"),
-                ("library", "Library", "view-library", "Search", "Search"),
-                ("search", "Search", "view-add", "Backup & settings", "Backup & settings"),
-                ("data", "Backup & settings", "view-data", nil, nil),
-            ] as [(String, String, String, String?, String?)] {
+            for (name, headingLabel, view, route, nextLink, nextHeadingLabel, nextView, nextRoute) in [
+                ("home", "RECAP PAGE!", "view-home", "home", "Library", "Library", "view-library", "library"),
+                ("library", "Library", "view-library", "library", "Search", "Search", "view-add", "add"),
+                ("search", "Search", "view-add", "add", "Backup & settings", "Backup & settings", "view-data", "data"),
+                ("data", "Backup & settings", "view-data", "data", nil, nil, nil, nil),
+            ] as [(String, String, String, String, String?, String?, String?, String?)] {
+                try waitForActiveView(app, view: view, route: route)
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", headingLabel)).firstMatch
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
@@ -841,8 +876,9 @@ final class PresentationUITests: XCTestCase {
                     "reviewedPassiveCases": acceptedTexts.map(\.label),
                 ])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
-                if let nextLink, let nextHeadingLabel {
-                    navigate(app, linkName: nextLink, headingLabel: nextHeadingLabel)
+                if let nextLink, let nextHeadingLabel, let nextView, let nextRoute {
+                    try navigate(
+                        app, linkName: nextLink, headingLabel: nextHeadingLabel, view: nextView, route: nextRoute)
                 }
             }
             app.terminate()
