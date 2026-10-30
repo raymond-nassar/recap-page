@@ -1534,30 +1534,30 @@
     "fp": "f763d40c3a35479d",
     "head": "export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 60"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:487-498|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:487-498",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:490-501|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:490-501",
     "fp": "2499eb9e27356a8a",
     "head": "async allocate() {"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:585|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:585",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:588|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:588",
     "fp": "677baafd30c320ae",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:684-685|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:684-685",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:687-688|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:687-688",
     "fp": "6646963445582955",
     "head": "const { known } = await this.listed(connection);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:736-737|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:736-737",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:739-740|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:739-740",
     "fp": "5513fa894d547460",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:2394|0": {
-    "anchor": "src/js/main.js:2394",
-    "fp": "0ed6881b897f05f3",
-    "head": "transport: createCloudHostTransport(),"
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:2395|0": {
+    "anchor": "src/js/main.js:2395",
+    "fp": "c915c782c5b37dad",
+    "head": "transport: cloudTransport(),"
   },
   "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:96|0": {
     "anchor": "src/js/main.js:96",
@@ -1634,8 +1634,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2900-2926|0": {
-    "anchor": "src/js/main.js:2900-2926",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2901-2927|0": {
+    "anchor": "src/js/main.js:2901-2927",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1714,13 +1714,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2900-2926|0": {
-    "anchor": "src/js/main.js:2900-2926",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2901-2927|0": {
+    "anchor": "src/js/main.js:2901-2927",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3616-3658|0": {
-    "anchor": "src/js/main.js:3616-3658",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3617-3659|0": {
+    "anchor": "src/js/main.js:3617-3659",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1774,28 +1774,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2909|0": {
-    "anchor": "src/js/main.js:2909",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2910|0": {
+    "anchor": "src/js/main.js:2910",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3554-3573|0": {
-    "anchor": "src/js/main.js:3554-3573",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3555-3574|0": {
+    "anchor": "src/js/main.js:3555-3574",
     "fp": "30f600f9bd9e5fc8",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3575-3721|0": {
-    "anchor": "src/js/main.js:3575-3721",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3576-3722|0": {
+    "anchor": "src/js/main.js:3576-3722",
     "fp": "86d82ba465df7f66",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3630-3636|0": {
-    "anchor": "src/js/main.js:3630-3636",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3631-3637|0": {
+    "anchor": "src/js/main.js:3631-3637",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3656-3657|0": {
-    "anchor": "src/js/main.js:3656-3657",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3657-3658|0": {
+    "anchor": "src/js/main.js:3657-3658",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2604,8 +2604,8 @@
     "fp": "30990219b3c5e62c",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2900-2926|0": {
-    "anchor": "src/js/main.js:2900-2926",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2901-2927|0": {
+    "anchor": "src/js/main.js:2901-2927",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
