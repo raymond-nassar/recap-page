@@ -228,7 +228,9 @@ export function isPortOccupied({
 }
 
 export function packageEnvironment(source = process.env) {
-  const blocked = new Set(['MRT_PORT', 'MRT_NO_OPEN']);
+  // A packaged server never reads the cloud client path, and it is left out too, so a variable set for a
+  // development checkout cannot reach a release by any later change.
+  const blocked = new Set(['MRT_PORT', 'MRT_NO_OPEN', 'MRT_CLOUD_CLIENT_CONFIG']);
   return {
     ...Object.fromEntries(
       Object.entries(source).filter(([key]) => !blocked.has(key.toUpperCase())),

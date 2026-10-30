@@ -22,10 +22,27 @@ import { fileURLToPath } from 'node:url';
 // with no room for the requests, so they are held to the absolutes alone. Only the subtitle had
 // broken that half; the cards are here because they are where the claim is most natural to
 // write, which review demonstrated twice by finding it half written in both.
+//
+// Cloud backup (#810, P02-T06) gave the promise a second variant. The markup carries both: the words
+// a build without cloud backup says, marked data-cloud-copy="off", and the words a build with it says
+// instead, marked "on" and hidden until the page learns the build has it. A reader only ever sees one,
+// so every rule below reads one variant at a time. The README and the security policy describe a
+// build without cloud backup until the release that enables it rewrites them, so they are read as
+// that variant only.
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
+
+const STATES = ['off', 'on'];
+
+// One variant of the markup: the other variant's elements dropped, comments first, so a comment that
+// names the attribute cannot be read as an element carrying it.
+function variant(html, state) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<(\w+)\b[^>]*\bdata-cloud-copy="(on|off)"[^>]*>[\s\S]*?<\/\1>/g, (element, _tag, copy) => (copy === state ? element : ' '));
+}
 
 // Prose as a reader sees it: comments and tags dropped, whitespace collapsed.
 function prose(html) {
@@ -37,12 +54,12 @@ function prose(html) {
     .trim();
 }
 
-function section(html, startsWith, endsWith) {
+function section(html, startsWith, endsWith, state = 'off') {
   const from = html.indexOf(startsWith);
   assert.notEqual(from, -1, `the markup must still carry ${startsWith}`);
   const to = html.indexOf(endsWith, from + startsWith.length);
   assert.notEqual(to, -1, `${startsWith} must still be followed by ${endsWith}`);
-  return prose(html.slice(from, to));
+  return prose(variant(html.slice(from, to), state));
 }
 
 // Markdown between two headings, with the closing heading asserted the way section() asserts its
@@ -60,10 +77,12 @@ function between(md, startsWith, endsWith) {
 // document a new reader starts from and the only one they see before running anything. The
 // security policy is another, and the README sends readers to it, so a weaker version of the
 // claim there is the same defect in the place a careful reader checks second.
-function surfaces() {
+function surfaces(state = 'off') {
   const html = read('src/index.html');
+  const about = ['the About view', section(html, '<h3>Your data</h3>', '<h3>This build</h3>', state)];
+  if (state === 'on') return [about];
   return [
-    ['the About view', section(html, '<h3>Your data</h3>', '<h3>This build</h3>')],
+    about,
     ['the README', between(read('README.md'), '### Your data stays with you', '## Run it on your computer')],
     ['the security policy', between(read('SECURITY.md'), '## What already reduces risk here', '- The development server')],
   ];
@@ -84,13 +103,13 @@ function surfaces() {
 // switched off". Two predicates on one subject, the first about loading, so the second reads as
 // though the loading is what stops. That is the implication this item spent three rounds
 // removing from five other sentences, surviving in the one place nothing reached.
-function claimSites() {
+function claimSites(state = 'off') {
   const html = read('src/index.html');
   return [
-    ...surfaces(),
-    ['the Backup and settings subtitle', section(html, '<h1 id="data-h">', '</div></div>')],
-    ['the Cover art card', section(html, '<h3>Cover art</h3>', '</div>')],
-    ['the metadata and links card', section(html, '<h3>Metadata and links only</h3>', '</p>')],
+    ...surfaces(state),
+    ['the Backup and settings subtitle', section(html, '<h1 id="data-h">', '</div></div>', state)],
+    ['the Cover art card', section(html, '<h3>Cover art</h3>', '</div>', state)],
+    ['the metadata and links card', section(html, '<h3>Metadata and links only</h3>', '</p>', state)],
   ];
 }
 
@@ -153,19 +172,40 @@ const REQUESTS = [
   ],
 ];
 
+// The promise with cloud backup in the build (OD-10's advisory on #810: nothing leaves unless the person
+// turns cloud backup on, and then only for their own account). "Not uploaded automatically" stops being
+// true the moment automatic backup is on, so it gives way to the condition, and to who can reach the copy.
+const PROMISES_WITH_CLOUD = [
+  ['there is no account', /no (?:Recap Page )?account/i],
+  ['there is no analytics or tracking', /no analytics|analytics or tracking|tracking of any kind/i],
+  ['saved data is uploaded only once cloud backup is turned on', /uploaded only if you turn on cloud backup/i],
+  ['and then only to the person\'s own account', /only to your own OneDrive/i],
+  ['the developer cannot reach it', /developer has no access/i],
+];
+
+// Cloud backup's own requests, which carry exactly what every other request is promised not to.
+const CLOUD_REQUESTS = [
+  ['cloud backup is the exception, and only once turned on', /cloud backup is the one exception, and only once you turn it on/i],
+  ['what it sends, and where', /sends a complete backup[^.]*to your own OneDrive/i],
+  ['who sees it', /Microsoft sees those backups/i],
+];
+
 test('every surface that makes the privacy claim keeps the promises and names the requests', () => {
-  for (const [where, text] of surfaces()) {
-    for (const [what, said] of PROMISES) {
-      assert.match(text, said, `${where} must still say ${what}`);
+  for (const state of STATES) {
+    for (const [where, text] of surfaces(state)) {
+      const at = `${where} (${state === 'on' ? 'with' : 'without'} cloud backup)`;
+      for (const [what, said] of state === 'on' ? PROMISES_WITH_CLOUD : PROMISES) {
+        assert.match(text, said, `${at} must still say ${what}`);
+      }
+      for (const [what, said] of state === 'on' ? [...REQUESTS, ...CLOUD_REQUESTS] : REQUESTS) {
+        assert.match(text, said, `${at} promises without saying ${what}, which is the absolute`);
+      }
+      assert.doesNotMatch(
+        text,
+        /GitHub[^.]*latest\s+(?:release|version)\s+number/i,
+        `${at} still describes the retired GitHub update request`,
+      );
     }
-    for (const [what, said] of REQUESTS) {
-      assert.match(text, said, `${where} promises without saying ${what}, which is the absolute`);
-    }
-    assert.doesNotMatch(
-      text,
-      /GitHub[^.]*latest\s+(?:release|version)\s+number/i,
-      `${where} still describes the retired GitHub update request`,
-    );
   }
 });
 
@@ -675,15 +715,18 @@ function claimsRequestsContinue(text) {
 }
 
 test('no surface reinstates an unqualified claim that nothing is sent', () => {
-  for (const [where, text] of claimSites()) {
-    for (const absolute of ABSOLUTES) {
-      assert.doesNotMatch(text, absolute, `${where} must not claim ${absolute}`);
+  for (const state of STATES) {
+    for (const [where, text] of claimSites(state)) {
+      const at = `${where} (${state === 'on' ? 'with' : 'without'} cloud backup)`;
+      for (const absolute of ABSOLUTES) {
+        assert.doesNotMatch(text, absolute, `${at} must not claim ${absolute}`);
+      }
+      assert.equal(
+        claimsRequestsContinue(text),
+        null,
+        `${at} says the covers are requested with cover art switched off, which BL-108 made false`,
+      );
     }
-    assert.equal(
-      claimsRequestsContinue(text),
-      null,
-      `${where} says the covers are requested with cover art switched off, which BL-108 made false`,
-    );
   }
 });
 
@@ -691,11 +734,108 @@ test('no surface reinstates an unqualified claim that nothing is sent', () => {
 // qualification: a theme choice and a reading position genuinely never go anywhere. Losing this
 // would make the rule above look satisfiable by deleting the promises instead of qualifying the
 // claim, which is the failure it exists to prevent.
+//
+// With cloud backup in the build that stops being true of the theme, because a complete backup carries
+// it, so there the promise narrows to the one place it can go rather than disappearing: the same
+// failure, guarded the same way.
 test('a promise about one thing may still be absolute, and one still is', () => {
   const html = read('src/index.html');
   const theme = section(html, '<h3>Theme</h3>', '<h3>Metadata source</h3>');
   assert.match(theme, /never sent anywhere/i, 'the theme setting genuinely never leaves');
   assert.doesNotMatch(theme, /nothing is uploaded/i, 'but it is a promise about the setting only');
+  const withCloud = section(html, '<h3>Theme</h3>', '<h3>Metadata source</h3>', 'on');
+  assert.match(withCloud, /sent only inside a cloud backup to your own OneDrive/i, 'with cloud backup the promise narrows to it');
+  assert.doesNotMatch(withCloud, /never sent anywhere/i, 'and no longer says the setting never leaves');
+});
+
+// The approved words, variant by variant, in the order the markup carries them. The owner approved every one
+// of them word for word on 2026-10-28 (OD-10 on #810), so changing any needs the owner's approval again. Each
+// "off" variant is what the app said before cloud backup existed, so a build without it reads exactly as it
+// did. Each "on" variant starts hidden, so only the page learning that the build has cloud backup can show
+// it. The request list's exception has no "off" variant: without cloud backup there is nothing to add.
+const CLOUD_COPY = [
+  ['off', 'This is browser storage, not cookies, an account, or a cloud copy, and nothing is uploaded.'],
+  ['on', 'This is browser storage, not cookies or an account. Your lists and progress are uploaded only if you turn on cloud backup, and then only to your own OneDrive.'],
+  ['off', 'Your reading progress lives in this browser, at this exact address, and is never sent anywhere.'],
+  ['on', 'Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.'],
+  ['off', 'The choice is stored in this browser alongside your other settings and is never sent anywhere.'],
+  ['on', 'The choice is stored in this browser alongside your other settings and is sent only inside a cloud backup to your own OneDrive, if you turn cloud backup on.'],
+  ['off', 'There is no account to create, and no analytics or tracking of any kind. Your progress and your notes are never sent anywhere. Clearing site data for this address erases them, so export a backup regularly.'],
+  ['on', 'Clearing site data for this address erases them here, so keep a backup. There is no Recap Page account to create, and no analytics or tracking of any kind. Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive, where they are as private as anything else you keep there. Recap Page\'s developer has no access to them.'],
+  ['on', 'Cloud backup is the one exception, and only once you turn it on. After you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes. It also lists and reads the backups there, to check them and to offer them for restoring, and deletes this browser\'s older ones. Microsoft sees those backups, as it sees anything in your OneDrive.'],
+];
+
+test('each privacy sentence cloud backup changes carries both variants, in the approved words', () => {
+  const html = read('src/index.html');
+  const found = [...html.replace(/<!--[\s\S]*?-->/g, ' ').matchAll(/<(\w+)\b([^>]*\bdata-cloud-copy="(on|off)"[^>]*)>([\s\S]*?)<\/\1>/g)]
+    .map(([, , attributes, state, inner]) => ({ state, hidden: /\shidden(?=[\s=]|$)/.test(attributes), text: prose(inner) }));
+  assert.deepEqual(found.map(({ state, text }) => [state, text]), CLOUD_COPY);
+  for (const { state, hidden, text } of found) {
+    assert.equal(hidden, state === 'on', `${state}: "${text.slice(0, 48)}" is ${state === 'on' ? 'hidden until the page learns' : 'shown by default'}`);
+  }
+  // The card shows only where cloud backup is, so its privacy paragraph has one variant.
+  assert.equal(
+    section(html, '<p class="rail-hint" id="cloud-backup-privacy">', '</p>', 'on'),
+    'Backups go to a folder of their own in your OneDrive, and that folder is all of your OneDrive that Recap Page can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page\'s developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.',
+  );
+});
+
+// The card's and the erase's own sentences that stage 3's review changed, A to G, which the owner approved
+// word for word on 2026-10-28, so changing any needs the owner's approval again. Each is read from what the
+// app says, not from a copy of it.
+test('the cloud backup sentences from stage 3 are the owner\'s approved words', async () => {
+  const { ERASE_HOST_SILENT } = await import('../src/js/lib/cloudBackup.js');
+  const { cloudCardStatus, cloudDeleteFailure, cloudDeleteQuestion, cloudDeleteReport, cloudDisconnectQuestion, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  // A. Erase all local data, when the Recap Page app does not answer.
+  assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT] }).trim(),
+    'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.');
+  const connected = {
+    shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
+    agreed: false, on: false, askedAgain: false, suspended: false, hasStream: true, recordProblem: null, recordUnreadable: false,
+    backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null },
+  };
+  // G. Consent suspended by an erase.
+  assert.equal(cloudCardStatus({ ...connected, suspended: true }),
+    'Connected to OneDrive as reader@example.test. Automatic backup stopped while this browser\'s data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.');
+  // B. Delete this device's cloud backups: the question and its four reports.
+  assert.equal(cloudDeleteQuestion(connected),
+    'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
+  assert.equal(cloudDeleteReport({ deleted: 2, failed: [] }, connected),
+    'Deleted 2 backups of this browser from the OneDrive account reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.');
+  assert.equal(cloudDeleteReport({ deleted: 1, failed: [] }, connected),
+    'Deleted 1 backup of this browser from the OneDrive account reader@example.test, where it stays in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.');
+  assert.equal(cloudDeleteReport({ deleted: 0, failed: [] }, connected),
+    'No backups of this browser were in the OneDrive account reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.');
+  assert.equal(cloudDeleteReport({ deleted: 1, failed: [{ id: 'x', name: 'x', code: 'timeout' }] }, connected),
+    'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off for this browser; delete again to finish.');
+  assert.match(cloudDeleteQuestion({ ...connected, account: null }), /every backup it made in this OneDrive account\. /);
+  // C. A deletion that fails before deleting anything.
+  assert.equal(cloudDeleteFailure('The Recap Page app did not answer in time.', true),
+    'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.');
+  // D. The disconnect question without the choice, and after Microsoft asked for the sign-in again.
+  assert.equal(cloudDisconnectQuestion({ ...connected, hasStream: false }, false),
+    'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in OneDrive stay there.');
+  assert.equal(cloudDisconnectQuestion({ ...connected, host: 'needs-sign-in' }, false),
+    'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in OneDrive stay there. To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.');
+  // E. The Data safety note, the same in every build, because the complete and cloud backups below it hold
+  // every kind of data and the settings.
+  const html = read('src/index.html');
+  for (const state of STATES) {
+    assert.equal(section(html, '<p class="rail-hint setgroup-note" id="transfer-summary">', '</p>', state),
+      'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.');
+  }
+  // F. A record that fails its checks.
+  assert.equal(cloudCardStatus({ ...connected, recordUnreadable: true }),
+    'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
+});
+
+// Why an erase was refused, said after "Nothing was erased." when cloud backup could not be stopped first
+// (stage 4 review, S4c-1). The owner approved these words, with an edit, on 2026-10-29 (#810), so changing
+// them needs the owner's approval again.
+test('the sentence an erase gives when cloud backup could not be stopped first is the owner\'s approved words', async () => {
+  const { ERASE_NOT_STOPPED } = await import('../src/js/lib/cloudBackup.js');
+  assert.equal(ERASE_NOT_STOPPED,
+    'Automatic backup could not be stopped first, so erasing now could let a backup of the erased data replace your earlier backups.');
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an

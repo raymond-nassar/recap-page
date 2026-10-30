@@ -15,14 +15,45 @@ export const CREATION_TESTS = Object.freeze([
 export const STARTUP_FILES = Object.freeze([
   'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs', 'RecapPageVerifier.exe',
   'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js',
+  'host/cloudConfig.mjs', 'host/cloudHost.mjs', 'host/cloudSession.mjs', 'host/cloudSignIn.mjs',
+  'host/cloudTokens.mjs', 'host/oneDrive.mjs',
   'native-build.json', 'src/msix-generation.json',
 ]);
+// The cloud backup host's modules are bound as startup files although they load only at the first
+// control-API request of a build with a client configuration: server.mjs names them in its one dynamic
+// import, so their bytes decide what that server can run (#810, P02-T01 section 3.6).
+const HOST_FILES = ['cloudConfig', 'cloudHost', 'cloudSession', 'cloudSignIn', 'cloudTokens', 'oneDrive']
+  .map((name) => [`host/${name}.mjs`, `host/${name}.mjs`]);
 export const SOURCE_FILES = Object.freeze([
   ['Launcher.mjs', 'packaging/windows/Launcher.mjs'],
   ['server.mjs', 'server.mjs'],
   ['src/js/lib/coverHost.js', 'src/js/lib/coverHost.js'],
   ['src/js/lib/localServer.js', 'src/js/lib/localServer.js'],
+  ...HOST_FILES,
 ]);
+// Each startup source's own static imports beyond node: built-ins, exactly. The host modules import only
+// one another, so no package outside this repository can enter what the server runs.
+const LOCAL_IMPORTS = Object.freeze({
+  'server.mjs': ['./src/js/lib/coverHost.js', './src/js/lib/localServer.js'],
+  'host/cloudHost.mjs': ['./cloudConfig.mjs', './cloudSession.mjs', './cloudSignIn.mjs', './cloudTokens.mjs', './oneDrive.mjs'],
+  'host/cloudSignIn.mjs': ['./cloudSession.mjs'],
+  'host/cloudTokens.mjs': ['./cloudSession.mjs'],
+  'host/oneDrive.mjs': ['./cloudSignIn.mjs'],
+});
+// And each one's Node built-ins, exactly, so none that loads code by another route, such as node:module's
+// createRequire, node:vm or node:worker_threads, can be added without changing this list. The two routes
+// that need no import, process.getBuiltinModule and process.dlopen, are refused by name (stage 2 review,
+// S1a finding 3). The pin reads the source, so it stops ordinary code, not code written to hide itself.
+const NODE_IMPORTS = Object.freeze({
+  'Launcher.mjs': ['node:child_process', 'node:fs', 'node:net', 'node:path', 'node:url'],
+  'server.mjs': ['node:fs/promises', 'node:http', 'node:path', 'node:url'],
+  'host/cloudHost.mjs': ['node:crypto'],
+  'host/cloudSession.mjs': ['node:child_process', 'node:path'],
+  'host/cloudSignIn.mjs': ['node:child_process', 'node:crypto', 'node:http', 'node:path'],
+  'host/cloudTokens.mjs': ['node:child_process', 'node:fs/promises', 'node:path'],
+});
+const LOADERS = new Set(['getBuiltinModule', 'dlopen']);
+const HOST_IMPORT = './host/cloudHost.mjs';
 export const REASONS = Object.freeze([
   'none', 'input-missing', 'input-mismatch', 'host-unqualified', 'host-changed',
   'creation-receipt-missing', 'creation-receipt-stale', 'actor-missing', 'actor-ambiguous',
@@ -137,6 +168,13 @@ export function startupSourceInputs(root = ROOT) {
                     requires = true;
                   }
                 },
+                // Wherever the name appears, as a property, a destructured key or a computed string.
+                Identifier({ name }) {
+                  if (LOADERS.has(name)) requires = true;
+                },
+                Literal({ value }) {
+                  if (typeof value === 'string' && LOADERS.has(value)) requires = true;
+                },
               }),
             },
           },
@@ -146,9 +184,13 @@ export function startupSourceInputs(root = ROOT) {
     }, { filename: 'startup-source.mjs', allowInlineConfig: false });
     requireFact(messages.length === 0 && !requires);
     const local = imports.filter((name) => !name.startsWith('node:'));
-    requireFact(JSON.stringify(local.sort()) === JSON.stringify(path === 'server.mjs'
-      ? ['./src/js/lib/coverHost.js', './src/js/lib/localServer.js'] : []));
-    requireFact(dynamic.every((name) => path === 'server.mjs' && name === 'node:child_process'));
+    requireFact(JSON.stringify(local.sort()) === JSON.stringify(LOCAL_IMPORTS[path] ?? []));
+    const builtIns = [...new Set(imports.filter((name) => name.startsWith('node:')))].sort();
+    requireFact(JSON.stringify(builtIns) === JSON.stringify(NODE_IMPORTS[path] ?? []));
+    // server.mjs may import node:child_process to open a browser, and the cloud host exactly once; no
+    // other startup source imports anything at run time.
+    requireFact(dynamic.every((name) => path === 'server.mjs' && (name === 'node:child_process' || name === HOST_IMPORT)));
+    requireFact(path !== 'server.mjs' || dynamic.filter((name) => name === HOST_IMPORT).length === 1);
   }
   return inputs;
 }
@@ -265,10 +307,10 @@ export function creationReceipt({ tap, exitCode, nodeVersion, commit, tree, proo
     requireFact(matches.length === 1, 'creation-receipt-missing');
     return Number(matches[0][1]);
   };
-  requireFact(exitCode === 0 && count('tests') === 94 && count('pass') === 94
+  requireFact(exitCode === 0 && count('tests') === 97 && count('pass') === 97
     && ['fail', 'cancelled', 'skipped', 'todo'].every((name) => count(name) === 0), 'creation-receipt-missing');
   const receipt = {
-    schemaVersion: 1, command: 'production-creation-tests-v2', tests: 94, passed: 94, failed: 0,
+    schemaVersion: 1, command: 'production-creation-tests-v2', tests: 97, passed: 97, failed: 0,
     cancelled: 0, skipped: 0, todo: 0, exitCode, nodeVersion, commit, tree, proofInputDigest, sources,
   };
   return validateCreationReceipt(receipt, { commit, tree, proofInputDigest, sources });
@@ -277,7 +319,7 @@ export function validateCreationReceipt(value, expected) {
   exactKeys(value, ['schemaVersion', 'command', 'tests', 'passed', 'failed', 'cancelled', 'skipped', 'todo',
     'exitCode', 'nodeVersion', 'commit', 'tree', 'proofInputDigest', 'sources'], 'creation-receipt-missing');
   requireFact(value.schemaVersion === 1 && value.command === 'production-creation-tests-v2'
-    && value.tests === 94 && value.passed === 94 && value.exitCode === 0
+    && value.tests === 97 && value.passed === 97 && value.exitCode === 0
     && ['failed', 'cancelled', 'skipped', 'todo'].every((key) => value[key] === 0)
     && /^v24\.\d+\.\d+$/.test(value.nodeVersion), 'creation-receipt-missing');
   requireFact(SHA.test(value.commit) && SHA.test(value.tree) && HEX.test(value.proofInputDigest)

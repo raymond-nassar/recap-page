@@ -356,11 +356,18 @@
                    pointer on a desktop (UX-10, #836). It still shows from the first saved list until
                    the first saved progress. -->
               <aside id="save-education" class="card card-static save-education" hidden>
+                <!-- The privacy sentences come in two variants (#810, P02-T06): data-cloud-copy="off" is what a
+                     build without cloud backup says, and "on", hidden until the page learns this build has
+                     cloud backup, replaces it there. js/views/cloud.js switches them; the words are pinned in
+                     test/privacy-copy.test.js. -->
                 <p class="rail-hint">
-                  Your lists and progress save automatically in this browser. This is browser storage,
-                  not cookies, an account, or a cloud copy, and nothing is uploaded. Use the JSON backup
-                  in Backup &amp; settings to protect your progress or move it to another browser profile
-                  or computer.
+                  Your lists and progress save automatically in this browser.
+                  <span data-cloud-copy="off">This is browser storage, not cookies, an account, or a cloud
+                  copy, and nothing is uploaded.</span><span data-cloud-copy="on" hidden>This is browser
+                  storage, not cookies or an account. Your lists and progress are uploaded only if you turn
+                  on cloud backup, and then only to your own OneDrive.</span>
+                  Use the JSON backup in Backup &amp; settings to protect your progress or move it to another
+                  browser profile or computer.
                 </p>
                 <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
               </aside>
@@ -921,12 +928,12 @@
           <!-- ---------------------------------------- data view -->
           <section id="view-data" class="view" hidden aria-labelledby="data-h">
             <div class="head"><div class="head-left"><h1 id="data-h">Backup &amp; settings</h1>
-              <div class="sub">Your reading progress lives in this browser, at this exact address, and is never sent anywhere.</div>
+              <div class="sub"><span data-cloud-copy="off">Your reading progress lives in this browser, at this exact address, and is never sent anywhere.</span><span data-cloud-copy="on" hidden>Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.</span></div>
             </div></div>
 
             <section class="setgroup">
               <h2>Data safety</h2>
-              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The backups below each hold one kind of data. Settings are not included in them.</p>
+              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.</p>
               <div class="card card-static addpri" id="complete-backup">
                 <h3>Complete backup</h3>
                 <div class="field-row">
@@ -940,7 +947,7 @@
                 </div>
                 <div id="complete-backup-report" class="results" tabindex="-1"></div>
                 <section id="complete-restore-recovery" aria-labelledby="complete-restore-recovery-h" hidden>
-                  <h4 id="complete-restore-recovery-h">Unfinished complete restore</h4>
+                  <h4 id="complete-restore-recovery-h">Complete restore needs a choice</h4>
                   <p class="rail-hint" id="complete-restore-recovery-status"></p>
                   <div class="field-row">
                     <button type="button" id="btn-complete-prior-copy" class="btn btn-g">Download exact prior copy</button>
@@ -951,8 +958,37 @@
                 </section>
                 <details class="setting-more">
                   <summary>About complete backups</summary>
-                  <p class="rail-hint" id="complete-backup-contents">A complete backup holds everything the three backups below hold, plus cover art, theme, reading filter, reading shortcut, story summary and sidebar choices. The metadata source under Advanced is not included, so a backup can never change which service the app asks for comic details.</p>
+                  <p class="rail-hint" id="complete-backup-contents">A complete backup holds everything the reading data, completion history and import draft backups hold, plus cover art, theme, reading filter, reading shortcut, story summary and sidebar choices. The metadata source under Advanced is not included, so a backup can never change which service the app asks for comic details.</p>
                   <p class="rail-hint">Versions before this one cannot read a complete backup. Close other Recap Page tabs before restoring one. If a restore is interrupted, this card offers to finish it, put the earlier data back, or download an exact copy of the data from before it. This version cannot restore that copy: it is for recovering the earlier data by hand or with help.</p>
+                </details>
+              </div>
+              <!-- Cloud backup (#810). Hidden until the page learns this build has it, which it asks when this
+                   view opens, so a build without cloud backup never shows the card. The sign-in button carries
+                   Microsoft's logo, unaltered, beside its own words, as Microsoft's branding guidance asks;
+                   src/brands/README.md records where the logo came from. -->
+              <div class="card card-static addpri" id="cloud-backup" hidden>
+                <h3>Cloud backup</h3>
+                <p class="rail-hint" id="cloud-backup-intro">Keep a complete backup in your own OneDrive, made automatically as you read.</p>
+                <p id="cloud-backup-status" tabindex="-1"></p>
+                <progress id="cloud-backup-progress" aria-hidden="true" hidden></progress>
+                <div class="field-row" id="cloud-backup-primary">
+                  <button type="button" id="btn-cloud-sign-in" class="btn btn-g" hidden><img src="./brands/ms-symbollockup_mssymbol_19.svg" alt="" width="21" height="21" loading="lazy" />Sign in with Microsoft</button>
+                  <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
+                </div>
+                <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
+                <details class="setting-more" id="cloud-discovery" hidden>
+                  <summary id="cloud-discovery-summary">Backups in this OneDrive</summary>
+                  <div id="cloud-discovery-list"></div>
+                </details>
+                <div class="field-row" id="cloud-backup-actions">
+                  <button type="button" id="btn-cloud-delete" class="btn btn-g" hidden>Delete this device's cloud backups</button>
+                  <button type="button" id="btn-cloud-disconnect" class="btn btn-g" hidden>Disconnect</button>
+                </div>
+                <div id="cloud-backup-report" class="results" tabindex="-1"></div>
+                <details class="setting-more">
+                  <summary>About cloud backup</summary>
+                  <p class="rail-hint">A backup is made once changes have been quiet for ten seconds, at most once every five minutes, and at once when you leave Recap Page. The two newest backups of this browser are kept, and older ones go to OneDrive's recycle bin. Restoring one replaces everything it holds, as restoring a complete backup file does.</p>
+                  <p class="rail-hint" id="cloud-backup-privacy">Backups go to a folder of their own in your OneDrive, and that folder is all of your OneDrive that Recap Page can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page's developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.</p>
                 </details>
               </div>
               <div class="card card-static addpri">
@@ -1062,8 +1098,11 @@
                 <details class="setting-more">
                   <summary>What the choice affects</summary>
                   <p class="rail-hint">
-                    The choice is stored in this browser alongside your other settings and is never sent
-                    anywhere. High contrast mode and reduced motion are still honoured whichever you pick.
+                    <span data-cloud-copy="off">The choice is stored in this browser alongside your other
+                    settings and is never sent anywhere.</span><span data-cloud-copy="on" hidden>The choice
+                    is stored in this browser alongside your other settings and is sent only inside a cloud
+                    backup to your own OneDrive, if you turn cloud backup on.</span>
+                    High contrast mode and reduced motion are still honoured whichever you pick.
                   </p>
                 </details>
               </div>
@@ -1221,9 +1260,15 @@
               <h3>Your data</h3>
               <p class="rail-hint">
                 Everything you save lives in this browser, at this exact address: your lists, your
-                reading progress and your notes. There is no account to create, and no analytics or
-                tracking of any kind. Your progress and your notes are never sent anywhere. Clearing
-                site data for this address erases them, so export a backup regularly.
+                reading progress and your notes.
+                <span data-cloud-copy="off">There is no account to create, and no analytics or tracking
+                of any kind. Your progress and your notes are never sent anywhere. Clearing site data for
+                this address erases them, so export a backup regularly.</span><span data-cloud-copy="on"
+                hidden>Clearing site data for this address erases them here, so keep a backup. There is no
+                Recap Page account to create, and no analytics or tracking of any kind. Your lists,
+                progress and notes are uploaded only if you turn on cloud backup in Backup &amp; settings,
+                and then only to your own OneDrive, where they are as private as anything else you keep
+                there. Recap Page's developer has no access to them.</span>
               </p>
               <details class="setting-more">
                 <summary>What leaves this machine, request by request</summary>
@@ -1252,6 +1297,11 @@
                   Adding an issue by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.
+                  <span data-cloud-copy="on" hidden>Cloud backup is the one exception, and only once you
+                  turn it on. After you sign in on Microsoft's own page, Recap Page sends a complete backup
+                  of what you save to your own OneDrive after you make changes. It also lists and reads the
+                  backups there, to check them and to offer them for restoring, and deletes this browser's
+                  older ones. Microsoft sees those backups, as it sees anything in your OneDrive.</span>
                 </p>
               </details>
 
@@ -1402,6 +1452,11 @@
         <p id="ask-area-field" hidden>
           <label for="ask-area" id="ask-area-label"></label>
           <textarea id="ask-area" rows="5" maxlength="2000" autocomplete="off"></textarea>
+        </p>
+        <!-- One choice beside a confirmation, unchecked every time it is asked. Only the answer it leads
+             to has no way back, so the answer's label and its danger appearance follow it (#810). -->
+        <p id="ask-choice-field" class="ask-choice" hidden>
+          <label class="checkbox"><input type="checkbox" id="ask-choice" /> <span id="ask-choice-label"></span></label>
         </p>
         <div class="ask-foot dialog-foot">
           <button type="button" class="btn btn-g" id="ask-cancel">Cancel</button>

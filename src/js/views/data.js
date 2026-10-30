@@ -6,6 +6,7 @@
 // module never touches the Store, cache, API, Hydrator, or SynopsisRunner.
 
 import { wireFieldValidation } from './shared/field-validation.js';
+import { RESTORE_MESSAGES } from '../lib/completeRestore.js';
 
 // ------------------------------------------------------------------ reading-data contents
 //
@@ -166,6 +167,7 @@ export function createDataView({
   onExportDraft,
   onRestoreDraft,
   getRecoveryCopy = null,
+  getCloudEraseNote = null,
   eraseHistory = false,
 }) {
   let restoring = false;
@@ -427,9 +429,13 @@ export function createDataView({
         const recovery = recoveryCopy === null
           ? ' The app could not check for a recovery copy kept by a complete restore, so one may still be kept after the erase.'
           : recoveryCopy ? ' The recovery copy kept by a complete restore is erased too.' : '';
+        // Asked at the moment of the question, like the recovery copy, so it names cloud backup only while
+        // erasing changes it (#810).
+        const cloudNote = getCloudEraseNote?.();
+        const cloud = cloudNote ? ` ${cloudNote}` : '';
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
-          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.${recovery}`,
+          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.${recovery}${cloud}`,
           confirmLabel: 'Erase everything',
           danger: true,
         });
@@ -470,43 +476,57 @@ function plural(count, one, many = `${one}s`) {
 
 // Each report states its outcome once. Messages from the backup file and the restore engine often end
 // by saying what happened, so the lead-in that says the same thing is added only when they do not.
-const UNCHANGED = /\bnothing (?:further |more )?was (?:changed|replaced|removed)\b/i;
-const STOPPED = /\bstopped\b/i;
+export const UNCHANGED = /\bnothing (?:further |more )?was (?:changed|replaced|removed)\b/i;
+export const STOPPED = /\bstopped\b/i;
 export function withOutcome(lead, message, said) {
   return said.test(message) ? message : `${lead} ${message}`;
 }
 
 // The counts belong to the file, so they are attached to it: a device with ten lists restoring a file
-// with two is replacing its ten with the file's two, not "your reading data (2 lists)".
-export function completeRestoreQuestion({ lists, records, draft }) {
-  const counted = `This replaces your reading data with this file's ${plural(lists, 'list')}, your completion history with its ${plural(records, 'record')}`;
+// with two is replacing its ten with the file's two, not "your reading data (2 lists)". A backup chosen
+// from cloud backup is named as a backup rather than a file.
+export function completeRestoreQuestion({ lists, records, draft }, { source = 'file' } = {}) {
+  const counted = `This replaces your reading data with this ${source}'s ${plural(lists, 'list')}, your completion history with its ${plural(records, 'record')}`;
   return `${counted}${draft
-    ? ', your display and reading preferences with the ones in this file, and your import draft with the one in this file. '
-    : ' and your display and reading preferences with the ones in this file, and removes any import draft, because this file has none. '}`
+    ? `, your display and reading preferences with the ones in this ${source}, and your import draft with the one in this ${source}. `
+    : ` and your display and reading preferences with the ones in this ${source}, and removes any import draft, because this ${source} has none. `}`
     + 'A finished complete restore cannot be undone as a whole, so download a complete backup first if you might want the current data back. '
     + 'Close any other Recap Page tabs and windows first, including ones running an older version.';
 }
 
 // Keeping the current data deletes the recovery copy only when one can be read, so the question says
-// what happens to the copy this recovery actually has. The exact prior copy can be downloaded but not
-// restored by this version, so the question says so before the copy goes.
+// what happens to the copy this recovery actually has. A copy this browser cannot remove yet, as on a
+// full disk, goes at a later start instead (#947), except one that fails its checks: the next start
+// offers that one again (#954). The exact prior copy can be downloaded but not restored by this
+// version, so the question says so before the copy goes.
 export function keepCurrentQuestion(recovery) {
   const lead = 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data.';
+  const when = 'at once, or at a later start if this browser cannot remove it yet';
   if (recovery?.download === 'prior') {
-    return `${lead} The recovery copy is then deleted, so download the exact prior copy first if you might need it. `
+    return `${lead} The recovery copy is then deleted, ${when}, so download the exact prior copy first if you might need it. `
       + 'This version cannot restore that copy: it is for recovering the earlier data by hand or with help.';
   }
   if (recovery?.download === 'raw') {
     return `${lead} The recovery copy, which this version cannot read, is then deleted, so download it first if you might need it. `
-      + 'Its data can only be recovered by hand or with help.';
+      + 'If this browser cannot remove it yet, the next start offers it again. Its data can only be recovered by hand or with help.';
   }
   if (recovery?.kind === 'unchecked') {
     return `${lead} The recovery copy could not be checked, so it is left in place, and a later start offers it again if it can.`;
   }
   if (recovery?.kind === 'cleanup') {
-    return `${lead} The cleanup after the earlier restore is then finished, which deletes any recovery copy it left.`;
+    return `${lead} The cleanup after the earlier restore then runs and deletes any recovery copy it left, ${when}.`;
   }
   return `${lead} There is no recovery copy left to delete.`;
+}
+
+// Said after the reload that follows keeping. That reload is the next start, and it offers a copy that
+// fails its checks again when the copy could not be removed (#954), so recovery is not said to have
+// ended there.
+export function keptNotice(result) {
+  const ended = 'Recovery ended. Saving has started again with the data that was here.';
+  if (!result?.copyKept) return ended;
+  if (result.offered) return 'The data that was here is unchanged, but the recovery copy could not be removed, perhaps because storage is full, so it is offered again.';
+  return `${ended} ${RESTORE_MESSAGES.copyKept}`;
 }
 
 export function createCompleteBackupView({
@@ -644,7 +664,10 @@ export function createCompleteBackupView({
       });
       if (!yes) return;
       const result = await onKeepCurrent();
-      if (result.ok) { onFinished('Recovery ended. Saving has started again with the data that was here.'); return; }
+      if (result.ok) {
+        onFinished(keptNotice(result));
+        return;
+      }
       report(result.error);
     });
   }

@@ -60,11 +60,20 @@ test('public identity rejects arbitrary fields, paths, malformed versions and di
     { channel: 'secret' }, { platform: 'other' }, { sourceDirty: true }, { packageVersion: 0 },
     { packageVersion: ANDROID_CODE_LIMIT + 1 },
   ]) assert.throws(() => validateIdentity({ ...candidate(), ...change }));
-  const portable = { ...candidate(), platform: 'windows-portable', packageVersion: '3.0.1' };
+  const portable = { ...candidate(), platform: 'windows-portable', packageVersion: '3.0.1', cloudClient: null };
   validateIdentity(portable);
   validateIdentity({ ...portable, platform: 'windows-msix', packageVersion: '3.0.1.0' });
   validateIdentity({ ...portable, platform: 'windows-msix', packageVersion: '3.0.1.1', channel: 'proof' });
   assert.throws(() => validateIdentity({ ...portable, platform: 'windows-msix', packageVersion: '3.0.1.2' }));
+  // A Windows build records the digest of the cloud client configuration it carries, or null, never the
+  // configuration; an Android build does not record it yet (#810, P02-T01 section 3.2).
+  validateIdentity({ ...portable, cloudClient: 'e'.repeat(64) });
+  for (const cloudClient of [undefined, '', 'E'.repeat(64), 'e'.repeat(63), { clientId: 'test-client.recap-page' }]) {
+    const odd = { ...portable, cloudClient };
+    if (cloudClient === undefined) delete odd.cloudClient;
+    assert.throws(() => validateIdentity(odd), String(cloudClient));
+  }
+  assert.throws(() => validateIdentity({ ...candidate(), cloudClient: null }), 'not on Android yet');
 });
 
 test('an iOS identity carries a positive whole build number, and an unreserved build is development', async () => {

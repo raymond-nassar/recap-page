@@ -43,7 +43,7 @@ import {
   ADD_VIEWS, VIEWS, HOME_CARDS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
-import { askConfirm, askText, askNote, wireAsk } from './ask.js';
+import { askConfirm, askConfirmChoice, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from './lib/saveEducation.js';
@@ -79,14 +79,21 @@ import { CompleteRestore, PRIOR_COPY_FILENAME, RESTORE_MESSAGES } from './lib/co
 import {
   captureCompleteBackup, parseCompleteBackup, completeBackupFileRefusal, completeBackupSummary, COMPLETE_BACKUP_FILENAME,
 } from './lib/completeBackup.js';
+import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.js';
+import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
+import { createCloudHostTransport } from './lib/cloudHostTransport.js';
+import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 // Made before any owner of saved data, so the first write any of them attempts already passes its
 // guard. Static, so the offline copy of the app always holds the recovery path a crash may need.
 const completeRestore = new CompleteRestore();
+// Every saved change of what a backup holds is reported here, by every owner at once, because they all
+// write through the one object below. Nothing listens until cloud backup is turned on.
+const savedChanges = createSavedChanges();
 // Every read and write of saved data below goes through the guard. Reads pass straight through;
 // writes to what a complete restore replaces wait until no restore is running or waiting for recovery.
-const localStorage = completeRestore.storage ?? globalThis.localStorage;
+const localStorage = observeSavedWrites(completeRestore.storage ?? globalThis.localStorage, savedChanges.notify);
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
@@ -1561,7 +1568,12 @@ function showView(next, { focus = true, push = false, at = null } = {}) {
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
   // Erasing everything is a fourth, and the one arrival cannot cover, because it happens on this
   // screen rather than before reaching it, so that route repaints at its own call site.
-  if (next === 'data') recoveryView.renderSalvage();
+  if (next === 'data') {
+    recoveryView.renderSalvage();
+    // Asked every time Backup & settings or About opens: one request, which a build without cloud backup
+    // answers 404, so the card stays hidden and the privacy copy keeps its local words (#810, P02-T06).
+    void cloudBackup.enter();
+  } else if (next === 'about') void cloudBackup.refresh();
   if (homeAt) $('#home-categories').scrollIntoView({ block: 'start' });
   else window.scrollTo({ top: 0 });
   revealMobileNavigation();
@@ -2260,10 +2272,13 @@ const dataView = createDataView({
     }
   },
   getRecoveryCopy: () => completeRestore.recoveryCopyHeld(),
+  getCloudEraseNote: () => cloudEraseNote(cloudBackup.model),
   eraseHistory: true,
   onErase: async (draftExpected) => {
-    // User data first, then any recovery copy a complete restore kept, which the restore engine removes
-    // in cleanup order. While a recovery is pending, this is the one change allowed past the pause.
+    // User data, then any recovery copy a complete restore kept, in cleanup order: while a recovery is pending,
+    // this is the one change allowed past the pause. Cloud backup is held first, or nothing is erased (#810).
+    const unheld = await cloudBackup.beforeErase();
+    if (unheld) { notify('#save-report', `Nothing was erased. ${unheld}`, 'error'); return; }
     let result = null;
     let draftRemoved = null;
     const erasure = await completeRestore.erase(async () => {
@@ -2276,6 +2291,9 @@ const dataView = createDataView({
       if (result.readerErased === true) draftRemoved = await importDraft.discard(draftExpected, { readerRaw: result.readerRaw });
       return result.readerErased === true;
     });
+    // Once the reading data is erased, this browser forgets cloud backup and the host its sign-in for
+    // every profile, as the question said; when nothing was, backups go on.
+    const cloudKept = cloudEraseOutcome(await cloudBackup.afterErase(result?.readerErased === true));
     if (!result) {
       notify('#save-report', `Nothing was erased. ${erasure.error}`, 'error');
       return;
@@ -2323,14 +2341,14 @@ const dataView = createDataView({
     // sits open for as long as the reader leaves it, and another tab can take a copy or remove
     // one in that time.
     if (!result.ok) {
-      notify('#save-report', result.error || 'The reading-data erase could not be confirmed. Completion history was kept.', 'error');
+      notify('#save-report', `${result.error || 'The reading-data erase could not be confirmed. Completion history was kept.'}${cloudKept}`, 'error');
       return;
     }
     const outcome = eraseOutcome(snapshotKept, store.salvageCopies(), {
       historyKept, readerChanged, cacheFailure, currentFacts: true, draftKept,
     });
     const copyKept = erasure.error ? ` ${erasure.error}` : '';
-    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure || draftKept !== false || copyKept) notify('#save-report', `${outcome}${copyKept}`, 'warn');
+    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure || draftKept !== false || copyKept || cloudKept) notify('#save-report', `${outcome}${copyKept}${cloudKept}`, 'warn');
     else announce(outcome);
   },
 });
@@ -2368,6 +2386,47 @@ const completeBackupView = createCompleteBackupView({
   onFinished: reloadWithNotice,
 });
 
+// Cloud backup (#810). This is the one place the page is given a cloud backup transport: here the
+// Windows host's control API, on this origin. The Android and iOS apps install their own bridges at this
+// point, behind the same four operations (CQ-2), and nothing else in the page names a provider. A build
+// without cloud backup answers 404 there, so it shows nothing and starts nothing.
+const cloudBackup = createCloudBackup({
+  transport: createCloudHostTransport(),
+  capture: () => captureCompleteBackup({ storage: localStorage, importDraft }),
+  // Every complete-restore phase but open, so no capture mixes restored data with earlier data.
+  isBlocked: () => completeRestore.state.phase !== 'open',
+  savedChanges,
+  channel: typeof globalThis.BroadcastChannel === 'function' ? new globalThis.BroadcastChannel(CLOUD_BACKUP_CHANNEL) : null,
+  onChange: (model) => { cloudBackupView.render(model); renderCloudCopy(model); },
+});
+
+// The Cloud backup card. A restore from the account goes through the complete restore engine, as a file's
+// does, and ends in the same reload.
+const cloudBackupView = createCloudBackupView({
+  el,
+  elements: () => ({
+    card: $('#cloud-backup'), intro: $('#cloud-backup-intro'), status: $('#cloud-backup-status'),
+    progress: $('#cloud-backup-progress'), primary: $('#cloud-backup-primary'), signIn: $('#btn-cloud-sign-in'),
+    retry: $('#btn-cloud-retry'), auto: $('#cloud-auto'), autoInput: $('#opt-cloud-auto'), discovery: $('#cloud-discovery'),
+    discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
+    remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),
+  }),
+  askConfirm,
+  askConfirmChoice,
+  notify, announce,
+  getModel: () => cloudBackup.model,
+  onConnect: () => cloudBackup.connect(),
+  onTurnOn: () => cloudBackup.turnOn(),
+  onTurnOff: () => cloudBackup.turnOff(),
+  onDiscover: () => cloudBackup.discover(),
+  onFetch: (copy) => cloudBackup.fetchBackup(copy),
+  onRestore: (text) => completeRestore.restore(text, { draftRecovery: importDraft.recovery.slice() }),
+  onDeleteOwn: () => cloudBackup.deleteOwn(),
+  onDisconnect: () => cloudBackup.disconnect(),
+  onRetry: () => cloudBackup.retry(),
+  onFinished: reloadWithNotice,
+});
+
 const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 
 // Said in the pane that follows the reader between views, because a pause stops saving everywhere.
@@ -2397,6 +2456,13 @@ function takeRestoreNotice() {
   } catch {
     return null;
   }
+}
+
+// Once the page has nothing more urgent to do, and within five seconds whether or not it ever does.
+function whenIdle(work) {
+  const run = () => { void work(); };
+  if (typeof globalThis.requestIdleCallback === 'function') globalThis.requestIdleCallback(run, { timeout: 5000 });
+  else setTimeout(run, 0);
 }
 
 // Deliberately not announced and not a live region. The only change here worth hearing is the one
@@ -2899,6 +2965,7 @@ export function boot() {
   addView.wire();
   dataView.wire();
   completeBackupView.wire();
+  cloudBackupView.wire();
   completeRestore.subscribe(renderCompleteRestore);
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
@@ -2950,6 +3017,9 @@ export function boot() {
   } else startRoute();
   // The deferred journal read, after the first render, so a start with nothing pending never waits.
   void completeRestore.settled.then(() => completeRestore.inspect());
+  // Cloud backup goes on only where this browser already agreed, once saving is open and the page is
+  // idle, so its first comparison is never part of the first render (#810).
+  void completeRestore.settled.then(() => whenIdle(() => cloudBackup.resume()));
   const restoreNotice = takeRestoreNotice();
   if (restoreNotice) notify('#complete-backup-report', restoreNotice, 'ok');
 

@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, readMe } from '../scripts/pack-windows.mjs';
+import { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, readMe, readMeFor } from '../scripts/pack-windows.mjs';
 
 // The packaging contract, checked here because the person it is for cannot diagnose it.
 //
@@ -100,6 +100,23 @@ test('the archive holds what the app runs and the licences, derived from git rat
     );
   }
   assert.ok(!files.includes('PRODUCT_BACKLOG.md'), 'the backlog is in the archive');
+});
+
+// The read-me's privacy sentence is true of the build it ships in, as the app's own is (#810, P02-T06): an
+// archive given a cloud client configuration has cloud backup and says what that sends and where, and one
+// without says exactly what it said before cloud backup existed.
+test('the read-me promises what the archive it ships in does', () => {
+  const words = (text) => text.replace(/\s+/g, ' ');
+  const without = readMeFor();
+  const withCloud = readMeFor({ cloudBackup: true });
+  assert.equal(without, readMe, 'the default is the archive without cloud backup');
+  assert.match(words(without), /Nothing is uploaded anywhere and no account is needed\./);
+  assert.doesNotMatch(words(without), /cloud backup/i);
+  assert.match(words(withCloud), /No Recap Page account is needed, and what you save is uploaded only if you turn on cloud backup, and then only to your own OneDrive\./);
+  assert.doesNotMatch(words(withCloud), /Nothing is uploaded anywhere/);
+  const widest = Math.max(...without.split('\r\n').map((line) => line.length));
+  assert.ok(withCloud.split('\r\n').every((line) => line.length <= widest), 'no line wider than the rest of the read-me');
+  assert.match(read(PACK), /readMeFor\(\{ cloudBackup: cloudClient !== null \}\)/, 'the archive gets the variant its configuration decides');
 });
 
 // The launcher is the one file in the archive the reader touches, and the bundled runtime is the

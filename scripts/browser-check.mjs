@@ -8641,7 +8641,7 @@ const SCENARIOS = [
       });
       t.check('reading data, completion history and the import draft each keep their download, restore and report together',
         groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
-          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Cloud backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
         JSON.stringify(groups));
       const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
         const input = document.getElementById(id);
@@ -8682,10 +8682,14 @@ const SCENARIOS = [
           }),
         };
       });
+      // The ceiling sits at the count. It was 80 until the owner approved a note naming the three
+      // single-kind backups on 2026-10-28 (#810, stage 3, S3b-8), which added 4 words; #835 brought this
+      // group down from about 200 and asked only that its guidance be roughly halved.
       t.check('Data safety leads with a short transfer summary and keeps its warnings on screen, explanations closed',
-        guidance.summary?.startsWith('Moving to another device:') && guidance.summary.includes('Settings are not included')
+        guidance.summary?.startsWith('Moving to another device:')
+          && guidance.summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.')
           && guidance.warnings.every(Boolean) && guidance.described.every(Boolean) && guidance.closed.every(Boolean)
-          && guidance.words <= 80,
+          && guidance.words <= 84,
         JSON.stringify(guidance));
       t.check('the import draft group still names retained draft source and the backups that leave it out',
         await page.evaluate(() => {
@@ -12081,7 +12085,13 @@ const SCENARIOS = [
     async run(page, t) {
       const browserErrors = [];
       page.on('console', (message) => {
-        if (message.type() === 'error') browserErrors.push(message.text());
+        if (message.type() !== 'error') return;
+        // This journey boots into About, which asks a build without cloud backup one status question that it
+        // answers 404 like any unknown path (#810), and Chromium reports every 404 as a failed resource. That
+        // answer is the expected one, so it alone is set aside; any other error still counts.
+        const at = new URL(message.location()?.url || 'about:blank', page.__origin).pathname;
+        if (at.startsWith('/__recap_cloud__/v1/') && /^Failed to load resource: .*\b404\b/.test(message.text())) return;
+        browserErrors.push(message.text());
       });
       page.on('pageerror', (error) => browserErrors.push(error.message));
 
@@ -18857,7 +18867,7 @@ SCENARIOS.push(responsiveOwner({
       await page.setViewport({ width, height: 900 });
       await open(page, '/#/data');
       await responsiveFrames(page);
-      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.map((label) => {
+      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.filter((label) => label.getClientRects().length).map((label) => {
         const input = label.querySelector('input[type="checkbox"]');
         const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
         const range = document.createRange();
@@ -19486,6 +19496,461 @@ SCENARIOS.push({
     t.check('the reading-data restore refuses the complete file with nothing changed',
       await page.$eval('#restore-report', (node) => node.textContent.includes('Reading data is unchanged'))
         && JSON.stringify(await savedComplete(page)) === JSON.stringify(settled));
+  },
+});
+
+// Cloud backup (#810, P02-T05). The static server under test carries no client configuration, so it is
+// the dormant build: its 404 is what a release without cloud backup answers. The second scenario stands a
+// host in for it, answering the control API inside the page through a function in this process, so its
+// state outlives the reload a restore ends in.
+const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
+
+function cloudFixtureHost() {
+  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null };
+  const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
+  const status = () => ({
+    provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
+    message: null, reason: linked() ? host.reason : null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
+  });
+  const refuse = (code, message) => ({ ok: false, error: { code, message } });
+  const guard = (input) => {
+    if (!linked()) return refuse('not-connected', 'Cloud backup is not connected on this computer.');
+    return input.connection === host.connection ? null : refuse('needs-consent', host.reason ?? 'Cloud backup was connected again.');
+  };
+  const shape = ({ id, name, size, created }) => ({ id, name, size, created });
+  function handle(operation, input) {
+    // A create held until the check lets it go, so the card can be seen while a backup runs.
+    if (operation === 'create' && host.gate) {
+      const gate = host.gate;
+      host.gate = null;
+      return gate.then(() => handle(operation, input));
+    }
+    host.calls.push(operation);
+    if (operation === 'status') return { ok: true, status: status() };
+    if (operation === 'connect') {
+      if (host.state === 'not-connected' || host.state === 'needs-sign-in') host.state = 'signing-in';
+      return { ok: true, status: status() };
+    }
+    if (operation === 'disconnect') {
+      Object.assign(host, { state: 'not-connected', connection: null, account: null, reason: null });
+      return { ok: true, status: status() };
+    }
+    const refused = guard(input);
+    if (refused) return refused;
+    if (operation === 'list') return { ok: true, items: [...host.items.values()].map(shape) };
+    if (operation === 'read') {
+      const item = host.items.get(input.id);
+      return item ? { ok: true, bytes: item.bytes } : refuse('not-found', 'That item is no longer in OneDrive.');
+    }
+    if (operation === 'create') {
+      if ([...host.items.values()].some((item) => item.name === input.name)) return refuse('exists', 'OneDrive already holds an item with that name.');
+      const item = { id: `item-${host.next++}`, name: input.name, bytes: input.bytes, size: Buffer.from(input.bytes, 'base64').length, created: Date.now() };
+      host.items.set(item.id, item);
+      return { ok: true, item: shape(item) };
+    }
+    if (operation === 'delete') {
+      host.items.delete(input.id);
+      return { ok: true };
+    }
+    return refuse('invalid', 'There is no such cloud operation.');
+  }
+  return {
+    host, handle,
+    signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test', reason: null }); },
+    // The person deleted the Recap Page folder, and another browser's backup found it gone: the host forgot
+    // the folder, started a new connection and says why, as host/cloudHost.mjs does.
+    folderDeleted() {
+      host.items.clear();
+      Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
+    },
+  };
+}
+
+async function cloudCard(page) {
+  return page.evaluate(() => {
+    const card = document.querySelector('#cloud-backup');
+    const shown = (selector) => { const node = document.querySelector(selector); return Boolean(node && !node.closest('[hidden]') && node.getClientRects().length); };
+    return {
+      hidden: card.hidden,
+      status: document.querySelector('#cloud-backup-status').textContent,
+      report: document.querySelector('#cloud-backup-report').textContent,
+      signIn: shown('#btn-cloud-sign-in'), auto: shown('#opt-cloud-auto'), checked: document.querySelector('#opt-cloud-auto').checked,
+      discovery: shown('#cloud-discovery'), remove: shown('#btn-cloud-delete'), disconnect: shown('#btn-cloud-disconnect'),
+      restores: [...document.querySelectorAll('#cloud-discovery-list button[data-cloud-copy]')].map((button) => ({
+        id: button.id, text: button.textContent, label: button.getAttribute('aria-label'),
+        shown: !button.closest('[hidden]') && button.getClientRects().length > 0, enabled: !button.disabled,
+      })),
+    };
+  });
+}
+
+async function cloudDatabases(page) {
+  return page.evaluate(async () => (await indexedDB.databases()).map((entry) => entry.name).filter((name) => name === 'mrt-cloud-backup-v1'));
+}
+
+// About's privacy statement as it is shown: the Your data paragraph as read, and which variants of the
+// switched sentences are showing (P02-T06), read from their hidden state because the request list sits in
+// a closed details element, where innerText would also read the hidden variant.
+async function aboutPrivacy(page) {
+  return page.evaluate(() => {
+    const view = document.querySelector('#view-about');
+    const heading = [...view.querySelectorAll('h3')].find((node) => node.textContent === 'Your data');
+    return {
+      data: heading.nextElementSibling.innerText.replace(/\s+/g, ' ').trim(),
+      cloud: [...view.querySelectorAll('[data-cloud-copy="on"]')].map((node) => !node.hidden),
+      local: [...view.querySelectorAll('[data-cloud-copy="off"]')].map((node) => !node.hidden),
+    };
+  });
+}
+
+SCENARIOS.push({
+  id: 'cloud-dormant',
+  title: 'a build without cloud backup shows no card, asks the server once when Backup & settings opens, and stores nothing',
+  async run(page, t) {
+    const asked = [];
+    const answered = [];
+    const logos = [];
+    const ours = (url) => new URL(url).pathname.startsWith(CLOUD_PREFIX_PATH);
+    page.on('request', (request) => {
+      if (ours(request.url())) asked.push(`${request.method()} ${new URL(request.url()).pathname}`);
+      if (new URL(request.url()).pathname.startsWith('/brands/')) logos.push(new URL(request.url()).pathname);
+    });
+    page.on('response', (response) => { if (ours(response.url())) answered.push(response.status()); });
+    // Counts the startup check for a cloud backup record, so "asks nothing" is read only after it ran.
+    await page.evaluateOnNewDocument(() => {
+      const factory = window.indexedDB;
+      const listed = factory.databases.bind(factory);
+      window.__mrtCloudChecks = 0;
+      factory.databases = () => { window.__mrtCloudChecks += 1; return listed(); };
+    });
+    await seedFixtureState(page);
+    await page.waitForFunction(() => window.__mrtCloudChecks > 0, { timeout: 15000 });
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    t.check('starting the app looks for a cloud backup record without creating one, and asks nothing',
+      asked.length === 0 && (await cloudDatabases(page)).length === 0, JSON.stringify(asked));
+    await open(page, '/#/data');
+    await page.waitForSelector('#view-data:not([hidden])');
+    for (const end = Date.now() + 10_000; answered.length === 0 && Date.now() < end;) {
+      await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+    }
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 1000); }));
+    t.check('opening Backup & settings asks once, and the server answers 404, as for any unknown address',
+      JSON.stringify(asked) === JSON.stringify([`POST ${CLOUD_PREFIX_PATH}status`]) && JSON.stringify(answered) === '[404]',
+      JSON.stringify({ asked, answered }));
+    t.check('the card stays hidden, and no cloud backup database exists',
+      (await cloudCard(page)).hidden && (await cloudDatabases(page)).length === 0);
+    t.check('the provider\'s logo is never downloaded while the card it sits in is hidden',
+      logos.length === 0, JSON.stringify(logos));
+    const subtitle = await page.$eval('#view-data .head .sub', (node) => node.innerText.trim());
+    t.check('the privacy promise keeps the words a build without cloud backup has always said',
+      subtitle === 'Your reading progress lives in this browser, at this exact address, and is never sent anywhere.', subtitle);
+    await click(page, '#btn-wipe');
+    await page.waitForSelector('#ask[open]');
+    const body = await page.$eval('#ask-body', (node) => node.textContent);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 0
+      && !document.querySelector('#btn-wipe').disabled, { timeout: 15000 });
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    t.check('the erase question says nothing of cloud backup, and erasing asks nothing and stores nothing',
+      !/cloud/i.test(body) && asked.length === 1 && (await cloudDatabases(page)).length === 0,
+      JSON.stringify({ asked, body: body.slice(-160) }));
+
+    // About carries the full privacy statement, so it asks too: the same one request, answered 404.
+    await open(page, '/#/about');
+    await page.waitForSelector('#view-about:not([hidden])');
+    for (const end = Date.now() + 10_000; answered.length < 2 && Date.now() < end;) {
+      await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+    }
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    const about = await aboutPrivacy(page);
+    t.check('opening About asks once more, answered 404, and its privacy statement keeps the words it has always had',
+      JSON.stringify(answered) === '[404,404]' && asked.length === 2
+        && about.data.endsWith('Your progress and your notes are never sent anywhere. Clearing site data for this address erases them, so export a backup regularly.')
+        && about.cloud.length === 2 && about.cloud.every((shown) => !shown) && about.local.every(Boolean),
+      JSON.stringify({ asked, answered, about }));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-backup',
+  title: 'cloud backup signs in beside Microsoft\'s logo, shows the account before asking, backs up at once, restores through the complete restore engine, and asks Cancel first before anything without a way back',
+  async run(page, t) {
+    const fixture = cloudFixtureHost();
+    await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
+    await page.evaluateOnNewDocument((prefix) => {
+      const prior = window.fetch;
+      window.fetch = async (input, init = {}) => {
+        const url = new URL(typeof input === 'string' ? input : input?.url ?? String(input), location.href);
+        if (url.origin !== location.origin || !url.pathname.startsWith(prefix)) return prior(input, init);
+        const answer = await window.__mrtCloudHost(url.pathname.slice(prefix.length), init.body ? JSON.parse(init.body) : {});
+        return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
+      };
+    }, CLOUD_PREFIX_PATH);
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page);
+    await open(page, '/#/data');
+    await page.waitForSelector('#cloud-backup:not([hidden])');
+    const subtitle = await page.$eval('#view-data .head .sub', (node) => node.innerText.trim());
+    t.check('a build with cloud backup says so in the promise at the top of Backup & settings, before anyone connects',
+      subtitle === 'Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', subtitle);
+    // The logo is lazy, so it loads once the card is shown and near the window, and not before.
+    await page.$eval('#cloud-backup', (node) => node.scrollIntoView({ block: 'center' }));
+    const loaded = await page.waitForFunction(() => {
+      const image = document.querySelector('#btn-cloud-sign-in img');
+      return image.complete && image.naturalWidth > 0;
+    }, { timeout: 5000 }).then(() => true, () => false);
+    const signedOut = await cloudCard(page);
+    const logo = await page.$eval('#btn-cloud-sign-in', (button) => ({
+      text: button.textContent.trim(), width: button.querySelector('img').naturalWidth, alt: button.querySelector('img').getAttribute('alt'),
+    }));
+    t.check('signed out, the card says what it does and offers Sign in with Microsoft, with Microsoft\'s logo loaded beside the words',
+      signedOut.signIn && !signedOut.auto && !signedOut.discovery && logo.text === 'Sign in with Microsoft' && loaded && logo.width === 21 && logo.alt === '',
+      JSON.stringify({ signedOut, logo, loaded }));
+    await completePresentation(page, t, {
+      label: 'the cloud backup card signed out',
+      root: '#cloud-backup',
+      order: ['#btn-cloud-sign-in', '#cloud-backup > details:last-of-type > summary'],
+      names: { '#btn-cloud-sign-in': 'Sign in with Microsoft' },
+    });
+
+    await page.focus('#btn-cloud-sign-in');
+    await click(page, '#btn-cloud-sign-in');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Finish signing in'));
+    const handed = await page.waitForFunction(() => document.activeElement?.id === 'cloud-backup-status', { timeout: 3000 })
+      .then(() => true, () => false);
+    t.check('signing in says where to finish, and moves focus to that line rather than losing it',
+      handed, await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+    fixture.signedIn();
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'), { timeout: 15000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    const connected = await cloudCard(page);
+    t.check('connected, the account and what it holds come first, with automatic backup still off',
+      connected.status === 'Connected to OneDrive as reader@example.test.' && connected.auto && !connected.checked
+        && connected.discovery && await page.$eval('#cloud-discovery', (node) => node.open) && fixture.host.items.size === 0,
+      JSON.stringify(connected));
+    // UX-23 (#835), as RC10 holds the settings switches a build without cloud backup shows.
+    const switchAt = [];
+    for (const width of [1280, 360]) {
+      await page.setViewport({ width, height: 900 });
+      switchAt.push(await page.$eval('#cloud-auto', (label, at) => {
+        const input = label.querySelector('input[type="checkbox"]');
+        const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        const words = range.getBoundingClientRect();
+        const track = input.getBoundingClientRect();
+        const box = label.getBoundingClientRect();
+        const card = label.closest('.card').getBoundingClientRect();
+        const style = getComputedStyle(label);
+        return {
+          width: at, height: box.height,
+          unboxed: [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth].every((value) => value === '0px'),
+          beside: track.right <= words.left + 0.5 && track.bottom > words.top && track.top < words.bottom,
+          inside: words.right <= box.right + 0.5 && box.left >= card.left - 0.5 && box.right <= card.right + 0.5,
+        };
+      }, width));
+    }
+    await page.setViewport({ width: 1280, height: 900 });
+    t.check('the automatic backup switch is set out as the other settings switches are, track first and its label beside it, unboxed, at 1280 and 360 pixels',
+      switchAt.every((entry) => entry.unboxed && entry.beside && entry.inside && entry.height >= 24), JSON.stringify(switchAt));
+
+    // The first backup is held at its create, so the card can be seen while one runs. Edge paints an
+    // indeterminate bar's movement itself, out of reach of the rule that stops CSS animation, so under
+    // reduced motion the bar is hidden and the status line alone says a backup is running (stage 3
+    // review, S3b-4).
+    let release = () => {};
+    fixture.host.gate = new Promise((resolve) => { release = resolve; });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
+    const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
+    const motion = { moving: await bar() };
+    const media = await page.createCDPSession();
+    await media.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+    motion.reduced = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+    motion.still = !(await bar());
+    await media.send('Emulation.setEmulatedMedia', { features: [] });
+    await media.detach();
+    t.check('while a backup runs the card shows a moving bar beside its words, and under reduced motion the words alone',
+      motion.moving && motion.reduced && motion.still, JSON.stringify(motion));
+    release();
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    t.check('turning automatic backup on makes the first backup at once, read back and counted',
+      fixture.host.items.size === 1 && [...fixture.host.items.values()][0].name.startsWith('recap-page-backup-v1-')
+        && (await cloudCard(page)).report.includes('Automatic backup is on for this browser.'),
+      JSON.stringify(fixture.host.calls));
+
+    await click(page, '#cloud-discovery-list button[data-cloud-action="check"]');
+    await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]');
+    const listed = await cloudCard(page);
+    t.check('the account now lists this browser\'s backup, with a shown, enabled Restore named for the copy it restores',
+      listed.restores.length === 1 && listed.restores[0].text === 'Restore' && listed.restores[0].label.startsWith('Restore the newest backup from ')
+        && listed.restores[0].shown && listed.restores[0].enabled
+        && await page.$eval('#cloud-discovery-list', (node) => node.textContent.includes('(this browser)')),
+      JSON.stringify(listed.restores));
+    await page.$eval('#cloud-discovery', (node) => { node.open = false; });
+    await completePresentation(page, t, {
+      label: 'the cloud backup card with backups on',
+      root: '#cloud-backup',
+      order: ['#opt-cloud-auto', '#cloud-discovery > summary', '#btn-cloud-delete', '#btn-cloud-disconnect', '#cloud-backup > details:last-of-type > summary'],
+      names: {
+        '#opt-cloud-auto': 'Back up this browser automatically',
+        '#btn-cloud-delete': 'Delete this device\'s cloud backups',
+        '#btn-cloud-disconnect': 'Disconnect',
+      },
+    });
+
+    // Each question: what it says, and its answer as it looks, reads and takes focus. Escape backs out.
+    const ask = async (opener, read = () => null) => {
+      await click(page, opener);
+      await page.waitForSelector('#ask[open]');
+      const answer = await page.evaluate(questionAnswer);
+      const body = await page.$eval('#ask-body', (node) => node.textContent);
+      const extra = await read();
+      return { ...answer, body, extra };
+    };
+    const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.$eval('#cloud-discovery', (node) => { node.open = true; });
+    const restore = await ask('#cloud-discovery-list button[data-cloud-copy="current"]');
+    await escapeShellDialog(page, '#ask');
+    t.check('restoring asks first, with the danger answer after a Cancel that keeps focus, and Cancel changes nothing',
+      restore.label === 'Restore this backup' && restore.danger && restore.focus === 'ask-cancel'
+        && JSON.stringify(restore.order) === JSON.stringify(['ask-cancel', 'ask-ok']) && restore.ratio >= 4.5
+        && restore.body.includes('this backup\'s 1 list') && !restore.body.includes('file')
+        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved,
+      JSON.stringify(restore));
+
+    const erase = await ask('#btn-wipe');
+    await escapeShellDialog(page, '#ask');
+    t.check('while connected, the erase question says cloud backup is disconnected for every profile',
+      erase.body.includes('Cloud backup is disconnected too, for every browser profile on this Windows account.'), erase.body.slice(-200));
+
+    const leave = await ask('#btn-cloud-disconnect', async () => {
+      const before = await page.evaluate(() => ({ shown: !document.querySelector('#ask-choice-field').hidden, checked: document.querySelector('#ask-choice').checked }));
+      await page.$eval('#ask-choice', (box) => box.click());
+      const chosen = await page.evaluate(questionAnswer);
+      await page.$eval('#ask-choice', (box) => box.click());
+      const plain = await page.evaluate(questionAnswer);
+      return { before, chosen, plain };
+    });
+    await escapeShellDialog(page, '#ask');
+    t.check('disconnecting offers deleting this device\'s backups as an unchecked choice; only the checked answer wears the danger look',
+      leave.label === 'Disconnect' && !leave.danger && leave.focus === 'ask-cancel' && leave.extra.before.shown && !leave.extra.before.checked
+        && leave.extra.chosen.label === 'Delete and disconnect' && leave.extra.chosen.danger && leave.extra.chosen.ratio >= 4.5
+        && leave.extra.plain.label === 'Disconnect' && !leave.extra.plain.danger && fixture.host.state === 'connected',
+      JSON.stringify(leave));
+
+    // Restoring for real, through the complete restore engine. The saved data is changed first and the
+    // page started again, as a later session would leave it, so the restore has something to replace.
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      state.lists.fixture.name = 'Changed after the backup';
+      localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto:checked', { timeout: 15000 });
+    await page.$eval('#cloud-discovery', (node) => { node.open = true; });
+    // Pressed as a person presses it: with the mouse, where the button is drawn, after checking it is what
+    // sits under the pointer there. A click by script reached the button while the owner's session found
+    // every Restore hidden (P02-T07, step 9).
+    const newest = '#cloud-discovery-list button[data-cloud-copy="current"]';
+    const visible = await page.waitForSelector(newest, { visible: true, timeout: 15000 }).then(() => true, () => false);
+    const press = visible ? await page.$eval(newest, (button) => {
+      button.scrollIntoView({ block: 'center' });
+      const box = button.getBoundingClientRect();
+      const x = box.left + box.width / 2;
+      const y = box.top + box.height / 2;
+      return { x, y, enabled: !button.disabled, under: button.contains(document.elementFromPoint(x, y)) };
+    }) : null;
+    t.check('the newest backup\'s Restore button is shown, enabled and under the pointer where it is drawn',
+      visible && press.enabled && press.under, JSON.stringify({ visible, press }));
+    if (press) await page.mouse.click(press.x, press.y);
+    await page.waitForSelector('#ask[open]');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+    await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Backup restored from OneDrive.'), { timeout: 15000 });
+    const restored = await readState(page);
+    t.check('confirming restores the backup through the complete restore engine, replacing the change made after it',
+      restored?.lists?.fixture?.name === ORDER.name && JSON.stringify(restored.listOrder) === JSON.stringify(['fixture']),
+      JSON.stringify({ name: restored?.lists?.fixture?.name, order: restored?.listOrder }));
+    await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto', { timeout: 15000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'), { timeout: 15000 });
+    t.check('after the restore this browser still backs up: its consent is not part of what a restore replaces',
+      (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
+
+    const stored = fixture.host.items.size;
+    const remove = await ask('#btn-cloud-delete');
+    t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
+      remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
+        && remove.body.includes('every backup it made in the OneDrive account reader@example.test.')
+        && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied'),
+      JSON.stringify(remove));
+    await click(page, '#ask-ok');
+    await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
+    t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
+      stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
+        && (await cloudCard(page)).report.includes('from the OneDrive account reader@example.test, where')
+        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied'),
+      `${stored}: ${(await cloudCard(page)).report}`);
+
+    await page.focus('#btn-cloud-disconnect');
+    await click(page, '#btn-cloud-disconnect');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Disconnected from OneDrive.'), { timeout: 15000 });
+    const gone = await cloudCard(page);
+    t.check('disconnecting signs out for every profile and offers the sign-in again',
+      fixture.host.state === 'not-connected' && gone.signIn && !gone.auto && !gone.discovery, JSON.stringify(gone));
+    // The button and the status line are both gone now, so focus goes to the report (stage 3 review, S3b-1).
+    const landed = await page.waitForFunction(() => document.activeElement?.id === 'cloud-backup-report', { timeout: 3000 })
+      .then(() => true, () => false);
+    t.check('after Disconnect, focus lands on the report of it rather than falling to the page',
+      landed, await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+
+    // About asks the host too, so its privacy statement names cloud backup, and what it sends and to whom.
+    await open(page, '/#/about');
+    await page.waitForSelector('#view-about:not([hidden])');
+    const shown = await page.waitForFunction(() => [...document.querySelectorAll('#view-about [data-cloud-copy="on"]')].every((node) => !node.hidden),
+      { timeout: 10000 }).then(() => true, () => false);
+    const about = await aboutPrivacy(page);
+    t.check('About\'s privacy statement takes its cloud backup words, and its request list adds what cloud backup sends',
+      shown && about.cloud.length === 2 && about.cloud.every(Boolean) && about.local.every((visible) => !visible)
+        && about.data.includes('Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive')
+        && !about.data.includes('never sent anywhere'),
+      JSON.stringify(about));
+
+    // The person deletes the Recap Page folder in OneDrive while this browser backs up, and another
+    // browser's backup finds it gone first. Opening Backup & settings asks the host, and the card says the
+    // folder was deleted rather than that anyone signed in again (P02-T07 decision 2).
+    fixture.signedIn();
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to OneDrive as reader@example.test.'
+      && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    // Every announcement from here on, as the page's announcer receives it (stage 3 review, S3b-2).
+    await page.evaluate(() => {
+      window.__cloudSpoken = [];
+      const node = document.querySelector('#announcer');
+      new MutationObserver(() => { if (node.textContent) window.__cloudSpoken.push(node.textContent); })
+        .observe(node, { childList: true, characterData: true, subtree: true });
+    });
+    fixture.folderDeleted();
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    const deleted = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.endsWith(reason),
+      { timeout: 15000 }, deleted).then(() => true, () => false);
+    const asked = await cloudCard(page);
+    t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
+      told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
+    t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
+    await page.waitForFunction((reason) => window.__cloudSpoken.some((text) => text.includes(reason)), { timeout: 3000 }, deleted).catch(() => {});
+    await new Promise((resolve) => { setTimeout(resolve, 300); });
+    const spoken = await page.evaluate(() => window.__cloudSpoken);
+    const warned = await page.$eval('#cloud-backup-status', (node) => node.classList.contains('notice') && node.classList.contains('notice-warn'));
+    t.check('stopped backups are announced once and the status line wears the warning notice',
+      spoken.filter((text) => text.includes(deleted)).length === 1 && warned, JSON.stringify({ spoken, warned }));
+    t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
 

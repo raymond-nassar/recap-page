@@ -5,6 +5,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createDataView, eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
+import {
+  cloudBackupStatus, cloudCardStatus, cloudEraseNote, createCloudBackupView, renderCloudCopy,
+} from '../src/js/views/cloud.js';
 import { createEmptyState, createList, exportBackup } from '../src/js/lib/model.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -422,6 +425,447 @@ test('a restored import draft sends the reader to Search to resume it', async ()
   // The page that resumes a draft is named Search everywhere now (#831, #924).
   assert.deepEqual(notices.at(-1), ['#draft-transfer-report',
     'Import draft restored. Reading data was not changed. Review Resume saved import in Search.', 'ok']);
+});
+
+// -- the cloud backup card (#810, P02-T05) --
+
+const STREAM = 'a'.repeat(32);
+const NEWEST = Object.freeze({ id: 'item-9', stream: STREAM, generation: 9, device: 'Phone', createdAt: 900, size: 40, summary: { lists: 2, records: 3, draft: false } });
+const EARLIER = Object.freeze({ ...NEWEST, id: 'item-8', generation: 8, createdAt: 800, summary: { lists: 1, records: 3, draft: false } });
+const FOUND = Object.freeze({
+  state: 'ready', connection: 'c'.repeat(32), message: null, code: null,
+  result: { own: null, devices: [{ stream: STREAM, own: false, current: NEWEST, previous: EARLIER, invalid: 1, files: 3 }], omitted: 0, unrecognized: 2 },
+});
+const CLOUD = Object.freeze({
+  shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, signInExpiresAt: null,
+  agreed: false, on: false, askedAgain: false, hasStream: false, recordProblem: null, recordUnreadable: false,
+  backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null },
+  discovery: { state: 'idle', connection: null, result: null, message: null, code: null },
+});
+const CONTROLS = ['intro', 'status', 'progress', 'primary', 'signIn', 'retry', 'auto', 'discovery', 'actions', 'remove', 'disconnect'];
+const when = (at) => `T${at}`;
+const settled = async () => { for (let turn = 0; turn < 8; turn += 1) await new Promise((resolve) => { setImmediate(resolve); }); };
+
+// Enough of document.createElement for the card: tags, text, attributes and data, and the buttons below.
+function fakeEl(tag, props = {}, children = []) {
+  const node = stubNode({ tag, dataset: {}, children: [].concat(children).filter((child) => child != null) });
+  for (const [key, value] of Object.entries(props)) {
+    if (value == null || value === false) continue;
+    if (key === 'text') node.textContent = value;
+    else if (key === 'dataset') Object.assign(node.dataset, value);
+    else node.attributes[key] = value;
+  }
+  node.closest = (selector) => (selector === 'button' && tag === 'button' ? node : null);
+  return node;
+}
+
+function buttonsIn(node) {
+  return (node.children ?? []).flatMap((child) => [...(child.tag === 'button' ? [child] : []), ...buttonsIn(child)]);
+}
+
+function cloudNodes() {
+  const nodes = Object.fromEntries(['card', ...CONTROLS, 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
+  // The line under the card, which the page's notify writes into and the card withdraws from.
+  nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
+  nodes.found = stubNode({
+    children: [],
+    replaceChildren(...parts) { this.children = parts; },
+    querySelectorAll() { return buttonsIn(this); },
+  });
+  // As in a browser, where closest() starts at the element itself, so a hidden control is seen as hidden.
+  for (const node of Object.values(nodes)) node.closest = function closest(selector) { return selector === '[hidden]' && this.hidden ? this : null; };
+  for (const node of Object.values(nodes)) {
+    const names = new Set();
+    node.classList = { toggle(name, force) { if (force) names.add(name); else names.delete(name); }, contains: (name) => names.has(name) };
+  }
+  return nodes;
+}
+
+function cloudCard(model, overrides = {}) {
+  const nodes = cloudNodes();
+  const state = { model, asked: [], notices: [], calls: [] };
+  const record = (name, value) => async (...args) => { state.calls.push([name, ...args]); return typeof value === 'function' ? value(...args) : value; };
+  const view = createCloudBackupView({
+    el: fakeEl, elements: () => nodes, getModel: () => state.model, when, at: when,
+    askConfirm: async (options) => { state.asked.push(options); return state.answers.shift() ?? false; },
+    askConfirmChoice: async (options) => { state.asked.push(options); return state.answers.shift() ?? null; },
+    notify: (selector, message, kind) => { state.notices.push([selector, message, kind]); nodes.report.children = [message]; },
+    onConnect: record('connect'), onTurnOn: record('on'), onTurnOff: record('off'), onDiscover: record('discover'),
+    onFetch: record('fetch', (copy) => ({ ...copy, text: '{"backup":true}' })), onRestore: record('restore', { ok: true }),
+    onDeleteOwn: record('delete', { deleted: 2, failed: [] }), onDisconnect: record('disconnect'), onRetry: () => state.calls.push(['retry']),
+    onFinished: (message) => state.calls.push(['finished', message]),
+    ...overrides,
+  });
+  state.answers = [];
+  view.wire();
+  const shown = () => CONTROLS.filter((key) => !nodes[key].hidden);
+  return { nodes, view, state, shown, show(next) { state.model = next; view.render(next); } };
+}
+
+test('the cloud card shows only what each state allows, and nothing at all in a build without cloud backup', () => {
+  const card = cloudCard({ ...CLOUD, shown: false });
+  assert.equal(card.nodes.card.hidden, true);
+
+  card.show({ ...CLOUD, host: 'not-connected', account: null });
+  assert.equal(card.nodes.card.hidden, false);
+  assert.deepEqual(card.shown(), ['intro', 'primary', 'signIn'], 'signed out: what it does, and Sign in with Microsoft');
+
+  card.show({ ...CLOUD, host: 'signing-in', account: null, signInExpiresAt: 300 });
+  assert.deepEqual(card.shown(), ['intro', 'status']);
+  assert.equal(card.nodes.status.textContent, 'Finish signing in to Microsoft in the browser window that opened. The sign-in stops by itself at T300.');
+
+  card.show({ ...CLOUD, discovery: FOUND });
+  assert.deepEqual(card.shown(), ['status', 'auto', 'discovery', 'actions', 'disconnect'], 'connected, not agreed: the account first');
+  assert.deepEqual([card.nodes.autoInput.checked, card.nodes.discovery.open], [false, true]);
+  assert.equal(card.nodes.status.textContent, 'Connected to OneDrive as reader@example.test.');
+
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, discovery: FOUND };
+  card.show({ ...on, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: 500 } });
+  assert.deepEqual(card.shown(), ['status', 'progress', 'auto', 'discovery', 'actions', 'remove', 'disconnect']);
+  assert.equal(card.nodes.autoInput.checked, true);
+  card.show({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 500 } });
+  assert.ok(card.shown().includes('retry'));
+  assert.match(card.nodes.status.textContent, /OneDrive is full, so backups have stopped\. .* Last backed up T500\.$/);
+
+  card.show({ ...on, host: 'needs-sign-in' });
+  assert.deepEqual(card.shown(), ['status', 'primary', 'signIn', 'auto', 'actions', 'disconnect'], 'sign in again, or turn off, or disconnect');
+  card.show({ ...on, host: 'not-answering', account: null });
+  assert.deepEqual(card.shown(), ['status', 'auto'], 'the app is not answering: only turning it off here');
+  card.show({ ...CLOUD, host: 'unavailable', account: null, message: 'Windows is restricting PowerShell.' });
+  assert.deepEqual(card.shown(), ['status', 'actions', 'disconnect']);
+  assert.equal(card.nodes.status.textContent, 'Windows is restricting PowerShell.');
+  card.show({ ...CLOUD, agreed: true, askedAgain: true, discovery: FOUND });
+  assert.equal(card.nodes.autoInput.checked, false, 'agreed to another connection: asked again');
+  assert.match(card.nodes.status.textContent, /connected again since this browser agreed/);
+  // When the host knows why, the card says that instead: the person deleted the folder, and nobody signed in
+  // again (P02-T07 decision 2).
+  const reason = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+  card.show({ ...CLOUD, agreed: true, askedAgain: true, reason, discovery: FOUND });
+  assert.equal(card.nodes.status.textContent, `Connected to OneDrive as reader@example.test. ${reason}`);
+  assert.equal(card.nodes.autoInput.checked, false);
+  card.show({ ...CLOUD, agreed: true, reason, discovery: FOUND });
+  assert.equal(card.nodes.status.textContent, 'Connected to OneDrive as reader@example.test.', 'only a browser being asked again is told why');
+});
+
+// Coordinator decision, 2026-10-28: the line under the card says what the switch shows, or nothing.
+test('the line under the card never says automatic backup is on beside an unticked switch, nor off beside a ticked one', async () => {
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, discovery: FOUND };
+  const reason = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+  const ON = 'Automatic backup is on for this browser.';
+  // Asked again once on: the person deleted the folder, so the host says why, or another profile reconnected.
+  for (const asked of [{ reason }, { reason: null }]) {
+    const card = cloudCard({ ...CLOUD, discovery: FOUND }, { onTurnOn: async () => { card.state.model = on; } });
+    await card.nodes.autoInput._fire({ target: { checked: true } });
+    await settled();
+    assert.deepEqual([card.state.notices.at(-1)?.[1], card.nodes.report.children, card.nodes.autoInput.checked], [ON, [ON], true]);
+    card.show({ ...on, on: false, askedAgain: true, ...asked });
+    assert.equal(card.nodes.autoInput.checked, false);
+    assert.deepEqual(card.nodes.report.children, [], `withdrawn once the switch shows off (${asked.reason ? 'folder deleted' : 'reconnected'})`);
+    card.show(on);
+    assert.deepEqual(card.nodes.report.children, [], 'and not put back');
+  }
+  // The host held another connection by the time this browser agreed: never said to be on at all.
+  const raced = cloudCard({ ...CLOUD, discovery: FOUND }, { onTurnOn: async () => { raced.state.model = { ...on, on: false, askedAgain: true }; } });
+  await raced.nodes.autoInput._fire({ target: { checked: true } });
+  await settled();
+  assert.deepEqual([raced.state.notices, raced.nodes.autoInput.checked], [[], false]);
+  // Disconnected in another profile: consent is still recorded, but the switch is hidden and nothing backs up.
+  const gone = cloudCard({ ...CLOUD, discovery: FOUND }, { onTurnOn: async () => { gone.state.model = on; } });
+  await gone.nodes.autoInput._fire({ target: { checked: true } });
+  await settled();
+  gone.show({ ...on, host: 'not-connected', account: null, on: false });
+  assert.deepEqual([gone.nodes.auto.hidden, gone.nodes.report.children], [true, []]);
+  // Off stays true while the switch is hidden, and is withdrawn once another tab turns backups on.
+  const off = cloudCard(on, { onTurnOff: async () => { off.state.model = { ...CLOUD, agreed: false, hasStream: true, discovery: FOUND }; } });
+  await off.nodes.autoInput._fire({ target: { checked: false } });
+  await settled();
+  const OFF = 'Automatic backup is off for this browser. Backups already in OneDrive stay there.';
+  assert.deepEqual(off.nodes.report.children, [OFF]);
+  off.show({ ...CLOUD, host: 'not-connected', account: null, agreed: false });
+  assert.deepEqual(off.nodes.report.children, [OFF], 'disconnected elsewhere: still off');
+  off.show(on);
+  assert.deepEqual(off.nodes.report.children, [], 'turned on in another tab: withdrawn');
+});
+
+// Focus never falls to the page. An action whose control is gone afterwards hands focus to the status line,
+// or, when that says nothing, to the report of what was done, which is there while the card is (stage 3
+// review, S3b-1).
+test('after Try again now and after Disconnect, focus lands on what the card says', async () => {
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, discovery: FOUND };
+  const card = cloudCard({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 5 } }, {
+    onRetry: () => {
+      card.state.calls.push(['retry']);
+      card.show({ ...on, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: 5 } });
+    },
+    onDisconnect: async () => { card.state.model = { ...CLOUD, host: 'not-connected', account: null }; },
+  });
+  assert.equal(card.nodes.retry.hidden, false);
+  await card.nodes.retry._fire();
+  await settled();
+  assert.deepEqual([card.state.calls.at(-1), card.nodes.retry.hidden, card.nodes.status.focused], [['retry'], true, true],
+    'the button went with the failure, so the status line has focus');
+  card.state.answers.push({ choice: false });
+  await card.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual([card.nodes.status.hidden, card.nodes.disconnect.hidden, card.nodes.report.focused], [true, true, true],
+    'the control and the status line are gone, so the report of the disconnect has focus');
+});
+
+// Said once each, as it happens, through the page's announcer: signing in, a sign-in that failed, a sign-in
+// to make again, and backups that stopped. The line itself is not live, or it would also speak every
+// "Backing up now". Stopped and failed states wear the warning notice, whose mark is not color alone
+// (stage 3 review, S3b-2).
+test('the card announces each change a person must hear once, as it happens, and marks stops and failures as warnings', () => {
+  const spoken = [];
+  const quiet = cloudCard({ ...CLOUD, host: 'needs-sign-in' }, { announce: (text) => spoken.push(text) });
+  assert.deepEqual([spoken, quiet.nodes.status.classList.contains('notice-warn')], [[], true], 'what a page finds when it opens is not news');
+  const card = cloudCard({ ...CLOUD, host: 'not-connected', account: null }, { announce: (text) => spoken.push(text) });
+  const warned = () => card.nodes.status.classList.contains('notice') && card.nodes.status.classList.contains('notice-warn');
+  card.show({ ...CLOUD, host: 'signing-in', account: null, signInExpiresAt: 300 });
+  card.show({ ...CLOUD });
+  card.show({ ...CLOUD });
+  assert.deepEqual([spoken, warned()], [['Connected to OneDrive as reader@example.test.'], false], 'signed in, said once');
+  card.show({ ...CLOUD, host: 'signing-in', account: null, signInExpiresAt: 300 });
+  card.show({ ...CLOUD, host: 'not-connected', account: null, message: 'Sign-in was cancelled.' });
+  assert.deepEqual([spoken.at(-1), warned()], ['Sign-in was cancelled.', true]);
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true };
+  card.show({ ...on, backup: { phase: 'up-to-date', code: null, retryAt: null, lastUploadAt: 5 } });
+  card.show({ ...on, host: 'needs-sign-in' });
+  card.show({ ...on, host: 'needs-sign-in' });
+  assert.deepEqual([spoken.at(-1), warned()], ['Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.', true]);
+  card.show({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 5 } });
+  card.show({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 5 } });
+  assert.deepEqual([/OneDrive is full, so backups have stopped/.test(spoken.at(-1)), warned()], [true, true]);
+  card.show({ ...on, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: 5 } });
+  assert.equal(warned(), false, 'backing up again is no warning');
+  card.show({ ...CLOUD, agreed: true, askedAgain: true });
+  assert.deepEqual([/connected again since this browser agreed/.test(spoken.at(-1)), warned()], [true, true], 'asked again: backups stopped');
+  assert.equal(spoken.length, 5, 'one announcement for each of the five changes, and none for the rest');
+});
+
+// A record that fails its checks stops backups until automatic backup is turned on again, which starts a
+// new stream; the owner's words, approved 2026-10-28 (stage 3 review, S3b-7). A record the browser could
+// not read at all may be intact, so the card says nothing about it that it cannot know.
+test('a record that fails its checks is said in the status line, as a warning heard once', () => {
+  const unreadable = { ...CLOUD, recordProblem: 'This browser\'s cloud backup record cannot be read.', recordUnreadable: true };
+  assert.equal(cloudCardStatus(unreadable),
+    'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
+  assert.equal(cloudCardStatus({ ...CLOUD, recordProblem: 'This browser could not keep its cloud backup record.' }),
+    'Connected to OneDrive as reader@example.test.', 'a record that could not be read at all may be intact');
+  const spoken = [];
+  const card = cloudCard({ ...CLOUD }, { announce: (text) => spoken.push(text) });
+  card.show(unreadable);
+  card.show(unreadable);
+  assert.deepEqual([spoken, card.nodes.status.classList.contains('notice-warn')], [[cloudCardStatus(unreadable)], true]);
+});
+
+test('what backups are doing is said in words for every state the coordinator reports', () => {
+  const said = (phase, code = null, retryAt = null, lastUploadAt = 7) => cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { when, at: when });
+  assert.equal(said('saving'), 'Backing up now.');
+  assert.equal(said('up-to-date'), 'Backed up T7.');
+  assert.equal(said('pending'), 'Changes are waiting to be backed up. Last backed up T7.');
+  assert.equal(said('waiting', 'offline'), 'Backups wait for a network connection. Last backed up T7.');
+  assert.equal(said('waiting', 'paused', null, null), 'Backups wait for the restore to finish.');
+  assert.equal(said('retrying', 'timeout', 99), 'The last backup did not finish, so it is tried again at T99. Last backed up T7.');
+  for (const code of ['oversize', 'too-large']) assert.match(said('failed', code), /^Your saved data is larger than a cloud backup can be/);
+  assert.match(said('failed', 'storage'), /could not read its saved data or its cloud backup record/);
+  assert.match(said('failed', 'hash'), /^A backup could not be made, so backups have stopped until your data changes or you try again\./);
+  assert.equal(cloudCardStatus({ ...CLOUD, host: 'needs-sign-in' }), 'Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.');
+  assert.equal(cloudCardStatus({ ...CLOUD, host: 'not-connected', message: 'Sign-in was cancelled.' }), 'Sign-in was cancelled.');
+});
+
+test('the backups found are listed by device with Restore buttons named for what they restore, kept while backups go on', () => {
+  const card = cloudCard({ ...CLOUD, discovery: FOUND });
+  const [device, unrecognized] = card.nodes.found.children.filter((child) => child.tag !== 'button').slice(-2);
+  assert.equal(device.children[0].textContent, 'Phone');
+  const buttons = card.nodes.found.querySelectorAll('button');
+  assert.deepEqual(buttons.map((button) => [button.attributes.id, button.textContent, button.dataset.cloudCopy, button.dataset.cloudGeneration]), [
+    [`cloud-copy-${STREAM}-current`, 'Restore', 'current', '9'], [`cloud-copy-${STREAM}-previous`, 'Restore', 'previous', '8'], [undefined, 'Check again', undefined, undefined],
+  ]);
+  assert.deepEqual(buttons.slice(0, 2).map((button) => button.attributes['aria-label']), [
+    'Restore the newest backup from Phone, made T900', 'Restore the earlier backup from Phone, made T800',
+  ], 'each name starts with what the button says');
+  assert.match(device.children.at(-1).textContent, /^1 more backup could not be read, so it is not offered\.$/);
+  assert.equal(unrecognized.textContent, '2 other files in the folder were left alone.');
+  const drawn = card.nodes.found.children;
+  card.show({ ...CLOUD, discovery: FOUND, on: true, agreed: true, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: null } });
+  assert.equal(card.nodes.found.children, drawn, 'not redrawn, so a focused Restore keeps focus');
+});
+
+test('restoring a backup from the account reads it again and asks with the danger answer; Cancel applies nothing', async () => {
+  const card = cloudCard({ ...CLOUD, discovery: FOUND });
+  const [newest] = card.nodes.found.querySelectorAll('button');
+  card.nodes.found._fire({ target: newest });
+  await settled();
+  assert.deepEqual(card.state.calls.map(([name]) => name), ['fetch'], 'read and checked again first');
+  const [question] = card.state.asked;
+  assert.deepEqual([question.title, question.confirmLabel, question.danger], ['Replace all saved data with this backup?', 'Restore this backup', true]);
+  assert.ok(question.body.startsWith('From Phone, made T900. This replaces your reading data with this backup\'s 2 lists,'), question.body);
+  assert.ok(!question.body.includes('file'), 'a backup from the account is never called a file');
+
+  card.state.answers.push(true);
+  card.nodes.found._fire({ target: newest });
+  await settled();
+  assert.deepEqual(card.state.calls.slice(-2), [['restore', '{"backup":true}'], ['finished', 'Backup restored from OneDrive. Any import draft from it waits in Search for your review.']]);
+
+  const gone = cloudCard({ ...CLOUD, discovery: FOUND }, {
+    onFetch: async () => { throw new Error('That backup is no longer in the cloud account. Nothing was changed.'); },
+  });
+  gone.nodes.found._fire({ target: gone.nodes.found.querySelectorAll('button')[0] });
+  await settled();
+  assert.deepEqual(gone.state.notices, [['#cloud-backup-report', 'That backup is no longer in the cloud account. Nothing was changed.', 'error']]);
+  assert.deepEqual(gone.state.asked, [], 'nothing is asked about a backup that is gone');
+});
+
+test('deleting this device\'s backups asks first, names the account, says the recycle bin keeps them, and says what is left when it stops part way', async () => {
+  const card = cloudCard({ ...CLOUD, agreed: true, on: true, hasStream: true });
+  card.nodes.remove._fire();
+  await settled();
+  const [question] = card.state.asked;
+  assert.deepEqual([question.title, question.confirmLabel, question.danger], ['Delete this device\'s cloud backups?', 'Delete cloud backups', true]);
+  // The owner's words, approved 2026-10-28 (stage 3 review, S3a-2 and S3b-5).
+  assert.equal(question.body, 'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account '
+    + 'reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete '
+    + 'those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle '
+    + 'bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
+  assert.deepEqual(card.state.calls, [], 'Cancel deletes nothing');
+
+  const deleting = async (result, model = { ...CLOUD, agreed: true, on: true, hasStream: true }, after = null) => {
+    const each = cloudCard(model, {
+      onDeleteOwn: async () => {
+        if (after) each.state.model = after;
+        if (result instanceof Error) throw result;
+        return result;
+      },
+    });
+    each.state.answers.push(true);
+    each.nodes.remove._fire();
+    await settled();
+    return each.state.notices.at(-1);
+  };
+  assert.deepEqual(await deleting({ deleted: 2, failed: [] }), ['#cloud-backup-report', 'Deleted 2 backups of this browser from the OneDrive account '
+    + 'reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 1, failed: [] }), ['#cloud-backup-report', 'Deleted 1 backup of this browser from the OneDrive account '
+    + 'reader@example.test, where it stays in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 0, failed: [] }), ['#cloud-backup-report', 'No backups of this browser were in the OneDrive account '
+    + 'reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 1, failed: [{ id: 'item-2', name: 'b', code: 'timeout' }] }), ['#cloud-backup-report',
+    'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). '
+    + 'Automatic backup is off for this browser; delete again to finish.', 'warn']);
+  assert.match((await deleting({ deleted: 0, failed: [] }, { ...CLOUD, account: null, agreed: true, on: true, hasStream: true }))[1],
+    /^No backups of this browser were in this OneDrive account\. /, 'no account name: this OneDrive account');
+  // A deletion that fails before deleting anything says automatic backup is off only when it is (S3a-4).
+  const late = new Error('The Recap Page app did not answer in time.');
+  assert.deepEqual(await deleting(late, undefined, { ...CLOUD, agreed: false, hasStream: true }), ['#cloud-backup-report',
+    'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.', 'error']);
+  assert.deepEqual(await deleting(late, undefined, { ...CLOUD, agreed: true, on: true, hasStream: true }), ['#cloud-backup-report',
+    'Nothing was deleted. The Recap Page app did not answer in time.', 'error'], 'consent never withdrawn: nothing more to say');
+});
+
+test('disconnecting offers deleting this device\'s backups as an unchecked choice, and asks again before leaving some behind', async () => {
+  const model = { ...CLOUD, agreed: true, on: true, hasStream: true };
+  const plain = cloudCard(model);
+  plain.state.answers.push({ choice: false });
+  plain.nodes.disconnect._fire();
+  await settled();
+  const [question] = plain.state.asked;
+  assert.deepEqual([question.title, question.confirmLabel, question.choiceLabel, question.choiceConfirmLabel],
+    ['Disconnect OneDrive?', 'Disconnect', 'Also delete this device\'s cloud backups', 'Delete and disconnect']);
+  assert.match(question.body, /for every browser profile on this Windows account/);
+  assert.deepEqual(plain.state.calls.map(([name]) => name), ['disconnect'], 'the box left unchecked deletes nothing');
+
+  const stuck = cloudCard(model, { onDeleteOwn: async () => ({ deleted: 0, failed: [{ id: 'x', name: 'x', code: 'needs-sign-in' }] }) });
+  stuck.state.answers.push({ choice: true }, false);
+  stuck.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual(stuck.state.asked.map((asked) => asked.title), ['Disconnect OneDrive?', 'Disconnect anyway?'], 'one question at a time');
+  assert.equal(stuck.state.asked[1].danger, undefined, 'disconnecting can be undone by signing in again');
+  assert.deepEqual(stuck.state.calls, [], 'declined: still connected');
+  stuck.state.answers.push({ choice: true }, true);
+  stuck.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual(stuck.state.calls.map(([name]) => name), ['disconnect']);
+
+  const backedOut = cloudCard(model);
+  backedOut.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual(backedOut.state.calls, [], 'Cancel changes nothing');
+});
+
+// The deletion is offered only where it can be made, so only that question says "unless"; with a sign-in
+// to make again, the plain question says how to delete first. The owner's words, approved 2026-10-28
+// (stage 3 review, S3a-5 and S3b-6).
+test('the disconnect question offers deleting only where it can, and otherwise says how', async () => {
+  const LEAD = 'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.';
+  const asked = async (model) => {
+    const card = cloudCard(model);
+    card.nodes.disconnect._fire();
+    await settled();
+    return card.state.asked[0].body;
+  };
+  assert.equal(await asked({ ...CLOUD, agreed: true, on: true, hasStream: true }),
+    `${LEAD} Backups already in OneDrive stay there unless you also delete this device's.`, 'with the choice');
+  assert.equal(await asked({ ...CLOUD, hasStream: false }), `${LEAD} Backups already in OneDrive stay there.`, 'nothing of this browser to delete');
+  assert.equal(await asked({ ...CLOUD, host: 'unavailable', account: null, hasStream: true }), `${LEAD} Backups already in OneDrive stay there.`);
+  assert.equal(await asked({ ...CLOUD, host: 'needs-sign-in', agreed: true, hasStream: true }),
+    `${LEAD} Backups already in OneDrive stay there. To delete this device's backups first, sign in again, then choose Delete this device's cloud backups.`);
+});
+
+test('the erase question names cloud backup only while erasing changes it', async () => {
+  assert.equal(cloudEraseNote({ ...CLOUD, shown: false }), null);
+  assert.equal(cloudEraseNote({ ...CLOUD, host: 'not-connected', account: null }), null);
+  for (const host of ['connected', 'needs-sign-in', 'signing-in', 'unavailable']) {
+    assert.equal(cloudEraseNote({ ...CLOUD, host }), 'Cloud backup is disconnected too, for every browser profile on this Windows account. Backups already in OneDrive stay there.', host);
+  }
+  assert.equal(cloudEraseNote({ ...CLOUD, host: 'not-answering', agreed: true }), 'This browser\'s cloud backup settings are erased too. Backups already in OneDrive stay there.');
+
+  const nodes = stubElements();
+  const asked = [];
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    getCloudEraseNote: () => cloudEraseNote(CLOUD),
+    askConfirm: async (options) => { asked.push(options); return false; },
+  }));
+  view.wire();
+  await nodes.btnWipe._fire();
+  assert.ok(asked[0].body.endsWith(' Cloud backup is disconnected too, for every browser profile on this Windows account. Backups already in OneDrive stay there.'), asked[0].body);
+});
+
+test('the cloud card imports nothing that stores, sends or restores', () => {
+  const source = readFileSync(join(ROOT, 'src/js/views/cloud.js'), 'utf8');
+  const imported = [...source.matchAll(/\bfrom\s+['"]([^'"]+)['"]/g)].map((match) => match[1]);
+  assert.deepEqual(imported, ['./data.js'], 'only the shared restore wording');
+});
+
+// The privacy sentences' two variants (P02-T06): the cloud words only on the host's answer or this browser's
+// own consent, which is what shown means, and the words a build without cloud backup says otherwise. A
+// Restore button names the copy it restores in the same attribute, "current" or "previous", and exists only
+// where cloud backup is, so a switch reaching past the two variants hid every one of them (P02-T07, step 9).
+test('the privacy sentences take their cloud variant only where cloud backup is, and Restore buttons stay shown', () => {
+  const nodes = ['off', 'on', 'off', 'on', 'current', 'previous'].map((cloudCopy) => ({ dataset: { cloudCopy }, hidden: cloudCopy === 'on' }));
+  // Matched as the page matches them, so a selector wider than the two variants reaches the buttons here too.
+  const root = {
+    querySelectorAll: (selector) => {
+      const wanted = selector.split(',').map((part) => {
+        const found = /^\s*\[data-cloud-copy(?:="(\w+)")?\]\s*$/.exec(part);
+        assert.ok(found, `an attribute selector this fake can match: ${part}`);
+        return found[1] ?? null;
+      });
+      return nodes.filter((node) => wanted.some((value) => value === null || value === node.dataset.cloudCopy));
+    },
+  };
+  const hidden = () => nodes.map((node) => node.hidden);
+  renderCloudCopy({ ...CLOUD, shown: false }, root);
+  assert.deepEqual(hidden(), [false, true, false, true, false, false], 'a build without cloud backup keeps its own words');
+  renderCloudCopy({ ...CLOUD, host: 'not-connected', account: null }, root);
+  assert.deepEqual(hidden(), [true, false, true, false, false, false], 'a build with cloud backup says so before anyone connects');
+  renderCloudCopy({ ...CLOUD }, root);
+  assert.deepEqual(hidden(), [true, false, true, false, false, false], 'and with backups listed, every Restore button is still shown');
+  renderCloudCopy({ ...CLOUD, shown: false }, root);
+  assert.deepEqual(hidden(), [false, true, false, true, false, false], 'and switches back when the host stops answering for it');
+  renderCloudCopy(null, root);
+  assert.deepEqual(hidden(), [false, true, false, true, false, false], 'no model reads as no cloud backup');
+  assert.doesNotThrow(() => renderCloudCopy({ ...CLOUD }, null), 'a page without the markup is left alone');
 });
 
 // -- helpers --

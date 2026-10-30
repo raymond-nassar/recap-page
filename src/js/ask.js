@@ -14,6 +14,9 @@ const OK = 'ok';
 let pending = null;
 let opener = null;
 let naming = false;
+// The answers of the question being asked with a choice, or null: the plain one, and the one its
+// checked choice turns it into.
+let choosing = null;
 
 function parts() {
   return {
@@ -28,21 +31,33 @@ function parts() {
     areaField: document.getElementById('ask-area-field'),
     areaLabel: document.getElementById('ask-area-label'),
     area: document.getElementById('ask-area'),
+    choiceField: document.getElementById('ask-choice-field'),
+    choiceLabel: document.getElementById('ask-choice-label'),
+    choice: document.getElementById('ask-choice'),
     ok: document.getElementById('ask-ok'),
     cancel: document.getElementById('ask-cancel'),
   };
 }
 
+// The answer button says what a checked choice will do, and only then wears the danger appearance.
+function showChoice() {
+  const { ok, choice } = parts();
+  if (!choosing || !ok || !choice) return;
+  ok.textContent = choice.checked ? choosing.chosenLabel : choosing.confirmLabel;
+  ok.classList.toggle('btn-danger', choice.checked);
+}
+
 // Called once at start-up. The close listener lives here rather than being added per question,
 // so a question that is answered twice, by submitting as Escape is pressed, cannot resolve twice.
 export function wireAsk() {
-  const { dlg, form, cancel, input, area, error } = parts();
+  const { dlg, form, cancel, input, area, error, choice } = parts();
   if (!dlg) return;
   const clearError = () => {
     input.removeAttribute('aria-invalid');
     error.textContent = '';
   };
   input.addEventListener('input', clearError);
+  choice?.addEventListener('change', showChoice);
   form.addEventListener('submit', (event) => {
     if (!naming || input.value.trim()) return;
     event.preventDefault();
@@ -57,7 +72,13 @@ export function wireAsk() {
     // The typed value is read here, while the dialog is closing, rather than by the caller
     // after it has awaited: the field is shared, so the next question would otherwise be able
     // to overwrite an answer that had not been read yet.
-    if (settle) settle({ ok: dlg.returnValue === OK, value: input.value, area: area ? area.value : '' });
+    if (settle) {
+      settle({
+        ok: dlg.returnValue === OK, value: input.value, area: area ? area.value : '',
+        choice: Boolean(choosing && choice?.checked),
+      });
+    }
+    choosing = null;
     const restore = opener;
     opener = null;
     if (restore && restore.isConnected && !restore.disabled && !restore.hidden && !restore.inert
@@ -67,9 +88,16 @@ export function wireAsk() {
 
 // Resolves when the reader answers. Escape and Cancel both count as backing out, which is what
 // makes the destructive default "no".
-function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, danger = false }) {
-  const { dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, ok } = parts();
-  if (!dlg || pending) return Promise.resolve({ ok: false, value: '', area: '' });
+function open({
+  title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, danger = false, choice = null,
+}) {
+  const {
+    dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, choiceField, choiceLabel,
+    choice: box, ok, cancel,
+  } = parts();
+  if (!dlg || pending) return Promise.resolve({ ok: false, value: '', area: '', choice: false });
+  // A page whose dialog has no choice cannot ask a question that needs one.
+  if (choice && !(choiceField && box && choiceLabel)) return Promise.resolve({ ok: false, value: '', area: '', choice: false });
 
   h.textContent = title;
   p.textContent = body;
@@ -100,6 +128,15 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
     area.value = asksForNote ? prefill : '';
   }
 
+  // Unchecked every time it is asked, so going further than the plain answer is always a choice made
+  // in this question, never one left over from the last.
+  choosing = choice ? { confirmLabel, chosenLabel: choice.confirmLabel } : null;
+  if (choiceField) {
+    choiceField.hidden = !choice;
+    choiceLabel.textContent = choice ? choice.label : '';
+    box.checked = false;
+  }
+
   // Cleared rather than trusted to be. Escape closes the dialog without touching returnValue
   // in browsers that predate the change making it "", so a question answered with Escape
   // would otherwise inherit the "ok" left behind by the last one that was confirmed. That
@@ -114,11 +151,14 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
     // An already-open dialog throws. Leaving `pending` set would wedge every later question,
     // because open() refuses to run while one is outstanding.
     pending = null;
-    return Promise.resolve({ ok: false, value: '', area: '' });
+    choosing = null;
+    return Promise.resolve({ ok: false, value: '', area: '', choice: false });
   }
   opener = nextOpener;
   if (asksForText) input.select();
   if (asksForNote) area.select();
+  // A dialog focuses its first control, which a choice would be, so Cancel is given focus outright.
+  if (choice) cancel.focus();
   // #849: Cancel takes focus, as a destructive question needs, and focusing it scrolled a long question
   // past its own title: 454 to 802px down at 200% text on Android sizes.
   if (!asksForText && !asksForNote) dlg.scrollTop = 0;
@@ -129,6 +169,15 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
 export async function askConfirm({ title, body = '', confirmLabel = 'Confirm', danger = false }) {
   const { ok } = await open({ title, body, confirmLabel, danger });
   return ok;
+}
+
+// A confirmation with one unchecked choice that takes the answer further, as disconnecting cloud backup
+// can also delete this device's backups (#810). The plain answer is one with a way back; checking the
+// choice changes the answer's label to `choiceConfirmLabel` and gives it the danger appearance, because
+// only that answer has none. Resolves { choice } when confirmed, or null when the reader backs out.
+export async function askConfirmChoice({ title, body = '', confirmLabel, choiceLabel, choiceConfirmLabel }) {
+  const { ok, choice } = await open({ title, body, confirmLabel, choice: { label: choiceLabel, confirmLabel: choiceConfirmLabel } });
+  return ok ? { choice } : null;
 }
 
 // The submit listener keeps whitespace-only names editable; cancellation still resolves null.

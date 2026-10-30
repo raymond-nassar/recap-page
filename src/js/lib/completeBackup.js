@@ -38,7 +38,7 @@ export const PREPARED_FORMAT = 'recap-page-complete-restore-prepared';
 const SETTINGS_FIELDS = [...PORTABLE_SETTINGS, 'sidebarCollapsed'];
 const COMPONENTS = ['reader', 'history', 'settings', 'draft'];
 const FILE_FIELDS = ['components', 'digest', 'format', 'version'];
-const CAPTURE_KEYS = [KEY, LIST_HISTORY_KEY, SETTINGS_KEY, SIDEBAR_KEY, IMPORT_DRAFT_KEY];
+export const CAPTURE_KEYS = Object.freeze([KEY, LIST_HISTORY_KEY, SETTINGS_KEY, SIDEBAR_KEY, IMPORT_DRAFT_KEY]);
 const HEX = /^[a-f0-9]{64}$/;
 
 // Each component's keys, in the order its writes are made. The reader's stage and saved-copy keys are

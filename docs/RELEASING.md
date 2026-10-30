@@ -109,9 +109,19 @@ invented beta release number.
 ## Build identity and reports
 
 Packaged About text and `build-info.json` show only product/platform version, build channel,
-source commit/tree and a dirty-source flag. Artifact records add only basename, size and digest.
+source commit/tree and a dirty-source flag. A Windows build adds the SHA-256 of the cloud backup
+client configuration it carries, or null, never the configuration. Artifact records add only
+basename, size and digest.
 Never include absolute paths, environment dumps, certificates, account identifiers, notes or backups.
 `candidate` means clean build source, not Store approval or signing qualification.
+
+A build carries a cloud backup client configuration only when its packager is given
+`--cloud-client=<absolute path outside this repository>`. Both Windows packagers refuse any other
+source, never read one from the environment, check it as the host will, and copy it byte for byte
+beside the server; `cloud-client.json` is ignored, so a copy left in the checkout is never committed.
+No workflow passes one until P05 wires the release workflow to a protected secret (#810), so every
+artifact before then leaves cloud backup off. The portable verifier checks an injected configuration
+the same way and requires `build-info.json` to record its digest.
 
 The source checkout states that its revision is not embedded. Packagers stamp only generated output.
 Portable Windows writes `dist/windows-artifact.json`; MSIX writes `dist/msix/windows-artifact.json`.
