@@ -80,6 +80,21 @@ test('Android About and the cloud card say what an Android build with cloud back
   assert.match(prose(card[1]), /Disconnecting stops cloud backup on this device; backups already in OneDrive stay until you delete them here or in OneDrive\.$/);
 });
 
+test('Android cloud help uses the exact approved device wording without changing Windows', () => {
+  const pairs = [
+    ['Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', 'Your reading progress lives in this app on this device, and is sent only to your own OneDrive, if you turn on cloud backup below.'],
+    ['Back up this browser automatically', 'Back up automatically'],
+    ['A backup is made once changes have been quiet for ten seconds, at most once every five minutes, and at once when you leave Recap Page. The two newest backups of this browser are kept, and older ones go to OneDrive\'s recycle bin. Restoring one replaces everything it holds, as restoring a complete backup file does.', 'A backup is made once changes have been quiet for ten seconds, at most once every five minutes, and at once when you leave Recap Page. The two newest backups made on this device are kept, and older ones go to OneDrive\'s recycle bin. Restoring one replaces everything it holds, as restoring a complete backup file does.'],
+    ['The choice is stored in this browser alongside your other settings and is sent only inside a cloud backup to your own OneDrive, if you turn cloud backup on. High contrast mode and reduced motion are still honoured whichever you pick.', 'The choice is stored on this device alongside your other settings and is sent only inside a cloud backup to your own OneDrive, if you turn cloud backup on. High contrast mode and reduced motion are still honoured whichever you pick.'],
+    ['Cloud backup is the one exception, and only once you turn it on. After you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes. It also lists and reads the backups there, to check them and to offer them for restoring, and deletes this browser\'s older ones. Microsoft sees those backups, as it sees anything in your OneDrive.', 'Cloud backup is the one exception, and only once you turn it on. After you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes. It also lists and reads the backups there, to check them and to offer them for restoring, and deletes the older ones made on this device. Microsoft sees those backups, as it sees anything in your OneDrive.'],
+  ];
+  for (const [windows, android] of pairs) {
+    assert.ok(prose(desktop).includes(windows), windows);
+    assert.ok(prose(generated).includes(android), android);
+    assert.ok(!prose(generated).includes(windows), windows);
+  }
+});
+
 test('public privacy policy names the actual platform, search, provider and erase boundaries', async () => {
   const text = prose(await readFile(new URL('../PRIVACY.md', import.meta.url), 'utf8'));
   assert.match(text, /Android[^.]*private WebView storage/i);
@@ -102,9 +117,10 @@ test('Android privacy preparation preserves desktop HTML, shared behavior and fi
   assert.equal(config.origin, 'http://127.0.0.1:8787');
   assert.match(desktop, /<script type="module" src="\.\/js\/app\.js"><\/script>/);
   assert.doesNotMatch(desktop, /Privacy policy \(opens in your browser\)|private Android app storage/);
-  const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0];
+  const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0]
+    ?.replace(/<span data-cloud-copy="on" hidden>[\s\S]*?<\/span>/, '');
   assert.ok(details(desktop));
-  assert.equal(details(generated), details(desktop), 'Keep the existing request-by-request enumeration');
+  assert.equal(details(generated), details(desktop), 'Keep the request-by-request enumeration outside the approved cloud wording');
   for (const path of ['js/main.js', 'js/storage.js', 'js/reader.js', 'js/lib/model.js', 'js/lib/download.js', 'js/views/completion.js']) {
     assert.deepEqual(await readFile(join(scratch, 'assets', path)), await readFile(join('src', path)), path);
   }

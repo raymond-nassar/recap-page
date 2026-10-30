@@ -209,8 +209,16 @@ try {
       'signing in through the app connects, read back by the card\'s polling of the port', JSON.stringify(account.host.calls));
     await press(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    check((await card(page)).report === 'Automatic backup is on.'
+      && await page.$eval('#cloud-auto', (node) => node.textContent.trim()) === 'Back up automatically',
+    'Android uses the approved automatic-backup switch and confirmation');
     check(account.host.items.size === 1 && [...account.host.items.values()][0].name.startsWith('recap-page-backup-v1-'),
       'turning automatic backup on makes the first backup at once, through the port', JSON.stringify(account.host.calls));
+    await press(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent === 'Automatic backup is off. Backups already in OneDrive stay there.');
+    check(!(await card(page)).checked, 'Android uses the approved automatic-backup-off confirmation');
+    await press(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
 
     const erase = await question(page, '#btn-wipe');
     await cancel(page);
@@ -231,6 +239,8 @@ try {
     await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto:checked');
     await page.$eval('#cloud-discovery', (node) => { node.open = true; });
     await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]', { visible: true });
+    check(await page.$eval('#cloud-discovery-list h4', (node) => node.textContent) === 'Recap Page on Android (this device)',
+      'the backup records the approved Android name, and its own heading names this device');
     await press(page, '#cloud-discovery-list button[data-cloud-copy="current"]');
     await page.waitForSelector('#ask[open]');
     await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), press(page, '#ask-ok')]);
@@ -244,6 +254,8 @@ try {
     await press(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Deleted '));
     check(account.host.items.size === 0 && !(await card(page)).checked, 'deleting this device\'s backups empties the account and turns backup off');
+    check(/^Deleted \d+ backups? made on this device from the OneDrive account reader@example\.test, where (it stays|they stay) in the recycle bin for up to 30 days unless it is emptied\. Automatic backup is off\.$/.test((await card(page)).report),
+      'the Android delete report uses the approved made-on-this-device words');
     await question(page, '#btn-cloud-disconnect');
     await press(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Disconnected from OneDrive.'));

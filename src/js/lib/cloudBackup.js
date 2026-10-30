@@ -12,6 +12,7 @@
 import { CLOUD_BACKUP_DATABASE } from '../storage.js';
 import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel, isUnreadableRecord } from './cloudProtocol.js';
 import { CloudBackupCoordinator } from './cloudCoordinator.js';
+import { cloudErrorText } from './cloudCopy.js';
 
 export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
 // How often the card asks whether a sign-in in the browser has finished. The host answers from memory.
@@ -34,9 +35,10 @@ export const ERASE_NOT_STOPPED = 'Automatic backup could not be stopped first, s
 // The host states the erase question names as disconnected, as cloudEraseNote reads them.
 const DISCONNECT_NAMED = new Set(['connected', 'needs-sign-in', 'signing-in', 'unavailable']);
 
-// What other devices see in discovery: the browser's brand and the system it runs on, from the client
-// hints Chromium gives every page, or the protocol's default where there are none.
-export function browserDeviceLabel(nav = globalThis.navigator) {
+// The Android app's approved name avoids exposing the unfamiliar WebView brand. Windows keeps the
+// browser's client hints, or the protocol's default where there are none.
+export function browserDeviceLabel(nav = globalThis.navigator, scope) {
+  if (scope === 'device') return 'Recap Page on Android';
   const hints = nav?.userAgentData;
   const brands = Array.isArray(hints?.brands) ? hints.brands.map((entry) => String(entry?.brand ?? '').trim()) : [];
   const brand = brands.find((name) => name && !/^chromium$|^not.?a.?brand$/i.test(name))
@@ -48,7 +50,7 @@ export function browserDeviceLabel(nav = globalThis.navigator) {
 export function createCloudBackup({
   transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
-  device = browserDeviceLabel(), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
+  device = browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
   coordinator: coordinatorOptions = {}, onChange = () => {},
 } = {}) {
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
@@ -368,7 +370,7 @@ export function createCloudBackup({
             // Only a record that fails its checks, read under the lock, lets the erase go on: no tab takes a
             // number from it, and the erase forgets it.
             if (!(releaseErase && isUnreadableRecord(error))) {
-              why = error instanceof CloudBackupError ? `${ERASE_NOT_STOPPED} ${error.message}` : ERASE_NOT_STOPPED;
+              why = error instanceof CloudBackupError ? `${ERASE_NOT_STOPPED} ${cloudErrorText(error.message, scope)}` : ERASE_NOT_STOPPED;
             }
           }
           if (why !== null) {
@@ -452,7 +454,7 @@ export function createCloudBackup({
         had = had || await protocol.record().then((value) => value !== null, () => true);
         try { await protocol.forget(); } catch (error) {
           kept = true;
-          problems.push(error?.message ?? 'This browser could not forget its cloud backup record.');
+          problems.push(cloudErrorText(error?.message ?? 'This browser could not forget its cloud backup record.', scope));
           // Consent given in another tab during the erase too, so the erased state is never backed up under it.
           await protocol.withdrawConsent().catch(() => {});
         }

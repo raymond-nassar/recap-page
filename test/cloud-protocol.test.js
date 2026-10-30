@@ -1270,6 +1270,8 @@ test('other devices see this one by its browser and the system it runs on', () =
   assert.equal(browserDeviceLabel({ userAgentData: { brands: [{ brand: 'Chromium' }, { brand: 'Not_A Brand' }], platform: 'Android' } }), 'Chromium on Android');
   assert.equal(browserDeviceLabel({ userAgent: 'Mozilla/5.0 (Macintosh)' }), 'Recap Page', 'no client hints: the protocol\'s default');
   assert.equal(browserDeviceLabel(undefined), 'Recap Page');
+  assert.equal(browserDeviceLabel(edge, 'device'), 'Recap Page on Android');
+  assert.equal(browserDeviceLabel(undefined, 'device'), 'Recap Page on Android');
 });
 
 test('in a build without cloud backup the page shows nothing, asks once when the card opens, and never opens the record', async () => {

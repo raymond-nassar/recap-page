@@ -106,6 +106,19 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   const cloudReach = 'Disconnecting stops cloud backup in every browser profile on this Windows account;';
   if (index.split(cloudReach).length !== 2) throw new Error('Shared cloud backup privacy text changed; Android wording needs review');
   index = index.replace(cloudReach, 'Disconnecting stops cloud backup on this device;');
+  const cloudCopy = [
+    ['Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', 'Your reading progress lives in this app on this device, and is sent only to your own OneDrive, if you turn on cloud backup below.'],
+    ['Back up this browser automatically', 'Back up automatically'],
+    ['The two newest backups of this browser are kept', 'The two newest backups made on this device are kept'],
+    ['The choice\n                    is stored in this browser alongside your other settings and is sent only inside a cloud', 'The choice\n                    is stored on this device alongside your other settings and is sent only inside a cloud'],
+    ["and deletes this browser's\n                  older ones.", 'and deletes the older ones made on this device.'],
+  ];
+  for (const [shared, android] of cloudCopy) {
+    const newline = index.includes('\r\n') ? '\r\n' : '\n';
+    const source = shared.replaceAll('\n', newline);
+    if (index.split(source).length !== 2) throw new Error('Shared cloud backup text changed; Android wording needs review');
+    index = index.replace(source, android.replaceAll('\n', newline));
+  }
   const privacyHeading = '<h3>Your data</h3>';
   const privacyIntro = /<h3>Your data<\/h3>\s*<p class="rail-hint">[\s\S]*?<\/p>/g;
   if (index.split(privacyHeading).length !== 2 || [...index.matchAll(privacyIntro)].length !== 1) {
