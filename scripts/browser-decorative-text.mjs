@@ -70,7 +70,7 @@ export const decorativeGeneratedText = {
     await page.waitForSelector('#reader-closure-notice', { visible: true });
     const notice = '#reader-closure-notice';
     const original = await page.$eval(notice, (element) => ({
-      className: element.className, words: element.textContent,
+      className: element.className, words: element.querySelector('#reader-closure-text').textContent,
     }));
     const variants = [
       ['notice notice-warn', '.notice-warn::before', '\u25b2'],

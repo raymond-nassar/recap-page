@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:795-802`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:796-803`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2839,3 +2839,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .rail-header.bar-two-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rail-header.bar-two-rows :is(.brand, .mobile-link, .rail-toggle) { flex-direction: row; gap: var(--space-3); }
 }
+
+#reader-closure-notice { position: relative; }
+#reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
+#reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
