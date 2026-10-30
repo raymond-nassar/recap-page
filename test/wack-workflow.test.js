@@ -59,6 +59,9 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/build-native-launcher.ps1',
       'scripts/lib/native-launcher.mjs',
       'scripts/lib/startup-contract.mjs',
+      'scripts/lib/cloud-client.mjs',
+      'scripts/lib/release-identity.mjs',
+      'scripts/release-cloud-client.mjs',
       'scripts/msix-proof.mjs',
       'scripts/native-startup-proof.ps1',
       'scripts/pack-msix.mjs',
@@ -67,6 +70,8 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/test-wack-report.ps1',
       'scripts/wack-report.ps1',
       'test/msix-packaging.test.js',
+      'test/cloud-config.test.js',
+      'test/release-cloud-client.test.js',
       'test/microsoft-store-release.test.js',
       'test/native/**',
       'test/server-contract.test.js',
@@ -88,16 +93,39 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
   assert.ok(workflow.indexOf('Get-FileHash') < workflow.indexOf('Expand-Archive'));
   assert.ok(workflow.indexOf('Expand-Archive') < workflow.indexOf('winapp.exe'));
   assert.doesNotMatch(workflow, /setup-WinAppCli/);
-  assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write|secrets\./);
+  assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write/);
+  const protectedSecrets = [...workflow.matchAll(/secrets\.([A-Z_]+)/g)].map((match) => match[1]);
+  assert.deepEqual(protectedSecrets, Array(3).fill('RECAP_ONEDRIVE_CLIENT_ID'));
   assert.match(runner, /PROCESSOR_ARCHITECTURE -ne 'AMD64'/);
   assert.match(runner, /SessionId/);
   assert.match(runner, /10\.0\.20348/);
 });
 
+test('only explicit main release preparation exposes the protected package configuration', () => {
+  const expression = workflow.match(/^ {4}environment: \$\{\{ (.+) \}\}/m)?.[1];
+  const secretExpression = workflow.match(/RECAP_ONEDRIVE_CLIENT_ID: \$\{\{ (.+secrets\.RECAP_ONEDRIVE_CLIENT_ID.+) \}\}/)?.[1];
+  assert.ok(expression && secretExpression);
+  for (const [event, ref, preparation, enabled] of [
+    ['workflow_dispatch', 'refs/heads/main', true, true],
+    ['workflow_dispatch', 'refs/heads/feature', true, false],
+    ['workflow_dispatch', 'refs/heads/main', false, false],
+    ['pull_request', 'refs/heads/main', true, false],
+  ]) {
+    const context = {
+      github: { event_name: event, ref }, inputs: { release_preparation: preparation },
+      secrets: { RECAP_ONEDRIVE_CLIENT_ID: 'synthetic-protected-value' },
+    };
+    assert.equal(runInNewContext(expression, context), enabled ? 'microsoft-store-production' : '');
+    assert.equal(runInNewContext(secretExpression, context), enabled ? 'synthetic-protected-value' : '');
+  }
+  assert.equal((workflow.match(/environment: \$\{\{/g) ?? []).length, 2);
+  assert.match(workflow, /\$env:GITHUB_REF -ne 'refs\/heads\/main'/);
+});
+
 test('the supported Windows job executes parser fixtures before certification', () => {
   const ordinary = workflow.slice(workflow.indexOf('\n  certify:'));
   const fixtures = ordinary.indexOf('run: ./scripts/test-wack-report.ps1');
-  const builds = [...ordinary.matchAll(/run: npm run msix:pack/g)].map((match) => match.index);
+  const builds = [...ordinary.matchAll(/node scripts\/release-cloud-client\.mjs windows-msix/g)].map((match) => match.index);
   const inspections = [...ordinary.matchAll(
     /run: npm run msix:inspect -- --structural/g,
   )].map((match) => match.index);
@@ -786,7 +814,8 @@ test('portable preparation excludes nonmanual and incomplete proof executions', 
   assert.match(preparation, /runs-on: windows-2022/);
   assert.match(preparation, /fetch-depth: 0/);
   assert.match(preparation, /persist-credentials: false/);
-  assert.doesNotMatch(preparation, /needs:|secrets\.|msix:|winapp|build-native|native-startup|continue-on-error/);
+  assert.doesNotMatch(preparation, /needs:|msix:|winapp|build-native|native-startup|continue-on-error/);
+  assert.match(preparation, /environment: microsoft-store-production/);
 });
 
 test('portable preparation runs the bounded release commands and cleans independently', () => {
@@ -795,8 +824,10 @@ test('portable preparation runs the bounded release commands and cleans independ
     'npm ci --ignore-scripts', 'npm run lint', 'npm test', 'npm run counts',
     'npm run sizes', 'npm run anchors', 'npm run spacing', 'npm run palette',
     'npm run publication', 'npm run contract', 'npm run browser', 'npm run upgrade',
-    'npm run store:check', 'npm run pack',
+    'npm run store:check',
   ]);
+  assert.match(preparation, /run: node scripts\/release-cloud-client\.mjs windows-portable/);
+  assert.match(preparation, /if: always\(\)[\s\S]*run: node scripts\/release-cloud-client\.mjs cleanup/);
   assert.match(preparation, /\.github\/browser-proof/);
   assert.match(preparation, /npm ci --prefix \$root --ignore-scripts\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
   const exports = [...preparation.matchAll(/"MRT_PUPPETEER=\$(\w+)" >> \$env:GITHUB_ENV/g)];

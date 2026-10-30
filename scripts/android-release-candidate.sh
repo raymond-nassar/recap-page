@@ -28,8 +28,11 @@ fail() { printf '%s\n' "Android candidate: $1" >&2; exit 1; }
 owned() { [[ -f "$WORK/.owner" && ! -L "$WORK" && "$(cat "$WORK/.owner")" == "$GITHUB_RUN_ID:$GITHUB_RUN_ATTEMPT" ]]; }
 clean_secrets() {
   owned || return 1
+  local result=0
+  node "$TOOL_ROOT/scripts/release-cloud-client.mjs" cleanup || result=1
   rm -rf -- "$WORK/upload-secret" "$WORK/proof-secret" "$WORK/fixture-secret" "$WORK/jdk-proof"
-  [[ ! -e "$WORK/upload-secret" && ! -e "$WORK/proof-secret" && ! -e "$WORK/jdk-proof" ]]
+  [[ ! -e "$WORK/upload-secret" && ! -e "$WORK/proof-secret" && ! -e "$WORK/jdk-proof" ]] || result=1
+  return "$result"
 }
 on_exit() {
   local result=$?
@@ -51,7 +54,18 @@ if [[ "$STAGE" != sign ]]; then
 fi
 
 gradle() {
-  "$SOURCE/packaging/android/gradlew" -p "$SOURCE/packaging/android" --no-daemon --console plain "$@"
+  local cloud="$RUNNER_TEMP/recap-release-cloud-client"
+  if [[ "$MODE" == Candidate ]]; then
+    [[ -f "$cloud/cloud-client.json" && -f "$cloud/redirect-hash" ]] || fail "approved cloud configuration is missing"
+    local result=0
+    "$SOURCE/packaging/android/gradlew" -p "$SOURCE/packaging/android" --no-daemon --console plain \
+      "-PrecapCloudClientConfig=$cloud/cloud-client.json" "-PrecapCloudRedirectHashReleaseFile=$cloud/redirect-hash" \
+      "$@" > "$cloud/gradle.log" 2>&1 || result=$?
+    rm -f -- "$cloud/gradle.log"
+    [[ "$result" == 0 ]] || fail "configured Gradle build failed; private diagnostics were removed"
+  else
+    "$SOURCE/packaging/android/gradlew" -p "$SOURCE/packaging/android" --no-daemon --console plain "$@"
+  fi
 }
 set_candidate_identity() {
   if [[ "$MODE" == Candidate ]]; then
@@ -68,6 +82,13 @@ prepare() {
   printf '%s' "$GITHUB_RUN_ID:$GITHUB_RUN_ATTEMPT" > "$WORK/.owner"
   node "$NODE" preflight
   node "$NODE" prepare
+  if [[ "$MODE" == Candidate ]]; then
+    node "$TOOL_ROOT/scripts/release-cloud-client.mjs" android
+    unset RECAP_ONEDRIVE_CLIENT_ID RECAP_ONEDRIVE_PLAY_REDIRECT_HASH
+  else
+    [[ -z "${RECAP_ONEDRIVE_CLIENT_ID:-}" && -z "${RECAP_ONEDRIVE_PLAY_REDIRECT_HASH:-}" ]] \
+      || fail "cloud configuration is protected Candidate-only"
+  fi
   set_candidate_identity
   cd "$TOOL_ROOT"
   read -r bundle_version bundle_hash <<< "$(node --input-type=module -e 'import {BUNDLETOOL} from "./scripts/android-candidate.mjs"; console.log(BUNDLETOOL.version+" "+BUNDLETOOL.sha256);')"
@@ -108,6 +129,9 @@ make_proof_key() {
 }
 derive_and_qualify() {
   owned || fail "unowned candidate workspace"
+  if [[ "$MODE" == Candidate ]]; then
+    export RECAP_ANDROID_CLOUD_EXPECTATION="$RUNNER_TEMP/recap-release-cloud-client/expectation"
+  fi
   set_candidate_identity
   umask 077
   mkdir -m 700 "$WORK/proof-secret"

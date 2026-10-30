@@ -23,12 +23,16 @@ export function androidCloudClient(path, assignments) {
   const client = parseCloudClient(readFileSync(path, 'utf8'));
   const redirectHashes = {};
   for (const assignment of assignments) {
-    const match = /^([a-z]+)=(.*)$/s.exec(assignment);
+    const match = /^([a-z]+)(-file)?=(.*)$/s.exec(assignment);
     if (!match || !BUILD_TYPES.has(match[1]) || match[1] in redirectHashes) {
       throw new Error('Each redirect is given once, as debug=<hash> or release=<hash>.');
     }
-    if (!REDIRECT_HASH.test(match[2])) throw new Error(`The ${match[1]} redirect hash is not a signature hash.`);
-    redirectHashes[match[1]] = match[2];
+    if (match[2] && (!statSync(match[3]).isFile() || statSync(match[3]).size !== 28)) {
+      throw new Error(`The ${match[1]} redirect hash is not a signature hash.`);
+    }
+    const value = match[2] ? readFileSync(match[3], 'utf8') : match[3];
+    if (!REDIRECT_HASH.test(value)) throw new Error(`The ${match[1]} redirect hash is not a signature hash.`);
+    redirectHashes[match[1]] = value;
   }
   if (Object.keys(redirectHashes).length === 0) throw new Error('A cloud client configuration needs a redirect hash for at least one build type.');
   return { clientId: client.providers.onedrive.clientId, redirectHashes };

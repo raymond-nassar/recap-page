@@ -119,9 +119,68 @@ A build carries a cloud backup client configuration only when its packager is gi
 `--cloud-client=<absolute path outside this repository>`. Both Windows packagers refuse any other
 source, never read one from the environment, check it as the host will, and copy it byte for byte
 beside the server; `cloud-client.json` is ignored, so a copy left in the checkout is never committed.
-No workflow passes one until P05 wires the release workflow to a protected secret (#810), so every
-artifact before then leaves cloud backup off. The portable verifier checks an injected configuration
-the same way and requires `build-info.json` to record its digest.
+Ordinary PR, diagnostic and rehearsal builds pass none and leave cloud backup off.
+Approved Windows release preparation and Store builds use the protected inputs
+below. Both the portable verifier and MSIX inspection validate the carried
+configuration and require its exact SHA-256 in `build-info.json`.
+
+### Protected OneDrive release inputs
+
+The owner creates these **environment secrets on GitHub**, never sends their values
+through chat and never copies withheld evidence into a build:
+
+| Environment | Secret | Value entered by the owner |
+|---|---|---|
+| `microsoft-store-production` | `RECAP_ONEDRIVE_CLIENT_ID` | Read the Application (client) ID from the personal-account app's Entra Overview at that time. |
+| `android-release-candidate` | `RECAP_ONEDRIVE_CLIENT_ID` | The same Entra Application (client) ID. |
+| `android-release-candidate` | `RECAP_ONEDRIVE_PLAY_REDIRECT_HASH` | The already registered, unencoded base64 SHA-1 Android redirect hash for the Play app signing certificate, not the upload certificate. |
+
+These are public-client identifiers carried by installed packages, not client
+passwords. The owner's rule still keeps them out of source, Issues, PRs and logs.
+Do not add a client secret. Both environments keep their owner reviewer and exact
+`main`-only branch policy. Creating or changing a secret or environment is an owner
+operation, not a workflow side effect.
+
+The checked release wrapper generates this JSON outside the checkout; placeholders
+below show the shape only, never values to paste back to an agent:
+
+```json
+{
+  "format": "recap-page-cloud-client",
+  "version": 1,
+  "providers": {
+    "onedrive": {
+      "clientId": "<Application client ID entered directly on GitHub>",
+      "authority": "consumers"
+    }
+  }
+}
+```
+
+Missing or invalid inputs fail the approved build; they never fall back to a
+disabled release. Configuration is scoped to the package preparation step and
+removed in its `finally` path and an independent `always()` cleanup. Windows
+release preparation protects the enabled WACK and installed-proof package jobs
+as well as the portable ZIP. Ordinary WACK stays secret-free.
+
+Android Candidate uses a private redirect file, not a secret-bearing Gradle
+argument. Configured Gradle output is private scratch and is deleted even on
+failure; only a bounded failure message reaches the job log. Same-AAB manifest
+inspection checks the exact redirect activity, its client metadata, registered
+hash and browser intent against the external input. Qualification version 2
+records only the SHA-256 of the UTF-8 compact JSON object
+`{"clientId":value,"redirectHash":value}` in that property order, with no trailing
+newline. Signed-artifact identity and the ledger still bind the final AAB bytes;
+the existing source identity is unchanged. The publisher continues to verify
+historical version 1 qualification packets without inventing configuration
+evidence for them. Neither synthetic signing nor an emulator proves Play-signed
+Microsoft sign-in; the physical pass on the final closed-testing build does.
+
+Local test copies keep their separately registered signing redirect. Supply the
+existing external config property and the matching debug redirect, either as
+`recapCloudRedirectHashDebug` or `recapCloudRedirectHashDebugFile` (an external file
+containing exactly the 28-character unencoded hash, without a newline). A Play
+redirect must never be substituted for the local debug certificate's redirect.
 
 The source checkout states that its revision is not embedded. Packagers stamp only generated output.
 Portable Windows writes `dist/windows-artifact.json`; MSIX writes `dist/msix/windows-artifact.json`.

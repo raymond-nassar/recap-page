@@ -173,7 +173,14 @@ jobs:
 
       - name: Build the Store bundle once
         timeout-minutes: 15
-        run: npm run msix:pack
+        env:
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}
+        run: node scripts/release-cloud-client.mjs windows-msix
+
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
 
       - name: Inspect the Store packages
         timeout-minutes: 10

@@ -31,9 +31,16 @@ def nativeTestTarget = nativeTestBuildType == 'release' ?
 // (OD-06). The hash is the registered string, never read from the signer, so a Play-signed install and a test
 // copy built here each sign in at their own registered redirect (OD-07). Without them a build is unchanged.
 def cloudConfigPath = providers.gradleProperty('recapCloudClientConfig').orNull
-def cloudHashArguments = ['debug', 'release'].findAll {
-    providers.gradleProperty("recapCloudRedirectHash${it.capitalize()}").isPresent()
-}.collect { "${it}=${providers.gradleProperty("recapCloudRedirectHash${it.capitalize()}").get()}" }
+def cloudHashArguments = ['debug', 'release'].collectMany {
+    def key = "recapCloudRedirectHash${it.capitalize()}"
+    def value = providers.gradleProperty(key).orNull
+    def file = providers.gradleProperty("${key}File").orNull
+    if (value != null && file != null) {
+        throw new GradleException('Give each cloud redirect as a value or a file, not both')
+    }
+    file != null ? ["${it}-file=${new File(file).absolutePath}".toString()] :
+        value != null ? ["${it}=${value}".toString()] : []
+}
 if (cloudConfigPath == null && !cloudHashArguments.isEmpty()) {
     throw new GradleException('A cloud redirect hash needs recapCloudClientConfig too')
 }

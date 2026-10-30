@@ -387,7 +387,7 @@ test('the Store workflow builds native launchers once before its one bundle buil
   assert.match(native, /run: \.\/scripts\/build-native-launcher\.ps1/);
   assert.doesNotMatch(native, /IncludeProofTools|Negatives|secrets\./);
   assert.ok(workflow.indexOf(native) < workflow.indexOf('Build the Store bundle once'));
-  assert.equal((workflow.match(/run: npm run msix:pack/g) ?? []).length, 1);
+  assert.equal((workflow.match(/run: node scripts\/release-cloud-client\.mjs windows-msix/g) ?? []).length, 1);
   assert.equal((workflow.match(/run: \.\/scripts\/build-native-launcher\.ps1/g) ?? []).length, 1);
 });
 
@@ -418,7 +418,9 @@ test('Store credentials are isolated to read-only and release API steps', () => 
     assert.match(protectedStep, /PARTNER_CENTER_CLIENT_SECRET/);
     assert.doesNotMatch(protectedStep, /PARTNER_CENTER_SELLER_ID/);
   }
-  assert.doesNotMatch(workflow.replace(rehearsal, '').replace(submission, ''), /secrets\./);
+  const packageBuild = step('Build the Store bundle once');
+  assert.match(packageBuild, /RECAP_ONEDRIVE_CLIENT_ID: \$\{\{ secrets\.RECAP_ONEDRIVE_CLIENT_ID \}\}/);
+  assert.doesNotMatch(workflow.replace(rehearsal, '').replace(submission, '').replace(packageBuild, ''), /secrets\./);
 });
 
 test('manual rehearsal cannot select the Store API mutation path', () => {
