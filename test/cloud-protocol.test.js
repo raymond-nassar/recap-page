@@ -15,7 +15,7 @@ import {
   parseCloudBackupName,
 } from '../src/js/lib/cloudProtocol.js';
 import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, personalDigest } from '../src/js/lib/cloudCoordinator.js';
-import { CLOUD_SIGN_IN_POLL_MS, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
+import { CLOUD_SIGN_IN_POLL_MS, ERASE_HOST_SILENT_DEVICE, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
 import { cloudCardStatus, cloudCardWarns, cloudEraseNote, cloudEraseOutcome } from '../src/js/views/cloud.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
 import { canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
@@ -1469,6 +1469,31 @@ test('an erase the host does not answer says cloud backup may still be connected
   tab.home.storage.clear();
   const outcome = await tab.cloud.afterErase(true);
   assert.deepEqual([outcome.ok, outcome.problems.length], [false, 1]);
+});
+
+// The Android app's transport says its sign-in reaches this device alone, and the model carries that to
+// the card and the erase's report, so neither names a Windows account there (#810, P03-T03).
+test('a transport that reaches only this device turns the model and an unanswered erase to this device', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  env.transport.scope = 'device';
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  assert.equal(tab.cloud.model.scope, 'device');
+  assert.match(cloudEraseNote(tab.cloud.model), /^Cloud backup is disconnected too, on this device\./);
+  await tab.cloud.beforeErase();
+  env.transport.host.silent = true;
+  tab.home.storage.clear();
+  const outcome = await tab.cloud.afterErase(true);
+  assert.deepEqual(outcome.problems, [ERASE_HOST_SILENT_DEVICE]);
+
+  const windows = harness();
+  windowsHost(windows.transport);
+  const other = page({ env: windows });
+  await other.cloud.enter();
+  assert.equal(other.cloud.model.scope, 'profiles', 'any other transport keeps the Windows reach');
 });
 
 // An erase sets this browser's consent aside in the shared record before its first write, rather than

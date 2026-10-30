@@ -829,6 +829,24 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
 });
 
+// On Android one app holds one sign-in, so the sentences that name every browser profile on a Windows
+// account say "on this device" there instead (#810, P03-T03). The Windows words above stay as approved.
+// These are proposed to the owner with pull request 3, so changing them needs the owner's approval too.
+test('the cloud backup sentences that name where a sign-in reaches say this device on Android', async () => {
+  const { ERASE_HOST_SILENT_DEVICE } = await import('../src/js/lib/cloudBackup.js');
+  const { cloudDisconnectQuestion, cloudEraseNote, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  const device = {
+    shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
+    agreed: false, on: false, askedAgain: false, suspended: false, hasStream: false, recordProblem: null, recordUnreadable: false,
+    backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null }, scope: 'device',
+  };
+  assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT_DEVICE] }).trim(),
+    'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected on this device. Check Cloud backup in Backup & settings.');
+  assert.equal(cloudEraseNote(device), 'Cloud backup is disconnected too, on this device. Backups already in OneDrive stay there.');
+  assert.equal(cloudDisconnectQuestion(device, false),
+    'Recap Page forgets the OneDrive sign-in on this device, and automatic backup stops. Backups already in OneDrive stay there.');
+});
+
 // Why an erase was refused, said after "Nothing was erased." when cloud backup could not be stopped first
 // (stage 4 review, S4c-1). The owner approved these words, with an edit, on 2026-10-29 (#810), so changing
 // them needs the owner's approval again.

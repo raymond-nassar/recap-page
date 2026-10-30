@@ -135,6 +135,7 @@ export default [
       'scripts/browser-android.mjs',
       'scripts/browser-android-catalog-cards.mjs',
       'scripts/browser-android-issue-poster.mjs',
+      'scripts/browser-android-cloud.mjs',
       'scripts/browser-reader-first.mjs',
       'scripts/browser-defer.mjs',
       'scripts/browser-done-undo.mjs',

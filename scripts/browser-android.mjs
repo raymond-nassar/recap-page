@@ -4870,6 +4870,11 @@ try {
           if (message.kind === 'save') {
             harness.requests.push(message);
             if (harness.autoSave) harness.reply(message, 'saved');
+          } else if (message.kind === 'cloud') {
+            // A dormant build: native answers every cloud request 404 with no body, and the page then
+            // hides the card. Kept apart from replies, which the back checks read from the end.
+            harness.cloud = [...(harness.cloud || []), message];
+            channel.port1.postMessage(JSON.stringify({ v: 1, kind: 'cloud-result', id: message.id, status: 404, body: null }));
           } else harness.replies.push(message);
         };
         window.dispatchEvent(new MessageEvent('message', {

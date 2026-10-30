@@ -109,7 +109,7 @@ function noticeOf(model, previous) {
 export function cloudEraseNote(model) {
   if (!model?.shown) return null;
   const name = cloudProviderName(model);
-  if (LINKED.has(model.host)) return `Cloud backup is disconnected too, for every browser profile on this Windows account. Backups already in ${name} stay there.`;
+  if (LINKED.has(model.host)) return `Cloud backup is disconnected too, ${model.scope === 'device' ? 'on this device' : 'for every browser profile on this Windows account'}. Backups already in ${name} stay there.`;
   if (model.agreed || model.hasStream) return `This browser's cloud backup settings are erased too. Backups already in ${name} stay there.`;
   return null;
 }
@@ -152,7 +152,10 @@ export function cloudDeleteFailure(message, off) {
 // "unless"; after Microsoft asked for the sign-in again, the backups can be deleted only by signing in.
 export function cloudDisconnectQuestion(model, choice) {
   const name = cloudProviderName(model);
-  const lead = `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
+  // The Android app holds one sign-in for itself alone (#810, P03-T03).
+  const lead = model.scope === 'device'
+    ? `Recap Page forgets the ${name} sign-in on this device, and automatic backup stops.`
+    : `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
   if (choice) return `${lead} Backups already in ${name} stay there unless you also delete this device's.`;
   const first = model.host === 'needs-sign-in' && model.hasStream
     ? ' To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.' : '';

@@ -101,6 +101,11 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   }
   index = index.replace(stylesheet, `${stylesheet}\n    <link rel="stylesheet" href="./android/mobile.css" />`)
     .replace(entry, '<script type="module" src="./android/app.js"></script>');
+  // The cloud card's privacy paragraph names every browser profile on a Windows account, which the Android
+  // app's sign-in does not reach: it holds one for itself alone (#810, P03-T03).
+  const cloudReach = 'Disconnecting stops cloud backup in every browser profile on this Windows account;';
+  if (index.split(cloudReach).length !== 2) throw new Error('Shared cloud backup privacy text changed; Android wording needs review');
+  index = index.replace(cloudReach, 'Disconnecting stops cloud backup on this device;');
   const privacyHeading = '<h3>Your data</h3>';
   const privacyIntro = /<h3>Your data<\/h3>\s*<p class="rail-hint">[\s\S]*?<\/p>/g;
   if (index.split(privacyHeading).length !== 2 || [...index.matchAll(privacyIntro)].length !== 1) {
@@ -109,7 +114,7 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   index = index.replace(privacyIntro, `${privacyHeading}
               <p class="rail-hint">
                 Your lists, progress and notes live in private Android app storage, separate from your desktop browser.
-                There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
+                <span data-cloud-copy="off">There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.</span><span data-cloud-copy="on" hidden>There is no Recap Page account to create, and no analytics or tracking. Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup &amp; settings, and then only to your own OneDrive, where they are as private as anything else you keep there. Recap Page's developer has no access to them.</span>
                 Clearing app data or uninstalling removes this private state, so export and keep a backup outside the app first.
               </p>
               <p class="rail-hint">

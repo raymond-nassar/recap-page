@@ -24,6 +24,8 @@ const IDLE = Object.freeze({ state: 'idle', connection: null, result: null, mess
 const NOT_LINKED = 'Cloud backup is not connected to an account right now, so nothing was changed.';
 // The owner's words, approved 2026-10-28 (stage 3 review, S3a-1), and pinned in the privacy copy tests.
 export const ERASE_HOST_SILENT = 'The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account.';
+// The same, from the Android app, whose sign-in reaches only this device (#810, P03-T03).
+export const ERASE_HOST_SILENT_DEVICE = 'The Recap Page app did not answer, so cloud backup may still be connected on this device.';
 // Why an erase did not start, after "Nothing was erased." (stage 4 review, S4c-1). The owner's words,
 // approved 2026-10-29 with an edit, and pinned in the privacy copy tests.
 // Added to that refusal when the consent the erase set aside could not be put back.
@@ -52,6 +54,9 @@ export function createCloudBackup({
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
     throw new TypeError('Cloud backup on this page needs a transport that reports the account and can connect and disconnect it.');
   }
+  // Where a sign-in reaches: every browser profile on the Windows account the host runs in, or, from the
+  // Android app, this device alone. The card and the erase say which.
+  const scope = transport.scope === 'device' ? 'device' : 'profiles';
   let status = null;
   let record = null;
   let recordProblem = null;
@@ -106,6 +111,7 @@ export function createCloudBackup({
       recordUnreadable,
       backup: coordinator?.state ?? OFF,
       discovery,
+      scope,
     });
   }
 
@@ -462,7 +468,7 @@ export function createCloudBackup({
         try {
           const now = await transport.status();
           if (now.enabled && now.state !== 'not-connected') await transport.disconnect();
-          else if (!now.enabled && expected) problems.push(ERASE_HOST_SILENT);
+          else if (!now.enabled && expected) problems.push(scope === 'device' ? ERASE_HOST_SILENT_DEVICE : ERASE_HOST_SILENT);
         } catch (error) {
           problems.push(error?.message ?? 'Cloud backup could not be disconnected.');
         }

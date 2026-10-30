@@ -63,6 +63,23 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.doesNotMatch(links[0][0], /onclick=|data-view=/);
 });
 
+// Cloud backup on Android (#810, P03-T03): the sentences the replacement writes come in the shared off and
+// on variants, so a build with cloud backup does not say nothing is uploaded, and the card's privacy
+// paragraph names this device rather than a Windows account.
+test('Android About and the cloud card say what an Android build with cloud backup does', () => {
+  const spans = [...yourData(generated).matchAll(/<span data-cloud-copy="(on|off)"(\s+hidden)?>([\s\S]*?)<\/span>/g)]
+    .map(([, state, hidden, inner]) => [state, Boolean(hidden), prose(inner)]);
+  const intro = spans.slice(0, 2);
+  assert.deepEqual(intro, [
+    ['off', false, 'There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.'],
+    ['on', true, 'There is no Recap Page account to create, and no analytics or tracking. Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive, where they are as private as anything else you keep there. Recap Page\'s developer has no access to them.'],
+  ]);
+  assert.doesNotMatch(generated, /Windows account/);
+  const card = generated.match(/<p class="rail-hint" id="cloud-backup-privacy">([\s\S]*?)<\/p>/);
+  assert.ok(card, 'the cloud card keeps its privacy paragraph');
+  assert.match(prose(card[1]), /Disconnecting stops cloud backup on this device; backups already in OneDrive stay until you delete them here or in OneDrive\.$/);
+});
+
 test('public privacy policy names the actual platform, search, provider and erase boundaries', async () => {
   const text = prose(await readFile(new URL('../PRIVACY.md', import.meta.url), 'utf8'));
   assert.match(text, /Android[^.]*private WebView storage/i);
