@@ -30,7 +30,7 @@
 // Modern Timeline contract is the exception: its boundary and aggregate assertions intentionally
 // run against the checked-in snapshot because the exact first entry and totals are the contract.
 
-import { retiredReaderHelp, retiredManualLink, legacyReaderBackup } from './browser-marvel-interim.mjs';
+import { retiredReaderHelp, retiredManualLink, legacyReaderBackup, dismissClosureNotice } from './browser-marvel-interim.mjs';
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
@@ -2045,6 +2045,11 @@ async function checkOfflineSelectedList(browser, origin, t) {
 // they run in cannot matter. A scenario that passed only because the one before it left the right
 // state behind is not evidence either.
 const SCENARIOS = [
+  {
+    id: 'notice-dismissal',
+    title: 'Home notice dismisses locally with version, failure and keyboard safety',
+    run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click }),
+  },
   {
     id: 'home-updates',
     title: 'Quiet Home highlights preserve reading, focus, layout and real-worker offline content',
