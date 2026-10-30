@@ -152,6 +152,89 @@ final class PresentationUITests: XCTestCase {
               scrollWidth: heading.scrollWidth,
             };
           }),
+          dataCardDiagnostics: [...document.querySelectorAll('#view-data .setgroup > .card')].map((card) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardStyle = getComputedStyle(card);
+            const descendants = [...card.querySelectorAll('*')].flatMap((element) => {
+              const rect = element.getBoundingClientRect();
+              const style = getComputedStyle(element);
+              if (style.display === 'none'
+                  || (!rect.width && !rect.height)) return [];
+              const matchingRules = [];
+              const collectRules = (rules, href, conditions = []) => {
+                for (const rule of rules) {
+                  if (rule.selectorText && rule.style && !rule.selectorText.includes('::')
+                      && (rule.style.width || rule.style.minWidth || rule.style.maxWidth
+                        || rule.style.whiteSpace || rule.style.overflow || rule.style.overflowX
+                        || rule.style.flex || rule.style.position || rule.style.display)
+                      && element.matches(rule.selectorText)) {
+                    matchingRules.push({
+                      href,
+                      conditions,
+                      selector: rule.selectorText,
+                      declarations: {
+                        width: rule.style.width,
+                        minWidth: rule.style.minWidth,
+                        maxWidth: rule.style.maxWidth,
+                        whiteSpace: rule.style.whiteSpace,
+                        overflow: rule.style.overflow,
+                        overflowX: rule.style.overflowX,
+                        flex: rule.style.flex,
+                        position: rule.style.position,
+                        display: rule.style.display,
+                      },
+                    });
+                  }
+                  if (rule.cssRules) {
+                    const condition = rule.conditionText || '';
+                    if (rule.type === CSSRule.MEDIA_RULE && !matchMedia(condition).matches) continue;
+                    if (rule.type === CSSRule.SUPPORTS_RULE && !CSS.supports(condition)) continue;
+                    collectRules(rule.cssRules, href, condition ? [...conditions, condition] : conditions);
+                  }
+                }
+              };
+              for (const sheet of document.styleSheets) collectRules(sheet.cssRules, sheet.href);
+              const boxOutsideCard = rect.left < cardRect.left - 1 || rect.right > cardRect.right + 1;
+              const visibleContentOutsideCard = style.overflowX === 'visible'
+                && rect.left + element.scrollWidth > cardRect.right + 1;
+              return [{
+                tag: element.tagName.toLowerCase(),
+                id: element.id,
+                className: typeof element.className === 'string' ? element.className : '',
+                text: element.tagName.toLowerCase() === 'label'
+                  ? element.textContent.trim().slice(0, 100)
+                  : '',
+                left: Math.round(rect.left * 10) / 10,
+                right: Math.round(rect.right * 10) / 10,
+                width: Math.round(rect.width * 10) / 10,
+                computedWidth: style.width,
+                scrollWidth: element.scrollWidth,
+                clientWidth: element.clientWidth,
+                minWidth: style.minWidth,
+                whiteSpace: style.whiteSpace,
+                overflowX: style.overflowX,
+                flex: style.flex,
+                boxOutsideCard,
+                visibleContentOutsideCard,
+                matchingRules,
+              }];
+            }).sort((a, b) => b.right - a.right || b.width - a.width);
+            const overflowingDescendants = descendants.filter((element) =>
+              element.boxOutsideCard || element.visibleContentOutsideCard);
+            return {
+              title: card.querySelector('h2, h3')?.textContent.trim().slice(0, 100) || '',
+              className: typeof card.className === 'string' ? card.className : '',
+              left: Math.round(cardRect.left * 10) / 10,
+              right: Math.round(cardRect.right * 10) / 10,
+              width: Math.round(cardRect.width * 10) / 10,
+              overflowAmount: card.scrollWidth - card.clientWidth,
+              scrollWidth: card.scrollWidth,
+              clientWidth: card.clientWidth,
+              overflowX: cardStyle.overflowX,
+              widestDescendants: descendants.slice(0, 20),
+              overflowingDescendants,
+            };
+          }).filter((card) => card.scrollWidth > card.clientWidth + 1),
           skipLink: (() => {
             const link = document.querySelector('.skip-link');
             if (!link) return null;
@@ -381,6 +464,19 @@ final class PresentationUITests: XCTestCase {
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", headingLabel)).firstMatch
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
+                if name == "home" {
+                    let brandLink = app.links.matching(
+                        NSPredicate(format: "label CONTAINS[c] %@ OR label == %@", "Recap Page", "Home")).firstMatch
+                    XCTAssertTrue(brandLink.waitForExistence(timeout: 30), "the brand is one accessible home link")
+                    XCTAssertFalse(app.staticTexts["Recap Page"].exists, "the brand has no separate text target")
+                    XCTAssertGreaterThanOrEqual(brandLink.frame.height, 44, "the brand link target is at least 44 points high")
+
+                    let updatesToggle = app.descendants(matching: .any).matching(
+                        NSPredicate(format: "label == %@", "What's new")).firstMatch
+                    XCTAssertTrue(updatesToggle.waitForExistence(timeout: 30), "What's new is one accessible disclosure target")
+                    XCTAssertFalse(app.staticTexts["What's new"].exists, "the disclosure has no separate text target")
+                    XCTAssertGreaterThanOrEqual(updatesToggle.frame.height, 44, "the What's new target is at least 44 points high")
+                }
                 let skipLink = app.links.matching(
                     NSPredicate(format: "label == %@", "Skip to main content")).firstMatch
                 XCTAssertTrue(skipLink.waitForExistence(timeout: 30), "the skip link is present for target measurement")
@@ -463,14 +559,15 @@ final class PresentationUITests: XCTestCase {
             try performAccessibilityAudit(of: app)
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
+            let closeRecorder = app.staticTexts["ios-handoff-recorder"]
             app.buttons["ios-read-sheet-close"].tap()
             let sheetClosed = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"),
                 object: app.buttons["ios-read-sheet-close"])
-            XCTAssertEqual(
-                XCTWaiter.wait(for: [sheetClosed], timeout: 30),
-                .completed,
-                "closing Read dismisses its sheet")
+            let closeResult = XCTWaiter.wait(for: [sheetClosed], timeout: 30)
+            let closeEvents = closeRecorder.label
+            try record("t03-read-close-\(category.rawValue)", ["events": closeEvents])
+            XCTAssertEqual(closeResult, .completed, "closing Read dismisses its sheet; close recorder: \(closeEvents)")
             XCTAssertTrue(app.webViews.firstMatch.waitForExistence(timeout: 30), "the app web view remains after closing Read")
             app.terminate()
         }

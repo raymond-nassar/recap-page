@@ -525,6 +525,21 @@ test('T03 accessibility audit and More-sheet failures retain actionable diagnost
   assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
 });
 
+test('T03 Read close diagnostics distinguish the action, callback, and UIKit completion', () => {
+  const readSheet = read('packaging/ios/RecapPage/ReadSheetController.swift');
+  const controller = appSource('WebViewController');
+  const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+
+  assert.match(readSheet, /recordReadSheetClose\("close-action-invoked"\)/);
+  assert.match(readSheet, /recordReadSheetClose\("controller-close-requested"\)/);
+  assert.match(controller, /recordReadSheetClose\("parent-close-callback"\)/);
+  assert.match(controller, /recordReadSheetClose\("dismiss-requested"\)/);
+  assert.match(controller, /recordReadSheetClose\("dismissal-completed"\)/);
+  assert.match(debugSupport, /"readSheetCloseEvents": readSheetCloseEvents/);
+  assert.ok(tests.includes('t03-read-close-\\(category.rawValue)'));
+  assert.ok(tests.includes('closing Read dismisses its sheet; close recorder: \\(closeEvents)'));
+});
+
 test('the iOS token overlay matches the phone layer root specificity', () => {
   const phone = read('packaging/android/web/mobile.css').replace(/\/\*[\s\S]*?\*\//g, '');
   const overlay = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
@@ -539,20 +554,27 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
   assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
 });
 
-test('iOS target links expose their hit region as a single accessible link', () => {
+test('iOS web controls expose one accessible target without changing visible layout', () => {
   const controller = appSource('WebViewController');
   const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
 
   assert.match(controller, /private static let accessibleTargetScript = #"""/);
   assert.match(controller, /source:\s*Self\.accessibleTargetScript,[\s\S]*?injectionTime:\s*\.atDocumentEnd/);
-  assert.match(controller, /const selector = '\.skip-link, #fallback, #return'/);
-  assert.match(controller, /link\.dataset\.iosAccessibleTarget === 'true'/);
+  assert.match(controller, /const selector = '\.skip-link, #fallback, #return, \.brand, #home-updates-toggle'/);
+  assert.match(controller, /target\.dataset\.iosAccessibleTarget === 'true'/);
+  assert.match(controller, /target\.innerText \|\| target\.textContent/);
+  assert.match(controller, /child\.setAttribute\('aria-hidden', 'true'\)/);
   assert.match(controller, /visualText\.setAttribute\('aria-hidden', 'true'\)/);
-  assert.match(controller, /link\.setAttribute\('aria-label', label\)/);
+  assert.match(controller, /node\.replaceWith\(visualText\)/);
+  assert.match(controller, /target\.setAttribute\('aria-label', label\)/);
   assert.match(tests, /app\.staticTexts\["Skip to main content"\]\.exists/);
   assert.match(tests, /app\.staticTexts\["Continue manually"\]\.exists/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
+  assert.match(tests, /app\.staticTexts\["Recap Page"\]\.exists/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(brandLink\.frame\.height,\s*44/);
+  assert.match(tests, /app\.staticTexts\["What's new"\]\.exists/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
 });
 
 test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {
@@ -566,6 +588,14 @@ test('largest-text data headings wrap and overflow diagnostics identify heading 
   assert.match(tests, /textContent\.trim\(\)\.replace\(\/\\\\s\+\/g,\s*' '\)\.slice\(0,\s*100\)/);
   assert.match(tests, /XCTAssertEqual\(personalization\["overflowWrap"\] as\? String,\s*"anywhere"/);
   assert.match(tests, /XCTAssertLessThanOrEqual\(.*?personalization\["scrollWidth"\].*?personalization\["clientWidth"\]/s);
+  assert.match(tests, /dataCardDiagnostics/);
+  assert.match(tests, /widestDescendants/);
+  assert.match(tests, /overflowingDescendants/);
+  assert.match(tests, /minWidth:\s*style\.minWidth/);
+  assert.match(tests, /whiteSpace:\s*style\.whiteSpace/);
+  assert.match(tests, /matchingRules/);
+  assert.match(tests, /selector:\s*rule\.selectorText/);
+  assert.match(tests, /minWidth:\s*rule\.style\.minWidth/);
   assert.match(docs, /Backup &\s+settings section headings can wrap/i);
 });
 

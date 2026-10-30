@@ -128,6 +128,9 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
     }
 
     @objc private func closeTapped() {
+        #if DEBUG
+        DebugSupport.recordReadSheetClose("close-action-invoked")
+        #endif
         close()
     }
 
@@ -144,6 +147,9 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
     private func close() {
         guard !isClosing else { return }
         isClosing = true
+        #if DEBUG
+        DebugSupport.recordReadSheetClose("controller-close-requested")
+        #endif
         onClose(self)
     }
 }

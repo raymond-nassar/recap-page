@@ -121,17 +121,21 @@ final class WebViewController: UIViewController, WKUIDelegate {
 
     private static let accessibleTargetScript = #"""
     (() => {
-      const selector = '.skip-link, #fallback, #return';
-      for (const link of document.querySelectorAll(selector)) {
-        if (link.dataset.iosAccessibleTarget === 'true') continue;
-        const label = link.textContent.trim().replace(/\s+/g, ' ');
+      const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle';
+      for (const target of document.querySelectorAll(selector)) {
+        if (target.dataset.iosAccessibleTarget === 'true') continue;
+        const label = (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
         if (!label) continue;
-        const visualText = document.createElement('span');
-        visualText.setAttribute('aria-hidden', 'true');
-        while (link.firstChild) visualText.append(link.firstChild);
-        link.append(visualText);
-        link.setAttribute('aria-label', label);
-        link.dataset.iosAccessibleTarget = 'true';
+        for (const child of target.children) child.setAttribute('aria-hidden', 'true');
+        for (const node of [...target.childNodes]) {
+          if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;
+          const visualText = document.createElement('span');
+          visualText.setAttribute('aria-hidden', 'true');
+          node.replaceWith(visualText);
+          visualText.append(node);
+        }
+        target.setAttribute('aria-label', label);
+        target.dataset.iosAccessibleTarget = 'true';
       }
     })();
     """#
@@ -263,17 +267,29 @@ final class WebViewController: UIViewController, WKUIDelegate {
     }
 
     private func closeReadSheet(_ sheet: ReadSheetController) {
+        #if DEBUG
+        DebugSupport.recordReadSheetClose("parent-close-callback")
+        #endif
         guard presentedReadSheet === sheet else {
             pendingReadSheets.removeAll { $0 === sheet }
             return
         }
         guard let navigation = sheet.navigationController,
               navigation.presentingViewController != nil else {
+            #if DEBUG
+            DebugSupport.recordReadSheetClose("dismissal-skipped-no-presenter")
+            #endif
             presentedReadSheet = nil
             presentNextReadSheet()
             return
         }
+        #if DEBUG
+        DebugSupport.recordReadSheetClose("dismiss-requested")
+        #endif
         navigation.dismiss(animated: true) { [weak self, weak sheet] in
+            #if DEBUG
+            DebugSupport.recordReadSheetClose("dismissal-completed")
+            #endif
             guard let self, let sheet, self.presentedReadSheet === sheet else { return }
             self.presentedReadSheet = nil
             self.presentNextReadSheet()

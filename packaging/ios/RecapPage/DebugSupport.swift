@@ -177,6 +177,7 @@ enum DebugSupport {
     @MainActor private static var launchedWebViews = Set<ObjectIdentifier>()
     @MainActor private static var presentedReadSheets = 0
     @MainActor private static var recordedHandOffs: [String] = []
+    @MainActor private static var readSheetCloseEvents: [String] = []
     @MainActor private static var readSheetStyleProbe: [String: Any]?
     @MainActor private static var handOffRecorder: UILabel?
 
@@ -186,6 +187,7 @@ enum DebugSupport {
         launchedWebViews = []
         presentedReadSheets = 0
         recordedHandOffs = []
+        readSheetCloseEvents = []
         readSheetStyleProbe = nil
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         label.accessibilityIdentifier = handOffRecorderIdentifier
@@ -207,6 +209,13 @@ enum DebugSupport {
     static func recordReadSheetPresented() {
         guard recordsHandOffs else { return }
         presentedReadSheets += 1
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    static func recordReadSheetClose(_ event: String) {
+        guard recordsHandOffs else { return }
+        readSheetCloseEvents.append(event)
         updateHandOffRecorder()
     }
 
@@ -241,6 +250,7 @@ enum DebugSupport {
                 "launches": launchedWebViews.count,
                 "presentations": presentedReadSheets,
                 "handoffs": recordedHandOffs,
+                "readSheetCloseEvents": readSheetCloseEvents,
             ]
             if let readSheetStyleProbe {
                 record["readSheetStyleProbe"] = readSheetStyleProbe
