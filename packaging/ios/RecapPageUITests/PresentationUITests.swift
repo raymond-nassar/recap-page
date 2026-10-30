@@ -793,6 +793,11 @@ final class PresentationUITests: XCTestCase {
         return true
     }
 
+    private func domOwnerContainsNativeFrame(_ nativeFrame: CGRect, ownerFrame: CGRect,
+                                            allowance: CGFloat) -> Bool {
+        return ownerFrame.insetBy(dx: -allowance, dy: -allowance).contains(nativeFrame)
+    }
+
     private func acceptPassiveFinding(
         _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
     ) throws -> Bool {
@@ -842,7 +847,7 @@ final class PresentationUITests: XCTestCase {
             }
             guard width > 0 && height > 0 && nativeFrame.width > 0 && nativeFrame.height > 0,
                   webFrame.contains(nativeFrame),
-                  domFrame.insetBy(dx: -1, dy: -1).contains(nativeFrame),
+                  domOwnerContainsNativeFrame(nativeFrame, ownerFrame: domFrame, allowance: 2),
                   let point = points.first else { return nil }
             return (candidate, point)
         }
@@ -1246,6 +1251,46 @@ final class PresentationUITests: XCTestCase {
     }
 
     func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures() throws {
+        let owner = CGRect(x: 29, y: 316.453125 + 20, width: 40.55377197265625, height: 76)
+        let measured = CGRect(x: 29, y: 336, width: 41, height: 78)
+        XCTAssertTrue(domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 2))
+        let mutationOptions = XCTExpectedFailure.Options()
+        mutationOptions.isStrict = true
+        mutationOptions.issueMatcher = { issue in
+            issue.type == .assertionFailure && issue.compactDescription.contains("owner-bound-mutant")
+        }
+        XCTExpectFailure("The old one-point bound rejects the measured SE frame", options: mutationOptions) {
+            XCTAssertTrue(self.domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 1),
+                          "owner-bound-mutant: measured SE acceptance")
+        }
+        let beyond = CGFloat(2.001)
+        let outside = [
+            ("left", CGRect(x: owner.minX - beyond, y: owner.minY,
+                            width: owner.width + beyond, height: owner.height)),
+            ("right", CGRect(x: owner.minX, y: owner.minY,
+                             width: owner.width + beyond, height: owner.height)),
+            ("top", CGRect(x: owner.minX, y: owner.minY - beyond,
+                           width: owner.width, height: owner.height + beyond)),
+            ("bottom", CGRect(x: owner.minX, y: owner.minY,
+                              width: owner.width, height: owner.height + beyond)),
+        ]
+        var boundaries: [[String: Any]] = []
+        for (edge, frame) in outside {
+            let accepted = domOwnerContainsNativeFrame(frame, ownerFrame: owner, allowance: 2)
+            XCTAssertFalse(accepted, "\(edge) beyond two points must fail")
+            XCTExpectFailure("An oversized bound misses the \(edge) rejection", options: mutationOptions) {
+                XCTAssertFalse(self.domOwnerContainsNativeFrame(frame, ownerFrame: owner, allowance: 3),
+                               "owner-bound-mutant: \(edge) rejection")
+            }
+            boundaries.append(["edge": edge, "frame": NSCoder.string(for: frame), "accepted": accepted])
+        }
+        try record("t03-native-owner-boundary", [
+            "ownerFrame": NSCoder.string(for: owner), "nativeFrame": NSCoder.string(for: measured),
+            "bottomExcess": measured.maxY - owner.maxY,
+            "oldOnePointAccepted": domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 1),
+            "measuredAccepted": domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 2),
+            "boundaries": boundaries,
+        ])
         let app = launch(route: "guard-structural")
         let result = try probeResult(of: app)
         let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])

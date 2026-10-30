@@ -789,7 +789,7 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /"frame": NSCoder\.string\(for: link\.frame\)/);
   assert.match(presentationTests, /issue\.auditType == \.hitRegion/);
   assert.match(presentationTests, /element\.elementType == \.staticText/);
-  assert.match(presentationTests, /domFrame\.insetBy\(dx: -1, dy: -1\)\.contains\(nativeFrame\)/);
+  assert.match(presentationTests, /domOwnerContainsNativeFrame\(nativeFrame, ownerFrame: domFrame, allowance: 2\)/);
   assert.match(presentationTests, /candidate\["label"\] as\? String == element\.label/);
   assert.match(presentationTests, /matches\.count == 1/);
   assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom/);
@@ -873,12 +873,12 @@ test('T03 reveals each enumerated native target before demanding its unchanged i
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
 
-test('T03 diagnoses reviewed text font and range geometry without changing the guard tolerance', () => {
+test('T03 diagnoses reviewed text font and range geometry without relaxing text-point containment', () => {
   assert.match(presentationTests, /fontGeometry:/);
   assert.match(presentationTests, /fontBoundingBoxAscent/);
   assert.match(presentationTests, /actualBoundingBoxAscent/);
   assert.match(presentationTests, /rangeRects:/);
-  assert.match(presentationTests, /domFrame\.insetBy\(dx: -1, dy: -1\)\.contains\(nativeFrame\)/);
+  assert.match(presentationTests, /nativeFrame\.contains\(point\) && webFrame\.contains\(point\)/);
 });
 
 test('T03 admits a fragment only through individually checked existing tap points and rejects full occlusion', () => {
@@ -887,6 +887,25 @@ test('T03 admits a fragment only through individually checked existing tap point
   assert.match(presentationTests, /name: 'partially occluded text', accepted:/);
   assert.match(presentationTests, /name: 'fully occluded text', rejected:/);
   assert.match(presentationTests, /XCTAssertEqual\(fixtures\.count, 14\)/);
+});
+
+test('T03 keeps the approved native owner bound separate and mutation-proves every edge', () => {
+  assert.match(presentationTests, /domOwnerContainsNativeFrame\(nativeFrame, ownerFrame: domFrame, allowance: 2\)/);
+  assert.match(presentationTests, /ownerFrame\.insetBy\(dx: -allowance, dy: -allowance\)\.contains\(nativeFrame\)/);
+  assert.match(presentationTests, /CGRect\(x: 29, y: 336, width: 41, height: 78\)/);
+  assert.match(presentationTests, /y: 316\.453125 \+ 20, width: 40\.55377197265625, height: 76/);
+  assert.match(presentationTests, /let beyond = CGFloat\(2\.001\)/);
+  for (const edge of ['left', 'right', 'top', 'bottom']) {
+    assert.ok(presentationTests.includes(`("${edge}", CGRect(`), `boundary fixture for ${edge}`);
+  }
+  assert.match(presentationTests, /mutationOptions\.isStrict = true/);
+  assert.match(presentationTests, /mutationOptions\.issueMatcher/);
+  assert.match(presentationTests, /XCTExpectFailure\("The old one-point bound/);
+  assert.match(presentationTests, /ownerFrame: owner, allowance: 1/);
+  assert.match(presentationTests, /XCTExpectFailure\("An oversized bound/);
+  assert.match(presentationTests, /ownerFrame: owner, allowance: 3/);
+  assert.match(presentationTests, /nativeFrame\.contains\(point\) && webFrame\.contains\(point\)/);
+  assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
 
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {

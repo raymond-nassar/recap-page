@@ -88,6 +88,18 @@ The same center, top-inset and bottom-inset points are hit-tested individually b
 a fragment. A covered center does not discard a visible top or bottom point; a fully covered
 fragment still fails.
 
+Only containment of the native frame in that DOM owner box permits up to two native points
+on each edge. In [run 41111198714](https://github.com/raymond-nassar/recap-page/actions/runs/41111198714),
+SE's largest-text count had native frame `(29,336,41,78)` against DOM owner and text Range
+`(29,316.453125,40.55377197265625,76)`, with WebView origin `(0,20)`. Its native bottom
+extended 1.546875 points beyond the owner. The computed font and line height were 62.35294px;
+Canvas font ascent 60 plus descent 16 also equaled 76. The native height of 78 is unexplained,
+not established as rounding. Fixtures accept this measured case and reject just over two points
+on every edge. Strict expected failures exercise only deliberate one-point and oversized
+fixture bounds, never a live audit. Text-fragment tap points, native/WebView containment,
+unique identity, passivity and the complete native no-op remain unchanged. A missing candidate,
+such as the separate minimum-iPhone "Reading data" finding, cannot use this allowance.
+
 The positive-fixture driver reveals each offscreen target before requesting that same strict
 proof. The guard itself still rejects an offscreen finding; scrolling is preparation for a
 fixture tap, not an audit exemption.
