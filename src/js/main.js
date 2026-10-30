@@ -82,7 +82,7 @@ import {
 } from './lib/completeBackup.js';
 import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.js';
 import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
-import { createCloudHostTransport } from './lib/cloudHostTransport.js';
+import { cloudTransport } from './lib/cloudTransports.js';
 import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -2387,12 +2387,13 @@ const completeBackupView = createCompleteBackupView({
   onFinished: reloadWithNotice,
 });
 
-// Cloud backup (#810). This is the one place the page is given a cloud backup transport: here the
-// Windows host's control API, on this origin. The Android and iOS apps install their own bridges at this
-// point, behind the same four operations (CQ-2), and nothing else in the page names a provider. A build
+// Cloud backup (#810). This is the one place the page is given a cloud backup transport: the Windows
+// host's control API on this origin, unless an app installed its own bridge first through
+// cloudTransports.js, as the Android app does, behind the same four operations (CQ-2). Nothing else in the
+// page names a provider. A build
 // without cloud backup answers 404 there, so it shows nothing and starts nothing.
 const cloudBackup = createCloudBackup({
-  transport: createCloudHostTransport(),
+  transport: cloudTransport(),
   capture: () => captureCompleteBackup({ storage: localStorage, importDraft }),
   // Every complete-restore phase but open, so no capture mixes restored data with earlier data.
   isBlocked: () => completeRestore.state.phase !== 'open',

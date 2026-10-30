@@ -8,6 +8,7 @@
 // backups does because the app cannot bring them back, even while OneDrive's recycle bin holds them.
 
 import { completeRestoreQuestion, STOPPED, UNCHANGED, withOutcome } from './data.js';
+import { cloudErrorText } from '../lib/cloudCopy.js';
 
 const PROVIDER_NAMES = Object.freeze({ onedrive: 'OneDrive' });
 const DELETED = /\bnothing was deleted\b/i;
@@ -33,7 +34,7 @@ const longTime = (at) => new Date(at).toLocaleString(undefined, {
 const shortTime = (at) => new Date(at).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
 
 // What the backups are doing, for a browser that agreed to back up.
-export function cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { name = 'OneDrive', when = longTime, at = shortTime } = {}) {
+export function cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { name = 'OneDrive', when = longTime, at = shortTime, scope } = {}) {
   const last = lastUploadAt ? ` Last backed up ${when(lastUploadAt)}.` : '';
   if (phase === 'saving') return 'Backing up now.';
   if (phase === 'up-to-date') return lastUploadAt ? `Backed up ${when(lastUploadAt)}.` : 'Backed up.';
@@ -43,8 +44,8 @@ export function cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { name
   if (phase === 'failed') {
     const stopped = code === 'quota' ? `${name} is full, so backups have stopped. Free some space there, then try again.`
       : code === 'oversize' || code === 'too-large' ? 'Your saved data is larger than a cloud backup can be, so backups have stopped.'
-        : code === 'unsupported' ? 'This browser cannot make cloud backups, so backups have stopped.'
-          : code === 'storage' || code === 'unreadable' ? 'This browser could not read its saved data or its cloud backup record, so backups have stopped.'
+        : code === 'unsupported' ? scope === 'device' ? 'Cloud backup cannot work on this device, so backups have stopped.' : 'This browser cannot make cloud backups, so backups have stopped.'
+          : code === 'storage' || code === 'unreadable' ? scope === 'device' ? 'Recap Page could not read its saved data or its cloud backup record, so backups have stopped.' : 'This browser could not read its saved data or its cloud backup record, so backups have stopped.'
             : 'A backup could not be made, so backups have stopped until your data changes or you try again.';
     return `${stopped}${last}`;
   }
@@ -54,29 +55,33 @@ export function cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { name
 // The card's persistent line: the account, and what is happening to backups.
 export function cloudCardStatus(model, { when = longTime, at = shortTime } = {}) {
   const name = cloudProviderName(model);
+  const device = model.scope === 'device';
   switch (model.host) {
-    case 'unavailable': return model.message ?? 'Cloud backup is not available right now.';
-    case 'not-answering': return 'Automatic backup is on in this browser, but the Recap Page app is not answering for it, so backups wait until it does.';
+    case 'unavailable': return cloudErrorText(model.message, model.scope) ?? 'Cloud backup is not available right now.';
+    case 'not-answering': return device ? "Automatic backup is on, but the app's cloud backup is not answering, so backups wait until it does." : 'Automatic backup is on in this browser, but the Recap Page app is not answering for it, so backups wait until it does.';
     case 'signing-in': return `Finish signing in to Microsoft in the browser window that opened.${
       Number.isSafeInteger(model.signInExpiresAt) ? ` The sign-in stops by itself at ${at(model.signInExpiresAt)}.` : ''}`;
-    case 'not-connected': return model.message ?? '';
+    case 'not-connected': return cloudErrorText(model.message, model.scope) ?? '';
     case 'needs-sign-in': return 'Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.';
     case 'connected': {
       const account = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
       if (model.askedAgain) {
-        return model.reason ? `${account} ${model.reason}`
-          : `${account} ${name} was connected again since this browser agreed to back up, so check the backups below before turning automatic backup on again.`;
+        return model.reason ? `${account} ${cloudErrorText(model.reason, model.scope)}`
+          : device ? `${account} ${name} was connected again after you turned on automatic backup, so check the backups below before turning it on again.`
+            : `${account} ${name} was connected again since this browser agreed to back up, so check the backups below before turning automatic backup on again.`;
       }
       // Consent an erase set aside (stage 3 review, S3a-7); the owner's words, approved 2026-10-28.
       if (model.suspended) {
-        return `${account} Automatic backup stopped while this browser's data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.`;
+        return `${account} Automatic backup stopped while ${device ? "Recap Page's data on this device" : "this browser's data"} was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.`;
       }
       // A record that fails its checks (stage 3 review, S3b-7); the owner's words, approved 2026-10-28.
       if (model.recordUnreadable) {
-        return `${account} This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser's earlier backups will then be listed as another device's.`;
+        return device
+          ? `${account} Recap Page could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. Backups made earlier on this device will then be listed as another device's.`
+          : `${account} This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser's earlier backups will then be listed as another device's.`;
       }
       if (!model.on) return account;
-      return `${account} ${cloudBackupStatus(model.backup, { name, when, at })}`;
+      return `${account} ${cloudBackupStatus(model.backup, { name, when, at, scope: model.scope })}`;
     }
     default: return '';
   }
@@ -109,8 +114,8 @@ function noticeOf(model, previous) {
 export function cloudEraseNote(model) {
   if (!model?.shown) return null;
   const name = cloudProviderName(model);
-  if (LINKED.has(model.host)) return `Cloud backup is disconnected too, for every browser profile on this Windows account. Backups already in ${name} stay there.`;
-  if (model.agreed || model.hasStream) return `This browser's cloud backup settings are erased too. Backups already in ${name} stay there.`;
+  if (LINKED.has(model.host)) return `Cloud backup is disconnected too, ${model.scope === 'device' ? 'on this device' : 'for every browser profile on this Windows account'}. Backups already in ${name} stay there.`;
+  if (model.agreed || model.hasStream) return `${model.scope === 'device' ? 'Cloud backup settings' : "This browser's cloud backup settings"} are erased too. Backups already in ${name} stay there.`;
   return null;
 }
 
@@ -121,30 +126,35 @@ function accountIn(model) {
 }
 
 // Deleting this device's backups, in the owner's words approved 2026-10-28 (stage 3 review, S3a-2 and
-// S3b-5): the deletion reaches only the account the host holds now, so the question and the reports name
+// S3b-5) and shortened with the owner's approval on 2026-10-30 (#810, P03-T04 session): the deletion reaches only the account the host holds now, so the question and the reports name
 // it, and say where any backups made in another account are.
 export function cloudDeleteQuestion(model) {
   const name = cloudProviderName(model);
-  return `This turns automatic backup off for this browser and deletes every backup it made in ${accountIn(model)}. Backups from other devices are kept, and so are any this browser made in another ${name} account. To delete those, connect to that account and delete them here, or delete them in ${name} itself. Deleted backups stay in ${name}'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.`;
+  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. Deleted backups stay in ${name}'s recycle bin for up to 30 days, but Recap Page cannot bring them back.`;
+  if (model.scope === 'device') return `This turns automatic backup off and deletes every backup made on this device in ${accountIn(model)}. ${rest}`;
+  return `This turns automatic backup off and deletes every backup this browser made in ${accountIn(model)}. ${rest}`;
 }
 
 export function cloudDeleteReport({ deleted, failed }, model) {
   const name = cloudProviderName(model);
   const where = accountIn(model);
+  const device = model.scope === 'device';
+  const from = device ? 'made on this device' : 'of this browser';
+  const off = device ? 'Automatic backup is off' : 'Automatic backup is off for this browser';
   if (failed.length === 0) {
     return deleted === 0
-      ? `No backups of this browser were in ${where}. Any it made in another account are still there. Automatic backup is off for this browser.`
-      : `Deleted ${plural(deleted, 'backup')} of this browser from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.`;
+      ? `No backups ${from} were in ${where}. Any ${device ? 'made' : 'it made'} in another account are still there. ${off}.`
+      : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin for up to 30 days unless it is emptied. ${off}.`;
   }
   const reason = failed[0].code === 'needs-sign-in' ? 'sign in again first'
     : failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${failed.length === 1 ? 'it' : 'them'}`;
-  return `Deleted ${deleted} of ${plural(deleted + failed.length, 'backup')} of this browser from ${where}. ${plural(failed.length, 'backup')} could not be deleted (${reason}). Automatic backup is off for this browser; delete again to finish.`;
+  return `Deleted ${deleted} of ${plural(deleted + failed.length, 'backup')} ${from} from ${where}. ${plural(failed.length, 'backup')} could not be deleted (${reason}). ${off}; delete again to finish.`;
 }
 
 // A deletion that stopped before deleting anything, which says automatic backup is off only when it is,
 // because consent was withdrawn before the step that failed (stage 3 review, S3a-4).
-export function cloudDeleteFailure(message, off) {
-  return `${withOutcome('Nothing was deleted.', message, DELETED)}${off ? ' Automatic backup is off for this browser.' : ''}`;
+export function cloudDeleteFailure(message, off, model = {}) {
+  return `${withOutcome('Nothing was deleted.', cloudErrorText(message, model.scope), DELETED)}${off ? model.scope === 'device' ? ' Automatic backup is off.' : ' Automatic backup is off for this browser.' : ''}`;
 }
 
 // The disconnect question, in the owner's words approved 2026-10-28 (stage 3 review, S3a-5 and S3b-6).
@@ -152,7 +162,10 @@ export function cloudDeleteFailure(message, off) {
 // "unless"; after Microsoft asked for the sign-in again, the backups can be deleted only by signing in.
 export function cloudDisconnectQuestion(model, choice) {
   const name = cloudProviderName(model);
-  const lead = `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
+  // The Android app holds one sign-in for itself alone (#810, P03-T03).
+  const lead = model.scope === 'device'
+    ? `Recap Page forgets the ${name} sign-in on this device, and automatic backup stops.`
+    : `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
   if (choice) return `${lead} Backups already in ${name} stay there unless you also delete this device's.`;
   const first = model.host === 'needs-sign-in' && model.hasStream
     ? ' To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.' : '';
@@ -198,7 +211,7 @@ export function createCloudBackupView({
   let heard = null;
   const report = (message, kind = 'error', claims = null) => {
     claimed = claims;
-    notify('#cloud-backup-report', message, kind);
+    notify('#cloud-backup-report', cloudErrorText(message, getModel().scope), kind);
   };
 
   function copyRow(device, copy, which, from) {
@@ -213,14 +226,14 @@ export function createCloudBackupView({
     ]);
   }
 
-  function deviceSection(device) {
+  function deviceSection(device, scope) {
     const from = device.current?.device ?? device.previous?.device ?? 'a device whose backups could not be read';
     const rows = [];
     if (device.current) rows.push(copyRow(device, device.current, 'current', from));
     if (device.previous) rows.push(copyRow(device, device.previous, 'previous', from));
     const heading = device.current || device.previous ? from : 'Backups that could not be read';
     return el('section', { class: 'cloud-device' }, [
-      el('h4', { text: device.own ? `${heading} (this browser)` : heading }),
+      el('h4', { text: device.own ? `${heading} (${scope === 'device' ? 'this device' : 'this browser'})` : heading }),
       rows.length ? el('ul', { class: 'cloud-copies' }, rows) : null,
       device.invalid > 0
         ? el('p', { class: 'rail-hint', text: `${plural(device.invalid, 'more backup')} could not be read, so ${device.invalid === 1 ? 'it is' : 'they are'} not offered.` })
@@ -237,11 +250,11 @@ export function createCloudBackupView({
     nodes.discoverySummary.textContent = `Backups in this ${name}`;
     const parts = [];
     if (discovery.state === 'loading') parts.push(el('p', { class: 'rail-hint', text: `Checking ${name}.` }));
-    if (discovery.state === 'failed') parts.push(el('p', { class: 'rail-hint', text: discovery.message }));
+    if (discovery.state === 'failed') parts.push(el('p', { class: 'rail-hint', text: cloudErrorText(discovery.message, model.scope) }));
     const result = discovery.result;
     if (result) {
       if (result.devices.length === 0) parts.push(el('p', { class: 'rail-hint', text: `There are no Recap Page backups in this ${name} yet.` }));
-      for (const device of result.devices) parts.push(deviceSection(device));
+      for (const device of result.devices) parts.push(deviceSection(device, model.scope));
       if (result.omitted > 0) parts.push(el('p', { class: 'rail-hint', text: `${plural(result.omitted, 'more device')} not shown.` }));
       if (result.unrecognized > 0) parts.push(el('p', { class: 'rail-hint', text: `${plural(result.unrecognized, 'other file')} in the folder ${result.unrecognized === 1 ? 'was' : 'were'} left alone.` }));
     }
@@ -328,7 +341,7 @@ export function createCloudBackupView({
   function signIn() {
     return run(async () => {
       try { await onConnect(); }
-      catch (error) { report(`Sign-in did not start. ${error.message}`); }
+      catch (error) { report(`Sign-in did not start. ${cloudErrorText(error.message, getModel().scope)}`); }
     });
   }
 
@@ -347,13 +360,14 @@ export function createCloudBackupView({
           await onTurnOn();
           // Should the host hold another connection by now, this browser is asked again instead, which the
           // card's status says, so it is never told that backups are on.
-          if (getModel().on) report('Automatic backup is on for this browser.', 'ok', true);
+          if (getModel().on) report(getModel().scope === 'device' ? 'Automatic backup is on.' : 'Automatic backup is on for this browser.', 'ok', true);
         } else {
           await onTurnOff();
-          report(`Automatic backup is off for this browser. Backups already in ${name} stay there.`, 'ok', false);
+          report(`Automatic backup is off${getModel().scope === 'device' ? '' : ' for this browser'}. Backups already in ${name} stay there.`, 'ok', false);
         }
       } catch (error) {
-        report(on ? `Automatic backup was not turned on. ${error.message}` : `Automatic backup was not turned off. ${error.message}`);
+        const message = cloudErrorText(error.message, getModel().scope);
+        report(on ? `Automatic backup was not turned on. ${message}` : `Automatic backup was not turned off. ${message}`);
       } finally {
         toggling = null;
       }
@@ -369,7 +383,7 @@ export function createCloudBackupView({
       let checked;
       try { checked = await onFetch(copy); }
       catch (error) {
-        report(withOutcome('Nothing was changed.', error.message, UNCHANGED));
+        report(withOutcome('Nothing was changed.', cloudErrorText(error.message, getModel().scope), UNCHANGED));
         return;
       }
       const yes = await askConfirm({
@@ -385,10 +399,10 @@ export function createCloudBackupView({
         return;
       }
       if (result.invalid) {
-        report(withOutcome('Nothing was changed.', result.error, UNCHANGED));
+        report(withOutcome('Nothing was changed.', cloudErrorText(result.error, getModel().scope), UNCHANGED));
         return;
       }
-      report(result.changed === false ? withOutcome('Nothing was replaced.', result.error, UNCHANGED)
+      report(result.changed === false ? withOutcome('Nothing was replaced.', cloudErrorText(result.error, getModel().scope), UNCHANGED)
         : withOutcome('The restore stopped part way.', result.error, STOPPED));
     });
   }
@@ -399,7 +413,7 @@ export function createCloudBackupView({
     try { result = await onDeleteOwn(); }
     catch (error) {
       const off = !getModel().agreed;
-      report(cloudDeleteFailure(error.message, off), 'error', off ? false : null);
+      report(cloudDeleteFailure(error.message, off, getModel()), 'error', off ? false : null);
       return false;
     }
     const done = result.failed.length === 0;
@@ -454,7 +468,7 @@ export function createCloudBackupView({
         await onDisconnect();
         report(`Disconnected from ${name}.`, 'ok');
       } catch (error) {
-        report(`${name} is still connected. ${error.message}`);
+        report(`${name} is still connected. ${cloudErrorText(error.message, getModel().scope)}`);
       }
     });
   }

@@ -52,6 +52,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class MainActivity extends Activity {
+    private static final String CLOUD_PREFIX = "{\"v\":1,\"kind\":\"cloud\",\"id\":\"";
+    // The body travels as a JSON string inside the message, so each of its quotes gains a backslash; twice
+    // the largest body the account accepts is room for any body it would take, and the account checks the
+    // exact size.
+    private static final int CLOUD_MAX_CHARS = CloudAccount.CREATE_BODY * 2 + 4096;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final ExecutorService writer = Executors.newSingleThreadExecutor();
     private final Set<String> seenRequests = new HashSet<>();
@@ -478,6 +483,10 @@ public final class MainActivity extends Activity {
                 return;
             }
         }
+        if (raw != null && raw.startsWith(CLOUD_PREFIX)) {
+            receiveCloud(source, page, raw);
+            return;
+        }
         if (!NavigationPolicy.boundedText(raw)) {
             // The adapter puts its identity before the payload, so oversize text can fail without parsing it.
             String id = NavigationPolicy.requestIdFromPrefix(raw);
@@ -555,6 +564,75 @@ public final class MainActivity extends Activity {
                 notice("An invalid native message was rejected. Nothing was saved.");
             }
         }
+    }
+
+    // A cloud request is the Windows host's HTTP request carried over the port: the operation, its JSON body
+    // as text, and an id the answer is matched by. It is read and answered off the main thread, since a
+    // create can carry 44 MB, and the answer goes back only to the page that asked. The sign-in's tokens
+    // never cross the port; the page only ever receives what the Windows host would answer it.
+    private void receiveCloud(WebMessagePort source, int page, String raw) {
+        if (source != port || page != generation || destroyed) return;
+        // The id leads the message, so a request too large or too malformed to read is still answered.
+        int end = raw.indexOf('"', CLOUD_PREFIX.length());
+        String id = end < 0 ? null : raw.substring(CLOUD_PREFIX.length(), end);
+        if (!NavigationPolicy.validRequestId(id)) {
+            notice("An invalid native message was rejected.");
+            return;
+        }
+        if (raw.length() > CLOUD_MAX_CHARS) {
+            CloudAccount.Reply reply = CloudAccount.refuse(413, "size", "That request is larger than this operation accepts.");
+            cloudResult(source, page, id, reply.status, reply.body);
+            return;
+        }
+        Runnable work = () -> {
+            String operation;
+            String body;
+            try {
+                JSONObject request = new JSONObject(raw);
+                operation = request.getString("op");
+                body = request.isNull("body") ? "" : request.getString("body");
+            } catch (JSONException | RuntimeException error) {
+                CloudAccount.Reply reply = CloudAccount.refuse(400, "json", "That request is not readable JSON.");
+                cloudResult(source, page, id, reply.status, reply.body);
+                return;
+            } catch (OutOfMemoryError error) {
+                // A body under the cap can still be more than this phone's heap reads; answer, do not crash.
+                CloudAccount.Reply reply = CloudAccount.refuse(413, "size", CloudAccount.TOO_LARGE_HERE);
+                cloudResult(source, page, id, reply.status, reply.body);
+                return;
+            }
+            AndroidCloud cloud = AndroidCloud.get(this);
+            if (cloud == null) {
+                cloudResult(source, page, id, 404, null);
+                return;
+            }
+            try {
+                CloudAccount.Reply reply = cloud.account.handle(operation, body);
+                cloudResult(source, page, id, reply.status, reply.body);
+            } catch (OutOfMemoryError error) {
+                // The reply is copied once more into the message, so a read the account answered can still
+                // be more than the heap holds here. The page hears the item is too large; the app goes on.
+                CloudAccount.Reply reply = CloudAccount.refuse(200, "too-large", CloudAccount.TOO_LARGE_TO_READ);
+                cloudResult(source, page, id, reply.status, reply.body);
+            }
+        };
+        if (!AndroidCloud.run(work)) {
+            CloudAccount.Reply reply = CloudAccount.refuse(429, "unavailable", "Too many cloud requests at once.");
+            cloudResult(source, page, id, reply.status, reply.body);
+        }
+    }
+
+    private void cloudResult(WebMessagePort destination, int page, String id, int status, String body) {
+        String reply = "{\"v\":1,\"kind\":\"cloud-result\",\"id\":" + JSONObject.quote(id)
+                + ",\"status\":" + status + ",\"body\":" + (body == null ? "null" : body) + "}";
+        handler.post(() -> {
+            if (destination != port || page != generation || destroyed) return;
+            try {
+                destination.postMessage(new WebMessage(reply));
+            } catch (RuntimeException ignored) {
+                // The page went away while the request ran; the next page asks again.
+            }
+        });
     }
 
     private void saveResult(WebMessagePort destination, String id, String status, String message) {

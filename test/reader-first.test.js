@@ -344,7 +344,7 @@ test('backup and restore precede optional exports while reports and recovery sta
   assert.ok(settings.indexOf('id="restore-file"') < settings.indexOf('id="backup-export-options"'));
   assert.match(exporting, /id="btn-export-md-2"/);
   assert.match(exporting, /id="btn-export-order-2"[^>]*aria-describedby="export-order-hint"/);
-  assert.match(exporting, /JSON is the lossless reader-data backup/);
+  assert.match(exporting, /The order-only export leaves out notes, summaries, progress and availability overrides\./);
   for (const id of ['restore-report', 'btn-undo-restore', 'salvage-list', 'salvage-report', 'api-report', 'cache-report', 'btn-wipe']) {
     assert.ok(settings.includes(`id="${id}"`));
     assert.ok(!exporting.includes(`id="${id}"`) && !advanced.includes(`id="${id}"`), `${id} must not be hidden by optional configuration`);

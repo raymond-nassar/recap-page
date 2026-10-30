@@ -152,7 +152,7 @@ export function importScenarios({ preparePage }) {
         await page.goto(`${page.__origin}/#/data`, { waitUntil: 'load' });
         await page.waitForSelector('#view-data:not([hidden])');
         t.check('complete transfer explicitly includes separately labeled draft file',
-          await page.$eval('#view-data', (node) => node.textContent.includes('separate import-draft file') && node.textContent.includes('Reading-data and completion-history backups do not include it')));
+          await page.$eval('#view-data', (node) => node.textContent.includes('It holds your pasted lists and chosen matches') && node.textContent.includes('Only this backup and a complete backup include it.')));
         await page.evaluate((text) => {
           const input = document.querySelector('#restore-draft');
           const transfer = new DataTransfer();

@@ -1,3 +1,5 @@
+// First, so the page module finds the Android cloud backup transport when it is evaluated.
+import { cloudPort } from './cloud.js';
 import { arrivalHeading, boot, closeHomeUpdatesPanel } from '../js/main.js';
 import { setDownloadHandler } from '../js/lib/download.js';
 import { createAndroidBackHandler, createAndroidBridge } from './bridge.js';
@@ -23,6 +25,7 @@ const bridge = createAndroidBridge({
     isNarrow: () => window.matchMedia('(max-width: 880px)').matches,
     closeHomeUpdates: closeHomeUpdatesPanel,
   }),
+  cloud: cloudPort,
 });
 
 setDownloadHandler(bridge.save);
