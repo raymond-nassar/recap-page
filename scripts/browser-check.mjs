@@ -22992,7 +22992,7 @@ async function runReaderLauncherFeedback(page, t) {
   }
 }
 
-SCENARIOS.push({ id: 'reader-launcher-feedback', title: 'truthful theme-aware standalone reader handoff', run: runReaderLauncherFeedback });
+SCENARIOS.push({ id: 'reader-launcher-feedback', title: 'truthful theme-aware standalone reader handoff', run: runReaderLauncherFeedback }, (await import('./browser-decorative-text.mjs')).decorativeGeneratedText);
 MUTATIONS.push(
   { id: 'launcher-force-dark', title: 'chosen launcher theme is ignored', breaks: 'reader-launcher-feedback',
     rewriteOpen: (source) => ux11Splice(source, 'const chosenTheme = themeAttribute(settings.theme);',

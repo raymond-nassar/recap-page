@@ -816,7 +816,7 @@ main { min-width: 0; }
   color: var(--muted); font-size: var(--t-caption);
 }
 .breadcrumb li { display: flex; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
-.breadcrumb li + li::before { content: "/"; margin-right: var(--space-4); color: var(--dim); }
+.breadcrumb li + li::before { content: "/"; content: "/" / ""; margin-right: var(--space-4); color: var(--dim); }
 .breadcrumb a { color: var(--blue); text-underline-offset: .16em; }
 .breadcrumb [aria-current="page"] { color: var(--text); font-weight: 600; }
 
@@ -1778,17 +1778,17 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border-radius: var(--radius-pill); padding: var(--space-1) var(--space-4); font-size: var(--t-caption); font-weight: 600;
   flex: none; white-space: nowrap;
 }
-.pill-held::before { content: "✓ "; }
+.pill-held::before { content: "✓ "; content: "✓ " / ""; }
 
 .notice { border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); font-size: var(--t-body); margin: 0; border: var(--stroke-1) solid var(--line); }
 .notice-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: rgb(var(--teal-line) / 5.882%); }
 .notice-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: rgb(var(--amber-line) / 5.882%); }
 .notice-error { color: var(--red-fg-2); border-color: rgb(var(--red-line) / 33.333%); background: rgb(var(--red-line) / 7.059%); }
 .notice-busy { color: var(--muted); }
-.notice-ok::before { content: "✓"; margin-right: var(--space-4); }
-.notice-warn::before { content: "▲"; margin-right: var(--space-4); }
-.notice-error::before { content: "×"; margin-right: var(--space-4); }
-.notice-busy::before { content: "•"; margin-right: var(--space-4); }
+.notice-ok::before { content: "✓"; content: "✓" / ""; margin-right: var(--space-4); }
+.notice-warn::before { content: "▲"; content: "▲" / ""; margin-right: var(--space-4); }
+.notice-error::before { content: "×"; content: "×" / ""; margin-right: var(--space-4); }
+.notice-busy::before { content: "•"; content: "•" / ""; margin-right: var(--space-4); }
 
 /* A notice that carries an action, such as the undo offered after a list is deleted. The
    button is sized to the 44px target minimum rather than the notice's own type scale,
