@@ -807,7 +807,18 @@ final class PresentationUITests: XCTestCase {
               afterProof["focus"] as? String == proof["focus"] as? String,
               afterMatches.count == 1,
               NSDictionary(dictionary: afterMatches[0]).isEqual(NSDictionary(dictionary: candidate)) else {
-            print("T03 passive guard rejected a changing native tap: before=\(before), after=\(after)")
+            try record("t03-passive-guard-rejected-tap", [
+                "candidate": candidate, "nativeLabel": element.label,
+                "nativeFrame": NSCoder.string(for: nativeFrame),
+                "nativeTapPoint": NSCoder.string(for: point),
+                "beforeDOM": proof["dom"] ?? NSNull(),
+                "afterDOM": (after["guard"] as? [String: Any])?["dom"] ?? NSNull(),
+                "beforeFocus": proof["focus"] ?? NSNull(),
+                "afterFocus": (after["guard"] as? [String: Any])?["focus"] ?? NSNull(),
+                "beforeRoute": before["href"] ?? NSNull(), "afterRoute": after["href"] ?? NSNull(),
+                "afterCandidates": afterMatches,
+                "afterValid": (after["guard"] as? [String: Any])?["valid"] ?? NSNull(),
+            ])
             return false
         }
         try record("t03-passive-guard", [

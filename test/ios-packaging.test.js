@@ -804,6 +804,7 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /NSDictionary\(dictionary: settledMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
   assert.match(presentationTests, /NSDictionary\(dictionary: afterMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
   assert.match(debugSupport, /const hitPoints = hitRects\.flatMap/);
+  assert.match(debugSupport, /return \[fragment\.y \+ fragment\.height \/ 2, fragment\.y \+ inset,/);
   assert.match(debugSupport, /document\.elementFromPoint\(point\.x, point\.y\)/);
   assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);

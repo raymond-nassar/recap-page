@@ -251,7 +251,7 @@ enum DebugSupport {
               const hitPoints = hitRects.flatMap(fragment => {
                 const x = fragment.x + fragment.width / 2;
                 const inset = Math.min(1, fragment.height / 4);
-                return [fragment.y + inset, fragment.y + fragment.height / 2,
+                return [fragment.y + fragment.height / 2, fragment.y + inset,
                   fragment.y + fragment.height - inset].map(y => ({ x, y })).filter(point => {
                   const hit = document.elementFromPoint(point.x, point.y);
                   return hit && element.contains(hit) && passiveDom(hit);
