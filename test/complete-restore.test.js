@@ -357,6 +357,35 @@ test('a tab opened while another restores waits with saving paused, then reloads
   assert.equal(JSON.parse(env.storage.map.get(SETTINGS_KEY)).theme, 'dark', 'and never wrote its earlier settings');
 });
 
+// A closed tab's shared lock outlives the close by seconds under load (#1004), so a restore's
+// exclusive request can be queued rather than held when another tab starts. That tab pauses as it
+// does for a held restore, and reloads only once the restore has been granted and let go.
+test('a tab opened while a restore is still queued behind a closing tab pauses, and reloads only after the restore lets go', async () => {
+  const env = environment();
+  const tick = () => new Promise((resolve) => setTimeout(resolve, 0));
+  let closing;
+  void env.locks.request('restore', { mode: 'shared' }, () => new Promise((resolve) => { closing = resolve; }));
+  let granted = false;
+  let release;
+  const restoring = env.locks.request('restore', { mode: 'exclusive' }, () => new Promise((resolve) => { granted = true; release = resolve; }));
+  await tick();
+  assert.equal(granted, false, 'the restore is queued, not held');
+  const late = env.make();
+  await late.start();
+  assert.equal(late.state.phase, 'paused');
+  assert.equal(late.state.message, RESTORE_MESSAGES.otherTab);
+  assert.throws(() => late.storage.setItem(SETTINGS_KEY, '{"theme":"light"}'), /Another Recap Page tab is restoring/);
+  closing();
+  await tick();
+  assert.equal(granted, true);
+  assert.equal(env.reloads, 0, 'no reload while the restore holds the lock');
+  assert.equal(late.state.phase, 'paused');
+  release();
+  await restoring;
+  await tick();
+  assert.equal(env.reloads, 1, 'one reload once the restore lets go');
+});
+
 test('a page restored from the back-forward cache reloads when a restore ran meanwhile, and resumes when none did', async () => {
   const env = environment();
   const listeners = {};
