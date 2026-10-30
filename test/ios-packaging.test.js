@@ -846,7 +846,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(controller, /private static let accessibleTargetScript = #"""/);
   assert.match(controller, /source:\s*Self\.accessibleTargetScript,[\s\S]*?injectionTime:\s*\.atDocumentEnd/);
   assert.match(controller, /const selector = '\.skip-link, #fallback, #return, \.brand, #home-updates-toggle, #btn-home-browse, #btn-home-add'/);
-  assert.match(controller, /new MutationObserver\(applyAccessibleTargets\)\.observe\(document\.documentElement,\s*\{ childList: true, subtree: true \}\)/);
+  assert.match(controller, /new MutationObserver\(applyAccessibleTargets\)\.observe\(document\.documentElement,\s*\{ childList: true, subtree: true, attributes: true, attributeFilter: \['hidden'\] \}\)/);
   assert.match(controller, /target\.dataset\.iosAccessibleTarget === 'true'/);
   assert.match(controller, /target\.innerText \|\| target\.textContent/);
   assert.match(controller, /child\.setAttribute\('aria-hidden', 'true'\)/);
@@ -863,10 +863,29 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
-  assert.match(tests, /for _ in 0\.\.<4[\s\S]*?link\.frame\.maxY <= usableBottom[\s\S]*?webView\.swipeUp\(\)/);
+  assert.match(tests, /let displacement = element\.frame\.midY - usableFrame\.midY/);
+  assert.match(tests, /press\(forDuration: 0\.1, thenDragTo: end\)/);
   for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=']) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
+});
+
+test('iOS hidden Continue actions leave the native tree and return when shown', () => {
+  const controller = appSource('WebViewController');
+  for (const id of ['btn-chero-read', 'btn-chero-done', 'btn-chero-review', 'btn-chero-deferred']) {
+    assert.ok(controller.includes(`#${id}`));
+  }
+  assert.match(controller, /if \(control\.hidden\) control\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(controller, /else control\.removeAttribute\('aria-hidden'\)/);
+  assert.match(controller, /attributeFilter: \['hidden'\]/);
+  assert.match(presentationTests, /"hiddenContinueActions"/);
+  assert.match(presentationTests, /"hidden Continue actions have no native Button nodes"/);
+});
+
+test('native journal recovery reveals its action above navigation before asking for confirmation', () => {
+  assert.match(launchTests, /revealNativeTarget\(finish, in: reader\)[\s\S]*?finish\.tap\(\)/);
+  assert.match(launchTests, /"Finish the complete restore\?"/);
+  assert.match(launchTests, /"journal-fault-confirmation-missing"/);
 });
 
 test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {

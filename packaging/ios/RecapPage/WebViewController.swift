@@ -132,6 +132,11 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
         + '#btn-chero-open, .app-footer > a[data-view="about"]';
       const applyAccessibleTargets = () => {
+        for (const control of document.querySelectorAll(
+          '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {
+          if (control.hidden) control.setAttribute('aria-hidden', 'true');
+          else control.removeAttribute('aria-hidden');
+        }
         for (const target of document.querySelectorAll(`${selector}, ${additionalTargets}`)) {
           const label = (target.id === 'btn-chero-open' ? target.getAttribute('aria-label') : null)
             || (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
@@ -154,7 +159,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
       };
       applyAccessibleTargets();
       new MutationObserver(applyAccessibleTargets).observe(document.documentElement,
-        { childList: true, subtree: true });
+        { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
     })();
     """#
 

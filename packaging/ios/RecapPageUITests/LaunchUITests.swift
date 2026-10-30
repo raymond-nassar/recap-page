@@ -431,7 +431,14 @@ final class LaunchUITests: XCTestCase {
 
         let finish = reader.buttons["Finish restore"]
         XCTAssertTrue(finish.waitForExistence(timeout: 30))
+        revealNativeTarget(finish, in: reader)
         finish.tap()
+        let question = reader.staticTexts["Finish the complete restore?"]
+        let questionVisible = question.waitForExistence(timeout: 15)
+        if !questionVisible {
+            try record("journal-fault-confirmation-missing", ["nativeHierarchy": reader.debugDescription])
+        }
+        XCTAssertTrue(questionVisible, "finishing recovery asks for confirmation before writing")
         let confirm = reader.buttons["Finish restore"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 15))
         let confirmHittable = XCTNSPredicateExpectation(

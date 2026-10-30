@@ -13,6 +13,32 @@ private func layoutMetrics(from label: String, prefix: String = "recap-layout-pr
 }
 
 @MainActor
+func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication) {
+    let webView = app.webViews.firstMatch
+    let toggle = app.descendants(matching: .any).matching(
+        NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
+    let usableBottom = toggle.exists ? min(webView.frame.maxY, toggle.frame.minY) : webView.frame.maxY
+    let usableFrame = CGRect(
+        x: webView.frame.minX, y: webView.frame.minY,
+        width: webView.frame.width, height: usableBottom - webView.frame.minY)
+    for _ in 0..<8 {
+        if element.isHittable && element.frame.minY >= usableFrame.minY
+            && element.frame.maxY <= usableBottom { break }
+        let displacement = element.frame.midY - usableFrame.midY
+        let travel = min(abs(displacement), usableFrame.height / 2)
+        let startY = usableFrame.midY + (displacement > 0 ? travel / 2 : -travel / 2)
+        let endY = usableFrame.midY + (displacement > 0 ? -travel / 2 : travel / 2)
+        let origin = app.coordinate(withNormalizedOffset: .zero)
+        let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
+        let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
+        start.press(forDuration: 0.1, thenDragTo: end)
+    }
+    XCTAssertTrue(element.isHittable, "\(element.label) is hittable after native scrolling")
+    XCTAssertGreaterThanOrEqual(element.frame.minY, usableFrame.minY)
+    XCTAssertLessThanOrEqual(element.frame.maxY, usableBottom, "the target is above bottom navigation before tapping")
+}
+
+@MainActor
 final class PresentationUITests: XCTestCase {
     private static let defaultTypeSizes: [String: Double] = [
         "--t-caption": 12,
@@ -148,6 +174,12 @@ final class PresentationUITests: XCTestCase {
           viewportWidth: document.documentElement.clientWidth,
           documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
+          hiddenContinueActions: [...document.querySelectorAll('#chero-actions button')].map((control) => ({
+            id: control.id,
+            hidden: control.hidden,
+            ariaHidden: control.getAttribute('aria-hidden'),
+            display: getComputedStyle(control).display,
+          })),
           comic: (() => {
             const card = document.getElementById('issue-focus-card');
             const action = document.getElementById('btn-issue-read');
@@ -722,19 +754,7 @@ final class PresentationUITests: XCTestCase {
                                "\(label) has no separate undersized text target")
                 XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(label) retains its native target width")
                 XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(label) retains its native target height")
-                let webView = app.webViews.firstMatch
-                let toggle = moreToggle(of: app)
-                let usableBottom = toggle.exists
-                    ? min(webView.frame.maxY, toggle.frame.minY)
-                    : webView.frame.maxY
-                for _ in 0..<4 {
-                    if link.isHittable && link.frame.minY >= webView.frame.minY
-                        && link.frame.maxY <= usableBottom { break }
-                    webView.swipeUp()
-                }
-                XCTAssertTrue(link.isHittable, "\(label) is hittable after native scrolling")
-                XCTAssertGreaterThanOrEqual(link.frame.minY, webView.frame.minY)
-                XCTAssertLessThanOrEqual(link.frame.maxY, usableBottom, "\(label) is above bottom navigation before tapping")
+                revealNativeTarget(link, in: app)
                 try record("t03-first-run-\(category.rawValue)-\(label)", [
                     "label": link.label, "frame": NSCoder.string(for: link.frame),
                 ])
@@ -790,6 +810,21 @@ final class PresentationUITests: XCTestCase {
                 let screen = try XCTUnwrap(
                     screens.first { $0["view"] as? String == view },
                     "the DOM probe records \(name)")
+                if name == "home" {
+                    let hiddenActions = try XCTUnwrap(screen["hiddenContinueActions"] as? [[String: Any]])
+                    XCTAssertEqual(hiddenActions.count, 4)
+                    for action in hiddenActions {
+                        XCTAssertEqual(action["hidden"] as? Bool, true)
+                        XCTAssertEqual(action["ariaHidden"] as? String, "true")
+                        XCTAssertEqual(action["display"] as? String, "none")
+                    }
+                    let region = app.webViews.firstMatch.otherElements.matching(
+                        NSPredicate(format: "label == %@ OR label == %@",
+                                    "iOS presentation fixture", "iOS presentation fixture, region"))
+                        .containing(.link, identifier: "Open the list: iOS presentation fixture").firstMatch
+                    XCTAssertTrue(region.exists)
+                    XCTAssertEqual(region.buttons.count, 0, "hidden Continue actions have no native Button nodes")
+                }
                 let skipTarget = try XCTUnwrap(screen["skipLink"] as? [String: Any])
                 let skipLinkWidth = try XCTUnwrap((skipTarget["width"] as? NSNumber)?.doubleValue)
                 let skipLinkHeight = try XCTUnwrap((skipTarget["height"] as? NSNumber)?.doubleValue)

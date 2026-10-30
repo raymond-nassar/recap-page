@@ -81,6 +81,11 @@ The four sidebar navigation links and the Continue card's Open the list link use
 parent-target treatment, preserving their names and actions rather than exempting nested text.
 The footer's About link also uses that treatment and the shared `--target` token for its minimum
 width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
+The four Continue actions also mirror their hidden state into their accessibility state. This
+addresses WebKit on iOS 18 exposing unnamed button remnants when an empty list hides those actions;
+showing an action removes that extra accessibility hiding. Native tests require the empty card to
+contain no button nodes, with hosted confirmation pending. Generated-bundle checks exercise hiding
+and showing each action.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
