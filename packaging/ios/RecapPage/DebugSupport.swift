@@ -189,6 +189,9 @@ enum DebugSupport {
       const safeElement = element => !element.matches(interactive) && !element.isContentEditable
         && !element.labels?.length && passiveRoles.has((element.getAttribute('role') || '').toLowerCase())
         && (!element.id || !document.querySelector(`label[for="${CSS.escape(element.id)}"]`))
+        && (!element.id || ![...document.querySelectorAll('[aria-labelledby]')].some(control =>
+          (control.matches(interactive) || !passiveRoles.has((control.getAttribute('role') || '').toLowerCase()))
+          && control.getAttribute('aria-labelledby').split(/\s+/).includes(element.id)))
         && !hasHandler(element);
       const visible = element => {
         if (!element.isConnected || element.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
