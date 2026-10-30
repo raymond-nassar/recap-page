@@ -2414,8 +2414,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2242-2244|0": {
-    "anchor": "src/styles.css:2242-2244",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2244-2246|0": {
+    "anchor": "src/styles.css:2244-2246",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2439,8 +2439,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2242-2244|0": {
-    "anchor": "src/styles.css:2242-2244",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2244-2246|0": {
+    "anchor": "src/styles.css:2244-2246",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2494,8 +2494,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2655-2656|0": {
-    "anchor": "src/styles.css:2655-2656",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2657-2658|0": {
+    "anchor": "src/styles.css:2657-2658",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2564,8 +2564,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2242-2244|0": {
-    "anchor": "src/styles.css:2242-2244",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2244-2246|0": {
+    "anchor": "src/styles.css:2244-2246",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6254,23 +6254,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1957-1959|0": {
-    "anchor": "src/styles.css:1957-1959",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1959-1961|0": {
+    "anchor": "src/styles.css:1959-1961",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1975-1977|0": {
-    "anchor": "src/styles.css:1975-1977",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1977-1979|0": {
+    "anchor": "src/styles.css:1977-1979",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2282|0": {
-    "anchor": "src/styles.css:2282",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2284|0": {
+    "anchor": "src/styles.css:2284",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2306|0": {
-    "anchor": "src/styles.css:2306",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2308|0": {
+    "anchor": "src/styles.css:2308",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

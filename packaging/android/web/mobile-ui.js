@@ -122,6 +122,12 @@ export function wireMobileUi({ arrivalHeading }) {
     if (view.hidden || body.hidden) dismiss();
   });
   for (const node of [view, body]) observer.observe(node, { attributes: true, attributeFilter: ['hidden'] });
+  // #985: above Continue reading, the closure notice pushed Read and Done under the bottom bar at the
+  // phone sizes where #857 holds them above it, by 186px at 360 by 800 and 90px at 800 by 360. The same
+  // element moves below the card so reading order follows the screen; with no card it is still first.
+  // Windows does not load this file and keeps the notice first.
+  const closure = document.querySelector('#reader-closure-notice');
+  if (closure) document.querySelector('#home-continue')?.after(closure);
   wireSpotlightUi(narrow, arrivalHeading);
   wireDoneBar();
   root.classList.add('android-mobile-ui');

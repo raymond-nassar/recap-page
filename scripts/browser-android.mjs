@@ -1842,7 +1842,8 @@ async function readingGeometry(page) {
       byline: document.querySelector('#hero-by').textContent,
       count: document.querySelector('#ring-sub').textContent,
       facts: [...document.querySelectorAll('#hero-facts > div')].map((node) => ({
-        key: node.querySelector('dt').textContent, value: node.querySelector('dd').textContent,
+        key: [...node.querySelector('dt').childNodes].filter((child) => child.nodeType === Node.TEXT_NODE)
+          .map((child) => child.textContent).join(''), value: node.querySelector('dd').textContent,
       })),
       scroll: scrollY, body: parseFloat(getComputedStyle(document.body).fontSize),
       titleFont: parseFloat(getComputedStyle(document.querySelector('#order-name')).fontSize),
@@ -1937,10 +1938,16 @@ async function readingAccessibility(page, result, id) {
     const tree = walk(hero);
     const domFacts = await page.$$eval('#hero-facts > div', (pairs) => pairs.map((pair) => {
       const term = pair.querySelector('dt'), definition = pair.querySelector('dd');
+      const label = [...term.childNodes].filter((child) => child.nodeType === Node.TEXT_NODE)
+        .map((child) => child.textContent).join('');
+      const hint = term.querySelector('.rail-hint');
       return {
         termTag: term?.tagName, definitionTag: definition?.tagName,
-        key: term?.textContent, value: definition?.textContent,
-        renderedKey: term?.innerText, textTransform: term && getComputedStyle(term).textTransform,
+        key: label, value: definition?.textContent,
+        renderedKey: term.innerText.slice(0, label.length), textTransform: getComputedStyle(term).textTransform,
+        note: hint && {
+          text: hint.textContent, rendered: hint.innerText, textTransform: getComputedStyle(hint).textTransform,
+        },
       };
     }));
     if (readingFactsAx) {
@@ -1951,6 +1958,7 @@ async function readingAccessibility(page, result, id) {
       }, null, 2)}\n`, { flag: 'wx' });
     }
     assert.equal(domFacts.length, result.facts.length, `${id}: original factual pair count`);
+    check(domFacts.filter((fact) => fact.note).length === 1, `${id}: one historical-record note retained separately`);
     let previous = tree.findIndex((entry) => entry.role === 'heading' && entry.name === result.issue);
     assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
     previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
@@ -1969,6 +1977,17 @@ async function readingAccessibility(page, result, id) {
         `${id}: only the inherited uppercase presentation may change the label spelling`);
       const term = tree.findIndex((entry, at) => at > previous
         && entry.role === 'StaticText' && entry.name === dom.renderedKey);
+      if (dom.note) {
+        check(fact.key === 'Marvel Unlimited record'
+          && dom.note.text === 'This is a historical record, not availability in Marvel Comics.'
+          && dom.note.rendered === dom.note.text && dom.note.textTransform === 'none',
+        `${id}: historical-record note retains its exact sentence case`);
+        const note = tree.findIndex((entry, at) => at > term
+          && entry.role === 'StaticText' && entry.name === dom.note.text);
+        const definition = tree.findIndex((entry, at) => at > term
+          && entry.role === 'StaticText' && entry.name === fact.value);
+        check(note > term && definition > note, `${id}: historical-record note follows its label before its value`);
+      }
       const definition = tree.findIndex((entry, at) => at > term
         && entry.role === 'StaticText' && entry.name === fact.value);
       const matches = term > previous && definition > term;
@@ -2297,6 +2316,11 @@ async function alignmentCheck(page, profile) {
     `${id}: populated reading fixture on Home`);
   } else {
     check(await page.$eval('#btn-home-add', (node) => !!node.getClientRects().length), `${id}: current fresh Home actions`);
+    // #985: phones move the closure notice below Continue reading, which a fresh Home does not show,
+    // so here the notice stays Home's first content on every platform.
+    check(await page.$eval('#view-home', (view) => [...view.children]
+      .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
+    `${id}: the closure notice stays first on a Home without Continue reading`);
   }
   const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', ...(compactHome ? [] : ['.home-action']),
     '#home-categories', '.brand[data-view="home"]']);
@@ -3603,6 +3627,18 @@ async function homeContinueCheck(page, label, viewport) {
   });
   const opened = await measure();
   await screenshot(page, name, 'home-continue');
+  // #985: on a phone the closure notice is the same element moved below the card, so the accessibility
+  // tree reads the card first; Windows keeps the notice first. Its words and class do not change.
+  const tree = [];
+  const walk = (node) => { if (!node) return; tree.push(node); (node.children || []).forEach(walk); };
+  walk(await page.accessibility.snapshot());
+  const cardName = await page.$eval('#chero-h', (node) => node.textContent.trim());
+  const notice = await page.$eval('#reader-closure-notice', (node) => ({ text: node.textContent, className: node.className }));
+  const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
+  const noticeAt = tree.findIndex((node) => node.name === notice.text);
+  check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
+    && notice.className === 'notice notice-warn' && notice.text.startsWith('Marvel Unlimited reading ends'),
+  `${name}: the accessibility tree reads ${viewport.desktop ? 'the closure notice, then Continue reading' : 'Continue reading, then the closure notice'} ${JSON.stringify({ cardAt, noticeAt, ...notice })}`);
   // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
   // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The
   // heading's box is logged at every size so normal text can be compared before and after.
