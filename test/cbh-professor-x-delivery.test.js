@@ -25,6 +25,10 @@ const pathId = 'professor-x-and-the-x-men';
 const readJson = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const readText = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const MEMORIAL = 'In memory of Sir Patrick Stewart (1940 to 2026), who brought Professor X to life on screen.';
+// The owner approved the path's public wording on #997, ending it as the Avengers path's ends.
+const PATH_DESCRIPTION = "Professor X's essential comics first, then the X-Men stories that carry his part further: "
+  + "Onslaught, Jonathan Hickman's Krakoa era and its 2024 finale. Messiah Complex, which the guide also names, "
+  + 'opens the X-Men: Messiah Complex to Avengers vs. X-Men path. No two stops share an issue, so nothing is read twice.';
 
 const packet = await readJson(`scripts/data/cbh-packets/${id}.json`);
 const mapping = await readJson(`scripts/data/cbh-mappings/${id}.json`);
@@ -178,6 +182,9 @@ test('the Professor X path starts at the spotlight and continues to the X-Men li
     .map((entry) => entry.id), ['x-men-messiah-to-avx']);
   assert.ok(manifest.lists.find((entry) => entry.id === id).description
     .includes(`continue on the ${path.name} path in Modern Timeline.`));
+  assert.equal(manifest.paths.find((entry) => entry.id === pathId).description, PATH_DESCRIPTION);
+  assert.equal((await readJson('src/data/catalog.json')).paths.find((entry) => entry.id === pathId).description,
+    PATH_DESCRIPTION);
 });
 
 // Onslaught is an owner guide with open gaps, so its library will be recorded again. That record

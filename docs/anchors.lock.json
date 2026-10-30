@@ -2076,12 +2076,12 @@
   },
   "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12804-12941|0": {
     "anchor": "src/data/catalog.json:12804-12941",
-    "fp": "7121080d36aef9d3",
+    "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
   "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:8433-8484|0": {
     "anchor": "src/data/curated-lists.json:8433-8484",
-    "fp": "1ffb5f235ac9b979",
+    "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },
   "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/issue.js:109|0": {
