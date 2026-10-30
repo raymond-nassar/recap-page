@@ -23005,6 +23005,88 @@ MUTATIONS.push(
       'setTimeout(() => {}, 1400); go(page);', 'launcher-early-fallback') },
 );
 
+SCENARIOS.push({
+  id: 'disclosure-chevron-reflow',
+  title: 'Search disclosure keeps its rotating chevron inside the row at accessibility text sizes',
+  async run(page, t) {
+    const client = await page.createCDPSession();
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+    });
+    try {
+      for (const width of [375, 1032]) {
+        await page.setViewport({ width, height: width === 375 ? 667 : 1376 });
+        await open(page, `/?chevron-width=${width}#/add`);
+        await page.waitForSelector('#add-other-methods > summary');
+        for (const scale of [1, 3.117647]) {
+          await page.evaluate((factor) => {
+            const root = document.documentElement;
+            for (const token of ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']) {
+              root.style.setProperty(token, `${parseFloat(getComputedStyle(root).getPropertyValue(token)) * factor}px`);
+            }
+          }, scale);
+          for (const mode of scale === 1 ? ['light', 'dark', 'forced-colors'] : ['light']) {
+            await client.send('Emulation.setEmulatedMedia', { features: [
+              { name: 'forced-colors', value: mode === 'forced-colors' ? 'active' : 'none' },
+              { name: 'prefers-reduced-motion', value: mode === 'forced-colors' ? 'reduce' : 'no-preference' },
+            ] });
+            await page.evaluate((theme) => { document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark'; }, mode);
+            for (const expanded of [false, true]) {
+              await page.focus('#add-other-methods > summary');
+              if (await page.$eval('#add-other-methods', (node) => node.open) !== expanded) await page.keyboard.press('Enter');
+              await responsiveFrames(page);
+              const { root } = await client.send('DOM.getDocument');
+              const { nodeId } = await client.send('DOM.querySelector', { nodeId: root.nodeId, selector: '#add-other-methods > summary' });
+              const { node } = await client.send('DOM.describeNode', { nodeId });
+              const marker = node.pseudoElements.find((element) => element.pseudoType === 'after');
+              const { model } = await client.send('DOM.getBoxModel', { backendNodeId: marker.backendNodeId });
+              const geometry = await page.$eval('#add-other-methods > summary', (summary) => {
+                const rect = summary.getBoundingClientRect();
+                const style = getComputedStyle(summary, '::after');
+                return {
+                  summary: { left: rect.left, right: rect.right, top: rect.top + scrollY, bottom: rect.bottom + scrollY },
+                  document: document.documentElement.scrollWidth, viewport: innerWidth,
+                  box: { width: style.width, height: style.height, lineHeight: style.lineHeight, marginRight: style.marginRight },
+                  content: style.content, transform: style.transform, transition: style.transitionDuration,
+                  focused: document.activeElement === summary,
+                };
+              });
+              const xs = model.border.filter((_, index) => index % 2 === 0);
+              const ys = model.border.filter((_, index) => index % 2 === 1);
+              const receipt = { width, scale, mode, expanded, ...geometry, quad: model.border };
+              console.log(`CHEVRON ${JSON.stringify(receipt)}`);
+              t.check(`${width} ${scale} ${mode} ${expanded}: no sideways page scrolling`,
+                geometry.document === width && geometry.viewport === width, JSON.stringify(receipt));
+              t.check(`${width} ${scale} ${mode} ${expanded}: decorative, keyboard-operated and points in the right direction`,
+                geometry.focused && geometry.content.includes('/ ""')
+                && geometry.transform === (expanded ? 'matrix(0, 1, -1, 0, 0, 0)' : 'none'), JSON.stringify(receipt));
+              if (scale > 1) t.check(`${width} accessibility ${expanded}: rotated box stays inside its summary`,
+                Math.min(...xs) >= geometry.summary.left - 1 && Math.max(...xs) <= geometry.summary.right + 1
+                && Math.min(...ys) >= geometry.summary.top - 1 && Math.max(...ys) <= geometry.summary.bottom + 1,
+                JSON.stringify(receipt));
+              if (mode === 'forced-colors') t.check(`${width} ${expanded}: reduced motion remains disabled`,
+                geometry.transition === '0s', JSON.stringify(receipt));
+            }
+          }
+        }
+      }
+    } finally {
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await client.detach();
+    }
+  },
+});
+
+MUTATIONS.push({
+  id: 'disclosure-chevron-inherited-line-box',
+  breaks: 'disclosure-chevron-reflow',
+  why: 'restoring only the changed chevron rule restores the enlarged rotated overflow',
+  script: () => addEventListener('load', () => {
+    const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+    sheet.insertRule('.action-disclosure > summary::after { margin-right: 0 !important; }', sheet.cssRules.length);
+  }),
+});
+
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.
