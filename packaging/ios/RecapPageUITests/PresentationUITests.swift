@@ -755,53 +755,65 @@ final class PresentationUITests: XCTestCase {
         let webFrame = app.webViews.firstMatch.frame
         let scale = webFrame.width / viewport
         let nativeFrame = element.frame
-        let matches = candidates.filter { candidate in
+        let matches = candidates.compactMap { candidate -> (candidate: [String: Any], point: CGPoint)? in
             guard candidate["label"] as? String == element.label,
                   let container = candidate["container"] as? String,
                   container == before["view"] as? String || container == "sidebar-nav",
-                  let hitRects = candidate["hitRects"] as? [[String: Any]],
+                  let hitPoints = candidate["hitPoints"] as? [[String: Any]],
                   let rect = candidate["rect"] as? [String: Any],
                   let x = (rect["x"] as? NSNumber)?.doubleValue,
                   let y = (rect["y"] as? NSNumber)?.doubleValue,
                   let width = (rect["width"] as? NSNumber)?.doubleValue,
-                  let height = (rect["height"] as? NSNumber)?.doubleValue else { return false }
+                  let height = (rect["height"] as? NSNumber)?.doubleValue else { return nil }
             let domFrame = CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
                                   width: width * scale, height: height * scale)
-            let nativeCenter = CGPoint(x: nativeFrame.midX, y: nativeFrame.midY)
-            let hitsText = hitRects.contains { rect in
-                guard let x = (rect["x"] as? NSNumber)?.doubleValue,
-                      let y = (rect["y"] as? NSNumber)?.doubleValue,
-                      let width = (rect["width"] as? NSNumber)?.doubleValue,
-                      let height = (rect["height"] as? NSNumber)?.doubleValue else { return false }
-                return CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
-                              width: width * scale, height: height * scale)
-                    .insetBy(dx: -1, dy: -1).contains(nativeCenter)
+            let points = hitPoints.compactMap { value -> CGPoint? in
+                guard let x = (value["x"] as? NSNumber)?.doubleValue,
+                      let y = (value["y"] as? NSNumber)?.doubleValue else { return nil }
+                let point = CGPoint(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale)
+                return nativeFrame.contains(point) && webFrame.contains(point) ? point : nil
             }
-            return width > 0 && height > 0 && nativeFrame.width > 0 && nativeFrame.height > 0
-                && webFrame.contains(nativeFrame) && hitsText
-                && domFrame.insetBy(dx: -1, dy: -1).contains(nativeFrame)
+            guard width > 0 && height > 0 && nativeFrame.width > 0 && nativeFrame.height > 0,
+                  webFrame.contains(nativeFrame),
+                  domFrame.insetBy(dx: -1, dy: -1).contains(nativeFrame),
+                  let point = points.first else { return nil }
+            return (candidate, point)
         }
-        guard matches.count == 1, let candidate = matches.first,
-              let key = candidate["key"] as? String else {
+        guard matches.count == 1, let match = matches.first else {
             print("T03 passive guard rejected unmatched or ambiguous label/container/frame: \(element.debugDescription)")
             return false
         }
-        element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let candidate = match.candidate
+        let point = match.point
+        let settledMatches = (settledProof["candidates"] as? [[String: Any]] ?? [])
+            .filter { $0["key"] as? String == candidate["key"] as? String }
+        guard settledMatches.count == 1,
+              NSDictionary(dictionary: settledMatches[0]).isEqual(NSDictionary(dictionary: candidate)),
+              element.frame == nativeFrame, app.webViews.firstMatch.frame == webFrame,
+              let key = candidate["key"] as? String else {
+            print("T03 passive guard rejected changed candidate geometry: \(element.debugDescription)")
+            return false
+        }
+        app.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: point.x, dy: point.y)).tap()
         let after = try freshPassiveState(of: app)
+        let afterMatches = ((after["guard"] as? [String: Any])?["candidates"] as? [[String: Any]] ?? [])
+            .filter { $0["key"] as? String == key }
         guard after["view"] as? String == before["view"] as? String,
               after["href"] as? String == before["href"] as? String,
               let afterProof = after["guard"] as? [String: Any],
               afterProof["valid"] as? Bool == true,
               let dom = proof["dom"] as? String, !dom.isEmpty, afterProof["dom"] as? String == dom,
               afterProof["focus"] as? String == proof["focus"] as? String,
-              let afterCandidates = afterProof["candidates"] as? [[String: Any]],
-              afterCandidates.filter({ $0["key"] as? String == key }).count == 1 else {
+              afterMatches.count == 1,
+              NSDictionary(dictionary: afterMatches[0]).isEqual(NSDictionary(dictionary: candidate)) else {
             print("T03 passive guard rejected a changing native tap: before=\(before), after=\(after)")
             return false
         }
         try record("t03-passive-guard", [
             "candidate": candidate, "nativeLabel": element.label,
             "nativeFrame": NSCoder.string(for: nativeFrame), "before": before, "after": after,
+            "nativeTapPoint": NSCoder.string(for: point),
         ])
         return true
     }
@@ -817,23 +829,52 @@ final class PresentationUITests: XCTestCase {
             routeState = [:]
         }
         var unreviewedFindings = 0
-        try app.performAccessibilityAudit { issue in
-            print("T03 accessibility audit issue: \(issue.compactDescription)")
-            print("T03 accessibility audit details: \(issue.detailedDescription)")
-            print("T03 accessibility audit element: \(issue.element.debugDescription)")
-            if allowsPassiveGuard, issue.auditType == .hitRegion, let element = issue.element,
-               element.elementType == .staticText {
-                do {
-                    if try self.acceptPassiveFinding(element, in: app, routeState: routeState) {
-                        print("T03 accepted proven passive-text hitRegion finding: \(element.label)")
-                        return true
+        for attempt in 0...1 {
+            var observedFindings = 0
+            do {
+                try app.performAccessibilityAudit { issue in
+                    observedFindings += 1
+                    print("T03 accessibility audit issue: \(issue.compactDescription)")
+                    print("T03 accessibility audit details: \(issue.detailedDescription)")
+                    print("T03 accessibility audit element: \(issue.element.debugDescription)")
+                    if allowsPassiveGuard, issue.auditType == .hitRegion, let element = issue.element,
+                       element.elementType == .staticText {
+                        do {
+                            if try self.acceptPassiveFinding(element, in: app, routeState: routeState) {
+                                print("T03 accepted proven passive-text hitRegion finding: \(element.label)")
+                                return true
+                            }
+                        } catch {
+                            XCTFail("Passive guard evidence failed: \(error)")
+                        }
                     }
-                } catch {
-                    XCTFail("Passive guard evidence failed: \(error)")
+                    unreviewedFindings += 1
+                    return false
                 }
+                break
+            } catch {
+                let failure = error as NSError
+                guard failure.domain == "com.apple.xcode.xctest.accessibilityAudit", failure.code == -56 else {
+                    throw error
+                }
+                let retry = attempt == 0 && observedFindings == 0 && allowsPassiveGuard
+                try record("t03-accessibility-timeout", [
+                    "domain": failure.domain, "code": failure.code, "attempt": attempt + 1,
+                    "findings": observedFindings, "retry": retry,
+                ])
+                guard retry else { throw error }
+                let expectedView = try XCTUnwrap(routeState["view"] as? String)
+                let expectedHref = try XCTUnwrap(routeState["href"] as? String)
+                let fragment = try XCTUnwrap(URL(string: expectedHref)?.fragment)
+                let expectedRoute = String(try XCTUnwrap(fragment.split(separator: "/").first))
+                try waitForActiveView(app, view: expectedView, route: expectedRoute)
+                let retryState = try freshPassiveState(of: app)
+                guard retryState["href"] as? String == expectedHref,
+                      retryState["view"] as? String == expectedView else {
+                    throw error
+                }
+                try record("t03-accessibility-retry", ["attempt": attempt + 2, "state": retryState])
             }
-            unreviewedFindings += 1
-            return false
         }
         continueAfterFailure = previousFailurePolicy
         XCTAssertEqual(unreviewedFindings, 0, "every finding without a complete passive guard proof remains a failure")

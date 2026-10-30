@@ -797,9 +797,14 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /settledProof\["dom"\] as\? String == proof\["dom"\]/);
   assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", element\.label\)\)/);
   assert.doesNotMatch(presentationTests, /\.containing\(\.staticText, identifier: element\.label\)/);
-  assert.match(presentationTests, /candidate\["hitRects"\] as\? \[\[String: Any\]\]/);
-  assert.match(presentationTests, /\.contains\(nativeCenter\)/);
-  assert.match(presentationTests, /element\.coordinate\(withNormalizedOffset: CGVector\(dx: 0\.5, dy: 0\.5\)\)\.tap\(\)/);
+  assert.match(presentationTests, /candidate\["hitPoints"\] as\? \[\[String: Any\]\]/);
+  assert.match(presentationTests, /nativeFrame\.contains\(point\)/);
+  assert.match(presentationTests, /app\.coordinate\(withNormalizedOffset: \.zero\)\s*\.withOffset\(CGVector\(dx: point\.x, dy: point\.y\)\)\.tap\(\)/);
+  assert.match(presentationTests, /settledMatches\.count == 1/);
+  assert.match(presentationTests, /NSDictionary\(dictionary: settledMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
+  assert.match(presentationTests, /NSDictionary\(dictionary: afterMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
+  assert.match(debugSupport, /const hitPoints = hitRects\.flatMap/);
+  assert.match(debugSupport, /document\.elementFromPoint\(point\.x, point\.y\)/);
   assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
@@ -820,6 +825,28 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /XCTAssertEqual\(after\["focusIsControl"\] as\? Bool, false/);
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.width,\s*44/);
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.height,\s*44/);
+});
+
+test('T03 retries only one finding-free XCTest audit timeout after a settled-route check', () => {
+  assert.match(presentationTests, /for attempt in 0\.\.\.1/);
+  assert.match(presentationTests, /observedFindings \+= 1/);
+  assert.match(presentationTests, /failure\.domain == "com\.apple\.xcode\.xctest\.accessibilityAudit", failure\.code == -56/);
+  assert.match(presentationTests, /let retry = attempt == 0 && observedFindings == 0 && allowsPassiveGuard/);
+  assert.match(presentationTests, /record\("t03-accessibility-timeout"[\s\S]*?"retry": retry/);
+  assert.match(presentationTests, /guard retry else \{ throw error \}/);
+  assert.match(presentationTests, /waitForActiveView\(app, view: expectedView, route: expectedRoute\)/);
+  assert.match(presentationTests, /record\("t03-accessibility-retry"/);
+});
+
+test('iOS restore warnings stay visible as descriptions of real file controls, not passive exemptions', () => {
+  const controller = appSource('WebViewController');
+  assert.match(controller, /const input = document\.getElementById\(target\.htmlFor\)/);
+  assert.match(controller, /input\?\.getAttribute\('aria-describedby'\)/);
+  assert.match(controller, /target\.setAttribute\('aria-describedby', describedBy\)/);
+  assert.match(controller, /restore-complete-hint[\s\S]*?restore-file-hint[\s\S]*?restore-history-hint/);
+  assert.match(controller, /hint\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(debugSupport, /\[aria-labelledby\], \[aria-describedby\]/);
+  assert.match(debugSupport, /control\.getAttribute\('aria-describedby'\)/);
 });
 
 test('T03 Read close diagnostics distinguish the action, callback, and UIKit completion', () => {

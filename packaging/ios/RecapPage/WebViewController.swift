@@ -154,6 +154,15 @@ final class WebViewController: UIViewController, WKUIDelegate {
           if (target.matches('.backup-restore-label')) {
             target.setAttribute('role', 'button');
             target.setAttribute('tabindex', '0');
+            const input = document.getElementById(target.htmlFor);
+            const describedBy = input?.getAttribute('aria-describedby');
+            if (describedBy) {
+              target.setAttribute('aria-describedby', describedBy);
+              for (const id of ['restore-complete-hint', 'restore-file-hint', 'restore-history-hint']) {
+                const hint = document.getElementById(id);
+                if (hint && describedBy.split(/\s+/).includes(id)) hint.setAttribute('aria-hidden', 'true');
+              }
+            }
             target.addEventListener('keydown', event => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();

@@ -189,9 +189,10 @@ enum DebugSupport {
       const safeElement = element => !element.matches(interactive) && !element.isContentEditable
         && !element.labels?.length && passiveRoles.has((element.getAttribute('role') || '').toLowerCase())
         && (!element.id || !document.querySelector(`label[for="${CSS.escape(element.id)}"]`))
-        && (!element.id || ![...document.querySelectorAll('[aria-labelledby]')].some(control =>
+        && (!element.id || ![...document.querySelectorAll('[aria-labelledby], [aria-describedby]')].some(control =>
           (control.matches(interactive) || !passiveRoles.has((control.getAttribute('role') || '').toLowerCase()))
-          && control.getAttribute('aria-labelledby').split(/\s+/).includes(element.id)))
+          && `${control.getAttribute('aria-labelledby') || ''} ${control.getAttribute('aria-describedby') || ''}`
+            .split(/\s+/).includes(element.id)))
         && !hasHandler(element);
       const visible = element => {
         if (!element.isConnected || element.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
@@ -247,9 +248,18 @@ enum DebugSupport {
                 return hit && element.contains(hit) && passiveDom(hit)
                   ? [{ x: left, y: top, width: right - left, height: bottom - top }] : [];
               });
+              const hitPoints = hitRects.flatMap(fragment => {
+                const x = fragment.x + fragment.width / 2;
+                const inset = Math.min(1, fragment.height / 4);
+                return [fragment.y + inset, fragment.y + fragment.height / 2,
+                  fragment.y + fragment.height - inset].map(y => ({ x, y })).filter(point => {
+                  const hit = document.elementFromPoint(point.x, point.y);
+                  return hit && element.contains(hit) && passiveDom(hit);
+                });
+              });
               found.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
                 selector: path(element), container: container.id, label: labelOf(text.textContent, element),
-                hitSafe: hitRects.length > 0, hitRects,
+                hitSafe: hitPoints.length > 0, hitRects, hitPoints,
                 rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height } });
             }
           }

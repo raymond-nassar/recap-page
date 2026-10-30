@@ -67,8 +67,11 @@ breadcrumb span (`.breadcrumb [aria-current=page]`) inside Breadcrumb navigation
 case uses the fixed Library, Search or Backup & settings label for the active audited page;
 breadcrumb links are controls, not passive candidates.
 Only a hit-region finding on native StaticText can enter the guard. On the current settled route,
-the native label, container and frame must uniquely match a visible DOM text node. The native tap
-center must lie in a hit-safe text fragment, not a gap inside a multiline span's bounding box. Hidden, inert,
+the native label, container and frame must uniquely match a visible DOM text node. An exact
+DOM-hit-tested text point must lie inside the native frame, including a cropped text frame,
+not a gap inside a multiline span's bounding box. The test taps that absolute native coordinate;
+it does not ask XCTest to resolve an element-relative point from a different underlying frame.
+Candidate geometry must agree before and after the tap. Hidden, inert,
 collapsed, stale, unmatched or ambiguous text fails. The node, its in-page ancestors and descendants
 must have no interactive element or role, tabindex, label association, editable content or click,
 double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler. Tracking starts
@@ -98,6 +101,10 @@ tooltip taps. Every native audit waits for a fresh DOM sample confirming both th
 hash route; a native heading name alone can match stale or navigation text. This is not device
 VoiceOver acceptance.
 
+An audit-call error with XCTest's accessibility-audit domain and code -56 can be retried once,
+only if no finding was delivered, after another fresh settled-route check. Both the error and
+retry are recorded. Findings are never retried, and a second timeout fails the test.
+
 Handler tracking and guard instrumentation are compiled only into Debug presentation-test builds.
 The existing Release Simulator build also scans every file of the built app, including the
 executable and resources as bytes, for both guard identifiers. A missing app or missing or empty
@@ -112,6 +119,9 @@ Search's tool links and More ways to add summary, and Backup & settings' disclos
 The backup-file labels retain their label-to-file-input association and file-picker activation.
 The iOS overlay exposes each as one named button, with Enter and Space activation, and line boxes
 and minimum height using the shared `--target` token rather than treating the text as passive.
+The associated restore warnings stay visibly unchanged and become descriptions of those buttons,
+not separate native text targets. The original file inputs keep their descriptions as well.
+Text that labels or describes an interactive control cannot enter the passive guard.
 Breadcrumb links also use the shared `--target`
 token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
 breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.
