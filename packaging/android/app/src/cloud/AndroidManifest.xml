@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Merged only into a build given a cloud client configuration (#810, P03); app/build.gradle supplies the
+     placeholders. The path is the signature hash as registered, unencoded, which is how Android compares a
+     received address's decoded path. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name=".SignInRedirectActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="msauth"
+                    android:host="${applicationId}"
+                    android:path="/${recapCloudRedirectHash}" />
+            </intent-filter>
+            <meta-data android:name="recap.cloud.client" android:value="${recapCloudClient}" />
+            <meta-data android:name="recap.cloud.redirectHash" android:value="${recapCloudRedirectHash}" />
+        </activity>
+    </application>
+</manifest>
