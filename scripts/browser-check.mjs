@@ -5412,7 +5412,7 @@ const SCENARIOS = [
         ])
         && timeline.featureImageSrc === null
         && timeline.featureImageHidden === true
-        && timeline.featureFallbackDisplay === 'flex'
+        && timeline.featureFallbackDisplay === 'grid'
         && timeline.oldPlainAction === false
         && timeline.setupCards === 1,
         JSON.stringify(timeline));
@@ -5833,7 +5833,7 @@ const SCENARIOS = [
         ])
         && ageFeature.imageSrc === null
         && ageFeature.imageHidden === true
-        && ageFeature.fallbackDisplay === 'flex'
+        && ageFeature.fallbackDisplay === 'grid'
         && ageFeature.inResults === false,
         JSON.stringify(ageFeature));
 
