@@ -1298,22 +1298,33 @@ final class PresentationUITests: XCTestCase {
         let beforeSame = beforeLog["sameValue"] as? [String: Any] ?? [:]
         let afterSame = afterLog["sameValue"] as? [String: Any] ?? [:]
         let beforeTargets = beforeSame["targets"] as? [String: NSNumber] ?? [:]
-        let sameTargets = (afterSame["targets"] as? [String: NSNumber] ?? [:])
-            .map { ($0.key, $0.value.intValue - (beforeTargets[$0.key]?.intValue ?? 0)) }
-            .filter { $0.1 > 0 }.sorted { $0.1 > $1.1 || ($0.1 == $1.1 && $0.0 < $1.0) }
-        return [
-            "beforeSeq": beforeSeq, "afterSeq": afterSeq, "count": max(0, afterSeq - beforeSeq),
-            "complete": beforeSeq >= 0 && entries.count == max(0, afterSeq - beforeSeq),
-            "sameValueRewrites": ((afterSame["total"] as? NSNumber)?.intValue ?? 0)
-                - ((beforeSame["total"] as? NSNumber)?.intValue ?? 0),
-            "sameValueTargets": sameTargets.prefix(8).map { [$0.0: $0.1] },
-            "tapDurationMs": Int((tapEnd - tapStart).rounded()),
-            "beforeSampleMs": ((beforeLog["at"] as? NSNumber)?.doubleValue)
-                .map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull(),
-            "afterSampleMs": ((afterLog["at"] as? NSNumber)?.doubleValue)
-                .map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull(),
-            "entries": entries, "diff": order.compactMap { nodes[$0] },
-        ]
+        let afterTargets = afterSame["targets"] as? [String: NSNumber] ?? [:]
+        var sameDeltas: [(String, Int)] = []
+        for (key, value) in afterTargets {
+            let delta: Int = value.intValue - (beforeTargets[key]?.intValue ?? 0)
+            if delta > 0 { sameDeltas.append((key, delta)) }
+        }
+        sameDeltas.sort { lhs, rhs in lhs.1 != rhs.1 ? lhs.1 > rhs.1 : lhs.0 < rhs.0 }
+        var sameTargetList: [[String: Int]] = []
+        for (key, delta) in sameDeltas.prefix(8) { sameTargetList.append([key: delta]) }
+        let afterSameTotal: Int = (afterSame["total"] as? NSNumber)?.intValue ?? 0
+        let beforeSameTotal: Int = (beforeSame["total"] as? NSNumber)?.intValue ?? 0
+        let count: Int = max(0, afterSeq - beforeSeq)
+        var window: [String: Any] = [:]
+        window["beforeSeq"] = beforeSeq
+        window["afterSeq"] = afterSeq
+        window["count"] = count
+        window["complete"] = beforeSeq >= 0 && entries.count == count
+        window["sameValueRewrites"] = afterSameTotal - beforeSameTotal
+        window["sameValueTargets"] = sameTargetList
+        window["tapDurationMs"] = Int((tapEnd - tapStart).rounded())
+        let beforeAt: Double? = (beforeLog["at"] as? NSNumber)?.doubleValue
+        let afterAt: Double? = (afterLog["at"] as? NSNumber)?.doubleValue
+        window["beforeSampleMs"] = beforeAt.map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull()
+        window["afterSampleMs"] = afterAt.map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull()
+        window["entries"] = entries
+        window["diff"] = order.compactMap { nodes[$0] }
+        return window
     }
 
     private func performAccessibilityAudit(of app: XCUIApplication, allowsPassiveGuard: Bool = false) throws {
