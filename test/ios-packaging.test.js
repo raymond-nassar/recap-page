@@ -856,6 +856,19 @@ test('T03 ARIA association exceptions require hidden DOM controls and native AX 
   }
 });
 
+test('T03 global interaction properties remain unreviewed after removal without changing native setter semantics', () => {
+  assert.match(debugSupport, /const trackGlobalPropertyHandlers = target =>/);
+  assert.match(debugSupport, /Object\.defineProperty\(target, name,/);
+  assert.match(debugSupport, /descriptor\.set\.call\(this, value\)/);
+  assert.match(debugSupport, /typeof descriptor\.get\.call\(this\) === 'function'[\s\S]*?unreviewedGlobalEver = true/);
+  assert.match(debugSupport, /for \(const target of \[document, window\]\) trackGlobalPropertyHandlers\(target\)/);
+  assert.match(presentationTests, /document\.onclick = handler;[\s\S]*?document\.onclick = previous;/);
+  assert.match(presentationTests, /launch\(route: "guard-global-property"\)/);
+  assert.match(presentationTests, /record\("t03-guard-property-history"/);
+  assert.match(presentationTests, /property\["afterRemovalValid"\] as\? Bool, false/);
+  assert.match(presentationTests, /property\["calls"\] as\? Int, 1/);
+});
+
 test('T03 fixtures settle inserted DOM before measuring passivity and legacy positives use the full guard', () => {
   assert.match(presentationTests, /const add = async[\s\S]*?configure\(wrapper, text\);\s*await nextFrame\(\)/);
   assert.match(presentationTests, /await add\('plain positive'/);

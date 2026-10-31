@@ -49,7 +49,11 @@ controls and navigation findings do not qualify. Settled route, DOM and geometry
 each classification records the crop, navigation frame and hit targets. This does not change the
 passive ownership guard or scroll an audit finding. The minimum-iPhone screenshot and Range
 samples in run 41138429203 established that its cropped Reading data heading was behind the bar,
-not visible text. Native confirmation of the separate classification is pending.
+not visible text. Run 41163429277 confirmed the classification: crop `(29,766,332,10)` inside
+the live navigation frame `(0,753,390,91)`, with all three samples hitting Library navigation
+and none hitting the owner. Its measured positive and all three strict negative counterexamples
+ran on minimum and newest iPhone, iPhone SE and iPad; all 44 presentation scenarios and 40 audit
+records passed.
 
 The native shell maps the system text size to the six shared type tokens. It does not zoom the page
 or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
@@ -138,6 +142,12 @@ pointerover, pointerout and pointermove; and the sidebar and reading shortcuts' 
 handlers. No global activation delegation is permitted. An unreviewed global registration or changed
 inventory rejects every candidate until reviewed. The keyboard handlers do not make a non-focusable
 text node a key target. The pointer and tooltip handlers still have to survive the native tap proof.
+Interaction on-properties on document and window are tracked from document start too. Assigning
+a click, double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler makes
+the inventory invalid for the rest of that page, even after removal or restoration of its prior
+value. Removal is not human review. Tracking delegates to the original native getters and setters
+so handler identity, event delivery and removal retain their behavior. A fixture assigns
+`document.onclick`, restores its prior value and requires every candidate to remain rejected.
 
 WebKit's public iOS accessibility wrapper handles
 [accessibility hit testing separately from activation](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm):

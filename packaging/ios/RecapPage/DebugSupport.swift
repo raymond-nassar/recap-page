@@ -160,15 +160,39 @@ enum DebugSupport {
         once: entry.once, script: entry.script, enclosingFunction: entry.enclosingFunction,
         stack: entry.stack,
       }));
-      const propertyHandlers = target => {
+      const interactionPropertyNames = target => {
         const names = new Set();
         for (let prototype = target; prototype; prototype = Object.getPrototypeOf(prototype)) {
           for (const name of Object.getOwnPropertyNames(prototype)) {
             if (name.startsWith('on') && observedType.test(name.slice(2))) names.add(name);
           }
         }
-        return [...names].some(name => typeof target[name] === 'function');
+        return names;
       };
+      const propertyHandlers = target => [...interactionPropertyNames(target)]
+        .some(name => typeof target[name] === 'function');
+      const trackGlobalPropertyHandlers = target => {
+        if (propertyHandlers(target)) unreviewedGlobalEver = true;
+        for (const name of interactionPropertyNames(target)) {
+          let owner = target;
+          while (owner && !Object.hasOwn(owner, name)) owner = Object.getPrototypeOf(owner);
+          const descriptor = owner && Object.getOwnPropertyDescriptor(owner, name);
+          if (!descriptor?.get || !descriptor.set || !descriptor.configurable) {
+            throw new Error(`Passive audit guard cannot track global interaction property: ${name}`);
+          }
+          Object.defineProperty(target, name, {
+            configurable: descriptor.configurable,
+            enumerable: descriptor.enumerable,
+            get() { return descriptor.get.call(this); },
+            set(value) {
+              descriptor.set.call(this, value);
+              if ((this === document || this === window)
+                && typeof descriptor.get.call(this) === 'function') unreviewedGlobalEver = true;
+            },
+          });
+        }
+      };
+      for (const target of [document, window]) trackGlobalPropertyHandlers(target);
       const globalInventoryValid = () => !unreviewedGlobalEver
         && !propertyHandlers(document) && !propertyHandlers(window)
         && JSON.stringify(globals.filter(active).map(identity).sort()) === JSON.stringify(approved);

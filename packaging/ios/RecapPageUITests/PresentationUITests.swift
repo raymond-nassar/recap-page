@@ -468,6 +468,21 @@ final class PresentationUITests: XCTestCase {
       document.addEventListener('click', () => {});
       guardFixtures.push({ name: 'unreviewed global click', rejected: !guard.globalInventoryValid()
         && guard.candidates().length === 0 && !guard.passive(fixture.querySelector('span')) });
+    } else if (fixtureMode === 'guard-global-property') {
+      const beforeValid = guard.globalInventoryValid();
+      const previous = document.onclick;
+      let calls = 0;
+      const handler = () => { calls += 1; };
+      document.onclick = handler;
+      const handlerPreserved = document.onclick === handler;
+      const installedValid = guard.globalInventoryValid();
+      document.dispatchEvent(new MouseEvent('click'));
+      document.onclick = previous;
+      document.dispatchEvent(new MouseEvent('click'));
+      guardFixtures.push({ name: 'removed global property handler', beforeValid, installedValid,
+        handlerPreserved, calls, afterRemovalValid: guard.globalInventoryValid(),
+        rejected: !guard.globalInventoryValid() && guard.candidates().length === 0
+          && !guard.passive(fixture) });
     } else if (fixtureMode === 'guard-aria') {
       fixture.innerHTML = [
         '<p id="ios-aria-hidden-text">Guard hidden-button description</p>',
@@ -1441,6 +1456,19 @@ final class PresentationUITests: XCTestCase {
             }
         }
         app.terminate()
+        let propertyApp = launch(route: "guard-global-property")
+        let propertyResult = try probeResult(of: propertyApp)
+        let propertyFixtures = try XCTUnwrap(propertyResult["guardFixtures"] as? [[String: Any]])
+        XCTAssertEqual(propertyFixtures.count, 1)
+        let property = try XCTUnwrap(propertyFixtures.first)
+        try record("t03-guard-property-history", ["fixture": property])
+        XCTAssertEqual(property["beforeValid"] as? Bool, true, "the fresh fixture starts with reviewed globals")
+        XCTAssertEqual(property["handlerPreserved"] as? Bool, true, "the native setter retains handler identity")
+        XCTAssertEqual(property["calls"] as? Int, 1, "the handler runs once and removal prevents a second call")
+        XCTAssertEqual(property["installedValid"] as? Bool, false, "an assigned global property rejects")
+        XCTAssertEqual(property["afterRemovalValid"] as? Bool, false, "removal cannot review a handler")
+        XCTAssertEqual(property["rejected"] as? Bool, true, "removed global properties still reject every node")
+        propertyApp.terminate()
     }
 
     func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps() throws {
