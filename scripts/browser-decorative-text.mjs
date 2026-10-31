@@ -67,7 +67,8 @@ async function comparePaint(page, first, second) {
     const [left, right] = await Promise.all([decode(a), decode(b)]);
     const sizes = [[left.width, left.height], [right.width, right.height]];
     // Captures of different sizes are compared over the larger of the two, and a pixel present in only
-    // one of them counts as differing, so a size change still yields a count and a box.
+    // one of them counts as differing, so a size change still yields a count and a box. A coordinate
+    // inside neither capture, which crossed sizes such as 2x1 and 1x2 leave, is not a pixel at all.
     const width = Math.max(left.width, right.width);
     const height = Math.max(left.height, right.height);
     const pixel = (image, x, y) => (x < image.width && y < image.height ? (y * image.width + x) * 4 : -1);
@@ -77,6 +78,7 @@ async function comparePaint(page, first, second) {
       for (let x = 0; x < width; x += 1) {
         const l = pixel(left, x, y);
         const r = pixel(right, x, y);
+        if (l < 0 && r < 0) continue;
         if (l >= 0 && r >= 0 && left.data[l] === right.data[r] && left.data[l + 1] === right.data[r + 1]
           && left.data[l + 2] === right.data[r + 2] && left.data[l + 3] === right.data[r + 3]) continue;
         differing += 1;

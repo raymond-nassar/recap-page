@@ -8862,12 +8862,13 @@ const SCENARIOS = [
       // through, and on a timeout they print the stage the purge reached before rethrowing.
       await page.evaluateOnNewDocument(installCachePurgeProbe);
       await legacy.evaluate(watchLegacyTab);
+      const automaticSince = Date.now();
       await page.goto(`${page.__origin}/#/settings`, { waitUntil: 'domcontentloaded' });
       // Interval polling, not the animation-frame default. Opening the legacy tab put this one in the
       // background, and a hidden tab runs no animation frames, so a frame-polled wait re-checks
       // nothing after its first look. Under 6x CPU throttling the diagnostic above showed the report
       // already reading "Close other tabs" when the wait timed out, with the tab hidden and no frame.
-      await waitForCacheReport(page, legacy, 'automatic', 'Close other tabs', { polling: 100, timeout: 15000 });
+      await waitForCacheReport(page, legacy, 'automatic', 'Close other tabs', { polling: 100, timeout: 15000 }, automaticSince);
       t.check('cleanup reports that older metadata is still waiting on another tab', true);
       const preloadedState = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2') || '{}'));
       t.check('saved-state prose is removed before waiting on a blocked legacy deletion',
@@ -9052,8 +9053,9 @@ const SCENARIOS = [
           request.onerror = () => reject(request.error);
         });
       });
+      const manualSince = Date.now();
       await click(page, '#btn-clear-cache');
-      await waitForCacheReport(page, legacy, 'manual', 'Close other tabs', { polling: 100, timeout: 15000 });
+      await waitForCacheReport(page, legacy, 'manual', 'Close other tabs', { polling: 100, timeout: 15000 }, manualSince);
       const manualBlocked = await page.evaluate(() => ({
         disabled: document.querySelector('#btn-clear-cache').disabled,
         report: document.querySelector('#cache-report').textContent,
@@ -19330,13 +19332,78 @@ async function journalHeld(page) {
 async function failJournalPut(page, at) {
   await page.evaluate((at) => {
     const real = IDBObjectStore.prototype.put;
-    let count = 0;
+    // Exposed so a timed-out wait can say whether this document still carries the fault: a reload
+    // would leave this undefined, and a count short of `at` means the restore never reached the put.
+    const fault = { at, puts: 0, thrown: null, armedAt: Date.now() };
+    window.__journalFault = fault;
     IDBObjectStore.prototype.put = function put(...args) {
-      if (this.name === 'journal') count += 1;
-      if (this.name === 'journal' && count === at) throw new DOMException('Injected journal failure', 'UnknownError');
+      if (this.name === 'journal') fault.puts += 1;
+      if (this.name === 'journal' && fault.puts === at) {
+        fault.thrown = Date.now();
+        throw new DOMException('Injected journal failure', 'UnknownError');
+      }
       return real.apply(this, args);
     };
   }, at);
+}
+
+// The 'stopped part way' wait after a deliberately interrupted restore. On a timeout it prints what can
+// tell the causes apart before rethrowing: the two reports (a refusal for other tabs, or an app fault),
+// every page the profile browser holds with its visibility (a tab Edge restored after the kill, or a
+// hidden restore tab whose frame-polled wait stops re-checking), and the fault's put count (a reload
+// that dropped the injected failure). The check itself is unchanged.
+async function waitForRestoreStop(edge, tab, label) {
+  const startedAt = Date.now();
+  const timeout = 30000;
+  try {
+    await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('stopped part way'), { timeout });
+  } catch (err) {
+    const timedOutAt = Date.now();
+    const page = await settleWithin(tab.evaluate(async () => {
+      const sampledAt = Date.now();
+      const text = (selector) => document.querySelector(selector)?.textContent ?? null;
+      const observed = {
+        sampledAt,
+        url: location.href,
+        visibility: document.visibilityState,
+        focus: document.hasFocus(),
+        backupReport: text('#complete-backup-report'),
+        appReport: text('#app-report'),
+        ask: Boolean(document.querySelector('#ask[open]')),
+        recoveryShown: document.querySelector('#complete-restore-recovery')?.hidden === false,
+        marker: localStorage.getItem('mrt.complete-restore.v1')?.split(':')[0] ?? null,
+        fault: window.__journalFault ? { ...window.__journalFault } : null,
+      };
+      observed.locks = await navigator.locks.query().then((query) => ({
+        held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
+        pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
+      }), String);
+      observed.frame = await Promise.race([
+        new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
+        new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
+      ]);
+      return observed;
+    }), 5000);
+    const pages = await settleWithin((async () => Promise.all((await edge.pages()).map(async (other) => ({
+      url: other.url(),
+      restoreTab: other === tab,
+      visibility: await settleWithin(other.evaluate(() => document.visibilityState), 2000),
+    }))))(), 5000);
+    const relative = (at) => (typeof at === 'number' ? at - startedAt : null);
+    const fault = page?.fault
+      ? { ...page.fault, armedAt: relative(page.fault.armedAt), thrown: relative(page.fault.thrown) }
+      : (page?.fault ?? null);
+    console.log(`COMPLETE-RESTORE-STAGE ${JSON.stringify({
+      wait: label,
+      startedAt: new Date(startedAt).toISOString(),
+      deadline: timeout,
+      timedOut: relative(timedOutAt),
+      sampled: relative(page?.sampledAt),
+      page: page && { ...page, sampledAt: undefined, fault },
+      pages,
+    })}`);
+    throw err;
+  }
 }
 
 // The card and its recovery section where the interface contract asks: keyboard order with a visible
@@ -20161,7 +20228,7 @@ SCENARIOS.push({
       await pickFile(tab, '#restore-complete', file);
       await tab.waitForSelector('#ask[open]');
       await click(tab, '#ask-ok');
-      await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('stopped part way'));
+      await waitForRestoreStop(edge, tab, 'first interrupted restore');
       t.check('a restore that stops part way pauses saving and offers recovery at once',
         await tab.evaluate(() => !document.querySelector('#complete-restore-recovery').hidden
           && !document.querySelector('#btn-complete-finish').hidden
@@ -20214,7 +20281,7 @@ SCENARIOS.push({
       await pickFile(tab, '#restore-complete', await completeFileOf(tab, 'third'));
       await tab.waitForSelector('#ask[open]');
       await click(tab, '#ask-ok');
-      await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('stopped part way'));
+      await waitForRestoreStop(edge, tab, 'third interrupted restore');
       const foreign = JSON.stringify({ format: 'recap-page-list-history', version: 1, writeToken: 'foreign', records: [] });
       await tab.evaluate((value) => localStorage.setItem('mrt.list-history.v1', value), foreign);
       await tab.reload({ waitUntil: 'load' });
@@ -23239,27 +23306,40 @@ function watchLegacyTab() {
 // describe a purge that never happened.
 const CACHE_PURGE_LOCKS = new Set(['mrt.complete-restore.lock.v1', 'mrt.cache-purge.v1']);
 
-// Raw observations with times relative to the wait's start. The only conclusion drawn is the one the
-// timestamps prove: whether the expected text first appeared before or after the deadline.
-function cachePurgeTimeline(sample, expected, startedAt, timeout) {
+// Observations from the wait's window, which opens at `since` (the navigation or click that starts the
+// purge) and closes at the sample, with times relative to the wait's start. The report text in effect
+// when the window opened is kept as its first entry. The only conclusions stated are the ones the
+// timestamps prove: when the expected text first showed in the window, against the deadline, and
+// whether it still showed when sampled.
+function cachePurgeTimeline(sample, expected, startedAt, timeout, since = startedAt) {
   const relative = (entry) => ({ ...entry, at: entry.at - startedAt });
   const stages = Array.isArray(sample?.stages)
-    ? sample.stages.filter((entry) => !entry.stage.startsWith('lock:') || CACHE_PURGE_LOCKS.has(entry.name)).map(relative)
+    ? sample.stages.filter((entry) => entry.at >= since
+      && (!entry.stage.startsWith('lock:') || CACHE_PURGE_LOCKS.has(entry.name))).map(relative)
     : null;
-  const reports = Array.isArray(sample?.reports) ? sample.reports.map(relative) : null;
-  let shownAt = null;
-  for (const entry of reports ?? []) {
-    const shows = typeof entry.text === 'string' && entry.text.includes(expected);
-    if (shows && shownAt === null) shownAt = entry.at;
-    if (!shows) shownAt = null;
+  let reports = null;
+  if (Array.isArray(sample?.reports)) {
+    const earlier = sample.reports.filter((entry) => entry.at < since).at(-1);
+    reports = [
+      ...(earlier ? [{ ...relative(earlier), inEffectAtWindowStart: true }] : []),
+      ...sample.reports.filter((entry) => entry.at >= since).map(relative),
+    ];
   }
+  const shows = (text) => typeof text === 'string' && text.includes(expected);
+  const shownAt = reports?.find((entry) => shows(entry.text))?.at ?? null;
+  const sampled = typeof sample?.sampledAt === 'number' ? sample.sampledAt - startedAt : null;
+  const stillShown = typeof sample?.cacheReport === 'string' ? shows(sample.cacheReport) : null;
+  const at = sampled === null ? 'the sample' : `the sample at ${sampled} ms`;
   let conclusion = 'the report text was not observed';
   if (reports) {
-    if (shownAt === null) conclusion = 'the report had not shown the expected text by the time it was sampled';
-    else if (shownAt <= timeout) conclusion = `the report showed the expected text at ${shownAt} ms, before the ${timeout} ms deadline`;
-    else conclusion = `the report showed the expected text at ${shownAt} ms, after the ${timeout} ms deadline`;
+    if (shownAt === null) {
+      conclusion = `the report did not show the expected text between the window start and ${at}`;
+    } else {
+      conclusion = `the report first showed the expected text at ${shownAt} ms, ${shownAt <= timeout ? 'before' : 'after'} the ${timeout} ms deadline`
+        + (stillShown === null ? '' : `, and ${stillShown ? 'still showed' : 'no longer showed'} it at ${at}`);
+    }
   }
-  return { conclusion, shownAt, reports, stages };
+  return { conclusion, shownAt, stillShown, sampled, reports, stages };
 }
 
 async function settleWithin(promise, ms) {
@@ -23272,14 +23352,20 @@ async function settleWithin(promise, ms) {
   }
 }
 
-async function waitForCacheReport(page, legacy, wait, expected, options) {
+async function waitForCacheReport(page, legacy, wait, expected, options, since) {
   const startedAt = Date.now();
   try {
     await page.waitForFunction((text) => document.querySelector('#cache-report')?.textContent.includes(text), options, expected);
   } catch (err) {
     const timedOutAt = Date.now();
     const current = await settleWithin(page.evaluate(async (names) => {
+      // The report, its history and the stages are read together at the sample time, before the
+      // animation-frame probe below spends up to a second.
       const sampledAt = Date.now();
+      const text = (selector) => document.querySelector(selector)?.textContent ?? null;
+      const cacheReport = text('#cache-report');
+      const reports = window.__mrtCacheReportTexts ? [...window.__mrtCacheReportTexts] : null;
+      const stages = window.__mrtCachePurgeStages ? [...window.__mrtCachePurgeStages] : null;
       const frame = await Promise.race([
         new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
         new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
@@ -23292,13 +23378,12 @@ async function waitForCacheReport(page, legacy, wait, expected, options) {
       } catch (parseError) {
         issues = String(parseError);
       }
-      const text = (selector) => document.querySelector(selector)?.textContent ?? null;
       return {
         sampledAt,
         visibility: document.visibilityState,
         frame,
         hash: location.hash,
-        cacheReport: text('#cache-report'),
+        cacheReport,
         saveReport: text('#save-report'),
         appReport: text('#app-report'),
         marker: localStorage.getItem('mrt.cache-purge.v1'),
@@ -23308,8 +23393,8 @@ async function waitForCacheReport(page, legacy, wait, expected, options) {
           held: query.held.filter((lock) => names.includes(lock.name)).map((lock) => `${lock.name}:${lock.mode}`),
           pending: query.pending.filter((lock) => names.includes(lock.name)).map((lock) => `${lock.name}:${lock.mode}`),
         }), String),
-        stages: window.__mrtCachePurgeStages ?? null,
-        reports: window.__mrtCacheReportTexts ?? null,
+        stages,
+        reports,
       };
     }, [...CACHE_PURGE_LOCKS]), 5000);
     const old = await settleWithin(legacy.evaluate(() => ({
@@ -23318,7 +23403,7 @@ async function waitForCacheReport(page, legacy, wait, expected, options) {
       versionchange: (window.__legacyTabEvents ?? []).some((entry) => entry.event === 'db:versionchange'),
       events: window.__legacyTabEvents ?? null,
     })), 5000);
-    const timeline = cachePurgeTimeline(current, expected, startedAt, options.timeout);
+    const timeline = cachePurgeTimeline(current, expected, startedAt, options.timeout, since);
     const { sampledAt, ...observed } = current ?? {};
     delete observed.stages;
     delete observed.reports;
@@ -23328,11 +23413,13 @@ async function waitForCacheReport(page, legacy, wait, expected, options) {
       wait,
       expected,
       startedAt: new Date(startedAt).toISOString(),
+      windowStart: relative(since ?? startedAt),
       deadline: options.timeout,
       timedOut: relative(timedOutAt),
       sampled: relative(sampledAt),
       conclusion: timeline.conclusion,
       shownAt: timeline.shownAt,
+      stillShown: timeline.stillShown,
       page: observed,
       reports: timeline.reports,
       stages: timeline.stages,
