@@ -121,6 +121,8 @@ const STORE_PUBLISHER_FILES = [
   'scripts/check-store-submission.mjs',
   'scripts/lib/startup-contract.mjs',
   'test/msix-packaging.test.js',
+  'scripts/store-bundle-handoff.mjs',
+  'test/store-bundle-handoff.test.js',
 ];
 export const ALLOWED = new Map([
   [`${FIXTURES_FILE}|a path inside one machine's home directory|/ho` + 'me/somebody/',
