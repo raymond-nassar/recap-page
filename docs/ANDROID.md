@@ -123,7 +123,8 @@ Marvel's service.
 The Java-only Android module uses `enableKotlin = false` to disable AGP 9.4.1's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
-application DEX checks still reject foreign runtime classes. See the official
+application DEX checks still reject foreign runtime classes. The one generated shape they accept
+is D8's empty `<Owner>-IA` access marker, only for an owner class in the app's own package. See the official
 [Java-only module guidance](https://developer.android.com/build/migrate-to-built-in-kotlin)
 and [AGP 9.4 API](https://developer.android.com/reference/tools/gradle-api/9.4/com/android/build/api/dsl/CommonExtension),
 read on 2026-09-30. This setting does not by itself prove a rebuilt artifact or test harness passes.
