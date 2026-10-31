@@ -229,6 +229,14 @@ enum DebugSupport {
           || control.textContent.trim()).replace(/\s+/g, ' ');
         return hidden && control.id && name ? { id: control.id, name } : null;
       };
+      const associatedAriaControls = element => {
+        const associated = new Set([...element.querySelectorAll('*')].flatMap(referencedControls));
+        for (let node = element; node; node = node.parentElement) {
+          for (const control of referencedControls(node)) associated.add(control);
+        }
+        const controls = [...associated].map(hiddenAriaControl);
+        return controls.some(control => !control) ? null : controls;
+      };
       const safeElement = element => !element.matches(interactive) && !element.isContentEditable
         && !element.labels?.length && passiveRoles.has((element.getAttribute('role') || '').toLowerCase())
         && (!element.id || !document.querySelector(`label[for="${CSS.escape(element.id)}"]`))
@@ -325,12 +333,8 @@ enum DebugSupport {
                 return fragmentPoints(clipped).some(pointHitsText) ? [clipped] : [];
               });
               const hitPoints = hitRects.flatMap(fragment => fragmentPoints(fragment).filter(pointHitsText));
-              const associated = new Set([...element.querySelectorAll('*')].flatMap(referencedControls));
-              for (let node = element; node; node = node.parentElement) {
-                for (const control of referencedControls(node)) associated.add(control);
-              }
-              const ariaControls = [...associated].map(hiddenAriaControl);
-              if (ariaControls.some(control => !control)) continue;
+              const ariaControls = associatedAriaControls(element);
+              if (!ariaControls) continue;
               found.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
                 selector: path(element), container: container.id, label: labelOf(text.textContent, element),
                 hitSafe: hitPoints.length > 0, hitRects, hitPoints, ariaControls,
@@ -344,6 +348,46 @@ enum DebugSupport {
           && candidate.rect.x < other.rect.x + other.rect.width
           && other.rect.y < candidate.rect.y + candidate.rect.height
           && candidate.rect.y < other.rect.y + other.rect.height));
+      };
+      const sameLabel = (left, right) => left.trim().replace(/\s+/g, ' ').toLowerCase()
+        === right.trim().replace(/\s+/g, ' ').toLowerCase();
+      const navigationTexts = (sidebar, label) => {
+        const found = [];
+        const walker = document.createTreeWalker(sidebar, NodeFilter.SHOW_TEXT);
+        for (let text = walker.nextNode(); text; text = walker.nextNode()) {
+          if (!text.textContent.trim() || !sameLabel(text.textContent, label)) continue;
+          const range = document.createRange();
+          range.selectNodeContents(text);
+          for (const fragment of range.getClientRects()) {
+            if (fragment.width && fragment.height) found.push({ source: path(text.parentElement), ...fragment.toJSON() });
+          }
+        }
+        for (const element of sidebar.querySelectorAll('[aria-label]')) {
+          if (!sameLabel(element.getAttribute('aria-label'), label)) continue;
+          const rect = element.getBoundingClientRect();
+          if (rect.width && rect.height) found.push({ source: path(element), ...rect.toJSON() });
+        }
+        return found;
+      };
+      const reachability = (element, rect, navigationRect) => {
+        const scroller = document.scrollingElement || document.documentElement;
+        const remaining = Math.max(0, scroller.scrollHeight - scroller.clientHeight - scrollY);
+        const lift = Math.max(0, rect.bottom - navigationRect.top);
+        const blockers = [];
+        for (let node = element; node && node !== document.body && node !== document.documentElement;
+          node = node.parentElement) {
+          const style = getComputedStyle(node);
+          if (style.position === 'fixed' || style.position === 'sticky') {
+            blockers.push({ selector: path(node), position: style.position });
+          } else if (node !== element && style.overflowY !== 'visible') {
+            const box = node.getBoundingClientRect();
+            if (box.top > rect.top || box.bottom < rect.bottom) {
+              blockers.push({ selector: path(node), overflowY: style.overflowY, rect: box.toJSON() });
+            }
+          }
+        }
+        return { reachable: blockers.length === 0 && rect.height <= navigationRect.top && lift <= remaining,
+          remaining, lift, blockers, scrollX, scrollY };
       };
       const navigationOcclusions = () => {
         const sidebar = document.getElementById('sidebar');
@@ -369,12 +413,15 @@ enum DebugSupport {
                   inNavigation: Boolean(hit && sidebar.contains(hit)),
                   ownerContains: element.contains(hit) };
               }));
+            const label = labelOf(text.textContent, element);
             owners.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
-              label: labelOf(text.textContent, element), owner: path(element),
-              findingIsNavigation: false, rect: ownerRect.toJSON(), samples });
+              label, owner: path(element), passive: passive(element),
+              ariaControls: associatedAriaControls(element),
+              reachability: reachability(element, ownerRect, navigationRect),
+              navigationTexts: navigationTexts(sidebar, label), rect: ownerRect.toJSON(), samples });
           }
         }
-        return { navigation: path(navigation), rect: navigationRect.toJSON(), owners };
+        return { navigation: path(navigation), rect: navigationRect.toJSON(), scrollX, scrollY, owners };
       };
       const domDigest = async () => {
         const clone = document.documentElement.cloneNode(true);

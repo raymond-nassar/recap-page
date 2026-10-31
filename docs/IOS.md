@@ -42,18 +42,25 @@ saved reading progress is retained: saved data lives outside that process.
 ## Text size and windowing
 
 The native audit separately classifies a StaticText hit-area finding when its entire native crop
-is behind the fixed bottom navigation. The same-run DOM navigation rectangle is converted into
-native coordinates; the crop must fit inside it and its unique content owner without tolerance.
-Every text-fragment sample must hit the sidebar subtree and none may hit the owner. Native
-controls and navigation findings do not qualify. Settled route, DOM and geometry must agree, and
-each classification records the crop, navigation frame and hit targets. This does not change the
-passive ownership guard or scroll an audit finding. The minimum-iPhone screenshot and Range
-samples in run 41138429203 established that its cropped Reading data heading was behind the bar,
-not visible text. Run 41163429277 confirmed the classification: crop `(29,766,332,10)` inside
-the live navigation frame `(0,753,390,91)`, with all three samples hitting Library navigation
-and none hitting the owner. Its measured positive and all three strict negative counterexamples
-ran on minimum and newest iPhone, iPhone SE and iPad; all 44 presentation scenarios and 40 audit
-records passed.
+is behind the fixed bottom navigation, and every condition below must hold in the same run. The
+DOM navigation rectangle is converted into native coordinates, and the crop must fit inside it and
+inside its unique content owner without tolerance. Every text-fragment sample must hit the sidebar
+subtree and none may hit the owner. No native control of any type may contain the crop under the
+same label. The owner must pass the same static proof as the passive guard: a valid page-wide
+inventory, no interactive element, label association or handler on it or its ancestors, and only
+hidden ARIA-linked controls absent from the native tree. It must also be reachable: no fixed or
+sticky ancestor, no clipping scroll container, a height no taller than the space above the bar,
+and enough remaining document scroll to lift its bottom above the bar's top. Any sidebar text or
+`aria-label` with the same label whose frame intersects the crop makes it a navigation finding,
+which never qualifies. Settled route, DOM and geometry must agree, route, DOM digest and scroll
+position must be unchanged afterwards, and each classification or rejection records the crop,
+navigation frame, hit targets and reachability arithmetic. Live negatives for an interactive
+owner, a label-linked owner, a fixed unreachable owner and a navigation finding run on the
+iPhones, each also seen accepted with its own check disabled; iPad has no bottom bar and skips
+them. The minimum-iPhone screenshot and Range samples in run 41138429203 established that its
+cropped Reading data heading was behind the bar, not visible text. Run 41163429277 confirmed the
+classification: crop `(29,766,332,10)` inside the live navigation frame `(0,753,390,91)`, with all
+three samples hitting Library navigation and none hitting the owner.
 
 The native shell maps the system text size to the six shared type tokens. It does not zoom the page
 or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home

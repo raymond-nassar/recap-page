@@ -505,6 +505,62 @@ final class PresentationUITests: XCTestCase {
         const text = document.getElementById(id);
         guardFixtures.push({ name, label: text.textContent, expected, passive: guard.passive(text) });
       }
+    } else if (fixtureMode === 'guard-occlusion') {
+      const sidebar = document.getElementById('sidebar');
+      const navigation = sidebar?.querySelector('.rail-header');
+      if (!navigation || getComputedStyle(navigation).position !== 'fixed') {
+        throw new Error('Bottom navigation is not fixed');
+      }
+      const navigationRect = navigation.getBoundingClientRect();
+      const home = document.getElementById('view-home');
+      const font = 'font:11px/14px sans-serif;white-space:nowrap';
+      const place = async (element, top, left) => {
+        await nextFrame();
+        const rect = element.getBoundingClientRect();
+        element.style.top = `${parseFloat(element.style.top) + top - rect.top}px`;
+        element.style.left = `${parseFloat(element.style.left) + left - rect.left}px`;
+        await nextFrame();
+      };
+      const row = document.createElement('div');
+      row.id = 'ios-occlusion-row';
+      row.style.cssText = `position:absolute;top:0px;left:0px;display:flex;gap:6px;${font}`;
+      row.innerHTML = '<div>Occ plain</div><div>Occ click</div>'
+        + '<label for="ios-occlusion-check">Occ label</label><div>Occ nav</div>'
+        + '<input id="ios-occlusion-check" type="checkbox" hidden>';
+      row.children[1].addEventListener('keydown', () => {});
+      home.append(row);
+      const spacer = document.createElement('div');
+      spacer.style.height = `${innerHeight * 2}px`;
+      home.append(spacer);
+      await place(row, navigationRect.top + 6, 20);
+      const fixed = document.createElement('div');
+      fixed.textContent = 'Occ fixed';
+      fixed.style.cssText = `position:fixed;top:0px;left:0px;z-index:1;${font}`;
+      home.append(fixed);
+      await place(fixed, navigationRect.top + 6, innerWidth - 80);
+      const textRect = element => {
+        const range = document.createRange();
+        range.selectNodeContents(element.firstChild);
+        return range.getBoundingClientRect();
+      };
+      const viewNavigationText = textRect(row.children[3]);
+      const navigationText = document.createElement('span');
+      navigationText.id = 'ios-occlusion-navigation-text';
+      navigationText.textContent = 'Occ nav';
+      navigationText.style.cssText = `position:fixed;top:0px;left:0px;z-index:21;${font}`;
+      sidebar.append(navigationText);
+      await place(navigationText, viewNavigationText.top, viewNavigationText.left);
+      const owners = [...row.children].filter(element => element.tagName !== 'INPUT').concat(fixed);
+      const placed = owners.map(owner => {
+        const box = textRect(owner);
+        const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+        if (!hit || !sidebar.contains(hit) || box.top <= navigationRect.top || box.bottom >= navigationRect.bottom) {
+          throw new Error(`${owner.textContent} is not entirely under the bottom navigation`);
+        }
+        return { label: owner.textContent, text: box.toJSON(), hit: hit.tagName };
+      });
+      guardFixtures.push({ name: 'bottom navigation occlusion', navigation: navigationRect.toJSON(),
+        scrollY, placed, evidence: guard.navigationOcclusions() });
     } else {
       const text = await add('tap fixture', '<span id="ios-guard-tap-text">Guard tap text</span>', (_, text) => {
         text.style.cssText = 'display:block;min-height:48px;line-height:48px';
@@ -514,6 +570,16 @@ final class PresentationUITests: XCTestCase {
         text.dataset.tooltip = 'Guard tooltip changed the DOM';
       } else if (fixtureMode === 'guard-global-pointer') {
         document.addEventListener('pointerdown', () => { text.dataset.changedByPointer = 'true'; }, true);
+      } else if (fixtureMode === 'guard-reviewed-pointer') {
+        const updates = document.getElementById('home-updates');
+        if (!updates || updates.open) throw new Error('Home updates is missing or already open');
+        const toggled = new Promise(resolve => updates.addEventListener('toggle', resolve, { once: true }));
+        updates.open = true;
+        await toggled;
+        await nextFrame();
+        if (!updates.open) throw new Error('Home updates closed itself, so the reviewed handler has nothing to close');
+        guardFixtures.push({ name: 'reviewed pointerdown', open: updates.open,
+          globalValid: guard.globalInventoryValid(), passive: guard.passive(text) });
       } else throw new Error('Unknown guard fixture mode');
     }
     """#
@@ -831,16 +897,36 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
+    private enum OcclusionMutant { case none, ignoresPassivity, ignoresReachability, ignoresNavigation }
+
+    private static let nativeControlTypes: [XCUIElement.ElementType] = [
+        .button, .link, .checkBox, .switch, .toggle, .radioButton, .radioGroup, .textField,
+        .secureTextField, .searchField, .textView, .slider, .stepper, .picker, .pickerWheel,
+        .datePicker, .segmentedControl, .menu, .menuItem, .menuButton, .menuBar, .menuBarItem,
+        .popUpButton, .comboBox, .tab, .tabGroup, .incrementArrow, .decrementArrow, .colorWell,
+        .disclosureTriangle, .keyboard, .key,
+    ]
+
+    private func nativeControlOwnsText(label: String, frame: CGRect, in app: XCUIApplication) -> Bool {
+        let controls = app.webViews.firstMatch.descendants(matching: .any).matching(
+            NSPredicate(format: "elementType IN %@", Self.nativeControlTypes.map { $0.rawValue }))
+        for query in [controls.matching(NSPredicate(format: "label == %@", label)),
+                      controls.containing(NSPredicate(format: "label == %@", label))] {
+            if query.allElementsBoundByIndex.contains(where: { $0.exists && $0.frame.contains(frame) }) {
+                return true
+            }
+        }
+        return false
+    }
+
     private func classifyBottomNavigationOcclusion(
-        _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
+        _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any],
+        mutant: OcclusionMutant = .none
     ) throws -> Bool {
         guard element.exists, element.elementType == .staticText else { return false }
         let label = element.label
         let nativeCrop = element.frame
-        for controls in [app.webViews.firstMatch.buttons, app.webViews.firstMatch.links] {
-            if controls.containing(NSPredicate(format: "label == %@", label)).allElementsBoundByIndex
-                .contains(where: { $0.exists && $0.frame.contains(nativeCrop) }) { return false }
-        }
+        if nativeControlOwnsText(label: label, frame: nativeCrop, in: app) { return false }
         let settled = try freshPassiveState(of: app)
         let before = try freshPassiveState(of: app)
         guard before["view"] as? String == routeState["view"] as? String,
@@ -868,37 +954,68 @@ final class PresentationUITests: XCTestCase {
                           width: width * scale, height: height * scale)
         }
         guard webFrame.contains(nativeCrop), let navigationFrame = nativeRect(navigationRect) else { return false }
+        var navigationFindings: [String: Bool] = [:]
         let matches = owners.filter { owner in
-            guard owner["label"] as? String == label,
+            guard owner["label"] as? String == label, let key = owner["key"] as? String,
                   let rect = owner["rect"] as? [String: Any], let ownerFrame = nativeRect(rect),
-                  let findingIsNavigation = owner["findingIsNavigation"] as? Bool,
+                  let navigationTexts = owner["navigationTexts"] as? [[String: Any]],
                   let samples = owner["samples"] as? [[String: Any]] else { return false }
+            let navigationFrames = navigationTexts.compactMap(nativeRect)
+            guard navigationFrames.count == navigationTexts.count else { return false }
+            let findingIsNavigation = navigationFrames.contains { $0.intersects(nativeCrop) }
+            navigationFindings[key] = findingIsNavigation
             return isBottomNavigationOcclusion(nativeCrop: nativeCrop, navigationFrame: navigationFrame,
-                ownerFrame: ownerFrame, findingIsNavigation: findingIsNavigation, samples: samples)
+                ownerFrame: ownerFrame, findingIsNavigation: mutant == .ignoresNavigation ? false : findingIsNavigation,
+                samples: samples)
         }
-        guard matches.count == 1, element.frame == nativeCrop,
+        guard matches.count == 1, let owner = matches.first, element.frame == nativeCrop,
               app.webViews.firstMatch.frame == webFrame else { return false }
+        let passive = owner["passive"] as? Bool == true
+        let reachability = owner["reachability"] as? [String: Any] ?? [:]
+        let reachable = reachability["reachable"] as? Bool == true
+        let ariaAbsent = ariaControlsAbsentFromNativeTree(owner, in: app)
+        guard passive || mutant == .ignoresPassivity, reachable || mutant == .ignoresReachability,
+              ariaAbsent else {
+            try record("t03-bottom-navigation-occlusion-rejected", [
+                "label": label, "nativeCrop": NSCoder.string(for: nativeCrop),
+                "navigationFrame": NSCoder.string(for: navigationFrame), "owner": owner,
+            ], summary: ["label": label, "passive": passive, "reachable": reachable,
+                         "ariaControlsAbsent": ariaAbsent, "reachability": reachability])
+            return false
+        }
+        let after = try freshPassiveState(of: app)
+        let afterEvidence = (after["guard"] as? [String: Any])?["navigationOcclusions"] as? [String: Any]
+        guard after["view"] as? String == before["view"] as? String,
+              after["href"] as? String == before["href"] as? String,
+              (after["guard"] as? [String: Any])?["dom"] as? String == dom,
+              (afterEvidence?["scrollX"] as? NSNumber)?.doubleValue == (evidence["scrollX"] as? NSNumber)?.doubleValue,
+              (afterEvidence?["scrollY"] as? NSNumber)?.doubleValue == (evidence["scrollY"] as? NSNumber)?.doubleValue,
+              evidence["scrollY"] != nil else {
+            try record("t03-bottom-navigation-occlusion-changed", ["before": before, "after": after])
+            return false
+        }
         try record("t03-bottom-navigation-occlusion", [
             "label": label, "nativeCrop": NSCoder.string(for: nativeCrop),
             "navigationFrame": NSCoder.string(for: navigationFrame),
-            "webFrame": NSCoder.string(for: webFrame), "evidence": evidence, "owner": matches[0],
+            "webFrame": NSCoder.string(for: webFrame), "evidence": evidence, "owner": owner,
+            "findingIsNavigation": navigationFindings[owner["key"] as? String ?? ""] ?? NSNull(),
+            "mutant": "\(mutant)",
         ], summary: ["label": label, "nativeCrop": NSCoder.string(for: nativeCrop),
                      "navigationFrame": NSCoder.string(for: navigationFrame),
-                     "samples": matches[0]["samples"] ?? []])
+                     "samples": owner["samples"] ?? [], "passive": passive, "reachability": reachability,
+                     "mutant": "\(mutant)"])
         return true
     }
 
     private func acceptPassiveFinding(
-        _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
+        _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any],
+        checksDOMUnchanged: Bool = true
     ) throws -> Bool {
         guard element.exists, element.elementType == .staticText else { return false }
         let nativeLabel = element.label
-        for controls in [app.webViews.firstMatch.buttons, app.webViews.firstMatch.links] {
-            let parents = controls.containing(NSPredicate(format: "label == %@", nativeLabel)).allElementsBoundByIndex
-            if parents.contains(where: { $0.exists && $0.frame.contains(element.frame) }) {
-                print("T03 passive guard rejected a native control's StaticText child: \(element.debugDescription)")
-                return false
-            }
+        if nativeControlOwnsText(label: nativeLabel, frame: element.frame, in: app) {
+            print("T03 passive guard rejected a native control's StaticText child: \(element.debugDescription)")
+            return false
         }
         let settled = try freshPassiveState(of: app)
         let before = try freshPassiveState(of: app)
@@ -976,7 +1093,8 @@ final class PresentationUITests: XCTestCase {
               after["href"] as? String == before["href"] as? String,
               let afterProof = after["guard"] as? [String: Any],
               afterProof["valid"] as? Bool == true,
-              let dom = proof["dom"] as? String, !dom.isEmpty, afterProof["dom"] as? String == dom,
+              let dom = proof["dom"] as? String, !dom.isEmpty,
+              afterProof["dom"] as? String == dom || !checksDOMUnchanged,
               afterProof["focus"] as? String == proof["focus"] as? String,
               afterMatches.count == 1,
               ariaControlsAbsentFromNativeTree(candidate, in: app),
@@ -1360,7 +1478,6 @@ final class PresentationUITests: XCTestCase {
         let occlusionFixtures: [(String, CGRect, CGRect, Bool, [[String: Any]])] = [
             ("above-navigation", aboveNavigation, fixtureOwner, false, navigationSamples),
             ("owner-hit", measuredCrop, occludedOwner, false, ownerSamples),
-            ("navigation-finding", measuredCrop, occludedOwner, true, navigationSamples),
         ]
         XCTAssertTrue(isBottomNavigationOcclusion(nativeCrop: measuredCrop, navigationFrame: navigationFrame,
             ownerFrame: occludedOwner, findingIsNavigation: false, samples: navigationSamples))
@@ -1469,6 +1586,114 @@ final class PresentationUITests: XCTestCase {
         XCTAssertEqual(property["afterRemovalValid"] as? Bool, false, "removal cannot review a handler")
         XCTAssertEqual(property["rejected"] as? Bool, true, "removed global properties still reject every node")
         propertyApp.terminate()
+    }
+
+    func testBottomNavigationOcclusionRejectsLiveInteractiveLabelUnreachableAndNavigationOwners() throws {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            throw XCTSkip("iPad keeps navigation in the sidebar, so no text sits under a bottom bar")
+        }
+        let app = launch(route: "guard-occlusion")
+        let result = try probeResult(of: app)
+        let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])
+        XCTAssertEqual(fixtures.count, 1)
+        try record("t03-occlusion-live-fixtures", ["fixtures": fixtures])
+        let routeState = try freshPassiveState(of: app)
+        func texts(_ label: String) -> [XCUIElement] {
+            let query = app.webViews.firstMatch.staticTexts.matching(NSPredicate(format: "label == %@", label))
+            _ = query.firstMatch.waitForExistence(timeout: 30)
+            return query.allElementsBoundByIndex
+        }
+        let plain = texts("Occ plain")
+        XCTAssertEqual(plain.count, 1, "the positive owner has one native text")
+        XCTAssertTrue(try classifyBottomNavigationOcclusion(plain[0], in: app, routeState: routeState),
+                      "plain passive reachable text under the bar classifies")
+        let negatives: [(String, String, OcclusionMutant)] = [
+            ("interactive owner", "Occ click", .ignoresPassivity),
+            ("label-linked owner", "Occ label", .ignoresPassivity),
+            ("unreachable owner", "Occ fixed", .ignoresReachability),
+            ("navigation finding", "Occ nav", .ignoresNavigation),
+        ]
+        var outcomes: [[String: Any]] = []
+        let previousContinuation = continueAfterFailure
+        continueAfterFailure = true
+        defer { continueAfterFailure = previousContinuation }
+        let options = XCTExpectedFailure.Options()
+        options.isStrict = true
+        options.issueMatcher = { issue in
+            issue.type == .assertionFailure && issue.compactDescription.contains("occlusion-mutant")
+        }
+        for (name, label, mutant) in negatives {
+            let elements = texts(label)
+            XCTAssertFalse(elements.isEmpty, "\(name) has native text to classify")
+            var accepted: [Bool] = []
+            for element in elements {
+                accepted.append(try classifyBottomNavigationOcclusion(element, in: app, routeState: routeState))
+            }
+            XCTAssertFalse(accepted.contains(true), "\(name) must not be classified")
+            XCTExpectFailure("Ignoring the \(name) evidence loses its rejection", options: options) {
+                let mutated = elements.contains { element in
+                    (try? self.classifyBottomNavigationOcclusion(
+                        element, in: app, routeState: routeState, mutant: mutant)) ?? false
+                }
+                XCTAssertFalse(mutated, "occlusion-mutant: \(name)")
+            }
+            outcomes.append(["name": name, "label": label, "mutant": "\(mutant)",
+                             "nativeTexts": elements.count, "accepted": accepted])
+        }
+        let after = try freshPassiveState(of: app)
+        let beforeProof = try XCTUnwrap(routeState["guard"] as? [String: Any])
+        let afterProof = try XCTUnwrap(after["guard"] as? [String: Any])
+        let beforeEvidence = try XCTUnwrap(beforeProof["navigationOcclusions"] as? [String: Any])
+        let afterEvidence = try XCTUnwrap(afterProof["navigationOcclusions"] as? [String: Any])
+        XCTAssertEqual(after["href"] as? String, routeState["href"] as? String)
+        XCTAssertEqual(afterProof["dom"] as? String, beforeProof["dom"] as? String)
+        XCTAssertEqual((afterEvidence["scrollY"] as? NSNumber)?.doubleValue,
+                       (beforeEvidence["scrollY"] as? NSNumber)?.doubleValue)
+        try record("t03-occlusion-live-negatives", ["outcomes": outcomes])
+        app.terminate()
+    }
+
+    func testPassiveGuardRejectsReviewedPointerdownThatChangesThePage() throws {
+        let app = launch(route: "guard-reviewed-pointer")
+        let result = try probeResult(of: app)
+        let fixtures = try XCTUnwrap(result["guardFixtures"] as? [[String: Any]])
+        let reviewed = try XCTUnwrap(fixtures.first { $0["name"] as? String == "reviewed pointerdown" })
+        XCTAssertEqual(reviewed["open"] as? Bool, true, "the reviewed handler has an open menu to close")
+        XCTAssertEqual(reviewed["globalValid"] as? Bool, true, "only reviewed page-wide handlers are present")
+        XCTAssertEqual(reviewed["passive"] as? Bool, true, "the static proof alone accepts the text")
+        let element = app.webViews.firstMatch.staticTexts.matching(
+            NSPredicate(format: "label == %@", "Guard tap text")).firstMatch
+        XCTAssertTrue(element.waitForExistence(timeout: 30))
+        let before = try freshPassiveState(of: app)
+        XCTAssertEqual((before["guard"] as? [String: Any])?["valid"] as? Bool, true)
+        let accepted = try acceptPassiveFinding(element, in: app, routeState: before)
+        XCTAssertFalse(accepted, "a reviewed pointerdown that closes a menu changes the page")
+        let after = try freshPassiveState(of: app)
+        let beforeDOM = try XCTUnwrap((before["guard"] as? [String: Any])?["dom"] as? String)
+        let afterDOM = try XCTUnwrap((after["guard"] as? [String: Any])?["dom"] as? String)
+        XCTAssertNotEqual(beforeDOM, afterDOM, "the native tap actually closed the menu")
+        try record("t03-guard-reviewed-pointer", ["fixtures": fixtures, "before": before, "after": after])
+        app.terminate()
+        let mutantApp = launch(route: "guard-reviewed-pointer")
+        _ = try probeResult(of: mutantApp)
+        let mutantElement = mutantApp.webViews.firstMatch.staticTexts.matching(
+            NSPredicate(format: "label == %@", "Guard tap text")).firstMatch
+        XCTAssertTrue(mutantElement.waitForExistence(timeout: 30))
+        let mutantBefore = try freshPassiveState(of: mutantApp)
+        let previousContinuation = continueAfterFailure
+        continueAfterFailure = true
+        defer { continueAfterFailure = previousContinuation }
+        let options = XCTExpectedFailure.Options()
+        options.isStrict = true
+        options.issueMatcher = { issue in
+            issue.type == .assertionFailure && issue.compactDescription.contains("pointer-mutant")
+        }
+        XCTExpectFailure("Without the no-change comparison the reviewed pointerdown passes", options: options) {
+            let mutated = (try? self.acceptPassiveFinding(
+                mutantElement, in: mutantApp, routeState: mutantBefore, checksDOMUnchanged: false)) ?? false
+            XCTAssertFalse(mutated, "pointer-mutant: reviewed pointerdown")
+        }
+        mutantApp.terminate()
     }
 
     func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps() throws {

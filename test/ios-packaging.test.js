@@ -795,7 +795,8 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom/);
   assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
   assert.match(presentationTests, /settledProof\["dom"\] as\? String == proof\["dom"\]/);
-  assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", nativeLabel\)\)/);
+  assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", label\)\)/);
+  assert.match(presentationTests, /NSPredicate\(format: "elementType IN %@", Self\.nativeControlTypes\.map \{ \$0\.rawValue \}\)/);
   assert.doesNotMatch(presentationTests, /\.containing\(\.staticText, identifier: nativeLabel\)/);
   assert.match(presentationTests, /candidate\["hitPoints"\] as\? \[\[String: Any\]\]/);
   assert.match(presentationTests, /nativeFrame\.contains\(point\)/);
@@ -974,16 +975,69 @@ test('T03 measures fixed bottom navigation occlusion separately from passive tex
   assert.doesNotMatch(guard, /classifyBottomNavigationOcclusion/);
 });
 
-test('T03 native occlusion fixtures keep above-bar crops, owner hits and navigation findings rejected', () => {
+test('T03 occlusion classification requires passivity, reachability and a live navigation check', () => {
+  assert.doesNotMatch(debugSupport, /findingIsNavigation: false/);
+  assert.match(debugSupport, /label, owner: path\(element\), passive: passive\(element\),/);
+  assert.match(debugSupport, /ariaControls: associatedAriaControls\(element\),/);
+  assert.match(debugSupport, /reachability: reachability\(element, ownerRect, navigationRect\),/);
+  assert.match(debugSupport, /navigationTexts: navigationTexts\(sidebar, label\)/);
+  assert.match(debugSupport, /reachable: blockers\.length === 0 && rect\.height <= navigationRect\.top && lift <= remaining/);
+  assert.match(debugSupport, /style\.position === 'fixed' \|\| style\.position === 'sticky'/);
+  const classifier = presentationTests.slice(
+    presentationTests.indexOf('private func classifyBottomNavigationOcclusion('),
+    presentationTests.indexOf('private func acceptPassiveFinding('));
+  assert.match(classifier, /nativeControlOwnsText\(label: label, frame: nativeCrop, in: app\)/);
+  assert.match(classifier, /navigationFrames\.contains \{ \$0\.intersects\(nativeCrop\) \}/);
+  assert.match(classifier, /guard passive \|\| mutant == \.ignoresPassivity, reachable \|\| mutant == \.ignoresReachability,\s+ariaAbsent else/);
+  assert.match(classifier, /"t03-bottom-navigation-occlusion-rejected"/);
+  assert.match(classifier, /"t03-bottom-navigation-occlusion-changed"/);
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.match(guard, /nativeControlOwnsText\(label: nativeLabel, frame: element\.frame, in: app\)/);
+  assert.doesNotMatch(presentationTests, /app\.webViews\.firstMatch\.buttons, app\.webViews\.firstMatch\.links/);
+  for (const type of ['checkBox', 'switch', 'radioButton', 'textField', 'slider', 'popUpButton', 'tab']) {
+    assert.match(presentationTests, new RegExp(`\\.${type},`));
+  }
+});
+
+test('T03 native occlusion fixtures keep above-bar crops and owner hits rejected and add live negatives', () => {
   assert.match(presentationTests, /"above-navigation"/);
   assert.match(presentationTests, /"owner-hit"/);
-  assert.match(presentationTests, /"navigation-finding"/);
+  assert.doesNotMatch(presentationTests, /"navigation-finding"/);
   assert.match(presentationTests, /"t03-bottom-navigation-fixtures"/);
   assert.match(presentationTests, /occlusion-mutant/);
   assert.match(presentationTests, /measuredCrop = CGRect\(x: 29, y: 766, width: 332, height: 10\)/);
   assert.match(presentationTests, /navigationFrame\.minY - 1/);
   assert.match(presentationTests, /findingIsNavigation/);
   assert.match(presentationTests, /sample\["ownerContains"\] as\? Bool == false/);
+  const live = presentationTests.slice(
+    presentationTests.indexOf('func testBottomNavigationOcclusionRejectsLiveInteractiveLabelUnreachableAndNavigationOwners()'),
+    presentationTests.indexOf('func testPassiveGuardRejectsReviewedPointerdownThatChangesThePage()'));
+  assert.match(live, /launch\(route: "guard-occlusion"\)/);
+  for (const [name, mutant] of [['interactive owner', 'ignoresPassivity'], ['label-linked owner', 'ignoresPassivity'],
+    ['unreachable owner', 'ignoresReachability'], ['navigation finding', 'ignoresNavigation']]) {
+    assert.match(live, new RegExp(`\\("${name}", "Occ [a-z]+", \\.${mutant}\\)`));
+  }
+  assert.match(live, /options\.isStrict = true/);
+  assert.match(presentationTests, /fixtureMode === 'guard-occlusion'/);
+  assert.match(presentationTests, /<label for="ios-occlusion-check">Occ label<\/label>/);
+  assert.match(presentationTests, /row\.children\[1\]\.addEventListener\('keydown'/);
+  assert.match(presentationTests, /fixed\.style\.cssText = `position:fixed;/);
+  assert.match(presentationTests, /sidebar\.append\(navigationText\)/);
+});
+
+test('T03 drives a reviewed pointerdown through the passive guard and sees the no-change tap reject it', () => {
+  assert.match(presentationTests, /fixtureMode === 'guard-reviewed-pointer'/);
+  assert.match(presentationTests, /document\.getElementById\('home-updates'\)/);
+  const test = presentationTests.slice(
+    presentationTests.indexOf('func testPassiveGuardRejectsReviewedPointerdownThatChangesThePage()'),
+    presentationTests.indexOf('func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps()'));
+  assert.match(test, /XCTAssertEqual\(reviewed\["globalValid"\] as\? Bool, true/);
+  assert.match(test, /let accepted = try acceptPassiveFinding\(element, in: app, routeState: before\)/);
+  assert.match(test, /XCTAssertNotEqual\(beforeDOM, afterDOM/);
+  assert.match(test, /checksDOMUnchanged: false/);
+  assert.match(test, /pointer-mutant/);
+  assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom \|\| !checksDOMUnchanged/);
 });
 
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {
