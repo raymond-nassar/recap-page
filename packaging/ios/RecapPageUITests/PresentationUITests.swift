@@ -528,6 +528,9 @@ final class PresentationUITests: XCTestCase {
         + '<label for="ios-occlusion-check">Occ label</label><div>Occ nav</div>'
         + '<input id="ios-occlusion-check" type="checkbox" hidden>';
       row.children[1].addEventListener('keydown', () => {});
+      // Native text frames round outward to whole points, so a box the width of its text cannot
+      // contain its own crop. Padding gives each owner room without moving the text off the bar.
+      for (const owner of row.children) owner.style.padding = '4px';
       home.append(row);
       const spacer = document.createElement('div');
       spacer.style.height = `${innerHeight * 2}px`;
@@ -535,7 +538,7 @@ final class PresentationUITests: XCTestCase {
       await place(row, navigationRect.top + 6, 20);
       const fixed = document.createElement('div');
       fixed.textContent = 'Occ fixed';
-      fixed.style.cssText = `position:fixed;top:0px;left:0px;z-index:1;${font}`;
+      fixed.style.cssText = `position:fixed;top:0px;left:0px;z-index:1;padding:4px;${font}`;
       home.append(fixed);
       await place(fixed, navigationRect.top + 6, innerWidth - 80);
       const textRect = element => {
@@ -923,10 +926,14 @@ final class PresentationUITests: XCTestCase {
         _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any],
         mutant: OcclusionMutant = .none
     ) throws -> Bool {
-        guard element.exists, element.elementType == .staticText else { return false }
+        func decline(_ reason: String) -> Bool {
+            print("T03 occlusion classification declined \(element.label): \(reason)")
+            return false
+        }
+        guard element.exists, element.elementType == .staticText else { return decline("not static text") }
         let label = element.label
         let nativeCrop = element.frame
-        if nativeControlOwnsText(label: label, frame: nativeCrop, in: app) { return false }
+        if nativeControlOwnsText(label: label, frame: nativeCrop, in: app) { return decline("native control") }
         let settled = try freshPassiveState(of: app)
         let before = try freshPassiveState(of: app)
         guard before["view"] as? String == routeState["view"] as? String,
@@ -941,7 +948,7 @@ final class PresentationUITests: XCTestCase {
               NSDictionary(dictionary: evidence).isEqual(NSDictionary(dictionary: settledEvidence)),
               let viewport = (proof["viewportWidth"] as? NSNumber)?.doubleValue, viewport > 0,
               let navigationRect = evidence["rect"] as? [String: Any],
-              let owners = evidence["owners"] as? [[String: Any]] else { return false }
+              let owners = evidence["owners"] as? [[String: Any]] else { return decline("route or proof") }
         let webFrame = app.webViews.firstMatch.frame
         let scale = webFrame.width / viewport
         func nativeRect(_ value: [String: Any]) -> CGRect? {
@@ -953,7 +960,9 @@ final class PresentationUITests: XCTestCase {
             return CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
                           width: width * scale, height: height * scale)
         }
-        guard webFrame.contains(nativeCrop), let navigationFrame = nativeRect(navigationRect) else { return false }
+        guard webFrame.contains(nativeCrop), let navigationFrame = nativeRect(navigationRect) else {
+            return decline("crop outside web view or no navigation frame")
+        }
         var navigationFindings: [String: Bool] = [:]
         let matches = owners.filter { owner in
             guard owner["label"] as? String == label, let key = owner["key"] as? String,
@@ -964,12 +973,13 @@ final class PresentationUITests: XCTestCase {
             guard navigationFrames.count == navigationTexts.count else { return false }
             let findingIsNavigation = navigationFrames.contains { $0.intersects(nativeCrop) }
             navigationFindings[key] = findingIsNavigation
+            print("T03 occlusion candidate \(key): crop \(NSCoder.string(for: nativeCrop)) owner \(NSCoder.string(for: ownerFrame)) navigation \(NSCoder.string(for: navigationFrame)) findingIsNavigation \(findingIsNavigation)")
             return isBottomNavigationOcclusion(nativeCrop: nativeCrop, navigationFrame: navigationFrame,
                 ownerFrame: ownerFrame, findingIsNavigation: mutant == .ignoresNavigation ? false : findingIsNavigation,
                 samples: samples)
         }
         guard matches.count == 1, let owner = matches.first, element.frame == nativeCrop,
-              app.webViews.firstMatch.frame == webFrame else { return false }
+              app.webViews.firstMatch.frame == webFrame else { return decline("\(matches.count) matching owners") }
         let passive = owner["passive"] as? Bool == true
         let reachability = owner["reachability"] as? [String: Any] ?? [:]
         let reachable = reachability["reachable"] as? Bool == true
@@ -1603,6 +1613,12 @@ final class PresentationUITests: XCTestCase {
             _ = query.firstMatch.waitForExistence(timeout: 30)
             return query.allElementsBoundByIndex
         }
+        var nativeFrames: [String: [String]] = [:]
+        for label in ["Occ plain", "Occ click", "Occ label", "Occ nav", "Occ fixed"] {
+            nativeFrames[label] = texts(label).map { NSCoder.string(for: $0.frame) }
+        }
+        try record("t03-occlusion-live-native", ["nativeFrames": nativeFrames,
+                                                 "webFrame": NSCoder.string(for: app.webViews.firstMatch.frame)])
         let plain = texts("Occ plain")
         XCTAssertEqual(plain.count, 1, "the positive owner has one native text")
         XCTAssertTrue(try classifyBottomNavigationOcclusion(plain[0], in: app, routeState: routeState),
