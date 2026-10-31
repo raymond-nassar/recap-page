@@ -1,6 +1,15 @@
+import { mkdtemp, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 
 const normalize = (text) => text.replace(/\s+/g, ' ').trim();
+
+// A pill is a short label. The notice's own sentence is 1,382 pixels of unwrapped text under
+// .pill-held, past both the 964 pixel element and the 1,280 pixel viewport, which is not a state the
+// app produces. Hosted runs 41163793598 and 41166118772 failed only this variant's byte comparison, in
+// desktop light and dark, while every measurement matched.
+const PILL_WORDS = 'Already in your library';
 
 function staticText(node) {
   if (!node) return [];
@@ -33,10 +42,72 @@ async function measure(page, selector) {
   });
 }
 
+async function layout(page) {
+  return page.evaluate(() => ({
+    gutterX: innerWidth - document.documentElement.clientWidth,
+    gutterY: innerHeight - document.documentElement.clientHeight,
+    scrollWidth: document.documentElement.scrollWidth,
+    scrollX,
+    scrollY,
+  }));
+}
+
+// Byte equality stays the test. This only explains a failure: it decodes both captures in the page,
+// with no image library, and counts the pixels that differ and the box around them.
+async function comparePaint(page, first, second) {
+  return page.evaluate(async (a, b) => {
+    const decode = async (base64) => {
+      const bytes = Uint8Array.from(atob(base64), (char) => char.charCodeAt(0));
+      const bitmap = await createImageBitmap(new Blob([bytes], { type: 'image/png' }));
+      const canvas = new OffscreenCanvas(bitmap.width, bitmap.height);
+      const context = canvas.getContext('2d');
+      context.drawImage(bitmap, 0, 0);
+      return { width: bitmap.width, height: bitmap.height, data: context.getImageData(0, 0, bitmap.width, bitmap.height).data };
+    };
+    const [left, right] = await Promise.all([decode(a), decode(b)]);
+    const sizes = [[left.width, left.height], [right.width, right.height]];
+    // Captures of different sizes are compared over the larger of the two, and a pixel present in only
+    // one of them counts as differing, so a size change still yields a count and a box. A coordinate
+    // inside neither capture, which crossed sizes such as 2x1 and 1x2 leave, is not a pixel at all.
+    const width = Math.max(left.width, right.width);
+    const height = Math.max(left.height, right.height);
+    const pixel = (image, x, y) => (x < image.width && y < image.height ? (y * image.width + x) * 4 : -1);
+    let differing = 0;
+    let box = null;
+    for (let y = 0; y < height; y += 1) {
+      for (let x = 0; x < width; x += 1) {
+        const l = pixel(left, x, y);
+        const r = pixel(right, x, y);
+        if (l < 0 && r < 0) continue;
+        if (l >= 0 && r >= 0 && left.data[l] === right.data[r] && left.data[l + 1] === right.data[r + 1]
+          && left.data[l + 2] === right.data[r + 2] && left.data[l + 3] === right.data[r + 3]) continue;
+        differing += 1;
+        box = box
+          ? [Math.min(box[0], x), Math.min(box[1], y), Math.max(box[2], x), Math.max(box[3], y)]
+          : [x, y, x, y];
+      }
+    }
+    return { sizes, differing, box: box && { x: box[0], y: box[1], width: box[2] - box[0] + 1, height: box[3] - box[1] + 1 } };
+  }, Buffer.from(first).toString('base64'), Buffer.from(second).toString('base64'));
+}
+
+let keptPaint = null;
+async function keepPaint(label, first, second) {
+  keptPaint ??= mkdtemp(join(tmpdir(), 'recap-decorative-paint-'));
+  const directory = await keptPaint;
+  const stem = label.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '');
+  const files = [join(directory, `${stem}.original.png`), join(directory, `${stem}.fallback.png`)];
+  await writeFile(files[0], first);
+  await writeFile(files[1], second);
+  return files;
+}
+
 async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   const element = await page.$(selector);
   const before = await measure(page, selector);
+  const layouts = { original: await layout(page) };
   const painted = await element.screenshot();
+  layouts.originalAfter = await layout(page);
   // Change only the alternative text, leaving the glyph and every other declaration alone.
   const content = await page.evaluate((selector) => {
     const rule = [...document.styleSheets].flatMap((sheet) => [...sheet.cssRules])
@@ -48,11 +119,20 @@ async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   }, ruleSelector);
   try {
     const fallback = await measure(page, selector);
+    layouts.fallback = await layout(page);
     const fallbackPaint = await element.screenshot();
+    layouts.fallbackAfter = await layout(page);
+    const samePixels = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
+    const detail = { before, fallback };
+    if (!samePixels) {
+      detail.layouts = layouts;
+      // Kept first, so a decoding failure below still leaves both captures to inspect.
+      detail.kept = await keepPaint(label, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
+      detail.pixels = await comparePaint(page, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
+    }
     t.check(`${label}: glyph, spacing, color, boxes and pixels match the original content`,
-      before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback)
-        && Buffer.from(painted).equals(Buffer.from(fallbackPaint)),
-      JSON.stringify({ before, fallback }));
+      before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback) && samePixels,
+      JSON.stringify(detail));
   } finally {
     await page.evaluate((selector, value) => {
       const rule = [...document.styleSheets].flatMap((sheet) => [...sheet.cssRules])
@@ -100,8 +180,10 @@ export const decorativeGeneratedText = {
       await page.waitForSelector('#view-home:not([hidden])');
       for (const [className, rule, glyph] of variants) {
         await page.$eval(notice, (element, value) => { element.className = value; }, className);
+        const words = className === 'pill-held' ? PILL_WORDS : original.words;
+        await page.$eval('#reader-closure-text', (element, value) => { element.textContent = value; }, words);
         const label = `${mode.name} ${rule}`;
-        await checkText(page, t, notice, original.words, glyph, label);
+        await checkText(page, t, notice, words, glyph, label);
         if (rule === '.notice-warn::before') {
           const { nodes } = await client.send('Accessibility.getFullAXTree');
           t.check(`${mode.name}: Home exposes no triangle node`,
@@ -110,6 +192,7 @@ export const decorativeGeneratedText = {
         await checkPaint(page, t, notice, rule, glyph, label);
       }
       await page.$eval(notice, (element, value) => { element.className = value; }, original.className);
+      await page.$eval('#reader-closure-text', (element, value) => { element.textContent = value; }, original.words);
       await page.evaluate(() => { location.hash = '#/add-search'; });
       const breadcrumb = '#view-add-search > .breadcrumb';
       await page.waitForSelector(breadcrumb, { visible: true });
