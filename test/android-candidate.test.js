@@ -482,6 +482,37 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
   }
 });
 
+test('the D8 nest-access marker class is accepted only in its exact empty, owned shape', () => {
+  const owner = `${PROTOTYPE_ID}.CloudAuthorization`;
+  const marker = `${owner}-IA`;
+  const dexRow = (kind, payload, definitions = 0, references = 0) => `${kind} d ${definitions}\t${references}\t36\t${payload}`;
+  const base = [dexRow('P', '<TOTAL>'), dexRow('P', PROTOTYPE_ID), dexRow('C', `${PROTOTYPE_ID}.MainActivity`)];
+  const inventory = (...rows) => [...base, ...rows].join('\n');
+  // The 4.3.0 failure named this class only by digest; pin that it is the shape accepted here.
+  assert.equal(digest(marker), '6c148c872e88edcc50ec426168bb0f7317fba6414c653e1876c78160b69d2673');
+  assert.doesNotThrow(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', marker))));
+  assert.doesNotThrow(() => verifyDexDefinitions(inventory(dexRow('C', marker), dexRow('C', owner))),
+    'The owner may follow its marker in the inventory');
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', marker))), /access marker has no declared owner/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', `${PROTOTYPE_ID}.Missing-IA`), dexRow('C', owner))),
+    /access marker has no declared owner/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', `${owner}$-IA`))),
+    /access marker has no declared owner/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', marker, 1))), /foreign or malformed/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', marker, 0, 1))), /foreign or malformed/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', marker), dexRow('C', marker))), /duplicate/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', marker),
+    dexRow('M', `${marker} void <init>()`))), /malformed DEX member row/);
+  assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', marker),
+    dexRow('F', `${marker} int value`))), /malformed DEX member row/);
+  for (const name of [`${owner}$-CC`, `${owner}-CC`, `${owner}-EL`, `${owner}-IB`, `${owner}-IA-IA`, `${owner}-ia`,
+    `${owner}-IAx`, `${PROTOTYPE_ID}-IA`, `${PROTOTYPE_ID}Extra.CloudAuthorization-IA`,
+    'foreign.Library-IA', '-IA']) {
+    assert.throws(() => verifyDexDefinitions(inventory(dexRow('C', owner), dexRow('C', name))),
+      /foreign or malformed DEX class definition/, name);
+  }
+});
+
 test('native proof binds twelve executions to exact installed bytes and non-reseeding probes', () => {
   const target = (packageName, uid) => ({ packageName, uid, appHashes: [hash], harnessHash: hash, signerSha256: hash });
   const control = { official: target(OFFICIAL_ID, 10001), prototype: target(PROTOTYPE_ID, 10002) };

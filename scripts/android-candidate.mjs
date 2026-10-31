@@ -796,6 +796,7 @@ function checkDexDefinitions(dex, context) {
   requireValue(lines.length > 0 && lines.length <= 50000, 'DEX inventory row count is unsupported');
   const packages = new Set();
   const classes = new Set();
+  const markers = new Set();
   const owners = [];
   let totals = 0;
   for (const line of lines) {
@@ -817,9 +818,19 @@ function checkDexDefinitions(dex, context) {
         packages.add(payload);
       }
     } else if (kind === 'C') {
-      requireValue(dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
-      requireValue(!classes.has(payload), 'duplicate DEX class definition');
-      classes.add(payload);
+      // D8 nest-based-access marker: an empty `<Owner>-IA` class added as an extra argument of a
+      // synthetic bridge constructor. 4.3.0 ships one for CloudAuthorization's private
+      // constructor. Accepted only with no methods, beside its owner, and never as a member owner.
+      const marker = payload.endsWith('-IA') ? payload.slice(0, -3) : null;
+      if (marker !== null && dexQualified(marker) && marker.startsWith(`${PROTOTYPE_ID}.`)
+        && Number(definitions) === 0 && Number(references) === 0) {
+        requireValue(!markers.has(marker), 'duplicate DEX class definition');
+        markers.add(marker);
+      } else {
+        requireValue(dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
+        requireValue(!classes.has(payload), 'duplicate DEX class definition');
+        classes.add(payload);
+      }
     } else {
       const member = payload.match(/^(\S+) (.+)$/);
       requireValue(member && dexQualified(member[1]) && member[2].trim(), 'malformed DEX member row');
@@ -830,6 +841,7 @@ function checkDexDefinitions(dex, context) {
   requireValue(totals === 1, 'DEX aggregate root missing');
   requireValue(classes.has(`${PROTOTYPE_ID}.MainActivity`), 'exact MainActivity DEX definition missing');
   requireValue(owners.every((owner) => classes.has(owner)), 'DEX member owner is not a declared allowed class');
+  requireValue([...markers].every((owner) => classes.has(owner)), 'DEX access marker has no declared owner class');
   const classPackages = new Set();
   for (const type of classes) {
     for (let end = type.lastIndexOf('.'); end > 0; end = type.lastIndexOf('.', end - 1)) {
