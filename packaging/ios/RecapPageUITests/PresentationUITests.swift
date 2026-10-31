@@ -685,27 +685,44 @@ final class PresentationUITests: XCTestCase {
     const nodeSummary = (node) => node.nodeType === Node.TEXT_NODE ? `#text ${clip(node.textContent)}`
       : node.nodeType === Node.ELEMENT_NODE ? `<${mutationPath(node)}> ${clip(node.textContent)}`
       : `node ${node.nodeType}`;
+    // Run 41216886397 showed Home rewriting identical values every 0.8s or so, enough to push the
+    // one real change out of a 40-entry log. Rewrites that leave a node exactly as it was cannot
+    // move the digest, so they are tallied per target rather than logged.
+    const sameValue = { total: 0, targets: {} };
+    const tallySame = (target) => {
+      sameValue.total += 1;
+      sameValue.targets[target] = (sameValue.targets[target] ?? 0) + 1;
+    };
+    const sameNode = (a, b) => a.nodeType === b.nodeType && (a.nodeType === Node.ELEMENT_NODE
+      ? a.outerHTML === b.outerHTML : a.textContent === b.textContent);
     const logMutations = (records) => {
       for (const record of records) {
         if (isProbe(record.target)) continue;
-        const entry = { seq: 0, at: Date.now(), type: record.type, target: mutationPath(record.target) };
+        const target = mutationPath(record.target);
+        const entry = { seq: 0, at: Date.now(), type: record.type, target };
         if (record.type === 'attributes') {
-          Object.assign(entry, { attribute: record.attributeName, old: clip(record.oldValue),
-            now: clip(record.target.getAttribute(record.attributeName)) });
+          const now = record.target.getAttribute(record.attributeName);
+          if (now === record.oldValue) { tallySame(`${target}@${record.attributeName}`); continue; }
+          Object.assign(entry, { attribute: record.attributeName, old: clip(record.oldValue), now: clip(now) });
         } else if (record.type === 'characterData') {
+          if (record.target.data === record.oldValue) { tallySame(target); continue; }
           Object.assign(entry, { old: clip(record.oldValue), now: clip(record.target.data) });
         } else {
           const added = [...record.addedNodes].filter((node) => !isProbe(node));
           const removed = [...record.removedNodes].filter((node) =>
             !(node.nodeType === Node.ELEMENT_NODE && node.matches(probeSelector)));
           if (!added.length && !removed.length) continue;
+          if (added.length === removed.length && added.every((node, index) => sameNode(node, removed[index]))) {
+            tallySame(`${target} children`);
+            continue;
+          }
           Object.assign(entry, { addedCount: added.length, removedCount: removed.length,
             added: added.slice(0, 3).map(nodeSummary), removed: removed.slice(0, 3).map(nodeSummary) });
         }
         entry.seq = ++mutationSeq;
         mutationLog.push(entry);
       }
-      if (mutationLog.length > 40) mutationLog.splice(0, mutationLog.length - 40);
+      if (mutationLog.length > 200) mutationLog.splice(0, mutationLog.length - 200);
     };
     const mutationObserver = new MutationObserver(logMutations);
     mutationObserver.observe(document.documentElement, {
@@ -737,8 +754,9 @@ final class PresentationUITests: XCTestCase {
     const mutationSnapshot = () => {
       logMutations(mutationObserver.takeRecords());
       logControls();
-      if (mutationLog.length > 40) mutationLog.splice(0, mutationLog.length - 40);
-      return { seq: mutationSeq, at: Date.now(), entries: mutationLog.slice() };
+      if (mutationLog.length > 200) mutationLog.splice(0, mutationLog.length - 200);
+      return { seq: mutationSeq, at: Date.now(), entries: mutationLog.slice(),
+        sameValue: { total: sameValue.total, targets: { ...sameValue.targets } } };
     };
     let passiveTick = 0;
     let refreshingPassive = false;
@@ -1211,6 +1229,7 @@ final class PresentationUITests: XCTestCase {
                 "focus": [proof["focus"] ?? NSNull(), (after["guard"] as? [String: Any])?["focus"] ?? NSNull()],
                 "route": [before["href"] ?? NSNull(), after["href"] ?? NSNull()],
                 "tapMutations": window["count"] ?? 0, "complete": window["complete"] ?? false,
+                "sameValueRewrites": window["sameValueRewrites"] ?? 0,
                 "diff": Array((window["diff"] as? [[String: Any]] ?? []).prefix(8)),
             ])
             return false
@@ -1221,7 +1240,8 @@ final class PresentationUITests: XCTestCase {
             "nativeTapPoint": NSCoder.string(for: point), "tapWindow": window,
         ], summary: ["label": nativeLabel, "nativeFrame": NSCoder.string(for: nativeFrame),
                      "nativeTapPoint": NSCoder.string(for: point), "proved": true,
-                     "tapMutations": window["count"] ?? 0,
+                     "tapMutations": window["count"] ?? 0, "complete": window["complete"] ?? false,
+                     "sameValueRewrites": window["sameValueRewrites"] ?? 0,
                      "diff": Array((window["diff"] as? [[String: Any]] ?? []).prefix(8))])
         return true
     }
@@ -1275,9 +1295,18 @@ final class PresentationUITests: XCTestCase {
                 nodes[id] = node
             }
         }
+        let beforeSame = beforeLog["sameValue"] as? [String: Any] ?? [:]
+        let afterSame = afterLog["sameValue"] as? [String: Any] ?? [:]
+        let beforeTargets = beforeSame["targets"] as? [String: NSNumber] ?? [:]
+        let sameTargets = (afterSame["targets"] as? [String: NSNumber] ?? [:])
+            .map { ($0.key, $0.value.intValue - (beforeTargets[$0.key]?.intValue ?? 0)) }
+            .filter { $0.1 > 0 }.sorted { $0.1 > $1.1 || ($0.1 == $1.1 && $0.0 < $1.0) }
         return [
             "beforeSeq": beforeSeq, "afterSeq": afterSeq, "count": max(0, afterSeq - beforeSeq),
             "complete": beforeSeq >= 0 && entries.count == max(0, afterSeq - beforeSeq),
+            "sameValueRewrites": ((afterSame["total"] as? NSNumber)?.intValue ?? 0)
+                - ((beforeSame["total"] as? NSNumber)?.intValue ?? 0),
+            "sameValueTargets": sameTargets.prefix(8).map { [$0.0: $0.1] },
             "tapDurationMs": Int((tapEnd - tapStart).rounded()),
             "beforeSampleMs": ((beforeLog["at"] as? NSNumber)?.doubleValue)
                 .map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull(),
@@ -1854,6 +1883,7 @@ final class PresentationUITests: XCTestCase {
         let accepted = try acceptPassiveFinding(element, in: app, routeState: before)
         XCTAssertFalse(accepted, "a reviewed pointerdown that closes a menu changes the page")
         let window = try XCTUnwrap(lastTapWindow, "the rejected tap recorded its mutation window")
+        XCTAssertEqual(window["complete"] as? Bool, true, "the tap window kept every changing record")
         let diff = window["diff"] as? [[String: Any]] ?? []
         XCTAssertTrue(diff.contains {
             $0["type"] as? String == "attributes" && $0["attribute"] as? String == "open"
