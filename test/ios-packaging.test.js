@@ -943,6 +943,36 @@ test('T03 unmatched-text diagnostics retain actual Range fragments and the same 
   assert.match(debugSupport, /selector: path\(hit\)/);
 });
 
+test('T03 measures fixed bottom navigation occlusion separately from passive text ownership', () => {
+  assert.match(debugSupport, /const navigationOcclusions = \(\) =>/);
+  assert.match(debugSupport, /getComputedStyle\(navigation\)\.position !== 'fixed'/);
+  assert.match(debugSupport, /navigationRect\.bottom !== innerHeight/);
+  assert.match(debugSupport, /inNavigation: Boolean\(hit && sidebar\.contains\(hit\)\)/);
+  assert.match(debugSupport, /ownerContains: element\.contains\(hit\)/);
+  assert.match(debugSupport, /element\.closest\('#sidebar'\)/);
+  assert.match(presentationTests, /navigationOcclusions: window\.__recapPassiveGuard\.navigationOcclusions\(\)/);
+  assert.match(presentationTests, /private func classifyBottomNavigationOcclusion\(/);
+  assert.match(presentationTests, /navigationFrame\.contains\(nativeCrop\)/);
+  assert.match(presentationTests, /ownerFrame\.contains\(nativeCrop\)/);
+  assert.match(presentationTests, /samples\.allSatisfy/);
+  assert.match(presentationTests, /"t03-bottom-navigation-occlusion"/);
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.doesNotMatch(guard, /classifyBottomNavigationOcclusion/);
+});
+
+test('T03 native occlusion fixtures keep above-bar crops, owner hits and navigation findings rejected', () => {
+  assert.match(presentationTests, /"above-navigation"/);
+  assert.match(presentationTests, /"owner-hit"/);
+  assert.match(presentationTests, /"navigation-finding"/);
+  assert.match(presentationTests, /"t03-bottom-navigation-fixtures"/);
+  assert.match(presentationTests, /occlusion-mutant/);
+  assert.match(presentationTests, /measuredCrop = CGRect\(x: 29, y: 766, width: 332, height: 10\)/);
+  assert.match(presentationTests, /navigationFrame\.minY - 1/);
+  assert.match(presentationTests, /findingIsNavigation/);
+  assert.match(presentationTests, /sample\["ownerContains"\] as\? Bool == false/);
+});
+
 test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {
   assert.match(presentationTests, /summary: \[String: Any\]\? = nil/);
   assert.match(presentationTests, /JSONSerialization\.data\(withJSONObject: summary \?\? value/);

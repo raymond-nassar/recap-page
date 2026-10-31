@@ -321,6 +321,37 @@ enum DebugSupport {
           && other.rect.y < candidate.rect.y + candidate.rect.height
           && candidate.rect.y < other.rect.y + other.rect.height));
       };
+      const navigationOcclusions = () => {
+        const sidebar = document.getElementById('sidebar');
+        const navigation = sidebar?.querySelector('.rail-header');
+        const root = document.querySelector('.view:not([hidden])');
+        if (!navigation || !root || getComputedStyle(navigation).position !== 'fixed') return null;
+        const navigationRect = navigation.getBoundingClientRect();
+        if (!navigationRect.width || !navigationRect.height || navigationRect.bottom !== innerHeight) return null;
+        const owners = [];
+        for (const element of [root, ...root.querySelectorAll('*')]) {
+          if (element.closest('#sidebar') || element.closest('[id^="recap-"]')) continue;
+          const ownerRect = element.getBoundingClientRect();
+          if (!ownerRect.width || !ownerRect.height
+            || ownerRect.bottom <= navigationRect.top || ownerRect.top >= navigationRect.bottom) continue;
+          for (const text of element.childNodes) {
+            if (text.nodeType !== Node.TEXT_NODE || !text.textContent.trim()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(text);
+            const samples = [...range.getClientRects()].filter(rect => rect.width && rect.height)
+              .flatMap(fragment => fragmentPoints(fragment).map(point => {
+                const hit = document.elementFromPoint(point.x, point.y);
+                return { ...point, hit: hit ? path(hit) : null,
+                  inNavigation: Boolean(hit && sidebar.contains(hit)),
+                  ownerContains: element.contains(hit) };
+              }));
+            owners.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
+              label: labelOf(text.textContent, element), owner: path(element),
+              findingIsNavigation: false, rect: ownerRect.toJSON(), samples });
+          }
+        }
+        return { navigation: path(navigation), rect: navigationRect.toJSON(), owners };
+      };
       const domDigest = async () => {
         const clone = document.documentElement.cloneNode(true);
         for (const probe of clone.querySelectorAll('[id^="recap-"], [data-recap-passive-monitor]')) probe.remove();
@@ -333,7 +364,7 @@ enum DebugSupport {
         return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
       };
       window.__recapPassiveGuard = Object.freeze({
-        candidates, passive, inventory, globalInventoryValid, domDigest, explain,
+        candidates, passive, inventory, globalInventoryValid, domDigest, explain, navigationOcclusions,
         focus: () => document.activeElement ? path(document.activeElement) : null,
       });
     })();

@@ -599,6 +599,7 @@ final class PresentationUITests: XCTestCase {
           valid: window.__recapPassiveGuard.globalInventoryValid(),
           inventory: window.__recapPassiveGuard.inventory(),
           candidates: window.__recapPassiveGuard.candidates(),
+          navigationOcclusions: window.__recapPassiveGuard.navigationOcclusions(),
           diagnostics: currentView === 'view-data'
             ? [...document.querySelectorAll('#view-data h3, #restore-copy-summary')]
               .map(element => window.__recapPassiveGuard.explain(element)) : [],
@@ -799,6 +800,79 @@ final class PresentationUITests: XCTestCase {
         return ownerFrame.insetBy(dx: -allowance, dy: -allowance).contains(nativeFrame)
     }
 
+    private func isBottomNavigationOcclusion(
+        nativeCrop: CGRect, navigationFrame: CGRect, ownerFrame: CGRect,
+        findingIsNavigation: Bool, samples: [[String: Any]]
+    ) -> Bool {
+        guard !findingIsNavigation, !nativeCrop.isEmpty, !nativeCrop.isInfinite,
+              !navigationFrame.isEmpty, !navigationFrame.isInfinite,
+              !ownerFrame.isEmpty, !ownerFrame.isInfinite,
+              navigationFrame.contains(nativeCrop), ownerFrame.contains(nativeCrop),
+              !samples.isEmpty else { return false }
+        return samples.allSatisfy { sample in
+            sample["inNavigation"] as? Bool == true
+                && sample["ownerContains"] as? Bool == false
+                && (sample["hit"] as? String)?.isEmpty == false
+        }
+    }
+
+    private func classifyBottomNavigationOcclusion(
+        _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
+    ) throws -> Bool {
+        guard element.exists, element.elementType == .staticText else { return false }
+        let label = element.label
+        let nativeCrop = element.frame
+        for controls in [app.webViews.firstMatch.buttons, app.webViews.firstMatch.links] {
+            if controls.containing(NSPredicate(format: "label == %@", label)).allElementsBoundByIndex
+                .contains(where: { $0.exists && $0.frame.contains(nativeCrop) }) { return false }
+        }
+        let settled = try freshPassiveState(of: app)
+        let before = try freshPassiveState(of: app)
+        guard before["view"] as? String == routeState["view"] as? String,
+              before["href"] as? String == routeState["href"] as? String,
+              settled["view"] as? String == before["view"] as? String,
+              settled["href"] as? String == before["href"] as? String,
+              let proof = before["guard"] as? [String: Any], proof["valid"] as? Bool == true,
+              let settledProof = settled["guard"] as? [String: Any], settledProof["valid"] as? Bool == true,
+              let dom = proof["dom"] as? String, !dom.isEmpty, settledProof["dom"] as? String == dom,
+              let evidence = proof["navigationOcclusions"] as? [String: Any],
+              let settledEvidence = settledProof["navigationOcclusions"] as? [String: Any],
+              NSDictionary(dictionary: evidence).isEqual(NSDictionary(dictionary: settledEvidence)),
+              let viewport = (proof["viewportWidth"] as? NSNumber)?.doubleValue, viewport > 0,
+              let navigationRect = evidence["rect"] as? [String: Any],
+              let owners = evidence["owners"] as? [[String: Any]] else { return false }
+        let webFrame = app.webViews.firstMatch.frame
+        let scale = webFrame.width / viewport
+        func nativeRect(_ value: [String: Any]) -> CGRect? {
+            guard let x = (value["x"] as? NSNumber)?.doubleValue,
+                  let y = (value["y"] as? NSNumber)?.doubleValue,
+                  let width = (value["width"] as? NSNumber)?.doubleValue,
+                  let height = (value["height"] as? NSNumber)?.doubleValue,
+                  [x, y, width, height].allSatisfy({ $0.isFinite }), width > 0, height > 0 else { return nil }
+            return CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
+                          width: width * scale, height: height * scale)
+        }
+        guard webFrame.contains(nativeCrop), let navigationFrame = nativeRect(navigationRect) else { return false }
+        let matches = owners.filter { owner in
+            guard owner["label"] as? String == label,
+                  let rect = owner["rect"] as? [String: Any], let ownerFrame = nativeRect(rect),
+                  let findingIsNavigation = owner["findingIsNavigation"] as? Bool,
+                  let samples = owner["samples"] as? [[String: Any]] else { return false }
+            return isBottomNavigationOcclusion(nativeCrop: nativeCrop, navigationFrame: navigationFrame,
+                ownerFrame: ownerFrame, findingIsNavigation: findingIsNavigation, samples: samples)
+        }
+        guard matches.count == 1, element.frame == nativeCrop,
+              app.webViews.firstMatch.frame == webFrame else { return false }
+        try record("t03-bottom-navigation-occlusion", [
+            "label": label, "nativeCrop": NSCoder.string(for: nativeCrop),
+            "navigationFrame": NSCoder.string(for: navigationFrame),
+            "webFrame": NSCoder.string(for: webFrame), "evidence": evidence, "owner": matches[0],
+        ], summary: ["label": label, "nativeCrop": NSCoder.string(for: nativeCrop),
+                     "navigationFrame": NSCoder.string(for: navigationFrame),
+                     "samples": matches[0]["samples"] ?? []])
+        return true
+    }
+
     private func acceptPassiveFinding(
         _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any]
     ) throws -> Bool {
@@ -937,6 +1011,10 @@ final class PresentationUITests: XCTestCase {
                     if allowsPassiveGuard, issue.auditType == .hitRegion, let element = issue.element,
                        element.elementType == .staticText {
                         do {
+                            if try self.classifyBottomNavigationOcclusion(element, in: app, routeState: routeState) {
+                                print("T03 classified a bottom-navigation-obscured hitRegion finding")
+                                return true
+                            }
                             if try self.acceptPassiveFinding(element, in: app, routeState: routeState) {
                                 print("T03 accepted proven passive-text hitRegion finding: \(element.label)")
                                 return true
@@ -1253,6 +1331,54 @@ final class PresentationUITests: XCTestCase {
     }
 
     func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures() throws {
+        let measuredCrop = CGRect(x: 29, y: 766, width: 332, height: 10)
+        let navigationFrame = CGRect(x: 0, y: 760, width: 390, height: 84)
+        let occludedOwner = CGRect(x: 29, y: 766, width: 332, height: 30)
+        let navigationSamples: [[String: Any]] = [
+            ["inNavigation": true, "ownerContains": false, "hit": "#sidebar > div:nth-child(1) > a:nth-child(2)"],
+        ]
+        let ownerSamples: [[String: Any]] = [
+            ["inNavigation": true, "ownerContains": true, "hit": "#sidebar > div:nth-child(1) > a:nth-child(2)"],
+        ]
+        let aboveNavigation = CGRect(x: 29, y: navigationFrame.minY - 1, width: 332, height: 10)
+        let fixtureOwner = CGRect(x: 29, y: aboveNavigation.minY, width: 332, height: 40)
+        let occlusionFixtures: [(String, CGRect, CGRect, Bool, [[String: Any]])] = [
+            ("above-navigation", aboveNavigation, fixtureOwner, false, navigationSamples),
+            ("owner-hit", measuredCrop, occludedOwner, false, ownerSamples),
+            ("navigation-finding", measuredCrop, occludedOwner, true, navigationSamples),
+        ]
+        XCTAssertTrue(isBottomNavigationOcclusion(nativeCrop: measuredCrop, navigationFrame: navigationFrame,
+            ownerFrame: occludedOwner, findingIsNavigation: false, samples: navigationSamples))
+        var occlusionResults: [[String: Any]] = []
+        do {
+            let previousContinuation = continueAfterFailure
+            continueAfterFailure = true
+            defer { continueAfterFailure = previousContinuation }
+            let options = XCTExpectedFailure.Options()
+            options.isStrict = true
+            options.issueMatcher = { issue in
+                issue.type == .assertionFailure && issue.compactDescription.contains("occlusion-mutant")
+            }
+            for (name, crop, owner, isNavigation, samples) in occlusionFixtures {
+                let accepted = isBottomNavigationOcclusion(nativeCrop: crop, navigationFrame: navigationFrame,
+                    ownerFrame: owner, findingIsNavigation: isNavigation, samples: samples)
+                XCTAssertFalse(accepted, "\(name) must not be classified")
+                XCTExpectFailure("Ignoring the \(name) evidence loses its rejection", options: options) {
+                    let expandedNavigation = name == "above-navigation"
+                        ? navigationFrame.insetBy(dx: 0, dy: -1) : navigationFrame
+                    XCTAssertFalse(self.isBottomNavigationOcclusion(
+                        nativeCrop: crop, navigationFrame: expandedNavigation, ownerFrame: owner,
+                        findingIsNavigation: false, samples: navigationSamples), "occlusion-mutant: \(name)")
+                }
+                occlusionResults.append(["name": name, "nativeCrop": NSCoder.string(for: crop),
+                                         "accepted": accepted])
+            }
+        }
+        try record("t03-bottom-navigation-fixtures", [
+            "measuredCrop": NSCoder.string(for: measuredCrop),
+            "syntheticNavigationFrame": NSCoder.string(for: navigationFrame),
+            "measuredCropAccepted": true, "negatives": occlusionResults,
+        ])
         let owner = CGRect(x: 29, y: 316.453125 + 20, width: 40.55377197265625, height: 76)
         let measured = CGRect(x: 29, y: 336, width: 41, height: 78)
         XCTAssertTrue(domOwnerContainsNativeFrame(measured, ownerFrame: owner, allowance: 2))

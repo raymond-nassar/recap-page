@@ -41,6 +41,16 @@ saved reading progress is retained: saved data lives outside that process.
 
 ## Text size and windowing
 
+The native audit separately classifies a StaticText hit-area finding when its entire native crop
+is behind the fixed bottom navigation. The same-run DOM navigation rectangle is converted into
+native coordinates; the crop must fit inside it and its unique content owner without tolerance.
+Every text-fragment sample must hit the sidebar subtree and none may hit the owner. Native
+controls and navigation findings do not qualify. Settled route, DOM and geometry must agree, and
+each classification records the crop, navigation frame and hit targets. This does not change the
+passive ownership guard or scroll an audit finding. The minimum-iPhone screenshot and Range
+samples in run 41138429203 established that its cropped Reading data heading was behind the bar,
+not visible text. Native confirmation of the separate classification is pending.
+
 The native shell maps the system text size to the six shared type tokens. It does not zoom the page
 or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
 header one column so the What's new control keeps enough width to read. This adjustment is confined
