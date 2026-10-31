@@ -662,6 +662,84 @@ final class PresentationUITests: XCTestCase {
         cursor: getComputedStyle(element).cursor,
       };
     };
+    // Diagnostics only: the guard still decides on the digest. This names what changed in a native
+    // no-op tap window, since SE's home-read-count rejection on run 41204085610 recorded only two
+    // digests. An observer rather than a listener, so the reviewed handler inventory is untouched.
+    // Date.now() is the host clock the Simulator shares with the test runner, so entries can be
+    // placed relative to the native tap.
+    const probeSelector = '[id^="recap-"], [data-recap-passive-monitor]';
+    const mutationLog = [];
+    let mutationSeq = 0;
+    const clip = (value) => value === null || value === undefined ? null : String(value).slice(0, 80);
+    const elementOf = (node) => node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+    const mutationPath = (node) => {
+      const parts = [];
+      for (let element = elementOf(node); element && parts.length < 5; element = element.parentElement) {
+        const classes = [...element.classList].slice(0, 2).map((name) => `.${name}`).join('');
+        parts.unshift(element.id ? `#${element.id}` : `${element.tagName.toLowerCase()}${classes}`);
+        if (element.id) break;
+      }
+      return node.nodeType === Node.TEXT_NODE ? `${parts.join(' > ')} > #text` : parts.join(' > ');
+    };
+    const isProbe = (node) => Boolean(elementOf(node)?.closest(probeSelector));
+    const nodeSummary = (node) => node.nodeType === Node.TEXT_NODE ? `#text ${clip(node.textContent)}`
+      : node.nodeType === Node.ELEMENT_NODE ? `<${mutationPath(node)}> ${clip(node.textContent)}`
+      : `node ${node.nodeType}`;
+    const logMutations = (records) => {
+      for (const record of records) {
+        if (isProbe(record.target)) continue;
+        const entry = { seq: 0, at: Date.now(), type: record.type, target: mutationPath(record.target) };
+        if (record.type === 'attributes') {
+          Object.assign(entry, { attribute: record.attributeName, old: clip(record.oldValue),
+            now: clip(record.target.getAttribute(record.attributeName)) });
+        } else if (record.type === 'characterData') {
+          Object.assign(entry, { old: clip(record.oldValue), now: clip(record.target.data) });
+        } else {
+          const added = [...record.addedNodes].filter((node) => !isProbe(node));
+          const removed = [...record.removedNodes].filter((node) =>
+            !(node.nodeType === Node.ELEMENT_NODE && node.matches(probeSelector)));
+          if (!added.length && !removed.length) continue;
+          Object.assign(entry, { addedCount: added.length, removedCount: removed.length,
+            added: added.slice(0, 3).map(nodeSummary), removed: removed.slice(0, 3).map(nodeSummary) });
+        }
+        entry.seq = ++mutationSeq;
+        mutationLog.push(entry);
+      }
+      if (mutationLog.length > 40) mutationLog.splice(0, mutationLog.length - 40);
+    };
+    const mutationObserver = new MutationObserver(logMutations);
+    mutationObserver.observe(document.documentElement, {
+      subtree: true, childList: true, attributes: true, attributeOldValue: true,
+      characterData: true, characterDataOldValue: true,
+    });
+    // The digest also covers control values, which mutate without a DOM record.
+    let lastControls = null;
+    const logControls = () => {
+      const controls = [...document.querySelectorAll('input, select, textarea')].filter((element) => !isProbe(element))
+        .map((element) => ({ target: mutationPath(element), value: clip(JSON.stringify([element.value, element.checked,
+          element instanceof HTMLSelectElement ? element.selectedIndex : null])) }));
+      if (lastControls) {
+        controls.forEach((control, index) => {
+          const previous = lastControls[index];
+          if (previous && previous.target === control.target && previous.value === control.value) return;
+          mutationLog.push({ seq: ++mutationSeq, at: Date.now(), type: 'control', target: control.target,
+            old: previous?.value ?? null, now: control.value });
+        });
+        if (lastControls.length > controls.length) {
+          mutationLog.push({ seq: ++mutationSeq, at: Date.now(), type: 'control', target: 'controls',
+            old: String(lastControls.length), now: String(controls.length) });
+        }
+      }
+      lastControls = controls;
+    };
+    // Flushed synchronously immediately before the digest clones the document, so a sample's seq
+    // and its digest describe the same moment.
+    const mutationSnapshot = () => {
+      logMutations(mutationObserver.takeRecords());
+      logControls();
+      if (mutationLog.length > 40) mutationLog.splice(0, mutationLog.length - 40);
+      return { seq: mutationSeq, at: Date.now(), entries: mutationLog.slice() };
+    };
     let passiveTick = 0;
     let refreshingPassive = false;
     const refreshPassiveMonitor = async () => {
@@ -688,6 +766,7 @@ final class PresentationUITests: XCTestCase {
             ? [...document.querySelectorAll('#view-data h3, #restore-copy-summary')]
               .map(element => window.__recapPassiveGuard.explain(element)) : [],
           focus: window.__recapPassiveGuard.focus(),
+          mutations: mutationSnapshot(),
           dom: await window.__recapPassiveGuard.domDigest(),
           viewportWidth: document.documentElement.clientWidth,
         } : { valid: false, error: 'Document-start passive guard missing' },
@@ -1021,6 +1100,7 @@ final class PresentationUITests: XCTestCase {
         _ element: XCUIElement, in app: XCUIApplication, routeState: [String: Any],
         checksDOMUnchanged: Bool = true
     ) throws -> Bool {
+        lastTapWindow = nil
         guard element.exists, element.elementType == .staticText else { return false }
         let nativeLabel = element.label
         if nativeControlOwnsText(label: nativeLabel, frame: element.frame, in: app) {
@@ -1094,9 +1174,13 @@ final class PresentationUITests: XCTestCase {
             print("T03 passive guard rejected changed candidate geometry: \(element.debugDescription)")
             return false
         }
+        let tapStart = Date().timeIntervalSince1970 * 1000
         app.coordinate(withNormalizedOffset: .zero)
             .withOffset(CGVector(dx: point.x, dy: point.y)).tap()
+        let tapEnd = Date().timeIntervalSince1970 * 1000
         let after = try freshPassiveState(of: app)
+        let window = tapWindow(before: before, after: after, tapStart: tapStart, tapEnd: tapEnd)
+        lastTapWindow = window
         let afterMatches = ((after["guard"] as? [String: Any])?["candidates"] as? [[String: Any]] ?? [])
             .filter { $0["key"] as? String == key }
         guard after["view"] as? String == before["view"] as? String,
@@ -1120,16 +1204,87 @@ final class PresentationUITests: XCTestCase {
                 "beforeRoute": before["href"] ?? NSNull(), "afterRoute": after["href"] ?? NSNull(),
                 "afterCandidates": afterMatches,
                 "afterValid": (after["guard"] as? [String: Any])?["valid"] ?? NSNull(),
+                "tapWindow": window,
+            ], summary: [
+                "key": key, "label": nativeLabel, "nativeFrame": NSCoder.string(for: nativeFrame),
+                "domChanged": (after["guard"] as? [String: Any])?["dom"] as? String != proof["dom"] as? String,
+                "focus": [proof["focus"] ?? NSNull(), (after["guard"] as? [String: Any])?["focus"] ?? NSNull()],
+                "route": [before["href"] ?? NSNull(), after["href"] ?? NSNull()],
+                "tapMutations": window["count"] ?? 0, "complete": window["complete"] ?? false,
+                "diff": Array((window["diff"] as? [[String: Any]] ?? []).prefix(8)),
             ])
             return false
         }
         try record("t03-passive-guard", [
             "candidate": candidate, "nativeLabel": nativeLabel,
             "nativeFrame": NSCoder.string(for: nativeFrame), "before": before, "after": after,
-            "nativeTapPoint": NSCoder.string(for: point),
+            "nativeTapPoint": NSCoder.string(for: point), "tapWindow": window,
         ], summary: ["label": nativeLabel, "nativeFrame": NSCoder.string(for: nativeFrame),
-                     "nativeTapPoint": NSCoder.string(for: point), "proved": true])
+                     "nativeTapPoint": NSCoder.string(for: point), "proved": true,
+                     "tapMutations": window["count"] ?? 0,
+                     "diff": Array((window["diff"] as? [[String: Any]] ?? []).prefix(8))])
         return true
+    }
+
+    /// Diagnostics only: the mutations sampled between the last pre-tap and first post-tap guard
+    /// samples, timed relative to the native tap, plus a per-node before/after diff.
+    private var lastTapWindow: [String: Any]?
+
+    private func tapWindow(
+        before: [String: Any], after: [String: Any], tapStart: Double, tapEnd: Double
+    ) -> [String: Any] {
+        let beforeLog = (before["guard"] as? [String: Any])?["mutations"] as? [String: Any] ?? [:]
+        let afterLog = (after["guard"] as? [String: Any])?["mutations"] as? [String: Any] ?? [:]
+        let beforeSeq = (beforeLog["seq"] as? NSNumber)?.intValue ?? -1
+        let afterSeq = (afterLog["seq"] as? NSNumber)?.intValue ?? -1
+        let entries: [[String: Any]] = (afterLog["entries"] as? [[String: Any]] ?? []).compactMap { entry in
+            guard let seq = (entry["seq"] as? NSNumber)?.intValue, seq > beforeSeq else { return nil }
+            var timed = entry
+            if let at = (entry["at"] as? NSNumber)?.doubleValue { timed["relativeMs"] = Int((at - tapStart).rounded()) }
+            return timed
+        }
+        var order: [String] = []
+        var nodes: [String: [String: Any]] = [:]
+        for entry in entries {
+            let type = entry["type"] as? String ?? ""
+            let target = entry["target"] as? String ?? ""
+            let id = "\(type)|\(target)|\(entry["attribute"] as? String ?? "")"
+            if var node = nodes[id] {
+                node["now"] = entry["now"] ?? NSNull()
+                node["records"] = ((node["records"] as? Int) ?? 1) + 1
+                node["lastMs"] = entry["relativeMs"] ?? NSNull()
+                if type == "childList" {
+                    node["added"] = ((node["added"] as? Int) ?? 0) + ((entry["addedCount"] as? NSNumber)?.intValue ?? 0)
+                    node["removed"] = ((node["removed"] as? Int) ?? 0) + ((entry["removedCount"] as? NSNumber)?.intValue ?? 0)
+                }
+                nodes[id] = node
+            } else {
+                order.append(id)
+                var node: [String: Any] = ["type": type, "target": target, "records": 1,
+                                           "firstMs": entry["relativeMs"] ?? NSNull(),
+                                           "lastMs": entry["relativeMs"] ?? NSNull()]
+                if let attribute = entry["attribute"] { node["attribute"] = attribute }
+                if type == "childList" {
+                    node["added"] = (entry["addedCount"] as? NSNumber)?.intValue ?? 0
+                    node["removed"] = (entry["removedCount"] as? NSNumber)?.intValue ?? 0
+                    node["sample"] = ["added": entry["added"] ?? [String](), "removed": entry["removed"] ?? [String]()]
+                } else {
+                    node["old"] = entry["old"] ?? NSNull()
+                    node["now"] = entry["now"] ?? NSNull()
+                }
+                nodes[id] = node
+            }
+        }
+        return [
+            "beforeSeq": beforeSeq, "afterSeq": afterSeq, "count": max(0, afterSeq - beforeSeq),
+            "complete": beforeSeq >= 0 && entries.count == max(0, afterSeq - beforeSeq),
+            "tapDurationMs": Int((tapEnd - tapStart).rounded()),
+            "beforeSampleMs": ((beforeLog["at"] as? NSNumber)?.doubleValue)
+                .map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull(),
+            "afterSampleMs": ((afterLog["at"] as? NSNumber)?.doubleValue)
+                .map { Int(($0 - tapStart).rounded()) as Any } ?? NSNull(),
+            "entries": entries, "diff": order.compactMap { nodes[$0] },
+        ]
     }
 
     private func performAccessibilityAudit(of app: XCUIApplication, allowsPassiveGuard: Bool = false) throws {
@@ -1698,6 +1853,13 @@ final class PresentationUITests: XCTestCase {
         XCTAssertEqual((before["guard"] as? [String: Any])?["valid"] as? Bool, true)
         let accepted = try acceptPassiveFinding(element, in: app, routeState: before)
         XCTAssertFalse(accepted, "a reviewed pointerdown that closes a menu changes the page")
+        let window = try XCTUnwrap(lastTapWindow, "the rejected tap recorded its mutation window")
+        let diff = window["diff"] as? [[String: Any]] ?? []
+        XCTAssertTrue(diff.contains {
+            $0["type"] as? String == "attributes" && $0["attribute"] as? String == "open"
+                && ($0["target"] as? String)?.hasSuffix("#home-updates") == true
+                && $0["now"] is NSNull && $0["old"] as? String == ""
+        }, "the tap-window diagnostic names the menu closing: \(diff)")
         let after = try freshPassiveState(of: app)
         let beforeDOM = try XCTUnwrap((before["guard"] as? [String: Any])?["dom"] as? String)
         let afterDOM = try XCTUnwrap((after["guard"] as? [String: Any])?["dom"] as? String)
