@@ -120,7 +120,7 @@ jobs:
         timeout-minutes: 40
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -145,7 +145,8 @@ jobs:
                 grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator. Matched: $matched"
           done
 
       - name: Prove the interrupted-restore test rejects the done row
@@ -305,7 +306,7 @@ jobs:
         timeout-minutes: 35
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -329,7 +330,8 @@ jobs:
                 grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
           done
 
       - name: Summarize the probe results
@@ -478,7 +480,7 @@ jobs:
         timeout-minutes: 14
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -502,7 +504,8 @@ jobs:
                 grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator. Matched: $matched"
           done
 
       # Run 41099816344: minimum presentation step 21m30s plus 13m30s margin.
@@ -512,7 +515,7 @@ jobs:
         timeout-minutes: 35
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -535,7 +538,8 @@ jobs:
                 grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
           done
 
       # Run 41099816344: SE step rounded up to 22m17s plus 22m43s margin.
@@ -545,7 +549,7 @@ jobs:
         timeout-minutes: 45
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -569,7 +573,8 @@ jobs:
                 grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
           done
 
       - name: Summarize the probe results

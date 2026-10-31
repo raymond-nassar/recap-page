@@ -309,7 +309,12 @@ const infrastructure = [
   'The test runner failed to initialize for UI testing.',
   'Failed to get background assertion for target app with pid 13819: Timed out while acquiring background assertion.',
   'Failed to launch application: Timed out while launching application via Xcode.',
+  // Run 41174084511: launch could not end the previous test's instance before the test body ran.
+  '/repo/LaunchUITests.swift:37: error: -[RecapPageUITests.LaunchUITests testFifthJournalPutFailureOffersRecoveryAfterForcedTermination] : '
+    + 'Failed to terminate io.github.raymondnassar.recappage:19342: Failed to terminate io.github.raymondnassar.recappage:0',
 ];
+const terminate = infrastructure[3];
+const otherTerminate = '/repo/LaunchUITests.swift:37: error: -[LaunchUITests testHome] : Failed to terminate com.apple.mobilesafari:4242';
 const assertion = '/repo/LaunchUITests.swift:40: error: -[LaunchUITests testHome] : XCTAssertTrue failed';
 // Run 41169003243: the passive-guard fixtures' anticipated failures, which XCTest reports without ": error:".
 const anticipated = [
@@ -525,6 +530,8 @@ test('both iPhone jobs retry only recognized UI infrastructure failures once and
     { name: 'anticipated failures with an assertion', logs: [anticipated + '\n' + infrastructure[1] + '\n' + assertion],
       codes: [65], calls: 1, exit: 1 },
     { name: 'unrecognized failure', logs: ['Simulator connection lost'], codes: [65], calls: 1, exit: 1 },
+    { name: 'another app fails to terminate', logs: [otherTerminate], codes: [65], calls: 1, exit: 1 },
+    { name: 'termination with an assertion', logs: [terminate + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
     { name: 'log write failure', logs: [infrastructure[0]], codes: [65], calls: 1, exit: 23, teeFailure: true },
   ];
   for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
@@ -560,6 +567,9 @@ ${scenario.teeFailure ? 'tee() { command tee "$@"; return 23; }\n' : ''}`;
             assert.equal(await readFile(join(root, `ui-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');
           }
           assert.equal((result.stdout.match(/::warning::/g) ?? []).length, scenario.calls - 1);
+          if (scenario.calls === 2) {
+            assert.ok(result.stdout.includes(`Matched: ${scenario.logs[0].split('\n').at(-1)}`), result.stdout);
+          }
         } finally {
           await rm(root, { recursive: true, force: true });
         }
@@ -572,6 +582,9 @@ test('the separate presentation suites retry only the recognized UI infrastructu
   const scenarios = [
     { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
     { name: 'infrastructure recovers', logs: [infrastructure[0], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+    { name: 'termination failure recovers', logs: [terminate, 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+    { name: 'termination with an assertion', logs: [terminate + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
+    { name: 'another app fails to terminate', logs: [otherTerminate], codes: [65], calls: 1, exit: 1 },
     { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
     { name: 'anticipated failures with infrastructure recover',
       logs: [anticipated + '\n' + infrastructure[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
@@ -614,6 +627,9 @@ test('the separate presentation suites retry only the recognized UI infrastructu
             assert.equal(await readFile(join(root, `${log}-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');
           }
           assert.equal((result.stdout.match(/::warning::/g) ?? []).length, scenario.calls - 1);
+          if (scenario.calls === 2) {
+            assert.ok(result.stdout.includes(`Matched: ${scenario.logs[0].split('\n').at(-1)}`), result.stdout);
+          }
         } finally {
           await rm(root, { recursive: true, force: true });
         }
