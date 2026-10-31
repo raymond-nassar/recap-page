@@ -95,21 +95,26 @@ test('Android cloud help uses the exact approved device wording without changing
   }
 });
 
-test('public privacy policy names the actual platform, search, provider and erase boundaries', async () => {
+test('public privacy policy names the Android, cloud, request and deletion boundaries', async () => {
   const text = prose(await readFile(new URL('../PRIVACY.md', import.meta.url), 'utf8'));
-  assert.match(text, /Android[^.]*private WebView storage/i);
-  assert.match(text, /not a listening server/i);
-  assert.match(text, /does not use the desktop service-worker shell/i);
-  assert.match(text, /series and creator name searches[^.]*bundled[^.]*locally/i);
-  assert.match(text, /selected series or creator[^.]*IDs/i);
-  assert.match(text, /local-only[^.]*not a guarantee[^.]*sync[^.]*retention/i);
-  assert.match(text, /settings and sidebar preferences remain/i);
-  assert.match(text, /salvage copies[^.]*not removed/i);
-  assert.match(text, /pre-restore and staging copies[^.]*attempted/i);
-  assert.match(text, /previously exported files/i);
-  assert.match(text, /policy does not establish how long recipients keep request data/i);
-  assert.match(text, /no-store[^.]*not[^.]*deletion/i);
-  assert.match(text, /uninstalling[^.]*does not remove browser-owned state/i);
+  assert.match(text, /on Android, it lives in the app's private storage/i);
+  assert.match(text, /Android's own backup and device transfer are turned off/i);
+  assert.match(text, /searching for issues[^.]*matching titles[^.]*sends your search text/i);
+  assert.match(text, /opening a series, creator or issue asks that service for its details/i);
+  assert.match(text, /background[^.]*\. The order of those requests can hint at where you are/i);
+  assert.match(text, /wherever you save it receives its contents/i);
+  assert.match(text, /connecting alone uploads nothing/i);
+  assert.match(text, /Microsoft can read them[^.]*\. They travel over a secure connection/i);
+  assert.match(text, /developer never receives a copy/i);
+  assert.match(text, /account name or email[^.]*\. Neither is part of a backup/i);
+  assert.match(text, /each service sees the request and your network address/i);
+  assert.match(text, /how long it keeps them is up to that service/i);
+  assert.match(text, /OneDrive keeps deleted files in its recycle bin for up to 30 days/i);
+  assert.match(text, /settings remain, and so do any copies kept after a failed read/i);
+  assert.match(text, /neither removes exported files/i);
+  const android = prose(await readFile(new URL('../docs/ANDROID.md', import.meta.url), 'utf8'));
+  assert.match(android, /no Node server, listening port or remote app host/i);
+  assert.match(android, /the same address does not mean shared progress/i);
 });
 
 test('Android privacy preparation preserves desktop HTML, shared behavior and fixed origin', async () => {

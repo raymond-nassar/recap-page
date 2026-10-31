@@ -410,7 +410,7 @@ entering Partner Center:
 npm run store:check
 ```
 
-The check requires five 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
+The check requires four 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
 listing copy within field limits, public HTTPS URLs, first-submission stop points and a separate
 future-update policy. It reads no account data and makes no network request.
 

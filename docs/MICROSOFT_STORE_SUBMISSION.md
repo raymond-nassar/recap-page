@@ -9,7 +9,14 @@ change, publication, or change to the existing GitHub ZIP release.
 Official requirements and public URLs were rechecked on 2026-08-29. Partner Center remains
 authoritative when its live wording or validation differs from this packet.
 
+The 4.3.0 listing, requirements, privacy answers, restricted-capability explanation, certification
+text and release notes below were approved by the owner on 2026-10-30. This approves text only,
+not a build, upload, submission or publication. The 2.0.2 first-submission procedures and package
+details remain historical. The screenshots have not yet been accepted for the 4.3.0 listing.
+
 ## Owner review card
+
+This card records the first submission, not an approval to submit 4.3.0.
 
 | Decision | Recommended value | Owner action |
 |---|---|---|
@@ -75,10 +82,11 @@ official market list, and Microsoft leaves local-law compliance with the publish
 can be added in later submissions without changing the package. Do not enable automatic addition of
 future markets without a new review.
 
-Use **Don't publish this submission until I select Publish now** in Submission options. This permits
-certification to complete before the owner decides whether to replace the existing public GitHub ZIP
-as the primary Windows release. Public audience is a one-way choice: Microsoft says a product first
-submitted to a public audience cannot later become a private-audience product.
+For the first submission, the owner selected **Don't publish this submission until I select Publish
+now** in Submission options. The protected update process instead publishes after certification,
+as described under [Future Store updates](#future-store-updates). Public audience is a one-way
+choice: Microsoft says a product first submitted to a public audience cannot later become a
+private-audience product.
 
 ### Category
 
@@ -89,18 +97,19 @@ category blank for the first submission.
 
 ### Privacy and support
 
-Answer **Yes** when Partner Center asks whether the app accesses, collects, or transmits personal
-information. This is a conservative application of Microsoft's current definition, which includes
-information that identifies a person or is associated with such information. Recap Page accesses
-free-form notes and custom titles stored locally, and a search query a user chooses to enter is sent
-to the configured metadata service. A query or note can contain identifying text even though the
-app does not ask for it.
+The following is the approved 4.3.0 answer. Saving the live declaration remains a separate owner action.
 
-This answer does not mean saved reader state is uploaded. Lists, notes, settings, overrides, read
-markers, and backups stay in the selected browser profile. Direct services receive only what each
-feature needs, such as a search query or issue identity. The distinction must remain explicit in the
-listing and privacy policy. Microsoft policy also says packaged desktop products must always have a
-privacy policy.
+### Personal-information answer and package-data declaration
+
+Answer Yes to accessing, collecting or transmitting personal information. Optional OneDrive backup
+sends the reader's saved data to the reader's own Microsoft account. Searches and lookups send
+search text or comic identities to the services named in the privacy policy. Nothing goes to the
+developer.
+
+Keep Windows automatic backup of package data disabled. That setting is separate from the app's
+optional OneDrive backup. No new package capability is requested.
+
+### Public privacy and support URLs
 
 | Field | Public HTTPS value | Status checked 2026-08-29 |
 |---|---|---|
@@ -127,17 +136,17 @@ policy text, paste the same maintained policy there as well as supplying the URL
   evidence has been completed.
 - Keep alternate-drive and removable-storage installation enabled. The package reads from its
   installed location and saves no reader state there.
-- Disable Windows automatic OneDrive backup of package data. Reader state is browser-owned, but
-  disabling the declaration keeps the no-upload promise unambiguous.
+- Follow the current package-data declaration above for Windows automatic backup.
 - Do not select pen and ink, game recording, mixed reality, or generative AI.
 - Leave optional hardware checkboxes blank. Package eligibility already limits acquisition to
   supported x64 and ARM64 Windows Desktop systems.
 
-Add these customer-facing requirements:
+### Customer-facing requirements
 
 1. A supported default web browser.
-2. Internet access for live metadata, optional cover art, and external reading links.
-3. Marvel determines access to its reading services. Comics are not included.
+2. Internet access for comic details, covers, reading links and optional OneDrive backup.
+3. A personal Microsoft account only if you choose OneDrive backup.
+4. Comics are not included. Marvel decides access to its reading services.
 
 ## English (United States) Store listing
 
@@ -147,60 +156,43 @@ Recap Page
 
 ### Short description
 
-Follow Marvel stories with credited reading orders and private progress. Marvel Unlimited reading ends December 7, 2026. After that date, Read opens the Marvel Comics website, not a single-comic link. Comics are not included.
+Keep your place in Marvel stories with credited reading orders and optional backup to your own OneDrive. Comics are not included. Marvel Unlimited reading ends December 7, 2026.
 
 ### Long description
 
-Recap Page is a private reading companion that runs locally in your desktop's default web browser.
-Follow a Marvel story across series, open the next unread comic, and keep your place.
-It is not a native phone app. No automatic device sync or offline comic reading.
+Follow any Marvel story across series and pick up at your next unread comic. Recap Page gives you credited reading orders for events, eras and characters, with private progress, notes and ratings.
 
-A reading session, using made-up progress rather than someone's reading history:
+Mark comics read as you go, or mark a whole list read at once. Save everything to a backup file, or turn on automatic backup to your own OneDrive. OneDrive is optional and off until you choose it. Microsoft can read your backups, your account protects them, and the developer never receives them.
 
-1. On Home, open Modern Timeline and add Civil War: Avengers and Aftermath Reading Order,
-   compiled from Comic Book Herald's guide:
-   https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/
-2. Imagine the first six comics are marked read. Civil War (2006) #7 is the next unread issue.
-3. Choose Read. Until December 7, 2026, the Marvel Unlimited web reader opens in a separate tab when a link is recorded, with a comic details page as the fallback. From that date, Read opens the general Marvel Comics website, not a single-comic link.
-4. Return to Recap Page and choose Done. New Avengers (2004) #21 becomes next; reading is not
-   detected automatically.
-5. Stop here, then reopen this Reading List in the same browser profile to resume at that unread comic.
+No Recap Page account, ads, analytics or telemetry. Covers and comic details load from Marvel and a community comics information service.
 
-Read markers are shared for the same issue across overlapping Reading Lists; each list keeps its
-own order. Follow a Reading Path on Modern Timeline, add private notes, or track custom issues
-without changing that reading loop. Your progress stays in your browser profile. There is no
-account, advertising, analytics, or telemetry. Comics are not included. Marvel determines access to its reading services. Historical Marvel Unlimited badges do not establish access to Marvel Comics.
+Comics are not included. Reading in Marvel Unlimited ends December 7, 2026. Until then, Read opens its web reader when a link is known. After that, Read opens the Marvel Comics website.
 
-Recap Page contains no comic pages. Cover art is optional and loads directly from Marvel image
-hosts. Search and issue details use a community metadata service. An optional manual lookup can open
-Marvel Fandom.
+Reading orders credit Comic Book Herald and Comic Book Reading Orders where their guides supply the issues and order.
 
-Curated lists credit Comic Book Herald and Comic Book Reading Orders where their guides supply the
-factual issue selection and sequence.
-
-This is an unofficial fan companion. It is not affiliated with or endorsed by Marvel Entertainment
-or Disney. Marvel names and marks belong to their respective owners.
+This is an unofficial fan companion, not affiliated with or endorsed by Marvel Entertainment or Disney. Marvel names and marks belong to their owners.
 
 ### Feature fields
 
-1. Curated event, era, character, and continuity reading orders
-2. Reading Paths across connected lists, followed on Modern Timeline
-3. Clear next issue and completion progress
-4. Private read markers, notes, availability overrides, and custom entries
-5. JSON backup and restore
-6. Optional cover art and live metadata
-7. Links to Marvel's reading services, with a clearly labeled general website after December 7, 2026
-8. No account, ads, analytics, or telemetry
+1. Credited reading orders for Marvel events, eras and characters
+2. Reading Paths across connected lists
+3. Pick up at your next unread comic
+4. Private notes, ratings and custom entries
+5. One-file backup of your reading data and settings
+6. Optional automatic backup to your own OneDrive
+7. No Recap Page account, ads, analytics or telemetry
 
 ### Keywords
 
-1. `comic reading tracker`
-2. `reading order`
-3. `Marvel reading tracker`
-4. `comic checklist`
-5. `reading progress`
-6. `comic events`
-7. `comic books`
+comic reading tracker
+reading order
+Marvel reading tracker
+comic checklist
+reading progress
+comic events
+comic books
+
+### Keyword guidance
 
 Keywords were formerly called Search terms. Each keyword is below Microsoft's 40-character limit.
 Together they use fewer than 21 unique words.
@@ -210,15 +202,29 @@ Together they use fewer than 21 unique words.
 Copyright (c) 2026 Raymond Nassar. Unofficial fan companion, not affiliated with or endorsed by
 Marvel Entertainment or Disney. Marvel names and marks belong to their respective owners.
 
-Use **PanelStack Labs** for **Developed by**. Leave **What's new in this version** blank because no
-Store version has been published. Leave short title, sort title, and voice title blank.
+Use **PanelStack Labs** for **Developed by**. Leave short title, sort title, and voice title blank.
 
 Leave **Additional license terms** blank. Microsoft's Store license terms govern acquisition of the
 Store package, while the source repository separately publishes its code under MIT. Pasting the MIT
 text into the Store field would blur those distinct roles. The Website field leads to the repository
 and its source license.
 
+The next heading retains the reviewed packet's label; its field text is approved.
+
+### What's new in this version: proposed exact field
+
+Back up automatically to your own OneDrive, or keep everything in one backup file. Mark a whole list read at once, with Undo. Explore the new Professor X spotlight and reading path. Marvel Unlimited reading ends December 7, 2026, and Read then opens the Marvel Comics website.
+
+### Availability guidance
+
+Historical Marvel Unlimited badges do not establish access to Marvel Comics. After December 7,
+Read opens the general website, not a single-comic link.
+
 ## Age-rating answer draft
+
+The table below records the first submission, not the current answers. Its no-transfer rows describe
+that earlier build, not 4.3.0. Review the current live questionnaire, including the optional
+OneDrive transfer described above.
 
 Every question presented by IARC is required. IARC says its questionnaire is available only inside a
 participating storefront. Microsoft says the first category answer controls later questions, and
@@ -257,73 +263,50 @@ than trying to bypass the result.
 
 ## Restricted capability justification
 
-Paste this into the `runFullTrust` explanation after owner review:
-
-> Recap Page declares `runFullTrust` because its packaged classic desktop entry process must start
-> the bundled, architecture-matched official Node runtime as a local HTTP server and open the user's
-> configured default external browser. The server binds only to `127.0.0.1:8787` and accepts no
-> remote connections. It does not request elevation, install or run a background service, listen on
-> a network interface, create an account, collect telemetry, or upload saved reading data.
->
-> The exact loopback origin and external browser are required for compatibility. Existing reading
-> progress is stored by the browser under `http://127.0.0.1:8787`, and changing the host, port, or
-> browser container would select a different storage bucket. The external browser also preserves the
-> synchronous new-tab behavior required when opening the official reader.
-
 `runFullTrust` is the only restricted capability. The live Partner Center capability request is an
-owner-only action and may add certification time.
+owner-only action and may add certification time. The following explanation is the approved 4.3.0
+text.
+
+### Restricted-capability explanation
+
+Recap Page declares runFullTrust so it can start its bundled Node runtime as a local server and open the user's default browser. The server binds only to 127.0.0.1:8787 and accepts no remote connections. It requests no elevation, installs no background service, creates no account and sends no telemetry. Optional OneDrive backup goes only to the user's own Microsoft account, never to the developer.
 
 ## Notes for certification
 
-Paste this after updating the date if submission occurs later:
+The fixed text below is approved for 4.3.0. A separate submission approval and final evidence are
+still required.
 
-> Prepared 2026-10-27.
->
-> Recap Page is a packaged classic desktop app. Launching it starts the bundled
-> architecture-matched official Node runtime as a hidden local server bound only to
-> `127.0.0.1:8787`. The short-lived launch coordinator waits for that exact package generation,
-> opens the installed default browser at that address, and then exits. No console must be kept open.
-> No account or test credentials are required.
->
-> Core test path:
->
-> 1. Launch Recap Page from Start.
-> 2. Confirm the default browser opens `http://127.0.0.1:8787/`. A successful launch does not leave
->    a console open.
-> 3. On Home, open Modern Timeline, search for House of M, and select its title to preview it.
-> 4. Under Search, use Find a series to find House of M, then open More ways to add and use
->    Browse a creator to find Jonathan Hickman. These searches use indexes bundled inside the
->    package.
-> 5. Add a curated Reading List, mark an issue read, and optionally add a note.
-> 6. Close the browser and launch Recap Page again. The same browser profile retains that state.
-> 7. The Read action opens Marvel Unlimited when a direct reader link is known, or the official
->    issue page when it is not. Reading requires the tester's own subscription, but list tracking
->    does not.
->
-> The app includes no comic pages. Cover art can be disabled under Backup & settings. It makes
-> direct requests to a community comics metadata service, Marvel image and reader hosts, an optional
-> Marvel Fandom lookup, and no software update service. Saved lists, notes, progress, settings, and
-> backups are never uploaded.
->
-> Recap Page has no in-app products. The app contains no external updater, release check, download
-> link, or replacement instruction. Product updates are installed and updated only through
-> Microsoft Store.
->
-> [Before pasting, replace this bracketed line with the exact replacement-candidate WACK run URL,
-> package-input commit, and result counts. The rejected package's result is historical evidence only.]
->
-> The optional Blocked executables test may identify the package's only executable payload, the
-> required official Node runtime. Microsoft's Desktop Bridge test documentation says this optional
-> result may be ignored when the executable is part of the app.
-> DPIAwarenessValidation warned on the Node console process. The customer interface is the external
-> browser, and altering Node's embedded manifest would change the vendor executable and invalidate
-> its published hash. Partner Center certification remains authoritative.
->
-> The package requests only `runFullTrust`. It does not request elevation or a background-task
-> capability.
+### Notes for certification: fixed text
 
-The WACK wording reports measurements and Microsoft's optional-test documentation. It does not claim
-that Partner Center has accepted the package or capability.
+Prepared for Recap Page 4.3.0, package version 4.3.0.0.
+
+Launching Recap Page starts a hidden local server on 127.0.0.1:8787 and opens the default browser there. No console stays open. No account or test credentials are needed to track lists.
+
+Core test path:
+1. Launch Recap Page from Start and confirm that the default browser opens http://127.0.0.1:8787/ without leaving a console open.
+2. On Home, open Modern Timeline and find House of M. Preview it, add it to the library, mark an issue read and add a note.
+3. Close the browser and relaunch in the same profile. Confirm the saved progress and note remain.
+4. In Backup & settings, export a complete backup. Restoring it requires confirmation and replaces its saved components; use test data.
+5. OneDrive is optional. To test it, use a personal Microsoft test account that the tester controls, connect it under Backup & settings, review existing backups and turn automatic backup on. Make a reading change and check the successful backup status. Use test data for a confirmed restore.
+6. Delete this device's cloud backups removes recognized files for this installation. Disconnect also offers deletion. OneDrive can retain deleted files in its recycle bin; local erase and uninstall do not delete cloud copies.
+
+The app contains no comic pages. Requests go to a community comics information service, Marvel's image and reading sites, the optional Marvel Fandom lookup, and Microsoft sign-in and OneDrive only when chosen. Backups are compressed but not encrypted by the app, are readable by Microsoft, and never sent to the developer.
+
+Before December 7, 2026, Read opens the Marvel Unlimited web reader when a link is known, or a comic details page. From December 7 on the device's clock, it opens the Marvel Comics website. Comics and access credentials are not provided.
+
+The app has no updater, release check, download link or in-app purchases. It updates only through Microsoft Store. Its only restricted capability is runFullTrust.
+
+### Certification evidence attachment, not yet available
+
+Add the final package-input commit, bundle hash, native, WACK and installed run URLs and result
+counts only after protected main qualification. Review any measured warning against that exact
+result. The fixed text above does not approve a submission or claim a passing WACK run.
+
+### Historical certification evidence
+
+The optional Blocked executables test may identify the required Node runtime.
+DPIAwarenessValidation warned on its console process. Partner Center certification remains authoritative;
+review the current result rather than copying these earlier observations into the 4.3.0 submission.
 
 The rejected package's historical WACK record contained 22 `PASS` categories, one optional
 `FAIL`, and one `WARNING`. Those counts are not evidence for the replacement package and must not be
@@ -331,7 +314,7 @@ copied into the bracketed line above.
 
 ## Listing assets
 
-The five screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
+The four screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
 profile. Cover art was off, and the app contains no update controls. The first two views use empty
 state. The remaining views use one synthetic House of M import with the first five of 20 issues
 marked read at fixed January 2026 timestamps and no notes. No private browser profile, progress,
@@ -343,7 +326,6 @@ path, email, or account data entered the captures.
 | `02-browse-reading-lists.png` | Storylines, reached from Home's category cards, lists story-arc Reading Lists with filters, era groups, and source credits. |
 | `03-reading-paths.png` | Modern Timeline follows a Reading Path stop by stop and marks where you are. |
 | `04-reading-progress.png` | A demonstration Reading List keeps the next issue, issue order, and local completion progress together. |
-| `05-about-privacy.png` | About explains local storage, direct network requests, source credits, and the unofficial-project boundary. |
 | `store-tile-300.png` | Exact 300 x 300 Store tile derived from the existing purple panels app icon. |
 
 Each PNG is below 50 MB and contains only image data chunks. Keep critical content in the top
@@ -358,7 +340,6 @@ Reviewed asset measurements:
 | `02-browse-reading-lists.png` | 1920 x 1080 | 159962 | `87C56A2D5FF958D70467264748B51FFE8D71A96915D014FC23E808651F64E1A1` |
 | `03-reading-paths.png` | 1920 x 1080 | 103175 | `1373B4E38405468AD7568BA202D46EEDE591608D5F9FA4CF53A9A82566024AD5` |
 | `04-reading-progress.png` | 1920 x 1080 | 250981 | `920A38B28B18C6D29C6906461B0B4AAE2AC652FBFC225DC0EDBF666B6F8D15FC` |
-| `05-about-privacy.png` | 1920 x 1080 | 119227 | `321533727282615BFFE9F4D14F019B25818478F1F9B28639F84B41CA8A171EE4` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
@@ -366,6 +347,15 @@ Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holo
 different safe-area rules, not a stretched version of the purple app icon.
 
 ## Final upload handoff
+
+### 4.3.0 owner gate
+
+In Partner Center, remove the existing About screenshot before submitting 4.3.0. The owner
+chooses and separately approves how the approved listing and certification notes are coordinated
+with the package; the protected Store updater does not change listing text, images or
+certification notes.
+
+### Historical 2.0.2 replacement
 
 The first submitted bundle failed certification and must not be reused. The runtime fix is merged,
 and release integration packages those exact corrected bytes at the final replacement version.
@@ -418,9 +408,11 @@ unofficial, no-comics, and own-subscription disclosures are present.
 
 ## Future Store updates
 
-Above this heading, the listing's descriptions and feature fields, the screenshots and their
-captions, and the certification notes are kept current for the next submission. Everything else
-above it records the first submission. Its package version, reviewed hash, manual upload,
+Above this heading, the listing's descriptions, feature fields, keywords and release notes, the
+personal-information and package-data answers, customer-facing requirements, restricted-capability
+explanation, and the certification notes are kept current for the next submission. The screenshot
+set needs a separate 4.3.0 review. Everything else above it records the first submission. Its
+package version, reviewed hash, manual upload,
 certification submission, and manual publishing hold remain the factual first-release procedure.
 They do not authorize or describe a later update. The packet as it stood on 2026-09-01, when the
 owner authorized the replacement submission, is preserved at commit `8e4a773d`, copy and

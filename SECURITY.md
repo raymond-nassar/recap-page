@@ -90,11 +90,17 @@ If the report is declined, you may publish immediately and quote the reasoning.
 
 Consider these safeguards when preparing a report:
 
-- There are no accounts or hosted reading-data services, and no analytics, tracking, or telemetry. On startup, the app
-  asks the comics database whether it is reachable. Issue searches send the words you type; browsing
-  a selected series or creator requests the comics it lists. Details requests name the comic,
-  and covers load from Marvel's own image servers. Those services see which issues you request;
-  the reachability check names none. Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a direct link is
+- There is no Recap Page account or project-hosted reading-data service, and no analytics or tracking
+  or telemetry. Where the build includes it, OneDrive backup is off until you turn it on.
+  Connecting alone uploads nothing. It sends a complete backup to your own OneDrive only after you
+  turn it on. Microsoft can read the backups, and the developer never receives a copy. The app
+  never merges backups.
+  On startup, the app asks the comics database whether it is reachable. Issue searches send the
+  words you type; browsing a selected series or creator requests the comics it lists. Details
+  requests name the comic, and covers load from Marvel's own image servers. Those services see which
+  issues you request; the reachability check names none. Background detail filling requests missing
+  comics, with current unread issues first. The request order can hint at your reading progress.
+  Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a direct link is
   known. Otherwise it looks up the missing link or opens the recorded comic details page.
   From the start of December 7 on the device's local clock, it opens the general Marvel Comics
   website without a reader-link lookup. This is not a single-comic link.

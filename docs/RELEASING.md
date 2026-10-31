@@ -119,10 +119,10 @@ A build carries a cloud backup client configuration only when its packager is gi
 `--cloud-client=<absolute path outside this repository>`. Both Windows packagers refuse any other
 source, never read one from the environment, check it as the host will, and copy it byte for byte
 beside the server; `cloud-client.json` is ignored, so a copy left in the checkout is never committed.
-Ordinary PR, diagnostic and rehearsal builds pass none and leave cloud backup off.
-Approved Windows release preparation and Store builds use the protected inputs
-below. Both the portable verifier and MSIX inspection validate the carried
-configuration and require its exact SHA-256 in `build-info.json`.
+Ordinary PR, diagnostic and Android rehearsal builds pass none and leave cloud backup off.
+Approved Windows release preparation and Store builds, including read-only Store Validate,
+use the protected inputs below. Both the portable verifier and MSIX inspection validate the
+carried configuration and require its exact SHA-256 in `build-info.json`.
 
 ### Protected OneDrive release inputs
 
