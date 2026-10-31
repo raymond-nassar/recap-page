@@ -26,6 +26,13 @@
         "bytes": 3885495,
         "sha256": "6ec89b64a15fe5a9d3ce0f1bb6d395f5f352ae6957e95c4967b49ddc15a4c7d7"
       }
+    },
+    {
+      "buildNumber": 5,
+      "productVersion": "4.3.0",
+      "sourceRevision": "6a3f6be7b42d58e28bb8b08694e1c805e6147f39",
+      "sourceTree": "9486330bd8dcd7d2a3ecf07d9f674952aac67659",
+      "artifact": null
     }
   ]
 }
