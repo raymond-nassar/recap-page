@@ -9052,9 +9052,8 @@ const SCENARIOS = [
           request.onerror = () => reject(request.error);
         });
       });
-      const manualSince = Date.now();
       await click(page, '#btn-clear-cache');
-      await waitForCacheReport(page, legacy, 'manual', 'Close other tabs', { polling: 100, timeout: 15000 }, manualSince);
+      await waitForCacheReport(page, legacy, 'manual', 'Close other tabs', { polling: 100, timeout: 15000 });
       const manualBlocked = await page.evaluate(() => ({
         disabled: document.querySelector('#btn-clear-cache').disabled,
         report: document.querySelector('#cache-report').textContent,
@@ -23210,6 +23209,16 @@ function installCachePurgeProbe() {
   for (const type of ['visibilitychange', 'freeze', 'resume']) {
     document.addEventListener(type, () => mark(`page:${type}`, { visibility: document.visibilityState }));
   }
+  // Every change to the report's text, with its time, so a timeout can say whether the expected text
+  // arrived before or after the deadline rather than only whether it is there when sampled later.
+  const reports = [];
+  window.__mrtCacheReportTexts = reports;
+  let last;
+  new MutationObserver(() => {
+    const text = document.querySelector('#cache-report')?.textContent ?? null;
+    if (text !== last) reports.push({ at: Date.now(), text });
+    last = text;
+  }).observe(document, { subtree: true, childList: true, characterData: true });
 }
 
 // The older tab's connection is what blocks the legacy delete. If it closes, or the tab is frozen or
@@ -23226,15 +23235,31 @@ function watchLegacyTab() {
   mark('watching');
 }
 
-function cachePurgeVerdict(stages) {
-  const seen = new Set(stages.map((entry) => entry.stage));
-  if (seen.has('deleteDatabase:blocked')) return 'the legacy delete was blocked, but the report never said so';
-  if (seen.has('deleteDatabase:success')) return 'the legacy delete succeeded with no blocked event, so the old connection was already gone';
-  if (seen.has('deleteDatabase:error')) return 'the legacy delete failed';
-  if (seen.has('deleteDatabase:call')) return 'the legacy delete is still pending with no blocked event';
-  if (seen.has('clear:call') && !seen.has('clear:complete')) return 'the active clear never committed';
-  if (!seen.has('lock:answer')) return 'the tab lock never answered, so the purge may still be waiting on its settle';
-  return 'the purge stopped before the legacy delete, after the tab lock answered';
+// The two locks the purge waits on. Other features take locks of their own, and counting them would
+// describe a purge that never happened.
+const CACHE_PURGE_LOCKS = new Set(['mrt.complete-restore.lock.v1', 'mrt.cache-purge.v1']);
+
+// Raw observations with times relative to the wait's start. The only conclusion drawn is the one the
+// timestamps prove: whether the expected text first appeared before or after the deadline.
+function cachePurgeTimeline(sample, expected, startedAt, timeout) {
+  const relative = (entry) => ({ ...entry, at: entry.at - startedAt });
+  const stages = Array.isArray(sample?.stages)
+    ? sample.stages.filter((entry) => !entry.stage.startsWith('lock:') || CACHE_PURGE_LOCKS.has(entry.name)).map(relative)
+    : null;
+  const reports = Array.isArray(sample?.reports) ? sample.reports.map(relative) : null;
+  let shownAt = null;
+  for (const entry of reports ?? []) {
+    const shows = typeof entry.text === 'string' && entry.text.includes(expected);
+    if (shows && shownAt === null) shownAt = entry.at;
+    if (!shows) shownAt = null;
+  }
+  let conclusion = 'the report text was not observed';
+  if (reports) {
+    if (shownAt === null) conclusion = 'the report had not shown the expected text by the time it was sampled';
+    else if (shownAt <= timeout) conclusion = `the report showed the expected text at ${shownAt} ms, before the ${timeout} ms deadline`;
+    else conclusion = `the report showed the expected text at ${shownAt} ms, after the ${timeout} ms deadline`;
+  }
+  return { conclusion, shownAt, reports, stages };
 }
 
 async function settleWithin(promise, ms) {
@@ -23247,11 +23272,14 @@ async function settleWithin(promise, ms) {
   }
 }
 
-async function waitForCacheReport(page, legacy, wait, expected, options, since = 0) {
+async function waitForCacheReport(page, legacy, wait, expected, options) {
+  const startedAt = Date.now();
   try {
     await page.waitForFunction((text) => document.querySelector('#cache-report')?.textContent.includes(text), options, expected);
   } catch (err) {
-    const current = await settleWithin(page.evaluate(async () => {
+    const timedOutAt = Date.now();
+    const current = await settleWithin(page.evaluate(async (names) => {
+      const sampledAt = Date.now();
       const frame = await Promise.race([
         new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
         new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
@@ -23266,7 +23294,7 @@ async function waitForCacheReport(page, legacy, wait, expected, options, since =
       }
       const text = (selector) => document.querySelector(selector)?.textContent ?? null;
       return {
-        now: Date.now(),
+        sampledAt,
         visibility: document.visibilityState,
         frame,
         hash: location.hash,
@@ -23277,26 +23305,39 @@ async function waitForCacheReport(page, legacy, wait, expected, options, since =
         issuesWithDescription: issues,
         databases: await indexedDB.databases().then((list) => list.map((db) => `${db.name}@${db.version}`), String),
         locks: await navigator.locks.query().then((query) => ({
-          held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
-          pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
+          held: query.held.filter((lock) => names.includes(lock.name)).map((lock) => `${lock.name}:${lock.mode}`),
+          pending: query.pending.filter((lock) => names.includes(lock.name)).map((lock) => `${lock.name}:${lock.mode}`),
         }), String),
         stages: window.__mrtCachePurgeStages ?? null,
+        reports: window.__mrtCacheReportTexts ?? null,
       };
-    }), 5000);
+    }, [...CACHE_PURGE_LOCKS]), 5000);
     const old = await settleWithin(legacy.evaluate(() => ({
       visibility: document.visibilityState,
       connection: Boolean(window.__legacyDb),
       versionchange: (window.__legacyTabEvents ?? []).some((entry) => entry.event === 'db:versionchange'),
       events: window.__legacyTabEvents ?? null,
     })), 5000);
-    const shown = typeof current.cacheReport === 'string' && current.cacheReport.includes(expected);
-    let verdict = 'the page could not be read';
-    if (shown) {
-      verdict = `the report already shows the text, so the wait stopped re-checking (page ${current.visibility}, animation frame ${current.frame ? 'fired' : 'did not fire'})`;
-    } else if (Array.isArray(current.stages)) {
-      verdict = cachePurgeVerdict(current.stages.filter((entry) => entry.at >= since));
-    }
-    console.log(`CACHE-PURGE-STAGE ${JSON.stringify({ wait, expected, verdict, page: current, legacy: old })}`);
+    const timeline = cachePurgeTimeline(current, expected, startedAt, options.timeout);
+    const { sampledAt, ...observed } = current ?? {};
+    delete observed.stages;
+    delete observed.reports;
+    const relative = (at) => (typeof at === 'number' ? at - startedAt : null);
+    const legacyEvents = Array.isArray(old?.events) ? old.events.map((entry) => ({ ...entry, at: relative(entry.at) })) : null;
+    console.log(`CACHE-PURGE-STAGE ${JSON.stringify({
+      wait,
+      expected,
+      startedAt: new Date(startedAt).toISOString(),
+      deadline: options.timeout,
+      timedOut: relative(timedOutAt),
+      sampled: relative(sampledAt),
+      conclusion: timeline.conclusion,
+      shownAt: timeline.shownAt,
+      page: observed,
+      reports: timeline.reports,
+      stages: timeline.stages,
+      legacy: { ...old, events: legacyEvents },
+    })}`);
     throw err;
   }
 }

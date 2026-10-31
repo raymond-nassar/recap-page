@@ -66,14 +66,19 @@ async function comparePaint(page, first, second) {
     };
     const [left, right] = await Promise.all([decode(a), decode(b)]);
     const sizes = [[left.width, left.height], [right.width, right.height]];
-    if (left.width !== right.width || left.height !== right.height) return { sizes, differing: null, box: null };
+    // Captures of different sizes are compared over the larger of the two, and a pixel present in only
+    // one of them counts as differing, so a size change still yields a count and a box.
+    const width = Math.max(left.width, right.width);
+    const height = Math.max(left.height, right.height);
+    const pixel = (image, x, y) => (x < image.width && y < image.height ? (y * image.width + x) * 4 : -1);
     let differing = 0;
     let box = null;
-    for (let y = 0; y < left.height; y += 1) {
-      for (let x = 0; x < left.width; x += 1) {
-        const at = (y * left.width + x) * 4;
-        if (left.data[at] === right.data[at] && left.data[at + 1] === right.data[at + 1]
-          && left.data[at + 2] === right.data[at + 2] && left.data[at + 3] === right.data[at + 3]) continue;
+    for (let y = 0; y < height; y += 1) {
+      for (let x = 0; x < width; x += 1) {
+        const l = pixel(left, x, y);
+        const r = pixel(right, x, y);
+        if (l >= 0 && r >= 0 && left.data[l] === right.data[r] && left.data[l + 1] === right.data[r + 1]
+          && left.data[l + 2] === right.data[r + 2] && left.data[l + 3] === right.data[r + 3]) continue;
         differing += 1;
         box = box
           ? [Math.min(box[0], x), Math.min(box[1], y), Math.max(box[2], x), Math.max(box[3], y)]
@@ -118,9 +123,10 @@ async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
     const samePixels = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
     const detail = { before, fallback };
     if (!samePixels) {
-      detail.pixels = await comparePaint(page, painted, fallbackPaint);
       detail.layouts = layouts;
-      detail.kept = await keepPaint(label, painted, fallbackPaint);
+      // Kept first, so a decoding failure below still leaves both captures to inspect.
+      detail.kept = await keepPaint(label, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
+      detail.pixels = await comparePaint(page, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
     }
     t.check(`${label}: glyph, spacing, color, boxes and pixels match the original content`,
       before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback) && samePixels,
