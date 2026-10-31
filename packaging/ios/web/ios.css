@@ -1,9 +1,76 @@
 /* The iOS overlay, loaded after styles.css and the shared phone layer in mobile/mobile.css.
-   It may name only the shared design tokens declared in styles.css, never a raw value of its own. */
+   The native scale may adjust shared text tokens, but does not introduce independent design values. */
 
 /* WebKit on iOS enlarges text on its own when an iPhone turns to landscape, so the same screen
    would read at two sizes. This keeps the size the page sets in both orientations. */
-html {
+:root {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  --ios-text-scale: 1;
+  --t-caption: calc(var(--ios-text-scale) * 12px);
+  --t-body: calc(var(--ios-text-scale) * 14px);
+  --t-body-lg: calc(var(--ios-text-scale) * 18px);
+  --t-subtitle: calc(var(--ios-text-scale) * 20px);
+  --t-title: calc(var(--ios-text-scale) * 28px);
+  --t-title-lg: calc(var(--ios-text-scale) * 40px);
+}
+
+:root .skip-link {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  min-width: var(--target);
+  min-height: var(--target);
+  height: var(--target);
+  line-height: var(--target);
+  padding-block: 0;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-link:focus {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+:root .app-footer > a[data-view="about"] {
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--target);
+  min-height: var(--target);
+}
+
+:root .breadcrumb a {
+  min-width: var(--target);
+}
+
+:root #view-data .backup-restore-label {
+  min-height: var(--target);
+  line-height: max(var(--target), 1.5em);
+}
+
+:root[data-ios-largest-text="true"] #view-home > .head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:root[data-ios-largest-text="true"] #view-home > .head > .home-lockup {
+  grid-column: 1;
+}
+
+:root[data-ios-largest-text="true"] #view-home #home-updates {
+  grid-column: 1;
+  width: 100%;
+  justify-self: stretch;
+  margin-left: 0;
+}
+
+:root[data-ios-largest-text="true"] #view-data .setgroup > h2 {
+  overflow-wrap: anywhere;
+}
+
+:root[data-ios-largest-text="true"] #view-data #opt-theme {
+  white-space: normal;
 }

@@ -10,7 +10,8 @@ import { HOME_CATEGORIES, PUBLISHING_CATEGORIES, isPublishingCategoryLeaf } from
 import {
   PAIRS, STANDALONE_PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio,
   tokensIn, checkAll, unresolved, passingReport, resolveSurface, discoverPaintInventory,
-  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS, ERA_TILES,
+  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, paletteTokenFindings,
+  sourceFindings, CATEGORY_CARDS, ERA_TILES,
 } from '../scripts/check-palette.mjs';
 import { rootTokens, resolveTokens } from '../scripts/check-spacing.mjs';
 
@@ -333,6 +334,19 @@ test('every standalone launch-page literal is measured in an actual contrast pai
   ]];
   assert.ok(standaloneFindings(read('src/open.css'), weakPair)
     .some((finding) => finding.message.includes('below the 4.5:1 floor')));
+});
+
+test('iOS launcher paint declarations use shared palette tokens rather than literal colors', () => {
+  const path = 'packaging/ios/web/launcher.css';
+  assert.deepEqual(paletteTokenFindings(path, '#fallback { min-width: var(--target); }'), []);
+  const literalHex = paletteTokenFindings(path, '#fallback { color: #010203; }');
+  assert.ok(literalHex.some((finding) => finding.includes('must use a shared palette token')));
+  assert.ok(literalHex.some((finding) => finding.includes('contains a raw colour')));
+  const literalName = paletteTokenFindings(path, '#fallback { color: red; }');
+  assert.ok(literalName.some((finding) => finding.includes('must use a shared palette token')));
+  assert.deepEqual(paletteTokenFindings(path, '#fallback { color: var(--blue); }'), []);
+  const integrated = sourceFindings({ sources: new Map(), occurrences: [] }, css, '#fallback { color: red; }');
+  assert.ok(integrated.some((finding) => finding.message.includes(`${path} #fallback color must use a shared palette token`)));
 });
 
 test('manifest page colours and first-paint ring strokes equal their dark theme tokens', () => {

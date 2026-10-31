@@ -7,7 +7,18 @@ import WebKit
 enum DebugSupport {
     static let probeScriptKey = "RECAP_PROBE_SCRIPT"
     static let isolateRequestsKey = "RECAP_ISOLATE_REQUESTS"
+    static let exportPickerOutcomeKey = "RECAP_IOS_EXPORT_PICKER"
+    static let unreadableRecoveryKey = "RECAP_IOS_UNREADABLE_RECOVERY"
+    static let restoreTestSeedKey = "RECAP_IOS_RESTORE_TEST_SEED"
+    static let presentationTestSeedKey = "RECAP_IOS_PRESENTATION_TEST_SEED"
+    static let readHandoffTestKey = "RECAP_IOS_READ_HANDOFF_TEST"
+    static let recordHandOffsKey = "RECAP_IOS_RECORD_HANDOFFS"
+    static let liveCorsCheckKey = "RECAP_IOS_LIVE_CORS_CHECK"
+    static let dataLossStateResetKey = "RECAP_IOS_DATA_LOSS_RESET"
+    static let clearReadingDataKey = "RECAP_IOS_CLEAR_READING_DATA"
+    static let failFifthJournalPutKey = "RECAP_IOS_FAIL_FIFTH_JOURNAL_PUT"
     static let probeResultIdentifier = "recap-probe-result"
+    static let handOffRecorderIdentifier = "ios-handoff-recorder"
 
     private static var environment: [String: String] {
         ProcessInfo.processInfo.environment
@@ -20,8 +31,508 @@ enum DebugSupport {
 
     /// No test run may reach a third party, so unit tests and UI tests both isolate.
     static var isolatesRequests: Bool {
-        isHostingUnitTests || environment[isolateRequestsKey] == "1"
+        if environment[liveCorsCheckKey] == "1" { return false }
+        return isHostingUnitTests || environment[isolateRequestsKey] == "1"
     }
+
+    static var exportPickerOutcome: ExportPickerOutcome? {
+        switch environment[exportPickerOutcomeKey] {
+        case "confirm": return .saved
+        case "cancel": return .cancelled
+        case "fail": return .failed("The Files provider refused the export.")
+        default: return nil
+        }
+    }
+
+    static var seedsUnreadableRecovery: Bool {
+        environment[unreadableRecoveryKey] == "1"
+    }
+
+    static var seedsRestoreTest: Bool {
+        environment[restoreTestSeedKey] == "1"
+    }
+
+    static var seedsPresentationTest: Bool {
+        environment[presentationTestSeedKey] == "1"
+    }
+
+    static var readHandoffTestEnabled: Bool {
+        environment[readHandoffTestKey] == "1"
+    }
+
+    static var recordsHandOffs: Bool {
+        environment[recordHandOffsKey] == "1"
+    }
+
+    static var readSheetStyleProbeEnabled: Bool {
+        readHandoffTestEnabled && recordsHandOffs
+    }
+
+    static var resetsDataLossState: Bool {
+        environment[dataLossStateResetKey] == "1"
+    }
+
+    static var clearsReadingData: Bool {
+        environment[clearReadingDataKey] == "1"
+    }
+
+    static var failsFifthJournalPut: Bool {
+        environment[failFifthJournalPutKey] == "1"
+    }
+
+    static let passiveAuditTrackingScript = #"""
+    (() => {
+      const observedType = /^(?:click|dblclick|auxclick|contextmenu|mouse.*|pointer.*|touch.*|key.*)$/;
+      const registrations = new WeakMap();
+      const globals = [];
+      let unreviewedGlobalEver = false;
+      const originalAdd = EventTarget.prototype.addEventListener;
+      const originalRemove = EventTarget.prototype.removeEventListener;
+      const optionsOf = (options) => ({
+        capture: typeof options === 'boolean' ? options : Boolean(options?.capture),
+        passive: typeof options === 'object' && options?.passive != null ? Boolean(options.passive) : null,
+        once: typeof options === 'object' ? Boolean(options?.once) : false,
+      });
+      const registeringSource = (stack) => {
+        for (const line of stack.split('\n')) {
+          if (line.includes('addEventListener')) continue;
+          const match = line.match(/([A-Za-z][A-Za-z0-9+.-]*:\/\/[^\s)]+):\d+:\d+\)?$/);
+          if (!match) continue;
+          const script = new URL(match[1]);
+          if (script.origin !== location.origin) return { script: script.href, enclosingFunction: '' };
+          const prefix = line.slice(0, match.index).trim().replace(/^at\s+/, '').replace(/\s*\($/, '');
+          const enclosingFunction = prefix.replace(/^Object\./, '').replace(/@$/, '');
+          return { script: script.pathname, enclosingFunction };
+        }
+        return { script: '', enclosingFunction: '' };
+      };
+      EventTarget.prototype.addEventListener = function(type, listener, options) {
+        if (listener && observedType.test(type) && !options?.signal?.aborted) {
+          const optionsRecord = optionsOf(options);
+          const entries = registrations.get(this) || [];
+          if (!entries.some(entry => !entry.removed && !entry.signal?.aborted
+            && entry.type === type && entry.listener === listener
+            && entry.capture === optionsRecord.capture)) {
+            const stack = new Error().stack || '';
+            const entry = { type, listener, ...optionsRecord, ...registeringSource(stack), stack,
+              target: this === document ? 'document' : this === window ? 'window' : 'element',
+              signal: options?.signal };
+            entries.push(entry);
+            registrations.set(this, entries);
+            if (entry.target !== 'element') {
+              globals.push(entry);
+              if (!approved.includes(identity(entry))) unreviewedGlobalEver = true;
+            }
+          }
+        }
+        return originalAdd.call(this, type, listener, options);
+      };
+      EventTarget.prototype.removeEventListener = function(type, listener, options) {
+        const capture = optionsOf(options).capture;
+        const entry = (registrations.get(this) || []).find(entry =>
+          entry.type === type && entry.listener === listener && entry.capture === capture && !entry.removed);
+        if (entry) entry.removed = true;
+        return originalRemove.call(this, type, listener, options);
+      };
+      const active = entry => !entry.removed && !entry.signal?.aborted;
+      const identity = entry => JSON.stringify([
+        entry.type, entry.target, entry.capture, entry.passive, entry.once,
+        entry.script, entry.enclosingFunction,
+      ]);
+      const approved = [
+        ['pointerdown', true, true, '/js/views/rated-comics.js', 'createRatedComicsView'],
+        ['keydown', true, true, '/js/views/rated-comics.js', 'createRatedComicsView'],
+        ['touchmove', true, true, '/js/views/rated-comics.js', 'createRatedComicsView'],
+        ['pointerdown', true, null, '/mobile/mobile-ui.js', 'wireMobileUi'],
+        ['keydown', true, null, '/mobile/mobile-ui.js', 'wireMobileUi'],
+        ['keydown', true, null, '/js/views/home-updates.js', 'wire'],
+        ['pointerdown', false, null, '/js/views/home-updates.js', 'wire'],
+        ['keydown', true, null, '/js/lib/tooltips.js', 'wireTooltips'],
+        ['pointerover', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
+        ['pointerout', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
+        ['pointermove', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
+        ['keydown', false, null, '/js/main.js', 'wireSidebar'],
+        ['keydown', false, null, '/js/views/reading.js', 'wireShortcuts'],
+      ].map(([type, capture, passive, script, enclosingFunction]) =>
+        identity({ type, target: 'document', capture, passive, once: false, script, enclosingFunction })).sort();
+      const inventory = () => globals.filter(active).map(entry => ({
+        type: entry.type, target: entry.target, capture: entry.capture, passive: entry.passive,
+        once: entry.once, script: entry.script, enclosingFunction: entry.enclosingFunction,
+        stack: entry.stack,
+      }));
+      const interactionPropertyNames = target => {
+        const names = new Set();
+        for (let prototype = target; prototype; prototype = Object.getPrototypeOf(prototype)) {
+          for (const name of Object.getOwnPropertyNames(prototype)) {
+            if (name.startsWith('on') && observedType.test(name.slice(2))) names.add(name);
+          }
+        }
+        return names;
+      };
+      const propertyHandlers = target => [...interactionPropertyNames(target)]
+        .some(name => typeof target[name] === 'function');
+      const trackGlobalPropertyHandlers = target => {
+        if (propertyHandlers(target)) unreviewedGlobalEver = true;
+        for (const name of interactionPropertyNames(target)) {
+          let owner = target;
+          while (owner && !Object.hasOwn(owner, name)) owner = Object.getPrototypeOf(owner);
+          const descriptor = owner && Object.getOwnPropertyDescriptor(owner, name);
+          if (!descriptor?.get || !descriptor.set || !descriptor.configurable) {
+            throw new Error(`Passive audit guard cannot track global interaction property: ${name}`);
+          }
+          Object.defineProperty(target, name, {
+            configurable: descriptor.configurable,
+            enumerable: descriptor.enumerable,
+            get() { return descriptor.get.call(this); },
+            set(value) {
+              descriptor.set.call(this, value);
+              if ((this === document || this === window)
+                && typeof descriptor.get.call(this) === 'function') unreviewedGlobalEver = true;
+            },
+          });
+        }
+      };
+      for (const target of [document, window]) trackGlobalPropertyHandlers(target);
+      const globalInventoryValid = () => !unreviewedGlobalEver
+        && !propertyHandlers(document) && !propertyHandlers(window)
+        && JSON.stringify(globals.filter(active).map(identity).sort()) === JSON.stringify(approved);
+      const interactive = [
+        'a[href]', 'area[href]', 'button', 'summary', 'input', 'select', 'textarea', 'label',
+        'audio[controls]', 'video[controls]', 'iframe', 'object', 'embed',
+        '[tabindex]', '[contenteditable]:not([contenteditable="false"])',
+      ].join(',');
+      const passiveRoles = new Set([
+        '', 'none', 'presentation', 'heading', 'navigation', 'complementary', 'main', 'region',
+        'status', 'paragraph', 'generic', 'list', 'listitem', 'group', 'note',
+      ]);
+      const hasHandler = element => (registrations.get(element) || []).some(active)
+        || Object.getOwnPropertyNames(HTMLElement.prototype).filter(name => /^on/.test(name)
+          && observedType.test(name.slice(2))).some(name => typeof element[name] === 'function')
+        || [...element.attributes].some(attribute =>
+          attribute.name.startsWith('on') && observedType.test(attribute.name.slice(2)));
+      const referencedControls = element => !element.id ? [] :
+        [...document.querySelectorAll('[aria-labelledby], [aria-describedby]')].filter(control =>
+          (control.matches(interactive) || !passiveRoles.has((control.getAttribute('role') || '').toLowerCase()))
+          && `${control.getAttribute('aria-labelledby') || ''} ${control.getAttribute('aria-describedby') || ''}`
+            .split(/\s+/).includes(element.id));
+      const hiddenAriaControl = control => {
+        if (control.matches('label') || control.getClientRects().length !== 0
+          || control.contains(document.activeElement)) return null;
+        let hidden = false;
+        for (let node = control; node; node = node.parentElement) {
+          if (node.hidden || getComputedStyle(node).display === 'none') hidden = true;
+        }
+        const name = (control.getAttribute('aria-label')
+          || (control.getAttribute('aria-labelledby') || '').split(/\s+/)
+            .map(id => document.getElementById(id)?.textContent || '').join(' ').trim()
+          || [...(control.labels || [])].map(label => label.textContent).join(' ').trim()
+          || control.textContent.trim()).replace(/\s+/g, ' ');
+        return hidden && control.id && name ? { id: control.id, name } : null;
+      };
+      const associatedAriaControls = element => {
+        const associated = new Set([...element.querySelectorAll('*')].flatMap(referencedControls));
+        for (let node = element; node; node = node.parentElement) {
+          for (const control of referencedControls(node)) associated.add(control);
+        }
+        const controls = [...associated].map(hiddenAriaControl);
+        return controls.some(control => !control) ? null : controls;
+      };
+      const safeElement = element => !element.matches(interactive) && !element.isContentEditable
+        && !element.labels?.length && passiveRoles.has((element.getAttribute('role') || '').toLowerCase())
+        && (!element.id || !document.querySelector(`label[for="${CSS.escape(element.id)}"]`))
+        && referencedControls(element).every(control => hiddenAriaControl(control))
+        && !hasHandler(element);
+      const visible = element => {
+        if (!element.isConnected || element.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
+        for (let node = element; node; node = node.parentElement) {
+          const style = getComputedStyle(node);
+          if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0) return false;
+          const closed = node.parentElement?.closest('details:not([open])');
+          if (closed && !closed.querySelector(':scope > summary')?.contains(element)) return false;
+        }
+        return element.getClientRects().length > 0;
+      };
+      const passiveDom = element => {
+        if (!visible(element)) return false;
+        for (let node = element; node; node = node.parentElement) if (!safeElement(node)) return false;
+        return [...element.querySelectorAll('*')].every(safeElement);
+      };
+      const passive = element => globalInventoryValid() && passiveDom(element);
+      const fragmentPoints = fragment => {
+        const x = fragment.x + fragment.width / 2;
+        const inset = Math.min(1, fragment.height / 4);
+        return [fragment.y + fragment.height / 2, fragment.y + inset,
+          fragment.y + fragment.height - inset].map(y => ({ x, y }));
+      };
+      const explain = element => {
+        const ancestors = [];
+        for (let node = element; node; node = node.parentElement) {
+          const style = getComputedStyle(node);
+          ancestors.push({ tag: node.localName, id: node.id, safe: safeElement(node),
+            hidden: node.hidden, ariaHidden: node.getAttribute('aria-hidden'), inert: node.inert,
+            display: style.display, visibility: style.visibility, opacity: style.opacity });
+        }
+        const texts = [...element.childNodes].filter(node =>
+          node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+        return { label: element.textContent.trim(), visible: visible(element),
+          passive: passive(element), rect: element.getBoundingClientRect().toJSON(),
+          viewport: { width: innerWidth, height: innerHeight },
+          textGeometry: texts.map(text => {
+            const range = document.createRange();
+            range.selectNodeContents(text);
+            return { text: text.textContent.trim(),
+              fragments: [...range.getClientRects()].map(fragment => ({
+                rect: fragment.toJSON(),
+                points: fragmentPoints(fragment).map(point => {
+                  const hit = document.elementFromPoint(point.x, point.y);
+                  return { ...point, hit: hit ? { selector: path(hit), ownerContains: element.contains(hit),
+                    passive: passiveDom(hit) } : null };
+                }),
+              })) };
+          }),
+          ancestors };
+      };
+      const path = element => {
+        const parts = [];
+        for (let node = element; node; node = node.parentElement) {
+          if (node.id) { parts.unshift(`#${CSS.escape(node.id)}`); break; }
+          const index = node.parentElement ? [...node.parentElement.children].indexOf(node) + 1 : 1;
+          parts.unshift(`${node.localName}:nth-child(${index})`);
+        }
+        return parts.join(' > ');
+      };
+      const labelOf = (text, element) => {
+        const value = text.trim().replace(/\s+/g, ' ');
+        return getComputedStyle(element).textTransform === 'uppercase' ? value.toUpperCase() : value;
+      };
+      const candidates = () => {
+        if (!globalInventoryValid()) return [];
+        const root = document.querySelector('.view:not([hidden])');
+        if (!root) return [];
+        const roots = [root, document.getElementById('sidebar-nav')].filter(Boolean);
+        const found = [];
+        for (const container of roots) {
+          for (const element of [container, ...container.querySelectorAll('*')]) {
+            if (element.closest('[id^="recap-"]') || !passiveDom(element)) continue;
+            const texts = [...element.childNodes].filter(node =>
+              node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+            for (const text of texts) {
+              const range = document.createRange();
+              range.selectNodeContents(text);
+              const rect = element.getBoundingClientRect();
+              if (!rect.width || !rect.height) continue;
+              const pointHitsText = point => {
+                const hit = document.elementFromPoint(point.x, point.y);
+                return Boolean(hit && element.contains(hit) && passiveDom(hit));
+              };
+              const hitRects = [...range.getClientRects()].flatMap(fragment => {
+                const left = Math.max(0, fragment.left), right = Math.min(innerWidth, fragment.right);
+                const top = Math.max(0, fragment.top), bottom = Math.min(innerHeight, fragment.bottom);
+                if (right <= left || bottom <= top) return [];
+                const clipped = { x: left, y: top, width: right - left, height: bottom - top };
+                return fragmentPoints(clipped).some(pointHitsText) ? [clipped] : [];
+              });
+              const hitPoints = hitRects.flatMap(fragment => fragmentPoints(fragment).filter(pointHitsText));
+              const ariaControls = associatedAriaControls(element);
+              if (!ariaControls) continue;
+              found.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
+                selector: path(element), container: container.id, label: labelOf(text.textContent, element),
+                hitSafe: hitPoints.length > 0, hitRects, hitPoints, ariaControls,
+                rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height } });
+            }
+          }
+        }
+        return found.filter(candidate => candidate.hitSafe && !found.some(other => other !== candidate
+          && other.label === candidate.label && other.container === candidate.container
+          && other.rect.x < candidate.rect.x + candidate.rect.width
+          && candidate.rect.x < other.rect.x + other.rect.width
+          && other.rect.y < candidate.rect.y + candidate.rect.height
+          && candidate.rect.y < other.rect.y + other.rect.height));
+      };
+      const sameLabel = (left, right) => left.trim().replace(/\s+/g, ' ').toLowerCase()
+        === right.trim().replace(/\s+/g, ' ').toLowerCase();
+      const navigationTexts = (sidebar, label) => {
+        const found = [];
+        const walker = document.createTreeWalker(sidebar, NodeFilter.SHOW_TEXT);
+        for (let text = walker.nextNode(); text; text = walker.nextNode()) {
+          if (!text.textContent.trim() || !sameLabel(text.textContent, label)) continue;
+          const range = document.createRange();
+          range.selectNodeContents(text);
+          for (const fragment of range.getClientRects()) {
+            if (fragment.width && fragment.height) found.push({ source: path(text.parentElement), ...fragment.toJSON() });
+          }
+        }
+        for (const element of sidebar.querySelectorAll('[aria-label]')) {
+          if (!sameLabel(element.getAttribute('aria-label'), label)) continue;
+          const rect = element.getBoundingClientRect();
+          if (rect.width && rect.height) found.push({ source: path(element), ...rect.toJSON() });
+        }
+        return found;
+      };
+      const reachability = (element, rect, navigationRect) => {
+        const scroller = document.scrollingElement || document.documentElement;
+        const remaining = Math.max(0, scroller.scrollHeight - scroller.clientHeight - scrollY);
+        const lift = Math.max(0, rect.bottom - navigationRect.top);
+        const blockers = [];
+        for (let node = element; node && node !== document.body && node !== document.documentElement;
+          node = node.parentElement) {
+          const style = getComputedStyle(node);
+          if (style.position === 'fixed' || style.position === 'sticky') {
+            blockers.push({ selector: path(node), position: style.position });
+          } else if (node !== element && style.overflowY !== 'visible') {
+            const box = node.getBoundingClientRect();
+            if (box.top > rect.top || box.bottom < rect.bottom) {
+              blockers.push({ selector: path(node), overflowY: style.overflowY, rect: box.toJSON() });
+            }
+          }
+        }
+        return { reachable: blockers.length === 0 && rect.height <= navigationRect.top && lift <= remaining,
+          remaining, lift, blockers, scrollX, scrollY };
+      };
+      const navigationOcclusions = () => {
+        const sidebar = document.getElementById('sidebar');
+        const navigation = sidebar?.querySelector('.rail-header');
+        const root = document.querySelector('.view:not([hidden])');
+        if (!navigation || !root || getComputedStyle(navigation).position !== 'fixed') return null;
+        const navigationRect = navigation.getBoundingClientRect();
+        if (!navigationRect.width || !navigationRect.height || navigationRect.bottom !== innerHeight) return null;
+        const owners = [];
+        for (const element of [root, ...root.querySelectorAll('*')]) {
+          if (element.closest('#sidebar') || element.closest('[id^="recap-"]')) continue;
+          const ownerRect = element.getBoundingClientRect();
+          if (!ownerRect.width || !ownerRect.height
+            || ownerRect.bottom <= navigationRect.top || ownerRect.top >= navigationRect.bottom) continue;
+          for (const text of element.childNodes) {
+            if (text.nodeType !== Node.TEXT_NODE || !text.textContent.trim()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(text);
+            const samples = [...range.getClientRects()].filter(rect => rect.width && rect.height)
+              .flatMap(fragment => fragmentPoints(fragment).map(point => {
+                const hit = document.elementFromPoint(point.x, point.y);
+                return { ...point, hit: hit ? path(hit) : null,
+                  inNavigation: Boolean(hit && sidebar.contains(hit)),
+                  ownerContains: element.contains(hit) };
+              }));
+            const label = labelOf(text.textContent, element);
+            owners.push({ key: `${path(element)}:text:${[...element.childNodes].indexOf(text)}`,
+              label, owner: path(element), passive: passive(element),
+              ariaControls: associatedAriaControls(element),
+              reachability: reachability(element, ownerRect, navigationRect),
+              navigationTexts: navigationTexts(sidebar, label), rect: ownerRect.toJSON(), samples });
+          }
+        }
+        return { navigation: path(navigation), rect: navigationRect.toJSON(), scrollX, scrollY, owners };
+      };
+      const domDigest = async () => {
+        const clone = document.documentElement.cloneNode(true);
+        for (const probe of clone.querySelectorAll('[id^="recap-"], [data-recap-passive-monitor]')) probe.remove();
+        const controls = [...document.querySelectorAll('input, select, textarea, details')].map(element => ({
+          path: path(element), value: element.value, checked: element.checked, open: element.open,
+          selected: element instanceof HTMLSelectElement ? [...element.options].map(option => option.selected) : null,
+        }));
+        const bytes = new TextEncoder().encode(JSON.stringify({ html: clone.outerHTML, controls }));
+        const digest = await crypto.subtle.digest('SHA-256', bytes);
+        return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+      };
+      window.__recapPassiveGuard = Object.freeze({
+        candidates, passive, inventory, globalInventoryValid, domDigest, explain, navigationOcclusions,
+        focus: () => document.activeElement ? path(document.activeElement) : null,
+      });
+    })();
+    """#
+
+    static let failFifthJournalPutScript = """
+    (() => {
+      const originalPut = IDBObjectStore.prototype.put;
+      let journalPuts = 0;
+      IDBObjectStore.prototype.put = function (...args) {
+        if (this.name === 'journal') journalPuts += 1;
+        if (this.name === 'journal' && journalPuts === 5) {
+          throw new DOMException('Injected journal failure', 'UnknownError');
+        }
+        return originalPut.apply(this, args);
+      };
+    })();
+    """
+
+    static let readHandoffTestScript = #"""
+    (() => {
+      const addButtons = () => {
+        for (const [label, suffix] of [['Open Read test', ''], ['Open failing Read test', '&recapTestFail=1']]) {
+          if (location.pathname !== '/open.html') {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.id = `recap-ios-${suffix ? 'failing-' : ''}read-test`;
+            button.textContent = label;
+            button.addEventListener('click', () => {
+              window.open(`${location.origin}/open.html?i=6482&t=Read%20test${suffix}`, '_blank', 'noopener');
+            });
+            document.body.prepend(button);
+          }
+        }
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addButtons, { once: true });
+      else addButtons();
+
+      if (new URLSearchParams(location.search).has('recapTestFail')) {
+        const schedule = window.setTimeout.bind(window);
+        window.setTimeout = (handler, delay, ...args) =>
+          delay === 1400 ? 0 : schedule(handler, delay, ...args);
+      }
+
+      const originalFetch = window.fetch.bind(window);
+      window.fetch = async (input, init) => {
+        const requestUrl = typeof input === 'string' || input instanceof URL ? input : input.url;
+        const url = new URL(requestUrl, location.href);
+        if (url.pathname.endsWith('/issues/6482')) {
+          if (new URLSearchParams(location.search).has('recapTestFail')) {
+            return new Response('unavailable', { status: 503 });
+          }
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          return new Response(JSON.stringify({ digitalId: '987654321' }), {
+            status: 200,
+            headers: { 'content-type': 'application/json' },
+          });
+        }
+        return originalFetch(input, init);
+      };
+    })();
+    """#
+
+    static let unreadableRecoveryScript = """
+    const originalSetItem = Storage.prototype.setItem.bind(localStorage);
+    Storage.prototype.setItem = function (key, value) {
+      if (key === 'mrt.state.salvage' || key.startsWith('mrt.state.salvage.')) {
+        throw new DOMException('Injected storage quota failure', 'QuotaExceededError');
+      }
+      return originalSetItem(key, value);
+    };
+    localStorage.setItem('mrt.state.v2', '{unreadable');
+    localStorage.removeItem('mrt.state.salvage');
+    """
+
+    static let presentationTestSeedScript = """
+    localStorage.setItem('mrt.state.v2', JSON.stringify({
+      schemaVersion: 4, issues: {}, read: {}, overrides: {}, notes: {}, ratings: {},
+      lists: {
+        'ios-presentation': {
+          id: 'ios-presentation', name: 'iOS presentation fixture', description: '', note: '',
+          created: 1, catalogId: null, itemIds: [], collectedIn: {}, deferredIssueIds: []
+        }
+      },
+      listOrder: ['ios-presentation'], active: 'ios-presentation'
+    }));
+    """
+
+    static let restoreTestSeedScript = """
+    localStorage.setItem('mrt.state.v2', JSON.stringify({
+      schemaVersion: 4, issues: {}, read: {}, overrides: {}, notes: {}, ratings: {},
+      lists: {}, listOrder: [], active: null
+    }));
+    for (const key of ['mrt.state.restore.tmp', 'mrt.state.prerestore', 'mrt.state.salvage', 'mrt.import.draft.v1']) {
+      localStorage.removeItem(key);
+    }
+    """
 
     /// Blocks every http and https load before it is sent.
     static let isolationRules = #"[{"trigger":{"url-filter":"^https?://"},"action":{"type":"block"}}]"#
@@ -42,6 +553,163 @@ enum DebugSupport {
     }
 
     @MainActor private static var probeStarted = false
+    @MainActor private static var launchedWebViews = Set<ObjectIdentifier>()
+    @MainActor private static var presentedReadSheets = 0
+    @MainActor private static var recordedHandOffs: [String] = []
+    @MainActor private static var readSheetCloseEvents: [String] = []
+    @MainActor private static var readSheetStyleProbe: [String: Any]?
+    @MainActor private static var handOffRecorder: UILabel?
+
+    @MainActor
+    static func prepareHandOffRecorder(in view: UIView) {
+        guard recordsHandOffs else { return }
+        launchedWebViews = []
+        presentedReadSheets = 0
+        recordedHandOffs = []
+        readSheetCloseEvents = []
+        readSheetStyleProbe = nil
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        label.accessibilityIdentifier = handOffRecorderIdentifier
+        label.isAccessibilityElement = true
+        label.alpha = 0.1
+        view.addSubview(label)
+        handOffRecorder = label
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    static func recordLauncherOpened(_ webView: WKWebView) {
+        guard recordsHandOffs else { return }
+        launchedWebViews.insert(ObjectIdentifier(webView))
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    static func recordReadSheetPresented() {
+        guard recordsHandOffs else { return }
+        presentedReadSheets += 1
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    static func recordReadSheetClose(_ event: String) {
+        guard recordsHandOffs else { return }
+        readSheetCloseEvents.append(event)
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    static func recordHandOff(_ url: URL) {
+        guard recordsHandOffs else { return }
+        recordedHandOffs.append(url.absoluteString)
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    static func recordReadSheetStyleProbe(_ value: Any?, error: Error?) {
+        guard readSheetStyleProbeEnabled else { return }
+        if let error {
+            readSheetStyleProbe = ["error": Self.debugDescription(of: error)]
+        } else if let value = value as? String,
+                  let data = value.data(using: .utf8),
+                  let object = try? JSONSerialization.jsonObject(with: data),
+                  let result = object as? [String: Any] {
+            readSheetStyleProbe = result
+        } else {
+            readSheetStyleProbe = ["error": "The Read stylesheet probe returned no JSON result."]
+        }
+        updateHandOffRecorder()
+    }
+
+    @MainActor
+    private static func updateHandOffRecorder() {
+        guard let handOffRecorder else { return }
+        do {
+            var record: [String: Any] = [
+                "launches": launchedWebViews.count,
+                "presentations": presentedReadSheets,
+                "handoffs": recordedHandOffs,
+                "readSheetCloseEvents": readSheetCloseEvents,
+            ]
+            if let readSheetStyleProbe {
+                record["readSheetStyleProbe"] = readSheetStyleProbe
+            }
+            let data = try JSONSerialization.data(withJSONObject: record, options: [.sortedKeys])
+            handOffRecorder.accessibilityLabel = String(decoding: data, as: UTF8.self)
+        } catch {
+            handOffRecorder.accessibilityLabel = "error: \(Self.debugDescription(of: error))"
+        }
+    }
+
+    static let readSheetStyleProbeScript = #"""
+    (() => {
+      const links = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map((link) => ({
+        href: link.href,
+        loaded: Boolean(link.sheet),
+      }));
+      const stylesheets = Array.from(document.styleSheets).map((sheet) => {
+        let rules = [];
+        try {
+          rules = Array.from(sheet.cssRules || []).flatMap((rule) =>
+            rule.selectorText ? [{ selector: rule.selectorText, cssText: rule.cssText }] : []);
+        } catch (error) {
+          rules = [{ error: `${error.name}: ${error.message}` }];
+        }
+        return { href: sheet.href, disabled: sheet.disabled, rules };
+      });
+      const elements = {};
+      for (const id of ['fallback', 'return']) {
+        const element = document.getElementById(id);
+        if (!element) {
+          elements[id] = { exists: false };
+          continue;
+        }
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        const matchingRules = stylesheets.flatMap((sheet) => sheet.rules
+          .filter((rule) => {
+            try {
+              return element.matches(rule.selector);
+            } catch {
+              return false;
+            }
+          })
+          .map((rule) => ({ href: sheet.href, selector: rule.selector, cssText: rule.cssText })));
+        elements[id] = {
+          exists: true,
+          width: rect.width,
+          height: rect.height,
+          computed: {
+            display: style.display,
+            width: style.width,
+            height: style.height,
+            minWidth: style.minWidth,
+            minHeight: style.minHeight,
+            boxSizing: style.boxSizing,
+            padding: style.padding,
+            lineHeight: style.lineHeight,
+          },
+          matchingRules,
+        };
+      }
+      return JSON.stringify({ links, stylesheets, elements });
+    })()
+    """#
+
+    private static func debugDescription(of error: Error) -> String {
+        let error = error as NSError
+        let keys = [
+            "WKJavaScriptExceptionMessage",
+            "WKJavaScriptExceptionLineNumber",
+            "WKJavaScriptExceptionColumnNumber",
+            "WKJavaScriptExceptionSourceURL",
+        ]
+        let details = keys.compactMap { key in
+            error.userInfo[key].map { "\(key)=\($0)" }
+        }
+        let summary = "\(error.domain) (\(error.code)): \(error.localizedDescription)"
+        return ([summary] + details).joined(separator: "; ")
+    }
 
     /// Runs the script a UI test passed in, once, after the app page first finishes loading, and puts
     /// its result in an accessibility element the test reads.
@@ -61,7 +729,7 @@ enum DebugSupport {
         // /usr/lib/swift/libswiftWebKit.dylib".
         webView.__callAsyncJavaScript(script, arguments: [:], inFrame: nil, in: .page) { value, error in
             if let error {
-                label.accessibilityLabel = "error: \(error.localizedDescription)"
+                label.accessibilityLabel = "error: \(Self.debugDescription(of: error))"
             } else {
                 label.accessibilityLabel = (value as? String) ?? "error: the probe returned \(String(describing: value))"
             }

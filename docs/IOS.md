@@ -1,13 +1,20 @@
 # iOS app
 
 Recap Page for iPhone and iPad is in development under
-[#949](https://github.com/raymond-nassar/recap-page/issues/949). It is not on TestFlight or the App
-Store yet. Like the [Android app](ANDROID.md), it is the existing web app inside a small native
+[#949](https://github.com/raymond-nassar/recap-page/issues/949). Build 4 (4.2.0) is in internal
+TestFlight and has been installed on the owner's iPad since October 29, 2026. It is not on the App
+Store, and there are no external testers yet. Like the [Android app](ANDROID.md), it is the existing web app inside a small native
 shell, so every fix to the shared app reaches iOS too, and it adds no account, server or upload.
 
-**Nothing here is in anyone's hands yet.** The shell is built and tested in the iOS Simulator on
-GitHub's macOS runners for every pull request. Saving files through the Files picker, Read, text
-size and signed builds for TestFlight arrive in later steps of #949, each with its own checks.
+The shell is built and tested in the iOS Simulator on
+GitHub's macOS runners for every pull request. Files export and restore, Read, text size, iPad
+windowing and the missing-data notice are under automated validation. The installed build starts
+offline and keeps progress across relaunch, as recorded on #949. Update-in-place and the remaining
+device checks wait for build 5 and later steps of #949.
+
+On the minimum runtime, the launch and presentation classes run separately from the same
+nonempty `.xctestrun` produced by one build. The matching iPhone SE presentation invocation
+reuses that runtime's build too. Each invocation keeps its own result bundle and proof attachments.
 
 ## How it works
 
@@ -24,10 +31,196 @@ headers are the Windows app's server's, with `frame-src 'none'` and `worker-src 
 content security policy, as the Android app serves it. There is no listening server and nothing to
 keep running.
 
-Only the app page loads in the web view. A link you follow to the web, such as the privacy policy or
-a source credit, opens in your default browser, and any other navigation is refused. If iOS ends the
-page's process, which it can do to an app in the background, the app reloads the page and says that
+Only the app page loads in the web view. Read and other web links are handed to iOS to open outside
+Recap Page. Depending on the link and your device settings, iOS may open your browser or an installed
+app, such as Marvel Unlimited. Recap Page does not choose which app receives the link or confirm that
+it opens the right comic. Other navigation inside the web view is refused.
+
+If iOS ends the page's process, which it can do to an app in the background, the app reloads the page and says that
 saved reading progress is retained: saved data lives outside that process.
+
+## Text size and windowing
+
+The native audit separately classifies a StaticText hit-area finding when its entire native crop
+is behind the fixed bottom navigation, and every condition below must hold in the same run. The
+DOM navigation rectangle is converted into native coordinates, and the crop must fit inside it and
+inside its unique content owner without tolerance. Every text-fragment sample must hit the sidebar
+subtree and none may hit the owner. No native control of any type may contain the crop under the
+same label. The owner must pass the same static proof as the passive guard: a valid page-wide
+inventory, no interactive element, label association or handler on it or its ancestors, and only
+hidden ARIA-linked controls absent from the native tree. It must also be reachable: no fixed or
+sticky ancestor, no clipping scroll container, a height no taller than the space above the bar,
+and enough remaining document scroll to lift its bottom above the bar's top. Any sidebar text or
+`aria-label` with the same label whose frame intersects the crop makes it a navigation finding,
+which never qualifies. Settled route, DOM and geometry must agree, route, DOM digest and scroll
+position must be unchanged afterwards, and each classification or rejection records the crop,
+navigation frame, hit targets and reachability arithmetic. Live negatives for an interactive
+owner, a label-linked owner, a fixed unreachable owner and a navigation finding run on the
+iPhones, each also seen accepted with its own check disabled; iPad has no bottom bar and skips
+them. Where the native tree exposes the label-linked text as part of a control, as on the
+iOS 18 iPhone SE at fd75442b, the control exclusion rejects it first and only the newest runtime
+shows its passivity check disabled. The minimum-iPhone screenshot and Range samples in run 41138429203 established that its
+cropped Reading data heading was behind the bar, not visible text. Run 41163429277 confirmed the
+classification: crop `(29,766,332,10)` inside the live navigation frame `(0,753,390,91)`, with all
+three samples hitting Library navigation and none hitting the owner.
+
+The native shell maps the system text size to the six shared type tokens. It does not zoom the page
+or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
+header one column so the What's new control keeps enough width to read. This adjustment is confined
+to the iOS bundle; the shared Windows and Android styles do not change. The iOS skip link uses the
+shared `--target` token for a 44-point hit region, and the standalone Read links use the shared
+`--target-touch` token for 48-point regions. The native shell gives each link its accessible name
+and hides its presentation-only text wrapper from assistive technology, so the link target is not
+represented by a smaller nested text element. This also covers the two first-run Home links,
+Start with Modern Timeline and Search, including when Home inserts them after the page loads. The empty-Home
+native scenario checks both links' names, target sizes and destinations independently of the
+populated audit fixture. At the largest accessibility text size, the Backup &
+settings section headings can wrap within their existing column rather than widening the page.
+At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
+iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
+correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
+adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
+
+The presentation audit uses a fail-closed passive-text guard, approved in #1005, not a blanket
+exemption for text. Ten previously reviewed cases remain positive fixtures: the iPad sidebar's
+`h2#rail-reading` ("READING") inside the Main navigation,
+its App heading (`#sidebar-nav > .nav-foot > h2.rail-h`), Home's `#chero-count > b.glance-n` read count,
+the direct "of 0 issues" text and `.glance-end` "read" suffix in that count, the empty-list
+`#chero-next` caption inside the named Continue region, and the `#home-yours > .sec-h > .sec-note`
+summary inside Your Reading Lists. That summary is beside the list, not inside a tile link.
+The three further cases are Library's `#library-yours .sec-note` summary in Your Reading Lists,
+its `#library-rated-shelf-status` empty caption in Top-rated comics, and the current-page
+breadcrumb span (`.breadcrumb [aria-current=page]`) inside Breadcrumb navigation. The breadcrumb
+case uses the fixed Library, Search or Backup & settings label for the active audited page;
+breadcrumb links are controls, not passive candidates.
+Only a hit-region finding on native StaticText can enter the guard. On the current settled route,
+the native label, container and frame must uniquely match a visible DOM text node. An exact
+DOM-hit-tested text point must lie inside the native frame, including a cropped text frame,
+not a gap inside a multiline span's bounding box. The test taps that absolute native coordinate;
+it does not ask XCTest to resolve an element-relative point from a different underlying frame.
+Candidate geometry must agree before and after the tap. Hidden, inert,
+collapsed, stale, unmatched or ambiguous text fails. The node, its in-page ancestors and descendants
+must have no interactive element or role, tabindex, label association, editable content or click,
+double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler. Tracking starts
+before the document's scripts run and includes registered and inline handlers.
+The containing box is the passive text's owning element, since iOS can crop a multiline text
+finding to the full block width even when a direct text range is narrower. The tap must still
+hit an actual fragment of that exact text inside the native crop; the containing box alone
+cannot justify acceptance.
+The same center, top-inset and bottom-inset points are hit-tested individually before admitting
+a fragment. A covered center does not discard a visible top or bottom point; a fully covered
+fragment still fails.
+
+Only containment of the native frame in that DOM owner box permits up to two native points
+on each edge. In [run 41111198714](https://github.com/raymond-nassar/recap-page/actions/runs/41111198714),
+SE's largest-text count had native frame `(29,336,41,78)` against DOM owner and text Range
+`(29,316.453125,40.55377197265625,76)`, with WebView origin `(0,20)`. Its native bottom
+extended 1.546875 points beyond the owner. The computed font and line height were 62.35294px;
+Canvas font ascent 60 plus descent 16 also equaled 76. The native height of 78 is unexplained,
+not established as rounding. Fixtures accept this measured case and reject just over two points
+on every edge. Strict expected failures exercise only deliberate one-point and oversized
+fixture bounds, never a live audit. Assertion continuation is enabled only in that fixture
+block and restored before launching the app, so the first expected failure cannot skip the
+remaining boundaries or structural negatives. Text-fragment tap points, native/WebView containment,
+unique identity, passivity and the complete native no-op remain unchanged. A missing candidate,
+such as the separate minimum-iPhone "Reading data" finding, cannot use this allowance.
+
+The positive-fixture driver reveals each offscreen target before requesting that same strict
+proof. On narrow windows it also leaves 44 points above the bottom navigation's More target:
+a DOM-hit-tested passive-text tap near that navigation has navigated to Search natively on SE,
+and correctly failed the no-op proof. The guard itself still rejects an offscreen finding;
+scrolling is preparation for a fixture tap, not an audit exemption. Unmatched-text diagnostics
+record actual Range fragments and sampled DOM hit targets; those observations do not grant
+acceptance.
+
+ARIA references from a control still reject text unless every referencing control is absent
+from rendering and accessibility on that settled route. The control or an ancestor must be
+hidden or `display:none`, have no client rectangles and be unable to take focus. The test also
+requires an identifiable control with no matching identifier or name in the native accessibility
+tree, before and after the tap. A visually hidden but exposed input still rejects the text.
+This exception applies only to `aria-describedby` and `aria-labelledby`. A nested label or
+`for` association always rejects text, even when its checkbox or input is hidden. The mandatory
+native no-op tap and every other guard condition remain unchanged.
+
+Document and window are checked separately against an exact reviewed inventory of thirteen handlers,
+all on document and none on window. The inventory pins event type, target, capture, passive and once
+options, script URL and enclosing registering function, not line or column. It contains rated-comics'
+capture pointerdown, keydown and touchmove handlers; mobile-ui's capture pointerdown and keydown;
+home-updates' capture keydown and bubbling pointerdown; tooltips' capture keydown and bubbling
+pointerover, pointerout and pointermove; and the sidebar and reading shortcuts' bubbling keydown
+handlers. No global activation delegation is permitted. An unreviewed global registration or changed
+inventory rejects every candidate until reviewed. The keyboard handlers do not make a non-focusable
+text node a key target. The pointer and tooltip handlers still have to survive the native tap proof.
+Interaction on-properties on document and window are tracked from document start too. Assigning
+a click, double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler makes
+the inventory invalid for the rest of that page, even after removal or restoration of its prior
+value. Removal is not human review. Tracking delegates to the original native getters and setters
+so handler identity, event delivery and removal retain their behavior. A fixture assigns
+`document.onclick`, restores its prior value and requires every candidate to remain rejected.
+
+WebKit's public iOS accessibility wrapper handles
+[accessibility hit testing separately from activation](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm):
+an unignored text object can be returned by hit testing even when activation has no action.
+This source was inspected on October 29, 2026; Apple's internal audit-selection logic is not
+observable here. Every candidate must survive a real native no-op tap with route, focus and DOM
+unchanged, using fresh before-and-after samples. A tooltip appearing or any other DOM change rejects
+the node. All other elements and audit types still fail. The ten original positive cases passed on
+the newest iPhone, iPad and iPhone SE at default text before this general guard; the guard itself
+still requires hosted confirmation. Negative fixtures cover link and button text, own and ancestor
+handlers, hidden content, ambiguous duplicate text, unreviewed globals and DOM-changing pointer or
+tooltip taps. Every native audit waits for a fresh DOM sample confirming both the active view and
+hash route; a native heading name alone can match stale or navigation text. This is not device
+VoiceOver acceptance.
+
+An audit-call error with XCTest's accessibility-audit domain and code -56 can be retried once,
+only if no finding was delivered, after another fresh settled-route check. Both the error and
+retry are recorded. Findings are never retried, and a second timeout fails the test.
+
+Handler tracking and guard instrumentation are compiled only into Debug presentation-test builds.
+The existing Release Simulator build also scans every file of the built app, including the
+executable and resources as bytes, for both guard identifiers. A missing app or missing or empty
+executable fails that check rather than passing without inspecting anything.
+
+The four sidebar navigation links and the Continue card's Open the list link use the same accessible
+parent-target treatment, preserving their names and actions rather than exempting nested text.
+The footer's About link also uses that treatment and the shared `--target` token for its minimum
+width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
+The same parent-target treatment covers breadcrumb links, Library's ratings and tool links,
+Search's tool links and More ways to add summary, and Backup & settings' disclosure summaries.
+The backup-file labels retain their label-to-file-input association and file-picker activation.
+The iOS overlay exposes each as one named button, with Enter and Space activation, and line boxes
+and minimum height using the shared `--target` token rather than treating the text as passive.
+The associated restore warnings stay visibly unchanged and become descriptions of those buttons,
+not separate native text targets. The original file inputs keep their descriptions as well.
+Text that labels a control, or describes a rendered or accessibility-exposed control, cannot
+enter the passive guard.
+Breadcrumb links also use the shared `--target`
+token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
+breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.
+The 375-point default/largest-text reflow checks and native audit own this iOS-only deviation.
+The four Continue actions also mirror their hidden state into their accessibility state. This
+addresses WebKit on iOS 18 exposing unnamed button remnants when an empty list hides those actions;
+showing an action removes that extra accessibility hiding. Native tests require the empty card to
+contain no button nodes, with hosted confirmation pending. Generated-bundle checks exercise hiding
+and showing each action.
+
+A separate native More ways to add scenario opens and closes the disclosure with actual taps at
+default and largest text sizes. It records the active Search route, open state, summary geometry,
+viewport and document widths, and screenshots. Document width must equal viewport width in both
+states and sizes, including iPhone SE and iPad. Summary scroll width is recorded, not asserted:
+WebKit includes the rotated chevron's unpainted line box, about ten extra pixels at default text.
+The Edge `disclosure-chevron-reflow` check owns painted containment at the largest text scale.
+
+The Simulator presentation tests cover both default and largest text sizes, light and dark
+appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
+presentation corrections is in progress. VoiceOver, hardware keyboard, pointer, actual Files picker
+and external-link hand-off behavior still need the owner's device checks.
+
+A separate comic-page scenario uses a bundled comic with requests blocked and cover art off.
+It checks that WebKit still exposes the comic's heading, reader action and issue-page link when the
+shared phone layout gives `#issue-focus-card` `display: contents`, at default and largest text sizes.
+Its native hierarchy and screenshot are recorded for review; the next hosted run must establish
+the result. The owner's iPad VoiceOver check of this page remains required before release.
 
 ## Permanent names
 
@@ -69,9 +262,11 @@ The tests prove, on both runtimes:
 - an ended page process reloads and the reader is told nothing saved was lost;
 - how much saved data fits, as described under [Storage capacity](#storage-capacity).
 
-The tests block every http and https request, so a test run never contacts a third party. That
-blocking, and the probe interface the UI tests read results through, exist only in Debug builds. A
-repository test reads every Swift file in the app's folder and fails if any of it, any use of it, or
+The ordinary tests block every http and https request. A separate, explicitly opted-in manual CORS
+check contacts the metadata service from the app's origin and requires a real result rather than a
+skipped test. The request blocking, and the probe interface the UI tests read results through,
+exist only in Debug builds. A repository test reads every Swift file in the app's folder and fails
+if any of it, any use of it, or
 any call that reaches a method by its name, which is how WebKit's private test hooks are reached,
 could reach a Release build.
 
@@ -109,25 +304,57 @@ restore of data this size on iOS has to go into an empty app: export, erase, the
 WebKit build on Windows, measured first as a stand-in, holds Latin-1 data in its one-byte form, so it
 refused only the restore with text above Latin-1. The measurements are recorded on #949.
 
+### Capacity sweep and interrupted writes
+
+The P02 size sweep grows valid notes containing text above Latin-1. The newest-runtime and iOS 18.5
+jobs in hosted run
+[40980346397](https://github.com/raymond-nassar/recap-page/actions/runs/40980346397)
+recorded the same thresholds. These are UTF-8 backup-file bytes, not WebKit's charged storage bytes.
+They are the largest passing and first failing **sampled** sizes, not an exact binary-search limit.
+
+| Operation | Largest sampled pass (bytes) | First sampled refusal (bytes) |
+|---|---:|---:|
+| Ordinary save | 4,954,711 | 5,574,047 |
+| Reading-data restore into an empty app | 1,362,541 | 1,486,408 |
+| Complete restore into an empty app | 1,362,868 | 1,486,735 |
+| Reading-data restore into an app holding data | None at or above the owner-size sample | 1,238,660 |
+| Complete restore into an app holding data | None at or above the owner-size sample | 1,238,987 |
+
+The generated reading-data owner-size baseline was 1,238,675 bytes. The next 10-percent growth
+sample restored into an empty app; the 20-percent sample was refused. That observed file-size
+headroom is not a storage guarantee: note characters change the relationship between UTF-8 file
+bytes and WebKit's two-byte storage, and the original owner-size dataset left only about 5 percent
+of the quota free while restoring.
+
+The Simulator checks also force the app to end at 0, 250 and 750 milliseconds after a save, both
+while foregrounded and after moving it to the background. Every observed saved-data hash matched
+the whole earlier or later state on both runtimes. A separate complete-restore test fails the
+fifth journal write, ends the app, then requires an interrupted, matching recovery with two
+completed journal writes and both recovery actions available. These results do not replace
+real-device storage-pressure or Files-picker acceptance. The separate fault-disabled proof remains
+pending until the presentation checks pass.
+
 ## Known limits
 
-- Saving backups and exports to Files, choosing a backup file to restore, Read, text size, iPad
-  window sizes and a notice when iOS removes saved data are not in the app yet.
-- iOS can remove an app's website data when the device runs short of space, and this app cannot opt
-  out of that. Keep a backup outside the app.
+- Files export and restore, Read hand-off, Dynamic Type, iPad window sizing and the missing-data
+  notice are implemented and under hosted Simulator validation. Actual Files picker, external-link
+  hand-off and assistive-technology behavior remain device checks.
+- iOS can remove an app's website data when the device runs very low on space, and this app cannot
+  opt out of that. The About text recommends keeping an export outside the app, explains that it can
+  include progress and notes, and says that deleting the app does not remove exported files.
 - iPhone and iPad device backups, to iCloud or to a computer, include this app's saved data. The
   app's privacy text says so.
-- Checks that need a real device, such as Read handing a comic to a browser, run on the owner's iPad
+- Checks that need a real device, such as Read opening the correct comic outside Recap Page, run on the owner's iPad
   with iOS 18; checks that need an iPhone stay unverified until one is available.
 
 ## Signing and internal TestFlight
 
-The manual **iOS TestFlight** workflow is tooling, not a delivered build. It has not yet proved
-cloud signing, Apple processing, installation or an update on a device. Nothing here changes saved
-reading data. It cannot be dispatched until its workflow is on main. The owner chose to prove the
-signing route with an early first build from main as soon as Apple and GitHub setup is complete,
-before the native-feature work merges. Reserve that build against the current main source; after
-the native features merge, reserve the second build for the update-in-place check.
+The manual **iOS TestFlight** workflow has delivered build 4 (4.2.0), built from `7b39b9d3`, to the
+internal testing group. Cloud signing, Apple processing and installation on the owner's iPad are
+confirmed on #949. The installed build starts offline and retains progress across relaunch.
+Update-in-place still waits for build 5, and iPhone-only device checks remain pending until an
+iPhone is available. The reservation, export, seal and upload procedure below remains required for
+each new build; delivery does not authorize another build or upload without its separate approvals.
 
 ### Owner setup, in order, from Windows
 

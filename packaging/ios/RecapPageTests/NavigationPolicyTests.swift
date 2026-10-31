@@ -1,3 +1,4 @@
+import WebKit
 import XCTest
 @testable import RecapPage
 
@@ -43,6 +44,9 @@ final class NavigationPolicyTests: XCTestCase {
         let app = try url("recappage://localhost/#/home")
         XCTAssertEqual(policy.decide(url: app, isMainFrame: true, opensNewWindow: false, userActivated: false), .allow)
         XCTAssertEqual(policy.decide(url: app, isMainFrame: true, opensNewWindow: true, userActivated: true), .refuse)
+        let launcher = try url("recappage://localhost/open.html?i=6482")
+        XCTAssertEqual(policy.decide(url: launcher, isMainFrame: false, opensNewWindow: true, userActivated: true), .allow)
+        XCTAssertEqual(policy.decide(url: launcher, isMainFrame: true, opensNewWindow: false, userActivated: true), .refuse)
         XCTAssertEqual(policy.decide(url: app, isMainFrame: false, opensNewWindow: false, userActivated: false), .refuse)
         let web = try url("https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md")
         XCTAssertEqual(policy.decide(url: web, isMainFrame: true, opensNewWindow: true, userActivated: true), .openExternally)
@@ -62,5 +66,61 @@ final class NavigationPolicyTests: XCTestCase {
                 .refuse, refused)
         }
         XCTAssertEqual(policy.decide(url: nil, isMainFrame: true, opensNewWindow: false, userActivated: true), .refuse)
+    }
+
+    func testLauncherOnlyLoadsItsOwnPageAndHandsOffMainFrameHttps() throws {
+        XCTAssertEqual(
+            policy.decideLauncher(
+                url: try url("recappage://localhost/open.html?i=6482"),
+                isMainFrame: true,
+                opensNewWindow: false),
+            .allow)
+        XCTAssertEqual(
+            policy.decideLauncher(
+                url: try url("https://example.com/reader"),
+                isMainFrame: true,
+                opensNewWindow: false),
+            .openExternally)
+        for refused in [
+            ("https://example.com/", false, false),
+            ("https://example.com/", true, true),
+            ("http://example.com/", true, false),
+            ("recappage://localhost/index.html", true, false),
+            ("about:blank", true, false),
+        ] {
+            XCTAssertEqual(
+                policy.decideLauncher(
+                    url: try url(refused.0),
+                    isMainFrame: refused.1,
+                    opensNewWindow: refused.2),
+                .refuse,
+                refused.0)
+        }
+    }
+
+    @MainActor
+    func testLinkPreviewsAreDisabledOnAppAndLauncherWebViews() {
+        let app = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let launcher = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        WebViewFactory.configure(app)
+        WebViewFactory.configure(launcher)
+        XCTAssertFalse(app.allowsLinkPreview)
+        XCTAssertFalse(launcher.allowsLinkPreview)
+    }
+
+    @MainActor
+    func testReadSheetClosesOnceWhenItsWebContentProcessEnds() {
+        let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        var closeCount = 0
+        let sheet = ReadSheetController(
+            webView: webView,
+            policy: policy,
+            openExternally: { _, completion in completion(true) },
+            onClose: { _ in closeCount += 1 })
+        XCTAssertTrue(webView.navigationDelegate === sheet)
+        XCTAssertTrue(webView.uiDelegate === sheet)
+        sheet.webViewWebContentProcessDidTerminate(webView)
+        sheet.webViewWebContentProcessDidTerminate(webView)
+        XCTAssertEqual(closeCount, 1)
     }
 }

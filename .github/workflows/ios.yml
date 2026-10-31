@@ -9,6 +9,17 @@ on:
     branches: [main]
   # The recovery path, as in CI: once this file is on main, a result for any ref can be asked for.
   workflow_dispatch:
+    inputs:
+      live_cors:
+        description: Check whether the live metadata API permits the app origin
+        required: false
+        type: boolean
+        default: false
+      prove_journal_fault_disabled:
+        description: Prove interrupted restore rejects a completed restore without the injected fault
+        required: false
+        type: boolean
+        default: false
 
 # The workflow only reads the repository. It signs nothing, uploads nothing to Apple and uses no
 # secret: these are unsigned Simulator builds.
@@ -24,14 +35,14 @@ jobs:
   newest:
     name: iOS app on the newest runtime
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 75 minutes between them, and as
-    # in CI the step deadline is the one that should fire, so an overrun reports failure on the step
-    # that ran long rather than cancelled on the job. Generous until this job has runs to measure.
-    timeout-minutes: 80
+    # The backstop for time outside any step. The steps below declare 137 minutes between them, and
+    # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
+    # step that ran long rather than cancelled on the job.
+    timeout-minutes: 140
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
-      SIMULATOR_NAME: iPhone 17
+      SIMULATOR_NAME: iPhone 17 Pro Max
       SIMULATOR_RUNTIME: latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -76,6 +87,16 @@ jobs:
           xcrun simctl bootstatus "$udid" -b
           echo "DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
 
+      - name: Build the Release Simulator configuration
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -configuration Release -destination "$DESTINATION"
+          -derivedDataPath "$RUNNER_TEMP/ReleaseDerivedData"
+          CODE_SIGNING_ALLOWED=NO &&
+          node packaging/ios/check-release-surface.mjs "$RUNNER_TEMP/ReleaseDerivedData/Build/Products/Release-iphonesimulator/RecapPage.app"
+
       - name: Build for testing
         timeout-minutes: 20
         run: >-
@@ -96,10 +117,13 @@ jobs:
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
 
       - name: Run the UI tests
-        timeout-minutes: 18
+        timeout-minutes: 40
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
@@ -117,11 +141,77 @@ jobs:
             fi
             # A separate assertion failure must not be hidden by an infrastructure retry.
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator. Matched: $matched"
           done
+
+      - name: Prove the interrupted-restore test rejects the done row
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.prove_journal_fault_disabled }}
+        timeout-minutes: 10
+        env:
+          TEST_RUNNER_RECAP_IOS_DISABLE_FIFTH_JOURNAL_PUT: '1'
+        run: |
+          set +e
+          set -o pipefail
+          log="$RUNNER_TEMP/journal-fault-disabled.log"
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-journal-fault-disabled.xcresult" \
+            -only-testing:RecapPageUITests/LaunchUITests/testFifthJournalPutFailureOffersRecoveryAfterForcedTermination \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "::error::The fault-disabled mutation unexpectedly passed."
+            exit 1
+          fi
+          if ! grep -Fq 'RECAP_PROBE_RESULT journal-fault-after-kill ' "$log" ||
+              ! grep -Fq '"stateTableRow":"done: \/ matching \/ any"' "$log" ||
+              ! grep -Fq 'the fault-disabled mutation must reach the done row' "$log"; then
+            echo "::error::The targeted test failed without recording the expected done row."
+            exit 1
+          fi
+          echo 'Expected fault-disabled failure observed: the interrupted-restore test recorded the done row.'
+
+      - name: Check live metadata CORS from the app origin
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.live_cors }}
+        timeout-minutes: 10
+        env:
+          TEST_RUNNER_RECAP_RUN_LIVE_CORS: '1'
+        run: |
+          set +e
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-live-cors.xcresult" \
+            -only-testing:RecapPageUITests/LaunchUITests/testManualLiveMetadataCorsFromTheAppOrigin \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/live-cors.log"
+          status=$?
+          set -e
+          result=$(grep -h 'RECAP_PROBE_RESULT live-metadata-cors' "$RUNNER_TEMP/live-cors.log" | sed 's/^.*RECAP_PROBE_RESULT //' || true)
+          {
+            echo '### Live metadata CORS check'
+            echo "xcodebuild exit code: $status"
+            if [ -n "$result" ]; then
+              echo "$result"
+            else
+              echo 'The selected CORS test returned no probe result.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+          if [ -z "$result" ]; then
+            echo "::error::The selected CORS test returned no probe result."
+            exit 1
+          fi
+          exit "$status"
 
       # The probes' measurements, where a reader of the run finds them without opening the bundle.
       - name: Summarize the probe results
@@ -143,8 +233,127 @@ jobs:
           name: ios-results-newest-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             ${{ runner.temp }}/RecapPage-newest-*.xcresult
+            ${{ runner.temp }}/RecapPage-journal-fault-disabled.xcresult
             ${{ runner.temp }}/unit-test.log
             ${{ runner.temp }}/ui-*.log
+            ${{ runner.temp }}/journal-fault-disabled.log
+          if-no-files-found: warn
+
+  ipad:
+    name: iPad presentation on the newest runtime
+    runs-on: macos-26
+    # These steps declare 83 minutes; leave the deadline to the individual step that overruns.
+    timeout-minutes: 86
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      SIMULATOR_RUNTIME: latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Show the toolchain
+        timeout-minutes: 3
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+          node --version
+
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
+      - name: Start the 13-inch iPad Simulator boot
+        timeout-minutes: 3
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices)
+              .filter((runtime) => runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-"))
+              .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name.startsWith("iPad Pro 13-inch"));
+            if (!device) throw new Error("Requested 13-inch iPad Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid" > "$RUNNER_TEMP/ipad-boot.log" 2>&1 &
+          echo "IPAD_UDID=$udid" >> "$GITHUB_ENV"
+          echo "IPAD_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
+      - name: Build for testing
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "$IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Wait for the 13-inch iPad Simulator after the build
+        timeout-minutes: 5
+        run: |
+          if ! xcrun simctl bootstatus "$IPAD_UDID" -b; then
+            cat "$RUNNER_TEMP/ipad-boot.log"
+            exit 1
+          fi
+
+      - name: Run presentation UI tests on iPad
+        timeout-minutes: 35
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-ipad-$attempt.log"
+            if xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "$IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests/PresentationUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-ipad-ui-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
+              exit 1
+            fi
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
+          done
+
+      - name: Summarize the probe results
+        if: ${{ !cancelled() }}
+        timeout-minutes: 2
+        run: |
+          {
+            echo '### Presentation results on the 13-inch iPad'
+            echo '```'
+            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP"/ui-ipad-*.log | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the result bundle
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-results-ipad-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/RecapPage-ipad-*.xcresult
+            ${{ runner.temp }}/ui-ipad-*.log
           if-no-files-found: warn
 
   minimum:
@@ -153,7 +362,9 @@ jobs:
     # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
     # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
     runs-on: macos-15
-    timeout-minutes: 80
+    # Separate launch/presentation groups declare 162 step minutes; one additional minute keeps
+    # the job backstop outside every step deadline.
+    timeout-minutes: 163
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
       SIMULATOR_NAME: iPhone 16e
@@ -176,6 +387,38 @@ jobs:
           xcodebuild -version
           xcrun simctl list runtimes
           node --version
+
+      - name: Find the iPhone SE (3rd generation) Simulator
+        id: iphone-se
+        timeout-minutes: 3
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices)
+              .filter((runtime) =>
+                runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-") &&
+                runtime.endsWith("." + process.env.SIMULATOR_RUNTIME)
+              )
+              .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name === "iPhone SE (3rd generation)");
+            if (device) process.stdout.write(device.udid);
+          ')
+          if [ -z "$udid" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "IPHONE_375_AVAILABLE=false" >> "$GITHUB_ENV"
+            echo "::notice::iPhone SE (3rd generation) is unavailable on the iOS 18 runtime; 375-point iPhones are untested."
+            exit 0
+          fi
+          echo "available=true" >> "$GITHUB_OUTPUT"
+          echo "IPHONE_375_UDID=$udid" >> "$GITHUB_ENV"
+          echo "IPHONE_375_AVAILABLE=true" >> "$GITHUB_ENV"
+
+      - name: Boot iPhone SE (3rd generation) Simulator
+        if: steps.iphone-se.outputs.available == 'true'
+        timeout-minutes: 3
+        run: |
+          xcrun simctl boot "$IPHONE_375_UDID" > "$RUNNER_TEMP/iphone-se-boot.log" 2>&1 &
 
       - name: Prepare the bundled web app
         timeout-minutes: 3
@@ -201,34 +444,51 @@ jobs:
 
       - name: Build for testing
         timeout-minutes: 20
-        run: >-
-          xcodebuild build-for-testing
-          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
-          -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
-          CODE_SIGNING_ALLOWED=NO
+        run: |
+          xcodebuild build-for-testing \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO
+          runs=("$RUNNER_TEMP"/DerivedData/Build/Products/*.xctestrun)
+          if [ "${#runs[@]}" -ne 1 ] || [ ! -s "${runs[0]}" ]; then
+            echo "::error::The runtime build must produce exactly one nonempty test run."
+            exit 1
+          fi
+          echo "XCTESTRUN=${runs[0]}" >> "$GITHUB_ENV"
+
+      - name: Wait for the 375-point iPhone SE Simulator after the build
+        if: steps.iphone-se.outputs.available == 'true'
+        timeout-minutes: 5
+        run: |
+          if ! xcrun simctl bootstatus "$IPHONE_375_UDID" -b; then
+            cat "$RUNNER_TEMP/iphone-se-boot.log"
+            exit 1
+          fi
 
       - name: Run the unit tests
         timeout-minutes: 12
         run: |
           set -o pipefail
           xcodebuild test-without-building \
-            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
-            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
             -only-testing:RecapPageTests \
             -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-unit.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
 
+      # Run 41085967083: launch cases 10m34s plus 3m26s margin, without presentation.
       - name: Run the UI tests
-        timeout-minutes: 18
+        timeout-minutes: 14
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
-                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
-                -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-                -only-testing:RecapPageUITests \
+                -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
+                -only-testing:RecapPageUITests/LaunchUITests \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               exit 0
@@ -240,10 +500,81 @@ jobs:
             fi
             # A separate assertion failure must not be hidden by an infrastructure retry.
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
-            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator. Matched: $matched"
+          done
+
+      # Run 41099816344: minimum presentation step 21m30s plus 13m30s margin.
+      # All scenarios completed, but largest core audits still stopped at a guard failure.
+      - name: Run presentation UI tests on the minimum iPhone
+        if: ${{ !cancelled() }}
+        timeout-minutes: 35
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-minimum-presentation-$attempt.log"
+            if xcodebuild test-without-building \
+                -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
+                -only-testing:RecapPageUITests/PresentationUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-presentation-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
+              exit 1
+            fi
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
+          done
+
+      # Run 41099816344: SE step rounded up to 22m17s plus 22m43s margin.
+      # Raw timestamps include startup; a guard failure still cut short largest core audits.
+      - name: Run presentation UI tests on iPhone SE (3rd generation)
+        if: ${{ !cancelled() && steps.iphone-se.outputs.available == 'true' }}
+        timeout-minutes: 45
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-iphone-se-$attempt.log"
+            if xcodebuild test-without-building \
+                -xctestrun "$XCTESTRUN" -destination "platform=iOS Simulator,id=$IPHONE_375_UDID" \
+                -only-testing:RecapPageUITests/PresentationUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-iphone-se-ui-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              echo "IPHONE_375_PRESENTATION_PASSED=true" >> "$GITHUB_ENV"
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
+              exit 1
+            fi
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
           done
 
       - name: Summarize the probe results
@@ -252,6 +583,13 @@ jobs:
         run: |
           {
             echo '### Probe results on the lowest iOS 18 runtime'
+            if [ "${IPHONE_375_PRESENTATION_PASSED:-false}" = true ]; then
+              echo '375-point iPhone SE (3rd generation): presentation tests passed.'
+            elif [ "${IPHONE_375_AVAILABLE:-false}" = true ]; then
+              echo '375-point iPhone SE (3rd generation): available, but its presentation tests did not pass.'
+            else
+              echo '375-point iPhones are untested because iPhone SE (3rd generation) is unavailable on the iOS 18 runtime.'
+            fi
             echo '```'
             grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/unit-test.log" "$RUNNER_TEMP"/ui-*.log | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
             echo '```'

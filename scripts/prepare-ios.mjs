@@ -144,18 +144,29 @@ export function iosIndex(html, build) {
                 Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.
                 There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
                 Backups of this device to iCloud or to a computer include this app's saved data.
-                Deleting the app removes its private storage, so export and keep a backup outside the app first.
+                Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.
+                An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files.
+              </p>
+              <p class="rail-hint">
+                If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.
               </p>
               <p class="rail-hint">
                 <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
               </p>`);
 }
 
-// The launcher keeps the shared open.js. Only its viewport changes, for the same reason as Home's.
+// The launcher keeps shared open.js; its iOS-only target overlay sits after open.css.
 export function iosLauncher(html) {
   once(html, VIEWPORT, 'Shared launcher entry changed; iOS injection needs review');
+  const stylesheet = '<link rel="stylesheet" href="./open.css" />';
+  const overlay = '<link rel="stylesheet" href="./ios/launcher.css" />';
+  once(html, stylesheet, 'Shared launcher entry changed; iOS injection needs review');
+  if (html.split(overlay).length !== 1) {
+    throw new Error('Shared launcher entry changed; iOS injection needs review');
+  }
   once(html, '<script type="module" src="./open.js"></script>', 'Shared launcher entry changed; iOS injection needs review');
-  return html.replace(VIEWPORT, COVER_VIEWPORT);
+  return html.replace(VIEWPORT, COVER_VIEWPORT)
+    .replace(stylesheet, `${stylesheet}\n    ${overlay}`);
 }
 
 export async function prepareIos(output = IOS_ASSET_DIR) {
@@ -172,7 +183,7 @@ export async function prepareIos(output = IOS_ASSET_DIR) {
     readFile(join(ROOT, 'package.json'), 'utf8'),
     readIosIdentity(),
   ]);
-  for (const required of ['app.js', 'ios.css']) {
+  for (const required of ['app.js', 'ios.css', 'launcher.css']) {
     if (!webPaths.includes(required)) throw new Error(`Missing iOS entry asset: ${required}`);
   }
   const { version } = JSON.parse(packageText);
