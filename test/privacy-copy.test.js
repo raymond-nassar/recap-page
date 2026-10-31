@@ -26,9 +26,8 @@ import { fileURLToPath } from 'node:url';
 // Cloud backup (#810, P02-T06) gave the promise a second variant. The markup carries both: the words
 // a build without cloud backup says, marked data-cloud-copy="off", and the words a build with it says
 // instead, marked "on" and hidden until the page learns the build has it. A reader only ever sees one,
-// so every rule below reads one variant at a time. The README and the security policy describe a
-// build without cloud backup until the release that enables it rewrites them, so they are read as
-// that variant only.
+// so every rule below reads one variant at a time. The README and security policy describe the
+// release with optional cloud backup, and are checked separately from the build-specific markup.
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -73,18 +72,17 @@ function between(md, startsWith, endsWith) {
   return md.slice(from, to);
 }
 
-// Every surface that tells a reader where their data goes. The README is one of them: it is the
-// document a new reader starts from and the only one they see before running anything. The
-// security policy is another, and the README sends readers to it, so a weaker version of the
-// claim there is the same defect in the place a careful reader checks second.
 function surfaces(state = 'off') {
   const html = read('src/index.html');
-  const about = ['the About view', section(html, '<h3>Your data</h3>', '<h3>This build</h3>', state)];
-  if (state === 'on') return [about];
   return [
-    about,
-    ['the README', between(read('README.md'), '### Your data stays with you', '## Run it on your computer')],
-    ['the security policy', between(read('SECURITY.md'), '## What already reduces risk here', '- The development server')],
+    ['the About view', section(html, '<h3>Your data</h3>', '<h3>This build</h3>', state)],
+  ];
+}
+
+function releaseDocuments() {
+  return [
+    ['the README', prose(between(read('README.md'), '### Your data stays with you', '## Run it on your computer'))],
+    ['the security policy', prose(between(read('SECURITY.md'), '## What already reduces risk here', '- The development server'))],
   ];
 }
 
@@ -107,6 +105,7 @@ function claimSites(state = 'off') {
   const html = read('src/index.html');
   return [
     ...surfaces(state),
+    ...releaseDocuments(),
     ['the Backup and settings subtitle', section(html, '<h1 id="data-h">', '</div></div>', state)],
     ['the Cover art card', section(html, '<h3>Cover art</h3>', '</div>', state)],
     ['the metadata and links card', section(html, '<h3>Metadata and links only</h3>', '</p>', state)],
@@ -209,11 +208,32 @@ test('every surface that makes the privacy claim keeps the promises and names th
   }
 });
 
-test('README distinguishes reading-data exports from device settings', () => {
+test('release documents explain optional backup and retain the other request disclosures', () => {
+  const promises = [
+    ['no Recap Page account', /no Recap Page accounts?/i],
+    ['no analytics or tracking', /no analytics|analytics or tracking|tracking of any kind/i],
+    ['backup is off until chosen', /OneDrive backup is off until you turn it on/i],
+    ['connecting alone uploads nothing', /connecting alone uploads nothing/i],
+    ['the destination is the reader\'s OneDrive', /to your own OneDrive/i],
+    ['Microsoft can read the backups', /Microsoft can read (?:(?:your|the) )?backups?/i],
+    ['the developer receives no copy', /developer never receives a copy/i],
+    ['backups are not merged', /(?:the app never merges backups|backups are never merged)/i],
+    ['background requests can reveal progress through their order', /background detail filling[^.]*\.[^.]*request order[^.]*reading progress/i],
+  ];
+  for (const [where, text] of releaseDocuments()) {
+    for (const [what, said] of [...promises, ...REQUESTS]) {
+      assert.match(text, said, `${where} must still say ${what}`);
+    }
+    assert.doesNotMatch(text, /GitHub[^.]*latest\s+(?:release|version)\s+number/i);
+  }
+});
+
+test('README distinguishes complete backups from single-kind exports', () => {
   const privacy = between(
     read('README.md'), '### Your data stays with you', '## Run it on your computer',
   );
-  assert.match(privacy, /export reading data, but not device settings/i);
+  assert.match(privacy, /complete backup[^.]*reading and display preferences/i);
+  assert.match(privacy, /individual reading-data, completion-history and import-draft backups[^.]*without device settings/i);
 });
 
 // The absolute itself, in the forms it has actually been written in here. "Nothing is uploaded"

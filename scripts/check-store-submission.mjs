@@ -12,7 +12,6 @@ export const SCREENSHOTS = Object.freeze([
   '02-browse-reading-lists.png',
   '03-reading-paths.png',
   '04-reading-progress.png',
-  '05-about-privacy.png',
 ]);
 export const STORE_TILE = 'store-tile-300.png';
 export const PUBLIC_URLS = Object.freeze([
@@ -91,13 +90,15 @@ export function validateSubmission() {
     'DPIAwarenessValidation',
     'Partner Center certification remains authoritative',
     'This is an unofficial fan companion',
-    'Recap Page contains no comic pages',
-    'Marvel determines access to its reading services',
+    'The app contains no comic pages.',
+    'Marvel decides access to its reading services.',
     'Historical Marvel Unlimited badges do not establish access to Marvel Comics',
     'not a single-comic link',
     'Comic Book Herald',
     'Comic Book Reading Orders',
-    'There is no account, advertising, analytics, or telemetry',
+    'No Recap Page account, ads, analytics or telemetry.',
+    'OneDrive is optional and off until you choose it.',
+    'Microsoft can read your backups, your account protects them, and the developer never receives them.',
     'Leave **Additional license terms** blank',
     'add-additional-information',
     'owner authorized replacing the failed package',

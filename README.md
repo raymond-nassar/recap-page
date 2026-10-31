@@ -57,9 +57,9 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 - **Find comics.** Filter curated lists by category, or find issues, series, and creators in Search.
 - **Marvel Unlimited record**
   This is a historical record, not availability in Marvel Comics.
-- **Back up your progress.** Restore a backup on this device or another. Android and desktop save
-  separately. Reading data and completion history have separate backups; each restore replaces
-  only that kind of data.
+- **Back up your progress.** Move reading data, completion history and preferences with a complete
+  backup, or use the separate backups for each kind of data. Optional OneDrive backup saves a copy
+  to your own account; restoring replaces data rather than merging it.
 - **Share an order.** Preview a personal Markdown checklist or export an order without notes,
   reading history, or availability overrides.
 - **Choose your browser.** Use Edge, Chrome, Firefox, or Safari, or install Recap Page as a browser app.
@@ -106,15 +106,16 @@ but remains available under **Library > Completed lists**. **Reopen list** bring
 Older saved lists receive the same completion confirmation and keyboard focus after their
 existing saved identity has been made stable.
 
-Thumb icons are optional and stay on your device. On a touch screen or a narrow window each shows
-its name beside it; otherwise hover over or focus one for its name.
+Thumb icons are optional. The saved choices stay on your device and are included if you turn on
+OneDrive backup. On a touch screen or a narrow window each shows its name beside it; otherwise
+hover over or focus one for its name.
 **Enjoyed** filters your completed collection;
 clicking a selected thumb clears that choice. **Did not enjoy** saves only that preference.
 **Report a list problem** separately opens instructions for missing comics or a wrong order
 without changing your thumb choice. Desktop and Android use the same optional Microsoft Forms
 link, with no reader account, name or email required. Your saved data and thumb choice are not
 attached. Reports are reviewed privately; private data-loss or security concerns use the separate
-policy link. See [list-feedback privacy](PRIVACY.md#optional-reading-list-feedback).
+policy link. See [list-feedback privacy](PRIVACY.md#requests-the-app-makes-to-other-services).
 
 The wrap-up suggests later Reading Path or Modern Timeline stops, and lists with verified shared
 writers or later issues in the same series. Suggestions use bundled metadata, not an external
@@ -126,9 +127,9 @@ note and custom order, but keeps shared comic progress and the bundled reading-l
 The existing **Undo removal** offer can put that copy back.
 
 Completion dates and enjoyment choices have their own export and restore controls in
-**Backup & settings**. Export both backups to carry both kinds of data to another device.
-If a pasted import draft is present, also download its separately labeled import-draft backup.
-These independent files do not include settings. Each backup keeps its download beside its restore.
+**Backup & settings**. A complete backup carries reading data, completion history, preferences
+and any unfinished import together. The separate reading-data, completion-history and import-draft
+backups each hold one kind without device settings. Each backup keeps its download beside its restore.
 Reading-data replacement asks for confirmation and keeps the prior data as a downloadable saved
 copy. Undo is offered once in the restoring tab; after Undo or reload, the retained copy uses an
 explicit saved-copy action rather than a misleading Undo label.
@@ -164,10 +165,16 @@ use a rating-capable build to restore a backup containing ratings.
 
 ### Your data stays with you
 
-There is no account and no analytics or tracking. Saved reading data is not uploaded automatically.
-Lists, progress, issue ratings, completion dates, enjoyment, notes, settings, overrides, and custom entries stay
-on your device. You can export reading data, but not device settings. Completion history has
-its own backup.
+There is no Recap Page account and no analytics or tracking. Lists, progress, issue ratings,
+completion dates, enjoyment, notes, settings, overrides and custom entries stay on your device.
+A complete backup includes reading data, completion history, reading and display preferences, and
+any unfinished import. The individual reading-data, completion-history and import-draft backups
+each hold one kind without device settings.
+
+Where the build includes it, OneDrive backup is off until you turn it on in **Backup & settings**.
+Connecting alone uploads nothing. It sends a complete backup to your own OneDrive only after you
+turn it on. Microsoft can read the backups, and the developer never receives a copy. The app never
+merges backups.
 See the [privacy policy](PRIVACY.md) for details.
 
 Some features make direct requests:
@@ -176,6 +183,8 @@ Some features make direct requests:
 - Issue searches send the words you type to the comics database and fetch matching details.
 - Series and creator name searches use bundled indexes. Browsing a series or creator requests its
   comics from the database. Selecting comics and choosing where to save them stays on your device.
+- Background detail filling requests missing comics, with current unread issues first. The request
+  order can hint at your reading progress.
 - Cover images load from Marvel's own image servers unless cover art is switched off in **Backup & settings**.
 - Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a direct link is
   known. Otherwise it looks up the missing link or opens the recorded comic details page.

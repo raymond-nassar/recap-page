@@ -52,14 +52,6 @@ const SCREENSHOTS = [
     text: ['House of M', '5 of 20 read'],
     state: 'demo',
   },
-  {
-    file: '05-about-privacy.png',
-    route: '#/about',
-    view: 'view-about',
-    wait: '#view-about:not([hidden])',
-    text: ['About this app', 'Your data', 'Comic Book Herald'],
-    state: 'demo',
-  },
 ];
 
 function driverCandidates() {
