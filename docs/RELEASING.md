@@ -318,3 +318,38 @@ environment secrets and runner scratch only, with always-run deletion. Certifica
 from Windows and Transporter or Build Upload API uploading remain documented fallbacks, not an
 automatic alternate path around a refusal. Real signing, processing, installation, expiry and
 update-in-place behavior remain delivery evidence, not facts established by the tooling tests.
+
+## 4.3.0 Windows Store owner handoff
+
+The separate **4.3.0 Store bundle handoff** workflow prepares an owner-upload packet,
+not a submission or public release. Implementation of this route is not permission
+to dispatch it. The owner must separately approve building and transferring, bound
+to the explicit release commit/tree on main, reviewed executing workflow revision,
+and repository-owner Partner Center recipient. Both approvals may precede the build;
+the exact bundle digest is checked after qualification. Do not select an unmerged
+version PR head or assume it will become the release commit.
+
+The existing `microsoft-store-production` environment remains the protected gate.
+The only protected input is the existing OneDrive client ID secret, supplied through
+the release wrapper. An independently calculated configuration digest must match
+every standalone, proof and bundled package inspected. Missing or invalid input,
+wrong source/version, unqualified WACK, changed bytes or failed pre-transfer cleanup
+blocks the artifact. The historical 2.1.0 draft handoff remains separate and unchanged.
+
+The owner accepted short public access without encryption. Retain only the
+4.3.0.0 x64/ARM64 bundle and strict public-safe receipt for **one day**. Arrange the
+owner's download and upload within that window before approving a run; if that is
+not possible, stop and obtain a retention decision rather than dispatching or extending
+retention silently. This does not change the portable candidate's one-day retention
+or the Android candidate's seven-day closed-testing handoff window.
+
+The receipt binds release commit/tree, workflow commit/tree/blob digest and run,
+recipient/purpose, configuration digest, structural inspection and WACK results,
+bundle size/hash and plaintext retention. It contains no configuration bytes,
+client ID, redirect hash, credentials, signer details or personal data. The bundle
+necessarily carries the configured public-client identifier, as an installed release
+does; accepting plaintext bundle access does not permit printing that identifier.
+Raw build, inspection and WACK output is private scratch and is never retained.
+Only a completely successful run, including final cleanup, is eligible for handoff.
+Owner upload, draft read-back, certification and publication still require their
+own authority; no artifact or receipt supplies it.

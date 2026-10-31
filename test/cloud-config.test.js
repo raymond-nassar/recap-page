@@ -22,7 +22,7 @@ test('only protected release workflows ask for configuration, none is committed,
   for (const name of readdirSync(workflows)) {
     const source = readFileSync(join(workflows, name), 'utf8');
     assert.ok(!source.includes(CLOUD_CLIENT_ARGUMENT), `${name} uses the checked release wrapper, not raw injection`);
-    if (!['wack.yml', 'microsoft-store-release.yml', 'android-release-candidate.yml'].includes(name)) {
+    if (!['wack.yml', 'microsoft-store-release.yml', 'android-release-candidate.yml', 'store-bundle-handoff.yml'].includes(name)) {
       assert.doesNotMatch(source, /secrets\.RECAP_ONEDRIVE_|release-cloud-client\.mjs/);
     }
   }
