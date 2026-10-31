@@ -133,6 +133,17 @@ test('the fault-disabled restore mutation is opt-in and requires the done-row fa
   assert.match(step, /RECAP_PROBE_RESULT journal-fault-after-kill/);
   assert.match(step, /"stateTableRow":"done: \/ matching \/ any"/);
   assert.match(step, /the fault-disabled mutation must reach the done row/);
+  // Run 41169003243 kept neither, so the proof's failure could not be decoded.
+  assert.match(newest, /\$\{\{ runner\.temp \}\}\/RecapPage-journal-fault-disabled\.xcresult\n/);
+  assert.match(newest, /\$\{\{ runner\.temp \}\}\/journal-fault-disabled\.log\n/);
+  // A finished restore reloads the page, which drops the probe's completion handler unless the
+  // writer settles at the unload.
+  const writer = readFileSync(new URL('../packaging/ios/RecapPageUITests/LaunchUITests.swift', import.meta.url), 'utf8')
+    .split('private static let startInterruptedCompleteRestore = #"""')[1]?.split('"""#')[0] ?? '';
+  assert.match(writer, /addEventListener\('beforeunload', settle, \{ once: true \}\)/);
+  assert.match(writer, /addEventListener\('pagehide', settle, \{ once: true \}\)/);
+  assert.match(writer, /report: null,\r?\n\s+unloadedAfterRestore: event\.type,/);
+  assert.match(writer, /Promise\.race\(\[reported, unloaded\.then\(\(\) => null\)\]\)/);
 });
 
 test('newest, oldest and iPad jobs use the intended Xcode runtimes', () => {
@@ -281,6 +292,14 @@ const infrastructure = [
   'Failed to launch application: Timed out while launching application via Xcode.',
 ];
 const assertion = '/repo/LaunchUITests.swift:40: error: -[LaunchUITests testHome] : XCTAssertTrue failed';
+// Run 41169003243: the passive-guard fixtures' anticipated failures, which XCTest reports without ": error:".
+const anticipated = [
+  'XCTExpectFailure: matcher accepted Assertion Failure at PresentationUITests.swift:1369: '
+    + 'XCTAssertFalse failed - occlusion-mutant: above-navigation',
+  'PresentationUITests.swift:1369: Expected failure in -[RecapPageUITests.PresentationUITests '
+    + 'testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures]: XCTAssertFalse failed - '
+    + 'occlusion-mutant: above-navigationReason: (Ignoring the mutant.)',
+].join('\n');
 
 async function runScript(root, script, env = {}) {
   const path = join(root, 'step.sh');
@@ -482,6 +501,10 @@ test('both iPhone jobs retry only recognized UI infrastructure failures once and
     { name: 'retry assertion', logs: [infrastructure[0], assertion], codes: [65, 65], calls: 2, exit: 1 },
     { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
     { name: 'mixed failure', logs: [infrastructure[1] + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
+    { name: 'anticipated failures with infrastructure recover',
+      logs: [anticipated + '\n' + infrastructure[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+    { name: 'anticipated failures with an assertion', logs: [anticipated + '\n' + infrastructure[1] + '\n' + assertion],
+      codes: [65], calls: 1, exit: 1 },
     { name: 'unrecognized failure', logs: ['Simulator connection lost'], codes: [65], calls: 1, exit: 1 },
     { name: 'log write failure', logs: [infrastructure[0]], codes: [65], calls: 1, exit: 23, teeFailure: true },
   ];
@@ -531,6 +554,10 @@ test('the separate presentation suites retry only the recognized UI infrastructu
     { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
     { name: 'infrastructure recovers', logs: [infrastructure[0], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
     { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
+    { name: 'anticipated failures with infrastructure recover',
+      logs: [anticipated + '\n' + infrastructure[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+    { name: 'anticipated failures with an assertion', logs: [anticipated + '\n' + infrastructure[1] + '\n' + assertion],
+      codes: [65], calls: 1, exit: 1 },
   ];
   for (const [job, label, bundle, log, destination] of [
     ['ipad', 'Run presentation UI tests on iPad', 'ipad-ui', 'ui-ipad', 'chosen-ipad'],

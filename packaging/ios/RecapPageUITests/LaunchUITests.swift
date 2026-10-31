@@ -948,11 +948,26 @@ final class LaunchUITests: XCTestCase {
         restoreLockReadiness: { ready, ...readiness },
       });
     }
+    // A restore that finishes reloads the page, and WebKit then drops this probe's completion handler
+    // ("Completion handler for function call is no longer reachable", run 41169003243). Settling at
+    // the unload keeps that outcome reportable. It carries no report, so the fault-on assertions that
+    // require "stopped part way" still fail on it.
+    const unloaded = new Promise((resolve) => {
+      const settle = (event) => resolve(JSON.stringify({
+        report: null,
+        unloadedAfterRestore: event.type,
+        restoreLockReadiness: { ready, ...readiness },
+      }));
+      addEventListener('beforeunload', settle, { once: true });
+      addEventListener('pagehide', settle, { once: true });
+    });
     document.getElementById('ask-ok').click();
-    const report = await until(() => {
+    const reported = until(() => {
       const text = document.getElementById('complete-backup-report').textContent;
       return text.length > 0 ? text : null;
     }, 30000);
+    const report = await Promise.race([reported, unloaded.then(() => null)]);
+    if (report === null) return unloaded;
     const inspector = new restore.CompleteRestore();
     const journal = await inspector.readJournal();
     const marker = restore.readMarker(localStorage);

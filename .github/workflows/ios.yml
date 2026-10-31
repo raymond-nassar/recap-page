@@ -121,6 +121,9 @@ jobs:
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
@@ -138,7 +141,8 @@ jobs:
             fi
             # A separate assertion failure must not be hidden by an infrastructure retry.
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
             echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
@@ -228,8 +232,10 @@ jobs:
           name: ios-results-newest-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             ${{ runner.temp }}/RecapPage-newest-*.xcresult
+            ${{ runner.temp }}/RecapPage-journal-fault-disabled.xcresult
             ${{ runner.temp }}/unit-test.log
             ${{ runner.temp }}/ui-*.log
+            ${{ runner.temp }}/journal-fault-disabled.log
           if-no-files-found: warn
 
   ipad:
@@ -300,6 +306,9 @@ jobs:
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-ipad-$attempt.log"
             if xcodebuild test-without-building \
@@ -316,7 +325,8 @@ jobs:
               exit "${statuses[1]}"
             fi
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
             echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
@@ -469,6 +479,9 @@ jobs:
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
@@ -485,7 +498,8 @@ jobs:
             fi
             # A separate assertion failure must not be hidden by an infrastructure retry.
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
             echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator"
@@ -499,6 +513,9 @@ jobs:
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-minimum-presentation-$attempt.log"
             if xcodebuild test-without-building \
@@ -514,7 +531,8 @@ jobs:
               exit "${statuses[1]}"
             fi
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
             echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
@@ -528,6 +546,9 @@ jobs:
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
+          # unanticipated failure is still reported with it, so it still refuses the retry.
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-iphone-se-$attempt.log"
             if xcodebuild test-without-building \
@@ -544,7 +565,8 @@ jobs:
               exit "${statuses[1]}"
             fi
             if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
               exit 1
             fi
             echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
