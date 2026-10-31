@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { drawIcon, encodePng } from '../scripts/build-icons.mjs';
 import {
   ASSETS, ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, playIcon, featureGraphic, decodePng,
@@ -53,8 +54,10 @@ test('PNG inspection rejects corrupt, truncated, wrong-size, alpha and blank out
   assert.throws(() => encodePng(1024, Buffer.alloc(3), { height: 500, alpha: false }), /do not agree/);
 });
 
-test('phone previews satisfy the current minimum count, dimensions and aspect ratio', () => {
-  assert.equal(SCREENS.length, 2);
+test('phone previews replace all six existing images and add OneDrive About and settings within the eight-image limit', () => {
+  assert.equal(SCREENS.length, 8);
+  assert.deepEqual(SCREENS.slice(0, 4).map(({ theme }) => theme), ['dark', 'dark', 'dark', 'dark']);
+  assert.deepEqual(SCREENS.slice(-2).map(({ view }) => view), ['view-about', 'view-data']);
   for (const spec of ASSETS.slice(2)) {
     assert.equal(spec.width, VIEWPORT.width * VIEWPORT.deviceScaleFactor);
     assert.equal(spec.height, VIEWPORT.height * VIEWPORT.deviceScaleFactor);
@@ -91,9 +94,14 @@ test('capture allowlist serves only the generated shell and named local fixtures
     ['index.html', Buffer.from('<html></html>')], ['android/app.js', Buffer.from('boot();')],
     ['data/house_of_m.json', Buffer.from('real metadata must not escape')],
     ['open.html', Buffer.from('reader must not open')],
+    ['data/catalog.json', Buffer.from('{"lists":[],"paths":[]}')],
+    ['android/cloud.js', Buffer.from('fixture port import')],
+    ['android/cloudPort.js', Buffer.from('fixture port')],
   ]);
   assert.equal(previewResponse(`${ORIGIN}/`, 'GET', assets).body, assets.get('index.html'));
   assert.equal(previewResponse(`${ORIGIN}/android/app.js`, 'GET', assets).body, assets.get('android/app.js'));
+  assert.equal(previewResponse(`${ORIGIN}/android/cloud.js`, 'GET', assets).body, assets.get('android/cloud.js'));
+  assert.equal(previewResponse(`${ORIGIN}/android/cloudPort.js`, 'GET', assets).body, assets.get('android/cloudPort.js'));
   assert.deepEqual(JSON.parse(previewResponse(`${ORIGIN}/data/catalog.json`, 'GET', assets).body), { lists: [], paths: [] });
   assert.equal(previewResponse(`${FIXTURE_API}/health`, 'GET', assets).fixture, 'metadata-health');
   assert.equal(previewResponse(`${ORIGIN}${LOCAL_SERVER_HEALTH_PATH}`, 'GET', assets).status, 204);
@@ -107,6 +115,21 @@ test('capture allowlist serves only the generated shell and named local fixtures
   assert.throws(() => previewResponse(`${ORIGIN}/`, 'POST', assets), /Blocked/);
 });
 
+test('cloud fixture enables OneDrive copy without an account, sign-in or writable transport', () => {
+  const url = `${ORIGIN}/__recap_cloud__/v1/status`;
+  const body = JSON.parse(previewResponse(url, 'POST', new Map()).body);
+  assert.equal(body.ok, true);
+  assert.equal(body.status.provider, 'onedrive');
+  assert.equal(body.status.state, 'not-connected');
+  assert.equal(body.status.account, null);
+  assert.equal(body.status.connection, null);
+  for (const operation of ['connect', 'disconnect', 'list', 'read', 'create', 'delete']) {
+    assert.throws(() => previewResponse(`${ORIGIN}/__recap_cloud__/v1/${operation}`, 'POST', new Map()), /status only/);
+  }
+  assert.throws(() => previewResponse(url, 'GET', new Map()), /status only/);
+  assert.throws(() => previewResponse('https://example.test/__recap_cloud__/v1/status', 'POST', new Map()), /Blocked/);
+});
+
 test('manifest labels the renderer and unset approvals without embedding profiles or demonstration state', () => {
   const files = ASSETS.map((spec) => ({ ...spec, bytes: 123, sha256: 'a'.repeat(64) }));
   const args = {
@@ -118,11 +141,27 @@ test('manifest labels the renderer and unset approvals without embedding profile
   assert.equal(result.releaseAcceptance, false);
   assert.equal(result.renderer.nativeDevice, null);
   assert.equal(result.renderer.nativeBridge, false);
+  assert.equal(result.cloud.configuration.providers.onedrive.clientId, 'screenshot-fixture.recap-page');
+  assert.equal(result.cloud.account, null);
+  assert.equal(result.cloud.automaticBackup, false);
   assert.match(result.renderer.method, /Desktop Edge/);
   assert.ok(Object.values(result.approvals).every((value) => value === false));
   assert.doesNotMatch(JSON.stringify(result), /Users[\\/]|userDataDir|mrt\.state|notes":\{/);
   assert.throws(() => previewManifest({ ...args, files: files.slice(1) }), /inventory/);
   assert.throws(() => previewManifest({ ...args, files: [files[0], files[0], ...files.slice(2)] }), /inventory/);
+});
+
+test('saved next-update Play packet matches its measured manifest and has no publication approval', () => {
+  const root = new URL('../docs/play-assets/', import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL('manifest.json', root), 'utf8'));
+  assert.equal(manifest.status, 'preview-unapproved');
+  assert.equal(manifest.releaseAcceptance, false);
+  assert.equal(manifest.cloud.simulated, true);
+  assert.ok(Object.values(manifest.approvals).every((value) => value === false));
+  assert.deepEqual(manifest.files.map(({ file }) => file), ASSETS.map(({ file }) => file));
+  for (const record of manifest.files) {
+    assert.deepEqual(inspectAsset(record.file, readFileSync(new URL(record.file, root))), record);
+  }
 });
 
 test('only the fulfilled identity-checked bodyless local health response tolerates Chromium abort reporting', () => {

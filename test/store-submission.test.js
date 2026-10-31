@@ -43,17 +43,21 @@ test('the Store tile is the existing purple panels mark at the listing size', ()
   assert.equal(actual, expected);
 });
 
-test('the 4.3.0 Store screenshot set excludes the false About image', () => {
+test('the next listing set replaces the false About image with cloud-enabled About and settings', () => {
   assert.deepEqual(SCREENSHOTS, [
     '01-home-discovery.png',
     '02-browse-reading-lists.png',
     '03-reading-paths.png',
     '04-reading-progress.png',
+    '05-about-onedrive.png',
+    '06-backup-settings.png',
   ]);
   const packet = readFileSync(PACKET, 'utf8');
   const assets = packet.slice(packet.indexOf('## Listing assets'), packet.indexOf('## Final upload handoff'));
   assert.doesNotMatch(assets, /05-about-privacy\.png/);
-  assert.match(assets, /four screenshots were captured/i);
+  assert.match(assets, /six screenshots were captured/i);
+  assert.match(assets, /live Microsoft Store and Google Play listings still show\s+the older screenshots/i);
+  assert.match(assets, /next listing update/i);
   assert.match(packet, /In Partner Center, remove the existing About screenshot before submitting 4\.3\.0/);
 });
 

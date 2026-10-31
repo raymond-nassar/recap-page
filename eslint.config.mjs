@@ -184,6 +184,7 @@ export default [
       'scripts/lib/dialog-shell.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
+      'scripts/listing-fixtures.mjs',
       'scripts/upgrade-check.mjs',
     ],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },

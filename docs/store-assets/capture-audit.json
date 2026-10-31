@@ -1,0 +1,591 @@
+{
+  "status": "preview-unapproved",
+  "origin": "http://127.0.0.1:8787",
+  "renderer": "Edg/156.0.4314.50",
+  "source": {
+    "sourceRevision": "67321e6b0b8c53a5aa2b47adeffb7df15253df2d",
+    "sourceTree": "d708b006dcd55759de5f8439a01f4ee071999507",
+    "sourceDirty": true
+  },
+  "inputs": [
+    {
+      "path": "src/brands/ms-symbollockup_mssymbol_19.svg",
+      "sha256": "929f48f88c8ca7f3f5d294be47ec4caf51acc28ac25340c19a903125d7ecd84a"
+    },
+    {
+      "path": "src/data/catalog.json",
+      "sha256": "1b6fb9ddcf65191783ae288ff9e815144cd6fc60ff7ac54d705f137b622e34b0"
+    },
+    {
+      "path": "src/icons/icon-192.png",
+      "sha256": "51bc2dd5f108cb99e76e2d46b2d188edda406ddaeb5458c20ddad21cb3256d0b"
+    },
+    {
+      "path": "src/icons/icon-512.png",
+      "sha256": "de0062d8967fb04fe06e855e9de334c34ec7523132f1a25d39b88008385d4d04"
+    },
+    {
+      "path": "src/icons/icon.svg",
+      "sha256": "2d3646d5f2aeaecc1c6284e49e545ba91cbbf28efc8baf7f122e2ccba704d6a6"
+    },
+    {
+      "path": "src/icons/ui.svg",
+      "sha256": "e53426b2ae06c9f2183195d2c4e0eecf948c392781a7777a263a4f27668987aa"
+    },
+    {
+      "path": "src/index.html",
+      "sha256": "e74de0756e1acbf74e85b5a211f76d2fd184ad808592cbf66ba94ed556294edb"
+    },
+    {
+      "path": "src/js/api.js",
+      "sha256": "09db2b337e7b2962e38304d7c3cebcc853ac23d274184e921cdea70c97187afa"
+    },
+    {
+      "path": "src/js/app.js",
+      "sha256": "29177d3e27ff4e04a456523da3bb947bd711dfba51fc212ce19d3556d1b47e8d"
+    },
+    {
+      "path": "src/js/ask.js",
+      "sha256": "cdf5bf93ce9eac743b1225794533f22b667c103aea13f58b279960e4e44b6b12"
+    },
+    {
+      "path": "src/js/cache.js",
+      "sha256": "5b53b5d2785687773efe458c1ba3e04b2cb869fc5b441e646cf5fda4520a4f62"
+    },
+    {
+      "path": "src/js/hydrate.js",
+      "sha256": "ca8398a1025f704d9a64203db190f8820be87ad81b88bf1d789d447258c2e97e"
+    },
+    {
+      "path": "src/js/lib/accname.js",
+      "sha256": "a57cd53bb42c533290bab7da28e5db8f76053b13e6b6e738390b095fa755eec4"
+    },
+    {
+      "path": "src/js/lib/apiBase.js",
+      "sha256": "6124a0f3be60dda2d21189134a97fc6ba408d0263a7f782e3504941e2ca74497"
+    },
+    {
+      "path": "src/js/lib/availability.js",
+      "sha256": "ec825ba4d295ab10038871a63cd8ebb5c61569f96d0daaff6ce44eef6ddbf066"
+    },
+    {
+      "path": "src/js/lib/cachePolicy.js",
+      "sha256": "dde98c6f9b8ab0e65c24728d2ff3399a5efb87f41fc8c50e837507bca8133dc9"
+    },
+    {
+      "path": "src/js/lib/catalog.js",
+      "sha256": "314aa84e65879ce272aa2d382110baf22448164168afcb4f7e574707b8d9cd8b"
+    },
+    {
+      "path": "src/js/lib/cloudBackup.js",
+      "sha256": "7fd35c8bf0d9769c70cfbe3c07f104ea24716c88f07c8655b278d2ab1e1a8ed7"
+    },
+    {
+      "path": "src/js/lib/cloudCoordinator.js",
+      "sha256": "b80b5b9dc83b56a2c76936b98ae27b2b2473313f78ec0fb5880094a61b81f0b7"
+    },
+    {
+      "path": "src/js/lib/cloudCopy.js",
+      "sha256": "5adc6e8ac4b8c3a69b8a0069be140681762b2fd966948a90d0feb43c2dbbf3ac"
+    },
+    {
+      "path": "src/js/lib/cloudHostTransport.js",
+      "sha256": "81e8bcda2541e0fe6e52eaf2bade118e516362f25e34f0b8b6a3042c493ebc62"
+    },
+    {
+      "path": "src/js/lib/cloudProtocol.js",
+      "sha256": "e19e8a40d11b7e1b3135ac2d06ec3bf52f5c0cb32abdaaf1f24645c84d8f77d0"
+    },
+    {
+      "path": "src/js/lib/cloudTransports.js",
+      "sha256": "48632ededab51bb4afb483e0db483b8a35562f77493be73ad41e8b12c4744820"
+    },
+    {
+      "path": "src/js/lib/completeBackup.js",
+      "sha256": "2c11e8ba713d7c5ec708d779b300a359800eb58a05a36eb5dd013b1b73583a88"
+    },
+    {
+      "path": "src/js/lib/completeRestore.js",
+      "sha256": "8631e6773b821287838515c91b271144d6d1445ceee8cfc0d1b12351f19ea89b"
+    },
+    {
+      "path": "src/js/lib/coverHost.js",
+      "sha256": "a4061a0c4da9f85287b5e8638b091cc5f66ebeccb574d24b9a51f4186035f5ad"
+    },
+    {
+      "path": "src/js/lib/curated.js",
+      "sha256": "272f369a613eb9f0383c39734d2017efa899faf3e7e99a010ef220962fdfcd22"
+    },
+    {
+      "path": "src/js/lib/dialogShell.js",
+      "sha256": "96b3443348ceb41860f38996980456e743f63ccab209353bb0f1f340271640e1"
+    },
+    {
+      "path": "src/js/lib/download.js",
+      "sha256": "1fc9e70817efea8bfed52b804908764d0eb5edb8bfffcfaf6c0999a031570904"
+    },
+    {
+      "path": "src/js/lib/homeUpdatesContent.js",
+      "sha256": "953e76b73035f807b88982b19fb082a5a9262f79fda49bb8e5ac03341e375fe8"
+    },
+    {
+      "path": "src/js/lib/homeUpdatesSeen.js",
+      "sha256": "2edd9f27af5a961bac5057ac1d6f66bc607ab8c480b63f01c8ce5c3be5397764"
+    },
+    {
+      "path": "src/js/lib/importDraft.js",
+      "sha256": "ab4fe09823e0774e4fe9fcce81445f2d8e8ba7fec381135bfb3f3fc0c54072d2"
+    },
+    {
+      "path": "src/js/lib/install.js",
+      "sha256": "614ffa94de9f89b28a93d4876df7b772f137796780267a3ddafdcb77ee95310a"
+    },
+    {
+      "path": "src/js/lib/issueFocus.js",
+      "sha256": "07b2c76a842feeb5440aec4c24c684dfa9e50950f1712de42ec0a5c53cce238a"
+    },
+    {
+      "path": "src/js/lib/issuePageUrl.js",
+      "sha256": "e6e5fcf1cea10e5d5efc06008c4858ab72e62791655a6989e7e436e05035e46f"
+    },
+    {
+      "path": "src/js/lib/library.js",
+      "sha256": "60c8941840fcb6d70a76b00522c54bddb0a1d0391bb60210a67f26698202552c"
+    },
+    {
+      "path": "src/js/lib/librarySummary.js",
+      "sha256": "4cb0d84f358831225c22283acd3ccad0236f0993ed0911489ebedf48d1ac19d9"
+    },
+    {
+      "path": "src/js/lib/limiter.js",
+      "sha256": "8c545f7a9862acf880908dbee69d8a10150607a22543985196ef2965cd1fc3dd"
+    },
+    {
+      "path": "src/js/lib/listHistory.js",
+      "sha256": "e402eb975fadba526c57027288753fe1650a1e24e508a299ca4b61e7e6a4c3bb"
+    },
+    {
+      "path": "src/js/lib/listRecommendations.js",
+      "sha256": "afec3be3852d869a60593b2d908a629243ec0a275b19d224b0eaa573c8ac926b"
+    },
+    {
+      "path": "src/js/lib/localServer.js",
+      "sha256": "83670daa60ec5f92a795419d88094ac0526667fda6702c2efaf42514ef5f1071"
+    },
+    {
+      "path": "src/js/lib/markdown.js",
+      "sha256": "a3db90a9f33b90430af510bf4e73a87b762f22dc6f9201930458e1d9b6062ee9"
+    },
+    {
+      "path": "src/js/lib/mcuPrep.js",
+      "sha256": "fa2a2dcb267b5485905e096fbb17a6085cd0ee074498d5901cda147df35f664c"
+    },
+    {
+      "path": "src/js/lib/milestones.js",
+      "sha256": "d175af1c56ecc52e3c8d2a2979d9c790499fe68874e86ef7eac572be29b4df64"
+    },
+    {
+      "path": "src/js/lib/model.js",
+      "sha256": "f3fb3ebceb775223a4e85ca3ee146a9182cb3eacac4768cd1af25f7ee791f192"
+    },
+    {
+      "path": "src/js/lib/nameIndex.js",
+      "sha256": "ffda6ba64c6e5bc1c3936e1ebba04b1afcc054552b268762ae26edbc6a6fae21"
+    },
+    {
+      "path": "src/js/lib/noticeDismissal.js",
+      "sha256": "eddccc1aa54f37d69e9134dc22ef97886df5da86ed07b68f53406fff570d253c"
+    },
+    {
+      "path": "src/js/lib/offline.js",
+      "sha256": "a93fcaea268163d08ee948d77b5b48a93d974aa47fd18d8500a2d118af90dce1"
+    },
+    {
+      "path": "src/js/lib/offlineContent.js",
+      "sha256": "76c12c44839de0570258cecbe61722740c74985df0c1d7f86a81249d9ae92e2a"
+    },
+    {
+      "path": "src/js/lib/progressGlance.js",
+      "sha256": "c560850ab4dca404aaacc9cbf24f89e9480a8be8b49a6530e11a3db7d6016843"
+    },
+    {
+      "path": "src/js/lib/ratedComics.js",
+      "sha256": "ef0ee190ccd24a5064922f963ac2e4a058cb2a472024ce790f273de26b2bbd75"
+    },
+    {
+      "path": "src/js/lib/readerDestination.js",
+      "sha256": "66b07ed1c31aab20099212875eb1d3634ebb6f18c4189660813df4caed02b3be"
+    },
+    {
+      "path": "src/js/lib/readingFilters.js",
+      "sha256": "64ac1764ea977776dbf29a7a5a71b8356aae5ea83af5a807e1c1c1935c2d4f73"
+    },
+    {
+      "path": "src/js/lib/reorientation.js",
+      "sha256": "c1bab11310c6ec7fbd360d1df7a6ca208acc432ea24207a14416217d43b27bf3"
+    },
+    {
+      "path": "src/js/lib/route.js",
+      "sha256": "ec8170dc64f042545d73071b40447a4f297a0bc82c73c8534c819843611e6f67"
+    },
+    {
+      "path": "src/js/lib/saveEducation.js",
+      "sha256": "14a64ea62bd1bc290cec2118684d7bd08f296d4323e61928d7614d1c0a3b9a63"
+    },
+    {
+      "path": "src/js/lib/shortcuts.js",
+      "sha256": "347f284b6c539b024a662f3ef7306b8c86252086d2976f0a1ff3252c725422b1"
+    },
+    {
+      "path": "src/js/lib/sort.js",
+      "sha256": "8e967f68d264f73e54e48ff7c9e75026185e254d1c7efb001b4e54be79e7cdaf"
+    },
+    {
+      "path": "src/js/lib/synopsisDisclosure.js",
+      "sha256": "e2d3aa3636562da01cfa475131cd2d3eb8b90919b435faba8e00579f102bbb51"
+    },
+    {
+      "path": "src/js/lib/temporaryReaderLink.js",
+      "sha256": "a4f97bec7a0d210d082e6cb85120c4e1f3a0598f84b84b7fadb6ab4f73e1b1e2"
+    },
+    {
+      "path": "src/js/lib/theme.js",
+      "sha256": "fdae360cdf2241911ad41fdd4c28e127d348f59833b365946e4928d9acce77e4"
+    },
+    {
+      "path": "src/js/lib/tooltips.js",
+      "sha256": "d66d81de33f4649f8adaff7588d2692b1491ddf2b4564cdd849cc2f22e2db66f"
+    },
+    {
+      "path": "src/js/lib/uiIcon.js",
+      "sha256": "15d881f2319aa51324470f4c0528318c3bbeb7c84cf4dc6838d7b172d3301163"
+    },
+    {
+      "path": "src/js/lib/version.js",
+      "sha256": "018ea80fc3159589d7a14fed53abf9d2005a293ae4c4e0bac544e0734905b5a1"
+    },
+    {
+      "path": "src/js/lib/wiki.js",
+      "sha256": "a7600d78acd5cf3a8bba6f958e913394555028248b103702332757069d545a3c"
+    },
+    {
+      "path": "src/js/lib/wikitext.js",
+      "sha256": "18b6633ab83e2e1b3ef593693d6631fc23bca4fcf4341728a957526c5f33620e"
+    },
+    {
+      "path": "src/js/main.js",
+      "sha256": "ba7d740789dd183c9c9728c3960188bde74003edefa660f8f8a145185ff318ea"
+    },
+    {
+      "path": "src/js/reader.js",
+      "sha256": "917a129849b37290e77ca529a3d85a21c309a267c9c0662a4259d42d13470b60"
+    },
+    {
+      "path": "src/js/storage.js",
+      "sha256": "e686c325f63c07b1b3a45bd0a0a19c7645629447982988eb2335c98c04cea764"
+    },
+    {
+      "path": "src/js/synopsis.js",
+      "sha256": "947b3baf03fac1e0701ec884996d5ccaca68b5f201c9f4185852e3d3df532f40"
+    },
+    {
+      "path": "src/js/views/add.js",
+      "sha256": "68536b964a1f5a806bb7eeb06146f6bfc4c18b137ba52f777fce89bed50b268b"
+    },
+    {
+      "path": "src/js/views/bulk-read.js",
+      "sha256": "db2a091fda79663d302d505d74b7d53e1f58d41ba74455c579226c406461802c"
+    },
+    {
+      "path": "src/js/views/catalog.js",
+      "sha256": "b704843fa8a8e9b8d60352c5a3aa9eebdc9e85965a6ae9c172a36077a251c5a0"
+    },
+    {
+      "path": "src/js/views/cloud.js",
+      "sha256": "227fea7d72d26f4735c6a79a745945961cd580e695208650cad8b1c9688643d3"
+    },
+    {
+      "path": "src/js/views/completion.js",
+      "sha256": "96ea9aa1c2ceca799add60fd2f09521a63171d42a937715a6634e9acbb82a0d6"
+    },
+    {
+      "path": "src/js/views/data.js",
+      "sha256": "a59ab7e03682c0fb6a31fc85ea30c20e4ca4ca4c8c24cbed046df150beb5ff06"
+    },
+    {
+      "path": "src/js/views/home-updates.js",
+      "sha256": "2d5b808023ae822aa9bce016da37ab2327c8f55d15c930a30a322cd4b46b32be"
+    },
+    {
+      "path": "src/js/views/home.js",
+      "sha256": "c8897adf69c2893d8edd3d07c1745fcb4a9cd48dab659aec7eda718940914c1e"
+    },
+    {
+      "path": "src/js/views/issue-rating.js",
+      "sha256": "b2bcffe2233c349ab2c8e9bd6a7bd074540e64677d49a85791bcd6d0ab629c6b"
+    },
+    {
+      "path": "src/js/views/issue.js",
+      "sha256": "10a6a332fab4870726b836548f7f811ac27cd6608183317ab58b5bddcb5aa707"
+    },
+    {
+      "path": "src/js/views/library.js",
+      "sha256": "28a622449edd5b7983de7f7747d814eae7b06e3c7ab075683eb0ace0e5a58644"
+    },
+    {
+      "path": "src/js/views/markdown-export.js",
+      "sha256": "0bc38b96767da9da866f9712177d8a2d8ef0e0ae94cf482381789d24ede82ca4"
+    },
+    {
+      "path": "src/js/views/mcu-prep.js",
+      "sha256": "e99fcc2f187ca41b93b73f8eeee54178f5c0bca0dfa8567f242a3bfbbbf97224"
+    },
+    {
+      "path": "src/js/views/preview.js",
+      "sha256": "92f307c197be667e2353d7191158e405e95d1b40a04cc0bd4e159f9aa1f7e5c0"
+    },
+    {
+      "path": "src/js/views/progress.js",
+      "sha256": "8c754d7610a9cdd683565a44360415fcde8fa99cbd269d6d249abf561fc9a1bc"
+    },
+    {
+      "path": "src/js/views/rated-comics.js",
+      "sha256": "140189b50250d72d320b188ffd6decb3b191c77a5da022a8b9d47532ab90623a"
+    },
+    {
+      "path": "src/js/views/reader-link.js",
+      "sha256": "9ce00056d183b817ba5d754099c7c21e0f2f1e13008f1a90fd817795e97daebe"
+    },
+    {
+      "path": "src/js/views/reading.js",
+      "sha256": "0fc89928686a4bc7293f1fc89c00498d9769b0c57d9c5e1cc44ead7e03e0ac32"
+    },
+    {
+      "path": "src/js/views/recovery.js",
+      "sha256": "33ac01af1de1daf4bffa715fd0369ff73066261d46efd7eaf15a045190d8b5df"
+    },
+    {
+      "path": "src/js/views/shared/catalog-presentation.js",
+      "sha256": "e27b0c2c189bc8bbe4c2706aa66093c918241413fa134dd2f6a50b7f2616dfa0"
+    },
+    {
+      "path": "src/js/views/shared/collection-navigation.js",
+      "sha256": "3ffa9d84b4d818bf528dc4a8f0e71418c2c47225c580acd5c232e896723d56aa"
+    },
+    {
+      "path": "src/js/views/shared/feedback.js",
+      "sha256": "d35fef0e001cdcea79df506f316b6d2bdac81a644d6ba5e2336632aa9b12164b"
+    },
+    {
+      "path": "src/js/views/shared/field-validation.js",
+      "sha256": "665fb3a673b0e36efca1a64a9a1417afad7750ae1cdac2d58ed55d86871b33a4"
+    },
+    {
+      "path": "src/js/views/shared/saved-lists.js",
+      "sha256": "683379c4166b52a24a676a082a4624283ed5e1ca36c0e9d364ec91b54ed2a9a9"
+    },
+    {
+      "path": "src/manifest.webmanifest",
+      "sha256": "1bafe2a95842e1d72947037e4e464e85fdd8d6c3b20ec51c3cd5e41b2f6768a0"
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "4625be536e544b9243127f5c9f12b05e4edab0cd28f339318b807cf73f653370"
+    }
+  ],
+  "cloud": {
+    "configuration": {
+      "format": "recap-page-cloud-client",
+      "version": 1,
+      "providers": {
+        "onedrive": {
+          "clientId": "screenshot-fixture.recap-page",
+          "authority": "consumers"
+        }
+      }
+    },
+    "account": null,
+    "state": "not-connected",
+    "simulated": true
+  },
+  "network": "All page requests fulfilled locally or refused; no listening server.",
+  "serviceWorker": "Unavailable in this capture; the app reports its normal unsupported-worker outcome.",
+  "audits": [
+    {
+      "file": "01-home-discovery.png",
+      "audit": {
+        "view": "view-home",
+        "required": [
+          {
+            "value": "RECAP PAGE!",
+            "present": true
+          },
+          {
+            "value": "Browse. Choose. Read.",
+            "present": true
+          },
+          {
+            "value": "Start with Modern Timeline",
+            "present": true
+          },
+          {
+            "value": "Young readers",
+            "present": true
+          }
+        ],
+        "privateText": false,
+        "falsePrivacy": false,
+        "coversOff": true,
+        "safeImages": true,
+        "horizontalOverflow": false,
+        "headingVisible": true,
+        "viewIntersectsViewport": true,
+        "expectedView": "view-home"
+      }
+    },
+    {
+      "file": "02-browse-reading-lists.png",
+      "audit": {
+        "view": "view-lines",
+        "required": [
+          {
+            "value": "Storylines",
+            "present": true
+          },
+          {
+            "value": "Beginner-friendly",
+            "present": true
+          },
+          {
+            "value": "1980s",
+            "present": true
+          },
+          {
+            "value": "Comic Book Reading Orders",
+            "present": true
+          }
+        ],
+        "privateText": false,
+        "falsePrivacy": false,
+        "coversOff": true,
+        "safeImages": true,
+        "horizontalOverflow": false,
+        "headingVisible": true,
+        "viewIntersectsViewport": true,
+        "expectedView": "view-lines"
+      }
+    },
+    {
+      "file": "03-reading-paths.png",
+      "audit": {
+        "view": "view-catalog",
+        "required": [
+          {
+            "value": "Modern Timeline",
+            "present": true
+          },
+          {
+            "value": "Follow a path",
+            "present": true
+          },
+          {
+            "value": "Stop 1 of 10",
+            "present": true
+          },
+          {
+            "value": "House of M",
+            "present": true
+          }
+        ],
+        "privateText": false,
+        "falsePrivacy": false,
+        "coversOff": true,
+        "safeImages": true,
+        "horizontalOverflow": false,
+        "headingVisible": true,
+        "viewIntersectsViewport": true,
+        "expectedView": "view-catalog"
+      }
+    },
+    {
+      "file": "04-reading-progress.png",
+      "audit": {
+        "view": "view-read",
+        "required": [
+          {
+            "value": "Fictional: Lantern Harbor",
+            "present": true
+          },
+          {
+            "value": "3 of 8 read",
+            "present": true
+          }
+        ],
+        "privateText": false,
+        "falsePrivacy": false,
+        "coversOff": true,
+        "safeImages": true,
+        "horizontalOverflow": false,
+        "headingVisible": true,
+        "viewIntersectsViewport": true,
+        "expectedView": "view-read"
+      }
+    },
+    {
+      "file": "05-about-onedrive.png",
+      "audit": {
+        "view": "view-about",
+        "required": [
+          {
+            "value": "Your data",
+            "present": true
+          },
+          {
+            "value": "only to your own OneDrive",
+            "present": true
+          },
+          {
+            "value": "4.3.0",
+            "present": true
+          }
+        ],
+        "privateText": false,
+        "falsePrivacy": false,
+        "coversOff": true,
+        "safeImages": true,
+        "horizontalOverflow": false,
+        "headingVisible": true,
+        "viewIntersectsViewport": true,
+        "expectedView": "view-about"
+      }
+    },
+    {
+      "file": "06-backup-settings.png",
+      "audit": {
+        "view": "view-data",
+        "required": [
+          {
+            "value": "Cloud backup",
+            "present": true
+          },
+          {
+            "value": "Sign in with Microsoft",
+            "present": true
+          },
+          {
+            "value": "OneDrive",
+            "present": true
+          }
+        ],
+        "privateText": false,
+        "falsePrivacy": false,
+        "coversOff": true,
+        "safeImages": true,
+        "horizontalOverflow": false,
+        "headingVisible": true,
+        "viewIntersectsViewport": true,
+        "expectedView": "view-data"
+      }
+    }
+  ]
+}

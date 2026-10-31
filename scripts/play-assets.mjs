@@ -4,21 +4,35 @@ import { drawIcon, encodePng, crc32 } from './build-icons.mjs';
 import { createEmptyState, createList, normalizeIssue, markRead } from '../src/js/lib/model.js';
 import { HOST, DEFAULT_PORT } from '../server.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
+import { CLOUD_FIXTURE, cloudFixtureResponse } from './listing-fixtures.mjs';
 
 export const ORIGIN = `http://${HOST}:${DEFAULT_PORT}`;
 export const FIXTURE_API = `${ORIGIN}/__play_preview_api__`;
 export const VIEWPORT = Object.freeze({ width: 360, height: 640, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
 export const SCREENS = Object.freeze([
+  { file: 'dark-01-home.png', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty', text: ['Modern Timeline', 'Storylines'] },
+  { file: 'dark-02-storylines.png', route: '#/lines', view: 'view-lines', theme: 'dark', text: ['Storylines', 'Beginner-friendly'] },
+  { file: 'dark-03-modern-timeline.png', route: '#/catalog?path=modern-avengers', view: 'view-catalog', theme: 'dark', text: ['Modern Timeline', 'House of M'] },
+  { file: 'dark-04-reading-progress.png', route: '#/read/play-lantern', view: 'view-read', theme: 'dark', scroll: '#hero', heading: '#hero-title', text: ['Fictional: Lantern Harbor', '3 of 8 read'] },
   { file: '01-library-preview.png', route: '#/library', view: 'view-library', text: ['Library', 'Fictional: Lantern Harbor', 'Fictional: Paper Moons'] },
   { file: '02-reading-preview.png', route: '#/read/play-lantern', view: 'view-read', scroll: '#hero', heading: '#hero-title', text: ['Fictional: Lantern Harbor', '3 of 8 read'] },
+  { file: '03-about-onedrive.png', route: '#/about', view: 'view-about', scroll: '#view-about h3:nth-of-type(5)', heading: 'h3:nth-of-type(5)', text: ['Your data', 'only to your own OneDrive'] },
+  { file: '04-backup-settings.png', route: '#/data', view: 'view-data', scroll: '#cloud-backup', heading: '#cloud-backup h3', text: ['Cloud backup', 'Sign in with Microsoft', 'OneDrive'] },
 ]);
 export const ASSETS = Object.freeze([
   { file: 'icon-preview.png', width: 512, height: 512, channels: 4, alt: 'Original purple page mark on a square background.' },
   { file: 'feature-preview.png', width: 1024, height: 500, channels: 3, alt: 'An original abstract reading checklist with completed rows and a progress bar in purple and lilac.' },
   ...SCREENS.map(({ file, view }) => ({
     file, width: 1080, height: 1920, channels: 3,
-    alt: view === 'view-library' ? 'Android library layout with fictional demonstration lists.'
-      : 'Android next-issue layout with a fictional issue and original cover-off placeholder.',
+    alt: {
+      'view-home': 'Dark Android Home with discovery categories and Modern Timeline.',
+      'view-lines': 'Dark Android Storylines with era and beginner-friendly filters.',
+      'view-catalog': 'Dark Android Modern Timeline with the Modern Avengers reading path.',
+      'view-library': 'Android library layout with fictional demonstration lists.',
+      'view-read': 'Android next-issue layout with a fictional issue and original cover-off placeholder.',
+      'view-about': 'Android privacy text explaining optional backup only to your own OneDrive.',
+      'view-data': 'Android cloud backup settings before sign-in, with optional OneDrive explained.',
+    }[view],
   })),
 ]);
 const PURPLE = [109, 40, 217];
@@ -102,25 +116,32 @@ export function demonstrationState() {
   return state;
 }
 
+export function screenState(screen) {
+  return screen.state === 'empty' ? createEmptyState() : demonstrationState();
+}
+
 export function shellPath(path) {
   return path === 'index.html' || path === 'styles.css' || path === 'manifest.webmanifest'
     || /^js\/[a-zA-Z0-9_./-]+\.js$/.test(path)
-    || /^android\/(?:app|bridge|mobile-ui)\.js$/.test(path) || path === 'android/mobile.css'
-    || /^icons\/icon(?:-(?:192|512)\.png|\.svg)$/.test(path) || path === 'icons/ui.svg';
+    || /^android\/(?:app|bridge|mobile-ui|cloud|cloudPort)\.js$/.test(path) || path === 'android/mobile.css'
+    || /^icons\/icon(?:-(?:192|512)\.png|\.svg)$/.test(path) || path === 'icons/ui.svg'
+    || path === 'brands/ms-symbollockup_mssymbol_19.svg' || path === 'data/catalog.json';
 }
 
 export function previewResponse(url, method, assets) {
   const target = new URL(url);
-  if (method !== 'GET' || target.origin !== ORIGIN || target.username || target.password || target.search) {
+  if (target.origin !== ORIGIN || target.username || target.password || target.search) {
     throw new Error('Blocked request outside the Play preview allowlist');
   }
+  const cloud = cloudFixtureResponse(url, method);
+  if (cloud) return cloud;
+  if (method !== 'GET') throw new Error('Blocked request outside the Play preview allowlist');
   const path = target.pathname === '/' ? 'index.html' : target.pathname.slice(1);
   const json = (value) => ({ status: 200, contentType: 'application/json', body: JSON.stringify(value) });
   if (target.href === `${FIXTURE_API}/health`) return { ...json({ issue_count: 12 }), fixture: 'metadata-health' };
   if (target.pathname === LOCAL_SERVER_HEALTH_PATH) {
     return { status: 204, headers: { [LOCAL_SERVER_HEADER_NAME]: LOCAL_SERVER_HEADER_VALUE }, fixture: 'local-health' };
   }
-  if (path === 'data/catalog.json') return { ...json({ lists: [], paths: [] }), fixture: 'empty-catalog' };
   if (!shellPath(path) || !assets.has(path)) throw new Error(`Blocked unapproved Play preview resource: ${path}`);
   const contentType = path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css'
     : path.endsWith('.svg') ? 'image/svg+xml' : path.endsWith('.png') ? 'image/png'
@@ -230,9 +251,10 @@ export function previewManifest({ source, androidManifestSha256, rendererVersion
       screens: SCREENS.map(({ file, route, scroll }) => ({ file, route, scrollTarget: scroll ?? 'top' })),
     },
     data: {
-      method: 'Wholly fictional negative-ID issue records, synthetic progress, empty catalog, covers off, no notes.',
+      method: 'Wholly fictional negative-ID saved issues and progress; bundled public catalog for discovery, covers off, no notes.',
       sha256: sha256(JSON.stringify(demonstrationState())),
     },
+    cloud: { configuration: CLOUD_FIXTURE, state: 'not-connected', account: null, automaticBackup: false, simulated: true },
     network: { method: 'Every page request fulfilled locally from an allowlist or aborted; no request continued to the network.', fixtureResponses },
     approvals: {
       finalScreenshots: false, rights: false, privacy: false, releaseArtifact: false, owner: false,

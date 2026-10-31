@@ -12,6 +12,8 @@ export const SCREENSHOTS = Object.freeze([
   '02-browse-reading-lists.png',
   '03-reading-paths.png',
   '04-reading-progress.png',
+  '05-about-onedrive.png',
+  '06-backup-settings.png',
 ]);
 export const STORE_TILE = 'store-tile-300.png';
 export const PUBLIC_URLS = Object.freeze([

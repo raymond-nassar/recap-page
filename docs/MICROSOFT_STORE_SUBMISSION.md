@@ -314,33 +314,103 @@ copied into the bracketed line above.
 
 ## Listing assets
 
-The four screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
-profile. Cover art was off, and the app contains no update controls. The first two views use empty
-state. The remaining views use one synthetic House of M import with the first five of 20 issues
-marked read at fixed January 2026 timestamps and no notes. No private browser profile, progress,
-path, email, or account data entered the captures.
+**Prepared for the next listing update, not the live listing.** Part of #1015.
+The owner chose on 2026-10-31: "Actually, just save the screenshots for later use. I don't want to
+process certification once again." The live Microsoft Store and Google Play listings still show
+the older screenshots. No upload, submission or certification step is part of this work.
+#1015 stays open until both stores are updated, and #810 stays open.
 
-| File | Caption for Partner Center |
+The six screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
+profile and a fresh disposable context for each image. Cover art was off. Home, Storylines and
+About use empty saved state. The other views use two explicitly fictional lists, 12 made-up
+negative-ID issues and three read markers at fixed January 2026 timestamps, with no notes or reader
+links. Discovery shows the bundled public catalog, not private imports. No private browser profile,
+progress, path, email, or account data entered the captures.
+
+Run `npm run store:assets` with installed Edge and an external `puppeteer-core` installation
+(`MRT_PUPPETEER` can name its entry file). It writes `docs\store-assets` and a
+`capture-audit.json` with source identity, shell hashes, renderer and per-image audits.
+`npm run play:assets` writes a fresh ignored `dist\play-assets-preview-*` packet. The saved
+phone packet is in `docs\play-assets`, with its manifest. Its icon and feature artwork are
+unchanged outputs of the existing tooling, retained to keep that packet complete.
+
+Both commands keep `http://127.0.0.1:8787/` without opening a listening socket. Page requests
+are fulfilled locally from an allowlist or refused; no existing server or real service is used.
+Desktop service workers are unavailable in the capture, exercising the app's normal unsupported
+path rather than letting a worker fetch bypass page interception. Offline launch is not verified.
+The tooling-only cloud configuration has client ID `screenshot-fixture.recap-page` and
+personal-account authority `consumers`. It is not a registered Microsoft application or a
+credential, and never ships in the app. The fixture answers cloud **status only**, enabling the
+OneDrive release's text while reporting **not connected**, with no account and automatic backup
+off. Desktop uses the HTTP seam; Android uses its real message-port transport with a simulated
+MainActivity answer. Sign-in, account reads and uploads are forbidden. About and Backup & settings
+must expose every cloud-on text variant and hide every cloud-off variant before capture.
+
+About is naturally scrolled toward Your data and the version. Backup & settings is scrolled to
+Cloud backup with About cloud backup expanded. No production copy or layout is rewritten for
+the images. The commands audit cover-off state, image sources, private text, old privacy promises,
+viewport overflow and visible headings. Play also checks unchanged synthetic saved data, the
+generated Android shell and settled visible bottom navigation.
+
+### Desktop captions for the next listing update
+
+Files below are in `docs\store-assets`. Google Play's Chromebook or desktop set is planned to reuse
+the first four images, matching its existing four-image desktop set. The final two are Windows-only:
+their storage and disconnect wording must not be presented as Android or Chromebook behavior.
+Play's phone set below shows the Android OneDrive wording instead.
+
+| File | Caption for the next listing update |
 |---|---|
 | `01-home-discovery.png` | Home offers a first step on Modern Timeline and category cards for Storylines, Character spotlights, Young readers, and more. |
 | `02-browse-reading-lists.png` | Storylines, reached from Home's category cards, lists story-arc Reading Lists with filters, era groups, and source credits. |
-| `03-reading-paths.png` | Modern Timeline follows a Reading Path stop by stop and marks where you are. |
-| `04-reading-progress.png` | A demonstration Reading List keeps the next issue, issue order, and local completion progress together. |
+| `03-reading-paths.png` | Modern Timeline follows the Modern Avengers Reading Path stop by stop and marks the first stop. |
+| `04-reading-progress.png` | A fictional Reading List keeps the next issue, issue order, and completion progress together, with three of eight read. |
+| `05-about-onedrive.png` | About explains that saved lists, progress and notes go only to your own OneDrive if you choose cloud backup. |
+| `06-backup-settings.png` | Backup & settings offers optional OneDrive sign-in and explains backup retention and privacy before an account is connected. |
 | `store-tile-300.png` | Exact 300 x 300 Store tile derived from the existing purple panels app icon. |
 
 Each PNG is below 50 MB and contains only image data chunks. Keep critical content in the top
 two-thirds because Store overlays may cover the bottom third. Package icons are separate and remain
 unchanged.
 
-Reviewed asset measurements:
+Prepared desktop asset measurements:
 
 | File | Dimensions | Bytes | SHA-256 |
 |---|---:|---:|---|
-| `01-home-discovery.png` | 1920 x 1080 | 166307 | `CC506A5D60FF519011015664341044C95A1925ECF0C54420C2AF9DED51B8BA37` |
-| `02-browse-reading-lists.png` | 1920 x 1080 | 159962 | `87C56A2D5FF958D70467264748B51FFE8D71A96915D014FC23E808651F64E1A1` |
-| `03-reading-paths.png` | 1920 x 1080 | 103175 | `1373B4E38405468AD7568BA202D46EEDE591608D5F9FA4CF53A9A82566024AD5` |
-| `04-reading-progress.png` | 1920 x 1080 | 250981 | `920A38B28B18C6D29C6906461B0B4AAE2AC652FBFC225DC0EDBF666B6F8D15FC` |
+| `01-home-discovery.png` | 1920 x 1080 | 187392 | `4A00804AE476B5AE7C9CC6BAA9F72BF9D521B122BF796D34D6D9247CFD74705E` |
+| `02-browse-reading-lists.png` | 1920 x 1080 | 161269 | `628016D371DE680FA8EF6AF40C43D20C434225EEE9D5330BB29B95ADE75A147D` |
+| `03-reading-paths.png` | 1920 x 1080 | 102680 | `C4CC3889E410BB3BDDF5E0CDDF13234F7648783E163A6DA00F93001ADBD40BCB` |
+| `04-reading-progress.png` | 1920 x 1080 | 183940 | `B451DA1B9C2EAD494DDC8696472F63EE21BD36C64736C7BC3BB83241273E9B5F` |
+| `05-about-onedrive.png` | 1920 x 1080 | 124238 | `DDDEB063D9042DF87FE01B58EA63CF8B5ECC2DC1D910298C381A281C14C2D85F` |
+| `06-backup-settings.png` | 1920 x 1080 | 95261 | `B58E4B6214B588003AD735D06E84764AFE687C341A259C0DD85F7D334AC5EBD1` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
+
+### Google Play phone captions and measurements
+
+All eight files below are in `docs\play-assets`, at 1080 x 1920, 24-bit RGB PNG with no alpha.
+They use the generated Android entry and mobile stylesheet, rendered in desktop Edge at
+360 x 640 CSS pixels, touch/mobile mode and scale 3. They are not native-device captures or
+release acceptance. The four dark images are now reproducible, rather than an undocumented
+manual set. The light Library and reading images replace `android-library-preview` and
+`android-reading-preview`; About and Backup & settings complete the eight-image phone set.
+
+| File | Bytes | Caption for the next listing update |
+|---|---:|---|
+| `dark-01-home.png` | 176463 | Dark Home offers a first reading step and explains the December 7 change to Marvel Comics links. |
+| `dark-02-storylines.png` | 184842 | Dark Storylines offers search, beginner-friendly filters and reading lists grouped by era. |
+| `dark-03-modern-timeline.png` | 104470 | Dark Modern Timeline offers the Modern Avengers path and controls for choosing a stop. |
+| `dark-04-reading-progress.png` | 214679 | Dark reading view shows the next fictional issue, three of eight read, and a historical availability record. |
+| `01-library-preview.png` | 133329 | Library separates a fictional list in progress from one not yet started. |
+| `02-reading-preview.png` | 192502 | Light reading view keeps the next fictional issue and completion progress together with cover art off. |
+| `03-about-onedrive.png` | 259318 | About explains Android app storage and optional uploads only to your own OneDrive. |
+| `04-backup-settings.png` | 213205 | Cloud backup offers Microsoft sign-in and explains optional OneDrive backups before connecting an account. |
+
+Every phone image was inspected for private content and copy made untrue by OneDrive. The six
+replacement images contain no claim that progress or notes are never sent anywhere. The added
+About and settings images explicitly show optional OneDrive transfer and private Android storage.
+The same audit applies to the desktop images planned for Play. The obsolete About image is not
+in either saved packet. These are prepared assets, not approval to publish or a new certification
+request. No further owner decision is needed to save them; future listing use is separate work.
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
 300 x 300 tile is the only new Store logo. A Super hero image is optional promotional artwork with
