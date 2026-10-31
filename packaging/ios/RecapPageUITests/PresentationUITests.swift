@@ -1646,6 +1646,19 @@ final class PresentationUITests: XCTestCase {
                 accepted.append(try classifyBottomNavigationOcclusion(element, in: app, routeState: routeState))
             }
             XCTAssertFalse(accepted.contains(true), "\(name) must not be classified")
+            // Measured on the iOS 18 iPhone SE at fd75442b: the native tree exposes the label's text
+            // as part of a control, so the every-control-type exclusion rejects it before passivity
+            // runs and a passivity mutant cannot be observed there. Only the label-linked case may
+            // stop at that guard; the newest runtime still proves its passivity rejection.
+            let controlOwned = elements.allSatisfy { nativeControlOwnsText(label: $0.label, frame: $0.frame, in: app) }
+            if controlOwned {
+                XCTAssertEqual(mutant, .ignoresPassivity, "\(name) must reach its own guard, not the control exclusion")
+                XCTAssertEqual(label, "Occ label", "\(name) must reach its own guard, not the control exclusion")
+                outcomes.append(["name": name, "label": label, "mutant": "\(mutant)",
+                                 "nativeTexts": elements.count, "accepted": accepted,
+                                 "rejectedBy": "native-control"])
+                continue
+            }
             XCTExpectFailure("Ignoring the \(name) evidence loses its rejection", options: options) {
                 let mutated = elements.contains { element in
                     (try? self.classifyBottomNavigationOcclusion(
@@ -1654,7 +1667,8 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertFalse(mutated, "occlusion-mutant: \(name)")
             }
             outcomes.append(["name": name, "label": label, "mutant": "\(mutant)",
-                             "nativeTexts": elements.count, "accepted": accepted])
+                             "nativeTexts": elements.count, "accepted": accepted,
+                             "rejectedBy": "\(mutant)"])
         }
         let after = try freshPassiveState(of: app)
         let beforeProof = try XCTUnwrap(routeState["guard"] as? [String: Any])

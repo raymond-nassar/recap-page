@@ -57,7 +57,9 @@ position must be unchanged afterwards, and each classification or rejection reco
 navigation frame, hit targets and reachability arithmetic. Live negatives for an interactive
 owner, a label-linked owner, a fixed unreachable owner and a navigation finding run on the
 iPhones, each also seen accepted with its own check disabled; iPad has no bottom bar and skips
-them. The minimum-iPhone screenshot and Range samples in run 41138429203 established that its
+them. Where the native tree exposes the label-linked text as part of a control, as on the
+iOS 18 iPhone SE at fd75442b, the control exclusion rejects it first and only the newest runtime
+shows its passivity check disabled. The minimum-iPhone screenshot and Range samples in run 41138429203 established that its
 cropped Reading data heading was behind the bar, not visible text. Run 41163429277 confirmed the
 classification: crop `(29,766,332,10)` inside the live navigation frame `(0,753,390,91)`, with all
 three samples hitting Library navigation and none hitting the owner.
