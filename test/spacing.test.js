@@ -11,8 +11,10 @@ import {
 const css = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
 const mobile = readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
 const ios = readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8');
-const sheets = (styles = css, overlay = mobile, iosOverlay = ios) => [
+const launcher = readFileSync(new URL('../packaging/ios/web/launcher.css', import.meta.url), 'utf8');
+const sheets = (styles = css, overlay = mobile, iosOverlay = ios, launcherOverlay = launcher) => [
   [TOKEN_SHEETS[0], styles], [TOKEN_SHEETS[1], overlay], [TOKEN_SHEETS[2], iosOverlay],
+  [TOKEN_SHEETS[3], launcherOverlay],
 ];
 
 // What one rule appended to a stylesheet adds to that sheet's token findings.
@@ -185,6 +187,16 @@ test('stroke widths come only from stroke tokens, while a stroke may name its co
   const unworn = css.replace('border: var(--stroke-checkbox) solid var(--cb-line)', 'border: var(--stroke-2) solid var(--cb-line)');
   assert.notEqual(unworn, css, 'the --stroke-checkbox consumer is missing');
   assert.deepEqual(tokenUsageFindings(sheets(unworn)), ['--stroke-checkbox holds 1.5px for the read checkbox, but nothing uses it']);
+});
+
+test('iOS launcher hit areas use the shared target token', () => {
+  assert.deepEqual(tokenGrammarFindings(TOKEN_SHEETS[3], launcher), []);
+  assert.deepEqual(tokenUsageFindings(sheets()), []);
+  const rawTarget = tokenGrammarFindings(
+    TOKEN_SHEETS[3],
+    launcher.replaceAll(/var\(--target-touch(?:,\s*48px)?\)/g, '48px'),
+  );
+  assert.ok(rawTarget.some((finding) => finding.includes('carries raw target value 48px')));
 });
 
 test('a shadow is a whole elevation token or a ring drawn with stroke widths, and a text shadow is a token', () => {

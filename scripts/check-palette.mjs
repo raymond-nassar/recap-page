@@ -622,11 +622,35 @@ export function equalityFindings(inventory, css) {
   return findings;
 }
 
-export function sourceFindings(inventory, css) {
+export function paletteTokenFindings(path, source) {
+  const text = stripComments(source, '.css');
+  const findings = [];
+  for (const block of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const selector = block[1].replace(/\s+/g, ' ').trim();
+    for (const declaration of block[2].matchAll(/([\w-]+)\s*:\s*([^;{}]+);/g)) {
+      const property = declaration[1];
+      const value = declaration[2].trim();
+      const owner = `${path} ${selector} ${property}`;
+      if (property.startsWith('--') && /#[\da-f]{3,8}\b|\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\s*\(/i.test(value)) {
+        findings.push(`${owner} defines a colour outside a shared palette token`);
+      }
+      if (PAINT_PROPERTIES.test(property)) {
+        if (!/var\(\s*--[-\w]+/.test(value)) findings.push(`${owner} must use a shared palette token`);
+        if (/#(?:[\da-f]{3,8})\b|\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\s*\(/i.test(value)) {
+          findings.push(`${owner} contains a raw colour`);
+        }
+      }
+    }
+  }
+  return findings;
+}
+
+export function sourceFindings(inventory, css, launcherCss = '') {
   return [
     ...inventoryFindings(inventory),
     ...standaloneFindings(inventory.sources.get('src/open.css') ?? ''),
     ...equalityFindings(inventory, css),
+    ...paletteTokenFindings('packaging/ios/web/launcher.css', launcherCss).map((message) => ({ message })),
   ];
 }
 
@@ -793,7 +817,8 @@ export function unresolved(css) {
 function main() {
   const inventory = discoverPaintInventory();
   const css = inventory.sources.get('src/styles.css') ?? '';
-  const sourceFailures = sourceFindings(inventory, css);
+  const launcherCss = readFileSync(join(ROOT, 'packaging', 'ios', 'web', 'launcher.css'), 'utf8');
+  const sourceFailures = sourceFindings(inventory, css, launcherCss);
 
   if (process.argv.includes('--report')) {
     for (const [selector, themeName] of [[':root, :root[data-theme="dark"]', 'dark'], [':root[data-theme="light"]', 'light']]) {

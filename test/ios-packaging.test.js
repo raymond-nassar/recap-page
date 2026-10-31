@@ -10,9 +10,11 @@ import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
   prepareIos, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
+import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
 import { CSP } from '../server.mjs';
 import { rootTokens } from '../scripts/check-spacing.mjs';
+import { paletteTokenFindings } from '../scripts/check-palette.mjs';
 import { execFileSync } from 'node:child_process';
 import {
   assertIosAppendOnly, candidateIdentity, checkIosHistory, iosReservation, iosUploadRecord, reserveIosBuild,
@@ -23,6 +25,10 @@ import { artifactRecord, iosBuild } from '../scripts/lib/release-identity.mjs';
 const ROOT = new URL('../', import.meta.url);
 const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
 const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
+const terminationTests = read('packaging/ios/RecapPageTests/TerminationTests.swift');
+const presentationTests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+const launchTests = read('packaging/ios/RecapPageUITests/LaunchUITests.swift');
+const debugSupport = read('packaging/ios/RecapPage/DebugSupport.swift');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
@@ -377,6 +383,29 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   assert.equal(prepared.manifest.build.platform, 'ios');
 });
 
+test('the generated Read launcher stylesheet is linked, hashed and served by the iOS app', async () => {
+  const launcher = await readFile(join(output, 'open.html'), 'utf8');
+  const sharedLink = launcher.indexOf('<link rel="stylesheet" href="./open.css" />');
+  const iosLink = launcher.indexOf('<link rel="stylesheet" href="./ios/launcher.css" />');
+  assert.ok(sharedLink >= 0 && iosLink > sharedLink, 'the iOS launcher overlay follows open.css');
+  assert.equal(launcher.split('href="./ios/launcher.css"').length, 2, 'the overlay is linked once');
+
+  const stylesheetPath = 'ios/launcher.css';
+  const stylesheet = await readFile(join(output, stylesheetPath));
+  assert.deepEqual(stylesheet, await readFile(new URL('packaging/ios/web/launcher.css', ROOT)));
+  const entry = prepared.manifest.files.find(({ path }) => path === stylesheetPath);
+  assert.ok(entry, 'the manifest allowlists the linked launcher stylesheet');
+  assert.equal(entry.sha256, sha256(stylesheet), 'the manifest digest matches the generated stylesheet');
+  assert.equal(entry.source, 'packaging/ios/web/launcher.css');
+
+  assert.match(appSource('AppAssets'), /paths = Set\(manifest\.files\.map\(\\\.path\)\)/);
+  const responder = appSource('AssetResponder');
+  assert.match(responder, /assets\.paths\.contains\(path\)/);
+  assert.match(responder, /Data\(contentsOf: assets\.root\.appendingPathComponent\(path\)/);
+  assert.match(responder, /case "css": return "text\/css; charset=utf-8"/);
+  assert.match(appSource('AppSchemeHandler'), /responder\.reply\(to: request\.url, method: request\.httpMethod\)/);
+});
+
 test('the iOS page loads the phone layer and the iOS overlay after the shared styles, at the cover viewport', async () => {
   const page = await readFile(join(output, 'index.html'), 'utf8');
   assert.equal(page.split('viewport-fit=cover').length, 2);
@@ -389,7 +418,20 @@ test('the iOS page loads the phone layer and the iOS overlay after the shared st
   assert.doesNotMatch(desktop, /ios\/(?:ios\.css|app\.js)|viewport-fit/);
   const launcher = await readFile(join(output, 'open.html'), 'utf8');
   assert.equal(launcher.split('viewport-fit=cover').length, 2);
+  const sharedLauncherStyles = launcher.indexOf('href="./open.css"');
+  const iosLauncherStyles = launcher.indexOf('href="./ios/launcher.css"');
+  assert.ok(sharedLauncherStyles > 0 && sharedLauncherStyles < iosLauncherStyles,
+    'the iOS launcher overlay follows the shared launcher stylesheet');
+  assert.equal(launcher.split('<link rel="stylesheet" href="./ios/launcher.css" />').length, 2);
   assert.match(launcher, /<script type="module" src="\.\/open\.js"><\/script>/);
+  const launcherCss = read('packaging/ios/web/launcher.css');
+  assert.deepEqual(paletteTokenFindings('packaging/ios/web/launcher.css', launcherCss), []);
+  assert.match(launcherCss, /#fallback,\s*#return\s*\{[^}]*display:\s*flex;[^}]*width:\s*fit-content;[^}]*min-width:\s*var\(--target-touch,\s*48px\);[^}]*min-height:\s*var\(--target-touch,\s*48px\);[^}]*padding:\s*12px 8px;/s);
+  assert.equal(rootTokens(read('src/styles.css')).get('--target-touch'), '48px');
+  const iosCss = read('packaging/ios/web/ios.css');
+  assert.match(iosCss, /:root\s+\.skip-link\s*\{[^}]*display:\s*inline-flex;[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);/s);
+  assert.match(iosCss, /:root\s+\.skip-link\s*\{[^}]*position:\s*fixed;[^}]*left:\s*0;[^}]*top:\s*0;[^}]*opacity:\s*0;[^}]*pointer-events:\s*none;/s);
+  assert.match(iosCss, /\.skip-link:focus\s*\{[^}]*opacity:\s*1;[^}]*pointer-events:\s*auto;/s);
   const entry = await readFile(join(output, 'ios', 'app.js'), 'utf8');
   for (const match of entry.matchAll(/^import .* from '(\.\.\/[^']+)';$/gm)) {
     await assert.doesNotReject(readFile(join(output, 'ios', match[1])), `generated iOS import must resolve: ${match[1]}`);
@@ -421,8 +463,9 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(text, /no analytics or tracking/i);
   assert.match(text, /automatic service requests do not upload your saved lists, progress or notes/i);
   assert.match(text, /Backups of this device to iCloud or to a computer include this app's saved data/);
-  assert.match(text, /Deleting the app removes its private storage/);
-  assert.match(text, /keep a backup outside the app/);
+  assert.ok(text.includes('Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.'));
+  assert.ok(text.includes("An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files."));
+  assert.ok(text.includes('If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.'));
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
   const links = [...yourData(page).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
   assert.equal(links.length, 1, 'the added disclosure has one explicit policy destination');
@@ -433,6 +476,11 @@ test('iOS About states private app storage, device backups and what the requests
   const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0];
   assert.ok(details(desktop));
   assert.equal(details(page), details(desktop), 'the request-by-request enumeration is the shared one');
+});
+
+test('iOS missing-data dismissal failure uses the owner-approved wording', () => {
+  const entry = read('packaging/ios/web/app.js');
+  assert.match(entry, /dismissalFailure: 'The missing-data notice could not be dismissed\. Try again\.'/);
 });
 
 test('iOS preparation refuses a changed shared entry, overlapping output and a directory it does not own', async () => {
@@ -449,8 +497,10 @@ test('iOS preparation refuses a changed shared entry, overlapping output and a d
   }
   assert.throws(() => iosIndex(page.replace('<h3>Your data</h3>', '<h3>Data</h3>'), build), /Shared privacy introduction changed/);
   const launcher = await readFile(new URL('src/open.html', ROOT), 'utf8');
-  assert.doesNotThrow(() => iosLauncher(launcher));
+  assert.match(iosLauncher(launcher), /<link rel="stylesheet" href="\.\/open\.css" \/>\s*<link rel="stylesheet" href="\.\/ios\/launcher\.css" \/>/);
   assert.throws(() => iosLauncher(launcher.replace('./open.js', './launch.js')), /Shared launcher entry changed/);
+  assert.throws(() => iosLauncher(launcher.replace('</head>', '<link rel="stylesheet" href="./open.css" /></head>')), /Shared launcher entry changed/);
+  assert.throws(() => iosLauncher(launcher.replace('</head>', '<link rel="stylesheet" href="./ios/launcher.css" /></head>')), /Shared launcher entry changed/);
   await assert.rejects(prepareIos(path('src/generated')), /overlap/);
   await assert.rejects(prepareIos(path('packaging/ios/web/generated')), /overlap/);
   const unowned = join(scratch, 'unowned');
@@ -494,6 +544,15 @@ test('every permanent iOS name agrees with the identity file', async () => {
   const plist = read('packaging/ios/RecapPage-Info.plist');
   assert.equal(/<key>CFBundleDisplayName<\/key>\s*<string>([^<]+)<\/string>/.exec(plist)?.[1], identity.displayName);
   assert.doesNotMatch(plist, /UIRequiresFullScreen/);
+  assert.match(plist, /<key>UIApplicationSupportsMultipleScenes<\/key>\s*<false\/>/);
+  const ipadOrientations = /<key>UISupportedInterfaceOrientations~ipad<\/key>\s*<array>([\s\S]*?)<\/array>/.exec(plist)?.[1];
+  assert.ok(ipadOrientations, 'the iPad orientation list is explicit');
+  assert.deepEqual([...ipadOrientations.matchAll(/<string>([^<]+)<\/string>/g)].map((match) => match[1]), [
+    'UIInterfaceOrientationPortrait',
+    'UIInterfaceOrientationPortraitUpsideDown',
+    'UIInterfaceOrientationLandscapeLeft',
+    'UIInterfaceOrientationLandscapeRight',
+  ]);
   const assets = appSource('AppAssets');
   assert.equal(/static let permanentOrigin = "([^"]+)"/.exec(assets)?.[1], identity.origin);
 });
@@ -555,7 +614,7 @@ function debugLines(text) {
 // shipped binary is a use of non-public API, so the dynamic call and the private name are each held
 // to Debug wherever they appear.
 const DEBUG_ONLY = [
-  ['a Debug-only surface', /DebugSupport|RECAP_PROBE|RECAP_ISOLATE|XCTest/],
+  ['a Debug-only surface', /DebugSupport|RECAP_PROBE|RECAP_ISOLATE|RECAP_IOS_|XCTest/],
   ['a method called by name', /\bNSSelectorFromString\b|\bperform\s*\(/],
   ['a private selector name', /"_[A-Za-z_][\w:]*"/],
 ];
@@ -609,12 +668,567 @@ test('the Swift code reaches WebKit only through methods iOS 18 has', async () =
   assert.ok(objectiveC >= 2, `found ${objectiveC} Objective-C calls into the page, so this would barely check`);
 });
 
+test('the termination test fails visibly if the pinned WebKit hook is absent', () => {
+  assert.match(terminationTests, /guard webView\.responds\(to: kill\) else \{\s*XCTFail\("The pinned WebKit is missing _killWebContentProcess; termination behavior was not exercised\."\)\s*return\s*\}/);
+  assert.doesNotMatch(terminationTests, /XCTSkip(?:Unless|If)/);
+});
+
+test('T05 pins all six termination windows and the fifth journal-put recovery state', () => {
+  assert.match(launchTests, /for afterBackground in \[false, true\] \{\s*for delayMs in \[0, 250, 750\]/);
+  assert.match(launchTests, /observedHash == beforeHash \|\| observedHash == afterHash/);
+  assert.match(debugSupport, /this\.name === 'journal' && journalPuts === 5/);
+  assert.match(launchTests, /XCTAssertEqual\(beforeKill\["journalPhase"\] as\? String,\s*"applying"/);
+  assert.match(launchTests, /XCTAssertEqual\(\s*beforeKill\["journalWrites"\] as\? Int,\s*2/);
+  assert.match(launchTests, /XCTAssertEqual\(\s*recovered\["stateTableRow"\] as\? String,\s*"none or active \/ matching \/ anything else"/s);
+});
+
 test('the iOS overlay names only shared design tokens, never a raw color', () => {
   const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
   assert.doesNotMatch(css, /\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(\s*(?!var\()/i);
   const shared = rootTokens(read('src/styles.css'));
-  for (const [, name] of css.matchAll(/var\(\s*(--[-\w]+)/g)) assert.ok(shared.has(name), `${name} is a shared token`);
+  for (const [, name] of css.matchAll(/var\(\s*(--[-\w]+)/g)) {
+    if (name !== '--ios-text-scale') assert.ok(shared.has(name), `${name} is a shared token`);
+  }
+});
+
+test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit process restart', () => {
+  const sharedTypes = [...read('src/styles.css').matchAll(/^\s*(--t-[\w-]+):\s*([\d.]+)px;\s*$/gm)]
+    .map(([, token, size]) => [token, Number(size)]);
+  const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const scaledTypes = [...css.matchAll(/^\s*(--t-[\w-]+):\s*calc\(var\(--ios-text-scale\)\s*\*\s*([\d.]+)px\);\s*$/gm)]
+    .map(([, token, size]) => [token, Number(size)]);
+  assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
+  assert.match(css, /--ios-text-scale:\s*1\s*;/);
+  assert.doesNotMatch(css, /\b(?:font-size|zoom)\s*:/, 'root rem dimensions and page zoom stay unchanged');
+  const controller = appSource('WebViewController');
+  assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
+  assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
+  assert.match(controller, /root\.style\.setProperty\('--ios-text-scale'/);
+  assert.match(controller, /removeAllUserScripts\(\)[\s\S]*?installPageScripts\(in:\s*webView\.configuration\.userContentController\)/,
+    'the persistent app scripts are restored after the restart-only flag is removed');
+  assert.match(controller, /webView\.topAnchor\.constraint\(equalTo:\s*guide\.topAnchor\)/);
+  assert.match(controller, /webView\.leadingAnchor\.constraint\(equalTo:\s*guide\.leadingAnchor\)/);
+  assert.match(controller, /webView\.trailingAnchor\.constraint\(equalTo:\s*guide\.trailingAnchor\)/);
+  assert.match(controller, /contentInsetAdjustmentBehavior = \.never/);
+});
+
+test('iOS largest-text Home reflow is scoped, observable and documented', () => {
+  const css = read('packaging/ios/web/ios.css');
+  const controller = appSource('WebViewController');
+  const docs = read('docs/IOS.md');
+  assert.match(css, /:root\[data-ios-largest-text="true"\]\s+#view-home > \.head\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/s);
+  assert.match(css, /:root\[data-ios-largest-text="true"\]\s+#view-home #home-updates\s*\{[^}]*grid-column:\s*1;[^}]*width:\s*100%;/s);
+  assert.match(controller, /preferredContentSizeCategory\s*==\s*\.accessibilityExtraExtraExtraLarge/);
+  assert.match(controller, /dataset\.iosLargestText/);
+  assert.match(presentationTests, /gridTemplateColumnCount/);
+  assert.match(presentationTests, /tracks\.split\(\/\\\\s\+\/\)\.length/);
+  assert.match(presentationTests, /XCTAssertEqual\(homeHeader\["gridTemplateColumnCount"\] as\? Int,\s*1\)/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLinkHeight,\s*44/);
+  assert.match(docs, /largest accessibility[\s\S]*text size[\s\S]*Home\s+header/i);
+});
+
+test('the Read-sheet probe reports stylesheet loading, matching rules and target geometry', () => {
+  const debug = appSource('DebugSupport');
+  const readSheet = appSource('ReadSheetController');
+  assert.match(debug, /static let readSheetStyleProbeScript/);
+  assert.match(debug, /document\.styleSheets/);
+  assert.match(debug, /element\.matches/);
+  assert.match(debug, /getComputedStyle/);
+  assert.match(debug, /static func recordReadSheetStyleProbe/);
+  assert.match(readSheet, /func webView\(_ webView: WKWebView, didFinish navigation: WKNavigation!\)/);
+  assert.match(readSheet, /DebugSupport\.readSheetStyleProbeEnabled/);
+  assert.match(readSheet, /DebugSupport\.recordReadSheetStyleProbe/);
+  assert.match(readSheet, /case \.openExternally:\s*#if DEBUG[\s\S]*?recordReadSheetStylesForTesting\(\)[\s\S]*?#endif/);
+  assert.match(readSheet, /func webView\(_ webView: WKWebView, didFinish navigation: WKNavigation!\)[\s\S]*?recordReadSheetStylesForTesting\(\)/);
+  assert.match(presentationTests, /readSheetStyleProbe\(of: app\)/);
+  assert.match(presentationTests, /ios\/launcher\.css/);
+  assert.match(presentationTests, /minHeight/);
+  assert.match(presentationTests, /skipLinkMetrics\["lineHeight"\] as\? String,\s*"44px"/);
+  assert.match(presentationTests, /computed\["lineHeight"\] as\? String,\s*"48px"/);
+});
+
+test('iOS presentation diagnostics use DOM target geometry and observed accessibility types', () => {
+  assert.match(presentationTests, /let suffix = ", application status"/);
+  assert.match(presentationTests, /reported\.hasSuffix\(suffix\)/);
+  assert.match(presentationTests, /private func moreToggle\(of app: XCUIApplication\)/);
+  assert.match(presentationTests, /route: "all"/);
+  assert.match(presentationTests, /let skipLink = app\.links\.matching\(/);
+  assert.match(presentationTests, /let skipTarget = try XCTUnwrap\(screen\["skipLink"\] as\? \[String: Any\]\)/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
+  assert.doesNotMatch(presentationTests, /skipLink\.frame\.width/);
+  assert.match(presentationTests, /let manualLink = app\.links\.matching\(/);
+  assert.match(presentationTests, /manualLink\.waitForExistence\(timeout: 30\)/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
+  assert.doesNotMatch(presentationTests, /manualLink\.frame\.width/);
+  assert.match(presentationTests, /elements\[id\][\s\S]*?element\["height"\]/);
+  assert.match(presentationTests, /return app\.descendants\(matching: \.any\)\.matching\(more\)\.firstMatch/);
+  assert.match(presentationTests, /let close = app\.buttons\.matching\(NSPredicate\(format: "label == %@", "Close"\)\)\.firstMatch/);
+  assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
+  assert.doesNotMatch(presentationTests, /app\.buttons\["more-sheet-close"\]/);
+});
+
+test('T03 accessibility audit and More-sheet failures retain actionable diagnostics', () => {
+  assert.match(presentationTests, /private func performAccessibilityAudit\(of app: XCUIApplication,[\s\S]*?issue\.compactDescription[\s\S]*?issue\.detailedDescription[\s\S]*?issue\.element\.debugDescription[\s\S]*?return false/);
+  assert.match(presentationTests, /performAccessibilityAudit\(of: app, allowsPassiveGuard: true\)/);
+  assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
+});
+
+test('iOS presentation checks retain comic-page WebKit accessibility under display contents', () => {
+  assert.match(presentationTests, /func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes/);
+  assert.match(presentationTests, /#\/issue\/2092\?order=house-of-m/);
+  assert.match(presentationTests, /getComputedStyle\(card\)\.display/);
+  assert.match(presentationTests, /XCTAssertEqual\(comic\["cardDisplay"\] as\? String, "contents"/);
+  assert.match(presentationTests, /app\.webViews\.firstMatch\.buttons\.matching\(NSPredicate\(format: "label == %@", actionName\)\)/);
+  assert.match(presentationTests, /"nativeHierarchy": app\.debugDescription/);
+});
+
+test('T03 retains ten reviewed positives and accepts only complete passive-text hit-region proofs', () => {
+  assert.doesNotMatch(presentationTests, /NSStringFromCGRect/);
+  assert.match(presentationTests, /"nativeFrame": NSCoder\.string\(for: element\.frame\)/);
+  assert.match(presentationTests, /"frame": NSCoder\.string\(for: link\.frame\)/);
+  assert.match(presentationTests, /issue\.auditType == \.hitRegion/);
+  assert.match(presentationTests, /element\.elementType == \.staticText/);
+  assert.match(presentationTests, /domOwnerContainsNativeFrame\(nativeFrame, ownerFrame: domFrame, allowance: 2\)/);
+  assert.match(presentationTests, /candidate\["label"\] as\? String == nativeLabel/);
+  assert.match(presentationTests, /matches\.count == 1/);
+  assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom/);
+  assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
+  assert.match(presentationTests, /settledProof\["dom"\] as\? String == proof\["dom"\]/);
+  assert.match(presentationTests, /controls\.containing\(NSPredicate\(format: "label == %@", label\)\)/);
+  assert.match(presentationTests, /NSPredicate\(format: "elementType IN %@", Self\.nativeControlTypes\.map \{ \$0\.rawValue \}\)/);
+  assert.doesNotMatch(presentationTests, /\.containing\(\.staticText, identifier: nativeLabel\)/);
+  assert.match(presentationTests, /candidate\["hitPoints"\] as\? \[\[String: Any\]\]/);
+  assert.match(presentationTests, /nativeFrame\.contains\(point\)/);
+  assert.match(presentationTests, /app\.coordinate\(withNormalizedOffset: \.zero\)\s*\.withOffset\(CGVector\(dx: point\.x, dy: point\.y\)\)\.tap\(\)/);
+  assert.match(presentationTests, /settledMatches\.count == 1/);
+  assert.match(presentationTests, /NSDictionary\(dictionary: settledMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
+  assert.match(presentationTests, /NSDictionary\(dictionary: afterMatches\[0\]\)\.isEqual\(NSDictionary\(dictionary: candidate\)\)/);
+  assert.match(debugSupport, /const hitPoints = hitRects\.flatMap/);
+  assert.match(debugSupport, /const rect = element\.getBoundingClientRect\(\);/);
+  assert.match(debugSupport, /return \[fragment\.y \+ fragment\.height \/ 2, fragment\.y \+ inset,/);
+  assert.match(debugSupport, /document\.elementFromPoint\(point\.x, point\.y\)/);
+  assert.match(presentationTests, /\.containing\(\.staticText, identifier: label\)\.firstMatch/);
+  assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
+  assert.match(presentationTests, /#sidebar #rail-reading/);
+  assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
+  for (const key of [
+    'sidebar-app', 'home-count-total', 'home-count-word', 'home-next-caption', 'home-lists-summary',
+    'library-lists-summary', 'library-ratings-caption', 'current-breadcrumb',
+  ]) {
+    assert.ok(presentationTests.includes(`'${key}'`), `exact reviewed candidate ${key}`);
+  }
+  assert.match(presentationTests, /node\.nodeType === Node\.TEXT_NODE && node\.textContent\.trim\(\) === expectedLabel/);
+  assert.match(presentationTests, /container\.frame\.contains\(element\.frame\)/);
+  assert.match(presentationTests, /interactiveAncestor/);
+  assert.match(presentationTests, /tabindex/);
+  assert.match(presentationTests, /acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(presentationTests, /after\["href"\] as\? String == before\["href"\] as\? String/);
+  assert.match(presentationTests, /after\["view"\] as\? String == before\["view"\] as\? String/);
+  assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.width,\s*44/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.height,\s*44/);
+});
+
+test('T03 retries only one finding-free XCTest audit timeout after a settled-route check', () => {
+  assert.match(presentationTests, /for attempt in 0\.\.\.1/);
+  assert.match(presentationTests, /observedFindings \+= 1/);
+  assert.match(presentationTests, /failure\.domain == "com\.apple\.xcode\.xctest\.accessibilityAudit", failure\.code == -56/);
+  assert.match(presentationTests, /let retry = attempt == 0 && observedFindings == 0 && allowsPassiveGuard/);
+  assert.match(presentationTests, /record\("t03-accessibility-timeout"[\s\S]*?"retry": retry/);
+  assert.match(presentationTests, /guard retry else \{ throw error \}/);
+  assert.match(presentationTests, /waitForActiveView\(app, view: expectedView, route: expectedRoute\)/);
+  assert.match(presentationTests, /record\("t03-accessibility-retry"/);
+});
+
+test('T03 ARIA association exceptions require hidden DOM controls and native AX absence, never label exceptions', () => {
+  assert.match(debugSupport, /const hiddenAriaControl = control =>/);
+  assert.match(debugSupport, /control\.getClientRects\(\)\.length !== 0/);
+  assert.match(debugSupport, /control\.contains\(document\.activeElement\)/);
+  assert.match(debugSupport, /getComputedStyle\(node\)\.display === 'none'/);
+  assert.match(debugSupport, /hitRects, hitPoints, ariaControls/);
+  assert.match(debugSupport, /referencedControls\(node\)/);
+  assert.match(presentationTests, /private func ariaControlsAbsentFromNativeTree/);
+  assert.match(presentationTests, /identifier == %@ OR label == %@/);
+  assert.match(presentationTests, /ariaControlsAbsentFromNativeTree\(candidate, in: app\)/);
+  assert.match(presentationTests, /func testPassiveGuardChecksHiddenARIAControlsWithoutExemptingLabels/);
+  for (const name of ['hidden-button positive', 'visible-button negative', 'exposed-input negative', 'hidden-checkbox-label negative']) {
+    assert.ok(presentationTests.includes(name), `association fixture ${name}`);
+  }
+});
+
+test('T03 global interaction properties remain unreviewed after removal without changing native setter semantics', () => {
+  assert.match(debugSupport, /const trackGlobalPropertyHandlers = target =>/);
+  assert.match(debugSupport, /Object\.defineProperty\(target, name,/);
+  assert.match(debugSupport, /descriptor\.set\.call\(this, value\)/);
+  assert.match(debugSupport, /typeof descriptor\.get\.call\(this\) === 'function'[\s\S]*?unreviewedGlobalEver = true/);
+  assert.match(debugSupport, /for \(const target of \[document, window\]\) trackGlobalPropertyHandlers\(target\)/);
+  assert.match(presentationTests, /document\.onclick = handler;[\s\S]*?document\.onclick = previous;/);
+  assert.match(presentationTests, /launch\(route: "guard-global-property"\)/);
+  assert.match(presentationTests, /record\("t03-guard-property-history"/);
+  assert.match(presentationTests, /property\["afterRemovalValid"\] as\? Bool, false/);
+  assert.match(presentationTests, /property\["calls"\] as\? Int, 1/);
+});
+
+test('T03 fixtures settle inserted DOM before measuring passivity and legacy positives use the full guard', () => {
+  assert.match(presentationTests, /const add = async[\s\S]*?configure\(wrapper, text\);\s*await nextFrame\(\)/);
+  assert.match(presentationTests, /await add\('plain positive'/);
+  assert.match(presentationTests, /querySelector\('#ios-aria-hidden-control'\)\.style\.display = 'none';\s*await nextFrame\(\)/);
+  const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
+    presentationTests.indexOf('private func freshPassiveState'));
+  assert.match(legacy, /acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.doesNotMatch(legacy, /element\.tap\(\)/);
+});
+
+test('T03 reveals each enumerated native target before demanding its unchanged in-viewport no-op proof', () => {
+  const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
+    presentationTests.indexOf('private func freshPassiveState'));
+  assert.match(legacy, /revealNativeTarget\(element, in: app, bottomClearance: 44\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
+});
+
+test('T03 diagnoses reviewed text font and range geometry without relaxing text-point containment', () => {
+  assert.match(presentationTests, /fontGeometry:/);
+  assert.match(presentationTests, /fontBoundingBoxAscent/);
+  assert.match(presentationTests, /actualBoundingBoxAscent/);
+  assert.match(presentationTests, /rangeRects:/);
+  assert.match(presentationTests, /nativeFrame\.contains\(point\) && webFrame\.contains\(point\)/);
+});
+
+test('T03 admits a fragment only through individually checked existing tap points and rejects full occlusion', () => {
+  assert.match(debugSupport, /fragmentPoints\(clipped\)\.some\(pointHitsText\)/);
+  assert.match(debugSupport, /fragmentPoints\(fragment\)\.filter\(pointHitsText\)/);
+  assert.match(presentationTests, /name: 'partially occluded text', accepted:/);
+  assert.match(presentationTests, /name: 'fully occluded text', rejected:/);
+  assert.match(presentationTests, /XCTAssertEqual\(fixtures\.count, 14\)/);
+});
+
+test('T03 keeps the approved native owner bound separate and mutation-proves every edge', () => {
+  assert.match(presentationTests, /domOwnerContainsNativeFrame\(nativeFrame, ownerFrame: domFrame, allowance: 2\)/);
+  assert.match(presentationTests, /ownerFrame\.insetBy\(dx: -allowance, dy: -allowance\)\.contains\(nativeFrame\)/);
+  assert.match(presentationTests, /CGRect\(x: 29, y: 336, width: 41, height: 78\)/);
+  assert.match(presentationTests, /y: 316\.453125 \+ 20, width: 40\.55377197265625, height: 76/);
+  assert.match(presentationTests, /let beyond = CGFloat\(2\.001\)/);
+  for (const edge of ['left', 'right', 'top', 'bottom']) {
+    assert.ok(presentationTests.includes(`("${edge}", CGRect(`), `boundary fixture for ${edge}`);
+  }
+  assert.match(presentationTests, /mutationOptions\.isStrict = true/);
+  assert.match(presentationTests, /mutationOptions\.issueMatcher/);
+  assert.match(presentationTests, /XCTExpectFailure\("The old one-point bound/);
+  assert.match(presentationTests, /ownerFrame: owner, allowance: 1/);
+  assert.match(presentationTests, /XCTExpectFailure\("An oversized bound/);
+  assert.match(presentationTests, /ownerFrame: owner, allowance: 3/);
+  assert.match(presentationTests, /nativeFrame\.contains\(point\) && webFrame\.contains\(point\)/);
+  assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
+});
+
+test('T03 restores fail-fast before launching structural fixtures after expected boundary failures', () => {
+  const structural = presentationTests.slice(
+    presentationTests.indexOf('func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures()'),
+    presentationTests.indexOf('func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps()'));
+  assert.match(structural, /do \{\s*let previousContinuation = continueAfterFailure\s*continueAfterFailure = true/);
+  assert.match(structural, /defer \{ continueAfterFailure = previousContinuation \}/);
+  assert.match(structural, /"boundaries": boundaries,[\s\S]*?\]\)\s*\}\s*let app = launch\(route: "guard-structural"\)/);
+});
+
+test('T03 pins the native label before any guard tap instead of dereferencing a stale AX query afterward', () => {
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.match(guard, /let nativeLabel = element\.label/);
+  assert.equal((guard.match(/element\.label/g) || []).length, 1);
+  assert.match(guard, /candidate\["label"\] as\? String == nativeLabel/);
+  assert.match(guard, /"candidate": candidate, "nativeLabel": nativeLabel/);
+});
+
+test('T03 prepares positive fixtures away from native bottom navigation without scrolling audit findings', () => {
+  assert.match(presentationTests, /bottomClearance: CGFloat = 0/);
+  assert.match(presentationTests, /min\(webView\.frame\.maxY, toggle\.frame\.minY\) - bottomClearance/);
+  assert.match(presentationTests, /revealNativeTarget\(element, in: app, bottomClearance: 44\)/);
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
+});
+
+test('T03 unmatched-text diagnostics retain actual Range fragments and the same sampled DOM hit targets', () => {
+  assert.match(debugSupport, /textGeometry: texts\.map/);
+  assert.match(debugSupport, /fragments: \[\.\.\.range\.getClientRects\(\)\]/);
+  assert.match(debugSupport, /points: fragmentPoints\(fragment\)\.map/);
+  assert.match(debugSupport, /ownerContains: element\.contains\(hit\)/);
+  assert.match(debugSupport, /selector: path\(hit\)/);
+});
+
+test('T03 measures fixed bottom navigation occlusion separately from passive text ownership', () => {
+  assert.match(debugSupport, /const navigationOcclusions = \(\) =>/);
+  assert.match(debugSupport, /getComputedStyle\(navigation\)\.position !== 'fixed'/);
+  assert.match(debugSupport, /navigationRect\.bottom !== innerHeight/);
+  assert.match(debugSupport, /inNavigation: Boolean\(hit && sidebar\.contains\(hit\)\)/);
+  assert.match(debugSupport, /ownerContains: element\.contains\(hit\)/);
+  assert.match(debugSupport, /element\.closest\('#sidebar'\)/);
+  assert.match(presentationTests, /navigationOcclusions: window\.__recapPassiveGuard\.navigationOcclusions\(\)/);
+  assert.match(presentationTests, /private func classifyBottomNavigationOcclusion\(/);
+  assert.match(presentationTests, /navigationFrame\.contains\(nativeCrop\)/);
+  assert.match(presentationTests, /ownerFrame\.contains\(nativeCrop\)/);
+  assert.match(presentationTests, /samples\.allSatisfy/);
+  assert.match(presentationTests, /"t03-bottom-navigation-occlusion"/);
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.doesNotMatch(guard, /classifyBottomNavigationOcclusion/);
+});
+
+test('T03 occlusion classification requires passivity, reachability and a live navigation check', () => {
+  assert.doesNotMatch(debugSupport, /findingIsNavigation: false/);
+  assert.match(debugSupport, /label, owner: path\(element\), passive: passive\(element\),/);
+  assert.match(debugSupport, /ariaControls: associatedAriaControls\(element\),/);
+  assert.match(debugSupport, /reachability: reachability\(element, ownerRect, navigationRect\),/);
+  assert.match(debugSupport, /navigationTexts: navigationTexts\(sidebar, label\)/);
+  assert.match(debugSupport, /reachable: blockers\.length === 0 && rect\.height <= navigationRect\.top && lift <= remaining/);
+  assert.match(debugSupport, /style\.position === 'fixed' \|\| style\.position === 'sticky'/);
+  const classifier = presentationTests.slice(
+    presentationTests.indexOf('private func classifyBottomNavigationOcclusion('),
+    presentationTests.indexOf('private func acceptPassiveFinding('));
+  assert.match(classifier, /nativeControlOwnsText\(label: label, frame: nativeCrop, in: app\)/);
+  assert.match(classifier, /navigationFrames\.contains \{ \$0\.intersects\(nativeCrop\) \}/);
+  assert.match(classifier, /guard passive \|\| mutant == \.ignoresPassivity, reachable \|\| mutant == \.ignoresReachability,\s+ariaAbsent else/);
+  assert.match(classifier, /"t03-bottom-navigation-occlusion-rejected"/);
+  assert.match(classifier, /"t03-bottom-navigation-occlusion-changed"/);
+  const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
+    presentationTests.indexOf('private func performAccessibilityAudit('));
+  assert.match(guard, /nativeControlOwnsText\(label: nativeLabel, frame: element\.frame, in: app\)/);
+  assert.doesNotMatch(presentationTests, /app\.webViews\.firstMatch\.buttons, app\.webViews\.firstMatch\.links/);
+  for (const type of ['checkBox', 'switch', 'radioButton', 'textField', 'slider', 'popUpButton', 'tab']) {
+    assert.match(presentationTests, new RegExp(`\\.${type},`));
+  }
+});
+
+test('T03 native occlusion fixtures keep above-bar crops and owner hits rejected and add live negatives', () => {
+  assert.match(presentationTests, /"above-navigation"/);
+  assert.match(presentationTests, /"owner-hit"/);
+  assert.doesNotMatch(presentationTests, /"navigation-finding"/);
+  assert.match(presentationTests, /"t03-bottom-navigation-fixtures"/);
+  assert.match(presentationTests, /occlusion-mutant/);
+  assert.match(presentationTests, /measuredCrop = CGRect\(x: 29, y: 766, width: 332, height: 10\)/);
+  assert.match(presentationTests, /navigationFrame\.minY - 1/);
+  assert.match(presentationTests, /findingIsNavigation/);
+  assert.match(presentationTests, /sample\["ownerContains"\] as\? Bool == false/);
+  const live = presentationTests.slice(
+    presentationTests.indexOf('func testBottomNavigationOcclusionRejectsLiveInteractiveLabelUnreachableAndNavigationOwners()'),
+    presentationTests.indexOf('func testPassiveGuardRejectsReviewedPointerdownThatChangesThePage()'));
+  assert.match(live, /launch\(route: "guard-occlusion"\)/);
+  for (const [name, mutant] of [['interactive owner', 'ignoresPassivity'], ['label-linked owner', 'ignoresPassivity'],
+    ['unreachable owner', 'ignoresReachability'], ['navigation finding', 'ignoresNavigation']]) {
+    assert.match(live, new RegExp(`\\("${name}", "Occ [a-z]+", \\.${mutant}\\)`));
+  }
+  assert.match(live, /options\.isStrict = true/);
+  assert.match(presentationTests, /fixtureMode === 'guard-occlusion'/);
+  assert.match(presentationTests, /<label for="ios-occlusion-check">Occ label<\/label>/);
+  assert.match(presentationTests, /row\.children\[1\]\.addEventListener\('keydown'/);
+  assert.match(presentationTests, /fixed\.style\.cssText = `position:fixed;/);
+  assert.match(presentationTests, /sidebar\.append\(navigationText\)/);
+});
+
+test('T03 drives a reviewed pointerdown through the passive guard and sees the no-change tap reject it', () => {
+  assert.match(presentationTests, /fixtureMode === 'guard-reviewed-pointer'/);
+  assert.match(presentationTests, /document\.getElementById\('home-updates'\)/);
+  const test = presentationTests.slice(
+    presentationTests.indexOf('func testPassiveGuardRejectsReviewedPointerdownThatChangesThePage()'),
+    presentationTests.indexOf('func testPassiveGuardRejectsTooltipAndGlobalPointerDOMChangesAfterNativeTaps()'));
+  assert.match(test, /XCTAssertEqual\(reviewed\["globalValid"\] as\? Bool, true/);
+  assert.match(test, /let accepted = try acceptPassiveFinding\(element, in: app, routeState: before\)/);
+  assert.match(test, /XCTAssertNotEqual\(beforeDOM, afterDOM/);
+  assert.match(test, /checksDOMUnchanged: false/);
+  assert.match(test, /pointer-mutant/);
+  assert.match(presentationTests, /afterProof\["dom"\] as\? String == dom \|\| !checksDOMUnchanged/);
+});
+
+test('T03 keeps full proof attachments with compact console summaries and records Close before its one tap', () => {
+  assert.match(presentationTests, /summary: \[String: Any\]\? = nil/);
+  assert.match(presentationTests, /JSONSerialization\.data\(withJSONObject: summary \?\? value/);
+  assert.match(presentationTests, /let attachment = XCTAttachment\(string: json\)/);
+  assert.match(presentationTests, /record\("t03-read-close-before-/);
+  assert.match(presentationTests, /"hittable": close\.isHittable/);
+  assert.match(presentationTests, /XCTWaiter\.wait\(for: \[closeReady\], timeout: 30\)[\s\S]*?close\.tap\(\)/);
+});
+
+test('iOS restore warnings stay visible as descriptions of real file controls, not passive exemptions', () => {
+  const controller = appSource('WebViewController');
+  assert.match(controller, /const input = document\.getElementById\(target\.htmlFor\)/);
+  assert.match(controller, /input\?\.getAttribute\('aria-describedby'\)/);
+  assert.match(controller, /target\.setAttribute\('aria-describedby', describedBy\)/);
+  assert.match(controller, /restore-complete-hint[\s\S]*?restore-file-hint[\s\S]*?restore-history-hint/);
+  assert.match(controller, /hint\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(debugSupport, /\[aria-labelledby\], \[aria-describedby\]/);
+  assert.match(debugSupport, /control\.getAttribute\('aria-describedby'\)/);
+});
+
+test('T03 Read close diagnostics distinguish the action, callback, and UIKit completion', () => {
+  const readSheet = read('packaging/ios/RecapPage/ReadSheetController.swift');
+  const controller = appSource('WebViewController');
+  const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+
+  assert.match(readSheet, /recordReadSheetClose\("close-action-invoked"\)/);
+  assert.match(readSheet, /recordReadSheetClose\("controller-close-requested"\)/);
+  assert.match(controller, /recordReadSheetClose\("parent-close-callback"\)/);
+  assert.match(controller, /recordReadSheetClose\("dismiss-requested"\)/);
+  assert.match(controller, /recordReadSheetClose\("dismissal-completed"\)/);
+  assert.match(debugSupport, /"readSheetCloseEvents": readSheetCloseEvents/);
+  assert.ok(tests.includes('t03-read-close-\\(category.rawValue)'));
+  assert.ok(tests.includes('closing Read dismisses its sheet; close recorder: \\(closeEvents)'));
+});
+
+test('the iOS token overlay matches the phone layer root specificity', () => {
+  const phone = read('packaging/android/web/mobile.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const overlay = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  assert.match(phone, /^:root\s*\{/m, 'the phone layer declares its tokens on :root');
+  assert.match(overlay, /^:root\s*\{/m, 'the later iOS overlay must not lose token overrides to :root');
+});
+
+test('iOS hit-area text wrappers receive token-sized line boxes', () => {
+  const overlay = read('packaging/ios/web/ios.css');
+  const launcher = read('packaging/ios/web/launcher.css');
+  assert.match(overlay, /:root \.skip-link\s*\{[^}]*line-height:\s*var\(--target\);[^}]*padding-block:\s*0;/s);
+  assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
+});
+
+test('iOS web controls expose one accessible target without changing visible layout', () => {
+  const controller = appSource('WebViewController');
+  const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+
+  assert.match(controller, /private static let accessibleTargetScript = #"""/);
+  assert.match(controller, /source:\s*Self\.accessibleTargetScript,[\s\S]*?injectionTime:\s*\.atDocumentEnd/);
+  assert.match(controller, /const selector = '\.skip-link, #fallback, #return, \.brand, #home-updates-toggle, #btn-home-browse, #btn-home-add'/);
+  assert.match(controller, /new MutationObserver\(applyAccessibleTargets\)\.observe\(document\.documentElement,\s*\{ childList: true, subtree: true, attributes: true, attributeFilter: \['hidden'\] \}\)/);
+  assert.match(controller, /target\.dataset\.iosAccessibleTarget === 'true'/);
+  assert.match(controller, /target\.innerText \|\| target\.textContent/);
+  assert.match(controller, /child\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(controller, /visualText\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(controller, /node\.replaceWith\(visualText\)/);
+  assert.match(controller, /target\.setAttribute\('aria-label', label\)/);
+  assert.match(tests, /app\.staticTexts\["Skip to main content"\]\.exists/);
+  assert.match(tests, /app\.staticTexts\["Continue manually"\]\.exists/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
+  assert.match(tests, /app\.staticTexts\["Recap Page"\]\.exists/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(brandLink\.frame\.height,\s*44/);
+  assert.match(tests, /app\.staticTexts\["What's new"\]\.exists/);
+  assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
+  assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
+  assert.match(tests, /let displacement = element\.frame\.midY - usableFrame\.midY/);
+  assert.match(tests, /press\(forDuration: 0\.1, thenDragTo: end\)/);
+  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=']) {
+    assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
+  }
+});
+
+test('iOS hidden Continue actions leave the native tree and return when shown', () => {
+  const controller = appSource('WebViewController');
+  for (const id of ['btn-chero-read', 'btn-chero-done', 'btn-chero-review', 'btn-chero-deferred']) {
+    assert.ok(controller.includes(`#${id}`));
+  }
+  assert.match(controller, /if \(control\.hidden\) control\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(controller, /else control\.removeAttribute\('aria-hidden'\)/);
+  assert.match(controller, /attributeFilter: \['hidden'\]/);
+  assert.match(presentationTests, /"hiddenContinueActions"/);
+  assert.match(presentationTests, /"hidden Continue actions have no native Button nodes"/);
+});
+
+test('native screen audits wait for the expected live DOM route after navigation', () => {
+  assert.match(presentationTests, /private func waitForActiveView/);
+  assert.match(presentationTests, /state\["view"\] as\? String == view/);
+  assert.match(presentationTests, /state\["tick"\] as\? Int[\s\S]*?tick > previousTick/);
+  assert.match(presentationTests, /state\["href"\] as\? String[\s\S]*?url\.fragment/);
+  assert.match(presentationTests, /link\.tap\(\)[\s\S]*?waitForActiveView\(app, view: view, route: route\)/);
+  assert.match(presentationTests, /waitForActiveView\(app, view: view, route: route\)[\s\S]*?verifyPassiveAuditTexts/);
+});
+
+test('iOS Library and Search controls retain one named parent target', () => {
+  const controller = appSource('WebViewController');
+  for (const selector of [
+    '.breadcrumb a', '#library-rated-shelf .btn', '#view-library .search-hub-card',
+    '#view-add .search-hub-card', '#view-add summary',
+  ]) {
+    assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
+  }
+  assert.match(read('packaging/ios/web/ios.css'), /:root \.breadcrumb a\s*\{[^}]*min-width:\s*var\(--target\);/s);
+});
+
+test('passive audit guard tracks events only from document start in Debug presentation builds', () => {
+  const support = read('packaging/ios/RecapPage/DebugSupport.swift');
+  const controller = read('packaging/ios/RecapPage/WebViewController.swift');
+  assert.match(support, /static let passiveAuditTrackingScript = #"""/);
+  assert.match(support, /EventTarget\.prototype\.addEventListener/);
+  assert.match(support, /EventTarget\.prototype\.removeEventListener/);
+  assert.match(support, /globalInventoryValid/);
+  assert.match(support, /enclosingFunction/);
+  assert.match(controller, /source: DebugSupport\.passiveAuditTrackingScript,\s*injectionTime: \.atDocumentStart/);
+  const withoutDebug = controller.replace(/#if DEBUG[\s\S]*?#endif/g, '');
+  assert.doesNotMatch(withoutDebug, /passiveAuditTrackingScript|__recapPassiveGuard/);
+});
+
+test('iOS backup controls keep file label activation and full-sized native summary targets', () => {
+  const webController = read('packaging/ios/RecapPage/WebViewController.swift');
+  const iosCss = read('packaging/ios/web/ios.css');
+  assert.match(webController, /#view-data summary/);
+  assert.match(webController, /#view-data \.backup-restore-label/);
+  assert.match(webController, /target\.matches\('\.backup-restore-label'\)[\s\S]*?setAttribute\('role', 'button'\)[\s\S]*?setAttribute\('tabindex', '0'\)/);
+  assert.match(webController, /event\.key === 'Enter' \|\| event\.key === ' '[\s\S]*?target\.click\(\)/);
+  assert.match(iosCss, /:root #view-data \.backup-restore-label\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
+  assert.doesNotMatch(webController, /label.*setAttribute\('aria-hidden'/);
+});
+
+test('native expanded More disclosure records actual open and closed geometry at both text sizes', () => {
+  assert.match(presentationTests, /func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes/);
+  assert.match(presentationTests, /moreMethods: \(\(\) =>/);
+  assert.match(presentationTests, /disclosure\.open/);
+  assert.match(presentationTests, /summary\.tap\(\)/);
+  assert.match(presentationTests, /for expectedOpen in \[true, false\]/);
+  assert.match(presentationTests, /"expanded More has no sideways overflow"/);
+  assert.match(presentationTests, /XCTAssertEqual\(document, viewport,/);
+  assert.match(presentationTests, /"summaryOverflow": summaryScroll - summaryWidth/);
+  assert.doesNotMatch(presentationTests, /XCTAssertLessThanOrEqual\(summaryScroll, summaryWidth/);
+  assert.match(presentationTests, /"t03-more-methods-/);
+});
+
+test('native passive fixtures establish hidden and ambiguous geometry under the real CSP', () => {
+  const fixtures = presentationTests.match(/private static let passiveGuardFixtures = #"""([\s\S]*?)"""#/)?.[1];
+  assert.ok(fixtures);
+  assert.doesNotMatch(fixtures, /style="/);
+  assert.match(fixtures, /text\.style\.display = 'none'/);
+  assert.match(fixtures, /getComputedStyle\(text\)\.display/);
+  assert.match(fixtures, /text\.style\.cssText = 'position:fixed;top:200px;left:20px'/);
+  assert.match(fixtures, /duplicateFirst\.getBoundingClientRect\(\)/);
+  assert.match(fixtures, /duplicateSecond\.getBoundingClientRect\(\)/);
+});
+
+test('native journal recovery reveals its action above navigation before asking for confirmation', () => {
+  assert.match(launchTests, /revealNativeTarget\(finish, in: reader\)[\s\S]*?finish\.tap\(\)/);
+  assert.match(launchTests, /"Finish the complete restore\?"/);
+  assert.match(launchTests, /"journal-fault-confirmation-missing"/);
+});
+
+test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {
+  const overlay = read('packaging/ios/web/ios.css');
+  const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+  const docs = read('docs/IOS.md');
+
+  assert.match(overlay, /:root\[data-ios-largest-text="true"\]\s+#view-data \.setgroup > h2\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
+  assert.match(overlay, /:root\[data-ios-largest-text="true"\]\s+#view-data #opt-theme\s*\{[^}]*white-space:\s*normal;/s);
+  assert.match(tests, /dataSectionHeadings/);
+  assert.match(tests, /XCTAssertEqual\(themeSelect\["whiteSpace"\] as\? String,\s*"normal"/);
+  assert.match(tests, /XCTAssertLessThanOrEqual\(.*?themeSelect\["scrollWidth"\].*?themeSelect\["clientWidth"\]/s);
+  assert.match(tests, /text:\s*heading\.textContent\.trim\(\)/);
+  assert.match(tests, /textContent\.trim\(\)\.replace\(\/\\\\s\+\/g,\s*' '\)\.slice\(0,\s*100\)/);
+  assert.match(tests, /XCTAssertEqual\(personalization\["overflowWrap"\] as\? String,\s*"anywhere"/);
+  assert.match(tests, /XCTAssertLessThanOrEqual\(.*?personalization\["scrollWidth"\].*?personalization\["clientWidth"\]/s);
+  assert.match(tests, /dataCardDiagnostics/);
+  assert.match(tests, /widestDescendants/);
+  assert.match(tests, /overflowingDescendants/);
+  assert.match(tests, /minWidth:\s*style\.minWidth/);
+  assert.match(tests, /whiteSpace:\s*style\.whiteSpace/);
+  assert.match(tests, /matchingRules/);
+  assert.match(tests, /selector:\s*rule\.selectorText/);
+  assert.match(tests, /minWidth:\s*rule\.style\.minWidth/);
+  assert.match(docs, /Backup &\s+settings section headings can wrap/i);
 });
 
 test('the iOS app icon is the web app mark drawn opaque from the same geometry', async () => {
@@ -633,4 +1247,98 @@ test('the capacity probe lives where the unit test that runs it looks', () => {
   const probe = read('packaging/ios/probes/capacity.js');
   assert.match(probe, /^window\.recapCapacityProbe = async function recapCapacityProbe\(/m);
   assert.match(testSource, /ownerBytes = 1183 \* 1024/);
+});
+
+test('iOS export validation mirrors Android for bounded text files and basenames', () => {
+  const file = { filename: 'backup.json', type: 'application/json', text: 'saved bytes' };
+  assert.doesNotThrow(() => validateIosExport(file));
+  assert.doesNotThrow(() => validateIosExport({ filename: 'reading-list.md', type: 'text/markdown', text: '' }));
+  for (const invalid of [
+    { filename: '../secret.json' }, { filename: 'bad\\name.json' }, { filename: '.json' },
+    { filename: 'backup.html' }, { filename: 'x'.repeat(181) + '.json' },
+    { type: 'image/png' }, { text: null }, { text: '\u00e9'.repeat(17 * 1024 * 1024) },
+  ]) assert.throws(() => validateIosExport({ ...file, ...invalid }));
+});
+
+test('iOS download waits for native confirmation and refuses a second pending export', async () => {
+  let resolveNative;
+  const messages = [];
+  const reports = [];
+  const host = { addEventListener() {} };
+  const bridge = createIosBridge({
+    host,
+    native: { postMessage: (message) => { messages.push(message); return new Promise((resolve) => { resolveNative = resolve; }); } },
+    report: (message) => reports.push(message),
+  });
+  let settled = false;
+  const result = bridge.save({ filename: 'backup.json', type: 'application/json', text: '{"kept":true}' })
+    .then((value) => { settled = true; return value; });
+  assert.deepEqual(messages, [{
+    v: 1, kind: 'save', id: 'save-1', filename: 'backup.json', type: 'application/json', text: '{"kept":true}',
+  }]);
+  assert.equal(await bridge.save({ filename: 'second.json', type: 'application/json', text: '{}' }), false);
+  assert.equal(messages.length, 1);
+  assert.equal(settled, false, 'a picker request is not a saved file');
+  resolveNative({ v: 1, kind: 'save-result', id: 'save-1', status: 'saved' });
+  assert.equal(await result, true);
+  assert.match(reports.at(-1), /saved to the location you chose/);
+});
+
+test('the shipping iOS web view installs a reply-capable download handler', () => {
+  const factory = appSource('WebViewFactory');
+  const controller = appSource('WebViewController');
+  const handler = appSource('IosBridgeHandler');
+  assert.match(factory, /addScriptMessageHandler\(\s*bridgeHandler,\s*contentWorld:\s*\.page,\s*name:\s*IosBridgeHandler\.name/s);
+  assert.match(controller, /IosBridgeHandler\(policy:\s*policy,\s*presenter:\s*self,\s*dataLossState:\s*dataLossState\)/);
+  assert.match(handler, /WKScriptMessageHandlerWithReply/);
+  assert.match(handler, /isTrustedPage\(/);
+  assert.match(handler, /UIDocumentPickerViewController\(forExporting:\s*\[fileURL\],\s*asCopy:\s*true\)/);
+  assert.match(handler, /case \.cancelled: status = "cancelled"/);
+});
+
+test('iOS external-link status does not promise a browser destination', () => {
+  const entry = read('packaging/ios/web/app.js');
+  assert.match(entry, /'Opening the link outside Recap Page\.'/);
+  assert.match(entry, /'The link could not be opened\. Try again\.'/);
+  assert.doesNotMatch(entry, /Opening the link in your browser|Check your browser and try again/);
+});
+
+test('the Read child is guarded before its launcher can navigate', () => {
+  const controller = appSource('WebViewController');
+  const childCreation = controller.slice(controller.indexOf('    func webView('), controller.indexOf('    private func presentNextReadSheet()'));
+  const sheet = appSource('ReadSheetController');
+  const initializer = sheet.slice(sheet.indexOf('    init('), sheet.indexOf('    required init'));
+  assert.match(childCreation, /let child = WKWebView\(frame: \.zero, configuration: configuration\)/);
+  assert.match(initializer, /super\.init[\s\S]*webView\.navigationDelegate = self[\s\S]*webView\.uiDelegate = self/);
+  assert.match(sheet, /policy\.decideLauncher\(/);
+  assert.match(sheet, /case \.openExternally:[\s\S]*return \.cancel/);
+  assert.match(sheet, /WebViewFactory\.configure\(webView\)/);
+});
+
+test('iOS cancellation, failure, malformed replies and teardown never confirm an export', async () => {
+  for (const status of ['cancelled', 'failed', 'unrecognized']) {
+    const reports = [];
+    const bridge = createIosBridge({
+      host: { addEventListener() {} },
+      native: { postMessage: async ({ id }) => ({ v: 1, kind: 'save-result', id, status, message: 'Provider unavailable.' }) },
+      report: (message) => reports.push(message),
+    });
+    assert.equal(await bridge.save({ filename: 'backup.json', type: 'application/json', text: '{}' }), false);
+    assert.match(reports.at(-1), /cancelled|not confirmed saved/);
+  }
+
+  let resolveNative;
+  let pagehide;
+  const reports = [];
+  const bridge = createIosBridge({
+    host: { addEventListener: (name, listener) => { if (name === 'pagehide') pagehide = listener; } },
+    native: { postMessage: () => new Promise((resolve) => { resolveNative = resolve; }) },
+    report: (message) => reports.push(message),
+  });
+  const result = bridge.save({ filename: 'backup.json', type: 'application/json', text: '{}' });
+  pagehide();
+  assert.equal(await result, false);
+  resolveNative({ v: 1, kind: 'save-result', id: 'save-1', status: 'saved' });
+  await Promise.resolve();
+  assert.match(reports.at(-1), /interrupted|not confirmed saved/);
 });

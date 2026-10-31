@@ -18,6 +18,16 @@ final class NavigationCoordinator: NSObject, WKNavigationDelegate {
             isMainFrame: navigationAction.targetFrame?.isMainFrame ?? false,
             opensNewWindow: navigationAction.targetFrame == nil,
             userActivated: navigationAction.navigationType == .linkActivated)
+        #if DEBUG
+        NSLog(
+            "Recap Page main navigation decision: host=%@ path=%@ type=%@ mainFrame=%@ newWindow=%@ decision=%@",
+            navigationAction.request.url?.host ?? "none",
+            navigationAction.request.url?.path ?? "none",
+            String(describing: navigationAction.navigationType),
+            String(describing: navigationAction.targetFrame?.isMainFrame),
+            String(navigationAction.targetFrame == nil),
+            String(describing: decision))
+        #endif
         switch decision {
         case .allow:
             return .allow
@@ -31,6 +41,11 @@ final class NavigationCoordinator: NSObject, WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         controller?.pageDidFinishLoading()
+    }
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        guard webView === controller?.webView else { return }
+        controller?.pageWillStartNavigation()
     }
 
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {

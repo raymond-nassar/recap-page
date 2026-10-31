@@ -11,12 +11,19 @@
 //
 // It runs inside the app's own page and leaves localStorage empty when it finishes. Nothing here
 // ships in the app: the iOS unit tests load it from the repository, and so can any WebKit browser.
-window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 1183 * 1024, wideText = true } = {}) {
+window.recapCapacityProbe = async function recapCapacityProbe({
+  targetBytes = 1183 * 1024,
+  wideText = true,
+  sweep = false,
+} = {}) {
   const started = Date.now();
   const base = new URL('./', location.href);
   const load = (path) => import(new URL(path, base).href);
-  const [storage, model, complete] = await Promise.all([
-    load('js/storage.js'), load('js/lib/model.js'), load('js/lib/completeBackup.js'),
+  const [storage, model, complete, restoreEngine] = await Promise.all([
+    load('js/storage.js'),
+    load('js/lib/model.js'),
+    load('js/lib/completeBackup.js'),
+    load('js/lib/completeRestore.js'),
   ]);
   // An estimate from the characters alone: one byte per character when every character fits in
   // Latin-1, otherwise two. The engine can charge more, which the width measurement below finds.
@@ -177,6 +184,158 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
   };
   localStorage.clear();
 
+  let sizeSweep = null;
+  if (sweep && wideText) {
+    const encoder = new TextEncoder();
+    const readingText = (candidate) => JSON.stringify(model.exportBackup(candidate));
+    const readingBytes = (candidate) => encoder.encode(readingText(candidate)).length;
+    const growTo = (initial, target) => {
+      let candidate = initial;
+      let bytes = readingBytes(candidate);
+      const filler = '\u2019';
+      for (const id of issueIds) {
+        while (bytes < target && (candidate.notes[id]?.length ?? 0) < model.MAX_NOTE) {
+          const current = candidate.notes[id] ?? '';
+          const missing = target - bytes;
+          const added = Math.min(model.MAX_NOTE - current.length, Math.max(1, Math.ceil(missing / 3)));
+          candidate = model.setIssueNote(candidate, id, `${current}${filler.repeat(added)}`);
+          const nextBytes = readingBytes(candidate);
+          if (nextBytes <= bytes) throw new Error('The capacity sweep could not grow its valid reading data.');
+          bytes = nextBytes;
+        }
+        if (bytes >= target) break;
+      }
+      if (bytes < target) throw new Error(`The capacity sweep reached only ${bytes} bytes, below ${target}.`);
+      return { candidate, bytes };
+    };
+    const withReadChanges = (candidate) => issueIds.reduce((next, id, index) =>
+      model.markRead(next, id, index % 2 === 1, Date.UTC(2026, 1, 1) + index * 60000), candidate);
+    const completeTextFor = async (candidate) => {
+      const raw = JSON.stringify(model.exportBackup(candidate));
+      const captured = await complete.captureCompleteBackup({
+        storage: { getItem: (key) => key === storage.KEY ? raw : null },
+      });
+      return captured.text;
+    };
+    const measureSave = (candidate) => {
+      localStorage.clear();
+      const target = new storage.Store({ storage: localStorage });
+      target.load();
+      target.update(() => candidate);
+      const saved = localStorage.getItem(storage.KEY);
+      const result = {
+        ok: target.lastUpdateOk === true,
+        error: target.lastError ?? null,
+        usageAfter: usage(),
+        bytes: readingBytes(candidate),
+        storedBytes: saved === null ? null : encoder.encode(saved).length,
+        chargedStorageBytes: saved === null ? null : storedBytes(saved),
+      };
+      localStorage.clear();
+      return result;
+    };
+    const measureSingleRestore = (text, populated) => {
+      localStorage.clear();
+      const target = new storage.Store({ storage: localStorage });
+      target.load();
+      if (populated) target.update(() => stateA);
+      const result = outcome(target.restore(text, { expected: target.captureRestore() }));
+      localStorage.clear();
+      return { ...result, bytes: encoder.encode(text).length };
+    };
+    const measureCompleteRestore = async (text, populated) => {
+      localStorage.clear();
+      const target = new storage.Store({ storage: localStorage });
+      target.load();
+      if (populated) target.update(() => stateA);
+      const databaseName = `mrt-complete-restore-capacity-${crypto.randomUUID()}`;
+      const journal = restoreEngine.createRestoreJournal({
+        open: (_name, version) => indexedDB.open(databaseName, version),
+      });
+      const locks = { request: async (_name, _options, callback) => callback({}) };
+      const engine = new restoreEngine.CompleteRestore({
+        storage: localStorage,
+        locks,
+        journal,
+        events: null,
+        reload: () => {},
+      });
+      let result;
+      try {
+        await engine.start();
+        result = await engine.restore(text);
+      } finally {
+        await engine.releaseShared();
+        await journal.close();
+        await new Promise((resolve, reject) => {
+          const request = indexedDB.deleteDatabase(databaseName);
+          request.onsuccess = resolve;
+          request.onerror = () => reject(request.error ?? new Error('The capacity journal could not be removed.'));
+          request.onblocked = () => reject(new Error('The capacity journal stayed open after the probe.'));
+        });
+      }
+      const measured = {
+        ok: result?.ok === true,
+        changed: result?.changed ?? null,
+        error: result?.error ?? null,
+        usageAfter: usage(),
+        bytes: encoder.encode(text).length,
+      };
+      localStorage.clear();
+      return measured;
+    };
+    const ownerReadingBackupBytes = readingBytes(stateA);
+    const inputs = [
+      1, 1.1, 1.2, 1.3, 1.5, 1.75, 2, 2.25, 2.5, 3, 3.5, 4, 4.5,
+    ].map((factor) => Math.round(ownerReadingBackupBytes * factor));
+    const attempts = [];
+    const largestPassingBytes = {
+      save: null,
+      singleEmpty: null,
+      singlePopulated: null,
+      completeEmpty: null,
+      completePopulated: null,
+    };
+    const firstFailingBytes = {
+      save: null,
+      singleEmpty: null,
+      singlePopulated: null,
+      completeEmpty: null,
+      completePopulated: null,
+    };
+    let candidate = stateA;
+    for (const target of inputs) {
+      const grown = growTo(candidate, target);
+      candidate = grown.candidate;
+      const nextState = withReadChanges(candidate);
+      const singleText = readingText(nextState);
+      const completeText = await completeTextFor(nextState);
+      const result = {
+        targetBytes: target,
+        readingBackupBytes: encoder.encode(singleText).length,
+        readingCharacters: singleText.length,
+        completeBackupBytes: encoder.encode(completeText).length,
+        wide: /[\u0100-\uffff]/.test(singleText),
+        chargedStorageBytes: storedBytes(singleText),
+        save: measureSave(candidate),
+        singleEmpty: measureSingleRestore(singleText, false),
+        singlePopulated: measureSingleRestore(singleText, true),
+        completeEmpty: await measureCompleteRestore(completeText, false),
+        completePopulated: await measureCompleteRestore(completeText, true),
+      };
+      for (const kind of Object.keys(largestPassingBytes)) {
+        const measurement = result[kind];
+        const bytes = measurement.bytes;
+        if (measurement.ok) largestPassingBytes[kind] = bytes;
+        else if (firstFailingBytes[kind] === null) firstFailingBytes[kind] = bytes;
+      }
+      attempts.push(result);
+      if (Object.values(firstFailingBytes).every((value) => value !== null)) break;
+    }
+    sizeSweep = { ownerReadingBackupBytes, attempts, largestPassingBytes, firstFailingBytes };
+    localStorage.clear();
+  }
+
   // The width the engine charges for the saved reading data itself, read from the room left beside
   // it: about 1 byte per character for a string held at one byte, 2 for one held at two. A string
   // can be held at two bytes when every character is Latin-1, if it was built from text the engine
@@ -251,6 +410,7 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     restoreIntoEmpty,
     restoreIntoPopulated,
     repeatRestore,
+    sizeSweep,
     durationMs: Date.now() - started,
   });
 };

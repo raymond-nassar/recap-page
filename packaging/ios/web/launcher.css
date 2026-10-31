@@ -1,0 +1,13 @@
+#fallback,
+#return {
+  display: flex;
+  width: fit-content;
+  min-width: var(--target-touch, 48px);
+  min-height: var(--target-touch, 48px);
+  margin-inline: auto;
+  padding: 12px 8px;
+  line-height: var(--target-touch, 48px);
+  padding-block: 0;
+  align-items: center;
+  justify-content: center;
+}
