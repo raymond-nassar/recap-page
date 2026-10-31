@@ -121,7 +121,7 @@ test('live metadata CORS is off by default and runs only from an opted-in manual
     'a skipped test cannot produce a green CORS step');
 });
 
-test('the fault-disabled restore mutation is opt-in and requires the done-row failure', () => {
+test('the fault-disabled restore mutation is opt-in and requires the done-row failure', async () => {
   assert.match(workflow,
     /prove_journal_fault_disabled:\n {8}description: Prove interrupted restore rejects a completed restore without the injected fault\n {8}required: false\n {8}type: boolean\n {8}default: false/);
   const newest = jobSource('newest');
@@ -131,8 +131,27 @@ test('the fault-disabled restore mutation is opt-in and requires the done-row fa
   assert.match(step, /-only-testing:RecapPageUITests\/LaunchUITests\/testFifthJournalPutFailureOffersRecoveryAfterForcedTermination/);
   assert.match(step, /if \[ "\$status" -eq 0 \]; then/);
   assert.match(step, /RECAP_PROBE_RESULT journal-fault-after-kill/);
-  assert.match(step, /"stateTableRow":"done: \/ matching \/ any"/);
+  assert.match(step, /"stateTableRow":"done: \\\/ matching \\\/ any"/);
   assert.match(step, /the fault-disabled mutation must reach the done row/);
+  // The record is written by JSONSerialization, which escapes every slash; run 41174081424 failed the
+  // test on the done row and the step still reported it missing.
+  const recorded = 'RECAP_PROBE_RESULT journal-fault-after-kill {"markerState":"done","stateTableRow":"done: \\/ matching \\/ any"}';
+  const failure = 'LaunchUITests.swift:409: error: -[LaunchUITests testFifth] : XCTAssertEqual failed - '
+    + 'the fault-disabled mutation must reach the done row: Optional(done: / matching / any)';
+  for (const [name, log, code, exit] of [
+    ['the recorded done row', `${recorded}\n${failure}`, 65, 0],
+    ['an unrelated failure', failure.replace('done: / matching / any', 'nil'), 65, 1],
+    ['an unexpected pass', recorded, 0, 1],
+  ]) {
+    const root = await mkdtemp(join(tmpdir(), 'recap-ios-proof-'));
+    try {
+      await writeFile(join(root, 'fixture.log'), log + '\n');
+      const result = await runScript(root, `xcodebuild() { cat "$RUNNER_TEMP/fixture.log"; return ${code}; }\n${step}`);
+      assert.equal(result.status, exit, `${name}: ${result.stdout}${result.stderr}`);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
   // Run 41169003243 kept neither, so the proof's failure could not be decoded.
   assert.match(newest, /\$\{\{ runner\.temp \}\}\/RecapPage-journal-fault-disabled\.xcresult\n/);
   assert.match(newest, /\$\{\{ runner\.temp \}\}\/journal-fault-disabled\.log\n/);

@@ -170,7 +170,7 @@ jobs:
             exit 1
           fi
           if ! grep -Fq 'RECAP_PROBE_RESULT journal-fault-after-kill ' "$log" ||
-              ! grep -Fq '"stateTableRow":"done: / matching / any"' "$log" ||
+              ! grep -Fq '"stateTableRow":"done: \/ matching \/ any"' "$log" ||
               ! grep -Fq 'the fault-disabled mutation must reach the done row' "$log"; then
             echo "::error::The targeted test failed without recording the expected done row."
             exit 1
