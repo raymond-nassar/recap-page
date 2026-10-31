@@ -8856,11 +8856,18 @@ const SCENARIOS = [
         legacyState.issues?.['6']?.description === 'Preloaded legacy synopsis.',
         JSON.stringify(legacyState.issues?.['6']));
 
+      // Hosted runs 41163793598 and 41166118772 both timed out at the first report wait below, at
+      // 15.5 seconds into the scenario, and the harness prints only the error code, which cannot say
+      // which await inside the purge never finished. The probes only listen and pass every call
+      // through, and on a timeout they print the stage the purge reached before rethrowing.
+      await page.evaluateOnNewDocument(installCachePurgeProbe);
+      await legacy.evaluate(watchLegacyTab);
       await page.goto(`${page.__origin}/#/settings`, { waitUntil: 'domcontentloaded' });
-      await page.waitForFunction(
-        () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
-        { timeout: 15000 },
-      );
+      // Interval polling, not the animation-frame default. Opening the legacy tab put this one in the
+      // background, and a hidden tab runs no animation frames, so a frame-polled wait re-checks
+      // nothing after its first look. Under 6x CPU throttling the diagnostic above showed the report
+      // already reading "Close other tabs" when the wait timed out, with the tab hidden and no frame.
+      await waitForCacheReport(page, legacy, 'automatic', 'Close other tabs', { polling: 100, timeout: 15000 });
       t.check('cleanup reports that older metadata is still waiting on another tab', true);
       const preloadedState = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2') || '{}'));
       t.check('saved-state prose is removed before waiting on a blocked legacy deletion',
@@ -9045,11 +9052,9 @@ const SCENARIOS = [
           request.onerror = () => reject(request.error);
         });
       });
+      const manualSince = Date.now();
       await click(page, '#btn-clear-cache');
-      await page.waitForFunction(
-        () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
-        { polling: 100, timeout: 15000 },
-      );
+      await waitForCacheReport(page, legacy, 'manual', 'Close other tabs', { polling: 100, timeout: 15000 }, manualSince);
       const manualBlocked = await page.evaluate(() => ({
         disabled: document.querySelector('#btn-clear-cache').disabled,
         report: document.querySelector('#cache-report').textContent,
@@ -19794,15 +19799,20 @@ SCENARIOS.push({
     await click(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
     const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
-    const motion = { moving: await bar() };
+    // The moving half is pinned rather than inherited. A host whose own setting is reduced motion, as
+    // Edge launched with --force-prefers-reduced-motion is, hid the bar before the first sample and
+    // failed this check with moving false, so both halves now name the preference they measure.
     const media = await page.createCDPSession();
+    await media.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
+    const motion = { pinned: await page.evaluate(() => matchMedia('(prefers-reduced-motion: no-preference)').matches) };
+    motion.moving = await bar();
     await media.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
     motion.reduced = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
     motion.still = !(await bar());
     await media.send('Emulation.setEmulatedMedia', { features: [] });
     await media.detach();
     t.check('while a backup runs the card shows a moving bar beside its words, and under reduced motion the words alone',
-      motion.moving && motion.reduced && motion.still, JSON.stringify(motion));
+      motion.pinned && motion.moving && motion.reduced && motion.still, JSON.stringify(motion));
     release();
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
     t.check('turning automatic backup on makes the first backup at once, read back and counted',
@@ -23155,6 +23165,141 @@ MUTATIONS.push({
     sheet.insertRule('.action-disclosure > summary::after { margin-right: 0 !important; }', sheet.cssRules.length);
   }),
 });
+
+// Runs in the page before any app code, so the purge it watches is the one the page boots into. Every
+// wrapper records a stage and passes the call through unchanged, and the request listeners are added
+// beside the app's own handlers rather than replacing them.
+function installCachePurgeProbe() {
+  const stages = [];
+  window.__mrtCachePurgeStages = stages;
+  const mark = (stage, detail = {}) => stages.push({ stage, at: Date.now(), ...detail });
+  for (const op of ['open', 'deleteDatabase']) {
+    const original = IDBFactory.prototype[op];
+    IDBFactory.prototype[op] = function probed(name, ...rest) {
+      mark(`${op}:call`, { name });
+      const request = original.call(this, name, ...rest);
+      for (const type of ['success', 'error', 'blocked', 'upgradeneeded']) {
+        request.addEventListener(type, () => mark(`${op}:${type}`, { name }));
+      }
+      return request;
+    };
+  }
+  const clear = IDBObjectStore.prototype.clear;
+  IDBObjectStore.prototype.clear = function probed(...args) {
+    const name = this.transaction.db.name;
+    mark('clear:call', { name });
+    this.transaction.addEventListener('complete', () => mark('clear:complete', { name }));
+    this.transaction.addEventListener('abort', () => mark('clear:abort', { name }));
+    return clear.apply(this, args);
+  };
+  const request = LockManager.prototype.request;
+  LockManager.prototype.request = function probed(name, ...rest) {
+    const callback = rest.pop();
+    const options = rest[0] ?? {};
+    mark('lock:request', { name, mode: options.mode ?? 'exclusive', ifAvailable: Boolean(options.ifAvailable) });
+    return request.call(this, name, ...rest, (lock) => {
+      mark('lock:answer', { name, granted: Boolean(lock) });
+      return callback(lock);
+    });
+  };
+  const setItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = function probed(key, value) {
+    if (key === 'mrt.state.v2' || key === 'mrt.cache-purge.v1') mark('storage:set', { key });
+    return setItem.call(this, key, value);
+  };
+  for (const type of ['visibilitychange', 'freeze', 'resume']) {
+    document.addEventListener(type, () => mark(`page:${type}`, { visibility: document.visibilityState }));
+  }
+}
+
+// The older tab's connection is what blocks the legacy delete. If it closes, or the tab is frozen or
+// discarded, the delete succeeds without a blocked event and the report this check waits for never
+// appears, so its life is recorded alongside the purge.
+function watchLegacyTab() {
+  const events = [];
+  window.__legacyTabEvents = events;
+  const mark = (event) => events.push({ event, at: Date.now(), visibility: document.visibilityState });
+  window.__legacyDb.addEventListener('versionchange', () => mark('db:versionchange'));
+  window.__legacyDb.addEventListener('close', () => mark('db:close'));
+  for (const type of ['visibilitychange', 'freeze', 'resume']) document.addEventListener(type, () => mark(type));
+  addEventListener('pagehide', () => mark('pagehide'));
+  mark('watching');
+}
+
+function cachePurgeVerdict(stages) {
+  const seen = new Set(stages.map((entry) => entry.stage));
+  if (seen.has('deleteDatabase:blocked')) return 'the legacy delete was blocked, but the report never said so';
+  if (seen.has('deleteDatabase:success')) return 'the legacy delete succeeded with no blocked event, so the old connection was already gone';
+  if (seen.has('deleteDatabase:error')) return 'the legacy delete failed';
+  if (seen.has('deleteDatabase:call')) return 'the legacy delete is still pending with no blocked event';
+  if (seen.has('clear:call') && !seen.has('clear:complete')) return 'the active clear never committed';
+  if (!seen.has('lock:answer')) return 'the tab lock never answered, so the purge may still be waiting on its settle';
+  return 'the purge stopped before the legacy delete, after the tab lock answered';
+}
+
+async function settleWithin(promise, ms) {
+  let timer;
+  const expired = new Promise((resolve) => { timer = setTimeout(() => resolve({ error: `no answer in ${ms} ms` }), ms); });
+  try {
+    return await Promise.race([promise.catch((err) => ({ error: String(err?.message ?? err) })), expired]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function waitForCacheReport(page, legacy, wait, expected, options, since = 0) {
+  try {
+    await page.waitForFunction((text) => document.querySelector('#cache-report')?.textContent.includes(text), options, expected);
+  } catch (err) {
+    const current = await settleWithin(page.evaluate(async () => {
+      const frame = await Promise.race([
+        new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
+        new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
+      ]);
+      let issues;
+      try {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2') || 'null');
+        issues = Object.fromEntries(Object.entries(state?.issues ?? {})
+          .map(([id, issue]) => [id, Object.prototype.hasOwnProperty.call(issue ?? {}, 'description')]));
+      } catch (parseError) {
+        issues = String(parseError);
+      }
+      const text = (selector) => document.querySelector(selector)?.textContent ?? null;
+      return {
+        now: Date.now(),
+        visibility: document.visibilityState,
+        frame,
+        hash: location.hash,
+        cacheReport: text('#cache-report'),
+        saveReport: text('#save-report'),
+        appReport: text('#app-report'),
+        marker: localStorage.getItem('mrt.cache-purge.v1'),
+        issuesWithDescription: issues,
+        databases: await indexedDB.databases().then((list) => list.map((db) => `${db.name}@${db.version}`), String),
+        locks: await navigator.locks.query().then((query) => ({
+          held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
+          pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
+        }), String),
+        stages: window.__mrtCachePurgeStages ?? null,
+      };
+    }), 5000);
+    const old = await settleWithin(legacy.evaluate(() => ({
+      visibility: document.visibilityState,
+      connection: Boolean(window.__legacyDb),
+      versionchange: (window.__legacyTabEvents ?? []).some((entry) => entry.event === 'db:versionchange'),
+      events: window.__legacyTabEvents ?? null,
+    })), 5000);
+    const shown = typeof current.cacheReport === 'string' && current.cacheReport.includes(expected);
+    let verdict = 'the page could not be read';
+    if (shown) {
+      verdict = `the report already shows the text, so the wait stopped re-checking (page ${current.visibility}, animation frame ${current.frame ? 'fired' : 'did not fire'})`;
+    } else if (Array.isArray(current.stages)) {
+      verdict = cachePurgeVerdict(current.stages.filter((entry) => entry.at >= since));
+    }
+    console.log(`CACHE-PURGE-STAGE ${JSON.stringify({ wait, expected, verdict, page: current, legacy: old })}`);
+    throw err;
+  }
+}
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
