@@ -1089,9 +1089,12 @@ Browser tooling uses the external locked driver and a temporary profile.
 
 The one-day `portable-candidate-<commit>` artifact contains exactly
 `marvel-reading-tracker-windows.zip` and `release-preparation.json`. The latter records the
-source commit/tree, application version, run/attempt, ZIP size/hash and bundled Node
-version/architecture/hash, not the build driver's version. The hosted verifier compares
-every portable file with its source or the checksum-verified official runtime archive.
+source commit/tree, application version, run/attempt, ZIP size/hash, protected cloud
+configuration digest and bundled Node version/architecture/hash, not the build driver's
+version. The hosted verifier independently derives the configuration digest from the
+validated protected input before packaging. It requires the ZIP's configuration, build
+identity and enabled backup instructions to match, and compares every other portable file
+with its source or the checksum-verified official runtime archive.
 The ZIP keeps `Start on Windows.cmd`, its persistent command window and official x64 Node;
 the native branded startup belongs only to MSIX. No launcher or package behavior changes.
 
