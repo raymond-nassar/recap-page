@@ -99,7 +99,7 @@ each device remembers the choice, and the same information remains in About.
 
 On phones and tablets, a comic's own page opens on its cover. Long words on Home and the Search
 disclosure arrow no longer push narrow screens sideways. Decorative symbols stay visible without
-adding extra screen reader announcements, and Android reading labels are restored. Back and
+adding extra screen reader announcements. Back and
 address navigation no longer lose a requested page when a background redraw occurs.
 
 When Edge offers installation, **Backup & settings** provides an **Install Recap Page** action.
