@@ -410,7 +410,7 @@ entering Partner Center:
 npm run store:check
 ```
 
-The check requires five 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
+The check requires four 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
 listing copy within field limits, public HTTPS URLs, first-submission stop points and a separate
 future-update policy. It reads no account data and makes no network request.
 
@@ -1089,9 +1089,12 @@ Browser tooling uses the external locked driver and a temporary profile.
 
 The one-day `portable-candidate-<commit>` artifact contains exactly
 `marvel-reading-tracker-windows.zip` and `release-preparation.json`. The latter records the
-source commit/tree, application version, run/attempt, ZIP size/hash and bundled Node
-version/architecture/hash, not the build driver's version. The hosted verifier compares
-every portable file with its source or the checksum-verified official runtime archive.
+source commit/tree, application version, run/attempt, ZIP size/hash, protected cloud
+configuration digest and bundled Node version/architecture/hash, not the build driver's
+version. The hosted verifier independently derives the configuration digest from the
+validated protected input before packaging. It requires the ZIP's configuration, build
+identity and enabled backup instructions to match, and compares every other portable file
+with its source or the checksum-verified official runtime archive.
 The ZIP keeps `Start on Windows.cmd`, its persistent command window and official x64 Node;
 the native branded startup belongs only to MSIX. No launcher or package behavior changes.
 
@@ -1585,3 +1588,35 @@ it does **not** explicitly designate it read-only. References retrieved 2026-09-
 This implementation alone has not committed anything to the Store. It changes no app version,
 public release, immutable download or saved reading data. Review its frozen head and green checks
 before the operator performs a separately authorized protected commit-only dispatch.
+
+## Hand off the 4.3.0 Store bundle to the owner
+
+Use **4.3.0 Store bundle handoff** only after the owner has selected the actual
+immutable 4.3.0 release source on main and reviewed the separate executing workflow
+revision. Follow the [handoff policy](RELEASING.md#430-windows-store-owner-handoff).
+This route does not use Partner Center credentials or contact Partner Center.
+
+Record separate build and plaintext transfer approvals against the same source
+commit/tree, workflow revision and `repository-owner-partner-center` purpose.
+Supply those exact values as the dispatch inputs and set each approval flag only
+when authorized. Approve the existing protected environment for that run only after
+checking those selections. The workflow refuses a non-main dispatch, wrong source
+ancestry/version or a different executing workflow revision. Do not dispatch it to
+test the guards.
+
+Accept an artifact only from a fully successful run, including both cleanup steps.
+Its root must contain exactly `RecapPage_4.3.0.0_x64_arm64.msixbundle` and
+`store-bundle-handoff.json`. Independently hash the receipt, then check its exact
+source, workflow, run/attempt, recipient, configuration digest, inspection and WACK
+results, size and bundle SHA-256 against the approved run. Record the receipt digest
+with the owner's transfer evidence; download and upload the bundle without rebuilding
+or re-signing it. Compare the bundle hash again immediately before the separately
+authorized Partner Center upload. Never accept a packet from a failed, partial or
+uncertain run, or substitute a new receipt beside previously qualified bytes.
+
+One day is the handover window, not a promise of private access. Before dispatch,
+confirm the owner can download and upload within it. After authorized upload and
+read-back, remove the exact temporary local copies and Actions artifact. Deletion,
+upload, changes to a draft, certification and publication are separate owner actions,
+not permissions implied by this implementation. The bundle is locally proof-signed,
+not Store-signed; do not install it on the personal Store installation.

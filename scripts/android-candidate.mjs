@@ -8,6 +8,7 @@ import {
   assertAppendOnlyLedger, sourceIdentity, validateIdentity, verifyArtifact,
 } from './lib/release-identity.mjs';
 import { NATIVE_METHODS, verifyInstrumentation } from './check-android-instrumentation.mjs';
+import { releaseCloudInput } from './release-cloud-client.mjs';
 
 export const REPOSITORY = 'raymond-nassar/recap-page';
 export const ENVIRONMENT = 'android-release-candidate';
@@ -24,6 +25,7 @@ const HASH = /^[0-9a-f]{64}$/;
 const LEDGER = 'packaging/android/version-codes.json';
 const SECRET_NAMES = ['ANDROID_UPLOAD_KEYSTORE_BASE64', 'ANDROID_UPLOAD_STORE_PASSWORD',
   'ANDROID_UPLOAD_KEY_ALIAS', 'ANDROID_UPLOAD_KEY_PASSWORD'];
+const CLOUD_SECRET_NAMES = ['RECAP_ONEDRIVE_CLIENT_ID', 'RECAP_ONEDRIVE_PLAY_REDIRECT_HASH'];
 const VERIFIER_STAGES = new Set([
   'AAB_ARCHIVE', 'AAB_MANIFEST', 'APKS_ARCHIVE', 'SPLIT_ARCHIVE', 'SPLIT_MANIFEST',
   'BASE_APK_POLICY_MANIFEST', 'BASE_APK_BACKUP_RULES', 'BASE_APK_EXTRACTION_RULES',
@@ -45,7 +47,8 @@ const PUBLIC_VERIFIER_CODES = new Set([
   'MANIFEST_BACKUP_NETWORK', 'MANIFEST_BROWSER_QUERY', 'MANIFEST_COMPONENTS', 'MANIFEST_KIND',
   'MANIFEST_PACKAGE', 'MANIFEST_PERMISSIONS', 'MANIFEST_POLICY_RESOURCE', 'MANIFEST_QUERIES',
   'MANIFEST_QUERY_INTENT', 'MANIFEST_QUERY_INVENTORY', 'MANIFEST_ROOT_INVENTORY', 'MANIFEST_SDK',
-  'MANIFEST_TEST_COMPONENT', 'MANIFEST_VERSION', 'OUTPUT_EXISTS', 'POLICY_RESOURCE_REFERENCE',
+  'MANIFEST_TEST_COMPONENT', 'MANIFEST_VERSION', 'MANIFEST_CLOUD_INPUT', 'MANIFEST_CLOUD_REDIRECT',
+  'OUTPUT_EXISTS', 'POLICY_RESOURCE_REFERENCE',
   'NETWORK_TREE_FORMAT', 'NETWORK_TREE_BOUNDS',
   'POLICY_RESOURCE_UNRESOLVED', 'RESOURCE_POLICY_MISMATCH', 'SIGNER_ARGUMENT', 'SPLIT_COMPONENTS', 'SPLIT_IDENTITY',
   'UNEXPECTED_SIGNER', 'UNKNOWN_COMMAND', 'UNSIGNED_ENTRY', 'VERIFICATION_FAILED',
@@ -172,7 +175,7 @@ export function execute(file, args, options = {}, inspectionStage) {
 }
 const git = (root, ...args) => execute('git', args, { cwd: root });
 const cleanEnv = () => Object.fromEntries(Object.entries(process.env)
-  .filter(([key]) => !SECRET_NAMES.includes(key)));
+  .filter(([key]) => !SECRET_NAMES.includes(key) && !CLOUD_SECRET_NAMES.includes(key)));
 export function certificateFingerprint(value) {
   requireValue(typeof value === 'string' && /^[a-fA-F0-9:]+$/.test(value), 'missing public certificate SHA-256');
   const result = value.replaceAll(':', '').toLowerCase();
@@ -793,6 +796,7 @@ function checkDexDefinitions(dex, context) {
   requireValue(lines.length > 0 && lines.length <= 50000, 'DEX inventory row count is unsupported');
   const packages = new Set();
   const classes = new Set();
+  const markers = new Set();
   const owners = [];
   let totals = 0;
   for (const line of lines) {
@@ -814,9 +818,19 @@ function checkDexDefinitions(dex, context) {
         packages.add(payload);
       }
     } else if (kind === 'C') {
-      requireValue(dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
-      requireValue(!classes.has(payload), 'duplicate DEX class definition');
-      classes.add(payload);
+      // D8 nest-based-access marker: an empty `<Owner>-IA` class added as an extra argument of a
+      // synthetic bridge constructor. 4.3.0 ships one for CloudAuthorization's private
+      // constructor. Accepted only with no methods, beside its owner, and never as a member owner.
+      const marker = payload.endsWith('-IA') ? payload.slice(0, -3) : null;
+      if (marker !== null && dexQualified(marker) && marker.startsWith(`${PROTOTYPE_ID}.`)
+        && Number(definitions) === 0 && Number(references) === 0) {
+        requireValue(!markers.has(marker), 'duplicate DEX class definition');
+        markers.add(marker);
+      } else {
+        requireValue(dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
+        requireValue(!classes.has(payload), 'duplicate DEX class definition');
+        classes.add(payload);
+      }
     } else {
       const member = payload.match(/^(\S+) (.+)$/);
       requireValue(member && dexQualified(member[1]) && member[2].trim(), 'malformed DEX member row');
@@ -827,6 +841,7 @@ function checkDexDefinitions(dex, context) {
   requireValue(totals === 1, 'DEX aggregate root missing');
   requireValue(classes.has(`${PROTOTYPE_ID}.MainActivity`), 'exact MainActivity DEX definition missing');
   requireValue(owners.every((owner) => classes.has(owner)), 'DEX member owner is not a declared allowed class');
+  requireValue([...markers].every((owner) => classes.has(owner)), 'DEX access marker has no declared owner class');
   const classPackages = new Set();
   for (const type of classes) {
     for (let end = type.lastIndexOf('.'); end > 0; end = type.lastIndexOf('.', end - 1)) {
@@ -851,6 +866,16 @@ function apkCertificate(path, stage) {
 }
 
 async function inspectPackages(work, root) {
+  const receipt = await json(join(work, 'preflight.json'));
+  const expectation = process.env.RECAP_ANDROID_CLOUD_EXPECTATION;
+  requireValue(receipt.input.mode === 'Candidate' ? Boolean(expectation) : expectation === undefined,
+    'cloud expectation must be present only for the protected candidate');
+  let cloudClient = null;
+  if (expectation) {
+    const values = (await readFile(expectation, 'utf8')).split('\n');
+    requireValue(values.length === 3 && values[2] === '', 'invalid cloud expectation');
+    cloudClient = releaseCloudInput(values[0], values[1]).digest;
+  }
   const version = await json(join(work, 'version.json'));
   const signer = await json(join(work, 'signer.json'));
   const bundle = join(work, 'recap-page-android.aab');
@@ -960,6 +985,7 @@ async function inspectPackages(work, root) {
   await save(join(work, 'package-checks.json'), {
     bundleSha256: before, bundleSignerSha256: signer.sha256, structure: true,
     manifest: true, resources: true, assets: true, nativeLibraries: 0, apkSignatures: true,
+    cloudClient,
   });
 }
 
@@ -1263,7 +1289,10 @@ async function main() {
     const control = await json(join(work, 'native-input.json'));
     const report = verifyNativeReport(await json(join(work, 'native-result.json')), control);
     const checks = await json(join(work, 'package-checks.json'));
-    exactKeys(checks, ['bundleSha256', 'bundleSignerSha256', 'structure', 'manifest', 'resources', 'assets', 'nativeLibraries', 'apkSignatures']);
+    exactKeys(checks, ['bundleSha256', 'bundleSignerSha256', 'structure', 'manifest', 'resources', 'assets', 'nativeLibraries', 'apkSignatures', 'cloudClient']);
+    requireValue(receipt.input.mode === 'Candidate' ? typeof checks.cloudClient === 'string'
+      && HASH.test(checks.cloudClient) : checks.cloudClient === null,
+    'cloud configuration qualification is incomplete');
     requireValue(['structure', 'manifest', 'resources', 'assets', 'apkSignatures'].every((name) => checks[name] === true)
       && checks.nativeLibraries === 0, 'actual signed package inspection is incomplete');
     const bundle = join(work, 'recap-page-android.aab');
@@ -1280,7 +1309,7 @@ async function main() {
     requireValue(/^openjdk 17[.\s]/.test(tools.jdk) && tools.gradle === '9.8.2'
       && tools.agp === '9.4.1' && tools.sdkBuildTools === '35.0.0', 'unexpected toolchain record');
     const attestation = {
-      schemaVersion: 1, kind: receipt.input.mode === 'Candidate' ? 'qualified-candidate' : 'rehearsal-only',
+      schemaVersion: 2, kind: receipt.input.mode === 'Candidate' ? 'qualified-candidate' : 'rehearsal-only',
       source: identity, workflow: { sha: receipt.context.workflowSha, path: receipt.invocation.path,
         runId: receipt.context.runId, attempt: receipt.context.attempt },
       ledgerCommit: receipt.input.ledgerSha || null,

@@ -429,6 +429,60 @@ public final class VerifyBundle {
                 "GENERATED_SPLITS_RESOURCE");
     }
 
+    private static boolean cloudRedirect(Element app, String packageName) throws Exception {
+        String path = System.getenv("RECAP_ANDROID_CLOUD_EXPECTATION");
+        if (path == null) return false;
+        require(Files.size(Path.of(path)) <= 4096, "MANIFEST_CLOUD_INPUT");
+        String[] expected = Files.readString(Path.of(path)).split("\n", -1);
+        require(expected.length == 3 && expected[2].isEmpty()
+                && expected[0].matches("[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
+                && expected[1].matches("[A-Za-z0-9+/]{27}="), "MANIFEST_CLOUD_INPUT");
+        var matches = children(app, "activity").stream().filter(activity ->
+                attr(activity, "name").equals("io.github.raymondnassar.recappage.prototype.SignInRedirectActivity")).toList();
+        require(matches.size() == 1, "MANIFEST_CLOUD_REDIRECT");
+        Element activity = matches.get(0);
+        String theme = attr(activity, "theme");
+        require(activity.getAttributes().getLength() == 5
+                && attr(activity, "exported").equals("true")
+                && attr(activity, "excludeFromRecents").equals("true")
+                && attr(activity, "noHistory").equals("true")
+                && List.of("@android:style/Theme.NoDisplay", "@android:01030055",
+                        "@0x01030055", "@01030055", "@ref/0x01030055").contains(theme),
+                "MANIFEST_CLOUD_REDIRECT");
+        var filters = children(activity, "intent-filter");
+        var metadata = children(activity, "meta-data");
+        require(children(activity, null).size() == 3 && filters.size() == 1 && metadata.size() == 2,
+                "MANIFEST_CLOUD_REDIRECT");
+        Element filter = filters.get(0);
+        var actions = children(filter, "action");
+        var categories = children(filter, "category");
+        var data = children(filter, "data");
+        require(filter.getAttributes().getLength() == 0 && children(filter, null).size() == 4
+                && actions.size() == 1 && categories.size() == 2 && data.size() == 1
+                && attr(actions.get(0), "name").equals("android.intent.action.VIEW")
+                && categories.stream().map(category -> attr(category, "name")).collect(java.util.stream.Collectors.toSet())
+                        .equals(Set.of("android.intent.category.DEFAULT", "android.intent.category.BROWSABLE"))
+                && attr(data.get(0), "scheme").equals("msauth")
+                && attr(data.get(0), "host").equals(packageName)
+                && attr(data.get(0), "path").equals("/" + expected[1])
+                && data.get(0).getAttributes().getLength() == 3, "MANIFEST_CLOUD_REDIRECT");
+        for (Element child : children(filter, null)) {
+            require(children(child, null).isEmpty() && child.getTextContent().isBlank()
+                    && (child.getTagName().equals("data") || child.getAttributes().getLength() == 1),
+                    "MANIFEST_CLOUD_REDIRECT");
+        }
+        Set<String> names = new HashSet<>();
+        for (Element value : metadata) {
+            String name = attr(value, "name");
+            require(names.add(name) && value.getAttributes().getLength() == 2
+                    && children(value, null).isEmpty() && value.getTextContent().isBlank()
+                    && ((name.equals("recap.cloud.client") && attr(value, "value").equals(expected[0]))
+                        || (name.equals("recap.cloud.redirectHash") && attr(value, "value").equals(expected[1]))),
+                    "MANIFEST_CLOUD_REDIRECT");
+        }
+        return true;
+    }
+
     private static void manifest(String[] args) throws Exception {
         manifest(args, true);
     }
@@ -509,16 +563,18 @@ public final class VerifyBundle {
                     "MANIFEST_BROWSER_QUERY");
             var components = children(app, null);
             var activities = children(app, "activity");
-            require(activities.size() == 1
-                    && attr(activities.get(0), "name").equals("io.github.raymondnassar.recappage.prototype.MainActivity")
-                    && attr(activities.get(0), "exported").equals("true"), "MANIFEST_COMPONENTS");
+            boolean cloud = cloudRedirect(app, args[2]);
+            var main = activities.stream().filter(activity ->
+                    attr(activity, "name").equals("io.github.raymondnassar.recappage.prototype.MainActivity")).toList();
+            require(activities.size() == (cloud ? 2 : 1) && main.size() == 1
+                    && attr(main.get(0), "exported").equals("true"), "MANIFEST_COMPONENTS");
             if (derivedProfile) {
                 generatedMetadata(app);
-                require(components.size() == 2
+                require(components.size() == (cloud ? 3 : 2)
                         && components.stream().allMatch(child ->
                                 List.of("activity", "meta-data").contains(child.getTagName())), "MANIFEST_COMPONENTS");
             } else {
-                require(components.size() == 1, "MANIFEST_COMPONENTS");
+                require(components.size() == (cloud ? 2 : 1), "MANIFEST_COMPONENTS");
             }
             for (String resource : List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig")) {
                 require(attr(app, resource).startsWith("@"), "MANIFEST_POLICY_RESOURCE");

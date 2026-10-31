@@ -13,6 +13,98 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.3.0
+
+### Backups, reading progress and Professor X
+
+- Back up automatically to your own OneDrive on Windows and Android, or move your reading data
+  with one complete backup file.
+- Mark a whole saved Reading List as read, including filtered and deferred comics, with Undo for
+  the new read marks during the session.
+- Explore the Professor X spotlight and a reading path through his X-Men stories.
+- See what is changing for Marvel Unlimited and dismiss the Home notice once you have read it.
+- Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.
+
+### Saved data and upgrading
+
+Reading-data schema 4 and the existing reading-data, completion-history and import-draft backup
+formats are unchanged. Existing lists, shared progress, notes, ratings, completion history and
+unfinished imports remain compatible with 4.2.0; no migration is required.
+
+A complete backup is a new file type. It contains reading data, completion history, display and
+reading preferences, and any unfinished import. Restoring it replaces those saved values after
+confirmation. Version 4.2.0 cannot restore a complete backup, so keep the separate reading-data,
+completion-history and import-draft backups if you may return to that version. The metadata source
+and cloud sign-in are not included in the complete backup.
+
+OneDrive backup is optional and stays off until you turn it on. An enabled device keeps its own
+cloud-backup records and files in the app's folder in your OneDrive. Microsoft can read those
+files; your account protects them and the developer does not receive a copy. Version 4.2.0 does
+not use the cloud-backup records or files. Backups are not merged; choosing a restore replaces the
+saved values it holds.
+
+The Marvel Unlimited notice's dismissed state stays on the device and is not included in backups.
+Older versions ignore it. Builds older than 4.0.0 still cannot edit schema-4 reading data or
+restore its backups. Before upgrading from one of them, keep an independent backup and follow the
+[4.0.0 compatibility guidance](#400).
+
+This record prepares Android and Windows release source, including derived Windows Store version
+4.3.0.0. It does not announce availability or approve either Store publication. Android code
+reservation, exact-artifact qualification, physical-device acceptance and platform approvals
+remain separate.
+
+### Complete and OneDrive backups
+
+**Backup & settings** offers one complete backup for moving devices. It brings reading data,
+completion history, preferences and an unfinished import together without changing the existing
+single-kind backups. Close other Recap Page tabs and windows before restoring. A finished complete
+restore cannot be undone as a whole, so download a complete backup first if you may want the
+current data back.
+
+If a complete restore is interrupted, the app pauses saving and offers to
+recover according to what remains. Depending on the case, you can finish the restore, put the
+earlier data back, download a retained copy or keep the data that is there.
+
+If a readable recovery copy cannot be removed, it can wait for cleanup on a later start. Saving
+can continue, but another complete restore is unavailable until cleanup succeeds. An unreadable
+copy may be offered again instead.
+
+On Windows and Android, you can turn on automatic backups to your own OneDrive. Sign in through
+Microsoft, choose a device label and review backups made by your other devices. A backup from
+another device is downloaded only when you choose to restore it. The app attempts a backup after
+changes settle or when you leave, and aims to keep the two most recent backups for each device.
+
+**Delete this device's cloud backups** removes the recognized backups for this device. Disconnect
+also offers deletion. You can delete files in OneDrive and remove the app's access through your
+Microsoft account. OneDrive can keep deleted files in its recycle bin for up to 30 days. Erasing
+local data, uninstalling or disconnecting without choosing deletion does not remove cloud copies.
+
+### Reading progress and guides
+
+**Mark All Read** records unread comics in a saved Reading List, including comics hidden by filters
+or deferred for later. It keeps existing read dates, notes, order, deferrals and Completed status.
+Undo reverses only the new read marks until the next saved reading-data change in that session.
+
+The Professor X spotlight follows Comic Book Herald's guide and closes with a tribute to Sir
+Patrick Stewart. A Professor X and the X-Men reading path continues through Onslaught, Jonathan
+Hickman's X-Men and the 2024 finale.
+
+### Reading and navigation
+
+Marvel Unlimited reading ends December 7, 2026. Until then, Read opens its web reader when a
+recorded link is available, with a comic details page as the fallback. From December 7 on the
+device's clock, Read opens the general Marvel Comics website rather than a single-comic link.
+Android opens an installed browser, not the Marvel Unlimited app. The Home notice can be dismissed;
+each device remembers the choice, and the same information remains in About.
+
+On phones and tablets, a comic's own page opens on its cover. Long words on Home and the Search
+disclosure arrow no longer push narrow screens sideways. Decorative symbols stay visible without
+adding extra screen reader announcements. Back and
+address navigation no longer lose a requested page when a background redraw occurs.
+
+When Edge offers installation, **Backup & settings** provides an **Install Recap Page** action.
+The installed window uses the same browser progress; canceling installation changes nothing.
+
 ## 4.2.0
 
 ### A clearer design, Undo for Done and offline Reading Lists on Windows

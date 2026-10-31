@@ -40,6 +40,9 @@ on:
       - scripts/build-native-launcher.ps1
       - scripts/lib/native-launcher.mjs
       - scripts/lib/startup-contract.mjs
+      - scripts/lib/cloud-client.mjs
+      - scripts/lib/release-identity.mjs
+      - scripts/release-cloud-client.mjs
       - scripts/msix-proof.mjs
       - scripts/native-startup-proof.ps1
       - scripts/pack-msix.mjs
@@ -48,13 +51,16 @@ on:
       - scripts/test-wack-report.ps1
       - scripts/wack-report.ps1
       - test/msix-packaging.test.js
+      - test/cloud-config.test.js
+      - test/release-cloud-client.test.js
       - test/microsoft-store-release.test.js
       - test/native/**
       - test/server-contract.test.js
       - test/startup-contract.test.js
       - test/wack-workflow.test.js
 
-# WACK needs no repository write, package publication, identity token, or secret.
+# Ordinary WACK stays secret-free. Manual release preparation uses the main-only
+# protected Store environment for the enabled packages; it never publishes them.
 permissions:
   contents: read
 
@@ -90,6 +96,10 @@ jobs:
           if ($env:RELEASE_PREPARATION -eq 'true' -and
               ($env:NATIVE_ONLY -eq 'true' -or $env:DIAGNOSTIC_ONLY -eq 'true')) {
             throw 'release_preparation requires the complete Windows proof.'
+          }
+          if ($env:RELEASE_PREPARATION -eq 'true' -and
+              ($env:GITHUB_EVENT_NAME -ne 'workflow_dispatch' -or $env:GITHUB_REF -ne 'refs/heads/main')) {
+            throw 'Enabled release preparation requires the reviewed main workflow.'
           }
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
               $env:NATIVE_ONLY -eq 'true' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
@@ -291,8 +301,9 @@ jobs:
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
     needs: native
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && 'microsoft-store-production' || '' }}
     if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
-    timeout-minutes: 110
+    timeout-minutes: 112
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
     steps:
@@ -384,7 +395,21 @@ jobs:
 
       - name: Build ephemeral certification packages
         timeout-minutes: 15
-        run: npm run msix:pack
+        shell: pwsh
+        env:
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && secrets.RECAP_ONEDRIVE_CLIENT_ID || '' }}
+        run: |
+          if ($env:RELEASE_PREPARATION -eq 'true') {
+            node scripts/release-cloud-client.mjs windows-msix
+          } else {
+            npm run msix:pack
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Package build failed.' }
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
 
       - name: Inspect every certification package without executing foreign runtimes
         timeout-minutes: 5
@@ -472,6 +497,7 @@ jobs:
     name: Installed functionality on ${{ matrix.architecture }}
     runs-on: ${{ matrix.runner }}
     needs: native
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && 'microsoft-store-production' || '' }}
     if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
     timeout-minutes: 99
     env:
@@ -558,7 +584,21 @@ jobs:
 
       - name: Build ephemeral packages
         timeout-minutes: 15
-        run: npm run msix:pack
+        shell: pwsh
+        env:
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main' && secrets.RECAP_ONEDRIVE_CLIENT_ID || '' }}
+        run: |
+          if ($env:RELEASE_PREPARATION -eq 'true') {
+            node scripts/release-cloud-client.mjs windows-msix
+          } else {
+            npm run msix:pack
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Package build failed.' }
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
 
       - name: Inspect every installed-proof package without executing foreign runtimes
         timeout-minutes: 5
@@ -725,6 +765,7 @@ jobs:
   preparation:
     name: Prepare the portable release candidate
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true && inputs.diagnostic_target != 'ordinary-browser' && inputs.diagnostic_target != 'ordinary-browser-context-isolation' && inputs.diagnostic_target != 'ordinary-browser-download-completion' && inputs.diagnostic_target != 'ordinary-browser-export-acceptance' && inputs.diagnostic_target != 'ordinary-browser-recovery-completion' && inputs.diagnostic_target != 'ordinary-browser-ratings-acceptance' && inputs.diagnostic_target != 'ordinary-browser-interaction-acceptance' }}
+    environment: microsoft-store-production
     runs-on: windows-2022
     timeout-minutes: 120
     steps:
@@ -757,6 +798,20 @@ jobs:
       - name: Run ESLint
         timeout-minutes: 2
         run: npm run lint
+      - name: Select the preinstalled JDK 17
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          if (-not $env:JAVA_HOME_17_X64) { throw 'The runner does not provide JDK 17.' }
+          $javaBin = Join-Path $env:JAVA_HOME_17_X64 'bin'
+          $javac = Join-Path $javaBin 'javac.exe'
+          if (-not (Test-Path -LiteralPath $javac -PathType Leaf)) { throw 'The JDK 17 compiler is missing.' }
+          $version = (& $javac -version 2>&1 | Out-String).Trim()
+          if ($LASTEXITCODE -ne 0 -or $version -notmatch '^javac 17([.\s]|$)') {
+            throw 'The selected compiler is not JDK 17.'
+          }
+          $javaBin >> $env:GITHUB_PATH
+          "JAVA_HOME=$env:JAVA_HOME_17_X64" >> $env:GITHUB_ENV
       - name: Run the bare test suite
         timeout-minutes: 6
         run: npm test
@@ -792,13 +847,37 @@ jobs:
         run: npm run store:check
       - name: Build only the portable ZIP
         timeout-minutes: 10
-        run: npm run pack
+        shell: pwsh
+        env:
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-release-preparation'
+          New-Item -ItemType Directory -Path $root -ErrorAction Stop | Out-Null
+          @'
+          import { writeFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          import { releaseCloudInput } from './scripts/release-cloud-client.mjs';
+          try {
+            const { digest } = releaseCloudInput(process.env.RECAP_ONEDRIVE_CLIENT_ID);
+            writeFileSync(join(process.env.RUNNER_TEMP, 'recap-release-preparation', 'protected-configuration.sha256'),
+              `${digest}\n`, { mode: 0o600, flag: 'wx' });
+          } catch {
+            console.error('The protected cloud configuration could not be validated.');
+            process.exitCode = 1;
+          }
+          '@ | node --input-type=module
+          if ($LASTEXITCODE -ne 0) { throw 'The protected configuration digest could not be established.' }
+          node scripts/release-cloud-client.mjs windows-portable
+          if ($LASTEXITCODE -ne 0) { throw 'Portable package build failed.' }
+      - name: Remove protected configuration scratch
+        if: always()
+        timeout-minutes: 2
+        run: node scripts/release-cloud-client.mjs cleanup
       - name: Verify portable bytes and record candidate provenance
         timeout-minutes: 10
         shell: pwsh
         run: |
           $root = Join-Path $env:RUNNER_TEMP 'recap-release-preparation'
-          New-Item -ItemType Directory -Path $root -ErrorAction Stop | Out-Null
           $verifier = Join-Path $root 'verify.mjs'
           @'
           import assert from 'node:assert/strict';
@@ -809,6 +888,15 @@ jobs:
           import { pathToFileURL } from 'node:url';
 
           const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
+          export function requireProtectedDigest(value) {
+            assert.match(typeof value === 'string' ? value : '', /^[0-9a-f]{64}$/,
+              'protected configuration digest missing or invalid');
+          }
+          export function verifyPortableCloud(expectedDigest, names, payload, bytes) {
+            requireProtectedDigest(expectedDigest);
+            assert.ok(names.includes(`${payload}/cloud-client.json`), 'cloud configuration missing');
+            assert.equal(digest(bytes), expectedDigest, 'cloud configuration differs from protected input');
+          }
           export function verifyPortableEntries(expected, actual) {
             assert.deepEqual([...actual.keys()].sort(), [...expected.keys()].sort(), 'portable entry allowlist differs');
             assert.deepEqual([...actual.keys()].filter((name) => /\.exe$/i.test(name)), ['runtime/node.exe']);
@@ -844,6 +932,7 @@ jobs:
             assert.match(input.nodeHash, /^[0-9a-f]{64}$/);
             assert.ok(Number.isSafeInteger(input.bytes) && input.bytes > 0);
             assert.match(input.sha256, /^[0-9a-f]{64}$/);
+            requireProtectedDigest(input.configurationSha256);
             return {
               schemaVersion: 1, repository: input.repository,
               commit: input.commit, tree: input.tree, applicationVersion: input.version,
@@ -851,6 +940,7 @@ jobs:
               archive: { file: 'marvel-reading-tracker-windows.zip', bytes: input.bytes, sha256: input.sha256 },
               bundledNode: { version: input.nodeVersion, architecture: input.nodeArchitecture, sha256: input.nodeHash },
               portableLauncher: 'Start on Windows.cmd',
+              configurationSha256: input.configurationSha256,
             };
           }
           async function entries(root, prefix = '') {
@@ -871,12 +961,14 @@ jobs:
           async function main() {
             const root = process.env.GITHUB_WORKSPACE;
             const scratch = join(process.env.RUNNER_TEMP, 'recap-release-preparation');
+            const expectedCloudDigest = (await readFile(join(scratch, 'protected-configuration.sha256'), 'utf8')).trim();
+            requireProtectedDigest(expectedCloudDigest);
             const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
             const commit = git('rev-parse', 'HEAD');
             const tree = git('rev-parse', 'HEAD^{tree}');
             assert.equal(git('status', '--porcelain', '--untracked-files=no'), '', 'candidate is dirty');
             assert.equal(commit, process.env.GITHUB_SHA);
-            const { NODE_VERSION, NODE_ARCH, appFiles, fetchRuntime, readMe, PAYLOAD_NAME } =
+            const { NODE_VERSION, NODE_ARCH, appFiles, fetchRuntime, readMeFor, PAYLOAD_NAME } =
               await import(pathToFileURL(join(root, 'scripts', 'pack-windows.mjs')));
             const pkg = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
             const lock = JSON.parse(await readFile(join(root, 'package-lock.json'), 'utf8'));
@@ -899,10 +991,10 @@ jobs:
             for (const name of appFiles()) expected.set(name, await readFile(join(root, name)));
             const { buildIdentity, stampAbout } =
               await import(pathToFileURL(join(root, 'scripts', 'lib', 'release-identity.mjs')));
-            const identity = await buildIdentity('windows-portable', pkg.version, 'candidate', root);
+            const identity = await buildIdentity('windows-portable', pkg.version, 'candidate', root,
+              { cloudClient: expectedCloudDigest });
             expected.set('src/index.html', Buffer.from(stampAbout(expected.get('src/index.html').toString('utf8'), identity)));
             expected.set('src/build-info.json', Buffer.from(JSON.stringify(identity, null, 2) + '\n'));
-            expected.set('Read this first.txt', Buffer.from(readMe));
             expected.set('runtime/LICENSE-node.txt', await readFile(join(official, 'LICENSE')));
             expected.set('runtime/node.exe', node);
             const names = JSON.parse(execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command',
@@ -910,22 +1002,19 @@ jobs:
               + `$zip = [IO.Compression.ZipFile]::OpenRead(${literal(archivePath)}); `
               + 'try { ConvertTo-Json -InputObject @($zip.Entries | ForEach-Object { $_.FullName }) -Compress } finally { $zip.Dispose() }'],
             { encoding: 'utf8', timeout: 120000 }));
-            if (names.includes(`${PAYLOAD_NAME}/cloud-client.json`)) expected.set('cloud-client.json', Buffer.alloc(0));
+            expected.set('cloud-client.json', Buffer.alloc(0));
+            expected.set('Read this first.txt', Buffer.from(readMeFor({ cloudBackup: true })));
             verifyPortableNames(expected, names, PAYLOAD_NAME);
             unpack(archivePath, join(scratch, 'portable'));
             const outer = await readdir(join(scratch, 'portable'));
             assert.deepEqual(outer, [PAYLOAD_NAME], 'portable root differs');
-            // A cloud backup client configuration put in for a release is the one entry not rebuilt here,
-            // because this verifier is never given it. It is admitted by name, checked once unpacked as the
-            // host checks it, and the build identity must record its digest (#810, P02-T01 section 3.2).
-            if (expected.has('cloud-client.json')) {
-              const client = await readFile(join(scratch, 'portable', PAYLOAD_NAME, 'cloud-client.json'));
-              const { parseCloudClient } = await import(pathToFileURL(join(root, 'host', 'cloudConfig.mjs')));
-              parseCloudClient(client.toString('utf8'));
-              const carried = await buildIdentity('windows-portable', pkg.version, 'candidate', root, { cloudClient: digest(client) });
-              expected.set('cloud-client.json', client);
-              expected.set('src/build-info.json', Buffer.from(JSON.stringify(carried, null, 2) + '\n'));
-            }
+            // The protected input is not exposed here; its independently computed digest binds the
+            // validated configuration, the build identity and the release receipt to the same bytes.
+            const client = await readFile(join(scratch, 'portable', PAYLOAD_NAME, 'cloud-client.json'));
+            const { parseCloudClient } = await import(pathToFileURL(join(root, 'host', 'cloudConfig.mjs')));
+            parseCloudClient(client.toString('utf8'));
+            verifyPortableCloud(expectedCloudDigest, names, PAYLOAD_NAME, client);
+            expected.set('cloud-client.json', client);
             verifyPortableEntries(expected, await entries(join(scratch, 'portable', PAYLOAD_NAME)));
             const record = candidateRecord({
               repository: process.env.GITHUB_REPOSITORY, commit, expectedCommit: process.env.GITHUB_SHA, tree,
@@ -933,6 +1022,7 @@ jobs:
               runId: process.env.GITHUB_RUN_ID, runAttempt: process.env.GITHUB_RUN_ATTEMPT,
               nodeVersion: NODE_VERSION, nodeArchitecture: NODE_ARCH, nodeHash: digest(node),
               bytes: archive.length, sha256: digest(archive),
+              configurationSha256: expectedCloudDigest,
             });
             assert.equal(digest(await readFile(archivePath)), record.archive.sha256, 'ZIP changed during inspection');
             await writeFile(join(root, 'dist', 'release-preparation.json'), JSON.stringify(record, null, 2) + '\n');

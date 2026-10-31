@@ -45,7 +45,8 @@ export function assertSourceUnchanged(identity, root = ROOT) {
 }
 
 // A Windows build records the SHA-256 of the cloud backup client configuration it carries, or null for
-// none, and never the configuration itself (#810, P02-T01 section 3.2). Android records it from P03.
+// none, and never the configuration itself (#810, P02-T01 section 3.2). Android's qualification records
+// the digest of its checked client and registered redirect; its historic source identity is unchanged.
 const WINDOWS = new Set(['windows-portable', 'windows-msix']);
 
 export function validateIdentity(value) {

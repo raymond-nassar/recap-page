@@ -119,9 +119,68 @@ A build carries a cloud backup client configuration only when its packager is gi
 `--cloud-client=<absolute path outside this repository>`. Both Windows packagers refuse any other
 source, never read one from the environment, check it as the host will, and copy it byte for byte
 beside the server; `cloud-client.json` is ignored, so a copy left in the checkout is never committed.
-No workflow passes one until P05 wires the release workflow to a protected secret (#810), so every
-artifact before then leaves cloud backup off. The portable verifier checks an injected configuration
-the same way and requires `build-info.json` to record its digest.
+Ordinary PR, diagnostic and Android rehearsal builds pass none and leave cloud backup off.
+Approved Windows release preparation and Store builds, including read-only Store Validate,
+use the protected inputs below. Both the portable verifier and MSIX inspection validate the
+carried configuration and require its exact SHA-256 in `build-info.json`.
+
+### Protected OneDrive release inputs
+
+The owner creates these **environment secrets on GitHub**, never sends their values
+through chat and never copies withheld evidence into a build:
+
+| Environment | Secret | Value entered by the owner |
+|---|---|---|
+| `microsoft-store-production` | `RECAP_ONEDRIVE_CLIENT_ID` | Read the Application (client) ID from the personal-account app's Entra Overview at that time. |
+| `android-release-candidate` | `RECAP_ONEDRIVE_CLIENT_ID` | The same Entra Application (client) ID. |
+| `android-release-candidate` | `RECAP_ONEDRIVE_PLAY_REDIRECT_HASH` | The already registered, unencoded base64 SHA-1 Android redirect hash for the Play app signing certificate, not the upload certificate. |
+
+These are public-client identifiers carried by installed packages, not client
+passwords. The owner's rule still keeps them out of source, Issues, PRs and logs.
+Do not add a client secret. Both environments keep their owner reviewer and exact
+`main`-only branch policy. Creating or changing a secret or environment is an owner
+operation, not a workflow side effect.
+
+The checked release wrapper generates this JSON outside the checkout; placeholders
+below show the shape only, never values to paste back to an agent:
+
+```json
+{
+  "format": "recap-page-cloud-client",
+  "version": 1,
+  "providers": {
+    "onedrive": {
+      "clientId": "<Application client ID entered directly on GitHub>",
+      "authority": "consumers"
+    }
+  }
+}
+```
+
+Missing or invalid inputs fail the approved build; they never fall back to a
+disabled release. Configuration is scoped to the package preparation step and
+removed in its `finally` path and an independent `always()` cleanup. Windows
+release preparation protects the enabled WACK and installed-proof package jobs
+as well as the portable ZIP. Ordinary WACK stays secret-free.
+
+Android Candidate uses a private redirect file, not a secret-bearing Gradle
+argument. Configured Gradle output is private scratch and is deleted even on
+failure; only a bounded failure message reaches the job log. Same-AAB manifest
+inspection checks the exact redirect activity, its client metadata, registered
+hash and browser intent against the external input. Qualification version 2
+records only the SHA-256 of the UTF-8 compact JSON object
+`{"clientId":value,"redirectHash":value}` in that property order, with no trailing
+newline. Signed-artifact identity and the ledger still bind the final AAB bytes;
+the existing source identity is unchanged. The publisher continues to verify
+historical version 1 qualification packets without inventing configuration
+evidence for them. Neither synthetic signing nor an emulator proves Play-signed
+Microsoft sign-in; the physical pass on the final closed-testing build does.
+
+Local test copies keep their separately registered signing redirect. Supply the
+existing external config property and the matching debug redirect, either as
+`recapCloudRedirectHashDebug` or `recapCloudRedirectHashDebugFile` (an external file
+containing exactly the 28-character unencoded hash, without a newline). A Play
+redirect must never be substituted for the local debug certificate's redirect.
 
 The source checkout states that its revision is not embedded. Packagers stamp only generated output.
 Portable Windows writes `dist/windows-artifact.json`; MSIX writes `dist/msix/windows-artifact.json`.
@@ -259,3 +318,38 @@ environment secrets and runner scratch only, with always-run deletion. Certifica
 from Windows and Transporter or Build Upload API uploading remain documented fallbacks, not an
 automatic alternate path around a refusal. Real signing, processing, installation, expiry and
 update-in-place behavior remain delivery evidence, not facts established by the tooling tests.
+
+## 4.3.0 Windows Store owner handoff
+
+The separate **4.3.0 Store bundle handoff** workflow prepares an owner-upload packet,
+not a submission or public release. Implementation of this route is not permission
+to dispatch it. The owner must separately approve building and transferring, bound
+to the explicit release commit/tree on main, reviewed executing workflow revision,
+and repository-owner Partner Center recipient. Both approvals may precede the build;
+the exact bundle digest is checked after qualification. Do not select an unmerged
+version PR head or assume it will become the release commit.
+
+The existing `microsoft-store-production` environment remains the protected gate.
+The only protected input is the existing OneDrive client ID secret, supplied through
+the release wrapper. An independently calculated configuration digest must match
+every standalone, proof and bundled package inspected. Missing or invalid input,
+wrong source/version, unqualified WACK, changed bytes or failed pre-transfer cleanup
+blocks the artifact. The historical 2.1.0 draft handoff remains separate and unchanged.
+
+The owner accepted short public access without encryption. Retain only the
+4.3.0.0 x64/ARM64 bundle and strict public-safe receipt for **one day**. Arrange the
+owner's download and upload within that window before approving a run; if that is
+not possible, stop and obtain a retention decision rather than dispatching or extending
+retention silently. This does not change the portable candidate's one-day retention
+or the Android candidate's seven-day closed-testing handoff window.
+
+The receipt binds release commit/tree, workflow commit/tree/blob digest and run,
+recipient/purpose, configuration digest, structural inspection and WACK results,
+bundle size/hash and plaintext retention. It contains no configuration bytes,
+client ID, redirect hash, credentials, signer details or personal data. The bundle
+necessarily carries the configured public-client identifier, as an installed release
+does; accepting plaintext bundle access does not permit printing that identifier.
+Raw build, inspection and WACK output is private scratch and is never retained.
+Only a completely successful run, including final cleanup, is eligible for handoff.
+Owner upload, draft read-back, certification and publication still require their
+own authority; no artifact or receipt supplies it.

@@ -59,6 +59,9 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/build-native-launcher.ps1',
       'scripts/lib/native-launcher.mjs',
       'scripts/lib/startup-contract.mjs',
+      'scripts/lib/cloud-client.mjs',
+      'scripts/lib/release-identity.mjs',
+      'scripts/release-cloud-client.mjs',
       'scripts/msix-proof.mjs',
       'scripts/native-startup-proof.ps1',
       'scripts/pack-msix.mjs',
@@ -67,6 +70,8 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/test-wack-report.ps1',
       'scripts/wack-report.ps1',
       'test/msix-packaging.test.js',
+      'test/cloud-config.test.js',
+      'test/release-cloud-client.test.js',
       'test/microsoft-store-release.test.js',
       'test/native/**',
       'test/server-contract.test.js',
@@ -88,16 +93,59 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
   assert.ok(workflow.indexOf('Get-FileHash') < workflow.indexOf('Expand-Archive'));
   assert.ok(workflow.indexOf('Expand-Archive') < workflow.indexOf('winapp.exe'));
   assert.doesNotMatch(workflow, /setup-WinAppCli/);
-  assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write|secrets\./);
+  assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write/);
+  const protectedSecrets = [...workflow.matchAll(/secrets\.([A-Z_]+)/g)].map((match) => match[1]);
+  assert.deepEqual(protectedSecrets, Array(3).fill('RECAP_ONEDRIVE_CLIENT_ID'));
   assert.match(runner, /PROCESSOR_ARCHITECTURE -ne 'AMD64'/);
   assert.match(runner, /SessionId/);
   assert.match(runner, /10\.0\.20348/);
 });
 
+test('only explicit main release preparation exposes the protected package configuration', () => {
+  const gate = "github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && github.ref == 'refs/heads/main'";
+  const secretExpression = `${gate} && secrets.RECAP_ONEDRIVE_CLIENT_ID || ''`;
+  const jobs = [...workflow.matchAll(/^ {2}([a-z][a-z-]*):\r?$/gm)];
+  const jobSource = (name) => {
+    const index = jobs.findIndex((match) => match[1] === name);
+    assert.notEqual(index, -1, `${name} job is missing`);
+    return workflow.slice(jobs[index].index, jobs[index + 1]?.index ?? workflow.length);
+  };
+  assert.equal((workflow.match(/secrets\.RECAP_ONEDRIVE_CLIENT_ID/g) ?? []).length, 3);
+  for (const name of ['certify', 'installed']) {
+    const source = jobSource(name);
+    const expressions = [...source.matchAll(/RECAP_ONEDRIVE_CLIENT_ID: (\$\{\{[^\r\n]*\}\})/g)];
+    assert.deepEqual(expressions.map((match) => match[1]), [`\${{ ${secretExpression} }}`], name);
+    const environment = source.match(/^ {4}environment: \$\{\{ (.+) \}\}/m)?.[1];
+    assert.equal(environment, `${gate} && 'microsoft-store-production' || ''`, name);
+    for (const event of ['workflow_dispatch', 'pull_request']) {
+      for (const ref of ['refs/heads/main', 'refs/heads/feature']) {
+        for (const preparation of [true, false]) {
+          const enabled = event === 'workflow_dispatch' && ref === 'refs/heads/main' && preparation;
+          const context = {
+            github: { event_name: event, ref }, inputs: { release_preparation: preparation },
+            secrets: { RECAP_ONEDRIVE_CLIENT_ID: 'synthetic-protected-value' },
+          };
+          assert.equal(runInNewContext(environment, context), enabled ? 'microsoft-store-production' : '', name);
+          assert.equal(runInNewContext(expressions[0][1].slice(4, -3), context),
+            enabled ? 'synthetic-protected-value' : '', name);
+        }
+      }
+    }
+  }
+  const preparation = jobSource('preparation');
+  assert.deepEqual(
+    [...preparation.matchAll(/RECAP_ONEDRIVE_CLIENT_ID: (\$\{\{[^\r\n]*\}\})/g)].map((match) => match[1]),
+    ['${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}'],
+  );
+  assert.match(preparation, /^ {4}environment: microsoft-store-production\r?$/m);
+  assert.equal((workflow.match(/environment: \$\{\{/g) ?? []).length, 2);
+  assert.match(workflow, /\$env:GITHUB_REF -ne 'refs\/heads\/main'/);
+});
+
 test('the supported Windows job executes parser fixtures before certification', () => {
   const ordinary = workflow.slice(workflow.indexOf('\n  certify:'));
   const fixtures = ordinary.indexOf('run: ./scripts/test-wack-report.ps1');
-  const builds = [...ordinary.matchAll(/run: npm run msix:pack/g)].map((match) => match.index);
+  const builds = [...ordinary.matchAll(/node scripts\/release-cloud-client\.mjs windows-msix/g)].map((match) => match.index);
   const inspections = [...ordinary.matchAll(
     /run: npm run msix:inspect -- --structural/g,
   )].map((match) => match.index);
@@ -786,7 +834,8 @@ test('portable preparation excludes nonmanual and incomplete proof executions', 
   assert.match(preparation, /runs-on: windows-2022/);
   assert.match(preparation, /fetch-depth: 0/);
   assert.match(preparation, /persist-credentials: false/);
-  assert.doesNotMatch(preparation, /needs:|secrets\.|msix:|winapp|build-native|native-startup|continue-on-error/);
+  assert.doesNotMatch(preparation, /needs:|msix:|winapp|build-native|native-startup|continue-on-error/);
+  assert.match(preparation, /environment: microsoft-store-production/);
 });
 
 test('portable preparation runs the bounded release commands and cleans independently', () => {
@@ -795,8 +844,10 @@ test('portable preparation runs the bounded release commands and cleans independ
     'npm ci --ignore-scripts', 'npm run lint', 'npm test', 'npm run counts',
     'npm run sizes', 'npm run anchors', 'npm run spacing', 'npm run palette',
     'npm run publication', 'npm run contract', 'npm run browser', 'npm run upgrade',
-    'npm run store:check', 'npm run pack',
+    'npm run store:check',
   ]);
+  assert.match(preparation, /node scripts\/release-cloud-client\.mjs windows-portable/);
+  assert.match(preparation, /if: always\(\)[\s\S]*run: node scripts\/release-cloud-client\.mjs cleanup/);
   assert.match(preparation, /\.github\/browser-proof/);
   assert.match(preparation, /npm ci --prefix \$root --ignore-scripts\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
   const exports = [...preparation.matchAll(/"MRT_PUPPETEER=\$(\w+)" >> \$env:GITHUB_ENV/g)];
@@ -840,6 +891,101 @@ test('portable preparation runs the bounded release commands and cleans independ
   assert.doesNotMatch(cleanup, /SilentlyContinue/);
 });
 
+test('portable preparation selects the preinstalled JDK 17 before the bare suite', () => {
+  const preparation = workflow.slice(workflow.indexOf('\n  preparation:'));
+  const start = preparation.indexOf('      - name: Select the preinstalled JDK 17');
+  const end = preparation.indexOf('\n      - name:', start + 1);
+  const suite = preparation.indexOf('      - name: Run the bare test suite');
+  assert.ok(start !== -1 && end > start && suite > end, 'select JDK 17 before npm test');
+  const selection = preparation.slice(start, end);
+  assert.match(selection, /if \(-not \$env:JAVA_HOME_17_X64\) \{ throw/);
+  assert.match(selection, /\$javac = Join-Path \$javaBin 'javac\.exe'/);
+  assert.match(selection, /Test-Path -LiteralPath \$javac -PathType Leaf/);
+  assert.match(selection, /& \$javac -version/);
+  assert.match(selection, /\$LASTEXITCODE -ne 0 -or \$version -notmatch/);
+  assert.match(selection, /\$javaBin >> \$env:GITHUB_PATH/);
+  assert.match(selection, /"JAVA_HOME=\$env:JAVA_HOME_17_X64" >> \$env:GITHUB_ENV/);
+  assert.match(preparation.slice(suite), /run: npm test/);
+});
+
+test('portable README expectation requires the enabled cloud wording', async () => {
+  const verifierStep = preparation.slice(preparation.indexOf('      - name: Verify portable bytes'));
+  const script = verifierStep.match(/@'\r?\n([\s\S]*?)\r?\n\s*'@ \| Set-Content -LiteralPath \$verifier/)?.[1];
+  assert.ok(script, 'extract the actual inline verifier');
+  const source = script.split(/\r?\n/).map((line) => line.replace(/^ {10}/, '')).join('\n');
+  const expression = source.match(/expected\.set\('Read this first\.txt', (.+)\);/)?.[1];
+  assert.ok(expression, 'extract the verifier README expectation');
+  const library = source.replace(/\r?\nawait main\(\);\s*$/, '\n');
+  const { verifyPortableEntries } = await import(
+    `data:text/javascript;base64,${Buffer.from(library).toString('base64')}`);
+  const { readMeFor } = await import('../scripts/pack-windows.mjs');
+  const expected = new Map([
+    ['Read this first.txt', runInNewContext(expression, { Buffer, readMeFor })],
+    ['runtime/node.exe', Buffer.from('fixture runtime')],
+  ]);
+  const enabled = new Map(expected);
+  enabled.set('Read this first.txt', Buffer.from(readMeFor({ cloudBackup: true })));
+  verifyPortableEntries(expected, enabled);
+  const dormant = new Map(enabled);
+  dormant.set('Read this first.txt', Buffer.from(readMeFor({ cloudBackup: false })));
+  assert.throws(() => verifyPortableEntries(expected, dormant), /portable bytes differ: Read this first\.txt/);
+  assert.match(source, /const \{[^}]*\breadMeFor\b[^}]*\} =\s*\n\s*await import/);
+  assert.match(source, /expected\.set\('cloud-client\.json', Buffer\.alloc\(0\)\);/);
+  assert.ok(source.indexOf('const names =') < source.indexOf("expected.set('Read this first.txt'"));
+  assert.ok(source.indexOf("expected.set('Read this first.txt'") < source.indexOf('verifyPortableEntries(expected, await entries'));
+});
+
+async function portableCloudFixture() {
+  const verifierStep = preparation.slice(preparation.indexOf('      - name: Verify portable bytes'));
+  const inline = verifierStep.match(/ {10}@'\r?\n([\s\S]*?)\r?\n {10}'@ \| Set-Content/)?.[1];
+  assert.ok(inline);
+  const source = inline.replace(/^ {10}/gm, '');
+  const library = source.replace(/\nawait main\(\);$/, '');
+  const verifier = await import(`data:text/javascript;base64,${Buffer.from(library).toString('base64')}`);
+  const { releaseCloudInput } = await import('../scripts/release-cloud-client.mjs');
+  const input = releaseCloudInput('test-client');
+  return {
+    verifier, source, input, payload: 'recap-page',
+    names: ['recap-page/cloud-client.json', 'recap-page/Read this first.txt'],
+  };
+}
+
+test('portable verification rejects a missing protected digest', async () => {
+  const { verifier, input, names, payload } = await portableCloudFixture();
+  for (const digest of [undefined, '', 'not-a-digest', 'A'.repeat(64)]) {
+    assert.throws(() => verifier.verifyPortableCloud(digest, names, payload, input.bytes), /protected.*digest/i);
+  }
+});
+
+test('portable verification rejects an omitted configuration', async () => {
+  const { verifier, input, payload } = await portableCloudFixture();
+  assert.throws(() => verifier.verifyPortableCloud(input.digest, [], payload, input.bytes), /cloud.*missing/i);
+});
+
+test('portable verification rejects a different valid configuration', async () => {
+  const { verifier, input, names, payload } = await portableCloudFixture();
+  const { releaseCloudInput } = await import('../scripts/release-cloud-client.mjs');
+  const other = releaseCloudInput('different-test-client');
+  assert.throws(() => verifier.verifyPortableCloud(input.digest, names, payload, other.bytes), /configuration differs/i);
+  assert.doesNotThrow(() => verifier.verifyPortableCloud(input.digest, names, payload, input.bytes));
+});
+
+test('portable preparation derives and carries the protected digest independently of the ZIP', () => {
+  const build = preparation.match(/ {6}- name: Build only the portable ZIP[\s\S]*?(?=\n {6}- name:)/)?.[0];
+  assert.ok(build);
+  assert.match(build, /releaseCloudInput\(process\.env\.RECAP_ONEDRIVE_CLIENT_ID\)/);
+  assert.match(build, /'protected-configuration\.sha256'/);
+  assert.ok(build.indexOf('releaseCloudInput(process.env.RECAP_ONEDRIVE_CLIENT_ID)')
+    < build.indexOf('node scripts/release-cloud-client.mjs windows-portable'));
+  const verifier = preparation.slice(preparation.indexOf('      - name: Verify portable bytes'));
+  assert.match(verifier, /readFile\(join\(scratch, 'protected-configuration\.sha256'\), 'utf8'\)/);
+  assert.match(verifier, /requireProtectedDigest\(expectedCloudDigest\)/);
+  assert.match(verifier, /\{ cloudClient: expectedCloudDigest \}/);
+  assert.match(verifier, /verifyPortableCloud\(expectedCloudDigest, names, PAYLOAD_NAME, client\)/);
+  assert.match(verifier, /configurationSha256: expectedCloudDigest/);
+  assert.doesNotMatch(verifier, /secrets\.RECAP_ONEDRIVE_CLIENT_ID|RECAP_ONEDRIVE_CLIENT_ID/);
+});
+
 test('portable preparation verifies its own payload and allowlisted provenance', async () => {
   const upload = preparation.match(/ {6}- name: Retain only the portable candidate and provenance[\s\S]*?(?=\n {6}- name:)/)?.[0];
   assert.ok(upload);
@@ -849,7 +995,8 @@ test('portable preparation verifies its own payload and allowlisted provenance',
   assert.match(upload, /retention-days: 1/);
   assert.match(upload, /if-no-files-found: error/);
   assert.doesNotMatch(upload, /if: always|\.msix|\.cer|\.pfx|\*/);
-  const inline = preparation.match(/ {10}@'\r?\n([\s\S]*?)\r?\n {10}'@ \| Set-Content/)?.[1];
+  const verifierStep = preparation.slice(preparation.indexOf('      - name: Verify portable bytes'));
+  const inline = verifierStep.match(/ {10}@'\r?\n([\s\S]*?)\r?\n {10}'@ \| Set-Content/)?.[1];
   assert.ok(inline, 'the executable inline verifier is missing');
   const source = inline.replace(/^ {10}/gm, '');
   assert.match(source, /\nawait main\(\);$/);
@@ -894,22 +1041,23 @@ test('portable preparation verifies its own payload and allowlisted provenance',
     repository: 'raymond-nassar/recap-page', commit: 'a'.repeat(40), expectedCommit: 'a'.repeat(40),
     tree: 'b'.repeat(40), version: '2.1.0', lockVersion: '2.1.0', browserVersion: '2.1.0',
     runId: '123', runAttempt: '1', nodeVersion: 'v24.19.0', nodeArchitecture: 'win-x64',
-    nodeHash: 'c'.repeat(64), bytes: 1234, sha256: 'd'.repeat(64),
+    nodeHash: 'c'.repeat(64), bytes: 1234, sha256: 'd'.repeat(64), configurationSha256: 'e'.repeat(64),
   };
   const record = candidateRecord({ ...input, privateValue: 'must not escape' });
   assert.deepEqual(Object.keys(record), [
     'schemaVersion', 'repository', 'commit', 'tree', 'applicationVersion',
-    'workflow', 'archive', 'bundledNode', 'portableLauncher',
+    'workflow', 'archive', 'bundledNode', 'portableLauncher', 'configurationSha256',
   ]);
   assert.deepEqual(record.archive, { file: 'marvel-reading-tracker-windows.zip', bytes: 1234, sha256: input.sha256 });
   assert.deepEqual(record.bundledNode, { version: 'v24.19.0', architecture: 'win-x64', sha256: input.nodeHash });
   assert.equal(record.portableLauncher, 'Start on Windows.cmd');
+  assert.equal(record.configurationSha256, input.configurationSha256);
   for (const change of [
     { repository: 'other/repo' }, { expectedCommit: 'e'.repeat(40) }, { tree: 'invalid' },
     { lockVersion: '2.0.3' }, { browserVersion: '2.0.3' }, { version: '2.1.0.0' },
     { runId: '0' }, { runAttempt: '0' }, { nodeArchitecture: 'win-arm64' },
     { nodeVersion: process.version.replace(/^v24/, 'v99') }, { nodeHash: 'bad' },
-    { bytes: 0 }, { sha256: 'bad' },
+    { bytes: 0 }, { sha256: 'bad' }, { configurationSha256: undefined }, { configurationSha256: 'bad' },
   ]) assert.throws(() => candidateRecord({ ...input, ...change }));
   assert.match(source, /await fetchRuntime\(NODE_ARCH\)/);
   assert.match(source, /readFile\(join\(official, 'LICENSE'\)\)/);

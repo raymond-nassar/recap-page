@@ -190,6 +190,8 @@ jobs:
         timeout-minutes: 20
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}
+          RECAP_ONEDRIVE_PLAY_REDIRECT_HASH: ${{ secrets.RECAP_ONEDRIVE_PLAY_REDIRECT_HASH }}
         run: bash scripts/android-release-candidate.sh prepare
       - name: Sign with the approved upload key outside Gradle
         timeout-minutes: 4

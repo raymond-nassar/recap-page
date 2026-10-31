@@ -43,6 +43,20 @@ test('the Store tile is the existing purple panels mark at the listing size', ()
   assert.equal(actual, expected);
 });
 
+test('the 4.3.0 Store screenshot set excludes the false About image', () => {
+  assert.deepEqual(SCREENSHOTS, [
+    '01-home-discovery.png',
+    '02-browse-reading-lists.png',
+    '03-reading-paths.png',
+    '04-reading-progress.png',
+  ]);
+  const packet = readFileSync(PACKET, 'utf8');
+  const assets = packet.slice(packet.indexOf('## Listing assets'), packet.indexOf('## Final upload handoff'));
+  assert.doesNotMatch(assets, /05-about-privacy\.png/);
+  assert.match(assets, /four screenshots were captured/i);
+  assert.match(packet, /In Partner Center, remove the existing About screenshot before submitting 4\.3\.0/);
+});
+
 test('listing copy stays within the Store field limits', () => {
   const packet = readFileSync(PACKET, 'utf8');
   const short = /### Short description\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### Long description/.exec(packet)?.[1]
@@ -57,11 +71,13 @@ test('listing copy stays within the Store field limits', () => {
   assert.ok(features.length > 0 && features.length <= 20);
   assert.ok(features.every((feature) => feature.length <= 200));
 
-  const terms = /### (?:Keywords|Search terms)\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### Copyright/.exec(packet)?.[1]
+  const terms = /### Keywords\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### Keyword guidance/.exec(packet)?.[1]
     .split(/\r?\n/)
-    .filter((line) => /^\d+\. `/.test(line))
-    .map((line) => line.replace(/^\d+\. `|`$/g, ''));
-  assert.equal(terms.length, 7);
+    .filter(Boolean);
+  assert.deepEqual(terms, [
+    'comic reading tracker', 'reading order', 'Marvel reading tracker', 'comic checklist',
+    'reading progress', 'comic events', 'comic books',
+  ]);
   assert.ok(terms.every((term) => term.length <= 40));
   assert.ok(new Set(terms.flatMap((term) => term.split(/\s+/))).size <= 21);
 });

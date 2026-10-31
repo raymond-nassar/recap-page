@@ -311,6 +311,14 @@ test('qualification receipt preserves actual identity, signatures, approval and 
   const spec = validateIntent(raw());
   const good = qualification();
   assert.doesNotThrow(() => validateQualification(good.report, good.record, good.recordBytes, spec, run(true), good.approval));
+  const configured = structuredClone(good.report);
+  configured.schemaVersion = 2;
+  configured.bundle.cloudClient = 'a'.repeat(64);
+  assert.doesNotThrow(() => validateQualification(configured, good.record, good.recordBytes, spec, run(true), good.approval));
+  for (const value of [undefined, null, 'test-client.recap-page', ['a'.repeat(64)]]) {
+    configured.bundle.cloudClient = value;
+    assert.throws(() => validateQualification(configured, good.record, good.recordBytes, spec, run(true), good.approval));
+  }
   for (const change of [
     (v) => { v.kind = 'rehearsal-only'; }, (v) => { v.source.packageVersion += 1; },
     (v) => { v.artifactRecordSha256 = '0'.repeat(64); }, (v) => { v.workflow.runId += 1; },

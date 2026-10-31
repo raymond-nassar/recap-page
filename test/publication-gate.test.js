@@ -381,9 +381,11 @@ const STORE_PUBLISHER_FILES = [
   'scripts/check-store-submission.mjs',
   'scripts/lib/startup-contract.mjs',
   'test/msix-packaging.test.js',
+  'scripts/store-bundle-handoff.mjs',
+  'test/store-bundle-handoff.test.js',
 ];
 
-test('the public Store publisher GUID is allowed only at its eight intended identity sites', () => {
+test('the public Store publisher GUID is allowed only at its ten intended identity sites', () => {
   const entries = [...ALLOWED.keys()]
     .map((key) => key.split('|'))
     .filter(([file, pattern]) => (
