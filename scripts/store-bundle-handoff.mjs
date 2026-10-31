@@ -221,7 +221,8 @@ function main() {
     const msix = join(application, 'dist', 'msix');
     demand(regular(join(msix, BUNDLE)).sha256 === inspection.bundleSha256, 'inspected bundle changed');
     for (const entry of inspection.packages.slice(0, 3)) {
-      demand(regular(join(msix, entry.file)).sha256 === entry.sha256, 'inspected standalone changed');
+      const output = entry === inspection.packages[2] ? join(application, 'dist', 'msix-proof') : msix;
+      demand(regular(join(output, entry.file)).sha256 === entry.sha256, 'inspected standalone changed');
     }
     write(join(scratch, 'qualification.json'), inspection);
   } else if (mode === 'stage') {

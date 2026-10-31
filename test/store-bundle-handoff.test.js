@@ -352,13 +352,19 @@ test('Store handoff CLI uses later tooling to qualify earlier release source wit
   mkdirSync(msix, { recursive: true });
   for (const entry of [...report.packages, report.proofUpdate]) {
     entry.sha256 = hash(standalone);
-    writeFileSync(join(msix, entry.file), standalone);
+    const output = join(application, 'dist', entry === report.proofUpdate ? 'msix-proof' : 'msix');
+    mkdirSync(output, { recursive: true });
+    writeFileSync(join(output, entry.file), standalone);
   }
   writeFileSync(join(msix, BUNDLE), bundleBytes);
   writeFileSync(join(scratchPath, 'inspection.txt'), `synthetic tooling header\n${JSON.stringify(report, null, 2)}\n`);
   writeFileSync(join(msix, BUNDLE), 'changed before WACK');
   run('inspect', 1);
   writeFileSync(join(msix, BUNDLE), bundleBytes);
+  const proof = join(application, 'dist', 'msix-proof', report.proofUpdate.file);
+  writeFileSync(proof, 'changed proof before WACK');
+  run('inspect', 1);
+  writeFileSync(proof, standalone);
   run('inspect');
   writeFileSync(join(scratchPath, 'wack.txt'), wack().replaceAll('F'.repeat(64), hash(standalone).toUpperCase()));
   run('stage');
