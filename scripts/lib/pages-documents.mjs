@@ -138,15 +138,21 @@ function refuseBlock(line, sourcePath) {
 export function renderMarkdown(markdown, sourcePath) {
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
   const blocks = [];
-  const slugs = new Map();
+  const slugs = new Set();
   let title = null;
   let index = 0;
 
   function headingId(text) {
     const base = slugify(text);
-    const count = slugs.get(base) ?? 0;
-    slugs.set(base, count + 1);
-    return count === 0 ? base : `${base}-${count}`;
+    if (base === '') throw new Error(`Heading has no usable anchor in ${sourcePath}: ${text}`);
+    let candidate = base;
+    let suffix = 1;
+    while (slugs.has(candidate)) {
+      candidate = `${base}-${suffix}`;
+      suffix += 1;
+    }
+    slugs.add(candidate);
+    return candidate;
   }
 
   while (index < lines.length) {
@@ -162,6 +168,9 @@ export function renderMarkdown(markdown, sourcePath) {
       const level = heading[1].length;
       if (level > 2) throw new Error(`Heading level ${level} is not supported in ${sourcePath}: ${line}`);
       const text = heading[2].trim();
+      if (/\[[^\]]+\]\([^)]+\)/.test(text)) {
+        throw new Error(`Links in headings are not supported in ${sourcePath}: ${line}`);
+      }
       if (level === 1) {
         if (title !== null) throw new Error(`${sourcePath} has more than one top-level heading`);
         if (blocks.length > 0) throw new Error(`${sourcePath} must open with its top-level heading`);

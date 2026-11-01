@@ -913,6 +913,28 @@ test('published headings keep the anchors the repository files gave them', () =>
   }
 });
 
+test('duplicate heading anchors avoid collisions with earlier suffixed headings', () => {
+  const markdown = '# A\n\n## A-1\n\n## A\n\n## A';
+  const { html: rendered } = renderMarkdown(markdown, 'headings.md');
+  const ids = [...rendered.matchAll(/<h[12] id="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(ids, ['a', 'a-1', 'a-2', 'a-3']);
+});
+
+test('linked headings are refused instead of publishing an incorrect anchor', () => {
+  const markdown = '# Privacy\n\n## [Delete data](https://example.com)';
+  assert.throws(
+    () => renderMarkdown(markdown, 'headings.md'),
+    /Links in headings are not supported/,
+  );
+});
+
+test('headings without a usable anchor are refused', () => {
+  assert.throws(
+    () => renderMarkdown('# Privacy\n\n## !!!', 'headings.md'),
+    /Heading has no usable anchor/,
+  );
+});
+
 test('every link on the published pages resolves', () => {
   for (const [name, page] of pageByDestination) {
     for (const [, raw] of page.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)) {
