@@ -84,6 +84,12 @@ final class WebViewController: UIViewController, WKUIDelegate {
                 injectionTime: .atDocumentStart,
                 forMainFrameOnly: true))
         }
+        if let seed = DebugSupport.screenshotSeedScript {
+            controller.addUserScript(WKUserScript(
+                source: seed,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
         #endif
         controller.addUserScript(WKUserScript(
             source: dataLossState.pageStateScript,

@@ -17,6 +17,7 @@ enum DebugSupport {
     static let dataLossStateResetKey = "RECAP_IOS_DATA_LOSS_RESET"
     static let clearReadingDataKey = "RECAP_IOS_CLEAR_READING_DATA"
     static let failFifthJournalPutKey = "RECAP_IOS_FAIL_FIFTH_JOURNAL_PUT"
+    static let screenshotSeedKey = "RECAP_IOS_SCREENSHOT_SEED"
     static let probeResultIdentifier = "recap-probe-result"
     static let handOffRecorderIdentifier = "ios-handoff-recorder"
 
@@ -74,6 +75,12 @@ enum DebugSupport {
 
     static var clearsReadingData: Bool {
         environment[clearReadingDataKey] == "1"
+    }
+
+    /// The App Store screenshot capture's fictional page state, written by the repository script.
+    static var screenshotSeedScript: String? {
+        guard let script = environment[screenshotSeedKey], !script.isEmpty else { return nil }
+        return script
     }
 
     static var failsFifthJournalPut: Bool {
