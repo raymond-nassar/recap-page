@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { encodePng } from '../scripts/build-icons.mjs';
 import { sha256 } from '../scripts/play-assets.mjs';
@@ -72,11 +72,7 @@ test('the committed header is a fresh build', () => {
   matchesManifest(ASSETS[0], productPageHeader());
 });
 
-// Skipped only while the iPhone screens are not on the branch. Once they are, a missing or stale
-// search results image fails here.
-test('the committed search results image is a fresh build of the committed screenshots', {
-  skip: !existsSync(SCREEN_DIR) && 'the iPhone 6.9-inch screenshots are not committed yet',
-}, () => {
+test('the committed search results image is a fresh build of the committed screenshots', () => {
   assert.deepEqual(manifest().screens.map(({ file }) => file.split('/').pop()), SEARCH_SCREENS);
   const screens = SEARCH_SCREENS.map((file) => {
     const bytes = readFileSync(join(SCREEN_DIR, file));

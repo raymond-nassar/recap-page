@@ -360,8 +360,9 @@ node scripts/ios-creative-assets.mjs
 ```
 
 The header is drawn from the app icon's geometry and colors, with no text. The search results image
-places three of the iPhone screenshots, Library, a reading list partway through and Backup &
-settings, on the same artwork. `npm test` rebuilds both and fails if either committed file differs.
+places three of the iPhone screenshots, Library, a reading list partway through and Home,
+on the same artwork. `npm test` rebuilds both and fails if an input is missing or either committed
+file differs.
 
 Key content stays inside the safe area of Apple's Photoshop templates for the
 [header](https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-product_page_header_template-static.psd)

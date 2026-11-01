@@ -36,9 +36,8 @@ export const TEMPLATES = Object.freeze({
   },
 });
 
-// Left and right edges of the iPhone screens, chosen for content free of real comic names: a
-// reading list partway through in the middle, with the library and backup screens either side.
-export const SEARCH_SCREENS = Object.freeze(['06-library.png', '03-reading-list.png', '07-backup-settings.png']);
+// Home states the app's purpose, beside a reading list partway through and the library.
+export const SEARCH_SCREENS = Object.freeze(['06-library.png', '03-reading-list.png', '01-home.png']);
 
 export const ASSETS = Object.freeze([
   {
