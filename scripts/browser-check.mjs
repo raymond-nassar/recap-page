@@ -14947,6 +14947,7 @@ const SCENARIOS = [
           ['privacy.html', 'Privacy'],
           ['data-sources.html', 'Data sources'],
           ['being-built.html', "What's being built"],
+          ['whats-new.html', "What's new"],
         ]) {
           for (const width of [1280, 320]) {
             await page.setViewport({ width, height: 900 });
@@ -14976,7 +14977,7 @@ const SCENARIOS = [
           }
         }
         t.check('each document page has one heading, the landmarks, its current page marked and no overflow',
-          documents.length === 8
+          documents.length === 10
           && documents.every((item) => (
             item.headings === 1
             && item.landmarks
@@ -14984,7 +14985,7 @@ const SCENARIOS = [
             && item.currentBorder > 0
             && item.overflow <= 1
             && item.clipped.length === 0
-            && item.navigation.length === 5
+            && item.navigation.length === 6
             && item.navigation.every(Boolean)
           )),
           JSON.stringify(documents));

@@ -1247,6 +1247,7 @@ support.html
 privacy.html
 data-sources.html
 being-built.html
+whats-new.html
 assets/home-960.png
 assets/avengers-disassembled-reading-960.png
 assets/android-feature-graphic.png
@@ -1264,6 +1265,19 @@ stay on the site, and other repository links open on GitHub. The data sources pa
 reader-facing summary of [the provenance record](DATA_PROVENANCE.md): when that record changes what
 was taken or what permission was given, update the summary in the same change, and never let it
 state something the record does not.
+
+The What's new page is generated too, by `scripts/lib/pages-releases.mjs`, from the first section of
+each release record in `CHANGELOG.md`. It reads that section with the same `readerFeatures` the
+in-app What's new is generated from, so the page and the app say the same thing about a release and
+there is no separate copy to keep in step. It shows the five latest finalized releases. A release is
+finalized once its source is recorded: a `v` tag, or for an untagged Android patch, the uploaded
+bundle's revision in `packaging/android/version-codes.json`. The date shown is that revision's commit
+date, read from the local clone, which is why the Pages workflow checks out full history. Release
+notes are plain text, so they are escaped rather than passed through the Markdown converter. A note
+that names a platform or a platform-bound capability needs a reviewed label in that module saying
+where it applies, and the build stops on an unlabelled one or on a label whose note no longer exists.
+The label check includes the five newest version records even before they have a tag or ledger
+date, so a release PR must pass it before its first post-tag Pages deployment.
 
 The two 960 by 900 images use a clean demo profile, cover art off, and the collapsed sidebar.
 Keep them byte-identical to their namesakes under `docs/screenshots/`.
