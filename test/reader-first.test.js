@@ -9,6 +9,21 @@ const html = read('../src/index.html');
 const add = read('../src/js/views/add.js');
 const catalog = read('../src/js/views/shared/catalog-presentation.js');
 
+test('iOS local-connection instructions compose without a repeated check-again sentence', () => {
+  const source = read('../src/js/main.js');
+  const constant = source.match(/const LOCAL_CONNECTION_STEPS =[\s\S]*?;/)?.[0];
+  assert.ok(constant);
+  const context = { iosApp: true };
+  runInNewContext(`${constant}\nthis.steps = LOCAL_CONNECTION_STEPS;`, context);
+  assert.equal(context.steps, 'Your lists and reading progress are safe. Restart the app.');
+  const messages = [...source.matchAll(/`([^`]*\$\{LOCAL_CONNECTION_STEPS\}[^`]*)`/g)]
+    .map((match) => match[1].replace('${LOCAL_CONNECTION_STEPS}', context.steps));
+  assert.equal(messages.length, 3);
+  assert.equal(messages.filter((message) => message.endsWith('Restart the app. Then check again.')).length, 1);
+  assert.equal(messages.filter((message) => message.endsWith('Restart the app.')).length, 1);
+  assert.equal(messages.filter((message) => message.endsWith('Restart the app. You can still add the Reading List.')).length, 1);
+});
+
 // The page reduced to what the hand-off reads: class selectors for closest, sibling order for after
 // and nextElementSibling, and lookup by id. Each surface keeps the shape it has in the app.
 function handoffPage() {

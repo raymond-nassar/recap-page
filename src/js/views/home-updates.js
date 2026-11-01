@@ -5,7 +5,7 @@ const IOS_FEATURE_COPY = new Map([
   ['Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.',
     'Use clearer phone layouts and screen reader labels.'],
 ]);
-const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft)\b/i;
+const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft)\b/;
 const VIEWING_FAILURES = {
   unreadable: 'browser storage could not be read',
   'locks-unavailable': 'browser storage locking is unavailable',
@@ -94,12 +94,12 @@ export function createHomeUpdatesView({
       nodes.content.replaceChildren(el('p', { text: 'No new highlights in this copy.' }));
       return;
     }
-    const features = isIos ? batch.features.map((feature) => {
+    const features = isIos ? batch.features.flatMap((feature) => {
       const projected = IOS_FEATURE_COPY.get(feature) ?? feature;
       if (OTHER_PLATFORM_NAMES.test(projected)) {
-        throw new Error(`iOS What's new copy names another platform: ${projected}`);
+        return [];
       }
-      return projected;
+      return [projected];
     }) : batch.features;
     nodes.content.replaceChildren(
       el('p', { class: 'home-updates-copy', text: `Included in version ${content.version}.` }),

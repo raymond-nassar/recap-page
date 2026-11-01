@@ -346,11 +346,11 @@ after(async () => {
   if (scratch) await rm(scratch, { recursive: true, force: true });
 });
 
-test('iOS preparation leaves out the same five files as the Android app and copies the rest exactly', async () => {
+test('iOS preparation leaves out Android exclusions and the unused sign-in logo, copying the rest exactly', async () => {
   const android = /const EXCLUDED = new Set\(\[([^\]]+)\]\)/.exec(read('scripts/prepare-android.mjs'))?.[1];
   assert.ok(android, 'the Android exclusions are still a literal set');
-  assert.deepEqual([...EXCLUDED].sort(), [...android.matchAll(/'([^']+)'/g)].map((match) => match[1]).sort());
-  assert.equal(EXCLUDED.length, 5);
+  assert.deepEqual([...EXCLUDED].sort(), [...android.matchAll(/'([^']+)'/g)].map((match) => match[1]).concat('brands/ms-symbollockup_mssymbol_19.svg').sort());
+  assert.equal(EXCLUDED.length, 6);
   const shared = await filesUnder(path('src'));
   const generated = new Set(await filesUnder(output));
   for (const path of shared) {
@@ -459,8 +459,8 @@ test('iOS About states private app storage, device backups and what the requests
   const text = prose(yourData(page));
   assert.match(page, /<html lang="en" data-platform="ios">/);
   assert.match(text, /private storage inside this app on your iPhone or iPad/);
-  assert.match(text, /separate from Safari on your iPhone or iPad/);
-  assert.doesNotMatch(text, /Android|OneDrive|Microsoft|browser|desktop browser/i);
+  assert.ok(text.includes('Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.'));
+  assert.doesNotMatch(text, /Android|OneDrive|Microsoft/i);
   assert.match(text, /Deleting the app removes its private storage/);
   assert.match(page, /Your reading progress is saved privately in this app/);
   assert.doesNotMatch(page, /Your reading progress lives in this browser|Everything you save lives in this browser/);
@@ -482,8 +482,8 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(links[0][0], /target="_blank"/);
   assert.match(links[0][0], /rel="noopener noreferrer"/);
   assert.match(links[0][0], /referrerpolicy="no-referrer"/);
-  assert.equal(links[0][2], 'Privacy policy');
-  assert.doesNotMatch(links[0][2], /browser/i);
+  assert.equal(links[0][2], 'Privacy policy (opens in your browser)');
+  assert.match(links[0][2], /opens in your browser/);
   const details = (html) => yourData(html).match(/<details class="setting-more">[\s\S]*?<\/details>/)?.[0];
   assert.ok(details(desktop));
   const requestDetails = details(page);

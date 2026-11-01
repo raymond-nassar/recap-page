@@ -386,7 +386,7 @@ function recordDirectProgressSave({ wasRead, state, issueId }) {
 const CATALOG_LOAD = 'catalog-load';
 const LOCAL_CONNECTION_NOTICE = 'local-app-connection';
 const LOCAL_CONNECTION_STEPS = iosApp
-  ? 'Your lists and reading progress are safe. Restart the app, then check again.'
+  ? 'Your lists and reading progress are safe. Restart the app.'
   : 'Your lists and reading progress are safe. Leave this window open, '
     + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([

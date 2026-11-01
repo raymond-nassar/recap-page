@@ -21,10 +21,10 @@ const WEB = join(ROOT, 'packaging', 'ios', 'web');
 export const IDENTITY_PATH = join(ROOT, 'packaging', 'ios', 'identity.json');
 const MARKER = '.recap-ios-assets';
 const MARKER_CONTENT = 'Recap Page generated iOS assets v1\n';
-// The five files the Android app leaves out, for the same reasons: the fault harness is a developer
-// tool, and the app bundle already holds the offline shell, so neither the service worker nor the
-// entry that registers it belongs in it.
-export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js']);
+// The Android exclusions omit the development fault harness and offline-shell registration, while
+// the bundled app already has its own offline shell. iOS also removes the cloud backup card, so its
+// sign-in logo has no remaining caller.
+export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js', 'brands/ms-symbollockup_mssymbol_19.svg']);
 export const IOS_ASSET_DIR = join(ROOT, 'packaging', 'ios', 'build', 'generated', 'web');
 export const IOS_ICON_PATH = join(ROOT, 'packaging', 'ios', 'RecapPage', 'Assets.xcassets', 'AppIcon.appiconset', 'AppIcon.png');
 export const IOS_ICON_SIZE = 1024;
@@ -202,7 +202,7 @@ export function iosIndex(html, build) {
   }
   index = index.replace(privacyIntro, `${privacyHeading}
               <p class="rail-hint">
-                Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari on your iPhone or iPad.
+                Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.
                 There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
                 Backups of this device to iCloud or to a computer include this app's saved data.
                 Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.
@@ -212,7 +212,7 @@ export function iosIndex(html, build) {
                 If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.
               </p>
               <p class="rail-hint">
-                <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy</a>
+                <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
               </p>`);
   return iosStaticCopy(index);
 }
