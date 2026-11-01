@@ -28,6 +28,7 @@ import {
 } from '../scripts/build-pages.mjs';
 import {
   SITE_ICON,
+  escapeHtml,
   renderDocumentPage,
   renderFooter,
   renderMarkdown,
@@ -39,6 +40,7 @@ import {
   formatReleaseDate,
   readReleaseDates,
   releasesPage,
+  selectRecentReleases,
 } from '../scripts/lib/pages-releases.mjs';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import {
@@ -1213,13 +1215,12 @@ const releaseItems = (version) => {
   assert.ok(section, `Version ${version} is published`);
   return [...section.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, item]) => item);
 };
-const plainText = (markup) => markup
-  .replace(/<[^>]+>/g, '')
-  .replace(/&quot;/g, '"')
-  .replace(/&#39;/g, "'")
-  .replace(/&lt;/g, '<')
-  .replace(/&gt;/g, '>')
-  .replace(/&amp;/g, '&');
+const expectedReleaseItem = (feature) => {
+  const label = PLATFORM_LABELS.get(feature);
+  return label
+    ? `<strong>${escapeHtml(label)}</strong> ${escapeHtml(feature)}`
+    : escapeHtml(feature);
+};
 const syntheticChangelog = (releases) => releases
   .map(([version, features]) => `## ${version}\n\n### What changed\n\n${features.map((line) => `- ${line}`).join('\n')}\n`)
   .join('\n');
@@ -1241,24 +1242,25 @@ test('the What\'s new page lists the five latest finalized releases, newest firs
 });
 
 test('the current release says exactly what the in-app What\'s new says', () => {
-  const items = releaseItems(homeUpdatesContent.version).map((item) => plainText(item.replace(/^<strong>[^<]*<\/strong> /, '')));
-  assert.deepEqual(items, homeUpdatesContent.batch.features);
+  assert.deepEqual(
+    releaseItems(homeUpdatesContent.version),
+    homeUpdatesContent.batch.features.map(expectedReleaseItem),
+  );
 });
 
 test('platform-bound release notes name their platforms and nothing claims iPhone or iPad backup', () => {
   const backup = releaseItems('4.3.0').find((item) => item.includes('OneDrive'));
   assert.match(backup, /^<strong>OneDrive backup: Windows and Android only\.<\/strong> /);
   assert.match(releaseItems('4.0.1')[0], /^<strong>Android only\.<\/strong> /);
-  for (const version of ['4.3.0', '4.2.0', '4.1.0', '4.0.1', '4.0.0']) {
-    for (const item of releaseItems(version)) {
-      const text = plainText(item);
-      if (/\b(?:Windows|Android|OneDrive|Edge|offline|install\w*)\b/i.test(text)) {
-        assert.match(item, /^<strong>[^<]+<\/strong> /, `${version} names a platform without a label: ${text}`);
+  for (const { version, features } of selectRecentReleases(changelog, releaseDates)) {
+    assert.deepEqual(releaseItems(version), features.map(expectedReleaseItem));
+    for (const feature of features) {
+      if (/\b(?:Windows|Android|OneDrive|Edge|offline|install\w*)\b/i.test(feature)) {
+        assert.ok(PLATFORM_LABELS.has(feature), `${version} names a platform without a label: ${feature}`);
       }
     }
   }
-  const text = plainText(releaseContent.html);
-  assert.doesNotMatch(text, /\b(?:iPhone|iPad|iOS|iCloud)\b/, 'no line places a backup feature on Apple devices');
+  assert.doesNotMatch(releaseContent.html, /\b(?:iPhone|iPad|iOS|iCloud)\b/, 'no line places a backup feature on Apple devices');
 });
 
 test('release notes are published as escaped text, never as markup', () => {
@@ -1281,6 +1283,17 @@ test('the What\'s new build refuses an unlabelled platform note and a stale labe
     /Platform label names a release note the changelog no longer has/,
   );
   assert.throws(() => releasesPage(syntheticChangelog([['9.0.0', ['Read faster.']]]), new Map()), /No tagged release/);
+});
+
+test('an untagged newest release must have reviewed platform labels before publication', () => {
+  assert.throws(
+    () => releasesPage(syntheticChangelog([
+      ['9.0.0', ['Sync to iCloud on iPad.']],
+      ['8.0.0', ['Read faster.']],
+      ...labelledReleases,
+    ]), new Map([['8.0.0', '2030-01-02']])),
+    /Release note needs a reviewed platform label .*Sync to iCloud on iPad\./,
+  );
 });
 
 test('release dates come from the local clone and a clone without tags is refused', async () => {

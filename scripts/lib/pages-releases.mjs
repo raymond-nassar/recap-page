@@ -106,9 +106,15 @@ export function selectRecentReleases(changelog, dates, count = RECENT_RELEASES) 
 // Release notes are plain text, which the app shows as written, so they are escaped here rather than
 // passed through the Markdown converter: a film title such as Thunderbolts* is a name, not emphasis.
 export function releasesPage(changelog, dates) {
+  const records = releaseRecords(changelog);
+  // Release PRs run before their version is tagged. Refuse missing labels there, rather than
+  // waiting until the first post-tag Pages deployment discovers them.
+  for (const { body } of records.slice(0, RECENT_RELEASES)) {
+    readerFeatures(body).forEach(labelled);
+  }
   const releases = selectRecentReleases(changelog, dates);
 
-  const everyFeature = new Set(releaseRecords(changelog).flatMap(({ body }) => {
+  const everyFeature = new Set(records.flatMap(({ body }) => {
     try {
       return readerFeatures(body);
     } catch {

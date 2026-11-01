@@ -1276,6 +1276,8 @@ date, read from the local clone, which is why the Pages workflow checks out full
 notes are plain text, so they are escaped rather than passed through the Markdown converter. A note
 that names a platform or a platform-bound capability needs a reviewed label in that module saying
 where it applies, and the build stops on an unlabelled one or on a label whose note no longer exists.
+The label check includes the five newest version records even before they have a tag or ledger
+date, so a release PR must pass it before its first post-tag Pages deployment.
 
 The two 960 by 900 images use a clean demo profile, cover art off, and the collapsed sidebar.
 Keep them byte-identical to their namesakes under `docs/screenshots/`.
