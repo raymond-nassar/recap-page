@@ -20,6 +20,11 @@ on:
         required: false
         type: boolean
         default: false
+      app_store_screenshots:
+        description: Capture the App Store screenshots instead of running the tests
+        required: false
+        type: boolean
+        default: false
 
 # The workflow only reads the repository. It signs nothing, uploads nothing to Apple and uses no
 # secret: these are unsigned Simulator builds.
@@ -34,6 +39,8 @@ concurrency:
 jobs:
   newest:
     name: iOS app on the newest runtime
+    # A screenshot capture is a separate errand; it does not need the test jobs' macOS runners.
+    if: ${{ !inputs.app_store_screenshots }}
     runs-on: macos-26
     # The backstop for time outside any step. The steps below declare 137 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
@@ -241,6 +248,7 @@ jobs:
 
   ipad:
     name: iPad presentation on the newest runtime
+    if: ${{ !inputs.app_store_screenshots }}
     runs-on: macos-26
     # These steps declare 83 minutes; leave the deadline to the individual step that overruns.
     timeout-minutes: 86
@@ -361,6 +369,7 @@ jobs:
     # The app supports iOS and iPadOS 18.0 and later. No image carries the 18.0 runtime, and this one
     # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
     # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
+    if: ${{ !inputs.app_store_screenshots }}
     runs-on: macos-15
     # Separate launch/presentation groups declare 162 step minutes; one additional minute keeps
     # the job backstop outside every step deadline.
@@ -605,4 +614,101 @@ jobs:
             ${{ runner.temp }}/RecapPage-minimum-*.xcresult
             ${{ runner.temp }}/unit-test.log
             ${{ runner.temp }}/ui-*.log
+          if-no-files-found: warn
+
+  screenshots:
+    name: App Store screenshots
+    # Started by hand alone. It builds an unsigned Simulator app, signs nothing, uses no secret and
+    # sends nothing to App Store Connect: the images come back as an artifact for review.
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.app_store_screenshots }}
+    runs-on: macos-26
+    # These steps declare 118 minutes; leave the deadline to the individual step that overruns.
+    timeout-minutes: 121
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      SIMULATOR_RUNTIME: latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Show the toolchain
+        timeout-minutes: 3
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+          node --version
+
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
+      - name: Build for testing
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "generic/platform=iOS Simulator" -derivedDataPath "$RUNNER_TEMP/DerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      # One Simulator at a time, each with a fixed status bar so the captures do not carry the
+      # runner's clock or a missing signal.
+      - name: Capture the screens
+        timeout-minutes: 75
+        run: |
+          set -o pipefail
+          status=0
+          for set in ipad-13 iphone-6.3 iphone-6.9; do
+            TEST_RUNNER_RECAP_APP_STORE_SET="$set"
+            TEST_RUNNER_RECAP_APP_STORE_SCREENS="$(node scripts/ios-app-store-screenshots.mjs fixtures "$set")"
+            export TEST_RUNNER_RECAP_APP_STORE_SET TEST_RUNNER_RECAP_APP_STORE_SCREENS
+            directory="$RUNNER_TEMP/attachments/$set"
+            mkdir -p "$directory"
+            xcrun simctl list devices available --json |
+              node scripts/ios-app-store-screenshots.mjs device "$set" > "$RUNNER_TEMP/device-$set.json"
+            udid=$(node -e 'process.stdout.write(JSON.parse(require("node:fs").readFileSync(process.argv[1], "utf8")).udid)' "$RUNNER_TEMP/device-$set.json")
+            xcrun simctl boot "$udid"
+            xcrun simctl bootstatus "$udid" -b
+            xcrun simctl status_bar "$udid" override --time 9:41 --dataNetwork wifi --wifiMode active \
+              --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
+            if ! xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "platform=iOS Simulator,id=$udid" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests/AppStoreScreenshotUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-screenshots-$set.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/ui-screenshots-$set.log"; then
+              echo "::error::The $set capture failed"
+              status=1
+            fi
+            xcrun xcresulttool export attachments \
+              --path "$RUNNER_TEMP/RecapPage-screenshots-$set.xcresult" --output-path "$directory" || status=1
+            cp "$RUNNER_TEMP/device-$set.json" "$directory/device.json"
+            xcrun simctl shutdown "$udid" || true
+          done
+          exit "$status"
+
+      - name: Check and flatten the images
+        timeout-minutes: 5
+        run: |
+          node scripts/ios-app-store-screenshots.mjs finish \
+            --input "$RUNNER_TEMP/attachments" --output docs/ios-app-store-assets \
+            --source "$GITHUB_SHA" --run "$GITHUB_RUN_ID" --xcode "$(xcodebuild -version | head -n 1)"
+
+      - name: Keep the screenshots
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-app-store-screenshots-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            docs/ios-app-store-assets
+            ${{ runner.temp }}/attachments
+            ${{ runner.temp }}/RecapPage-screenshots-*.xcresult
+            ${{ runner.temp }}/ui-screenshots-*.log
           if-no-files-found: warn

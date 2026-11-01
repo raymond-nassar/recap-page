@@ -482,3 +482,51 @@ Official references, retrieved 2026-10-31:
 [TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/),
 [test information](https://developer.apple.com/help/app-store-connect/test-a-beta-version/provide-test-information/),
 and [external testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/invite-external-testers/).
+
+## App Store screenshots
+
+The [App Store screenshot assets](ios-app-store-assets/) show the Simulator app with the same
+fictional lists as the Google Play listing. They contain no personal reading data, notes, accounts
+or comic cover art. The Home notice is dismissed. Images 1 through 4 use the dark theme; the
+remaining images use the light theme.
+
+| Order | Caption | iPad | iPhone |
+|---|---|---|---|
+| 1 | Start from Home: guided reading paths, storylines and character spotlights. | Yes | Yes |
+| 2 | Follow the Modern Timeline one reading path at a time, starting with The Modern Avengers. | Yes | Yes |
+| 3 | See where you are in a reading list and what to read next. | Yes | Yes |
+| 4 | Browse storylines by era, with beginner-friendly picks marked. | Yes | Yes |
+| 5 | Preview a character spotlight, such as Professor X, before adding it. | Yes | Yes |
+| 6 | Keep every reading list in your library, with progress saved on your device. | Yes | Yes |
+| 7 | Save a complete backup of your lists and progress to Files. | Yes | Yes |
+| 8 | Your data stays on your device. No account, no tracking. | No | Yes |
+
+The 13-inch iPad set ends at Backup & settings, for seven images. Its About page is short enough
+that the data source address would also appear in the frame. Rather than hide the credit or add
+space that the app does not show, About is omitted from that set. Both iPhone sets retain all
+eight images.
+
+When the app footer would be visible, the capture hides only that footer with `visibility: hidden`;
+it keeps its place in the layout. Apart from dismissing the Home notice, no other page content is
+hidden for framing. The capture checks for visible copyright notices, web addresses and other
+platform or store names before taking each image.
+
+The [manifest](ios-app-store-assets/manifest.json) records each image's caption, dimensions, byte
+count, SHA-256, source revision, Simulator device, runtime and capture run. The iPad Pro 13-inch
+images are 2064 x 2752 pixels; iPhone 17 Pro images are 1206 x 2622; iPhone 17 Pro Max images are
+1320 x 2868. They are portrait PNG files without an alpha channel, matching
+[Apple's screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/),
+retrieved October 31, 2026.
+
+To regenerate them:
+
+1. In GitHub Actions, start **iOS** on the branch containing the capture tooling and select the
+   `app_store_screenshots` input. Leave the other manual inputs off. The equivalent command is
+   `gh workflow run iOS --ref <branch> -f app_store_screenshots=true`.
+2. Wait for the **App Store screenshots** job and download its
+   `ios-app-store-screenshots-<run ID>-<attempt>` artifact. The job builds the unsigned Simulator
+   app, applies a 9:41 status bar override, captures the three devices and checks each image's size
+   and opacity. It does not sign, use secrets or upload to App Store Connect.
+3. Inspect every image for the intended screen, theme, clean status bar and framing. Copy the
+   artifact's `docs/ios-app-store-assets` output into this directory, preserving the manifest.
+   The manifest identifies the exact source revision and Simulator runtime used for that run.

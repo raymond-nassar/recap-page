@@ -100,11 +100,11 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.doesNotMatch(workflow, /secrets\.|\benvironment:|id-token|allowProvisioningUpdates|exportArchive|\barchive\b|authenticationKey/);
   const builds = [...workflow.matchAll(/xcodebuild (?:build-for-testing|build|test-without-building)[\s\S]*?CODE_SIGNING_ALLOWED=NO/g)];
   assert.equal(builds.length, [...workflow.matchAll(/xcodebuild (?:build-for-testing|build|test-without-building)/g)].length);
-  assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 3, 'each job builds once');
+  assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 4, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
-  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 9,
-    'the two unit tests, newest UI, minimum launch and presentation, iPad and SE presentation, CORS, and fault-disabled mutation run separately');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 10,
+    'the two unit tests, newest UI, minimum launch and presentation, iPad and SE presentation, CORS, fault-disabled mutation and the App Store capture run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
@@ -165,9 +165,9 @@ test('the fault-disabled restore mutation is opt-in and requires the done-row fa
   assert.match(writer, /Promise\.race\(\[reported, unloaded\.then\(\(\) => null\)\]\)/);
 });
 
-test('newest, oldest and iPad jobs use the intended Xcode runtimes', () => {
+test('newest, oldest, iPad and screenshot jobs use the intended Xcode runtimes', () => {
   assert.deepEqual(jobs.map(({ name, runsOn }) => [name, runsOn]),
-    [['newest', 'macos-26'], ['ipad', 'macos-26'], ['minimum', 'macos-15']]);
+    [['newest', 'macos-26'], ['ipad', 'macos-26'], ['minimum', 'macos-15'], ['screenshots', 'macos-26']]);
   const major = identity.minimumOS.split('.')[0];
   for (const job of jobs) {
     assert.match(job.env.DEVELOPER_DIR, /^\/Applications\/Xcode_26\.[\d.]+\.app\/Contents\/Developer$/, job.name);
@@ -177,6 +177,48 @@ test('newest, oldest and iPad jobs use the intended Xcode runtimes', () => {
   assert.match(jobSource('newest'), /SIMULATOR_RUNTIME: latest/);
   assert.match(jobSource('minimum'), new RegExp(`SIMULATOR_RUNTIME: iOS-${major}-\\d+`));
   assert.match(jobSource('ipad'), /SIMULATOR_RUNTIME: latest/);
+  assert.match(jobSource('screenshots'), /SIMULATOR_RUNTIME: latest/);
+});
+
+test('the App Store screenshot capture runs only from an opted-in manual dispatch, in place of the tests', async () => {
+  assert.match(workflow,
+    /app_store_screenshots:\n {8}description: Capture the App Store screenshots instead of running the tests\n {8}required: false\n {8}type: boolean\n {8}default: false/);
+  for (const name of ['newest', 'ipad', 'minimum']) {
+    assert.match(jobSource(name), /\n {4}if: \$\{\{ !inputs\.app_store_screenshots \}\}\n {4}runs-on:/, name);
+  }
+  const source = jobSource('screenshots');
+  assert.match(source,
+    /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots \}\}\n {4}runs-on: macos-26/);
+  assert.doesNotMatch(source, /upload-app|altool|notarytool|xcrun.*upload|App Store Connect API/i);
+  const capture = stepScript(source, 'Capture the screens');
+  assert.match(capture, /for set in ipad-13 iphone-6\.3 iphone-6\.9; do/);
+  assert.match(capture, /TEST_RUNNER_RECAP_APP_STORE_SET="\$set"/);
+  assert.match(capture, /ios-app-store-screenshots\.mjs fixtures "\$set"/);
+  assert.match(capture, /-only-testing:RecapPageUITests\/AppStoreScreenshotUITests/);
+  assert.match(capture, /xcrun simctl status_bar "\$udid" override --time 9:41/);
+  assert.match(capture, /xcrun xcresulttool export attachments/);
+  assert.match(stepScript(source, 'Check and flatten the images'), /ios-app-store-screenshots\.mjs finish/);
+  assert.match(source, /ios-app-store-screenshots-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
+  // Every other run skips the capture test rather than failing on a missing screen list.
+  const test = readFileSync(new URL('../packaging/ios/RecapPageUITests/AppStoreScreenshotUITests.swift', import.meta.url), 'utf8');
+  assert.match(test, /throw XCTSkip\(/);
+  assert.match(test, /environment\["RECAP_APP_STORE_SCREENS"\]/);
+  assert.match(test, /environment\["RECAP_APP_STORE_SET"\]/);
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-screens-'));
+  try {
+    // A failed set still leaves the others captured, and the step still fails.
+    const result = await runScript(root, [
+      'xcrun() { if [ "$1 $2" = "simctl list" ]; then echo "{\\"devices\\":{}}"; fi; return 0; }',
+      'node() { if [ "$2" = device ]; then echo "{\\"udid\\":\\"U-$3\\"}"; elif [ "$1" = -e ]; then echo "U"; else echo "[]"; fi; }',
+      'xcodebuild() { case "$*" in *iphone-6.3*) return 65;; esac; echo "captured"; }',
+      capture,
+    ].join('\n'));
+    assert.equal(result.status, 1, `${result.stdout}${result.stderr}`);
+    assert.match(result.stdout, /::error::The iphone-6\.3 capture failed/);
+    assert.equal((result.stdout.match(/captured/g) ?? []).length, 2);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs in its own job', () => {
@@ -344,7 +386,7 @@ async function runScript(root, script, env = {}) {
 }
 
 test('the iPhone jobs boot and wait for the chosen Simulator before building and keep all attempt bundles', async () => {
-  for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
+  for (const job of jobs.filter(({ name }) => ['newest', 'minimum'].includes(name))) {
     const source = jobSource(job.name);
     const boot = stepScript(source, 'Boot the Simulator before building');
     assert.ok(source.indexOf('Boot the Simulator before building') < source.indexOf('name: Build for testing'));
@@ -534,7 +576,7 @@ test('both iPhone jobs retry only recognized UI infrastructure failures once and
     { name: 'termination with an assertion', logs: [terminate + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
     { name: 'log write failure', logs: [infrastructure[0]], codes: [65], calls: 1, exit: 23, teeFailure: true },
   ];
-  for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
+  for (const job of jobs.filter(({ name }) => ['newest', 'minimum'].includes(name))) {
     const script = stepScript(jobSource(job.name), 'Run the UI tests');
     for (const scenario of scenarios) {
       await t.test(`${job.name}: ${scenario.name}`, async () => {
@@ -639,7 +681,7 @@ test('the separate presentation suites retry only the recognized UI infrastructu
 });
 
 test('unit failures stop each iOS job without entering the UI retry gate', async () => {
-  for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
+  for (const job of jobs.filter(({ name }) => ['newest', 'minimum'].includes(name))) {
     const source = jobSource(job.name);
     const unit = stepScript(source, 'Run the unit tests');
     const uiStep = source.split('      - name: Run the UI tests\n')[1]?.split('        run: |')[0];
