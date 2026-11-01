@@ -14701,6 +14701,7 @@ const SCENARIOS = [
             'documentation',
             'project-questions',
             'feedback',
+            'security-report',
             'source-history',
           ].filter((id) => {
             const element = document.getElementById(id);
@@ -14723,7 +14724,7 @@ const SCENARIOS = [
         t.check('desktop renders every project-home region without horizontal overflow',
           desktop.width === 1280
           && desktop.overflow <= 1
-          && desktop.regions.length === 10
+          && desktop.regions.length === 11
           && desktop.navigation.length === 8
           && desktop.navigation.every((item) => item.visible),
           JSON.stringify(desktop));
@@ -14745,6 +14746,39 @@ const SCENARIOS = [
         t.check('the information page loads no web resource or active project service',
           webRequests.length === 0,
           webRequests.join(' / '));
+
+        const suggestions = await page.$eval('#feedback', (section) => ({
+          previous: section.previousElementSibling.id,
+          next: section.nextElementSibling.id,
+          heading: section.querySelector('h2').textContent,
+          routes: [...section.querySelectorAll('a')].map((link) => ({
+            name: link.textContent.trim(),
+            form: new URL(link.href).searchParams.get('template'),
+          })),
+        }));
+        t.check('suggestions are immediately after features and offer all four exact forms',
+          suggestions.previous === 'features' && suggestions.next === 'demo'
+          && suggestions.heading === 'Help shape Recap Page'
+          && JSON.stringify(suggestions.routes) === JSON.stringify([
+            { name: 'Suggest an improvement', form: 'feature.yml' },
+            { name: 'Request a reading list', form: 'reading-list.yml' },
+            { name: 'Correct a reading list', form: 'data-order.yml' },
+            { name: 'Report a bug', form: 'bug.yml' },
+          ]), JSON.stringify(suggestions));
+        await page.$eval('#features a[href="./being-built.html"]', (link) => link.focus());
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.pathname.endsWith('/being-built.html'));
+        t.check('the feature teaser opens the generated page by keyboard without a network lookup',
+          await page.$eval('h1', (heading) => heading.textContent === "What's being built")
+          && webRequests.length === 0);
+        await page.$eval('a[href="./index.html#feedback"]', (link) => link.focus());
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#feedback');
+        t.check('the curated page returns to the suggestions on the home page',
+          await page.$eval('#feedback', (section) => {
+            const box = section.getBoundingClientRect();
+            return box.top >= 0 && box.top < innerHeight;
+          }));
 
         const overview = await page.evaluate(() => ({
           navigation: [...document.querySelectorAll('.section-nav a')].map((link) => link.textContent.trim()),
@@ -14912,6 +14946,7 @@ const SCENARIOS = [
           ['support.html', 'Support'],
           ['privacy.html', 'Privacy'],
           ['data-sources.html', 'Data sources'],
+          ['being-built.html', "What's being built"],
         ]) {
           for (const width of [1280, 320]) {
             await page.setViewport({ width, height: 900 });
@@ -14941,7 +14976,7 @@ const SCENARIOS = [
           }
         }
         t.check('each document page has one heading, the landmarks, its current page marked and no overflow',
-          documents.length === 6
+          documents.length === 8
           && documents.every((item) => (
             item.headings === 1
             && item.landmarks
@@ -14949,7 +14984,7 @@ const SCENARIOS = [
             && item.currentBorder > 0
             && item.overflow <= 1
             && item.clipped.length === 0
-            && item.navigation.length === 4
+            && item.navigation.length === 5
             && item.navigation.every(Boolean)
           )),
           JSON.stringify(documents));

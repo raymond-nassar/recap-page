@@ -1246,6 +1246,7 @@ site.css
 support.html
 privacy.html
 data-sources.html
+being-built.html
 assets/home-960.png
 assets/avengers-disassembled-reading-960.png
 assets/android-feature-graphic.png
@@ -1253,12 +1254,12 @@ assets/android-library-preview.png
 assets/android-reading-preview.png
 ```
 
-The three document pages are generated, not copied. `scripts/lib/pages-documents.mjs` renders
-`SUPPORT.md`, `PRIVACY.md` and `pages/data-sources.md` into the home's page shell, so those files
+The four document pages are generated, not copied. `scripts/lib/pages-documents.mjs` renders
+`SUPPORT.md`, `PRIVACY.md`, `pages/data-sources.md` and `pages/being-built.md` into the home's page shell, so those files
 stay the only source and the published privacy policy cannot drift from the one the app links. Its
 converter accepts only the Markdown those files use and stops the build on anything else; extend it
 with a test rather than working around a refusal. Headings keep the anchors GitHub gives them, which
-the store consoles rely on for `privacy.html#deleting-your-data`. Links between the three documents
+the store consoles rely on for `privacy.html#deleting-your-data`. Links between the documents
 stay on the site, and other repository links open on GitHub. The data sources page is a short
 reader-facing summary of [the provenance record](DATA_PROVENANCE.md): when that record changes what
 was taken or what permission was given, update the summary in the same change, and never let it
