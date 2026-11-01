@@ -4,12 +4,15 @@ import {
   mkdir,
   mkdtemp,
   readdir,
+  readFile,
   rename,
   rm,
+  writeFile,
 } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { dirname, basename, join, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { PAGE_DOCUMENTS, renderDocumentPage } from './lib/pages-documents.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -38,7 +41,11 @@ export const PAGE_SOURCES = Object.freeze([
   }),
 ]);
 
-export const PAGE_OUTPUTS = Object.freeze(PAGE_SOURCES.map(({ destination }) => destination).sort());
+export const PAGE_OUTPUTS = Object.freeze(
+  [...PAGE_SOURCES, ...PAGE_DOCUMENTS].map(({ destination }) => destination).sort(),
+);
+
+export { PAGE_DOCUMENTS };
 
 async function exists(path) {
   try {
@@ -139,7 +146,7 @@ export async function buildPages({
   const sourceRoot = resolve(root);
   const output = resolve(destination);
   const outputParent = dirname(output);
-  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'index.html', 'site.css']);
+  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'data-sources.md', 'index.html', 'site.css']);
   await requireExactEntries(
     join(sourceRoot, 'pages', 'assets'),
     PAGE_SOURCES
@@ -153,7 +160,7 @@ export async function buildPages({
       .map(({ source }) => basename(source)),
   );
 
-  for (const { source } of PAGE_SOURCES) {
+  for (const { source } of [...PAGE_SOURCES, ...PAGE_DOCUMENTS]) {
     await requireRegularFile(join(sourceRoot, ...source.split('/')));
   }
 
@@ -165,6 +172,10 @@ export async function buildPages({
       const target = join(staged, ...relativeDestination.split('/'));
       await mkdir(dirname(target), { recursive: true });
       await copyFile(join(sourceRoot, ...source.split('/')), target);
+    }
+    for (const document of PAGE_DOCUMENTS) {
+      const markdown = await readFile(join(sourceRoot, ...document.source.split('/')), 'utf8');
+      await writeFile(join(staged, document.destination), renderDocumentPage(document, markdown));
     }
     await verifyArtifact(staged);
     await installer(staged, output);

@@ -438,7 +438,8 @@ and the only update channel for Store installations.
 - Review the maintained [submission packet](MICROSOFT_STORE_SUBMISSION.md), its sanitized assets,
   and every owner-only stop point.
 - Approve the `runFullTrust` explanation in Partner Center.
-- Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
+- Use the published [privacy policy page](https://raymond-nassar.github.io/recap-page/privacy.html)
+  URL and review every listing disclosure.
 - Complete Partner Center package validation.
 - Review markets, age rating, listing copy, screenshots, legal terms, and certification notes.
 - Replace the failed package and submit only if every maintained field and package check matches the

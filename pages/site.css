@@ -168,6 +168,15 @@ code {
   font-weight: 800;
 }
 
+.site-name a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-name a:hover {
+  text-decoration: underline;
+}
+
 .lede {
   max-width: 54ch;
   margin-bottom: var(--space-4);
@@ -224,6 +233,29 @@ code {
 .section-nav a:hover,
 .project-links a:hover {
   border-color: var(--accent);
+}
+
+.section-nav a[aria-current="page"] {
+  border-color: var(--line);
+  background: var(--surface);
+  text-decoration: underline;
+}
+
+.document h1 {
+  max-width: none;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.document h2 {
+  margin-top: var(--space-6);
+}
+
+.document ul {
+  padding-left: var(--space-5);
+}
+
+.document li + li {
+  margin-top: var(--space-2);
 }
 
 .section {
@@ -545,8 +577,10 @@ code {
   margin-bottom: 0;
 }
 
-.footer a + a {
-  margin-left: var(--space-3);
+.footer p:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 @media (max-width: 42rem) {

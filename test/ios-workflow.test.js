@@ -212,10 +212,13 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
   const root = await mkdtemp(join(tmpdir(), 'recap-ios-screens-'));
   try {
     // A failed phase still leaves the other phases captured, and the step still fails.
+    // The device list is written late and the node stand-in drains it first, as the real
+    // command's readFileSync(0) does; a stand-in that answers unread lost that race with
+    // SIGPIPE and exit 141 on Node 20 CI (#1050).
     const result = await runScript(root, [
-      'xcrun() { if [ "$1 $2" = "simctl list" ]; then echo "{\\"devices\\":{}}"; '
+      'xcrun() { if [ "$1 $2" = "simctl list" ]; then sleep 0.2; echo "{\\"devices\\":{}}"; '
         + 'elif [ "$1 $2" = "simctl ui" ]; then echo "$TEST_RUNNER_RECAP_APP_STORE_SET $5" >> "$RUNNER_TEMP/appearances"; fi; return 0; }',
-      'node() { if [ "$2" = device ]; then echo "{\\"udid\\":\\"U-$3\\"}"; elif [ "$1" = -e ]; then echo "U"; else echo "[]"; fi; }',
+      'node() { if [ "$2" = device ]; then cat > /dev/null; echo "{\\"udid\\":\\"U-$3\\"}"; elif [ "$1" = -e ]; then echo "U"; else echo "[]"; fi; }',
       'xcodebuild() { if [ "$TEST_RUNNER_RECAP_APP_STORE_SET:$TEST_RUNNER_RECAP_APP_STORE_APPEARANCE" = "iphone-6.3:dark" ]; '
         + 'then return 65; fi; echo "captured"; }',
       capture,
@@ -242,15 +245,17 @@ test('screenshot capture retries only recognized Xcode infrastructure failures a
   ]) {
     const root = await mkdtemp(join(tmpdir(), 'recap-ios-screens-retry-'));
     try {
+      // Same late writer and draining reader as the test above, so the race in #1050 cannot recur.
       const harness = `xcrun() {
   if [ "$1 $2" = "simctl list" ]; then
+    sleep 0.2
     echo '{"devices":{}}'
   elif [ "$1 $2" = "xcresulttool export" ]; then
     printf '%s\\n' "$*" >> "$RUNNER_TEMP/exports"
   fi
 }
 node() {
-  if [ "$2" = device ]; then echo '{"udid":"U"}'
+  if [ "$2" = device ]; then cat > /dev/null; echo '{"udid":"U"}'
   elif [ "$1" = -e ]; then echo "U"
   else echo "[]"; fi
 }
