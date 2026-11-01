@@ -12,7 +12,8 @@ import {
 import { randomUUID } from 'node:crypto';
 import { dirname, basename, join, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { PAGE_DOCUMENTS, renderDocumentPage } from './lib/pages-documents.mjs';
+import { PAGE_DOCUMENTS, RELEASE_PAGE, renderDocumentPage, renderSitePage } from './lib/pages-documents.mjs';
+import { readReleaseDates, releasesPage } from './lib/pages-releases.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -42,10 +43,10 @@ export const PAGE_SOURCES = Object.freeze([
 ]);
 
 export const PAGE_OUTPUTS = Object.freeze(
-  [...PAGE_SOURCES, ...PAGE_DOCUMENTS].map(({ destination }) => destination).sort(),
+  [...PAGE_SOURCES, ...PAGE_DOCUMENTS, RELEASE_PAGE].map(({ destination }) => destination).sort(),
 );
 
-export { PAGE_DOCUMENTS };
+export { PAGE_DOCUMENTS, RELEASE_PAGE };
 
 async function exists(path) {
   try {
@@ -142,6 +143,7 @@ export async function buildPages({
   root = ROOT,
   destination = join(root, 'dist', 'pages'),
   installer = installArtifact,
+  releaseDates = readReleaseDates,
 } = {}) {
   const sourceRoot = resolve(root);
   const output = resolve(destination);
@@ -160,9 +162,11 @@ export async function buildPages({
       .map(({ source }) => basename(source)),
   );
 
-  for (const { source } of [...PAGE_SOURCES, ...PAGE_DOCUMENTS]) {
+  for (const { source } of [...PAGE_SOURCES, ...PAGE_DOCUMENTS, RELEASE_PAGE]) {
     await requireRegularFile(join(sourceRoot, ...source.split('/')));
   }
+  const changelog = await readFile(join(sourceRoot, ...RELEASE_PAGE.source.split('/')), 'utf8');
+  const releasePage = renderSitePage(RELEASE_PAGE, releasesPage(changelog, releaseDates(sourceRoot)));
 
   await mkdir(outputParent, { recursive: true });
   const staged = await mkdtemp(join(outputParent, `${basename(output)}.staged-`));
@@ -177,6 +181,7 @@ export async function buildPages({
       const markdown = await readFile(join(sourceRoot, ...document.source.split('/')), 'utf8');
       await writeFile(join(staged, document.destination), renderDocumentPage(document, markdown));
     }
+    await writeFile(join(staged, RELEASE_PAGE.destination), releasePage);
     await verifyArtifact(staged);
     await installer(staged, output);
   } finally {

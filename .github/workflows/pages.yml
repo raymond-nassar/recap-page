@@ -29,6 +29,8 @@ jobs:
         timeout-minutes: 2
         with:
           persist-credentials: false
+          # The What's new page dates each release from its tag, which a shallow checkout omits.
+          fetch-depth: 0
 
       - name: Use the maintained Node version
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0

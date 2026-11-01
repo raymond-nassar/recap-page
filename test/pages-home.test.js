@@ -12,6 +12,7 @@ import {
   writeFile,
 } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
@@ -20,6 +21,7 @@ import {
   PAGE_DOCUMENTS,
   PAGE_OUTPUTS,
   PAGE_SOURCES,
+  RELEASE_PAGE,
   artifactInventory,
   buildPages,
   installArtifact,
@@ -29,8 +31,16 @@ import {
   renderDocumentPage,
   renderFooter,
   renderMarkdown,
+  renderSitePage,
   resolveDocumentLink,
 } from '../scripts/lib/pages-documents.mjs';
+import {
+  PLATFORM_LABELS,
+  formatReleaseDate,
+  readReleaseDates,
+  releasesPage,
+} from '../scripts/lib/pages-releases.mjs';
+import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import {
   BODY,
   LARGE,
@@ -47,6 +57,10 @@ const html = readFileSync(PAGE, 'utf8');
 const css = readFileSync(CSS, 'utf8');
 const questionForm = readFileSync(QUESTION_FORM, 'utf8');
 const workflow = readFileSync(WORKFLOW, 'utf8');
+const changelog = readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8');
+const releaseDates = readReleaseDates(ROOT);
+const releaseContent = releasesPage(changelog, releaseDates);
+const releaseHtml = renderSitePage(RELEASE_PAGE, releaseContent);
 
 const APP_ORIGIN = 'http://127.0.0.1:8787/';
 const REPOSITORY = 'https://github.com/raymond-nassar/recap-page';
@@ -79,7 +93,7 @@ const EXPECTED_HREFS = [
   './assets/android-library-preview.png',
   './assets/android-reading-preview.png',
   '#demo',
-  `${REPOSITORY}/blob/main/CHANGELOG.md`,
+  './whats-new.html',
   './being-built.html',
   `${REPOSITORY}/issues/new?template=feature.yml`,
   `${REPOSITORY}/issues/new?template=reading-list.yml`,
@@ -107,7 +121,7 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/blob/main/docs/MAINTAINING.md`,
   `${REPOSITORY}/blob/main/CONTRIBUTING.md`,
   `${REPOSITORY}/blob/main/GOVERNANCE.md`,
-  `${REPOSITORY}/blob/main/CHANGELOG.md`,
+  './whats-new.html',
   `${REPOSITORY}/blob/main/docs/WHY_A_BROWSER_APP.md`,
   QUESTION_FORM_URL,
   `${REPOSITORY}/blob/main/SECURITY.md`,
@@ -345,6 +359,7 @@ test('the source inventory and generated contract stay exact', async () => {
     'privacy.html',
     'site.css',
     'support.html',
+    'whats-new.html',
   ]);
   assert.deepEqual(
     PAGE_DOCUMENTS.map(({ source, destination }) => [source, destination]),
@@ -712,6 +727,11 @@ test('the builder copies only approved bytes and leaves no staging residue', asy
         `${document.destination} differs from the page rendered from ${document.source}`,
       );
     }
+    assert.equal(
+      await readFile(join(destination, RELEASE_PAGE.destination), 'utf8'),
+      releaseHtml,
+      `${RELEASE_PAGE.destination} differs from the page generated from the changelog`,
+    );
 
     await buildPages({ destination });
     assert.deepEqual(await artifactInventory(destination), PAGE_OUTPUTS);
@@ -812,6 +832,7 @@ test('the Pages workflow deploys only reviewed main with isolated authority', ()
   assert.match(build, /^ {10}path: dist\/pages$/m);
   assert.match(build, /^ {10}retention-days: 1$/m);
   assert.match(build, /persist-credentials: false/);
+  assert.match(build, /^ {10}fetch-depth: 0$/m, 'release dates need the tags a shallow checkout omits');
 
   assert.match(deploy, /^ {4}if: github\.ref == 'refs\/heads\/main'$/m);
   assert.match(deploy, /^ {4}needs: build$/m);
@@ -882,7 +903,12 @@ const DOCUMENT_PAGES = PAGE_DOCUMENTS.map((document) => {
 const pageByDestination = new Map([
   ['index.html', html],
   ...DOCUMENT_PAGES.map(({ destination, page }) => [destination, page]),
+  [RELEASE_PAGE.destination, releaseHtml],
 ]);
+const SHELL_PAGES = [
+  ...DOCUMENT_PAGES,
+  { ...RELEASE_PAGE, page: releaseHtml },
+];
 
 test('the curated source publishes only cloud backup with the approved provider distinctions', () => {
   const { markdown, page } = DOCUMENT_PAGES.find(({ destination }) => destination === 'being-built.html');
@@ -917,7 +943,7 @@ function idsOf(page) {
 }
 
 test('each document page renders its Markdown source with the site shell', () => {
-  for (const { destination, label, page } of DOCUMENT_PAGES) {
+  for (const { destination, label, page } of SHELL_PAGES) {
     assert.match(page, /^<!doctype html>\n<html lang="en">/, destination);
     assert.equal((page.match(/<h1\b/g) ?? []).length, 1, `${destination} has one heading level 1`);
     assert.match(page, /<a class="skip-link" href="#main">Skip to main content<\/a>/, destination);
@@ -1135,7 +1161,7 @@ test('the converter refuses Markdown it cannot render faithfully', () => {
 });
 
 test('document pages carry no dashes the house style forbids and no contact details', () => {
-  for (const { destination, page } of DOCUMENT_PAGES) {
+  for (const { destination, page } of SHELL_PAGES) {
     assert.doesNotMatch(page, /[\u2013\u2014]/, `${destination} contains an en or em dash`);
     assert.doesNotMatch(page, /mailto:|tel:|@[a-z0-9-]+\.[a-z]{2,}/i, `${destination} carries an address`);
     assert.doesNotMatch(page, /\(?\b\d{3}\)?[ .-]\d{3}[ .-]\d{4}\b/, `${destination} carries a phone number`);
@@ -1180,4 +1206,94 @@ test('the converter preserves percent-encoded URLs and ordinary query ampersands
     'test.md',
   );
   assert.ok(rendered.includes('href="https://example.com/%28news%29?a=1&amp;b=2"'));
+});
+
+const releaseItems = (version) => {
+  const section = releaseContent.html.split(/<h2 /).find((part) => part.includes(`>Version ${version}</h2>`));
+  assert.ok(section, `Version ${version} is published`);
+  return [...section.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, item]) => item);
+};
+const plainText = (markup) => markup
+  .replace(/<[^>]+>/g, '')
+  .replace(/&quot;/g, '"')
+  .replace(/&#39;/g, "'")
+  .replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>')
+  .replace(/&amp;/g, '&');
+const syntheticChangelog = (releases) => releases
+  .map(([version, features]) => `## ${version}\n\n### What changed\n\n${features.map((line) => `- ${line}`).join('\n')}\n`)
+  .join('\n');
+// Undated, so never published, but present so the stale-label check passes.
+const labelledReleases = [...PLATFORM_LABELS.keys()].map((feature, index) => [`1.0.${index}`, [feature]]);
+
+test('the What\'s new page lists the five latest finalized releases, newest first, with their dates', () => {
+  const headings = [...releaseContent.html.matchAll(/<h2 id="([^"]+)">Version ([^<]+)<\/h2>\n<p>Finalized ([^<]+)\.<\/p>/g)]
+    .map(([, id, version, date]) => [id, version, date]);
+  assert.deepEqual(headings.map(([, version]) => version), ['4.3.0', '4.2.0', '4.1.0', '4.0.1', '4.0.0']);
+  for (const [id, version, date] of headings) {
+    assert.equal(id, `version-${version.replace(/\./g, '')}`);
+    assert.match(date, /^[A-Z][a-z]+ \d{1,2}, \d{4}$/);
+  }
+  assert.match(releaseContent.html, /Version 4\.3\.0<\/h2>\n<p>Finalized October 30, 2026\.<\/p>/);
+  assert.match(releaseContent.html, /Version 4\.0\.1<\/h2>\n<p>Finalized October 8, 2026\.<\/p>/,
+    'an untagged Android patch is dated from its recorded bundle revision');
+  assert.match(releaseContent.html, /href="https:\/\/github\.com\/raymond-nassar\/recap-page\/blob\/main\/CHANGELOG\.md">the full changelog<\/a>/);
+});
+
+test('the current release says exactly what the in-app What\'s new says', () => {
+  const items = releaseItems(homeUpdatesContent.version).map((item) => plainText(item.replace(/^<strong>[^<]*<\/strong> /, '')));
+  assert.deepEqual(items, homeUpdatesContent.batch.features);
+});
+
+test('platform-bound release notes name their platforms and nothing claims iPhone or iPad backup', () => {
+  const backup = releaseItems('4.3.0').find((item) => item.includes('OneDrive'));
+  assert.match(backup, /^<strong>OneDrive backup: Windows and Android only\.<\/strong> /);
+  assert.match(releaseItems('4.0.1')[0], /^<strong>Android only\.<\/strong> /);
+  for (const version of ['4.3.0', '4.2.0', '4.1.0', '4.0.1', '4.0.0']) {
+    for (const item of releaseItems(version)) {
+      const text = plainText(item);
+      if (/\b(?:Windows|Android|OneDrive|Edge|offline|install\w*)\b/i.test(text)) {
+        assert.match(item, /^<strong>[^<]+<\/strong> /, `${version} names a platform without a label: ${text}`);
+      }
+    }
+  }
+  const text = plainText(releaseContent.html);
+  assert.doesNotMatch(text, /\b(?:iPhone|iPad|iOS|iCloud)\b/, 'no line places a backup feature on Apple devices');
+});
+
+test('release notes are published as escaped text, never as markup', () => {
+  const page = releasesPage(syntheticChangelog([
+    ['9.0.0', ['Read Thunderbolts* & <Avengers> "first".']],
+    ...labelledReleases,
+  ]), new Map([['9.0.0', '2030-01-02']]));
+  assert.match(page.html, /<li>Read Thunderbolts\* &amp; &lt;Avengers&gt; &quot;first&quot;\.<\/li>/);
+  assert.match(page.html, /Finalized January 2, 2030\./);
+  assert.match(page.html, /The latest release of Recap Page/);
+});
+
+test('the What\'s new build refuses an unlabelled platform note and a stale label', () => {
+  assert.throws(
+    () => releasesPage(syntheticChangelog([['9.0.0', ['Sync to iCloud on iPad.']], ...labelledReleases]), new Map([['9.0.0', '2030-01-02']])),
+    /Release note needs a reviewed platform label .*Sync to iCloud on iPad\./,
+  );
+  assert.throws(
+    () => releasesPage(syntheticChangelog([['9.0.0', ['Read faster.']]]), new Map([['9.0.0', '2030-01-02']])),
+    /Platform label names a release note the changelog no longer has/,
+  );
+  assert.throws(() => releasesPage(syntheticChangelog([['9.0.0', ['Read faster.']]]), new Map()), /No tagged release/);
+});
+
+test('release dates come from the local clone and a clone without tags is refused', async () => {
+  assert.equal(releaseDates.get('4.3.0'), '2026-10-30');
+  assert.equal(releaseDates.get('4.0.1'), '2026-10-08');
+  const root = await mkdtemp(join(tmpdir(), 'pages-releases-'));
+  try {
+    execFileSync('git', ['init', '-q'], { cwd: root });
+    assert.throws(() => readReleaseDates(root), /No release tags found/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+  assert.throws(() => formatReleaseDate('2026-13-01'), /Unreadable release date/);
+  assert.throws(() => formatReleaseDate('Oct 30'), /Unreadable release date/);
+  assert.equal(formatReleaseDate('2026-10-30'), 'October 30, 2026');
 });
