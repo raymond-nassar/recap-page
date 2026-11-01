@@ -651,6 +651,56 @@ test('Debug-only test surfaces and methods called by name cannot reach a Release
   assert.ok(debug.some(({ settings }) => setting(settings, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS') === 'DEBUG $(inherited)'));
 });
 
+// iCloud backup ships switched off until the owner's signed-in test on a real device, and a Release build
+// cut meanwhile must carry none of it. Release defines neither DEBUG, which the test above holds, nor
+// RECAP_ICLOUD, which no build setting defines yet, so code held to those conditions compiles out of it.
+const ICLOUD_CONDITIONS = new Set(['#if DEBUG', '#if RECAP_ICLOUD', '#if RECAP_ICLOUD || DEBUG']);
+const ICLOUD_USE = /\bICloud[A-Z]\w*|\biCloudFake\w*|\.cloud\b|\b(?:var|let) cloud\b|"cloud"|\bcloud\.handle\b/;
+
+function iCloudLines(text) {
+  const lines = text.split(/\r?\n/);
+  const inside = new Set();
+  const stack = [];
+  lines.forEach((line, index) => {
+    const directive = line.trim();
+    if (/^#if\b/.test(directive)) stack.push(ICLOUD_CONDITIONS.has(directive));
+    else if (/^#else\b/.test(directive) && stack.length) stack[stack.length - 1] = false;
+    else if (/^#endif\b/.test(directive)) stack.pop();
+    else if (stack.includes(true)) inside.add(index);
+  });
+  return { lines, inside };
+}
+
+test('a Release build without the iCloud switch compiles none of the iCloud backup code', () => {
+  const files = appSwift().filter(({ name }) => name.startsWith('ICloud'));
+  assert.deepEqual(files.map(({ name }) => name).sort(), ['ICloudBackupHandler', 'ICloudDocumentStore', 'ICloudFakeStore']);
+  for (const { name, text } of files) {
+    const lines = text.trim().split(/\r?\n/);
+    const opening = name === 'ICloudFakeStore' ? '#if DEBUG' : '#if RECAP_ICLOUD || DEBUG';
+    assert.equal(lines[0], opening, `${name}.swift opens inside its condition`);
+    assert.equal(lines.at(-1), '#endif', `${name}.swift closes its condition last`);
+    assert.equal(lines.filter((line) => /^\s*#endif\b/.test(line)).length, 1, `${name}.swift is one block`);
+  }
+  let uses = 0;
+  const outside = [];
+  for (const { name, text } of appSwift().filter(({ name: file }) => !file.startsWith('ICloud'))) {
+    const { lines, inside } = iCloudLines(text);
+    lines.forEach((line, index) => {
+      if (!ICLOUD_USE.test(line)) return;
+      uses += 1;
+      if (!inside.has(index)) outside.push(`${name}.swift line ${index + 1} reaches iCloud backup outside its conditions`);
+    });
+  }
+  assert.deepEqual(outside, []);
+  assert.ok(uses >= 6, `found ${uses} uses of iCloud backup outside its own files, so this would barely check`);
+  assert.doesNotMatch(project, /RECAP_ICLOUD/, 'no build setting defines the switch yet');
+  assert.doesNotMatch(project, /CODE_SIGN_ENTITLEMENTS/, 'no build carries the iCloud entitlement yet');
+  assert.doesNotMatch(read('packaging/ios/RecapPage-Info.plist'), /NSUbiquitousContainers/, 'nor shows the folder yet');
+  const store = appSource('ICloudDocumentStore');
+  const identity = JSON.parse(read('packaging/ios/identity.json'));
+  assert.ok(store.includes(`static let containerIdentifier = "${identity.iCloudContainer}"`), 'the store names the app\'s own container');
+});
+
 test('the Swift code reaches WebKit only through methods iOS 18 has', async () => {
   // Built with the iOS 26 SDK, WebKit's Swift refinements of its Objective-C methods live in
   // libswiftWebKit.dylib, which iOS 18 does not have. One call to them stopped the app at launch on
