@@ -14614,6 +14614,7 @@ const SCENARIOS = [
           const linkBox = link?.getBoundingClientRect();
           return {
             name: card.querySelector('h3')?.textContent.trim() ?? '',
+            copy: card.querySelector('p')?.textContent.trim() ?? '',
             left: Math.round(box.left),
             top: Math.round(box.top),
             clipped: card.scrollWidth - card.clientWidth > 1,
@@ -14638,6 +14639,7 @@ const SCENARIOS = [
           && android.link?.name === 'Open Google Play' && android.link.href === playListing
           && android.link.button && android.link.height >= 44
           && iPhone.link === null
+          && iPhone.copy === 'In App Store review. Not available yet.'
           && iPhone.left === windows.left
           && (columns === 1
             ? grid.cards.every((card, index) => index === 0 || card.top > grid.cards[index - 1].top)
@@ -14752,12 +14754,12 @@ const SCENARIOS = [
             href: link.getAttribute('href'),
           })),
         }));
-        t.check('the overview names where the app is available and where it is coming',
+        t.check('the overview names where the app is available and that iPhone and iPad is in App Store review',
           JSON.stringify(overview.navigation)
             === JSON.stringify([
               'Android', 'Features', 'Get started', 'Guides', 'Feedback', 'Support', 'Privacy', 'Data sources',
             ])
-          && overview.status === 'Available for Windows and Android. Coming soon for iPhone and iPad.'
+          && overview.status === 'Available for Windows and Android. In App Store review for iPhone and iPad.'
           && JSON.stringify(overview.actions) === JSON.stringify([
             { name: 'Get started', href: '#getting-started' },
             { name: 'See the Android app', href: '#android' },

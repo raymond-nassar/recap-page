@@ -45,7 +45,7 @@ test('the project home and README distinguish shared progress and manual reading
   }
   for (const source of [page, readme]) {
     const copy = text(source);
-    assert.match(copy, /Coming soon for iPhone and iPad/);
+    assert.match(copy, /In App Store review for iPhone and iPad/);
     assert.ok(
       source.includes('https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage'),
       'must link the Google Play listing',
