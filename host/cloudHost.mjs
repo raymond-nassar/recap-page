@@ -22,6 +22,7 @@ import { ProviderError, SIGN_IN_MS, newAuthorization, openBrowser, startCallback
 import {
   MAX_ITEM_BYTES, authorizationUrl, createOneDrive, createUploadTracker, grantsAppFolder, idTokenClaims, redeemCode, refreshTokens,
 } from './oneDrive.mjs';
+import * as google from './googleDrive.mjs';
 
 export const CLOUD_API_PREFIX = '/__recap_cloud__/v1/';
 export const CLOUD_API_HEADER = 'x-recap-cloud';
@@ -69,14 +70,15 @@ const HEADERS = Object.freeze({
 
 const SIGN_IN_ENDED = Object.freeze({
   declined: 'Sign-in was cancelled.',
-  refused: 'Microsoft did not complete the sign-in.',
+  refused: (company) => `${company} did not complete the sign-in.`,
   expired: 'Sign-in did not finish within five minutes. Start it again when you are ready.',
   cancelled: 'Sign-in was cancelled.',
   invalid: 'Sign-in was stopped after answers it did not expect.',
   failed: 'Sign-in stopped unexpectedly.',
 });
 const CONNECTED_AGAIN = 'Cloud backup was connected again since this browser agreed to it, so it asks again first.';
-const FOLDER_GONE = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+const folderGone = (name) => `The Recap Page folder was deleted from ${name}, so cloud backup asks again before it makes a new one.`;
+const ONE_AT_A_TIME = 'Cloud backup is already set up with another service on this computer. Disconnect it first.';
 
 function send(res, status, body, extra = {}) {
   if (res.headersSent) return;
@@ -131,6 +133,53 @@ function publicMessage(error, fallback = UNEXPECTED) {
   return error instanceof ProviderError || error instanceof CloudTokenError ? error.message : fallback;
 }
 
+// OneDrive, through Microsoft's sign-in, in its app folder.
+function oneDriveAdapter({ clientId, fetchImpl, clock }) {
+  const tracker = createUploadTracker();
+  return {
+    name: 'OneDrive', company: 'Microsoft', callbackHost: 'localhost',
+    authorizationUrl: ({ redirectUri, authorization }) => authorizationUrl({ clientId, redirectUri, authorization }),
+    async signIn({ code, authorization, redirectUri }) {
+      const tokens = await redeemCode({ fetchImpl, clientId, clock, code, verifier: authorization.verifier, redirectUri });
+      if (!tokens.refreshToken || !grantsAppFolder(tokens.scope)) {
+        throw new ProviderError('refused', 'Microsoft did not grant the access cloud backup needs.');
+      }
+      const claims = idTokenClaims(tokens.idToken, { clientId, nonce: authorization.nonce, now: clock() });
+      const folder = await createOneDrive({ fetchImpl, clock, accessToken: async () => tokens.accessToken }).appFolder();
+      // The drive names the account. If the app folder is not there to report it, the account's own id
+      // stands in, which can only ever ask the browsers for their consent again, never skip it.
+      return { tokens, account: folder.driveId ? `drive:${folder.driveId}` : `subject:${claims.subject}`, hint: claims.hint, folder: folder.id };
+    },
+    refresh: (refreshToken) => refreshTokens({ fetchImpl, clientId, clock, refreshToken }),
+    drive: (options) => createOneDrive({ fetchImpl, clock, tracker, ...options }),
+    forget: async () => {},
+  };
+}
+
+// Google Drive, through Google's sign-in for a desktop app, in a visible Recap Page folder (P04). Google
+// prefers the loopback address to "localhost" for a desktop app's redirect, and matches any port on it.
+function googleDriveAdapter({ clientId, clientSecret, fetchImpl, clock }) {
+  const tracker = google.createUploadTracker();
+  return {
+    name: 'Google Drive', company: 'Google', callbackHost: '127.0.0.1',
+    authorizationUrl: ({ redirectUri, authorization }) => google.authorizationUrl({ clientId, redirectUri, authorization }),
+    async signIn({ code, authorization, redirectUri }) {
+      const tokens = await google.redeemCode({ fetchImpl, clientId, clientSecret, clock, code, verifier: authorization.verifier, redirectUri });
+      if (!tokens.refreshToken || !google.grantsDriveFile(tokens.scope)) {
+        // A grant without the one scope is no use, and is handed back rather than left in the account.
+        await google.revokeToken({ fetchImpl, token: tokens.refreshToken ?? tokens.accessToken });
+        throw new ProviderError('refused', 'Google did not grant the access cloud backup needs.');
+      }
+      const found = await google.createGoogleDrive({ fetchImpl, clock, accessToken: async () => tokens.accessToken }).identify();
+      return { tokens, account: found.account, hint: found.hint, folder: found.folder };
+    },
+    refresh: (refreshToken) => google.refreshTokens({ fetchImpl, clientId, clientSecret, clock, refreshToken }),
+    drive: (options) => google.createGoogleDrive({ fetchImpl, clock, tracker, ...options }),
+    // Disconnecting also takes Recap Page off the Google Account's list of connected apps.
+    forget: (refreshToken) => google.revokeToken({ fetchImpl, token: refreshToken }),
+  };
+}
+
 export function createCloudHost({
   clientText, client = parseCloudClient(clientText),
   env = process.env, platform = process.platform, fetchImpl = globalThis.fetch, spawnImpl,
@@ -140,8 +189,17 @@ export function createCloudHost({
   clock = Date.now, random = randomBytes, signInMs = SIGN_IN_MS, deadlines = HOST_DEADLINES_MS, bodyMs = HOST_BODY_MS,
   rate = HOST_RATE,
 } = {}) {
-  const clientId = client.providers.onedrive.clientId;
-  const tracker = createUploadTracker();
+  // What differs between the services: sign-in, renewal, the account and the drive. Google Drive is here only
+  // when the configuration carries its Windows client, so a build without one offers OneDrive alone (P04).
+  const adapters = { onedrive: oneDriveAdapter({ clientId: client.providers.onedrive.clientId, fetchImpl, clock }) };
+  const googleWindows = client.providers.googledrive?.windows;
+  if (googleWindows) adapters.googledrive = googleDriveAdapter({ ...googleWindows, fetchImpl, clock });
+  const offered = Object.freeze(Object.keys(adapters));
+  function adapterOf(provider) {
+    const adapter = adapters[provider];
+    if (!adapter) throw new ProviderError('unavailable', 'This build of Recap Page cannot reach the service cloud backup was set up with.');
+    return adapter;
+  }
   let loading = null;
   let record = null;
   let unavailable = platform === 'win32' ? null : new CloudTokenError('platform');
@@ -213,7 +271,7 @@ export function createCloudHost({
     const state = problem ? 'unavailable' : signIn ? 'signing-in' : !record ? 'not-connected'
       : record.refreshToken ? 'connected' : 'needs-sign-in';
     return {
-      provider: 'onedrive', state,
+      provider: record?.provider ?? signIn?.provider ?? 'onedrive', providers: offered, state,
       connection: problem ? null : record?.connection ?? null,
       account: problem ? null : record?.account.hint ?? null,
       message: problem ? publicMessage(problem) : message,
@@ -229,34 +287,31 @@ export function createCloudHost({
 
   async function signInJob(job) {
     const started = epoch;
+    const adapter = adapterOf(job.provider);
     const authorization = newAuthorization(random);
-    const callback = await startCallback({ authorization, timeoutMs: signInMs });
+    const callback = await startCallback({ authorization, timeoutMs: signInMs, host: adapter.callbackHost });
     job.close = callback.close;
     try {
       if (signIn !== job) return;
-      await openUrl(authorizationUrl({ clientId, redirectUri: callback.redirectUri, authorization }));
+      await openUrl(adapter.authorizationUrl({ redirectUri: callback.redirectUri, authorization }));
       const answer = await callback.result;
-      if (answer.error) throw new ProviderError(answer.error, SIGN_IN_ENDED[answer.error] ?? SIGN_IN_ENDED.failed);
-      const tokens = await redeemCode({ fetchImpl, clientId, clock, code: answer.code, verifier: authorization.verifier, redirectUri: callback.redirectUri });
-      if (!tokens.refreshToken || !grantsAppFolder(tokens.scope)) {
-        throw new ProviderError('refused', 'Microsoft did not grant the access cloud backup needs.');
+      if (answer.error) {
+        const said = SIGN_IN_ENDED[answer.error] ?? SIGN_IN_ENDED.failed;
+        throw new ProviderError(answer.error, typeof said === 'function' ? said(adapter.company) : said);
       }
-      const claims = idTokenClaims(tokens.idToken, { clientId, nonce: authorization.nonce, now: clock() });
-      const folder = await createOneDrive({ fetchImpl, clock, accessToken: async () => tokens.accessToken }).appFolder();
-      // The drive names the account. If the app folder is not there to report it, the account's own id
-      // stands in, which can only ever ask the browsers for their consent again, never skip it.
-      const account = folder.driveId ? `drive:${folder.driveId}` : `subject:${claims.subject}`;
+      const { tokens, account, hint, folder } = await adapter.signIn({ code: answer.code, authorization, redirectUri: callback.redirectUri });
       await serial(async () => {
         if (epoch !== started || signIn !== job) return;
         const previous = record;
         // A sign-in again after a refused refresh keeps the connection for the same account and the same
         // app folder, so backups resume. A folder deleted meanwhile is consent withdrawn, as another account
         // is, so every browser asks again (the transport contract under Cloud backup in ARCHITECTURE).
-        const same = previous?.account.id === account && (previous.folder === null || previous.folder === folder.id);
+        const same = previous?.provider === job.provider && previous.account.id === account
+          && (previous.folder === null || previous.folder === folder);
         const next = {
-          version: 1, provider: 'onedrive',
+          version: 1, provider: job.provider,
           connection: same ? previous.connection : Buffer.from(random(16)).toString('hex'),
-          account: { id: account, hint: claims.hint }, folder: folder.id, refreshToken: tokens.refreshToken,
+          account: { id: account, hint }, folder, refreshToken: tokens.refreshToken,
           savedAt: Math.floor(clock()),
         };
         await store.save(next);
@@ -269,16 +324,23 @@ export function createCloudHost({
     }
   }
 
-  async function connect() {
+  async function connect(input = {}) {
     await load();
     if (unavailable) throw unavailable;
+    const provider = input.provider ?? 'onedrive';
+    if (typeof provider !== 'string' || !Object.hasOwn(adapters, provider)) {
+      throw new ProviderError('invalid', 'That cloud service is not offered by this build of Recap Page.');
+    }
+    // One service at a time: a connection to the other one is disconnected first, so nothing it agreed to
+    // is carried across, and a sign-in under way for the other one is left to finish or be cancelled.
+    if ((record && record.provider !== provider) || (signIn && signIn.provider !== provider)) throw new ProviderError('invalid', ONE_AT_A_TIME);
     if (!signIn && !record?.refreshToken) {
-      // With no sign-in stored, whether this Windows account can protect one is asked before Microsoft's
+      // With no sign-in stored, whether this Windows account can protect one is asked before the service's
       // page opens, once in the host's life (stage 2 review, L2). Asked again after the wait, because a
       // second Connect may have started a sign-in meanwhile.
       if (!record) await probe();
       if (!signIn && !record?.refreshToken) {
-        const job = { expiresAt: Math.floor(clock() + signInMs), close: () => {} };
+        const job = { provider, expiresAt: Math.floor(clock() + signInMs), close: () => {} };
         signIn = job;
         message = null;
         signInJob(job)
@@ -312,19 +374,24 @@ export function createCloudHost({
     signIn = null;
     job?.close();
     access = null;
+    let gone = null;
     await serial(async () => {
+      gone = record;
       await store.clear();
       record = null;
     });
     message = null;
+    // After the sign-in is off this computer, so a slow answer from the service never holds it back.
+    if (gone?.refreshToken) void adapters[gone.provider]?.forget(gone.refreshToken).catch(() => {});
     return status();
   }
 
   async function renewal(current) {
     const started = epoch;
+    const adapter = adapterOf(current.provider);
     let tokens;
     try {
-      tokens = await refreshTokens({ fetchImpl, clientId, clock, refreshToken: current.refreshToken });
+      tokens = await adapter.refresh(current.refreshToken);
     } catch (error) {
       if (error?.code !== 'refused') throw error;
       // The refresh token is dead. The connection, the account and the folder stay, so signing in again to
@@ -336,12 +403,13 @@ export function createCloudHost({
         access = null;
         await store.save(next).catch(() => {});
       });
-      throw new ProviderError('needs-sign-in', 'Microsoft asked for the sign-in to be made again, so cloud backups have stopped until it is.');
+      throw new ProviderError('needs-sign-in', `${adapter.company} asked for the sign-in to be made again, so cloud backups have stopped until it is.`);
     }
     return serial(async () => {
       if (epoch !== started || record !== current) throw new ProviderError('not-connected', 'Cloud backup was disconnected.');
-      // Every refresh returns a new refresh token, which replaces the stored one at once. Should the store
-      // fail, the old one still works, because Microsoft does not revoke a refresh token when it is used.
+      // Microsoft returns a new refresh token with every refresh, which replaces the stored one at once.
+      // Should the store fail, the old one still works, because Microsoft does not revoke a refresh token
+      // when it is used. Google usually returns none, and the one it issued at sign-in stays good.
       const next = { ...current, refreshToken: tokens.refreshToken ?? current.refreshToken, savedAt: Math.floor(clock()) };
       await store.save(next).catch(() => {});
       record = next;
@@ -355,7 +423,7 @@ export function createCloudHost({
       const current = record;
       if (!current) throw new ProviderError('not-connected', 'Cloud backup was disconnected.');
       if (current.connection !== connection) throw askAgain(current);
-      if (!current.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
+      if (!current.refreshToken) throw signInAgainError(current);
       if (!renew && access?.connection === connection && access.expiresAt - 60_000 > clock()) return access.token;
       // One refresh at a time for a connection: the second caller waits for the first one's token rather
       // than spending the refresh token the first is about to replace.
@@ -379,10 +447,10 @@ export function createCloudHost({
     // A different connection than the one this browser agreed to: another profile reconnected the host,
     // perhaps to another account, so this browser has to see what is there and agree again first.
     if (record.connection !== input.connection) throw askAgain(record);
-    if (!record.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
+    if (!record.refreshToken) throw signInAgainError(record);
     const current = record;
-    const onedrive = createOneDrive({
-      fetchImpl, clock, tracker, accessToken: tokenFor(input.connection), folder: current.folder,
+    const service = adapterOf(current.provider).drive({
+      accessToken: tokenFor(input.connection), folder: current.folder,
       onFolder: (id) => learnFolder(current, id),
     });
     const settled = async (error) => {
@@ -391,11 +459,15 @@ export function createCloudHost({
       throw error;
     };
     return {
-      list: () => onedrive.list().catch(settled),
-      read: (id) => onedrive.read(id).catch(settled),
-      create: (name, bytes) => onedrive.create(name, bytes).catch(settled),
-      delete: (id) => onedrive.delete(id).catch(settled),
+      list: () => service.list().catch(settled),
+      read: (id) => service.read(id).catch(settled),
+      create: (name, bytes) => service.create(name, bytes).catch(settled),
+      delete: (id) => service.delete(id).catch(settled),
     };
+  }
+
+  function signInAgainError(current) {
+    return new ProviderError('needs-sign-in', `Sign in to ${adapters[current.provider]?.name ?? 'the cloud service'} again to keep backing up.`);
   }
 
   // OneDrive refused a token the host had just renewed, so the sign-in itself is no longer any good, as when
@@ -413,12 +485,13 @@ export function createCloudHost({
     });
   }
 
-  // The person deleted the app folder in OneDrive, which the transport contract treats as consent
+  // The person deleted the app folder at the service, which the transport contract treats as consent
   // withdrawn: a new connection id makes every browser see what the account holds and agree again before
   // its next backup, and the folder is forgotten, so the next create makes a new one and teaches its id.
   // The record is matched by connection and folder, not by identity, because a refresh within the same
   // operation replaces it. Should the store refuse, a restarted host finds the old folder gone again.
   async function forgetFolder(current) {
+    const reason = folderGone(adapters[current.provider]?.name ?? 'the cloud service');
     await serial(async () => {
       const latest = record;
       if (!latest || latest.connection !== current.connection || latest.folder !== current.folder) return;
@@ -426,9 +499,9 @@ export function createCloudHost({
       await store.save(next).catch(() => {});
       record = next;
       access = null;
-      changed = { connection: next.connection, reason: FOLDER_GONE };
+      changed = { connection: next.connection, reason };
     });
-    throw new ProviderError('needs-consent', FOLDER_GONE);
+    throw new ProviderError('needs-consent', reason);
   }
 
   // Learned in place rather than by replacing the record: a refresh under way checks that the record it
@@ -451,8 +524,9 @@ export function createCloudHost({
   function within(operation, work) {
     const limit = deadlines[operation];
     let timer;
+    const name = adapters[record?.provider]?.name ?? 'The cloud service';
     const late = new Promise((resolve, reject) => {
-      timer = setTimeout(() => reject(new ProviderError('timeout', `OneDrive did not finish within ${Math.round(limit / 1000)} seconds.`)), limit);
+      timer = setTimeout(() => reject(new ProviderError('timeout', `${name} did not finish within ${Math.round(limit / 1000)} seconds.`)), limit);
     });
     const done = work();
     done.catch(() => {});
@@ -461,7 +535,7 @@ export function createCloudHost({
 
   const operations = {
     status: async () => ({ status: await status() }),
-    connect: async () => ({ status: await connect() }),
+    connect: async (input) => ({ status: await connect(input) }),
     disconnect: async () => ({ status: await disconnect() }),
     list: (input) => within('list', async () => ({ items: await (await drive(input)).list() })),
     read: (input) => within('read', async () => {
