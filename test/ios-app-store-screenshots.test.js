@@ -120,7 +120,9 @@ test('the iPad capture mixes collapsed and expanded sidebars without changing ph
   ]);
   assert.deepEqual(ipad.map(sidebarFor), ['false', 'true', 'true', 'true', 'false', 'false', 'true']);
   const probes = fixtures('ipad-13').map(({ probe }) => probe);
-  assert.ok(probes.every((probe) => probe.includes('the requested iPad sidebar')));
+  probes.forEach((probe, index) => {
+    assert.ok(probe.includes(`"sidebar":"${ipad[index].sidebar}"`), ipad[index].name);
+  });
   for (const folder of ['iphone-6.3', 'iphone-6.9']) {
     assert.ok(screensForSet(folder).every((screen) => sidebarFor(screen) === undefined));
     assert.ok(fixtures(folder).every(({ probe }) => !probe.includes('"sidebar":"collapsed"')

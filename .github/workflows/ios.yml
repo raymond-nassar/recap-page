@@ -31,9 +31,9 @@ on:
 permissions:
   contents: read
 
-# A newer push to the same branch makes an in-flight run irrelevant.
+# Captures must not cancel a ref's test run, or be cancelled by its next push.
 concurrency:
-  group: ios-${{ github.ref }}
+  group: ios-${{ github.ref }}${{ inputs.app_store_screenshots && '-app-store-screenshots' || '' }}
   cancel-in-progress: true
 
 jobs:

@@ -542,7 +542,8 @@ To regenerate them:
    opacity. Its seed hook is compiled only in Debug, and the Release scan checks for its identifier.
    Recognized XCTest infrastructure failures are retried once for the affected phase on the same
    Simulator; assertions are not retried. The capture does not sign, use secrets or upload to App
-   Store Connect.
+   Store Connect. Captures use a separate concurrency group, so they do not cancel ordinary test
+   runs on the same branch, and pushes do not cancel a capture.
 3. Inspect every image for the intended screen, theme, clean status bar and framing. Copy the
    artifact's `docs/ios-app-store-assets` output into this directory, preserving the manifest.
    The manifest identifies the exact source revision and Simulator runtime used for that run.

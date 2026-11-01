@@ -107,7 +107,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
     'the two unit tests, newest UI, minimum launch and presentation, iPad and SE presentation, CORS, fault-disabled mutation and the App Store capture run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
-  assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
+  assert.equal(block('concurrency').trim(),
+    "group: ios-${{ github.ref }}${{ inputs.app_store_screenshots && '-app-store-screenshots' || '' }}\n  cancel-in-progress: true");
 });
 
 test('live metadata CORS is off by default and runs only from an opted-in manual dispatch', () => {
