@@ -120,8 +120,8 @@ function renderInline(text, sourcePath) {
 }
 
 // GitHub would turn each of these into something other than the literal characters: emphasis,
-// strikethrough, an escape, an entity, or an automatic link.
-const UNSUPPORTED_INLINE = /[`*[\]~\\]|(^|\W)_\S|\S_(\W|$)|https?:\/\/|www\./i;
+// strikethrough, an escape, an entity, a table, or an automatic link.
+const UNSUPPORTED_INLINE = /[`*[\]~\\|]|(^|\W)_\S|\S_(\W|$)|https?:\/\/|www\./i;
 
 function plain(text, sourcePath) {
   if (UNSUPPORTED_INLINE.test(text) || MARKDOWN_ENTITY.test(text)) {
@@ -132,7 +132,7 @@ function plain(text, sourcePath) {
 
 // Indented, quoted, tabled, fenced, ordered, starred, raw HTML, a heading marker this converter
 // does not accept, and a line of only dashes or equals signs, which is a rule or a setext heading.
-const UNSUPPORTED_BLOCK = /^(?:\s|>|\||```|~~~|\d+[.)](?:\s|$)|[*+](?:\s|$)|<|[-=]+\s*$|#{1,6}(?:\t|$)|#{7,}\s)/;
+const UNSUPPORTED_BLOCK = /^(?:\s|>|\||-\t|```|~~~|\d+[.)](?:\s|$)|[*+](?:\s|$)|<|[-=]+\s*$|#{1,6}(?:\t|$)|#{7,}\s)/;
 const HEADING = /^(#{1,6}) ([^\t]*[^\s#])\s*$/;
 
 function refuseBlock(line, sourcePath) {
