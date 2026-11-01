@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { prepareAndroid } from '../scripts/prepare-android.mjs';
 
-const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
+const policyUrl = 'https://raymond-nassar.github.io/recap-page/privacy.html';
 let scratch;
 let generated;
 let desktop;
@@ -117,11 +117,18 @@ test('public privacy policy names the Android, cloud, request and deletion bound
   assert.match(android, /the same address does not mean shared progress/i);
 });
 
-test('Android privacy preparation preserves desktop HTML, shared behavior and fixed origin', async () => {
+test('Android privacy preparation preserves the shared policy link, behavior and fixed origin', async () => {
   assert.equal(await readFile(new URL('../src/index.html', import.meta.url), 'utf8'), desktop);
   assert.equal(config.origin, 'http://127.0.0.1:8787');
   assert.match(desktop, /<script type="module" src="\.\/js\/app\.js"><\/script>/);
-  assert.doesNotMatch(desktop, /Privacy policy \(opens in your browser\)|private Android app storage/);
+  const desktopLinks = [...yourData(desktop).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+  assert.equal(desktopLinks.length, 1, 'The shared web app has one explicit policy destination');
+  assert.equal(desktopLinks[0][1], policyUrl);
+  assert.match(desktopLinks[0][0], /target="_blank"/);
+  assert.match(desktopLinks[0][0], /rel="noopener noreferrer"/);
+  assert.match(desktopLinks[0][0], /referrerpolicy="no-referrer"/);
+  assert.equal(prose(desktopLinks[0][2]), 'Privacy policy (opens in your browser)');
+  assert.doesNotMatch(desktop, /private Android app storage/);
   const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0]
     ?.replace(/<span data-cloud-copy="on" hidden>[\s\S]*?<\/span>/, '');
   assert.ok(details(desktop));

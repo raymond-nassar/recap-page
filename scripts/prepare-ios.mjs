@@ -34,8 +34,6 @@ const VIEWPORT = '<meta name="viewport" content="width=device-width, initial-sca
 // Lets the page draw under the home indicator, so the bottom bar's own safe-area padding applies.
 // Without it every env(safe-area-inset-*) value reads zero inside the web view.
 const COVER_VIEWPORT = '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />';
-const PRIVACY_POLICY = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
-
 function inside(parent, child) {
   const rel = relative(parent, child);
   return rel === '' || (!rel.startsWith(`..${sep}`) && rel !== '..' && !isAbsolute(rel));
@@ -210,9 +208,6 @@ export function iosIndex(html, build) {
               </p>
               <p class="rail-hint">
                 If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.
-              </p>
-              <p class="rail-hint">
-                <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
               </p>`);
   return iosStaticCopy(index);
 }
