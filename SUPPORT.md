@@ -14,7 +14,8 @@ used before.
 
 ## Asking a question or reporting a problem
 
-Open a repository issue and include:
+[Open a repository issue](https://github.com/raymond-nassar/recap-page/issues/new/choose), choosing
+the bug report form for a problem, and include:
 
 - What you did, what happened, and what you expected instead.
 - Whether any reading progress you had saved was affected.

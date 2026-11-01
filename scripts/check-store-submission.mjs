@@ -15,8 +15,8 @@ export const SCREENSHOTS = Object.freeze([
 ]);
 export const STORE_TILE = 'store-tile-300.png';
 export const PUBLIC_URLS = Object.freeze([
-  'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md',
-  'https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md',
+  'https://raymond-nassar.github.io/recap-page/privacy.html',
+  'https://raymond-nassar.github.io/recap-page/support.html',
   'https://github.com/raymond-nassar/recap-page',
 ]);
 

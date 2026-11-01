@@ -394,6 +394,22 @@ If a deletion-information URL is requested, use:
 https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md#deleting-your-data
 after the approved replacement is merged and publicly reachable.
 
+## Public policy and support pages
+
+The project home now publishes the privacy policy and support guide as ordinary web pages, built
+from the maintained files on every `main` deploy. Use these values for the privacy-policy URL, a
+deletion-information URL and a support URL in future Play Console edits:
+
+```text
+https://raymond-nassar.github.io/recap-page/privacy.html
+https://raymond-nassar.github.io/recap-page/privacy.html#deleting-your-data
+https://raymond-nassar.github.io/recap-page/support.html
+```
+
+The approved 4.3.0 fields above stay as the owner approved them, because they record the packet that
+was reviewed. Open each page after the deploy before entering it. Changing a console field is a
+separate owner action, and no contact detail belongs in these pages or this record.
+
 ## References
 
 Official documentation checked 2026-10-05:
