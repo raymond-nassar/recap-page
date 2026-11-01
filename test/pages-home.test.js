@@ -42,6 +42,7 @@ import {
   releasesPage,
   selectRecentReleases,
 } from '../scripts/lib/pages-releases.mjs';
+import { readerFeatures, releaseRecords } from '../scripts/generate-home-updates.mjs';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import {
   BODY,
@@ -1210,8 +1211,8 @@ test('the converter preserves percent-encoded URLs and ordinary query ampersands
   assert.ok(rendered.includes('href="https://example.com/%28news%29?a=1&amp;b=2"'));
 });
 
-const releaseItems = (version) => {
-  const section = releaseContent.html.split(/<h2 /).find((part) => part.includes(`>Version ${version}</h2>`));
+const releaseItems = (version, page = releaseContent.html) => {
+  const section = page.split(/<h2 /).find((part) => part.includes(`>Version ${version}</h2>`));
   assert.ok(section, `Version ${version} is published`);
   return [...section.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, item]) => item);
 };
@@ -1227,31 +1228,49 @@ const syntheticChangelog = (releases) => releases
 // Undated, so never published, but present so the stale-label check passes.
 const labelledReleases = [...PLATFORM_LABELS.keys()].map((feature, index) => [`1.0.${index}`, [feature]]);
 
-test('the What\'s new page lists the five latest finalized releases, newest first, with their dates', () => {
-  const headings = [...releaseContent.html.matchAll(/<h2 id="([^"]+)">Version ([^<]+)<\/h2>\n<p>Finalized ([^<]+)\.<\/p>/g)]
-    .map(([, id, version, date]) => [id, version, date]);
-  assert.deepEqual(headings.map(([, version]) => version), ['4.3.0', '4.2.0', '4.1.0', '4.0.1', '4.0.0']);
-  for (const [id, version, date] of headings) {
-    assert.equal(id, `version-${version.replace(/\./g, '')}`);
-    assert.match(date, /^[A-Z][a-z]+ \d{1,2}, \d{4}$/);
+const assertCurrentReleaseMatchesApp = (changelogText, dates, app, page) => {
+  const records = releaseRecords(changelogText).filter(({ version }) => version === app.version);
+  assert.equal(records.length, 1, 'the current release has exactly one changelog record');
+  assert.deepEqual(readerFeatures(records[0].body), app.batch.features);
+  if (selectRecentReleases(changelogText, dates).some(({ version }) => version === app.version)) {
+    assert.deepEqual(releaseItems(app.version, page), app.batch.features.map(expectedReleaseItem));
+  } else {
+    assert.ok(!page.includes(`>Version ${app.version}</h2>`), 'an unpublished release is not displayed');
   }
-  assert.match(releaseContent.html, /Version 4\.3\.0<\/h2>\n<p>Finalized October 30, 2026\.<\/p>/);
-  assert.match(releaseContent.html, /Version 4\.0\.1<\/h2>\n<p>Finalized October 8, 2026\.<\/p>/,
-    'an untagged Android patch is dated from its recorded bundle revision');
-  assert.match(releaseContent.html, /href="https:\/\/github\.com\/raymond-nassar\/recap-page\/blob\/main\/CHANGELOG\.md">the full changelog<\/a>/);
+};
+
+test('the What\'s new page lists the five latest finalized releases, newest first, with their dates', () => {
+  const records = Array.from({ length: 6 }, (_, index) => [`9.0.${6 - index}`, ['Read faster.']]);
+  const dates = new Map(records.map(([version], index) => [version, `2030-01-0${6 - index}`]));
+  const page = releasesPage(syntheticChangelog([...records, ...labelledReleases]), dates).html;
+  const headings = [...page.matchAll(/<h2 id="([^"]+)">Version ([^<]+)<\/h2>\n<p>Finalized ([^<]+)\.<\/p>/g)]
+    .map(([, id, version, date]) => [id, version, date]);
+  assert.deepEqual(headings, [
+    ['version-906', '9.0.6', 'January 6, 2030'],
+    ['version-905', '9.0.5', 'January 5, 2030'],
+    ['version-904', '9.0.4', 'January 4, 2030'],
+    ['version-903', '9.0.3', 'January 3, 2030'],
+    ['version-902', '9.0.2', 'January 2, 2030'],
+  ]);
+  assert.ok(!page.includes('>Version 9.0.1</h2>'));
+  assert.match(page, /href="https:\/\/github\.com\/raymond-nassar\/recap-page\/blob\/main\/CHANGELOG\.md">the full changelog<\/a>/);
 });
 
-test('the current release says exactly what the in-app What\'s new says', () => {
-  assert.deepEqual(
-    releaseItems(homeUpdatesContent.version),
-    homeUpdatesContent.batch.features.map(expectedReleaseItem),
-  );
+test('the current release uses the in-app What\'s new content when published', () => {
+  assertCurrentReleaseMatchesApp(changelog, releaseDates, homeUpdatesContent, releaseContent.html);
 });
 
 test('platform-bound release notes name their platforms and nothing claims iPhone or iPad backup', () => {
-  const backup = releaseItems('4.3.0').find((item) => item.includes('OneDrive'));
+  const historical = releasesPage(changelog, new Map([
+    ['4.3.0', releaseDates.get('4.3.0')],
+    ['4.0.1', releaseDates.get('4.0.1')],
+  ])).html;
+  const backup = releaseItems('4.3.0', historical).find((item) => item.includes('OneDrive'));
   assert.match(backup, /^<strong>OneDrive backup: Windows and Android only\.<\/strong> /);
-  assert.match(releaseItems('4.0.1')[0], /^<strong>Android only\.<\/strong> /);
+  assert.match(releaseItems('4.0.1', historical)[0], /^<strong>Android only\.<\/strong> /);
+  assert.match(historical, /Version 4\.3\.0<\/h2>\n<p>Finalized October 30, 2026\.<\/p>/);
+  assert.match(historical, /Version 4\.0\.1<\/h2>\n<p>Finalized October 8, 2026\.<\/p>/,
+    'an untagged Android patch is dated from its recorded bundle revision');
   for (const { version, features } of selectRecentReleases(changelog, releaseDates)) {
     assert.deepEqual(releaseItems(version), features.map(expectedReleaseItem));
     for (const feature of features) {
@@ -1260,7 +1279,25 @@ test('platform-bound release notes name their platforms and nothing claims iPhon
       }
     }
   }
-  assert.doesNotMatch(releaseContent.html, /\b(?:iPhone|iPad|iOS|iCloud)\b/, 'no line places a backup feature on Apple devices');
+  assert.doesNotMatch(historical, /\b(?:iPhone|iPad|iOS|iCloud)\b/, 'these releases do not place a backup feature on Apple devices');
+});
+
+test('a reviewed release stays unpublished until dated, then matches the in-app content', () => {
+  const features = [[...PLATFORM_LABELS.keys()][0]];
+  const app = { version: '9.0.0', batch: { features } };
+  const input = syntheticChangelog([
+    [app.version, features],
+    ['8.0.0', ['Read faster.']],
+    ...labelledReleases,
+  ]);
+  const dates = new Map([['8.0.0', '2030-01-02']]);
+  const before = releasesPage(input, dates).html;
+  assertCurrentReleaseMatchesApp(input, dates, app, before);
+  assert.ok(!before.includes('>Version 9.0.0</h2>'));
+  dates.set(app.version, '2030-01-03');
+  const after = releasesPage(input, dates).html;
+  assertCurrentReleaseMatchesApp(input, dates, app, after);
+  assert.deepEqual(releaseItems(app.version, after), features.map(expectedReleaseItem));
 });
 
 test('release notes are published as escaped text, never as markup', () => {
