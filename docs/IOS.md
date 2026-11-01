@@ -488,7 +488,8 @@ and [external testers](https://developer.apple.com/help/app-store-connect/test-a
 The [App Store screenshot assets](ios-app-store-assets/) show the Simulator app with the same
 fictional lists as the Google Play listing. They contain no personal reading data, notes, accounts
 or comic cover art. The Home notice is dismissed. Images 1 through 4 use the dark theme; the
-remaining images use the light theme.
+remaining images use the light theme. The metadata health check uses the Play preview's fictional
+response; other requests outside the app bundle are blocked.
 
 | Order | Caption | iPad | iPhone |
 |---|---|---|---|
@@ -526,7 +527,9 @@ To regenerate them:
 2. Wait for the **App Store screenshots** job and download its
    `ios-app-store-screenshots-<run ID>-<attempt>` artifact. The job builds the unsigned Simulator
    app, applies a 9:41 status bar override, captures the three devices and checks each image's size
-   and opacity. It does not sign, use secrets or upload to App Store Connect.
+   and opacity. Its seed hook is compiled only in Debug, and the Release scan checks for its
+   identifier. Recognized XCTest infrastructure failures are retried once on the same Simulator;
+   assertions are not retried. The capture does not sign, use secrets or upload to App Store Connect.
 3. Inspect every image for the intended screen, theme, clean status bar and framing. Copy the
    artifact's `docs/ios-app-store-assets` output into this directory, preserving the manifest.
    The manifest identifies the exact source revision and Simulator runtime used for that run.

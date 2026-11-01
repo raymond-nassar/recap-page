@@ -15,7 +15,8 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { deflateSync, inflateSync } from 'node:zlib';
 import { crc32 } from './build-icons.mjs';
-import { demonstrationState, sha256 } from './play-assets.mjs';
+import { demonstrationState, FIXTURE_API, previewResponse, sha256 } from './play-assets.mjs';
+import { DEFAULT_BASE } from '../src/js/api.js';
 import { createEmptyState } from '../src/js/lib/model.js';
 import { KEY, SETTINGS_KEY } from '../src/js/storage.js';
 
@@ -86,10 +87,23 @@ export function pageState(screen) {
 export function seedScript(screen) {
   const state = JSON.stringify(pageState(screen));
   const settings = JSON.stringify({ covers: false, theme: screen.theme, filter: 'all' });
+  const health = previewResponse(`${FIXTURE_API}/health`, 'GET', new Map());
+  const healthUrl = JSON.stringify(`${DEFAULT_BASE}/health`);
+  const healthBody = JSON.stringify(health.body);
+  const healthType = JSON.stringify(health.contentType);
   return `(() => {
   localStorage.clear();
   localStorage.setItem(${JSON.stringify(KEY)}, ${JSON.stringify(state)});
   localStorage.setItem(${JSON.stringify(SETTINGS_KEY)}, ${JSON.stringify(settings)});
+  const originalFetch = globalThis.fetch.bind(globalThis);
+  globalThis.fetch = (input, options) => {
+    if (typeof input === 'string' && input === ${healthUrl} && String(options?.method ?? 'GET').toUpperCase() === 'GET') {
+      return Promise.resolve(new Response(${healthBody}, {
+        status: ${health.status}, headers: { 'Content-Type': ${healthType} },
+      }));
+    }
+    return originalFetch(input, options);
+  };
 })();
 `;
 }
@@ -144,6 +158,7 @@ if (screen.preview) {
 for (const phrase of screen.text) {
   await waitFor(() => view.textContent.includes(phrase), phrase);
 }
+await waitFor(() => document.getElementById('api-status')?.textContent.startsWith('API OK'), 'fixture metadata health');
 if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
 let target = null;
 if (screen.scroll) target = await waitFor(() => document.querySelector(screen.scroll), screen.scroll);
@@ -257,6 +272,7 @@ export function decodeCapture(bytes) {
     if (type === 'IHDR') header = value;
     else if (type === 'IDAT') data.push(value);
     else if (type === 'IEND') ended = true;
+    else if (type === 'tRNS') fail('PNG transparency is not supported');
     else if (KEPT_CHUNKS.has(type) && !data.length) kept.push({ type, value: Buffer.from(value) });
     else if (!(bytes[at + 4] & 0x20)) fail(`unsupported critical chunk ${type}`);
     at = end;
@@ -295,11 +311,19 @@ export function decodeCapture(bytes) {
   const sample = depth === 16
     ? (index) => Math.round(unfiltered.readUInt16BE(index * 2) / 257)
     : (index) => unfiltered[index];
+  let nonOpaque = 0;
   for (let p = 0; p < width * height; p++) {
     for (let c = 0; c < 3; c++) pixels[p * 4 + c] = sample(p * channels + c);
-    pixels[p * 4 + 3] = channels === 4 ? sample(p * channels + 3) : 255;
+    if (channels === 4) {
+      const alphaIndex = p * channels + 3;
+      const alpha = depth === 16 ? unfiltered.readUInt16BE(alphaIndex * 2) : unfiltered[alphaIndex];
+      if (alpha !== (depth === 16 ? 65535 : 255)) nonOpaque++;
+      pixels[p * 4 + 3] = sample(alphaIndex);
+    } else {
+      pixels[p * 4 + 3] = 255;
+    }
   }
-  return { width, height, depth, channels, kept, pixels };
+  return { width, height, depth, channels, kept, pixels, nonOpaque };
 }
 
 function chunk(type, value) {
@@ -314,10 +338,9 @@ function chunk(type, value) {
 // Apple refuses a screenshot with an alpha channel, so the output is 8-bit RGB. The capture must
 // already be opaque: compositing a transparent pixel onto a guessed background would be inventing it.
 export function flatten(image) {
-  const { width, height, pixels } = image;
-  let translucent = 0;
-  for (let p = 3; p < pixels.length; p += 4) if (pixels[p] !== 255) translucent++;
-  if (translucent) fail(`${translucent} pixels are not opaque`);
+  const { width, height, pixels, nonOpaque } = image;
+  if (!Number.isInteger(nonOpaque) || nonOpaque < 0) fail('missing source opacity');
+  if (nonOpaque) fail(`${nonOpaque} pixels are not opaque`);
   const stride = width * 3;
   const raw = Buffer.alloc((stride + 1) * height);
   for (let y = 0; y < height; y++) {
@@ -384,6 +407,13 @@ export function attachmentFiles(directory, screens) {
 export function finish({ input, output, source, run, xcode, sets = SETS }) {
   const rows = [];
   for (const set of sets) {
+    const directory = join(output, set.folder);
+    if (!existsSync(directory)) continue;
+    const expected = new Set(screensForSet(set.folder).map(({ name }) => `${name}.png`));
+    const unexpected = readdirSync(directory).find((name) => /\.png$/i.test(name) && !expected.has(name));
+    if (unexpected) fail(`unexpected image ${set.folder}/${unexpected}; remove it before regenerating`);
+  }
+  for (const set of sets) {
     const directory = join(input, set.folder);
     const device = JSON.parse(readFileSync(join(directory, 'device.json'), 'utf8'));
     if (device.set !== set.folder) fail(`device record for ${set.folder} names ${device.set}`);
@@ -417,7 +447,7 @@ export function finish({ input, output, source, run, xcode, sets = SETS }) {
     },
     data: {
       method: 'Fictional negative-ID issue records from the Google Play listing fixtures, covers off, no notes, no account. '
-        + 'Every web request outside the app bundle was blocked.',
+        + 'Metadata health uses the local Play preview response; other web requests outside the app bundle were blocked.',
       sha256: sha256(JSON.stringify(demonstrationState())),
     },
     files: rows,

@@ -3,8 +3,11 @@ import assert from 'node:assert/strict';
 import { mkdtemp, rm, mkdir, writeFile, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { runInNewContext } from 'node:vm';
 import { deflateSync } from 'node:zlib';
 import { crc32 } from '../scripts/build-icons.mjs';
+import { FIXTURE_API, previewResponse } from '../scripts/play-assets.mjs';
+import { DEFAULT_BASE } from '../src/js/api.js';
 import {
   SETS, SCREENS, fixtures, seedScript, chooseDevice, decodeCapture, flatten, inspectOutput, finish,
 } from '../scripts/ios-app-store-screenshots.mjs';
@@ -18,18 +21,18 @@ function chunk(type, value) {
   return Buffer.concat([head, value, tail]);
 }
 
-// An RGBA capture, 8 or 16 bits, with a striped pattern so it is not blank.
-function capture(width, height, { depth = 8, alpha = 255, extra = [] } = {}) {
+// A striped RGB or RGBA capture, 8 or 16 bits, so it is not blank.
+function capture(width, height, { depth = 8, channels = 4, alpha = 255, alpha16 = null, extra = [] } = {}) {
   const bytes = depth / 8;
-  const stride = width * 4 * bytes;
+  const stride = width * channels * bytes;
   const raw = Buffer.alloc((stride + 1) * height);
   for (let y = 0; y < height; y++) {
     raw[y * (stride + 1)] = 0;
     for (let x = 0; x < width; x++) {
-      const values = [x % 2 ? 200 : 20, y % 3 ? 90 : 10, (x + y) % 255, alpha];
+      const values = [x % 2 ? 200 : 20, y % 3 ? 90 : 10, (x + y) % 255, alpha].slice(0, channels);
       values.forEach((value, c) => {
-        const at = y * (stride + 1) + 1 + (x * 4 + c) * bytes;
-        if (depth === 16) raw.writeUInt16BE(value * 257, at);
+        const at = y * (stride + 1) + 1 + (x * channels + c) * bytes;
+        if (depth === 16) raw.writeUInt16BE(c === 3 && alpha16 !== null ? alpha16 : value * 257, at);
         else raw[at] = value;
       });
     }
@@ -38,7 +41,7 @@ function capture(width, height, { depth = 8, alpha = 255, extra = [] } = {}) {
   ihdr.writeUInt32BE(width, 0);
   ihdr.writeUInt32BE(height, 4);
   ihdr[8] = depth;
-  ihdr[9] = 6;
+  ihdr[9] = channels === 4 ? 6 : 2;
   return Buffer.concat([
     Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), chunk('IHDR', ihdr),
     ...extra.map(([type, value]) => chunk(type, value)),
@@ -77,7 +80,7 @@ test('the seed is the fictional Play listing state with covers off and no notes'
       clear: () => store.clear(),
       setItem: (key, value) => store.set(key, value),
     };
-    new Function('localStorage', seedScript(screen))(localStorage);
+    runInNewContext(seedScript(screen), { localStorage, fetch: () => {}, Response });
     return { state: JSON.parse(store.get('mrt.state.v2')), settings: JSON.parse(store.get('mrt.settings')) };
   };
   const home = evaluate(SCREENS[0]);
@@ -90,6 +93,29 @@ test('the seed is the fictional Play listing state with covers off and no notes'
   assert.ok(Object.keys(list.state.issues).every((id) => Number(id) < 0), 'every issue is fictional');
   assert.deepEqual(list.state.notes, {});
   assert.ok(list.state.lists['play-lantern']);
+});
+
+test('the seed answers metadata health with the Play fixture and forwards every other request', async () => {
+  const calls = [];
+  const sandbox = {
+    localStorage: { clear() {}, setItem() {} },
+    fetch: async (input, options) => {
+      calls.push([input, options]);
+      return new Response('forwarded', { status: 202 });
+    },
+    Response,
+  };
+  runInNewContext(seedScript(SCREENS[0]), sandbox);
+  const response = await sandbox.fetch(`${DEFAULT_BASE}/health`, { headers: { accept: 'application/json' } });
+  const play = previewResponse(`${FIXTURE_API}/health`, 'GET', new Map());
+  assert.equal(response.status, play.status);
+  assert.deepEqual(await response.json(), JSON.parse(play.body));
+  assert.equal(calls.length, 0);
+  const posted = await sandbox.fetch(`${DEFAULT_BASE}/health`, { method: 'POST' });
+  const other = await sandbox.fetch(`${DEFAULT_BASE}/issues/-1`);
+  assert.equal(await posted.text(), 'forwarded');
+  assert.equal(await other.text(), 'forwarded');
+  assert.equal(calls.length, 2);
 });
 
 test('the newest runtime supplies each Simulator, and a missing one stops the capture', () => {
@@ -123,6 +149,10 @@ test('flattening drops the alpha channel, keeps the color profile and refuses tr
     assert.ok(again.pixels.equals(decoded.pixels), `depth ${depth} keeps every pixel`);
   }
   assert.throws(() => flatten(decodeCapture(capture(4, 4, { alpha: 128 }))), /16 pixels are not opaque/);
+  assert.throws(() => flatten(decodeCapture(capture(4, 4, { depth: 16, alpha16: 65534 }))), /16 pixels are not opaque/);
+  assert.equal(decodeCapture(capture(4, 4, { channels: 3 })).nonOpaque, 0);
+  const transparentRGB = capture(4, 4, { channels: 3, extra: [['tRNS', Buffer.from([0, 20, 0, 10, 0, 0])]] });
+  assert.throws(() => decodeCapture(transparentRGB), /transparency/);
   const set = { folder: 'tiny', width: 6, height: 5 };
   assert.doesNotThrow(() => inspectOutput(flatten(decodeCapture(capture(6, 5))), set));
   assert.throws(() => inspectOutput(flatten(decodeCapture(capture(6, 4))), set), /expects 6 x 5 but found 6 x 4/);
@@ -167,6 +197,9 @@ test('finish writes each set with its own manifest rows and refuses a wrong size
     assert.equal(decodeCapture(bytes).channels, 3);
     const written = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8'));
     assert.deepEqual([written.source, written.captureRun, written.xcode], ['abc', '1', 'Xcode 26.6']);
+    await writeFile(join(output, 'ipad-13', '08-about-your-data.png'), capture(6, 5));
+    assert.throws(() => finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6', sets }),
+      /unexpected image.*ipad-13.*08-about-your-data/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

@@ -221,6 +221,67 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
   }
 });
 
+test('screenshot capture retries only recognized Xcode infrastructure failures and exports the last attempt', async () => {
+  const capture = stepScript(jobSource('screenshots'), 'Capture the screens');
+  for (const [scenario, exit, expectedAttempts] of [
+    ['recover', 0, 2],
+    ['mixed', 1, 1],
+    ['twice', 1, 2],
+    ['logfail', 1, 1],
+  ]) {
+    const root = await mkdtemp(join(tmpdir(), 'recap-ios-screens-retry-'));
+    try {
+      const harness = `xcrun() {
+  if [ "$1 $2" = "simctl list" ]; then
+    echo '{"devices":{}}'
+  elif [ "$1 $2" = "xcresulttool export" ]; then
+    printf '%s\\n' "$*" >> "$RUNNER_TEMP/exports"
+  fi
+}
+node() {
+  if [ "$2" = device ]; then echo '{"udid":"U"}'
+  elif [ "$1" = -e ]; then echo "U"
+  else echo "[]"; fi
+}
+tee() {
+  if [ "$CASE" = logfail ] && [ "$TEST_RUNNER_RECAP_APP_STORE_SET" = "iphone-6.3" ]; then
+    cat > /dev/null
+    return 1
+  fi
+  command tee "$@"
+}
+xcodebuild() {
+  set="$TEST_RUNNER_RECAP_APP_STORE_SET"
+  count=0
+  if [ -f "$RUNNER_TEMP/count-$set" ]; then read -r count < "$RUNNER_TEMP/count-$set"; fi
+  count=$((count + 1))
+  printf '%s\\n' "$count" > "$RUNNER_TEMP/count-$set"
+  if [ "$set" = "iphone-6.3" ]; then
+    if [ "$CASE" = twice ] || [ "$CASE" = mixed ] || { [ "$CASE" = recover ] && [ "$count" = 1 ]; }; then
+      echo "/repo/AppStoreScreenshotUITests.swift:55: error: Timed out while launching application via Xcode."
+      if [ "$CASE" = mixed ]; then echo "/repo/AppStoreScreenshotUITests.swift:56: error: XCTAssertEqual failed - wrong screen"; fi
+      return 65
+    fi
+  fi
+  echo "captured $set attempt $count"
+}
+${capture}`;
+      const result = await runScript(root, harness, { CASE: scenario });
+      assert.equal(result.status, exit, `${scenario}: ${result.stdout}${result.stderr}`);
+      assert.equal(Number((await readFile(join(root, 'count-iphone-6.3'), 'utf8')).trim()), expectedAttempts, scenario);
+      assert.equal(Number((await readFile(join(root, 'count-ipad-13'), 'utf8')).trim()), 1, scenario);
+      assert.equal(Number((await readFile(join(root, 'count-iphone-6.9'), 'utf8')).trim()), 1, scenario);
+      const exports = await readFile(join(root, 'exports'), 'utf8');
+      assert.match(exports, new RegExp(`RecapPage-screenshots-iphone-6\\.3-${expectedAttempts}\\.xcresult`), scenario);
+      if (scenario === 'recover') assert.match(result.stdout, /retrying.*same Simulator/i);
+      else assert.match(result.stdout, /::error::The iphone-6\.3 capture failed/);
+      if (scenario === 'logfail') assert.match(result.stdout, /capture log could not be written/);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
 test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs in its own job', () => {
   const newest = jobSource('newest');
   const ipad = jobSource('ipad');

@@ -5,7 +5,7 @@ import console from 'node:console';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const identifiers = ['__recapPassiveGuard', 'passiveAuditTrackingScript'];
+const identifiers = ['__recapPassiveGuard', 'passiveAuditTrackingScript', 'RECAP_IOS_SCREENSHOT_SEED'];
 const needles = identifiers.flatMap((identifier) => {
   const littleEndian = Buffer.from(identifier, 'utf16le');
   return [Buffer.from(identifier), littleEndian, Buffer.from(littleEndian).swap16()];
@@ -36,7 +36,7 @@ export function scanReleaseApp(appPath) {
       } else if (stat.isFile()) {
         const bytes = readFileSync(path);
         if (needles.some((needle) => bytes.includes(needle))) {
-          throw new Error(`Debug passive-audit instrumentation in Release app: ${path}`);
+          throw new Error(`Debug instrumentation in Release app: ${path}`);
         }
         files += 1;
       } else {
@@ -50,5 +50,5 @@ export function scanReleaseApp(appPath) {
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   if (process.argv.length !== 3) throw new Error('Usage: node check-release-surface.mjs <built .app>');
   const result = scanReleaseApp(process.argv[2]);
-  console.log(`Release passive-audit surface: ${result.files} files, no instrumentation`);
+  console.log(`Release debug surface: ${result.files} files, no instrumentation`);
 }
