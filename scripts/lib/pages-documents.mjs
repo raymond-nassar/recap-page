@@ -113,11 +113,26 @@ function renderInline(text, sourcePath) {
   return output;
 }
 
+// GitHub would turn each of these into something other than the literal characters: emphasis,
+// strikethrough, an escape, an entity, or an automatic link.
+const UNSUPPORTED_INLINE = /[`*[\]~\\]|(^|\W)_\S|\S_(\W|$)|&(?:[a-z][a-z0-9]*|#\d+|#x[0-9a-f]+);|https?:\/\/|www\./i;
+
 function plain(text, sourcePath) {
-  if (/[`*[\]]|(^|\W)_\S|\S_(\W|$)/.test(text)) {
+  if (UNSUPPORTED_INLINE.test(text)) {
     throw new Error(`Unsupported inline syntax in ${sourcePath}: ${text}`);
   }
   return escapeHtml(text);
+}
+
+// Indented, quoted, tabled, fenced, ordered, starred, raw HTML, a heading marker this converter
+// does not accept, and a line of only dashes or equals signs, which is a rule or a setext heading.
+const UNSUPPORTED_BLOCK = /^(?:\s|>|\||```|~~~|\d+[.)](?:\s|$)|[*+](?:\s|$)|<|[-=]+\s*$|#{1,6}(?:\t|$)|#{7,}\s)/;
+const HEADING = /^(#{1,6}) ([^\t]*[^\s#])\s*$/;
+
+function refuseBlock(line, sourcePath) {
+  if (UNSUPPORTED_BLOCK.test(line) || (/^#{1,6} /.test(line) && !HEADING.test(line))) {
+    throw new Error(`Unsupported block syntax in ${sourcePath}: ${line}`);
+  }
 }
 
 export function renderMarkdown(markdown, sourcePath) {
@@ -141,7 +156,8 @@ export function renderMarkdown(markdown, sourcePath) {
       continue;
     }
 
-    const heading = /^(#{1,6}) (.+)$/.exec(line);
+    refuseBlock(line, sourcePath);
+    const heading = HEADING.exec(line);
     if (heading) {
       const level = heading[1].length;
       if (level > 2) throw new Error(`Heading level ${level} is not supported in ${sourcePath}: ${line}`);
@@ -160,22 +176,29 @@ export function renderMarkdown(markdown, sourcePath) {
       const items = [];
       while (index < lines.length && /^- /.test(lines[index])) {
         const item = [lines[index].slice(2)];
+        refuseBlock(item[0], sourcePath);
+        if (/^#{1,6} |^- /.test(item[0])) {
+          throw new Error(`Nested blocks are not supported in ${sourcePath}: ${lines[index]}`);
+        }
         index += 1;
         while (index < lines.length && /^ {2}\S/.test(lines[index])) {
-          if (/^ {2}(- |\d+\. )/.test(lines[index])) {
-            throw new Error(`Nested lists are not supported in ${sourcePath}: ${lines[index]}`);
+          const continuation = lines[index].slice(2);
+          if (/^(?:- |#{1,6} )/.test(continuation)) {
+            throw new Error(`Nested blocks are not supported in ${sourcePath}: ${lines[index]}`);
           }
-          item.push(lines[index].trim());
+          refuseBlock(continuation, sourcePath);
+          item.push(continuation.trim());
           index += 1;
+        }
+        // GitHub folds an unindented line straight after an item into that item, which this
+        // converter would publish as a separate paragraph.
+        if (index < lines.length && lines[index].trim() !== '' && !/^- /.test(lines[index])) {
+          throw new Error(`Unsupported block syntax in ${sourcePath}: ${lines[index]}`);
         }
         items.push(`  <li>${renderInline(item.join(' '), sourcePath)}</li>`);
       }
       blocks.push(`<ul>\n${items.join('\n')}\n</ul>`);
       continue;
-    }
-
-    if (/^(\s|>|\||```|~~~|\d+[.)] |[*+] |-{3,}|={3,}|<)/.test(line)) {
-      throw new Error(`Unsupported block syntax in ${sourcePath}: ${line}`);
     }
 
     const paragraph = [];
@@ -184,11 +207,12 @@ export function renderMarkdown(markdown, sourcePath) {
       && lines[index].trim() !== ''
       && !/^(#{1,6} |- )/.test(lines[index])
     ) {
-      if (/^(\s|>|\||```|~~~|\d+[.)] |[*+] |-{3,}|={3,}|<)/.test(lines[index])) {
-        throw new Error(`Unsupported block syntax in ${sourcePath}: ${lines[index]}`);
-      }
+      refuseBlock(lines[index], sourcePath);
       paragraph.push(lines[index].trim());
       index += 1;
+    }
+    if (paragraph.length === 0) {
+      throw new Error(`Unsupported block syntax in ${sourcePath}: ${line}`);
     }
     blocks.push(`<p>${renderInline(paragraph.join(' '), sourcePath)}</p>`);
   }

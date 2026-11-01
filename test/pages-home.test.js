@@ -29,6 +29,7 @@ import {
   renderDocumentPage,
   renderFooter,
   renderMarkdown,
+  resolveDocumentLink,
 } from '../scripts/lib/pages-documents.mjs';
 import {
   BODY,
@@ -927,6 +928,10 @@ test('every link on the published pages resolves', () => {
       } else if (href.startsWith(`${REPOSITORY}/blob/main/`)) {
         const path = href.slice(`${REPOSITORY}/blob/main/`.length).split('#')[0];
         assert.ok(existsSync(join(ROOT, ...path.split('/'))), `${name} links to missing file ${path}`);
+        assert.ok(
+          !PAGE_DOCUMENTS.some(({ source }) => source === path),
+          `${name} links to the repository view of ${path} instead of its published page`,
+        );
       } else {
         assert.match(href, /^(?:https:\/\/|http:\/\/127\.0\.0\.1:8787\/$)/, `${name} has unexpected ${href}`);
       }
@@ -934,20 +939,76 @@ test('every link on the published pages resolves', () => {
   }
 });
 
+test('links between the documents land on their published pages and sections', () => {
+  const support = pageByDestination.get('support.html');
+  const privacy = pageByDestination.get('privacy.html');
+  assert.ok(support.includes('href="./privacy.html#requests-the-app-makes-to-other-services"'), 'support links privacy section');
+  assert.ok(privacy.includes('href="./support.html"'), 'privacy links support');
+
+  const cases = [
+    ['PRIVACY.md#deleting-your-data', 'SUPPORT.md', './privacy.html#deleting-your-data'],
+    ['../PRIVACY.md#deleting-your-data', 'pages/data-sources.md', './privacy.html#deleting-your-data'],
+    ['../SUPPORT.md', 'pages/data-sources.md', './support.html'],
+    ['pages/data-sources.md', 'PRIVACY.md', './data-sources.html'],
+    ['docs/DATA_PROVENANCE.md', 'PRIVACY.md', './data-sources.html'],
+    ['../docs/DATA_PROVENANCE.md', 'pages/data-sources.md', `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md`],
+    ['docs/DATA_PROVENANCE.md#licensing', 'PRIVACY.md', `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md#licensing`],
+    ['SECURITY.md', 'PRIVACY.md', `${REPOSITORY}/blob/main/SECURITY.md`],
+    ['#deleting-your-data', 'PRIVACY.md', '#deleting-your-data'],
+    ['https://raymond-nassar.github.io/recap-page/', 'SUPPORT.md', './index.html'],
+  ];
+  for (const [target, source, expected] of cases) {
+    assert.equal(resolveDocumentLink(target, source), expected, `${target} from ${source}`);
+  }
+  assert.throws(() => resolveDocumentLink('../../outside.md', 'pages/data-sources.md'));
+});
+
 test('the converter refuses Markdown it cannot render faithfully', () => {
   const refusals = [
     '# A\n\n### Deeper',
     '# A\n\n# B',
     'Intro\n\n# A',
+    '# A\n\n## ',
+    '# ',
+    '# A\n\n### ',
+    '# A\n\n##',
+    '# A\n\n#\tB',
+    '# A\n\n##\tB',
+    '# A\n\n## B ##',
+    '# A\n\n## B #',
     '# A\n\n<div>raw</div>',
     '# A\n\nText with <b>tags</b>.',
     '# A\n\n![cover](cover.png)',
     '# A\n\n- one\n  - nested',
+    '# A\n\n- one\n  + nested',
+    '# A\n\n- one\n  * nested',
+    '# A\n\n- one\n  1) nested',
+    '# A\n\n- one\n  1. nested',
+    '# A\n\n- one\n  > quoted',
+    '# A\n\n- one\nlazy continuation',
+    '# A\n\n- one\n- two\nlazy continuation',
+    '# A\n\n- * starred',
     '# A\n\n1. ordered',
+    '# A\n\n1) ordered',
     '# A\n\n> quoted',
     '# A\n\n| table |',
     '# A\n\n```\ncode\n```',
+    '# A\n\nText\n---',
+    '# A\n\nText\n--',
+    '# A\n\nText\n-',
+    '# A\n\nText\n===',
+    '# A\n\nText\n==',
+    '# A\n\n---',
+    '# A\n\n-',
     '# A\n\nSome _emphasis_ here.',
+    '# A\n\nSome ~~struck~~ text.',
+    '# A\n\nA tilde ~ here.',
+    '# A\n\nA back\\slash here.',
+    '# A\n\nAn entity &amp; here.',
+    '# A\n\nAn entity &#169; here.',
+    '# A\n\nAn entity &#x27; here.',
+    '# A\n\nA bare https://example.com/ address.',
+    '# A\n\nA bare www.example.com address.',
     '# A\n\nA [link](mailto:someone)',
     '# A\n\nA [link](/rooted)',
     '# A\n\nA stray * star.',
@@ -956,9 +1017,9 @@ test('the converter refuses Markdown it cannot render faithfully', () => {
   for (const markdown of refusals) {
     assert.throws(() => renderMarkdown(markdown, 'test.md'), undefined, JSON.stringify(markdown));
   }
-  assert.deepEqual(renderMarkdown('# Title\n\nSome `snake_case` **bold** [x](https://example.com/).', 'x.md'), {
+  assert.deepEqual(renderMarkdown('# Title\n\nSome `snake_case` **bold** [x](https://example.com/) & more.', 'x.md'), {
     title: 'Title',
-    html: '<h1 id="title">Title</h1>\n<p>Some <code>snake_case</code> <strong>bold</strong> <a href="https://example.com/">x</a>.</p>',
+    html: '<h1 id="title">Title</h1>\n<p>Some <code>snake_case</code> <strong>bold</strong> <a href="https://example.com/">x</a> &amp; more.</p>',
   });
 });
 
