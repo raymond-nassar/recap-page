@@ -490,9 +490,30 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(requestDetails, /What leaves this device, request by request/);
   assert.match(prose(requestDetails), /What leaves this device is the ordinary business/);
   assert.doesNotMatch(prose(requestDetails), /Android|OneDrive|Microsoft|browser|cloud backup/i);
-  const splitWord = /\w(?:<!--[\s\S]*?-->)+\w/;
-  assert.match('Win<!-- a comment --><!-- another comment -->dows', splitWord);
-  assert.doesNotMatch(page, splitWord, 'HTML comments must not split visible words');
+  const hasSplitWordComment = (html) => {
+    let cursor = 0;
+    while (true) {
+      const start = html.indexOf('<!--', cursor);
+      if (start === -1) return false;
+      const previous = html.charAt(start - 1);
+      cursor = start;
+      do {
+        const end = html.indexOf('-->', cursor + 4);
+        if (end === -1) return false;
+        cursor = end + 3;
+      } while (html.startsWith('<!--', cursor));
+      if (/\w/.test(previous) && /\w/.test(html.charAt(cursor))) return true;
+    }
+  };
+  assert.equal(hasSplitWordComment('Win<!-- a comment --><!-- another comment -->dows'), true);
+  assert.equal(hasSplitWordComment('Win<!-- a comment -->dows'), true);
+  assert.equal(hasSplitWordComment('Win<!-- a comment --> dows'), false);
+  assert.equal(hasSplitWordComment('Win<!-- a comment --> ! <!-- another comment -->dows'), false);
+  assert.equal(hasSplitWordComment('<!-- a comment -->Windows'), false);
+  assert.equal(hasSplitWordComment('Win<!-- a comment -->'), false);
+  assert.equal(hasSplitWordComment('Win<!-- unclosed'), false);
+  assert.equal(hasSplitWordComment(`0<!--${'--><!--'.repeat(10000)}`), false);
+  assert.equal(hasSplitWordComment(page), false, 'HTML comments must not split visible words');
   const visiblePage = page.replace(/<!--[\s\S]*?-->/g, ' ');
   assert.doesNotMatch(visiblePage, /data-cloud-copy="on"|id="cloud-backup"/);
   const visibleText = prose(visiblePage);
