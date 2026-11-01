@@ -348,6 +348,33 @@ pending until the presentation checks pass.
 - Checks that need a real device, such as Read opening the correct comic outside Recap Page, run on the owner's iPad
   with iOS 18; checks that need an iPhone stay unverified until one is available.
 
+## App Store creative assets
+
+The App Store shows two optional images from iOS 27 and iPadOS 27 on: a product page header at
+3840 x 1646 and a search results image at 3840 x 2560, each a PNG with no alpha channel. Both are in
+`docs/ios-app-store-assets/creative`, with a manifest giving each file's size, bytes, SHA-256, safe
+area and inputs. To make them again from the committed iPhone 6.9-inch screenshots:
+
+```
+node scripts/ios-creative-assets.mjs
+```
+
+The header is drawn from the app icon's geometry and colors, with no text. The search results image
+places three of the iPhone screenshots, Library, a reading list partway through and Home,
+on the same artwork. `npm test` rebuilds both and fails if an input is missing or either committed
+file differs.
+
+Key content stays inside the safe area of Apple's Photoshop templates for the
+[header](https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-product_page_header_template-static.psd)
+and [search results](https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-search_results_template-static.psd),
+read on 2026-10-31 from each template's "Art Safe Area" layer: left 1097, top 493, right 2743 and
+bottom 1154 for the header, and left 836, top 765, right 3004 and bottom 1795 for search results.
+The script refuses a layout that leaves them. The templates are not committed; the manifest records
+their SHA-256 so a changed template can be noticed.
+
+Nothing is uploaded from here. The owner uploads both images in App Store Connect and checks how
+they crop with its preview.
+
 ## Signing and internal TestFlight
 
 The manual **iOS TestFlight** workflow has delivered build 4 (4.2.0), built from `7b39b9d3`, to the

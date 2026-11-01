@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "specification": "https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications",
+  "command": "node scripts/ios-creative-assets.mjs",
+  "method": "The header is drawn from brand geometry with no text. The search image places three committed screenshots, unedited, on brand artwork with no added text.",
+  "screens": [
+    {
+      "file": "docs/ios-app-store-assets/iphone-6.9/06-library.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "8b7e1cb7a9ce43a6331452d07f6f22f1535763cca512a2ef0e2ce05a8dbd936a",
+      "chunks": [
+        "sRGB"
+      ]
+    },
+    {
+      "file": "docs/ios-app-store-assets/iphone-6.9/03-reading-list.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "14cb9c8d809947dc1c504dfe1002e696baadc741b873b99e7f5321302ea66522",
+      "chunks": [
+        "sRGB"
+      ]
+    },
+    {
+      "file": "docs/ios-app-store-assets/iphone-6.9/01-home.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "e5eccf2d378d62b3236eaf653831eb3fea069bfb7905aae5390a3213cdc07606",
+      "chunks": [
+        "sRGB"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "product-page-header.png",
+      "width": 3840,
+      "height": 1646,
+      "bytes": 629427,
+      "sha256": "7009a4a6266a587fad30244621f228891b866c716c869b7806311b69304a6120",
+      "alt": "The app icon between a row of white checked tiles and lilac unread tiles on deep purple.",
+      "safeArea": {
+        "left": 1097,
+        "top": 493,
+        "right": 2743,
+        "bottom": 1154,
+        "source": "Art Safe Area layer bounds in https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-product_page_header_template-static.psd",
+        "templateSha256": "4200f416adcf3affb70d5847c1d0554fc39b7405110ec527bdea92bfb82f93b0"
+      },
+      "inputs": [
+        "scripts/ios-creative-assets.mjs",
+        "scripts/build-icons.mjs"
+      ]
+    },
+    {
+      "file": "search-results.png",
+      "width": 3840,
+      "height": 2560,
+      "bytes": 1362915,
+      "sha256": "13852be6bbd49c9d57bfff45bed7fca4830a1ee4357c0c73267ef2325b37202f",
+      "alt": "Three iPhone screens of the app with made-up reading lists on deep purple.",
+      "safeArea": {
+        "left": 836,
+        "top": 765,
+        "right": 3004,
+        "bottom": 1795,
+        "source": "Art Safe Area layer bounds in https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-search_results_template-static.psd",
+        "templateSha256": "7bb57a3c33cc4402d1c82e85a0211cf0f2f2b1c05cf7f36e4710092226dea056"
+      },
+      "inputs": [
+        "scripts/ios-creative-assets.mjs",
+        "scripts/build-icons.mjs",
+        "docs/ios-app-store-assets/iphone-6.9/06-library.png",
+        "docs/ios-app-store-assets/iphone-6.9/03-reading-list.png",
+        "docs/ios-app-store-assets/iphone-6.9/01-home.png"
+      ]
+    }
+  ]
+}
