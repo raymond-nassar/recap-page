@@ -61,6 +61,15 @@ public final class NavigationPolicyTest {
         check(policy.isPopupAsset("android/launcher.js"), "Android launcher entry permitted");
         check(policy.isPopupAsset("android/reader.js"), "Android reader controller permitted");
         check(!policy.isPopupAsset("android/app.js"), "Popup still has no app entry");
+        String privacyPolicy = "https://raymond-nassar.github.io/recap-page/privacy.html";
+        check(policy.isHttps(privacyPolicy), "Privacy policy opens in the browser");
+        check(policy.isHttps(privacyPolicy + "#deleting-your-data"), "Privacy policy section opens in the browser");
+        for (String rejected : new String[] {
+                "http://raymond-nassar.github.io/recap-page/privacy.html",
+                "https://reader@raymond-nassar.github.io/recap-page/privacy.html",
+                "https:raymond-nassar.github.io/recap-page/privacy.html",
+                "javascript:location='https://raymond-nassar.github.io/recap-page/privacy.html'",
+        }) check(!policy.isHttps(rejected), "Privacy policy lookalike stays in the app: " + rejected);
         check(policy.isNetworkSubresource("https://api.example/v1/issues/1"), "Configurable metadata");
         check(policy.isNetworkSubresource("https://i.annihil.us/cover.jpg"), "Cover network");
         check(policy.isNetworkSubresource("http://127.0.0.1:9999/v1/health"), "Existing loopback metadata mirror");
