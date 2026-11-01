@@ -14722,7 +14722,7 @@ const SCENARIOS = [
           desktop.width === 1280
           && desktop.overflow <= 1
           && desktop.regions.length === 10
-          && desktop.navigation.length === 5
+          && desktop.navigation.length === 8
           && desktop.navigation.every((item) => item.visible),
           JSON.stringify(desktop));
         t.check('the supplied artwork and both phone previews load alongside the desktop samples',
@@ -14754,7 +14754,9 @@ const SCENARIOS = [
         }));
         t.check('the overview names where the app is available and where it is coming',
           JSON.stringify(overview.navigation)
-            === JSON.stringify(['Android', 'Features', 'Get started', 'Guides', 'Feedback'])
+            === JSON.stringify([
+              'Android', 'Features', 'Get started', 'Guides', 'Feedback', 'Support', 'Privacy', 'Data sources',
+            ])
           && overview.status === 'Available for Windows and Android. Coming soon for iPhone and iPad.'
           && JSON.stringify(overview.actions) === JSON.stringify([
             { name: 'Get started', href: '#getting-started' },
@@ -14803,7 +14805,7 @@ const SCENARIOS = [
           links: section.querySelectorAll('a').length,
         }));
         t.check('keyboard section navigation reaches the maintained-document routes',
-          documentation.visible && documentation.links === 12,
+          documentation.visible && documentation.links === 13,
           JSON.stringify(documentation));
 
         const wideGrid = await platformGrid();
@@ -14848,7 +14850,7 @@ const SCENARIOS = [
           && narrow.clipped.length === 0,
           JSON.stringify(narrow));
         t.check('every primary route remains visible and touch-sized at the narrow layout',
-          narrow.navigation.length === 5
+          narrow.navigation.length === 8
           && narrow.navigation.every((item) => (
             item.visible && item.height >= 44 && item.width >= 44 && item.width <= 296
           )),
@@ -14902,6 +14904,84 @@ const SCENARIOS = [
           JSON.stringify(forced));
         await client.detach();
 
+        const requestsBeforeDocuments = webRequests.length;
+        const documents = [];
+        for (const [file, current] of [
+          ['support.html', 'Support'],
+          ['privacy.html', 'Privacy'],
+          ['data-sources.html', 'Data sources'],
+        ]) {
+          for (const width of [1280, 320]) {
+            await page.setViewport({ width, height: 900 });
+            await page.goto(pathToFileURL(join(destination, file)).href, { waitUntil: 'load' });
+            documents.push(await page.evaluate((expected) => {
+              const currentLinks = [...document.querySelectorAll('[aria-current="page"]')];
+              const style = currentLinks[0] ? getComputedStyle(currentLinks[0]) : null;
+              return {
+                file: location.pathname.split('/').pop(),
+                width: innerWidth,
+                headings: document.querySelectorAll('h1').length,
+                landmarks: ['header', 'nav', 'main', 'footer']
+                  .every((name) => document.querySelectorAll(name).length === 1),
+                current: currentLinks.map((link) => link.textContent.trim()),
+                expected,
+                currentBorder: style ? Number.parseFloat(style.borderTopWidth) : 0,
+                overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+                clipped: [...document.querySelectorAll('main *, footer *')]
+                  .filter((element) => element.scrollWidth - element.clientWidth > 1)
+                  .map((element) => element.id || element.className || element.tagName),
+                navigation: [...document.querySelectorAll('.section-nav a')].map((link) => {
+                  const box = link.getBoundingClientRect();
+                  return box.height >= 44 && box.width >= 44 && box.left >= 0 && box.right <= innerWidth;
+                }),
+              };
+            }, current));
+          }
+        }
+        t.check('each document page has one heading, the landmarks, its current page marked and no overflow',
+          documents.length === 6
+          && documents.every((item) => (
+            item.headings === 1
+            && item.landmarks
+            && JSON.stringify(item.current) === JSON.stringify([item.expected])
+            && item.currentBorder > 0
+            && item.overflow <= 1
+            && item.clipped.length === 0
+            && item.navigation.length === 4
+            && item.navigation.every(Boolean)
+          )),
+          JSON.stringify(documents));
+
+        await page.setViewport({ width: 1280, height: 900 });
+        await page.goto(`${pathToFileURL(join(destination, 'privacy.html')).href}#deleting-your-data`, {
+          waitUntil: 'load',
+        });
+        const deletion = await page.evaluate(() => {
+          const target = document.getElementById('deleting-your-data');
+          return {
+            heading: target?.tagName ?? null,
+            text: target?.textContent.trim() ?? null,
+            top: target ? Math.round(target.getBoundingClientRect().top) : null,
+          };
+        });
+        t.check('the data deletion address the store console names lands on its heading',
+          deletion.heading === 'H2' && deletion.text === 'Deleting your data'
+          && deletion.top >= 0 && deletion.top < 200,
+          JSON.stringify(deletion));
+        await page.goto(pathToFileURL(join(destination, 'privacy.html')).href, { waitUntil: 'load' });
+        await page.keyboard.press('Tab');
+        const documentSkip = await page.evaluate(() => ({
+          skip: document.activeElement?.classList.contains('skip-link') ?? false,
+          outline: Number.parseFloat(getComputedStyle(document.activeElement).outlineWidth),
+        }));
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#main');
+        t.check('a document page opens with a visible skip link that reaches its main content',
+          documentSkip.skip && documentSkip.outline > 0,
+          JSON.stringify(documentSkip));
+        t.check('the document pages load no web resource',
+          webRequests.length === requestsBeforeDocuments,
+          webRequests.slice(requestsBeforeDocuments).join(' / '));
         t.check('the project-home journey produces no console or page error',
           browserErrors.length === 0,
           browserErrors.join(' / '));

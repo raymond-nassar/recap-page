@@ -17,12 +17,20 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
 import {
+  PAGE_DOCUMENTS,
   PAGE_OUTPUTS,
   PAGE_SOURCES,
   artifactInventory,
   buildPages,
   installArtifact,
 } from '../scripts/build-pages.mjs';
+import {
+  SITE_ICON,
+  renderDocumentPage,
+  renderFooter,
+  renderMarkdown,
+  resolveDocumentLink,
+} from '../scripts/lib/pages-documents.mjs';
 import {
   BODY,
   LARGE,
@@ -61,6 +69,9 @@ const EXPECTED_HREFS = [
   '#getting-started',
   '#documentation',
   '#feedback',
+  './support.html',
+  './privacy.html',
+  './data-sources.html',
   '#getting-started',
   '#android',
   PLAY_LISTING,
@@ -78,14 +89,15 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   APP_ORIGIN,
   `${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`,
-  `${REPOSITORY}/blob/main/SUPPORT.md`,
+  './support.html',
   '#project-questions',
   `${REPOSITORY}/blob/main/docs/ANDROID.md`,
   `${REPOSITORY}#readme`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   `${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`,
-  `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md`,
-  `${REPOSITORY}/blob/main/PRIVACY.md`,
+  './data-sources.html',
+  './privacy.html',
+  './support.html',
   `${REPOSITORY}/blob/main/SECURITY.md`,
   `${REPOSITORY}/blob/main/docs/MAINTAINING.md`,
   `${REPOSITORY}/blob/main/CONTRIBUTING.md`,
@@ -101,7 +113,9 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/issues`,
   `${REPOSITORY}/commits/main`,
   `${REPOSITORY}/releases`,
-  `${REPOSITORY}/blob/main/PRIVACY.md`,
+  './privacy.html',
+  './support.html',
+  './data-sources.html',
   `${REPOSITORY}/blob/main/SECURITY.md`,
   `${REPOSITORY}/blob/main/LICENSE`,
 ];
@@ -147,7 +161,7 @@ function contrast(tokens, foreground, background) {
 }
 
 async function copyApprovedSources(root) {
-  for (const { source } of PAGE_SOURCES) {
+  for (const { source } of [...PAGE_SOURCES, ...PAGE_DOCUMENTS]) {
     const destination = join(root, ...source.split('/'));
     await mkdir(dirname(destination), { recursive: true });
     await copyFile(join(ROOT, ...source.split('/')), destination);
@@ -268,7 +282,7 @@ test('Get started offers both app stores and names iPhone and iPad as coming soo
 
   assert.deepEqual(links(section('troubleshooting')).map(({ href, name }) => [href, name]), [
     [`${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`, 'Fix a problem Startup, reader links, or missing progress.'],
-    [`${REPOSITORY}/blob/main/SUPPORT.md`, 'Get support Where to ask for help.'],
+    ['./support.html', 'Get support Where to ask for help.'],
     ['#project-questions', 'Ask a question About Recap Page and how it works.'],
   ]);
   assert.deepEqual(links(section('documentation'))[0], {
@@ -311,7 +325,7 @@ test('the showcase includes the supplied artwork and current phone previews', ()
 });
 
 test('the source inventory and generated contract stay exact', async () => {
-  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'index.html', 'site.css']);
+  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'data-sources.md', 'index.html', 'site.css']);
   assert.deepEqual((await readdir(join(ROOT, 'pages', 'assets'))).sort(), [
     'android-feature-graphic.png',
     'android-library-preview.png',
@@ -323,9 +337,20 @@ test('the source inventory and generated contract stay exact', async () => {
     'assets/android-reading-preview.png',
     'assets/avengers-disassembled-reading-960.png',
     'assets/home-960.png',
+    'data-sources.html',
     'index.html',
+    'privacy.html',
     'site.css',
+    'support.html',
   ]);
+  assert.deepEqual(
+    PAGE_DOCUMENTS.map(({ source, destination }) => [source, destination]),
+    [
+      ['SUPPORT.md', 'support.html'],
+      ['PRIVACY.md', 'privacy.html'],
+      ['pages/data-sources.md', 'data-sources.html'],
+    ],
+  );
   assert.deepEqual(
     PAGE_SOURCES.map(({ source }) => source),
     [
@@ -347,7 +372,7 @@ test('the page exposes every task through semantic no-script structure', () => {
   assert.equal((html.match(/<header\b/g) ?? []).length, 1);
   assert.equal((html.match(/<main\b/g) ?? []).length, 1);
   assert.equal((html.match(/<footer\b/g) ?? []).length, 1);
-  assert.match(html, /<nav class="section-nav" aria-label="Page sections">/);
+  assert.match(html, /<nav class="section-nav" aria-label="Site">/);
   assert.match(html, /<a class="skip-link" href="#main">Skip to main content<\/a>/);
 
   const requiredIds = [
@@ -391,7 +416,10 @@ test('the project home keeps its copy concise and its navigation focused', () =>
   const words = visibleCopy.match(/\S+/g) ?? [];
   assert.ok(words.length <= 800, `${words.length} words exceed the 800-word feature-tour budget`);
   const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
-  assert.equal((navigation.match(/<a\b/g) ?? []).length, 5);
+  assert.deepEqual(links(navigation).map(({ href }) => href), [
+    '#android', '#features', '#getting-started', '#documentation', '#feedback',
+    './support.html', './privacy.html', './data-sources.html',
+  ]);
   assert.doesNotMatch(html, /class="eyebrow"/);
 });
 
@@ -432,7 +460,7 @@ test('all links and fragments resolve to the approved destinations', () => {
   const cleartext = [...html.matchAll(/http:\/\/[^"<\s]+/g)].map((match) => match[0]);
   assert.deepEqual(cleartext, [APP_ORIGIN, APP_ORIGIN]);
   assert.ok(hrefs.every((href) => href.startsWith('#') || href.startsWith('https://')
-    || href === APP_ORIGIN || (href.startsWith('./assets/') && PAGE_OUTPUTS.includes(href.slice(2)))));
+    || href === APP_ORIGIN || (href.startsWith('./') && PAGE_OUTPUTS.includes(href.slice(2)))));
 });
 
 test('the exact-origin warning appears before the only local-app link', () => {
@@ -637,6 +665,15 @@ test('the builder copies only approved bytes and leaves no staging residue', asy
       assert.equal((await lstat(join(destination, ...relativeDestination.split('/')))).isFile(), true);
     }
 
+    for (const document of PAGE_DOCUMENTS) {
+      const markdown = await readFile(join(ROOT, ...document.source.split('/')), 'utf8');
+      assert.equal(
+        await readFile(join(destination, document.destination), 'utf8'),
+        renderDocumentPage(document, markdown),
+        `${document.destination} differs from the page rendered from ${document.source}`,
+      );
+    }
+
     await buildPages({ destination });
     assert.deepEqual(await artifactInventory(destination), PAGE_OUTPUTS);
     const leftovers = (await readdir(temporary)).filter((entry) => (
@@ -797,4 +834,294 @@ test('every Pages workflow step times out before its job backstop', () => {
       `${name} job timeout can fire before its steps finish`,
     );
   }
+});
+
+const DOCUMENT_PAGES = PAGE_DOCUMENTS.map((document) => {
+  const markdown = readFileSync(join(ROOT, ...document.source.split('/')), 'utf8');
+  return { ...document, markdown, page: renderDocumentPage(document, markdown) };
+});
+const pageByDestination = new Map([
+  ['index.html', html],
+  ...DOCUMENT_PAGES.map(({ destination, page }) => [destination, page]),
+]);
+
+function decode(text) {
+  return text
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll('&amp;', '&');
+}
+
+function words(text) {
+  return text.replace(/\s+/g, ' ').trim();
+}
+
+function idsOf(page) {
+  return new Set([...page.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
+}
+
+test('each document page renders its Markdown source with the site shell', () => {
+  for (const { destination, label, page } of DOCUMENT_PAGES) {
+    assert.match(page, /^<!doctype html>\n<html lang="en">/, destination);
+    assert.equal((page.match(/<h1\b/g) ?? []).length, 1, `${destination} has one heading level 1`);
+    assert.match(page, /<a class="skip-link" href="#main">Skip to main content<\/a>/, destination);
+    assert.equal((page.match(/<main id="main">/g) ?? []).length, 1, destination);
+    assert.equal((page.match(/<header class="masthead">/g) ?? []).length, 1, destination);
+    assert.equal((page.match(/<footer class="footer">/g) ?? []).length, 1, destination);
+    assert.match(page, /<nav class="section-nav" aria-label="Site">/, destination);
+    assert.deepEqual(
+      [...page.matchAll(/aria-current="page"/g)].length,
+      1,
+      `${destination} marks exactly one current page`,
+    );
+    assert.match(page, new RegExp(`<a href="\\./${destination.replace('.', '\\.')}" aria-current="page">${label}</a>`));
+    assert.match(page, /<link rel="stylesheet" href="\.\/site\.css" \/>/);
+    assert.ok(page.includes(`<link rel="icon" href="${SITE_ICON}" />`), `${destination} icon`);
+    assert.doesNotMatch(page, /<script\b|<form\b|<iframe\b|\btarget=|\son[a-z]+=/i, destination);
+    assert.ok(page.includes(renderFooter()), `${destination} footer matches the shared footer`);
+  }
+  assert.ok(html.includes(`href="${SITE_ICON}"`), 'project home icon matches');
+  assert.ok(html.replace(/\r\n/g, '\n').includes(renderFooter()), 'project home footer matches the shared footer');
+});
+
+test('document page main text says exactly what the Markdown says', () => {
+  for (const { destination, markdown, page } of DOCUMENT_PAGES) {
+    const article = page.slice(page.indexOf('<article class="document">'), page.indexOf('</article>'));
+    const rendered = words(decode(article
+      .replace(/<\/?(?:a|strong|code)\b[^>]*>/g, '')
+      .replace(/<[^>]+>/g, ' ')));
+    const source = words(markdown
+      .replace(/^#{1,2} /gm, '')
+      .replace(/^- /gm, '')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/`([^`]+)`/g, '$1'));
+    assert.equal(rendered, source, `${destination} text drifted from its source`);
+  }
+});
+
+test('published headings keep the anchors the repository files gave them', () => {
+  const expected = {
+    'privacy.html': [
+      'recap-page-privacy-policy',
+      'what-stays-on-your-device',
+      'optional-onedrive-backup',
+      'requests-the-app-makes-to-other-services',
+      'deleting-your-data',
+      'the-windows-package',
+      'contact',
+    ],
+    'support.html': [
+      'support',
+      'start-with-the-troubleshooting-section',
+      'asking-a-question-or-reporting-a-problem',
+      'reporting-a-reading-list-correction',
+      'asking-a-public-project-question',
+      'a-suspected-security-problem-never-goes-in-an-issue',
+      'things-that-are-somebody-elses-to-fix',
+      'asking-for-a-change',
+      'which-version-you-have',
+    ],
+    'data-sources.html': [
+      'data-sources-and-credits',
+      'comic-details',
+      'covers',
+      'reading-lists',
+      'the-optional-marvel-fandom-lookup',
+      'what-the-project-license-covers',
+    ],
+  };
+  for (const { destination, markdown, page } of DOCUMENT_PAGES) {
+    const headings = [...markdown.matchAll(/^#{1,2} (.+)$/gm)].length;
+    const anchors = [...page.matchAll(/<h[12] id="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(anchors.length, headings, `${destination} heading count`);
+    assert.deepEqual(anchors, expected[destination], `${destination} heading anchors`);
+  }
+});
+
+test('duplicate heading anchors avoid collisions with earlier suffixed headings', () => {
+  const markdown = '# A\n\n## A-1\n\n## A\n\n## A';
+  const { html: rendered } = renderMarkdown(markdown, 'headings.md');
+  const ids = [...rendered.matchAll(/<h[12] id="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(ids, ['a', 'a-1', 'a-2', 'a-3']);
+});
+
+test('linked headings are refused instead of publishing an incorrect anchor', () => {
+  const markdown = '# Privacy\n\n## [Delete data](https://example.com)';
+  assert.throws(
+    () => renderMarkdown(markdown, 'headings.md'),
+    /Links in headings are not supported/,
+  );
+});
+
+test('headings without a usable anchor are refused', () => {
+  assert.throws(
+    () => renderMarkdown('# Privacy\n\n## !!!', 'headings.md'),
+    /Heading has no usable anchor/,
+  );
+});
+
+test('every link on the published pages resolves', () => {
+  for (const [name, page] of pageByDestination) {
+    for (const [, raw] of page.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)) {
+      const href = decode(raw);
+      if (href.startsWith('#')) {
+        assert.ok(idsOf(page).has(href.slice(1)), `${name} links to missing ${href}`);
+      } else if (href.startsWith('./')) {
+        const [path, fragment] = href.slice(2).split('#');
+        assert.ok(PAGE_OUTPUTS.includes(path), `${name} links to unpublished ${href}`);
+        if (fragment !== undefined) {
+          assert.ok(idsOf(pageByDestination.get(path)).has(fragment), `${name} links to missing ${href}`);
+        }
+      } else if (href.startsWith(`${REPOSITORY}/blob/main/`)) {
+        const path = href.slice(`${REPOSITORY}/blob/main/`.length).split('#')[0];
+        assert.ok(existsSync(join(ROOT, ...path.split('/'))), `${name} links to missing file ${path}`);
+        assert.ok(
+          !PAGE_DOCUMENTS.some(({ source }) => source === path),
+          `${name} links to the repository view of ${path} instead of its published page`,
+        );
+      } else {
+        assert.match(href, /^(?:https:\/\/|http:\/\/127\.0\.0\.1:8787\/$)/, `${name} has unexpected ${href}`);
+      }
+    }
+  }
+});
+
+test('links between the documents land on their published pages and sections', () => {
+  const support = pageByDestination.get('support.html');
+  const privacy = pageByDestination.get('privacy.html');
+  assert.ok(support.includes('href="./privacy.html#requests-the-app-makes-to-other-services"'), 'support links privacy section');
+  assert.ok(privacy.includes('href="./support.html"'), 'privacy links support');
+
+  const cases = [
+    ['PRIVACY.md#deleting-your-data', 'SUPPORT.md', './privacy.html#deleting-your-data'],
+    ['../PRIVACY.md#deleting-your-data', 'pages/data-sources.md', './privacy.html#deleting-your-data'],
+    ['../SUPPORT.md', 'pages/data-sources.md', './support.html'],
+    ['pages/data-sources.md', 'PRIVACY.md', './data-sources.html'],
+    ['docs/DATA_PROVENANCE.md', 'PRIVACY.md', './data-sources.html'],
+    ['../docs/DATA_PROVENANCE.md', 'pages/data-sources.md', `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md`],
+    ['docs/DATA_PROVENANCE.md#licensing', 'PRIVACY.md', `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md#licensing`],
+    ['SECURITY.md', 'PRIVACY.md', `${REPOSITORY}/blob/main/SECURITY.md`],
+    ['#deleting-your-data', 'PRIVACY.md', '#deleting-your-data'],
+    ['https://raymond-nassar.github.io/recap-page/', 'SUPPORT.md', './index.html'],
+  ];
+  for (const [target, source, expected] of cases) {
+    assert.equal(resolveDocumentLink(target, source), expected, `${target} from ${source}`);
+  }
+  assert.throws(() => resolveDocumentLink('../../outside.md', 'pages/data-sources.md'));
+});
+
+test('the converter refuses Markdown it cannot render faithfully', () => {
+  const refusals = [
+    '# A\n\n### Deeper',
+    '# A\n\n# B',
+    'Intro\n\n# A',
+    '# A\n\n## ',
+    '# ',
+    '# A\n\n### ',
+    '# A\n\n##',
+    '# A\n\n#\tB',
+    '# A\n\n##\tB',
+    '# A\n\n## B ##',
+    '# A\n\n## B #',
+    '# A\n\n<div>raw</div>',
+    '# A\n\nText with <b>tags</b>.',
+    '# A\n\n![cover](cover.png)',
+    '# A\n\n- one\n  - nested',
+    '# A\n\n- one\n  + nested',
+    '# A\n\n- one\n  * nested',
+    '# A\n\n- one\n  1) nested',
+    '# A\n\n- one\n  1. nested',
+    '# A\n\n- one\n  > quoted',
+    '# A\n\n- one\nlazy continuation',
+    '# A\n\n- one\n- two\nlazy continuation',
+    '# A\n\n- * starred',
+    '# A\n\n1. ordered',
+    '# A\n\n1) ordered',
+    '# A\n\n> quoted',
+    '# A\n\n| table |',
+    '# T\n\nService | What it receives\n--- | ---\nMetadata API | Search text',
+    '# T\n\nService | What it receives\n---|---\nMetadata API | Search text',
+    '# T\n\nService | What it receives\n---: | :---\nMetadata API | Search text',
+    '# T\n\nService | What it receives\n----|----\nMetadata API | Search text',
+    '# T\n\n-\tFirst point',
+    '# A\n\n```\ncode\n```',
+    '# A\n\nText\n---',
+    '# A\n\nText\n--',
+    '# A\n\nText\n-',
+    '# A\n\nText\n===',
+    '# A\n\nText\n==',
+    '# A\n\n---',
+    '# A\n\n-',
+    '# A\n\nSome _emphasis_ here.',
+    '# A\n\nSome ~~struck~~ text.',
+    '# A\n\nA tilde ~ here.',
+    '# A\n\nA back\\slash here.',
+    '# A\n\nAn entity &amp; here.',
+    '# A\n\nAn entity &#169; here.',
+    '# A\n\nAn entity &#x27; here.',
+    '# A\n\nA bare https://example.com/ address.',
+    '# A\n\nA bare www.example.com address.',
+    '# A\n\nA [link](mailto:someone)',
+    '# A\n\nA [link](/rooted)',
+    '# A\n\nA stray * star.',
+    '# A\n\nA [link] without a target.',
+  ];
+  for (const markdown of refusals) {
+    assert.throws(() => renderMarkdown(markdown, 'test.md'), undefined, JSON.stringify(markdown));
+  }
+  assert.deepEqual(renderMarkdown('# Title\n\nSome `snake_case` **bold** [x](https://example.com/) & more.', 'x.md'), {
+    title: 'Title',
+    html: '<h1 id="title">Title</h1>\n<p>Some <code>snake_case</code> <strong>bold</strong> <a href="https://example.com/">x</a> &amp; more.</p>',
+  });
+});
+
+test('document pages carry no dashes the house style forbids and no contact details', () => {
+  for (const { destination, page } of DOCUMENT_PAGES) {
+    assert.doesNotMatch(page, /[\u2013\u2014]/, `${destination} contains an en or em dash`);
+    assert.doesNotMatch(page, /mailto:|tel:|@[a-z0-9-]+\.[a-z]{2,}/i, `${destination} carries an address`);
+    assert.doesNotMatch(page, /\(?\b\d{3}\)?[ .-]\d{3}[ .-]\d{4}\b/, `${destination} carries a phone number`);
+  }
+});
+
+test('the data sources page credits every source and links the full record', () => {
+  const { page } = DOCUMENT_PAGES.find(({ destination }) => destination === 'data-sources.html');
+  for (const phrase of [
+    'Comic Book Herald',
+    'Comic Book Reading Orders',
+    'Master Reading Order',
+    'Patreon',
+    'Marvel Fandom',
+    'cover',
+  ]) {
+    assert.ok(page.includes(phrase), `data-sources.html names ${phrase}`);
+  }
+  assert.ok(page.includes(`href="${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md"`), 'links the full record');
+});
+
+const unsafeLinkDestinations = [
+  ['parentheses', 'https://example.com/News_(2026)'],
+  ['named entities', 'https://example.com/?a=1&amp;b=2'],
+  ['decimal entities', 'https://example.com/?value=&#169;'],
+  ['hexadecimal entities', 'https://example.com/?value=&#x27;'],
+  ['backslash escapes', String.raw`https://example.com/a\_b`],
+];
+
+for (const [kind, target] of unsafeLinkDestinations) {
+  test(`the converter refuses link destinations with ${kind}`, () => {
+    assert.throws(
+      () => renderMarkdown(`# Title\n\n[Details](${target})`, 'test.md'),
+      /Unsupported link destination/,
+    );
+  });
+}
+
+test('the converter preserves percent-encoded URLs and ordinary query ampersands', () => {
+  const { html: rendered } = renderMarkdown(
+    '# Title\n\n[Details](https://example.com/%28news%29?a=1&b=2)',
+    'test.md',
+  );
+  assert.ok(rendered.includes('href="https://example.com/%28news%29?a=1&amp;b=2"'));
 });

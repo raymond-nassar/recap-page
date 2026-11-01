@@ -450,6 +450,12 @@ App Store Connect:
 The Beta App Description, What to Test and review notes are prepared separately for entry in App
 Store Connect. Keep personal contact information out of repository files.
 
+Where App Store Connect asks for a privacy policy or support address, use the project home's
+published pages rather than repository file views:
+
+- Privacy policy: https://raymond-nassar.github.io/recap-page/privacy.html
+- Support: https://raymond-nassar.github.io/recap-page/support.html
+
 ### Renewal and fallbacks
 
 TestFlight builds expire after **90 days** and then stop opening. The upload receipt records the

@@ -111,10 +111,10 @@ optional OneDrive backup. No new package capability is requested.
 
 ### Public privacy and support URLs
 
-| Field | Public HTTPS value | Status checked 2026-08-29 |
+| Field | Public HTTPS value | Source |
 |---|---|---|
-| Privacy policy | https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md | Public rendered page, no repository credential required |
-| Support contact | https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md | Public rendered guide, no repository credential required |
+| Privacy policy | https://raymond-nassar.github.io/recap-page/privacy.html | Project home page built from `PRIVACY.md` |
+| Support contact | https://raymond-nassar.github.io/recap-page/support.html | Project home page built from `SUPPORT.md` |
 | Website | https://github.com/raymond-nassar/recap-page | Public source and product overview |
 
 Microsoft accepts a support URL or email and requires support contact information only for Xbox, so
@@ -122,10 +122,13 @@ the support guide is sufficient for this Desktop app. No private email, phone nu
 placed in this repository. If Partner Center asks for regulatory contact details, the owner enters
 them privately.
 
-Microsoft does not specifically endorse GitHub as a privacy-policy host. The current rendered
-Markdown page is nevertheless a stable public HTTPS page, has no sign-in or download requirement,
-and states storage, requests, recipients, controls, and deletion. If the live form offers direct
-policy text, paste the same maintained policy there as well as supplying the URL.
+The privacy and support values were repository file views until the project home began publishing
+both documents as ordinary web pages, because store reviewers treat a file in a code repository as
+a weak policy host. Each page is rebuilt from its maintained file on every `main` deploy, has no
+sign-in or download requirement, and the privacy page states storage, requests, recipients,
+controls, and deletion. Changing the Partner Center fields is an owner action; open each page after
+the deploy before entering it. If the live form offers direct policy text, paste the same
+maintained policy there as well as supplying the URL.
 
 ### Product declarations and requirements
 
