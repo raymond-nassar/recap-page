@@ -667,8 +667,6 @@ jobs:
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           for set in ipad-13 iphone-6.3 iphone-6.9; do
             TEST_RUNNER_RECAP_APP_STORE_SET="$set"
-            TEST_RUNNER_RECAP_APP_STORE_SCREENS="$(node scripts/ios-app-store-screenshots.mjs fixtures "$set")"
-            export TEST_RUNNER_RECAP_APP_STORE_SET TEST_RUNNER_RECAP_APP_STORE_SCREENS
             directory="$RUNNER_TEMP/attachments/$set"
             mkdir -p "$directory"
             xcrun simctl list devices available --json |
@@ -678,39 +676,46 @@ jobs:
             xcrun simctl bootstatus "$udid" -b
             xcrun simctl status_bar "$udid" override --time 9:41 --dataNetwork wifi --wifiMode active \
               --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
-            captured=false
-            for attempt in 1 2; do
-              bundle="$RUNNER_TEMP/RecapPage-screenshots-$set-$attempt.xcresult"
-              log="$RUNNER_TEMP/ui-screenshots-$set-$attempt.log"
-              if xcodebuild test-without-building \
-                  -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
-                  -destination "platform=iOS Simulator,id=$udid" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-                  -only-testing:RecapPageUITests/AppStoreScreenshotUITests \
-                  -resultBundlePath "$bundle" CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
-                captured=true
-                break
-              else
-                statuses=("${PIPESTATUS[@]}")
-              fi
-              if [ "${statuses[1]}" -ne 0 ]; then
-                echo "::error::The $set capture log could not be written"
-                break
-              fi
-              if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
-                  grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
-                  grep -Ev "$infrastructure"; then
-                break
-              fi
-              matched=$(grep -Em1 "$infrastructure" "$log")
-              echo "::warning::XCTest screenshot infrastructure failure; retrying the complete capture once on the same Simulator. Matched: $matched"
-            done
-            if [ "$captured" != true ]; then
-              echo "::error::The $set capture failed"
-              status=1
-            fi
-            xcrun xcresulttool export attachments \
-              --path "$bundle" --output-path "$directory" || status=1
             cp "$RUNNER_TEMP/device-$set.json" "$directory/device.json"
+            for appearance in dark light; do
+              TEST_RUNNER_RECAP_APP_STORE_APPEARANCE="$appearance"
+              TEST_RUNNER_RECAP_APP_STORE_SCREENS="$(node scripts/ios-app-store-screenshots.mjs fixtures "$set" "$appearance")"
+              export TEST_RUNNER_RECAP_APP_STORE_SET TEST_RUNNER_RECAP_APP_STORE_APPEARANCE TEST_RUNNER_RECAP_APP_STORE_SCREENS
+              xcrun simctl ui "$udid" appearance "$appearance"
+              mkdir -p "$directory/$appearance"
+              captured=false
+              for attempt in 1 2; do
+                bundle="$RUNNER_TEMP/RecapPage-screenshots-$set-$appearance-$attempt.xcresult"
+                log="$RUNNER_TEMP/ui-screenshots-$set-$appearance-$attempt.log"
+                if xcodebuild test-without-building \
+                    -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                    -destination "platform=iOS Simulator,id=$udid" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                    -only-testing:RecapPageUITests/AppStoreScreenshotUITests \
+                    -resultBundlePath "$bundle" CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+                  captured=true
+                  break
+                else
+                  statuses=("${PIPESTATUS[@]}")
+                fi
+                if [ "${statuses[1]}" -ne 0 ]; then
+                  echo "::error::The $set $appearance capture log could not be written"
+                  break
+                fi
+                if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                    grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                    grep -Ev "$infrastructure"; then
+                  break
+                fi
+                matched=$(grep -Em1 "$infrastructure" "$log")
+                echo "::warning::XCTest screenshot infrastructure failure; retrying the phase once on the same Simulator. Matched: $matched"
+              done
+              if [ "$captured" != true ]; then
+                echo "::error::The $set $appearance capture failed"
+                status=1
+              fi
+              xcrun xcresulttool export attachments \
+                --path "$bundle" --output-path "$directory/$appearance" || status=1
+            done
             xcrun simctl shutdown "$udid" || true
           done
           exit "$status"

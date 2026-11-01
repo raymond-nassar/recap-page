@@ -2,7 +2,7 @@
 // there is no Mac here. The iOS workflow runs this in three modes, only when dispatched by hand with
 // app_store_screenshots set:
 //
-//   fixtures <set>   prints that set's screens, each with the page seed and probe the UI test runs
+//   fixtures <set> [appearance]   prints that set's screens and their page seeds and probes
 //   device <set>     reads `xcrun simctl list devices available --json` on stdin and prints the
 //                    chosen Simulator as JSON
 //   finish           checks every exported attachment, removes the alpha channel and writes the
@@ -28,14 +28,16 @@ export const SETS = Object.freeze([
     match: (name) => name.startsWith('iPad Pro 13-inch'), wanted: 'an iPad Pro 13-inch Simulator',
   },
   {
-    folder: 'iphone-6.3', slot: 'iPhone with Dynamic Island (medium display)', width: 1206, height: 2622, screenCount: 8,
+    folder: 'iphone-6.3', slot: 'iPhone with Dynamic Island (medium display)', width: 1206, height: 2622, screenCount: 7,
     match: (name) => name === 'iPhone 17 Pro', wanted: 'the iPhone 17 Pro Simulator',
   },
   {
-    folder: 'iphone-6.9', slot: '6.9-inch iPhone (large display)', width: 1320, height: 2868, screenCount: 8,
+    folder: 'iphone-6.9', slot: '6.9-inch iPhone (large display)', width: 1320, height: 2868, screenCount: 7,
     match: (name) => name === 'iPhone 17 Pro Max', wanted: 'the iPhone 17 Pro Max Simulator',
   },
 ]);
+
+export const FICTIONAL_SYNOPSIS = 'A lighthouse keeper follows a strange signal across the harbor.';
 
 export const SCREENS = Object.freeze([
   {
@@ -50,7 +52,8 @@ export const SCREENS = Object.freeze([
   },
   {
     name: '03-reading-list', route: '#/read/play-lantern', view: 'view-read', theme: 'dark',
-    scroll: '#hero', text: ['Fictional: Lantern Harbor', '3 of 8 read'],
+    scroll: '#hero', ipadPageTop: true, synopsis: { issueId: -4, text: FICTIONAL_SYNOPSIS },
+    text: ['Fictional: Lantern Harbor', '3 of 8 read', FICTIONAL_SYNOPSIS],
     caption: 'See where you are in a reading list and what to read next.',
   },
   {
@@ -71,12 +74,7 @@ export const SCREENS = Object.freeze([
   {
     name: '07-backup-settings', route: '#/data', view: 'view-data', theme: 'light',
     text: ['Backup & settings', 'Complete backup'],
-    caption: 'Save a complete backup of your lists and progress to Files.',
-  },
-  {
-    name: '08-about-your-data', route: '#/about', view: 'view-about', theme: 'light',
-    heading: 'Your data', text: ['About this app', 'Your data'],
-    caption: 'Your data stays on your device. No account, no tracking.',
+    caption: 'Download a complete backup of your lists and progress.',
   },
 ]);
 
@@ -90,7 +88,9 @@ export function pageState(screen) {
 
 export function seedScript(screen) {
   const state = JSON.stringify(pageState(screen));
-  const settings = JSON.stringify({ covers: false, theme: screen.theme, filter: 'all' });
+  const settings = JSON.stringify({
+    covers: false, theme: screen.theme, filter: 'all', ...(screen.synopsis ? { hideDescriptions: false } : {}),
+  });
   const health = previewResponse(`${FIXTURE_API}/health`, 'GET', new Map());
   const healthUrl = JSON.stringify(`${DEFAULT_BASE}/health`);
   const healthBody = JSON.stringify(health.body);
@@ -123,8 +123,10 @@ export const BANNED = /©|\(c\)|https?:\/\/|www\.|\b[\w-]+\.(?:com|org|net|io|ap
 // every expected phrase; anything else fails the UI test with the reason.
 export function probeScript(screen) {
   const options = JSON.stringify({
-    route: screen.route, view: screen.view, text: screen.text, scroll: screen.scroll ?? null,
-    heading: screen.heading ?? null, preview: screen.preview ?? null, dismissNotice: !!screen.dismissNotice,
+    route: screen.route, view: screen.view, text: screen.text,
+    scroll: screen.ipadPageTop && screen.sidebar ? null : screen.scroll ?? null,
+    ipadPageTop: !!screen.ipadPageTop && !!screen.sidebar,
+    synopsis: screen.synopsis ?? null, preview: screen.preview ?? null, dismissNotice: !!screen.dismissNotice,
     sidebar: screen.sidebar ?? null,
   });
   return `
@@ -142,6 +144,17 @@ const waitFor = async (condition, name) => {
 const nextFrame = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 const shown = (element) => !!element && !element.closest('[hidden]') && element.getClientRects().length > 0;
 await waitFor(() => document.readyState === 'complete', 'the page');
+if (screen.synopsis) {
+  const { SessionSynopsis } = await import(new URL('js/synopsis.js', document.baseURI).href);
+  const originalGet = SessionSynopsis.prototype.get;
+  SessionSynopsis.prototype.get = function(issueId) {
+    return Number(issueId) === screen.synopsis.issueId ? screen.synopsis.text : originalGet.call(this, issueId);
+  };
+  if (location.hash === screen.route) {
+    location.hash = '#/home';
+    await waitFor(() => document.getElementById(screen.view)?.hidden === true, 'the previous view to close');
+  }
+}
 if (location.hash !== screen.route) location.hash = screen.route;
 const view = await waitFor(() => {
   const element = document.getElementById(screen.view);
@@ -177,18 +190,23 @@ for (const phrase of screen.text) {
 }
 await waitFor(() => document.getElementById('api-status')?.textContent.startsWith('API OK'), 'fixture metadata health');
 if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
+await document.fonts.ready;
+await nextFrame();
 let target = null;
 if (screen.scroll) target = await waitFor(() => document.querySelector(screen.scroll), screen.scroll);
-if (screen.heading) {
-  target = await waitFor(() => [...view.querySelectorAll('h2, h3')]
-    .find((element) => element.textContent.trim() === screen.heading), screen.heading);
-}
 if (target) {
   target.scrollIntoView({ block: 'start' });
   await nextFrame();
-  // Leave a little room above the heading rather than butting it against the top edge.
-  const top = target.getBoundingClientRect().top;
-  if (top < 24) window.scrollBy(0, top - 24);
+  if (screen.synopsis) {
+    const previous = await waitFor(() => document.getElementById('android-list-options'), 'the list controls');
+    const room = Math.max(0, -previous.getBoundingClientRect().bottom - 1);
+    window.scrollBy(0, -Math.min(8, room));
+    await nextFrame();
+  }
+} else if (screen.preview) {
+  const firstIssue = await waitFor(() => scope.querySelector('#preview-body .preview-list li'), 'the spotlight issue list');
+  firstIssue.scrollIntoView({ block: 'start' });
+  await nextFrame();
 } else if (!screen.preview) {
   window.scrollTo(0, 0);
 }
@@ -199,10 +217,31 @@ for (const footer of document.querySelectorAll('.app-footer')) {
   const rect = footer.getBoundingClientRect();
   if (rect.bottom > 0 && rect.top < innerHeight) footer.style.visibility = 'hidden';
 }
-await document.fonts.ready;
 await nextFrame();
 await new Promise((resolve) => setTimeout(resolve, 750));
-if (screen.preview && !document.getElementById('preview').open) throw new Error('The preview closed');
+if (screen.synopsis) {
+  const summary = document.getElementById('hero-desc').getBoundingClientRect();
+  if (summary.top < 0 || summary.bottom > innerHeight) throw new Error('The fictional synopsis is outside the frame');
+  if (screen.ipadPageTop) {
+    const breadcrumb = view.querySelector('.breadcrumb')?.getBoundingClientRect();
+    if (window.scrollY !== 0 || !breadcrumb || breadcrumb.top < 0) throw new Error('The iPad page top is clipped');
+  } else {
+    const card = target.getBoundingClientRect();
+    const previous = document.getElementById('android-list-options').getBoundingClientRect();
+    if (card.top < -1 || card.top > 9 || previous.bottom > 0) {
+      throw new Error('The reading card or the previous control is clipped at the top of the frame');
+    }
+  }
+}
+if (screen.preview) {
+  if (!scope.open) throw new Error('The preview closed');
+  const head = scope.querySelector('.preview-head').getBoundingClientRect();
+  const description = scope.querySelector('#preview-desc').getBoundingClientRect();
+  const issue = scope.querySelector('#preview-body .preview-list li').getBoundingClientRect();
+  if (description.bottom > head.bottom || issue.top < head.bottom) {
+    throw new Error('The spotlight description is not scrolled out of view above the issue list');
+  }
+}
 const offenders = [];
 const framed = visibleText();
 const banned = framed.match(BANNED);
@@ -239,8 +278,9 @@ export function screensForSet(folder) {
   })) : screens;
 }
 
-export function fixtures(folder) {
-  return screensForSet(folder).map((screen) => ({
+export function fixtures(folder, appearance) {
+  if (appearance !== undefined && !['dark', 'light'].includes(appearance)) fail(`unknown appearance ${appearance}`);
+  return screensForSet(folder).filter((screen) => !appearance || screen.theme === appearance).map((screen) => ({
     name: screen.name,
     appearance: screen.theme === 'dark' ? 'Dark' : 'Light',
     seed: seedScript(screen),
@@ -403,7 +443,7 @@ export function inspectOutput(bytes, set) {
 }
 
 // xcresulttool writes a manifest of the tests and the attachments each one exported.
-export function attachmentFiles(directory, screens) {
+export function attachmentFiles(directory, screens, otherScreens = []) {
   const manifest = JSON.parse(readFileSync(join(directory, 'manifest.json'), 'utf8'));
   const found = [];
   const walk = (value) => {
@@ -416,9 +456,13 @@ export function attachmentFiles(directory, screens) {
     }
   };
   walk(manifest);
-  return screens.map((screen) => {
-    const candidates = found.filter(({ name }) => name === `${screen.name}.png` || name.startsWith(`${screen.name}_`)
+  const candidatesFor = (screen) => found.filter(({ name }) => name === `${screen.name}.png` || name.startsWith(`${screen.name}_`)
       || name.startsWith(`${screen.name}.png`));
+  for (const screen of otherScreens) {
+    if (candidatesFor(screen).length) fail(`unexpected ${screen.name} attachment in ${directory}`);
+  }
+  return screens.map((screen) => {
+    const candidates = candidatesFor(screen);
     if (candidates.length !== 1) fail(`expected one ${screen.name} attachment in ${directory}, found ${candidates.length}`);
     return candidates[0].file;
   });
@@ -438,10 +482,16 @@ export function finish({ input, output, source, run, xcode, sets = SETS }) {
     const device = JSON.parse(readFileSync(join(directory, 'device.json'), 'utf8'));
     if (device.set !== set.folder) fail(`device record for ${set.folder} names ${device.set}`);
     const screens = screensForSet(set.folder);
-    const files = attachmentFiles(directory, screens);
+    const files = new Map();
+    for (const appearance of ['dark', 'light']) {
+      const phase = screens.filter((screen) => screen.theme === appearance);
+      const other = screens.filter((screen) => screen.theme !== appearance);
+      const attachments = attachmentFiles(join(directory, appearance), phase, other);
+      phase.forEach((screen, index) => files.set(screen.name, attachments[index]));
+    }
     mkdirSync(join(output, set.folder), { recursive: true });
-    screens.forEach((screen, index) => {
-      const captured = decodeCapture(readFileSync(files[index]));
+    screens.forEach((screen) => {
+      const captured = decodeCapture(readFileSync(files.get(screen.name)));
       if (captured.width !== set.width || captured.height !== set.height) {
         fail(`${set.folder}/${screen.name} is ${captured.width} x ${captured.height}, not ${set.width} x ${set.height}`);
       }
@@ -464,12 +514,15 @@ export function finish({ input, output, source, run, xcode, sets = SETS }) {
     source, captureRun: run, xcode,
     framing: {
       footer: 'When the app footer would be visible, it is hidden with visibility hidden without changing the layout.',
-      ipad: 'The iPad set ends at Backup & settings. About is omitted because its data source credit would be in the frame.',
+      omitted: 'All sets end at Backup & settings. About is omitted because its data source credit, '
+        + 'development information and TestFlight text cannot be framed out.',
       sidebar: 'The iPad images show both the expanded sidebar and the collapsed icon rail.',
+      spotlight: 'The spotlight description is scrolled out of view; the issue list and sticky heading remain visible.',
     },
     data: {
       method: 'Fictional negative-ID issue records from the Google Play listing fixtures, covers off, no notes, no account. '
-        + 'Metadata health uses the local Play preview response; other web requests outside the app bundle were blocked.',
+        + 'A fictional synopsis is supplied in memory for the next issue. Metadata health uses the local Play preview response; '
+        + 'other web requests outside the app bundle were blocked.',
       sha256: sha256(JSON.stringify(demonstrationState())),
     },
     files: rows,
@@ -487,7 +540,7 @@ function option(args, name) {
 function main(args) {
   const [mode] = args;
   if (mode === 'fixtures') {
-    process.stdout.write(JSON.stringify(fixtures(args[1])));
+    process.stdout.write(JSON.stringify(fixtures(args[1], args[2])));
   } else if (mode === 'device') {
     process.stdout.write(JSON.stringify(chooseDevice(readFileSync(0, 'utf8'), args[1])));
   } else if (mode === 'finish') {
@@ -499,7 +552,7 @@ function main(args) {
     });
     for (const row of manifest.files) console.log(`${row.file} ${row.width} x ${row.height} ${row.bytes} bytes ${row.sha256}`);
   } else {
-    fail('usage: fixtures <set> | device <set> | finish --input <dir> --output <dir> --source <sha> --run <id> --xcode <version>');
+    fail('usage: fixtures <set> [appearance] | device <set> | finish --input <dir> --output <dir> --source <sha> --run <id> --xcode <version>');
   }
 }
 

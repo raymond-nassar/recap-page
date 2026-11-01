@@ -193,7 +193,10 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
   const capture = stepScript(source, 'Capture the screens');
   assert.match(capture, /for set in ipad-13 iphone-6\.3 iphone-6\.9; do/);
   assert.match(capture, /TEST_RUNNER_RECAP_APP_STORE_SET="\$set"/);
-  assert.match(capture, /ios-app-store-screenshots\.mjs fixtures "\$set"/);
+  assert.match(capture, /for appearance in dark light; do/);
+  assert.match(capture, /TEST_RUNNER_RECAP_APP_STORE_APPEARANCE="\$appearance"/);
+  assert.match(capture, /ios-app-store-screenshots\.mjs fixtures "\$set" "\$appearance"/);
+  assert.match(capture, /xcrun simctl ui "\$udid" appearance "\$appearance"/);
   assert.match(capture, /-only-testing:RecapPageUITests\/AppStoreScreenshotUITests/);
   assert.match(capture, /xcrun simctl status_bar "\$udid" override --time 9:41/);
   assert.match(capture, /xcrun xcresulttool export attachments/);
@@ -204,18 +207,25 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
   assert.match(test, /throw XCTSkip\(/);
   assert.match(test, /environment\["RECAP_APP_STORE_SCREENS"\]/);
   assert.match(test, /environment\["RECAP_APP_STORE_SET"\]/);
+  assert.match(test, /environment\["RECAP_APP_STORE_APPEARANCE"\]/);
   const root = await mkdtemp(join(tmpdir(), 'recap-ios-screens-'));
   try {
-    // A failed set still leaves the others captured, and the step still fails.
+    // A failed phase still leaves the other phases captured, and the step still fails.
     const result = await runScript(root, [
-      'xcrun() { if [ "$1 $2" = "simctl list" ]; then echo "{\\"devices\\":{}}"; fi; return 0; }',
+      'xcrun() { if [ "$1 $2" = "simctl list" ]; then echo "{\\"devices\\":{}}"; '
+        + 'elif [ "$1 $2" = "simctl ui" ]; then echo "$TEST_RUNNER_RECAP_APP_STORE_SET $5" >> "$RUNNER_TEMP/appearances"; fi; return 0; }',
       'node() { if [ "$2" = device ]; then echo "{\\"udid\\":\\"U-$3\\"}"; elif [ "$1" = -e ]; then echo "U"; else echo "[]"; fi; }',
-      'xcodebuild() { case "$*" in *iphone-6.3*) return 65;; esac; echo "captured"; }',
+      'xcodebuild() { if [ "$TEST_RUNNER_RECAP_APP_STORE_SET:$TEST_RUNNER_RECAP_APP_STORE_APPEARANCE" = "iphone-6.3:dark" ]; '
+        + 'then return 65; fi; echo "captured"; }',
       capture,
     ].join('\n'));
     assert.equal(result.status, 1, `${result.stdout}${result.stderr}`);
-    assert.match(result.stdout, /::error::The iphone-6\.3 capture failed/);
-    assert.equal((result.stdout.match(/captured/g) ?? []).length, 2);
+    assert.match(result.stdout, /::error::The iphone-6\.3 dark capture failed/);
+    assert.equal((result.stdout.match(/captured/g) ?? []).length, 5);
+    assert.equal(await readFile(join(root, 'appearances'), 'utf8'), [
+      'ipad-13 dark', 'ipad-13 light', 'iphone-6.3 dark', 'iphone-6.3 light',
+      'iphone-6.9 dark', 'iphone-6.9 light', '',
+    ].join('\n'));
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -244,7 +254,7 @@ node() {
   else echo "[]"; fi
 }
 tee() {
-  if [ "$CASE" = logfail ] && [ "$TEST_RUNNER_RECAP_APP_STORE_SET" = "iphone-6.3" ]; then
+  if [ "$CASE" = logfail ] && [ "$TEST_RUNNER_RECAP_APP_STORE_SET:$TEST_RUNNER_RECAP_APP_STORE_APPEARANCE" = "iphone-6.3:dark" ]; then
     cat > /dev/null
     return 1
   fi
@@ -252,29 +262,31 @@ tee() {
 }
 xcodebuild() {
   set="$TEST_RUNNER_RECAP_APP_STORE_SET"
+  appearance="$TEST_RUNNER_RECAP_APP_STORE_APPEARANCE"
   count=0
-  if [ -f "$RUNNER_TEMP/count-$set" ]; then read -r count < "$RUNNER_TEMP/count-$set"; fi
+  if [ -f "$RUNNER_TEMP/count-$set-$appearance" ]; then read -r count < "$RUNNER_TEMP/count-$set-$appearance"; fi
   count=$((count + 1))
-  printf '%s\\n' "$count" > "$RUNNER_TEMP/count-$set"
-  if [ "$set" = "iphone-6.3" ]; then
+  printf '%s\\n' "$count" > "$RUNNER_TEMP/count-$set-$appearance"
+  if [ "$set:$appearance" = "iphone-6.3:dark" ]; then
     if [ "$CASE" = twice ] || [ "$CASE" = mixed ] || { [ "$CASE" = recover ] && [ "$count" = 1 ]; }; then
       echo "/repo/AppStoreScreenshotUITests.swift:55: error: Timed out while launching application via Xcode."
       if [ "$CASE" = mixed ]; then echo "/repo/AppStoreScreenshotUITests.swift:56: error: XCTAssertEqual failed - wrong screen"; fi
       return 65
     fi
   fi
-  echo "captured $set attempt $count"
+  echo "captured $set $appearance attempt $count"
 }
 ${capture}`;
       const result = await runScript(root, harness, { CASE: scenario });
       assert.equal(result.status, exit, `${scenario}: ${result.stdout}${result.stderr}`);
-      assert.equal(Number((await readFile(join(root, 'count-iphone-6.3'), 'utf8')).trim()), expectedAttempts, scenario);
-      assert.equal(Number((await readFile(join(root, 'count-ipad-13'), 'utf8')).trim()), 1, scenario);
-      assert.equal(Number((await readFile(join(root, 'count-iphone-6.9'), 'utf8')).trim()), 1, scenario);
+      assert.equal(Number((await readFile(join(root, 'count-iphone-6.3-dark'), 'utf8')).trim()), expectedAttempts, scenario);
+      for (const phase of ['ipad-13-dark', 'ipad-13-light', 'iphone-6.3-light', 'iphone-6.9-dark', 'iphone-6.9-light']) {
+        assert.equal(Number((await readFile(join(root, `count-${phase}`), 'utf8')).trim()), 1, `${scenario}: ${phase}`);
+      }
       const exports = await readFile(join(root, 'exports'), 'utf8');
-      assert.match(exports, new RegExp(`RecapPage-screenshots-iphone-6\\.3-${expectedAttempts}\\.xcresult`), scenario);
+      assert.match(exports, new RegExp(`RecapPage-screenshots-iphone-6\\.3-dark-${expectedAttempts}\\.xcresult`), scenario);
       if (scenario === 'recover') assert.match(result.stdout, /retrying.*same Simulator/i);
-      else assert.match(result.stdout, /::error::The iphone-6\.3 capture failed/);
+      else assert.match(result.stdout, /::error::The iphone-6\.3 dark capture failed/);
       if (scenario === 'logfail') assert.match(result.stdout, /capture log could not be written/);
     } finally {
       await rm(root, { recursive: true, force: true });

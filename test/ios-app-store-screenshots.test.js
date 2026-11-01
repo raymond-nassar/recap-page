@@ -54,14 +54,20 @@ test('the capture matches the three App Store slots and their screens in order',
     [['ipad-13', 2064, 2752], ['iphone-6.3', 1206, 2622], ['iphone-6.9', 1320, 2868]]);
   assert.deepEqual(SCREENS.map(({ name, theme }) => [name, theme]), [
     ['01-home', 'dark'], ['02-modern-timeline', 'dark'], ['03-reading-list', 'dark'], ['04-storylines', 'dark'],
-    ['05-professor-x', 'light'], ['06-library', 'light'], ['07-backup-settings', 'light'], ['08-about-your-data', 'light'],
+    ['05-professor-x', 'light'], ['06-library', 'light'], ['07-backup-settings', 'light'],
   ]);
+  assert.equal(SCREENS[6].caption, 'Download a complete backup of your lists and progress.');
   for (const { folder } of SETS) {
     const screens = fixtures(folder);
-    const count = folder === 'ipad-13' ? 7 : 8;
-    assert.deepEqual(screens.map(({ name }) => name), SCREENS.slice(0, count).map(({ name }) => name), folder);
+    assert.deepEqual(screens.map(({ name }) => name), SCREENS.map(({ name }) => name), folder);
     assert.deepEqual(screens.map(({ appearance }) => appearance),
-      ['Dark', 'Dark', 'Dark', 'Dark', 'Light', 'Light', 'Light', 'Light'].slice(0, count), folder);
+      ['Dark', 'Dark', 'Dark', 'Dark', 'Light', 'Light', 'Light'], folder);
+    for (const theme of ['dark', 'light']) {
+      const phase = fixtures(folder, theme);
+      assert.deepEqual(phase.map(({ name }) => name),
+        SCREENS.filter((screen) => screen.theme === theme).map(({ name }) => name), `${folder} ${theme}`);
+      assert.ok(phase.every(({ appearance }) => appearance.toLowerCase() === theme));
+    }
     for (const screen of screens) {
       assert.match(screen.seed, /localStorage\.clear\(\);/);
       assert.match(screen.probe, /return scope \? 'ready'/);
@@ -71,6 +77,7 @@ test('the capture matches the three App Store slots and their screens in order',
     }
   }
   assert.throws(() => fixtures('unknown'), /unknown set/);
+  assert.throws(() => fixtures('ipad-13', 'automatic'), /unknown appearance/);
 });
 
 test('the seed is the fictional Play listing state with covers off and no notes', () => {
@@ -88,11 +95,16 @@ test('the seed is the fictional Play listing state with covers off and no notes'
   assert.deepEqual(home.settings, { covers: false, theme: 'dark', filter: 'all' });
   const list = evaluate(SCREENS[2]);
   assert.equal(list.settings.theme, 'dark');
+  assert.equal(list.settings.hideDescriptions, false);
   assert.equal(evaluate(SCREENS[5]).settings.theme, 'light');
   assert.ok(Object.keys(list.state.issues).length > 0);
   assert.ok(Object.keys(list.state.issues).every((id) => Number(id) < 0), 'every issue is fictional');
   assert.deepEqual(list.state.notes, {});
   assert.ok(list.state.lists['play-lantern']);
+  assert.equal(list.state.issues['-4'].description, undefined);
+  const reading = fixtures('ipad-13', 'dark').find(({ name }) => name === '03-reading-list');
+  assert.match(reading.probe, /SessionSynopsis/);
+  assert.match(reading.probe, /A lighthouse keeper follows a strange signal across the harbor\./);
 });
 
 test('the iPad capture mixes collapsed and expanded sidebars without changing phone navigation', () => {
@@ -191,24 +203,29 @@ test('finish writes each set with its own manifest rows and refuses a wrong size
       const directory = join(input, set.folder);
       await mkdir(directory, { recursive: true });
       await writeFile(join(directory, 'device.json'), JSON.stringify({ set: set.folder, name: `Device ${set.folder}`, runtime: 'iOS 26.1' }));
-      const screens = SCREENS.slice(0, set.folder === 'ipad-13' ? 7 : 8);
-      const attachments = screens.map((screen, index) => ({
-        exportedFileName: `${index}.png`, suggestedHumanReadableName: `${screen.name}_0_ABC.png`,
-      }));
-      await writeFile(join(directory, 'manifest.json'), JSON.stringify([{ testIdentifier: 'x', attachments }]));
-      for (let index = 0; index < screens.length; index++) {
-        await writeFile(join(directory, `${index}.png`), capture(set.width, set.height));
+      for (const theme of ['dark', 'light']) {
+        const phase = join(directory, theme);
+        await mkdir(phase);
+        const screens = SCREENS.filter((screen) => screen.theme === theme);
+        const attachments = screens.map((screen, index) => ({
+          exportedFileName: `${index}.png`, suggestedHumanReadableName: `${screen.name}_0_ABC.png`,
+        }));
+        await writeFile(join(phase, 'manifest.json'), JSON.stringify([{ testIdentifier: 'x', attachments }]));
+        for (let index = 0; index < screens.length; index++) {
+          await writeFile(join(phase, `${index}.png`), capture(set.width, set.height));
+        }
       }
     }
     assert.throws(() => finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6' }),
       /ipad-13\/01-home is 6 x 5, not 2064 x 2752/);
     const manifest = finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6', sets });
-    assert.equal(manifest.files.length, 23);
+    assert.equal(manifest.files.length, 21);
     assert.deepEqual([...new Set(manifest.files.map(({ set }) => set))], ['ipad-13', 'iphone-6.3', 'iphone-6.9']);
-    assert.deepEqual(SETS.map(({ folder }) => manifest.files.filter(({ set }) => set === folder).length), [7, 8, 8]);
-    assert.equal(manifest.files.some(({ file }) => file === 'ipad-13/08-about-your-data.png'), false);
+    assert.deepEqual(SETS.map(({ folder }) => manifest.files.filter(({ set }) => set === folder).length), [7, 7, 7]);
+    assert.equal(manifest.files.some(({ file }) => file.includes('08-about-your-data.png')), false);
     assert.match(manifest.framing.footer, /visibility.*hidden.*layout/i);
-    assert.match(manifest.framing.ipad, /About.*credit/i);
+    assert.match(manifest.framing.omitted, /About.*credit/i);
+    assert.match(manifest.data.method, /fictional.*synopsis/i);
     assert.deepEqual(manifest.files.filter(({ set }) => set === 'ipad-13').map(({ sidebar }) => sidebar), [
       'expanded', 'collapsed', 'collapsed', 'collapsed', 'expanded', 'expanded', 'collapsed',
     ]);
@@ -222,6 +239,24 @@ test('finish writes each set with its own manifest rows and refuses a wrong size
     assert.equal(decodeCapture(bytes).channels, 3);
     const written = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8'));
     assert.deepEqual([written.source, written.captureRun, written.xcode], ['abc', '1', 'Xcode 26.6']);
+    const darkManifest = join(input, 'ipad-13', 'dark', 'manifest.json');
+    const original = await readFile(darkManifest, 'utf8');
+    const wrongPhase = JSON.parse(original);
+    wrongPhase[0].attachments.push({ exportedFileName: 'extra.png', suggestedHumanReadableName: '05-professor-x_0_ABC.png' });
+    await writeFile(darkManifest, JSON.stringify(wrongPhase));
+    assert.throws(() => finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6', sets }),
+      /unexpected.*05-professor-x.*dark/i);
+    const missing = JSON.parse(original);
+    missing[0].attachments.shift();
+    await writeFile(darkManifest, JSON.stringify(missing));
+    assert.throws(() => finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6', sets }),
+      /expected one 01-home attachment.*found 0/i);
+    const duplicate = JSON.parse(original);
+    duplicate[0].attachments.push(duplicate[0].attachments[0]);
+    await writeFile(darkManifest, JSON.stringify(duplicate));
+    assert.throws(() => finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6', sets }),
+      /expected one 01-home attachment.*found 2/i);
+    await writeFile(darkManifest, original);
     await writeFile(join(output, 'ipad-13', '08-about-your-data.png'), capture(6, 5));
     assert.throws(() => finish({ input, output, source: 'abc', run: '1', xcode: 'Xcode 26.6', sets }),
       /unexpected image.*ipad-13.*08-about-your-data/);

@@ -24,25 +24,29 @@ final class AppStoreScreenshotUITests: XCTestCase {
             XCTFail("The screenshot set is missing")
             return
         }
-        let screens = try JSONDecoder().decode([Screen].self, from: Data(json.utf8))
-        let shared = [
-            "01-home", "02-modern-timeline", "03-reading-list", "04-storylines",
-            "05-professor-x", "06-library", "07-backup-settings",
-        ]
-        let expected: [String]
-        switch set {
-        case "ipad-13":
-            expected = shared
-        case "iphone-6.3", "iphone-6.9":
-            expected = shared + ["08-about-your-data"]
-        default:
+        guard ["ipad-13", "iphone-6.3", "iphone-6.9"].contains(set) else {
             XCTFail("Unknown screenshot set: \(set)")
             return
         }
-        XCTAssertEqual(screens.map(\.name), expected, "screens for \(set)")
+        guard let appearance = ProcessInfo.processInfo.environment["RECAP_APP_STORE_APPEARANCE"] else {
+            XCTFail("The screenshot appearance is missing")
+            return
+        }
+        let screens = try JSONDecoder().decode([Screen].self, from: Data(json.utf8))
+        let expected: [String]
+        switch appearance {
+        case "dark":
+            expected = ["01-home", "02-modern-timeline", "03-reading-list", "04-storylines"]
+        case "light":
+            expected = ["05-professor-x", "06-library", "07-backup-settings"]
+        default:
+            XCTFail("Unknown screenshot appearance: \(appearance)")
+            return
+        }
+        XCTAssertEqual(screens.map(\.name), expected, "screens for \(set) in \(appearance)")
+        XCTAssertEqual(screens.map(\.appearance), Array(repeating: appearance.capitalized, count: expected.count))
         XCUIDevice.shared.orientation = .portrait
         for screen in screens {
-            XCTAssertTrue(["Dark", "Light"].contains(screen.appearance), screen.name)
             let app = XCUIApplication()
             app.launchArguments = [
                 "-UIPreferredContentSizeCategoryName", UIContentSizeCategory.large.rawValue,
