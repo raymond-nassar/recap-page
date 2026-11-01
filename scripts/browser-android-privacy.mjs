@@ -15,7 +15,7 @@ const edge = process.env.MRT_EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\
 const puppeteer = (await import(pathToFileURL(driver).href)).default;
 const scratch = await mkdtemp(join(tmpdir(), 'recap-android-privacy-browser-'));
 const root = join(scratch, 'assets');
-const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
+const policyUrl = 'https://raymond-nassar.github.io/recap-page/privacy.html';
 const feedbackUrl = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const errors = [];

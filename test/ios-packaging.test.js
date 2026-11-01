@@ -30,7 +30,7 @@ const presentationTests = read('packaging/ios/RecapPageUITests/PresentationUITes
 const launchTests = read('packaging/ios/RecapPageUITests/LaunchUITests.swift');
 const debugSupport = read('packaging/ios/RecapPage/DebugSupport.swift');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
-const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
+const policyUrl = 'https://raymond-nassar.github.io/recap-page/privacy.html';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
 
 const initialIosLedger = () => ({ schemaVersion: 1, retiredThrough: 1, reservations: [] });
@@ -467,8 +467,14 @@ test('iOS About states private app storage, device backups and what the requests
   assert.ok(text.includes("An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files."));
   assert.ok(text.includes('If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.'));
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
+  const sharedLinks = [...yourData(desktop).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+  assert.equal(sharedLinks.length, 1, 'the shared web app has one explicit policy destination');
+  assert.equal(sharedLinks[0][1], policyUrl);
+  assert.match(sharedLinks[0][0], /target="_blank"/);
+  assert.match(sharedLinks[0][0], /rel="noopener noreferrer"/);
+  assert.match(sharedLinks[0][0], /referrerpolicy="no-referrer"/);
   const links = [...yourData(page).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
-  assert.equal(links.length, 1, 'the added disclosure has one explicit policy destination');
+  assert.equal(links.length, 1, 'iOS has one explicit policy destination');
   assert.equal(links[0][1], policyUrl);
   assert.match(links[0][0], /target="_blank"/);
   assert.match(links[0][0], /rel="noopener noreferrer"/);
