@@ -98,7 +98,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   const state = { read: { 900002: false }, listOrder: ['fixture'] };
   const before = JSON.stringify(state);
   const context = {
-    $: dom.$, el: dom.el, document: dom.document,
+    $: dom.$, el: dom.el, document: dom.document, iosApp: false,
     store: { state }, temporaryReaderLinks: { resolve: () => outcome },
     openIssueTab: () => { events.push('open'); return opened; },
     announce: (message) => events.push(message),
@@ -171,6 +171,13 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
     context.open(issue, click(dom.controls.hero), 'saved');
     measure(`${target} announcement unchanged`, ['open', said], events.splice(0));
   }
+  context.iosApp = true;
+  opened = { ok: true, target: 'reader', window: null };
+  context.open(issue, click(dom.controls.hero), 'saved');
+  measure('iOS reader sheet help avoids browser popup wording', [1,
+    'If the issue does not open, choose Read again. Opening a comic does not mark it read.'], shown());
+  measure('iOS reader announcement avoids browser tab wording',
+    ['open', `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`], events.splice(0));
   measure('saved bytes unchanged', before, JSON.stringify(state));
   assert.ok(rows.every(Boolean), 'Every conditional/refusal branch must visibly retain its exact outcome');
 });

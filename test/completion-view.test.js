@@ -40,7 +40,7 @@ function node(props = {}, children = []) {
 
 const element = (_tag, props, children) => node(props, children);
 
-function fixture() {
+function fixture({ isIos = false } = {}) {
   let state = createList(createEmptyState(), { id: 'a', name: 'Private list name', catalogId: 'source' });
   state = addIssuesToList(state, 'a', [{ issueId: 1, title: 'One' }, { issueId: 2, title: 'Two' }, { issueId: 3, title: 'Three' }]).state;
   state = markRead(state, 1, true, 1000);
@@ -112,12 +112,20 @@ function fixture() {
     announce: (message) => calls.announce.push(message),
     focusCurrentView: () => { calls.focus += 1; },
     createIcon: (name) => node({ icon: name }),
+    isIos,
   });
   h.view = view;
   h.flush = async () => { await new Promise((resolve) => setImmediate(resolve)); await view.render(); };
   view.wire();
   return h;
 }
+
+test('iOS completion history describes app-local history', async () => {
+  const h = fixture({ isIos: true });
+  await h.view.render();
+  assert.match(h.nodes.historyStatus.textContent, /This history is private to this app\./);
+  assert.doesNotMatch(h.nodes.historyStatus.textContent, /browser/i);
+});
 
 function useLegacyReader(h, schemaVersion, replaceAfterSave = false) {
   const initial = schemaVersion === 1 ? {

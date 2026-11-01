@@ -258,6 +258,19 @@ test('wire refreshes and reports a salvage action whose target is no longer pres
 
 // -- failure behavior --
 
+test('iOS recovery inventory describes app-local storage', () => {
+  const nodes = recoveryNodes();
+  const view = makeView({
+    isIos: true,
+    elements: () => nodes,
+    salvageCopies: () => null,
+  });
+  view.renderSalvage();
+  const text = nodes.salvageList.children[0].props.text;
+  assert.match(text, /This app cannot list its other saved copies/);
+  assert.doesNotMatch(text, /browser/i);
+});
+
 test('wire start-fresh reports success only when the injected recovery succeeds', async () => {
   const notifications = [];
   const nodes = recoveryNodes();

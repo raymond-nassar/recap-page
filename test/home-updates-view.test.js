@@ -2,13 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHomeUpdatesView } from '../src/js/views/home-updates.js';
 import { createHomeUpdatesSeen, HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
+import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 
 const settle = async () => { await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); };
 const catalog = { lists: ['a', 'b', 'c', 'd'].map((id) => ({ id, name: `Guide ${id}`, file: `actual_${id}.json` })) };
 const batch = { id: 50, features: ['Literal <b>benefit</b>', 'Two', 'Three', 'Four'], listIds: ['a', 'b', 'c', 'd'] };
 const walk = (root) => [root, ...root.children.flatMap(walk)];
 
-function harness({ content = { version: '1.0.0', batch }, locks = { request: async (_key, fn) => fn() } } = {}) {
+function harness({
+  content = { version: '1.0.0', batch }, locks = { request: async (_key, fn) => fn() }, isIos = false,
+} = {}) {
   const listeners = () => ({
     listeners: {},
     addEventListener(name, fn) { (this.listeners[name] ??= []).push(fn); },
@@ -53,6 +56,7 @@ function harness({ content = { version: '1.0.0', batch }, locks = { request: asy
     isCovered: () => calls.covered,
     loadCatalog: () => setup.loader(),
     onPreview: (entry) => calls.previews.push({ entry, opener: doc.activeElement }),
+    isIos,
   });
   return {
     view, nodes, doc, host, calls, storage, map, setup, seen,
@@ -60,6 +64,17 @@ function harness({ content = { version: '1.0.0', batch }, locks = { request: asy
     button: (id) => walk(nodes.content).find((item) => item.dataset.homeUpdatesList === id),
   };
 }
+
+test('iOS projects platform-specific highlights without changing the generated source copy', () => {
+  const sourceFeatures = homeUpdatesContent.batch.features.slice();
+  const h = harness({ content: homeUpdatesContent, isIos: true });
+  h.view.wire();
+  const text = walk(h.nodes.content).map((item) => item.textContent).join(' ');
+  assert.match(text, /Move your reading data with one complete backup file/);
+  assert.match(text, /Use clearer phone layouts and screen reader labels/);
+  assert.doesNotMatch(text, /Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft/i);
+  assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
+});
 
 test('construction is lazy and one-time wiring stays closed without acknowledging', () => {
   const h = harness();
@@ -86,6 +101,10 @@ test('explicit opening clears New, reports local faults and never acknowledges a
   assert.equal(failed.nodes.marker.hidden, true);
   assert.match(failed.nodes.status.textContent, /could not be remembered.*may return/);
   assert.equal(failed.map.has(HOME_UPDATES_SEEN_KEY), false);
+  const failedIos = harness({ locks: null, isIos: true });
+  failedIos.view.wire();
+  await failedIos.open();
+  assert.match(failedIos.nodes.status.textContent, /app storage locking is unavailable/);
   const empty = harness({ content: { version: '1.0.0', batch: null } });
   empty.view.wire();
   await empty.open();

@@ -84,8 +84,10 @@ import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.j
 import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
 import { cloudTransport } from './lib/cloudTransports.js';
 import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
+import { isIosApp } from './lib/platform.js';
 
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
+const iosApp = isIosApp();
 // Made before any owner of saved data, so the first write any of them attempts already passes its
 // guard. Static, so the offline copy of the app always holds the recovery path a crash may need.
 const completeRestore = new CompleteRestore();
@@ -341,9 +343,9 @@ function announceIfSaved(msg) {
   if (store.lastUpdateOk) announce(msg);
 }
 
-const SAVE_EDUCATION_ANNOUNCEMENT =
-  'Your lists and progress save automatically in this browser; '
-  + 'use Backup & settings for a copy you can restore elsewhere.';
+const SAVE_EDUCATION_ANNOUNCEMENT = iosApp
+  ? 'Your lists and progress save automatically in this app; use Backup & settings for a copy you can restore on another device.'
+  : 'Your lists and progress save automatically in this browser; use Backup & settings for a copy you can restore elsewhere.';
 
 export function withSaveEducation(message, transition) {
   if (transition?.previous !== SAVE_EDUCATION_STATE.UNSEEN || !transition.changed) return message;
@@ -383,8 +385,10 @@ function recordDirectProgressSave({ wasRead, state, issueId }) {
 // a later success clear it wherever it was placed.
 const CATALOG_LOAD = 'catalog-load';
 const LOCAL_CONNECTION_NOTICE = 'local-app-connection';
-const LOCAL_CONNECTION_STEPS = 'Your lists and reading progress are safe. Leave this window open, '
-  + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
+const LOCAL_CONNECTION_STEPS = iosApp
+  ? 'Your lists and reading progress are safe. Restart the app, then check again.'
+  : 'Your lists and reading progress are safe. Leave this window open, '
+    + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
   ...HOME_CATEGORIES.filter((category) => !category.shelf),
@@ -468,7 +472,9 @@ export async function writeCachePurgeMark(
   locks = globalThis.navigator?.locks,
 ) {
   if (!locks?.request) {
-    throw new Error('Browser storage locking is unavailable, so cache cleanup cannot be recorded safely.');
+    throw new Error(isIosApp()
+      ? 'App storage locking is unavailable, so cache cleanup cannot be recorded safely.'
+      : 'Browser storage locking is unavailable, so cache cleanup cannot be recorded safely.');
   }
   return locks.request(CACHE_PURGE_KEY, () => {
     const marks = cachePurgeMarks(storage);
@@ -576,10 +582,12 @@ export function cacheCleanupFailureMessage(result) {
   const failures = [];
   if (!result.activeCleared) failures.push('Cached metadata used by this version could not be cleared.');
   if (result.savedStateCleared === false) {
-    failures.push('Saved issue summaries written by an older tab could not be removed.');
+    failures.push(iosApp
+      ? 'Saved issue summaries written by an older app version could not be removed.'
+      : 'Saved issue summaries written by an older tab could not be removed.');
   }
   if (result.legacy.status === 'unavailable' && !result.storageUnavailable) {
-    failures.push('Older cached metadata could not be checked because browser storage is unavailable.');
+    failures.push(`Older cached metadata could not be checked because ${iosApp ? 'app' : 'browser'} storage is unavailable.`);
   } else if (result.legacy.status === 'failed' && !result.storageUnavailable) {
     failures.push(`Older cached metadata could not be removed (${result.legacy.error?.message ?? 'unknown error'}).`);
   }
@@ -661,7 +669,9 @@ export function sanitizeStoredIssueDescriptions(
   try {
     sanitizer.state = migrate(JSON.parse(currentRaw));
   } catch (err) {
-    onFailure(`Saved issue summaries written by an older tab could not be read safely (${err.message}).`);
+    onFailure(iosApp
+      ? `Saved issue summaries written by an older app version could not be read safely (${err.message}).`
+      : `Saved issue summaries written by an older tab could not be read safely (${err.message}).`);
     return { needed: true, cleared: false };
   }
   const cleared = sanitizer.persist(sanitizer.state, currentRaw);
@@ -704,8 +714,12 @@ function reportBlockedLegacyCleanup({ activeCleared }) {
   notify(
     '#cache-report',
     activeCleared
-      ? 'Cached metadata used by this version is clear. Close other tabs running an older version to finish removing their separate cached metadata.'
-      : 'Cached metadata used by this version could not be cleared, and an older tab is also delaying removal of its separate cached metadata.',
+      ? iosApp
+        ? 'Cached metadata used by this version is clear. Close other copies running an older version to finish removing their separate cached metadata.'
+        : 'Cached metadata used by this version is clear. Close other tabs running an older version to finish removing their separate cached metadata.'
+      : iosApp
+        ? 'Cached metadata used by this version could not be cleared, and an older copy of the app is also delaying removal of its separate cached metadata.'
+        : 'Cached metadata used by this version could not be cleared, and an older tab is also delaying removal of its separate cached metadata.',
     'warn',
   );
 }
@@ -741,7 +755,9 @@ async function runCachePurge() {
   }
   await writeCachePurgeMark(localStorage, Math.max(marker, CACHE_PURGE_VERSION));
   if (result.legacy.blocked) {
-    notify('#cache-report', 'Older cached metadata was removed after the other tab closed.', 'ok');
+    notify('#cache-report', iosApp
+      ? 'Older cached metadata was removed after the other app copy closed.'
+      : 'Older cached metadata was removed after the other tab closed.', 'ok');
   }
   refreshCacheUsage();
 }
@@ -905,7 +921,9 @@ function setDescriptionHiding(on) {
   }
   const status = `Description hiding ${next ? 'on' : 'off'}.`;
   if (!saved) {
-    notify('#description-hiding-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
+    notify('#description-hiding-report', `${status} ${iosApp
+      ? 'This applies to this app, but could not be saved. It may change after you close and reopen the app.'
+      : 'This applies to this tab, but could not be saved. It may change after reload.'}`, 'error');
     return;
   }
   $('#description-hiding-report').replaceChildren();
@@ -935,7 +953,9 @@ function setReadingShortcut(on) {
   applyReadingShortcutSetting();
   const status = `D reading shortcut ${settings.readingShortcut ? 'on' : 'off'}.`;
   if (!saved) {
-    notify('#reading-shortcut-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
+    notify('#reading-shortcut-report', `${status} ${iosApp
+      ? 'This applies to this app, but could not be saved. It may change after you close and reopen the app.'
+      : 'This applies to this tab, but could not be saved. It may change after reload.'}`, 'error');
     return;
   }
   $('#reading-shortcut-report').replaceChildren();
@@ -1832,22 +1852,30 @@ function openInReader(issue, event, source, control = event?.currentTarget) {
   }
   announce(res.target === 'comics'
     ? `Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`
-    : res.target === 'reader'
-      ? `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`
-      : res.target === 'page'
-        ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
-        : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
-  showHelp("If no new tab appears, check your browser's popup controls for this site, "
-    + 'then choose Read again. Opening a comic does not mark it read.');
+    : iosApp
+      ? res.target === 'reader'
+        ? `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`
+        : res.target === 'page'
+          ? `Opening the Marvel issue page for ${issue.title}.`
+          : `Opening ${issue.title} and looking up its Unlimited link.`
+      : res.target === 'reader'
+        ? `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`
+        : res.target === 'page'
+          ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
+          : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+  showHelp(iosApp
+    ? 'If the issue does not open, choose Read again. Opening a comic does not mark it read.'
+    : "If no new tab appears, check your browser's popup controls for this site, "
+      + 'then choose Read again. Opening a comic does not mark it read.');
 }
 
 // ------------------------------------------------------------------ synopsis fetching
 
-export function synopsisDisclaimer({ reveal = false } = {}) {
+export function synopsisDisclaimer({ reveal = false, isIos = iosApp } = {}) {
   return {
     title: reveal ? 'Load this story summary?' : 'Fetch synopses from the community metadata service?',
     body: "Marvel's synopses come from an unaffiliated community service, "
-      + 'and stay in this tab until reload. '
+      + `and stay in ${isIos ? 'this app until you close it' : 'this tab until reload'}. `
       + (reveal
         ? 'This story summary may contain spoilers and loading it uses your request allowance.'
         : 'Fetching a whole Reading List takes a few minutes and uses your request allowance.'),
@@ -1855,7 +1883,7 @@ export function synopsisDisclaimer({ reveal = false } = {}) {
   };
 }
 
-export function synopsisAnnouncement(status) {
+export function synopsisAnnouncement(status, isIos = iosApp) {
   const phase = !status || status.phase === 'idle' ? 'idle' : status.phase;
   if (phase === 'idle') return { state: 'idle', msg: null };
   if (phase === 'running') {
@@ -1865,19 +1893,19 @@ export function synopsisAnnouncement(status) {
   if (phase === 'cancelled') {
     const failed = Number(status.failed ?? 0);
     const unreached = failed ? ` ${failed} issue${failed === 1 ? '' : 's'} could not be reached.` : '';
-    return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is held for this tab only.` };
+    return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is held for ${isIos ? 'this app' : 'this tab'} only.` };
   }
   if (phase === 'partial') {
     const failed = Number(status.failed ?? 0);
     return {
       state: 'partial',
-      msg: `Synopsis fetching finished. ${failed} issue${failed === 1 ? '' : 's'} could not be reached. What arrived is held for this tab only.`,
+      msg: `Synopsis fetching finished. ${failed} issue${failed === 1 ? '' : 's'} could not be reached. What arrived is held for ${isIos ? 'this app' : 'this tab'} only.`,
     };
   }
-  return { state: 'complete', msg: 'All synopses fetched. They are held for this tab only.' };
+  return { state: 'complete', msg: `All synopses fetched. They are held for ${isIos ? 'this app' : 'this tab'} only.` };
 }
 
-export function synopsisStatusLine(status) {
+export function synopsisStatusLine(status, isIos = iosApp) {
   const phase = status?.phase;
   if (!status || phase === 'idle') return '';
   if (phase === 'running') {
@@ -1891,9 +1919,9 @@ export function synopsisStatusLine(status) {
     return `Stopped after ${status.done - failed} of ${status.total}. ${failed} could not be reached.`;
   }
   if (phase === 'partial') {
-    return `Fetched ${status.total - status.failed} of ${status.total}, for this tab only. ${status.failed} could not be reached.`;
+    return `Fetched ${status.total - status.failed} of ${status.total}, for ${isIos ? 'this app' : 'this tab'} only. ${status.failed} could not be reached.`;
   }
-  return 'All synopses fetched, for this tab only.';
+  return `All synopses fetched, for ${isIos ? 'this app' : 'this tab'} only.`;
 }
 
 function onSynopsisStatus(status) {
@@ -3484,6 +3512,7 @@ const homeView = createHomeView({
 
 const homeUpdatesView = createHomeUpdatesView({
   content: homeUpdatesContent,
+  isIos: iosApp,
   seen: homeUpdatesSeen,
   el,
   elements: () => ({
@@ -3734,6 +3763,7 @@ const previewView = createPreviewView({
 const recommendationResolver = createListRecommendationResolver({ loadBundledOrder });
 const completionView = createCompletionView({
   el,
+  isIos: iosApp,
   elements: () => ({
     readBody: $('#reading-body'),
     listActions: $('#list-actions .list-actions-body'),

@@ -120,11 +120,72 @@ function once(text, marker, message) {
   if (text.split(marker).length !== 2) throw new Error(message);
 }
 
+function replaceIosCopy(html, source, replacement) {
+  once(html, source, `iOS static copy changed: ${source}`);
+  return html.replace(source, replacement);
+}
+
+function replaceIosPattern(html, pattern, replacement, message) {
+  if ([...html.matchAll(pattern)].length !== 1) throw new Error(message);
+  return html.replace(pattern, replacement);
+}
+
+function removeDivById(html, id, message) {
+  const marker = `id="${id}"`;
+  once(html, marker, message);
+  const start = html.lastIndexOf('<div', html.indexOf(marker));
+  if (start < 0) throw new Error(message);
+  const tags = /<\/?div\b[^>]*>/gi;
+  tags.lastIndex = start;
+  let depth = 0;
+  let match;
+  while ((match = tags.exec(html))) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) return html.slice(0, start) + html.slice(tags.lastIndex);
+  }
+  throw new Error(message);
+}
+
+function iosStaticCopy(html) {
+  let index = removeDivById(html, 'cloud-backup', 'iOS cloud backup card changed');
+  const cloudCopy = /<span data-cloud-copy="on"\s+hidden>[\s\S]*?<\/span>/g;
+  const cloudCopies = [...index.matchAll(cloudCopy)].length;
+  if (cloudCopies !== 4) throw new Error(`iOS cloud copy changed: expected 4 spans, found ${cloudCopies}`);
+  index = index.replace(cloudCopy, '');
+
+  const copy = [
+    ['in this browser, verify the downloaded file', 'in this app, verify the downloaded file'],
+    ['Your lists and progress save automatically in this browser.', 'Your lists and progress save automatically in this app.'],
+    ['This is browser storage', 'This is app storage'],
+    ['browser profile or computer.', 'device.'],
+    ['Your reading progress lives in this browser, at this exact address, and is never sent anywhere.', 'Your reading progress is saved privately in this app.'],
+    ['The choice is stored in this browser', 'The choice is stored in this app'],
+    ['Open Recap Page in its own window, using this browser\'s saved progress.', 'Open Recap Page in its own window, using this app\'s saved progress.'],
+    ['Close other Recap Page tabs before restoring.', 'Close other copies of Recap Page before restoring.'],
+    ['Undo is offered once, until you reload; after that, download the saved copy instead.',
+      'Undo is offered once, until you close and reopen the app; after that, download the saved copy instead.'],
+    ['What leaves this machine, request by request', 'What leaves this device, request by request'],
+    ['What does leave this machine is the ordinary business', 'What leaves this device is the ordinary business'],
+    ['Otherwise the launch tab asks', 'Otherwise Recap Page asks'],
+    ['opens the web reader if found', 'opens Marvel\'s reader if found'],
+  ];
+  for (const [source, replacement] of copy) index = replaceIosCopy(index, source, replacement);
+  index = replaceIosPattern(index, /Android uses your installed browser, not the Marvel Unlimited app, on both sides\s+of that date\./g,
+    '', 'iOS static copy changed');
+  index = replaceIosPattern(index, /<p id="local-connection-help" class="rail-hint">[\s\S]*?<\/p>/g,
+    '<p id="local-connection-help" class="rail-hint">Your saved data is safe. Restart the app and check again.</p>',
+    'iOS local connection help changed');
+  return index;
+}
+
 // The shared page with the iOS entry, phone layer, overlay, viewport and privacy introduction. Each
 // marker must appear exactly once, so a change to the shared entry stops preparation for review
 // rather than producing a page that silently lost one of them.
 export function iosIndex(html, build) {
   let index = stampAbout(html, build);
+  const documentTag = '<html lang="en">';
+  once(index, documentTag, 'Shared document entry changed; iOS projection needs review');
+  index = index.replace(documentTag, '<html lang="en" data-platform="ios">');
   const stylesheet = '<link rel="stylesheet" href="./styles.css" />';
   const entry = '<script type="module" src="./js/app.js"></script>';
   for (const marker of [VIEWPORT, stylesheet, entry]) {
@@ -139,9 +200,9 @@ export function iosIndex(html, build) {
   if (index.split(privacyHeading).length !== 2 || [...index.matchAll(privacyIntro)].length !== 1) {
     throw new Error('Shared privacy introduction changed; iOS disclosure needs review');
   }
-  return index.replace(privacyIntro, `${privacyHeading}
+  index = index.replace(privacyIntro, `${privacyHeading}
               <p class="rail-hint">
-                Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.
+                Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari on your iPhone or iPad.
                 There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
                 Backups of this device to iCloud or to a computer include this app's saved data.
                 Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.
@@ -151,8 +212,9 @@ export function iosIndex(html, build) {
                 If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.
               </p>
               <p class="rail-hint">
-                <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
+                <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy</a>
               </p>`);
+  return iosStaticCopy(index);
 }
 
 // The launcher keeps shared open.js; its iOS-only target overlay sits after open.css.
