@@ -146,7 +146,7 @@ export async function buildPages({
   const sourceRoot = resolve(root);
   const output = resolve(destination);
   const outputParent = dirname(output);
-  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'data-sources.md', 'index.html', 'site.css']);
+  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'being-built.md', 'data-sources.md', 'index.html', 'site.css']);
   await requireExactEntries(
     join(sourceRoot, 'pages', 'assets'),
     PAGE_SOURCES
