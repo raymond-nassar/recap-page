@@ -9,7 +9,7 @@ import { crc32 } from '../scripts/build-icons.mjs';
 import { FIXTURE_API, previewResponse } from '../scripts/play-assets.mjs';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
-  SETS, SCREENS, fixtures, seedScript, chooseDevice, decodeCapture, flatten, inspectOutput, finish,
+  SETS, SCREENS, fixtures, screensForSet, seedScript, chooseDevice, decodeCapture, flatten, inspectOutput, finish,
 } from '../scripts/ios-app-store-screenshots.mjs';
 
 function chunk(type, value) {
@@ -93,6 +93,27 @@ test('the seed is the fictional Play listing state with covers off and no notes'
   assert.ok(Object.keys(list.state.issues).every((id) => Number(id) < 0), 'every issue is fictional');
   assert.deepEqual(list.state.notes, {});
   assert.ok(list.state.lists['play-lantern']);
+});
+
+test('the iPad capture mixes collapsed and expanded sidebars without changing phone navigation', () => {
+  const sidebarFor = (screen) => {
+    const store = new Map();
+    const localStorage = { clear: () => store.clear(), setItem: (key, value) => store.set(key, value) };
+    runInNewContext(seedScript(screen), { localStorage, fetch: () => {}, Response });
+    return store.get('sidebar.collapsed');
+  };
+  const ipad = screensForSet('ipad-13');
+  assert.deepEqual(ipad.map(({ sidebar }) => sidebar), [
+    'expanded', 'collapsed', 'collapsed', 'collapsed', 'expanded', 'expanded', 'collapsed',
+  ]);
+  assert.deepEqual(ipad.map(sidebarFor), ['false', 'true', 'true', 'true', 'false', 'false', 'true']);
+  const probes = fixtures('ipad-13').map(({ probe }) => probe);
+  assert.ok(probes.every((probe) => probe.includes('the requested iPad sidebar')));
+  for (const folder of ['iphone-6.3', 'iphone-6.9']) {
+    assert.ok(screensForSet(folder).every((screen) => sidebarFor(screen) === undefined));
+    assert.ok(fixtures(folder).every(({ probe }) => !probe.includes('"sidebar":"collapsed"')
+      && !probe.includes('"sidebar":"expanded"')));
+  }
 });
 
 test('the seed answers metadata health with the Play fixture and forwards every other request', async () => {
@@ -188,6 +209,10 @@ test('finish writes each set with its own manifest rows and refuses a wrong size
     assert.equal(manifest.files.some(({ file }) => file === 'ipad-13/08-about-your-data.png'), false);
     assert.match(manifest.framing.footer, /visibility.*hidden.*layout/i);
     assert.match(manifest.framing.ipad, /About.*credit/i);
+    assert.deepEqual(manifest.files.filter(({ set }) => set === 'ipad-13').map(({ sidebar }) => sidebar), [
+      'expanded', 'collapsed', 'collapsed', 'collapsed', 'expanded', 'expanded', 'collapsed',
+    ]);
+    assert.ok(manifest.files.filter(({ set }) => set.startsWith('iphone-')).every(({ sidebar }) => sidebar === undefined));
     const row = manifest.files[8];
     assert.equal(row.file, 'iphone-6.3/02-modern-timeline.png');
     assert.deepEqual([row.width, row.height, row.device, row.runtime, row.appearance], [7, 5, 'Device iphone-6.3', 'iOS 26.1', 'dark']);

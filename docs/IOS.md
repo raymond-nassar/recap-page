@@ -493,13 +493,13 @@ response; other requests outside the app bundle are blocked.
 
 | Order | Caption | iPad | iPhone |
 |---|---|---|---|
-| 1 | Start from Home: guided reading paths, storylines and character spotlights. | Yes | Yes |
-| 2 | Follow the Modern Timeline one reading path at a time, starting with The Modern Avengers. | Yes | Yes |
-| 3 | See where you are in a reading list and what to read next. | Yes | Yes |
-| 4 | Browse storylines by era, with beginner-friendly picks marked. | Yes | Yes |
-| 5 | Preview a character spotlight, such as Professor X, before adding it. | Yes | Yes |
-| 6 | Keep every reading list in your library, with progress saved on your device. | Yes | Yes |
-| 7 | Save a complete backup of your lists and progress to Files. | Yes | Yes |
+| 1 | Start from Home: guided reading paths, storylines and character spotlights. | Expanded sidebar | Yes |
+| 2 | Follow the Modern Timeline one reading path at a time, starting with The Modern Avengers. | Collapsed sidebar | Yes |
+| 3 | See where you are in a reading list and what to read next. | Collapsed sidebar | Yes |
+| 4 | Browse storylines by era, with beginner-friendly picks marked. | Collapsed sidebar | Yes |
+| 5 | Preview a character spotlight, such as Professor X, before adding it. | Expanded sidebar | Yes |
+| 6 | Keep every reading list in your library, with progress saved on your device. | Expanded sidebar | Yes |
+| 7 | Save a complete backup of your lists and progress to Files. | Collapsed sidebar | Yes |
 | 8 | Your data stays on your device. No account, no tracking. | No | Yes |
 
 The 13-inch iPad set ends at Backup & settings, for seven images. Its About page is short enough
@@ -507,15 +507,19 @@ that the data source address would also appear in the frame. Rather than hide th
 space that the app does not show, About is omitted from that set. Both iPhone sets retain all
 eight images.
 
+The iPad set mixes the app's expanded sidebar and its collapsed icon rail. The capture seeds the
+sidebar preference before the page loads and verifies the requested state before each image.
+
 When the app footer would be visible, the capture hides only that footer with `visibility: hidden`;
 it keeps its place in the layout. Apart from dismissing the Home notice, no other page content is
 hidden for framing. The capture checks for visible copyright notices, web addresses and other
 platform or store names before taking each image.
 
 The [manifest](ios-app-store-assets/manifest.json) records each image's caption, dimensions, byte
-count, SHA-256, source revision, Simulator device, runtime and capture run. The iPad Pro 13-inch
-images are 2064 x 2752 pixels; iPhone 17 Pro images are 1206 x 2622; iPhone 17 Pro Max images are
-1320 x 2868. They are portrait PNG files without an alpha channel, matching
+count, SHA-256, source revision, Simulator device, runtime and capture run, plus the sidebar state
+for each iPad image. The iPad Pro 13-inch images are 2064 x 2752 pixels; iPhone 17 Pro images are
+1206 x 2622; iPhone 17 Pro Max images are 1320 x 2868. They are portrait PNG files without an
+alpha channel, matching
 [Apple's screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/),
 retrieved October 31, 2026.
 

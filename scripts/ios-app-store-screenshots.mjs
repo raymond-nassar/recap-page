@@ -18,7 +18,7 @@ import { crc32 } from './build-icons.mjs';
 import { demonstrationState, FIXTURE_API, previewResponse, sha256 } from './play-assets.mjs';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import { createEmptyState } from '../src/js/lib/model.js';
-import { KEY, SETTINGS_KEY } from '../src/js/storage.js';
+import { KEY, SETTINGS_KEY, SIDEBAR_KEY } from '../src/js/storage.js';
 
 // Apple's screenshot specification, retrieved 2026-10-31:
 // https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/
@@ -80,6 +80,10 @@ export const SCREENS = Object.freeze([
   },
 ]);
 
+const COLLAPSED_IPAD_SCREENS = new Set([
+  '02-modern-timeline', '03-reading-list', '04-storylines', '07-backup-settings',
+]);
+
 export function pageState(screen) {
   return screen.state === 'empty' ? createEmptyState() : demonstrationState();
 }
@@ -91,11 +95,14 @@ export function seedScript(screen) {
   const healthUrl = JSON.stringify(`${DEFAULT_BASE}/health`);
   const healthBody = JSON.stringify(health.body);
   const healthType = JSON.stringify(health.contentType);
+  const sidebar = screen.sidebar
+    ? `  localStorage.setItem(${JSON.stringify(SIDEBAR_KEY)}, ${JSON.stringify(String(screen.sidebar === 'collapsed'))});\n`
+    : '';
   return `(() => {
   localStorage.clear();
   localStorage.setItem(${JSON.stringify(KEY)}, ${JSON.stringify(state)});
   localStorage.setItem(${JSON.stringify(SETTINGS_KEY)}, ${JSON.stringify(settings)});
-  const originalFetch = globalThis.fetch.bind(globalThis);
+${sidebar}  const originalFetch = globalThis.fetch.bind(globalThis);
   globalThis.fetch = (input, options) => {
     if (typeof input === 'string' && input === ${healthUrl} && String(options?.method ?? 'GET').toUpperCase() === 'GET') {
       return Promise.resolve(new Response(${healthBody}, {
@@ -118,6 +125,7 @@ export function probeScript(screen) {
   const options = JSON.stringify({
     route: screen.route, view: screen.view, text: screen.text, scroll: screen.scroll ?? null,
     heading: screen.heading ?? null, preview: screen.preview ?? null, dismissNotice: !!screen.dismissNotice,
+    sidebar: screen.sidebar ?? null,
   });
   return `
 const BANNED = ${BANNED.toString()};
@@ -139,6 +147,15 @@ const view = await waitFor(() => {
   const element = document.getElementById(screen.view);
   return element && !element.hidden ? element : null;
 }, screen.view);
+if (screen.sidebar) {
+  const collapsed = screen.sidebar === 'collapsed';
+  await waitFor(() => {
+    const shell = document.getElementById('shell');
+    const toggle = document.getElementById('btn-rail-toggle');
+    return shell?.classList.contains('railed') === collapsed
+      && toggle?.getAttribute('aria-label') === (collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+  }, 'the requested iPad sidebar');
+}
 if (screen.dismissNotice) {
   const dismiss = document.getElementById('reader-closure-dismiss');
   if (shown(dismiss)) dismiss.click();
@@ -216,7 +233,10 @@ function visibleText() {
 export function screensForSet(folder) {
   const set = SETS.find((entry) => entry.folder === folder);
   if (!set) fail(`unknown set ${folder}`);
-  return SCREENS.slice(0, set.screenCount);
+  const screens = SCREENS.slice(0, set.screenCount);
+  return folder === 'ipad-13' ? screens.map((screen) => ({
+    ...screen, sidebar: COLLAPSED_IPAD_SCREENS.has(screen.name) ? 'collapsed' : 'expanded',
+  })) : screens;
 }
 
 export function fixtures(folder) {
@@ -432,6 +452,7 @@ export function finish({ input, output, source, run, xcode, sets = SETS }) {
       rows.push({
         file, set: set.folder, slot: set.slot, width: set.width, height: set.height, bytes: bytes.length,
         sha256: sha256(bytes), appearance: screen.theme, route: screen.route, caption: screen.caption,
+        ...(screen.sidebar ? { sidebar: screen.sidebar } : {}),
         device: device.name, runtime: device.runtime,
       });
     });
@@ -444,6 +465,7 @@ export function finish({ input, output, source, run, xcode, sets = SETS }) {
     framing: {
       footer: 'When the app footer would be visible, it is hidden with visibility hidden without changing the layout.',
       ipad: 'The iPad set ends at Backup & settings. About is omitted because its data source credit would be in the frame.',
+      sidebar: 'The iPad images show both the expanded sidebar and the collapsed icon rail.',
     },
     data: {
       method: 'Fictional negative-ID issue records from the Google Play listing fixtures, covers off, no notes, no account. '
