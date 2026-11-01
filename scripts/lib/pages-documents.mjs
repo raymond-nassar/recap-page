@@ -34,6 +34,26 @@ export const PAGE_DOCUMENTS = Object.freeze([
   }),
 ]);
 
+// Generated from the changelog's reader summaries rather than rendered from a whole file, so it is
+// kept out of PAGE_DOCUMENTS: links to the changelog elsewhere must still reach the full file.
+export const RELEASE_PAGE = Object.freeze({
+  source: 'CHANGELOG.md',
+  destination: 'whats-new.html',
+  label: "What's new",
+  description: 'What changed in the latest releases of Recap Page, and on which platforms.',
+});
+
+const SITE_NAVIGATION = Object.freeze([
+  ['./index.html', 'Home'],
+  ...PAGE_DOCUMENTS
+    .filter(({ destination }) => destination !== 'being-built.html')
+    .map(({ destination, label }) => [`./${destination}`, label]),
+  [`./${RELEASE_PAGE.destination}`, RELEASE_PAGE.label],
+  ...PAGE_DOCUMENTS
+    .filter(({ destination }) => destination === 'being-built.html')
+    .map(({ destination, label }) => [`./${destination}`, label]),
+]);
+
 // Kept identical to the project home so every page carries the same icon without a second file.
 export const SITE_ICON = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzZkMjhkOSIvPjxyZWN0IHg9IjgiIHk9IjUuNSIgd2lkdGg9IjE2IiBoZWlnaHQ9IjcuNSIgcng9IjEuNjI1IiBmaWxsPSIjZmZmZmZmIi8+PHBvbHlnb24gcG9pbnRzPSI4LDE1LjUgMTYsMTUuNSAxMy4yNSwyNi41IDgsMjYuNSIgZmlsbD0iI2ZmZmZmZiIvPjxwb2x5Z29uIHBvaW50cz0iMTgsMTUuNSAyNCwxNS41IDI0LDI2LjUgMTUuNzUsMjYuNSIgZmlsbD0iIzllNzFlNiIvPjwvc3ZnPg==';
 
@@ -276,11 +296,14 @@ export function renderFooter(indent = '    ') {
 }
 
 export function renderDocumentPage(document, markdown) {
-  const { title, html } = renderMarkdown(markdown, document.source);
-  const navigation = [
-    ['./index.html', 'Home'],
-    ...PAGE_DOCUMENTS.map(({ destination, label }) => [`./${destination}`, label]),
-  ]
+  return renderSitePage(document, renderMarkdown(markdown, document.source));
+}
+
+// The page shell around content that is already HTML. Generated pages whose text is plain prose
+// rather than Markdown use this directly, so the converter never has to guess what a literal
+// character in a release note meant.
+export function renderSitePage(document, { title, html }) {
+  const navigation = SITE_NAVIGATION
     .map(([href, label]) => {
       const current = href === `./${document.destination}` ? ' aria-current="page"' : '';
       return `            <li><a href="${href}"${current}>${label}</a></li>`;
