@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "specification": "https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications",
+  "command": "node scripts/ios-creative-assets.mjs",
+  "method": "Drawn from geometry in the brand colors of src/icons/icon.svg. No text, no cover art and no hand editing.",
+  "screens": [],
+  "files": [
+    {
+      "file": "product-page-header.png",
+      "width": 3840,
+      "height": 1646,
+      "bytes": 629427,
+      "sha256": "7009a4a6266a587fad30244621f228891b866c716c869b7806311b69304a6120",
+      "alt": "The app icon between a row of white checked tiles and lilac unread tiles on deep purple.",
+      "safeArea": {
+        "left": 1097,
+        "top": 493,
+        "right": 2743,
+        "bottom": 1154,
+        "source": "Art Safe Area layer bounds in https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-product_page_header_template-static.psd",
+        "templateSha256": "4200f416adcf3affb70d5847c1d0554fc39b7405110ec527bdea92bfb82f93b0"
+      },
+      "inputs": [
+        "scripts/ios-creative-assets.mjs",
+        "scripts/build-icons.mjs"
+      ]
+    }
+  ]
+}

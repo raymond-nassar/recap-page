@@ -8,7 +8,7 @@
 // Apple's specification, retrieved 2026-10-31:
 // https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications
 // The header is 3840 x 1646 and the search results image 3840 x 2560, PNG with no alpha channel.
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inflateSync } from 'node:zlib';
@@ -298,16 +298,20 @@ export function inspectOutput(bytes, spec) {
   return image;
 }
 
+// The header needs no screenshot, so it is built even before the iPhone screens are committed. The
+// search results image is built only when every one of its screens is present, never from a subset.
 export function build({ screenDir = SCREEN_DIR, output = OUTPUT_DIR } = {}) {
-  const inputs = SEARCH_SCREENS.map((file) => {
+  const present = SEARCH_SCREENS.filter((file) => existsSync(join(screenDir, file)));
+  if (present.length > 0 && present.length < SEARCH_SCREENS.length) fail(`${screenDir} holds only ${present.join(', ')}`);
+  const inputs = present.map((file) => {
     const path = join(screenDir, file);
     const bytes = readFileSync(path);
     const screen = decodeScreen(bytes);
     return { screen, row: { file: relative(ROOT, path).replaceAll('\\', '/'), width: screen.width, height: screen.height, sha256: sha256(bytes), chunks: screen.ancillary } };
   });
-  const outputs = [productPageHeader(), searchResults(inputs.map(({ screen }) => screen))];
+  const outputs = [productPageHeader(), ...(inputs.length ? [searchResults(inputs.map(({ screen }) => screen))] : [])];
   mkdirSync(output, { recursive: true });
-  const files = ASSETS.map((spec, k) => {
+  const files = ASSETS.slice(0, outputs.length).map((spec, k) => {
     inspectOutput(outputs[k], spec);
     writeFileSync(join(output, spec.file), outputs[k]);
     const template = TEMPLATES[spec.template];
