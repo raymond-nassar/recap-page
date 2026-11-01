@@ -508,3 +508,68 @@ Official references, retrieved 2026-10-31:
 [TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/),
 [test information](https://developer.apple.com/help/app-store-connect/test-a-beta-version/provide-test-information/),
 and [external testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/invite-external-testers/).
+
+## App Store screenshots
+
+The [App Store screenshot assets](ios-app-store-assets/) show the Simulator app with the same
+fictional lists as the Google Play listing. They contain no personal reading data, notes, accounts
+or comic cover art. The Home notice is dismissed. Images 1 through 4 use the dark theme and dark
+Simulator appearance; images 5 through 7 use the light theme and light Simulator appearance. For
+the next fictional issue, the capture supplies a fictional synopsis in memory and shows it using
+the app's normal description setting. It does not save the synopsis in reading data. The metadata
+health check uses the Play preview's fictional response; other requests outside the app bundle are
+blocked.
+
+The capture clears the test Simulator app's local storage before each screen. Use a disposable
+Simulator, not one with reading data you want to keep. A reader's installed app is not affected.
+
+| Order | Caption | iPad | iPhone |
+|---|---|---|---|
+| 1 | Start from Home: guided reading paths, storylines and character spotlights. | Expanded sidebar | Yes |
+| 2 | Follow the Modern Timeline one reading path at a time, starting with The Modern Avengers. | Collapsed sidebar | Yes |
+| 3 | See where you are in a reading list and what to read next. | Collapsed sidebar | Yes |
+| 4 | Browse storylines by era, with beginner-friendly picks marked. | Collapsed sidebar | Yes |
+| 5 | Preview a character spotlight, such as Professor X, before adding it. | Expanded sidebar | Yes |
+| 6 | Keep every reading list in your library, with progress saved on your device. | Expanded sidebar | Yes |
+| 7 | Download a complete backup of your lists and progress. | Collapsed sidebar | Yes |
+
+All three sets end at Backup & settings, for seven images each. The iPad About page is short
+enough that its data source address would also appear in the frame. Rather than hide the credit or
+add space that the app does not show, About is omitted. On iPhone the page also shows development
+and TestFlight text that would misdescribe the App Store app and cannot be framed out.
+
+The iPad set mixes the app's expanded sidebar and its collapsed icon rail. The capture seeds the
+sidebar preference before the page loads and verifies the requested state before each image.
+
+When the app footer would be visible, the capture hides only that footer with `visibility: hidden`;
+it keeps its place in the layout. Apart from dismissing the Home notice and selecting the sidebar
+state, no other page content is hidden for framing. The capture checks for visible copyright
+notices, web addresses and other platform or store names before taking each image. The Professor X
+spotlight scrolls its description out of view, leaving the issue list and its held heading visible;
+the text itself is not altered or hidden.
+
+The [manifest](ios-app-store-assets/manifest.json) records each image's caption, dimensions, byte
+count, SHA-256, source revision, Simulator device, runtime and capture run, plus the sidebar state
+for each iPad image. The iPad Pro 13-inch images are 2064 x 2752 pixels; iPhone 17 Pro images are
+1206 x 2622; iPhone 17 Pro Max images are 1320 x 2868. They are portrait PNG files without an
+alpha channel, matching
+[Apple's screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/),
+retrieved October 31, 2026.
+
+To regenerate them:
+
+1. In GitHub Actions, start **iOS** on the branch containing the capture tooling and select the
+   `app_store_screenshots` input. Leave the other manual inputs off. The equivalent command is
+   `gh workflow run iOS --ref <branch> -f app_store_screenshots=true`.
+2. Wait for the **App Store screenshots** job and download its
+   `ios-app-store-screenshots-<run ID>-<attempt>` artifact. The job builds the unsigned Simulator
+   app, applies a 9:41 status bar override and matches each Simulator's appearance to the screen
+   theme. It captures the three devices in dark and light phases and checks each image's size and
+   opacity. Its seed hook is compiled only in Debug, and the Release scan checks for its identifier.
+   Recognized XCTest infrastructure failures are retried once for the affected phase on the same
+   Simulator; assertions are not retried. The capture does not sign, use secrets or upload to App
+   Store Connect. Captures use a separate concurrency group, so they do not cancel ordinary test
+   runs on the same branch, and pushes do not cancel a capture.
+3. Inspect every image for the intended screen, theme, clean status bar and framing. Copy the
+   artifact's `docs/ios-app-store-assets` output into this directory, preserving the manifest.
+   The manifest identifies the exact source revision and Simulator runtime used for that run.
