@@ -82,6 +82,8 @@ export function resolveDocumentLink(target, sourcePath) {
   return `${REPOSITORY}/blob/main/${resolved}${hash}`;
 }
 
+const MARKDOWN_ENTITY = /&(?:[a-z][a-z0-9]*|#\d+|#x[0-9a-f]+);/i;
+
 function renderInline(text, sourcePath) {
   if (/<|>/.test(text)) {
     throw new Error(`Raw HTML is not supported in ${sourcePath}: ${text}`);
@@ -105,6 +107,10 @@ function renderInline(text, sourcePath) {
     } else if (match[2] !== undefined) {
       output += `<strong>${renderInline(match[2], sourcePath)}</strong>`;
     } else {
+      // These destination forms need Markdown parsing, not just HTML escaping.
+      if (/[\\(]/.test(match[4]) || MARKDOWN_ENTITY.test(match[4])) {
+        throw new Error(`Unsupported link destination in ${sourcePath}: ${match[4]}`);
+      }
       const href = resolveDocumentLink(match[4], sourcePath);
       output += `<a href="${escapeHtml(href)}">${renderInline(match[3], sourcePath)}</a>`;
     }
@@ -115,10 +121,10 @@ function renderInline(text, sourcePath) {
 
 // GitHub would turn each of these into something other than the literal characters: emphasis,
 // strikethrough, an escape, an entity, or an automatic link.
-const UNSUPPORTED_INLINE = /[`*[\]~\\]|(^|\W)_\S|\S_(\W|$)|&(?:[a-z][a-z0-9]*|#\d+|#x[0-9a-f]+);|https?:\/\/|www\./i;
+const UNSUPPORTED_INLINE = /[`*[\]~\\]|(^|\W)_\S|\S_(\W|$)|https?:\/\/|www\./i;
 
 function plain(text, sourcePath) {
-  if (UNSUPPORTED_INLINE.test(text)) {
+  if (UNSUPPORTED_INLINE.test(text) || MARKDOWN_ENTITY.test(text)) {
     throw new Error(`Unsupported inline syntax in ${sourcePath}: ${text}`);
   }
   return escapeHtml(text);

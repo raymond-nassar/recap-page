@@ -1095,3 +1095,28 @@ test('the data sources page credits every source and links the full record', () 
   }
   assert.ok(page.includes(`href="${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md"`), 'links the full record');
 });
+
+const unsafeLinkDestinations = [
+  ['parentheses', 'https://example.com/News_(2026)'],
+  ['named entities', 'https://example.com/?a=1&amp;b=2'],
+  ['decimal entities', 'https://example.com/?value=&#169;'],
+  ['hexadecimal entities', 'https://example.com/?value=&#x27;'],
+  ['backslash escapes', String.raw`https://example.com/a\_b`],
+];
+
+for (const [kind, target] of unsafeLinkDestinations) {
+  test(`the converter refuses link destinations with ${kind}`, () => {
+    assert.throws(
+      () => renderMarkdown(`# Title\n\n[Details](${target})`, 'test.md'),
+      /Unsupported link destination/,
+    );
+  });
+}
+
+test('the converter preserves percent-encoded URLs and ordinary query ampersands', () => {
+  const { html: rendered } = renderMarkdown(
+    '# Title\n\n[Details](https://example.com/%28news%29?a=1&b=2)',
+    'test.md',
+  );
+  assert.ok(rendered.includes('href="https://example.com/%28news%29?a=1&amp;b=2"'));
+});
