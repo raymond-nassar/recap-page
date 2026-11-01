@@ -9,7 +9,7 @@ No automatic device sync or offline comic reading.
 Recap Page for Android is on
 [Google Play](https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage).
 No computer needed. [Android's Read](docs/ANDROID.md) uses an installed browser, not the
-Marvel Unlimited app. Coming soon for iPhone and iPad.
+Marvel Unlimited app. In App Store review for iPhone and iPad.
 
 Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link
 is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link.

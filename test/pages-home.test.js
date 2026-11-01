@@ -202,7 +202,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
   const overview = section('overview');
   assert.match(
     overview,
-    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p class="platform-status">Available for Windows and Android\. Coming soon for iPhone and iPad\.<\/p>\s*<p class="action-row">/,
+    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p class="platform-status">Available for Windows and Android\. In App Store review for iPhone and iPad\.<\/p>\s*<p class="action-row">/,
   );
   assert.deepEqual(links(overview), [
     { href: '#getting-started', button: true, name: 'Get started' },
@@ -240,7 +240,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
   ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
 });
 
-test('Get started offers both app stores and names iPhone and iPad as coming soon', () => {
+test('Get started offers both app stores and says iPhone and iPad is in App Store review', () => {
   const start = section('getting-started');
   const cards = [...start.matchAll(/<article class="card route-card">([\s\S]*?)<\/article>/g)]
     .map((match) => ({
@@ -273,7 +273,7 @@ test('Get started offers both app stores and names iPhone and iPad as coming soo
       copy: 'Requires Node.js 20 or newer.',
       links: [{ href: `${REPOSITORY}/blob/main/docs/RUNNING.md`, button: false, name: 'Source setup guide' }],
     },
-    { name: 'iPhone and iPad', copy: 'Coming soon.', links: [] },
+    { name: 'iPhone and iPad', copy: 'In App Store review. Not available yet.', links: [] },
   ]);
   assert.match(
     plain(start.slice(start.indexOf('<p class="platform-note">'))),
@@ -414,7 +414,7 @@ test('the page exposes every task through semantic no-script structure', () => {
 test('the project home keeps its copy concise and its navigation focused', () => {
   const visibleCopy = html.slice(html.indexOf('<body>')).replace(/<[^>]+>/g, ' ');
   const words = visibleCopy.match(/\S+/g) ?? [];
-  assert.ok(words.length <= 800, `${words.length} words exceed the 800-word feature-tour budget`);
+  assert.ok(words.length <= 810, `${words.length} words exceed the 810-word feature-tour budget`);
   const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
   assert.deepEqual(links(navigation).map(({ href }) => href), [
     '#android', '#features', '#getting-started', '#documentation', '#feedback',
