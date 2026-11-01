@@ -903,13 +903,41 @@ test('document page main text says exactly what the Markdown says', () => {
 });
 
 test('published headings keep the anchors the repository files gave them', () => {
-  const privacy = DOCUMENT_PAGES.find(({ destination }) => destination === 'privacy.html').page;
-  for (const id of ['deleting-your-data', 'requests-the-app-makes-to-other-services']) {
-    assert.ok(idsOf(privacy).has(id), `privacy.html has #${id}`);
-  }
+  const expected = {
+    'privacy.html': [
+      'recap-page-privacy-policy',
+      'what-stays-on-your-device',
+      'optional-onedrive-backup',
+      'requests-the-app-makes-to-other-services',
+      'deleting-your-data',
+      'the-windows-package',
+      'contact',
+    ],
+    'support.html': [
+      'support',
+      'start-with-the-troubleshooting-section',
+      'asking-a-question-or-reporting-a-problem',
+      'reporting-a-reading-list-correction',
+      'asking-a-public-project-question',
+      'a-suspected-security-problem-never-goes-in-an-issue',
+      'things-that-are-somebody-elses-to-fix',
+      'asking-for-a-change',
+      'which-version-you-have',
+    ],
+    'data-sources.html': [
+      'data-sources-and-credits',
+      'comic-details',
+      'covers',
+      'reading-lists',
+      'the-optional-marvel-fandom-lookup',
+      'what-the-project-license-covers',
+    ],
+  };
   for (const { destination, markdown, page } of DOCUMENT_PAGES) {
     const headings = [...markdown.matchAll(/^#{1,2} (.+)$/gm)].length;
-    assert.equal((page.match(/<h[12] id="/g) ?? []).length, headings, `${destination} heading count`);
+    const anchors = [...page.matchAll(/<h[12] id="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(anchors.length, headings, `${destination} heading count`);
+    assert.deepEqual(anchors, expected[destination], `${destination} heading anchors`);
   }
 });
 
