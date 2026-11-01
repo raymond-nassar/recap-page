@@ -324,7 +324,7 @@ export function build({ screenDir = SCREEN_DIR, output = OUTPUT_DIR } = {}) {
     schemaVersion: 1,
     specification: 'https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications',
     command: 'node scripts/ios-creative-assets.mjs',
-    method: 'Drawn from geometry in the brand colors of src/icons/icon.svg. No text, no cover art and no hand editing.',
+    method: 'The header is drawn from brand geometry with no text. The search image places three committed screenshots, unedited, on brand artwork with no added text.',
     screens: inputs.map(({ row }) => row),
     files,
   };
