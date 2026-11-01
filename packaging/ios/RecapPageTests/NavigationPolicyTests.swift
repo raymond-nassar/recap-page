@@ -48,11 +48,17 @@ final class NavigationPolicyTests: XCTestCase {
         XCTAssertEqual(policy.decide(url: launcher, isMainFrame: false, opensNewWindow: true, userActivated: true), .allow)
         XCTAssertEqual(policy.decide(url: launcher, isMainFrame: true, opensNewWindow: false, userActivated: true), .refuse)
         XCTAssertEqual(policy.decide(url: app, isMainFrame: false, opensNewWindow: false, userActivated: false), .refuse)
-        let web = try url("https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md")
+        let web = try url("https://raymond-nassar.github.io/recap-page/privacy.html")
         XCTAssertEqual(policy.decide(url: web, isMainFrame: true, opensNewWindow: true, userActivated: true), .openExternally)
         XCTAssertEqual(policy.decide(url: web, isMainFrame: true, opensNewWindow: false, userActivated: true), .openExternally)
         XCTAssertEqual(policy.decide(url: web, isMainFrame: true, opensNewWindow: false, userActivated: false), .refuse)
+        XCTAssertEqual(
+            policy.decide(url: try url("https://raymond-nassar.github.io/recap-page/privacy.html#deleting-your-data"),
+                          isMainFrame: true, opensNewWindow: true, userActivated: true),
+            .openExternally)
         for refused in [
+            "http://raymond-nassar.github.io/recap-page/privacy.html",
+            "https://reader@raymond-nassar.github.io/recap-page/privacy.html",
             "http://example.com/",
             "recappage://localhost/open.html",
             "about:blank",

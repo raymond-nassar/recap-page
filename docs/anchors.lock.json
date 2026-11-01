@@ -1889,8 +1889,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1522|0": {
-    "anchor": "src/index.html:1522",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1525|0": {
+    "anchor": "src/index.html:1525",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },

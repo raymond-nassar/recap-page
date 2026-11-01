@@ -19814,10 +19814,18 @@ async function aboutPrivacy(page) {
   return page.evaluate(() => {
     const view = document.querySelector('#view-about');
     const heading = [...view.querySelectorAll('h3')].find((node) => node.textContent === 'Your data');
+    const policyLink = [...view.querySelectorAll('a')]
+      .find((node) => node.textContent.trim() === 'Privacy policy (opens in your browser)');
     return {
       data: heading.nextElementSibling.innerText.replace(/\s+/g, ' ').trim(),
       cloud: [...view.querySelectorAll('[data-cloud-copy="on"]')].map((node) => !node.hidden),
       local: [...view.querySelectorAll('[data-cloud-copy="off"]')].map((node) => !node.hidden),
+      policyLink: policyLink ? {
+        href: policyLink.href,
+        target: policyLink.target,
+        rel: policyLink.rel,
+        referrer: policyLink.referrerPolicy,
+      } : null,
     };
   });
 }
@@ -19887,6 +19895,25 @@ SCENARIOS.push({
         && about.data.endsWith('Your progress and your notes are never sent anywhere. Clearing site data for this address erases them, so export a backup regularly.')
         && about.cloud.length === 2 && about.cloud.every((shown) => !shown) && about.local.every(Boolean),
       JSON.stringify({ asked, answered, about }));
+    t.check('About names the published privacy policy as a separate, no-referrer browser destination',
+      JSON.stringify(about.policyLink) === JSON.stringify({
+        href: 'https://raymond-nassar.github.io/recap-page/privacy.html',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        referrer: 'no-referrer',
+      }), JSON.stringify(about.policyLink));
+    const policySelector = '#view-about a[href="https://raymond-nassar.github.io/recap-page/privacy.html"]';
+    await page.$eval(policySelector, (node) => node.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalThis.__privacyActivation = { trusted: event.isTrusted, href: node.href };
+    }, { once: true }));
+    await page.focus(policySelector);
+    await page.keyboard.press('Enter');
+    const activation = await page.evaluate(() => globalThis.__privacyActivation);
+    t.check('keyboard activation uses the privacy URL without replacing the About route or contacting it',
+      activation?.trusted === true && activation.href === 'https://raymond-nassar.github.io/recap-page/privacy.html'
+        && page.url() === `${page.__origin}/#/about` && asked.length === 2,
+      JSON.stringify({ activation, url: page.url(), asked }));
   },
 });
 

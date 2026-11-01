@@ -135,9 +135,6 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
                 Import and export request a local-only provider, but that is not a guarantee against the provider's own sync or retention.
                 Erasing app data does not recall exported files.
               </p>
-              <p class="rail-hint">
-                <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
-              </p>
               <p>On Android, Read opens your installed browser, not the Marvel Unlimited app. Before December 7, 2026, a missing reader link may request metadata. From that date it opens the general Marvel Comics website without a reader-link lookup. Recap Page no longer contacts Bifrost. The external service sees the requested address and your network address, not your saved lists, notes or read markers. Open in browser remains available if no browser opens.</p>`);
   let launcher = await readFile(join(SOURCE, 'open.html'), 'utf8');
   const launchStylesheet = '<link rel="stylesheet" href="./open.css" />';
