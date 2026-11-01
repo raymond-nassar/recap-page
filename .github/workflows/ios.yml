@@ -38,7 +38,7 @@ permissions:
 
 # Captures must not cancel a ref's test run, or be cancelled by its next push.
 concurrency:
-  group: ios-${{ github.ref }}${{ inputs.app_store_screenshots && '-app-store-screenshots' || '' }}
+  group: ios-${{ github.ref }}${{ inputs.app_store_screenshots && '-app-store-screenshots' || inputs.minimum_only && '-minimum-only' || '' }}
   cancel-in-progress: true
 
 jobs:
@@ -481,7 +481,7 @@ jobs:
         timeout-minutes: 20
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:|Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound|RecapPageUITests-Runner encountered an error \(Early unexpected exit, operation never finished bootstrapping.*Test crashed with signal kill before establishing connection\.\)|Busy \(Application .*io\.github\.raymondnassar\.recappage.*is installing or uninstalling, and cannot be launched\)|Audit failed to complete in time'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:|Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound|RecapPageUITests-Runner encountered an error \(Early unexpected exit, operation never finished bootstrapping.*Test crashed with signal kill before establishing connection\.\)|Busy \("Application "io\.github\.raymondnassar\.recappage" is installing or uninstalling, and cannot be launched"\)|Audit failed to complete in time'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -515,7 +515,7 @@ jobs:
         timeout-minutes: 65
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:|Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound|RecapPageUITests-Runner encountered an error \(Early unexpected exit, operation never finished bootstrapping.*Test crashed with signal kill before establishing connection\.\)|Busy \(Application .*io\.github\.raymondnassar\.recappage.*is installing or uninstalling, and cannot be launched\)|Audit failed to complete in time'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:|Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound|RecapPageUITests-Runner encountered an error \(Early unexpected exit, operation never finished bootstrapping.*Test crashed with signal kill before establishing connection\.\)|Busy \("Application "io\.github\.raymondnassar\.recappage" is installing or uninstalling, and cannot be launched"\)|Audit failed to complete in time'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -572,7 +572,7 @@ jobs:
         timeout-minutes: 60
         run: |
           set -o pipefail
-          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:|Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound|RecapPageUITests-Runner encountered an error \(Early unexpected exit, operation never finished bootstrapping.*Test crashed with signal kill before establishing connection\.\)|Busy \(Application .*io\.github\.raymondnassar\.recappage.*is installing or uninstalling, and cannot be launched\)|Audit failed to complete in time'
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:|Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound|RecapPageUITests-Runner encountered an error \(Early unexpected exit, operation never finished bootstrapping.*Test crashed with signal kill before establishing connection\.\)|Busy \("Application "io\.github\.raymondnassar\.recappage" is installing or uninstalling, and cannot be launched"\)|Audit failed to complete in time'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
@@ -635,7 +635,7 @@ jobs:
     name: App Store screenshots
     # Started by hand alone. It builds an unsigned Simulator app, signs nothing, uses no secret and
     # sends nothing to App Store Connect: the images come back as an artifact for review.
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.app_store_screenshots && !inputs.minimum_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.app_store_screenshots }}
     runs-on: macos-26
     # These steps declare 118 minutes; leave the deadline to the individual step that overruns.
     timeout-minutes: 121

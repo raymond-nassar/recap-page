@@ -108,7 +108,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.equal(block('concurrency').trim(),
-    "group: ios-${{ github.ref }}${{ inputs.app_store_screenshots && '-app-store-screenshots' || '' }}\n  cancel-in-progress: true");
+    "group: ios-${{ github.ref }}${{ inputs.app_store_screenshots && '-app-store-screenshots' || inputs.minimum_only && '-minimum-only' || '' }}\n  cancel-in-progress: true",
+    'a minimum-only dispatch must not cancel the full run on the same ref');
 });
 
 test('live metadata CORS is off by default and runs only from an opted-in manual dispatch', () => {
@@ -128,8 +129,9 @@ test('minimum-only dispatch runs just the lowest-runtime job', () => {
   assert.match(jobSource('newest'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
   assert.match(jobSource('ipad'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
   assert.match(jobSource('minimum'), /if: \$\{\{ !inputs\.app_store_screenshots \}\}/);
-  assert.match(workflow,
-    /if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
+  // With both inputs set the capture wins, matching its concurrency group, so the run is never empty.
+  assert.match(jobSource('screenshots'),
+    /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots \}\}\n/);
 });
 
 test('the fault-disabled restore mutation is opt-in and requires the done-row failure', async () => {
@@ -201,7 +203,7 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
   assert.match(jobSource('minimum'), /\n {4}if: \$\{\{ !inputs\.app_store_screenshots \}\}\n {4}runs-on:/);
   const source = jobSource('screenshots');
   assert.match(source,
-    /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots && !inputs\.minimum_only \}\}\n {4}runs-on: macos-26/);
+    /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots \}\}\n {4}runs-on: macos-26/);
   assert.doesNotMatch(source, /upload-app|altool|notarytool|xcrun.*upload|App Store Connect API/i);
   const capture = stepScript(source, 'Capture the screens');
   assert.match(capture, /for set in ipad-13 iphone-6\.3 iphone-6\.9; do/);
@@ -450,7 +452,9 @@ const minimumInfrastructure = [
   ...infrastructure,
   'Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound',
   'RecapPageUITests-Runner encountered an error (Early unexpected exit, operation never finished bootstrapping (Underlying Error: Test crashed with signal kill before establishing connection.))',
-  'Busy (Application "io.github.raymondnassar.recappage" is installing or uninstalling, and cannot be launched)',
+  // Run 41198453337, job 124529283379, verbatim: XCTest quotes the reason inside the parentheses.
+  'Failure Reason: The request was denied by service delegate (SBMainWorkspace) for reason: '
+    + 'Busy ("Application "io.github.raymondnassar.recappage" is installing or uninstalling, and cannot be launched").',
   'Audit failed to complete in time',
 ];
 const terminate = infrastructure[3];
@@ -562,6 +566,14 @@ test('the minimum runtime runs only one booted Simulator at a time', async () =>
   assert.match(shutdown, /xcrun simctl shutdown "\$DESTINATION_UDID"/);
   assert.match(boot, /xcrun simctl boot "\$IPHONE_375_UDID" > "\$RUNNER_TEMP\/iphone-se-boot\.log" 2>&1/);
   assert.match(wait, /xcrun simctl bootstatus "\$IPHONE_375_UDID" -b/);
+  // The change this job depends on: the SE never boots while the minimum iPhone is still running,
+  // so an early or backgrounded SE boot (the earlier layout) must fail here.
+  const seCommands = [...source.matchAll(/simctl (?:boot|bootstatus) "\$IPHONE_375_UDID"[^\n]*/g)];
+  assert.equal(seCommands.length, 2, 'the SE is booted once and awaited once');
+  for (const command of seCommands) {
+    assert.ok(command.index > shutdownPosition, `"${command[0]}" runs before the minimum iPhone shuts down`);
+    assert.doesNotMatch(command[0], /&\s*$/, 'the SE boot is not backgrounded');
+  }
   assert.doesNotMatch(source, /simctl erase/);
   assert.match(source, /375-point iPhones are untested/);
   assert.match(stepScript(source, 'Run the UI tests'), /-destination "\$DESTINATION"/);
