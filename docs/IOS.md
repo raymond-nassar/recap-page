@@ -335,6 +335,33 @@ completed journal writes and both recovery actions available. These results do n
 real-device storage-pressure or Files-picker acceptance. The separate fault-disabled proof remains
 pending until the presentation checks pass.
 
+## iCloud backup
+
+Built but switched off (#949, P04). When it is on, backups go to a visible **Recap Page** folder in
+iCloud Drive: the Documents folder of the permanent container above, which the Files app shows. The
+app answers the same cloud backup contract the Windows host and the Android app answer, so the
+shared backup engine, its schedule and its restore are unchanged.
+
+- **Two switches, both off.** The native store, its handler and the bridge's `cloud` case compile
+  only under the `RECAP_ICLOUD` compilation condition or in Debug, and a packaging test fails if
+  any of it can reach a Release build without that condition. The page half lives in
+  `packaging/ios/icloud-web`, outside the folder the build copies whole, so a build without it never
+  installs the iCloud transport and the backup card stays removed.
+- **Why the switch is not wired yet.** Turning it on needs the iCloud entitlements, the
+  `NSUbiquitousContainers` entry in the app's Info.plist and a build setting for the condition. Those
+  change the signed export, which only the protected release workflow exercises, so they follow in a
+  separate change once iOS build 6 is cut, and the first TestFlight export with them is the proof
+  that signing accepts them.
+- **What iOS decides.** iOS uploads each file on its own schedule, so the card says the app is
+  waiting for iCloud until iOS reports the upload. A backup made on another device may need to
+  download before it can be restored; the app asks for it and tells the page to try again shortly.
+- **Account changes.** A connection is recorded against the iCloud account the device was signed in
+  to. Signing out makes backup unavailable, and a different account needs connecting again, so one
+  account's backups are never written into another's folder.
+- **Testing.** Unsigned Simulator builds on CI cannot reach iCloud, so the XCTests run the handler
+  over an in-memory fake store, which Debug builds can also use at launch through
+  `RECAP_IOS_ICLOUD_FAKE`. The real store is accepted on a TestFlight build on the owner's devices.
+
 ## Known limits
 
 - Files export and restore, Read hand-off, Dynamic Type, iPad window sizing and the missing-data
@@ -392,8 +419,8 @@ chat. The permanent app names above are public app configuration, not account id
 
 1. Wait for Apple to confirm the Developer Program membership is active. In Certificates,
    Identifiers & Profiles, register an explicit App ID using the permanent bundle identifier
-   above. Enable iCloud and register and associate the permanent container above; CloudKit schema
-   setup belongs to the later iCloud phase, not this first TestFlight build.
+   above. Enable iCloud and register and associate the permanent container above. iCloud backup
+   uses the container's iCloud Drive folder rather than CloudKit, so no CloudKit schema is needed.
 2. In App Store Connect, create an iOS app record called **Recap Page**, selecting that App ID.
    Choose the primary language and your own private SKU. Do not copy the SKU into the repository.
 3. In the app's TestFlight tab, create an **internal** testing group for yourself. Keep automatic
