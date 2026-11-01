@@ -1,0 +1,35 @@
+name: Request a reading list
+description: Ask for a story, character, or event to be added to the catalog.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tell us what you would like to read, not anything personal about yourself.
+        GitHub posts and replies are public. Do not include reading progress, notes, backups,
+        personal details, or attachments.
+
+        If you have a published guide in mind, link it below. These sites gave permission for
+        credited, linked reading lists:
+        - [Comic Book Herald](https://www.comicbookherald.com/)
+        - [Comic Book Reading Orders](https://comicbookreadingorders.com/), except its
+          Marvel Master Reading Order and Patreon-only orders.
+
+        Other guides need permission before they can be used. Please do not paste a guide or
+        attach comic artwork. Requests are reviewed; a reply may take time and may be a considered no.
+
+  - type: textarea
+    id: reading-list
+    attributes:
+      label: Which story, character, or event would you like to read?
+      description: A name and a short description of the reading list you want.
+      placeholder: "A reading list for an event or a character's stories."
+    validations:
+      required: true
+
+  - type: input
+    id: guide
+    attributes:
+      label: Which published guide should the list follow, if any?
+      description: Optional. Give the guide's title and link, not a copy of its contents.
+    validations:
+      required: false

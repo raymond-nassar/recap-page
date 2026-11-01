@@ -26,6 +26,12 @@ export const PAGE_DOCUMENTS = Object.freeze([
     label: 'Data sources',
     description: 'Where Recap Page gets comic details, covers, and reading lists.',
   }),
+  Object.freeze({
+    source: 'pages/being-built.md',
+    destination: 'being-built.html',
+    label: "What's being built",
+    description: 'The major features being added to Recap Page and where they stand.',
+  }),
 ]);
 
 // Kept identical to the project home so every page carries the same icon without a second file.
@@ -51,7 +57,10 @@ export function slugify(text) {
 
 export function resolveDocumentLink(target, sourcePath) {
   if (/^https?:\/\//.test(target)) {
-    return target === PROJECT_HOME ? './index.html' : target;
+    if (target === PROJECT_HOME || target.startsWith(`${PROJECT_HOME}#`)) {
+      return `./index.html${target.slice(PROJECT_HOME.length)}`;
+    }
+    return target;
   }
   if (target.startsWith('#')) return target;
   if (/^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith('/')) {

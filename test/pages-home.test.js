@@ -80,6 +80,11 @@ const EXPECTED_HREFS = [
   './assets/android-reading-preview.png',
   '#demo',
   `${REPOSITORY}/blob/main/CHANGELOG.md`,
+  './being-built.html',
+  `${REPOSITORY}/issues/new?template=feature.yml`,
+  `${REPOSITORY}/issues/new?template=reading-list.yml`,
+  `${REPOSITORY}/issues/new?template=data-order.yml`,
+  `${REPOSITORY}/issues/new?template=bug.yml`,
   'https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/',
   './assets/home-960.png',
   './assets/avengers-disassembled-reading-960.png',
@@ -105,9 +110,6 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/blob/main/CHANGELOG.md`,
   `${REPOSITORY}/blob/main/docs/WHY_A_BROWSER_APP.md`,
   QUESTION_FORM_URL,
-  `${REPOSITORY}/issues/new?template=bug.yml`,
-  `${REPOSITORY}/issues/new?template=feature.yml`,
-  `${REPOSITORY}/issues/new?template=data-order.yml`,
   `${REPOSITORY}/blob/main/SECURITY.md`,
   REPOSITORY,
   `${REPOSITORY}/issues`,
@@ -236,7 +238,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
   for (const feature of [
     'Reading Paths', 'Modern Timeline', 'Character spotlights', 'MCU Prep',
     'Defer for later', 'notes', 'descriptions', 'Marvel Unlimited record',
-    'historical record, not availability in Marvel Comics', 'JSON backup', 'Markdown checklist', 'Share an order',
+    'historical record, not availability in Marvel Comics', 'JSON backups', 'Markdown checklists', 'Share an order',
   ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
 });
 
@@ -325,7 +327,7 @@ test('the showcase includes the supplied artwork and current phone previews', ()
 });
 
 test('the source inventory and generated contract stay exact', async () => {
-  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'data-sources.md', 'index.html', 'site.css']);
+  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'being-built.md', 'data-sources.md', 'index.html', 'site.css']);
   assert.deepEqual((await readdir(join(ROOT, 'pages', 'assets'))).sort(), [
     'android-feature-graphic.png',
     'android-library-preview.png',
@@ -337,6 +339,7 @@ test('the source inventory and generated contract stay exact', async () => {
     'assets/android-reading-preview.png',
     'assets/avengers-disassembled-reading-960.png',
     'assets/home-960.png',
+    'being-built.html',
     'data-sources.html',
     'index.html',
     'privacy.html',
@@ -349,6 +352,7 @@ test('the source inventory and generated contract stay exact', async () => {
       ['SUPPORT.md', 'support.html'],
       ['PRIVACY.md', 'privacy.html'],
       ['pages/data-sources.md', 'data-sources.html'],
+      ['pages/being-built.md', 'being-built.html'],
     ],
   );
   assert.deepEqual(
@@ -386,6 +390,7 @@ test('the page exposes every task through semantic no-script structure', () => {
     'documentation',
     'project-questions',
     'feedback',
+    'security-report',
     'source-history',
   ];
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
@@ -421,6 +426,43 @@ test('the project home keeps its copy concise and its navigation focused', () =>
     './support.html', './privacy.html', './data-sources.html',
   ]);
   assert.doesNotMatch(html, /class="eyebrow"/);
+});
+
+test('the curated feature link and four suggestion routes precede the demo while security stays private', () => {
+  assert.match(section('features'), /<h3>What's being built<\/h3>/);
+  assert.deepEqual(links(section('features')).at(-1), {
+    href: './being-built.html', button: false, name: 'see provider progress',
+  });
+  assert.match(html, /<\/section>\s*<section id="feedback"[\s\S]*?<\/section>\s*<section id="demo"/);
+  assert.match(section('feedback'), /<h2 id="feedback-title">Help shape Recap Page<\/h2>/);
+  assert.match(plain(section('feedback')), /Requests are reviewed; replies can take time or may be declined\./);
+  assert.deepEqual(links(section('feedback')), [
+    { href: `${REPOSITORY}/issues/new?template=feature.yml`, button: false, name: 'Suggest an improvement' },
+    { href: `${REPOSITORY}/issues/new?template=reading-list.yml`, button: false, name: 'Request a reading list' },
+    { href: `${REPOSITORY}/issues/new?template=data-order.yml`, button: false, name: 'Correct a reading list' },
+    { href: `${REPOSITORY}/issues/new?template=bug.yml`, button: false, name: 'Report a bug' },
+  ]);
+  assert.deepEqual(links(section('security-report')), [{
+    href: `${REPOSITORY}/blob/main/SECURITY.md`,
+    button: false,
+    name: 'Report a security problem Report privately, not in a public post.',
+  }]);
+  assert.ok(html.indexOf('<section id="security-report"') > html.indexOf('<section id="project-questions"'));
+});
+
+test('the reading list request form asks only for the list and an optional permitted guide', () => {
+  const form = readFileSync(join(ROOT, '.github', 'ISSUE_TEMPLATE', 'reading-list.yml'), 'utf8');
+  assert.match(form, /^name: Request a reading list$/m);
+  assert.doesNotMatch(form, /^labels:/m);
+  assert.deepEqual([...form.matchAll(/^\s{4}id: ([\w-]+)$/gm)].map((match) => match[1]), ['reading-list', 'guide']);
+  assert.match(form, /Which story, character, or event would you like to read\?[\s\S]*?required: true/);
+  assert.match(form, /Which published guide should the list follow, if any\?[\s\S]*?required: false/);
+  assert.match(form, /\[Comic Book Herald\]\(https:\/\/www\.comicbookherald\.com\/\)/);
+  assert.match(form, /\[Comic Book Reading Orders\]\(https:\/\/comicbookreadingorders\.com\/\)/);
+  assert.match(form, /except its\s+Marvel Master Reading Order and Patreon-only orders/);
+  assert.match(form, /Other guides need permission before they can be used/);
+  assert.match(form, /Do not include reading progress, notes, backups,\s+personal details, or attachments/);
+  assert.doesNotMatch(form, /[\u2013\u2014]|type: (?:dropdown|checkboxes)/);
 });
 
 test('the project icon is self-contained so the owner-site root is never requested', () => {
@@ -500,11 +542,8 @@ test('all five showcase images have accurate dimensions and useful alternatives'
 });
 
 test('the public question disclosure is complete before the form link', () => {
-  const section = html.slice(
-    html.indexOf('<section id="project-questions"'),
-    html.indexOf('<section id="feedback"'),
-  );
-  const disclosure = section.slice(0, section.indexOf(QUESTION_FORM_URL)).replace(/\s+/g, ' ');
+  const questionSection = section('project-questions');
+  const disclosure = questionSection.slice(0, questionSection.indexOf(QUESTION_FORM_URL)).replace(/\s+/g, ' ');
   assert.match(disclosure, /Sign in to GitHub to post/);
   assert.match(disclosure, /username, question, and replies are public/);
   assert.match(disclosure, /GitHub hosts and processes posts/);
@@ -513,7 +552,7 @@ test('the public question disclosure is complete before the form link', () => {
   assert.doesNotMatch(disclosure, /Get a human answer|Name the documentation you checked/);
   assert.match(disclosure, /Don't post reading progress, lists, notes, backups, personal information, attachments, or vulnerability details/);
   assert.match(disclosure, /Before you post/);
-  assert.equal([...section.matchAll(new RegExp(QUESTION_FORM_URL.replace('?', '\\?'), 'g'))].length, 1);
+  assert.equal([...questionSection.matchAll(new RegExp(QUESTION_FORM_URL.replace('?', '\\?'), 'g'))].length, 1);
 
   const currentSources = [
     ['pages/index.html', html],
@@ -845,6 +884,21 @@ const pageByDestination = new Map([
   ...DOCUMENT_PAGES.map(({ destination, page }) => [destination, page]),
 ]);
 
+test('the curated source publishes only cloud backup with the approved provider distinctions', () => {
+  const { markdown, page } = DOCUMENT_PAGES.find(({ destination }) => destination === 'being-built.html');
+  assert.deepEqual([...markdown.matchAll(/^## (.+)$/gm)].map((match) => match[1]), ['Cloud backup']);
+  const copy = plain(page);
+  assert.match(copy, /OneDrive: automatic backup shipped in 4\.3\.0 on Windows and Android/);
+  assert.match(copy, /Google Drive: work for Windows and Android is deferred while the owner hears from users\. It has not shipped/);
+  assert.match(copy, /iCloud: planned only for iPhone and iPad, not Windows or Android\. The iOS app currently has no cloud backup/);
+  assert.match(copy, /not automatic device sync/);
+  assert.match(copy, /There are no promised release dates/);
+  assert.ok(page.includes(`href="${REPOSITORY}/issues/810"`));
+  assert.ok(page.includes(`href="${REPOSITORY}/issues/949"`));
+  assert.ok(page.includes('href="./index.html#feedback"'));
+  assert.doesNotMatch(page, /github\.com\/users\/[^/]+\/projects|<script\b/);
+});
+
 function decode(text) {
   return text
     .replaceAll('&lt;', '<')
@@ -932,6 +986,7 @@ test('published headings keep the anchors the repository files gave them', () =>
       'the-optional-marvel-fandom-lookup',
       'what-the-project-license-covers',
     ],
+    'being-built.html': ['whats-being-built', 'cloud-backup'],
   };
   for (const { destination, markdown, page } of DOCUMENT_PAGES) {
     const headings = [...markdown.matchAll(/^#{1,2} (.+)$/gm)].length;
@@ -1006,6 +1061,7 @@ test('links between the documents land on their published pages and sections', (
     ['SECURITY.md', 'PRIVACY.md', `${REPOSITORY}/blob/main/SECURITY.md`],
     ['#deleting-your-data', 'PRIVACY.md', '#deleting-your-data'],
     ['https://raymond-nassar.github.io/recap-page/', 'SUPPORT.md', './index.html'],
+    ['https://raymond-nassar.github.io/recap-page/#feedback', 'pages/being-built.md', './index.html#feedback'],
   ];
   for (const [target, source, expected] of cases) {
     assert.equal(resolveDocumentLink(target, source), expected, `${target} from ${source}`);
