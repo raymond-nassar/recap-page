@@ -3,8 +3,9 @@
 Recap Page for iPhone and iPad is in development under
 [#949](https://github.com/raymond-nassar/recap-page/issues/949). Build 4 (4.2.0) is in internal
 TestFlight and has been installed on the owner's iPad since October 29, 2026. It is not on the App
-Store, and there are no external testers yet. Like the [Android app](ANDROID.md), it is the existing web app inside a small native
-shell, so every fix to the shared app reaches iOS too, and it adds no account, server or upload.
+Store. Build 5 is the planned first external TestFlight build. Like the
+[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to
+the shared app reaches iOS too, and it adds no account, server or upload.
 
 The shell is built and tested in the iOS Simulator on
 GitHub's macOS runners for every pull request. Files export and restore, Read, text size, iPad
@@ -420,6 +421,35 @@ proof that processing, installation, offline start or saved-data-preserving upda
 the two-build update and recovery checks on #949, and leave iPhone-only checks pending if there
 is no iPhone available.
 
+### External testing: build 5
+
+Build 5 is planned from main at `6a3f6be7`. It combines the iOS file export and restore flow, Read
+handoff and presentation work with the shared 4.3.0 changes. These include the Professor X spotlight
+and reading path, marking a whole list as read with Undo, shorter Backup & settings help text, and a
+dismissible Marvel Unlimited notice on Home. The cloud backup card remains hidden in the iOS app.
+Before December 7, 2026, Read opens a recorded Marvel Unlimited reader link when one is available.
+From that date, Read opens the Marvel Comics website.
+
+After the build has been uploaded and processed, complete the external testing setup yourself in
+App Store Connect:
+
+1. Open Recap Page, choose **TestFlight**, then **Test Information** under **Additional**. Enter the
+   approved Beta App Description and your feedback email address. Put the address directly in App
+   Store Connect; do not copy it into this repository or a message.
+2. Create an external testing group from the plus button beside **External Testing**. An internal
+   testing group must already exist.
+3. Open the external group, choose **Add Builds**, and select processed build 5. Enter the approved
+   **What to Test** text when prompted. Leave automatic tester notifications off if you want to
+   invite people only after review.
+4. Provide Beta App Review contact information and the approved review notes. State that no sign in
+   is required. Submit the build for Beta App Review and wait for Apple's approval.
+5. After approval, invite testers by email or create a public link for the group. A public link can
+   be shared onward, so use tester criteria and a limit if appropriate. You can disable the link
+   later.
+
+The Beta App Description, What to Test and review notes are prepared separately for entry in App
+Store Connect. Keep personal contact information out of repository files.
+
 ### Renewal and fallbacks
 
 TestFlight builds expire after **90 days** and then stop opening. The upload receipt records the
@@ -445,8 +475,10 @@ before an upload attempt. Apple's Transporter command line and the App Store Con
 Upload API are supported alternatives, but not automatic retries. They must use the same verified
 sealed IPA with separate approval, never rebuild or re-sign it.
 
-Official references, retrieved 2026-10-29:
+Official references, retrieved 2026-10-31:
 [cloud-managed certificates](https://developer.apple.com/help/account/certificates/cloud-managed-certificates/),
 [API keys](https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-api/),
 [upload methods and Xcode requirements](https://developer.apple.com/help/app-store-connect/manage-builds/upload-builds/),
-and [TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/).
+[TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/),
+[test information](https://developer.apple.com/help/app-store-connect/test-a-beta-version/provide-test-information/),
+and [external testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/invite-external-testers/).
