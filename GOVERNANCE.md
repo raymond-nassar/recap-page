@@ -75,6 +75,11 @@ This boundary does not refactor catalog architecture or change platform release,
 code reservation or publication approval requirements in
 [the coordinated release policy](docs/RELEASING.md).
 
+Update [What's being built](pages/being-built.md) when a listed feature ships or a new major
+feature starts. The owner chooses which major features appear; adding another entry needs the
+owner's approval in the feature PR. Keep provider and platform status aligned with the public
+Issue and delivered release notes, promise no dates, and never publish the private planning board.
+
 ## Releases
 
 Follow [`src/js/lib/version.js`](src/js/lib/version.js). A major version marks a substantial new
