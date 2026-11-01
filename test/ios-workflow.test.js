@@ -122,6 +122,16 @@ test('live metadata CORS is off by default and runs only from an opted-in manual
     'a skipped test cannot produce a green CORS step');
 });
 
+test('minimum-only dispatch runs just the lowest-runtime job', () => {
+  assert.match(workflow,
+    /minimum_only:\n {8}description: Run only the lowest iOS 18 runtime job\n {8}required: false\n {8}type: boolean\n {8}default: false/);
+  assert.match(jobSource('newest'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
+  assert.match(jobSource('ipad'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
+  assert.match(jobSource('minimum'), /if: \$\{\{ !inputs\.app_store_screenshots \}\}/);
+  assert.match(workflow,
+    /if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
+});
+
 test('the fault-disabled restore mutation is opt-in and requires the done-row failure', async () => {
   assert.match(workflow,
     /prove_journal_fault_disabled:\n {8}description: Prove interrupted restore rejects a completed restore without the injected fault\n {8}required: false\n {8}type: boolean\n {8}default: false/);
@@ -184,12 +194,14 @@ test('newest, oldest, iPad and screenshot jobs use the intended Xcode runtimes',
 test('the App Store screenshot capture runs only from an opted-in manual dispatch, in place of the tests', async () => {
   assert.match(workflow,
     /app_store_screenshots:\n {8}description: Capture the App Store screenshots instead of running the tests\n {8}required: false\n {8}type: boolean\n {8}default: false/);
-  for (const name of ['newest', 'ipad', 'minimum']) {
-    assert.match(jobSource(name), /\n {4}if: \$\{\{ !inputs\.app_store_screenshots \}\}\n {4}runs-on:/, name);
-  }
+  assert.match(jobSource('newest'),
+    /\n {4}if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}\n {4}runs-on:/);
+  assert.match(jobSource('ipad'),
+    /\n {4}if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}\n {4}runs-on:/);
+  assert.match(jobSource('minimum'), /\n {4}if: \$\{\{ !inputs\.app_store_screenshots \}\}\n {4}runs-on:/);
   const source = jobSource('screenshots');
   assert.match(source,
-    /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots \}\}\n {4}runs-on: macos-26/);
+    /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots && !inputs\.minimum_only \}\}\n {4}runs-on: macos-26/);
   assert.doesNotMatch(source, /upload-app|altool|notarytool|xcrun.*upload|App Store Connect API/i);
   const capture = stepScript(source, 'Capture the screens');
   assert.match(capture, /for set in ipad-13 iphone-6\.3 iphone-6\.9; do/);
@@ -434,6 +446,13 @@ const infrastructure = [
   '/repo/LaunchUITests.swift:37: error: -[RecapPageUITests.LaunchUITests testFifthJournalPutFailureOffersRecoveryAfterForcedTermination] : '
     + 'Failed to terminate io.github.raymondnassar.recappage:19342: Failed to terminate io.github.raymondnassar.recappage:0',
 ];
+const minimumInfrastructure = [
+  ...infrastructure,
+  'Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound',
+  'RecapPageUITests-Runner encountered an error (Early unexpected exit, operation never finished bootstrapping (Underlying Error: Test crashed with signal kill before establishing connection.))',
+  'Busy (Application "io.github.raymondnassar.recappage" is installing or uninstalling, and cannot be launched)',
+  'Audit failed to complete in time',
+];
 const terminate = infrastructure[3];
 const otherTerminate = '/repo/LaunchUITests.swift:37: error: -[LaunchUITests testHome] : Failed to terminate com.apple.mobilesafari:4242';
 const assertion = '/repo/LaunchUITests.swift:40: error: -[LaunchUITests testHome] : XCTAssertTrue failed';
@@ -471,7 +490,13 @@ test('the iPhone jobs boot and wait for the chosen Simulator before building and
     assert.ok(source.indexOf('Boot the Simulator before building') < source.indexOf('name: Build for testing'));
     const expectedBuilds = job.name === 'newest' ? 6 : 4;
     assert.equal((source.match(/-destination "\$DESTINATION"/g) ?? []).length, expectedBuilds);
-    assert.doesNotMatch(source, /simctl (?:shutdown|erase)|retry-tests-on-failure|continue-on-error/);
+    assert.doesNotMatch(source, /simctl erase|retry-tests-on-failure|continue-on-error/);
+    if (job.name === 'newest') {
+      assert.doesNotMatch(source, /simctl shutdown/);
+    } else {
+      assert.match(source, /simctl shutdown "\$DESTINATION_UDID"/);
+      assert.doesNotMatch(source, /simctl shutdown "\$IPHONE_375_UDID"/);
+    }
     assert.match(source, new RegExp(`runner.temp \\}\\}/RecapPage-${job.name}-\\*\\.xcresult`));
     assert.match(source, /runner.temp \}\}\/ui-\*\.log/);
     assert.match(source, /if: \$\{\{ !cancelled\(\) \}\}/);
@@ -493,7 +518,9 @@ test('the iPhone jobs boot and wait for the chosen Simulator before building and
       assert.equal(result.status, 0, result.stderr);
       const expected = job.name === 'newest' ? 'iOS-26-5' : 'iOS-18-5';
       assert.equal(await readFile(join(root, 'calls'), 'utf8'), `simctl boot ${expected}\nsimctl bootstatus ${expected} -b\n`);
-      assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), `DESTINATION=platform=iOS Simulator,id=${expected}\n`);
+      const expectedEnv = `DESTINATION=platform=iOS Simulator,id=${expected}\n`;
+      assert.equal(await readFile(env.GITHUB_ENV, 'utf8'),
+        job.name === 'minimum' ? `${expectedEnv}DESTINATION_UDID=${expected}\n` : expectedEnv);
       await writeFile(join(root, 'devices.json'), '{"devices":{}}');
       const missing = await runScript(root, stub + boot, env);
       assert.notEqual(missing.status, 0, 'an unavailable Simulator fails before boot');
@@ -505,29 +532,37 @@ test('the iPhone jobs boot and wait for the chosen Simulator before building and
   }
 });
 
-test('the minimum runtime tests 375-point iPhone SE presentation only when available', async () => {
+test('the minimum runtime runs only one booted Simulator at a time', async () => {
   const minimum = jobs.find(({ name }) => name === 'minimum');
   const source = jobSource('minimum');
   const detect = stepScript(source, 'Find the iPhone SE (3rd generation) Simulator');
-  const boot = stepScript(source, 'Boot iPhone SE (3rd generation) Simulator');
-  const wait = stepScript(source, 'Wait for the 375-point iPhone SE Simulator after the build');
+  const shutdown = stepScript(source, 'Shut down the minimum iPhone before starting the SE');
+  const boot = stepScript(source, 'Boot iPhone SE (3rd generation) Simulator before presentation');
+  const wait = stepScript(source, 'Wait for the 375-point iPhone SE Simulator before presentation');
   const test = stepScript(source, 'Run presentation UI tests on iPhone SE (3rd generation)');
   assert.match(source, /SIMULATOR_NAME: iPhone 16e/);
   assert.match(source, /- name: Find the iPhone SE \(3rd generation\) Simulator\n {8}id: iphone-se/);
   assert.match(source,
-    /- name: Wait for the 375-point iPhone SE Simulator after the build\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+    /- name: Shut down the minimum iPhone before starting the SE\n {8}id: shutdown-minimum\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}/);
   assert.match(source,
-    /- name: Boot iPhone SE \(3rd generation\) Simulator\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+    /- name: Boot iPhone SE \(3rd generation\) Simulator before presentation\n {8}id: boot-iphone-se\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' && steps\.shutdown-minimum\.outcome == 'success' \}\}/);
   assert.match(source,
-    /- name: Boot iPhone SE \(3rd generation\) Simulator\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+    /- name: Wait for the 375-point iPhone SE Simulator before presentation\n {8}id: wait-iphone-se\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' && steps\.boot-iphone-se\.outcome == 'success' \}\}/);
   assert.match(source,
-    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}/);
-  assert.ok(source.indexOf('name: Build for testing') < source.indexOf('name: Wait for the 375-point iPhone SE Simulator after the build'));
-  assert.ok(source.indexOf('name: Find the iPhone SE (3rd generation) Simulator') <
-    source.indexOf('name: Boot iPhone SE (3rd generation) Simulator'));
-  assert.match(boot, /xcrun simctl boot "\$IPHONE_375_UDID" > "\$RUNNER_TEMP\/iphone-se-boot\.log" 2>&1 &/);
-  assert.ok(source.indexOf('name: Run the UI tests') < source.indexOf('name: Run presentation UI tests on iPhone SE (3rd generation)'));
+    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' && steps\.wait-iphone-se\.outcome == 'success' \}\}/);
+  const minimumPresentation = source.indexOf('name: Run presentation UI tests on the minimum iPhone');
+  const shutdownPosition = source.indexOf('name: Shut down the minimum iPhone before starting the SE');
+  const bootPosition = source.indexOf('name: Boot iPhone SE (3rd generation) Simulator before presentation');
+  const waitPosition = source.indexOf('name: Wait for the 375-point iPhone SE Simulator before presentation');
+  const sePresentation = source.indexOf('name: Run presentation UI tests on iPhone SE (3rd generation)');
+  assert.ok(source.indexOf('name: Build for testing') < source.indexOf('name: Run the unit tests'));
+  assert.ok(source.indexOf('name: Find the iPhone SE (3rd generation) Simulator') < minimumPresentation);
+  assert.ok(minimumPresentation < shutdownPosition && shutdownPosition < bootPosition &&
+    bootPosition < waitPosition && waitPosition < sePresentation);
+  assert.match(shutdown, /xcrun simctl shutdown "\$DESTINATION_UDID"/);
+  assert.match(boot, /xcrun simctl boot "\$IPHONE_375_UDID" > "\$RUNNER_TEMP\/iphone-se-boot\.log" 2>&1/);
   assert.match(wait, /xcrun simctl bootstatus "\$IPHONE_375_UDID" -b/);
+  assert.doesNotMatch(source, /simctl erase/);
   assert.match(source, /375-point iPhones are untested/);
   assert.match(stepScript(source, 'Run the UI tests'), /-destination "\$DESTINATION"/);
   assert.match(test, /-only-testing:RecapPageUITests\/PresentationUITests/);
@@ -564,35 +599,43 @@ test('the minimum runtime tests 375-point iPhone SE presentation only when avail
     assert.equal(available.status, 0, available.stderr);
     assert.equal(await readFile(env.GITHUB_OUTPUT, 'utf8'), 'available=true\n');
     assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), 'IPHONE_375_UDID=iOS-18-SE3\nIPHONE_375_AVAILABLE=true\n');
+    const shutDown = await runScript(root, stub + shutdown, { DESTINATION_UDID: 'iOS-18-16e' });
+    assert.equal(shutDown.status, 0, shutDown.stderr);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'), 'simctl shutdown iOS-18-16e\n');
     const booted = await runScript(root, stub + boot, { IPHONE_375_UDID: 'iOS-18-SE3' });
     assert.equal(booted.status, 0, booted.stderr);
-    assert.equal(await readFile(join(root, 'calls'), 'utf8'), 'simctl boot iOS-18-SE3\n');
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'),
+      'simctl shutdown iOS-18-16e\nsimctl boot iOS-18-SE3\n');
     const waited = await runScript(root, stub + wait, { IPHONE_375_UDID: 'iOS-18-SE3' });
     assert.equal(waited.status, 0, waited.stderr);
     assert.equal(await readFile(join(root, 'calls'), 'utf8'),
-      'simctl boot iOS-18-SE3\nsimctl bootstatus iOS-18-SE3 -b\n');
+      'simctl shutdown iOS-18-16e\nsimctl boot iOS-18-SE3\nsimctl bootstatus iOS-18-SE3 -b\n');
 
-    const tested = await runScript(root, `xcodebuild() {
+    for (const [index, message] of minimumInfrastructure.entries()) {
+      await writeFile(join(root, 'test-calls'), '');
+      const tested = await runScript(root, `xcodebuild() {
   printf '%s\\n' "$*" >> "$RUNNER_TEMP/test-calls"
   invocation=$(wc -l < "$RUNNER_TEMP/test-calls" | tr -d ' ')
   case "$invocation" in
-    1) echo '${infrastructure[0]}'; return 65 ;;
+    1) printf '%s\\n' ${JSON.stringify(message)}; return 65 ;;
     2) echo passed; return 0 ;;
     *) return 99 ;;
   esac
 }
 ${test}`, { GITHUB_ENV: env.GITHUB_ENV, IPHONE_375_UDID: 'iOS-18-SE3' });
-    assert.equal(tested.status, 0, tested.stderr + tested.stdout);
-    const calls = (await readFile(join(root, 'test-calls'), 'utf8')).trim().split('\n');
-    assert.equal(calls.length, 2);
-    for (const call of calls) {
-      assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
-      assert.match(call, /-destination platform=iOS Simulator,id=iOS-18-SE3/);
-      assert.doesNotMatch(call, /-only-testing:RecapPageUITests(?:\s|$)/);
+      assert.equal(tested.status, 0, tested.stderr + tested.stdout);
+      const calls = (await readFile(join(root, 'test-calls'), 'utf8')).trim().split('\n');
+      assert.equal(calls.length, 2, `signature ${index + 1} is retried once`);
+      for (const call of calls) {
+        assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
+        assert.match(call, /-destination platform=iOS Simulator,id=iOS-18-SE3/);
+        assert.doesNotMatch(call, /-only-testing:RecapPageUITests(?:\s|$)/);
+      }
+      assert.match(calls[0], /RecapPage-minimum-iphone-se-ui-1\.xcresult/);
+      assert.match(calls[1], /RecapPage-minimum-iphone-se-ui-2\.xcresult/);
+      assert.equal((tested.stdout.match(/::warning::/g) ?? []).length, 1);
+      assert.ok(tested.stdout.includes(`Matched: ${message}`), tested.stdout);
     }
-    assert.match(calls[0], /RecapPage-minimum-iphone-se-ui-1\.xcresult/);
-    assert.match(calls[1], /RecapPage-minimum-iphone-se-ui-2\.xcresult/);
-    assert.equal((tested.stdout.match(/::warning::/g) ?? []).length, 1);
 
     await writeFile(join(root, 'devices.json'), JSON.stringify({
       devices: { 'com.apple.CoreSimulator.SimRuntime.iOS-18-5': [] },
@@ -605,7 +648,7 @@ ${test}`, { GITHUB_ENV: env.GITHUB_ENV, IPHONE_375_UDID: 'iOS-18-SE3' });
     assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), 'IPHONE_375_AVAILABLE=false\n');
     assert.match(unavailable.stdout, /375-point iPhones are untested/);
     assert.equal(await readFile(join(root, 'calls'), 'utf8'),
-      'simctl boot iOS-18-SE3\nsimctl bootstatus iOS-18-SE3 -b\n',
+      'simctl shutdown iOS-18-16e\nsimctl boot iOS-18-SE3\nsimctl bootstatus iOS-18-SE3 -b\n',
       'an unavailable device is not booted');
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -618,7 +661,7 @@ test('the iPhone SE presentation step runs after UI failure unless cancelled and
   const seUI = source.split('      - name: Run presentation UI tests on iPhone SE (3rd generation)\n')[1]
     ?.split('      - name: Summarize the probe results')[0];
   assert.match(source,
-    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}\n {8}timeout-minutes: 45/);
+    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' && steps\.wait-iphone-se\.outcome == 'success' \}\}\n {8}timeout-minutes: 60/);
   assert.ok(mainUI, 'the main iPhone UI step remains required');
   assert.ok(seUI, 'the independent SE step remains present');
   assert.doesNotMatch(mainUI, /continue-on-error/);
@@ -637,25 +680,33 @@ test('presentation probes select the live layout monitor by its accessible label
 });
 
 test('both iPhone jobs retry only recognized UI infrastructure failures once and require a complete passing retry', async (t) => {
-  const scenarios = [
-    { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
-    ...infrastructure.map((message, index) => ({
-      name: `infrastructure ${index + 1} recovers`, logs: [message, 'passed'], codes: [65, 0], calls: 2, exit: 0,
-    })),
-    { name: 'infrastructure twice', logs: [infrastructure[0], infrastructure[0]], codes: [65, 65], calls: 2, exit: 1 },
-    { name: 'retry assertion', logs: [infrastructure[0], assertion], codes: [65, 65], calls: 2, exit: 1 },
-    { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
-    { name: 'mixed failure', logs: [infrastructure[1] + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
-    { name: 'anticipated failures with infrastructure recover',
-      logs: [anticipated + '\n' + infrastructure[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
-    { name: 'anticipated failures with an assertion', logs: [anticipated + '\n' + infrastructure[1] + '\n' + assertion],
-      codes: [65], calls: 1, exit: 1 },
-    { name: 'unrecognized failure', logs: ['Simulator connection lost'], codes: [65], calls: 1, exit: 1 },
-    { name: 'another app fails to terminate', logs: [otherTerminate], codes: [65], calls: 1, exit: 1 },
-    { name: 'termination with an assertion', logs: [terminate + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
-    { name: 'log write failure', logs: [infrastructure[0]], codes: [65], calls: 1, exit: 23, teeFailure: true },
-  ];
   for (const job of jobs.filter(({ name }) => ['newest', 'minimum'].includes(name))) {
+    const recognized = job.name === 'minimum' ? minimumInfrastructure : infrastructure;
+    const scenarios = [
+      { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
+      ...recognized.map((message, index) => ({
+        name: `infrastructure ${index + 1} recovers`, logs: [message, 'passed'], codes: [65, 0], calls: 2, exit: 0,
+      })),
+      { name: 'infrastructure twice', logs: [recognized[0], recognized[0]], codes: [65, 65], calls: 2, exit: 1 },
+      { name: 'retry assertion', logs: [recognized[0], assertion], codes: [65, 65], calls: 2, exit: 1 },
+      ...recognized.map((message, index) => ({
+        name: `infrastructure ${index + 1} with an assertion`,
+        logs: [message + '\n' + assertion], codes: [65], calls: 1, exit: 1,
+      })),
+      { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
+      { name: 'mixed failure', logs: [recognized[1] + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
+      { name: 'anticipated failures with infrastructure recover',
+        logs: [anticipated + '\n' + recognized[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+      { name: 'anticipated failures with an assertion',
+        logs: [anticipated + '\n' + recognized[1] + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
+      { name: 'unrecognized failure', logs: ['Simulator connection lost'], codes: [65], calls: 1, exit: 1 },
+      { name: 'ambiguous app-not-running failure',
+        logs: ['Failed to resolve query: Application io.github.raymondnassar.recappage is not running'],
+        codes: [65], calls: 1, exit: 1 },
+      { name: 'another app fails to terminate', logs: [otherTerminate], codes: [65], calls: 1, exit: 1 },
+      { name: 'termination with an assertion', logs: [terminate + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
+      { name: 'log write failure', logs: [recognized[0]], codes: [65], calls: 1, exit: 23, teeFailure: true },
+    ];
     const script = stepScript(jobSource(job.name), 'Run the UI tests');
     for (const scenario of scenarios) {
       await t.test(`${job.name}: ${scenario.name}`, async () => {
@@ -700,23 +751,31 @@ ${scenario.teeFailure ? 'tee() { command tee "$@"; return 23; }\n' : ''}`;
 });
 
 test('the separate presentation suites retry only the recognized UI infrastructure failures', async (t) => {
-  const scenarios = [
-    { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
-    { name: 'infrastructure recovers', logs: [infrastructure[0], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
-    { name: 'termination failure recovers', logs: [terminate, 'passed'], codes: [65, 0], calls: 2, exit: 0 },
-    { name: 'termination with an assertion', logs: [terminate + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
-    { name: 'another app fails to terminate', logs: [otherTerminate], codes: [65], calls: 1, exit: 1 },
-    { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
-    { name: 'anticipated failures with infrastructure recover',
-      logs: [anticipated + '\n' + infrastructure[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
-    { name: 'anticipated failures with an assertion', logs: [anticipated + '\n' + infrastructure[1] + '\n' + assertion],
-      codes: [65], calls: 1, exit: 1 },
-  ];
   for (const [job, label, bundle, log, destination] of [
     ['ipad', 'Run presentation UI tests on iPad', 'ipad-ui', 'ui-ipad', 'chosen-ipad'],
     ['minimum', 'Run presentation UI tests on the minimum iPhone',
       'minimum-presentation', 'ui-minimum-presentation', 'chosen-device'],
   ]) {
+    const recognized = job === 'minimum' ? minimumInfrastructure : infrastructure;
+    const scenarios = [
+      { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
+      ...recognized.map((message, index) => ({
+        name: `infrastructure ${index + 1} recovers`, logs: [message, 'passed'], codes: [65, 0], calls: 2, exit: 0,
+      })),
+      ...recognized.map((message, index) => ({
+        name: `infrastructure ${index + 1} with an assertion`,
+        logs: [message + '\n' + assertion], codes: [65], calls: 1, exit: 1,
+      })),
+      { name: 'another app fails to terminate', logs: [otherTerminate], codes: [65], calls: 1, exit: 1 },
+      { name: 'ambiguous app-not-running failure',
+        logs: ['Failed to resolve query: Application io.github.raymondnassar.recappage is not running'],
+        codes: [65], calls: 1, exit: 1 },
+      { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
+      { name: 'anticipated failures with infrastructure recover',
+        logs: [anticipated + '\n' + recognized[1], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+      { name: 'anticipated failures with an assertion',
+        logs: [anticipated + '\n' + recognized[1] + '\n' + assertion], codes: [65], calls: 1, exit: 1 },
+    ];
     const script = stepScript(jobSource(job), label);
     for (const scenario of scenarios) {
       await t.test(`${job}: ${scenario.name}`, async () => {
