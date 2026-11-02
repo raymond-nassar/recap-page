@@ -385,6 +385,7 @@ final class PresentationUITests: XCTestCase {
         let dataAuditPosition = null;
         let dataAuditPositioner = null;
         let dataAuditGeometry = null;
+        let dataAuditSynchronize = null;
         \(positionsDataAudit ? Self.dataAuditPositioner : "")
         \(route == "all" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
         const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
@@ -434,8 +435,38 @@ final class PresentationUITests: XCTestCase {
     dataAuditPositioner.setAttribute('aria-label', 'Prepare Data audit');
     dataAuditPositioner.hidden = true;
     dataAuditPositioner.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden;white-space:nowrap';
+    let dataAuditPreviousFocus = null;
+    dataAuditSynchronize = (view, active) => {
+      if (!dataAuditPositioner.isConnected) return;
+      if (view !== 'view-data') {
+        if (!dataAuditPositioner.hidden) dataAuditPositioner.hidden = true;
+        return;
+      }
+      if (active !== dataAuditPositioner) dataAuditPreviousFocus = active;
+      try {
+        const before = dataAuditGeometry();
+        if (!before) throw new Error('Data audit positioning geometry is unavailable');
+        const distance = dataAuditScrollDistance(before.navigation, before.heading, before.button,
+          before.fixed, before.viewportHeight);
+        if (distance > 0) {
+          if (dataAuditPositioner.hidden) dataAuditPositioner.hidden = false;
+        } else {
+          dataAuditPosition = { before, distance, moved: false };
+          dataAuditPositioner.remove();
+        }
+      } catch (error) {
+        dataAuditPosition = { error: String(error) };
+        dataAuditPositioner.remove();
+      }
+    };
+    dataAuditPositioner.addEventListener('pointerdown', () => {
+      if (document.activeElement !== dataAuditPositioner) dataAuditPreviousFocus = document.activeElement;
+    });
     dataAuditPositioner.addEventListener('click', () => {
       try {
+        if (!dataAuditPreviousFocus?.isConnected || typeof dataAuditPreviousFocus.focus !== 'function') {
+          throw new Error('Data audit positioning cannot restore the previous focus');
+        }
         const before = dataAuditGeometry();
         if (!before || document.getElementById('view-data')?.hidden !== false) {
           throw new Error('Data audit positioning geometry is unavailable');
@@ -443,11 +474,19 @@ final class PresentationUITests: XCTestCase {
         const distance = dataAuditScrollDistance(before.navigation, before.heading, before.button,
           before.fixed, before.viewportHeight);
         if (distance) window.scrollBy(0, distance);
+        dataAuditPositioner.remove();
+        if (document.activeElement !== dataAuditPreviousFocus) {
+          if (dataAuditPreviousFocus === document.body) document.activeElement?.blur();
+          else dataAuditPreviousFocus.focus({ preventScroll: true });
+        }
+        if (document.activeElement !== dataAuditPreviousFocus) {
+          throw new Error('Data audit positioning changed focus');
+        }
         dataAuditPosition = { before, distance, moved: distance > 0 };
       } catch (error) {
         dataAuditPosition = { error: String(error) };
+        dataAuditPositioner.remove();
       }
-      dataAuditPositioner.remove();
     });
     document.body.append(dataAuditPositioner);
     """#
@@ -821,9 +860,7 @@ final class PresentationUITests: XCTestCase {
       try {
       const active = document.activeElement;
       const currentView = document.querySelector('.view:not([hidden])')?.id;
-      if (dataAuditPositioner?.isConnected && dataAuditPositioner.hidden !== (currentView !== 'view-data')) {
-        dataAuditPositioner.hidden = currentView !== 'view-data';
-      }
+      dataAuditSynchronize?.(currentView, active);
       const breadcrumbLabel = {
         'view-library': 'Library', 'view-add': 'Search', 'view-data': 'Backup & settings',
       }[currentView];
@@ -1639,6 +1676,7 @@ final class PresentationUITests: XCTestCase {
         let proof = try XCTUnwrap(before["guard"] as? [String: Any])
         XCTAssertEqual(before["view"] as? String, "view-data")
         XCTAssertEqual(proof["valid"] as? Bool, true, "the passive guard is settled before positioning")
+        let beforeFocus = try XCTUnwrap(proof["focus"] as? String, "the focused element is known")
         let webFrame = app.webViews.firstMatch.frame
         var navigationFrame: CGRect?
         if let navigation = proof["navigationOcclusions"] as? [String: Any] {
@@ -1677,6 +1715,28 @@ final class PresentationUITests: XCTestCase {
         }
         let positioner = app.buttons.matching(
             NSPredicate(format: "label == %@", "Prepare Data audit")).firstMatch
+        guard partial else {
+            let position = try XCTUnwrap(before["dataAuditPosition"] as? [String: Any],
+                                         "a clear or fully covered native heading needs no positioner")
+            XCTAssertNil(position["error"], "positioning reports its geometry errors: \(position)")
+            XCTAssertEqual(position["moved"] as? Bool, false, "an unneeded positioner does not scroll")
+            XCTAssertEqual((position["distance"] as? NSNumber)?.doubleValue, 0, "an unneeded positioner has zero distance")
+            XCTAssertFalse(positioner.exists, "an unneeded positioner is removed without a tap")
+            let after = try freshPassiveState(of: app)
+            let afterProof = try XCTUnwrap(after["guard"] as? [String: Any])
+            let afterFocus = try XCTUnwrap(afterProof["focus"] as? String, "the focused element remains known")
+            XCTAssertEqual(after["view"] as? String, before["view"] as? String, "skipping positioning keeps the Data view")
+            XCTAssertEqual(afterProof["valid"] as? Bool, true, "the passive guard remains valid")
+            XCTAssertEqual(afterFocus, beforeFocus, "skipping positioning preserves the focused element")
+            XCTAssertEqual(after["href"] as? String, before["href"] as? String, "skipping positioning does not navigate")
+            try record("t03-data-audit-position", [
+                "present": heading.exists, "partialBefore": partial, "position": position,
+                "nativeCropBefore": NSCoder.string(for: nativeCrop),
+                "beforeRoute": before["href"] ?? NSNull(), "afterRoute": after["href"] ?? NSNull(),
+                "beforeFocus": beforeFocus, "afterFocus": afterFocus,
+            ])
+            return
+        }
         XCTAssertTrue(positioner.waitForExistence(timeout: 30), "the test-only positioning control is available")
         XCTAssertTrue(positioner.isHittable, "the test-only positioning control is reachable")
         positioner.tap()
@@ -1686,10 +1746,12 @@ final class PresentationUITests: XCTestCase {
         XCTAssertEqual(after["href"] as? String, before["href"] as? String, "positioning does not navigate")
         let afterProof = try XCTUnwrap(after["guard"] as? [String: Any])
         XCTAssertEqual(afterProof["valid"] as? Bool, true, "the passive guard remains valid")
+        let afterFocus = try XCTUnwrap(afterProof["focus"] as? String, "the focused element remains known")
+        XCTAssertEqual(afterFocus, beforeFocus, "positioning preserves the focused element")
         let position = try XCTUnwrap(after["dataAuditPosition"] as? [String: Any])
         XCTAssertNil(position["error"], "positioning reports its geometry errors: \(position)")
         let moved = try XCTUnwrap(position["moved"] as? Bool)
-        if partial { XCTAssertTrue(moved, "a partially covered native heading is positioned") }
+        XCTAssertTrue(moved, "a partially covered native heading is positioned")
         if moved {
             let navigationFrame = try XCTUnwrap(navigationFrame)
             let settled = try XCTUnwrap(position["settled"] as? [String: Any])
@@ -1715,6 +1777,7 @@ final class PresentationUITests: XCTestCase {
             "present": heading.exists, "partialBefore": partial, "position": position,
             "nativeCropBefore": NSCoder.string(for: nativeCrop),
             "beforeRoute": before["href"] ?? NSNull(), "afterRoute": after["href"] ?? NSNull(),
+            "beforeFocus": beforeFocus, "afterFocus": afterFocus,
         ])
     }
 

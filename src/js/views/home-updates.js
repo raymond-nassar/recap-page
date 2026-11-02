@@ -5,7 +5,7 @@ const IOS_FEATURE_COPY = new Map([
   ['Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.',
     'Use clearer phone layouts and screen reader labels.'],
 ]);
-const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft)\b/;
+const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/;
 const VIEWING_FAILURES = {
   unreadable: 'browser storage could not be read',
   'locks-unavailable': 'browser storage locking is unavailable',

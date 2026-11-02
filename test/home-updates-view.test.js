@@ -75,12 +75,19 @@ test('iOS projects platform-specific highlights without changing the generated s
     'every real feature needs reviewed iOS copy, not omission');
   assert.match(text, /Move your reading data with one complete backup file/);
   assert.match(text, /Use clearer phone layouts and screen reader labels/);
-  assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft)\b/);
+  assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
 });
 
 test('iOS wiring omits unreviewed proper names but retains ordinary edge and windows prose', () => {
-  const features = ['Aligned along the bottom edge.', 'Read in windows of time.', 'install the app from Edge'];
+  const features = [
+    'Aligned along the bottom edge.',
+    'Read in windows of time.',
+    'install the app from Edge',
+    'Save a copy to Google Drive',
+    'Use Google Play for comics',
+    'Use Google sign-in',
+  ];
   const content = { version: '1.0.0', batch: { ...batch, features, listIds: [] } };
   const ios = harness({ content, isIos: true });
   assert.doesNotThrow(() => ios.view.wire());

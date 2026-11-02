@@ -524,10 +524,34 @@ test('iOS About states private app storage, device backups and what the requests
   const visiblePage = page.replace(/<!--[\s\S]*?-->/g, ' ');
   assert.doesNotMatch(visiblePage, /data-cloud-copy="on"|id="cloud-backup"/);
   const visibleText = prose(visiblePage);
-  const platformNames = /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive)\b/;
+  const platformNames = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/;
   assert.doesNotMatch('the bottom edge and windows of time', platformNames);
   assert.match('install the app from Edge', platformNames);
-  assert.doesNotMatch(visiblePage, platformNames);
+  assert.match('save a copy to Google Drive', platformNames);
+  assert.match('use Google sign-in', platformNames);
+  assert.match('use Microsoft sign-in', platformNames);
+  // The list-feedback dialog names the processor that actually receives a report. Only its two
+  // exact sentences are exempt, each found once inside that dialog, so any other mention still fails.
+  const feedbackProcessor = ['Microsoft Forms opens outside Recap Page.',
+    'Microsoft processes your form visit and submitted report.'];
+  const withoutFeedbackProcessor = (html) => {
+    const dialog = html.match(/<dialog id="list-feedback"[\s\S]*?<\/dialog>/g);
+    assert.equal(dialog?.length, 1, 'the iOS page keeps one list-feedback dialog');
+    let exempt = dialog[0];
+    for (const sentence of feedbackProcessor) {
+      assert.equal(html.split(sentence).length, 2, `the exempt sentence appears once: ${sentence}`);
+      assert.equal(exempt.split(sentence).length, 2, `the exempt sentence is inside the feedback dialog: ${sentence}`);
+      exempt = exempt.replace(sentence, '');
+    }
+    return html.replace(dialog[0], exempt);
+  };
+  assert.match(withoutFeedbackProcessor(visiblePage.replace(feedbackProcessor[1], `${feedbackProcessor[1]} Sign in with Microsoft.`)), platformNames,
+    'another Microsoft mention inside the feedback dialog still fails');
+  assert.match(withoutFeedbackProcessor(visiblePage.replace('<h3>Your data</h3>', '<h3>Your data</h3><p>Microsoft account</p>')), platformNames,
+    'a Microsoft mention outside the feedback dialog still fails');
+  assert.throws(() => withoutFeedbackProcessor(visiblePage.replace(feedbackProcessor[0], `${feedbackProcessor[0]} ${feedbackProcessor[0]}`)),
+    /appears once/);
+  assert.doesNotMatch(withoutFeedbackProcessor(visiblePage), platformNames);
   assert.match(visibleText, /Your lists and progress save automatically in this app/);
   assert.match(visibleText, /This is app storage/);
   assert.doesNotMatch(visibleText, /This is browser storage/);
@@ -1033,12 +1057,16 @@ test('T03 positions a partially covered Data heading before its native audit', (
     presentationTests.indexOf('func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes()'));
   assert.match(presentationTests, /dataAuditPositioner\.setAttribute\('aria-label', 'Prepare Data audit'\)/);
   assert.match(preflight, /navigationFrame\.intersects\(nativeCrop\) && !navigationFrame\.contains\(nativeCrop\)/);
+  assert.match(preflight, /guard partial else \{[\s\S]*?return\s*\}[\s\S]*?positioner\.tap\(\)/);
+  assert.match(preflight, /XCTAssertFalse\(positioner\.exists, "an unneeded positioner is removed without a tap"/);
+  assert.match(preflight, /XCTAssertEqual\(afterFocus, beforeFocus, "skipping positioning preserves the focused element"/);
   assert.match(preflight, /positioner\.tap\(\)/);
   assert.match(preflight, /XCTAssertFalse\(positioner\.exists, "the positioning control is removed before the audit"/);
   assert.match(preflight, /XCTExpectFailure\("Without positioning, the measured heading overlaps navigation"/);
   assert.match(preflight, /XCTAssertEqual\(after\["href"\] as\? String, before\["href"\] as\? String/);
+  assert.match(preflight, /XCTAssertEqual\(afterFocus, beforeFocus, "positioning preserves the focused element"/);
   assert.match(preflight, /XCTAssertNil\(position\["error"\]/);
-  assert.match(preflight, /if partial \{ XCTAssertTrue\(moved/);
+  assert.match(preflight, /XCTAssertTrue\(moved, "a partially covered native heading is positioned"/);
   assert.match(preflight, /XCTAssertLessThanOrEqual\(headingBottom, navigationTop/);
   assert.match(preflight, /XCTAssertGreaterThanOrEqual\(buttonTop, navigationTop/);
   assert.match(preflight, /XCTAssertGreaterThanOrEqual\(titleTop, 0/);
@@ -1050,6 +1078,136 @@ test('T03 positions a partially covered Data heading before its native audit', (
   assert.match(presentationTests, /XCTAssertTrue\(partiallyOverlapsNavigation\(partialCrop/);
   assert.match(presentationTests, /XCTAssertFalse\(partiallyOverlapsNavigation\(fullyCoveredCrop/);
   assert.match(presentationTests, /XCTAssertFalse\(partiallyOverlapsNavigation\(clearCrop/);
+});
+
+function dataAuditPositionerHarness({
+  headingTop = 698, headingBottom = 728, navigationTop = 706, navigationBottom = 797, missingAction = false,
+  focusAfterRemoval = 'body',
+} = {}) {
+  const definition = presentationTests.match(/private static let dataAuditPositioner = #"""([\s\S]*?)"""#/);
+  assert.ok(definition, 'the native test contains the positioning script');
+  const listeners = new Map();
+  const scrolls = [];
+  let focusOptions = null;
+  const rectangle = (value) => ({ toJSON: () => value });
+  const heading = { getBoundingClientRect: () => rectangle({ top: headingTop, bottom: headingBottom }) };
+  const navigation = { getBoundingClientRect: () => rectangle({ top: navigationTop, bottom: navigationBottom }) };
+  const action = {
+    closest: () => ({ querySelector: () => heading }),
+    getBoundingClientRect: () => rectangle({ top: 736, bottom: 784 }),
+  };
+  const title = {
+    isConnected: true,
+    getBoundingClientRect: () => rectangle({ top: 76, bottom: 118 }),
+    focus(options) { focusOptions = options; if (title.isConnected) document.activeElement = title; },
+    blur() { document.activeElement = body; },
+  };
+  const body = { isConnected: true, append(element) { element.isConnected = true; }, focus() {} };
+  const document = {
+    activeElement: title,
+    body,
+    createElement() {
+      return {
+        isConnected: false,
+        style: {},
+        setAttribute() {},
+        addEventListener(type, handler) { listeners.set(type, handler); },
+        remove() {
+          this.isConnected = false;
+          if (document.activeElement === this) document.activeElement = focusAfterRemoval === 'title' ? title : body;
+        },
+      };
+    },
+    querySelector: () => navigation,
+    getElementById(id) {
+      if (id === 'btn-export-json') return missingAction ? null : action;
+      if (id === 'data-h') return title;
+      if (id === 'view-data') return { hidden: false };
+      return null;
+    },
+  };
+  const context = {
+    document,
+    window: { scrollBy: (_x, y) => scrolls.push(y) },
+    getComputedStyle: () => ({ position: 'fixed' }),
+    innerHeight: navigationBottom,
+    scrollY: 0,
+  };
+  runInNewContext(`let dataAuditPosition = null;
+    let dataAuditPositioner = null;
+    let dataAuditGeometry = null;
+    let dataAuditSynchronize = null;
+    ${definition[1]}
+    globalThis.fixture = {
+      control: dataAuditPositioner,
+      synchronize: (view) => dataAuditSynchronize?.(view, document.activeElement),
+      result: () => dataAuditPosition,
+    };`, context);
+  return { ...context.fixture, document, listeners, scrolls, title, focusOptions: () => focusOptions };
+}
+
+test('T03 positioning restores the focused Data element without scrolling it', () => {
+  for (const focusTiming of ['before-pointer', 'after-pointer', 'without-pointer', 'monitor-during-tap']) {
+    const fixture = dataAuditPositionerHarness();
+    fixture.synchronize('view-home');
+    assert.equal(fixture.control.isConnected, true);
+    assert.equal(fixture.control.hidden, true);
+    fixture.synchronize('view-data');
+    assert.equal(fixture.control.hidden, false);
+    if (focusTiming !== 'after-pointer') fixture.document.activeElement = fixture.control;
+    if (focusTiming !== 'without-pointer') fixture.listeners.get('pointerdown')?.();
+    if (focusTiming === 'after-pointer') fixture.document.activeElement = fixture.control;
+    if (focusTiming === 'monitor-during-tap') fixture.synchronize('view-data');
+    fixture.listeners.get('click')();
+    assert.equal(fixture.document.activeElement, fixture.title, 'the original Data focus is restored');
+    assert.equal(fixture.focusOptions()?.preventScroll, true);
+    assert.deepEqual(fixture.scrolls, [26]);
+    assert.equal(fixture.control.isConnected, false);
+    assert.equal(fixture.result()?.error, undefined);
+  }
+});
+
+test('T03 positioning restores body focus even if removing the control focuses the heading', () => {
+  const fixture = dataAuditPositionerHarness({ focusAfterRemoval: 'title' });
+  fixture.document.activeElement = fixture.document.body;
+  fixture.synchronize('view-data');
+  fixture.listeners.get('pointerdown')?.();
+  fixture.document.activeElement = fixture.control;
+  fixture.listeners.get('click')();
+  assert.equal(fixture.document.activeElement, fixture.document.body);
+  assert.equal(fixture.result()?.error, undefined);
+  assert.deepEqual(fixture.scrolls, [26]);
+});
+
+test('T03 refuses to position if the previous focus is no longer connected', () => {
+  const fixture = dataAuditPositionerHarness();
+  fixture.synchronize('view-data');
+  fixture.title.isConnected = false;
+  fixture.document.activeElement = fixture.control;
+  fixture.listeners.get('click')();
+  assert.match(fixture.result()?.error ?? '', /cannot restore the previous focus/);
+  assert.deepEqual(fixture.scrolls, []);
+  assert.equal(fixture.control.isConnected, false);
+});
+
+test('T03 removes the unneeded positioner without a tap or scroll', () => {
+  for (const geometry of [
+    { headingTop: 650, headingBottom: 680 },
+    { headingTop: 719, headingBottom: 749 },
+    { headingTop: 698, headingBottom: 728, navigationTop: 803, navigationBottom: 894 },
+    { headingTop: 698, headingBottom: 728, navigationTop: 590, navigationBottom: 647 },
+  ]) {
+    const fixture = dataAuditPositionerHarness(geometry);
+    fixture.synchronize('view-data');
+    assert.equal(fixture.control.isConnected, false, 'clear or fully covered headings need no control');
+    assert.equal(fixture.document.activeElement, fixture.title);
+    assert.deepEqual(fixture.scrolls, []);
+    assert.equal(fixture.result()?.error, undefined);
+  }
+  const missing = dataAuditPositionerHarness({ missingAction: true });
+  missing.synchronize('view-data');
+  assert.equal(missing.control.isConnected, false);
+  assert.match(missing.result()?.error ?? '', /geometry/i);
 });
 
 test('T03 scrolls the measured Data heading clear without partly exposing the next action', () => {
