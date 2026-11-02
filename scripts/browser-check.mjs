@@ -19761,12 +19761,14 @@ SCENARIOS.push({
 // state outlives the reload a restore ends in.
 const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
 
-function cloudFixtureHost() {
-  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null };
+function cloudFixtureHost(provider = 'onedrive') {
+  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null,
+    waitingForUpload: false, connectFailure: false, chosenProvider: null };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
   const status = () => ({
-    provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
+    provider, state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
     message: null, reason: linked() ? host.reason : null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
+    ...(host.waitingForUpload ? { waitingForUpload: true } : {}),
   });
   const refuse = (code, message) => ({ ok: false, error: { code, message } });
   const guard = (input) => {
@@ -19784,6 +19786,12 @@ function cloudFixtureHost() {
     host.calls.push(operation);
     if (operation === 'status') return { ok: true, status: status() };
     if (operation === 'connect') {
+      host.chosenProvider = input.provider ?? 'onedrive';
+      if (host.connectFailure) return refuse('unavailable', 'iCloud Drive is not available. Turn on iCloud Drive in Settings.');
+      if (provider === 'icloud') {
+        Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: null });
+        return { ok: true, status: status() };
+      }
       if (host.state === 'not-connected' || host.state === 'needs-sign-in') host.state = 'signing-in';
       return { ok: true, status: status() };
     }
@@ -19820,6 +19828,19 @@ function cloudFixtureHost() {
       Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
     },
   };
+}
+
+async function installCloudFixture(page, fixture) {
+  await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
+  await page.evaluateOnNewDocument((prefix) => {
+    const prior = window.fetch;
+    window.fetch = async (input, init = {}) => {
+      const url = new URL(typeof input === 'string' ? input : input?.url ?? String(input), location.href);
+      if (url.origin !== location.origin || !url.pathname.startsWith(prefix)) return prior(input, init);
+      const answer = await window.__mrtCloudHost(url.pathname.slice(prefix.length), init.body ? JSON.parse(init.body) : {});
+      return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
+    };
+  }, CLOUD_PREFIX_PATH);
 }
 
 async function cloudCard(page) {
@@ -19984,16 +20005,7 @@ SCENARIOS.push({
   title: 'cloud backup signs in beside Microsoft\'s logo, shows the account before asking, backs up at once, restores through the complete restore engine, and asks Cancel first before anything without a way back',
   async run(page, t) {
     const fixture = cloudFixtureHost();
-    await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
-    await page.evaluateOnNewDocument((prefix) => {
-      const prior = window.fetch;
-      window.fetch = async (input, init = {}) => {
-        const url = new URL(typeof input === 'string' ? input : input?.url ?? String(input), location.href);
-        if (url.origin !== location.origin || !url.pathname.startsWith(prefix)) return prior(input, init);
-        const answer = await window.__mrtCloudHost(url.pathname.slice(prefix.length), init.body ? JSON.parse(init.body) : {});
-        return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
-      };
-    }, CLOUD_PREFIX_PATH);
+    await installCloudFixture(page, fixture);
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await seedFixtureState(page);
@@ -20272,6 +20284,47 @@ SCENARIOS.push({
     t.check('stopped backups are announced once and the status line wears the warning notice',
       spoken.filter((text) => text.includes(deleted)).length === 1 && warned, JSON.stringify({ spoken, warned }));
     t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-icloud',
+  title: 'the shared card offers only iCloud, reports connection failure, and keeps upload feedback until the next status refresh',
+  async run(page, t) {
+    const fixture = cloudFixtureHost('icloud');
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await installCloudFixture(page, fixture);
+    await seedFixtureState(page);
+    await open(page, '/#/data');
+    await page.waitForSelector('#cloud-backup:not([hidden])');
+    const offered = await page.$eval('#cloud-backup', (card) => ({
+      buttons: [...card.querySelectorAll('#cloud-backup-primary button')].filter((node) => !node.hidden).map((node) => node.textContent.trim()),
+      intro: card.querySelector('#cloud-backup-intro').textContent,
+    }));
+    t.check('an iCloud-only transport has one clearly named action and an iCloud introduction',
+      JSON.stringify(offered.buttons) === JSON.stringify(['Connect iCloud'])
+        && offered.intro === 'Keep a complete backup in your own iCloud, made automatically as you read.', JSON.stringify(offered));
+    await page.focus('#btn-cloud-connect-icloud');
+    fixture.host.connectFailure = true;
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('iCloud could not be connected.'));
+    t.check('a failed connection retains a usable Connect iCloud action and explains what to fix',
+      await page.$eval('#btn-cloud-connect-icloud', (button) => !button.hidden && !button.disabled)
+        && (await cloudCard(page)).report.includes('Turn on iCloud Drive in Settings.'));
+    fixture.host.connectFailure = false;
+    fixture.host.waitingForUpload = true;
+    await click(page, '#btn-cloud-connect-icloud');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('iCloud has not finished uploading'));
+    t.check('connection names iCloud and preserves the pending-upload feedback',
+      fixture.host.chosenProvider === 'icloud' && (await cloudCard(page)).status === 'Connected to iCloud. iCloud has not finished uploading the latest backup yet.');
+    fixture.host.waitingForUpload = false;
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to iCloud.');
+    t.check('a subsequent status refresh withdraws the upload wait, without a polling loop',
+      (await cloudCard(page)).status === 'Connected to iCloud.');
+    t.check('the iCloud card raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
 
@@ -23680,6 +23733,116 @@ async function waitForCacheReport(page, legacy, wait, expected, options, since) 
     throw err;
   }
 }
+
+SCENARIOS.push({
+  id: 'cloud-icloud-prepared',
+  title: 'the prepared iOS page boots with only iCloud and connects through its native adapter',
+  async run(page, t) {
+    const { mkdtemp, readFile, rm, writeFile } = await import('node:fs/promises');
+    const { tmpdir } = await import('node:os');
+    const { extname } = await import('node:path');
+    const { prepareIos } = await import('./prepare-ios.mjs');
+    const scratch = await mkdtemp(join(tmpdir(), 'recap-ios-cloud-browser-'));
+    let server;
+    let listening = false;
+    let actual;
+    try {
+      const featuresPath = join(scratch, 'features.json');
+      await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+      const output = join(scratch, 'web');
+      const prepared = await prepareIos(output, { featuresPath });
+      const allowed = new Set(prepared.manifest.files.map(({ path }) => path));
+      const types = { '.js': 'text/javascript', '.html': 'text/html', '.css': 'text/css',
+        '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
+        '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
+      server = createStaticServer(async (req, res) => {
+        const path = new URL(req.url, `http://${HOST}`).pathname.slice(1) || 'index.html';
+        if (req.method !== 'GET' || !allowed.has(path)) {
+          res.writeHead(404);
+          res.end();
+          return;
+        }
+        const bytes = await readFile(join(output, path));
+        res.writeHead(200, { ...prepared.config.securityHeaders,
+          'content-type': types[extname(path)] ?? 'application/octet-stream' });
+        res.end(bytes);
+      });
+      await new Promise((resolve, reject) => {
+        server.once('error', reject);
+        server.listen(0, HOST, () => {
+          server.off('error', reject);
+          resolve();
+        });
+      });
+      listening = true;
+      const origin = `http://${HOST}:${server.address().port}`;
+      actual = await page.browserContext().newPage();
+      await actual.setViewport({ width: 1280, height: 900 });
+      await actual.setRequestInterception(true);
+      actual.on('request', (request) => {
+        if (new URL(request.url()).origin === origin) void request.continue();
+        else void request.abort();
+      });
+      const errors = [];
+      actual.on('pageerror', (error) => errors.push(error.message));
+      await actual.evaluateOnNewDocument(() => {
+        let connected = false;
+        window.__iosCloudCalls = [];
+        window.webkit = { messageHandlers: { recap: {
+          async postMessage(message) {
+            window.__iosCloudCalls.push(message);
+            if (message.kind !== 'cloud') return { v: 1, kind: 'data-loss-result', status: 'recorded' };
+            if (message.op === 'connect') connected = true;
+            const body = message.op === 'list' ? { ok: true, items: [] } : {
+              ok: true, status: {
+                provider: 'icloud', providers: ['icloud'], state: connected ? 'connected' : 'not-connected',
+                connection: connected ? 'a'.repeat(32) : null, account: null,
+              },
+            };
+            return { v: 1, kind: 'cloud-result', status: 200, body: JSON.stringify(body) };
+          },
+        } } };
+      });
+      await actual.goto(`${origin}/#/data`, { waitUntil: 'load' });
+      const booted = await actual.waitForSelector('#cloud-backup:not([hidden])', { timeout: 10000 })
+        .then(() => true, () => false);
+      const buttons = await actual.$eval('#cloud-backup-primary', (row) => ({
+        visible: [...row.querySelectorAll('button')].filter((node) => !node.hidden).map((node) => node.textContent.trim()),
+        otherProviders: Boolean(row.querySelector('#btn-cloud-sign-in, #btn-cloud-sign-in-google')),
+      }));
+      t.check('the prepared page boots and offers only its iCloud action',
+        booted && !buttons.otherProviders && JSON.stringify(buttons.visible) === JSON.stringify(['Connect iCloud']),
+        JSON.stringify({ booted, buttons, errors }));
+      t.check('the prepared page raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+      if (!booted) return;
+      await actual.focus('#btn-cloud-connect-icloud');
+      await actual.keyboard.press('Enter');
+      const connected = await actual.waitForFunction(
+        () => document.querySelector('#cloud-backup-status').textContent === 'Connected to iCloud.',
+        { timeout: 10000 },
+      ).then(() => true, () => false);
+      const calls = await actual.evaluate(() => window.__iosCloudCalls);
+      const request = calls.find((call) => call.op === 'connect');
+      t.check('keyboard activation connects with the iCloud provider through the installed adapter',
+        connected && request && JSON.stringify(JSON.parse(request.body)) === JSON.stringify({ provider: 'icloud' }),
+        JSON.stringify({ connected, request, errors }));
+      t.check('connection raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+    } finally {
+      try {
+        if (actual) await actual.close();
+      } finally {
+        try {
+          if (listening) {
+            server.closeAllConnections();
+            await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+          }
+        } finally {
+          await rm(scratch, { recursive: true, force: true });
+        }
+      }
+    }
+  },
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

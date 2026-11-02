@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
 import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
-  prepareIos, readIosIdentity,
+  prepareIos, readIosFeatures, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
 import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
@@ -22,6 +22,7 @@ import {
   sealIosArtifact, validateIosLedger, verifyIosUpload,
 } from '../scripts/ios-release.mjs';
 import { artifactRecord, iosBuild } from '../scripts/lib/release-identity.mjs';
+import { createCloudBackupView } from '../src/js/views/cloud.js';
 
 const ROOT = new URL('../', import.meta.url);
 const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
@@ -411,6 +412,91 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   assert.equal(prepared.manifest.build.platform, 'ios');
 });
 
+test('the default iOS build removes the iCloud card and does not install its adapter', async () => {
+  assert.deepEqual(JSON.parse(read('packaging/ios/features.json')), { schemaVersion: 1, iCloudBackup: false });
+  const paths = await filesUnder(output);
+  assert.ok(!paths.some((name) => /^ios\/(?:cloud\.js|icloudTransport\.js)$/.test(name)));
+  assert.ok(!prepared.manifest.files.some(({ path }) => /^ios\/(?:cloud\.js|icloudTransport\.js)$/.test(path)));
+  const entry = await readFile(join(output, 'ios', 'app.js'), 'utf8');
+  assert.doesNotMatch(entry, /import\s+['"]\.\/cloud\.js['"]/);
+  const page = await readFile(join(output, 'index.html'), 'utf8');
+  assert.doesNotMatch(page, /id="cloud-backup"|btn-cloud-sign-in|btn-cloud-connect-icloud|Sign in with (Microsoft|Google)/);
+});
+
+test('an iCloud web preview keeps only its own action, truthful storage copy and an ordered installer', async () => {
+  const featuresPath = join(scratch, 'icloud-on.json');
+  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+  const preview = join(scratch, 'icloud-web');
+  const result = await prepareIos(preview, { featuresPath });
+  const page = await readFile(join(preview, 'index.html'), 'utf8');
+  assert.match(page, /id="cloud-backup" hidden/);
+  assert.match(page, /id="btn-cloud-connect-icloud"[^>]*>Connect iCloud<\/button>/);
+  assert.doesNotMatch(page, /btn-cloud-sign-in|Sign in with (Microsoft|Google)|OneDrive|Google Drive|recycle bin|Windows account/);
+  assert.match(page, /Back up this device automatically/);
+  assert.match(page, /older backups are deleted only after a newer backup has uploaded/);
+  assert.match(page, /only if you turn on cloud backup/);
+  const entry = await readFile(join(preview, 'ios', 'app.js'), 'utf8');
+  assert.equal(entry, `import './cloud.js';\n${read('packaging/ios/web/app.js')}`);
+  for (const name of ['cloud.js', 'icloudTransport.js']) {
+    assert.deepEqual(await readFile(join(preview, 'ios', name)), await readFile(new URL(`packaging/ios/icloud-web/${name}`, ROOT)));
+    assert.ok(result.manifest.files.some((item) => item.path === `ios/${name}`));
+  }
+  for (const asset of result.manifest.files) {
+    assert.equal(asset.sha256, sha256(await readFile(join(preview, asset.path))), asset.path);
+  }
+  assert.equal(read('packaging/ios/RecapPage.xcodeproj/project.pbxproj'), project);
+});
+
+test('the prepared iCloud-only page wires through the main entry and connects without the removed sign-in buttons', async () => {
+  const featuresPath = join(scratch, 'icloud-wiring.json');
+  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+  const preview = join(scratch, 'icloud-wiring-web');
+  await prepareIos(preview, { featuresPath });
+  const page = await readFile(join(preview, 'index.html'), 'utf8');
+  const nodes = new Map([...page.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => [id, {
+    hidden: false, listeners: new Map(),
+    addEventListener(type, action) { this.listeners.set(type, action); },
+  }]));
+  const entry = await readFile(join(preview, 'js', 'main.js'), 'utf8');
+  const mapping = /const cloudBackupView = createCloudBackupView\(\{[\s\S]*?elements: \(\) => \(\{([\s\S]*?)\}\)/.exec(entry)?.[1];
+  assert.ok(mapping, 'exercise the main entry point\'s own element mapping');
+  const elements = () => Object.fromEntries([...mapping.matchAll(/(\w+): \$\('#([^']+)'\)/g)]
+    .map(([, key, id]) => [key, nodes.get(id) ?? null]));
+  assert.equal(elements().signIn, null);
+  assert.equal(elements().signInGoogle, null);
+  assert.ok(elements().connectICloud);
+  const connected = [];
+  const view = createCloudBackupView({
+    elements, getModel: () => ({ shown: false }),
+    onConnect: async (provider) => { connected.push(provider); },
+  });
+  view.wire();
+  elements().connectICloud.listeners.get('click')();
+  await Promise.resolve();
+  assert.deepEqual(connected, ['icloud']);
+});
+
+test('iOS feature configuration fails closed and preview overrides cannot enter a reserved release', async () => {
+  const featuresPath = join(scratch, 'invalid-features.json');
+  for (const invalid of [null, [], {}, { schemaVersion: 2, iCloudBackup: false },
+    { schemaVersion: 1, iCloudBackup: 'true' }, { schemaVersion: 1, iCloudBackup: false, extra: true }]) {
+    await writeFile(featuresPath, JSON.stringify(invalid));
+    await assert.rejects(readIosFeatures(featuresPath), /unexpected fields/);
+  }
+  await writeFile(featuresPath, '{');
+  await assert.rejects(readIosFeatures(featuresPath), SyntaxError);
+  await assert.rejects(readIosFeatures(join(scratch, 'absent-features.json')), { code: 'ENOENT' });
+  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+  const previous = process.env.RECAP_IOS_BUILD_NUMBER;
+  try {
+    process.env.RECAP_IOS_BUILD_NUMBER = '6';
+    await assert.rejects(prepareIos(join(scratch, 'release-preview'), { featuresPath }), /cannot be used for a reserved release/);
+  } finally {
+    if (previous === undefined) delete process.env.RECAP_IOS_BUILD_NUMBER;
+    else process.env.RECAP_IOS_BUILD_NUMBER = previous;
+  }
+});
+
 test('the generated Read launcher stylesheet is linked, hashed and served by the iOS app', async () => {
   const launcher = await readFile(join(output, 'open.html'), 'utf8');
   const sharedLink = launcher.indexOf('<link rel="stylesheet" href="./open.css" />');
@@ -767,6 +853,56 @@ test('Debug-only test surfaces and methods called by name cannot reach a Release
   assert.equal(release.length, 4);
   for (const { settings } of release) assert.doesNotMatch(settings, /\bDEBUG\b/, 'Release defines no DEBUG condition');
   assert.ok(debug.some(({ settings }) => setting(settings, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS') === 'DEBUG $(inherited)'));
+});
+
+// iCloud backup ships switched off until the owner's signed-in test on a real device, and a Release build
+// cut meanwhile must carry none of it. Release defines neither DEBUG, which the test above holds, nor
+// RECAP_ICLOUD, which no build setting defines yet, so code held to those conditions compiles out of it.
+const ICLOUD_CONDITIONS = new Set(['#if DEBUG', '#if RECAP_ICLOUD', '#if RECAP_ICLOUD || DEBUG']);
+const ICLOUD_USE = /\bICloud[A-Z]\w*|\biCloudFake\w*|\.cloud\b|\b(?:var|let) cloud\b|"cloud"|\bcloud\.handle\b/;
+
+function iCloudLines(text) {
+  const lines = text.split(/\r?\n/);
+  const inside = new Set();
+  const stack = [];
+  lines.forEach((line, index) => {
+    const directive = line.trim();
+    if (/^#if\b/.test(directive)) stack.push(ICLOUD_CONDITIONS.has(directive));
+    else if (/^#else\b/.test(directive) && stack.length) stack[stack.length - 1] = false;
+    else if (/^#endif\b/.test(directive)) stack.pop();
+    else if (stack.includes(true)) inside.add(index);
+  });
+  return { lines, inside };
+}
+
+test('a Release build without the iCloud switch compiles none of the iCloud backup code', () => {
+  const files = appSwift().filter(({ name }) => name.startsWith('ICloud'));
+  assert.deepEqual(files.map(({ name }) => name).sort(), ['ICloudBackupHandler', 'ICloudDocumentStore', 'ICloudFakeStore']);
+  for (const { name, text } of files) {
+    const lines = text.trim().split(/\r?\n/);
+    const opening = name === 'ICloudFakeStore' ? '#if DEBUG' : '#if RECAP_ICLOUD || DEBUG';
+    assert.equal(lines[0], opening, `${name}.swift opens inside its condition`);
+    assert.equal(lines.at(-1), '#endif', `${name}.swift closes its condition last`);
+    assert.equal(lines.filter((line) => /^\s*#endif\b/.test(line)).length, 1, `${name}.swift is one block`);
+  }
+  let uses = 0;
+  const outside = [];
+  for (const { name, text } of appSwift().filter(({ name: file }) => !file.startsWith('ICloud'))) {
+    const { lines, inside } = iCloudLines(text);
+    lines.forEach((line, index) => {
+      if (!ICLOUD_USE.test(line)) return;
+      uses += 1;
+      if (!inside.has(index)) outside.push(`${name}.swift line ${index + 1} reaches iCloud backup outside its conditions`);
+    });
+  }
+  assert.deepEqual(outside, []);
+  assert.ok(uses >= 6, `found ${uses} uses of iCloud backup outside its own files, so this would barely check`);
+  assert.doesNotMatch(project, /RECAP_ICLOUD/, 'no build setting defines the switch yet');
+  assert.doesNotMatch(project, /CODE_SIGN_ENTITLEMENTS/, 'no build carries the iCloud entitlement yet');
+  assert.doesNotMatch(read('packaging/ios/RecapPage-Info.plist'), /NSUbiquitousContainers/, 'nor shows the folder yet');
+  const store = appSource('ICloudDocumentStore');
+  const identity = JSON.parse(read('packaging/ios/identity.json'));
+  assert.ok(store.includes(`static let containerIdentifier = "${identity.iCloudContainer}"`), 'the store names the app\'s own container');
 });
 
 test('the Swift code reaches WebKit only through methods iOS 18 has', async () => {
