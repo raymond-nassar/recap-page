@@ -371,7 +371,7 @@ test('issue focus repaints dynamic breadcrumbs only after context validation', (
   const main = read('src/js/main.js');
   const construction = main.slice(main.indexOf('const issueView = createIssueView'), main.indexOf('const progressView'));
   assert.match(construction, /result\.contextStatus === 'valid' && result\.context\?\.kind === 'order'/);
-  assert.match(construction, /catalogListShelf\(catalog\?\.lists, result\.context\.id\)/);
+  assert.match(construction, /catalogListBrowseRoute\(catalog\?\.lists, result\.context\.id\)/);
   assert.match(construction, /renderBreadcrumbs,/);
   const issueView = read('src/js/views/issue.js');
   assert.ok((issueView.match(/renderBreadcrumbs\(\)/g) ?? []).length >= 2);

@@ -27,7 +27,7 @@ test('four independently registered events extend the library without becoming M
   const otherAdditions = registeredYoungReaderContracts.length + registeredCuratedGuides.length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
     [220 + laterMcu + otherAdditions, 297 + laterMcu + otherAdditions, 298 + laterMcu + otherAdditions]);
-  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 65 + laterMcu]);
+  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 46]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
   const doomIndex = catalog.lists.findIndex((entry) => entry.id === 'one-world-under-doom');

@@ -13,7 +13,9 @@ const eligibleEvents = [
   'house-of-m', 'house-of-m-essential', 'civil-war', 'civil-war-essential', 'civil-war-avengers',
   'secret-invasion', 'secret-invasion-essential',
 ];
-const expectedLines = new Set([...retainedLines, ...eligibleEvents].map((id) => `list:${id}`));
+// #1066: the Doomsday fast track is an MCU Prep list, so it is fetched but not expected on Storylines.
+const expectedLines = new Set([...retainedLines, ...eligibleEvents]
+  .filter((id) => id !== movieId).map((id) => `list:${id}`));
 const wanted = new Set([
   ...retainedLines, ...eligibleEvents, 'xmen-claremont', 'xmen-claremont-complete',
 ]);

@@ -745,7 +745,7 @@ to add comics remain separate addressable screens, while the Search address, `#/
 Evidence: `src/index.html:62-97`, `src/js/lib/route.js:22-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
-Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:89-167`,
+Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:89-178`,
 `src/js/main.js:1612-1655`, `test/ux-completion.test.js:87-98`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.

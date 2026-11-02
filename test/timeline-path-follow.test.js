@@ -281,6 +281,23 @@ test('UX10 U03: duplicate exact and catalog sibling A-E transitions keep the cou
   remove('ux10-hickman-full'); remove('ux10-hickman-doomsday'); await measure('hickman-minimal', 7);
 });
 
+test('a completed Doomsday companion counts as the eighth Modern Avengers stop', () => {
+  const h = harness('modern-avengers');
+  const stops = pathOf('modern-avengers').stops;
+  assert.equal(stops[7].stepId, 'hickman-minimal');
+  h.own({ stepId: 'avengers-doomsday-secret-wars' }, 'saved-doomsday', true);
+  const before = JSON.stringify(h.state());
+  const options = { isCompleted: (_state, id) => h.completed.has(id) };
+
+  const position = followedPathPosition(h.state(), stops, options);
+  assert.equal(position.completed, 1, 'the completed companion counts on the full path');
+  assert.equal(position.total, 10);
+  assert.deepEqual(followedPathPosition(h.state(), [stops[7]], options), {
+    kind: 'complete', completed: 1, total: 1,
+  }, 'the counted stop is the Hickman stop');
+  assert.equal(JSON.stringify(h.state()), before, 'checking progress does not change saved data');
+});
+
 // A save in another tab repaints the place without redrawing a stop, so when it counts a stop by
 // another of its readings, the stop keeps its drawn card and You are here stays on it, named as the
 // card is, rather than reading as a stop a search has hidden.
