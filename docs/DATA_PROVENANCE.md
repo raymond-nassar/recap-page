@@ -1100,10 +1100,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:9306-9357`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:10708-10759`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:13519-13656`.
+`src/data/catalog.json:14921-15058`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves

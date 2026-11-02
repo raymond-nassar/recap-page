@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { digestCanonicalJson } from '../scripts/lib/cbh-inventory.mjs';
+import { digestCanonicalJson, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import {
@@ -86,7 +86,7 @@ test('MCU description history inverts only exact current copy and preserves ever
     const payloadText = beforeMcuEditorialPayloadText(edit.file, await text(`src/data/${edit.file}`));
     const originalEntry = historicalMcuDescriptionEntry(entry);
     assert.notEqual(originalEntry, entry);
-    assert.deepEqual(originalEntry, { ...entry, description: edit.before });
+    assert.deepEqual(originalEntry, { ...withoutDiscoveryTags(entry), description: edit.before });
     assert.equal(entry.description, edit.after);
     assert.equal(digestCanonicalJson(originalEntry), edit.manifestSha256, edit.id);
     assert.equal(card.description, edit.before, edit.id);
@@ -128,7 +128,7 @@ test('MCU description history inverts only exact current copy and preserves ever
   assert.deepEqual(reconstructed.paths, manifest.paths);
   assert.ok(reconstructed.lists.some((row) => row.id === 'avengers-doomsday-secret-wars'));
   for (const entry of manifest.lists.filter((row) => !expectedIds.includes(row.id))) {
-    assert.deepEqual(historicalMcuDescriptionEntry(entry), beforeMcuEditorialEntry(entry),
+    assert.deepEqual(historicalMcuDescriptionEntry(entry), withoutDiscoveryTags(beforeMcuEditorialEntry(entry)),
       `${entry.id}: only its recorded later copy can differ`);
   }
   assert.equal((await json('src/data/hickman_minimal.json')).count, 69);
