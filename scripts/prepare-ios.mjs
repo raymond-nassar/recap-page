@@ -23,8 +23,9 @@ const MARKER = '.recap-ios-assets';
 const MARKER_CONTENT = 'Recap Page generated iOS assets v1\n';
 // The five files the Android app leaves out, for the same reasons: the fault harness is a developer
 // tool, and the app bundle already holds the offline shell, so neither the service worker nor the
-// entry that registers it belongs in it.
-export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js']);
+// entry that registers it belongs in it. iOS also leaves out Google's sign-in logo, because Google Drive
+// is offered on Windows and Android only and App Review rejects another platform's names and marks.
+export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js', 'brands/g-logo.png']);
 export const IOS_ASSET_DIR = join(ROOT, 'packaging', 'ios', 'build', 'generated', 'web');
 export const IOS_ICON_PATH = join(ROOT, 'packaging', 'ios', 'RecapPage', 'Assets.xcassets', 'AppIcon.appiconset', 'AppIcon.png');
 export const IOS_ICON_SIZE = 1024;

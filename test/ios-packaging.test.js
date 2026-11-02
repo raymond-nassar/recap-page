@@ -346,11 +346,11 @@ after(async () => {
   if (scratch) await rm(scratch, { recursive: true, force: true });
 });
 
-test('iOS preparation leaves out the same five files as the Android app and copies the rest exactly', async () => {
+test('iOS preparation leaves out the Android app\'s five files and Google\'s logo, and copies the rest exactly', async () => {
   const android = /const EXCLUDED = new Set\(\[([^\]]+)\]\)/.exec(read('scripts/prepare-android.mjs'))?.[1];
   assert.ok(android, 'the Android exclusions are still a literal set');
-  assert.deepEqual([...EXCLUDED].sort(), [...android.matchAll(/'([^']+)'/g)].map((match) => match[1]).sort());
-  assert.equal(EXCLUDED.length, 5);
+  assert.deepEqual([...EXCLUDED].sort(), [...android.matchAll(/'([^']+)'/g)].map((match) => match[1]).concat('brands/g-logo.png').sort());
+  assert.equal(EXCLUDED.length, 6);
   const shared = await filesUnder(path('src'));
   const generated = new Set(await filesUnder(output));
   for (const path of shared) {
@@ -368,6 +368,32 @@ test('iOS preparation leaves out the same five files as the Android app and copi
   for (const name of await readdir(new URL('packaging/ios/web', ROOT))) {
     assert.deepEqual(await readFile(join(output, 'ios', name)), await readFile(new URL(`packaging/ios/web/${name}`, ROOT)), name);
   }
+});
+
+// The element whose opening tag carries the id, through its matching close, by counting nested tags.
+function elementById(html, id) {
+  const open = new RegExp(`<(\\w+)\\b[^>]*\\bid="${id}"`).exec(html);
+  assert.ok(open, `#${id} is in the page`);
+  const tags = new RegExp(`<(/?)${open[1]}\\b[^>]*>`, 'g');
+  tags.lastIndex = open.index;
+  let depth = 0;
+  for (let tag; (tag = tags.exec(html));) {
+    depth += tag[1] ? -1 : 1;
+    if (depth === 0) return [open.index, tags.lastIndex];
+  }
+  assert.fail(`#${id} is closed`);
+}
+
+test('the iOS page names Google only inside the cloud backup card, which offers it only on Windows and Android', async () => {
+  const google = /\bGoogle(?: Drive)?\b/;
+  assert.match('Sign in with Google', google);
+  const page = (await readFile(join(output, 'index.html'), 'utf8')).replace(/<!--[\s\S]*?-->/g, ' ');
+  const [start, end] = elementById(page, 'cloud-backup');
+  for (const { index } of page.matchAll(new RegExp(google.source, 'g'))) {
+    assert.ok(index > start && index < end, `"Google" at offset ${index} is outside the cloud backup card`);
+  }
+  assert.doesNotMatch(page.slice(0, start) + page.slice(end), /g-logo\.png/);
+  assert.doesNotMatch(await readFile(join(output, 'open.html'), 'utf8'), google);
 });
 
 test('the iOS manifest lists every bundled file once with its exact digest', async () => {
