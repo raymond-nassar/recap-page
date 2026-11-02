@@ -95,7 +95,7 @@ test('the seed is the fictional Play listing state with covers off and no notes'
   assert.deepEqual(home.settings, { covers: false, theme: 'dark', filter: 'all' });
   const list = evaluate(SCREENS[2]);
   assert.equal(list.settings.theme, 'dark');
-  assert.equal(list.settings.hideDescriptions, false);
+  assert.deepEqual(list.settings, { covers: false, theme: 'dark', filter: 'all' }, '#1061: no hiding choice to seed');
   assert.equal(evaluate(SCREENS[5]).settings.theme, 'light');
   assert.ok(Object.keys(list.state.issues).length > 0);
   assert.ok(Object.keys(list.state.issues).every((id) => Number(id) < 0), 'every issue is fictional');

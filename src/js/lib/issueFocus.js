@@ -7,21 +7,51 @@ function issueDate(value) {
   return value ? String(value).slice(0, 10) : '';
 }
 
+// #1061: creators are credited by the role the metadata records. Across the bundled orders the
+// roles are writer, penciler, cover artist, penciler (cover), colorist, inker, editor and letterer.
+// The owner chose on 2026-11-02 to credit only the story's makers, so cover, editor and any other
+// recorded role are left out, while a creator recorded with no role stays in the byline as before.
+const STORY_ROLES = [
+  ['writer', 'Writer'],
+  ['artist', 'Artist'],
+  ['penciler', 'Penciler'],
+  ['penciller', 'Penciler'],
+  ['inker', 'Inker'],
+  ['colorist', 'Colorist'],
+  ['letterer', 'Letterer'],
+];
+const ROLE_ORDER = [...new Set(STORY_ROLES.map(([, label]) => label))];
+
 function credits(issue) {
-  return (issue?.creators ?? [])
-    .filter((creator) => {
-      const role = String(creator.role || '');
-      return !/cover/i.test(role) && /writer|pencill?er|artist|inker/i.test(role);
-    })
-    .slice(0, 3)
-    .map((creator) => creator.name);
+  const roles = new Map();
+  const unroled = [];
+  for (const creator of issue?.creators ?? []) {
+    const name = String(creator?.name ?? '').trim();
+    if (!name) continue;
+    const role = String(creator.role ?? '').trim();
+    if (!role) {
+      unroled.push(name);
+      continue;
+    }
+    const label = STORY_ROLES.find(([key]) => key === role.toLowerCase())?.[1];
+    if (!label) continue;
+    const names = roles.get(label) ?? [];
+    if (!names.includes(name)) names.push(name);
+    roles.set(label, names);
+  }
+  const byRole = [...roles].sort(([a], [b]) => ROLE_ORDER.indexOf(a) - ROLE_ORDER.indexOf(b))
+    .map(([key, names]) => ({ key, value: names.join(', '), className: '' }));
+  return { byRole, unroled: unroled.slice(0, 3) };
 }
 
-export function issuePresentation(issue, {
-  override = null, position = null, total = null, description = '',
-} = {}) {
+// #1061: no fact gives the comic's place in its list, here or on the card. The owner chose on
+// 2026-11-02 to drop it, as the list's progress already says how far the reader has come.
+export function issuePresentation(issue, { override = null, description = '' } = {}) {
   if (!issue) return null;
   const state = availability(issue, { override });
+  const { byRole, unroled } = credits(issue);
+  // detailsOnly facts appear in Issue details and not on the reading card (#1061): the record is
+  // reference, not a next step.
   const facts = [{
     key: RECORD_HEADING,
     hint: RECORD_NOTE,
@@ -29,18 +59,15 @@ export function issuePresentation(issue, {
     className: state.state === STATE.EXPECTED || state.state === STATE.OVERRIDE_AVAILABLE
       ? 'ok'
       : state.state === STATE.SCHEDULED ? 'warn' : '',
-  }];
+    detailsOnly: true,
+  }, ...byRole];
   if (issue.pageCount) facts.push({ key: 'Pages', value: String(issue.pageCount), className: '' });
   if (issueDate(issue.onSale)) facts.push({ key: 'Released', value: issueDate(issue.onSale), className: '' });
-  if (Number.isInteger(position) && Number.isInteger(total) && total > 0) {
-    facts.push({ key: 'Position', value: `${position} of ${total}`, className: '' });
-  }
-  const names = credits(issue);
   return {
     title: issue.title,
     seriesName: issue.seriesName ?? '',
     number: issue.number ? `#${issue.number}` : '',
-    byline: [issue.seriesName, names.join(' & ') || null].filter(Boolean).join(' · '),
+    byline: [issue.seriesName, unroled.join(' & ') || null].filter(Boolean).join(' · '),
     description,
     facts,
     detailUrl: detailUrl(issue),

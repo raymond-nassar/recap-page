@@ -1462,19 +1462,10 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'synopsis-disclosure-default-open-447',
+    id: 'synopsis-hero-held-back-1061',
     breaks: 'synopsis-disclosure-447',
-    why: 'bulk-fetched prose is exposed without an exact-issue reveal',
-    rewriteMain: (source) => source.replaceAll(
-      '  synopsisDisclosure,',
-      '  synopsisDisclosure: { ...synopsisDisclosure, isRevealed: () => true },',
-    ),
-  },
-  {
-    id: 'synopsis-disclosure-source-choice-retained-447',
-    breaks: 'synopsis-disclosure-447',
-    why: 'a source save incorrectly retains the old exact-issue reveal choices',
-    rewriteMain: (source) => source.replace('    synopsisDisclosure.clear();', ''),
+    why: 'the reading card holds a loaded summary back again, which #1061 removed',
+    rewriteReading: (source) => source.replace("$('#hero-desc').hidden = false;", "$('#hero-desc').hidden = true;"),
   },
   {
     id: 'synopsis-consent-decline-off',
@@ -2376,20 +2367,14 @@ const SCENARIOS = [
   },
   {
     id: 'reorientation-445',
-    title: '445 earlier-issue review and optional description hiding preserve identity and saved data',
+    title: '445 earlier-issue review and loaded summaries preserve identity and saved data',
     async run(page, t) {
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
       await page.evaluateOnNewDocument(() => {
         const original = window.fetch;
-        window.__review445 = { requests: [], opens: [], fault: null };
+        window.__review445 = { requests: [], opens: [] };
         window.open = (...args) => { window.__review445.opens.push(args); return {}; };
-        const write = Storage.prototype.setItem;
-        Storage.prototype.setItem = function (key, value) {
-          if (key === 'mrt.settings' && window.__review445.fault === 'throw') throw new DOMException('Synthetic quota', 'QuotaExceededError');
-          if (key === 'mrt.settings' && window.__review445.fault === 'ignore') return;
-          return write.call(this, key, value);
-        };
         window.fetch = (input, init) => {
           const url = new URL(typeof input === 'string' ? input : input.url, location.href);
           if (url.origin === location.origin) return original(input, init);
@@ -2419,13 +2404,6 @@ const SCENARIOS = [
       };
       const reading = () => go(`#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
       const settings = () => go('#/data', '#view-data:not([hidden])');
-      const setMode = async (value) => {
-        await page.$eval('#opt-description-hiding', (node, checked) => {
-          node.checked = checked;
-          node.dispatchEvent(new Event('change', { bubbles: true }));
-        }, value);
-        await frames();
-      };
       const candidate = () => page.$eval('#review-candidate a', (node) => Number(node.dataset.issueId));
       const inspect = async () => {
         await page.focus('#review-candidate a');
@@ -2458,34 +2436,21 @@ const SCENARIOS = [
           && box.top >= 0 && box.bottom <= innerHeight;
       }, ids[1]));
       await inspect();
-      t.check('same issue retains its explicit reveal without another request', await page.$eval('#issue-focus-desc',
-        (node) => !node.hidden && node.textContent.startsWith('Synthetic narrative 445')));
-      await click(page, '#btn-issue-description');
-      await settings();
-      await setMode(false);
-      const requests = await page.evaluate(() => window.__review445.requests.length);
-      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      t.check('OFF shows held Details prose without disclosure controls', await page.evaluate(() => (
-        !document.querySelector('#issue-focus-desc').hidden && document.querySelector('#btn-issue-description').hidden
-      )));
-      await settings();
-      await setMode(true);
-      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      t.check('OFF to ON clears old choices and collapses held text', await page.$eval('#issue-focus-desc',
-        (node) => node.hidden && node.textContent === ''));
-      await click(page, '#btn-issue-description');
-      await settings();
-      await setMode(true);
-      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      t.check('an unchanged setting preserves deliberate individual choices', await page.$eval('#issue-focus-desc', (node) => !node.hidden));
+      t.check('#1061 the same issue shows its loaded summary in full, with no reveal control, without another request',
+        await page.evaluate(() => {
+          const desc = document.querySelector('#issue-focus-desc');
+          return !desc.hidden && desc.textContent.startsWith('Synthetic narrative 445')
+            && !document.querySelector('#btn-issue-description') && window.__review445.requests.length === 1;
+        }));
       await go(`#/issue/${ids[2]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
       await fetchOne();
-      await settings();
-      await setMode(false);
       await reading();
-      t.check('Reading uses the same OFF policy for the current next issue', await page.evaluate(() => (
-        !document.querySelector('#hero-desc').hidden && document.querySelector('#btn-hero-description').hidden
-      )));
+      t.check('#1061 Reading shows the loaded summary of the current next issue in full, with no reveal control',
+        await page.evaluate((id) => {
+          const desc = document.querySelector('#hero-desc');
+          return !desc.hidden && desc.textContent === `Synthetic narrative 445 for ${id}.`
+            && !document.querySelector('#btn-hero-description');
+        }, ids[2]));
       t.check('only deliberately requested exact IDs used no-store', await page.evaluate((expected) => (
         window.__review445.requests.length === 2
         && window.__review445.requests.every((r, i) => r.id === expected[i] && r.cache === 'no-store')
@@ -2493,31 +2458,45 @@ const SCENARIOS = [
       t.check('picker, Details, fetching and settings preserve saved progress and notes bytes',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
       await settings();
-      for (const fault of ['throw', 'ignore']) {
-        await page.evaluate((mode) => { window.__review445.fault = mode; }, fault);
-        await setMode(true);
-        t.check(`${fault} settings write reports tab-only failure without fetching or false saved feedback`,
-          await page.$eval('#description-hiding-report', (node) => /could not be saved.*reload/.test(node.textContent))
-          && await page.evaluate((count) => window.__review445.requests.length === count + 1, requests));
-        await page.evaluate(() => { window.__review445.fault = null; });
-        await setMode(false);
-      }
-      await page.reload({ waitUntil: 'networkidle0' });
-      await page.waitForSelector('#view-data:not([hidden])');
-      t.check('OFF persists but synopsis text and individual choices do not survive reload',
-        await page.$eval('#opt-description-hiding', (node) => !node.checked)
-        && await page.evaluate(() => !localStorage.getItem('mrt.settings').includes('Synthetic narrative')));
-      for (const raw of [undefined, 'false', 0, null]) {
+      t.check('#1061 Settings no longer offers to hide story summaries, nor lists that choice among those a backup holds',
+        await page.evaluate(() => !document.querySelector('#opt-description-hiding')
+          && !/Hide story summaries/.test(document.querySelector('#view-data').textContent)
+          && !/story summary/i.test(document.querySelector('#complete-backup-contents').textContent)));
+      // #1061: a hiding choice saved by an earlier version is ignored rather than refused, and the
+      // reader's other settings come through untouched.
+      for (const raw of [true, false, 'false', 0, null]) {
         await page.evaluate((value) => {
-          const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
-          if (value === undefined) delete prefs.hideDescriptions;
-          else prefs.hideDescriptions = value;
+          const prefs = JSON.parse(localStorage.getItem('mrt.settings') ?? '{}');
+          prefs.hideDescriptions = value;
+          prefs.theme = 'light';
           localStorage.setItem('mrt.settings', JSON.stringify(prefs));
         }, raw);
         await page.reload({ waitUntil: 'networkidle0' });
         await page.waitForSelector('#view-data:not([hidden])');
-        t.check(`missing/invalid preference ${String(raw)} defaults ON`, await page.$eval('#opt-description-hiding', (node) => node.checked));
+        t.check(`#1061 an old saved hiding choice ${JSON.stringify(raw)} is ignored without an error`, errors.length === 0
+          && await page.evaluate((before) => document.documentElement.dataset.theme === 'light'
+            && localStorage.getItem('mrt.state.v2') === before
+            && !localStorage.getItem('mrt.settings').includes('Synthetic narrative'), saved));
       }
+      // #1061: a restored backup leaves false stored, and the next settings save must keep it, or the
+      // backups made afterwards would say true and an older build restoring one would hide summaries.
+      await page.evaluate(() => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        prefs.hideDescriptions = false;
+        localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+      });
+      await page.reload({ waitUntil: 'networkidle0' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.$eval('#opt-covers', (node) => node.click());
+      await page.$eval('#opt-covers', (node) => node.click());
+      t.check('#1061 a settings save stores the hiding choice as false, which is what this version shows',
+        await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).hideDescriptions === false));
+      await page.evaluate(() => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        delete prefs.theme;
+        localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+      });
+      await page.reload({ waitUntil: 'networkidle0' });
       await reading();
       await click(page, '#btn-review-earlier');
       for (const theme of ['dark', 'light']) {
@@ -9490,7 +9469,7 @@ const SCENARIOS = [
   },
   {
     id: 'synopsis-disclosure-447',
-    title: '447 exact-issue disclosure preserves consent, focus and tab-only privacy',
+    title: '447 and #1061 loaded summaries show in full and keep consent, focus and tab-only privacy',
     async run(page, t) {
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
@@ -9545,7 +9524,6 @@ const SCENARIOS = [
         } else await page.waitForSelector('#view-read:not([hidden])');
       };
       const inspect = (id) => navigate(`#/issue/${id}?list=${encodeURIComponent(listId)}`);
-      const hidden = (selector) => page.$eval(selector, (node) => node.hidden && node.textContent === '');
       const fetchBulk = async () => {
         await click(page, '#btn-synopsis');
         await page.waitForSelector('#ask[open]');
@@ -9559,46 +9537,30 @@ const SCENARIOS = [
         await page.evaluate((before) => window.__disclosure447.opens.length === 1
           && window.__disclosure447.requests.length === 0
           && localStorage.getItem('mrt.state.v2') === before, saved));
+      const shown = (selector, id) => page.$eval(selector, (node, want) => (
+        !node.hidden && node.textContent === `Synthetic plot 447 for ${want}.`
+      ), id);
+      const unloaded = (selector) => page.$eval(selector, (node) => !node.textContent.includes('Synthetic plot 447'));
+      t.check('#1061 the hero has no summary before one is loaded', await unloaded('#hero-desc'));
       await fetchBulk();
-      t.check('bulk prose starts empty and hidden in the hero', await hidden('#hero-desc'));
-      await page.focus('#btn-hero-description');
-      await page.keyboard.press('Enter');
-      t.check('native Enter reveals exactly one plot with an expanded, named and visibly focused button',
-        await page.evaluate(() => {
-          const button = document.querySelector('#btn-hero-description');
-          const style = getComputedStyle(button);
-          const rect = button.getBoundingClientRect();
-          return document.querySelector('#hero-desc').textContent.startsWith('Synthetic plot 447')
-            && button.getAttribute('aria-expanded') === 'true'
-            && button.getAttribute('aria-controls') === 'hero-desc'
-            && button.getAttribute('aria-label').includes('Hide story summary')
-            && button === document.activeElement && rect.width > 0 && rect.height > 0
-            && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0
-            && window.__disclosure447.opens.length === 1;
-        }));
-      await page.keyboard.press('Space');
-      t.check('native Space hides plot without moving focus',
-        await hidden('#hero-desc') && await page.$eval('#btn-hero-description',
-          (node) => node === document.activeElement && node.getAttribute('aria-expanded') === 'false'));
-      await page.keyboard.press('Enter');
+      t.check('#1061 a fetched summary shows in full in the hero at once, with no reveal control',
+        await shown('#hero-desc', first)
+        && await page.evaluate(() => !document.querySelector('#btn-hero-description')
+          && !/Show story summary|Hide story summary|spoiler/i.test(document.querySelector('#hero').textContent)
+          && window.__disclosure447.opens.length === 1));
       await inspect(first);
-      t.check('Issue Details shares only the exact revealed issue',
-        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
-      await page.focus('#btn-issue-description');
-      await page.keyboard.press('Space');
+      t.check('#1061 Issue Details shows the same loaded summary in full, with no reveal control',
+        await shown('#issue-focus-desc', first) && await page.evaluate(() => !document.querySelector('#btn-issue-description')));
       await navigate(readHash);
-      t.check('Hide in details also hides the same hero on revisit', await hidden('#hero-desc'));
-      t.check('fetching and disclosure leave all saved bytes and notes unchanged',
+      t.check('fetching and showing summaries leave all saved bytes and notes unchanged',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
-      await click(page, '#btn-hero-description');
       await click(page, '#btn-hero-done');
       await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
-      t.check('Done does not reveal the next issue', await hidden('#hero-desc'));
+      t.check('#1061 Done moves the hero to the next comic and shows its loaded summary', await shown('#hero-desc', second));
       await inspect(first);
-      t.check('the read flag does not erase an exact-issue reveal choice',
-        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
+      t.check('the read flag does not erase a loaded summary', await shown('#issue-focus-desc', first));
       await inspect(second);
-      t.check('an unrevealed issue stays collapsed in details', await hidden('#issue-focus-desc'));
+      t.check('#1061 every loaded summary shows in details', await shown('#issue-focus-desc', second));
       const afterDone = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
 
       // Known factual metadata comes from the same synthetic source, but only explicit synopsis
@@ -9611,10 +9573,12 @@ const SCENARIOS = [
       await page.focus('#btn-issue-synopsis');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#ask[open]');
-      t.check('individual consent explicitly warns of exposure and retains the storage promises',
-        await page.$eval('#ask-body', (node) => node.textContent.includes('may contain spoilers')
+      t.check('#1061 individual consent keeps the storage and allowance promises without a spoiler warning',
+        await page.$eval('#ask-body', (node) => !/spoiler/i.test(node.textContent)
           && node.textContent.includes('stay in this tab until reload')
-          && node.textContent.trim().split(/(?<=[.!?])\s+/).length === 2));
+          && node.textContent.includes('uses your request allowance')
+          && node.textContent.trim().split(/(?<=[.!?])\s+/).length === 2)
+        && await page.$eval('#ask-ok', (node) => node.textContent.trim() === 'Load summary'));
       await click(page, '#ask-cancel');
       await frames();
       t.check('declining individual consent makes no synopsis request',
@@ -9633,9 +9597,9 @@ const SCENARIOS = [
       await page.waitForSelector('#ask[open]');
       await click(page, '#ask-ok');
       await page.waitForFunction(() => document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic plot 447'));
-      t.check('confirmed individual fetch reveals without a second action and preserves focus',
-        await page.$eval('#btn-issue-description', (node) => node.getAttribute('aria-expanded') === 'true'
-          && document.activeElement === node));
+      t.check('#1061 a confirmed individual load shows in full and moves focus to the summary',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && document.activeElement === node
+          && node.textContent === 'Synthetic plot 447 for 947001.'));
 
       await navigate('#/issue/947002');
       await page.evaluate(() => { window.__disclosure447.mode = 'missing'; });
@@ -9676,7 +9640,6 @@ const SCENARIOS = [
           && !document.querySelector('#issue-focus-desc').textContent.includes('Synthetic plot 447')));
 
       await navigate(readHash);
-      await click(page, '#btn-hero-description');
       await inspect(second);
       await click(page, '.ri[data-view="data"]');
       await page.waitForSelector('#view-data:not([hidden])');
@@ -9688,12 +9651,12 @@ const SCENARIOS = [
         ))));
       await navigate(readHash);
       await fetchBulk();
-      t.check('refetching after same-source save does not inherit the previous reveal', await hidden('#hero-desc'));
-      await click(page, '#btn-hero-description');
+      t.check('#1061 refetching after a same-source save shows the summary in full again', await shown('#hero-desc', second));
       await page.reload({ waitUntil: 'load' });
       await page.waitForSelector('#view-read:not([hidden])');
+      t.check('a loaded summary does not survive reload', await unloaded('#hero-desc'));
       await fetchBulk();
-      t.check('reload and refetch reset the exact-issue reveal choice', await hidden('#hero-desc'));
+      t.check('#1061 refetching after reload shows the summary in full', await shown('#hero-desc', second));
       t.check('all synopsis journeys preserve read progress and notes after the deliberate Done action',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, afterDone));
       t.check('no disclosure or prose enters localStorage, sessionStorage or exported backups',
@@ -9703,12 +9666,44 @@ const SCENARIOS = [
           const durable = JSON.stringify([
             ...Object.entries(localStorage), ...Object.entries(sessionStorage), exportBackup(state),
           ]);
-          return !/Synthetic plot 447|synopsisDisclosure|isRevealed/.test(durable);
+          return !/Synthetic plot 447/.test(durable);
         }));
       t.check('synthetic issue requests retain no-store',
         await page.evaluate(() => window.__disclosure447.requests.length > 0
           && window.__disclosure447.requests.every((request) => request.cache === 'no-store')));
-      t.check('disclosure journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
+
+      const oldFile = await page.evaluate(async () => {
+        const { captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
+        const { backup } = await captureCompleteBackup({ storage: localStorage });
+        const components = structuredClone(backup.components);
+        components.settings.hideDescriptions = true;
+        return (await createCompleteBackup(components)).text;
+      });
+      await page.evaluate(() => { location.hash = '#/data'; });
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+      await pickFile(page, '#restore-complete', oldFile);
+      await page.waitForSelector('#ask[open]');
+      await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Complete backup restored'));
+      const restoredChoice = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).hideDescriptions);
+      await navigate(readHash);
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
+      await fetchBulk();
+      const heroAfterRestore = await shown('#hero-desc', second) && await page.evaluate(() => (
+        !document.querySelector('#btn-hero-description')
+        && ![...document.querySelectorAll('#hero button')].some((button) => /^(Show|Hide) story summary/i.test(button.textContent.trim()))
+      ));
+      await inspect(second);
+      const issueAfterRestore = await shown('#issue-focus-desc', second) && await page.evaluate(() => (
+        !document.querySelector('#btn-issue-description')
+        && ![...document.querySelectorAll('#view-issue button')].some((button) => /^(Show|Hide) story summary/i.test(button.textContent.trim()))
+      ));
+      t.check('#1061 an older backup restores its hiding choice but loaded summaries still show in full without reveal controls',
+        restoredChoice === true && heroAfterRestore && issueAfterRestore,
+        JSON.stringify({ restoredChoice, heroAfterRestore, issueAfterRestore }));
+      t.check('summary journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
     },
   },
   {
@@ -9776,9 +9771,8 @@ const SCENARIOS = [
       );
 
       const expectedIds = ORDER.items.map((issue) => issue.issueId);
-      t.check('bulk-fetched plot stays collapsed before the durability reveal',
-        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
-      await click(page, '#btn-hero-description');
+      t.check('#1061 bulk-fetched plot shows in full without a reveal',
+        await page.$eval('#hero-desc', (node) => !node.hidden && node.textContent.includes('Fixture synopsis from')));
       const observed = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         requests: window.__mrtIssueRequestLog ?? [],
@@ -9885,7 +9879,6 @@ const SCENARIOS = [
         () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
         { timeout: 20000 },
       );
-      await click(page, '#btn-hero-description');
       const before = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         hash: location.hash,
@@ -9937,8 +9930,10 @@ const SCENARIOS = [
         () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
         { timeout: 20000 },
       );
-      t.check('the new source does not inherit the previous source reveal choice',
-        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
+      // #1061: with nothing hidden, the new source's summary shows at once, from the new service.
+      t.check('the new source shows its own summary, never the previous source\'s',
+        await page.$eval('#hero-desc', (node) => !node.hidden && node.textContent.includes('Fixture synopsis from')
+          && node.textContent.includes(new URL('https://synopsis-next.example.test/v1').host)));
     },
   },
   {
@@ -9984,9 +9979,8 @@ const SCENARIOS = [
         () => (window.__mrtIssueRequestLog ?? []).length === 9,
         { timeout: 20000 },
       );
-      t.check('an arrived current plot stays collapsed during bulk fetching',
-        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
-      await click(page, '#btn-hero-description');
+      t.check('#1061 an arrived current plot shows in full during bulk fetching',
+        await page.$eval('#hero-desc', (node) => !node.hidden && node.textContent.trim() !== ''));
       const running = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent.trim() ?? '',
         fetchHidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
@@ -13553,11 +13547,87 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
       t.check('downward scroll withdraws the bottom bar without writing progress',
         await page.evaluate(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight));
-      await page.evaluate(() => window.scrollTo(0, 195));
-      await page.waitForFunction(() => scrollY === 195);
+      t.check('WebKit document scrolling reveals navigation when window scroll arrives first',
+        await page.evaluate(() => {
+          window.visualViewport.dispatchEvent(new Event('scroll'));
+          return !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden');
+        }));
+      const viewportFirst = await page.evaluate(async () => {
+        window.scrollTo(0, 220);
+        window.visualViewport.dispatchEvent(new Event('scroll'));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const rail = document.querySelector('.rail-header');
+        const revealed = !rail.classList.contains('mobile-nav-hidden');
+        rail.classList.add('mobile-nav-hidden');
+        return revealed;
+      });
+      t.check('WebKit document scrolling reveals navigation when visualViewport scroll arrives first', viewportFirst);
+      const passiveViewport = await page.evaluate(async () => {
+        const rail = document.querySelector('.rail-header');
+        const count = document.querySelector('#chero-count > b');
+        const before = { focus: document.activeElement, state: localStorage.getItem('mrt.state.v2') };
+        count.click();
+        window.visualViewport.dispatchEvent(new Event('scroll'));
+        window.visualViewport.dispatchEvent(new Event('resize'));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return {
+          hidden: rail.classList.contains('mobile-nav-hidden'),
+          focus: before.focus === document.activeElement,
+          state: before.state === localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      t.check('a passive Home count and unchanged visual viewport notifications leave the bar withdrawn',
+        passiveViewport.hidden && passiveViewport.focus && passiveViewport.state, JSON.stringify(passiveViewport));
+      const settledViewport = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        const rail = document.querySelector('.rail-header');
+        Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 12 });
+        viewport.dispatchEvent(new Event('scroll'));
+        delete viewport.offsetTop;
+        viewport.dispatchEvent(new Event('scroll'));
+        return rail.classList.contains('mobile-nav-hidden');
+      });
+      t.check('an unzoomed visual viewport offset settling leaves the bar withdrawn', settledViewport);
+      const zoomedPan = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        const rail = document.querySelector('.rail-header');
+        Object.defineProperty(viewport, 'scale', { configurable: true, value: 2 });
+        viewport.dispatchEvent(new Event('resize'));
+        rail.classList.add('mobile-nav-hidden');
+        Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 12 });
+        viewport.dispatchEvent(new Event('scroll'));
+        const revealed = !rail.classList.contains('mobile-nav-hidden');
+        delete viewport.offsetTop;
+        delete viewport.scale;
+        viewport.dispatchEvent(new Event('resize'));
+        return revealed;
+      });
+      t.check('a pan while zoomed still reveals navigation', zoomedPan);
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      const keyboardViewport = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        Object.defineProperty(viewport, 'height', { configurable: true, value: innerHeight / 2 });
+        viewport.dispatchEvent(new Event('resize'));
+        const hidden = document.querySelector('.rail-header').classList.contains('mobile-nav-hidden');
+        delete viewport.height;
+        viewport.dispatchEvent(new Event('resize'));
+        return { hidden, revealed: !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden') };
+      });
+      t.check('a keyboard-sized viewport hides navigation and its restoration reveals it',
+        keyboardViewport.hidden && keyboardViewport.revealed, JSON.stringify(keyboardViewport));
+      await page.evaluate(async () => {
+        window.scrollTo(0, 200);
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
+      await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.evaluate(() => window.scrollTo(0, 245));
+      await page.waitForFunction(() => scrollY === 245);
       t.check('a five-pixel reversal does not jitter the bar visible',
         await page.evaluate(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
-      await page.evaluate(() => window.scrollTo(0, 175));
+      await page.evaluate(() => window.scrollTo(0, 225));
       await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
       t.check('upward scroll reveals Home, Library, Search and More',
         await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
@@ -15172,8 +15242,9 @@ SCENARIOS.push({
       await click(page, row(first.issueId, act));
       const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
       const hero = await page.$eval('#hero-facts', (node) => node.textContent);
-      t.check(`${act} is explicit and both row and hero retain the same state`,
-        visible === text && hero.includes(text), `${visible} / ${hero}`);
+      // #1061: the record moved off the reading card into Issue details, which the next check reads.
+      t.check(`${act} is explicit in the row and the reading card leaves the record to Issue details`,
+        visible === text && !hero.includes('Unlimited'), `${visible} / ${hero}`);
     }
 
     await click(page, '#btn-hero-inspect');
@@ -18253,7 +18324,7 @@ async function responsiveReading(page, { checked = false } = {}) {
   }));
   console.log(`UX09-FIXTURE ${JSON.stringify({ naturalListActions: natural,
     qualified: natural.open === false })}`);
-  if (natural.open !== false) throw new Error('Natural List actions closed state did not qualify');
+  if (natural.open !== false) throw new Error('Natural Reading List options closed state did not qualify');
   if (!natural.open) await click(page, '#list-actions > summary');
   await click(page, '#btn-synopsis');
   await page.waitForSelector('#ask[open]');
@@ -18261,18 +18332,14 @@ async function responsiveReading(page, { checked = false } = {}) {
   await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent
     === 'All synopses fetched, for this tab only.');
   if (!natural.open) await click(page, '#list-actions > summary');
-  await page.focus('#btn-hero-description');
-  await page.keyboard.press('Enter');
   if (checked) {
     await click(page, '#rows .cb[data-key="900002"]');
   }
   const qualified = await page.evaluate((wantChecked) => {
     const prose = document.querySelector('#hero-desc');
-    const button = document.querySelector('#btn-hero-description');
     const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
     return prose.textContent === 'Synthetic plot 447 for 900001.' && !prose.hidden
-      && prose.getBoundingClientRect().height > 0 && button.getAttribute('aria-expanded') === 'true'
-      && button.getAttribute('aria-controls') === 'hero-desc'
+      && prose.getBoundingClientRect().height > 0
       && !state.read[900001] && !state.read[900003]
       && Boolean(state.read[900002]) === wantChecked;
   }, checked);
@@ -18406,7 +18473,7 @@ async function responsiveCommands(page) {
       return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
         width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
     };
-    // UX-19 (#830): while comics are queued, Complete heads List actions rather than standing before it.
+    // UX-19 (#830): while comics are queued, Complete heads Reading List options rather than standing before it.
     const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
       open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
       completeInside: Boolean(body?.contains(complete)), completeFirst: body?.firstElementChild === complete,
@@ -18552,7 +18619,7 @@ SCENARIOS.push(responsiveOwner({
       overlap: commands.overlap === 0,
       expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
     };
-    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in List actions while comics are queued',
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in Reading List options while comics are queued',
       { ...commands, subpredicates: commandPredicates },
       Object.values(commandPredicates).every(Boolean));
     responsiveStep(page, 'RF07-text-modes');
@@ -18564,8 +18631,6 @@ SCENARIOS.push(responsiveOwner({
     await click(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent === 'All synopses fetched, for this tab only.');
     await click(page, '#list-actions > summary');
-    await page.focus('#btn-hero-description');
-    await page.keyboard.press('Enter');
     const doubledRule = await page.evaluate(() => {
       const style = getComputedStyle(document.documentElement);
       return ':root { ' + ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
@@ -18601,10 +18666,6 @@ SCENARIOS.push(responsiveOwner({
       await responsiveRoute(page, '#/age-bronze', 'age-bronze');
       const modeCard = await responsiveCard(page);
       await responsiveRoute(page, '#/read/' + (await readState(page)).active, 'read');
-      if (await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') !== 'true')) {
-        await page.focus('#btn-hero-description');
-        await page.keyboard.press('Enter');
-      }
       const modeHero = await responsiveHero(page);
       const modeCommands = await responsiveCommands(page);
       const subpredicates = responsiveReflowPredicates(modeBuild, modeCard, modeHero, modeCommands, true);
@@ -18906,7 +18967,7 @@ SCENARIOS.push(responsiveOwner({
     await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
       { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
         expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
-          pending: 'painted outside editing disclosure', complete: 'inside List actions while queued; completed hidden; unavailable disabled' },
+          pending: 'painted outside editing disclosure', complete: 'inside Reading List options while queued; completed hidden; unavailable disabled' },
         subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
 
     responsiveStep(page, 'RC04-native-note');
@@ -19023,10 +19084,11 @@ SCENARIOS.push(responsiveOwner({
       [`${width}:${entry.id}:inside`, entry.inside],
       [`${width}:${entry.id}:target`, entry.height >= 24],
     ])));
+    // #1061 retired the story summaries switch, so a build without cloud backup shows two.
     await responsiveReceipt(page, t, 'RC10', 'settings switches set the track beside an unboxed label at wide and narrow widths',
-      { switches, expected: { switches: 3, border: '0px', trackBeforeLabel: true, minimumHeight: 24 },
+      { switches, expected: { switches: 2, border: '0px', trackBeforeLabel: true, minimumHeight: 24 },
         subpredicates: switchPredicates },
-      switches.every(({ measured }) => measured.length === 3) && Object.values(switchPredicates).every(Boolean));
+      switches.every(({ measured }) => measured.length === 2) && Object.values(switchPredicates).every(Boolean));
     responsiveStep(page, 'RC03-markdown');
     await open(page, '/#/add-import');
     const preSelector = '.import-guide pre';
@@ -21812,19 +21874,35 @@ SCENARIOS.push({
     t.check('second Escape retains the existing row-menu dismissal and focus rescue',
       await page.$eval('#rows .row:first-child [data-act="more"]', (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
 
+    const longHint = 'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+    await reset();
+    await page.$eval('#btn-hero-done', (node, text) => {
+      node.dataset.tooltip = text;
+      scrollBy(0, node.getBoundingClientRect().top - 12);
+    }, longHint);
+    await page.focus('#btn-hero-done');
+    await settle();
+    const blocked = await tooltipVisual449(page, '#btn-hero-done', 'action-tip');
+    const options = await page.evaluate(() => {
+      const wrapper = document.querySelector('#reading-list-options');
+      const summary = document.querySelector('#list-actions > summary');
+      const box = summary.getBoundingClientRect();
+      const hit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
+      return { protected: wrapper.hasAttribute('data-keep-uncovered'), hit: summary.contains(hit) };
+    });
+    t.check('320px: Done hint yields to Reading List options without moving focus',
+      !blocked.visible && blocked.focus && options.hit, JSON.stringify({ blocked, options }));
+
     const client = await page.createCDPSession();
     for (const { name, selector, tipId } of families) {
-      await page.setViewport({ width: name === 'rail' ? 1000 : 320, height: 900 });
+      await page.setViewport({ width: name === 'rail' ? 1000 : 390, height: 900 });
       await reset();
-      // Done goes near the top of the window rather than to the middle (#860). At 320px Read is
-      // stacked above Done, and at 200 per cent zoom the middle left the long hint room only above
-      // Done, over Read, where a hint in Read and Done's group may not go.
-      await page.$eval(selector, (node) => {
-        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] =
-          'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+      // At 390px the actions share a row, leaving room above Done without covering Read or options.
+      await page.$eval(selector, (node, text) => {
+        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] = text;
         if (node.closest('#sidebar')) node.scrollIntoView({ block: 'center' });
-        else scrollBy(0, node.getBoundingClientRect().top - 12);
-      });
+        else scrollBy(0, node.getBoundingClientRect().top - 300);
+      }, longHint);
       await page.focus(selector);
       await settle();
       const long = await tooltipVisual449(page, selector, tipId);
@@ -21850,6 +21928,7 @@ SCENARIOS.push({
       }, tipId);
       console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      if (name === 'action') await page.$eval(selector, (node) => node.scrollIntoView({ block: 'nearest', inline: 'nearest' }));
       await settle();
       const zoom = await tooltipVisual449(page, selector, tipId);
       t.check(`${name}: 200 percent zoom retains visible, non-overlapping keyboard hints`, zoom.visible && zoom.focus && fits(zoom), JSON.stringify(zoom));
@@ -21948,6 +22027,21 @@ MUTATIONS.push({
   ),
 });
 
+MUTATIONS.push({
+  id: 'tooltip-options-unprotected-1061',
+  breaks: 'tooltip-lifecycle-449',
+  why: 'without options protection the long Done hint covers Reading List options',
+  script: () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#reading-list-options').removeAttribute('data-keep-uncovered');
+    });
+  },
+  rewriteReading: (source) => source.replace(
+    "    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));",
+    "    options.removeAttribute('data-keep-uncovered');",
+  ),
+});
+
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
@@ -21962,8 +22056,8 @@ MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 SCENARIOS.push((await import('./browser-bulk-read.mjs')).bulkRead);
 const doneUndo = await import('./browser-done-undo.mjs');
-SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints);
-MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations);
+SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints, doneUndo.sidebarOptionsHints);
+MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations, ...doneUndo.sidebarOptionsHintsMutations);
 const milestones = await import('./browser-milestones.mjs');
 SCENARIOS.push(milestones.milestones, milestones.milestonePreferences);
 MUTATIONS.push(...milestones.milestoneMutations);
@@ -21972,7 +22066,20 @@ SCENARIOS.push(saveNotice.saveNoticePlacement);
 MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);
+SCENARIOS.push(readingCard.readingCardPhoneOverview);
+SCENARIOS.push(readingCard.readingCardPoster);
+SCENARIOS.push(readingCard.readingCardUndo);
+SCENARIOS.push(readingCard.readingCardUndoStill);
 MUTATIONS.push(...readingCard.readingCardMutations);
+MUTATIONS.push({
+  id: 'synopsis-restored-hiding-1061',
+  breaks: 'synopsis-disclosure-447',
+  why: 'an older restored hiding choice hides a loaded summary again',
+  rewriteReading: (source) => source.replace(
+    "$('#hero-desc').hidden = false;",
+    "$('#hero-desc').hidden = JSON.parse(localStorage.getItem('mrt.settings') ?? '{}').hideDescriptions === true;",
+  ),
+});
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);

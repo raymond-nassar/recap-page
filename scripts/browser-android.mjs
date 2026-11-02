@@ -1725,7 +1725,7 @@ async function issueNoteReadability(page, label, desktop) {
 
 const READING_LIST = 'reading-composition';
 const READING_ISSUE_POSITION = 4;
-const READING_SYNOPSIS = 'Original synthetic description for the reading composition check. It stays hidden until deliberately revealed, then wraps without covering any action.';
+const READING_SYNOPSIS = 'Original synthetic description for the reading composition check. Once the reader loads it, the full text appears and wraps without covering any action.';
 const readingProfiles = [
   { id: 'M01', width: 360, height: 800 },
   { id: 'M03', width: 412, height: 915 },
@@ -1797,12 +1797,12 @@ async function readingGeometry(page) {
     const art = hero.querySelector('.art');
     // Chromium still lays out the content of a closed disclosure, so its rectangles alone would
     // count Defer and Issue page as shown while More comic actions (9bb3a427) keeps them closed.
-    const visible = (node) => node.checkVisibility() && !node.closest('[hidden]');
+    const visible = (node) => node.checkVisibility() && !node.closest('[hidden], .visually-hidden');
     const inside = (rect, bounds) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
       && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
     const intersects = (a, b) => a.left < b.right - 1 && a.right > b.left + 1
       && a.top < b.bottom - 1 && a.bottom > b.top + 1;
-    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero .eyebrow, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary)')];
+    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary)')];
     const clipped = [], overlaps = [];
     let ranges = 0;
     for (const node of parts.filter(visible)) {
@@ -1871,9 +1871,7 @@ async function readingEvidence(page, profile, id = profile.id) {
   const result = await readingGeometry(page);
   result.sourceRevision = JSON.parse(await readFile(join(ANDROID_ASSET_DIR, 'build-info.json'), 'utf8')).sourceRevision;
   const state = readingState(profile);
-  const presentation = issuePresentation(state.issues[readingIssue.issueId], {
-    position: READING_ISSUE_POSITION, total: readingOrder.items.length,
-  });
+  const presentation = issuePresentation(state.issues[readingIssue.issueId]);
   assert.ok(result.readCount === 1 && result.readVisible && !result.readDisabled
     && Number.isFinite(result.read.bottom) && result.read.height > 0, `${id}: positive Read measurement`);
   assert.equal(result.issue, state.issues[readingIssue.issueId].title, `${id}: exact fixture issue`);
@@ -1888,16 +1886,21 @@ async function readingEvidence(page, profile, id = profile.id) {
   console.log(`READING ${id}: ${JSON.stringify(result)}`);
   check(result.title === state.lists[READING_LIST].name && result.byline === presentation.byline
     && result.count === `3 of ${readingOrder.items.length} read`, `${id}: full title, byline and progress preserved`);
-  check(JSON.stringify(result.facts) === JSON.stringify(presentation.facts.map(({ key, value }) => ({ key, value }))),
-    `${id}: every exact factual value retained`);
+  // #1061 keeps the Marvel Unlimited record and the position for the comic's own page.
+  check(JSON.stringify(result.facts) === JSON.stringify(presentation.facts.filter((fact) => !fact.detailsOnly)
+    .map(({ key, value }) => ({ key, value }))),
+  `${id}: every exact factual value retained`);
   const scale = profile.textScale || 1;
-  check(result.body === (profile.desktop ? 14 : 16 * scale) && result.titleFont === 28 * scale
+  const compactHeading = profile.width <= 700 && profile.height <= 820;
+  check(result.body === (profile.desktop ? 14 : 16 * scale)
+    && result.titleFont === (compactHeading ? 20 : 28) * scale
     && result.issueFont === (profile.desktop ? 40 : 32 * scale) && result.android === !profile.desktop,
-  `${id}: actual platform and unchanged text scale`);
+  `${id}: actual platform and text scale, including the compact short-screen heading`);
   check(result.ranges > 15 && !result.clipped.length && !result.overlaps.length && !result.overflow,
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
-  // Read, Done, About this comic, the More comic actions summary and the two actions it discloses.
-  check(result.controls.length === 6 + (id.startsWith('M05') ? 1 : 0)
+  // Read, Done, Reading List options, About this comic, the More comic actions summary and its two actions.
+  // M05 loads a summary, which before #1061 also brought a Hide button.
+  check(result.controls.length === 7
     && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
   `${id}: all existing action hit rectangles`);
   if (['M01', 'M02'].includes(id)) {
@@ -1909,10 +1912,11 @@ async function readingEvidence(page, profile, id = profile.id) {
   if (profile.desktop && !process.argv.includes('--viewport=1280x900')) {
     assert.ok(process.env.MRT_READING_BASELINE, 'Full reading batch requires the retained desktop baseline directory');
     const baseline = JSON.parse(await readFile(join(process.env.MRT_READING_BASELINE, 'reading-D01.json'), 'utf8'));
-    const signature = ({ header, hero, art, issueBox, factsBox, controls, body, titleFont, issueFont }) => (
-      { header, hero, art, issueBox, factsBox, controls, body, titleFont, issueFont }
-    );
-    check(JSON.stringify(signature(result)) === JSON.stringify(signature(baseline)), 'D01: unchanged shared desktop geometry');
+    const signature = ({ header, hero, body, titleFont, issueFont }) => ({
+      header, hero: { left: hero.left, right: hero.right, width: hero.width }, body, titleFont, issueFont,
+    });
+    check(JSON.stringify(signature(result)) === JSON.stringify(signature(baseline)),
+      'D01: unchanged desktop heading, card width and typography');
   }
   if (!disclosed) await click(page, '#hero-more-actions > summary');
   return result;
@@ -1958,13 +1962,15 @@ async function readingAccessibility(page, result, id) {
       }, null, 2)}\n`, { flag: 'wx' });
     }
     assert.equal(domFacts.length, result.facts.length, `${id}: original factual pair count`);
-    check(domFacts.filter((fact) => fact.note).length === 1, `${id}: one historical-record note retained separately`);
+    // The historical-record note travels with the Marvel Unlimited record to the comic's own page (#1061).
+    check(domFacts.filter((fact) => fact.note).length === 0, `${id}: the historical-record note is not on the reading card`);
     let previous = tree.findIndex((entry) => entry.role === 'heading' && entry.name === result.issue);
     assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
     previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
     assert.ok(previous >= 0, `${id}: exact byline precedes facts`);
-    // Read and Done have come before the facts since 9bb3a427 put reading actions first.
-    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary)) {
+    // Read, Done and Reading List options precede the facts.
+    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary
+      || entry.selector === '#android-list-options')) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(control.text));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${control.text}`);
       previous = index;
@@ -1996,7 +2002,8 @@ async function readingAccessibility(page, result, id) {
       previous = definition;
     }
     if (readingFactsAx) return;
-    for (const { text: name } of result.controls.filter((control) => !control.primary)) {
+    for (const { text: name } of result.controls.filter((control) => !control.primary
+      && control.selector !== '#android-list-options')) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(name));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${name}`);
       previous = index;
@@ -2006,8 +2013,9 @@ async function readingAccessibility(page, result, id) {
   }
   if (disclose) await click(page, '#hero-more-actions > summary');
   await page.focus('#order-name');
-  const expected = ['#order-desc > summary', '#android-list-options',
-    ...result.controls.map((control) => control.selector)];
+  const controls = result.controls.map((control) => control.selector);
+  const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
+  const expected = phone ? [...controls, '#order-desc > summary'] : ['#order-desc > summary', ...controls];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
     check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
@@ -2107,11 +2115,17 @@ async function readingSemantics(page) {
     state.issues[readingIssue.issueId].mu = mu;
     if (override) state = setOverride(state, readingIssue.issueId, override);
     await readingReplaceState(page, state);
-    await page.waitForFunction((expected) => document.querySelector('#hero-facts dd')?.textContent === expected, {}, label);
-    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'Marvel Unlimited recordThis is a historical record, not availability in Marvel Comics.'),
+    // #1061: the record lives in Issue details, so each state is read there rather than on the card.
+    await page.evaluate((id) => { location.hash = `#/issue/${id}`; }, readingIssue.issueId);
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    await page.waitForFunction((expected) => document.querySelector('#issue-focus-facts dd')?.textContent === expected, {}, label);
+    check(await page.$eval('#issue-focus-facts dt', (node) => node.textContent === 'Marvel Unlimited recordThis is a historical record, not availability in Marvel Comics.'),
       `M01 ${label}: factual label retained`);
-    const geometry = await readingGeometry(page);
-    check(!geometry.clipped.length && !geometry.overlaps.length && !geometry.overflow, `M01 ${label}: readable status, not a boolean`);
+    check(await page.$eval('#issue-focus-card', (node) => node.scrollWidth <= node.clientWidth
+      && document.documentElement.scrollWidth <= innerWidth), `M01 ${label}: readable status, not a boolean`);
+    await route(page, 'read');
+    check(await page.$eval('#hero-facts', (node) => !node.textContent.includes('Unlimited')),
+      `M01 ${label}: #1061 the reading card leaves the record to Issue details`);
   }
 }
 
@@ -2129,22 +2143,18 @@ async function readingCompositionCheck(page, profile) {
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-ok');
     await page.waitForFunction((text) => document.querySelector('#issue-focus-desc')?.textContent === text
-      && document.querySelector('#btn-issue-description')?.getAttribute('aria-expanded') === 'true',
-    {}, READING_SYNOPSIS);
+      && !document.querySelector('#issue-focus-desc').hidden, {}, READING_SYNOPSIS);
     assert.deepEqual(await page.evaluate(() => window.__readingTest.requests), [readingIssue.issueId],
       'M05: exactly one on-demand issue request, no bulk synopsis run');
-    await click(page, '#btn-issue-description');
     await page.goBack();
     await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false
       && document.activeElement?.id === 'btn-hero-inspect');
-    assert.ok(await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''),
-      'M05: fetched description remains hidden until explicit disclosure');
+    assert.ok(await page.$eval('#hero-desc', (node, text) => !node.hidden && node.textContent === text, READING_SYNOPSIS),
+      'M05: #1061 the loaded description shows in full on the reading card');
   }
   if (readingFactsAx) {
     const state = readingState(profile);
-    const presentation = issuePresentation(state.issues[readingIssue.issueId], {
-      position: READING_ISSUE_POSITION, total: readingOrder.items.length,
-    });
+    const presentation = issuePresentation(state.issues[readingIssue.issueId]);
     await readingAccessibility(page, { ...presentation, issue: state.issues[readingIssue.issueId].title }, profile.id);
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), KEY), before,
       `${profile.id}: factual AX confirmation preserves saved state`);
@@ -2155,17 +2165,10 @@ async function readingCompositionCheck(page, profile) {
   if (readingCase === 'M01') return;
   if (!profile.desktop) await readingAccessibility(page, result, profile.id);
   if (profile.id === 'M05') {
-    await page.focus('#btn-hero-description');
-    await page.keyboard.press('Enter');
-    await page.waitForFunction((text) => document.querySelector('#hero-desc')?.textContent === text, {}, READING_SYNOPSIS);
-    check(await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') === 'true'
-      && document.activeElement === node), 'M05: reveal retains focused disclosure');
-    await readingEvidence(page, profile, 'M05-expanded');
-    await page.keyboard.press('Enter');
-    check(await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''), 'M05: description hides again');
+    check(await page.evaluate(() => !document.querySelector('#btn-hero-description')), 'M05: #1061 no reveal control');
   }
   check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
-    `${profile.id}: layout, focus and disclosure preserve stored progress`);
+    `${profile.id}: layout, focus and the loaded summary preserve stored progress`);
   if (profile.id === 'M01') {
     await route(page, 'data');
     await click(page, '#opt-covers');
@@ -2735,6 +2738,110 @@ async function enjoymentLabels(page, label, narrow) {
     && document.querySelector('#list-enjoyment').hidden);
 }
 
+async function holdMobileMediaCallbacks(page) {
+  await page.evaluateOnNewDocument(() => {
+    const match = window.matchMedia.bind(window);
+    const control = {
+      holding: false,
+      queued: [],
+      blur: false,
+      release() {
+        this.holding = false;
+        const queued = this.queued.splice(0);
+        for (const deliver of queued) deliver();
+      },
+    };
+    window.__listMediaTest = control;
+    window.matchMedia = (query) => {
+      const media = match(query);
+      if (query !== '(max-width: 880px)' || !new Error().stack.includes('mobile-ui.js')) return media;
+      const add = media.addEventListener.bind(media);
+      media.addEventListener = (type, listener, options) => {
+        if (type !== 'change') return add(type, listener, options);
+        return add(type, (event) => {
+          if (control.holding) control.queued.push(() => listener.call(media, event));
+          else listener.call(media, event);
+        }, options);
+      };
+      return media;
+    };
+  });
+}
+
+async function focusedActionHiddenBeforeMediaCallback(page, label) {
+  const wide = { width: 1280, height: 900, isMobile: true, hasTouch: true };
+  const narrow = { width: 800, height: 360, isMobile: true, hasTouch: true };
+  for (let pass = 1; pass <= 3; pass += 1) {
+    await page.setViewport(wide);
+    await page.$eval('#list-actions', (node) => { node.open = true; });
+    await page.focus('#btn-list-note');
+    await page.evaluate(() => {
+      const control = window.__listMediaTest;
+      control.blur = false;
+      control.holding = true;
+      document.querySelector('#btn-list-note').addEventListener('focusout', () => { control.blur = true; }, { once: true });
+    });
+    await page.setViewport(narrow);
+    await page.waitForFunction(() => window.__listMediaTest.blur && window.__listMediaTest.queued.length > 0);
+    const before = await page.evaluate(() => ({
+      blurred: window.__listMediaTest.blur,
+      hidden: !document.querySelector('#btn-list-note').checkVisibility(),
+      queued: window.__listMediaTest.queued.length,
+      triggerVisible: document.querySelector('#android-list-options').checkVisibility(),
+      focus: document.activeElement?.id || document.activeElement?.tagName,
+    }));
+    check(before.blurred && before.hidden && before.queued > 0 && before.triggerVisible,
+      `${label}: forced focus-out precedes the held media callback, pass ${pass} ${JSON.stringify(before)}`);
+    await page.evaluate(() => window.__listMediaTest.release());
+    const after = await page.evaluate(() => ({
+      focus: document.activeElement?.id,
+      triggerVisible: document.querySelector('#android-list-options').checkVisibility(),
+    }));
+    console.log(`CHECKED ${label}: forced focus order ${pass} ${JSON.stringify({ before, after })}`);
+    check(after.focus === 'android-list-options' && after.triggerVisible,
+      `${label}: the hidden command transfers focus to visible list options, pass ${pass} ${JSON.stringify(after)}`);
+    await page.evaluate(() => {
+      const control = window.__listMediaTest;
+      control.blur = false;
+      control.holding = true;
+      document.querySelector('#android-list-options').addEventListener('focusout', () => { control.blur = true; }, { once: true });
+    });
+    await page.setViewport(wide);
+    await page.waitForFunction(() => window.__listMediaTest.blur && window.__listMediaTest.queued.length > 0);
+    const beforeWide = await page.evaluate(() => ({
+      blurred: window.__listMediaTest.blur,
+      hidden: !document.querySelector('#android-list-options').checkVisibility(),
+      queued: window.__listMediaTest.queued.length,
+      summaryVisible: document.querySelector('#list-actions > summary').checkVisibility(),
+      focus: document.activeElement?.id || document.activeElement?.tagName,
+    }));
+    check(beforeWide.blurred && beforeWide.hidden && beforeWide.queued > 0 && beforeWide.summaryVisible,
+      `${label}: forced trigger focus-out precedes the held widening callback, pass ${pass} ${JSON.stringify(beforeWide)}`);
+    await page.evaluate(() => window.__listMediaTest.release());
+    const afterWide = await page.evaluate(() => ({
+      summaryFocused: document.activeElement === document.querySelector('#list-actions > summary'),
+      summaryVisible: document.querySelector('#list-actions > summary').checkVisibility(),
+      focus: document.activeElement?.id || document.activeElement?.tagName,
+    }));
+    console.log(`CHECKED ${label}: forced widening focus order ${pass} ${JSON.stringify({ before: beforeWide, after: afterWide })}`);
+    check(afterWide.summaryFocused && afterWide.summaryVisible,
+      `${label}: the hidden trigger transfers focus to the visible list disclosure, pass ${pass} ${JSON.stringify(afterWide)}`);
+  }
+  await page.setViewport(wide);
+  await page.$eval('#list-actions', (node) => { node.open = true; });
+  await page.focus('#btn-list-note');
+  await page.focus('#view-read details.full > summary');
+  await page.evaluate(() => { window.__listMediaTest.holding = true; });
+  await page.setViewport(narrow);
+  await page.waitForFunction(() => window.__listMediaTest.queued.length > 0);
+  await page.evaluate(() => window.__listMediaTest.release());
+  check(await page.$eval('#view-read details.full > summary', (node) => document.activeElement === node),
+    `${label}: narrowing does not reclaim focus that the reader already moved elsewhere`);
+  await page.setViewport(wide);
+  check(await page.$eval('#view-read details.full > summary', (node) => document.activeElement === node),
+    `${label}: widening does not reclaim focus from another control`);
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
   // Home's start actions became native hash links on 2026-10-06, so links are collected; buttons still
@@ -2939,6 +3046,28 @@ async function mobileLayout(page, label, narrow) {
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;
+  const placement = await page.evaluate((onPhone) => {
+    const row = document.querySelector('#hero-primary-actions');
+    const control = document.querySelector(onPhone ? '#android-list-options' : '#list-actions > summary');
+    const rowBox = row.getBoundingClientRect();
+    const box = control.getBoundingClientRect();
+    const style = getComputedStyle(control);
+    return {
+      afterRow: !!row.nextElementSibling?.contains(control), name: control.textContent.trim(),
+      row: [rowBox.left, rowBox.right, rowBox.bottom], control: [box.left, box.right, box.top, box.height],
+      gap: parseFloat(getComputedStyle(row).columnGap), background: style.backgroundColor,
+      border: style.borderColor, colour: style.color, dim: getComputedStyle(document.querySelector('#hero-by')).color,
+    };
+  }, narrow);
+  check(placement.afterRow, `${label}: Reading List options follow Read and Done ${JSON.stringify(placement)}`);
+  check(placement.name === 'Reading List options',
+    `${label}: list options have their distinct visible name ${JSON.stringify(placement)}`);
+  check(Math.abs(placement.control[0] - placement.row[0]) <= 1
+    && Math.abs(placement.control[1] - placement.row[1]) <= 1
+    && placement.control[2] - placement.row[2] > placement.gap && placement.control[3] >= 48
+    && placement.background === 'rgba(0, 0, 0, 0)' && placement.border === 'rgba(0, 0, 0, 0)'
+    && placement.colour === placement.dim,
+  `${label}: the quieter Reading List options group aligns with the action row and has a larger gap ${JSON.stringify(placement)}`);
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
@@ -2956,7 +3085,7 @@ async function mobileLayout(page, label, narrow) {
     return {
       bottom: Math.abs(box.bottom - innerHeight) <= 1,
       fits: box.top >= 0 && box.height <= innerHeight,
-      labelled: !!document.getElementById(node.getAttribute('aria-labelledby'))?.textContent,
+      labelled: document.getElementById(node.getAttribute('aria-labelledby'))?.textContent === 'Reading List options',
       vertical: getComputedStyle(node.querySelector('.list-tools')).flexDirection === 'column',
     };
   });
@@ -2992,7 +3121,7 @@ async function mobileLayout(page, label, narrow) {
   check(commands.names.length >= 8 && JSON.stringify(commands.names) === JSON.stringify(commands.expected)
     && !commands.summaries.length && !commands.closed.length && !commands.small.length
     && commands.last === 'btn-delete-list' && commands.apart && commands.completeApart,
-  `${label}: List options shows every command at once, one tap each, Complete and Remove from library each set apart ${JSON.stringify(commands)}`);
+  `${label}: Reading List options shows every command at once, one tap each, Complete and Remove from library each set apart ${JSON.stringify(commands)}`);
   await page.keyboard.down('Shift');
   await page.keyboard.press('Tab');
   await page.keyboard.up('Shift');
@@ -3002,8 +3131,8 @@ async function mobileLayout(page, label, narrow) {
   await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
   check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
     `${label}: Android Back closes sheet and restores trigger focus`);
-  // List actions closes itself on Escape, which inside the sheet would hide every command and keep the
-  // sheet open. Escape from a command closes the sheet and leaves both groups as the reader had them.
+  // Reading List options closes itself on Escape, which inside the sheet would hide every command and keep
+  // the sheet open. Escape from a command closes the sheet and leaves both groups as the reader had them.
   await click(page, '#android-list-options');
   await page.focus('#btn-list-note');
   await page.keyboard.press('Escape');
@@ -3014,7 +3143,7 @@ async function mobileLayout(page, label, narrow) {
     home: document.querySelector('#android-list-options').nextElementSibling?.matches('.list-tools') ?? false,
   }));
   check(!escaped.open && escaped.focus === 'android-list-options' && !escaped.actions && !escaped.exports && escaped.home,
-    `${label}: Escape from a command closes the sheet, returns to List options and restores both groups ${JSON.stringify(escaped)}`);
+    `${label}: Escape from a command closes the sheet, returns to Reading List options and restores both groups ${JSON.stringify(escaped)}`);
   for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-mark-all-read', '#btn-delete-list']) {
     await click(page, '#android-list-options');
     await click(page, action);
@@ -3079,15 +3208,59 @@ async function mobileLayout(page, label, narrow) {
     `${label}: navigating away dismisses list options`);
   await route(page, 'read');
   await click(page, '#android-list-options');
+  const peer = await page.browserContext().newPage();
+  await peer.goto(new URL('/icons/ui.svg', page.url()).href);
+  await peer.evaluate((key) => {
+    const state = JSON.parse(localStorage.getItem(key));
+    for (const issueId of state.lists[state.active].itemIds) state.read[issueId] = Date.now();
+    localStorage.setItem(key, JSON.stringify(state));
+  }, KEY);
+  await peer.close();
+  await page.waitForFunction(() => document.querySelector('#hero').hidden);
+  check(await page.$eval('#android-list-sheet', (node) => node.open && !!node.querySelector('#btn-rename-list')),
+    `${label}: another tab finishing the list keeps the open options sheet intact`);
+  await backDialog(page);
+  check(await page.$eval('#android-list-options', (node) => node.checkVisibility() && document.activeElement === node
+    && !document.querySelector('#hero').contains(node)),
+  `${label}: closing the sheet restores focus to visible options without a hero`);
+  await click(page, '#android-list-options');
+  const phoneViewport = page.viewport();
   await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
   await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
-  check(await page.$eval('#reading-body > .list-tools', (node) => !!node.getClientRects().length),
+  check(await page.$eval('#reading-list-options > .list-tools', (node) => !!node.getClientRects().length),
     `${label}: widening restores original actions outside the sheet`);
+  const restored = await page.evaluate(() => ({
+    open: document.querySelector('#list-actions').open,
+    focus: document.activeElement?.id || `${document.activeElement?.parentElement?.id}>${document.activeElement?.tagName}`,
+    visible: document.activeElement?.checkVisibility(),
+    inTools: document.querySelector('#reading-list-options > .list-tools').contains(document.activeElement),
+  }));
+  check(restored.inTools && restored.visible,
+    `${label}: widening an open sheet restores focus to a visible list action or its summary ${JSON.stringify(restored)}`);
+  if (label === '800x360') await focusedActionHiddenBeforeMediaCallback(page, label);
+  await page.$eval('#list-actions', (node) => { node.open = true; });
+  await page.focus('#btn-list-note');
+  await page.setViewport(phoneViewport);
+  await page.waitForFunction(() => document.querySelector('#android-list-options').checkVisibility());
+  check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
+    `${label}: narrowing an open and focused list disclosure transfers focus to its visible trigger`);
+  await click(page, '#android-list-options');
+  await page.waitForSelector('#android-list-sheet[open]');
+  await page.focus('#btn-list-note');
+  await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
+  const held = await page.evaluate(() => ({
+    open: document.querySelector('#list-actions').open,
+    focused: document.activeElement?.id,
+    visible: document.activeElement?.checkVisibility(),
+  }));
+  check(held.open && held.focused === 'btn-list-note' && held.visible,
+    `${label}: widening restores an expanded list disclosure and its focused command ${JSON.stringify(held)}`);
 }
 
 // #855: no visual hint may cover Done's result, the confirmation or the failure of the change just
-// made. On a phone Done spans the screen, so with it near the top the only room left for its hint is
-// below, over the result, and there the hint gives way. It was reported at 412x915 with text at 200
+// made. With Done near the top the only room left for its hint is below, where it could cover either
+// the result or Reading List options. The result overlap was reported at 412x915 with text at 200
 // per cent, where the first Done retires the save note above the hero and lifts Done to the top.
 // Home is not visited: its commands carry no hints, and the rail's show only on wide screens.
 const hintTitle = (n) => `Hint fixture (2026) #${n}`;
@@ -3127,10 +3300,16 @@ async function doneHintGeometry(page, label) {
       .filter((tip) => !tip.hidden && tip.getClientRects().length)
       .map((tip) => ({ id: tip.id, side: tip.dataset.side ?? null, box: box(tip) }));
     const done = document.querySelector('#btn-hero-done');
+    const optionsNode = document.querySelector('#android-list-options');
+    const options = optionsNode.getClientRects().length ? box(optionsNode) : null;
+    const edge = options ? { x: (options.left + options.right) / 2, y: options.top + 3 } : null;
     return {
       text: node?.querySelector('.grow')?.textContent ?? null, result, tips,
       covered: !!result && tips.some(({ box: tip }) => tip.left < result.right && result.left < tip.right
         && tip.top < result.bottom && result.top < tip.bottom),
+      options, edge, optionsHit: !!edge && optionsNode.contains(document.elementFromPoint(edge.x, edge.y)),
+      optionsCovered: !!options && tips.some(({ box: tip }) => tip.left < options.right && options.left < tip.right
+        && tip.top < options.bottom && options.top < tip.bottom),
       done: done.getClientRects().length ? box(done) : null,
     };
   });
@@ -3160,9 +3339,15 @@ async function doneHintGeometry(page, label) {
   await page.waitForSelector('#view-read:not([hidden]) #btn-hero-done');
   await settle();
   const clear = await focusAtTop();
-  check(clear.result === null && clear.done?.top <= 20
-    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom'),
-  `${label}: with nothing to keep clear, Done's hint at the top shows below Done as before ${JSON.stringify(clear)}`);
+  check(clear.result === null && clear.done?.top <= 20 && clear.options && clear.optionsHit
+    && !clear.optionsCovered && !clear.tips.some((tip) => tip.id === 'action-tip'),
+  `${label}: Done's hint gives way to Reading List options at the top ${JSON.stringify(clear)}`);
+  await page.touchscreen.tap(clear.edge.x, clear.edge.y);
+  await settle();
+  const openedOptions = await page.$eval('#android-list-sheet', (sheet) => sheet.open);
+  check(openedOptions, `${label}: a tap on the edge of Reading List options opens its sheet`);
+  if (openedOptions) await backDialog(page);
+  console.log(`CHECKED ${label}: Done and Reading List options ${JSON.stringify({ done: clear.done, options: clear.options })}`);
 
   const rows = [];
   await page.evaluate(() => scrollTo(0, 0));
@@ -3190,15 +3375,14 @@ async function doneHintGeometry(page, label) {
   await page.waitForFunction(() => document.querySelector('#done-result button')?.textContent === 'Try again');
   await page.evaluate(() => window.__hintRestoreSet());
   rows.push({ step: 'Try again at the top', ...(await focusAtTop()) });
-  const wrong = rows.filter((row) => !row.result || row.covered || (row.step.endsWith('at the top') && !(row.done?.top <= 20)));
+  const wrong = rows.filter((row) => !row.result || row.covered || row.optionsCovered
+    || (row.step.endsWith('at the top') && !(row.done?.top <= 20)));
   check(rows.length === 5 && !wrong.length,
-    `${label}: no hint covers Done's result after a tap on Done or Undo, or after a refused save ${JSON.stringify(wrong)}`);
+    `${label}: no hint covers Done's result or Reading List options after Done, Undo, or a refused save ${JSON.stringify(wrong)}`);
   console.log(`CHECKED ${label}: Done's hint and result ${JSON.stringify(rows.map((row) => [row.step, row.tips.map((tip) => tip.side).join() || 'none']))}`);
 
-  // #860: on a phone Read is stacked above Done, and each one's hint covered part of the other button
-  // and took taps meant for it: about half of Read at its natural place, and with 200 per cent text
-  // nearly all of it. Leaving the reading view retires the refused save's result, so the pair is
-  // checked with nothing to keep clear. In landscape the two sit side by side.
+  // #860: each hint used to cover part of the other button and take taps meant for it. Leaving the
+  // reading view retires the refused save's result; Reading List options still needs to stay clear.
   if (page.viewport().width > page.viewport().height) return;
   await page.evaluate(() => { location.hash = '#/home'; });
   await page.waitForSelector('#view-home:not([hidden])');
@@ -3246,22 +3430,26 @@ async function doneHintGeometry(page, label) {
   for (const [trigger, other] of [['#btn-hero-read', '#btn-hero-done'], ['#btn-hero-done', '#btn-hero-read']]) {
     for (const position of ['natural', 'top']) {
       await place(trigger, position);
-      pairRows.push({ step: `${trigger === '#btn-hero-read' ? 'Read' : 'Done'} ${position}`, ...(await pair(trigger, other)) });
+      pairRows.push({ step: `${trigger === '#btn-hero-read' ? 'Read' : 'Done'} ${position}`, ...(await pair(trigger, other)),
+        options: await pair(trigger, '#android-list-options') });
     }
   }
-  const expected = { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'bottom', 'Done top': 'bottom' };
-  const misplaced = pairRows.filter((row) => row.covers || row.taken > 0 || row.side !== expected[row.step]
+  const expected = { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'top', 'Done top': 'none' };
+  const misplaced = pairRows.filter((row) => row.covers || row.taken > 0 || row.options.covers || row.options.taken > 0
+    || row.side !== expected[row.step] || (row.step.endsWith('top') && row.options.points === 0)
     || (row.step.endsWith('top') && !(row.box.top <= 20)) || (row.step.endsWith('natural') && row.points === 0));
   check(retired && pairRows.length === 4 && !misplaced.length,
-    `${label}: neither Read's hint nor Done's covers the other button or answers a point of it, raised by keyboard focus at the natural place or near the top ${JSON.stringify(misplaced.length ? misplaced : pairRows)}`);
+    `${label}: neither hint covers or takes taps from the other button or Reading List options ${JSON.stringify(misplaced.length ? misplaced : pairRows)}`);
 
   // A finger on the edge of one button nearest the other, where the other's hint used to sit.
   const tapBeside = async (target, from) => {
     const point = await page.evaluate((targetSelector, fromSelector) => {
       const near = document.querySelector(targetSelector).getBoundingClientRect();
       const far = document.querySelector(fromSelector).getBoundingClientRect();
-      const x = (near.left + near.right) / 2;
-      return near.bottom <= far.top ? { x, y: near.bottom - 3 } : { x, y: near.top + 3 };
+      const middle = { x: (near.left + near.right) / 2, y: (near.top + near.bottom) / 2 };
+      if (near.bottom <= far.top) return { x: middle.x, y: near.bottom - 3 };
+      if (near.top >= far.bottom) return { x: middle.x, y: near.top + 3 };
+      return near.right <= far.left ? { x: near.right - 3, y: middle.y } : { x: near.left + 3, y: middle.y };
     }, target, from);
     const under = await page.evaluate(({ x, y }) => {
       const hit = document.elementFromPoint(x, y);
@@ -3282,16 +3470,16 @@ async function doneHintGeometry(page, label) {
   const onDone = await tapBeside('#btn-hero-done', '#btn-hero-read');
   const marked = await page.$eval('#hero-title', (node) => node.textContent) !== before;
   const afterDone = await pair('#btn-hero-done', '#btn-hero-read');
-  check(shown === 'bottom' && launched && onRead.under !== 'action-tip' && !afterRead.covers
+  check(shown === 'top' && launched && onRead.under !== 'action-tip' && !afterRead.covers
     && marked && onDone.under !== 'action-tip' && !afterDone.covers,
   `${label}: a tap on Read's edge beside Done's hint opens the reader, a tap on Done's edge beside Read marks the comic, and neither tap leaves a hint over the other button ${JSON.stringify({ shown, onRead, launched, afterRead, onDone, marked, afterDone })}`);
   console.log(`CHECKED ${label}: Read and Done hints ${JSON.stringify(pairRows.map((row) => [row.step, row.side]))}`);
 }
 
 // #864: Complete and Reopen keep keyboard focus while their completion-history save is held, and after
-// another tab's write refuses it. On a narrow Android screen Complete lives in the List options sheet,
+// another tab's write refuses it. On a narrow Android screen Complete lives in the Reading List options sheet,
 // which closes as Complete is pressed and gives focus to its own trigger, so Complete is pressed
-// through the sheet and List options is where focus belongs while it saves. Reopen stays on the page,
+// through the sheet and Reading List options is where focus belongs while it saves. Reopen stays on the page,
 // and when it succeeds the view heading takes focus, Complete being in the closed sheet. Measured on
 // main in Edge phone emulation on 2026-10-26: Reopen's held and refused saves left focus on the page,
 // and so did its success.
@@ -3415,7 +3603,7 @@ async function completionFocusJourney(page, label) {
     });
     const wrong = rows.filter((row) => row.focus !== expected[row.step]);
     check(rows.length === 6 && !wrong.length,
-      `${label} ${how}: focus stays on the command or List options through a held and a refused save, and a success hands it to Reopen or the heading ${JSON.stringify(wrong.length ? wrong : rows)}`);
+      `${label} ${how}: focus stays on the command or Reading List options through a held and a refused save, and a success hands it to Reopen or the heading ${JSON.stringify(wrong.length ? wrong : rows)}`);
     check(frames.length > 0 && !frames.includes('BODY'),
       `${label} ${how}: no rendered frame from the first press to the last had focus on the page ${JSON.stringify({ frames: frames.length, onPage: frames.filter((entry) => entry === 'BODY').length })}`);
     console.log(`CHECKED ${label} ${how}: completion focus ${JSON.stringify(rows.map((row) => [row.step, row.focus]))}`);
@@ -3942,14 +4130,21 @@ async function milestoneJourney(page, label) {
 }
 
 // #876: progress at a glance in the Android build, at the phone sizes and text scales the Issue names.
-// On the reading screen's hero and on Home's Continue reading card the read figure is set larger than
-// its words over the outlined bar, inside its card at every text size; the figure clears 4.5:1 and the
+// On the reading screen and on Home's Continue reading card the read figure is set larger than
+// its words over the outlined bar; the figure clears 4.5:1 and the
 // bar's fill and outline 3:1 against what is painted behind them; each screen reads its progress out
 // once; and Read stays fully above the bottom bar wherever #836 and #857 hold it there.
 const GLANCE = {
   hero: { count: '#hero-progress-count', bar: '#hero-progress .glance-bar', fill: '#hero-progress-fill', card: '#hero', read: '#btn-hero-read', root: '#view-read' },
   home: { count: '#chero-count', bar: '#chero-bar', fill: '#chero-fill', card: '#home-continue', read: '#btn-chero-read', root: '#home-continue' },
 };
+async function iosTextTokens(scale = 1) {
+  const tokens = [...(await readFile(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'))
+    .matchAll(/(--t-[\w-]+): calc\(var\(--ios-text-scale\) \* (\d+)px\)/g)];
+  assert.ok(tokens.length >= 6, 'the iOS overlay still declares its text tokens');
+  return tokens.map(([, name, px]) => [name, `${Number(px) * scale}px`]);
+}
+
 async function progressGlanceCheck(page, label, viewport) {
   const name = `${label} ${viewport.theme}${viewport.covers ? ' covers' : ''}`;
   const total = readingOrder.items.length;
@@ -3957,7 +4152,9 @@ async function progressGlanceCheck(page, label, viewport) {
   const look = (scope) => page.evaluate((selectors) => {
     const count = document.querySelector(selectors.count);
     const figure = count.querySelector('.glance-n');
-    const card = document.querySelector(selectors.card).getBoundingClientRect();
+    const surface = selectors.card === '#hero' && matchMedia('(max-width: 700px)').matches
+      ? '#reading-overview' : selectors.card;
+    const card = document.querySelector(surface).getBoundingClientRect();
     const bar = document.querySelector(selectors.bar).getBoundingClientRect();
     const fill = document.querySelector(selectors.fill).getBoundingClientRect();
     const range = document.createRange();
@@ -4036,7 +4233,8 @@ async function progressGlanceCheck(page, label, viewport) {
     return { times: said.split(phrase).length - 1, bars, said };
   };
 
-  await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
+  await page.waitForSelector('#hero:not([hidden])');
+  await page.waitForSelector('#hero-progress-count .glance-n');
   await page.evaluate(() => document.fonts.ready);
   await still();
   const hero = await look('hero');
@@ -4046,12 +4244,21 @@ async function progressGlanceCheck(page, label, viewport) {
   }
   const heroOrder = await page.evaluate(() => {
     const at = (selector) => document.querySelector(selector).getBoundingClientRect();
-    return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
+    return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top,
+      heroBottom: at('#hero').bottom, phone: matchMedia('(max-width: 700px)').matches,
+      tops: [Math.round(at('#btn-hero-read').top), Math.round(at('#btn-hero-done').top)] };
   });
+  if (viewport.doneAbove) {
+    check(hero.scrollY === 0 && heroOrder.done <= hero.fold,
+      `${name}: the reading screen opens with Done above the bottom bar too, as #1061 keeps it ${JSON.stringify({ hero, heroOrder })}`);
+    check(heroOrder.tops[0] === heroOrder.tops[1],
+      `${name}: Read and Done share one row, as the owner chose for phones in #1061 ${JSON.stringify(heroOrder)}`);
+  }
   check(hero.text === `3 of ${total} read` && hero.figure === '3' && hero.sizes[0] >= hero.sizes[1] * 1.25
     && Math.abs(hero.share - 3 / total) * hero.barWidth <= 0.5 && hero.inside && !hero.overflow
-    && heroOrder.row >= heroOrder.done && heroOrder.facts >= heroOrder.row,
-  `${name}: the hero's row reads 3 of ${total} read under Read and Done, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify({ hero, heroOrder })}`);
+    && heroOrder.row >= heroOrder.done
+    && (heroOrder.phone ? heroOrder.row >= heroOrder.heroBottom : heroOrder.facts >= heroOrder.row),
+  `${name}: the progress row reads 3 of ${total} read in its intended place, its figure larger than its words and its bar filled to match ${JSON.stringify({ hero, heroOrder })}`);
   check(hero.blank < hero.line, `${name}: the hero's bar follows the last line of words, with no blank line between ${JSON.stringify(hero)}`);
   const heroTree = await readings('hero', `3 of ${total} read`);
   check(heroTree.times === 1 && heroTree.bars === 0,
@@ -4085,6 +4292,89 @@ async function progressGlanceCheck(page, label, viewport) {
   await screenshot(page, name, 'progress-glance-home');
   await page.evaluate(() => window.scrollTo(0, 0));
   console.log(`CHECKED ${name}: progress at a glance ${JSON.stringify({ heroRead: hero.read, homeRead: home.read, fold: home.fold, hero: heroPaint, home: homePaint })}`);
+}
+
+async function readingActionWrapCheck(page) {
+  await route(page, 'read');
+  await page.waitForSelector('#hero:not([hidden]) #btn-hero-read');
+  const androidTokens = await page.evaluate(() => {
+    const root = getComputedStyle(document.documentElement);
+    return ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
+      .map((name) => [name, root.getPropertyValue(name).trim()]);
+  });
+  await page.evaluate(() => {
+    const Clock = Date;
+    window.__actionWrapClock = new Clock(2026, 11, 6, 12).getTime();
+    window.Date = class extends Clock {
+      constructor(...args) { super(...(args.length ? args : [window.__actionWrapClock])); }
+      static now() { return window.__actionWrapClock; }
+    };
+  });
+  const profiles = [
+    { name: 'Android 360x800 200%', width: 360, height: 800, tokens: androidTokens, stackLong: true },
+    { name: 'iOS 390x844 AX3 tokens', width: 390, height: 844, tokens: await iosTextTokens(40 / 17) },
+    { name: 'iOS 375x667 AX5 tokens', width: 375, height: 667, tokens: await iosTextTokens(53 / 17), largest: true, stackLong: true },
+  ];
+  for (const profile of profiles) {
+    await page.setViewport({ width: profile.width, height: profile.height, isMobile: true, hasTouch: true });
+    await page.evaluate(({ tokens, largest }) => {
+      const root = document.documentElement;
+      for (const [name, value] of tokens) root.style.setProperty(name, value);
+      root.dataset.iosLargestText = largest ? 'true' : 'false';
+    }, profile);
+    for (const [day, expected] of [[6, 'Read'], [7, 'Find on Marvel Comics']]) {
+      await page.evaluate((date) => {
+        window.__actionWrapClock = new Date(2026, 11, date, 12).getTime();
+        window.dispatchEvent(new Event('focus'));
+      }, day);
+      await page.waitForFunction((text) => document.querySelector('#btn-hero-read')?.textContent.trim() === text, {}, expected);
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const measured = await page.evaluate(() => {
+        const box = (node) => {
+          const rect = node.getBoundingClientRect();
+          return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height };
+        };
+        const buttons = ['#btn-hero-read', '#btn-hero-done'].map((selector) => {
+          const node = document.querySelector(selector);
+          const bounds = node.getBoundingClientRect();
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+          const words = [];
+          while (walker.nextNode()) {
+            const text = walker.currentNode;
+            for (const match of text.textContent.matchAll(/\S+/g)) {
+              const range = document.createRange();
+              range.setStart(text, match.index);
+              range.setEnd(text, match.index + match[0].length);
+              const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+              words.push({ word: match[0], lines: rects.length, inside: rects.every((rect) => (
+                rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+                && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1
+              )) });
+            }
+          }
+          return { text: node.textContent.trim(), name: node.getAttribute('aria-label'), box: box(node), words };
+        });
+        const [read, done] = buttons;
+        return { buttons, group: box(document.querySelector('#hero-primary-actions')),
+          stacked: done.box.top >= read.box.bottom - 0.5,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 };
+      });
+      const [read, done] = measured.buttons;
+      const words = [...read.words, ...done.words];
+      check(read.text === expected && read.name?.includes(expected) && done.text === 'Done'
+        && words.length === expected.split(' ').length + 1
+        && words.every((word) => word.lines === 1 && word.inside)
+        && measured.buttons.every(({ box }) => box.width >= 48 && box.height >= 48
+          && box.left >= -1 && box.right <= profile.width + 1)
+        && (measured.stacked || (done.box.left >= read.box.right - 0.5 && Math.abs(done.box.top - read.box.top) < 0.5))
+        && !measured.overflow,
+      `${profile.name} ${expected}: every action word stays whole and inside a reachable button ${JSON.stringify(measured)}`);
+      if ((day === 7 && profile.stackLong) || profile.largest) {
+        check(measured.stacked, `${profile.name} ${expected}: the action row stacks rather than splitting a word ${JSON.stringify(measured)}`);
+      }
+      console.log(`CHECKED ${profile.name} ${expected}: ${JSON.stringify(measured)}`);
+    }
+  }
 }
 
 // #866: the More menu's link to the Reading List keeps the list's name on one line, and below 880px
@@ -4278,7 +4568,7 @@ async function confirmationQuestions(page, label, viewport) {
 
 // #830: the dialogs that now share the questions' shell, opened the way a reader on a phone reaches
 // them, at the sizes and text scale #849 measured the questions at: the rating from an issue's details,
-// the list feedback note from a completed list, the personal checklist from List options, and a guide's
+// the list feedback note from a completed list, the personal checklist from Reading List options, and a guide's
 // Preview from the catalog. Each closes with Android Back. The list is completed only after the
 // questions above, so they are asked exactly as #849 measured them.
 async function shellDialogs(page, label, viewport) {
@@ -4786,10 +5076,18 @@ try {
     { width: 320, height: 740, desktop: true, theme: 'dark', listName: 'Counterrevolutionaries reading order', nameLabel: 'Windows long-word name', longWord: true },
   ];
   // #876: the phone sizes the Issue names, with and without 200% text, and the short landscape screen
-  // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text.
+  // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text. #1061: the
+  // iOS overlay's own text sizes at 390 by 844, where its 14px body text once shrank the cover's reserve
+  // and put Read 13px under the bar. Done opens above it too wherever the cover has grown past its 96px,
+  // which a reserve held for Read alone had left 59px under the bar on iOS there. The owner's 2026-11-02
+  // choices, Read and Done in one row and a compact heading on short phones, hold both above the bar at
+  // 360x800 and at 375x667 in both shells, where Done had opened 148px and 153px under it.
   if (progressGlance) viewports = [
-    { width: 360, height: 800, theme: 'light', heroAbove: true, homeAbove: true },
-    { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, homeAbove: true },
+    { width: 360, height: 800, theme: 'light', heroAbove: true, doneAbove: true, homeAbove: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, doneAbove: true, homeAbove: true },
+    { width: 390, height: 844, theme: 'light', heroAbove: true, doneAbove: true, iosText: true },
+    { width: 375, height: 667, theme: 'dark', heroAbove: true, doneAbove: true },
+    { width: 375, height: 667, theme: 'light', heroAbove: true, doneAbove: true, iosText: true },
     { width: 800, height: 360, theme: 'dark', homeAbove: true },
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 412, height: 915, textScale: 2, theme: 'light', covers: true },
@@ -4849,6 +5147,7 @@ try {
     const imageRequests = [];
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
+    if (mobileUi && viewport.width === 800 && viewport.height === 360) await holdMobileMediaCallbacks(page);
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
     if (readingComposition) await readingFixtures(page, viewport);
@@ -4963,11 +5262,17 @@ try {
         }
       }, viewport.textScale);
     }
+    if (viewport.iosText) {
+      const tokens = await iosTextTokens();
+      await page.evaluate((pairs) => {
+        for (const [name, value] of pairs) document.documentElement.style.setProperty(name, value);
+      }, tokens);
+    }
     if (alignment && viewport.textScale) {
       await page.$eval('#home-h', (node, font) => { node.style.fontSize = `${font}px`; }, viewport.logoBase * viewport.textScale);
     }
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'after existing text scaling');
-    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}${viewport.iosText ? ' iOS text' : ''}`;
     const navigationToggle = await page.$eval('#btn-rail-toggle', (node) => {
       const { width, height } = node.getBoundingClientRect();
       return {
@@ -5185,6 +5490,7 @@ try {
     }
     if (progressGlance) {
       await progressGlanceCheck(page, label, viewport);
+      if (viewport.width === 360 && viewport.height === 800 && viewport.textScale === 2) await readingActionWrapCheck(page);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

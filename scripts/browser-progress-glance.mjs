@@ -5,8 +5,9 @@
 // each screen reads its progress out once; and a change of progress moves nothing but the fill, which
 // is still with reduced motion. Runs on the ephemeral port like every scenario not listed for the app
 // origin.
-import { createEmptyState, createList, addIssuesToList, markRead, exportBackup } from '../src/js/lib/model.js';
+import { createEmptyState, createList, addIssuesToList, markRead, setDeferred, exportBackup } from '../src/js/lib/model.js';
 import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
+import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { ratio } from './check-palette.mjs';
 import { decodePng } from './lib/painted-contrast.mjs';
 
@@ -25,20 +26,26 @@ const SCOPES = {
 };
 const words = (scope, read) => (scope === 'home' ? `${read} of ${TOTAL} issues read` : `${read} of ${TOTAL} read`);
 
-function fixture(read) {
+function fixture(read, mode = 'queued') {
   let state = createList(createEmptyState(), { id: 'glance', name: 'Glance fixture' });
-  state = addIssuesToList(state, 'glance', ids.map((issueId, index) => ({
-    issueId, title: title(index + 1), number: String(index + 1), seriesName: 'Glance fixture (2026)', seriesId: 876,
-    digitalId: 876201 + index, url: `https://www.marvel.com/comics/issue/${issueId}/fixture`, source: 'manual',
-    cover: { path: `https://i.annihil.us/u/prod/marvel/i/mg/8/76/glance${index + 1}`, ext: 'jpg' },
-  }))).state;
+  if (mode !== 'empty') {
+    state = addIssuesToList(state, 'glance', ids.map((issueId, index) => ({
+      issueId, title: title(index + 1), number: String(index + 1), seriesName: 'Glance fixture (2026)', seriesId: 876,
+      digitalId: 876201 + index, url: `https://www.marvel.com/comics/issue/${issueId}/fixture`, source: 'manual',
+      cover: { path: `https://i.annihil.us/u/prod/marvel/i/mg/8/76/glance${index + 1}`, ext: 'jpg' },
+    }))).state;
+  }
   for (const issueId of ids.slice(0, read)) state = markRead(state, issueId, true, 1000);
+  if (mode === 'deferred') {
+    for (const issueId of ids.slice(read)) state = setDeferred(state, 'glance', issueId, true);
+  }
+  if (mode === 'some-deferred') state = setDeferred(state, 'glance', ids.at(-1), true);
   return state;
 }
 
 // Starts from blank each time, so one page can take every pass, and returns what undoes the pass. A
 // cover, when asked for, is one flat colour, the brightest or darkest backdrop the hero can bleed in.
-async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 'read', covers = false, coverFill = null, reduce = false, forced = false } = {}) {
+async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 'read', covers = false, coverFill = null, reduce = false, forced = false, mode = 'queued' } = {}) {
   await page.goto('about:blank');
   await page.setViewport({ width, height: 900 });
   page.__cdp ??= await page.createCDPSession();
@@ -50,10 +57,16 @@ async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 're
     contentType: 'image/svg+xml',
     body: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="${coverFill}"/></svg>`,
   } : undefined;
-  const { identifier } = await page.evaluateOnNewDocument((initial, key, educationKey, education, settings) => {
-    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(initial));
+  const initial = exportBackup(fixture(read, mode));
+  const history = mode === 'completed' ? {
+    format: LIST_HISTORY_FORMAT, version: 1,
+    records: [{ listId: 'glance', created: initial.lists.glance.created, catalogId: initial.lists.glance.catalogId, completedAt: 1000, rating: null }],
+  } : null;
+  const { identifier } = await page.evaluateOnNewDocument((initialState, key, educationKey, education, settings, historyKey, completion) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(initialState));
     localStorage.setItem(educationKey, education);
     localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    if (completion) localStorage.setItem(historyKey, JSON.stringify(completion));
     window.open = () => null;
     const real = window.fetch.bind(window);
     window.fetch = (input, init) => {
@@ -62,9 +75,10 @@ async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 're
       return url.origin === location.origin ? real(input, init)
         : Promise.reject(new TypeError('Glance fixture blocks external requests'));
     };
-  }, exportBackup(fixture(read)), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, { covers, filter: 'all', theme });
+  }, initial, KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, { covers, filter: 'all', theme }, LIST_HISTORY_KEY, history);
   await page.goto(`${page.__origin}/#/${route === 'home' ? 'home' : 'read/glance'}`, { waitUntil: 'load' });
   await (route === 'home' ? homeShown(page) : page.waitForSelector('#view-read:not([hidden]) #ring-sub'));
+  if (mode === 'completed') await page.waitForFunction(() => !document.querySelector('#btn-reopen-list').hidden);
   await page.evaluate(() => document.fonts.ready);
   await still(page);
   return async () => {
@@ -231,12 +245,47 @@ export const progressGlance = {
             JSON.stringify({ said: readTree.said, roles: [...new Set(readTree.roles)] }));
           const order = await page.evaluate(() => {
             const at = (selector) => document.querySelector(selector)?.getBoundingClientRect() ?? { top: NaN, bottom: NaN };
-            return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
+            return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top,
+              facts: at('#hero-facts').top, heroBottom: at('#hero').bottom };
           });
-          t.check(`${label} hero: the row sits under Read and Done and over the comic's facts`,
-            order.row >= order.done && order.facts >= order.row, JSON.stringify(order));
+          t.check(`${label} reading screen: the visual row follows the intended card content`,
+            order.row >= order.done && (width <= 700 ? order.row >= order.heroBottom : order.facts >= order.row),
+            JSON.stringify(order));
           await done();
         }
+      }
+
+      for (const pass of [
+        { mode: 'queued', read: 3, expected: '3 of 12 read', bar: true },
+        { mode: 'some-deferred', read: 3, expected: '3 of 12 read. 1 deferred', bar: true },
+        { mode: 'deferred', read: 3, expected: '3 of 12 read. 9 deferred', bar: false },
+        { mode: 'queued', read: TOTAL, expected: 'All read', bar: false },
+        { mode: 'completed', read: TOTAL, expected: 'All read', bar: false },
+        { mode: 'empty', read: 0, expected: 'Nothing in this list', bar: false },
+      ]) {
+        const done = await setup(page, { ...pass, width: 390 });
+        const state = await page.evaluate(() => {
+          const hero = document.querySelector('#hero');
+          const ring = document.querySelector('#ring-sub');
+          const progress = document.querySelector('#hero-progress');
+          const box = ring.getBoundingClientRect();
+          const ringHiddenVisually = getComputedStyle(ring).position === 'absolute' && box.width <= 1 && box.height <= 1;
+          return {
+            afterHero: !!(hero.compareDocumentPosition(ring) & Node.DOCUMENT_POSITION_FOLLOWING),
+            ring: ring.textContent, ringHiddenVisually,
+            barVisible: progress.checkVisibility(),
+            barCount: document.querySelector('#hero-progress-count').textContent,
+            ariaHidden: progress.getAttribute('aria-hidden'),
+          };
+        });
+        const spoken = await tree(page, '#reading-overview');
+        t.check(`${pass.mode} ${pass.read}: the phone shows the same progress it speaks once below the comic`,
+          state.afterHero && state.ring === pass.expected && times(spoken.said, pass.expected) === 1
+            && state.barVisible === pass.bar && state.ringHiddenVisually === pass.bar
+            && (!pass.bar || state.barCount === pass.expected), JSON.stringify({ state, spoken: spoken.said }));
+        t.check(`${pass.mode} ${pass.read}: the visual bar remains hidden from assistive technology`,
+          state.ariaHidden === 'true' && !spoken.roles.includes('progressbar'), JSON.stringify({ state, roles: spoken.roles }));
+        await done();
       }
 
       // None and all of a list. An empty bar still shows its extent; a finished list fills Home's bar
@@ -405,9 +454,16 @@ export const progressGlance = {
             await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
           });
           const covered = await contrast(page, 'hero');
-          const card = rgb(await page.evaluate(() => getComputedStyle(document.querySelector('#hero')).backgroundColor));
-          t.check(`${theme} ${width}px covers on, a ${coverFill} cover: the cover shows through behind the row, and the figure still clears 4.5:1 and the fill and outline 3:1`,
-            covered.behindBar.some((channel, index) => channel !== card[index])
+          const surfaces = await page.evaluate(() => ({
+            card: getComputedStyle(document.querySelector('#hero')).backgroundColor,
+            page: getComputedStyle(document.body).backgroundColor,
+          }));
+          const card = rgb(surfaces.card), background = rgb(surfaces.page);
+          const correctSurface = width <= 700
+            ? covered.behindBar.every((channel, index) => channel === background[index])
+            : covered.behindBar.some((channel, index) => channel !== card[index]);
+          t.check(`${theme} ${width}px covers on, a ${coverFill} cover: the row uses its intended surface and meets the contrast floors`,
+            correctSurface
             && covered.figure >= 4.5 && covered.fill >= 3 && covered.outline >= 3, JSON.stringify({ ...covered, card }));
           await done();
         }
