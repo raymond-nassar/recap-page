@@ -11,6 +11,7 @@ import {
   digestCanonicalJson,
   validateApprovalDigest,
   validateReportDigest,
+  withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { MCU_SELECTED_IDS } from '../scripts/lib/cbh-mcu-companion.mjs';
@@ -312,7 +313,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     issueIds: (await readJson(`src/data/${archived.file}`)).items.map((item) => String(item.issueId)),
   }].sort((left, right) => left.orderId.localeCompare(right.orderId));
   const orders = publicationOrders.filter((entry) => publicationPeers.has(entry.orderId)).map((entry) => {
-    const descriptor = { ...historicalReadingChoiceCatalogEntry(entry.descriptor) };
+    const descriptor = withoutDiscoveryTags(historicalReadingChoiceCatalogEntry(entry.descriptor));
     delete descriptor.storylines;
     delete descriptor.storylinesChildren;
     return {

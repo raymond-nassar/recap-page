@@ -13,7 +13,7 @@ import {
   manifestEntryForMapping,
   mergePacketEntries,
 } from '../scripts/author-cbh-packet.mjs';
-import { validateBatchNoDuplicates } from '../scripts/lib/cbh-inventory.mjs';
+import { validateBatchNoDuplicates, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog, sortCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -194,7 +194,7 @@ test('batch two stays exact through mapping, Markdown, generated data, catalog, 
     assert.equal(inventoryEntry.deliveryStatus, 'shipped');
     assert.equal(inventoryEntry.disposition, 'grouped-variant');
     assert.ok(inventoryEntry.catalogIds.includes(id), `${id} is absent from its inventory parent`);
-    const { storylines, ...originalFields } = manifestEntry;
+    const { storylines, ...originalFields } = withoutDiscoveryTags(manifestEntry);
     const eligible = ['planet-hulk', 'annihilation-conquest', 'war-of-kings'].includes(id);
     assert.equal(storylines === true, eligible, `${id} has unexpected discovery eligibility`);
     if (!eligible) assert.ok(storylines === undefined || storylines === false);

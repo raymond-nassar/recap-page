@@ -10,6 +10,7 @@ import {
   approvalDigestFor, assertGapTransition, assertMappingMatchesPacketOccurrences, digestCanonicalJson,
   gapEvidenceDigestFor, libraryDigestFor, mappingDigestFor, packetDigestFor, reportDigestFor,
   validateFrozenPacket, validateMappingDigest, validateReportDigest,
+  withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
@@ -286,7 +287,7 @@ test('Shang-Chi authored checklist and complete browser vector preserve every se
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(manifest.lists[position - 1].id, 'doctor-octopus-otto-octavius-reading-order');
   assert.equal(manifest.lists[position + 1].id, 'thunderbolts-reading-order');
-  assert.deepEqual(manifest.lists[position], packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(manifest.lists[position]), packet.proposedManifest);
 });
 
 test('Shang-Chi vendored payload preserves exact original IDs, eight gaps and its own cover', async () => {

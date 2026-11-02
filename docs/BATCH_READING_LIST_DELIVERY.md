@@ -82,12 +82,12 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. These are the current inclusion
-rules in `src/js/lib/catalog.js:897-920`, not a classification to assign just to make a list appear.
+rules in `src/js/lib/catalog.js:941-964`, not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
 Review chronology from source evidence, not merely the earliest publication date. Equal years
-retain manifest order (`src/js/lib/catalog.js:226-232`), so approve an intentional insertion anchor
+retain manifest order (`src/js/lib/catalog.js:268-274`), so approve an intentional insertion anchor
 and review the order among same-year stories.
 
 | Hypothetical input | Placement decision |
@@ -292,7 +292,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Selected-list vendoring failed; stop shared in
 
 The cache must contain genuine request-bound responses, not hand-built metadata projections;
 follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-only vending accepts
-exactly one source order (`scripts/vendor-orders.mjs:388-409`). Live `--only=id1,id2` can select
+exactly one source order (`scripts/vendor-orders.mjs:390-411`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 
