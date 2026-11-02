@@ -224,7 +224,7 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(store.files.count, 1)
     }
 
-    func testUploadConfirmationAtTheReadDeadlineAndDownloadedFiles() async throws {
+    func testUploadConfirmationAtTheReadDeadline() async throws {
         for delay in [9.5, 10.5] {
             let fake = ICloudFakeStore()
             fake.uploadDelaySeconds = delay
@@ -240,11 +240,6 @@ final class ICloudBackupHandlerTests: XCTestCase {
             }
             XCTAssertLessThanOrEqual(fake.elapsed, 10)
         }
-        let downloaded = ICloudFakeStore()
-        downloaded.files[backupName] = Data([2])
-        let bytes = try await downloaded.read(name: backupName)
-        XCTAssertEqual(bytes, Data([2]))
-        XCTAssertEqual(downloaded.elapsed, 0, "a downloaded file has no local upload to wait for")
     }
 
     func testUploadInspectionFailureIsNotReportedAsUploaded() async throws {
@@ -357,6 +352,24 @@ final class ICloudDriveStoreTests: XCTestCase {
         }
         let file = root.appendingPathComponent("Documents").appendingPathComponent(next)
         XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
+    }
+
+    func testDownloadedFileReadsWithoutWaitingForADeviceUpload() async throws {
+        let root = root!
+        let documents = root.appendingPathComponent("Documents", isDirectory: true)
+        try FileManager.default.createDirectory(at: documents, withIntermediateDirectories: true)
+        let file = documents.appendingPathComponent(backupName)
+        let expected = Data([2, 3, 4])
+        try expected.write(to: file)
+        let store = ICloudDriveStore(
+            locate: { root }, identity: { "account" as NSString }, downloadWaitSeconds: 0, uploadWaitSeconds: 0,
+            downloadResult: { url in
+                XCTAssertEqual(url, file)
+                return true
+            }
+        )
+        let bytes = try await store.read(name: backupName)
+        XCTAssertEqual(bytes, expected)
     }
 
     func testAMissingBackupIsNotFoundAndDeletingItTwiceSucceeds() async throws {

@@ -88,6 +88,7 @@ final class ICloudDriveStore: ICloudDocumentStore {
     private let identity: IdentitySource
     private let downloadWaitNanoseconds: UInt64
     private let uploadWaitSeconds: TimeInterval
+    private let downloadResult: ((URL) async throws -> Bool)?
     private let publicationLock = NSLock()
 
     /// The real store: the container's Documents folder, which the Files app shows as Recap Page.
@@ -103,12 +104,14 @@ final class ICloudDriveStore: ICloudDocumentStore {
         locate: @escaping Locator,
         identity: @escaping IdentitySource,
         downloadWaitSeconds: UInt64 = 20,
-        uploadWaitSeconds: TimeInterval = 540
+        uploadWaitSeconds: TimeInterval = 540,
+        downloadResult: ((URL) async throws -> Bool)? = nil
     ) {
         self.locate = locate
         self.identity = identity
         downloadWaitNanoseconds = downloadWaitSeconds * 1_000_000_000
         self.uploadWaitSeconds = uploadWaitSeconds
+        self.downloadResult = downloadResult
     }
 
     func currentIdentity() -> Data? {
@@ -242,7 +245,12 @@ final class ICloudDriveStore: ICloudDocumentStore {
 
     func read(name: String, expectedIdentity: Data? = nil) async throws -> Data {
         let url = try await offMain { try self.folder(expectedIdentity: expectedIdentity).appendingPathComponent(name, isDirectory: false) }
-        let downloaded = try await waitForDownload(url)
+        let downloaded: Bool
+        if let downloadResult {
+            downloaded = try await downloadResult(url)
+        } else {
+            downloaded = try await waitForDownload(url)
+        }
         try await offMain {
             let values = try url.resourceValues(forKeys: [.fileSizeKey])
             if let size = values.fileSize, size > Self.maximumBytes { throw ICloudStoreError.tooLarge }
