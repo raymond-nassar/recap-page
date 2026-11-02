@@ -1230,8 +1230,8 @@ export function storyTypeStories(stories, { type = null, tone = null } = {}) {
   });
 }
 
-// Each group counts against the other group's choice, so a number beside a pill is what choosing it
-// would show. A pill that would show nothing is left out unless it is the current choice, which has
+// Each group counts against the other group's choice, so an option's number is what choosing it
+// would show. An option that would show nothing is left out unless it is the current choice, which has
 // to stay visible so the reader can see what is narrowing the results and choose again.
 export function storyTypeFacets(stories, { type = null, tone = null } = {}) {
   const lists = (Array.isArray(stories) ? stories : [])

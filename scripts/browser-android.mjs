@@ -26,7 +26,7 @@ import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dial
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
-  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel,
+  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel, storyTypeFacets, storyTypeStories,
 } from '../src/js/lib/catalog.js';
 
 const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith('--only='));
@@ -36,6 +36,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
+  'story-types',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -58,6 +59,7 @@ const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
+const storyTypesOnly = process.argv.includes('--only=story-types');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
@@ -1300,6 +1302,103 @@ async function categoryFixtures(page) {
       return original(input, options);
     };
   });
+}
+
+async function storyTypesDropdowns(page, profile, label) {
+  const stories = catalogEntries(parseCatalog(catalog).lists);
+  const all = storyTypeStories(stories);
+  await route(page, 'story-types');
+  await page.waitForSelector('#story-types-type option[value="espionage"]');
+  const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  const snapshot = () => page.evaluate(() => {
+    const type = document.querySelector('#story-types-type');
+    const tone = document.querySelector('#story-types-tone');
+    const box = (node) => {
+      const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+      return { left, right, top, bottom, width, height };
+    };
+    return {
+      type: type.value, tone: tone.value,
+      options: [type, tone].map((node) => [...node.options].map((option) => option.textContent)),
+      labels: [type, tone].map((node) => [...node.labels].map((entry) => entry.textContent).join('')),
+      boxes: [type, tone].map(box),
+      count: document.querySelector('#story-types-count').textContent,
+      prompt: document.querySelector('#story-types-results').textContent,
+      cards: [...document.querySelectorAll('#story-types-results .catalog-card')].map((node) => node.dataset.story),
+      hash: location.hash, focused: document.activeElement?.id,
+      overflow: document.documentElement.scrollWidth > innerWidth,
+    };
+  });
+  const initial = await snapshot();
+  check(initial.type === '' && initial.tone === '' && initial.labels.join('|') === 'Story type|Tone',
+    `${label}: two native dropdowns have visible associated labels and Any defaults`);
+  const facets = storyTypeFacets(stories);
+  check(JSON.stringify(initial.options) === JSON.stringify([
+    ['Any story type', ...facets.types.map(({ label: name, count }) => `${name} (${count})`)],
+    ['Any tone', ...facets.tones.map(({ label: name, count }) => `${name} (${count})`)],
+  ]), `${label}: dropdown options retain every facet and its count`);
+  check(initial.count === `${all.length} Reading Lists`
+    && initial.prompt.includes('Choose a story type or a tone') && initial.cards.length === 0,
+  `${label}: default view keeps its choose-a-story prompt`);
+  check(!initial.overflow && initial.boxes.every((box) => box.width >= 24 && box.height >= 24),
+    `${label}: dropdowns retain target size without page overflow`);
+  check(profile.desktop ? initial.boxes[0].top === initial.boxes[1].top
+    : initial.boxes[1].top >= initial.boxes[0].bottom,
+  `${label}: dropdowns are ${profile.desktop ? 'side by side' : 'stacked'}`);
+  for (const theme of ['dark', 'light']) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+    check(await page.$$eval('#story-types-choices select', (nodes) => nodes.every((node) =>
+      node.checkVisibility() && node.getBoundingClientRect().right <= innerWidth)),
+    `${label}: ${theme} theme retains both dropdowns without clipping`);
+  }
+  await screenshot(page, label, 'story-types-dropdowns');
+  const choose = async (selector, value) => {
+    await page.focus(selector);
+    await page.select(selector, value);
+    check(await page.$eval(selector, (node) => node === document.activeElement),
+      `${label}: change leaves focus on ${selector}`);
+  };
+  await choose('#story-types-type', 'espionage');
+  let state = await snapshot();
+  check(parseRoute(state.hash).storyType === 'espionage' && !parseRoute(state.hash).tone
+    && JSON.stringify(state.cards) === JSON.stringify(storyTypeStories(stories, { type: 'espionage' }).map((story) => story.key)),
+  `${label}: story type change updates its URL and exact results without MCU Prep ${JSON.stringify({
+    hash: state.hash, cards: state.cards, expected: storyTypeStories(stories, { type: 'espionage' }).map((story) => story.key),
+  })}`);
+  await choose('#story-types-tone', 'dark');
+  state = await snapshot();
+  check(parseRoute(state.hash).tone === 'dark'
+    && JSON.stringify(state.cards) === JSON.stringify(storyTypeStories(stories, { type: 'espionage', tone: 'dark' }).map((story) => story.key)),
+  `${label}: tone narrows the existing story type with the same filtering ${JSON.stringify({
+    hash: state.hash, cards: state.cards, expected: storyTypeStories(stories, { type: 'espionage', tone: 'dark' }).map((story) => story.key),
+  })}`);
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('#story-types-tone').value === '');
+  check((await snapshot()).type === 'espionage', `${label}: Back restores the type-only dropdown state`);
+  await page.goForward();
+  await page.waitForFunction(() => document.querySelector('#story-types-tone').value === 'dark');
+  check((await snapshot()).type === 'espionage', `${label}: Forward restores both dropdown choices`);
+  await choose('#story-types-tone', '');
+  await choose('#story-types-type', '');
+  check((await snapshot()).prompt.includes('Choose a story type or a tone'),
+    `${label}: clearing both choices restores the prompt`);
+  const empty = facets.types.flatMap(({ key: type }) => facets.tones.map(({ key: tone }) => ({ type, tone })))
+    .find((choice) => storyTypeStories(stories, choice).length === 0);
+  assert.ok(empty, 'The bundled vocabulary includes an empty intersection to exercise');
+  await page.evaluate(({ type, tone }) => { location.hash = `#/story-types?type=${type}&tone=${tone}`; }, empty);
+  await page.waitForFunction(({ type, tone }) => document.querySelector('#story-types-type').value === type
+    && document.querySelector('#story-types-tone').value === tone, {}, empty);
+  await page.reload({ waitUntil: 'networkidle0' });
+  await page.waitForSelector('#story-types-type');
+  state = await snapshot();
+  check(state.type === empty.type && state.tone === empty.tone && state.cards.length === 0
+    && state.prompt.includes('No Reading Lists are tagged'),
+  `${label}: reloading a bookmarked empty intersection restores both choices and its empty message`);
+  check(state.options[0].some((option) => option.endsWith('(0)'))
+    && state.options[1].some((option) => option.endsWith('(0)')),
+  `${label}: zero-count current choices remain available to change`);
+  check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
+    `${label}: choosing, restoring and clearing filters preserve saved progress`);
 }
 
 async function marvelAgesTouchTarget(page, label, viewport) {
@@ -5078,6 +5177,9 @@ try {
   if (catalogReadability) viewports = placeholderAx
     ? catalogCardProfiles.filter((profile) => ['M11', 'M16'].includes(profile.id))
     : catalogCardProfiles;
+  if (storyTypesOnly) viewports = [
+    { width: 1280, height: 900, desktop: true }, { width: 412, height: 915 },
+  ];
   if (readingComposition) viewports = readingFactsAx
     ? readingProfiles.filter((profile) => !profile.desktop) : [...readingProfiles, ...nearEndProfiles];
   if (readingCase === 'near-end') viewports = nearEndProfiles;
@@ -5216,7 +5318,7 @@ try {
     if (readingComposition) await readingFixtures(page, viewport);
     if (issuePoster) await issuePosterFixtures(page, viewport);
     if (alignment) await alignmentFixtures(page, viewport);
-    if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
+    if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || storyTypesOnly) await categoryFixtures(page);
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
     if (milestoneMode) await milestoneFixtures(page, viewport.theme);
@@ -5225,7 +5327,7 @@ try {
     if (longListName) await longListNameFixtures(page);
     if (confirmations) await confirmationFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
-    if (spotlightControls || phoneHeader || homeUpdates) {
+    if (spotlightControls || phoneHeader || homeUpdates || storyTypesOnly) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
       }, viewport.theme || 'light');
@@ -5249,14 +5351,15 @@ try {
         imageRequests.push(request.url());
         return request.respond({ status: 200, contentType: 'image/svg+xml', body: POSTER_COVER_SVG });
       }
-      if ((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance)
-        && (request.resourceType() === 'image' || viewport.nearEnd) && new URL(request.url()).host === 'i.annihil.us') {
+      if (((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance)
+        && (request.resourceType() === 'image' || viewport.nearEnd)
+        || storyTypesOnly) && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -5278,7 +5381,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || viewport.nearEnd ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || storyTypesOnly || viewport.nearEnd ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -5314,7 +5417,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster, viewport.nearEnd === true);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly, viewport.nearEnd === true);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -5586,6 +5689,12 @@ try {
     }
     if (categoryReadability) {
       await categoryLabelReadability(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (storyTypesOnly) {
+      await storyTypesDropdowns(page, viewport, label);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
