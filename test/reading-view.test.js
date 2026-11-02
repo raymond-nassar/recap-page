@@ -304,6 +304,7 @@ function harness(overrides = {}) {
     orderDesc: node({ id: 'order-desc', open: true }),
     orderDescText: node({ id: 'order-desc-text' }),
     listNote: node({ id: 'list-note' }),
+    similarHint: node({ id: 'list-similar-hint' }),
     ringArc: node({ id: 'ring-arc' }),
     ringLabel: node({ id: 'ring-label' }),
     ringSub: node({ id: 'ring-sub' }),
@@ -406,6 +407,7 @@ function harness(overrides = {}) {
     ['#order-desc', nodes.orderDesc],
     ['#order-desc-text', nodes.orderDescText],
     ['#list-note', nodes.listNote],
+    ['#list-similar-hint', nodes.similarHint],
     ['#ring-arc', nodes.ringArc],
     ['#ring-label', nodes.ringLabel],
     ['#ring-sub', nodes.ringSub],
@@ -453,7 +455,7 @@ function harness(overrides = {}) {
   nodes.headingRight = node({ class: 'headright' }, [nodes.ringWrap]);
   nodes.heading = node({ class: 'head' }, [nodes.headingLeft, nodes.headingRight]);
   nodes.readingOverview = node({ id: 'reading-overview' });
-  nodes.readingBody.append(nodes.listWork, nodes.listNote, nodes.hero, nodes.readingOverview);
+  nodes.readingBody.append(nodes.listWork, nodes.listNote, nodes.similarHint, nodes.hero, nodes.readingOverview);
   nodes.viewRead.append(nodes.heading, nodes.readingBody);
   nodes.allRead.append(nodes.allReadHeading);
   nodes['all-deferred'].append(nodes['all-deferred-h']);
@@ -659,7 +661,7 @@ test('phone reading context follows the comic and returns to the heading without
     h.view.wire();
     h.view.render();
     assert.deepEqual(h.nodes.readingOverview.childNodes.map((entry) => entry.id),
-      ['order-sub', 'ring-wrap', 'hero-progress', 'order-desc', 'list-note']);
+      ['order-sub', 'ring-wrap', 'hero-progress', 'order-desc', 'list-note', 'list-similar-hint']);
 
     h.nodes.orderDescSummary.focus();
     h.setPhone(false);
@@ -667,12 +669,15 @@ test('phone reading context follows the comic and returns to the heading without
     assert.deepEqual(h.nodes.headingRight.childNodes.map((entry) => entry.id), ['ring-wrap']);
     assert.equal(h.nodes.heroProgress.parentNode, h.nodes.heroBody);
     assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.listNote) < h.nodes.readingBody.childNodes.indexOf(h.nodes.hero));
+    assert.equal(h.nodes.similarHint.parentNode, h.nodes.readingBody);
+    assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.similarHint) < h.nodes.readingBody.childNodes.indexOf(h.nodes.hero));
     assert.equal(h.nodes.ringSub.classList.contains('visually-hidden'), false);
     assert.equal(h.nodes.orderDesc.open, true);
     assert.equal(globalThis.document.activeElement, h.nodes.orderDescSummary);
 
     h.setPhone(true);
     assert.equal(h.nodes.heroProgress.parentNode, h.nodes.readingOverview);
+    assert.equal(h.nodes.similarHint.parentNode, h.nodes.readingOverview);
     assert.equal(h.nodes.orderDesc.open, true);
     assert.equal(globalThis.document.activeElement, h.nodes.orderDescSummary);
     assert.equal(JSON.stringify(h.state()), saved);
