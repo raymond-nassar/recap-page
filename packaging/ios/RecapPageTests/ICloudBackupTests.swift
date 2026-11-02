@@ -59,6 +59,9 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertTrue(current["connection"] is NSNull)
         XCTAssertTrue(current["account"] is NSNull)
         XCTAssertNil(current["waitingForUpload"])
+        let otherProvider = try await refusal("connect", ["provider": "another"])
+        XCTAssertEqual(otherProvider.code, "invalid")
+        XCTAssertTrue(store.calls.isEmpty)
 
         store.identity = nil
         current = try await status()
@@ -124,6 +127,7 @@ final class ICloudBackupHandlerTests: XCTestCase {
 
     func testABackupRoundTripsAndTheStatusWaitsForTheUpload() async throws {
         let connection = try await connect()
+        store.automaticallyUpload = false
         let bytes = Data([0x1f, 0x8b, 0x08, 0x00, 0x01])
         let created = try await call("create", ["connection": connection, "name": name, "bytes": bytes.base64EncodedString()])
         let item = try XCTUnwrap(created["item"] as? [String: Any])
@@ -174,6 +178,22 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(waiting.retry, 15_000)
         let read = try await call("read", ["connection": connection, "id": name])
         XCTAssertEqual(read["bytes"] as? String, "AQID")
+    }
+
+    func testPendingFilesStayListedButReadBackWaitsForCloudConfirmation() async throws {
+        let connection = try await connect()
+        store.automaticallyUpload = false
+        let created = try await call("create", ["connection": connection, "name": name, "bytes": "AQID"])
+        XCTAssertEqual(created["ok"] as? Bool, true, "local publication can finish before upload")
+        let listed = try await call("list", ["connection": connection])
+        let items = try XCTUnwrap(listed["items"] as? [[String: Any]])
+        XCTAssertEqual(items.first?["id"] as? String, name, "pending names remain visible for collision checks")
+        let pending = try await refusal("read", ["connection": connection, "id": name])
+        XCTAssertEqual(pending.code, "unavailable")
+        XCTAssertEqual(pending.retry, 15_000)
+        store.finishUploads()
+        let confirmed = try await call("read", ["connection": connection, "id": name])
+        XCTAssertEqual(confirmed["bytes"] as? String, "AQID")
     }
 
     func testUploadInspectionFailureIsNotReportedAsUploaded() async throws {
@@ -246,8 +266,12 @@ final class ICloudDriveStoreTests: XCTestCase {
             XCTAssertEqual(error as? ICloudStoreError, .exists)
         }
         XCTAssertEqual(try Data(contentsOf: file), Data([9, 8, 7]))
-        let read = try await store.read(name: name)
-        XCTAssertEqual(read, Data([9, 8, 7]))
+        do {
+            _ = try await store.read(name: name)
+            XCTFail("a local-only file was returned as an uploaded backup")
+        } catch {
+            XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
+        }
     }
 
     func testListsOnlyBackupsAndCountsAPlaceholderAsOne() async throws {
@@ -281,6 +305,27 @@ final class ICloudDriveStoreTests: XCTestCase {
         try await store.delete(name: name)
         let items = try await store.list()
         XCTAssertTrue(items.isEmpty)
+    }
+
+    func testOversizedFilesAreNotReturnedOrPublished() async throws {
+        let store = store()
+        try await store.prepare()
+        let bytes = Data(repeating: 1, count: ICloudDriveStore.maximumBytes + 1)
+        do {
+            _ = try await store.create(name: name, data: bytes)
+            XCTFail("an oversized backup was created")
+        } catch {
+            XCTAssertEqual(error as? ICloudStoreError, .tooLarge)
+        }
+        let file = root.appendingPathComponent("Documents").appendingPathComponent(name)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
+        try bytes.write(to: file)
+        do {
+            _ = try await store.read(name: name)
+            XCTFail("an oversized backup was returned")
+        } catch {
+            XCTAssertEqual(error as? ICloudStoreError, .tooLarge)
+        }
     }
 
     func testNoContainerMeansICloudDriveIsOff() async throws {

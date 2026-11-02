@@ -11,6 +11,7 @@ final class ICloudFakeStore: ICloudDocumentStore {
     var notDownloaded: Set<String> = []
     var iCloudFull = false
     var folderAvailable = true
+    var automaticallyUpload = true
     /// The next failure each operation meets, once, by operation name.
     var failures: [String: ICloudStoreError] = [:]
     private(set) var calls: [String] = []
@@ -50,6 +51,7 @@ final class ICloudFakeStore: ICloudDocumentStore {
         guard let data = files[name] else { throw ICloudStoreError.notFound }
         if notDownloaded.remove(name) != nil { throw ICloudStoreError.stillDownloading }
         guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
+        if notUploaded.contains(name) { throw ICloudStoreError.stillUploading }
         return data
     }
 
@@ -57,8 +59,8 @@ final class ICloudFakeStore: ICloudDocumentStore {
         try begin("create")
         guard files[name] == nil else { throw ICloudStoreError.exists }
         files[name] = data
-        notUploaded.insert(name)
-        return ICloudBackupItem(name: name, size: data.count, isUploaded: false)
+        if !automaticallyUpload { notUploaded.insert(name) }
+        return ICloudBackupItem(name: name, size: data.count, isUploaded: automaticallyUpload)
     }
 
     func delete(name: String) async throws {

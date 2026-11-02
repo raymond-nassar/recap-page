@@ -40,6 +40,11 @@ struct ICloudStoreError: Error, Equatable {
         retryAfterMs: 5_000
     )
     static let failed = ICloudStoreError(code: "failed", message: "Cloud backup stopped unexpectedly.")
+    static let stillUploading = ICloudStoreError(
+        code: "unavailable",
+        message: "iCloud has not confirmed this backup uploaded yet. It is tried again shortly.",
+        retryAfterMs: 15_000
+    )
 }
 
 /// One backup file in the folder. Its name is its id: iCloud Drive keeps one file per name in a folder.
@@ -191,19 +196,34 @@ final class ICloudDriveStore: ICloudDocumentStore {
                 // A just-created local file may not be marked ubiquitous yet. That is not an upload.
                 if values.isUbiquitousItem == true && values.ubiquitousItemIsUploaded == true { continue }
                 state.waiting = true
-                if let problem = values.ubiquitousItemUploadingError,
-                   problem.code == NSUbiquitousFileNotUploadedDueToQuotaError {
-                    state.iCloudFull = true
+                if let problem = values.ubiquitousItemUploadingError {
+                    if problem.code == NSUbiquitousFileNotUploadedDueToQuotaError {
+                        state.iCloudFull = true
+                    } else {
+                        throw Self.mapped(problem)
+                    }
                 }
             }
             return state
         }
     }
 
+    private func isUploaded(name: String) async throws -> Bool {
+        try await offMain {
+            var url = try self.folder().appendingPathComponent(name, isDirectory: false)
+            url.removeAllCachedResourceValues()
+            let values = try url.resourceValues(forKeys: [
+                .isUbiquitousItemKey, .ubiquitousItemIsUploadedKey, .ubiquitousItemUploadingErrorKey,
+            ])
+            if let error = values.ubiquitousItemUploadingError { throw Self.mapped(error) }
+            return values.isUbiquitousItem == true && values.ubiquitousItemIsUploaded == true
+        }
+    }
+
     func read(name: String) async throws -> Data {
         let url = try await offMain { try self.folder().appendingPathComponent(name, isDirectory: false) }
         try await waitForDownload(url)
-        return try await offMain {
+        let data = try await offMain {
             let values = try url.resourceValues(forKeys: [.fileSizeKey])
             if let size = values.fileSize, size > Self.maximumBytes { throw ICloudStoreError.tooLarge }
             return try Self.coordinated(reading: url) { actual in
@@ -214,6 +234,9 @@ final class ICloudDriveStore: ICloudDocumentStore {
                 return data
             }
         }
+        // Local read-back is not cloud durability. This also survives a restart while an upload is pending.
+        guard try await isUploaded(name: name) else { throw ICloudStoreError.stillUploading }
+        return data
     }
 
     // Asks iCloud for a file this device has not downloaded, and waits a little while for it. A file still

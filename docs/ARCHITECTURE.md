@@ -738,10 +738,10 @@ names the connection the page's consent was for:
   provider keeps two items under one name, as Google Drive does, says so with `duplicateNames: true`.
 - `delete` removes an item, and one already gone counts as removed.
 
-Item ids are opaque and may equal names, as a CloudKit record's would. A connection id is opaque too,
+Item ids are opaque and may equal file names, as the iCloud Drive transport's do. A connection id is opaque too,
 and the provider mints one at each connect: the Windows host 32 random hexadecimal digits, kept only
 when the same account signs in again after its sign-in expired, so its backups resume, and the iOS
-provider one it binds natively to an account digest. The engine takes any string of 1 to 128
+provider one it binds natively to the device's iCloud identity. The engine takes any string of 1 to 128
 characters without control characters and compares it exactly. Each operation settles within the
 deadline the engine states at `src/js/lib/cloudProtocol.js:42`: two minutes for a list, ten for a
 read or a create, and thirty seconds for a delete. The engine waits fifteen seconds more for the
@@ -1092,11 +1092,20 @@ app's ubiquity container, which the Files app shows as **Recap Page**, not in Cl
 
 The native store coordinates file reads and writes and refuses a create whose name already exists.
 A read requests a download if needed and returns a retryable refusal if it is still downloading.
-Creating and reading back a local file does not establish that iCloud uploaded it: status carries
+A locally published file cannot pass read-back until iOS confirms its upload. Status carries
 optional `waitingForUpload: true` until iOS confirms, and the card appends the upload wait to its
 connected feedback. A failed upload inspection is unavailable, not an uploaded result. iCloud uses
 the transport's second list after create as an additional concurrent-write check, but live
 cross-device visibility and conflict behavior still need the signed-device acceptance.
+
+No uploaded backup is deleted by automatic retention until its replacement has uploaded. Pending
+files remain in listings for collision checks, but only successful read-back adds a generation to
+the verified record. Every retention prune follows that acknowledgement and uses the record's
+second-newest verified generation, not a count of listed files. The other automatic deletion only
+discards the newly created item after a malformed reply, collision or failed digest. Discovery and
+startup do not prune. The separate command to delete this device's backups is an explicit user
+deletion and intentionally does not need a replacement. A stale waiting line may remain until
+the next status refresh; an unconfirmed file never counts as a completed backup.
 
 Only the iOS adapter supplies `transport.device`, choosing **Recap Page on iPhone** or
 **Recap Page on iPad**. The backup engine uses that label when supplied, otherwise its existing

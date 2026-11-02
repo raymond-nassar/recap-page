@@ -170,6 +170,9 @@ final class ICloudBackupHandler {
             let current = await status()
             return ["status": current]
         case "connect":
+            if let provider = input["provider"], provider as? String != "icloud" {
+                throw ICloudStoreError(code: "invalid", message: "This app connects cloud backup only to iCloud.")
+            }
             let current = try await connect()
             return ["status": current]
         case "disconnect":

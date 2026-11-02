@@ -1952,3 +1952,31 @@ test('listening for other tabs keeps no process alive', async () => {
   });
   assert.equal(outcome, 'exited', `after ${Date.now() - started} ms`);
 });
+
+test('two iCloud read-backs waiting for upload never prune confirmed backups or count as verified', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  for (const generation of [1, 2]) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  for (const generation of [3, 4]) {
+    home.mark(generation);
+    env.transport.calls.length = 0;
+    env.transport.faults.read.push('unavailable');
+    await assert.rejects(protocol.upload(await home.snapshot()), { code: 'unavailable' });
+    assert.equal(env.transport.calls.includes('delete'), false, 'no retention delete after a pending read-back');
+    assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [2, 1]);
+    assert.deepEqual(env.transport.generations(stream), Array.from({ length: generation }, (_, at) => at + 1),
+      'pending files stay in listings without becoming retained verified generations');
+  }
+  home.mark(5);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [5, 2]);
+  assert.deepEqual(env.transport.generations(stream), [2, 3, 4, 5], 'the prior confirmed backup is kept beside its confirmed replacement');
+  home.mark(6);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [6, 5]);
+  assert.equal(env.transport.generations(stream).includes(2), false, 'only a later confirmed replacement allows that backup to be pruned');
+});
