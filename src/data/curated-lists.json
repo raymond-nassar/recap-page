@@ -921,7 +921,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "horror"
+        "horror",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -2421,6 +2422,7 @@
       "spotlightKind": "other",
       "depth": "partial",
       "storyTypes": [
+        "espionage",
         "thriller"
       ],
       "tones": [
@@ -2630,7 +2632,11 @@
       "depth": "selected",
       "storyTypes": [
         "science-fiction",
-        "thriller"
+        "thriller",
+        "horror"
+      ],
+      "tones": [
+        "dark"
       ],
       "beginner": false,
       "timeline": null,
@@ -3086,6 +3092,9 @@
       "storyTypes": [
         "space-opera",
         "war"
+      ],
+      "tones": [
+        "epic"
       ],
       "beginner": false,
       "timeline": null,
@@ -4606,6 +4615,9 @@
         "space-opera",
         "comedy"
       ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4681,6 +4693,9 @@
       "storyTypes": [
         "science-fiction",
         "political"
+      ],
+      "tones": [
+        "dark"
       ],
       "spotlightKind": "other",
       "beginner": false,
@@ -5804,6 +5819,7 @@
       "depth": "complete",
       "storyTypes": [
         "espionage",
+        "thriller",
         "political"
       ],
       "tones": [
@@ -8568,6 +8584,9 @@
         "space-opera",
         "political"
       ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -10519,7 +10538,8 @@
       "audience": "young-readers",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "science-fiction",
+        "comedy"
       ],
       "tones": [
         "lighthearted"
