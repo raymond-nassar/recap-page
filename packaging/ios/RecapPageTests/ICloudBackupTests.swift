@@ -47,8 +47,9 @@ final class ICloudBackupHandlerTests: XCTestCase {
         return try XCTUnwrap(json["status"] as? [String: Any])
     }
 
-    private func connect() async throws -> String? {
-        try await status("connect")["connection"] as? String
+    private func connect() async throws -> String {
+        let current = try await status("connect")
+        return try XCTUnwrap(current["connection"] as? String)
     }
 
     func testStatusNamesTheProviderAndNeverASignInState() async throws {
@@ -136,6 +137,7 @@ final class ICloudBackupHandlerTests: XCTestCase {
         store.iCloudFull = true
         current = try await status()
         XCTAssertEqual(current["message"] as? String, ICloudBackupHandler.iCloudFull)
+        XCTAssertEqual(current["state"] as? String, "unavailable")
         store.iCloudFull = false
         store.finishUploads()
         current = try await status()
@@ -172,6 +174,14 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(waiting.retry, 15_000)
         let read = try await call("read", ["connection": connection, "id": name])
         XCTAssertEqual(read["bytes"] as? String, "AQID")
+    }
+
+    func testUploadInspectionFailureIsNotReportedAsUploaded() async throws {
+        _ = try await connect()
+        store.failures["uploadState"] = .iCloudBusy
+        let current = try await status()
+        XCTAssertEqual(current["state"] as? String, "unavailable")
+        XCTAssertEqual(current["message"] as? String, ICloudStoreError.iCloudBusy.message)
     }
 
     func testCreateRefusesWhatCloudBackupDoesNotWrite() async throws {
@@ -254,7 +264,7 @@ final class ICloudDriveStoreTests: XCTestCase {
         XCTAssertEqual(items.first?.size, 1)
         XCTAssertNil(items.last?.size, "a backup not downloaded has no size yet")
         let state = try await store.uploadState()
-        XCTAssertFalse(state.waiting, "files outside iCloud have nothing to upload")
+        XCTAssertTrue(state.waiting, "a local file not yet recognized by iCloud is not an uploaded backup")
     }
 
     func testAMissingBackupIsNotFoundAndDeletingItTwiceSucceeds() async throws {

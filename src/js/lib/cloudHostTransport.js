@@ -19,9 +19,9 @@ export const CLOUD_HOST_HEADER = 'x-recap-cloud';
 const ACCOUNT_MS = 15_000;
 const STATES = new Set(['unavailable', 'not-connected', 'signing-in', 'connected', 'needs-sign-in']);
 const PROVIDER = /^[a-z]{1,32}$/;
-// Google Drive keeps two items under one name, and the protocol settles that with a second list after a
-// create; OneDrive cannot, so it skips that list.
-const DUPLICATE_NAMES = new Set(['googledrive']);
+// Google Drive permits duplicate names, and iCloud can resolve concurrent writes on other devices.
+// Both need the protocol's second list after a create; OneDrive refuses a second item of one name.
+const DUPLICATE_NAMES = new Set(['googledrive', 'icloud']);
 const NOT_ENABLED = Object.freeze({ enabled: false });
 const NOT_ANSWERED = Object.freeze({ enabled: false, transient: true });
 const CHUNK = 0x8000;
@@ -79,6 +79,7 @@ function statusOf(value) {
     message: text(value.message, 1024),
     reason: text(value.reason, 1024),
     signInExpiresAt: Number.isSafeInteger(value.signInExpiresAt) ? value.signInExpiresAt : null,
+    ...(value.waitingForUpload === true ? { waitingForUpload: true } : {}),
   };
 }
 

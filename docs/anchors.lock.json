@@ -1634,8 +1634,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2903-2929|0": {
-    "anchor": "src/js/main.js:2903-2929",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2904-2930|0": {
+    "anchor": "src/js/main.js:2904-2930",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1714,13 +1714,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2903-2929|0": {
-    "anchor": "src/js/main.js:2903-2929",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2904-2930|0": {
+    "anchor": "src/js/main.js:2904-2930",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3628-3670|0": {
-    "anchor": "src/js/main.js:3628-3670",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3629-3671|0": {
+    "anchor": "src/js/main.js:3629-3671",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1774,28 +1774,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2912|0": {
-    "anchor": "src/js/main.js:2912",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2913|0": {
+    "anchor": "src/js/main.js:2913",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3566-3585|0": {
-    "anchor": "src/js/main.js:3566-3585",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3567-3586|0": {
+    "anchor": "src/js/main.js:3567-3586",
     "fp": "30f600f9bd9e5fc8",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3587-3733|0": {
-    "anchor": "src/js/main.js:3587-3733",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3588-3734|0": {
+    "anchor": "src/js/main.js:3588-3734",
     "fp": "86d82ba465df7f66",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3642-3648|0": {
-    "anchor": "src/js/main.js:3642-3648",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3643-3649|0": {
+    "anchor": "src/js/main.js:3643-3649",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3668-3669|0": {
-    "anchor": "src/js/main.js:3668-3669",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3669-3670|0": {
+    "anchor": "src/js/main.js:3669-3670",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -1889,8 +1889,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1526|0": {
-    "anchor": "src/index.html:1526",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1527|0": {
+    "anchor": "src/index.html:1527",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2139,8 +2139,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1226-1230|0": {
-    "anchor": "src/index.html:1226-1230",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1227-1231|0": {
+    "anchor": "src/index.html:1227-1231",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2604,8 +2604,8 @@
     "fp": "30990219b3c5e62c",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2903-2929|0": {
-    "anchor": "src/js/main.js:2903-2929",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2904-2930|0": {
+    "anchor": "src/js/main.js:2904-2930",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -2644,8 +2644,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1243-1254|0": {
-    "anchor": "src/index.html:1243-1254",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1244-1255|0": {
+    "anchor": "src/index.html:1244-1255",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },

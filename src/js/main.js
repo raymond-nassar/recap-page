@@ -2410,6 +2410,7 @@ const cloudBackupView = createCloudBackupView({
     card: $('#cloud-backup'), intro: $('#cloud-backup-intro'), status: $('#cloud-backup-status'),
     progress: $('#cloud-backup-progress'), primary: $('#cloud-backup-primary'), signIn: $('#btn-cloud-sign-in'),
     signInGoogle: $('#btn-cloud-sign-in-google'),
+    connectICloud: $('#btn-cloud-connect-icloud'),
     retry: $('#btn-cloud-retry'), auto: $('#cloud-auto'), autoInput: $('#opt-cloud-auto'), discovery: $('#cloud-discovery'),
     discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
     remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),

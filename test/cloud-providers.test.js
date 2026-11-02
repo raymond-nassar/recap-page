@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createCloudHostTransport } from '../src/js/lib/cloudHostTransport.js';
-import { cloudDeleteQuestion, cloudProviderName, cloudSignInChoices } from '../src/js/views/cloud.js';
+import { cloudCardStatus, cloudDeleteQuestion, cloudDeleteReport, cloudDisconnectQuestion, cloudProviderName, cloudSignInChoices } from '../src/js/views/cloud.js';
 
 // A host that answers every request with the status given, and records each request body the page sent.
 function answering(status) {
@@ -54,6 +54,9 @@ test('a second list after each create follows the service the host last named, a
   provider = 'googledrive';
   await transport.connect({ provider });
   assert.equal(transport.duplicateNames, true, 'Google Drive keeps two items under one name');
+  provider = 'icloud';
+  await transport.connect({ provider });
+  assert.equal(transport.duplicateNames, true, 'iCloud concurrent writes need the second list too');
   provider = null;
   await transport.status();
   assert.equal(transport.duplicateNames, true, 'a status that names no service changes nothing');
@@ -78,10 +81,28 @@ test('the card offers every known service while nobody is connected, and only th
 });
 
 test('the card names each service in its own words', () => {
+  assert.equal(cloudProviderName({ provider: 'icloud' }), 'iCloud');
+  assert.deepEqual(cloudSignInChoices({ host: 'not-connected', provider: 'icloud', providers: ['icloud'] }), ['icloud']);
+  const iCloud = { provider: 'icloud', scope: 'device' };
+  assert.match(cloudDeleteQuestion(iCloud), /cannot bring deleted backups back/);
+  assert.doesNotMatch(cloudDeleteQuestion(iCloud), /recycle|trash|30 days|OneDrive|Google/);
+  assert.doesNotMatch(cloudDeleteReport({ deleted: 2, failed: [] }, iCloud), /recycle|trash|30 days|OneDrive|Google/);
+  assert.match(cloudDisconnectQuestion(iCloud, false), /does not sign you out of iCloud/);
   assert.equal(cloudProviderName({ provider: 'googledrive' }), 'Google Drive');
   assert.equal(cloudProviderName({ provider: 'onedrive' }), 'OneDrive');
   assert.equal(cloudProviderName({ provider: 'toString' }), 'your cloud account');
   assert.match(cloudDeleteQuestion({ provider: 'googledrive' }), /delete those in Google Drive\. Deleted backups stay in Google Drive's trash/);
   assert.doesNotMatch(cloudDeleteQuestion({ provider: 'googledrive' }), /OneDrive|recycle bin/);
   assert.doesNotMatch(cloudDeleteQuestion({ provider: 'onedrive' }), /Google|trash/);
+});
+
+test('only a true upload wait survives the transport and appears in connected feedback', async () => {
+  for (const waitingForUpload of [undefined, false, true, 'true', 1]) {
+    const { transport } = answering({ ...BASE, state: 'connected', provider: 'icloud', waitingForUpload });
+    const status = await transport.status();
+    assert.equal(status.waitingForUpload, waitingForUpload === true ? true : undefined);
+    const model = { ...status, host: status.state, scope: 'device', on: false };
+    assert.equal(cloudCardStatus(model), `Connected to iCloud.${waitingForUpload === true ? ' iCloud has not finished uploading the latest backup yet.' : ''}`);
+    assert.match(cloudCardStatus({ ...model, on: true, backup: { phase: 'saving' } }), /Backing up now\.$/);
+  }
 });

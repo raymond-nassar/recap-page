@@ -16,6 +16,7 @@ import { cloudErrorText } from '../lib/cloudCopy.js';
 const PROVIDERS = Object.freeze({
   onedrive: Object.freeze({ name: 'OneDrive', company: 'Microsoft', bin: 'recycle bin', button: 'signIn' }),
   googledrive: Object.freeze({ name: 'Google Drive', company: 'Google', bin: 'trash', button: 'signInGoogle' }),
+  icloud: Object.freeze({ name: 'iCloud', company: 'Apple', bin: null, button: 'connectICloud' }),
 });
 const DELETED = /\bnothing was deleted\b/i;
 const WAITS = Object.freeze({
@@ -86,7 +87,9 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
     case 'not-connected': return cloudErrorText(model.message, model.scope) ?? '';
     case 'needs-sign-in': return `${companyOf(model)} asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.`;
     case 'connected': {
-      const account = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
+      const connected = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
+      const account = model.waitingForUpload === true
+        ? `${connected} iCloud has not finished uploading the latest backup yet.` : connected;
       if (model.askedAgain) {
         return model.reason ? `${account} ${cloudErrorText(model.reason, model.scope)}`
           : device ? `${account} ${name} was connected again after you turned on automatic backup, so check the backups below before turning it on again.`
@@ -152,7 +155,9 @@ function accountIn(model) {
 // it, and say where any backups made in another account are.
 export function cloudDeleteQuestion(model) {
   const name = cloudProviderName(model);
-  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. Deleted backups stay in ${name}'s ${binOf(model)} for up to 30 days, but Recap Page cannot bring them back.`;
+  const recovery = model.provider === 'icloud' ? 'Recap Page cannot bring deleted backups back.'
+    : `Deleted backups stay in ${name}'s ${binOf(model)} for up to 30 days, but Recap Page cannot bring them back.`;
+  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. ${recovery}`;
   if (model.scope === 'device') return `This turns automatic backup off and deletes every backup made on this device in ${accountIn(model)}. ${rest}`;
   return `This turns automatic backup off and deletes every backup this browser made in ${accountIn(model)}. ${rest}`;
 }
@@ -166,7 +171,9 @@ export function cloudDeleteReport({ deleted, failed }, model) {
   if (failed.length === 0) {
     return deleted === 0
       ? `No backups ${from} were in ${where}. Any ${device ? 'made' : 'it made'} in another account are still there. ${off}.`
-      : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the ${binOf(model)} for up to 30 days unless it is emptied. ${off}.`;
+      : model.provider === 'icloud'
+        ? `Deleted ${plural(deleted, 'backup')} ${from} from ${where}. Recap Page cannot bring deleted backups back. ${off}.`
+        : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the ${binOf(model)} for up to 30 days unless it is emptied. ${off}.`;
   }
   const reason = failed[0].code === 'needs-sign-in' ? 'sign in again first'
     : failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${failed.length === 1 ? 'it' : 'them'}`;
@@ -185,9 +192,11 @@ export function cloudDeleteFailure(message, off, model = {}) {
 export function cloudDisconnectQuestion(model, choice) {
   const name = cloudProviderName(model);
   // The Android app holds one sign-in for itself alone (#810, P03-T03).
-  const lead = model.scope === 'device'
-    ? `Recap Page forgets the ${name} sign-in on this device, and automatic backup stops.`
-    : `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
+  const lead = model.provider === 'icloud'
+    ? 'Recap Page forgets its iCloud connection on this device, and automatic backup stops. This does not sign you out of iCloud.'
+    : model.scope === 'device'
+      ? `Recap Page forgets the ${name} sign-in on this device, and automatic backup stops.`
+      : `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
   if (choice) return `${lead} Backups already in ${name} stay there unless you also delete this device's.`;
   const first = model.host === 'needs-sign-in' && model.hasStream
     ? ' To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.' : '';
@@ -341,7 +350,7 @@ export function createCloudBackupView({
     nodes.remove.hidden = !(connected && model.hasStream);
     nodes.disconnect.hidden = !(connected || host === 'needs-sign-in' || host === 'unavailable');
     nodes.actions.hidden = nodes.remove.hidden && nodes.disconnect.hidden;
-    for (const control of [nodes.signIn, nodes.signInGoogle, nodes.retry, nodes.remove, nodes.disconnect, ...(nodes.found.querySelectorAll?.('button') ?? [])]) {
+    for (const control of [nodes.signIn, nodes.signInGoogle, nodes.connectICloud, nodes.retry, nodes.remove, nodes.disconnect, ...(nodes.found.querySelectorAll?.('button') ?? [])]) {
       if (control) control.disabled = working;
     }
     nodes.autoInput.disabled = working || (!nodes.autoInput.checked && !connected);
@@ -375,7 +384,10 @@ export function createCloudBackupView({
   function signIn(provider) {
     return run(async () => {
       try { await (provider === undefined ? onConnect() : onConnect(provider)); }
-      catch (error) { report(`Sign-in did not start. ${cloudErrorText(error.message, getModel().scope)}`); }
+      catch (error) {
+        const stopped = provider === 'icloud' ? 'iCloud could not be connected.' : 'Sign-in did not start.';
+        report(`${stopped} ${cloudErrorText(error.message, getModel().scope)}`);
+      }
     });
   }
 
@@ -512,6 +524,7 @@ export function createCloudBackupView({
     if (!nodes.card) return;
     nodes.signIn.addEventListener('click', () => { void signIn(); });
     nodes.signInGoogle?.addEventListener('click', () => { void signIn('googledrive'); });
+    nodes.connectICloud?.addEventListener('click', () => { void signIn('icloud'); });
     nodes.retry.addEventListener('click', () => { void run(async () => { onRetry(); }); });
     nodes.autoInput.addEventListener('change', (event) => { void toggle(event); });
     nodes.discovery.addEventListener('toggle', () => {

@@ -169,11 +169,10 @@ final class ICloudDriveStore: ICloudDocumentStore {
         for entry in entries {
             let (name, isPlaceholder) = Self.name(ofEntry: entry.lastPathComponent)
             guard Self.isBackupName(name) else { continue }
-            let values = try? entry.resourceValues(forKeys: Set(keys))
-            if values?.isDirectory == true { continue }
-            // A file outside iCloud has nothing to upload, which is the case in the tests' plain folders.
-            let uploaded = values?.isUbiquitousItem == true ? values?.ubiquitousItemIsUploaded ?? false : true
-            let item = ICloudBackupItem(name: name, size: isPlaceholder ? nil : values?.fileSize, isUploaded: uploaded)
+            let values = try entry.resourceValues(forKeys: Set(keys))
+            if values.isDirectory == true { continue }
+            let uploaded = values.isUbiquitousItem == true && values.ubiquitousItemIsUploaded == true
+            let item = ICloudBackupItem(name: name, size: isPlaceholder ? nil : values.fileSize, isUploaded: uploaded)
             if isPlaceholder, byName[name] != nil { continue }
             byName[name] = item
         }
@@ -183,13 +182,14 @@ final class ICloudDriveStore: ICloudDocumentStore {
     func uploadState() async throws -> ICloudUploadState {
         try await offMain {
             let documents = try self.folder()
-            let keys: [URLResourceKey] = [.isUbiquitousItemKey, .ubiquitousItemIsUploadedKey, .ubiquitousItemUploadingErrorKey]
+            let keys: [URLResourceKey] = [.isDirectoryKey, .isUbiquitousItemKey, .ubiquitousItemIsUploadedKey, .ubiquitousItemUploadingErrorKey]
             var state = ICloudUploadState()
             for entry in try FileManager.default.contentsOfDirectory(at: documents, includingPropertiesForKeys: keys, options: []) {
-                guard Self.isBackupName(entry.lastPathComponent),
-                      let values = try? entry.resourceValues(forKeys: Set(keys)),
-                      values.isUbiquitousItem == true,
-                      values.ubiquitousItemIsUploaded != true else { continue }
+                guard Self.isBackupName(entry.lastPathComponent) else { continue }
+                let values = try entry.resourceValues(forKeys: Set(keys))
+                if values.isDirectory == true { continue }
+                // A just-created local file may not be marked ubiquitous yet. That is not an upload.
+                if values.isUbiquitousItem == true && values.ubiquitousItemIsUploaded == true { continue }
                 state.waiting = true
                 if let problem = values.ubiquitousItemUploadingError,
                    problem.code == NSUbiquitousFileNotUploadedDueToQuotaError {
@@ -206,7 +206,13 @@ final class ICloudDriveStore: ICloudDocumentStore {
         return try await offMain {
             let values = try url.resourceValues(forKeys: [.fileSizeKey])
             if let size = values.fileSize, size > Self.maximumBytes { throw ICloudStoreError.tooLarge }
-            return try Self.coordinated(reading: url) { try Data(contentsOf: $0) }
+            return try Self.coordinated(reading: url) { actual in
+                let file = try FileHandle(forReadingFrom: actual)
+                defer { try? file.close() }
+                let data = try file.read(upToCount: Self.maximumBytes + 1) ?? Data()
+                guard data.count <= Self.maximumBytes else { throw ICloudStoreError.tooLarge }
+                return data
+            }
         }
     }
 
@@ -250,7 +256,16 @@ final class ICloudDriveStore: ICloudDocumentStore {
                 if manager.fileExists(atPath: target.path) || manager.fileExists(atPath: Self.placeholder(for: target).path) {
                     throw ICloudStoreError.exists
                 }
-                try data.write(to: target, options: [.withoutOverwriting])
+                // Publish only a complete file. A failed write must not leave a backup under its final name.
+                let staging = target.deletingLastPathComponent().appendingPathComponent(".recap-icloud-\(UUID().uuidString).tmp")
+                defer {
+                    if manager.fileExists(atPath: staging.path) {
+                        do { try manager.removeItem(at: staging) }
+                        catch { NSLog("Recap Page could not remove an unfinished iCloud backup file: %@", error.localizedDescription) }
+                    }
+                }
+                try data.write(to: staging, options: [.withoutOverwriting])
+                try manager.moveItem(at: staging, to: target)
             }
             return ICloudBackupItem(name: name, size: data.count, isUploaded: false)
         }

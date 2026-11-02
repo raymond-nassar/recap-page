@@ -78,6 +78,7 @@ final class ICloudBackupHandler {
     ) -> [String: Any] {
         var out: [String: Any] = [
             "provider": "icloud",
+            "providers": ["icloud"],
             "state": state,
             "connection": connection ?? NSNull(),
             "account": NSNull(),
@@ -96,16 +97,19 @@ final class ICloudBackupHandler {
         }
         guard let current = record else { return statusBody(state: "not-connected") }
         guard store.isSameIdentity(current.identity, identity) else {
-            return statusBody(state: "not-connected", reason: Self.accountChanged)
+            return statusBody(state: "not-connected", message: Self.accountChanged, reason: Self.accountChanged)
         }
-        // What iCloud still has to upload is worth showing, but not worth failing a status for.
-        let uploads = try? await store.uploadState()
-        return statusBody(
-            state: "connected",
-            connection: current.connection,
-            message: uploads?.iCloudFull == true ? Self.iCloudFull : nil,
-            waitingForUpload: uploads?.waiting == true
-        )
+        do {
+            let uploads = try await store.uploadState()
+            return statusBody(
+                state: uploads.iCloudFull ? "unavailable" : "connected",
+                connection: current.connection,
+                message: uploads.iCloudFull ? Self.iCloudFull : nil,
+                waitingForUpload: uploads.waiting
+            )
+        } catch {
+            return statusBody(state: "unavailable", connection: current.connection, message: ICloudDriveStore.mapped(error).message)
+        }
     }
 
     func connect() async throws -> [String: Any] {
