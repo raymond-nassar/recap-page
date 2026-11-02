@@ -3665,7 +3665,7 @@ const storyTypesView = createStoryTypesView({
   }),
   isCurrent: () => view === 'genres',
   presentation: catalogPresentation,
-  onNavigate: () => syncHash({ push: true }),
+  onNavigate: ({ push }) => syncHash({ push }),
 });
 
 const catalogView = createCatalogView({

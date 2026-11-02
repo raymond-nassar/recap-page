@@ -18,15 +18,34 @@ export function createStoryTypesView({
   let root;
   let typeSelect;
   let toneSelect;
+  let keyboardRun = false;
+  let runAddressed = false;
+
+  function endRun() {
+    keyboardRun = false;
+    runAddressed = false;
+  }
+
+  function keyboardChoice(event) {
+    if (!event.ctrlKey && !event.altKey && !event.metaKey
+      && (event.key.startsWith('Arrow') || ['Home', 'End', 'PageUp', 'PageDown'].includes(event.key)
+        || event.key.length === 1)) keyboardRun = true;
+  }
 
   function controls() {
     if (!root) {
       typeSelect = el('select', {
         id: `${ROUTE}-type`,
+        onkeydown: keyboardChoice,
+        onpointerdown: endRun,
+        onfocusout: endRun,
         onchange: (event) => choose({ storyType: event.currentTarget.value, tone }),
       });
       toneSelect = el('select', {
         id: `${ROUTE}-tone`,
+        onkeydown: keyboardChoice,
+        onpointerdown: endRun,
+        onfocusout: endRun,
         onchange: (event) => choose({ storyType: type, tone: event.currentTarget.value }),
       });
       root = el('div', { id: `${ROUTE}-choices`, class: 'story-type-choices' }, [
@@ -49,7 +68,8 @@ export function createStoryTypesView({
   function choose(next) {
     set(next);
     paint();
-    onNavigate();
+    onNavigate({ push: !keyboardRun || !runAddressed });
+    if (keyboardRun) runAddressed = true;
   }
 
   function group(heading, select) {
