@@ -103,7 +103,7 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
 
-      # The app itself still ships no runtime dependencies. The lockfile exists only
+      # The browser app ships no runtime dependencies. The lockfile exists only
       # for the lint tooling, so this installs nothing that reaches the browser.
       # `--ignore-scripts` because a manifest is contributor-editable: an install
       # script is arbitrary code a pull request can add, running before any review

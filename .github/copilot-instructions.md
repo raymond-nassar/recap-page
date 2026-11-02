@@ -7,7 +7,7 @@ someone who then broke it anyway.
 ## What the app is
 
 A local-first static site for tracking progress through curated Marvel reading orders. Vanilla ES
-modules, no build step, no runtime dependencies. `npm ci` installs lint tooling only, and nothing
+modules, no build step, no browser runtime dependencies. `npm ci` installs lint tooling only, and nothing
 it installs reaches the browser. Reading progress lives in one `localStorage` key, `mrt.state.v2`,
 defined at `src/js/storage.js:17`. That module owns the other keys too, including the temporary,
 pre-restore and salvage keys the recovery paths depend on, so read it before touching persistence.
@@ -664,7 +664,7 @@ which is the failure this recovery undid.
 | 10 | Market-facing framing does not apply. This is a single-user private app, so segments, growth, retention, funnels, and A/B tests are out of scope. |
 | 11 | Match repository writing conventions. Shipped surfaces contain no em dashes. |
 
-Four notes on the table, none of which alter it.
+Five notes on the table, none of which alter it.
 
 - **The finding inside constraint 6 is closed, and the row's wording predates the fix.** The row
   tells you to record a disagreement between the comment above the enum in
@@ -686,6 +686,9 @@ Four notes on the table, none of which alter it.
   browser, and a build without a release's client configuration has no cloud backup at all. Every
   other upload, account, cloud service, analytics and telemetry is still declined under constraint
   3, and the row is unchanged because it records what the gate lines were checked against.
+- **Constraint 4 has an owner-approved Android-only exception (#810).** The Android app may include
+  Google Play services auth and its transitive libraries for Google Drive sign-in. Browser runtime
+  dependencies remain at zero; the row is unchanged because it records the original constraint.
 
 **A hypothesis that was tested and refuted.** While 8 and 9 were unrecovered, the two rules below
 were the leading candidates for them, because exactly two were unmapped and exactly two numbers were

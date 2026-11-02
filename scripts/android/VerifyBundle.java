@@ -396,7 +396,8 @@ public final class VerifyBundle {
     }
 
     private static Element generatedMetadata(Element app) {
-        var metadata = children(app, "meta-data");
+        var metadata = children(app, "meta-data").stream()
+                .filter(value -> attr(value, "name").equals("com.android.vending.splits")).toList();
         require(metadata.size() == 1, "GENERATED_SPLITS_METADATA");
         Element value = metadata.get(0);
         require(value.getAttributes().getLength() == 2 && children(value, null).isEmpty()
@@ -429,7 +430,69 @@ public final class VerifyBundle {
                 "GENERATED_SPLITS_RESOURCE");
     }
 
-    private static boolean cloudRedirect(Element app, String packageName) throws Exception {
+    private static Element namedComponent(Element app, String tag, String name) {
+        var matches = children(app, tag).stream().filter(value -> attr(value, "name").equals(name)).toList();
+        require(matches.size() == 1, "MANIFEST_COMPONENTS");
+        return matches.get(0);
+    }
+
+    private static boolean emptyComponent(Element value, int attributes) {
+        return value.getAttributes().getLength() == attributes
+                && children(value, null).isEmpty() && value.getTextContent().isBlank();
+    }
+
+    private static boolean translucentTheme(String theme) {
+        return List.of("@android:style/Theme.Translucent.NoTitleBar", "@android:01030010",
+                "@0x01030010", "@01030010", "@ref/0x01030010", "@ref/0x1030010").contains(theme);
+    }
+
+    private static Element playServicesComponents(Element app, boolean cloud) {
+        Element hub = namedComponent(app, "activity", "com.google.android.gms.auth.api.signin.internal.SignInHubActivity");
+        require(emptyComponent(hub, 4) && attr(hub, "exported").equals("false")
+                && attr(hub, "excludeFromRecents").equals("true") && translucentTheme(attr(hub, "theme")),
+                "MANIFEST_COMPONENTS");
+        Element api = namedComponent(app, "activity", "com.google.android.gms.common.api.GoogleApiActivity");
+        require(emptyComponent(api, 3) && attr(api, "exported").equals("false")
+                && translucentTheme(attr(api, "theme")), "MANIFEST_COMPONENTS");
+        Element service = namedComponent(app, "service", "com.google.android.gms.auth.api.signin.RevocationBoundService");
+        require(emptyComponent(service, 4) && attr(service, "exported").equals("true")
+                && attr(service, "permission").equals("com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION")
+                && attr(service, "visibleToInstantApps").equals("true"), "MANIFEST_COMPONENTS");
+        if (cloud) {
+            Element consent = namedComponent(app, "activity",
+                    "io.github.raymondnassar.recappage.prototype.GoogleConsentActivity");
+            require(emptyComponent(consent, 4) && attr(consent, "exported").equals("false")
+                    && attr(consent, "excludeFromRecents").equals("true") && translucentTheme(attr(consent, "theme")),
+                    "MANIFEST_COMPONENTS");
+        }
+        Element version = namedComponent(app, "meta-data", "com.google.android.gms.version");
+        String reference = attr(version, "value");
+        require(emptyComponent(version, 2) && (reference.equals("@integer/google_play_services_version")
+                || reference.matches("@(?:ref/)?(?:0x)?[0-9a-fA-F]{8}")), "MANIFEST_COMPONENTS");
+        return version;
+    }
+
+    private static void playServicesResourceBinding(Element metadata, String resources) {
+        var entry = java.util.regex.Pattern.compile(
+                "(?m)^\\s*resource (0x[0-9a-fA-F]+) (?:[\\w.]+:)?integer/google_play_services_version(?:\\s|$)")
+                .matcher(resources);
+        require(entry.find(), "MANIFEST_COMPONENTS");
+        String id = entry.group(1);
+        int start = entry.end();
+        require(!entry.find(), "MANIFEST_COMPONENTS");
+        String reference = attr(metadata, "value");
+        require(reference.equals("@integer/google_play_services_version")
+                || reference.equalsIgnoreCase("@" + id) || reference.equalsIgnoreCase("@" + id.substring(2))
+                || reference.equalsIgnoreCase("@ref/" + id), "MANIFEST_COMPONENTS");
+        var next = java.util.regex.Pattern.compile("(?m)^\\s*resource ").matcher(resources);
+        int end = next.find(start) ? next.start() : resources.length();
+        var values = java.util.regex.Pattern.compile("(?m)^\\s*\\(([^)]*)\\)\\s+(\\S.*?)\\s*$")
+                .matcher(resources.substring(start, end));
+        require(values.find() && values.group(1).isEmpty() && values.group(2).equals("12451000")
+                && !values.find(), "MANIFEST_COMPONENTS");
+    }
+
+    private static boolean cloudRedirect(Element app, String packageName, boolean playServices) throws Exception {
         String path = System.getenv("RECAP_ANDROID_CLOUD_EXPECTATION");
         if (path == null) return false;
         require(Files.size(Path.of(path)) <= 4096, "MANIFEST_CLOUD_INPUT");
@@ -447,11 +510,12 @@ public final class VerifyBundle {
                 && attr(activity, "excludeFromRecents").equals("true")
                 && attr(activity, "noHistory").equals("true")
                 && List.of("@android:style/Theme.NoDisplay", "@android:01030055",
-                        "@0x01030055", "@01030055", "@ref/0x01030055").contains(theme),
+                        "@0x01030055", "@01030055", "@ref/0x01030055", "@ref/0x1030055").contains(theme),
                 "MANIFEST_CLOUD_REDIRECT");
         var filters = children(activity, "intent-filter");
         var metadata = children(activity, "meta-data");
-        require(children(activity, null).size() == 3 && filters.size() == 1 && metadata.size() == 2,
+        require(children(activity, null).size() == (playServices ? 4 : 3)
+                && filters.size() == 1 && metadata.size() == (playServices ? 3 : 2),
                 "MANIFEST_CLOUD_REDIRECT");
         Element filter = filters.get(0);
         var actions = children(filter, "action");
@@ -477,7 +541,8 @@ public final class VerifyBundle {
             require(names.add(name) && value.getAttributes().getLength() == 2
                     && children(value, null).isEmpty() && value.getTextContent().isBlank()
                     && ((name.equals("recap.cloud.client") && attr(value, "value").equals(expected[0]))
-                        || (name.equals("recap.cloud.redirectHash") && attr(value, "value").equals(expected[1]))),
+                        || (name.equals("recap.cloud.redirectHash") && attr(value, "value").equals(expected[1]))
+                        || (playServices && name.equals("recap.cloud.google") && attr(value, "value").equals("false"))),
                     "MANIFEST_CLOUD_REDIRECT");
         }
         return true;
@@ -517,6 +582,7 @@ public final class VerifyBundle {
         require(apps.size() == 1, "MANIFEST_APPLICATION");
         Element app = apps.get(0);
         boolean production = args[5].equals("app") || args[5].equals("apk");
+        boolean playServices = false;
         require(production || test, "MANIFEST_KIND");
         if (production) {
             require((attr(app, "debuggable").isEmpty() || attr(app, "debuggable").equals("false"))
@@ -563,25 +629,35 @@ public final class VerifyBundle {
                     "MANIFEST_BROWSER_QUERY");
             var components = children(app, null);
             var activities = children(app, "activity");
-            boolean cloud = cloudRedirect(app, args[2]);
+            String factory = attr(app, "appComponentFactory");
+            playServices = factory.equals("androidx.core.app.CoreComponentFactory");
+            require(playServices || factory.isEmpty(), "MANIFEST_COMPONENTS");
+            boolean cloud = cloudRedirect(app, args[2], playServices);
+            Element googleVersion = playServices ? playServicesComponents(app, cloud) : null;
             var main = activities.stream().filter(activity ->
                     attr(activity, "name").equals("io.github.raymondnassar.recappage.prototype.MainActivity")).toList();
-            require(activities.size() == (cloud ? 2 : 1) && main.size() == 1
+            require(activities.size() == (cloud ? 2 : 1) + (playServices ? (cloud ? 3 : 2) : 0)
+                    && main.size() == 1
                     && attr(main.get(0), "exported").equals("true"), "MANIFEST_COMPONENTS");
             if (derivedProfile) {
                 generatedMetadata(app);
-                require(components.size() == (cloud ? 3 : 2)
-                        && components.stream().allMatch(child ->
-                                List.of("activity", "meta-data").contains(child.getTagName())), "MANIFEST_COMPONENTS");
-            } else {
-                require(components.size() == (cloud ? 2 : 1), "MANIFEST_COMPONENTS");
+                if (playServices) {
+                    Element requiredSplits = namedComponent(app, "meta-data", "com.android.vending.splits.required");
+                    require(emptyComponent(requiredSplits, 2) && attr(requiredSplits, "value").equals("true"),
+                            "GENERATED_SPLITS_METADATA");
+                }
             }
+            require(components.size() == activities.size() + (playServices ? 2 : 0) + (derivedProfile ? 1 : 0)
+                    + (playServices && derivedProfile ? 1 : 0)
+                    && components.stream().allMatch(child ->
+                            List.of("activity", "service", "meta-data").contains(child.getTagName())), "MANIFEST_COMPONENTS");
             for (String resource : List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig")) {
                 require(attr(app, resource).startsWith("@"), "MANIFEST_POLICY_RESOURCE");
             }
             if (args.length == 8 && !args[5].equals("apk")) {
                 String resources = Files.readString(Path.of(args[7]));
                 if (derivedProfile) generatedResourceBinding(generatedMetadata(app), resources);
+                if (playServices) playServicesResourceBinding(googleVersion, resources);
                 var names = List.of("backup_rules", "data_extraction_rules", "network_security_config");
                 var attributes = List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig");
                 for (int i = 0; i < names.size(); i++) {
@@ -598,7 +674,7 @@ public final class VerifyBundle {
                     && attr(instrumentation.get(0), "targetPackage").equals(args[2].replaceFirst("\\.test$", "")),
                     "INSTRUMENTATION_TARGET");
         }
-        if (reportSuccess) System.out.println("{\"verified\":true}");
+        if (reportSuccess) System.out.println("{\"verified\":true,\"playServices\":" + playServices + "}");
     }
 
     private static void generatedSplits(String[] args) throws Exception {

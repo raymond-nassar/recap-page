@@ -20,7 +20,7 @@ import java.util.function.LongSupplier;
 // createOneDrive in host/oneDrive.mjs makes them on Windows, which records the observations each request
 // rests on. Only this class sets Authorization, and only on a Graph request: an upload session's address
 // and a download's are capabilities in themselves, and never carry the token.
-final class CloudOneDrive {
+final class CloudOneDrive implements CloudProvider.Drive {
     static final String GRAPH = "https://graph.microsoft.com/v1.0";
     private static final long METADATA_MS = 30_000;
     private static final int MAX_PAGES = 50;
@@ -284,7 +284,8 @@ final class CloudOneDrive {
 
     // Every item in the app folder, all pages. A folder not made yet lists as empty; the folder the account
     // recorded answering 404 means the person deleted it.
-    List<Item> list() throws CloudError {
+    @Override
+    public List<Item> list() throws CloudError {
         List<CompletableFuture<Void>> running;
         synchronized (tracker.inflight) {
             running = new ArrayList<>(tracker.inflight);
@@ -331,7 +332,8 @@ final class CloudOneDrive {
         throw new CloudError("invalid", "The app folder holds more items than this version reads.");
     }
 
-    byte[] read(String id) throws CloudError {
+    @Override
+    public byte[] read(String id) throws CloudError {
         CloudHttp.Response content = call("GET", "/me/drive/items/" + segment(id) + "/content", CloudRules.MAX_ITEM_BYTES);
         if (content.status == 302) {
             String download = CloudRules.capabilityUrl(content.header("location"));
@@ -351,7 +353,8 @@ final class CloudOneDrive {
         return content.body;
     }
 
-    Item create(String name, byte[] bytes) throws CloudError {
+    @Override
+    public Item create(String name, byte[] bytes) throws CloudError {
         CompletableFuture<Void> job = new CompletableFuture<>();
         tracker.inflight.add(job);
         try {
@@ -364,7 +367,8 @@ final class CloudOneDrive {
 
     // An item already gone counts as deleted. OneDrive keeps every deleted item in the person's recycle bin
     // for up to 30 days, because the app-folder permission cannot delete permanently.
-    void delete(String id) throws CloudError {
+    @Override
+    public void delete(String id) throws CloudError {
         CloudHttp.Response response = call("DELETE", "/me/drive/items/" + segment(id), SMALL);
         if (response.status == 204 || response.status == 404) return;
         throw failure(response);

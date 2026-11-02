@@ -8,8 +8,10 @@ Recap Page keeps reading data on your device. Desktop uses a loopback server and
 Android has separate private app storage. There is no hosted backend, account, or shared user
 database.
 
-The app has no runtime dependencies. Its development dependencies are lint tooling: the four
-packages listed at `package.json:63-67` run on a maintainer's machine or in CI, not in the browser.
+The browser app has no runtime dependencies. The Android app includes Google Play services auth and
+its transitive libraries for Google Drive sign-in, even when Google Drive is disabled. Browser
+development dependencies are lint tooling: the four packages listed at `package.json:63-67` run on
+a maintainer's machine or in CI, not in the browser.
 
 Silent loss or corruption of saved reading progress is the highest-severity security issue here.
 
@@ -65,6 +67,8 @@ If the report is declined, you may publish immediately and quote the reasoning.
   as is anything in the generators that would let an upstream response do that.
 - **Development dependencies and GitHub Actions.** They run against a maintainer's checkout and in
   CI, not in the browser. `.github/dependabot.yml` defines advisory response thresholds.
+- **Android runtime dependencies.** Vulnerabilities in Google Play services auth and its transitive
+  libraries that affect this app are in scope.
 - **The workflows** in `.github/workflows/`. CI uses read-only repository permissions,
   declared at `.github/workflows/ci.yml:38-39`. The optional manual Android rehearsal also reads
   repository Actions run metadata to verify its origin, declared at

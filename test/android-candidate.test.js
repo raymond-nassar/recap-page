@@ -291,6 +291,43 @@ test('only exact candidate identity and the complete public allowlist may be ret
   }
 });
 
+test('only the exact approved Play services DEX classes and packages are accepted', async () => {
+  const inventory = (await readFile(new URL('../scripts/android/google-play-services-classes.txt', import.meta.url), 'utf8'))
+    .trimEnd().split(/\r?\n/);
+  assert.equal(inventory.length, 5060);
+  const row = (kind, name) => `${kind} d 0\t0\t0\t${name}`;
+  const base = [row('P', '<TOTAL>'), row('P', PROTOTYPE_ID), row('C', `${PROTOTYPE_ID}.MainActivity`)];
+  const approved = [...base, row('P', 'androidx.core'), ...inventory.map((name) => row('C', name))];
+  assert.doesNotThrow(() => verifyDexDefinitions(approved.join('\n')));
+  assert.doesNotThrow(() => verifyDexDefinitions(approved.join('\n'), { playServices: true }));
+  assert.throws(() => verifyDexDefinitions(approved.join('\n'), { playServices: false }));
+  assert.throws(() => verifyDexDefinitions(base.join('\n'), { playServices: true }));
+  assert.doesNotThrow(() => verifyDexDefinitions(base.join('\n'), { playServices: false }));
+  assert.throws(() => verifyDexDefinitions([...approved, row('C', 'androidx.core.UnapprovedByRecap')].join('\n')));
+  assert.throws(() => verifyDexDefinitions([...approved, row('P', 'androidx.core.unapproved')].join('\n')));
+  assert.throws(() => verifyDexDefinitions([...approved, row('F',
+    `${PROTOTYPE_ID}.MainActivity androidx.core.UnapprovedByRecap field`)].join('\n')));
+  assert.throws(() => verifyDexDefinitions(approved.slice(0, -1).join('\n')));
+});
+
+test('Play services manifest and DEX profiles follow the selected source', async () => {
+  const { playServicesSourceProfile, assertPlayServicesManifest } = await import('../scripts/android-candidate.mjs');
+  assert.equal(typeof playServicesSourceProfile, 'function');
+  assert.equal(typeof assertPlayServicesManifest, 'function');
+  const legacy = 'dependencies { }';
+  const approved = "dependencies { implementation 'com.google.android.gms:play-services-auth:22.0.0' }";
+  assert.equal(playServicesSourceProfile(legacy), false);
+  assert.equal(playServicesSourceProfile(approved), true);
+  assert.throws(() => playServicesSourceProfile(approved.replace('22.0.0', '22.1.0')));
+  assert.throws(() => playServicesSourceProfile(approved + approved));
+  assert.throws(() => playServicesSourceProfile("implementation 'com.google.android.gms:play-services-auth'"));
+  assert.doesNotThrow(() => assertPlayServicesManifest({ verified: true, playServices: true }, true));
+  assert.doesNotThrow(() => assertPlayServicesManifest({ verified: true, playServices: false }, false));
+  assert.throws(() => assertPlayServicesManifest({ verified: true, playServices: false }, true));
+  assert.throws(() => assertPlayServicesManifest({ verified: true, playServices: true }, false));
+  assert.throws(() => assertPlayServicesManifest({ verified: true }, true));
+});
+
 test('actual asset bytes, source hashes, fixed origin and exact inventory are checked', async () => {
   const mainClass = `${PROTOTYPE_ID}.MainActivity`;
   const nestedClass = `${mainClass}$Chrome`;
@@ -307,14 +344,14 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
     assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('C', name)].join('\n')));
   }
   assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('P', 'java.lang')].join('\n')), /package/);
-  const foreignClasses = Array.from({ length: 12 }, (_, index) => `com.example.Library${index}`);
-  const foreignInventory = [...dexRows, 'P d 7\t11\t80\tcom',
+  const foreignClasses = Array.from({ length: 12 }, (_, index) => `unapproved.example.Library${index}`);
+  const foreignInventory = [...dexRows, 'P d 7\t11\t80\tunapproved',
     ...foreignClasses.map((name) => dexRow('C', name)),
-    dexRow('C', 'com.example.Referenced', 'r'),
-    `C d 9007199254740992\t0\t0\tcom.example.InvalidMetrics`,
-    dexRow('C', 'com.example.Invalid PRIVATE_CLASS_PAYLOAD'),
-    dexRow('M', 'com.example.Library0 void PRIVATE_METHOD(PRIVATE_PARAMETER)'),
-    dexRow('F', 'com.example.Library0 java.lang.String PRIVATE_FIELD')].join('\n');
+    dexRow('C', 'unapproved.example.Referenced', 'r'),
+    `C d 9007199254740992\t0\t0\tunapproved.example.InvalidMetrics`,
+    dexRow('C', 'unapproved.example.Invalid PRIVATE_CLASS_PAYLOAD'),
+    dexRow('M', 'unapproved.example.Library0 void PRIVATE_METHOD(PRIVATE_PARAMETER)'),
+    dexRow('F', 'unapproved.example.Library0 java.lang.String PRIVATE_FIELD')].join('\n');
   assert.throws(() => verifyDexDefinitions(foreignInventory), (error) => {
     assert.ok(error.message.startsWith('Android candidate: foreign DEX package hierarchy'));
     const match = error.message.match(/; dexDefinition=(\{.*\})$/);
@@ -325,7 +362,7 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
     assert.deepEqual(detail.metrics, { definitions: 7, references: 11, bytes: 80 });
     assert.equal(detail.nameShape, 'qualified');
     assert.equal(detail.namespaceRelation, 'foreign');
-    assert.equal(detail.identifier, 'com');
+    assert.equal(detail.identifier, 'unapproved');
     assert.equal(detail.classCount, 12);
     assert.deepEqual(detail.classes, [...foreignClasses].sort().slice(0, 8));
     assert.doesNotMatch(error.message, /PRIVATE_/);
