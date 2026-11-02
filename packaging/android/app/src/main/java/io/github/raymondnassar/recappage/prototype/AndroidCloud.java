@@ -36,6 +36,8 @@ import java.util.concurrent.atomic.AtomicReference;
 final class AndroidCloud {
     static final String CLIENT = "recap.cloud.client";
     static final String REDIRECT_HASH = "recap.cloud.redirectHash";
+    // "true" only in a build given -PrecapGoogleDriveAndroid=true, so Google Drive stays off until it is switched on.
+    static final String GOOGLE = "recap.cloud.google";
 
     private static final ThreadFactory DAEMONS = work -> {
         Thread thread = new Thread(work, "recap-cloud");
@@ -51,7 +53,7 @@ final class AndroidCloud {
 
     final CloudAccount account;
 
-    private AndroidCloud(Context app, String clientId, String redirectUri) {
+    private AndroidCloud(Context app, String clientId, String redirectUri, boolean offerGoogle) {
         ExecutorService workers = Executors.newCachedThreadPool(DAEMONS);
         ScheduledExecutorService timers = Executors.newSingleThreadScheduledExecutor(DAEMONS);
         Handler main = new Handler(Looper.getMainLooper());
@@ -61,7 +63,8 @@ final class AndroidCloud {
                     ScheduledFuture<?> future = timers.schedule(task, delayMs, TimeUnit.MILLISECONDS);
                     return () -> future.cancel(false);
                 },
-                workers, System::currentTimeMillis, new SecureRandom(), clientId, redirectUri, CloudAccount.DEADLINES_MS);
+                workers, System::currentTimeMillis, new SecureRandom(), clientId, redirectUri, CloudAccount.DEADLINES_MS,
+                offerGoogle ? AndroidGoogle.create(app) : null);
     }
 
     // Null when this build has no cloud backup.
@@ -76,7 +79,9 @@ final class AndroidCloud {
             String clientId = meta == null ? null : meta.getString(CLIENT);
             String hash = meta == null ? null : meta.getString(REDIRECT_HASH);
             if (!CloudAuthorization.validClientId(clientId) || !CloudAuthorization.validHash(hash)) return null;
-            instance = new AndroidCloud(app, clientId, CloudAuthorization.redirectUri(app.getPackageName(), hash));
+            // The manifest reads a value of "true" back as a boolean, so getString would never see it.
+            boolean google = meta != null && meta.getBoolean(GOOGLE, false);
+            instance = new AndroidCloud(app, clientId, CloudAuthorization.redirectUri(app.getPackageName(), hash), google);
         } catch (PackageManager.NameNotFoundException | IllegalArgumentException error) {
             instance = null;
         }
