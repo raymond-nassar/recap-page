@@ -34,6 +34,7 @@ import {
   CompleteBackupError, RESTORE_KEYS, canonical, classifyComponent, imageOf, parseCompleteBackup,
   prepareCompleteRestore, restorePlan,
 } from './completeBackup.js';
+import { isIosApp } from './platform.js';
 
 const JOURNAL_STORE = 'journal';
 const PLAN_SLOT = 'plan';
@@ -42,53 +43,110 @@ const MARKER = /^(active|cleaning|done):([a-f0-9]{64})$/;
 const HEX = /^[a-f0-9]{64}$/;
 const NO_ID = '0'.repeat(64);
 export const PRIOR_COPY_FORMAT = 'recap-page-complete-restore-prior';
+
 export const PRIOR_COPY_FILENAME = 'recap-page-complete-restore-prior.json';
 export const KEEP_FINISHED_JOURNAL_MS = 24 * 60 * 60 * 1000;
 const LOCK_ANSWER_MS = 5000;
 const JOURNAL_OPEN_MS = 5000;
 
-export const RESTORE_MESSAGES = Object.freeze({
-  starting: 'Recap Page is checking its other tabs before saving. That change was not saved; try it again.',
-  working: 'A complete restore is running in this tab. Saving starts again when it ends.',
-  otherTab: 'Another Recap Page tab is restoring a complete backup, so saving is paused here. This tab reloads when it finishes.',
-  unchecked: 'This browser did not say whether another Recap Page tab is restoring, so saving is paused. Reload the page to try again.',
-  checking: 'Recap Page is checking an earlier complete restore, so saving is paused for a moment.',
-  cleaning: 'Recap Page is finishing an earlier complete restore. Close other Recap Page tabs and saving starts again.',
-  recovery: 'A complete restore did not finish, so saving is paused. Open Backup & settings to finish it or keep the data that is here.',
-  cleanupFailed: 'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Reload the page to try again, or open Backup & settings and keep the data that is here.',
-  closeTabs: 'Close other Recap Page tabs and windows, including ones running an older version, then try again. Nothing was replaced.',
-  busy: 'A complete restore action is already running. Wait for it to finish.',
-  noLocks: 'This browser cannot coordinate Recap Page tabs, so complete restore is turned off here. Every other backup still works.',
-  noJournal: 'This browser cannot keep a recovery copy, so complete restore is turned off here. Every other backup still works.',
-  // A read that failed once is not a missing capability, so it is said as a check this page could not
-  // make, which a reload makes again.
-  journalUnchecked: 'Recap Page could not check for an unfinished complete restore just now, so complete restore is off until you reload the page. Every other backup still works.',
-  restoreUnchecked: 'Recap Page could not check for a recovery copy from an earlier complete restore just now, so nothing was replaced. Reload the page to try again.',
-  copyReadable: 'The recovery copy can be read now, so nothing was removed. Download the exact prior copy before you choose again.',
-  copyChanged: 'The recovery copy changed after these choices were shown, so nothing was removed. Choose again from the options shown now.',
-  keepNotOffered: 'Keeping the data that is here now is not offered for this restore, so nothing was removed. Finish it or restore the prior data.',
-  finishNotOffered: 'Finishing this restore is not offered now, so nothing was replaced. Choose again from the options shown now.',
-  priorNotOffered: 'Restoring the prior data is not offered for this restore now, so nothing was replaced. Choose again from the options shown now.',
-  copyUnchecked: 'The app could not check for a recovery copy kept by a complete restore, so one may still be in this browser.',
-  // A copy that can be read but not removed, as on a full disk, waits with its marker for a later start.
-  copyKept: 'The recovery copy could not be removed, perhaps because storage is full, so a later start tries again.',
-  // A copy that fails its checks cannot wait that way: the next start clears its marker and pauses on it
-  // again, so it is said as what happens, a copy offered again until it can be removed (#954).
-  copyOffered: 'The recovery copy could not be removed, perhaps because storage is full, so the next start offers it again.',
-  copyStuck: 'Recap Page could not remove the recovery copy from an earlier complete restore, perhaps because storage is full, so complete restore is off until a later start removes it. Every other backup still works.',
-  copyStuckOffered: 'Recap Page could not remove a recovery copy it cannot read, perhaps because storage is full, so complete restore is off and the next start offers that copy again. Every other backup still works.',
-  reloading: 'Another Recap Page tab changed saved data, so this page is reloading to show it.',
-});
+export function restoreMessagesForPlatform(isIos = isIosApp()) {
+  const platformText = (web, ios) => isIos ? ios : web;
+  return Object.freeze({
+    starting: platformText(
+      'Recap Page is checking its other tabs before saving. That change was not saved; try it again.',
+      'Recap Page is checking its other copies before saving. That change was not saved; try it again.',
+    ),
+    working: platformText('A complete restore is running in this tab. Saving starts again when it ends.',
+      'A complete restore is running in this app. Saving starts again when it ends.'),
+    otherTab: platformText(
+      'Another Recap Page tab is restoring a complete backup, so saving is paused here. This tab reloads when it finishes.',
+      'Another copy of Recap Page is restoring a complete backup, so saving is paused here. This app updates when it finishes.',
+    ),
+    unchecked: platformText(
+      'This browser did not say whether another Recap Page tab is restoring, so saving is paused. Reload the page to try again.',
+      'This app could not confirm whether another copy is restoring, so saving is paused. Close and reopen the app to try again.',
+    ),
+    checking: 'Recap Page is checking an earlier complete restore, so saving is paused for a moment.',
+    cleaning: platformText(
+      'Recap Page is finishing an earlier complete restore. Close other Recap Page tabs and saving starts again.',
+      'Recap Page is finishing an earlier complete restore. Saving starts again when it ends.',
+    ),
+    recovery: 'A complete restore did not finish, so saving is paused. Open Backup & settings to finish it or keep the data that is here.',
+    cleanupFailed: platformText(
+      'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Reload the page to try again, or open Backup & settings and keep the data that is here.',
+      'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Close and reopen the app, or open Backup & settings and keep the data that is here.',
+    ),
+    closeTabs: platformText(
+      'Close other Recap Page tabs and windows, including ones running an older version, then try again. Nothing was replaced.',
+      'Close other copies of Recap Page, including any running an older version, then try again. Nothing was replaced.',
+    ),
+    busy: 'A complete restore action is already running. Wait for it to finish.',
+    noLocks: platformText(
+      'This browser cannot coordinate Recap Page tabs, so complete restore is turned off here. Every other backup still works.',
+      'This app cannot coordinate a restore with another copy, so complete restore is turned off here. Every other backup still works.',
+    ),
+    noJournal: platformText(
+      'This browser cannot keep a recovery copy, so complete restore is turned off here. Every other backup still works.',
+      'This app cannot keep a recovery copy, so complete restore is turned off here. Every other backup still works.',
+    ),
+    // A read that failed once is not a missing capability, so it is said as a check this page could not
+    // make, which a reload makes again.
+    journalUnchecked: platformText(
+      'Recap Page could not check for an unfinished complete restore just now, so complete restore is off until you reload the page. Every other backup still works.',
+      'Recap Page could not check for an unfinished complete restore just now, so complete restore is off until you close and reopen the app. Every other backup still works.',
+    ),
+    restoreUnchecked: platformText(
+      'Recap Page could not check for a recovery copy from an earlier complete restore just now, so nothing was replaced. Reload the page to try again.',
+      'Recap Page could not check for a recovery copy from an earlier complete restore just now, so nothing was replaced. Close and reopen the app to try again.',
+    ),
+    copyReadable: 'The recovery copy can be read now, so nothing was removed. Download the exact prior copy before you choose again.',
+    copyChanged: 'The recovery copy changed after these choices were shown, so nothing was removed. Choose again from the options shown now.',
+    keepNotOffered: 'Keeping the data that is here now is not offered for this restore, so nothing was removed. Finish it or restore the prior data.',
+    finishNotOffered: 'Finishing this restore is not offered now, so nothing was replaced. Choose again from the options shown now.',
+    priorNotOffered: 'Restoring the prior data is not offered for this restore now, so nothing was replaced. Choose again from the options shown now.',
+    copyUnchecked: platformText(
+      'The app could not check for a recovery copy kept by a complete restore, so one may still be in this browser.',
+      'The app could not check for a recovery copy kept by a complete restore, so one may still be saved here.',
+    ),
+    // A copy that can be read but not removed, as on a full disk, waits with its marker for a later start.
+    copyKept: 'The recovery copy could not be removed, perhaps because storage is full, so a later start tries again.',
+    // A copy that fails its checks cannot wait that way: the next start clears its marker and pauses on it
+    // again, so it is said as what happens, a copy offered again until it can be removed (#954).
+    copyOffered: 'The recovery copy could not be removed, perhaps because storage is full, so the next start offers it again.',
+    copyStuck: 'Recap Page could not remove the recovery copy from an earlier complete restore, perhaps because storage is full, so complete restore is off until a later start removes it. Every other backup still works.',
+    copyStuckOffered: 'Recap Page could not remove a recovery copy it cannot read, perhaps because storage is full, so complete restore is off and the next start offers that copy again. Every other backup still works.',
+    reloading: platformText(
+      'Another Recap Page tab changed saved data, so this page is reloading to show it.',
+      'Another copy of Recap Page changed saved data, so this app is updating to show it.',
+    ),
+  });
+}
 
-const RECOVERY_TEXT = {
-  interrupted: 'A complete restore did not finish. Saving is paused until you choose: download the exact prior copy if you want it, then finish the restore or put the earlier data back.',
-  lost: 'A complete restore finished, but the browser closed before it saved the result, so the data from before it is still here. Saving is paused until you finish the restore again or keep this data.',
-  foreign: 'A complete restore did not finish, and some saved data changed afterwards, so it cannot be finished or undone automatically. Saving is paused. Download the exact prior copy, then keep the data that is here now.',
-  missing: 'A complete restore did not finish, and its recovery copy is missing. Saving is paused until you keep the data that is here now.',
-  invalid: 'The recovery copy from an earlier complete restore cannot be read. Saving is paused. Download it if you want it, then keep the data that is here now.',
-  unchecked: 'A complete restore did not finish, and its recovery copy could not be checked just now, so saving is paused. Reload the page to try again. Keeping the data that is here now leaves the copy in place, and a later start offers it again if it can.',
-  cleanup: 'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Reload the page to try again, or keep the data that is here now.',
-};
+export const RESTORE_MESSAGES = restoreMessagesForPlatform();
+
+export function recoveryTextForPlatform(isIos = isIosApp()) {
+  const platformText = (web, ios) => isIos ? ios : web;
+  return Object.freeze({
+    interrupted: 'A complete restore did not finish. Saving is paused until you choose: download the exact prior copy if you want it, then finish the restore or put the earlier data back.',
+    lost: platformText(
+      'A complete restore finished, but the browser closed before it saved the result, so the data from before it is still here. Saving is paused until you finish the restore again or keep this data.',
+      'A complete restore finished, but the app closed before it saved the result, so the data from before it is still here. Saving is paused until you finish the restore again or keep this data.',
+    ),
+    foreign: 'A complete restore did not finish, and some saved data changed afterwards, so it cannot be finished or undone automatically. Saving is paused. Download the exact prior copy, then keep the data that is here now.',
+    missing: 'A complete restore did not finish, and its recovery copy is missing. Saving is paused until you keep the data that is here now.',
+    invalid: 'The recovery copy from an earlier complete restore cannot be read. Saving is paused. Download it if you want it, then keep the data that is here now.',
+    unchecked: platformText(
+      'A complete restore did not finish, and its recovery copy could not be checked just now, so saving is paused. Reload the page to try again. Keeping the data that is here now leaves the copy in place, and a later start offers it again if it can.',
+      'A complete restore did not finish, and its recovery copy could not be checked just now, so saving is paused. Close and reopen the app to try again. Keeping the data that is here now leaves the copy in place, and a later start offers it again if it can.',
+    ),
+    cleanup: platformText(
+      'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Reload the page to try again, or keep the data that is here now.',
+      'Recap Page could not finish cleaning up after an earlier complete restore, perhaps because storage is full, so saving is paused. Close and reopen the app to try again, or keep the data that is here now.',
+    ),
+  });
+}
+
+const RECOVERY_TEXT = recoveryTextForPlatform();
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
 
@@ -691,7 +749,9 @@ export class CompleteRestore {
     if (same(held, target)) return true;
     if (same(held, source)) {
       throw new Error(failure?.name === 'QuotaExceededError'
-        ? 'Browser storage is full, so the restore stopped before replacing everything. Recovery is available.'
+        ? isIosApp()
+          ? 'App storage is full, so the restore stopped before replacing everything. Recovery is available.'
+          : 'Browser storage is full, so the restore stopped before replacing everything. Recovery is available.'
         : 'A write was refused, so the restore stopped before replacing everything. Recovery is available.');
     }
     throw new Error('Saved data does not match the restore, so it stopped. Recovery is available.');
@@ -818,7 +878,9 @@ export class CompleteRestore {
       const found = await this.readJournal();
       if (found.kind === 'unreadable') {
         await this.settleFailure();
-        throw new Error('The recovery copy could not be checked just now, so nothing was replaced. Reload the page to try again.');
+        throw new Error(isIosApp()
+          ? 'The recovery copy could not be checked just now, so nothing was replaced. Close and reopen the app to try again.'
+          : 'The recovery copy could not be checked just now, so nothing was replaced. Reload the page to try again.');
       }
       if (found.kind !== 'valid' || (marker.state !== 'absent' && marker.state !== 'done' && marker.id !== found.record.id)) {
         await this.settleFailure();
@@ -917,7 +979,9 @@ export class CompleteRestore {
       try { return JSON.stringify({ format: PRIOR_COPY_FORMAT, version: 1, verified: false, record: found.raw }, null, 2); }
       catch { /* falls through to the refusal */ }
     }
-    throw new Error('There is no recovery copy this browser can read.');
+    throw new Error(isIosApp()
+      ? 'There is no recovery copy this app can read.'
+      : 'There is no recovery copy this browser can read.');
   }
 
   // Erase works in every state. While a recovery is pending it takes the exclusive lock and may write

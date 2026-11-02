@@ -6,6 +6,7 @@
 //
 // Everything that touches the Store, the cache, or another view is injected as a getter or
 // callback, so this module can be imported in Node without reaching the browser globals.
+import { isIosApp } from '../lib/platform.js';
 
 // Measured in Edge rather than assumed, and the first attempt at this comment got it wrong. The
 // largest value a cleared page accepted under a one-character key was 5,242,879 characters, which
@@ -56,6 +57,7 @@ export function createRecoveryView({
   announce,
   askConfirm,
   download,
+  isIos = isIosApp(),
 }) {
   // Exact incident bytes confirmed by native output or file read-back, not an anchor request.
   let downloadedSalvage = null;
@@ -108,8 +110,10 @@ export function createRecoveryView({
     if (copies === null) {
       box.replaceChildren(el('p', {
         class: 'rail-hint',
-        text: 'This browser will not let the app list what it has stored, so any copies it is holding '
-          + 'cannot be shown here. Nothing has been removed.',
+        text: isIos
+          ? 'This app cannot list its other saved copies, so any copies it is holding cannot be shown here. Nothing has been removed.'
+          : 'This browser will not let the app list what it has stored, so any copies it is holding '
+            + 'cannot be shown here. Nothing has been removed.',
       }));
       return;
     }
@@ -178,12 +182,15 @@ export function createRecoveryView({
       const result = await download(`recap-page-unreadable-${when}.json`, raw, 'application/json');
       if (!result) return;
       if (result === true && new TextDecoder('utf-8', { ignoreBOM: true }).decode(new TextEncoder().encode(raw)) !== raw) {
-        return notify('#save-report', 'The file save completed, but this data cannot be preserved exactly in a UTF-8 file. Nothing was cleared. Keep the original browser data; starting fresh still requires an in-browser recovery copy.', 'warn', 'recovery-copy');
+        return notify('#save-report', `The file save completed, but this data cannot be preserved exactly in a UTF-8 file. Nothing was cleared. Keep the original ${isIos ? 'app data; starting fresh still requires a recovery copy in the app.' : 'browser data; starting fresh still requires an in-browser recovery copy.'}`, 'warn', 'recovery-copy');
       }
       // A picker can outlive this incident. Its success cannot confirm different unreadable data.
       if (result === true && isBlocked() && salvagedRaw() === raw) downloadedSalvage = raw;
       if (result === true) announce('Downloaded a copy of the unreadable data.');
-      else notify('#save-report', 'Download requested, not confirmed saved. Check your browser\'s downloads, then select the saved file with "Verify downloaded copy". Nothing has been cleared.', 'warn', 'recovery-copy');
+      else notify('#save-report', isIos
+        ? 'Download requested, not confirmed saved. Choose a location in Files, then select the saved file with "Verify downloaded copy". Nothing has been cleared.'
+        : 'Download requested, not confirmed saved. Check your browser\'s downloads, then select the saved file with "Verify downloaded copy". Nothing has been cleared.',
+      'warn', 'recovery-copy');
     });
 
     nodes.verifySalvage?.addEventListener('change', async (event) => {
@@ -217,7 +224,7 @@ export function createRecoveryView({
       const yes = await askConfirm({
         title: 'Start fresh?',
         body: 'This replaces the unreadable saved data with an empty tracker. '
-          + 'An in-browser recovery copy or a verified saved file must survive before anything is replaced.',
+          + `${isIos ? 'A recovery copy in this app' : 'An in-browser recovery copy'} or a verified saved file must survive before anything is replaced.`,
         confirmLabel: 'Start fresh',
       });
       if (!yes) return;
@@ -243,8 +250,10 @@ export function createRecoveryView({
         // would be the one wrong thing to say on the screen whose subject is what is still being
         // kept.
         return notify('#salvage-report', copies === null
-          ? 'This browser will not let the app list what it has stored, so that copy cannot be '
-            + 'acted on here. Nothing has been removed.'
+          ? isIos
+            ? 'This app cannot list its other saved copies, so that copy cannot be acted on here. Nothing has been removed.'
+            : 'This browser will not let the app list what it has stored, so that copy cannot be '
+              + 'acted on here. Nothing has been removed.'
           : 'That copy is no longer there. The list has been refreshed.', 'warn');
       }
       const when = salvageWhen(copy.at);
@@ -261,7 +270,9 @@ export function createRecoveryView({
         if (!result) return;
         return notify('#salvage-report', result === true
           ? `Downloaded the copy ${named}. It is still being kept here as well.`
-          : `Download requested for the copy ${named}. Check your browser's downloads to confirm it was saved. It is still being kept here.`, result === true ? 'ok' : 'warn');
+          : isIos
+            ? `Download requested for the copy ${named}. Confirm it was saved in Files. It is still being kept here.`
+            : `Download requested for the copy ${named}. Check your browser's downloads to confirm it was saved. It is still being kept here.`, result === true ? 'ok' : 'warn');
       }
 
       const yes = await askConfirm({

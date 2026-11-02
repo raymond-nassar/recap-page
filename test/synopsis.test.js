@@ -744,6 +744,17 @@ test('a missing lock and a failed or ineffective marker write are surfaced', asy
     () => writeCachePurgeMark(memoryStorage(), 1, null),
     /lock/i,
   );
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    await assert.rejects(
+      () => writeCachePurgeMark(memoryStorage(), 1, null),
+      /App storage locking is unavailable/,
+    );
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
   await assert.rejects(
     () => writeCachePurgeMark(memoryStorage({}, { failWrite: true }), 1, serialLocks()),
     /storage full/,
@@ -1226,6 +1237,16 @@ test('Reading List synopsis consent uses the approved two-sentence message', () 
   assert.equal(synopsisDisclaimer().body,
     "Marvel's synopses come from an unaffiliated community service, and stay in this tab until reload. "
     + 'Fetching a whole Reading List takes a few minutes and uses your request allowance.');
+});
+
+test('iOS synopsis copy describes app-scoped content rather than a browser tab', () => {
+  const disclaimer = synopsisDisclaimer({ isIos: true }).body;
+  const announced = synopsisAnnouncement({ phase: 'complete' }, true).msg;
+  const status = synopsisStatusLine({ phase: 'partial', total: 3, failed: 1 }, true);
+  assert.match(disclaimer, /stay in this app until you close it/);
+  assert.match(announced, /held for this app only/);
+  assert.match(status, /for this app only/);
+  assert.doesNotMatch(`${disclaimer} ${announced} ${status}`, /\b(?:browser|tab)\b/i);
 });
 
 test('synopsis consent stays within two short sentences for list and issue fetches', () => {

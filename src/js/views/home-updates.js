@@ -1,4 +1,11 @@
 const LIMIT = 3;
+const IOS_FEATURE_COPY = new Map([
+  ['Back up automatically to your own OneDrive on Windows and Android, or move your reading data with one complete backup file.',
+    'Move your reading data with one complete backup file.'],
+  ['Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.',
+    'Use clearer phone layouts and screen reader labels.'],
+]);
+const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft)\b/;
 const VIEWING_FAILURES = {
   unreadable: 'browser storage could not be read',
   'locks-unavailable': 'browser storage locking is unavailable',
@@ -7,9 +14,17 @@ const VIEWING_FAILURES = {
   'write-unverified': 'the preference write could not be verified',
   canceled: 'the local viewing record was cleared',
 };
+const IOS_VIEWING_FAILURES = {
+  unreadable: 'app storage could not be read',
+  'locks-unavailable': 'app storage locking is unavailable',
+  'locks-rejected': 'app storage locking was refused',
+  'write-failed': 'the app refused the preference write',
+  'write-unverified': 'the preference write could not be verified',
+  canceled: 'the local viewing record was cleared',
+};
 
 export function createHomeUpdatesView({
-  content, seen, el, elements, events, isCurrent, isCovered = () => false, loadCatalog, onPreview,
+  content, seen, el, elements, events, isCurrent, isCovered = () => false, loadCatalog, onPreview, isIos = false,
 }) {
   const batch = content.batch;
   let wired = false;
@@ -79,9 +94,16 @@ export function createHomeUpdatesView({
       nodes.content.replaceChildren(el('p', { text: 'No new highlights in this copy.' }));
       return;
     }
+    const features = isIos ? batch.features.flatMap((feature) => {
+      const projected = IOS_FEATURE_COPY.get(feature) ?? feature;
+      if (OTHER_PLATFORM_NAMES.test(projected)) {
+        return [];
+      }
+      return [projected];
+    }) : batch.features;
     nodes.content.replaceChildren(
       el('p', { class: 'home-updates-copy', text: `Included in version ${content.version}.` }),
-      ...(batch.features.length ? [section('App improvements', batch.features,
+      ...(features.length ? [section('App improvements', features,
         (text) => el('li', { text }), 'More app improvements', 'features')] : []),
       ...(batch.listIds.length ? [section('New Reading Lists', batch.listIds,
         renderList, 'More new Reading Lists', 'lists')] : []),
@@ -167,7 +189,7 @@ export function createHomeUpdatesView({
       const result = await acknowledgment;
       if (token !== disclosure || !visible() || !nodes.details.open) return;
       if (!result.remembered) {
-        const reason = VIEWING_FAILURES[result.reason];
+        const reason = (isIos ? IOS_VIEWING_FAILURES : VIEWING_FAILURES)[result.reason];
         if (!reason) throw new Error(`Unsupported viewing outcome: ${result.reason}`);
         viewingMessage = `Viewing could not be remembered: ${reason}. New may return next visit. Your reading data is unchanged.`;
       }

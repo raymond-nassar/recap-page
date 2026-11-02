@@ -346,11 +346,11 @@ after(async () => {
   if (scratch) await rm(scratch, { recursive: true, force: true });
 });
 
-test('iOS preparation leaves out the same five files as the Android app and copies the rest exactly', async () => {
+test('iOS preparation leaves out Android exclusions and the unused sign-in logo, copying the rest exactly', async () => {
   const android = /const EXCLUDED = new Set\(\[([^\]]+)\]\)/.exec(read('scripts/prepare-android.mjs'))?.[1];
   assert.ok(android, 'the Android exclusions are still a literal set');
-  assert.deepEqual([...EXCLUDED].sort(), [...android.matchAll(/'([^']+)'/g)].map((match) => match[1]).sort());
-  assert.equal(EXCLUDED.length, 5);
+  assert.deepEqual([...EXCLUDED].sort(), [...android.matchAll(/'([^']+)'/g)].map((match) => match[1]).concat('brands/ms-symbollockup_mssymbol_19.svg').sort());
+  assert.equal(EXCLUDED.length, 6);
   const shared = await filesUnder(path('src'));
   const generated = new Set(await filesUnder(output));
   for (const path of shared) {
@@ -457,8 +457,17 @@ test('iOS About and its build report name an unreserved development build', asyn
 test('iOS About states private app storage, device backups and what the requests carry', async () => {
   const page = await readFile(join(output, 'index.html'), 'utf8');
   const text = prose(yourData(page));
+  assert.match(page, /<html lang="en" data-platform="ios">/);
   assert.match(text, /private storage inside this app on your iPhone or iPad/);
-  assert.match(text, /separate from Safari and from any desktop browser/);
+  assert.ok(text.includes('Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.'));
+  assert.doesNotMatch(text, /Android|OneDrive|Microsoft/i);
+  assert.match(text, /Deleting the app removes its private storage/);
+  assert.match(page, /Your reading progress is saved privately in this app/);
+  assert.doesNotMatch(page, /Your reading progress lives in this browser|Everything you save lives in this browser/);
+  const blocked = page.match(/<section id="blocked-banner"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(blocked);
+  assert.match(prose(blocked), /recovery copy cannot be kept in this app/);
+  assert.doesNotMatch(prose(blocked), /browser/i);
   assert.match(text, /no account/i);
   assert.match(text, /no analytics or tracking/i);
   assert.match(text, /automatic service requests do not upload your saved lists, progress or notes/i);
@@ -479,9 +488,61 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(links[0][0], /target="_blank"/);
   assert.match(links[0][0], /rel="noopener noreferrer"/);
   assert.match(links[0][0], /referrerpolicy="no-referrer"/);
-  const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0];
+  assert.equal(links[0][2], 'Privacy policy (opens in your browser)');
+  assert.match(links[0][2], /opens in your browser/);
+  const details = (html) => yourData(html).match(/<details class="setting-more">[\s\S]*?<\/details>/)?.[0];
   assert.ok(details(desktop));
-  assert.equal(details(page), details(desktop), 'the request-by-request enumeration is the shared one');
+  const requestDetails = details(page);
+  assert.match(requestDetails, /What leaves this device, request by request/);
+  assert.match(prose(requestDetails), /What leaves this device is the ordinary business/);
+  assert.doesNotMatch(prose(requestDetails), /Android|OneDrive|Microsoft|browser|cloud backup/i);
+  const hasSplitWordComment = (html) => {
+    let cursor = 0;
+    while (true) {
+      const start = html.indexOf('<!--', cursor);
+      if (start === -1) return false;
+      const previous = html.charAt(start - 1);
+      cursor = start;
+      do {
+        const end = html.indexOf('-->', cursor + 4);
+        if (end === -1) return false;
+        cursor = end + 3;
+      } while (html.startsWith('<!--', cursor));
+      if (/\w/.test(previous) && /\w/.test(html.charAt(cursor))) return true;
+    }
+  };
+  assert.equal(hasSplitWordComment('Win<!-- a comment --><!-- another comment -->dows'), true);
+  assert.equal(hasSplitWordComment('Win<!-- a comment -->dows'), true);
+  assert.equal(hasSplitWordComment('Win<!-- a comment --> dows'), false);
+  assert.equal(hasSplitWordComment('Win<!-- a comment --> ! <!-- another comment -->dows'), false);
+  assert.equal(hasSplitWordComment('<!-- a comment -->Windows'), false);
+  assert.equal(hasSplitWordComment('Win<!-- a comment -->'), false);
+  assert.equal(hasSplitWordComment('Win<!-- unclosed'), false);
+  assert.equal(hasSplitWordComment(`0<!--${'--><!--'.repeat(10000)}`), false);
+  assert.equal(hasSplitWordComment(page), false, 'HTML comments must not split visible words');
+  const visiblePage = page.replace(/<!--[\s\S]*?-->/g, ' ');
+  assert.doesNotMatch(visiblePage, /data-cloud-copy="on"|id="cloud-backup"/);
+  const visibleText = prose(visiblePage);
+  const platformNames = /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive)\b/;
+  assert.doesNotMatch('the bottom edge and windows of time', platformNames);
+  assert.match('install the app from Edge', platformNames);
+  assert.doesNotMatch(visiblePage, platformNames);
+  assert.match(visibleText, /Your lists and progress save automatically in this app/);
+  assert.match(visibleText, /This is app storage/);
+  assert.doesNotMatch(visibleText, /This is browser storage/);
+  assert.match(visibleText, /to protect your progress or move it to another device\./);
+  assert.doesNotMatch(visibleText, /another another device/);
+  assert.doesNotMatch(visibleText, /browser profile or computer\./);
+  assert.match(visibleText, /The choice is stored in this app/);
+  assert.match(visibleText, /Open Recap Page in its own window, using this app's saved progress/);
+  assert.match(prose(blocked), /in this app, verify the downloaded file/);
+  const localConnectionHelp = page.match(/<p id="local-connection-help"[\s\S]*?<\/p>/)?.[0];
+  assert.ok(localConnectionHelp);
+  assert.match(prose(localConnectionHelp), /Restart the app and check again/);
+  assert.doesNotMatch(prose(localConnectionHelp), /Microsoft Store|browser/i);
+  assert.match(visiblePage, /Close other copies of Recap Page before restoring/);
+  assert.match(visiblePage, /Undo is offered once, until you close and reopen the app/);
+  assert.doesNotMatch(visiblePage, /Close other Recap Page tabs before restoring|Undo is offered once, until you reload/);
 });
 
 test('iOS missing-data dismissal failure uses the owner-approved wording', () => {
@@ -502,6 +563,11 @@ test('iOS preparation refuses a changed shared entry, overlapping output and a d
     assert.throws(() => iosIndex(changed, build), /Shared index entry changed; iOS injection needs review/);
   }
   assert.throws(() => iosIndex(page.replace('<h3>Your data</h3>', '<h3>Data</h3>'), build), /Shared privacy introduction changed/);
+  const readingProgress = 'Your reading progress lives in this browser, at this exact address, and is never sent anywhere.';
+  assert.throws(() => iosIndex(page.replace(readingProgress, ''), build), /iOS static copy changed/);
+  assert.throws(() => iosIndex(page.replace(readingProgress, `${readingProgress}${readingProgress}`), build), /iOS static copy changed/);
+  assert.throws(() => iosIndex(page.replace('id="cloud-backup"', 'id="cloud-backup-removed"'), build), /iOS cloud backup card changed/);
+  assert.throws(() => iosIndex(page.replace('data-cloud-copy="on"', 'data-cloud-copy="off"'), build), /iOS cloud copy changed/);
   const launcher = await readFile(new URL('src/open.html', ROOT), 'utf8');
   assert.match(iosLauncher(launcher), /<link rel="stylesheet" href="\.\/open\.css" \/>\s*<link rel="stylesheet" href="\.\/ios\/launcher\.css" \/>/);
   assert.throws(() => iosLauncher(launcher.replace('./open.js', './launch.js')), /Shared launcher entry changed/);
