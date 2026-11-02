@@ -37,6 +37,14 @@ final class WebViewController: UIViewController, WKUIDelegate {
         }
         #endif
         let bridge = IosBridgeHandler(policy: policy, presenter: self, dataLossState: dataLossState)
+        #if DEBUG
+        bridge.cloud = DebugSupport.iCloudFakeHandler()
+        #endif
+        #if RECAP_ICLOUD
+        if bridge.cloud == nil {
+            bridge.cloud = ICloudBackupHandler(store: ICloudDriveStore())
+        }
+        #endif
         let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
         installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)

@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1506`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1507`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
@@ -303,7 +303,7 @@ and it shares the same single offer: the result goes under the card's commands, 
 stands only while Home is the view, so leaving Home or using Done in the reading view ends it.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2928-2954`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2929-2955`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -738,10 +738,10 @@ names the connection the page's consent was for:
   provider keeps two items under one name, as Google Drive does, says so with `duplicateNames: true`.
 - `delete` removes an item, and one already gone counts as removed.
 
-Item ids are opaque and may equal names, as a CloudKit record's would. A connection id is opaque too,
+Item ids are opaque and may equal file names, as the iCloud Drive transport's do. A connection id is opaque too,
 and the provider mints one at each connect: the Windows host 32 random hexadecimal digits, kept only
 when the same account signs in again after its sign-in expired, so its backups resume, and the iOS
-provider one it binds natively to an account digest. The engine takes any string of 1 to 128
+provider one it binds natively to the device's iCloud identity. The engine takes any string of 1 to 128
 characters without control characters and compares it exactly. Each operation settles within the
 deadline the engine states at `src/js/lib/cloudProtocol.js:42`: two minutes for a list, ten for a
 read or a create, and thirty seconds for a delete. The engine waits fifteen seconds more for the
@@ -890,8 +890,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:99-111`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:3664-3670` and
-`src/js/main.js:3690-3691`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:3665-3671` and
+`src/js/main.js:3691-3692`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:287-289`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:328-334`.
@@ -908,14 +908,14 @@ unread or deferred comics never finish one. Each stop is counted and drawn by th
 whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
 the reading the path names, at `src/js/views/catalog.js:41-55` and `src/js/views/catalog.js:75-97`. The
 place and the path's own progress are repainted in place by the Timeline's position-only refresh,
-which every Store-driven render calls at `src/js/main.js:2937`, preserving the selector, the stops
+which every Store-driven render calls at `src/js/main.js:2938`, preserving the selector, the stops
 and their DOM identities.
 
 Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
 **You are here**, at `src/js/views/catalog.js:379-403`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
-any selection has settled the address, at `src/js/main.js:3588-3607`. After Back renders that path,
+any selection has settled the address, at `src/js/main.js:3589-3608`. After Back renders that path,
 focus returns to the control and brings it into view at `src/js/views/catalog.js:405-416`; there is
 no persisted scroll position.
 
@@ -923,7 +923,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3609-3755`.
+`src/js/main.js:3610-3756`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -950,8 +950,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:131-182`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3650-3692`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2928-2954`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:3651-3693`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2929-2955`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Completion is independent history, not a reader migration
@@ -1102,3 +1102,41 @@ only the files its manifest lists, with the Windows server's security headers an
 `frame-src 'none'` and `worker-src 'none'` added to the content security policy. Reading data is stored
 under that origin in WebKit's storage, which allows each origin 5 MiB;
 [Storage capacity](IOS.md#storage-capacity) records what that holds.
+
+### iCloud Drive backup, switched off
+
+The iOS transport answers the shared cloud backup contract through the app's existing script-message
+handler. The provider is `icloud`, the only entry in its `providers`, and `connect({provider:'icloud'})`
+records a connection against the device's current iCloud identity. The page sees no identity token.
+Disconnect forgets that connection, not the device's iCloud sign-in. Files live in Documents in the
+app's ubiquity container, which the Files app shows as **Recap Page**, not in CloudKit.
+Every native file operation carries its validated account identity into the store. The store checks it
+again after the off-main container lookup and before coordinated file I/O, so a change of account
+while lookup is suspended refuses the operation instead of using the other account's folder.
+
+The native store coordinates file reads and writes and refuses a create whose name already exists.
+A read requests a download if needed and returns a retryable refusal if it is still downloading.
+A locally published file cannot pass read-back until iOS confirms its upload. Status carries
+optional `waitingForUpload: true` until iOS confirms, and the card appends the upload wait to its
+connected feedback. A failed upload inspection is unavailable, not an uploaded result. iCloud uses
+the transport's second list after create as an additional concurrent-write check, but live
+cross-device visibility and conflict behavior still need the signed-device acceptance.
+
+No uploaded backup is deleted by automatic retention until its replacement has uploaded. Pending
+files remain in listings for collision checks, but only successful read-back adds a generation to
+the verified record. Every retention prune follows that acknowledgement and uses the record's
+second-newest verified generation, not a count of listed files. The other automatic deletion only
+discards the newly created item after a malformed reply, collision or failed digest. Discovery and
+startup do not prune. The separate command to delete this device's backups is an explicit user
+deletion and intentionally does not need a replacement. A stale waiting line may remain until
+the next status refresh; an unconfirmed file never counts as a completed backup.
+
+Only the iOS adapter supplies `transport.device`, choosing **Recap Page on iPhone** or
+**Recap Page on iPad**. The backup engine uses that label when supplied, otherwise its existing
+browser label, including the Android app's label. No new transport scope or backup format is needed.
+The card offers **Connect iCloud** and does not promise a recovery bin for programmatic deletion.
+
+The native code compiles only with `RECAP_ICLOUD` or Debug; the page adapter is outside the folder
+copied into every iOS build. No project configuration or entitlement enables it yet, so the signed
+Release build and its cloud card remain unchanged. [iCloud backup](IOS.md#icloud-backup) records the
+switch-on work and the signed-device acceptance still required.
