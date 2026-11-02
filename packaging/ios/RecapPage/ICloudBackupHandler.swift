@@ -16,6 +16,10 @@ final class ICloudBackupHandler {
     static let smallBody = 16 * 1024
     static let createBody = (ICloudDriveStore.maximumBytes + 2) / 3 * 4 + 16 * 1024
     private static let recordKey = "recap.ios.icloud.connection"
+    // The collision list has 120 seconds plus 15 seconds of reply grace; allow another 15 seconds.
+    private static let verificationWindow: Duration = .seconds(150)
+    // Leave the create reply's 15-second grace to reach the page before it gives up.
+    private static let createWindow: Duration = .seconds(600)
 
     static let signedOut = "Sign in to iCloud and turn on iCloud Drive for Recap Page in Settings to back up to iCloud."
     static let accountChanged = "This device is signed in to a different iCloud account than the one cloud backup was connected to, so it asks again first."
@@ -33,19 +37,37 @@ final class ICloudBackupHandler {
         let identity: Data
     }
 
+    private struct VerificationCandidate {
+        let name: String
+        let connection: String
+        let expires: ContinuousClock.Instant
+        var listed = false
+    }
+
     private let store: ICloudDocumentStore
     private let defaults: UserDefaults
+    private let clock: () -> ContinuousClock.Instant
     private let newConnection: () -> String
     private var inFlight = 0
+    private var verification: VerificationCandidate?
+    private var verificationEpoch: UInt64 = 0
 
     init(
         store: ICloudDocumentStore,
         defaults: UserDefaults = .standard,
+        clock: @escaping () -> ContinuousClock.Instant = { ContinuousClock().now },
         newConnection: @escaping () -> String = ICloudBackupHandler.randomConnection
     ) {
         self.store = store
         self.defaults = defaults
+        self.clock = clock
         self.newConnection = newConnection
+    }
+
+    // An awaited create or list cannot rearm a candidate after another operation intervenes.
+    private func disarmVerification() {
+        verification = nil
+        verificationEpoch &+= 1
     }
 
     nonisolated static func randomConnection() -> String {
@@ -93,10 +115,15 @@ final class ICloudBackupHandler {
     // Never signing-in or needs-sign-in: those states belong to a provider with its own sign-in.
     func status() async -> [String: Any] {
         guard let identity = store.currentIdentity() else {
+            disarmVerification()
             return statusBody(state: "unavailable", message: Self.signedOut)
         }
-        guard let current = record else { return statusBody(state: "not-connected") }
+        guard let current = record else {
+            disarmVerification()
+            return statusBody(state: "not-connected")
+        }
         guard store.isSameIdentity(current.identity, identity) else {
+            disarmVerification()
             return statusBody(state: "not-connected", message: Self.accountChanged, reason: Self.accountChanged)
         }
         do {
@@ -113,6 +140,7 @@ final class ICloudBackupHandler {
     }
 
     func connect() async throws -> [String: Any] {
+        disarmVerification()
         guard let identity = store.currentIdentity() else { throw ICloudStoreError.driveOff }
         try await store.prepare(expectedIdentity: identity)
         // The device may have signed in to another account while the folder was being reached.
@@ -127,6 +155,7 @@ final class ICloudBackupHandler {
     }
 
     func disconnect() async -> [String: Any] {
+        disarmVerification()
         record = nil
         return await status()
     }
@@ -181,15 +210,37 @@ final class ICloudBackupHandler {
             return ["status": current]
         case "list":
             let identity = try connected(input)
+            let candidate = verification
+            disarmVerification()
+            let epoch = verificationEpoch
             let items = try await store.list(expectedIdentity: identity)
+            if var candidate,
+               !candidate.listed,
+               candidate.connection == (input["connection"] as? String),
+               candidate.expires > clock(),
+               verificationEpoch == epoch,
+               !Task.isCancelled,
+               record?.connection == candidate.connection {
+                candidate.listed = true
+                verification = candidate
+            }
             return ["items": items.map(Self.json)]
         case "read":
             let identity = try connected(input)
-            let data = try await store.read(name: Self.itemName(input, key: "id"), expectedIdentity: identity)
+            let candidate = verification
+            disarmVerification()
+            let name = try Self.itemName(input, key: "id")
+            let waitForUpload = candidate.map {
+                $0.name == name && $0.connection == (input["connection"] as? String) && $0.expires > clock()
+            } ?? false
+            let data = try await store.read(name: name, waitForUpload: waitForUpload, expectedIdentity: identity)
             guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
             return ["bytes": data.base64EncodedString()]
         case "create":
             let identity = try connected(input)
+            disarmVerification()
+            let epoch = verificationEpoch
+            let deadline = clock().advanced(by: Self.createWindow)
             let name = try Self.itemName(input, key: "name")
             guard let text = input["bytes"] as? String, let data = Data(base64Encoded: text) else {
                 throw ICloudStoreError(code: "invalid", message: "The backup to upload is not readable.")
@@ -197,9 +248,21 @@ final class ICloudBackupHandler {
             guard !data.isEmpty else { throw ICloudStoreError(code: "invalid", message: "That backup is empty.") }
             guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
             let item = try await store.create(name: name, data: data, expectedIdentity: identity)
+            if verificationEpoch == epoch,
+               !Task.isCancelled,
+               clock() < deadline,
+               let connection = input["connection"] as? String,
+               record?.connection == connection,
+               let currentIdentity = store.currentIdentity(),
+               store.isSameIdentity(currentIdentity, identity) {
+                verification = VerificationCandidate(
+                    name: name, connection: connection, expires: clock().advanced(by: Self.verificationWindow)
+                )
+            }
             return ["item": Self.json(item)]
         case "delete":
             let identity = try connected(input)
+            disarmVerification()
             try await store.delete(name: Self.itemName(input, key: "id"), expectedIdentity: identity)
             return [:]
         default:

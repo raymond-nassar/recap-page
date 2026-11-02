@@ -71,7 +71,7 @@ protocol ICloudDocumentStore: AnyObject {
     func prepare(expectedIdentity: Data?) async throws
     func list(expectedIdentity: Data?) async throws -> [ICloudBackupItem]
     func uploadState(expectedIdentity: Data?) async throws -> ICloudUploadState
-    func read(name: String, expectedIdentity: Data?) async throws -> Data
+    func read(name: String, waitForUpload: Bool, expectedIdentity: Data?) async throws -> Data
     func create(name: String, data: Data, expectedIdentity: Data?) async throws -> ICloudBackupItem
     func delete(name: String, expectedIdentity: Data?) async throws
 }
@@ -243,7 +243,7 @@ final class ICloudDriveStore: ICloudDocumentStore {
         }
     }
 
-    func read(name: String, expectedIdentity: Data? = nil) async throws -> Data {
+    func read(name: String, waitForUpload: Bool = false, expectedIdentity: Data? = nil) async throws -> Data {
         let url = try await offMain { try self.folder(expectedIdentity: expectedIdentity).appendingPathComponent(name, isDirectory: false) }
         let downloaded: Bool
         if let downloadResult {
@@ -255,10 +255,13 @@ final class ICloudDriveStore: ICloudDocumentStore {
             let values = try url.resourceValues(forKeys: [.fileSizeKey])
             if let size = values.fileSize, size > Self.maximumBytes { throw ICloudStoreError.tooLarge }
         }
-        // Local read-back is not cloud durability. This also survives a restart while an upload is pending.
         if !downloaded {
-            try await Self.waitForUpload(timeout: uploadWaitSeconds) {
-                try await self.isUploaded(name: name, expectedIdentity: expectedIdentity)
+            if waitForUpload {
+                try await Self.waitForUpload(timeout: uploadWaitSeconds) {
+                    try await self.isUploaded(name: name, expectedIdentity: expectedIdentity)
+                }
+            } else if !(try await isUploaded(name: name, expectedIdentity: expectedIdentity)) {
+                throw ICloudStoreError.stillUploading
             }
         }
         return try await offMain {

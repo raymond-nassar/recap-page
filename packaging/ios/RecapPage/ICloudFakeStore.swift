@@ -15,6 +15,8 @@ final class ICloudFakeStore: ICloudDocumentStore {
     var uploadDelaySeconds: TimeInterval = 0
     var uploadWaitSeconds: TimeInterval = 540
     var onUploadWaitPause: (@MainActor () async -> Void)?
+    var onListPause: (@MainActor () async -> Void)?
+    var onCreatePause: (@MainActor () async -> Void)?
     private(set) var elapsed: TimeInterval = 0
     private var uploadAt: [String: TimeInterval] = [:]
     /// The next failure each operation meets, once, by operation name.
@@ -39,6 +41,10 @@ final class ICloudFakeStore: ICloudDocumentStore {
 
     func list(expectedIdentity: Data? = nil) async throws -> [ICloudBackupItem] {
         try begin("list", expectedIdentity: expectedIdentity)
+        if let onPause = onListPause {
+            onListPause = nil
+            await onPause()
+        }
         return files.keys.sorted().map { name in
             ICloudBackupItem(
                 name: name,
@@ -53,27 +59,31 @@ final class ICloudFakeStore: ICloudDocumentStore {
         return ICloudUploadState(waiting: !notUploaded.isEmpty, iCloudFull: iCloudFull && !notUploaded.isEmpty)
     }
 
-    func read(name: String, expectedIdentity: Data? = nil) async throws -> Data {
+    func read(name: String, waitForUpload: Bool = false, expectedIdentity: Data? = nil) async throws -> Data {
         try begin("read", expectedIdentity: expectedIdentity)
         guard let data = files[name] else { throw ICloudStoreError.notFound }
         if notDownloaded.remove(name) != nil { throw ICloudStoreError.stillDownloading }
         guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
-        try await ICloudDriveStore.waitForUpload(
-            timeout: uploadWaitSeconds,
-            clock: { self.elapsed },
-            pause: { nanoseconds in
-                if let onPause = self.onUploadWaitPause {
-                    self.onUploadWaitPause = nil
-                    await onPause()
+        if waitForUpload {
+            try await ICloudDriveStore.waitForUpload(
+                timeout: uploadWaitSeconds,
+                clock: { self.elapsed },
+                pause: { nanoseconds in
+                    if let onPause = self.onUploadWaitPause {
+                        self.onUploadWaitPause = nil
+                        await onPause()
+                    }
+                    self.advance(seconds: Double(nanoseconds) / 1_000_000_000)
+                    await Task.yield()
+                },
+                uploaded: {
+                    try self.checkIdentity(expectedIdentity)
+                    return !self.notUploaded.contains(name)
                 }
-                self.advance(seconds: Double(nanoseconds) / 1_000_000_000)
-                await Task.yield()
-            },
-            uploaded: {
-                try self.checkIdentity(expectedIdentity)
-                return !self.notUploaded.contains(name)
-            }
-        )
+            )
+        } else if notUploaded.contains(name) {
+            throw ICloudStoreError.stillUploading
+        }
         return data
     }
 
@@ -81,6 +91,10 @@ final class ICloudFakeStore: ICloudDocumentStore {
         try begin("create", expectedIdentity: expectedIdentity)
         guard files[name] == nil else { throw ICloudStoreError.exists }
         guard notUploaded.isEmpty else { throw ICloudStoreError.stillUploading }
+        if let onPause = onCreatePause {
+            onCreatePause = nil
+            await onPause()
+        }
         files[name] = data
         if !automaticallyUpload || uploadDelaySeconds > 0 {
             notUploaded.insert(name)
