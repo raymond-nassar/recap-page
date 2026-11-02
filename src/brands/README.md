@@ -31,3 +31,28 @@ Microsoft and the Microsoft logo are trademarks of the Microsoft group of compan
 [general trademark guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general)
 also say its logos need a license and must not suggest an endorsement; this use rests on the
 identity platform guidance above, which offers the logo for use in apps that sign in with Microsoft.
+
+## Google
+
+| | |
+|---|---|
+| File | `g-logo.png` |
+| Source | https://developers.google.com/static/identity/images/g-logo.png |
+| Guidance | [Sign in with Google branding guidelines](https://developers.google.com/identity/branding-guidelines) |
+| Retrieved | 2026-11-01 |
+| Size | 33,661 bytes, 200 by 204 pixels |
+| SHA-256 | `d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a` |
+
+The guidance shows this file as the Google "G" for a custom Sign in with Google button. It asks for
+the standard color G, never resized out of proportion or recolored, beside words such as "Sign in
+with Google", on a light, dark or neutral button, and for the Google button to be about as prominent
+as any other sign-in choice. Its pre-approved downloads hold only whole buttons with the words drawn
+into the image, which would stop the words scaling, taking forced colors or naming the button, so the
+standalone G is used instead. The button here is the same neutral button as Microsoft's, with the G in
+the 20 by 20 pixel box Google's own button gives it, kept at its own proportions, before the words. The
+logo has empty alternative text because the words say everything it does.
+
+Google and the Google logo are trademarks of Google LLC. Google's
+[guidelines for third party use of its brand features](https://www.google.com/intl/en/permissions/)
+say any use not covered by the sign-in guidance needs its written consent; this use rests on that
+guidance alone.

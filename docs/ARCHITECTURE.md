@@ -830,6 +830,27 @@ account holds and agrees again before a backup makes the folder anew. Until the 
 status gives that reason, so those browsers' cards say the folder was deleted rather than that OneDrive
 was connected again.
 
+**Providers.** A host offers one or more providers and holds at most one connection, to one of them, at
+a time. Its status lists the providers it offers, OneDrive first, and names the one it holds; a connect
+names the provider it wants, and one naming none means OneDrive, so a page written before Google Drive
+keeps working. The card offers a choice only when a build offers more than one, and Google Drive never
+appears in the iPhone and iPad app. Google Drive is offered on Windows alone so far, and only by a build
+whose client configuration carries Google's desktop client, so every build today offers OneDrive alone.
+Android has Google Drive's operations built and tested but no way to sign in to Google yet, because
+Google no longer accepts an app's own address scheme on Android, so nothing there makes one. Google
+Drive asks for the `drive.file` scope and nothing wider, which reaches only the files this app made or
+the person opened with it, and keeps the backups in a visible Recap Page folder at the top of the
+person's Drive, the oldest such folder if two devices made one at the same moment. Windows signs in as
+a desktop app through a loopback address with PKCE. A delete puts the file in Google Drive's trash,
+where Google keeps it for 30 days. Google Drive keeps two files under one name, so its transport
+declares `duplicateNames: true`. An upload whose reply was lost is settled by asking Google's upload
+session what it holds, and one that cannot be asked is asked again before the next list, so a create
+never reports a file that did not land. A folder put in the trash or deleted counts as consent
+withdrawn, as on OneDrive. Disconnecting forgets the sign-in on that device alone and never revokes the
+grant at Google, because a revocation ends the tokens of every client in the project, so it would sign
+out the person's other devices too. Removing the app everywhere is done from the third-party access
+page of the person's Google Account.
+
 ## What is intentionally centralized
 
 The controller owns routes, shared events and rendering, and long-lived services. Constructed views

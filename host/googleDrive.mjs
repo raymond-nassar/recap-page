@@ -20,7 +20,6 @@ import { ProviderError, capabilityUrl, discard, networkFailure, readBounded, rea
 
 export const GOOGLE_AUTHORIZE = 'https://accounts.google.com/o/oauth2/v2/auth';
 export const GOOGLE_TOKEN = 'https://oauth2.googleapis.com/token';
-export const GOOGLE_REVOKE = 'https://oauth2.googleapis.com/revoke';
 export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/drive.file';
 export const DRIVE = 'https://www.googleapis.com/drive/v3';
 export const DRIVE_UPLOAD = 'https://www.googleapis.com/upload/drive/v3';
@@ -94,19 +93,6 @@ export function grantsDriveFile(scope) {
   return String(scope).split(/\s+/).includes(GOOGLE_SCOPE);
 }
 
-// Disconnecting asks Google to forget the grant, so Recap Page leaves the person's Google Account's list of
-// connected apps as well as this computer. Best effort: the sign-in is removed here whatever Google says.
-export async function revokeToken({ fetchImpl, token }) {
-  if (typeof token !== 'string' || token.length === 0) return;
-  try {
-    const response = await fetchImpl(GOOGLE_REVOKE, {
-      method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ token }).toString(), redirect: 'error', signal: AbortSignal.timeout(10_000),
-    });
-    await discard(response);
-  } catch { /* the sign-in is gone from this computer either way */ }
-}
-
 function displayText(value) {
   return typeof value === 'string' && value.length > 0 && value.length <= 256
     && [...value].every((character) => character.codePointAt(0) > 0x1f && character.codePointAt(0) !== 0x7f) ? value : null;
@@ -136,6 +122,10 @@ export function driveHeaders(headers, token) {
 export function createUploadTracker() {
   return { inflight: new Set(), unsettled: new Map() };
 }
+
+// Every unsettled session costs a request before each list, so only the newest are kept. One dropped is
+// never asked again, and its create stays the timeout it was already reported as.
+export const MAX_UNSETTLED = 16;
 
 export function createGoogleDrive({ fetchImpl, accessToken, clock = Date.now, tracker = createUploadTracker(), folder = null, onFolder = () => {} }) {
   let known = folder;
@@ -248,7 +238,7 @@ export function createGoogleDrive({ fetchImpl, accessToken, clock = Date.now, tr
       const response = await fetchImpl(upload.href, {
         method: 'PUT', headers: { 'content-range': `bytes */${size}` }, redirect: 'manual', signal: AbortSignal.timeout(METADATA_MS),
       });
-      if (response.status === 200 || response.status === 201) return { done: item(await readJson(response, 64 * 1024)) };
+      if (response.status === 200 || response.status === 201) return { complete: true, done: item(await readJson(response, 64 * 1024)) };
       await discard(response);
       if (response.status === 308 || response.status === 404 || response.status === 410) return { done: null };
     } catch { /* unknown */ }
@@ -258,10 +248,15 @@ export function createGoogleDrive({ fetchImpl, accessToken, clock = Date.now, tr
   async function settle(name, upload, size, wait = 0) {
     const answer = await status(upload, size);
     if (answer === undefined) {
+      tracker.unsettled.delete(name);
       tracker.unsettled.set(name, { upload, size });
+      while (tracker.unsettled.size > MAX_UNSETTLED) tracker.unsettled.delete(tracker.unsettled.keys().next().value);
       throw new ProviderError('timeout', 'Google Drive did not say whether the backup was saved.');
     }
     if (answer.done && answer.done.name === name) return answer.done;
+    // Complete, with an answer this version cannot read: the file is there, so the next list shows it, and
+    // calling the create refused would break the promise that a refused create never appears later.
+    if (answer.complete) throw new ProviderError('timeout', 'Google Drive did not say whether the backup was saved.');
     throw new ProviderError('unavailable', 'The backup did not reach Google Drive.', wait > 0 ? { retryAfterMs: wait } : undefined);
   }
 

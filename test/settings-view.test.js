@@ -373,6 +373,18 @@ test('the cloud backup card follows the complete backup, starts hidden, and sign
   assert.equal(digest, '929f48f88c8ca7f3f5d294be47ec4caf51acc28ac25340c19a903125d7ecd84a', 'the file Microsoft published on 2026-10-28');
   assert.ok(readFileSync(new URL('../src/brands/README.md', import.meta.url), 'utf8').includes(`\`${digest}\``), 'and the digest its provenance records');
   assert.match(readFileSync(new URL('../.gitattributes', import.meta.url), 'utf8'), /^src\/brands\/\*\.svg -text$/m, 'no checkout converts it');
+  // Google's button is held to the same terms, because brand verification checks the button that starts
+  // authorization (#810, comment 18): Google's own G, unaltered and lazy, beside the words that name it.
+  const google = sliceElement(cloud.html, 'button', openingTags(cloud.html, 'button').find((entry) => getAttribute(entry.open, 'id') === 'btn-cloud-sign-in-google').start);
+  assert.match(openingTags(cloud.html, 'button').find((entry) => getAttribute(entry.open, 'id') === 'btn-cloud-sign-in-google').open, /\shidden[\s>/]/, 'shown only when the host offers Google Drive');
+  assert.equal([...google.matchAll(/>([^<]*)</g)].map((match) => match[1]).join('').trim(), 'Sign in with Google');
+  const g = openingTags(google, 'img')[0]?.open ?? '';
+  assert.deepEqual(['src', 'alt', 'width', 'height', 'loading'].map((name) => getAttribute(g, name)),
+    ['./brands/g-logo.png', '', '20', '20', 'lazy'], 'Google\'s G in the box its own button gives it');
+  const gDigest = createHash('sha256').update(readFileSync(new URL('../src/brands/g-logo.png', import.meta.url))).digest('hex');
+  assert.equal(gDigest, 'd1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a', 'the file Google published on 2026-11-01');
+  assert.ok(readFileSync(new URL('../src/brands/README.md', import.meta.url), 'utf8').includes(`\`${gDigest}\``), 'and the digest its provenance records');
+  assert.match(readFileSync(new URL('../.gitattributes', import.meta.url), 'utf8'), /^src\/brands\/\*\.png -text$/m, 'no checkout converts it');
 });
 
 // The two fields that had only an aria-label now carry the visible label the completion-history
