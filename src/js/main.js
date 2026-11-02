@@ -17,7 +17,7 @@ import {
   availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
-  catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
+  catalogListBrowseRoute, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
 import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY } from './storage.js';
@@ -3345,7 +3345,7 @@ const issueView = createIssueView({
   decorateResult: (result, { catalog }) => ({
     ...result,
     breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
-      ? catalogListShelf(catalog?.lists, result.context.id)
+      ? catalogListBrowseRoute(catalog?.lists, result.context.id)
       : null,
   }),
   elements: () => ({

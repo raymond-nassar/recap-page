@@ -51,6 +51,61 @@ function resolver() {
 const onPath = (result) => result.suggestions
   .filter((suggestion) => suggestion.reasons.some((reason) => reason.type === 'reading-path'));
 
+function bundledOrder(id) {
+  const entry = catalog.lists.find((list) => list.id === id);
+  assert.ok(entry, `missing bundled list ${id}`);
+  return JSON.parse(readFileSync(new URL(`../src/data/${entry.file}`, import.meta.url), 'utf8'));
+}
+
+function finishedWithBundledIssues(id) {
+  const state = finished(id);
+  const { items } = bundledOrder(id);
+  state.lists.source.itemIds = items.map((item) => item.issueId);
+  state.issues = Object.fromEntries(items.map((item) => [item.issueId, item]));
+  state.read = {};
+  return state;
+}
+
+function bundledResolver() {
+  return createListRecommendationResolver({
+    loadBundledOrder: async (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8')),
+  });
+}
+
+for (const sourceId of ['hickman-full', 'hickman-minimal']) {
+  test(`finishing ${sourceId} does not recommend the identical Doomsday companion`, async () => {
+    const minimal = bundledOrder('hickman-minimal').items.map((item) => item.issueId);
+    const companion = bundledOrder('avengers-doomsday-secret-wars').items.map((item) => item.issueId);
+    assert.equal(minimal.length, 69);
+    assert.deepEqual(companion, minimal, 'the companion contains the same comics in the same order');
+
+    const state = finishedWithBundledIssues(sourceId);
+    const result = await bundledResolver().resolve({
+      catalog, state, sourceListId: 'source', isCompleted: (_state, id) => id === 'source',
+    });
+    assert.deepEqual(result.failures, []);
+    assert.ok(onPath(result).some((suggestion) => suggestion.reasons
+      .some((reason) => reason.pathId === 'modern-avengers')), 'the next path stop is still offered');
+    assert.ok(!result.suggestions.some((suggestion) => suggestion.catalogId === 'avengers-doomsday-secret-wars'),
+      'the same comics must not be suggested under the companion name');
+  });
+}
+
+test('finishing the Doomsday companion offers the next Modern Avengers stop', async () => {
+  const state = finishedWithBundledIssues('avengers-doomsday-secret-wars');
+  const result = await bundledResolver().resolve({
+    catalog, state, sourceListId: 'source', isCompleted: (_state, id) => id === 'source',
+  });
+  assert.deepEqual(result.failures, []);
+  const next = onPath(result).find((suggestion) => suggestion.reasons
+    .some((reason) => reason.pathId === 'modern-avengers'));
+  assert.ok(next, 'the companion retains its path continuation');
+  assert.equal(next.storyKey, paths.find((path) => path.id === 'modern-avengers').stops[8].key);
+  const reason = next.reasons.find((entry) => entry.pathId === 'modern-avengers');
+  assert.equal(reason.sourcePosition, 8);
+  assert.equal(reason.position, 9);
+});
+
 test('the four bundled paths are the ones these checks walk', () => {
   assert.deepEqual(paths.map((path) => [path.id, path.stops.length]), [
     ['modern-avengers', 10], ['x-men-messiah-to-avx', 12], ['professor-x-and-the-x-men', 4],

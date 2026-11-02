@@ -134,7 +134,7 @@ test('Eternals publishes all 24 originals once, grouped, with no hidden metadata
     && !row.detailsRefused && row.description === null));
 });
 
-test('Eternals uses the existing owner-attributed MCU Prep gateway and Storylines shelf', async () => {
+test('Eternals uses the existing owner-attributed MCU Prep gateway and stays off Storylines', async () => {
   const { packet } = await evidence();
   const [manifest, rawCatalog] = await Promise.all([
     readJson('src/data/curated-lists.json'), readJson('src/data/catalog.json'),
@@ -165,7 +165,7 @@ test('Eternals uses the existing owner-attributed MCU Prep gateway and Storyline
   assert.equal(selected.filter((selectedId) => selectedId === id).length, 1);
   const storylines = HOME_CATEGORIES.find((category) => category.key === 'storylines');
   const spotlights = HOME_CATEGORIES.find((category) => category.key === 'character-spotlights');
-  assert.ok(storylines.select(stories).some((story) => story.lists.some((list) => list.id === id)));
+  assert.ok(!storylines.select(stories).some((story) => story.lists.some((list) => list.id === id)));
   assert.ok(!spotlights.select(stories).some((story) => story.lists.some((list) => list.id === id)));
 });
 
