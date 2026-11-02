@@ -379,29 +379,19 @@ repair a reading-data quota failure. Download and check a backup before removing
 recovery copies or reading lists. After the same change saves successfully, its earlier
 not-saved warning disappears; unrelated warnings remain.
 
-### Choosing when to see story summaries
+### Loading story summaries
 
-**Hide story summaries until I reveal them** is on by default. **Fetch synopses** asks permission to
-fetch a Reading List's descriptions without revealing them. Use **Show story summary (may contain
-spoilers)** on Reading or Issue Details to see one, and **Hide story summary** to close it.
-For an unfetched description, Issue Details offers the same **Show story summary** action with
-confirmation before loading and revealing it. Neither action is needed to open the official reader.
+**Fetch synopses** asks permission to load a Reading List's story summaries, and **Load story
+summary** on Issue Details asks the same for one comic. Each load uses your request allowance. Once
+loaded, a summary shows in full on Reading and Issue Details, with nothing to reveal first. Neither
+action is needed to open the official reader.
 
-With hiding on, every issue starts collapsed, including read and untracked issues. Its last
-reveal or hide choice follows that exact issue between views in this tab. Changing its read flag
-does not change the choice or reveal the next issue.
+Reloading or saving the metadata-source setting clears loaded summaries. They are never saved in
+lists or backups, and loading one does not change progress or notes. Titles, covers and
+cross-story references may still contain spoilers.
 
-Reloading or saving the metadata-source setting clears descriptions and choices. Neither is saved
-in lists or backups. Revealing does not change progress or notes. Titles, covers and cross-story
-references may still contain spoilers.
-
-To show fetched descriptions without Reveal/Hide controls, turn hiding off in
-**Backup & settings**, under **Personalization**. Fetching still needs consent. Changing the
-setting resets individual choices in both views but keeps fetched text. Turning hiding back on
-starts collapsed again.
-
-Only the boolean preference is saved, separately from progress, and only a complete backup includes
-it. If saving fails, a warning says it applies to this tab only.
+Earlier versions had a setting to hide summaries until revealed. A saved choice from that setting,
+in this browser or in a backup, is ignored.
 
 ### Reviewing earlier comics
 
@@ -411,7 +401,7 @@ in the selected list's current order. Move through the earlier portion with **Ea
 whose first comic is unread have no earlier candidate; use **Open full Reading List** instead.
 
 The picker does not fetch or reveal descriptions. Open a comic's details for description
-controls, then go Back to the picker. With hiding off, Details can show text already fetched.
+controls, then go Back to the picker.
 Return to Reading's **Read next issue** to continue the order. The reader button in Details opens
 the comic you are inspecting.
 
@@ -448,10 +438,10 @@ importing a file with no issues does not create one.
 
 **Export personal checklist** opens a preview with read checkboxes by default and notes available
 only when selected. Notes do not re-import from either Markdown format.
-On a narrow reading screen, open **List actions**, then **Export**. The same editing and fetch
+On a narrow reading screen, open **Reading List options**, then **Export**. The same editing and fetch
 commands remain available there. Active fetch status/Stop controls stay outside the disclosure, and
 **Mark as Completed** is inside it while comics are queued. Widening the screen opens it without
-moving focus; narrowing it returns focus to **List actions** before hiding a focused editing
+moving focus; narrowing it returns focus to **Reading List options** before hiding a focused editing
 command.
 **Download JSON backup** preserves all reader data, including notes and progress. Use it to
 protect saved data, not to share a reading order.

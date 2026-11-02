@@ -82,7 +82,7 @@ export function createCompletionView({
   }
 
   // The command that replaces the pressed one takes focus where it can be seen. On a narrow Android
-  // screen Complete lives in the closed List options sheet, and measured in the Android build in Edge
+  // screen Complete lives in the closed Reading List options sheet, and measured in the Android build in Edge
   // 155 on 2026-10-26 (#864), focusing it there left focus on the page after a successful Reopen. The
   // view heading takes focus instead, as it does when a refused save hides the pressed command.
   function focusReplacement(command) {
@@ -200,7 +200,7 @@ export function createCompletionView({
     return held.promise;
   }
 
-  // UX-19 (#830): Mark as Completed sits in List actions while comics are queued, so Read comes before
+  // UX-19 (#830): Mark as Completed sits in Reading List options while comics are queued, so Read comes before
   // it, and an empty list keeps it there. Once nothing is queued it moves beside the hero: into the
   // wrap-up when every comic is read, or into Nothing queued when the rest are deferred. It stays one
   // element, so the focus-while-saving contract of #858 and #864 holds in every home, and a move while

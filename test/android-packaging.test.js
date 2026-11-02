@@ -58,9 +58,9 @@ test('the Android overlay sizes every control for touch through the shared token
 
 // UX-08 (#836): behind List actions, with Export a second disclosure inside it, most list commands took
 // three taps. The sheet opens both groups and hides their summaries, so every command is one tap, and
-// puts the reader's own List actions choice back on the way out. Escape closes the sheet itself, because
-// List actions would otherwise close with focus inside it and keep the sheet open.
-test('Android List options lists every command at once, with both groups open and their summaries hidden', async () => {
+// puts the reader's own Reading List options choice back on the way out. Escape closes the sheet itself,
+// because Reading List options would otherwise close with focus inside it and keep the sheet open.
+test('Android Reading List options lists every command at once, with both groups open and their summaries hidden', async () => {
   const [css, overlay] = await Promise.all([
     readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
     readFile(new URL('../packaging/android/web/mobile-ui.js', import.meta.url), 'utf8'),

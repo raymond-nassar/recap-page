@@ -253,9 +253,6 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
   #hero-by, #hero-desc { margin-bottom: var(--space-4); }
-  #btn-hero-description:not([hidden]) {
-    display: flex; clear: both; width: 100%; margin-bottom: var(--space-4);
-  }
   #hero-desc, #hero-facts, #hero .cta { clear: both; }
   #hero-facts { gap: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
   .hero .cta > .btn, .chero .cta > .btn { width: 100%; justify-content: center; }
@@ -271,6 +268,17 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   .home-path-title { overflow-wrap: normal; }
   .card, .empty-state { padding-inline: var(--space-5); }
   .preview-head { flex-wrap: wrap; }
+}
+/* #1061: the compact reading heading in styles.css sets no gap between the title and the lines under
+   it, which the phone gap above would otherwise restore. Measured at 375 by 667, it was the last 8px
+   that kept Done under the bar on Android and iOS. */
+@media (max-width: 480px) and (max-height: 820px) {
+  #view-read > .head { row-gap: 0; }
+}
+
+/* WebView scales text but not rem, so the phone row needs its content minimum to keep words whole. */
+@media (max-width: 700px) {
+  #hero-primary-actions > .btn { min-width: auto; overflow-wrap: normal; }
 }
 
 /* On a short landscape viewport, a wrapping sticky filter can cover most of the reading area. */
@@ -362,6 +370,24 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   #view-issue > .head .sub { margin-inline: auto; }
   #btn-issue-retry { align-self: flex-start; }
   #issue-focus-card .issue-reading-controls { margin-bottom: var(--space-7); }
+}
+@media (max-width: 880px) and (min-height: 600px) {
+  /* The mobile reserve includes the app bar and grows with Dynamic Type. */
+  #hero .hero-in { display: flow-root; }
+  #hero .hero-in > .art {
+    --hero-reserve: max(35.75rem, 35.75em);
+    float: none; max-width: none; margin: 0 auto var(--space-4);
+    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--mobile-nav-height, 80px) - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
+  }
+}
+@media (min-width: 701px) and (max-width: 880px) and (min-height: 600px) {
+  #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: max(39.25rem, 39.25em); }
+}
+@media (max-width: 700px) and (min-height: 600px) {
+  #hero .hero-in > .art { --hero-reserve: max(32.75rem, 32.75em); }
+}
+@media (max-width: 700px) and (min-height: 600px) and (max-height: 820px) {
+  #hero .hero-in > .art { --hero-reserve: max(27.75rem, 27.75em); }
 }
 /* Where the commands share one row they center under the title. On a phone Read spans the width and
    the rest wrap under it, which reads as a list, so they keep to the start there. */

@@ -191,23 +191,62 @@ test('presentation derives shared facts without up-next or progress actions', ()
       { name: 'Artist One', role: 'penciler' },
     ],
   }, {
-    position: 2,
-    total: 5,
     description: 'Held for this tab.',
   });
   assert.equal(shown.title, 'Shared facts');
-  assert.equal(shown.byline, 'Test Series · Writer One & Artist One');
+  assert.equal(shown.byline, 'Test Series', '#1061: credited creators move out of the byline');
   assert.equal(shown.description, 'Held for this tab.');
   assert.deepEqual(shown.facts.map(({ key, value }) => [key, value]), [
     ['Marvel Unlimited record', `Unlimited date: ${futureMuDate} (future)`],
+    ['Writer', 'Writer One'],
+    ['Penciler', 'Artist One'],
     ['Pages', '24'],
     ['Released', '2026-08-26'],
-    ['Position', '2 of 5'],
-  ]);
+  ], '#1061: no cover credit and no Position, by the owner\'s 2026-11-02 decisions');
   assert.equal(shown.launchable, true);
   assert.equal(shown.detailUrl, 'https://www.marvel.com/comics/issue/42/test');
   assert.equal('done' in shown, false);
   assert.equal('upNext' in shown, false);
+  assert.deepEqual(shown.facts.filter((fact) => fact.detailsOnly).map(({ key }) => key),
+    ['Marvel Unlimited record'], '#1061: the reading card leaves the record to Issue details');
+  assert.equal(issuePresentation(issue(45), { position: 2, total: 5 }).facts.some(({ key }) => key === 'Position'), false,
+    'an older caller passing a position still gets no Position fact');
+});
+
+test('#1061 only story creators are credited, by role, in a fixed order, with unroled names kept in the byline', () => {
+  const shown = issuePresentation({
+    ...issue(43, 'Credits'),
+    creators: [
+      { name: 'Ed Itor', role: 'editor' },
+      { name: 'Pen One', role: 'Penciller' },
+      { name: 'Pen Two', role: 'penciler' },
+      { name: 'Pen One', role: 'penciler' },
+      { name: 'Odd Job', role: 'consulting  wizard' },
+      { name: 'Let Ter', role: 'letterer' },
+      { name: 'Col Or', role: 'colorist' },
+      { name: 'Ink Er', role: 'inker' },
+      { name: 'Art Ist', role: 'artist' },
+      { name: 'Wri Ter', role: 'writer' },
+      { name: 'Cov Pen', role: 'penciler (cover)' },
+      { name: 'Cov Art', role: 'cover artist' },
+      { name: '   ', role: 'writer' },
+      { name: 'No Role A' },
+      { name: 'No Role B', role: '' },
+      { name: 'No Role C', role: null },
+      { name: 'No Role D' },
+    ],
+  });
+  assert.deepEqual(shown.facts.filter((fact) => !fact.detailsOnly && !['Pages', 'Released'].includes(fact.key))
+    .map(({ key, value }) => [key, value]), [
+    ['Writer', 'Wri Ter'],
+    ['Artist', 'Art Ist'],
+    ['Penciler', 'Pen One, Pen Two'],
+    ['Inker', 'Ink Er'],
+    ['Colorist', 'Col Or'],
+    ['Letterer', 'Let Ter'],
+  ], 'the owner chose story credits only on 2026-11-02: no editor, cover or other recorded role');
+  assert.equal(shown.byline, 'Test Series · No Role A & No Role B & No Role C', 'unroled names stay as before, at most three');
+  assert.equal(issuePresentation({ ...issue(44, 'Nobody'), creators: [] }).byline, 'Test Series');
 });
 
 test('the dedicated view has one heading and distinct Read, synopsis, and Info actions', () => {
