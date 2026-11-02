@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createCloudHostTransport } from '../src/js/lib/cloudHostTransport.js';
-import { cloudDeleteQuestion, cloudProviderName, cloudSignInChoices } from '../src/js/views/cloud.js';
+import { cloudCardStatus, cloudDeleteQuestion, cloudProviderName, cloudSignInChoices } from '../src/js/views/cloud.js';
 
 // A host that answers every request with the status given, and records each request body the page sent.
 function answering(status) {
@@ -84,4 +84,17 @@ test('the card names each service in its own words', () => {
   assert.match(cloudDeleteQuestion({ provider: 'googledrive' }), /delete those in Google Drive\. Deleted backups stay in Google Drive's trash/);
   assert.doesNotMatch(cloudDeleteQuestion({ provider: 'googledrive' }), /OneDrive|recycle bin/);
   assert.doesNotMatch(cloudDeleteQuestion({ provider: 'onedrive' }), /Google|trash/);
+});
+
+test('the card describes the Android Google sign-in screen without changing browser sign-ins', () => {
+  const pending = { host: 'signing-in', provider: 'googledrive', scope: 'device', signInExpiresAt: 42 };
+  const options = { at: (value) => `time ${value}` };
+  assert.equal(cloudCardStatus(pending, options),
+    'Finish signing in to Google on the sign-in screen. The sign-in stops by itself at time 42.');
+  assert.equal(cloudCardStatus({ ...pending, signInExpiresAt: null }, options),
+    'Finish signing in to Google on the sign-in screen.');
+  assert.equal(cloudCardStatus({ ...pending, scope: 'profiles' }, options),
+    'Finish signing in to Google in the browser window that opened. The sign-in stops by itself at time 42.');
+  assert.equal(cloudCardStatus({ ...pending, provider: 'onedrive' }, options),
+    'Finish signing in to Microsoft in the browser window that opened. The sign-in stops by itself at time 42.');
 });

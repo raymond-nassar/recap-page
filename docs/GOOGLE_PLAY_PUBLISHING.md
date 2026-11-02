@@ -6,8 +6,8 @@ changes account permissions or publishes from a push, tag, merge or GitHub relea
 It rejects production tracks. Production eligibility and permission remain separate owner decisions.
 
 This is maintainer tooling only. Readers still need no Recap Page account, and this tooling never
-uploads their progress, notes or backups. The app's storage origin, schema and runtime dependencies
-are unchanged.
+uploads their progress, notes or backups. The publisher does not change the app's storage origin,
+schema or runtime dependencies.
 
 ## Prerequisites
 
@@ -40,6 +40,14 @@ answers before the OneDrive-enabled closed-testing build is available. The owner
 chooses when to publish the approved listing text and approves each Console and publication step.
 Wait for Console changes to finish review and publication before the protected uploader starts;
 its API commit cannot isolate itself from other pending Console work.
+
+Before distributing any Android release containing `play-services-auth`, the owner must establish
+what it collects through Play Data safety review and make any required Data safety update. This gate
+applies even when Google Drive is disabled, because the library still ships in the app. The review
+and distribution remain owner-controlled; collection or non-collection has not been established.
+If the review finds analytics or telemetry, stop distribution for an owner decision about the existing
+privacy promise. A Data safety disclosure alone does not approve data collection that promise declines.
+See [the recorded release gate](https://github.com/raymond-nassar/recap-page/issues/810#issuecomment-6570886568).
 
 ## Keyless authentication and protection
 

@@ -84,7 +84,7 @@ test('generated icons use SVG namespaces and the same decorative local sprite co
   }
 });
 
-test('sprite provenance and source distribution preserve zero runtime dependencies', () => {
+test('sprite provenance and browser distribution preserve zero runtime dependencies', () => {
   const provenance = read('../src/icons/README.md');
   assert.match(provenance, /original generic line drawings/);
   assert.match(provenance, /\.\.\/\.\.\/LICENSE/);
