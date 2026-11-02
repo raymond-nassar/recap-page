@@ -689,6 +689,18 @@ test('phone queued progress keeps one visible count with deferred issues and one
   } finally { h.restore(); }
 });
 
+test('phone progress setup ignores inherited list keys', () => {
+  for (const id of ['__proto__', 'constructor', 'toString']) {
+    const state = { ...seededState(), active: id, lists: {} };
+    const h = harness({ state, phone: true });
+    try {
+      h.view.wire();
+      assert.equal(h.nodes.heroProgress.hidden, true, id);
+      assert.equal(h.nodes.ringSub.classList.contains('visually-hidden'), false, id);
+    } finally { h.restore(); }
+  }
+});
+
 test('phone context keeps the only visible progress and reachable options when nothing is queued', () => {
   const deferred = setDeferred(setDeferred(seededState(), 'list-a', 2, true), 'list-a', 3, true);
   const empty = createList(createEmptyState(), { id: 'empty', name: 'Empty' });

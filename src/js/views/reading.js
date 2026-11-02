@@ -179,13 +179,13 @@ export function createReadingView({
   }
 
   function syncReadingProgress() {
-    const list = getState().lists[activeListId()];
-    const shown = !!list && !$('#hero').hidden;
+    const listId = activeListId();
+    const shown = Object.hasOwn(getState().lists, listId ?? '') && !$('#hero').hidden;
     const phone = !!phoneOverview?.matches;
     $('#ring-sub').classList.toggle('visually-hidden', phone && shown);
     $('#hero-progress').hidden = !shown;
     if (!shown) return;
-    const { read, total, deferred } = listReadingProgress(getState(), activeListId());
+    const { read, total, deferred } = listReadingProgress(getState(), listId);
     const suffix = phone && deferred ? `. ${deferred} deferred` : '';
     paintGlance(el, { count: $('#hero-progress-count'), fill: $('#hero-progress-fill') },
       { read, total }, ` of ${total} read${suffix}`);

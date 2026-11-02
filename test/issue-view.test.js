@@ -287,7 +287,7 @@ test('Issue view owns loading, resolved paint, current result, and local control
 
   assert.equal(h.view.result().issue.title, 'Issue title');
   assert.equal(h.nodes.heading.textContent, 'Issue title');
-  assert.equal(h.nodes.context.textContent, 'A list · 1 of 1');
+  assert.equal(h.nodes.context.textContent, 'A list', 'the list context does not repeat the position');
   assert.equal(h.nodes.description.textContent, 'Held for this tab.');
   assert.equal(h.nodes.description.hidden, false);
   assert.equal(h.nodes.note.textContent, 'Remember this');
