@@ -3,6 +3,7 @@ import {
   MAX_BACKUP_BYTES, MAX_LISTS, MAX_NAME, SCHEMA_VERSION,
   createEmptyState, exportBackup, newId, setActive,
 } from './model.js';
+import { isIosApp } from './platform.js';
 
 export const LIST_HISTORY_KEY = 'mrt.list-history.v1';
 export const LIST_HISTORY_FORMAT = 'recap-page-list-history';
@@ -11,7 +12,11 @@ export const MAX_HISTORY_BYTES = MAX_BACKUP_BYTES;
 const MAX_DATE = 8640000000000000;
 const RECORD_FIELDS = ['listId', 'created', 'catalogId', 'completedAt', 'rating'];
 const ENVELOPE_FIELDS = ['format', 'version', 'records', 'writeToken'];
-const LOCK_UNAVAILABLE = 'Browser storage locking is unavailable. Completion history can be viewed and backed up, but changes cannot be saved safely in this browser.';
+const platformText = (web, ios) => isIosApp() ? ios : web;
+const lockUnavailable = () => platformText(
+  'Browser storage locking is unavailable. Completion history can be viewed and backed up, but changes cannot be saved safely in this browser.',
+  'App storage locking is unavailable. Completion history can be viewed and backed up, but changes cannot be saved safely in this app.',
+);
 
 function object(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -147,7 +152,7 @@ export class ListHistoryStore {
     try {
       const locks = this.locks === undefined ? globalThis.navigator?.locks : this.locks;
       return typeof locks?.request === 'function'
-        ? { locks, error: null } : { locks: null, error: LOCK_UNAVAILABLE };
+        ? { locks, error: null } : { locks: null, error: lockUnavailable() };
     } catch (error) {
       return { locks: null, error: `Completion-history storage locking could not be accessed (${error.message}). Changes are paused.` };
     }
@@ -184,7 +189,7 @@ export class ListHistoryStore {
   load() {
     let result;
     try {
-      if (!this.storage) throw new Error('Browser storage is unavailable');
+      if (!this.storage) throw new Error(isIosApp() ? 'App storage is unavailable' : 'Browser storage is unavailable');
       const raw = this.storage.getItem(LIST_HISTORY_KEY);
       result = this.adoptRaw(raw);
     } catch (error) {
@@ -268,7 +273,10 @@ export class ListHistoryStore {
     }
     if (held !== expected) {
       this.adoptRaw(held);
-      return this.fail('Another tab changed completion history. This tab is up to date; review it and make the change again.');
+      return this.fail(platformText(
+        'Another tab changed completion history. This tab is up to date; review it and make the change again.',
+        'Another copy of the app changed completion history. This app is up to date; review it and make the change again.',
+      ));
     }
     if (!recovery && (!this.known || this.blocked)) {
       return this.fail('Completion history cannot be changed until it can be read or a valid history backup is restored.');
@@ -314,7 +322,10 @@ export class ListHistoryStore {
     }
     if (reader.foreignWriteSince()) {
       reader.load();
-      return this.fail('Reading data changed in another tab. Review the current list and make the completion change again.');
+      return this.fail(platformText(
+        'Reading data changed in another tab. Review the current list and make the completion change again.',
+        'Reading data changed in another copy of the app. Review the current list and make the completion change again.',
+      ));
     }
     if (version >= 2 && saved && validCreated(Number(saved.created))) {
       if (Number(saved.created) !== present.list.created || rawCatalogId(saved) !== present.list.catalogId) {
@@ -378,7 +389,10 @@ export class ListHistoryStore {
       this.known = false;
       this.blocked = true;
       this.seenRaw = undefined;
-      return this.fail(`The completion-history write could not be verified (${error.message}). Reload or retry before making changes.`);
+      return this.fail(platformText(
+        `The completion-history write could not be verified (${error.message}). Reload or retry before making changes.`,
+        `The completion-history write could not be verified (${error.message}). Close and reopen the app, or retry before making changes.`,
+      ));
     }
     this.adoptRaw(actual);
     if (actual !== candidate) {
@@ -465,7 +479,7 @@ export class ListHistoryStore {
   }
 
   exportStoredCopy() {
-    if (!this.storage) throw new Error('Browser storage is unavailable');
+    if (!this.storage) throw new Error(isIosApp() ? 'App storage is unavailable' : 'Browser storage is unavailable');
     const storedValue = this.storage.getItem(LIST_HISTORY_KEY);
     return JSON.stringify({ format: LIST_HISTORY_COPY_FORMAT, version: 1, storedValue }, null, 2);
   }
@@ -498,7 +512,10 @@ export class ListHistoryStore {
       if (heldReader !== readerRaw
         || !canonicalReaderValue(readerRaw, createEmptyState(), this.readerStore.seenToken)) {
         this.readerStore.load();
-        return this.fail('Another tab changed reading data after the erase. Completion history was kept.', { readerChanged: true });
+        return this.fail(platformText(
+          'Another tab changed reading data after the erase. Completion history was kept.',
+          'Another copy of the app changed reading data after the erase. Completion history was kept.',
+        ), { readerChanged: true });
       }
       const fresh = this.checkFresh(historyRaw, { recovery: true });
       if (!fresh.ok) return fresh;
@@ -506,7 +523,10 @@ export class ListHistoryStore {
         if (historyRaw !== null) this.storage.removeItem(LIST_HISTORY_KEY);
         const actual = this.storage.getItem(LIST_HISTORY_KEY);
         this.adoptRaw(actual);
-        if (actual !== null) return this.fail('Completion history could not be removed and is still saved in this browser.');
+        if (actual !== null) return this.fail(platformText(
+          'Completion history could not be removed and is still saved in this browser.',
+          'Completion history could not be removed and is still saved in this app.',
+        ));
       } catch (error) {
         this.load();
         return this.fail(`Completion-history removal could not be verified (${error.message}). Its saved value may still be here.`);

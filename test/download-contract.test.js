@@ -16,6 +16,9 @@ test('browser requests are distinct from completed native downloads and unknown 
     const { downloadMessage } = await import('../src/js/lib/download.js');
     assert.match(downloadMessage('requested', 'Backup'), /requested.*confirm it was saved/);
     assert.equal(downloadMessage(true, 'Backup'), 'Backup downloaded.');
+    globalThis.document.documentElement = { dataset: { platform: 'ios' } };
+    assert.equal(downloadMessage(false, 'Backup'), 'Backup could not be saved in this app. Try again.');
+    delete globalThis.document.documentElement;
     for (const result of [true, false, 'requested', 'saved', {}, 1, null, undefined]) {
       setDownloadHandler(() => result);
       assert.equal(await saveDownload('copy.json', 'precious', 'application/json'),

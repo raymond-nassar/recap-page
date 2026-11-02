@@ -6,11 +6,13 @@ import {
 } from '../lib/catalog.js';
 import { labelledName } from '../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
+import { isIosApp } from '../lib/platform.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
 
 export function createPreviewView({
+  isIos = isIosApp(),
   captureFocus,
   el,
   elements,
@@ -133,7 +135,8 @@ export function createPreviewView({
       return offlineState.reason || 'The offline copy needs an update.';
     }
     if (offlineState.state === 'unsupported') {
-      return offlineState.error || 'Offline preparation is not supported in this browser.';
+      if (isIos) return 'Offline preparation is not available in this app.';
+      return offlineState.error || `Offline preparation is not supported in ${isIos ? 'this app' : 'this browser'}.`;
     }
     if (offlineState.state === 'cancelled') {
       return 'Preparation cancelled. Any earlier completed offline copy is unchanged.';
@@ -195,7 +198,7 @@ export function createPreviewView({
     if (!offlineContent?.readiness || !offlineControls) {
       offlineState = {
         state: 'unsupported',
-        error: 'Offline preparation is not available in this browser.',
+        error: `Offline preparation is not available in ${isIos ? 'this app' : 'this browser'}.`,
       };
       syncOffline();
       return;
