@@ -11,7 +11,7 @@ import {
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
   countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing, SPOTLIGHT_KINDS,
-  visibleFirstStopGuides, catalogGapLabels,
+  visibleFirstStopGuides, catalogGapLabels, STORY_TYPES, STORY_TONES,
 } from '../src/js/lib/catalog.js';
 import { countOrderGaps } from '../src/js/lib/model.js';
 
@@ -553,6 +553,39 @@ test('a list keeps its audience only when the catalog states a known one', () =>
   assert.equal(unstated.audience, null);
   assert.equal(unknown.audience, null);
   assert.equal(wrongShape.audience, null);
+});
+
+// #1060. A reader searches with the words they would use, so the labels are what search sees,
+// and a catalog value outside the closed lists is dropped rather than shown as a new kind of story.
+test('story types and tones keep only known values and are found by their labels', () => {
+  const entry = { id: 'x', file: 'x.json', name: 'X', count: 1, type: 'character-run' };
+  const [tagged, unstated, rubbish] = parseCatalog({
+    lists: [
+      { ...entry, storyTypes: ['espionage', 'crime-noir', 'espionage'], tones: ['street-level'] },
+      { ...entry, id: 'y', file: 'y.json' },
+      { ...entry, id: 'z', file: 'z.json', storyTypes: ['superhero', 7], tones: 'dark' },
+    ],
+  }).lists;
+  assert.deepEqual(tagged.storyTypes, ['espionage', 'crime-noir']);
+  assert.deepEqual(tagged.tones, ['street-level']);
+  assert.deepEqual([unstated.storyTypes, unstated.tones], [[], []]);
+  assert.deepEqual([rubbish.storyTypes, rubbish.tones], [[], []]);
+
+  assert.deepEqual(ids(searchCatalog([tagged, unstated], 'espionage')), ['x']);
+  assert.deepEqual(ids(searchCatalog([tagged, unstated], 'crime and noir')), ['x']);
+  assert.deepEqual(ids(searchCatalog([tagged, unstated], 'street level')), ['x']);
+  assert.deepEqual(ids(searchCatalog([tagged, unstated], 'streetlevel')), ['x']);
+  assert.deepEqual(ids(searchCatalog([tagged, unstated], 'horror')), []);
+  for (const label of [...Object.values(STORY_TYPES), ...Object.values(STORY_TONES)]) {
+    assert.match(label, /^[A-Z][a-z]+(?: [a-z]+)*$/, `${label} is not a plain sentence-case label`);
+  }
+});
+
+test('the shipped catalog finds Brubaker\'s Captain America by its story type', async () => {
+  const lists = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'))).lists;
+  const found = ids(searchCatalog(lists, 'espionage'));
+  assert.ok(found.includes('captain-america-best-of'), 'espionage did not find the Brubaker run');
+  assert.ok(!found.includes('the-unbeatable-squirrel-girl'));
 });
 
 test('every reading depth has a label and a plain-English explanation', () => {

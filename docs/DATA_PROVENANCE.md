@@ -624,6 +624,8 @@ above is listed separately because it is third-party material outside the usual 
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
 | `audience` | Optional and closed. `young-readers` marks a list its sources recommend for younger readers, so a Home category can gather those lists across shelves. Authored here, never inferred, and absent on every other list |
+| `storyTypes` | Optional and closed, at most three. The kinds of story a list tells, such as espionage or space opera, so a reader can find lists by the kind of story they want. A judgment this project makes, informed by the guide the list already credits and by general references; no text is copied from any of them, and no tag is inferred from a field |
+| `tones` | Optional and closed, at most two. How a list reads, such as epic or street level. Authored on the same terms as `storyTypes`, and absent where no tone stands out |
 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
@@ -1092,10 +1094,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:8433-8484`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:8561-8612`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:12804-12941`.
+`src/data/catalog.json:12932-13069`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2970,9 +2972,9 @@ its original source position and provider 404 rather than turning owner evidence
 response.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:834-856`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:422-426`, `scripts/vendor-orders.mjs:489-490`, `scripts/vendor-orders.mjs:533-534`).
+(`scripts/vendor-orders.mjs:424-428`, `scripts/vendor-orders.mjs:491-492`, `scripts/vendor-orders.mjs:535-536`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
 provider details and covers remain empty. No comic image bytes are stored and no Unlimited
 availability is inferred.
