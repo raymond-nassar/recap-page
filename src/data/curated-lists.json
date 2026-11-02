@@ -7,7 +7,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "science-fiction"
+        "science-fiction",
+        "war"
       ],
       "tones": [
         "dark"
@@ -45,7 +46,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "political"
+        "political",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -112,7 +114,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "coming-of-age"
+        "coming-of-age",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -419,7 +422,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "space-opera",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -455,7 +459,7 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "science-fiction"
+        "adventure"
       ],
       "tones": [
         "lighthearted"
@@ -1029,7 +1033,7 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "science-fiction"
+        "adventure"
       ],
       "beginner": false,
       "group": null,
@@ -1144,7 +1148,8 @@
       "depth": "complete",
       "storyTypes": [
         "political",
-        "thriller"
+        "thriller",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -1306,7 +1311,8 @@
       "type": "era",
       "depth": "essential",
       "storyTypes": [
-        "thriller"
+        "thriller",
+        "everyday-life"
       ],
       "tones": [
         "street-level"
@@ -1343,7 +1349,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "space-opera",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -2038,7 +2045,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "thriller"
+        "thriller",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -2179,7 +2187,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "myth-fantasy"
+        "myth-fantasy",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -2304,7 +2313,8 @@
       "depth": "partial",
       "storyTypes": [
         "coming-of-age",
-        "political"
+        "political",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -2469,7 +2479,8 @@
       "depth": "partial",
       "storyTypes": [
         "war",
-        "political"
+        "political",
+        "myth-fantasy"
       ],
       "tones": [
         "epic"
@@ -2556,7 +2567,8 @@
       "depth": "partial",
       "storyTypes": [
         "crime-noir",
-        "comedy"
+        "comedy",
+        "everyday-life"
       ],
       "tones": [
         "street-level",
@@ -3544,7 +3556,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "storyTypes": [
-        "comedy"
+        "comedy",
+        "everyday-life"
       ],
       "tones": [
         "street-level",
@@ -3704,7 +3717,8 @@
       "depth": "selected",
       "storyTypes": [
         "space-opera",
-        "comedy"
+        "comedy",
+        "science-fiction"
       ],
       "tones": [
         "lighthearted"
@@ -3903,7 +3917,8 @@
       "depth": "partial",
       "storyTypes": [
         "space-opera",
-        "coming-of-age"
+        "coming-of-age",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -4102,7 +4117,8 @@
       "depth": "complete",
       "storyTypes": [
         "space-opera",
-        "comedy"
+        "comedy",
+        "science-fiction"
       ],
       "tones": [
         "lighthearted"
@@ -4269,7 +4285,8 @@
       "spotlightKind": "complete-guide",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "space-opera",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -4529,7 +4546,8 @@
       "spotlightKind": "other",
       "depth": "partial",
       "storyTypes": [
-        "coming-of-age"
+        "coming-of-age",
+        "everyday-life"
       ],
       "beginner": false,
       "group": null,
@@ -4860,7 +4878,8 @@
       "depth": "complete",
       "storyTypes": [
         "thriller",
-        "martial-arts"
+        "martial-arts",
+        "crime-noir"
       ],
       "tones": [
         "dark"
@@ -5266,7 +5285,8 @@
       "spotlightKind": "complete-guide",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "space-opera",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -5416,7 +5436,8 @@
       "spotlightKind": "complete-guide",
       "depth": "complete",
       "storyTypes": [
-        "political"
+        "political",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -5910,7 +5931,6 @@
       "spotlightKind": "best-of",
       "depth": "essential",
       "storyTypes": [
-        "coming-of-age",
         "crime-noir"
       ],
       "tones": [
@@ -6204,7 +6224,8 @@
       "depth": "complete",
       "storyTypes": [
         "thriller",
-        "horror"
+        "horror",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -6352,7 +6373,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "magic-supernatural"
+        "magic-supernatural",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -6386,7 +6408,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "comedy"
+        "comedy",
+        "science-fiction"
       ],
       "tones": [
         "lighthearted"
@@ -6726,7 +6749,7 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "adventure"
       ],
       "tones": [
         "lighthearted"
@@ -6878,8 +6901,8 @@
       "type": "event",
       "depth": "selected",
       "storyTypes": [
-        "war",
-        "horror"
+        "horror",
+        "thriller"
       ],
       "tones": [
         "dark"
@@ -7768,7 +7791,8 @@
         "marvel-knights-to-planet-x-17": {
           "storyTypes": [
             "horror",
-            "thriller"
+            "thriller",
+            "science-fiction"
           ],
           "tones": [
             "dark"
@@ -8067,7 +8091,8 @@
         "marvel-knights-to-planet-x-49": {
           "storyTypes": [
             "magic-supernatural",
-            "horror"
+            "horror",
+            "science-fiction"
           ],
           "tones": [
             "epic",
@@ -8435,7 +8460,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "thriller"
+        "thriller",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -8468,7 +8494,8 @@
       "depth": "complete",
       "storyTypes": [
         "political",
-        "war"
+        "war",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -8907,7 +8934,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "political"
+        "political",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -9062,7 +9090,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "political"
+        "political",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -9100,7 +9129,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "political"
+        "political",
+        "science-fiction"
       ],
       "beginner": false,
       "group": null,
@@ -9136,7 +9166,8 @@
       "depth": "complete",
       "storyTypes": [
         "horror",
-        "magic-supernatural"
+        "magic-supernatural",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -9564,7 +9595,7 @@
       "spotlightKind": "complete-guide",
       "depth": "complete",
       "storyTypes": [
-        "coming-of-age"
+        "everyday-life"
       ],
       "tones": [
         "street-level"
@@ -9676,7 +9707,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "thriller"
+        "thriller",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -9748,7 +9780,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "horror"
+        "horror",
+        "science-fiction"
       ],
       "tones": [
         "dark"
@@ -9902,7 +9935,8 @@
       "type": "event",
       "depth": "complete",
       "storyTypes": [
-        "magic-supernatural"
+        "magic-supernatural",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -10092,7 +10126,7 @@
       "audience": "young-readers",
       "depth": "complete",
       "storyTypes": [
-        "science-fiction",
+        "adventure",
         "comedy"
       ],
       "tones": [
@@ -10423,7 +10457,7 @@
       "audience": "young-readers",
       "depth": "partial",
       "storyTypes": [
-        "science-fiction"
+        "adventure"
       ],
       "tones": [
         "lighthearted"
@@ -10501,7 +10535,7 @@
       "audience": "young-readers",
       "depth": "complete",
       "storyTypes": [
-        "science-fiction"
+        "adventure"
       ],
       "tones": [
         "lighthearted"
@@ -10538,7 +10572,7 @@
       "audience": "young-readers",
       "depth": "complete",
       "storyTypes": [
-        "science-fiction",
+        "adventure",
         "comedy"
       ],
       "tones": [
@@ -10617,7 +10651,8 @@
       "depth": "complete",
       "storyTypes": [
         "space-opera",
-        "comedy"
+        "comedy",
+        "science-fiction"
       ],
       "tones": [
         "lighthearted"
@@ -10695,7 +10730,8 @@
       "depth": "complete",
       "storyTypes": [
         "political",
-        "war"
+        "war",
+        "science-fiction"
       ],
       "tones": [
         "dark"
