@@ -23,8 +23,8 @@ const MARKER = '.recap-ios-assets';
 const MARKER_CONTENT = 'Recap Page generated iOS assets v1\n';
 // The Android exclusions omit the development fault harness and offline-shell registration, while
 // the bundled app already has its own offline shell. iOS also removes the cloud backup card, so its
-// sign-in logo has no remaining caller.
-export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js', 'brands/ms-symbollockup_mssymbol_19.svg']);
+// sign-in logos have no remaining callers.
+export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js', 'brands/ms-symbollockup_mssymbol_19.svg', 'brands/g-logo.png']);
 export const IOS_ASSET_DIR = join(ROOT, 'packaging', 'ios', 'build', 'generated', 'web');
 export const IOS_ICON_PATH = join(ROOT, 'packaging', 'ios', 'RecapPage', 'Assets.xcassets', 'AppIcon.appiconset', 'AppIcon.png');
 export const IOS_ICON_SIZE = 1024;

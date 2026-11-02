@@ -1746,6 +1746,24 @@ test('only a record that fails its checks is called unreadable, and turning on t
     'the earlier backups are listed as another device\'s');
 });
 
+test('the page sends the chosen provider to the host and leaves an absent choice absent', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  env.transport.signedIn(null);
+  env.transport.host.state = 'not-connected';
+  const calls = [];
+  const connect = env.transport.connect;
+  env.transport.connect = async (...args) => {
+    calls.push(args);
+    return connect(...args);
+  };
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.connect('googledrive');
+  await tab.cloud.connect();
+  assert.deepEqual(calls, [[{ provider: 'googledrive' }], []]);
+});
+
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {
   const env = harness();
   windowsHost(env.transport);
