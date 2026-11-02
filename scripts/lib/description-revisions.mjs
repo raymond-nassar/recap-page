@@ -97,7 +97,31 @@ export function createDescriptionRevisions(value) {
     return text.replace(header, () => `  "description": ${JSON.stringify(revision.before)},`);
   }
 
-  return { record, entries: record.entries, beforeEntry, afterEntry, beforeManifest, beforePayloadText };
+  // Older inverses run after this one and accept copy that is already reconstructed, so this step
+  // undoes only its own exact revised text and leaves any other copy for them to judge.
+  function undoEntry(entry) {
+    const revision = byId.get(entry.id) ?? byFile.get(entry.out ?? entry.file);
+    return revision && entry.description === revision.after ? beforeEntry(entry) : entry;
+  }
+
+  function redoEntry(entry) {
+    const revision = byId.get(entry.id) ?? byFile.get(entry.out ?? entry.file);
+    return revision && entry.description === revision.before ? afterEntry(entry) : entry;
+  }
+
+  function undoManifest(manifest) {
+    return { ...manifest, lists: manifest.lists.map(undoEntry) };
+  }
+
+  function undoPayloadText(file, text) {
+    const revision = byFile.get(file);
+    return revision && JSON.parse(text).description === revision.after ? beforePayloadText(file, text) : text;
+  }
+
+  return {
+    record, entries: record.entries, beforeEntry, afterEntry, beforeManifest, beforePayloadText,
+    undoEntry, redoEntry, undoManifest, undoPayloadText,
+  };
 }
 
 export const descriptionRevisions = createDescriptionRevisions(JSON.parse(readFileSync(

@@ -17,6 +17,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'x-23-reading-order';
 const mappingPath = `scripts/data/cbh-mappings/${id}.json`;
@@ -161,7 +162,7 @@ test('X-23 publishes a credited and discoverable complete guide with approved li
   const catalogEntry = catalog.lists.find((item) => item.id === id);
   const record = inventory.find((item) => item.id === id);
   const index = manifest.lists.indexOf(entry);
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(descriptionRevisions.undoEntry(entry), packet.proposedManifest);
   assert.equal(manifest.lists[index + 1].id, packet.insertionAnchor.beforeId);
   assert.equal(catalogEntry.id, id);
   assert.equal(entry.sourcePage, ledger.sourceUrl);

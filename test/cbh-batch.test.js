@@ -46,6 +46,7 @@ import {
   historicalReadingChoiceManifest,
   historicalReadingChoiceIssueIds,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -1176,7 +1177,7 @@ test('the approved Comic Book Herald packet stays exact through every generated 
       assert.ok(row.note.trim(), `${id} manual series selection has no note`);
     }
     assert.equal(mapping.packetReview, '.copilot-tracking/reviews/logs/2026-08-21/modern-marvel-continuity-guides-packet-review.md');
-    assert.deepEqual(withoutDiscoveryTags(manifestEntry), approved, `${id} manifest fields differ from the approved packet`);
+    assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifestEntry)), approved, `${id} manifest fields differ from the approved packet`);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourcePosition'), false);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourceReference'), false);
     assert.equal(parsed.unresolved.length, 0, `${id} has unresolved Markdown rows`);

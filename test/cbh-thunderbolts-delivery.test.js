@@ -17,6 +17,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'thunderbolts-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/the-thunderbolts-reading-order/';
@@ -245,7 +246,7 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   assert.equal(inventory.length, 133);
 
   assert.doesNotThrow(() => validateInventoryState(inventory));
-  assert.deepEqual(entry, mapping.approvedManifest);
+  assert.deepEqual(descriptionRevisions.undoEntry(entry), mapping.approvedManifest);
   assert.equal(entry.coverIssueId, 15311);
   assert.equal(card.coverIssueId, 15311);
   assert.equal(packet.sourceUrl, sourceUrl);

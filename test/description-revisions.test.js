@@ -5,6 +5,7 @@ import {
   createDescriptionRevisions, describeDescriptionRevision, descriptionRevisions, planDescriptionRevisions,
   sealDescriptionRevisions, validateDescriptionRevisions,
 } from '../scripts/lib/description-revisions.mjs';
+import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
@@ -86,6 +87,29 @@ test('historical checks replay only the exact recorded inverse', async () => {
   const plan = planDescriptionRevisions({ revisions, manifest, payloadTexts: new Map([[FILE, source]]) });
   assert.equal(revisions.beforePayloadText(FILE, plan.payloads[0].content), source);
   assert.equal(revisions.beforePayloadText(FILE, source), source);
+});
+
+test('composed history inverses undo only their own revised copy and pass everything else on', async () => {
+  const revisions = createDescriptionRevisions(await fixture());
+  const manifest = await json('src/data/curated-lists.json');
+  const current = manifest.lists.find(({ id }) => id === ID);
+  const revised = { ...current, description: AFTER };
+  assert.deepEqual(revisions.undoEntry(revised), current);
+  assert.equal(revisions.undoEntry(current), current);
+  const older = { ...current, description: 'Copy an older inverse still has to judge.' };
+  assert.equal(revisions.undoEntry(older), older, 'Unrecorded copy passes through for an older inverse.');
+  assert.deepEqual(revisions.redoEntry(current), revised);
+  assert.equal(revisions.redoEntry(revised), revised);
+  assert.equal(revisions.redoEntry(older), older);
+  const applied = { ...manifest, lists: manifest.lists.map((entry) => entry.id === ID ? revised : entry) };
+  assert.deepEqual(revisions.undoManifest(applied), manifest);
+  assert.deepEqual(revisions.undoManifest(manifest), manifest);
+  const source = await text(`src/data/${FILE}`);
+  const plan = planDescriptionRevisions({ revisions, manifest, payloadTexts: new Map([[FILE, source]]) });
+  assert.equal(revisions.undoPayloadText(FILE, plan.payloads[0].content), source);
+  assert.equal(revisions.undoPayloadText(FILE, source), source);
+  const library = await loadLibrarySnapshot({ manifest: revisions.undoManifest(applied) });
+  assert.equal(library.manifest.lists.find(({ id }) => id === ID).description, current.description);
 });
 
 test('the record rejects copy that breaks the card rules or the evidence trail', async () => {

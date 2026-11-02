@@ -38,6 +38,7 @@ import {
   loadHistoricalReadingChoiceLibrary,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const abominationCandidateId = 'abomination-reading-order';
@@ -1181,7 +1182,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     expectedOrderIds,
   }));
 
-  assert.deepEqual(manifestRecord, mapping.approvedManifest);
+  assert.deepEqual(descriptionRevisions.undoEntry(manifestRecord), mapping.approvedManifest);
   assert.equal(catalogRecord.count, 225);
   assert.equal(catalogRecord.placeholderCount, 0);
   assert.equal(payload.count, 225);

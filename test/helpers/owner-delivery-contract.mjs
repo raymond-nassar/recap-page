@@ -19,6 +19,7 @@ import {
 } from './current-reading-library.mjs';
 import { historicalSpiderManSelectionLibraryDigest, pathsWithinLists } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
+import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
 import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
@@ -160,7 +161,10 @@ export async function assertOwnerDeliveryContract(contract, {
   }));
   const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
     recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
-  const recordedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds });
+  // Every recorded review predates the description revision record, so each digest below hashes
+  // the copy that review saw.
+  const recordedManifest = descriptionRevisions.undoManifest(
+    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds }));
   const digestLibrary = contract.libraryDigest == null
     ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
   const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
@@ -254,10 +258,11 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   assert.deepEqual(sourceCountsForPacket(packet), contract.sourceCounts);
   assertMappingMatchesPacketOccurrences(packet, mapping);
   assertCbhBaselinePayload(contract, mapping, payload, markdown);
-  assert.equal(payload.description, contract.description);
+  assert.equal(descriptionRevisions.undoEntry(payload).description, contract.description);
   assert.equal(payload.sourceOrigin, contract.sourceOrigin);
   assert.equal(contract.sourceOrigin, CBH_SOURCE_PROVIDER.sourceOrigin);
-  assert.deepEqual(withoutDiscoveryTags(manifest.lists.find((entry) => entry.id === id)), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id))),
+    packet.proposedManifest);
   assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
   for (const [file, digest] of Object.entries(contract.cbhBaseline.files)) {
     assert.equal(hash(beforeIdentityText(file, contract.cbhBaseline.sourceCommit).replace(/\r\n/g, '\n')), digest, file);
@@ -273,7 +278,8 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   // since is held to the same registered-later-peer rule as an ordinary owner guide.
   const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
   const orders = allOrders.filter((entry) => recordedIds.has(entry.orderId));
-  const recordedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id });
+  const recordedManifest = descriptionRevisions.undoManifest(
+    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id }));
   const current = {
     candidateId: id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest,
     libraryDigest: libraryDigestFor(recordedManifest,

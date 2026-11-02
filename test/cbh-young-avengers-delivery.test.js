@@ -12,6 +12,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'young-avengers-reading-order';
@@ -117,7 +118,7 @@ test('Young Avengers publishes the reviewed 54-issue settlement in frozen source
     expectedVector,
   );
 
-  assert.deepEqual(manifestRecord, mapping.approvedManifest);
+  assert.deepEqual(descriptionRevisions.undoEntry(manifestRecord), mapping.approvedManifest);
   assert.equal(payload.count, 169);
   assert.equal(payload.placeholders, 1);
   assert.equal(payload.items.filter((item) => !item.placeholder).length, 168);

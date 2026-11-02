@@ -2049,8 +2049,8 @@
     "fp": "be3dc6ddefd7e6fd",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:200-226|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:200-226",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:204-230|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:204-230",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },

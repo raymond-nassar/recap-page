@@ -22,6 +22,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order';
 const source = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/';
@@ -217,7 +218,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
-  assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
+  assert.deepEqual(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id)), packet.proposedManifest);
   assert.doesNotThrow(() => validateInventoryState(inventory));
 });
 

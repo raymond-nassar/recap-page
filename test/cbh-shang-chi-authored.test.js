@@ -21,6 +21,8 @@ import {
   historicalReadingChoiceIssueIds,
   pathsWithinLists,
 } from './helpers/reading-choice-history.mjs';
+import path from 'node:path';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'shang-chi-master-of-kung-fu-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -131,7 +133,7 @@ test('Shang-Chi correction retains a reconstructible original publication and un
     'src/data/shang_chi_master_of_kung_fu_reading_order.json',
   ].sort());
   for (const [file, hash] of Object.entries(correction.preservedFiles)) {
-    assert.equal(sha256((await readFile(file, 'utf8')).replace(/\r\n/g, '\n')), hash, file);
+    assert.equal(sha256(descriptionRevisions.undoPayloadText(path.basename(file), await readFile(file, 'utf8')).replace(/\r\n/g, '\n')), hash, file);
   }
 });
 
@@ -287,7 +289,7 @@ test('Shang-Chi authored checklist and complete browser vector preserve every se
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(manifest.lists[position - 1].id, 'doctor-octopus-otto-octavius-reading-order');
   assert.equal(manifest.lists[position + 1].id, 'thunderbolts-reading-order');
-  assert.deepEqual(withoutDiscoveryTags(manifest.lists[position]), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists[position])), packet.proposedManifest);
 });
 
 test('Shang-Chi vendored payload preserves exact original IDs, eight gaps and its own cover', async () => {

@@ -18,6 +18,8 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import path from 'node:path';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'spider-gwen-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -188,7 +190,7 @@ test('Spider-Gwen publishes the exact credited payload and auditable metadata re
     if (record.kind !== 'reconstructed-from-pinned-payload') continue;
     if (!hashes.has(record.file)) {
       hashes.set(record.file, createHash('sha256')
-        .update((await readFile(record.file, 'utf8')).replace(/\r\n/g, '\n')).digest('hex'));
+        .update(descriptionRevisions.undoPayloadText(path.basename(record.file), await readFile(record.file, 'utf8')).replace(/\r\n/g, '\n')).digest('hex'));
     }
     assert.equal(record.hashBasis, 'UTF-8 source text with LF line endings');
     assert.equal(record.sha256, hashes.get(record.file));

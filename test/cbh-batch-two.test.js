@@ -20,6 +20,7 @@ import {
   historicalReadingChoiceManifest,
   historicalReadingChoiceIssueIds,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -194,7 +195,7 @@ test('batch two stays exact through mapping, Markdown, generated data, catalog, 
     assert.equal(inventoryEntry.deliveryStatus, 'shipped');
     assert.equal(inventoryEntry.disposition, 'grouped-variant');
     assert.ok(inventoryEntry.catalogIds.includes(id), `${id} is absent from its inventory parent`);
-    const { storylines, ...originalFields } = withoutDiscoveryTags(manifestEntry);
+    const { storylines, ...originalFields } = withoutDiscoveryTags(descriptionRevisions.undoEntry(manifestEntry));
     const eligible = ['planet-hulk', 'annihilation-conquest', 'war-of-kings'].includes(id);
     assert.equal(storylines === true, eligible, `${id} has unexpected discovery eligibility`);
     if (!eligible) assert.ok(storylines === undefined || storylines === false);
