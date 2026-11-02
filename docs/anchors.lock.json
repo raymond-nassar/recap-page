@@ -1754,8 +1754,8 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1597-1650|0": {
-    "anchor": "src/js/lib/catalog.js:1597-1650",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1629-1682|0": {
+    "anchor": "src/js/lib/catalog.js:1629-1682",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
@@ -1786,7 +1786,7 @@
   },
   "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3619-3776|0": {
     "anchor": "src/js/main.js:3619-3776",
-    "fp": "56ee8214d695b758",
+    "fp": "1f5a261d96b64e26",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
   "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3685-3691|0": {
@@ -2414,8 +2414,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2270-2272|0": {
-    "anchor": "src/styles.css:2270-2272",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2272-2274|0": {
+    "anchor": "src/styles.css:2272-2274",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2439,8 +2439,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2270-2272|0": {
-    "anchor": "src/styles.css:2270-2272",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2272-2274|0": {
+    "anchor": "src/styles.css:2272-2274",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2469,13 +2469,13 @@
     "fp": "fa2e5d6a0448cd58",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: var(--stroke-1) solid rgb(var(--tint-base)"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1153-1154|0": {
-    "anchor": "src/styles.css:1153-1154",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1155-1156|0": {
+    "anchor": "src/styles.css:1155-1156",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1156|0": {
-    "anchor": "src/styles.css:1156",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1158|0": {
+    "anchor": "src/styles.css:1158",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2489,13 +2489,13 @@
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1170-1173|0": {
-    "anchor": "src/styles.css:1170-1173",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1172-1175|0": {
+    "anchor": "src/styles.css:1172-1175",
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2725-2726|0": {
-    "anchor": "src/styles.css:2725-2726",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2727-2728|0": {
+    "anchor": "src/styles.css:2727-2728",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2509,8 +2509,8 @@
     "fp": "be3dcd71e08d91da",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1228-1281|0": {
-    "anchor": "src/styles.css:1228-1281",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1230-1283|0": {
+    "anchor": "src/styles.css:1230-1283",
     "fp": "2d25420743119414",
     "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
@@ -2564,8 +2564,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2270-2272|0": {
-    "anchor": "src/styles.css:2270-2272",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2272-2274|0": {
+    "anchor": "src/styles.css:2272-2274",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6254,23 +6254,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1984-1986|0": {
-    "anchor": "src/styles.css:1984-1986",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1986-1988|0": {
+    "anchor": "src/styles.css:1986-1988",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2003-2005|0": {
-    "anchor": "src/styles.css:2003-2005",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2005-2007|0": {
+    "anchor": "src/styles.css:2005-2007",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2311|0": {
-    "anchor": "src/styles.css:2311",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2313|0": {
+    "anchor": "src/styles.css:2313",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2335|0": {
-    "anchor": "src/styles.css:2335",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2337|0": {
+    "anchor": "src/styles.css:2337",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

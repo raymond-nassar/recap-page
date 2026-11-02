@@ -1,5 +1,6 @@
 import {
-  STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE, catalogEntries, storyTypeFacets, storyTypeStories,
+  STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE, catalogEntries, storyTypeFacets, storyTypeStarters,
+  storyTypeStories,
 } from '../lib/catalog.js';
 
 const ROUTE = STORY_TYPES_ROUTE;
@@ -29,7 +30,7 @@ export function createStoryTypesView({
         onchange: (event) => choose({ storyType: type, tone: event.currentTarget.value }),
       });
       root = el('div', { id: `${ROUTE}-choices`, class: 'story-type-choices' }, [
-        group('Story type', typeSelect),
+        group('Genre', typeSelect),
         group('Tone', toneSelect),
       ]);
     }
@@ -62,7 +63,7 @@ export function createStoryTypesView({
     const facets = storyTypeFacets(stories, { type, tone });
     controls();
     for (const [select, any, choices, value] of [
-      [typeSelect, 'Any story type', facets.types, type],
+      [typeSelect, 'Any genre', facets.types, type],
       [toneSelect, 'Any tone', facets.tones, tone],
     ]) {
       select.replaceChildren(
@@ -82,10 +83,15 @@ export function createStoryTypesView({
     nodes.results.replaceChildren();
     if (!type && !tone) {
       nodes.count.textContent = `${all.length} ${all.length === 1 ? 'Reading List' : 'Reading Lists'}`;
-      nodes.results.append(el('p', {
-        class: 'rail-hint',
-        text: 'Choose a story type or a tone to see its Reading Lists.',
-      }));
+      const starters = storyTypeStarters(stories);
+      if (!starters.length) {
+        nodes.results.append(el('p', {
+          class: 'rail-hint',
+          text: 'Choose a genre or a tone to see its Reading Lists.',
+        }));
+        return;
+      }
+      nodes.results.append(results(starters, 'Popular places to start', 'Or choose a genre or tone above.'));
       return;
     }
     const matches = storyTypeStories(stories, { type, tone });
@@ -94,20 +100,25 @@ export function createStoryTypesView({
     if (!matches.length) {
       nodes.results.append(el('p', {
         class: 'rail-hint publishing-empty',
-        text: `No Reading Lists are tagged ${heading}. Choose another story type or tone.`,
+        text: `No Reading Lists are tagged ${heading}. Choose another genre or tone.`,
       }));
       return;
     }
+    nodes.results.append(results(matches, heading));
+  }
+
+  function results(stories, heading, hint = null) {
     const grid = el('div', { class: 'catalog-grid publishing-grid' });
-    for (const story of matches) {
+    for (const story of stories) {
       grid.append(presentation.catalogCard(story, {
         surface: ROUTE, report: `#${ROUTE}-report`, level: 'h3',
       }));
     }
-    nodes.results.append(el('section', { class: 'story-type-results', 'aria-labelledby': `${ROUTE}-results-h` }, [
+    return el('section', { class: 'story-type-results', 'aria-labelledby': `${ROUTE}-results-h` }, [
       el('h2', { id: `${ROUTE}-results-h`, class: 'shelf-section-title', text: heading }),
+      ...(hint ? [el('p', { class: 'rail-hint', text: hint })] : []),
       grid,
-    ]));
+    ]);
   }
 
   function render(nextCatalog, { isCurrent: currentRequest } = {}) {

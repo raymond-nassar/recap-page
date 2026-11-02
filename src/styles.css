@@ -1096,6 +1096,8 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
   min-width: 0;
 }
 .story-type-label { margin: 0; color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+/* The starting lists' hint reads as a subtitle, so it shares the heading's left edge. */
+.story-type-results > .rail-hint { margin: var(--space-2) 0 var(--space-3); }
 @media (max-width: 700px) {
   .story-type-choices { grid-template-columns: minmax(0, 1fr); }
 }
@@ -1997,7 +1999,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
 .home-path[data-category="young-readers"] { --home-path-line: var(--green-line); }
-.home-path[data-category="story-types"] { --home-path-line: var(--cyan-line); }
+.home-path[data-category="genres"] { --home-path-line: var(--cyan-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:

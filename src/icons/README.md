@@ -37,7 +37,7 @@ this table, so reusing a glyph for something else fails it.
 | screen | MCU Prep | The MCU Prep card, `#/marvel-on-screen` |
 | ages | Marvel Ages | The Marvel Ages card, `#/marvel-ages`, and the card of every age and period inside it |
 | reader | Young readers | The Young readers card, `#/young-readers` |
-| story-types | Story types | The Story types card, `#/story-types` |
+| story-types | Genres | The Genres card, `#/genres` |
 | arrow-right | Opens a category | The destination arrow on every category card |
 | thumb-up | Enjoyed | Rating a completed Reading List |
 | thumb-down | Did not enjoy | Rating a completed Reading List |
@@ -49,7 +49,7 @@ buttons. The completed-list rating adds the two thumbs. Each of Home's seven cat
 icon and a destination arrow, adding 14 SVG instances. The seven category icons all differ, and each
 names only its own destination. The hourglass was drawn for Marvel Ages in #873, `series`,
 `creator` and `timeline` for #831, the reader behind an open book for Young readers in #897, and
-the tag for Story types in #1060.
+the tag for Genres in #1060.
 The same category renderer supplies the age and period cards inside Marvel Ages when those screens
 open; each adds an `ages` and `arrow-right` pair. These are not a fixed runtime node count.
 

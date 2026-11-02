@@ -492,7 +492,7 @@ test('#1060: similar stories follow the next stop without repeating it, and wait
   assert.equal(h.nodes.similar.hidden, false);
   assert.deepEqual(cardNames(h), ['Alike story', 'Plain story'], 'the next stop appears once, under What to read next');
   const card = h.nodes.similarSuggestions.children[0];
-  assert.deepEqual(card.children[1].children.map((reason) => reason.text), ['Same story type: Espionage', 'Same tone: Dark']);
+  assert.deepEqual(card.children[1].children.map((reason) => reason.text), ['Same genre: Espionage', 'Same tone: Dark']);
   card.children[2].onclick();
   assert.equal(h.calls.previewed.at(-1)[0].id, 'alike');
 });

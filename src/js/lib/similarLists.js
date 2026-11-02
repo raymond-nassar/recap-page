@@ -107,7 +107,7 @@ export function similarLists({
     || a.entry.id.localeCompare(b.entry.id));
 
   return ranked.slice(0, Math.max(0, limit)).map(({ story, entry, types, tones, writers }) => {
-    const reasons = [{ type: 'story-type', text: `Same story type: ${labelled(types, STORY_TYPES)}`, keys: types }];
+    const reasons = [{ type: 'story-type', text: `Same genre: ${labelled(types, STORY_TYPES)}`, keys: types }];
     if (tones.length) {
       reasons.push({ type: 'tone', text: `Same tone: ${labelled(tones, STORY_TONES)}`, keys: tones });
     }

@@ -1207,11 +1207,11 @@ const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : 
     return lists.length > 0 && lists.every((list) => list?.type === type);
   });
 
-// Story types browse what a list is like rather than where it is filed (#1060). MCU Prep companions
+// Genres browse what a list is like rather than where it is filed (#1060). MCU Prep companions
 // carry tags so search finds them, but the owner kept them off this screen: they are chosen by the
-// film a reader is about to watch, and listing them beside the runs would crowd every story type
+// film a reader is about to watch, and listing them beside the runs would crowd every genre
 // with entries that answer a different question.
-export const STORY_TYPES_ROUTE = 'story-types';
+export const STORY_TYPES_ROUTE = 'genres';
 
 function discoverableList(list) {
   return list?.type !== 'screen-companion'
@@ -1234,6 +1234,38 @@ export function storyTypeStories(stories, { type = null, tone = null } = {}) {
 // Each group counts against the other group's choice, so an option's number is what choosing it
 // would show. An option that would show nothing is left out unless it is the current choice, which has
 // to stay visible so the reader can see what is narrowing the results and choose again.
+// With no choice made, Genres opens on these instead of an empty prompt, which the owner found
+// confusing (#1060 comment 6589224122): one beginner-friendly list for each of ten popular titles,
+// in the owner's order. A constant rather than a data file because only this screen reads it and it
+// is editorial, not catalog data. Each id names the exact version to show, even where its story has
+// another, and an id that leaves the catalog or stops being browsable is skipped, not an error.
+export const STORY_TYPE_STARTERS = Object.freeze([
+  'spider-man-best-of',
+  'iron-man-reading-order',
+  'captain-america-best-of',
+  'planet-hulk',
+  'thor-best-of',
+  'marvel-knights-to-planet-x-10',
+  'xmen-claremont',
+  'essential-avengers',
+  'black-panther-reading-order',
+  'deadpool-best-of',
+]);
+
+export function storyTypeStarters(stories, ids = STORY_TYPE_STARTERS) {
+  const all = Array.isArray(stories) ? stories : [];
+  return ids.flatMap((id) => {
+    for (const story of all) {
+      const lists = Array.isArray(story?.lists) ? story.lists : [];
+      const list = lists.find((candidate) => candidate?.id === id);
+      if (!list) continue;
+      if (!discoverableList(list)) return [];
+      return [{ ...story, lists: [list, ...lists.filter((other) => other !== list)] }];
+    }
+    return [];
+  });
+}
+
 export function storyTypeFacets(stories, { type = null, tone = null } = {}) {
   const lists = (Array.isArray(stories) ? stories : [])
     .flatMap((story) => (Array.isArray(story?.lists) ? story.lists : []))
@@ -1316,8 +1348,8 @@ export const HOME_CATEGORIES = [
   {
     key: STORY_TYPES_ROUTE,
     route: STORY_TYPES_ROUTE,
-    heading: 'Story types',
-    label: 'Browse by kind of story',
+    heading: 'Genres',
+    label: 'Browse by genre and tone',
     icon: 'E8EC',
     tier: 'secondary',
     highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],

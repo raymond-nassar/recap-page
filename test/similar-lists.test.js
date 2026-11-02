@@ -43,9 +43,9 @@ test('ranks by shared story types, then tones, then writers, and explains each m
   });
   assert.deepEqual(ids(results), ['two-types', 'one-type', 'tone-only', 'writer-only']);
   assert.deepEqual(results[1].reasons.map((reason) => reason.text), [
-    'Same story type: Espionage', 'Same tone: Dark', 'Same writer: Ed Brubaker',
+    'Same genre: Espionage', 'Same tone: Dark', 'Same writer: Ed Brubaker',
   ]);
-  assert.deepEqual(results[0].reasons.map((reason) => reason.text), ['Same story type: Espionage, Thriller']);
+  assert.deepEqual(results[0].reasons.map((reason) => reason.text), ['Same genre: Espionage, Thriller']);
 });
 
 test('returns at most three by default and breaks ties by timeline nearness, then name', () => {

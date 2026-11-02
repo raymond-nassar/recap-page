@@ -61,7 +61,7 @@ test('the current gateway offers three primary modes and four secondary gateways
       'storylines',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages', 'young-readers', 'story-types',
+      'marvel-ages', 'young-readers', 'genres',
     ],
   );
   assert.deepEqual(
