@@ -879,7 +879,7 @@ descriptions and ordered Reading List ids into `catalog.json`; the browser treat
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
 independently against the same catalog stories at `src/js/lib/catalog.js:1540-1593`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
-`scripts/lib/chapter-orders.mjs:392-402`.
+`scripts/lib/chapter-orders.mjs:406-416`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
 path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:752-770`.

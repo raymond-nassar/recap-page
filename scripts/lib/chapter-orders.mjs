@@ -290,6 +290,15 @@ export function validateStorylinesChildren(order, ledger) {
   return new Set(ids);
 }
 
+export function validateChapterTags(order, ledger) {
+  const tagsById = Object.hasOwn(order, 'chapterTags') ? order.chapterTags : {};
+  assert(isObject(tagsById), `${order.id} chapterTags must be an object`);
+  const available = new Set(ledger.chapters.map((chapter) => chapter.id));
+  const unknown = Object.keys(tagsById).filter((id) => !available.has(id));
+  assert(unknown.length === 0, `${order.id} chapterTags names unknown child IDs: ${unknown.join(', ')}`);
+  return new Map(Object.entries(tagsById));
+}
+
 export function buildChapterFamily({
   order,
   parsed,
@@ -299,8 +308,10 @@ export function buildChapterFamily({
 }) {
   const ledger = validateChapterLedger(inputLedger);
   const selectedChildren = validateStorylinesChildren(order, ledger);
+  const tagsByChild = validateChapterTags(order, ledger);
   const childBase = { ...order };
   delete childBase.storylinesChildren;
+  delete childBase.chapterTags;
   validateSourceAndParent(order, parsed, parentPayload, ledger);
   assert(!existingPathIds.includes(ledger.path.id), `Generated path id "${ledger.path.id}" duplicates an existing path`);
 
@@ -323,12 +334,15 @@ export function buildChapterFamily({
     const description = ledger.descriptionCopy.entries[index].description;
     const sourceOrigin = 'Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303';
     const output = chapterFile(order.out, index + 1);
+    const tags = tagsByChild.get(chapter.id);
 
     return {
       chapter,
       order: {
         ...childBase,
         storylines: selectedChildren.has(chapter.id),
+        ...(tags?.storyTypes ? { storyTypes: [...tags.storyTypes] } : {}),
+        ...(tags?.tones ? { tones: [...tags.tones] } : {}),
         id: chapter.id,
         name: chapter.name,
         description,

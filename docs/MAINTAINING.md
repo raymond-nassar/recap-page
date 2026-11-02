@@ -113,7 +113,8 @@ before generation outputs are written. Runtime invalid or conflicting eligibilit
 loading explicitly, without changing saved data.
 
 Issue-library relationship digests exclude exactly the list-level `storylines` and
-`storylinesChildren` selectors alongside existing classification metadata. Catalog discovery does
+`storylinesChildren` selectors, the `storyTypes`, `tones` and `chapterTags` discovery tags, and
+existing classification metadata. Catalog discovery does
 not redefine approved issue-library evidence. All other manifest fields, paths, order membership
 and ordering, and issue vectors remain digest-bound; unknown or nested metadata is not ignored.
 
@@ -479,6 +480,13 @@ corrected without a new relationship review: reviewed library digests and owner 
 compare a list with its tags set aside, and an identity update keeps them. The tests that hold a
 list to its frozen approved packet set tags aside only for lists tagged so far. Many still compare
 the whole entry, so the change that first tags a list also sets its tags aside in those tests.
+
+A partition parent's generated chapters are tagged through the parent's `chapterTags`, an object
+keyed by exact child ID whose values hold that chapter's `storyTypes` and optional `tones` under
+the same rules, with at least one story type each. The vendor refuses a key that is not one of the
+ledger's chapters and copies each chapter's tags onto its catalog entry. Like `storylinesChildren`,
+it is set aside by reviewed library digests and leaves every chapter payload unchanged, so a
+catalog-only rebuild applies a correction.
 
 Rebuild only the order being added:
 

@@ -1362,6 +1362,7 @@ export function withoutDiscoveryTags(entry) {
   const rest = { ...entry };
   delete rest.storyTypes;
   delete rest.tones;
+  delete rest.chapterTags;
   return rest;
 }
 
@@ -1388,6 +1389,7 @@ export function libraryDigestFor(manifest, orderIssueIds) {
       storylinesChildren: _storylinesChildren,
       storyTypes: _storyTypes,
       tones: _tones,
+      chapterTags: _chapterTags,
       ...entry
     }) => entry),
   };
