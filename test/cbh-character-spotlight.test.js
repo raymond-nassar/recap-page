@@ -804,6 +804,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   const selected = structuredClone(discoveryManifest);
   selected.lists[0].storylines = true;
   selected.lists[1].storylinesChildren = ['parent-02'];
+  selected.lists[1].chapterTags = { 'parent-02': { storyTypes: ['war'], tones: ['dark'] } };
   assert.equal(libraryDigestFor(selected, vectors), baseline,
     'valid ordinary and partition-child discovery selectors must not redefine the issue library');
   for (const [field, value] of [

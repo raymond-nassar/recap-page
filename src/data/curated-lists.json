@@ -6540,6 +6540,751 @@
         "marvel-knights-to-planet-x-61",
         "marvel-knights-to-planet-x-78"
       ],
+      "chapterTags": {
+        "marvel-knights-to-planet-x-01": {
+          "storyTypes": [
+            "crime-noir",
+            "espionage"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-02": {
+          "storyTypes": [
+            "crime-noir",
+            "comedy"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-03": {
+          "storyTypes": [
+            "science-fiction",
+            "space-opera"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-04": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-05": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-06": {
+          "storyTypes": [
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-07": {
+          "storyTypes": [
+            "magic-supernatural",
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-08": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-09": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-10": {
+          "storyTypes": [
+            "crime-noir",
+            "coming-of-age"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-11": {
+          "storyTypes": [
+            "science-fiction",
+            "war"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-12": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-13": {
+          "storyTypes": [
+            "crime-noir",
+            "comedy"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-14": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-15": {
+          "storyTypes": [
+            "science-fiction",
+            "space-opera",
+            "war"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-16": {
+          "storyTypes": [
+            "political",
+            "science-fiction"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-17": {
+          "storyTypes": [
+            "horror",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-18": {
+          "storyTypes": [
+            "science-fiction",
+            "war"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-19": {
+          "storyTypes": [
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-20": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-21": {
+          "storyTypes": [
+            "magic-supernatural"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-22": {
+          "storyTypes": [
+            "political",
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-23": {
+          "storyTypes": [
+            "science-fiction",
+            "war"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-24": {
+          "storyTypes": [
+            "magic-supernatural",
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-25": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-26": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-27": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-28": {
+          "storyTypes": [
+            "thriller",
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-29": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-30": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-31": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-32": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-33": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-34": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "lighthearted"
+          ]
+        },
+        "marvel-knights-to-planet-x-35": {
+          "storyTypes": [
+            "crime-noir",
+            "comedy"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-36": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-37": {
+          "storyTypes": [
+            "political",
+            "science-fiction"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-38": {
+          "storyTypes": [
+            "espionage",
+            "thriller",
+            "political"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-39": {
+          "storyTypes": [
+            "political",
+            "war",
+            "science-fiction"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-40": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-41": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-42": {
+          "storyTypes": [
+            "science-fiction",
+            "coming-of-age",
+            "political"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-43": {
+          "storyTypes": [
+            "horror",
+            "science-fiction"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-44": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-45": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-46": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-47": {
+          "storyTypes": [
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-48": {
+          "storyTypes": [
+            "magic-supernatural",
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-49": {
+          "storyTypes": [
+            "magic-supernatural",
+            "horror"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-50": {
+          "storyTypes": [
+            "thriller",
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-51": {
+          "storyTypes": [
+            "political",
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-52": {
+          "storyTypes": [
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-53": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-54": {
+          "storyTypes": [
+            "thriller",
+            "science-fiction"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-55": {
+          "storyTypes": [
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-56": {
+          "storyTypes": [
+            "crime-noir",
+            "martial-arts"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-57": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-58": {
+          "storyTypes": [
+            "crime-noir",
+            "martial-arts"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-59": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-60": {
+          "storyTypes": [
+            "coming-of-age",
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level",
+            "lighthearted"
+          ]
+        },
+        "marvel-knights-to-planet-x-61": {
+          "storyTypes": [
+            "coming-of-age",
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-62": {
+          "storyTypes": [
+            "science-fiction",
+            "political"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-63": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-64": {
+          "storyTypes": [
+            "horror",
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-65": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-66": {
+          "storyTypes": [
+            "magic-supernatural",
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-67": {
+          "storyTypes": [
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "lighthearted"
+          ]
+        },
+        "marvel-knights-to-planet-x-68": {
+          "storyTypes": [
+            "political",
+            "thriller",
+            "science-fiction"
+          ],
+          "tones": [
+            "epic"
+          ]
+        },
+        "marvel-knights-to-planet-x-69": {
+          "storyTypes": [
+            "crime-noir",
+            "martial-arts"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-70": {
+          "storyTypes": [
+            "crime-noir",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-71": {
+          "storyTypes": [
+            "coming-of-age",
+            "science-fiction"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-72": {
+          "storyTypes": [
+            "science-fiction",
+            "coming-of-age"
+          ],
+          "tones": [
+            "street-level"
+          ]
+        },
+        "marvel-knights-to-planet-x-73": {
+          "storyTypes": [
+            "science-fiction",
+            "thriller",
+            "war"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-74": {
+          "storyTypes": [
+            "political",
+            "science-fiction",
+            "thriller"
+          ],
+          "tones": [
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-75": {
+          "storyTypes": [
+            "coming-of-age",
+            "crime-noir"
+          ],
+          "tones": [
+            "street-level",
+            "lighthearted"
+          ]
+        },
+        "marvel-knights-to-planet-x-76": {
+          "storyTypes": [
+            "magic-supernatural",
+            "thriller"
+          ],
+          "tones": [
+            "street-level",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-77": {
+          "storyTypes": [
+            "martial-arts",
+            "science-fiction"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        },
+        "marvel-knights-to-planet-x-78": {
+          "storyTypes": [
+            "science-fiction",
+            "war",
+            "political"
+          ],
+          "tones": [
+            "epic",
+            "dark"
+          ]
+        }
+      },
       "name": "Marvel Knights to Planet X",
       "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
       "type": "event",
