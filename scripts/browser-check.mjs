@@ -21859,19 +21859,35 @@ SCENARIOS.push({
     t.check('second Escape retains the existing row-menu dismissal and focus rescue',
       await page.$eval('#rows .row:first-child [data-act="more"]', (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
 
+    const longHint = 'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+    await reset();
+    await page.$eval('#btn-hero-done', (node, text) => {
+      node.dataset.tooltip = text;
+      scrollBy(0, node.getBoundingClientRect().top - 12);
+    }, longHint);
+    await page.focus('#btn-hero-done');
+    await settle();
+    const blocked = await tooltipVisual449(page, '#btn-hero-done', 'action-tip');
+    const options = await page.evaluate(() => {
+      const wrapper = document.querySelector('#reading-list-options');
+      const summary = document.querySelector('#list-actions > summary');
+      const box = summary.getBoundingClientRect();
+      const hit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
+      return { protected: wrapper.hasAttribute('data-keep-uncovered'), hit: summary.contains(hit) };
+    });
+    t.check('320px: Done hint yields to Reading List options without moving focus',
+      !blocked.visible && blocked.focus && options.hit, JSON.stringify({ blocked, options }));
+
     const client = await page.createCDPSession();
     for (const { name, selector, tipId } of families) {
-      await page.setViewport({ width: name === 'rail' ? 1000 : 320, height: 900 });
+      await page.setViewport({ width: name === 'rail' ? 1000 : 390, height: 900 });
       await reset();
-      // Done goes near the top of the window rather than to the middle (#860). At 320px Read is
-      // stacked above Done, and at 200 per cent zoom the middle left the long hint room only above
-      // Done, over Read, where a hint in Read and Done's group may not go.
-      await page.$eval(selector, (node) => {
-        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] =
-          'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+      // At 390px the actions share a row, leaving room above Done without covering Read or options.
+      await page.$eval(selector, (node, text) => {
+        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] = text;
         if (node.closest('#sidebar')) node.scrollIntoView({ block: 'center' });
-        else scrollBy(0, node.getBoundingClientRect().top - 12);
-      });
+        else scrollBy(0, node.getBoundingClientRect().top - 300);
+      }, longHint);
       await page.focus(selector);
       await settle();
       const long = await tooltipVisual449(page, selector, tipId);
@@ -21897,6 +21913,7 @@ SCENARIOS.push({
       }, tipId);
       console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      if (name === 'action') await page.$eval(selector, (node) => node.scrollIntoView({ block: 'nearest', inline: 'nearest' }));
       await settle();
       const zoom = await tooltipVisual449(page, selector, tipId);
       t.check(`${name}: 200 percent zoom retains visible, non-overlapping keyboard hints`, zoom.visible && zoom.focus && fits(zoom), JSON.stringify(zoom));
@@ -21992,6 +22009,21 @@ MUTATIONS.push({
   rewriteMain: (source) => source.replace(
     "if (action) return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip };",
     "if (action) { action.setAttribute('aria-describedby', ((action.getAttribute('aria-describedby') || '') + ' action-tip').trim()); return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip }; }",
+  ),
+});
+
+MUTATIONS.push({
+  id: 'tooltip-options-unprotected-1061',
+  breaks: 'tooltip-lifecycle-449',
+  why: 'without options protection the long Done hint covers Reading List options',
+  script: () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#reading-list-options').removeAttribute('data-keep-uncovered');
+    });
+  },
+  rewriteReading: (source) => source.replace(
+    "    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));",
+    "    options.removeAttribute('data-keep-uncovered');",
   ),
 });
 
