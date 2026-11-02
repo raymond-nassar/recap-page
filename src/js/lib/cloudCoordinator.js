@@ -20,7 +20,10 @@
 //   five minutes, and run at once when the page is hidden, so a reading session costs a few files an hour.
 
 import { CLOUD_BACKUP_LOCK } from '../storage.js';
-import { CAPTURE_KEYS, canonical } from './completeBackup.js';
+import { CAPTURE_KEYS } from './completeBackup.js';
+import { personalDigest } from './cloudSync.js';
+
+export { personalDigest };
 
 export const CLOUD_BACKUP_CADENCE = Object.freeze({
   quietMs: 10_000,
@@ -78,20 +81,6 @@ export function createSavedChanges() {
       return () => listeners.delete(listener);
     },
   };
-}
-
-async function sha256(text, cryptoProvider) {
-  const hash = await cryptoProvider.subtle.digest('SHA-256', new TextEncoder().encode(text));
-  return [...new Uint8Array(hash)].map((value) => value.toString(16).padStart(2, '0')).join('');
-}
-
-// The digest that decides whether a backup is due: the complete backup's components with the active
-// list left out, in the canonical form the backup's own digest uses.
-export async function personalDigest(backup, cryptoProvider = globalThis.crypto) {
-  const { reader, ...rest } = backup.components;
-  const personal = { ...reader };
-  delete personal.active;
-  return sha256(canonical({ ...rest, reader: personal }), cryptoProvider);
 }
 
 export class CloudBackupCoordinator {

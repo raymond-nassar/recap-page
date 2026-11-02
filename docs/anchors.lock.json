@@ -1524,35 +1524,35 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudCoordinator.js:25-31|0": {
-    "anchor": "src/js/lib/cloudCoordinator.js:25-31",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudCoordinator.js:28-34|0": {
+    "anchor": "src/js/lib/cloudCoordinator.js:28-34",
     "fp": "095eb3e10df0bee6",
     "head": "export const CLOUD_BACKUP_CADENCE = Object.freeze({"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:42|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:42",
-    "fp": "f763d40c3a35479d",
-    "head": "export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 60"
-  },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:490-501|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:490-501",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1297-1308|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1297-1308",
     "fp": "2499eb9e27356a8a",
     "head": "async allocate() {"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:588|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:588",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1395|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1395",
     "fp": "677baafd30c320ae",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:687-688|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:687-688",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1509-1510|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1509-1510",
     "fp": "6646963445582955",
     "head": "const { known } = await this.listed(connection);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:739-740|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:739-740",
-    "fp": "5513fa894d547460",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1569-1571|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1569-1571",
+    "fp": "96364a1531f6737d",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
+  },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:43|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:43",
+    "fp": "f763d40c3a35479d",
+    "head": "export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 60"
   },
   "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:2421|0": {
     "anchor": "src/js/main.js:2421",
@@ -1569,13 +1569,13 @@
     "fp": "f5c2fbf10ed259d6",
     "head": "export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hid"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:216|0": {
-    "anchor": "src/js/lib/completeRestore.js:216",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:220|0": {
+    "anchor": "src/js/lib/completeRestore.js:220",
     "fp": "4ea7082d4cf406af",
     "head": "tx = mode === 'readwrite' ? db.transaction(JOURNAL_STORE, mode, { durability: 'strict' }) : db.trans"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:352|0": {
-    "anchor": "src/js/lib/completeRestore.js:352",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:356|0": {
+    "anchor": "src/js/lib/completeRestore.js:356",
     "fp": "b64917b5675de610",
     "head": "export function decideRestoreState(marker, journal, storage, now) {"
   },
@@ -1584,14 +1584,14 @@
     "fp": "f3d6cfa7a0ac9997",
     "head": "export const KEEP_FINISHED_JOURNAL_MS = 24 * 60 * 60 * 1000;"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:679-683|0": {
-    "anchor": "src/js/lib/completeRestore.js:679-683",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:684-688|0": {
+    "anchor": "src/js/lib/completeRestore.js:684-688",
     "fp": "c551965afe6556d6",
     "head": "async cleanUp(id, { journal = true, offered = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:834-839|0": {
-    "anchor": "src/js/lib/completeRestore.js:834-839",
-    "fp": "4e2c08fc7d7cb7d2",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:890-897|0": {
+    "anchor": "src/js/lib/completeRestore.js:890-897",
+    "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
   "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:619-673|0": {
@@ -1909,8 +1909,8 @@
     "fp": "176f70a1f1fe990d",
     "head": "export async function writeCachePurgeMark("
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:841|0": {
-    "anchor": "src/js/lib/completeRestore.js:841",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:901|0": {
+    "anchor": "src/js/lib/completeRestore.js:901",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },

@@ -436,7 +436,7 @@ Every `localStorage` name the tracker writes, and why it exists:
 | `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 | `mrt.homeUpdates.seen.v1` | explicit opening of Home highlights, through `src/js/lib/homeUpdatesSeen.js` | actual browser app-storage or owned-key deletion | The highest viewed release batch on this device, held outside reading data and backups. Key-specific locking merges the durable maximum and verifies readback. Failed viewing writes clear New for this visit with a local warning, not a reading-save error. Reading erase, Start fresh, restore and undo keep this preference. Actual absence retires queued viewing requests; only another explicit opening can recreate it. |
 | `mrt.readerClosure.dismissed.v1` | explicit dismissal of Home's Marvel Unlimited notice, through `src/js/lib/noticeDismissal.js` | actual browser app-storage or owned-key deletion | Exact notice identity acknowledged on this device, one per reader phase, so a dismissal before December 7 does not hide the post-cutoff notice, which shows without a reload when the day changes. Like Home highlights, excluded from reading, complete and cloud backups. Reading erase, Start fresh, salvage, pre-restore, complete restore and undo leave it unchanged. Missing, malformed, different or unreadable values show the notice. Failed saves hide it for this page only without a reading-save warning. A materially new notice uses a new identity. |
-| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:841` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
+| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:901` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
 
 Fourteen rows in all: thirteen fixed names, and one family whose suffix is the moment it was written.
 The storage module declares eight of the fixed names: its own five, and the settings, sidebar and
@@ -550,15 +550,18 @@ can save, prepares every owner's exact bytes first, generated tokens included, a
 order:
 
 1. Save a journal holding the backup, every prior value and every prepared value in IndexedDB, and
-   read it back whole, at `src/js/lib/completeRestore.js:834-839`.
+   read it back whole, at `src/js/lib/completeRestore.js:890-897`.
 2. Set the marker to `active:` and the restore's id.
 3. Write each component, recording progress in the journal after every write.
 4. Check that every component holds its prepared bytes, record the journal as finished, set the
    marker to `done:`, and reload, so every owner reads the restored data afresh.
 
+If the active marker cannot be read back, the journal stays unless the marker is confirmed absent.
+The restore reports that nothing was replaced and asks for a restart to check the recovery copy.
+
 Cleanup runs the other way round, and every path that ends a restore's record takes it: the marker
 says `cleaning:`, the journal is removed and checked gone, then the marker is cleared, at
-`src/js/lib/completeRestore.js:679-683`. Over a journal that cannot be read, keeping the current data
+`src/js/lib/completeRestore.js:684-688`. Over a journal that cannot be read, keeping the current data
 and erase leave the journal for a later start to offer again, and clear only an `active:` or
 unrecognized marker, directly rather than through `cleaning:`, which would tell a later start to remove
 that journal. A `done:` or `cleaning:` marker stays, so a later start that can read the journal
@@ -568,7 +571,7 @@ applies its rows.
 memory and commits them as one batch at least five seconds later. Only a normal exit, the last page
 using them closing, or an explicit flush commits sooner, and a killed browser loses the batch. An
 IndexedDB transaction's complete event fires after its commit, and strict durability, which every
-journal write asks for at `src/js/lib/completeRestore.js:216`, also flushes it to disk. Both were
+journal write asks for at `src/js/lib/completeRestore.js:220`, also flushes it to disk. Both were
 read on 2026-10-28 in Chromium's
 [storage_area_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/storage_area_impl.cc),
 [local_storage_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/local_storage_impl.cc)
@@ -585,7 +588,7 @@ process kill part way through a restore, the marker was gone and the journal was
 restore completed the restore exactly.
 
 The marker, the journal and the stored bytes decide what the next start does, at
-`src/js/lib/completeRestore.js:352`. The first row that matches applies. Rows describe a restore
+`src/js/lib/completeRestore.js:356`. The first row that matches applies. Rows describe a restore
 toward the backup; Restore prior data runs the same rows toward the earlier data. Finish restore and
 Restore prior data each run only when the recovery shown offers that choice and, decided again under
 the lock, still offers it for the same copy; otherwise nothing is written, and any choices that hold
@@ -666,10 +669,10 @@ is inferred, not measured.
 
 ## Cloud backup
 
-Cloud backup copies the complete backup to the person's own OneDrive or Google Drive. It is off: no
-build turns it on yet, and a build will learn whether it can from the Windows host or the Android app
-(#810). Two modules hold its logic in the page, and neither one sees a provider or a token; the page's
-own part, which puts them in front of the person, is described under The page below.
+Cloud backup copies the complete backup to the person's own OneDrive, Google Drive or iCloud Drive
+when the build supports it. A connection alone does not turn it on; the person must agree on each device (#810).
+The page's backup, protocol and comparison logic never sees a provider credential or token; the part
+that puts backup in front of the person is described under The page below.
 
 **When.** Every owner of saved data writes through the guarded storage object main.js makes, and an
 observer around it reports each accepted write of a key a complete backup holds, at
@@ -677,8 +680,8 @@ observer around it reports each accepted write of a key a complete backup holds,
 due by content alone: the SHA-256 of the complete backup with the active list left out, compared with
 the newest backup this browser verified. Changes made offline, in another tab or by a complete restore
 are covered that way without special cases. It waits ten quiet seconds, runs at most once every five
-minutes and at most ten minutes after a change, and runs at once when the page is hidden, at
-`src/js/lib/cloudCoordinator.js:25-31`.
+minutes and at most ten minutes after a change, at `src/js/lib/cloudCoordinator.js:28-34`. It also
+runs at once when the page is hidden.
 
 **How.** The protocol in `src/js/lib/cloudProtocol.js` never overwrites anything. Each browser has a
 random stream id and a generation counter, and every backup creates a new file named for both, so a
@@ -686,17 +689,64 @@ lost reply or a request that lands late can only add an older generation. The co
 IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
 backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
 committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:490-501`, because a browser that is killed can roll localStorage back,
+`src/js/lib/cloudProtocol.js:1297-1308`, because a browser that is killed can roll localStorage back,
 as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
 naming its stream, generation, device label and time, compressed with gzip, and its name declares the
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
-only then does the generation count as made. Each backup then deletes this stream's files older than
-its second-newest verified generation, at `src/js/lib/cloudProtocol.js:739-740`: one delete keeps pace
+only then does the generation count as made. Each backup can delete up to two of this stream's ordinary
+backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:1569-1571`:
+one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
-A connection belongs to the Windows host or the Android app and is shared by every browser profile
-there, while consent belongs to each browser. So every list, read, create and delete names the
+**Sync foundations.** Comparison and saved-state primitives prepare for a later choice between
+different devices' progress; they do not enable a launch check or restore by themselves. A separate
+key in the existing cloud database stores the last shared match and a declined digest under their
+connection, consent and stream, along with a kept-copy reference that retains its own provenance.
+Comparison explicitly recognizes another device's latest copy of this device's last upload as an
+echo, without suppressing a different device's divergent copy. A declined copy is a kept choice,
+not evidence that this device is ahead. A no-offer result without an echo or a shared match is
+likewise not evidence that the device is ahead. Like automatic backup, comparison uses the personal
+digest, which excludes the active list.
+Erase removes the record, sync state and kept-copy ledger together. Context-changing writes inspect
+the old record and sync state in the same transaction, so an older version that erased and recreated
+the record cannot revive an orphaned reference.
+
+The protocol can independently keep the exact verified bytes of a current backup under a new
+`recap-page-kept-v1-` name. It reserves that exact name, byte length and digest before creation,
+records a returned provider identity before verification, and reads the file back before making it
+the current reference. Its complete content digest includes the active list; its personal digest
+does not. Ordinary pruning cannot remove the independently named file, even in an older tab.
+Uncertain creates remain in the ledger. An unknown identity is adopted only after one exact-name
+match reads back with the reserved byte digest. A later check may reserve a replacement after the
+create deadline if the first is still absent, but it keeps looking for the first. At most three
+unknown-ID creates per connection count toward the reservation cap. A successful exact-name check
+at least an hour after an attempt can exclude an absent reservation from that cap; the reservation
+stays recorded, reported and eligible for later reconciliation.
+
+Only a verified, durably recorded replacement permits automatic cleanup of older kept copies.
+The cleanup aims to keep the newest three recorded copies per connection, never the current
+go-back reference, and uses exact recorded identities rather than filename patterns. One listing
+counts only unique exact-name, exact-ID matches of the recorded size. Before each deletion it
+durably records the intent, then reads the exact file and checks its byte digest. A later attempt
+reconciles that identity, removing the intent only after a confirmed delete or a not-found response.
+Automatic cleanup leaves changed, missing or unreadable copies recorded for attention without
+counting them toward the three. Provider calls use their ordinary deadlines; each local cleanup
+record wait is bounded separately, so accumulated network latency does not expire the whole pass.
+Recorded unverified identities are checked under the ordinary deadlines before a replacement is
+created. A replacement between the last byte check and the provider
+delete can still be removed; the provider contract has no conditional content check.
+Earlier-connection copies are never automatically acted on under the current connection and may
+require manual deletion.
+
+The checked kept-file discovery and restore primitives are not yet connected to reader-facing sync
+controls. Ordinary discovery counts kept-looking files as other files without reading them. The
+opt-in discovery bounds reads, checks names, identities, sizes and content, reports invalid and
+omitted entries, and rechecks a selected file before use. A matching local reference is not inferred
+from the filename or decoded content alone: its exact identity and byte digest must still match.
+
+A connection belongs to the Windows host, the Android app or the iOS app; the Windows host shares it
+between browser profiles, while consent belongs to each browser. So every list, read, create and delete names the
 connection this browser agreed to, and the host refuses any other: after another profile reconnects,
 perhaps to another account, backups stop until this browser has seen what that account holds and
 agreed again, and nothing it verified before counts as backed up there. Consent given again, even for
@@ -707,7 +757,7 @@ consent it was made under.
 restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
 or Android profile restored the same way. Such a record holds a counter behind the files its stream
 already has, and nothing on any platform says so. So every backup lists before it creates, at
-`src/js/lib/cloudProtocol.js:687-688`: a file of this stream at or above the number just taken, or a
+`src/js/lib/cloudProtocol.js:1509-1510`: a file of this stream at or above the number just taken, or a
 create refused because its name is taken, means another copy of the record is in use, and the browser
 starts a new stream, committed with strict durability and read back, rather than use that number. The
 old stream's files are left alone, because the other copy may still be making them, and discovery
@@ -733,8 +783,9 @@ names the connection the page's consent was for:
   lists as empty.
 - `read` resolves to an item's bytes. It refuses an item whose stored bytes exceed 32 MiB without
   returning them; the upload cap, by contrast, applies to the envelope before compression.
-- `create` makes a new item and resolves to it. It never knowingly replaces one, refuses a name it can
-  tell is taken, and a create refused with any code but `timeout` never appears later. A transport whose
+- `create` makes a new item and resolves to it. It never knowingly replaces one and refuses a name it can
+  tell is taken. A lost reply can leave an uncertain create even when reported as a connection failure.
+  A transport whose
   provider keeps two items under one name, as Google Drive does, says so with `duplicateNames: true`.
 - `delete` removes an item, and one already gone counts as removed.
 
@@ -743,7 +794,7 @@ and the provider mints one at each connect: the Windows host 32 random hexadecim
 when the same account signs in again after its sign-in expired, so its backups resume, and the iOS
 provider one it binds natively to the device's iCloud identity. The engine takes any string of 1 to 128
 characters without control characters and compares it exactly. Each operation settles within the
-deadline the engine states at `src/js/lib/cloudProtocol.js:42`: two minutes for a list, ten for a
+deadline the engine states at `src/js/lib/cloudProtocol.js:43`: two minutes for a list, ten for a
 read or a create, and thirty seconds for a delete. The engine waits fifteen seconds more for the
 reply, then counts the operation as timed out. The Windows host holds each to five seconds less, from
 its token store through every request. A request whose page closed, or that was given up on,
@@ -816,13 +867,20 @@ read at all is not reported that way, because it may still be intact, and a late
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:588`, so a small file that expands without end costs no more than the
+`src/js/lib/cloudProtocol.js:1395`, so a small file that expands without end costs no more than the
 cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
 there is read and checked again, then restored through the complete restore engine above.
 
-**Deleting.** Deleting this browser's cloud backups withdraws its consent first, then deletes every
-generation of its stream and nothing else, once any backup another tab has under way is done. On
-OneDrive every file this app deletes goes to the person's recycle bin for up to 30 days unless it is
+**Deleting.** Deleting this browser's cloud backups withdraws its consent first, then deletes its
+ordinary backup generations and its recorded kept copies for the exact current connection, once any
+backup another tab has under way is done. It rechecks each kept identity and byte digest before
+deletion, preserves and reports any that cannot be checked, and leaves earlier-connection entries
+alone. An unreadable kept-copy ledger does not stop regular generations being deleted; the report
+states that kept copies could not be handled. An exact identity already absent is removed from the
+ledger without claiming another deletion. An absent create reservation remains recorded and is
+reported as attention, not as an undeleted file. The card and question report recorded earlier
+copies when known and warn that other copies
+may need deletion in their cloud folders. On OneDrive every file this app deletes goes to the person's recycle bin for up to 30 days unless it is
 emptied, because the access the app asks for cannot delete permanently. A person who deletes the app's
 folder there has withdrawn consent in the contract's terms: the Windows host knows the folder by its id,
 so its next list or create finds it gone, gives the connection a new id, and every browser sees what the
@@ -1124,9 +1182,10 @@ cross-device visibility and conflict behavior still need the signed-device accep
 
 No uploaded backup is deleted by automatic retention until its replacement has uploaded. Pending
 files remain in listings for collision checks, but only successful read-back adds a generation to
-the verified record. Every retention prune follows that acknowledgement and uses the record's
-second-newest verified generation, not a count of listed files. The other automatic deletion only
-discards the newly created item after a malformed reply, collision or failed digest. Discovery and
+the verified record. Every ordinary-backup prune follows that acknowledgement and uses the record's
+second-newest verified generation, not a count of listed files. Kept-copy cleanup instead requires
+its own verified, durably recorded replacement and the exact-identity checks described above.
+An ordinary upload can also discard its newly created item after a malformed reply, collision or failed digest. Discovery and
 startup do not prune. The separate command to delete this device's backups is an explicit user
 deletion and intentionally does not need a replacement. A stale waiting line may remain until
 the next status refresh; an unconfirmed file never counts as a completed backup.
