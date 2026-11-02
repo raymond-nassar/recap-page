@@ -84,7 +84,7 @@ import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
 import { cloudTransport } from './lib/cloudTransports.js';
 import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 import { isIosApp } from './lib/platform.js';
-
+import { shouldRevealMobileNavigation } from './lib/mobileNavigation.js';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const iosApp = isIosApp();
 // Made before any owner of saved data, so the first write any of them attempts already passes its
@@ -1225,25 +1225,25 @@ function wireMobileNavigation() {
       size: [viewport.width, viewport.height, viewport.scale].join(','),
       offset: [viewport.offsetLeft, viewport.offsetTop].join(','),
       zoomed: viewport.scale > 1,
+      scrollY: window.scrollY,
     };
   };
   let previousViewport = viewportGeometry();
-  // #1063: on the iPhone SE at the largest text, a passive tap on Home's read count withdrew nothing
-  // and scrolled nothing (the count's rect was 340.45 before and after), yet the bar reappeared
-  // 705 ms later through this listener. At scale 1 an offset alone is WebKit settling the document's
-  // own scroll, which the scroll handler already judges with its 16px threshold. Only a keyboard or
-  // zoom (a size or scale change), or a pan while zoomed, reveals the bar here.
+  // On the SE, a passive Home tap scrolled nothing yet revealed the bar 705 ms later.
+  // Ignore that settling, not real scrolling: the previous viewport event owns this baseline,
+  // because WebKit may deliver window scroll first. Its handler would already hold the new Y.
+  // Keyboard, zoom and zoomed pan must still reveal navigation.
   const onViewportChange = () => {
     const geometry = viewportGeometry();
     const previous = previousViewport;
     previousViewport = geometry;
-    if (!geometry || !previous) return;
-    if (geometry.size !== previous.size || (geometry.zoomed && geometry.offset !== previous.offset)) {
+    if (shouldRevealMobileNavigation(previous, geometry)) {
       revealMobileNavigation();
     }
   };
   window.visualViewport?.addEventListener('resize', onViewportChange);
   window.visualViewport?.addEventListener('scroll', onViewportChange);
+
   // The fit waits a frame, as changing the bar inside its own observer is a loop. Labels are watched too: in two rows they can shrink while the bar keeps its size.
   const observer = new ResizeObserver(() => {
     if (fitFrame === null) fitFrame = requestAnimationFrame(() => { fitFrame = null; fitLabels(); });

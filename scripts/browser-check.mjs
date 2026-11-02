@@ -13547,6 +13547,21 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
       t.check('downward scroll withdraws the bottom bar without writing progress',
         await page.evaluate(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight));
+      t.check('WebKit document scrolling reveals navigation when window scroll arrives first',
+        await page.evaluate(() => {
+          window.visualViewport.dispatchEvent(new Event('scroll'));
+          return !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden');
+        }));
+      const viewportFirst = await page.evaluate(async () => {
+        window.scrollTo(0, 220);
+        window.visualViewport.dispatchEvent(new Event('scroll'));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const rail = document.querySelector('.rail-header');
+        const revealed = !rail.classList.contains('mobile-nav-hidden');
+        rail.classList.add('mobile-nav-hidden');
+        return revealed;
+      });
+      t.check('WebKit document scrolling reveals navigation when visualViewport scroll arrives first', viewportFirst);
       const passiveViewport = await page.evaluate(async () => {
         const rail = document.querySelector('.rail-header');
         const count = document.querySelector('#chero-count > b');
