@@ -115,6 +115,10 @@ export function restoreMessagesForPlatform(isIos = isIosApp()) {
     copyOffered: 'The recovery copy could not be removed, perhaps because storage is full, so the next start offers it again.',
     copyStuck: 'Recap Page could not remove the recovery copy from an earlier complete restore, perhaps because storage is full, so complete restore is off until a later start removes it. Every other backup still works.',
     copyStuckOffered: 'Recap Page could not remove a recovery copy it cannot read, perhaps because storage is full, so complete restore is off and the next start offers that copy again. Every other backup still works.',
+    markerUnchecked: platformText(
+      'The restore marker could not be checked, so nothing was replaced. The recovery copy was kept. Reload the page before trying again.',
+      'The restore marker could not be checked, so nothing was replaced. The recovery copy was kept. Close and reopen the app before trying again.',
+    ),
     reloading: platformText(
       'Another Recap Page tab changed saved data, so this page is reloading to show it.',
       'Another copy of Recap Page changed saved data, so this app is updating to show it.',
@@ -483,7 +487,8 @@ export class CompleteRestore {
     else if (!this.shared) { phase = 'pending'; message = RESTORE_MESSAGES.starting; }
     this.phase = phase;
     const unavailableReason = this.unavailableReason ?? (this.journalUnchecked ? RESTORE_MESSAGES.journalUnchecked : null)
-      ?? (this.copyStuck === 'offered' ? RESTORE_MESSAGES.copyStuckOffered : this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
+      ?? (this.copyStuck === 'marker' ? RESTORE_MESSAGES.markerUnchecked
+        : this.copyStuck === 'offered' ? RESTORE_MESSAGES.copyStuckOffered : this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
     this.state = Object.freeze({
       phase, message, recovery: this.recovery,
       available: this.capable && !unavailableReason && !this.recovery && phase === 'open',
@@ -706,7 +711,7 @@ export class CompleteRestore {
       try {
         return (await operation()) ?? { ok: true };
       } catch (error) {
-        if (error?.copyKept) this.copyStuck = error.offered ? 'offered' : true;
+        if (error?.copyKept) this.copyStuck = error.markerUnchecked ? 'marker' : error.offered ? 'offered' : true;
         return {
           ok: false, changed: error && 'changed' in error ? error.changed : false,
           error: error?.message || 'The complete restore could not continue.',
@@ -840,8 +845,15 @@ export class CompleteRestore {
       this.verified = record;
       try { this.markOwn(`active:${record.id}`); }
       catch (error) {
-        await this.removeJournal().catch(() => {});
-        throw error;
+        if (readMarker(this.raw).state === 'absent') {
+          try { await this.removeJournal(); }
+          catch (cleanupError) {
+            if (!cleanupError?.copyKept) throw cleanupError;
+            throw Object.assign(new Error(`${error.message} ${cleanupError.message}`), { copyKept: true });
+          }
+          throw error;
+        }
+        throw Object.assign(new Error(RESTORE_MESSAGES.markerUnchecked), { copyKept: true, markerUnchecked: true });
       }
       try {
         await this.apply(found, record, 'forward');

@@ -273,6 +273,63 @@ function assertImage(env, image, message) {
 
 // ------------------------------------------------------------------ a whole restore
 
+test('a regular restore reports a refused journal removal after its marker cannot be saved', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const before = priorOf(env);
+  const begin = env.journal.begin;
+  env.journal.begin = async (record) => {
+    await begin(record);
+    env.storage.refuse.add(RESTORE_MARKER_KEY);
+    env.journal.faults.remove = true;
+  };
+  const result = await tab.restore((await fileBackup()).text);
+  assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.match(result.error, /restore marker could not be saved/i);
+  assert.match(result.error, /recovery copy could not be removed/i);
+  assertImage(env, before, 'failed setup does not replace data');
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+  assert.ok(env.journal.record);
+  assert.equal(tab.state.available, false);
+});
+
+async function checkMarkerReadFailure(persistent, optionsFor = async () => ({})) {
+  const env = environment();
+  const tab = await env.open();
+  const options = await optionsFor(env);
+  const before = priorOf(env);
+  const get = env.storage.getItem;
+  const set = env.storage.setItem;
+  let activeWritten = false;
+  let failed = false;
+  env.storage.setItem = (key, value) => {
+    set(key, value);
+    if (key === RESTORE_MARKER_KEY && value.startsWith('active:')) activeWritten = true;
+  };
+  env.storage.getItem = (key) => {
+    if (key === RESTORE_MARKER_KEY && activeWritten && (persistent || !failed)) {
+      failed = true;
+      throw new Error('Injected marker read failure');
+    }
+    return get(key);
+  };
+
+  const result = await tab.restore((await fileBackup()).text, options);
+  env.storage.getItem = get;
+  assert.equal(readMarker(env.storage).state, 'active');
+  assert.ok(env.journal.record, 'an active marker must not outlive its recovery journal');
+  assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.match(result.error, /recovery copy was kept/i);
+  assertImage(env, before, 'a failed marker check does not replace data');
+  assert.equal(tab.state.available, false);
+  assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.markerUnchecked);
+}
+
+for (const persistent of [false, true]) {
+  test(`a regular restore retains its journal if an active marker write cannot be read back (persistent: ${persistent})`,
+    () => checkMarkerReadFailure(persistent));
+}
+
 test('a restore journals and reads back before its marker, writes in order, and keeps the journal once done', async () => {
   const env = environment();
   const prior = priorOf(env);
