@@ -255,8 +255,8 @@ jobs:
     name: iPad presentation on the newest runtime
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only }}
     runs-on: macos-26
-    # These steps declare 83 minutes; leave the deadline to the individual step that overruns.
-    timeout-minutes: 86
+    # These steps declare 93 minutes; leave the deadline to the individual step that overruns.
+    timeout-minutes: 96
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       SIMULATOR_RUNTIME: latest
@@ -316,7 +316,7 @@ jobs:
           fi
 
       - name: Run presentation UI tests on iPad
-        timeout-minutes: 35
+        timeout-minutes: 45
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
