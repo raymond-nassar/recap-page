@@ -24,6 +24,7 @@ src/icons/icon-512.png -text
 # Provider logos are kept exactly as their owners publish them, so the digest each is recorded with in
 # src/brands/README.md holds on every checkout.
 src/brands/*.svg -text
+src/brands/*.png -text
 
 # Derived reports and regenerated indexes are reviewable through their source inputs and checks.
 # Reviewed mappings, packets, issue data and order pages remain visible in diffs.

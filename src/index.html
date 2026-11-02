@@ -963,9 +963,9 @@
                 </details>
               </div>
               <!-- Cloud backup (#810). Hidden until the page learns this build has it, which it asks when this
-                   view opens, so a build without cloud backup never shows the card. The sign-in button carries
-                   Microsoft's logo, unaltered, beside its own words, as Microsoft's branding guidance asks;
-                   src/brands/README.md records where the logo came from. -->
+                   view opens, so a build without cloud backup never shows the card. Each sign-in button carries
+                   its provider's logo, unaltered, beside its own words, as that provider's branding guidance
+                   asks; src/brands/README.md records where each logo came from. -->
               <div class="card card-static addpri" id="cloud-backup" hidden>
                 <h3>Cloud backup</h3>
                 <p class="rail-hint" id="cloud-backup-intro">Keep a complete backup in your own OneDrive, made automatically as you read.</p>
@@ -973,7 +973,7 @@
                 <progress id="cloud-backup-progress" aria-hidden="true" hidden></progress>
                 <div class="field-row" id="cloud-backup-primary">
                   <button type="button" id="btn-cloud-sign-in" class="btn btn-g" hidden><img src="./brands/ms-symbollockup_mssymbol_19.svg" alt="" width="21" height="21" loading="lazy" />Sign in with Microsoft</button>
-<button type="button" id="btn-cloud-sign-in-google" class="btn btn-g" hidden>Sign in with Google</button>
+                  <button type="button" id="btn-cloud-sign-in-google" class="btn btn-g" hidden><img src="./brands/g-logo.png" alt="" width="20" height="20" loading="lazy" />Sign in with Google</button>
                   <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
                 </div>
                 <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
