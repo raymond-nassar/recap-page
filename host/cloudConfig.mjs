@@ -33,32 +33,19 @@ function exactFields(value, fields) {
 // The secret Google issues a Desktop client, which its guide says an installed app cannot keep
 // confidential. Anything of this shape is accepted, so fixtures can use placeholders.
 const CLIENT_SECRET = /^[A-Za-z0-9_-]{8,128}$/;
-const ANDROID_BUILD_TYPES = ['debug', 'release'];
-
-// Google Drive, which is optional (#810, P04): a Desktop client for the Windows host, with its secret, and
-// an Android client for each build type that signs in, since Google ties an Android client to one signing
-// certificate. Either half may be absent, and a build without the half for its platform has no Google Drive.
+// Google Drive, which is optional (#810, P04): a Desktop client for the Windows host, with its secret. A
+// build without one has no Google Drive. Android has no Google sign-in yet, so nothing here is for it.
 function parseGoogleDrive(value) {
-  const unusable = () => new CloudConfigError('The Google Drive registration in the cloud client configuration is not usable.');
-  const keys = object(value) ? Object.keys(value) : [];
-  if (keys.length === 0 || !keys.every((key) => key === 'windows' || key === 'android')) throw unusable();
-  const result = {};
-  if ('windows' in value) {
-    const windows = value.windows;
-    if (!exactFields(windows, ['clientId', 'clientSecret']) || typeof windows.clientId !== 'string' || !CLIENT_ID.test(windows.clientId)
-      || typeof windows.clientSecret !== 'string' || !CLIENT_SECRET.test(windows.clientSecret)) throw unusable();
-    result.windows = Object.freeze({ clientId: windows.clientId, clientSecret: windows.clientSecret });
-  }
-  if ('android' in value) {
-    const android = value.android;
-    const types = object(android) ? Object.keys(android) : [];
-    if (types.length === 0 || !types.every((type) => ANDROID_BUILD_TYPES.includes(type))
-      || !types.every((type) => typeof android[type] === 'string' && CLIENT_ID.test(android[type]))) throw unusable();
-    result.android = Object.freeze(Object.fromEntries(types.sort().map((type) => [type, android[type]])));
-  }
-  return Object.freeze(result);
+  if (!exactFields(value, ['windows'])) throw unusable();
+  const windows = value.windows;
+  if (!exactFields(windows, ['clientId', 'clientSecret']) || typeof windows.clientId !== 'string' || !CLIENT_ID.test(windows.clientId)
+    || typeof windows.clientSecret !== 'string' || !CLIENT_SECRET.test(windows.clientSecret)) throw unusable();
+  return Object.freeze({ windows: Object.freeze({ clientId: windows.clientId, clientSecret: windows.clientSecret }) });
 }
 
+function unusable() {
+  return new CloudConfigError('The Google Drive registration in the cloud client configuration is not usable.');
+}
 // The whole file is checked and nothing unknown is kept, so a configuration can only ever say what this
 // version understands. OneDrive is required; Google Drive is optional (P04).
 export function parseCloudClient(text) {

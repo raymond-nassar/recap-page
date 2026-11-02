@@ -156,19 +156,16 @@ function drive(fake, options = {}) {
 
 test('a Google Drive registration is optional, and accepted only in the exact shape this version writes', () => {
   assert.equal(parseCloudClient(clientText()).providers.googledrive, undefined);
-  const both = parseCloudClient(clientText({ windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET }, android: { release: GOOGLE_CLIENT, debug: 'debug.apps.googleusercontent.com' } }));
-  assert.deepEqual(both.providers.googledrive, {
-    windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET },
-    android: { debug: 'debug.apps.googleusercontent.com', release: GOOGLE_CLIENT },
-  });
-  assert.ok(Object.isFrozen(both.providers.googledrive.windows) && Object.isFrozen(both.providers.googledrive.android));
-  assert.deepEqual(parseCloudClient(clientText({ android: { release: GOOGLE_CLIENT } })).providers.googledrive, { android: { release: GOOGLE_CLIENT } });
+  const windows = parseCloudClient(clientText({ windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET } }));
+  assert.deepEqual(windows.providers.googledrive, { windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET } });
+  assert.ok(Object.isFrozen(windows.providers.googledrive) && Object.isFrozen(windows.providers.googledrive.windows));
   const unusable = [
     {}, { clientId: GOOGLE_CLIENT }, { windows: { clientId: GOOGLE_CLIENT } },
     { windows: { clientId: GOOGLE_CLIENT, clientSecret: 'short' } },
     { windows: { clientId: GOOGLE_CLIENT, clientSecret: 'has a space in it' } },
     { windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET, extra: 1 } },
-    { android: {} }, { android: { staging: GOOGLE_CLIENT } }, { android: { release: 'has space' } },
+    { android: { release: GOOGLE_CLIENT } },
+    { windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET }, android: { release: GOOGLE_CLIENT } },
     { windows: { clientId: GOOGLE_CLIENT, clientSecret: GOOGLE_SECRET }, ios: { clientId: GOOGLE_CLIENT } },
   ];
   for (const entry of unusable) assert.throws(() => parseCloudClient(clientText(entry)), { code: 'invalid-config' }, JSON.stringify(entry));
@@ -420,7 +417,7 @@ async function signIn(env, api) {
 }
 
 test('the host offers Google Drive only when its Windows client is configured, and only one service at a time', async () => {
-  for (const googledrive of [null, { android: { release: GOOGLE_CLIENT } }]) {
+  for (const googledrive of [null]) {
     const env = host({ googledrive });
     const api = await hostServer(env.instance);
     try {
