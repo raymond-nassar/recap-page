@@ -13,6 +13,7 @@ import {
   publishingAgeGroups,
   availableHomeCategories,
   catalogEntries,
+  groupCatalog,
   parseCatalog,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
@@ -40,6 +41,20 @@ test('Storylines gateway count uses the same complete eligible pool as ordinary 
   assert.equal(gateway.count, currentReadingCensus.storylines);
   assert.equal(gateway.count, pool.reduce((total, story) => total + story.lists.length, 0));
   assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
+});
+
+// Home counts MCU Prep by list, as its own screen does, so the card and the screen cannot disagree
+// when a companion shares a story with readings of another type (#1066).
+test('the MCU Prep card counts every MCU Prep list, grouped or not', () => {
+  const select = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen').select;
+  const companions = catalog.lists.filter((list) => list.type === 'screen-companion').map((list) => list.id);
+  for (const shaped of [stories, groupCatalog(catalog.lists)]) {
+    assert.deepEqual(select(shaped).flatMap((story) => story.lists.map((list) => list.id)).sort(), [...companions].sort());
+  }
+  assert.equal(companions.length, currentReadingCensus.mcu);
+  const mixed = { key: 'mixed', lists: [{ id: 'run', type: 'creator-run' }, { id: 'film', type: 'screen-companion' }] };
+  assert.deepEqual(select([mixed]).map((story) => story.lists.map((list) => list.id)), [['film']]);
+  assert.deepEqual(select([{ key: 'none', lists: [{ id: 'run', type: 'creator-run' }] }]), []);
 });
 
 test('the current gateway offers three primary modes and three secondary gateways', () => {

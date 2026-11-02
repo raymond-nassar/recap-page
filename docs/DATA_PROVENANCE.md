@@ -58,6 +58,11 @@ approved as a partial overlap with the existing Spider-Man best-of path. Neither
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
+Since #1066, MCU Prep lists appear on the MCU Prep screen and in search, not on Storylines. This
+supersedes the earlier delivery records below that place a companion on the Storylines shelf.
+The Doomsday & Secret Wars list keeps its manifest group, which frozen reviews digested, but the
+app reads every screen companion grouped with other kinds of list as its own entry.
+
 The separate owner-authored Daredevil companion does not change that fourteen-source CBH
 inventory or its original six published selections. Its owner credit, five supplied positions and
 approved six-collection expansion are recorded under

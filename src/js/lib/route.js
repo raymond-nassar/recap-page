@@ -123,6 +123,17 @@ export function breadcrumbHierarchy({
           current(title),
         ];
       }
+      // A Home category with no shelf of its own, such as MCU Prep, is still the screen its list
+      // was opened from. Marvel Ages is an index of other screens rather than one, so it is not.
+      const category = HOME_CATEGORIES.find((candidate) => !candidate.shelf && !candidate.kind
+        && candidate.route === context.shelf);
+      if (category && VIEWS.includes(category.route)) {
+        return [
+          cards,
+          linked(category.route, category.heading),
+          current(title),
+        ];
+      }
     }
     return [home, current(title)];
   }

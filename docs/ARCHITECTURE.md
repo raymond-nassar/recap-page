@@ -856,12 +856,12 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1483-1536`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1522-1575`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:392-402`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:708-726`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:732-750`.
 The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
 paths remains a separate stop in each sequence.
 
@@ -871,9 +871,9 @@ stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:99-111`. The controller gives the catalog view the control's elements and
 its history effects rather than those concrete owners, at `src/js/main.js:3670-3676` and
 `src/js/main.js:3696-3697`. The followed id lives only in the validated `path` query of the
-Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:276-278`. The retired
+Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:287-289`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
-page's own fallback, at `src/js/lib/route.js:317-323`.
+page's own fallback, at `src/js/lib/route.js:328-334`.
 
 The catalog view owns the followed path with the rest of its narrowing, under the async generation
 that rejects stale or hidden continuations at `src/js/views/catalog.js:418-421`. It lets a path that

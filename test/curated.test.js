@@ -312,9 +312,14 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
     assert.equal(list.sourceLicense, entry.sourceLicense);
     assert.deepEqual(list.characters, entry.characters);
     assert.deepEqual(list.keywords, entry.keywords);
-    assert.equal(list.group, entry.group, `${entry.id} group drifted from the manifest`);
-    assert.equal(list.groupName, entry.groupName);
-    assert.equal(list.variant, entry.variant);
+    // #1066: a screen companion grouped with other kinds of list is read as its own story, so the
+    // parsed card drops the shared group while the generated card still mirrors the manifest.
+    const split = entry.type === 'screen-companion' && entries.some((other) => (
+      other.group && other.group === entry.group && other.type !== 'screen-companion'));
+    assert.equal(rawList.group ?? null, entry.group, `${entry.id} generated a different group`);
+    assert.equal(list.group, split ? null : entry.group, `${entry.id} group drifted from the manifest`);
+    assert.equal(list.groupName, split ? null : entry.groupName);
+    assert.equal(list.variant, split ? null : entry.variant);
     assert.equal(list.audience, entry.audience ?? null, `${entry.id} audience drifted from the manifest`);
     assert.equal(rawList.audience ?? null, entry.audience ?? null, `${entry.id} generated a different audience`);
     if (entry.expect != null) assert.equal(list.count, entry.expect, `${entry.id} count drifted`);

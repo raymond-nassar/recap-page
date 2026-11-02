@@ -8,6 +8,7 @@ import {
   CATALOG_SHELVES,
   HOME_CATEGORIES,
   PUBLISHING_AGES,
+  catalogListBrowseRoute,
   catalogListShelf,
   decadeSections,
   firstSentence,
@@ -24,6 +25,7 @@ import {
   pathPlacements,
   shelfStories,
   storyYear,
+  storylinesLists,
   timelineYears,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
@@ -50,12 +52,42 @@ test('Storylines discovery overlaps canonical shelves with complete original gro
     assert.equal(catalogListShelf(catalog.lists, id), 'catalog');
   }
   assert.equal(ids.length, currentReadingCensus.storylines);
-  assert.equal(projected.length, currentReadingCensus.storylines - 7, 'existing variant groups keep their shared-card reduction');
+  assert.equal(projected.length, currentReadingCensus.storylines - 6, 'existing variant groups keep their shared-card reduction');
   assert.equal(new Set(ids).size, ids.length);
   assert.equal(ids.includes('marvel-knights-to-planet-x-01'), false);
-  for (const canonical of shelfLists(catalog.lists, 'lines')) assert.ok(ids.includes(canonical.id));
+  for (const canonical of shelfLists(catalog.lists, 'lines')) {
+    if (canonical.type !== 'screen-companion') assert.ok(ids.includes(canonical.id));
+  }
   const hickman = projected.find((story) => story.lists.some((list) => list.id === 'hickman-minimal'));
-  assert.ok(hickman.lists.some((list) => list.id === 'avengers-doomsday-secret-wars'));
+  assert.deepEqual(hickman.lists.map((list) => list.id), ['hickman-minimal', 'hickman-full']);
+});
+
+// MCU Prep lists are companions to films and series rather than complete storylines (#1066), so
+// they are found on the MCU Prep screen and in search, never on Storylines.
+test('Storylines holds no MCU Prep list while eras and creator runs stay on it', () => {
+  const companions = catalog.lists.filter((list) => list.type === 'screen-companion');
+  assert.equal(companions.length, currentReadingCensus.mcu);
+  const ids = new Set(storylinesLists(catalog.lists).map((list) => list.id));
+  assert.deepEqual(companions.filter((list) => ids.has(list.id)).map((list) => list.id), []);
+  for (const type of ['era', 'creator-run']) {
+    const kept = catalog.lists.filter((list) => list.type === type);
+    assert.ok(kept.length > 0, `no ${type} lists are bundled`);
+    for (const list of kept) assert.ok(ids.has(list.id), `${list.id} left Storylines`);
+  }
+  const lines = CATALOG_SHELVES.find((shelf) => shelf.key === 'lines');
+  for (const text of [lines.blurb, lines.empty]) assert.doesNotMatch(text, /companion/i);
+});
+
+test('an MCU Prep list opens from MCU Prep while every other list keeps its canonical shelf', () => {
+  for (const list of catalog.lists) {
+    const expected = list.type === 'screen-companion' ? 'marvel-on-screen' : catalogListShelf(catalog.lists, list.id);
+    assert.equal(catalogListBrowseRoute(catalog.lists, list.id), expected, list.id);
+  }
+  assert.equal(catalogListBrowseRoute(catalog.lists, 'avengers-doomsday-secret-wars'), 'marvel-on-screen');
+  assert.equal(catalogListBrowseRoute(catalog.lists, 'hickman-minimal'), 'lines');
+  for (const [lists, id] of [[null, 'a'], [catalog.lists, ''], [catalog.lists, 'missing']]) {
+    assert.equal(catalogListBrowseRoute(lists, id), null);
+  }
 });
 
 test('each bundled Reading List resolves through its grouped story to one canonical shelf', () => {

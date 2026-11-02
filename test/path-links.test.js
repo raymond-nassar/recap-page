@@ -42,10 +42,11 @@ const stops = catalogEntries(catalog.lists).filter((story) => placements.has(sto
 
 test('no path stop\'s card draws a path line or links anywhere but its source', () => {
   // The count this decision was made on: 98 cards on Modern Timeline, 7 on Storylines and 1 on
-  // Character spotlights. Professor X and the X-Men (#981) added two, one and one.
+  // Character spotlights. Professor X and the X-Men (#981) added two, one and one. #1066 took one
+  // from Storylines: the Doomsday fast track was a stop only through the Hickman group it shared.
   const byShelf = {};
   for (const story of stops) byShelf[shelfKey(story)] = (byShelf[shelfKey(story)] ?? 0) + 1;
-  assert.deepEqual(byShelf, { catalog: 100, lines: 8, spotlights: 2 });
+  assert.deepEqual(byShelf, { catalog: 100, lines: 7, spotlights: 2 });
 
   for (const story of stops) {
     const card = presentation.catalogCard(story, { surface: shelfKey(story) });
