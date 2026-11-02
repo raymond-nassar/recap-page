@@ -712,6 +712,7 @@ export class CompleteRestore {
         return (await operation()) ?? { ok: true };
       } catch (error) {
         if (error?.copyKept) this.copyStuck = error.markerUnchecked ? 'marker' : error.offered ? 'offered' : true;
+        if (error?.markerUnchecked) this.reloadNow();
         return {
           ok: false, changed: error && 'changed' in error ? error.changed : false,
           error: error?.message || 'The complete restore could not continue.',
@@ -723,7 +724,8 @@ export class CompleteRestore {
     } finally {
       if (lease) await lease.release();
       this.busy = false;
-      await this.acquireShared();
+      if (this.stale) this.refresh();
+      else await this.acquireShared();
     }
   }
 

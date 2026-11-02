@@ -325,6 +325,49 @@ async function checkMarkerReadFailure(persistent, optionsFor = async () => ({}))
   assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.markerUnchecked);
 }
 
+for (const landed of [false, true]) {
+  test(`review: an unchecked marker reloads before a settings edit can be lost (landed: ${landed})`, async () => {
+    const env = environment();
+    const tab = await env.open();
+    const get = env.storage.getItem;
+    const set = env.storage.setItem;
+    let attempted = false;
+    let failures = 0;
+    env.storage.setItem = (key, value) => {
+      if (key !== RESTORE_MARKER_KEY || !value.startsWith('active:')) return set(key, value);
+      attempted = true;
+      if (landed) set(key, value);
+      else throw new Error('The active marker write was refused.');
+    };
+    env.storage.getItem = (key) => {
+      if (key === RESTORE_MARKER_KEY && attempted) {
+        if (failures++ < 2) throw new Error('The marker could not be read.');
+        return null;
+      }
+      return get(key);
+    };
+    const file = await fileBackup();
+    const result = await tab.restore(file.text);
+    assert.equal(result.copyKept, true);
+    if (tab.state.phase === 'open') {
+      const image = preparedImage(restorePlan(env.journal.record.prepared, file.backup));
+      env.storage.setItem(SETTINGS_KEY, image[SETTINGS_KEY]);
+    }
+    assert.equal(tab.state.reloading, true, 'unknown marker ownership must make this tab stale');
+    assert.equal(tab.state.phase, 'paused', 'settings cannot be saved from the uncertain tab');
+    assert.equal(env.reloads, 1);
+    env.storage.getItem = get;
+    env.storage.setItem = set;
+    await tab.releaseShared();
+    const next = await env.open();
+    if (landed) assert.equal(next.state.recovery.canKeep, true);
+    else {
+      assert.equal(next.state.phase, 'open');
+      assert.equal(env.journal.record, null, 'an unwritten journal is discarded before saving resumes');
+    }
+  });
+}
+
 for (const persistent of [false, true]) {
   test(`a regular restore retains its journal if an active marker write cannot be read back (persistent: ${persistent})`,
     () => checkMarkerReadFailure(persistent));
