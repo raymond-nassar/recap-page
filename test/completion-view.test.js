@@ -519,6 +519,22 @@ test('#1060: one quiet similar story appears only near the end of a list', async
   assert.equal(h.nodes.similar.hidden, true);
 });
 
+test('#1060: More like this still appears when What to read next fails or has nothing', async () => {
+  for (const [label, resolves] of [
+    ['failed', async () => { throw new Error('offline'); }],
+    ['empty', async () => ({ suggestions: [], failures: [], cancelled: false })],
+  ]) {
+    const h = fixture({ catalog: similarCatalog });
+    h.state = markRead(markRead(h.state, 2, true, 1001), 3, true, 1002);
+    await h.history.complete('a');
+    h.resolves = resolves;
+    await h.view.render();
+    await settle();
+    assert.equal(h.nodes.similar.hidden, false, `${label}: the section still appears`);
+    assert.deepEqual(cardNames(h), ['Alike story', 'Path next stop', 'Plain story'], label);
+  }
+});
+
 test('history controls separate backups, bound file reads and confirm only valid history replacement', async () => {
   const h = fixture();
   h.current = 'data';

@@ -13,6 +13,16 @@ import { isRead } from './model.js';
 // Everything here is worked out from the bundled catalog and the reader's own saved state.
 export const MAX_SIMILAR_LISTS = 3;
 
+// The rule the owner approved on #1060: the quiet line appears once no more than the smaller of 5
+// issues or a tenth of the list (at least 1) is left, and only past halfway, so a short list does
+// not offer it the moment it is opened.
+export function nearEnd({ read, total } = {}) {
+  if (!Number.isInteger(read) || !Number.isInteger(total) || total <= 0) return false;
+  const unread = total - read;
+  const window = Math.max(1, Math.min(5, Math.floor(total / 10)));
+  return unread > 0 && unread <= window && read * 2 > total;
+}
+
 const owns = (map, key) => map != null && Object.prototype.hasOwnProperty.call(map, key);
 const strings = (value) => (Array.isArray(value) ? value.filter((v) => typeof v === 'string') : []);
 

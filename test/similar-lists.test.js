@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { catalogWriters } from '../scripts/vendor-orders.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
-import { MAX_SIMILAR_LISTS, similarLists } from '../src/js/lib/similarLists.js';
+import { MAX_SIMILAR_LISTS, nearEnd, similarLists } from '../src/js/lib/similarLists.js';
 
 const list = (id, extra = {}) => ({
   id,
@@ -80,6 +80,32 @@ test('leaves out MCU Prep, untagged lists, the source story and every story on i
     catalog, state: stateFor({ a: saved('source') }), sourceListId: 'a', isCompleted: notCompleted,
   });
   assert.deepEqual(ids(results), ['elsewhere']);
+});
+
+test('finishing an MCU Prep list may suggest comics, but never another MCU Prep list', () => {
+  const catalog = fixture([
+    list('prep', { storyTypes: ['war'], type: 'screen-companion' }),
+    list('other-prep', { storyTypes: ['war'], type: 'screen-companion' }),
+    list('comic', { storyTypes: ['war'] }),
+  ]);
+  const results = similarLists({
+    catalog, state: stateFor({ a: saved('prep') }), sourceListId: 'a', isCompleted: notCompleted,
+  });
+  assert.deepEqual(ids(results), ['comic']);
+});
+
+test('near the end means the smaller of 5 issues or a tenth of the list, at least 1, past halfway', () => {
+  const at = (total) => Array.from({ length: total + 1 }, (_, read) => read)
+    .filter((read) => nearEnd({ read, total }))
+    .map((read) => total - read);
+  assert.deepEqual(at(1), [], 'one unread issue of one is not past halfway');
+  assert.deepEqual(at(3), [1]);
+  assert.deepEqual(at(19), [1], 'a tenth rounds down, so 19 issues leave a window of 1');
+  assert.deepEqual(at(20), [2, 1], 'House of M: the last 2 of 20');
+  assert.deepEqual(at(80), [5, 4, 3, 2, 1], 'a tenth of 80 is 8, so the 5-issue cap applies');
+  assert.equal(nearEnd({ read: 20, total: 20 }), false, 'a finished list is not near the end');
+  assert.equal(nearEnd({ read: 0, total: 0 }), false);
+  assert.equal(nearEnd(), false);
 });
 
 test('skips finished saved lists and ids already shown, and points at an unfinished saved copy', () => {

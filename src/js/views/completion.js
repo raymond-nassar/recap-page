@@ -4,11 +4,7 @@ import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
 import { wireFieldValidation } from './shared/field-validation.js';
 import { HOME_CARDS, formatRoute, isPlainNavigation } from '../lib/route.js';
-import { similarLists } from '../lib/similarLists.js';
-
-// #1060: the quiet "similar story" line appears once this few comics are left, and only while the
-// reader has read more of the list than remains, so a short list does not offer it on arrival.
-export const NEAR_END_UNREAD = 3;
+import { nearEnd as nearEndOf, similarLists } from '../lib/similarLists.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -231,8 +227,7 @@ export function createCompletionView({
     const progress = getView() === 'read' && list ? listReadingProgress(state, list.id) : null;
     const completed = !!progress && history.isCompleted(state, list.id);
     const finished = completed || (!!progress && progress.total > 0 && progress.read === progress.total);
-    const unread = progress ? progress.total - progress.read : 0;
-    const nearEnd = !finished && unread > 0 && unread <= NEAR_END_UNREAD && unread < progress.read;
+    const nearEnd = !finished && !!progress && nearEndOf(progress);
     // While "What to read next" is still resolving, its picks are unknown, so a similar card could
     // repeat one of them; the section waits for it to settle rather than reshuffle in front of the reader.
     const waiting = completed && request && !request.settled;
