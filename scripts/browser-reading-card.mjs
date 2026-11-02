@@ -335,7 +335,7 @@ const posterCoverBefore = {
 };
 export const readingCardPoster = {
   id: 'reading-card-poster',
-  title: 'the reading card centers a larger cover with Read and Done above the fold, and leaves the record and position to Issue details',
+  title: 'the reading card centers a larger cover with Read and Done above the fold, and leaves the record to Issue details',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));

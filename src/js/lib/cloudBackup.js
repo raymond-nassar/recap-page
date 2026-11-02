@@ -95,6 +95,8 @@ export function createCloudBackup({
     return Object.freeze({
       shown: enabled() || agreed !== null,
       provider: (enabled() && status.provider) || agreed?.provider || 'onedrive',
+      // The services this device can sign in to; the card offers a choice only when there are several.
+      providers: enabled() && Array.isArray(status.providers) ? status.providers : [],
       host: enabled() ? status.state : agreed ? 'not-answering' : 'absent',
       account: enabled() ? status.account : null,
       message: enabled() ? status.message : null,
@@ -280,8 +282,9 @@ export function createCloudBackup({
     notify() { coordinator?.notify(); },
     retry() { coordinator?.retry(); },
 
-    async connect() {
-      status = await transport.connect();
+    // Signs in to the service the person chose, or the transport's own when there was no choice to make.
+    async connect(provider) {
+      status = await (provider === undefined ? transport.connect() : transport.connect({ provider }));
       publish();
       watchSignIn();
       return model;
