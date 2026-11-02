@@ -23627,6 +23627,116 @@ async function waitForCacheReport(page, legacy, wait, expected, options, since) 
   }
 }
 
+SCENARIOS.push({
+  id: 'cloud-icloud-prepared',
+  title: 'the prepared iOS page boots with only iCloud and connects through its native adapter',
+  async run(page, t) {
+    const { mkdtemp, readFile, rm, writeFile } = await import('node:fs/promises');
+    const { tmpdir } = await import('node:os');
+    const { extname } = await import('node:path');
+    const { prepareIos } = await import('./prepare-ios.mjs');
+    const scratch = await mkdtemp(join(tmpdir(), 'recap-ios-cloud-browser-'));
+    let server;
+    let listening = false;
+    let actual;
+    try {
+      const featuresPath = join(scratch, 'features.json');
+      await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+      const output = join(scratch, 'web');
+      const prepared = await prepareIos(output, { featuresPath });
+      const allowed = new Set(prepared.manifest.files.map(({ path }) => path));
+      const types = { '.js': 'text/javascript', '.html': 'text/html', '.css': 'text/css',
+        '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
+        '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
+      server = createStaticServer(async (req, res) => {
+        const path = new URL(req.url, `http://${HOST}`).pathname.slice(1) || 'index.html';
+        if (req.method !== 'GET' || !allowed.has(path)) {
+          res.writeHead(404);
+          res.end();
+          return;
+        }
+        const bytes = await readFile(join(output, path));
+        res.writeHead(200, { ...prepared.config.securityHeaders,
+          'content-type': types[extname(path)] ?? 'application/octet-stream' });
+        res.end(bytes);
+      });
+      await new Promise((resolve, reject) => {
+        server.once('error', reject);
+        server.listen(0, HOST, () => {
+          server.off('error', reject);
+          resolve();
+        });
+      });
+      listening = true;
+      const origin = `http://${HOST}:${server.address().port}`;
+      actual = await page.browserContext().newPage();
+      await actual.setViewport({ width: 1280, height: 900 });
+      await actual.setRequestInterception(true);
+      actual.on('request', (request) => {
+        if (new URL(request.url()).origin === origin) void request.continue();
+        else void request.abort();
+      });
+      const errors = [];
+      actual.on('pageerror', (error) => errors.push(error.message));
+      await actual.evaluateOnNewDocument(() => {
+        let connected = false;
+        window.__iosCloudCalls = [];
+        window.webkit = { messageHandlers: { recap: {
+          async postMessage(message) {
+            window.__iosCloudCalls.push(message);
+            if (message.kind !== 'cloud') return { v: 1, kind: 'data-loss-result', status: 'recorded' };
+            if (message.op === 'connect') connected = true;
+            const body = message.op === 'list' ? { ok: true, items: [] } : {
+              ok: true, status: {
+                provider: 'icloud', providers: ['icloud'], state: connected ? 'connected' : 'not-connected',
+                connection: connected ? 'a'.repeat(32) : null, account: null,
+              },
+            };
+            return { v: 1, kind: 'cloud-result', status: 200, body: JSON.stringify(body) };
+          },
+        } } };
+      });
+      await actual.goto(`${origin}/#/data`, { waitUntil: 'load' });
+      const booted = await actual.waitForSelector('#cloud-backup:not([hidden])', { timeout: 10000 })
+        .then(() => true, () => false);
+      const buttons = await actual.$eval('#cloud-backup-primary', (row) => ({
+        visible: [...row.querySelectorAll('button')].filter((node) => !node.hidden).map((node) => node.textContent.trim()),
+        otherProviders: Boolean(row.querySelector('#btn-cloud-sign-in, #btn-cloud-sign-in-google')),
+      }));
+      t.check('the prepared page boots and offers only its iCloud action',
+        booted && !buttons.otherProviders && JSON.stringify(buttons.visible) === JSON.stringify(['Connect iCloud']),
+        JSON.stringify({ booted, buttons, errors }));
+      t.check('the prepared page raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+      if (!booted) return;
+      await actual.focus('#btn-cloud-connect-icloud');
+      await actual.keyboard.press('Enter');
+      const connected = await actual.waitForFunction(
+        () => document.querySelector('#cloud-backup-status').textContent === 'Connected to iCloud.',
+        { timeout: 10000 },
+      ).then(() => true, () => false);
+      const calls = await actual.evaluate(() => window.__iosCloudCalls);
+      const request = calls.find((call) => call.op === 'connect');
+      t.check('keyboard activation connects with the iCloud provider through the installed adapter',
+        connected && request && JSON.stringify(JSON.parse(request.body)) === JSON.stringify({ provider: 'icloud' }),
+        JSON.stringify({ connected, request, errors }));
+      t.check('connection raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+    } finally {
+      try {
+        if (actual) await actual.close();
+      } finally {
+        try {
+          if (listening) {
+            server.closeAllConnections();
+            await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+          }
+        } finally {
+          await rm(scratch, { recursive: true, force: true });
+        }
+      }
+    }
+  },
+});
+
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.

@@ -347,9 +347,9 @@ shared backup engine, its schedule and its restore are unchanged.
   any of it can reach a Release build without that condition. The page half lives in
   `packaging/ios/icloud-web`, outside the folder the build copies whole, so a build without it never
   installs the iCloud transport and the backup card stays removed. `packaging/ios/features.json`
-  keeps `iCloudBackup` false. The baseline-output test permits only `js/main.js`, `js/views/cloud.js`,
-  `js/lib/cloudBackup.js` and `js/lib/cloudHostTransport.js` to differ; they are inert without a card or
-  transport. A preview can use an alternate features file; a reserved release refuses that override.
+  keeps `iCloudBackup` false. Tests pin the removed card and adapter, the iCloud-only preview page,
+  and Release compilation. A one-time comparison with the integration base checks the off output.
+  A preview can use an alternate features file; a reserved release refuses that override.
 - **Why the native switch is not wired yet.** Turning it on needs the iCloud entitlements, the
   `NSUbiquitousContainers` entry in the app's Info.plist and a build setting for the condition. Those
   change the signed export, which only the protected release workflow exercises, so they follow in a
