@@ -10,7 +10,13 @@
 import { completeRestoreQuestion, STOPPED, UNCHANGED, withOutcome } from './data.js';
 import { cloudErrorText } from '../lib/cloudCopy.js';
 
-const PROVIDER_NAMES = Object.freeze({ onedrive: 'OneDrive' });
+// Each service the card can name: its name, the company that asks for the sign-in, and what it calls the
+// place deleted files wait, plus the card's sign-in button for it. A host that offers one service shows
+// its button alone, as before there was a choice.
+const PROVIDERS = Object.freeze({
+  onedrive: Object.freeze({ name: 'OneDrive', company: 'Microsoft', bin: 'recycle bin', button: 'signIn' }),
+  googledrive: Object.freeze({ name: 'Google Drive', company: 'Google', bin: 'trash', button: 'signInGoogle' }),
+});
 const DELETED = /\bnothing was deleted\b/i;
 const WAITS = Object.freeze({
   offline: 'Backups wait for a network connection.',
@@ -24,8 +30,24 @@ function plural(count, one, many = `${one}s`) {
   return `${count} ${count === 1 ? one : many}`;
 }
 
+const own = (provider) => (Object.hasOwn(PROVIDERS, provider) ? PROVIDERS[provider] : null);
+
 export function cloudProviderName(model) {
-  return PROVIDER_NAMES[model?.provider] ?? 'your cloud account';
+  return own(model?.provider)?.name ?? 'your cloud account';
+}
+
+const companyOf = (model) => own(model?.provider)?.company ?? 'Your cloud account';
+const binOf = (model) => own(model?.provider)?.bin ?? 'recycle bin';
+
+// The services a person can sign in to from the card now: every one offered while nobody is connected,
+// and only the connected one when it asks for a sign-in again, since a device holds one at a time.
+export function cloudSignInChoices(model) {
+  if (model?.host === 'needs-sign-in') return own(model.provider) ? [model.provider] : [];
+  if (model?.host !== 'not-connected') return [];
+  // A host older than the choice names no services and offers OneDrive alone. One that names only services
+  // this card cannot show offers no button, rather than one for a service it never offered.
+  const named = Array.isArray(model.providers) ? model.providers : [];
+  return named.length > 0 ? [...new Set(named.filter(own))] : ['onedrive'];
 }
 
 const longTime = (at) => new Date(at).toLocaleString(undefined, {
@@ -59,10 +81,10 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
   switch (model.host) {
     case 'unavailable': return cloudErrorText(model.message, model.scope) ?? 'Cloud backup is not available right now.';
     case 'not-answering': return device ? "Automatic backup is on, but the app's cloud backup is not answering, so backups wait until it does." : 'Automatic backup is on in this browser, but the Recap Page app is not answering for it, so backups wait until it does.';
-    case 'signing-in': return `Finish signing in to Microsoft in the browser window that opened.${
+    case 'signing-in': return `Finish signing in to ${companyOf(model)} in the browser window that opened.${
       Number.isSafeInteger(model.signInExpiresAt) ? ` The sign-in stops by itself at ${at(model.signInExpiresAt)}.` : ''}`;
     case 'not-connected': return cloudErrorText(model.message, model.scope) ?? '';
-    case 'needs-sign-in': return 'Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.';
+    case 'needs-sign-in': return `${companyOf(model)} asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.`;
     case 'connected': {
       const account = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
       if (model.askedAgain) {
@@ -130,7 +152,7 @@ function accountIn(model) {
 // it, and say where any backups made in another account are.
 export function cloudDeleteQuestion(model) {
   const name = cloudProviderName(model);
-  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. Deleted backups stay in ${name}'s recycle bin for up to 30 days, but Recap Page cannot bring them back.`;
+  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. Deleted backups stay in ${name}'s ${binOf(model)} for up to 30 days, but Recap Page cannot bring them back.`;
   if (model.scope === 'device') return `This turns automatic backup off and deletes every backup made on this device in ${accountIn(model)}. ${rest}`;
   return `This turns automatic backup off and deletes every backup this browser made in ${accountIn(model)}. ${rest}`;
 }
@@ -144,7 +166,7 @@ export function cloudDeleteReport({ deleted, failed }, model) {
   if (failed.length === 0) {
     return deleted === 0
       ? `No backups ${from} were in ${where}. Any ${device ? 'made' : 'it made'} in another account are still there. ${off}.`
-      : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin for up to 30 days unless it is emptied. ${off}.`;
+      : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the ${binOf(model)} for up to 30 days unless it is emptied. ${off}.`;
   }
   const reason = failed[0].code === 'needs-sign-in' ? 'sign in again first'
     : failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${failed.length === 1 ? 'it' : 'them'}`;
@@ -202,6 +224,8 @@ export function createCloudBackupView({
   let toggling = null;
   let shownDiscovery = null;
   let opened = false;
+  // The intro as the page wrote it, for when one service is offered.
+  let introText = null;
   // Whether the line under the card says automatic backup is on (true) or off (false) for this browser.
   // It is withdrawn once the switch shows otherwise, as when the folder is deleted or another profile
   // reconnects and this browser is asked again, so the card never says on beside an unticked switch.
@@ -285,9 +309,18 @@ export function createCloudBackupView({
     if (heard && notice && notice !== heard.notice && said) announce(said);
     heard = { host, notice };
     nodes.progress.hidden = !(model.on && model.backup.phase === 'saving');
-    nodes.signIn.hidden = !(host === 'not-connected' || host === 'needs-sign-in');
+    const choices = cloudSignInChoices(model);
+    for (const [provider, { button }] of Object.entries(PROVIDERS)) {
+      if (nodes[button]) nodes[button].hidden = !choices.includes(provider);
+    }
+    if (nodes.intro && introText === null) introText = nodes.intro.textContent;
+    if (nodes.intro) {
+      nodes.intro.textContent = choices.length > 1
+        ? `Keep a complete backup in your own ${choices.map((provider) => PROVIDERS[provider].name).join(' or ')}, made automatically as you read.`
+        : introText;
+    }
     nodes.retry.hidden = !(model.on && (model.backup.phase === 'failed' || model.backup.phase === 'retrying'));
-    nodes.primary.hidden = nodes.signIn.hidden && nodes.retry.hidden;
+    nodes.primary.hidden = choices.length === 0 && nodes.retry.hidden;
     const agreed = model.agreed && !model.askedAgain;
     nodes.auto.hidden = !(connected || (model.agreed && host !== 'not-connected' && host !== 'signing-in'));
     nodes.autoInput.checked = toggling ?? agreed;
@@ -308,8 +341,8 @@ export function createCloudBackupView({
     nodes.remove.hidden = !(connected && model.hasStream);
     nodes.disconnect.hidden = !(connected || host === 'needs-sign-in' || host === 'unavailable');
     nodes.actions.hidden = nodes.remove.hidden && nodes.disconnect.hidden;
-    for (const control of [nodes.signIn, nodes.retry, nodes.remove, nodes.disconnect, ...(nodes.found.querySelectorAll?.('button') ?? [])]) {
-      control.disabled = working;
+    for (const control of [nodes.signIn, nodes.signInGoogle, nodes.retry, nodes.remove, nodes.disconnect, ...(nodes.found.querySelectorAll?.('button') ?? [])]) {
+      if (control) control.disabled = working;
     }
     nodes.autoInput.disabled = working || (!nodes.autoInput.checked && !connected);
   }
@@ -338,9 +371,10 @@ export function createCloudBackupView({
     }
   }
 
-  function signIn() {
+  // OneDrive's button signs in with no service named, which every host takes as OneDrive.
+  function signIn(provider) {
     return run(async () => {
-      try { await onConnect(); }
+      try { await (provider === undefined ? onConnect() : onConnect(provider)); }
       catch (error) { report(`Sign-in did not start. ${cloudErrorText(error.message, getModel().scope)}`); }
     });
   }
@@ -477,6 +511,7 @@ export function createCloudBackupView({
     const nodes = elements();
     if (!nodes.card) return;
     nodes.signIn.addEventListener('click', () => { void signIn(); });
+    nodes.signInGoogle?.addEventListener('click', () => { void signIn('googledrive'); });
     nodes.retry.addEventListener('click', () => { void run(async () => { onRetry(); }); });
     nodes.autoInput.addEventListener('change', (event) => { void toggle(event); });
     nodes.discovery.addEventListener('toggle', () => {

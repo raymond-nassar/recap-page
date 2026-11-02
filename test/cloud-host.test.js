@@ -1413,8 +1413,9 @@ test('the page\'s transport speaks the control API as the served page does, and 
   const transport = createCloudHostTransport({ fetchImpl: page.fetchImpl });
   try {
     assert.deepEqual(await transport.status(), {
-      enabled: true, provider: 'onedrive', state: 'not-connected', connection: null, account: null, message: null, reason: null, signInExpiresAt: null,
+      enabled: true, provider: 'onedrive', providers: ['onedrive'], state: 'not-connected', connection: null, account: null, message: null, reason: null, signInExpiresAt: null,
     });
+    assert.equal(transport.duplicateNames, false, 'OneDrive refuses a second item of one name');
     let started = null;
     await signIn(env, api, { nonceRef, start: async () => { started = await transport.connect(); return started; } });
     assert.ok(Number.isSafeInteger(started.signInExpiresAt) && started.signInExpiresAt > Date.now(), 'the page can say how long the sign-in stays open');
@@ -1535,7 +1536,7 @@ test('a build without cloud backup and a server that is not this app\'s read as 
 
   const busy = body(429, { ok: false, error: { code: 'unavailable', message: 'Too many cloud requests at once.' } });
   assert.deepEqual(await answering(busy).status(), {
-    enabled: true, provider: null, state: 'unavailable', connection: null, account: null,
+    enabled: true, provider: null, providers: [], state: 'unavailable', connection: null, account: null,
     message: 'The Recap Page app is busy. Try again in a moment.', reason: null, signInExpiresAt: null, transient: true,
   });
   await assert.rejects(answering(busy).list({ connection: RECORD.connection }), { code: 'unavailable' });
