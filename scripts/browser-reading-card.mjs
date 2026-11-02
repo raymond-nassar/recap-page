@@ -16,10 +16,14 @@ const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', impo
 const order = JSON.parse(readFileSync(new URL(`../src/data/${catalog.lists.find((list) => list.id === 'hickman-minimal').file}`, import.meta.url), 'utf8'));
 const next = order.items[3].title;
 
-function fixture(note = '') {
+function fixture(note = '', other = false) {
   let state = createList(createEmptyState(), { id: 'card', name: order.name, description: order.description, catalogId: order.id, note });
   state = addIssuesToList(state, 'card', order.items).state;
   for (const item of order.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
+  if (other) {
+    state = createList(state, { id: 'other', name: 'Another reading list' });
+    state = addIssuesToList(state, 'other', order.items.slice(3, 6)).state;
+  }
   return state;
 }
 
@@ -28,9 +32,9 @@ const settle = (page) => page.evaluate(() => new Promise((resolve) => {
 }));
 
 // A list under way, past the one-time save note, so the card is the first thing in the reading view.
-async function setup(page, { width, height, theme, text, note }) {
+async function setup(page, { width, height, theme, text, note, touch = false, other = false }) {
   await page.goto('about:blank');
-  await page.setViewport({ width, height });
+  await page.setViewport({ width, height, ...(touch ? { isMobile: true, hasTouch: true } : {}) });
   const { identifier } = await page.evaluateOnNewDocument((initial, key, educationKey, education, chosen) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(initial));
     localStorage.setItem(educationKey, education);
@@ -43,7 +47,7 @@ async function setup(page, { width, height, theme, text, note }) {
       return url.origin === location.origin ? real(input, init)
         : Promise.reject(new TypeError('Reading card fixture blocks external requests'));
     };
-  }, exportBackup(fixture(note)), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
+  }, exportBackup(fixture(note, other)), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
   await page.goto(`${page.__origin}/#/read/card`, { waitUntil: 'load' });
   await page.waitForFunction((name) => !document.querySelector('#view-read').hidden
     && document.querySelector('#hero-title').textContent === name, {}, next);
@@ -242,6 +246,208 @@ export const readingCardPoster = {
   },
 };
 
+const phoneSizes = [[360, 800], [375, 667], [390, 844], [393, 851], [412, 915], [414, 896], [430, 932]];
+
+async function readyDone(page, clearance = 8) {
+  await page.evaluate((gap) => {
+    const done = document.querySelector('#btn-hero-done').getBoundingClientRect();
+    const bar = document.querySelector('.rail-header').getBoundingClientRect();
+    const shift = done.bottom - (innerHeight - bar.height - gap);
+    if (shift > 0) window.scrollBy({ top: shift, behavior: 'instant' });
+  }, clearance);
+  await settle(page);
+  await page.evaluate(() => {
+    document.querySelector('.rail-header .brand').focus({ preventScroll: true });
+    document.querySelector('#btn-hero-done').focus({ preventScroll: true });
+  });
+  await page.waitForFunction(() => {
+    const rail = document.querySelector('.rail-header');
+    return !rail.classList.contains('mobile-nav-hidden')
+      && !rail.getAnimations().some((animation) => animation.playState === 'running');
+  }, { timeout: 5000 });
+  return page.$eval('#btn-hero-done', (button) => {
+    const rect = button.getBoundingClientRect();
+    const x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
+    const hit = document.elementFromPoint(x, y);
+    return { x, y, reached: hit === button || button.contains(hit), focus: document.activeElement?.id, scrollY };
+  });
+}
+
+async function watchOffer(page, intervention = '') {
+  await page.evaluate((action) => {
+    const after = Element.prototype.after;
+    const scroll = Element.prototype.scrollIntoView;
+    window.__cardOffer = { calls: [], inserted: null, intervention: null };
+    Element.prototype.scrollIntoView = function (options) {
+      const notice = document.querySelector('#done-result');
+      if (notice && (this === notice || notice.contains(this))) {
+        window.__cardOffer.calls.push({ options, scrollY, focus: document.activeElement?.id });
+      }
+      return scroll.call(this, options);
+    };
+    Element.prototype.after = function (...nodes) {
+      const value = after.apply(this, nodes);
+      const notice = nodes.find((node) => node.id === 'done-result');
+      if (!notice) return value;
+      Element.prototype.after = after;
+      const box = notice.getBoundingClientRect();
+      const rail = document.querySelector('.rail-header').getBoundingClientRect();
+      const covered = box.left < rail.right && box.right > rail.left && box.top < rail.bottom && box.bottom > rail.top;
+      window.__cardOffer.inserted = {
+        covered, bottom: box.bottom, barTop: rail.top, scrollY,
+        padding: parseFloat(getComputedStyle(document.documentElement).scrollPaddingBottom) || 0,
+      };
+      if (action === 'scroll') {
+        window.scrollBy({ top: 12, behavior: 'instant' });
+        window.__cardOffer.intervention = { scrollY };
+      } else if (action === 'list' || action === 'view') {
+        location.hash = action === 'list' ? '#/read/other' : '#/home';
+        window.dispatchEvent(new Event('hashchange'));
+        window.__cardOffer.intervention = {
+          scrollY, active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
+          home: !document.querySelector('#view-home').hidden,
+        };
+        queueMicrotask(() => {
+          window.__cardOffer.stale = !!document.querySelector('#done-result button');
+        });
+      }
+      return value;
+    };
+  }, intervention);
+}
+
+function offerState(page) {
+  return page.evaluate(() => {
+    const notice = document.querySelector('#done-result');
+    const button = notice?.querySelector('button');
+    const rect = notice?.getBoundingClientRect();
+    const target = button?.getBoundingClientRect();
+    const rail = document.querySelector('.rail-header').getBoundingClientRect();
+    const x = target && target.left + target.width / 2, y = target && target.top + target.height / 2;
+    const hit = target ? document.elementFromPoint(x, y) : null;
+    return {
+      ...window.__cardOffer, scrollY, focus: document.activeElement?.id,
+      fold: innerHeight - rail.height, bottom: rect?.bottom, x, y,
+      reached: !!button && (hit === button || button.contains(hit)),
+      title: document.querySelector('#hero-title').textContent,
+      read: JSON.parse(localStorage.getItem('mrt.state.v2')).read,
+    };
+  });
+}
+
+async function checkPhoneUndo(page, t, { width, height, note = '', reduced = false, clearance = 8 }) {
+  await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: reduced ? 'reduce' : 'no-preference' }]);
+  const clean = await setup(page, { width, height, theme: 'dark', note, touch: true });
+  const name = `${width}x${height}${note ? ' with a list note' : ''}${reduced ? ' with reduced motion' : ''}`;
+  const before = await readyDone(page, clearance);
+  const read = await page.evaluate(() => JSON.stringify(JSON.parse(localStorage.getItem('mrt.state.v2')).read));
+  await watchOffer(page);
+  if (before.reached) await page.touchscreen.tap(before.x, before.y);
+  await settle(page);
+  const offered = await offerState(page);
+  const covered = clearance === 8;
+  const expectedScroll = offered.inserted
+    ? Math.max(0, offered.inserted.bottom - (height - offered.inserted.padding)) : 0;
+  const minimal = offered.calls.length === 1 && offered.calls[0].options?.block === 'nearest'
+    && offered.calls[0].options?.behavior === 'instant'
+    && Math.abs(offered.scrollY - offered.inserted.scrollY - expectedScroll) <= 2;
+  const still = offered.calls.length === 0 && Math.abs(offered.scrollY - before.scrollY) <= 1;
+  t.check(`${name}: ${covered ? 'the covered offer moves only to the nearest clear position' : 'an uncovered offer does not scroll'}`,
+    before.reached && before.focus === 'btn-hero-done' && offered.inserted?.covered === covered
+      && (covered ? minimal : still) && offered.bottom <= offered.fold + 1
+      && offered.focus === before.focus && offered.reached, JSON.stringify({ before, offered, expectedScroll }));
+
+  if (offered.reached) await page.touchscreen.tap(offered.x, offered.y);
+  await settle(page);
+  const after = await page.evaluate(() => ({
+    title: document.querySelector('#hero-title').textContent,
+    focus: document.activeElement?.id,
+    read: JSON.stringify(JSON.parse(localStorage.getItem('mrt.state.v2')).read),
+    message: document.querySelector('#done-result .grow')?.textContent,
+  }));
+  t.check(`${name}: tapping Undo restores the comic and the saved read marks`,
+    offered.reached && after.title === next && after.read === read && after.focus === 'btn-hero-done'
+      && after.message === `Marked ${next} unread. It is up next again.`, JSON.stringify(after));
+  await clean();
+}
+
+export const readingCardUndo = {
+  id: 'reading-card-undo',
+  title: 'Done keeps a covered Undo reachable at phone sizes and with reduced motion',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    for (const [width, height] of phoneSizes) {
+      for (const note of ['', 'Read the Avengers issues first.']) {
+        await checkPhoneUndo(page, t, { width, height, note });
+      }
+    }
+    await checkPhoneUndo(page, t, { width: 390, height: 844, reduced: true });
+    await page.emulateMediaFeatures([]);
+    t.check('the Undo visibility passes raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const readingCardUndoStill = {
+  id: 'reading-card-undo-still',
+  title: 'Done never scrolls an uncovered result or pulls the reader back after their context changes',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await checkPhoneUndo(page, t, { width: 390, height: 844, clearance: 180 });
+
+    const hidden = await setup(page, { width: 390, height: 844, theme: 'dark', touch: true });
+    const visible = await readyDone(page);
+    await page.$eval('.rail-header', (rail) => { rail.style.visibility = 'hidden'; });
+    await watchOffer(page);
+    await page.$eval('#btn-hero-done', (button) => button.click());
+    const unobstructed = await offerState(page);
+    t.check('an invisible bar does not trigger a reveal even when its rectangle overlaps the offer',
+      visible.reached && unobstructed.inserted?.covered && unobstructed.calls.length === 0
+        && unobstructed.scrollY === visible.scrollY && unobstructed.focus === visible.focus,
+      JSON.stringify({ visible, unobstructed }));
+    await hidden();
+
+    for (const intervention of ['scroll', 'list', 'view']) {
+      const clean = await setup(page, { width: 390, height: 844, theme: 'dark', touch: true, other: intervention === 'list' });
+      const before = await readyDone(page);
+      await watchOffer(page, intervention);
+      await page.$eval('#btn-hero-done', (button) => button.click());
+      const after = await offerState(page);
+      const change = { scroll: 'reader scroll', list: 'different Reading List', view: 'different view' }[intervention];
+      t.check(`a ${change} before reveal prevents automatic scrolling`,
+        before.reached && after.inserted?.covered && !!after.intervention && after.calls.length === 0
+          && after.scrollY === after.intervention.scrollY
+          && (intervention !== 'list' || (after.intervention.active === 'other' && !after.stale))
+          && (intervention !== 'view' || (after.intervention.home && !after.stale)),
+        JSON.stringify({ before, after }));
+      await clean();
+    }
+    const clean = await setup(page, { width: 390, height: 844, theme: 'dark', touch: true });
+    await page.evaluate(() => {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
+      document.querySelector('.rail-header .brand').focus({ preventScroll: true });
+    });
+    await settle(page);
+    const away = await page.evaluate(() => ({
+      scrollY, doneBottom: document.querySelector('#btn-hero-done').getBoundingClientRect().bottom,
+      read: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
+      focus: document.activeElement === document.querySelector('.rail-header .brand'),
+    }));
+    await watchOffer(page);
+    await page.keyboard.press('d');
+    const after = await offerState(page);
+    t.check('the D shortcut does not pull the reader back when Done is offscreen',
+      away.doneBottom < 0 && away.focus && after.inserted && after.calls.length === 0 && after.scrollY >= away.scrollY
+        && Object.keys(after.read).length === away.read + 1
+        && await page.evaluate(() => document.activeElement === document.querySelector('.rail-header .brand')),
+      JSON.stringify({ away, after }));
+    await clean();
+    await page.emulateMediaFeatures([]);
+    t.check('the no-scroll passes raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
 export const readingCardMutations = [
   {
     id: 'reading-card-scroll-container', breaks: 'reading-card-focus',
@@ -260,5 +466,29 @@ export const readingCardMutations = [
       const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('/styles.css'));
       sheet?.insertRule('@media (max-width: 700px) { #hero .hero-in > .art { float: left !important; width: 96px !important; margin: 0 20px 16px 0 !important; } }', sheet.cssRules.length);
     }),
+  },
+  {
+    id: 'reading-card-undo-reduced-motion', breaks: 'reading-card-undo',
+    why: 'the reveal animates when reduced motion is requested',
+    rewriteReading: (source) => source.replace(
+      "result.node.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });",
+      "result.node.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' });",
+    ),
+  },
+  {
+    id: 'reading-card-undo-always-scroll', breaks: 'reading-card-undo-still',
+    why: 'every Done result scrolls even when it is already visible or the reader has moved away',
+    rewriteReading: (source) => source.replace(
+      '    Object.assign(result, { node, button, holds: new Set() });',
+      '    node.scrollIntoView({ block: "center", behavior: "instant" });\n    Object.assign(result, { node, button, holds: new Set() });',
+    ),
+  },
+  {
+    id: 'reading-card-undo-stale-offer', breaks: 'reading-card-undo-still',
+    why: 'a list or view change during insertion leaves a stale Undo offer',
+    rewriteReading: (source) => source.replace(
+      '    if (surfaceWasCurrent && !doneResultHolds(result)) {',
+      '    if (false) {',
+    ),
   },
 ];

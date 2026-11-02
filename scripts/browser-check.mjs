@@ -21927,6 +21927,8 @@ MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);
 SCENARIOS.push(readingCard.readingCardPoster);
+SCENARIOS.push(readingCard.readingCardUndo);
+SCENARIOS.push(readingCard.readingCardUndoStill);
 MUTATIONS.push(...readingCard.readingCardMutations);
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);

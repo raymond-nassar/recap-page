@@ -1694,13 +1694,13 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1094-1112|0": {
-    "anchor": "src/js/views/reading.js:1094-1112",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1097-1115|0": {
+    "anchor": "src/js/views/reading.js:1097-1115",
     "fp": "836cd067a6aef5d3",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1410-1424|0": {
-    "anchor": "src/js/views/reading.js:1410-1424",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1435-1449|0": {
+    "anchor": "src/js/views/reading.js:1435-1449",
     "fp": "c25557f274159486",
     "head": "function doneContext(listId, issueId, state = getState(), surface = 'hero') {"
   },
@@ -1709,8 +1709,8 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:754|0": {
-    "anchor": "src/js/views/reading.js:754",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:757|0": {
+    "anchor": "src/js/views/reading.js:757",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -2129,8 +2129,8 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:628|0": {
-    "anchor": "src/js/views/reading.js:628",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:631|0": {
+    "anchor": "src/js/views/reading.js:631",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
@@ -2344,8 +2344,8 @@
     "fp": "699e31018b030b44",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:891-892|0": {
-    "anchor": "src/js/views/reading.js:891-892",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:894-895|0": {
+    "anchor": "src/js/views/reading.js:894-895",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2374,8 +2374,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:891-892|0": {
-    "anchor": "src/js/views/reading.js:891-892",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:894-895|0": {
+    "anchor": "src/js/views/reading.js:894-895",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2384,8 +2384,8 @@
     "fp": "3377f80fe0c004ac",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:888-890|0": {
-    "anchor": "src/js/views/reading.js:888-890",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:891-893|0": {
+    "anchor": "src/js/views/reading.js:891-893",
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
@@ -2504,8 +2504,8 @@
     "fp": "c2ca4aa4ff10907b",
     "head": "--target-min: 24px;"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:959-1091|0": {
-    "anchor": "src/js/views/reading.js:959-1091",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:962-1094|0": {
+    "anchor": "src/js/views/reading.js:962-1094",
     "fp": "be3dcd71e08d91da",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
@@ -2569,8 +2569,8 @@
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:888-890|0": {
-    "anchor": "src/js/views/reading.js:888-890",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:891-893|0": {
+    "anchor": "src/js/views/reading.js:891-893",
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
@@ -2594,8 +2594,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1144-1164|0": {
-    "anchor": "src/js/views/reading.js:1144-1164",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1147-1167|0": {
+    "anchor": "src/js/views/reading.js:1147-1167",
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
@@ -2654,8 +2654,8 @@
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1144-1164|0": {
-    "anchor": "src/js/views/reading.js:1144-1164",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1147-1167|0": {
+    "anchor": "src/js/views/reading.js:1147-1167",
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
@@ -2684,8 +2684,8 @@
     "fp": "52e2355cee9f16b3",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:892|0": {
-    "anchor": "src/js/views/reading.js:892",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:895|0": {
+    "anchor": "src/js/views/reading.js:895",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
