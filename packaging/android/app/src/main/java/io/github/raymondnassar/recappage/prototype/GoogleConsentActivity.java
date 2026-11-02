@@ -16,22 +16,35 @@ import com.google.android.gms.common.api.ApiException;
 // exported, so only this app can start it.
 public final class GoogleConsentActivity extends Activity {
     static final String SCREEN = "recap.google.screen";
+    static final String ATTEMPT = "recap.google.attempt";
     private static final int CONSENT = 1;
 
     @Override
     protected void onCreate(Bundle saved) {
         super.onCreate(saved);
+        if (!AndroidGoogle.WAITING.has(attempt())) {
+            finish();
+            return;
+        }
         if (saved != null) return;
         PendingIntent screen = screen(getIntent());
         if (screen == null) {
-            answer(null);
+            answer(null, "failed");
             return;
         }
         try {
-            startIntentSenderForResult(screen.getIntentSender(), CONSENT, null, 0, 0, 0);
+            if (!AndroidGoogle.WAITING.runIfPending(attempt(),
+                    () -> startIntentSenderForResult(screen.getIntentSender(), CONSENT, null, 0, 0, 0))) {
+                finish();
+            }
         } catch (IntentSender.SendIntentException | RuntimeException error) {
-            answer(null);
+            answer(null, "failed");
         }
+    }
+
+    private String attempt() {
+        Intent intent = getIntent();
+        return intent == null ? null : intent.getStringExtra(ATTEMPT);
     }
 
     @SuppressWarnings("deprecation")
@@ -44,14 +57,14 @@ public final class GoogleConsentActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode != CONSENT) return;
-        answer(resultCode == RESULT_OK ? data : null);
+        answer(resultCode == RESULT_OK ? data : null, resultCode == RESULT_OK ? "failed" : "declined");
     }
 
-    private void answer(Intent data) {
-        CloudAccount.Consent consent = AndroidGoogle.WAITING.getAndSet(null);
+    private void answer(Intent data, String missingReason) {
+        CloudAccount.Consent consent = AndroidGoogle.WAITING.take(attempt());
         if (consent != null) {
             if (data == null) {
-                consent.ended("declined");
+                consent.ended(missingReason);
             } else {
                 try {
                     AuthorizationResult result = Identity.getAuthorizationClient(this).getAuthorizationResultFromIntent(data);

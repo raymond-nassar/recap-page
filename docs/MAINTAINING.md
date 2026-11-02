@@ -4,7 +4,7 @@ Use this guide to check, extend and release Recap Page.
 [The contribution guide](../CONTRIBUTING.md) covers contribution policy and coding standards.
 [The architecture guide](ARCHITECTURE.md) explains how the app fits together.
 
-The app has no browser build step or runtime dependencies. `npm ci` installs development tools only.
+The browser app has no build step or runtime dependencies. `npm ci` installs development tools only.
 
 ## Run the complete local check set
 

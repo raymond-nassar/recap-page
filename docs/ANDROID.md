@@ -123,8 +123,9 @@ Marvel's service.
 The Java-only Android module uses `enableKotlin = false` to disable AGP 9.4.1's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
-application DEX checks still reject foreign runtime classes. The one generated shape they accept
-is D8's empty `<Owner>-IA` access marker, only for an owner class in the app's own package. See the official
+application DEX checks admit the exact approved Play services runtime class inventory and reject
+other foreign classes. The one generated app-class shape they accept is D8's empty `<Owner>-IA`
+access marker, only for an owner class in the app's own package. See the official
 [Java-only module guidance](https://developer.android.com/build/migrate-to-built-in-kotlin)
 and [AGP 9.4 API](https://developer.android.com/reference/tools/gradle-api/9.4/com/android/build/api/dsl/CommonExtension),
 read on 2026-09-30. This setting does not by itself prove a rebuilt artifact or test harness passes.
@@ -319,7 +320,8 @@ The producer builds clean pinned source with the approved later ledger. It signs
 narrow temporary-key step and deletes upload material before native proof. It checks signed
 entries, manifest/resources/permissions, embedded source/build records and native-library
 inventory. Unexpected native libraries stop qualification pending a separate ABI/16 KB assessment.
-Release shrinking stays off, and no runtime dependencies are added.
+Release shrinking stays off. The owner approved Google Play services auth and its transitive runtime
+libraries for Android Google Drive sign-in (#810); the library ships even when Google Drive is off.
 
 APK splits come from those exact signed AAB bytes, with an explicitly disposable local signer
 and a matching release instrumentation APK. The existing six methods and restart pair run on
@@ -344,14 +346,21 @@ the tool or proof profile requires renewed qualification, not an SDK fallback.
 See the pinned [variant-minimum implementation](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/splitters/ModuleSplitter.java),
 read on 2026-09-30.
 
-Publishing manifests still permit only the original activity. Derived-base inspection additionally
-requires exactly one `com.android.vending.splits` metadata entry, whose resource reference must
-resolve to `xml/splits0` and the packaged `res/xml/splits0.xml`. The current native source has no
-localized resource directories or collision with that generated filename, so its language-mapping
-set must be empty. Inspection checks the closed XML structure and the decoded split inventory;
+Publishing manifests permit the main activity and the exact approved Play services components.
+A configured cloud build also permits the existing sign-in redirect and the non-exported Google
+consent activity, with Google Drive switched off. Other components are rejected. Derived-base
+inspection additionally requires exactly one `com.android.vending.splits` metadata entry, whose
+resource reference must resolve to `xml/splits0` and the packaged `res/xml/splits0.xml`. When the
+approved SDK is present, its density resources also cause bundletool to add the exact
+`com.android.vending.splits.required=true` installer hint to the derived base; no other form of
+that entry is accepted.
+
+The current native source has no localized resource directories or collision with the generated
+filename, and the Android build retains only English from the library resources. Its language-mapping
+set must therefore be empty. Inspection checks the closed XML structure and the decoded split inventory;
 new localization or a source collision requires a reviewed profile update, not an ignored mismatch.
-Unknown or duplicate metadata, scalar metadata values, extra executable components and wrong or
-dangling resource bindings fail. Conditional tool metadata is not generally exempted. This follows
+Unknown or duplicate metadata, extra executable components and wrong or dangling resource bindings
+fail. Conditional tool metadata is not generally exempted. This follows
 the pinned [splits-resource generator](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/model/utils/SplitsXmlInjector.java),
 read on 2026-09-30.
 
@@ -662,8 +671,8 @@ stable package. Update the pinned archive, checksum and emulator/image revision 
 `scripts/android-emulator-ci.sh` deliberately. Candidate qualification uses the workflow's native
 runner and checker while keeping application builds in the exact source checkout.
 
-AndroidX dependencies are confined to the separate test APK. They are not shipped in the app.
-Emulator results do not complete the physical-device checklist below.
+AndroidX ships in the app through Play services; the explicit instrumentation-test dependencies
+remain in the separate test APK. Emulator results do not complete the physical-device checklist below.
 
 ### Observed emulator result
 

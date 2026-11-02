@@ -64,6 +64,11 @@ android {
     compileSdk 36
     testBuildType nativeTestBuildType
 
+    // The app is English-only; filtering library translations keeps the release split profile exact.
+    androidResources {
+        localeFilters.add('en')
+    }
+
     defaultConfig {
         applicationId 'io.github.raymondnassar.recappage'
         minSdk 26
@@ -99,6 +104,13 @@ android {
         disable 'AndroidGradlePluginVersion'
     }
 }
+
+configurations.configureEach {
+    if (name in ['debugRuntimeClasspath', 'releaseRuntimeClasspath']) {
+        resolutionStrategy.activateDependencyLocking()
+    }
+}
+dependencyLocking { lockMode = LockMode.STRICT }
 
 dependencies {
     // Play services' AuthorizationClient, the one way Google lets an Android app sign in to Drive (#810, P04,

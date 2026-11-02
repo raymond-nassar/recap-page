@@ -2154,8 +2154,8 @@
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:123-125|0": {
-    "anchor": "SECURITY.md:123-125",
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:127-129|0": {
+    "anchor": "SECURITY.md:127-129",
     "fp": "2abc83ccc79cd632",
     "head": "- Dependabot alerts and security updates are enabled. Secret scanning and push protection were"
   },
@@ -2189,13 +2189,13 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-123-125|SECURITY.md:123-125|0": {
-    "anchor": "SECURITY.md:123-125",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-127-129|SECURITY.md:127-129|0": {
+    "anchor": "SECURITY.md:127-129",
     "fp": "2abc83ccc79cd632",
     "head": "- Dependabot alerts and security updates are enabled. Secret scanning and push protection were"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-34-36|SECURITY.md:34-36|0": {
-    "anchor": "SECURITY.md:34-36",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-36-38|SECURITY.md:36-38|0": {
+    "anchor": "SECURITY.md:36-38",
     "fp": "23dc7e0da5fde923",
     "head": "Private reporting was enabled here on 2026-08-16, but may be unavailable in a fork. If the option"
   },

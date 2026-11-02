@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.google.android.gms.auth.api.identity.AuthorizationClient;
 import com.google.android.gms.auth.api.identity.AuthorizationRequest;
@@ -17,7 +18,7 @@ import com.google.android.gms.tasks.Tasks;
 
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 // Google's sign-in on Android, through Play services' AuthorizationClient (#810, P04, option B). Google refuses
 // a custom-scheme redirect from an Android app, so the browser route OneDrive takes is not open here; Play
@@ -25,8 +26,7 @@ import java.util.concurrent.atomic.AtomicReference;
 // client id is in the app: Google matches the package name and signing certificate to the project's Android
 // client. Nothing here revokes access, because a revocation reaches every device in the project.
 final class AndroidGoogle implements CloudAccount.Google {
-    // The consent waiting for the screen Play services asked to show, read once by GoogleConsentActivity.
-    static final AtomicReference<CloudAccount.Consent> WAITING = new AtomicReference<>();
+    static final CloudGoogleConsent WAITING = new CloudGoogleConsent();
 
     private final Context app;
     private final AuthorizationClient client;
@@ -42,6 +42,7 @@ final class AndroidGoogle implements CloudAccount.Google {
             if (GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(app) != ConnectionResult.SUCCESS) return null;
             return new AndroidGoogle(app);
         } catch (RuntimeException | LinkageError error) {
+            Log.w("RecapCloud", "Google Drive sign-in could not be initialized.");
             return null;
         }
     }
@@ -54,32 +55,52 @@ final class AndroidGoogle implements CloudAccount.Google {
     }
 
     @Override
-    public void authorize(String account, CloudAccount.Consent consent) {
-        client.authorize(request(account))
-                .addOnSuccessListener(result -> {
-                    if (result.hasResolution()) {
-                        show(result.getPendingIntent(), consent);
-                    } else {
-                        consent.granted(result.getAccessToken(), result.getGrantedScopes());
-                    }
-                })
-                .addOnFailureListener(error -> consent.ended("failed"));
+    public CloudAccount.GoogleAttempt authorize(String account, CloudAccount.Consent consent) {
+        String id = WAITING.add(consent);
+        return new CloudAccount.GoogleAttempt() {
+            private final AtomicBoolean started = new AtomicBoolean();
+
+            @Override
+            public void start() {
+                if (!started.compareAndSet(false, true) || !WAITING.has(id)) return;
+                client.authorize(request(account))
+                        .addOnSuccessListener(result -> {
+                            if (result.hasResolution()) {
+                                show(result.getPendingIntent(), id);
+                            } else {
+                                CloudAccount.Consent pending = WAITING.take(id);
+                                if (pending != null) pending.granted(result.getAccessToken(), result.getGrantedScopes());
+                            }
+                        })
+                        .addOnFailureListener(error -> failed(id));
+            }
+
+            @Override
+            public void cancel() {
+                WAITING.cancel(id);
+            }
+        };
     }
 
-    private void show(PendingIntent screen, CloudAccount.Consent consent) {
+    private void failed(String id) {
+        CloudAccount.Consent pending = WAITING.take(id);
+        if (pending != null) pending.ended("failed");
+    }
+
+    private void show(PendingIntent screen, String id) {
         if (screen == null) {
-            consent.ended("failed");
+            failed(id);
             return;
         }
-        CloudAccount.Consent earlier = WAITING.getAndSet(consent);
-        if (earlier != null && earlier != consent) earlier.ended("failed");
+        if (!WAITING.has(id)) return;
         Intent intent = new Intent(app, GoogleConsentActivity.class);
         intent.putExtra(GoogleConsentActivity.SCREEN, screen);
+        intent.putExtra(GoogleConsentActivity.ATTEMPT, id);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
-            app.startActivity(intent);
+            WAITING.runIfPending(id, () -> app.startActivity(intent));
         } catch (RuntimeException error) {
-            if (WAITING.compareAndSet(consent, null)) consent.ended("failed");
+            failed(id);
         }
     }
 
@@ -91,6 +112,8 @@ final class AndroidGoogle implements CloudAccount.Google {
             if (stale != null) {
                 try {
                     Tasks.await(client.clearToken(ClearTokenRequest.builder().setToken(stale).build()), 30, TimeUnit.SECONDS);
+                } catch (InterruptedException error) {
+                    throw error;
                 } catch (Exception ignored) {
                     // A token that cannot be cleared from the cache is only asked about again; Drive refuses it.
                 }

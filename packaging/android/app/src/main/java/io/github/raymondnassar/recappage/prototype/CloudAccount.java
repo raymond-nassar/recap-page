@@ -97,13 +97,19 @@ final class CloudAccount {
     // this interface revokes the grant, because revoking at Google ends it for every client of the project,
     // which would sign the person's other devices out of the Google Drive they back up to (#810, P04).
     interface Google {
-        // Asks for Drive access, showing Google's account chooser and consent when Play services needs them,
-        // and answers through the consent exactly once. Throws when it could not start at all.
-        void authorize(String account, Consent consent) throws Exception;
+        // Prepares one locally cancellable sign-in. start() asks for Drive access and answers through the
+        // consent once; cancel() only forgets this attempt and never revokes the grant.
+        GoogleAttempt authorize(String account, Consent consent) throws Exception;
 
         // A token for the account with no screen at all, or null when the person has to agree again. A stale
         // token, when given, is the one Drive just refused, cleared from Play services' cache first.
         String token(String account, String stale) throws CloudError;
+    }
+
+    interface GoogleAttempt {
+        void start() throws Exception;
+
+        void cancel();
     }
 
     // The answer to one interactive sign-in. An answer to a sign-in that has since ended is ignored.
@@ -218,6 +224,7 @@ final class CloudAccount {
         int stray;
         boolean claimed;
         Runnable cancelExpiry = () -> {};
+        GoogleAttempt googleAttempt;
 
         SignIn(String provider, CloudAuthorization authorization, long expiresAt, long epoch) {
             this.provider = provider;
@@ -351,6 +358,12 @@ final class CloudAccount {
         return connect(Collections.emptyMap());
     }
 
+    private void requireProvider(String provider) throws CloudError {
+        if ((record != null && !record.provider.equals(provider)) || (signIn != null && !signIn.provider.equals(provider))) {
+            throw new CloudError("invalid", ONE_AT_A_TIME);
+        }
+    }
+
     Map<String, Object> connect(Map<String, Object> input) throws CloudError {
         load();
         Object named = input.containsKey("provider") ? input.get("provider") : ONEDRIVE;
@@ -360,9 +373,7 @@ final class CloudAccount {
         synchronized (lock) {
             // One service at a time: a connection to the other one is disconnected first, so nothing it agreed
             // to is carried across, as the Windows host's connect refuses it.
-            if ((record != null && !record.provider.equals(provider)) || (signIn != null && !signIn.provider.equals(provider))) {
-                throw new CloudError("invalid", ONE_AT_A_TIME);
-            }
+            requireProvider(provider);
             start = signIn == null && (record == null || record.credential == null);
         }
         if (start) {
@@ -375,6 +386,7 @@ final class CloudAccount {
             if (probe) vault.probe();
             SignIn job = null;
             synchronized (lock) {
+                requireProvider(provider);
                 if (signIn == null && (record == null || record.credential == null)) {
                     job = new SignIn(provider, GOOGLE_DRIVE.equals(provider) ? null : CloudAuthorization.create(random),
                             now() + CloudAuthorization.SIGN_IN_MS, epoch);
@@ -384,10 +396,22 @@ final class CloudAccount {
             }
             if (job != null) {
                 final SignIn started = job;
-                job.cancelExpiry = scheduler.schedule(() -> expire(started), CloudAuthorization.SIGN_IN_MS);
+                Runnable cancelExpiry = scheduler.schedule(() -> expire(started), CloudAuthorization.SIGN_IN_MS);
+                synchronized (lock) {
+                    if (signIn == job && !job.claimed) job.cancelExpiry = cancelExpiry;
+                    else cancelExpiry.run();
+                }
                 if (job.authorization == null) {
                     try {
-                        google.authorize(null, consentFor(job));
+                        GoogleAttempt attempt = null;
+                        synchronized (lock) {
+                            if (signIn == job && !job.claimed) {
+                                attempt = google.authorize(null, consentFor(job));
+                                if (attempt == null) throw new IllegalStateException("Google did not prepare sign-in");
+                                job.googleAttempt = attempt;
+                            }
+                        }
+                        if (attempt != null) attempt.start();
                     } catch (Exception error) {
                         end(job, null, GOOGLE_LAUNCH_FAILED);
                     }
@@ -409,11 +433,16 @@ final class CloudAccount {
         }
     }
 
+    private void cancelSignIn(SignIn job) {
+        job.cancelExpiry.run();
+        if (job.googleAttempt != null) job.googleAttempt.cancel();
+    }
+
     private void end(SignIn job, String reason, String text) {
         synchronized (lock) {
             if (signIn != job) return;
             signIn = null;
-            job.cancelExpiry.run();
+            cancelSignIn(job);
             String said = SIGN_IN_ENDED.getOrDefault(reason, SIGN_IN_ENDED.get("failed"));
             if ("refused".equals(reason)) said = companyOf(job.provider) + " did not complete the sign-in.";
             message = text != null ? text : said;
@@ -430,7 +459,7 @@ final class CloudAccount {
                 synchronized (lock) {
                     if (signIn != job || job.claimed) return;
                     job.claimed = true;
-                    job.cancelExpiry.run();
+                    cancelSignIn(job);
                     if (token == null || token.isEmpty() || scopes == null || !scopes.contains(GOOGLE_SCOPE)) {
                         end(job, null, GOOGLE_REFUSED);
                         return;
@@ -550,7 +579,7 @@ final class CloudAccount {
             epoch += 1;
             SignIn job = signIn;
             signIn = null;
-            if (job != null) job.cancelExpiry.run();
+            if (job != null) cancelSignIn(job);
             access = null;
             vault.clear();
             record = null;
@@ -949,7 +978,7 @@ final class CloudAccount {
             epoch += 1;
             SignIn job = signIn;
             signIn = null;
-            if (job != null) job.cancelExpiry.run();
+            if (job != null) cancelSignIn(job);
         }
     }
 }

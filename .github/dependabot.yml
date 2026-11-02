@@ -1,27 +1,28 @@
 version: 2
 
-# The app ships zero runtime dependencies, so every package below is development tooling and
-# reaches nobody who uses the app. That is the whole reason this file can afford to be quiet:
-# npm and action updates affect lint/CI rather than browser runtime dependencies. The optional
-# Android build toolchain is watched separately and must also pass its documented APK checks.
+# The browser ships zero runtime dependencies, so npm and action updates affect lint/CI rather
+# than packages loaded by readers' browsers. Android ships the owner-approved Play services auth
+# library and its transitive runtime dependencies. Its Gradle ecosystem is watched separately and
+# must also pass its documented APK checks.
 #
 # The advisory threshold, decided here because a threshold that lives in someone's head is not
 # one. GitHub's Dependabot security updates are enabled on this repository and open a pull
-# request for any severity, which is the right setting when the whole graph is four declared
-# packages and what they pull in: there is no volume to triage. What the threshold governs is
-# how fast each one has to be taken.
+# request for any severity. The npm tooling graph has four declared packages and what they pull
+# in; Android runtime alerts are product vulnerabilities. What the threshold governs is how fast
+# each one has to be taken.
 #
-#   critical or high  Merge before the next change to the default branch. These run against a
-#                     maintainer's checkout and inside CI, which is where a compromised lint
-#                     plugin would do its damage.
-#   moderate or low   Take at the weekly cadence rather than interrupting work for it. Note
+#   critical or high in tooling
+#                     Merge before the next change to the default branch. Tooling runs against
+#                     a maintainer's checkout and inside CI.
+#   moderate or low in tooling
+#                     Take at the weekly cadence rather than interrupting work for it. Note
 #                     that a security pull request arrives when the advisory does, not on the
 #                     schedule below: the schedule paces version updates, and the cadence here
 #                     is how quickly a person has to answer one.
 #   any severity in a runtime dependency
 #                     Treat as a product vulnerability under `SECURITY.md`, not as tooling.
-#                     There are none, and `test/security-policy.test.js` fails if that changes,
-#                     which is what makes the row above safe to write.
+#                     The browser has none, and `test/security-policy.test.js` checks its npm
+#                     manifest. Android's Play services dependency is a recorded exception.
 #
 # `npm audit` reported 0 vulnerabilities over the 90 packages it counted when this was written,
 # so none of the three rows is deferring a backlog that already exists.
