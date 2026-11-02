@@ -48,12 +48,26 @@ def cloudClient = cloudConfigPath == null ? null : new JsonSlurper().parseText(p
     workingDir repositoryRoot
     commandLine(['node', 'scripts/android-cloud-client.mjs', new File(cloudConfigPath).absolutePath] + cloudHashArguments)
 }.standardOutput.asText.get())
+// Google Drive is offered on Android only in a cloud build given -PrecapGoogleDriveAndroid=true, and only where
+// Play services can sign in. It stays off until the owner's Google steps and a signed-in test (#810, P04).
+def googleDriveAndroid = providers.gradleProperty('recapGoogleDriveAndroid').getOrElse('false')
+if (!(googleDriveAndroid in ['true', 'false'])) {
+    throw new GradleException('recapGoogleDriveAndroid must be true or false')
+}
+if (googleDriveAndroid == 'true' && cloudConfigPath == null) {
+    throw new GradleException('Google Drive on Android needs recapCloudClientConfig too')
+}
 
 android {
     enableKotlin = false
     namespace 'io.github.raymondnassar.recappage.prototype'
     compileSdk 36
     testBuildType nativeTestBuildType
+
+    // The app is English-only; filtering library translations keeps the release split profile exact.
+    androidResources {
+        localeFilters.add('en')
+    }
 
     defaultConfig {
         applicationId 'io.github.raymondnassar.recappage'
@@ -91,7 +105,17 @@ android {
     }
 }
 
+configurations.configureEach {
+    if (name in ['debugRuntimeClasspath', 'releaseRuntimeClasspath']) {
+        resolutionStrategy.activateDependencyLocking()
+    }
+}
+dependencyLocking { lockMode = LockMode.STRICT }
+
 dependencies {
+    // Play services' AuthorizationClient, the one way Google lets an Android app sign in to Drive (#810, P04,
+    // option B). It is the app's first runtime dependency; the owner's decision and its report are on #810.
+    implementation 'com.google.android.gms:play-services-auth:22.0.0'
     androidTestImplementation 'androidx.test:runner:1.7.0'
     androidTestImplementation 'androidx.test:core:1.7.0'
     androidTestImplementation 'androidx.test.ext:junit:1.3.0'
@@ -127,6 +151,7 @@ androidComponents.onVariants(androidComponents.selector().all()) { variant ->
         variant.sources.manifests.addStaticManifestFile('src/cloud/AndroidManifest.xml')
         variant.manifestPlaceholders.put('recapCloudClient', cloudClient.clientId)
         variant.manifestPlaceholders.put('recapCloudRedirectHash', cloudHash)
+        variant.manifestPlaceholders.put('recapCloudGoogle', googleDriveAndroid)
     }
 }
 

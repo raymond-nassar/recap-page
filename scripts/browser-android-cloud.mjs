@@ -40,11 +40,12 @@ const server = createServer(async (req, res) => {
 });
 
 // The account MainActivity reaches, in the answers its route gives: the shared host protocol's bodies.
-function fixtureAccount() {
-  const host = { state: 'not-connected', connection: null, account: null, items: new Map(), next: 1, calls: [] };
+function fixtureAccount({ offerGoogle = false } = {}) {
+  const host = { state: 'not-connected', provider: 'onedrive', connection: null, account: null, items: new Map(), next: 1, calls: [] };
   const linked = () => host.state === 'connected';
   const status = () => ({
-    provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
+    provider: host.provider, ...(offerGoogle ? { providers: ['onedrive', 'googledrive'] } : {}),
+    state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
     message: null, reason: null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
   });
   const refuse = (code, message) => ({ ok: false, error: { code, message } });
@@ -53,7 +54,10 @@ function fixtureAccount() {
     host.calls.push(operation);
     if (operation === 'status') return { ok: true, status: status() };
     if (operation === 'connect') {
-      if (host.state === 'not-connected') host.state = 'signing-in';
+      if (host.state === 'not-connected') {
+        host.provider = offerGoogle && input.provider === 'googledrive' ? 'googledrive' : 'onedrive';
+        host.state = 'signing-in';
+      }
       return { ok: true, status: status() };
     }
     if (operation === 'disconnect') {
@@ -190,6 +194,24 @@ try {
     check(about.on.length >= 2 && about.on.every((shown) => !shown) && about.off.every(Boolean)
       && !about.data.includes('OneDrive') && !about.data.includes('Windows'),
     'About keeps the words the Android app has always said about your data', JSON.stringify(about));
+    assert.deepEqual(errors, []);
+    await context.close();
+  }
+
+  // Google uses a Play services screen, not the browser OneDrive opens.
+  {
+    const account = fixtureAccount({ offerGoogle: true });
+    const { page, context, errors, wire } = await openPage(origin, account);
+    await page.goto(`${origin}/#/data`, { waitUntil: 'networkidle0' });
+    await page.waitForSelector('#btn-cloud-sign-in-google:not([hidden])', { visible: true });
+    await press(page, '#btn-cloud-sign-in-google');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Finish signing in'));
+    const connect = wire.map((raw) => JSON.parse(raw)).find((message) => message.op === 'connect');
+    check(connect && JSON.parse(connect.body).provider === 'googledrive',
+      'the Google button names Google Drive in the Android port request');
+    const status = (await card(page)).status;
+    check(status.startsWith('Finish signing in to Google on the sign-in screen.') && !status.includes('browser'),
+      'the pending Android Google status names its sign-in screen rather than a browser', status);
     assert.deepEqual(errors, []);
     await context.close();
   }

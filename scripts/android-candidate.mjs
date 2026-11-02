@@ -1,5 +1,6 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { readFile, writeFile, appendFile, mkdir, readdir, lstat, rm, cp } from 'node:fs/promises';
 import { basename, join, resolve, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -736,6 +737,25 @@ export function assertCodeFreeConfig(files) {
 }
 const dexRow = (line) => line.match(/^([PCMF]) ([dkrx]) ([0-9]+)\t([0-9]+)\t([0-9]+)\t(.+)$/);
 const dexQualified = (name) => /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(name);
+const playServicesClasses = (() => {
+  const text = readFileSync(new URL('./android/google-play-services-classes.txt', import.meta.url), 'utf8')
+    .replace(/\r\n/g, '\n');
+  requireValue(digest(text) === '619a111f4363e201b278f13a440275c93dd1ff4334bd1073a3467e6367496f47',
+    'approved Play services DEX inventory changed');
+  const names = text.trimEnd().split('\n');
+  const result = new Set(names);
+  requireValue(names.length === 5060 && result.size === names.length, 'invalid Play services DEX inventory');
+  return result;
+})();
+const playServicesPackages = (() => {
+  const result = new Set();
+  for (const name of playServicesClasses) {
+    for (let end = name.lastIndexOf('.'); end > 0; end = name.lastIndexOf('.', end - 1)) {
+      result.add(name.slice(0, end));
+    }
+  }
+  return result;
+})();
 function dexDefinitionReceipt(dex, row) {
   if (!row || !['P', 'C'].includes(row[1])) return null;
   const [, kind, status, definitions, references, bytes, payload] = row;
@@ -763,10 +783,10 @@ function dexDefinitionReceipt(dex, row) {
     identifier: safe ? payload : null, identifierSha256: digest(payload),
     classCount: classes.size, classes: [...classes].sort().slice(0, 8) };
 }
-export function verifyDexDefinitions(dex) {
+export function verifyDexDefinitions(dex, { playServices } = {}) {
   const context = { row: null };
   try {
-    checkDexDefinitions(dex, context);
+    checkDexDefinitions(dex, context, playServices);
   } catch (error) {
     if (!(error instanceof CandidateError)) throw error;
     const receipt = dexDefinitionReceipt(dex, context.row);
@@ -774,7 +794,7 @@ export function verifyDexDefinitions(dex) {
     throw error;
   }
 }
-function checkDexDefinitions(dex, context) {
+function checkDexDefinitions(dex, context, expectedPlayServices) {
   requireValue(typeof dex === 'string' && Buffer.byteLength(dex, 'utf8') <= 8 * 1024 * 1024,
     'DEX inventory exceeds the supported bound');
   for (let index = 0; index < dex.length; index += 1) {
@@ -787,15 +807,22 @@ function checkDexDefinitions(dex, context) {
     }
   }
   const lines = dex.split(/\r?\n/);
-  const forbidden = /NativeIntegrationTest|FixtureDocumentProvider|FixtureMetadataServer|androidx\./;
+  const forbidden = /NativeIntegrationTest|FixtureDocumentProvider|FixtureMetadataServer/;
   if (forbidden.test(dex)) {
     context.row = dexRow(lines.find((line) => forbidden.test(line)) || '');
+    requireValue(false, 'unexpected shipped test/runtime dependency');
+  }
+  const unexpectedAndroidx = lines.find((line) => [...line.matchAll(/androidx\.[\w$.-]+/g)]
+    .some(([name]) => !playServicesClasses.has(name) && !playServicesPackages.has(name)));
+  if (unexpectedAndroidx) {
+    context.row = dexRow(unexpectedAndroidx);
     requireValue(false, 'unexpected shipped test/runtime dependency');
   }
   if (lines.at(-1) === '') lines.pop();
   requireValue(lines.length > 0 && lines.length <= 50000, 'DEX inventory row count is unsupported');
   const packages = new Set();
   const classes = new Set();
+  const sdkClasses = new Set();
   const markers = new Set();
   const owners = [];
   let totals = 0;
@@ -812,8 +839,9 @@ function checkDexDefinitions(dex, context) {
       if (payload === '<TOTAL>') {
         requireValue(++totals === 1, 'duplicate DEX aggregate root');
       } else {
-        requireValue(dexQualified(payload) && (PROTOTYPE_ID.startsWith(`${payload}.`)
-          || payload === PROTOTYPE_ID || payload.startsWith(`${PROTOTYPE_ID}.`)), 'foreign DEX package hierarchy');
+        requireValue((dexQualified(payload) && (PROTOTYPE_ID.startsWith(`${payload}.`)
+          || payload === PROTOTYPE_ID || payload.startsWith(`${PROTOTYPE_ID}.`)))
+          || playServicesPackages.has(payload), 'foreign DEX package hierarchy');
         requireValue(!packages.has(payload), 'duplicate DEX package row');
         packages.add(payload);
       }
@@ -827,19 +855,26 @@ function checkDexDefinitions(dex, context) {
         requireValue(!markers.has(marker), 'duplicate DEX class definition');
         markers.add(marker);
       } else {
-        requireValue(dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
+        requireValue((dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`))
+          || playServicesClasses.has(payload), 'foreign or malformed DEX class definition');
         requireValue(!classes.has(payload), 'duplicate DEX class definition');
         classes.add(payload);
+        if (playServicesClasses.has(payload)) sdkClasses.add(payload);
       }
     } else {
       const member = payload.match(/^(\S+) (.+)$/);
-      requireValue(member && dexQualified(member[1]) && member[2].trim(), 'malformed DEX member row');
+      requireValue(member && (dexQualified(member[1]) || playServicesClasses.has(member[1]))
+        && member[2].trim(), 'malformed DEX member row');
       owners.push(member[1]);
     }
     context.row = null;
   }
   requireValue(totals === 1, 'DEX aggregate root missing');
   requireValue(classes.has(`${PROTOTYPE_ID}.MainActivity`), 'exact MainActivity DEX definition missing');
+  requireValue(sdkClasses.size === 0 || sdkClasses.size === playServicesClasses.size,
+    'Play services DEX inventory is incomplete');
+  requireValue(expectedPlayServices === undefined || (typeof expectedPlayServices === 'boolean'
+    && (sdkClasses.size > 0) === expectedPlayServices), 'DEX inventory and manifest Play services profiles differ');
   requireValue(owners.every((owner) => classes.has(owner)), 'DEX member owner is not a declared allowed class');
   requireValue([...markers].every((owner) => classes.has(owner)), 'DEX access marker has no declared owner class');
   const classPackages = new Set();
@@ -857,6 +892,20 @@ export function assertGeneratedSplitsSource(files, directories) {
   const supported = new Set(['xml', 'values', 'values-v27', 'values-night', 'values-night-v27']);
   requireValue(directories.includes('xml') && directories.includes('values')
     && directories.every((name) => supported.has(name)), 'generated splits XML requires the reviewed non-localized resource profile');
+}
+export function playServicesSourceProfile(build) {
+  requireValue(typeof build === 'string', 'Android source build is missing');
+  const mentions = [...build.matchAll(/com\.google\.android\.gms:play-services-auth(?=[:'"\s])/g)];
+  if (mentions.length === 0) return false;
+  requireValue(mentions.length === 1
+    && /\bimplementation\s+(['"])com\.google\.android\.gms:play-services-auth:22\.0\.0\1/.test(build),
+  'Android source must declare the exact approved Play services dependency');
+  return true;
+}
+export function assertPlayServicesManifest(receipt, expected) {
+  exactKeys(receipt, ['verified', 'playServices']);
+  requireValue(receipt.verified === true && typeof expected === 'boolean' && receipt.playServices === expected,
+    'manifest and selected source Play services profiles differ');
 }
 function apkCertificate(path, stage) {
   const result = execute(sdkTool('apksigner'), ['verify', '--verbose', '--print-certs', path], { env: cleanEnv() }, stage);
@@ -878,6 +927,8 @@ async function inspectPackages(work, root) {
   }
   const version = await json(join(work, 'version.json'));
   const signer = await json(join(work, 'signer.json'));
+  const playServices = playServicesSourceProfile(await readFile(
+    join(root, 'packaging', 'android', 'app', 'build.gradle'), 'utf8'));
   const bundle = join(work, 'recap-page-android.aab');
   const derivedContext = derivedSdkContext(await fileDigest(join(work, 'bundletool.jar')),
     await json(join(work, 'device-spec.json')));
@@ -893,7 +944,9 @@ async function inspectPackages(work, root) {
     && inventory.files.some((file) => file.name === 'base/manifest/AndroidManifest.xml'), 'unexpected or missing bundle module');
   const bundleManifest = join(work, 'bundle-manifest.xml');
   await writeFile(bundleManifest, bundletool('AAB_MANIFEST_DUMP', work, 'dump', 'manifest', `--bundle=${bundle}`, '--module=base'));
-  java('AAB_MANIFEST', 'manifest', bundleManifest, OFFICIAL_ID, String(version.versionCode), version.versionName, 'app', 'publishing');
+  const bundleProfile = JSON.parse(java('AAB_MANIFEST', 'manifest', bundleManifest,
+    OFFICIAL_ID, String(version.versionCode), version.versionName, 'app', 'publishing'));
+  assertPlayServicesManifest(bundleProfile, playServices);
   await checkAssets(join(work, 'bundle', 'base', 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'AAB');
   console.log('Android candidate: AAB public asset checks passed.');
   const apks = JSON.parse(java('APKS_ARCHIVE', 'archive', join(work, 'derived.apks'), '-', join(work, 'apks')));
@@ -926,8 +979,9 @@ async function inspectPackages(work, root) {
       requireValue(/^application-label:'Recap Page'$/m.test(badging), 'resolved application label mismatch');
       const resources = execute(sdkTool('aapt2'), ['dump', 'resources', path], { env: cleanEnv() }, 'BASE_APK_RESOURCES_DUMP');
       await writeFile(join(work, 'resources.txt'), resources);
-      java('BASE_APK_POLICY_MANIFEST', 'manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName,
-        'app', derivedContext, join(work, 'resources.txt'));
+      const apkProfile = JSON.parse(java('BASE_APK_POLICY_MANIFEST', 'manifest', xmlPath,
+        OFFICIAL_ID, String(version.versionCode), version.versionName, 'app', derivedContext, join(work, 'resources.txt')));
+      assertPlayServicesManifest(apkProfile, playServices);
       for (const [name, dumpStage, verifyStage] of [
         ['backup_rules', 'BASE_APK_BACKUP_XML_DUMP', 'BASE_APK_BACKUP_RULES'],
         ['data_extraction_rules', 'BASE_APK_EXTRACTION_XML_DUMP', 'BASE_APK_EXTRACTION_RULES'],
@@ -946,7 +1000,7 @@ async function inspectPackages(work, root) {
       await writeFile(join(work, 'splits0.xml'), execute(sdkTool('apkanalyzer'),
         ['resources', 'xml', '--file', '/res/xml/splits0.xml', path], { env: cleanEnv() }, 'BASE_APK_SPLITS_XML_DUMP'));
       const dex = execute(sdkTool('apkanalyzer'), ['dex', 'packages', '--defined-only', path], { env: cleanEnv() }, 'BASE_APK_DEX');
-      verifyDexDefinitions(dex);
+      verifyDexDefinitions(dex, { playServices });
     } else {
       assertCodeFreeConfig(contents.files);
     }

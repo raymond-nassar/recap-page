@@ -88,6 +88,34 @@ test('the Android transport reads a dormant app as no cloud backup, and says its
   assert.deepEqual([(await connected).enabled, (await connected).state], [true, 'connected']);
 });
 
+test('the Android transport follows the provider when deciding whether names can repeat', async () => {
+  const cloud = createCloudPort();
+  const port = nativePort();
+  cloud.attach(port);
+  const transport = createAndroidCloudTransport(cloud, createCloudHostTransport);
+  const answer = async (request, operation, provider) => {
+    await settle();
+    const sent = JSON.parse(port.sent.at(-1));
+    assert.equal(sent.op, operation);
+    if (operation === 'connect') assert.deepEqual(JSON.parse(sent.body), { provider: 'googledrive' });
+    cloud.receive({
+      v: 1, kind: 'cloud-result', id: sent.id, status: 200,
+      body: { ok: true, status: { state: 'not-connected', provider, connection: null } },
+    });
+    return request;
+  };
+  assert.equal(transport.scope, 'device');
+  assert.equal(transport.duplicateNames, false);
+  await answer(transport.status(), 'status', 'onedrive');
+  assert.equal(transport.duplicateNames, false);
+  await answer(transport.connect({ provider: 'googledrive' }), 'connect', 'googledrive');
+  assert.equal(transport.duplicateNames, true, 'Google Drive can have two backups with the same name');
+  await answer(transport.status(), 'status', null);
+  assert.equal(transport.duplicateNames, true, 'a status without a provider retains the last policy');
+  await answer(transport.disconnect(), 'disconnect', 'onedrive');
+  assert.equal(transport.duplicateNames, false, 'OneDrive does not have duplicate backup names');
+});
+
 test('the bridge hands the cloud half its port and its answers, and takes the port back', () => {
   const listeners = new Map();
   const calls = [];

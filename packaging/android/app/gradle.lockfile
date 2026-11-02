@@ -1,0 +1,41 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+# To regenerate this file, run: ./gradlew :app:dependencies --write-locks
+androidx.activity:activity:1.5.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.annotation:annotation-experimental:1.1.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.annotation:annotation:1.2.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.arch.core:core-common:2.1.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.arch.core:core-runtime:2.1.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.collection:collection:1.1.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.concurrent:concurrent-futures:1.0.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.core:core-ktx:1.2.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.core:core:1.8.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.customview:customview:1.0.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.fragment:fragment:1.5.7=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.lifecycle:lifecycle-common:2.5.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.lifecycle:lifecycle-livedata-core:2.5.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.lifecycle:lifecycle-runtime:2.5.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.lifecycle:lifecycle-viewmodel:2.5.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.loader:loader:1.1.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.savedstate:savedstate:1.2.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.tracing:tracing:1.0.0=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.versionedparcelable:versionedparcelable:1.1.1=debugRuntimeClasspath,releaseRuntimeClasspath
+androidx.viewpager:viewpager:1.0.0=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-auth-api-phone:18.0.2=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-auth-base:18.0.10=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-auth:22.0.0=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-base:18.5.0=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-basement:18.9.0=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-fido:20.0.1=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.android.gms:play-services-tasks:18.2.0=debugRuntimeClasspath,releaseRuntimeClasspath
+com.google.guava:listenablefuture:1.0=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains.kotlin:kotlin-stdlib:1.9.21=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.8.0=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.0=debugRuntimeClasspath,releaseRuntimeClasspath
+org.jetbrains:annotations:23.0.0=debugRuntimeClasspath,releaseRuntimeClasspath
+empty=

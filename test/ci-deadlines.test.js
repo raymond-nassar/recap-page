@@ -19,7 +19,7 @@ import { readFileSync } from 'node:fs';
 // relationship between numbers written eighty lines apart, which is exactly the kind of thing
 // that decays quietly. Hence this.
 
-// YAML by hand, because a parser is a dependency and runtime dependencies stay at zero here.
+// YAML by hand, because a parser is a dependency and browser runtime dependencies stay at zero.
 // It only has to read one file that this repository controls, and the last test below is what
 // keeps that honest: it holds the parser to the file's own count of steps and of deadlines, both
 // derived from the text rather than from the parse. Counting deadlines alone was not enough. A

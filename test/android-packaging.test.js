@@ -133,6 +133,17 @@ test('Android package identity comes from the shared reserved-build contract', a
   assert.doesNotMatch(build, /betaRevision/);
 });
 
+test('Android packages library resources in the app language', async () => {
+  const [build, html, resources] = await Promise.all([
+    readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),
+    readFile(new URL('../src/index.html', import.meta.url), 'utf8'),
+    readdir(new URL('../packaging/android/app/src/main/res', import.meta.url)),
+  ]);
+  assert.match(html, /<html\b[^>]*\blang="en"/);
+  assert.match(build, /androidResources\s*\{[^}]*localeFilters\.add\('en'\)/);
+  assert.ok(resources.every((name) => !/^values-[a-z]{2}(?:-r[A-Z]{2})?$/.test(name)));
+});
+
 test('Android wrapper bootstrap matches the distribution and runs before the Windows launcher', async () => {
   const [properties, bootstrap, windows] = await Promise.all([
     readFile(new URL('../packaging/android/gradle/wrapper/gradle-wrapper.properties', import.meta.url), 'utf8'),

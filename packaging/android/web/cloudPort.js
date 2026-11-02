@@ -78,5 +78,5 @@ export function createCloudPort() {
 // The shared transport over this port, with the operation as its whole path. The Android app holds one
 // sign-in for itself alone, which the card and the erase say as "this device".
 export function createAndroidCloudTransport(cloud, createTransport) {
-  return { ...createTransport({ fetchImpl: cloud.fetch, prefix: '' }), scope: 'device' };
+  return Object.assign(createTransport({ fetchImpl: cloud.fetch, prefix: '' }), { scope: 'device' });
 }
