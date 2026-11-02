@@ -2348,12 +2348,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
      the card. The reserve is measured from the top of the screen for that reason: 27rem, measured from
      the card's own top, put Read 137px under the bar at 390x844 on a first visit. 40.5rem leaves a 131px
      wide cover there, 189px at 430x932, and 101px at 360x800, where 40rem and an 8rem floor put Read 4px under it.
-     The floor is the 96px the cover had before; at 375x667 Read sat under the bar on opening with that
-     cover too. Being in rem, a larger browser text setting shrinks the cover before it takes room from
-     the buttons. The same 2:3 poster sizing #980 gave a comic's own page in the phone apps. */
+     The floor and gap are the 96px and --space-4 the cover had before, and 14.4dvh holds them there at 375x667
+     at any text size, never under 96px in landscape: the list's heading keeps Read under the bar there,
+     and only a cover under half of 96px would lift it. Being in rem, larger text shrinks the cover first. */
   #hero .hero-in > .art {
-    float: none; max-width: none; margin: 0 auto var(--space-6);
-    width: max(min(30vw, 6rem), min(calc((100dvh - 40.5rem) * 2 / 3), 62vw, 20rem));
+    float: none; max-width: none; margin: 0 auto var(--space-4);
+    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - 40.5rem) * 2 / 3), 62vw, 20rem));
   }
   #hero-title, #hero-by { text-align: center; }
   #hero-title { clear: both; }

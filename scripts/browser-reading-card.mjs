@@ -145,9 +145,10 @@ export const readingCardFocus = {
 // and Done stay visible without scrolling, and the Marvel Unlimited record and the position move to
 // Issue details. Before it, a phone showed the cover floated left at 96px. Read must also stay above the
 // fold when the screen opens, with the list's heading above the card, which leaves the smallest phones
-// little more than that: a third larger is the floor from 390px wide, and never smaller below it. At
-// 375x667 Read was already under the bottom bar on opening with the 96px cover, so that screen is held
-// only to the card-top check.
+// little more than that: a third larger is the floor from 390px wide, and never smaller below it.
+// 375x667, the iPhone SE size, is held to the cover and gap it had before: 96px and half a rem. On opening, the
+// list's heading and the card's title keep Read under the bottom bar there, as before #1061, and lifting
+// it with the cover alone would take one under half that 96px, so the pin records that too.
 // Read and Done are then checked with the card scrolled to its top, as the owner's screenshot shows it.
 export const readingCardPoster = {
   id: 'reading-card-poster',
@@ -169,6 +170,24 @@ export const readingCardPoster = {
           });
           t.check(`${name}: Read is above the fold when the screen opens`,
             opened.scrollY === 0 && opened.read <= opened.fold, JSON.stringify(opened));
+        }
+        if (width === 375 && height === 667) {
+          const opened = await page.evaluate(() => {
+            const rail = document.querySelector('.rail-header');
+            const bar = rail.getBoundingClientRect();
+            const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+            const art = document.querySelector('#hero .hero-in > .art').getBoundingClientRect();
+            return { scrollY: Math.round(scrollY), fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
+              read: Math.round(document.querySelector('#btn-hero-read').getBoundingClientRect().bottom),
+              art: Math.round(art.width), tall: Math.round(art.height),
+              rem: parseFloat(getComputedStyle(document.documentElement).fontSize),
+              gap: Math.round(document.querySelector('#hero-title').getBoundingClientRect().top - art.bottom) };
+          });
+          t.check(`${name}: the cover keeps the 96px and half-rem gap it had before`,
+            Math.abs(opened.art - 96) <= 1 && opened.gap <= opened.rem / 2 + 1, JSON.stringify(opened));
+          t.check(`${name}: on opening Read is under the bar, and the cover alone could lift it only under half its 96px`,
+            opened.scrollY === 0 && opened.read > opened.fold && (opened.tall - (opened.read - opened.fold)) * 2 / 3 < 48,
+            JSON.stringify(opened));
         }
         await page.evaluate(() => {
           const hero = document.querySelector('#hero');

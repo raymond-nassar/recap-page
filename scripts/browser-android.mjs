@@ -4787,10 +4787,13 @@ try {
     { width: 320, height: 740, desktop: true, theme: 'dark', listName: 'Counterrevolutionaries reading order', nameLabel: 'Windows long-word name', longWord: true },
   ];
   // #876: the phone sizes the Issue names, with and without 200% text, and the short landscape screen
-  // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text.
+  // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text. #1061: the
+  // iOS overlay's own text sizes at 390 by 844, where its 14px body text once shrank the cover's reserve
+  // and put Read 13px under the bar.
   if (progressGlance) viewports = [
     { width: 360, height: 800, theme: 'light', heroAbove: true, homeAbove: true },
     { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, homeAbove: true },
+    { width: 390, height: 844, theme: 'light', heroAbove: true, iosText: true },
     { width: 800, height: 360, theme: 'dark', homeAbove: true },
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 412, height: 915, textScale: 2, theme: 'light', covers: true },
@@ -4964,11 +4967,19 @@ try {
         }
       }, viewport.textScale);
     }
+    if (viewport.iosText) {
+      const tokens = [...(await readFile(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'))
+        .matchAll(/(--t-[\w-]+): calc\(var\(--ios-text-scale\) \* (\d+)px\)/g)].map(([, name, px]) => [name, `${px}px`]);
+      assert.ok(tokens.length >= 6, 'the iOS overlay still declares its text tokens');
+      await page.evaluate((pairs) => {
+        for (const [name, value] of pairs) document.documentElement.style.setProperty(name, value);
+      }, tokens);
+    }
     if (alignment && viewport.textScale) {
       await page.$eval('#home-h', (node, font) => { node.style.fontSize = `${font}px`; }, viewport.logoBase * viewport.textScale);
     }
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'after existing text scaling');
-    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}${viewport.iosText ? ' iOS text' : ''}`;
     const navigationToggle = await page.$eval('#btn-rail-toggle', (node) => {
       const { width, height } = node.getBoundingClientRect();
       return {

@@ -365,11 +365,14 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
      above its title. Its 35em reserve is measured from the top of the screen, because #836 has Read
      open above the bottom bar: it holds the list's heading and progress, the card's padding, a
      two-line title, the byline and Read. Measured at 360 by 800, 25em left Read 152px under the bar.
+     35rem holds iOS to it too, whose 14px text made 35em a 490px reserve and put Read 13px under the
+     bar at 390x844; 35em still grows it with Dynamic Type. The floor and gap stay the 96px and --space-4 of
+     before at 375x667 and any text size, as styles.css says.
      A block of its own, so #980's poster rules above can still be lifted out whole for comparison. */
   #hero .hero-in { display: flow-root; }
   #hero .hero-in > .art {
-    float: none; max-width: none; margin: 0 auto var(--space-6);
-    width: max(min(30vw, 6rem), min(calc((100dvh - var(--mobile-nav-height, 80px) - 35em) * 2 / 3), 62vw, 20rem));
+    float: none; max-width: none; margin: 0 auto var(--space-4);
+    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--mobile-nav-height, 80px) - max(35rem, 35em)) * 2 / 3), 62vw, 20rem));
   }
   #hero-title, #hero-by { text-align: center; }
 }
