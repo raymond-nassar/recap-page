@@ -55,7 +55,7 @@ test('445 actual preference transitions clear choices while unchanged values and
   const calls = [];
   const controls = { checked: true, replaceChildren() { reports.length = 0; } };
   const context = {
-    settings, synopsisDisclosure: disclosure, saveSettings: () => saved,
+    settings, synopsisDisclosure: disclosure, saveSettings: () => saved, iosApp: false,
     $: () => controls, notify: (...args) => reports.push(args), announce: (text) => calls.push(text),
     readingView: { renderHero() { calls.push('Reading'); } },
     issueView: { refreshDescription() { calls.push('Details'); } },
@@ -78,6 +78,9 @@ test('445 actual preference transitions clear choices while unchanged values and
   assert.equal(settings.hideDescriptions, true);
   assert.match(reports.at(-1)[1], /could not be saved.*reload/);
   assert.deepEqual(calls.slice(before), ['Reading', 'Details']);
+  context.iosApp = true;
+  context.setMode(true);
+  assert.match(reports.at(-1)[1], /could not be saved.*close and reopen the app/);
 });
 
 test('447 typed session entries distinguish plot prose from identical English fallback text', () => {

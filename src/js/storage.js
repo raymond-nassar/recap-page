@@ -12,12 +12,14 @@ import {
   DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, listSignature, occurrenceIssue,
   validateImportDraft, importProjection, pendingOutcome,
 } from './lib/importDraft.js';
+import { isIosApp } from './lib/platform.js';
 
 export const KEY = 'mrt.state.v2';
 export const IMPORT_DRAFT_KEY = 'mrt.import.draft.v1';
 const TEMP_KEY = 'mrt.state.restore.tmp';
 export const PRERESTORE_KEY = 'mrt.state.prerestore';
 const SALVAGE_KEY = 'mrt.state.salvage';
+const platformText = (web, ios) => isIosApp() ? ios : web;
 
 // Recovery values preserve the exact bytes that existed when something went wrong. They can be
 // unreadable or from a newer schema, so only promotion through restore validates and sanitizes them.
@@ -74,7 +76,10 @@ export class ImportDraftStore {
 
   load() {
     if (this.uncertain) {
-      this.error = 'Import draft storage outcome is unknown. Export retained source before reloading; no further changes are allowed.';
+      this.error = platformText(
+        'Import draft storage outcome is unknown. Export retained source before reloading; no further changes are allowed.',
+        'Import draft storage outcome is unknown. Export retained source before closing the app; no further changes are allowed.',
+      );
       return this.draft;
     }
     const prior = this.raw;
@@ -102,11 +107,24 @@ export class ImportDraftStore {
   }
 
   async locked(expected, operation) {
-    if (!this.locks?.request) return { ok: false, changed: false, error: 'Import draft saving needs browser storage locks. Source was kept; nothing was published.' };
+    if (!this.locks?.request) return {
+      ok: false,
+      changed: false,
+      error: platformText(
+        'Import draft saving needs browser storage locks. Source was kept; nothing was published.',
+        'This app cannot coordinate import-draft saving with another copy. Source was kept; nothing was published.',
+      ),
+    };
     try {
       return await this.locks.request(IMPORT_DRAFT_KEY, () => {
-        if (this.uncertain) throw new Error('Draft storage outcome is unknown. Export the retained source before reloading; further changes are paused.');
-        if (!this.isCurrent(expected)) throw new Error('The import draft changed in another tab. Reopen Search to review the current draft.');
+        if (this.uncertain) throw new Error(platformText(
+          'Draft storage outcome is unknown. Export the retained source before reloading; further changes are paused.',
+          'Draft storage outcome is unknown. Export the retained source before closing the app; further changes are paused.',
+        ));
+        if (!this.isCurrent(expected)) throw new Error(platformText(
+          'The import draft changed in another tab. Reopen Search to review the current draft.',
+          'The import draft changed in another copy of the app. Reopen Search to review the current draft.',
+        ));
         if (this.blocked) throw new Error(this.error);
         const result = operation();
         this.error = result.ok ? null : result.error;
@@ -126,7 +144,10 @@ export class ImportDraftStore {
       ...next, previousSources: [...new Set([...next.previousSources, ...this.recovery])], revision: newToken(),
     });
     validateImportDraft(raw);
-    if (!this.isCurrent(previous)) throw new Error('Another tab changed the draft before saving. Nothing was overwritten.');
+    if (!this.isCurrent(previous)) throw new Error(platformText(
+      'Another tab changed the draft before saving. Nothing was overwritten.',
+      'Another copy of the app changed the draft before saving. Nothing was overwritten.',
+    ));
     let writeError = null;
     try {
       this.storage.setItem(IMPORT_DRAFT_KEY, raw);
@@ -139,7 +160,10 @@ export class ImportDraftStore {
     } catch (error) {
       this.recovery = [...new Set([...this.recovery, previous, raw].filter(Boolean))];
       this.uncertain = true;
-      return { ok: false, changed: null, error: `Import draft verification failed (${error.message}). Storage outcome is unknown; retained source is available for export before reloading.` };
+      return { ok: false, changed: null, error: platformText(
+        `Import draft verification failed (${error.message}). Storage outcome is unknown; retained source is available for export before reloading.`,
+        `Import draft verification failed (${error.message}). Storage outcome is unknown; retained source is available for export before closing the app.`,
+      ) };
     }
     if (actual === raw) {
       this.raw = raw;
@@ -151,12 +175,18 @@ export class ImportDraftStore {
     if (actual !== previous) {
       this.recovery = [...new Set([...this.recovery, previous, raw].filter(Boolean))];
       this.uncertain = true;
-      return { ok: false, changed: null, error: 'Another value replaced the draft. Storage outcome is uncertain; export retained source before reloading. No rollback was attempted.' };
+      return { ok: false, changed: null, error: platformText(
+        'Another value replaced the draft. Storage outcome is uncertain; export retained source before reloading. No rollback was attempted.',
+        'Another value replaced the draft. Storage outcome is uncertain; export retained source before closing the app. No rollback was attempted.',
+      ) };
     }
     const checkpointOnly = next.pending === null && this.draft?.pending
       && next.incarnation === this.draft.incarnation && next.rawText === this.draft.rawText;
     if (!checkpointOnly) this.recovery = [...new Set([...this.recovery, raw])];
-    return { ok: false, changed: false, error: `Import draft was not saved${writeError ? ` (${writeError.message})` : ''}. Previous saved source is unchanged; keep this page open or export the unsaved source.` };
+    return { ok: false, changed: false, error: platformText(
+      `Import draft was not saved${writeError ? ` (${writeError.message})` : ''}. Previous saved source is unchanged; keep this page open or export the unsaved source.`,
+      `Import draft was not saved${writeError ? ` (${writeError.message})` : ''}. Previous saved source is unchanged; keep this app open or export the unsaved source.`,
+    ) };
   }
 
   start(rawText, { listId = null, name = 'Imported Reading List' } = {}) {
@@ -253,7 +283,10 @@ export class ImportDraftStore {
     return this.locked(expected, () => {
       if (!this.draft) throw new Error('There is no saved import draft.');
       const raw = this.storage.getItem(KEY);
-      if (this.reader.blocked || this.reader.foreignWriteSince()) throw new Error('Reading data changed. Reload before reviewing this draft.');
+      if (this.reader.blocked || this.reader.foreignWriteSince()) throw new Error(platformText(
+        'Reading data changed. Reload before reviewing this draft.',
+        'Reading data changed. Close and reopen the app before reviewing this draft.',
+      ));
       if (this.draft.pending) {
         const outcome = pendingOutcome(this.draft, this.reader.state, tokenOf(raw), raw === null);
         if (outcome === 'after') return { ...this.finishPending(this.reader.state, tokenOf(raw)), readerSaved: true, added: 0, listId: this.draft.destination.id };
@@ -300,7 +333,10 @@ export class ImportDraftStore {
       try { actual = this.storage.getItem(IMPORT_DRAFT_KEY); } catch (error) {
         this.recovery = [...new Set([...this.recovery, this.raw].filter(Boolean))];
         this.uncertain = true;
-        return { ok: false, changed: null, error: `Import draft removal is uncertain (${error.message}). Export retained source before reloading.` };
+        return { ok: false, changed: null, error: platformText(
+          `Import draft removal is uncertain (${error.message}). Export retained source before reloading.`,
+          `Import draft removal is uncertain (${error.message}). Export retained source before closing the app.`,
+        ) };
       }
       if (actual !== null) {
         if (actual !== this.raw) {
@@ -309,7 +345,10 @@ export class ImportDraftStore {
         }
         return {
           ok: false, changed: actual === this.raw ? false : null,
-          error: `Import draft removal was not confirmed${removalError ? ` (${removalError.message})` : ''}.${this.uncertain ? ' Export retained source before reloading; the storage outcome is unknown.' : ' Stored source was not overwritten.'}`,
+          error: platformText(
+            `Import draft removal was not confirmed${removalError ? ` (${removalError.message})` : ''}.${this.uncertain ? ' Export retained source before reloading; the storage outcome is unknown.' : ' Stored source was not overwritten.'}`,
+            `Import draft removal was not confirmed${removalError ? ` (${removalError.message})` : ''}.${this.uncertain ? ' Export retained source before closing the app; the storage outcome is unknown.' : ' Stored source was not overwritten.'}`,
+          ),
         };
       }
       this.raw = null;
@@ -532,10 +571,18 @@ export class Store {
     if (this.foreignWriteSince()) {
       this.load();
       this.lastError = this.blocked
-        ? 'Another tab replaced the data this tab could not read. Nothing was cleared, and this tab '
-          + 'is now looking at the new data, so try again.'
-        : 'Another tab replaced the data this tab could not read, and the new data reads correctly. '
-          + 'Nothing was cleared, and this tab is up to date.';
+        ? platformText(
+          'Another tab replaced the data this tab could not read. Nothing was cleared, and this tab '
+            + 'is now looking at the new data, so try again.',
+          'Another copy of the app replaced the data this app could not read. Nothing was cleared, and this app '
+            + 'is now looking at the new data, so try again.',
+        )
+        : platformText(
+          'Another tab replaced the data this tab could not read, and the new data reads correctly. '
+            + 'Nothing was cleared, and this tab is up to date.',
+          'Another copy of the app replaced the data this app could not read, and the new data reads correctly. '
+            + 'Nothing was cleared, and this app is up to date.',
+        );
       this.onChange(this.state, this.lastError);
       return false;
     }
@@ -548,10 +595,14 @@ export class Store {
       return false;
     }
     if (!this.salvage() && (typeof original !== 'string' || verifiedCopyRaw !== original)) {
-      this.lastError =
+      this.lastError = platformText(
         'Nothing was cleared: a copy of your unreadable data could not be set aside '
         + '(browser storage is probably full). Download a copy, then use "Verify downloaded copy" '
-        + 'to check the saved file before you try again. A download request alone is not a saved copy.';
+        + 'to check the saved file before you try again. A download request alone is not a saved copy.',
+        'Nothing was cleared: a copy of your unreadable data could not be set aside '
+        + '(app storage is probably full). Download a copy, then use "Verify downloaded copy" '
+        + 'to check the saved file before you try again. A download request alone is not a saved copy.',
+      );
       this.onChange(this.state, this.lastError);
       return false;
     }
@@ -752,9 +803,12 @@ export class Store {
     }
     if (expectedRaw === undefined && tokenOf(held) !== this.seenToken) {
       this.conflicted = true;
-      this.lastError =
+      this.lastError = platformText(
         'Another tab saved newer data, so that change was not saved. This tab has been brought '
-        + 'up to date, so please make the change again.';
+        + 'up to date, so please make the change again.',
+        'Another copy of the app saved newer data, so that change was not saved. This app has been brought '
+        + 'up to date, so please make the change again.',
+      );
       return false;
     }
     const token = newToken();
@@ -830,10 +884,13 @@ export class Store {
 
   captureRestore() {
     try {
-      if (!this.storage) throw new Error('Browser storage is unavailable');
+      if (!this.storage) throw new Error(platformText('Browser storage is unavailable', 'App storage is unavailable'));
       return { ok: true, main: this.storage.getItem(KEY) ?? '', snapshot: this.storage.getItem(PRERESTORE_KEY) };
     } catch (error) {
-      return { ok: false, errors: [`Could not check saved reading data and its recovery copy (${error.message}). Reload and try again.`] };
+      return { ok: false, errors: [platformText(
+        `Could not check saved reading data and its recovery copy (${error.message}). Reload and try again.`,
+        `Could not check saved reading data and its recovery copy (${error.message}). Close and reopen the app to try again.`,
+      )] };
     }
   }
 
@@ -923,7 +980,10 @@ export class Store {
               ? ' The earlier recovery copy is unchanged.'
               : ' Check and download the retained recovery copy before trying again.';
           } catch (copyError) {
-            copyStatus = ` Recovery-copy preservation could not be confirmed (${copyError.message}). Keep this page open and download any retained copy before trying again.`;
+            copyStatus = platformText(
+              ` Recovery-copy preservation could not be confirmed (${copyError.message}). Keep this page open and download any retained copy before trying again.`,
+              ` Recovery-copy preservation could not be confirmed (${copyError.message}). Keep this app open and download any retained copy before trying again.`,
+            );
           }
         }
         return {
@@ -967,7 +1027,10 @@ export class Store {
       const result = {
         ok: false,
         changed: null,
-        errors: [`${reason} browser will not say what your saved data now holds.`],
+        errors: [platformText(
+          `${reason} browser will not say what your saved data now holds.`,
+          `${reason} app will not say what your saved data now holds.`,
+        )],
       };
       // Notified last. renderAll() reads storage again on the way through, and a storage that has
       // just stopped answering reads does not answer that one either, so a throw from an observer
@@ -995,7 +1058,8 @@ export class Store {
     this.load();
     const cause = err
       ? `Could not write the restored data: ${err.message}.`
-      : 'This browser reported a successful write that did not land.';
+      : platformText('This browser reported a successful write that did not land.',
+        'This app reported a successful write that did not land.');
     // Compared against what went in rather than asserted. "Nothing was changed" is only true of a
     // key that still holds what it held, and a key holding a third thing is a case this can see and
     // must not describe as either outcome.
@@ -1078,7 +1142,7 @@ export class Store {
   // was told nothing at all about a restore that had already changed their saved data.
   hasPreRestoreSnapshot({ onError } = {}) {
     if (!this.storage) {
-      onError?.(new Error('Browser storage is unavailable'));
+      onError?.(new Error(platformText('Browser storage is unavailable', 'App storage is unavailable')));
       return false;
     }
     try {
