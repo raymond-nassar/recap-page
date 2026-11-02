@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { runInNewContext } from 'node:vm';
 import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
   prepareIos, readIosIdentity,
@@ -1019,6 +1020,54 @@ test('T03 prepares positive fixtures away from native bottom navigation without 
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
   assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
+});
+
+test('T03 positions a partially covered Data heading before its native audit', () => {
+  const core = presentationTests.slice(
+    presentationTests.indexOf('func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('func testPassiveGuardChecksHiddenARIAControlsWithoutExemptingLabels()'));
+  assert.match(core, /positionsDataAudit: UIDevice\.current\.userInterfaceIdiom == \.phone/);
+  assert.match(core, /if name == "data" \{\s*try prepareDataAuditHeading\(in: app\)\s*\}[\s\S]*?try performAccessibilityAudit/);
+  const preflight = presentationTests.slice(
+    presentationTests.indexOf('private func partiallyOverlapsNavigation('),
+    presentationTests.indexOf('func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes()'));
+  assert.match(presentationTests, /dataAuditPositioner\.setAttribute\('aria-label', 'Prepare Data audit'\)/);
+  assert.match(preflight, /navigationFrame\.intersects\(nativeCrop\) && !navigationFrame\.contains\(nativeCrop\)/);
+  assert.match(preflight, /positioner\.tap\(\)/);
+  assert.match(preflight, /XCTAssertFalse\(positioner\.exists, "the positioning control is removed before the audit"/);
+  assert.match(preflight, /XCTExpectFailure\("Without positioning, the measured heading overlaps navigation"/);
+  assert.match(preflight, /XCTAssertEqual\(after\["href"\] as\? String, before\["href"\] as\? String/);
+  assert.match(preflight, /XCTAssertNil\(position\["error"\]/);
+  assert.match(preflight, /if partial \{ XCTAssertTrue\(moved/);
+  assert.match(preflight, /XCTAssertLessThanOrEqual\(headingBottom, navigationTop/);
+  assert.match(preflight, /XCTAssertGreaterThanOrEqual\(buttonTop, navigationTop/);
+  assert.match(preflight, /XCTAssertGreaterThanOrEqual\(titleTop, 0/);
+  assert.match(preflight, /let afterNavigation = try XCTUnwrap\(afterProof\["navigationOcclusions"\]/);
+  assert.match(preflight, /XCTAssertFalse\(owners\.contains \{ \$0\["label"\] as\? String == "Reading data" \}/);
+  assert.match(preflight, /record\("t03-data-audit-position"/);
+  assert.match(presentationTests, /CGRect\(x: 29, y: 745, width: 332, height: 10\)/);
+  assert.match(presentationTests, /CGRect\(x: 0, y: 753, width: 390, height: 91\)/);
+  assert.match(presentationTests, /XCTAssertTrue\(partiallyOverlapsNavigation\(partialCrop/);
+  assert.match(presentationTests, /XCTAssertFalse\(partiallyOverlapsNavigation\(fullyCoveredCrop/);
+  assert.match(presentationTests, /XCTAssertFalse\(partiallyOverlapsNavigation\(clearCrop/);
+});
+
+test('T03 scrolls the measured Data heading clear without partly exposing the next action', () => {
+  const definition = presentationTests.match(/const dataAuditScrollDistance = ([\s\S]*?\n\s*\});/);
+  assert.ok(definition, 'the native audit uses the measured positioning calculation');
+  const distance = runInNewContext(`(${definition[1]})`);
+  const navigation = { top: 706, bottom: 797 };
+  const heading = { top: 698, bottom: 728 };
+  const button = { top: 736, bottom: 784 };
+  const scroll = distance(navigation, heading, button, true, 797);
+  assert.equal(scroll, 26);
+  assert.ok(heading.bottom - scroll < navigation.top);
+  assert.ok(button.top - scroll > navigation.top);
+  assert.equal(distance(navigation, { top: 719, bottom: 749 }, button, true, 797), 0);
+  assert.equal(distance(navigation, { top: 650, bottom: 680 }, button, true, 797), 0);
+  assert.equal(distance(navigation, heading, button, false, 797), 0);
+  assert.equal(distance(navigation, heading, button, true, 798), 0);
+  assert.throws(() => distance(navigation, heading, { top: 729 }, true, 797), /clearance/);
 });
 
 test('T03 unmatched-text diagnostics retain actual Range fragments and the same sampled DOM hit targets', () => {

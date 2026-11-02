@@ -59,7 +59,8 @@ final class PresentationUITests: XCTestCase {
         appearance: String = "Light",
         route: String = "home",
         readHandoffTest: Bool = false,
-        emptyHomeTest: Bool = false
+        emptyHomeTest: Bool = false,
+        positionsDataAudit: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = [
@@ -67,7 +68,8 @@ final class PresentationUITests: XCTestCase {
             "-uiUserInterfaceStyle", appearance,
         ]
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
-        app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(route: route)
+        app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(
+            route: route, positionsDataAudit: positionsDataAudit)
         if route == "all" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
@@ -83,7 +85,7 @@ final class PresentationUITests: XCTestCase {
         return app
     }
 
-    private static func layoutProbe(route: String) -> String {
+    private static func layoutProbe(route: String, positionsDataAudit: Bool) -> String {
         let routeScript: String
         if route == "comic" {
             routeScript = """
@@ -380,6 +382,10 @@ final class PresentationUITests: XCTestCase {
         const guardFixtures = [];
         \(routeScript)
         refreshMonitor();
+        let dataAuditPosition = null;
+        let dataAuditPositioner = null;
+        let dataAuditGeometry = null;
+        \(positionsDataAudit ? Self.dataAuditPositioner : "")
         \(route == "all" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
         const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
         return JSON.stringify({
@@ -396,6 +402,55 @@ final class PresentationUITests: XCTestCase {
         });
         """
     }
+
+    private static let dataAuditPositioner = #"""
+    const dataAuditScrollDistance = (navigation, heading, button, fixed, viewportHeight) => {
+      if (!fixed || navigation.bottom !== viewportHeight
+        || heading.top >= navigation.top || heading.bottom <= navigation.top) return 0;
+      const clearance = Math.min(4, Math.floor((button.top - heading.bottom) / 2));
+      if (clearance < 1) throw new Error('No clearance between the Data heading and the next action');
+      return Math.ceil(heading.bottom - navigation.top + clearance);
+    };
+    dataAuditGeometry = () => {
+      const navigation = document.querySelector('#sidebar .rail-header');
+      const button = document.getElementById('btn-export-json');
+      const heading = button?.closest('.card')?.querySelector('h3');
+      const title = document.getElementById('data-h');
+      if (!navigation || !button || !heading || !title) return null;
+      return {
+        navigation: navigation.getBoundingClientRect().toJSON(),
+        heading: heading.getBoundingClientRect().toJSON(),
+        button: button.getBoundingClientRect().toJSON(),
+        title: title.getBoundingClientRect().toJSON(),
+        fixed: getComputedStyle(navigation).position === 'fixed',
+        viewportHeight: innerHeight,
+        scrollY,
+      };
+    };
+    dataAuditPositioner = document.createElement('button');
+    dataAuditPositioner.id = 'recap-data-audit-positioner';
+    dataAuditPositioner.type = 'button';
+    dataAuditPositioner.textContent = 'Prepare Data audit';
+    dataAuditPositioner.setAttribute('aria-label', 'Prepare Data audit');
+    dataAuditPositioner.hidden = true;
+    dataAuditPositioner.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden;white-space:nowrap';
+    dataAuditPositioner.addEventListener('click', () => {
+      try {
+        const before = dataAuditGeometry();
+        if (!before || document.getElementById('view-data')?.hidden !== false) {
+          throw new Error('Data audit positioning geometry is unavailable');
+        }
+        const distance = dataAuditScrollDistance(before.navigation, before.heading, before.button,
+          before.fixed, before.viewportHeight);
+        if (distance) window.scrollBy(0, distance);
+        dataAuditPosition = { before, distance, moved: distance > 0 };
+      } catch (error) {
+        dataAuditPosition = { error: String(error) };
+      }
+      dataAuditPositioner.remove();
+    });
+    document.body.append(dataAuditPositioner);
+    """#
 
     private static let passiveGuardFixtures = #"""
     const guard = window.__recapPassiveGuard;
@@ -766,6 +821,9 @@ final class PresentationUITests: XCTestCase {
       try {
       const active = document.activeElement;
       const currentView = document.querySelector('.view:not([hidden])')?.id;
+      if (dataAuditPositioner?.isConnected && dataAuditPositioner.hidden !== (currentView !== 'view-data')) {
+        dataAuditPositioner.hidden = currentView !== 'view-data';
+      }
       const breadcrumbLabel = {
         'view-library': 'Library', 'view-add': 'Search', 'view-data': 'Backup & settings',
       }[currentView];
@@ -773,6 +831,7 @@ final class PresentationUITests: XCTestCase {
         tick: ++passiveTick,
         href: location.href,
         view: currentView,
+        dataAuditPosition: dataAuditPosition && { ...dataAuditPosition, settled: dataAuditGeometry() },
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
         guard: window.__recapPassiveGuard ? {
@@ -1566,9 +1625,103 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
+    private func partiallyOverlapsNavigation(_ nativeCrop: CGRect, navigationFrame: CGRect) -> Bool {
+        guard !nativeCrop.isEmpty, !nativeCrop.isInfinite,
+              !navigationFrame.isEmpty, !navigationFrame.isInfinite else { return false }
+        return navigationFrame.intersects(nativeCrop) && !navigationFrame.contains(nativeCrop)
+    }
+
+    private func prepareDataAuditHeading(in app: XCUIApplication) throws {
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return }
+        let heading = app.webViews.firstMatch.staticTexts.matching(
+            NSPredicate(format: "label == %@", "Reading data")).firstMatch
+        let before = try freshPassiveState(of: app)
+        let proof = try XCTUnwrap(before["guard"] as? [String: Any])
+        XCTAssertEqual(before["view"] as? String, "view-data")
+        XCTAssertEqual(proof["valid"] as? Bool, true, "the passive guard is settled before positioning")
+        let webFrame = app.webViews.firstMatch.frame
+        var navigationFrame: CGRect?
+        if let navigation = proof["navigationOcclusions"] as? [String: Any] {
+            let rect = try XCTUnwrap(navigation["rect"] as? [String: Any])
+            let viewport = try XCTUnwrap((proof["viewportWidth"] as? NSNumber)?.doubleValue)
+            let x = try XCTUnwrap((rect["x"] as? NSNumber)?.doubleValue)
+            let y = try XCTUnwrap((rect["y"] as? NSNumber)?.doubleValue)
+            let width = try XCTUnwrap((rect["width"] as? NSNumber)?.doubleValue)
+            let height = try XCTUnwrap((rect["height"] as? NSNumber)?.doubleValue)
+            guard [viewport, x, y, width, height].allSatisfy({ $0.isFinite }),
+                  viewport > 0, width > 0, height > 0, !webFrame.isEmpty else {
+                XCTFail("the fixed bottom navigation has valid geometry")
+                return
+            }
+            let scale = webFrame.width / viewport
+            navigationFrame = CGRect(x: webFrame.minX + x * scale, y: webFrame.minY + y * scale,
+                                     width: width * scale, height: height * scale)
+        }
+        let nativeCrop = heading.exists ? heading.frame : CGRect.null
+        let partial = navigationFrame.map {
+            partiallyOverlapsNavigation(nativeCrop, navigationFrame: $0)
+        } ?? false
+        if partial, let navigationFrame {
+            let previousContinuation = continueAfterFailure
+            continueAfterFailure = true
+            defer { continueAfterFailure = previousContinuation }
+            let options = XCTExpectedFailure.Options()
+            options.isStrict = true
+            options.issueMatcher = { issue in
+                issue.type == .assertionFailure && issue.compactDescription.contains("data-position-mutant")
+            }
+            XCTExpectFailure("Without positioning, the measured heading overlaps navigation", options: options) {
+                XCTAssertFalse(navigationFrame.intersects(nativeCrop),
+                               "data-position-mutant: the unpositioned heading overlaps navigation")
+            }
+        }
+        let positioner = app.buttons.matching(
+            NSPredicate(format: "label == %@", "Prepare Data audit")).firstMatch
+        XCTAssertTrue(positioner.waitForExistence(timeout: 30), "the test-only positioning control is available")
+        XCTAssertTrue(positioner.isHittable, "the test-only positioning control is reachable")
+        positioner.tap()
+        XCTAssertFalse(positioner.exists, "the positioning control is removed before the audit")
+        let after = try freshPassiveState(of: app)
+        XCTAssertEqual(after["view"] as? String, before["view"] as? String, "positioning keeps the Data view")
+        XCTAssertEqual(after["href"] as? String, before["href"] as? String, "positioning does not navigate")
+        let afterProof = try XCTUnwrap(after["guard"] as? [String: Any])
+        XCTAssertEqual(afterProof["valid"] as? Bool, true, "the passive guard remains valid")
+        let position = try XCTUnwrap(after["dataAuditPosition"] as? [String: Any])
+        XCTAssertNil(position["error"], "positioning reports its geometry errors: \(position)")
+        let moved = try XCTUnwrap(position["moved"] as? Bool)
+        if partial { XCTAssertTrue(moved, "a partially covered native heading is positioned") }
+        if moved {
+            let navigationFrame = try XCTUnwrap(navigationFrame)
+            let settled = try XCTUnwrap(position["settled"] as? [String: Any])
+            let navigation = try XCTUnwrap(settled["navigation"] as? [String: Any])
+            let headingRect = try XCTUnwrap(settled["heading"] as? [String: Any])
+            let buttonRect = try XCTUnwrap(settled["button"] as? [String: Any])
+            let titleRect = try XCTUnwrap(settled["title"] as? [String: Any])
+            let navigationTop = try XCTUnwrap((navigation["top"] as? NSNumber)?.doubleValue)
+            let headingBottom = try XCTUnwrap((headingRect["bottom"] as? NSNumber)?.doubleValue)
+            let buttonTop = try XCTUnwrap((buttonRect["top"] as? NSNumber)?.doubleValue)
+            let titleTop = try XCTUnwrap((titleRect["top"] as? NSNumber)?.doubleValue)
+            XCTAssertLessThanOrEqual(headingBottom, navigationTop, "the whole heading clears navigation")
+            XCTAssertGreaterThanOrEqual(buttonTop, navigationTop, "the next action remains fully behind navigation")
+            XCTAssertGreaterThanOrEqual(titleTop, 0, "the Data title stays in the audited viewport")
+            XCTAssertEqual(app.webViews.firstMatch.frame, webFrame, "the native viewport remains stable")
+            let afterNavigation = try XCTUnwrap(afterProof["navigationOcclusions"] as? [String: Any])
+            let owners = try XCTUnwrap(afterNavigation["owners"] as? [[String: Any]])
+            XCTAssertFalse(navigationFrame.intersects(heading.frame), "the native heading clears the bottom bar")
+            XCTAssertFalse(owners.contains { $0["label"] as? String == "Reading data" },
+                           "the entire DOM heading clears the bottom bar")
+        }
+        try record("t03-data-audit-position", [
+            "present": heading.exists, "partialBefore": partial, "position": position,
+            "nativeCropBefore": NSCoder.string(for: nativeCrop),
+            "beforeRoute": before["href"] ?? NSNull(), "afterRoute": after["href"] ?? NSNull(),
+        ])
+    }
+
     func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
-            let app = launch(category: category, route: "all")
+            let app = launch(category: category, route: "all",
+                             positionsDataAudit: UIDevice.current.userInterfaceIdiom == .phone)
             let probe = try probeResult(of: app)
             let screens = try XCTUnwrap(probe["screens"] as? [[String: Any]])
             for (name, headingLabel, view, route, nextLink, nextHeadingLabel, nextView, nextRoute) in [
@@ -1627,6 +1780,9 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(skipLinkWidth, 44, "the skip link meets the 44-point width")
                 XCTAssertGreaterThanOrEqual(skipLinkHeight, 44, "the skip link meets the 44-point height")
                 let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: name == "home")
+                if name == "data" {
+                    try prepareDataAuditHeading(in: app)
+                }
                 try performAccessibilityAudit(of: app, allowsPassiveGuard: true)
                 try record("t03-accessibility-\(category.rawValue)-\(name)", [
                     "audit": "passed", "category": category.rawValue,
@@ -1671,6 +1827,13 @@ final class PresentationUITests: XCTestCase {
     func testPassiveGuardRejectsStructuralAndGlobalNegativeFixtures() throws {
         let measuredCrop = CGRect(x: 29, y: 766, width: 332, height: 10)
         let navigationFrame = CGRect(x: 0, y: 760, width: 390, height: 84)
+        let partialCrop = CGRect(x: 29, y: 745, width: 332, height: 10)
+        let observedNavigation = CGRect(x: 0, y: 753, width: 390, height: 91)
+        let fullyCoveredCrop = CGRect(x: 29, y: 766, width: 332, height: 10)
+        let clearCrop = CGRect(x: 29, y: 730, width: 332, height: 10)
+        XCTAssertTrue(partiallyOverlapsNavigation(partialCrop, navigationFrame: observedNavigation))
+        XCTAssertFalse(partiallyOverlapsNavigation(fullyCoveredCrop, navigationFrame: observedNavigation))
+        XCTAssertFalse(partiallyOverlapsNavigation(clearCrop, navigationFrame: observedNavigation))
         let occludedOwner = CGRect(x: 29, y: 766, width: 332, height: 30)
         let navigationSamples: [[String: Any]] = [
             ["inNavigation": true, "ownerContains": false, "hit": "#sidebar > div:nth-child(1) > a:nth-child(2)"],
