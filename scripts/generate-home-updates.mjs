@@ -17,6 +17,10 @@ export function releaseId(version) {
   return (parts[0] * 100000 + parts[1]) * 100000 + parts[2] + 1;
 }
 
+export function releaseRecords(text) {
+  return records(text);
+}
+
 function records(text) {
   const headings = [...text.matchAll(/^## (.+)\r?$/gm)];
   return headings.map((match, index) => ({
