@@ -24,7 +24,7 @@ Check these constraints before starting. Changes that break them will be decline
 - **Comic artwork in app-controlled storage.** Store cover URLs, never image bytes. Do not host,
   proxy, or cache comic artwork.
 - **Scraping Marvel's sites.** Link to them; get details from the third-party metadata service.
-- **Packages loaded by the browser.** Runtime dependencies stay at zero. Development and CI tools
+- **Packages loaded by the browser.** Browser runtime dependencies stay at zero. Development and CI tools
   may be added when justified.
 - **A different loopback address or port.** Each address has separate browser storage. Changing it
   makes saved progress look missing; the address is not a configurable default.
@@ -331,8 +331,9 @@ For manifest fields and scripts, see
 
 ## Dependencies
 
-Runtime dependencies stay at zero. To propose a development tool, explain what it checks and why
-automating that check is useful.
+Browser runtime dependencies stay at zero. The owner approved an Android-only exception for Google
+Play services auth and its transitive libraries for Google Drive sign-in (#810). To propose a
+development tool, explain what it checks and why automating that check is useful.
 
 Pin workflow actions to full commit revisions, not movable tags. Follow
 [Review pinned GitHub Actions](docs/MAINTAINING.md#review-pinned-github-actions) before updating one.

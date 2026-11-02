@@ -833,8 +833,8 @@ export const CATALOG_SHELVES = [
     types: null,
     sections: 'decades',
     heading: 'Storylines',
-    blurb: 'Selected named stories, events and arcs, whole runs, and on-screen companion picks. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
-    empty: 'No storylines or on-screen companion picks are bundled with this build.',
+    blurb: 'Selected named stories, events and arcs, and whole runs. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
+    empty: 'No storylines are bundled with this build.',
   },
   // Chosen by who a list is for rather than by what kind of reading it is, so it names every type: a
   // list its sources mark for younger readers is found here whatever it is, and only here (#897).
@@ -863,8 +863,8 @@ const FALLBACK_SHELF = CATALOG_SHELVES.find((shelf) => !shelf.types);
 
 // Which shelf a story belongs to. Every one of its readings has to match, not merely one of them: a
 // story mixing types falls through to the shelf that takes everything, which is the one that cannot
-// cut a reading path in two. No bundled story mixes types today, so the rule decides nothing yet.
-// It decides what happens the first time one does.
+// cut a reading path in two. The Doomsday companion and Hickman creator runs share one group, so
+// they keep one canonical shelf even though their browse views select different readings.
 //
 // A reading matches on its stated audience as well as its type. A shelf naming no audience takes
 // only readings that state none, so Character spotlights and Young readers cannot both claim a
@@ -886,11 +886,14 @@ export function shelfStories(stories, key) {
   return all.filter((story) => shelfKey(story) === key);
 }
 
+// MCU Prep lists still fall to the `lines` shelf, because the partition has to file them somewhere,
+// but they are companions to films and series rather than complete storylines, so the Storylines
+// screen leaves them to MCU Prep (#1066).
 export function storylinesStories(stories) {
   const all = Array.isArray(stories) ? stories : [];
   const eligible = new Set(groupCatalog(all.flatMap((story) => story.lists ?? []))
     .filter((story) => shelfKey(story) === 'lines' || story.lists.every((list) => list.storylines === true))
-    .flatMap((story) => story.lists.map((list) => list.id)));
+    .flatMap((story) => story.lists.filter((list) => list.type !== 'screen-companion').map((list) => list.id)));
   const seen = new Set();
   return all.flatMap((story) => {
     const lists = (story.lists ?? []).filter((list) => {
@@ -929,6 +932,16 @@ export function catalogListShelf(lists, id) {
   const story = groupCatalog(Array.isArray(lists) ? lists : [])
     .find((candidate) => candidate.lists.some((list) => list.id === id));
   return story ? shelfKey(story) : null;
+}
+
+// The screen a reader browses to find a list, which is what an issue's breadcrumb names. It is the
+// canonical shelf for everything except MCU Prep lists: those are filed on `lines` but shown only
+// on the MCU Prep screen, so naming Storylines would send the reader where the list is not (#1066).
+export function catalogListBrowseRoute(lists, id) {
+  const shelf = catalogListShelf(lists, id);
+  if (!shelf) return null;
+  const list = lists.find((candidate) => candidate?.id === id);
+  return list?.type === 'screen-companion' ? 'marvel-on-screen' : shelf;
 }
 
 export const MODERN_TIMELINE_START_YEAR = 1998;

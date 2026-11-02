@@ -275,12 +275,23 @@ test('dynamic Reading List and issue hierarchies use only validated context', ()
     }).map(({ label }) => label),
     ['Home', 'Storylines', 'A bundled issue'],
   );
+  // MCU Prep is a Home category rather than a shelf, and an issue opened from one of its lists
+  // names it (#1066).
+  const companionCrumbs = breadcrumbHierarchy({
+    view: 'issue',
+    issueTitle: 'A companion issue',
+    context: { kind: 'order', id: 'order-b', shelf: 'marvel-on-screen' },
+  });
+  assert.deepEqual(companionCrumbs.map(({ label }) => label), ['Home', 'MCU Prep', 'A companion issue']);
+  assert.equal(companionCrumbs[1].href, formatRoute({ view: 'marvel-on-screen' }));
+  assert.equal(companionCrumbs[2].current, true);
   for (const context of [
     null,
     { kind: 'list', id: 'missing', name: '' },
     { kind: 'order', id: '', shelf: 'lines' },
     { kind: 'order', shelf: 'lines' },
     { kind: 'order', id: 'missing', shelf: 'missing' },
+    { kind: 'order', id: 'order-c', shelf: 'marvel-ages' },
   ]) {
     assert.deepEqual(
       breadcrumbHierarchy({ view: 'issue', issueTitle: 'Resolved title', context }).map(({ label }) => label),

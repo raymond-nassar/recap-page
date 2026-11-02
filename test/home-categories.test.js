@@ -42,6 +42,16 @@ test('Storylines gateway count uses the same complete eligible pool as ordinary 
   assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
 });
 
+// Home projects individual readings before selecting a category, including grouped companions.
+test('the MCU Prep card counts every MCU Prep list', () => {
+  const select = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen').select;
+  const companions = catalog.lists.filter((list) => list.type === 'screen-companion').map((list) => list.id);
+  assert.deepEqual(select(stories).flatMap((story) => story.lists.map((list) => list.id)).sort(), [...companions].sort());
+  assert.equal(companions.length, currentReadingCensus.mcu);
+  assert.equal(availableHomeCategories(stories).find((category) => category.key === 'marvel-on-screen').count,
+    currentReadingCensus.mcu);
+});
+
 test('the current gateway offers three primary modes and three secondary gateways', () => {
   const categories = availableHomeCategories(stories, HOME_CATEGORIES);
   assert.deepEqual(

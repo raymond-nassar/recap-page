@@ -41,8 +41,9 @@ const placements = pathPlacements(catalog.paths, catalog.lists);
 const stops = catalogEntries(catalog.lists).filter((story) => placements.has(story.groupKey));
 
 test('no path stop\'s card draws a path line or links anywhere but its source', () => {
-  // The count this decision was made on: 98 cards on Modern Timeline, 7 on Storylines and 1 on
-  // Character spotlights. Professor X and the X-Men (#981) added two, one and one.
+  // The count this decision was made on: 98 cards on Modern Timeline, 7 on the fallback shelf and
+  // 1 on Character spotlights. Professor X and the X-Men (#981) added two, one and one. The
+  // Doomsday companion keeps its fallback-shelf path placement even though Storylines excludes it.
   const byShelf = {};
   for (const story of stops) byShelf[shelfKey(story)] = (byShelf[shelfKey(story)] ?? 0) + 1;
   assert.deepEqual(byShelf, { catalog: 100, lines: 8, spotlights: 2 });

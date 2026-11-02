@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.net.ssl.HttpsURLConnection;
 
-// CloudHttp on the platform's own HTTPS client, so the release build adds no library (OD-13). Redirects are
+// CloudHttp uses the platform's HTTPS client, so HTTP needs no additional library (OD-13). Redirects are
 // never followed, because a download's address is handed back as Location and must be fetched without the
 // token, and the one deadline covers the whole exchange: when it runs out the connection is closed under
 // the read, which a read timeout alone would not do for a server trickling bytes.

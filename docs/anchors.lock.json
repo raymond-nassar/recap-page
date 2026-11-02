@@ -1754,8 +1754,8 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1527-1580|0": {
-    "anchor": "src/js/lib/catalog.js:1527-1580",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1540-1593|0": {
+    "anchor": "src/js/lib/catalog.js:1540-1593",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
@@ -1764,13 +1764,13 @@
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:276-278|0": {
-    "anchor": "src/js/lib/route.js:276-278",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:287-289|0": {
+    "anchor": "src/js/lib/route.js:287-289",
     "fp": "5e4308126a42e7e9",
     "head": "// The path the Modern Timeline is following, so a followed path can be bookmarked and Back"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:317-323|0": {
-    "anchor": "src/js/lib/route.js:317-323",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:328-334|0": {
+    "anchor": "src/js/lib/route.js:328-334",
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
@@ -2039,14 +2039,14 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:941-964|0": {
-    "anchor": "src/js/lib/catalog.js:941-964",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:954-977|0": {
+    "anchor": "src/js/lib/catalog.js:954-977",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:8-92|0": {
     "anchor": "test/helpers/current-reading-library.mjs:8-92",
-    "fp": "9e58652eb9767e57",
+    "fp": "be3dc6ddefd7e6fd",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:200-226|0": {
@@ -2154,8 +2154,8 @@
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:123-125|0": {
-    "anchor": "SECURITY.md:123-125",
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:127-129|0": {
+    "anchor": "SECURITY.md:127-129",
     "fp": "2abc83ccc79cd632",
     "head": "- Dependabot alerts and security updates are enabled. Secret scanning and push protection were"
   },
@@ -2189,13 +2189,13 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-123-125|SECURITY.md:123-125|0": {
-    "anchor": "SECURITY.md:123-125",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-127-129|SECURITY.md:127-129|0": {
+    "anchor": "SECURITY.md:127-129",
     "fp": "2abc83ccc79cd632",
     "head": "- Dependabot alerts and security updates are enabled. Secret scanning and push protection were"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-34-36|SECURITY.md:34-36|0": {
-    "anchor": "SECURITY.md:34-36",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-36-38|SECURITY.md:36-38|0": {
+    "anchor": "SECURITY.md:36-38",
     "fp": "23dc7e0da5fde923",
     "head": "Private reporting was enabled here on 2026-08-16, but may be unavailable in a fork. If the option"
   },
@@ -2294,9 +2294,9 @@
     "fp": "820857e84204ff28",
     "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:89-167|0": {
-    "anchor": "src/js/lib/route.js:89-167",
-    "fp": "62811155d6fac990",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:89-178|0": {
+    "anchor": "src/js/lib/route.js:89-178",
+    "fp": "967900374f80b802",
     "head": "export function breadcrumbHierarchy({"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1612-1655|0": {

@@ -482,7 +482,7 @@ const FIXTURE_SHELVES = new Map(
   shelfSections(catalogEntries(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
-const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
+const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines').filter((story) => story.lists.every((list) => list.type !== 'screen-companion')));
 const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_MODERN_PERIODS = availablePublishingCategories(
@@ -3433,7 +3433,7 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '8 Reading Lists' },
+          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '3 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));

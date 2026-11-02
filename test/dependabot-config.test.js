@@ -15,8 +15,8 @@ const root = new URL('../', import.meta.url);
 const config = readFileSync(new URL('.github/dependabot.yml', root), 'utf8');
 
 // Enough of a reader for a file of this shape, and deliberately no more: adding a YAML parser
-// would mean adding a dependency, and Repository Constraint 4 puts runtime dependencies at zero
-// while the dev graph is the thing this very config exists to watch.
+// would mean adding a dependency; browser runtime dependencies remain at zero while the dev graph
+// is one of the things this config exists to watch.
 function parseUpdates(text) {
   const lines = text.split(/\r?\n/).filter((line) => !/^\s*#/.test(line));
   const unquote = (value) => value.trim().replace(/^["']|["']$/g, '');

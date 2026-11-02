@@ -84,8 +84,9 @@ Did this change add, regenerate or hand-edit anything under the committed data d
 say where each field came from and under what terms. Never commit comic image bytes; cover URLs
 only. Never scrape marvel.com.
 
-Did it add a dependency? Runtime dependencies stay at zero. Development tooling is allowed and
-should be named here with the reason.
+Did it add a dependency? Browser runtime dependencies stay at zero. The owner approved Google Play
+services auth and its transitive libraries in the Android app only (#810). Development tooling is
+allowed and should be named here with the reason.
 
 If neither applies, write "No data or dependency changes."
 -->
