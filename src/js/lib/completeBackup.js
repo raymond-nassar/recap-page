@@ -32,6 +32,8 @@ export const COMPLETE_BACKUP_FILENAME = 'recap-page-complete-backup.json';
 // The ceiling of the complete file alone. Each component inside it is still held to the 8 MiB limit
 // its own single-kind backup has, so this is a guard on what is read before parsing, not a raised limit.
 export const MAX_COMPLETE_BACKUP_BYTES = 32 * 1024 * 1024;
+// hideDescriptions stays in the format although nothing reads it since #1061: backups written before
+// then require the field, and dropping it would make this version refuse them and older ones refuse ours.
 export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hideDescriptions']);
 export const PORTABLE_DRAFT_FIELDS = Object.freeze(['format', 'version', 'rawText', 'occurrences', 'destination', 'previousSources']);
 export const PREPARED_FORMAT = 'recap-page-complete-restore-prepared';

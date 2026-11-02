@@ -27,7 +27,6 @@ import { isPlainNavigation } from '../lib/route.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
-import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { earlierIssueIds } from '../lib/reorientation.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 import { paintGlance } from '../lib/progressGlance.js';
@@ -144,7 +143,6 @@ export function createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
-  synopsisDisclosure,
   synopsisStatusLine,
   updateState,
   withSaveEducation,
@@ -444,13 +442,6 @@ export function createReadingView({
     $('#btn-cancel-hydrate').addEventListener('click', onCancelHydrate);
     $('#btn-synopsis').addEventListener('click', onStartSynopsis);
     $('#btn-cancel-synopsis').addEventListener('click', onCancelSynopsis);
-    $('#btn-hero-description').addEventListener('click', () => {
-      if (isCompleted(getState(), activeListId())) return;
-      const issue = upNext(getState(), activeListId());
-      if (!issue) return;
-      synopsisDisclosure.toggle(issue.issueId);
-      renderHero();
-    });
 
     $('#btn-hero-read').addEventListener('click', (e) => {
       if (isCompleted(getState(), activeListId())) return;
@@ -637,8 +628,10 @@ export function createReadingView({
       description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),
     });
 
-    paintCover($('#hero-img'), $('#hero-fb'), issue, 'portrait_uncanny');
-    $('#hero-img').alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
+    // #1061: the cover now shows up to 320px wide, past the 300px portrait_uncanny image, so it asks for
+    // the 500px detail image the blurred backdrop below already loads, one request instead of two.
+    paintCover($('#hero-img'), $('#hero-fb'), issue, 'detail');
+    $('#hero-img').alt = coverUrl(issue, 'detail') ? `Cover of ${issue.title}` : '';
     $('#hero-fs').textContent = seriesOnly(issue.seriesName);
     $('#hero-fn').textContent = issue.number ? `#${issue.number}` : '';
 
@@ -652,12 +645,10 @@ export function createReadingView({
     inspect.dataset.contextId = id;
 
     $('#hero-by').textContent = presentation.byline;
-    renderSynopsisDescription({
-      button: $('#btn-hero-description'), description: $('#hero-desc'), issue,
-      entry: getSynopsis(issue.issueId), fallback: presentation.description,
-      disclosure: synopsisDisclosure,
-    });
-    $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
+    // #1061: a loaded summary shows in full, with nothing to reveal first.
+    $('#hero-desc').hidden = false;
+    $('#hero-desc').textContent = presentation.description;
+    $('#hero-facts').replaceChildren(...presentation.facts.filter((item) => !item.detailsOnly).map((item) => (
       fact(item.key, item.value, item.className, item.hint)
     )));
     // The same numbers the header's ring reads out, set large for the eye (#876).
@@ -676,8 +667,6 @@ export function createReadingView({
   function resetSynopsis() {
     $('#hero-desc').textContent = '';
     $('#hero-desc').hidden = true;
-    $('#btn-hero-description').hidden = true;
-    $('#btn-hero-description').setAttribute('aria-expanded', 'false');
   }
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {

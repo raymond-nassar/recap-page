@@ -6,7 +6,6 @@ import { fileURLToPath } from 'node:url';
 
 import { createIssueView, issueCoverVariant } from '../src/js/views/issue.js';
 import { ApiError } from '../src/js/api.js';
-import { createSynopsisDisclosure } from '../src/js/lib/synopsisDisclosure.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 beforeEach((t) => t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 1, 12) }));
@@ -27,7 +26,7 @@ function node(textContent = '') {
 
 function harness({
   apiIssue, state, synopsis = null, loadCatalog, loadOrder,
-  disclosure = createSynopsisDisclosure(), onStartSynopsis,
+  onStartSynopsis,
   readerPresentation, onReaderContext, onToggleRead, onEditNote,
 } = {}) {
   const nodes = {
@@ -38,7 +37,6 @@ function harness({
     card: node(),
     context: node(),
     description: node(),
-    disclosure: node(),
     facts: node(),
     fallback: node(),
     heading: node(),
@@ -101,7 +99,6 @@ function harness({
     renderBreadcrumbs: () => { calls.breadcrumbs += 1; },
     seriesOnly: (name) => name.replace(/\s+\(.*/, ''),
     synopsisFallback: (_issue, entry) => entry ?? 'No synopsis.',
-    synopsisDisclosure: disclosure,
     synopsisStatusLine: (status) => status?.text ?? '',
   });
   return {
@@ -245,58 +242,28 @@ test('510 issue details report only saved-list deferral and refresh retained int
   assert.equal(h.nodes.context.textContent, '');
 });
 
-test('445 a mode reset during explicit fetching keeps returned text without reviving old reveal choices', async () => {
-  let hiding = true;
+test('445 explicit fetching paints returned text at once and never fetches again', async () => {
   let text = null;
   let finish;
-  const disclosure = createSynopsisDisclosure({ hiding: () => hiding });
   const h = harness({
     apiIssue: async () => issue(),
     synopsis: () => text,
-    disclosure,
     onStartSynopsis: () => new Promise((resolve) => { finish = resolve; }),
   });
   h.view.wire();
   await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.description.textContent, 'No synopsis.');
   const pending = h.nodes.synopsis.listeners.click();
-  hiding = false;
-  disclosure.clear();
-  hiding = true;
-  disclosure.clear();
   text = 'Newly fetched synthetic plot';
   finish(true);
   await pending;
-  assert.equal(disclosure.isRevealed(42), false);
-  assert.equal(h.nodes.description.textContent, '');
-  hiding = false;
-  disclosure.clear();
-  h.view.refreshDescription();
-  assert.equal(h.nodes.description.textContent, text);
-  assert.equal(h.nodes.disclosure.hidden, true);
-  assert.equal(h.calls.cancelSynopsis, 0);
-});
-
-test('445 unchanged mode preserves explicit fetching and refresh never fetches or changes identity', async () => {
-  let hiding = true;
-  const disclosure = createSynopsisDisclosure({ hiding: () => hiding });
-  const h = harness({
-    apiIssue: async () => issue(),
-    synopsis: 'Held synthetic plot',
-    disclosure,
-    onStartSynopsis: async () => true,
-  });
-  await h.view.render({ issueId: 42 });
-  h.view.wire();
-  await h.nodes.synopsis.listeners.click();
-  assert.equal(disclosure.isRevealed(42), true);
-  hiding = false;
-  disclosure.clear();
-  h.nodes.disclosure.focus();
-  h.view.refreshDescription();
-  assert.equal(h.nodes.disclosure.ownerDocument.activeElement, h.nodes.heading);
-  assert.equal(h.view.result().issue.issueId, 42);
-  assert.equal(h.nodes.description.textContent, 'Held synthetic plot');
+  assert.equal(h.nodes.description.hidden, false);
+  assert.equal(h.nodes.description.textContent, text, '#1061: a loaded summary shows in full, with no reveal');
+  h.view.repaintSynopsis({ text: '' });
+  assert.equal(h.nodes.synopsis.hidden, true, 'held prose needs no second load');
   assert.equal(h.calls.startSynopsis, 0);
+  assert.equal(h.calls.cancelSynopsis, 0);
+  assert.equal(h.view.result().issue.issueId, 42);
 });
 
 test('Issue view owns loading, resolved paint, current result, and local controls', async () => {
@@ -321,9 +288,8 @@ test('Issue view owns loading, resolved paint, current result, and local control
   assert.equal(h.view.result().issue.title, 'Issue title');
   assert.equal(h.nodes.heading.textContent, 'Issue title');
   assert.equal(h.nodes.context.textContent, 'A list · 1 of 1');
-  assert.equal(h.nodes.description.textContent, '');
-  assert.equal(h.nodes.description.hidden, true);
-  assert.equal(h.nodes.disclosure.attributes['aria-expanded'], 'false');
+  assert.equal(h.nodes.description.textContent, 'Held for this tab.');
+  assert.equal(h.nodes.description.hidden, false);
   assert.equal(h.nodes.note.textContent, 'Remember this');
   assert.equal(h.nodes.card.hidden, false);
   assert.equal(h.nodes.read.hidden, false);
@@ -347,7 +313,7 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   let temporary = false;
   const contexts = [];
   const h = harness({
-    state, synopsis: 'Synthetic hidden description',
+    state, synopsis: 'Synthetic held description',
     onReaderContext: (result) => contexts.push(result),
     readerPresentation: (base, source) => {
       assert.equal(base.issueId, saved.issueId);
@@ -370,7 +336,7 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
   assert.equal(h.nodes.facts.children, facts);
   assert.equal(h.nodes.info.href, info);
-  assert.equal(h.nodes.description.textContent, '');
+  assert.equal(h.nodes.description.textContent, 'Synthetic held description');
   h.nodes.read.listeners.click({});
   assert.equal(h.calls.read[0][2], 'saved');
   assert.equal(saved.digitalId, null);
@@ -395,61 +361,43 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   assert.equal(contexts.at(-1), null, 'leaving clears editor without inventing unavailable provenance');
 });
 
-test('447 Issue Details hides fetched prose until explicit reveal and retains only exact-issue choices', async () => {
-  const disclosure = createSynopsisDisclosure();
+test('#1061 Issue Details shows each loaded summary in full, exactly per issue, without touching saved state', async () => {
   const state = {
     issues: { 42: issue(), 43: issue(43) }, lists: {},
     read: { 42: 123 }, notes: { 42: 'Keep this note' }, overrides: {},
   };
   const before = structuredClone(state);
-  const h = harness({ state, synopsis: (id) => `Synthetic description ${id}.`, disclosure });
+  const h = harness({ state, synopsis: (id) => id === 42 ? 'Synthetic description 42.' : null });
   h.view.wire();
   await h.view.render({ issueId: 42, context: null });
-  assert.equal(h.nodes.description.textContent, '', 'already-read descriptions also start empty');
-  assert.equal(h.nodes.description.hidden, true);
-  assert.equal(h.nodes.disclosure.hidden, false);
-  assert.equal(h.nodes.synopsis.hidden, true, 'held prose needs no duplicate fetch consent');
-  assert.equal(h.nodes.disclosure.attributes['aria-controls'], 'issue-focus-desc');
-  assert.match(h.nodes.disclosure.attributes['aria-label'], /Show story summary.*may contain spoilers.*Issue title/);
-  h.nodes.disclosure.focus();
-  h.nodes.disclosure.listeners.click();
-  assert.equal(h.nodes.description.textContent, 'Synthetic description 42.');
   assert.equal(h.nodes.description.hidden, false);
-  assert.equal(h.nodes.disclosure.attributes['aria-expanded'], 'true');
-  assert.equal(h.nodes.disclosure.ownerDocument.activeElement, h.nodes.disclosure);
+  assert.equal(h.nodes.description.textContent, 'Synthetic description 42.', 'an already read comic shows it too');
+  assert.equal(h.nodes.synopsis.hidden, true, 'held prose needs no duplicate fetch consent');
   await h.view.render({ issueId: 43, context: null });
-  assert.equal(h.nodes.description.textContent, '', 'reveal never propagates to another issue');
+  assert.equal(h.nodes.description.textContent, 'No synopsis.', 'another issue never borrows the text');
+  assert.equal(h.nodes.synopsis.hidden, false, 'an unloaded issue keeps its load step');
   await h.view.render({ issueId: 42, context: null });
-  assert.equal(h.nodes.description.textContent, 'Synthetic description 42.', 'revisit remembers the exact issue');
-  h.nodes.disclosure.listeners.click();
-  assert.equal(h.nodes.description.textContent, '');
-  assert.equal(h.nodes.disclosure.attributes['aria-expanded'], 'false');
-  assert.deepEqual(state, before, 'disclosure changes neither read flags nor notes');
+  assert.equal(h.nodes.description.textContent, 'Synthetic description 42.');
+  assert.deepEqual(state, before, 'showing a summary changes neither read flags nor notes');
   assert.deepEqual(h.calls.read, []);
   assert.equal(h.calls.startSynopsis, 0);
-  h.nodes.disclosure.listeners.click();
   h.view.cancel();
-  assert.equal(h.nodes.description.textContent, '', 'leaving clears dormant DOM but not the choice');
-  assert.equal(disclosure.isRevealed(42), true);
-  disclosure.clear();
+  assert.equal(h.nodes.description.textContent, '', 'leaving clears dormant DOM');
   h.view.resetSynopsis();
   assert.equal(h.nodes.description.textContent, '', 'reset clears dormant prose with no current result');
-  await h.view.render({ issueId: 42, context: null });
-  assert.equal(h.nodes.description.textContent, '', 'source reset discards old choices');
 });
 
-test('447 untracked fetched descriptions start collapsed and missing messages stay visible', async () => {
+test('447 untracked fetched descriptions show in full and missing messages stay visible', async () => {
   const h = harness({ apiIssue: async () => issue(), synopsis: 'An authored untracked fixture.' });
   h.view.wire();
   await h.view.render({ issueId: 42, context: null });
-  assert.equal(h.nodes.description.hidden, true);
-  assert.equal(h.nodes.description.textContent, '');
+  assert.equal(h.nodes.description.hidden, false);
+  assert.equal(h.nodes.description.textContent, 'An authored untracked fixture.');
   assert.equal(h.nodes.read.hidden, false);
   const missing = harness({ apiIssue: async () => issue() });
   await missing.view.render({ issueId: 42, context: null });
   assert.equal(missing.nodes.description.hidden, false);
   assert.equal(missing.nodes.description.textContent, 'No synopsis.');
-  assert.equal(missing.nodes.disclosure.hidden, true);
 });
 
 test('447 individual fetch reveals once while cancelled, reset and obsolete continuations cannot reveal', async () => {
@@ -487,7 +435,7 @@ test('447 individual fetch reveals once while cancelled, reset and obsolete cont
   }
 });
 
-test('447 synopsis completion moves only disappearing fetch controls to the disclosure or fallback', async () => {
+test('447 synopsis completion moves only disappearing fetch controls to the loaded summary', async () => {
   let text = null;
   const h = harness({ apiIssue: async () => issue(), synopsis: () => text });
   h.view.wire();
@@ -499,7 +447,8 @@ test('447 synopsis completion moves only disappearing fetch controls to the disc
   text = 'Synthetic focus fixture.';
   h.setSynopsisActive(false);
   h.view.repaintSynopsis({ text: 'Finished.' });
-  assert.equal(h.nodes.synopsis.ownerDocument.activeElement, h.nodes.disclosure);
+  assert.equal(h.nodes.synopsis.ownerDocument.activeElement, h.nodes.description);
+  assert.equal(h.nodes.description.attributes.tabindex, '-1');
   h.nodes.read.focus();
   h.view.repaintSynopsis({ text: 'Finished.' });
   assert.equal(h.nodes.synopsis.ownerDocument.activeElement, h.nodes.read, 'unrelated focus stays put');

@@ -294,7 +294,7 @@
                    inform. -->
               <p class="list-note" id="list-note" hidden></p>
 
-              <!-- hero: read this next -->
+              <!-- hero: the comic up next -->
               <section class="hero" id="hero" aria-labelledby="hero-title">
                 <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
                 <div class="hero-fade" aria-hidden="true"></div>
@@ -307,7 +307,6 @@
                     </div>
                   </div>
                   <div class="hero-body">
-                    <p class="eyebrow">Read this next</p>
                     <!-- Carries real text before the first render. An empty heading is a
                          WCAG 1.3.1 failure whether or not its section is on screen, and this
                          one labels the hero, so it cannot simply be dropped. renderHero
@@ -344,7 +343,6 @@
                         </div>
                       </details>
                     </div>
-                    <button type="button" class="btn btn-g" id="btn-hero-description" aria-controls="hero-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                     <p class="desc" id="hero-desc"></p>
                   </div>
                 </div>
@@ -398,7 +396,7 @@
               <section id="review-earlier" class="review-earlier" hidden aria-labelledby="review-h">
                 <h2 id="review-h" tabindex="-1">Review earlier issues</h2>
                 <p id="review-context"></p>
-                <p class="rail-hint">Choose a comic to open its details and deliberately fetch or reveal its description. This is the current order, not a record of your last reading session.</p>
+                <p class="rail-hint">Choose a comic to open its details and load its story summary if you want one. This is the current order, not a record of your last reading session.</p>
                 <p id="review-position" role="status"></p>
                 <div id="review-candidate"></div>
                 <div class="cta">
@@ -481,14 +479,13 @@
                 </div>
                 <div class="hero-body">
                   <p class="byline" id="issue-focus-by"></p>
-                  <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">
-                      Show story summary (may contain spoilers)
+                      Load story summary
                     </button>
                     <button type="button" class="btn btn-g" id="btn-cancel-issue-synopsis" hidden>
                       Stop loading summary
@@ -1102,22 +1099,6 @@
                     High contrast mode and reduced motion are still honoured whichever you pick.
                   </p>
                 </details>
-              </div>
-              <div class="card card-static setting">
-                <h3>Story summaries</h3>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-description-hiding" aria-describedby="description-hiding-help" /> Hide story summaries until I reveal them</label>
-                <p id="description-hiding-help" class="rail-hint setting-desc">
-                  On by default. Loading a summary still asks permission. Titles and covers may contain spoilers.
-                </p>
-                <details class="setting-more">
-                  <summary>What this choice changes</summary>
-                  <p class="rail-hint">
-                    Turn off to show loaded summaries without Show and Hide.
-                    It does not hide spoilers in titles or covers.
-                    Only a complete backup includes this choice.
-                  </p>
-                </details>
-                <div id="description-hiding-report" class="results"></div>
               </div>
             </section>
 

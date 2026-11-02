@@ -792,7 +792,7 @@ export function checkAll(css) {
 // carries the bar's extent at 3:1 against what is behind it, measured above on the card, the raised
 // card, the rail and the selected rail item, and the fill only has to clear those same surfaces,
 // which `--accent` does. The bar is also never the only way to read progress, because the same
-// numbers are stated as text beside it, at `src/js/main.js:1748` in the rail and
+// numbers are stated as text beside it, at `src/js/main.js:1724` in the rail and
 // `src/js/views/shared/saved-lists.js:35` in the saved lists.
 //
 // The list stays, empty, because a gate that quietly tolerates its own findings is not a gate. The

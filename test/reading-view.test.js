@@ -17,7 +17,6 @@ import {
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
-import { createSynopsisDisclosure } from '../src/js/lib/synopsisDisclosure.js';
 import {
   createReadingView,
   commitRows,
@@ -302,7 +301,6 @@ function harness(overrides = {}) {
     heroBg: node({ id: 'hero-bg' }),
     heroBy: node({ id: 'hero-by' }),
     heroDesc: node({ id: 'hero-desc' }),
-    btnHeroDescription: node({ id: 'btn-hero-description', tag: 'button' }),
     heroFacts: node({ id: 'hero-facts' }),
     btnHeroInfo: node({ id: 'btn-hero-info', text: 'Info', tag: 'a' }),
     btnHeroRead: node({ id: 'btn-hero-read', tag: 'button' }),
@@ -402,7 +400,6 @@ function harness(overrides = {}) {
     ['#hero-bg', nodes.heroBg],
     ['#hero-by', nodes.heroBy],
     ['#hero-desc', nodes.heroDesc],
-    ['#btn-hero-description', nodes.btnHeroDescription],
     ['#hero-facts', nodes.heroFacts],
     ['#btn-hero-info', nodes.btnHeroInfo],
     ['#shelf', nodes.shelf],
@@ -511,7 +508,6 @@ function harness(overrides = {}) {
     showView: (name, opts) => calls.showView.push({ name, opts }),
     syncHash: (opts) => calls.showView.push({ sync: opts ?? {} }),
     synopsisAnnouncement: (status) => ({ state: status?.phase ?? 'idle', msg: status?.phase ?? null }),
-    synopsisDisclosure: overrides.synopsisDisclosure ?? createSynopsisDisclosure(),
     synopsisStatusLine: (status) => status ? `${status.phase}:${status.done ?? 0}/${status.total ?? 0}` : '',
     updateState: (updater) => {
       if (readerStore) {
@@ -949,39 +945,22 @@ test('445 picker handles completion, empty ranges and missing identity metadata'
   } finally { h.restore(); }
 });
 
-test('447 hero bulk prose starts hidden and disclosure stays isolated through Done and revisiting', () => {
-  const disclosure = createSynopsisDisclosure();
-  const h = harness({ getSynopsis: (id) => `Synthetic hero description ${id}.`, synopsisDisclosure: disclosure });
+test('#1061 hero shows each loaded summary in full and follows the next comic through Done', () => {
+  const h = harness({ getSynopsis: (id) => `Synthetic hero description ${id}.` });
   try {
     h.view.wire();
     h.view.render();
     const before = structuredClone(h.state());
-    assert.equal(h.nodes.heroDesc.textContent, '');
-    assert.equal(h.nodes.heroDesc.hidden, true);
-    assert.equal(h.nodes.btnHeroDescription.attributes['aria-expanded'], 'false');
-    h.nodes.btnHeroDescription.focus();
-    h.nodes.btnHeroDescription.fire('click');
+    assert.equal(h.nodes.heroDesc.hidden, false);
     assert.equal(h.nodes.heroDesc.textContent, 'Synthetic hero description 2.');
-    assert.equal(h.nodes.btnHeroDescription.attributes['aria-expanded'], 'true');
-    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroDescription);
-    assert.deepEqual(structuredClone(h.state()), before);
+    assert.deepEqual(structuredClone(h.state()), before, 'showing a summary changes no saved state');
     assert.deepEqual(h.calls.launch, []);
-    assert.deepEqual(h.calls.synopsis, []);
+    assert.deepEqual(h.calls.synopsis, [], 'showing never loads');
     h.nodes.btnHeroDone.fire('click');
     h.view.renderHero();
-    assert.equal(h.nodes.heroDesc.textContent, '', 'Done does not reveal the next issue');
-    assert.equal(disclosure.isRevealed(2), true, 'read flag change does not erase the explicit choice');
-    assert.equal(disclosure.isRevealed(3), false);
-    disclosure.reveal(3);
-    h.view.renderHero();
-    assert.equal(h.nodes.heroDesc.textContent, 'Synthetic hero description 3.', 'another view can reveal the exact issue');
-    h.nodes.btnHeroDescription.fire('click');
-    assert.equal(h.nodes.heroDesc.textContent, '');
-    assert.equal(disclosure.isRevealed(3), false);
-    disclosure.clear();
+    assert.equal(h.nodes.heroDesc.textContent, 'Synthetic hero description 3.', 'the next comic shows its own summary');
     h.view.resetSynopsis();
     assert.equal(h.nodes.heroDesc.textContent, '');
-    assert.equal(h.nodes.btnHeroDescription.hidden, true);
   } finally {
     h.restore();
   }

@@ -1229,19 +1229,20 @@ test('Reading List synopsis consent uses the approved two-sentence message', () 
 });
 
 test('synopsis consent stays within two short sentences for list and issue fetches', () => {
-  for (const reveal of [false, true]) {
-    const { body, title, confirmLabel } = synopsisDisclaimer({ reveal });
+  for (const single of [false, true]) {
+    const { body, title, confirmLabel } = synopsisDisclaimer({ single });
     assert.equal(body.split(/(?<=[.!?])\s+/).length, 2, body);
     assert.ok(body.split(/\s+/).length <= 40, body);
     assert.match(body, /Marvel's synopses/);
     assert.match(body, /unaffiliated community service/);
     assert.match(body, /this tab until reload/);
     assert.match(body, /uses your request allowance/);
-    if (reveal) {
-      assert.match(body, /may contain spoilers/);
+    if (single) {
+      // #1061: nothing is hidden any more, so the single load no longer warns about showing spoilers.
+      assert.doesNotMatch(body, /spoiler/i);
       assert.doesNotMatch(body, /whole Reading List|few minutes/);
       assert.equal(title, 'Load this story summary?');
-      assert.equal(confirmLabel, 'Load and show summary');
+      assert.equal(confirmLabel, 'Load summary');
     } else {
       assert.match(body, /whole Reading List takes a few minutes/);
       assert.equal(title, 'Fetch synopses from the community metadata service?');

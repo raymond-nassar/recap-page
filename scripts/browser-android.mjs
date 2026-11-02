@@ -1802,7 +1802,7 @@ async function readingGeometry(page) {
       && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
     const intersects = (a, b) => a.left < b.right - 1 && a.right > b.left + 1
       && a.top < b.bottom - 1 && a.bottom > b.top + 1;
-    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero .eyebrow, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary)')];
+    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary)')];
     const clipped = [], overlaps = [];
     let ranges = 0;
     for (const node of parts.filter(visible)) {
@@ -1888,8 +1888,10 @@ async function readingEvidence(page, profile, id = profile.id) {
   console.log(`READING ${id}: ${JSON.stringify(result)}`);
   check(result.title === state.lists[READING_LIST].name && result.byline === presentation.byline
     && result.count === `3 of ${readingOrder.items.length} read`, `${id}: full title, byline and progress preserved`);
-  check(JSON.stringify(result.facts) === JSON.stringify(presentation.facts.map(({ key, value }) => ({ key, value }))),
-    `${id}: every exact factual value retained`);
+  // #1061 keeps the Marvel Unlimited record and the position for the comic's own page.
+  check(JSON.stringify(result.facts) === JSON.stringify(presentation.facts.filter((fact) => !fact.detailsOnly)
+    .map(({ key, value }) => ({ key, value }))),
+  `${id}: every exact factual value retained`);
   const scale = profile.textScale || 1;
   check(result.body === (profile.desktop ? 14 : 16 * scale) && result.titleFont === 28 * scale
     && result.issueFont === (profile.desktop ? 40 : 32 * scale) && result.android === !profile.desktop,
@@ -1897,7 +1899,8 @@ async function readingEvidence(page, profile, id = profile.id) {
   check(result.ranges > 15 && !result.clipped.length && !result.overlaps.length && !result.overflow,
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
   // Read, Done, About this comic, the More comic actions summary and the two actions it discloses.
-  check(result.controls.length === 6 + (id.startsWith('M05') ? 1 : 0)
+  // M05 loads a summary, which before #1061 also brought a Hide button.
+  check(result.controls.length === 6
     && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
   `${id}: all existing action hit rectangles`);
   if (['M01', 'M02'].includes(id)) {
@@ -1958,7 +1961,8 @@ async function readingAccessibility(page, result, id) {
       }, null, 2)}\n`, { flag: 'wx' });
     }
     assert.equal(domFacts.length, result.facts.length, `${id}: original factual pair count`);
-    check(domFacts.filter((fact) => fact.note).length === 1, `${id}: one historical-record note retained separately`);
+    // The historical-record note travels with the Marvel Unlimited record to the comic's own page (#1061).
+    check(domFacts.filter((fact) => fact.note).length === 0, `${id}: the historical-record note is not on the reading card`);
     let previous = tree.findIndex((entry) => entry.role === 'heading' && entry.name === result.issue);
     assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
     previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
@@ -2107,11 +2111,17 @@ async function readingSemantics(page) {
     state.issues[readingIssue.issueId].mu = mu;
     if (override) state = setOverride(state, readingIssue.issueId, override);
     await readingReplaceState(page, state);
-    await page.waitForFunction((expected) => document.querySelector('#hero-facts dd')?.textContent === expected, {}, label);
-    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'Marvel Unlimited recordThis is a historical record, not availability in Marvel Comics.'),
+    // #1061: the record lives in Issue details, so each state is read there rather than on the card.
+    await page.evaluate((id) => { location.hash = `#/issue/${id}`; }, readingIssue.issueId);
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    await page.waitForFunction((expected) => document.querySelector('#issue-focus-facts dd')?.textContent === expected, {}, label);
+    check(await page.$eval('#issue-focus-facts dt', (node) => node.textContent === 'Marvel Unlimited recordThis is a historical record, not availability in Marvel Comics.'),
       `M01 ${label}: factual label retained`);
-    const geometry = await readingGeometry(page);
-    check(!geometry.clipped.length && !geometry.overlaps.length && !geometry.overflow, `M01 ${label}: readable status, not a boolean`);
+    check(await page.$eval('#issue-focus-card', (node) => node.scrollWidth <= node.clientWidth
+      && document.documentElement.scrollWidth <= innerWidth), `M01 ${label}: readable status, not a boolean`);
+    await route(page, 'read');
+    check(await page.$eval('#hero-facts', (node) => !node.textContent.includes('Unlimited')),
+      `M01 ${label}: #1061 the reading card leaves the record to Issue details`);
   }
 }
 
@@ -2129,16 +2139,14 @@ async function readingCompositionCheck(page, profile) {
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-ok');
     await page.waitForFunction((text) => document.querySelector('#issue-focus-desc')?.textContent === text
-      && document.querySelector('#btn-issue-description')?.getAttribute('aria-expanded') === 'true',
-    {}, READING_SYNOPSIS);
+      && !document.querySelector('#issue-focus-desc').hidden, {}, READING_SYNOPSIS);
     assert.deepEqual(await page.evaluate(() => window.__readingTest.requests), [readingIssue.issueId],
       'M05: exactly one on-demand issue request, no bulk synopsis run');
-    await click(page, '#btn-issue-description');
     await page.goBack();
     await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false
       && document.activeElement?.id === 'btn-hero-inspect');
-    assert.ok(await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''),
-      'M05: fetched description remains hidden until explicit disclosure');
+    assert.ok(await page.$eval('#hero-desc', (node, text) => !node.hidden && node.textContent === text, READING_SYNOPSIS),
+      'M05: #1061 the loaded description shows in full on the reading card');
   }
   if (readingFactsAx) {
     const state = readingState(profile);
@@ -2155,17 +2163,10 @@ async function readingCompositionCheck(page, profile) {
   if (readingCase === 'M01') return;
   if (!profile.desktop) await readingAccessibility(page, result, profile.id);
   if (profile.id === 'M05') {
-    await page.focus('#btn-hero-description');
-    await page.keyboard.press('Enter');
-    await page.waitForFunction((text) => document.querySelector('#hero-desc')?.textContent === text, {}, READING_SYNOPSIS);
-    check(await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') === 'true'
-      && document.activeElement === node), 'M05: reveal retains focused disclosure');
-    await readingEvidence(page, profile, 'M05-expanded');
-    await page.keyboard.press('Enter');
-    check(await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''), 'M05: description hides again');
+    check(await page.evaluate(() => !document.querySelector('#btn-hero-description')), 'M05: #1061 no reveal control');
   }
   check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
-    `${profile.id}: layout, focus and disclosure preserve stored progress`);
+    `${profile.id}: layout, focus and the loaded summary preserve stored progress`);
   if (profile.id === 'M01') {
     await route(page, 'data');
     await click(page, '#opt-covers');

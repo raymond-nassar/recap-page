@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:796-803`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:792-799`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2343,7 +2343,19 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .comic-options > .cta { padding-bottom: var(--space-4); }
 @media (max-width: 700px) {
   #hero .hero-in { display: flow-root; padding: var(--space-6); }
-  #hero .hero-in > .art { float: left; width: 96px; margin: 0 var(--space-5) var(--space-4) 0; }
+  /* #1061, the owner's request on 2026-11-01: the cover is centered and as large as the screen allows
+     while Read stays above the bottom bar when the screen opens, with the list's heading still above
+     the card. The reserve is measured from the top of the screen for that reason: 27rem, measured from
+     the card's own top, put Read 137px under the bar at 390x844 on a first visit. 40.5rem leaves a 131px
+     wide cover there, 189px at 430x932, and 101px at 360x800, where 40rem and an 8rem floor put Read 4px under it.
+     The floor is the 96px the cover had before; at 375x667 Read sat under the bar on opening with that
+     cover too. Being in rem, a larger browser text setting shrinks the cover before it takes room from
+     the buttons. The same 2:3 poster sizing #980 gave a comic's own page in the phone apps. */
+  #hero .hero-in > .art {
+    float: none; max-width: none; margin: 0 auto var(--space-6);
+    width: max(min(30vw, 6rem), min(calc((100dvh - 40.5rem) * 2 / 3), 62vw, 20rem));
+  }
+  #hero-title, #hero-by { text-align: center; }
   #hero-title { clear: both; }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
   #hero .cta, #hero-facts, #hero-desc, .reading-comic-actions { clear: both; }
@@ -2371,6 +2383,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .search-clear:hover { color: var(--text); border-color: var(--line-2); filter: none; }
 
 @media (min-width: 1100px) { .hero-in { grid-template-columns: 248px 1fr; } }
+/* #1061: beside the text, the reading card's cover grows with the window's height up to 320px, which
+   at 1280 by 900 still ends well above the fold, with Read and Done at the top of the text column. */
+@media (min-width: 701px) {
+  #hero .hero-in { grid-template-columns: auto minmax(0, 1fr); }
+  #hero .hero-in > .art { width: clamp(216px, min(calc((100dvh - 128px) * 2 / 3), 36vw), 320px); }
+}
 
 /* The expanded command group owns the edge; individual commands gain weight only when reached.
    Their names, tab order and confirmations do not depend on the disclosure's presentation. */

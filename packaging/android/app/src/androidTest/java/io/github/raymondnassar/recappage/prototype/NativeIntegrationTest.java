@@ -305,7 +305,9 @@ public final class NativeIntegrationTest {
         if (!candidatePhase.isEmpty()) {
             stateMatched = true;
             settingsMatched = truth(web, "(() => {const s=JSON.parse(localStorage.getItem('mrt.settings'));"
-                    + "return s.covers===false && s.theme==='dark' && s.hideDescriptions===true"
+                    + "return s.covers===false && s.theme==='dark'"
+                    // #1061: a stored hiding choice is no longer read, and the app may drop it on its next write.
+                    + " && (s.hideDescriptions===true || s.hideDescriptions===undefined)"
                     + " && s.apiBase==='http://127.0.0.1:9/v1';})()");
             assertTrue("Restart preserves the seeded device settings", settingsMatched);
         }

@@ -1,7 +1,6 @@
 import { labelledName } from '../lib/accname.js';
 import { readerAction, readerContext } from '../lib/readerDestination.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
-import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { isDeferred, isRead } from '../lib/model.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 
@@ -34,7 +33,6 @@ export function createIssueView({
   readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   seriesOnly,
   synopsisFallback,
-  synopsisDisclosure,
   synopsisStatusLine,
 }) {
   let activeLoad = null;
@@ -43,14 +41,12 @@ export function createIssueView({
   let savedReference = null;
   let synopsisEpoch = 0;
 
+  // #1061: a loaded summary is shown in full. Readers asked for the context before committing to a
+  // run of comics, so the Show and Hide step and its setting are gone; loading stays a choice.
   function paintDescription(issue) {
     const nodes = elements();
-    renderSynopsisDescription({
-      button: nodes.disclosure, description: nodes.description, issue,
-      entry: getSynopsis(issue.issueId),
-      fallback: synopsisFallback(issue, getSynopsis(issue.issueId)),
-      disclosure: synopsisDisclosure,
-    });
+    nodes.description.hidden = false;
+    nodes.description.textContent = synopsisFallback(issue, getSynopsis(issue.issueId));
   }
 
   function issueContextText(context, issueId) {
@@ -143,7 +139,7 @@ export function createIssueView({
     nodes.synopsis.hidden = issue.issueId < 0 || isSynopsisActive() || getSynopsis(issue.issueId) != null;
     nodes.cancelSynopsis.hidden = !isSynopsisActive();
     if ([nodes.synopsis, nodes.cancelSynopsis].includes(active) && active.hidden) {
-      const target = [nodes.cancelSynopsis, nodes.disclosure, nodes.synopsis]
+      const target = [nodes.cancelSynopsis, nodes.synopsis]
         .find((control) => !control.hidden) ?? nodes.description;
       if (target === nodes.description) target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
@@ -227,8 +223,6 @@ export function createIssueView({
     const nodes = elements();
     nodes.description.textContent = '';
     nodes.description.hidden = true;
-    nodes.disclosure.hidden = true;
-    nodes.disclosure.setAttribute('aria-expanded', 'false');
   }
 
   function repaintSynopsis(status) {
@@ -237,17 +231,6 @@ export function createIssueView({
     nodes.synopsisStatus.textContent = synopsisStatusLine(status);
     nodes.synopsisStatus.hidden = !nodes.synopsisStatus.textContent;
     paint(currentResult);
-  }
-
-  function refreshDescription() {
-    if (!currentResult?.issue) return;
-    const nodes = elements();
-    const focused = nodes.disclosure.ownerDocument?.activeElement === nodes.disclosure;
-    paintDescription(currentResult.issue);
-    if (focused && nodes.disclosure.hidden) {
-      nodes.heading.setAttribute('tabindex', '-1');
-      nodes.heading.focus({ preventScroll: true });
-    }
   }
 
   function refreshReader() {
@@ -306,21 +289,14 @@ export function createIssueView({
     nodes.read.addEventListener('click', (event) => {
       if (currentResult?.issue) onRead(currentResult.issue, event, currentResult.source);
     });
-    nodes.disclosure.addEventListener('click', () => {
-      if (!currentResult?.issue) return;
-      synopsisDisclosure.toggle(currentResult.issue.issueId);
-      paintDescription(currentResult.issue);
-    });
     nodes.synopsis.addEventListener('click', async () => {
       if (!currentResult?.issue) return;
       const issue = currentResult.issue;
       // Invalidated even while consent is open, so leaving and returning cannot revive that request.
       const epoch = ++synopsisEpoch;
-      const generation = synopsisDisclosure.generation();
       const isCurrent = () => epoch === synopsisEpoch && currentResult?.issue?.issueId === issue.issueId;
       const fetched = await onStartSynopsis(isCurrent);
       if (!fetched || !isCurrent()) return;
-      if (generation === synopsisDisclosure.generation()) synopsisDisclosure.reveal(issue.issueId);
       paintDescription(issue);
     });
     nodes.cancelSynopsis.addEventListener('click', () => {
@@ -337,7 +313,6 @@ export function createIssueView({
     cancel,
     render,
     repaintSynopsis,
-    refreshDescription,
     refreshReader,
     resetSynopsis,
     result: () => currentResult,

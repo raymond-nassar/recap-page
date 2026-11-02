@@ -2,7 +2,8 @@
 // overflow: hidden, which made it a scroll container, and its decorative layer, scaled 1.3, reached
 // past its foot by 15 per cent of its height. At 880px and below, focus keeps clear of the bottom bar
 // by scrolling every container in its chain, so Tab onto More comic actions scrolled the card itself
-// and cut off "Read this next" at its top, which stayed cut off after a visit to Settings. The Android
+// and cut off "Read this next" at its top, which stayed cut off after a visit to Settings. That label
+// went in #1061, so the measure is now the cover, the card's first thing. The Android
 // build has its own owner, --only=reading-composition. Runs on the ephemeral port like every scenario
 // not listed for the app origin.
 import { readFileSync } from 'node:fs';
@@ -69,7 +70,7 @@ function measure(page) {
     const control = inCard ? focused.getBoundingClientRect() : null;
     return {
       scrollTop: hero.scrollTop,
-      eyebrow: Math.round((hero.querySelector('.eyebrow').getBoundingClientRect().top - card.top) * 10) / 10,
+      first: Math.round((hero.querySelector('.hero-in > .art').getBoundingClientRect().top - card.top) * 10) / 10,
       focus: focused?.id || focused?.tagName || null, inCard,
       control: control ? [Math.round(control.top), Math.round(control.bottom)] : null,
       fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
@@ -79,7 +80,7 @@ function measure(page) {
 
 export const readingCardFocus = {
   id: 'reading-card-focus',
-  title: 'keyboard focus moves the page, never the reading card\'s own content, so "Read this next" stays whole',
+  title: 'keyboard focus moves the page, never the reading card\'s own content, so its cover stays whole',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -108,7 +109,7 @@ export const readingCardFocus = {
         }
         steps.push(now);
       }
-      const moved = steps.filter((step) => step.scrollTop !== 0 || step.eyebrow !== rest.eyebrow);
+      const moved = steps.filter((step) => step.scrollTop !== 0 || step.first !== rest.first);
       t.check(`${pass.name}: Tab through the card's controls leaves its content where it was`,
         steps.length >= 3 && steps.some((step) => step.focus === 'SUMMARY') && opened === !!pass.open && !moved.length,
         JSON.stringify({ rest, moved, path: steps.map((step) => step.focus) }));
@@ -123,7 +124,7 @@ export const readingCardFocus = {
       await settle(page);
       const back = await measure(page);
       t.check(`${pass.name}: back from Settings, the card's first line is still whole`,
-        back.scrollTop === 0 && back.eyebrow === rest.eyebrow, JSON.stringify({ rest, back }));
+        back.scrollTop === 0 && back.first === rest.first, JSON.stringify({ rest, back }));
       // Nothing else can scroll it either: the card clips its decorative layer without becoming a
       // scroll container, which is what let focus move its content.
       const forced = await page.evaluate(() => {
@@ -140,6 +141,81 @@ export const readingCardFocus = {
   },
 };
 
+// #1061, the owner's request on 2026-11-01: the cover is centered and takes more of the screen, Read
+// and Done stay visible without scrolling, and the Marvel Unlimited record and the position move to
+// Issue details. Before it, a phone showed the cover floated left at 96px. Read must also stay above the
+// fold when the screen opens, with the list's heading above the card, which leaves the smallest phones
+// little more than that: a third larger is the floor from 390px wide, and never smaller below it. At
+// 375x667 Read was already under the bottom bar on opening with the 96px cover, so that screen is held
+// only to the card-top check.
+// Read and Done are then checked with the card scrolled to its top, as the owner's screenshot shows it.
+export const readingCardPoster = {
+  id: 'reading-card-poster',
+  title: 'the reading card centers a larger cover with Read and Done above the fold, and leaves the record and position to Issue details',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    for (const [width, height] of [[360, 800], [375, 667], [390, 844], [430, 932], [820, 1180], [1024, 1366], [1280, 900]]) {
+      for (const text of [null, '200%']) {
+        const name = `${width}x${height}${text ? ` at ${text} text` : ''}`;
+        const undo = await setup(page, { width, height, theme: 'dark', text });
+        if (!text && height >= 700) {
+          const opened = await page.evaluate(() => {
+            const rail = document.querySelector('.rail-header');
+            const bar = rail.getBoundingClientRect();
+            const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+            return { scrollY: Math.round(scrollY), fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
+              read: Math.round(document.querySelector('#btn-hero-read').getBoundingClientRect().bottom) };
+          });
+          t.check(`${name}: Read is above the fold when the screen opens`,
+            opened.scrollY === 0 && opened.read <= opened.fold, JSON.stringify(opened));
+        }
+        await page.evaluate(() => {
+          const hero = document.querySelector('#hero');
+          window.scrollTo(0, hero.getBoundingClientRect().top + scrollY - 8);
+        });
+        await settle(page);
+        const seen = await page.evaluate(() => {
+          const box = (selector) => document.querySelector(selector).getBoundingClientRect();
+          const rail = document.querySelector('.rail-header');
+          const bar = rail.getBoundingClientRect();
+          const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+          const art = box('#hero .hero-in > .art'), inner = box('#hero .hero-in');
+          const style = getComputedStyle(document.querySelector('#hero .hero-in'));
+          const left = inner.left + parseFloat(style.paddingLeft), right = inner.right - parseFloat(style.paddingRight);
+          return {
+            fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
+            read: Math.round(box('#btn-hero-read').bottom), done: Math.round(box('#btn-hero-done').bottom),
+            art: Math.round(art.width), offset: Math.round((art.left + art.right) / 2 - (left + right) / 2),
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            facts: document.querySelector('#hero-facts').textContent,
+          };
+        });
+        t.check(`${name}: Read and Done sit above the fold with the card at its top`,
+          seen.read <= seen.fold && seen.done <= seen.fold && !seen.overflow, JSON.stringify(seen));
+        if (width <= 700) {
+          t.check(`${name}: the cover is centered`, Math.abs(seen.offset) <= 2, JSON.stringify(seen));
+          if (!text) {
+            t.check(`${name}: the cover is ${width >= 390 ? 'at least a third larger than' : 'no smaller than'} the 96px it was`,
+              seen.art >= (width >= 390 ? 128 : 96), JSON.stringify(seen));
+          }
+        }
+        t.check(`${name}: the card leaves the Unlimited record and the position to Issue details`,
+          !/Unlimited|Position/.test(seen.facts), seen.facts);
+        await undo();
+      }
+    }
+    await setup(page, { width: 390, height: 844, theme: 'dark' });
+    await page.$eval('#btn-hero-inspect', (node) => node.click());
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    const details = await page.$eval('#issue-focus-facts', (node) => node.textContent);
+    t.check('Issue details shows the Unlimited record and the position', /Marvel Unlimited record/.test(details)
+      && /Position4 of \d+/.test(details), details);
+    await page.evaluate(() => localStorage.clear());
+    t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
 export const readingCardMutations = [
   {
     id: 'reading-card-scroll-container', breaks: 'reading-card-focus',
@@ -149,6 +225,14 @@ export const readingCardMutations = [
     script: () => window.addEventListener('load', () => {
       const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('/styles.css'));
       sheet?.insertRule('.hero { overflow: hidden !important; }', sheet.cssRules.length);
+    }),
+  },
+  {
+    id: 'reading-card-small-cover', breaks: 'reading-card-poster',
+    why: 'the phone cover is floated left at 96px again, as it was before #1061',
+    script: () => window.addEventListener('load', () => {
+      const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('/styles.css'));
+      sheet?.insertRule('@media (max-width: 700px) { #hero .hero-in > .art { float: left !important; width: 96px !important; margin: 0 20px 16px 0 !important; } }', sheet.cssRules.length);
     }),
   },
 ];
