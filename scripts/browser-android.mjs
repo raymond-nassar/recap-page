@@ -1337,6 +1337,19 @@ async function storyTypesDropdowns(page, profile, label) {
     };
   });
   const initial = await snapshot();
+  const historyBefore = await page.evaluate(() => history.length);
+  await page.focus('#genres-type');
+  for (let step = 0; step < 5; step++) await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Tab');
+  const historyAfter = await page.evaluate(() => history.length);
+  console.log(`SELECT-HISTORY ${JSON.stringify({ label, before: historyBefore, after: historyAfter })}`);
+  check(historyAfter === historyBefore + 1,
+    `${label}: one keyboard run adds one history entry (${historyBefore} to ${historyAfter})`);
+  await page.goBack();
+  const restored = await snapshot();
+  check(restored.hash === initial.hash && restored.type === '' && restored.tone === '' && sameStarters(restored),
+    `${label}: one Back after a keyboard run restores the arrival address`);
+  await route(page, 'genres');
   check(initial.type === '' && initial.tone === '' && initial.labels.join('|') === 'Genre|Tone',
     `${label}: two native dropdowns have visible associated labels and Any defaults`);
   const facets = storyTypeFacets(stories);
@@ -1407,6 +1420,48 @@ async function storyTypesDropdowns(page, profile, label) {
   `${label}: zero-count current choices remain available to change`);
   check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
     `${label}: choosing, restoring and clearing filters preserve saved progress`);
+  await route(page, 'catalog');
+  await page.waitForSelector('#catalog-path option[value]:not([value=""])');
+  const path = await page.$eval('#catalog-path', (node) => [...node.options].find((option) => option.value).value);
+  await page.select('#catalog-path', path);
+  await page.waitForSelector('#catalog-path-jump');
+  const selects = '#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select';
+  const readColors = () => page.$$eval(selects, (nodes) => nodes.map((node) => {
+    const style = getComputedStyle(node);
+    return { id: node.id, color: style.color, background: style.backgroundColor,
+      adjustment: style.forcedColorAdjust };
+  }));
+  for (const theme of ['dark', 'light']) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+    const colors = await readColors();
+    check(JSON.stringify(colors.map(({ id }) => id).sort()) === JSON.stringify([
+      'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+      'opt-theme', 'rated-character', 'rated-min', 'rated-sort',
+    ]), `${label}: every shared styled select is measured in ${theme}`);
+    for (const entry of colors) {
+      const channels = (color) => color.match(/[\d.]+/g).map(Number);
+      const measured = ratio(channels(entry.color), channels(entry.background));
+      check(measured >= 4.5, `${label}: ${entry.id} ${theme} text contrast ${measured.toFixed(2)}:1`);
+      console.log(`SELECT-CONTRAST ${JSON.stringify({ label, theme, ...entry, ratio: measured })}`);
+    }
+  }
+  const cdp = await page.createCDPSession();
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+  const system = await page.evaluate(() => {
+    const probe = document.createElement('span');
+    probe.style.cssText = 'color: FieldText; background-color: Field';
+    document.body.append(probe);
+    const style = getComputedStyle(probe);
+    const colors = { color: style.color, background: style.backgroundColor };
+    probe.remove();
+    return colors;
+  });
+  const forced = await readColors();
+  check(forced.length === 8 && forced.every((entry) => entry.adjustment === 'auto'
+    && entry.color === system.color && entry.background === system.background),
+  `${label}: all shared selects retain system FieldText/Field in forced colors ${JSON.stringify({ forced, system })}`);
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
+  await cdp.detach();
 }
 
 async function marvelAgesTouchTarget(page, label, viewport) {

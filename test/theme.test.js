@@ -48,6 +48,16 @@ test('native fields and path selects share the scoped Field typography and targe
   assert.equal(rootTokens(css).get('--target'), '44px');
 });
 
+test('shared styled selects supply their own token surface and readable text in every theme', () => {
+  const rule = css.match(/#view-data select, \.setting select,[^{]+\{([^}]+)\}/)[1];
+  assert.match(rule, /background-color: var\(--card-2\)/);
+  assert.match(rule, /color: var\(--text\)/);
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    assert.ok(ratio(parseHex(tokens.get('--text')), parseHex(tokens.get('--card-2'))) >= BODY);
+  }
+});
+
 test('the native ask dialog authors viewport bounds and vertical scroll without replacing its controls', () => {
   // #830: the bounds and the scroll are the dialog shell's, which every question shares with Preview.
   assert.match(css, /\.ask, \.preview \{[^}]*max-height: calc\(100dvh - 2rem\); overflow-y: auto/);

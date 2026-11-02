@@ -84,7 +84,7 @@ test('the view keeps known selections in labeled native dropdowns without replac
     elements: () => ({ count, results }),
     isCurrent: () => true,
     presentation: { catalogCard: (story) => ({ card: story.lists[0].id }) },
-    onNavigate: () => navigations.push(view.selection()),
+    onNavigate: ({ push }) => navigations.push({ ...view.selection(), push }),
   });
   view.set({ storyType: 'espionage', tone: 'grim' });
   assert.deepEqual(view.selection(), { storyType: 'espionage', tone: null });
@@ -100,7 +100,7 @@ test('the view keeps known selections in labeled native dropdowns without replac
   assert.equal(tone.children[0].props.text, 'Any tone');
   assert.ok(type.children.some(({ props }) => props.text === 'Espionage (2)'));
   tone.props.onchange({ currentTarget: { value: 'dark' } });
-  assert.deepEqual(navigations.at(-1), { storyType: 'espionage', tone: 'dark' });
+  assert.deepEqual(navigations.at(-1), { storyType: 'espionage', tone: 'dark', push: true });
   assert.equal(count.textContent, '1 of 3 Reading Lists');
   assert.deepEqual(root.children.map((group) => group.children[1]), [type, tone]);
   assert.equal(tone.value, 'dark');
@@ -110,12 +110,26 @@ test('the view keeps known selections in labeled native dropdowns without replac
   assert.ok(type.children.some(({ props }) => props.text === 'Space opera (0)'));
   assert.equal(count.textContent, '0 of 3 Reading Lists');
   tone.props.onchange({ currentTarget: { value: '' } });
-  assert.deepEqual(navigations.at(-1), { storyType: 'space-opera', tone: null });
+  assert.deepEqual(navigations.at(-1), { storyType: 'space-opera', tone: null, push: true });
   type.props.onchange({ currentTarget: { value: '' } });
   assert.deepEqual(view.selection(), { storyType: null, tone: null });
   assert.equal(count.textContent, '3 Reading Lists');
   assert.equal(results.children[0].props.text, 'Choose a genre or a tone to see its Reading Lists.');
   assert.deepEqual(root.children.map((group) => group.children[1]), [type, tone]);
+  const key = (key) => type.props.onkeydown({ key });
+  const change = (value) => type.props.onchange({ currentTarget: { value } });
+  key('ArrowDown');
+  change('espionage');
+  key('s');
+  change('space-opera');
+  assert.deepEqual(navigations.slice(-2).map(({ push }) => push), [true, false]);
+  type.props.onfocusout();
+  key('Home');
+  change('');
+  assert.equal(navigations.at(-1).push, true);
+  type.props.onpointerdown();
+  change('espionage');
+  assert.equal(navigations.at(-1).push, true);
 });
 
 test('#1060: with no choice the view shows the starting lists, gives way to a filter and returns on reset', () => {
