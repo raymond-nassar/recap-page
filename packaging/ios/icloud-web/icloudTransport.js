@@ -46,9 +46,8 @@ export function iosDeviceLabel(nav = globalThis.navigator) {
 // The account is the one this device is signed in to, so a connection reaches this device alone, which
 // the card and the erase say as "this device".
 export function createICloudTransport({ native, nav = globalThis.navigator, createTransport }) {
-  return {
-    ...createTransport({ fetchImpl: createICloudFetch(native), prefix: '' }),
+  return Object.assign(createTransport({ fetchImpl: createICloudFetch(native), prefix: '' }), {
     scope: 'device',
     device: iosDeviceLabel(nav),
-  };
+  });
 }

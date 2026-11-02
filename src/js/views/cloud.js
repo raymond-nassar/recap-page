@@ -522,7 +522,7 @@ export function createCloudBackupView({
   function wire() {
     const nodes = elements();
     if (!nodes.card) return;
-    nodes.signIn.addEventListener('click', () => { void signIn(); });
+    nodes.signIn?.addEventListener('click', () => { void signIn(); });
     nodes.signInGoogle?.addEventListener('click', () => { void signIn('googledrive'); });
     nodes.connectICloud?.addEventListener('click', () => { void signIn('icloud'); });
     nodes.retry.addEventListener('click', () => { void run(async () => { onRetry(); }); });

@@ -1,4 +1,5 @@
 import XCTest
+import WebKit
 @testable import RecapPage
 
 // XCTest's assertions take autoclosures that cannot await, so every request below is made first and its
@@ -196,6 +197,56 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(confirmed["bytes"] as? String, "AQID")
     }
 
+    func testReadBackWaitsForADelayedUploadInsteadOfStartingAnotherGeneration() async throws {
+        let connection = try await connect()
+        store.uploadDelaySeconds = 10
+        _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
+        let read = try await call("read", ["connection": connection, "id": backupName])
+        XCTAssertEqual(read["ok"] as? Bool, true)
+        XCTAssertEqual(read["bytes"] as? String, "AQID")
+        XCTAssertEqual(store.elapsed, 10)
+        XCTAssertTrue(store.notUploaded.isEmpty)
+    }
+
+    func testOfflineRetriesCannotPublishASecondPendingFile() async throws {
+        let connection = try await connect()
+        store.automaticallyUpload = false
+        _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
+        for generation in 2...8 {
+            store.advance(seconds: 600)
+            let other = "recap-page-backup-v1-\(String(repeating: "c", count: 32))-\(generation).json.gz"
+            let refused = try await refusal("create", ["connection": connection, "name": other, "bytes": "BAUG"])
+            XCTAssertEqual(refused.code, "unavailable")
+            XCTAssertEqual(refused.retry, 15_000)
+            XCTAssertNil(store.files[other], "a refused create never appears later")
+        }
+        XCTAssertEqual(store.notUploaded.count, 1)
+        XCTAssertEqual(store.files.count, 1)
+    }
+
+    func testUploadConfirmationAtTheReadDeadlineAndDownloadedFiles() async throws {
+        for delay in [9.5, 10.5] {
+            let fake = ICloudFakeStore()
+            fake.uploadDelaySeconds = delay
+            fake.uploadWaitSeconds = 10
+            _ = try await fake.create(name: backupName, data: Data([1]))
+            do {
+                let bytes = try await fake.read(name: backupName)
+                XCTAssertLessThan(delay, 10)
+                XCTAssertEqual(bytes, Data([1]))
+            } catch {
+                XCTAssertGreaterThan(delay, 10)
+                XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
+            }
+            XCTAssertLessThanOrEqual(fake.elapsed, 10)
+        }
+        let downloaded = ICloudFakeStore()
+        downloaded.files[backupName] = Data([2])
+        let bytes = try await downloaded.read(name: backupName)
+        XCTAssertEqual(bytes, Data([2]))
+        XCTAssertEqual(downloaded.elapsed, 0, "a downloaded file has no local upload to wait for")
+    }
+
     func testUploadInspectionFailureIsNotReportedAsUploaded() async throws {
         _ = try await connect()
         store.failures["uploadState"] = .iCloudBusy
@@ -247,7 +298,10 @@ final class ICloudDriveStoreTests: XCTestCase {
 
     private func store(located: Bool = true) -> ICloudDriveStore {
         let root = root!
-        return ICloudDriveStore(locate: { located ? root : nil }, identity: { "account" as NSString }, downloadWaitSeconds: 0)
+        return ICloudDriveStore(
+            locate: { located ? root : nil }, identity: { "account" as NSString },
+            downloadWaitSeconds: 0, uploadWaitSeconds: 0
+        )
     }
 
     private let backupName = "recap-page-backup-v1-\(String(repeating: "e", count: 32))-2.json.gz"
@@ -289,6 +343,20 @@ final class ICloudDriveStoreTests: XCTestCase {
         XCTAssertNil(items.last?.size, "a backup not downloaded has no size yet")
         let state = try await store.uploadState()
         XCTAssertTrue(state.waiting, "a local file not yet recognized by iCloud is not an uploaded backup")
+    }
+
+    func testAnotherPendingLocalFilePreventsPublicationBeforeAnyWrite() async throws {
+        let store = store()
+        _ = try await store.create(name: backupName, data: Data([1]))
+        let next = "recap-page-backup-v1-\(String(repeating: "e", count: 32))-3.json.gz"
+        do {
+            _ = try await store.create(name: next, data: Data([2]))
+            XCTFail("another local file was published while its predecessor was pending")
+        } catch {
+            XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
+        }
+        let file = root.appendingPathComponent("Documents").appendingPathComponent(next)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
     }
 
     func testAMissingBackupIsNotFoundAndDeletingItTwiceSucceeds() async throws {

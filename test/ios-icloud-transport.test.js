@@ -80,3 +80,16 @@ test('the transport reaches this device alone and names it as the iOS app, an iP
     assert.doesNotMatch(label, /android|windows|google|microsoft/i, 'the iOS app names no other platform or service');
   }
 });
+
+test('the installed iOS transport keeps the live duplicate-names getter after status and connect', async () => {
+  const native = nativeHandler(() => reply(200, {
+    ok: true, status: { provider: 'icloud', providers: ['icloud'], state: 'connected', connection: 'a'.repeat(32) },
+  }));
+  const transport = createICloudTransport({ native, nav: { userAgent: 'iPhone' }, createTransport: createCloudHostTransport });
+  assert.equal(transport.duplicateNames, false, 'no provider has answered yet');
+  await transport.status();
+  assert.equal(transport.duplicateNames, true, 'the installed adapter reflects the provider learned by status');
+  await transport.connect({ provider: 'icloud' });
+  assert.equal(transport.duplicateNames, true);
+  assert.deepEqual(JSON.parse(native.sent.at(-1).body), { provider: 'icloud' });
+});

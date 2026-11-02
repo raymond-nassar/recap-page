@@ -347,17 +347,17 @@ shared backup engine, its schedule and its restore are unchanged.
   any of it can reach a Release build without that condition. The page half lives in
   `packaging/ios/icloud-web`, outside the folder the build copies whole, so a build without it never
   installs the iCloud transport and the backup card stays removed. `packaging/ios/features.json`
-  keeps `iCloudBackup` false. Preparation reads it strictly and its off output is byte-identical to
-  the accepted iOS wording baseline, including the asset manifest. A development preview can supply
-  an alternate features file to `prepareIos`; a reserved release refuses that override.
+  keeps `iCloudBackup` false. The baseline-output test permits only `js/main.js`, `js/views/cloud.js`,
+  `js/lib/cloudBackup.js` and `js/lib/cloudHostTransport.js` to differ; they are inert without a card or
+  transport. A preview can use an alternate features file; a reserved release refuses that override.
 - **Why the native switch is not wired yet.** Turning it on needs the iCloud entitlements, the
   `NSUbiquitousContainers` entry in the app's Info.plist and a build setting for the condition. Those
   change the signed export, which only the protected release workflow exercises, so they follow in a
   separate change once iOS build 6 is cut, and the first TestFlight export with them is the proof
   that signing accepts them.
-- **What iOS decides.** iOS uploads each file on its own schedule, so the card says the app is
-  waiting for iCloud until iOS reports the upload. A backup made on another device may need to
-  download before it can be restored; the app asks for it and tells the page to try again shortly.
+- **What iOS decides.** iOS uploads on its schedule. Read-back waits up to nine minutes for confirmation,
+  and a pending local backup blocks another create before it writes. Retention runs only after a newer
+  backup is confirmed. Restoring another device's backup may first need a download and a retry.
 - **Account changes.** A connection is recorded against the iCloud account the device was signed in
   to. Signing out makes backup unavailable, and a different account needs connecting again, so one
   account's backups are never written into another's folder.

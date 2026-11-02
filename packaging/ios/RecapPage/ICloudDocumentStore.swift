@@ -87,6 +87,8 @@ final class ICloudDriveStore: ICloudDocumentStore {
     private let locate: Locator
     private let identity: IdentitySource
     private let downloadWaitNanoseconds: UInt64
+    private let uploadWaitSeconds: TimeInterval
+    private let publicationLock = NSLock()
 
     /// The real store: the container's Documents folder, which the Files app shows as Recap Page.
     convenience init(containerIdentifier: String = ICloudDriveStore.containerIdentifier) {
@@ -97,10 +99,16 @@ final class ICloudDriveStore: ICloudDocumentStore {
     }
 
     /// `locate` names the container's root and is only ever called off the main thread, as Apple requires.
-    init(locate: @escaping Locator, identity: @escaping IdentitySource, downloadWaitSeconds: UInt64 = 20) {
+    init(
+        locate: @escaping Locator,
+        identity: @escaping IdentitySource,
+        downloadWaitSeconds: UInt64 = 20,
+        uploadWaitSeconds: TimeInterval = 540
+    ) {
         self.locate = locate
         self.identity = identity
         downloadWaitNanoseconds = downloadWaitSeconds * 1_000_000_000
+        self.uploadWaitSeconds = uploadWaitSeconds
     }
 
     func currentIdentity() -> Data? {
@@ -195,26 +203,29 @@ final class ICloudDriveStore: ICloudDocumentStore {
 
     func uploadState(expectedIdentity: Data? = nil) async throws -> ICloudUploadState {
         try await offMain {
-            let documents = try self.folder(expectedIdentity: expectedIdentity)
-            let keys: [URLResourceKey] = [.isDirectoryKey, .isUbiquitousItemKey, .ubiquitousItemIsUploadedKey, .ubiquitousItemUploadingErrorKey]
-            var state = ICloudUploadState()
-            for entry in try FileManager.default.contentsOfDirectory(at: documents, includingPropertiesForKeys: keys, options: []) {
-                guard Self.isBackupName(entry.lastPathComponent) else { continue }
-                let values = try entry.resourceValues(forKeys: Set(keys))
-                if values.isDirectory == true { continue }
-                // A just-created local file may not be marked ubiquitous yet. That is not an upload.
-                if values.isUbiquitousItem == true && values.ubiquitousItemIsUploaded == true { continue }
-                state.waiting = true
-                if let problem = values.ubiquitousItemUploadingError {
-                    if problem.code == NSUbiquitousFileNotUploadedDueToQuotaError {
-                        state.iCloudFull = true
-                    } else {
-                        throw Self.mapped(problem)
-                    }
+            try self.uploadState(in: self.folder(expectedIdentity: expectedIdentity))
+        }
+    }
+
+    private func uploadState(in documents: URL) throws -> ICloudUploadState {
+        let keys: [URLResourceKey] = [.isDirectoryKey, .isUbiquitousItemKey, .ubiquitousItemIsUploadedKey, .ubiquitousItemUploadingErrorKey]
+        var state = ICloudUploadState()
+        for entry in try FileManager.default.contentsOfDirectory(at: documents, includingPropertiesForKeys: keys, options: []) {
+            guard Self.isBackupName(entry.lastPathComponent) else { continue }
+            let values = try entry.resourceValues(forKeys: Set(keys))
+            if values.isDirectory == true { continue }
+            // A just-created local file may not be marked ubiquitous yet. That is not an upload.
+            if values.isUbiquitousItem == true && values.ubiquitousItemIsUploaded == true { continue }
+            state.waiting = true
+            if let problem = values.ubiquitousItemUploadingError {
+                if problem.code == NSUbiquitousFileNotUploadedDueToQuotaError {
+                    state.iCloudFull = true
+                } else {
+                    throw Self.mapped(problem)
                 }
             }
-            return state
         }
+        return state
     }
 
     private func isUploaded(name: String, expectedIdentity: Data?) async throws -> Bool {
@@ -231,10 +242,18 @@ final class ICloudDriveStore: ICloudDocumentStore {
 
     func read(name: String, expectedIdentity: Data? = nil) async throws -> Data {
         let url = try await offMain { try self.folder(expectedIdentity: expectedIdentity).appendingPathComponent(name, isDirectory: false) }
-        try await waitForDownload(url)
-        let data = try await offMain {
+        let downloaded = try await waitForDownload(url)
+        try await offMain {
             let values = try url.resourceValues(forKeys: [.fileSizeKey])
             if let size = values.fileSize, size > Self.maximumBytes { throw ICloudStoreError.tooLarge }
+        }
+        // Local read-back is not cloud durability. This also survives a restart while an upload is pending.
+        if !downloaded {
+            try await Self.waitForUpload(timeout: uploadWaitSeconds) {
+                try await self.isUploaded(name: name, expectedIdentity: expectedIdentity)
+            }
+        }
+        return try await offMain {
             return try Self.coordinated(reading: url) { actual in
                 try self.checkIdentity(expectedIdentity)
                 let file = try FileHandle(forReadingFrom: actual)
@@ -244,26 +263,48 @@ final class ICloudDriveStore: ICloudDocumentStore {
                 return data
             }
         }
-        // Local read-back is not cloud durability. This also survives a restart while an upload is pending.
-        guard try await isUploaded(name: name, expectedIdentity: expectedIdentity) else { throw ICloudStoreError.stillUploading }
-        return data
+    }
+
+    static func waitForUpload(
+        timeout: TimeInterval,
+        clock: (() -> TimeInterval)? = nil,
+        pause: (UInt64) async throws -> Void = { try await Task.sleep(nanoseconds: $0) },
+        uploaded: () async throws -> Bool
+    ) async throws {
+        // Keep a minute for the file read and bridge reply within the transport's 600-second read cap.
+        let monotonic = ContinuousClock()
+        let start = monotonic.now
+        let elapsed = clock ?? {
+            let duration = start.duration(to: monotonic.now).components
+            return Double(duration.seconds) + Double(duration.attoseconds) / 1_000_000_000_000_000_000
+        }
+        let deadline = elapsed() + timeout
+        while true {
+            try Task.checkCancellation()
+            if try await uploaded(), elapsed() <= deadline { return }
+            let remaining = deadline - elapsed()
+            guard remaining > 0 else { throw ICloudStoreError.stillUploading }
+            try await pause(UInt64(min(0.5, remaining) * 1_000_000_000))
+        }
     }
 
     // Asks iCloud for a file this device has not downloaded, and waits a little while for it. A file still
     // downloading after that is refused as worth retrying, so a slow download never holds a restore open.
-    private func waitForDownload(_ url: URL) async throws {
-        let present = try await offMain { () -> Bool? in
+    private func waitForDownload(_ url: URL) async throws -> Bool {
+        let (needsDownload, fromPlaceholder) = try await offMain { () -> (Bool, Bool) in
             let manager = FileManager.default
             let isLocal = manager.fileExists(atPath: url.path)
-            guard isLocal || manager.fileExists(atPath: Self.placeholder(for: url).path) else { return nil }
-            let values = try? url.resourceValues(forKeys: [.isUbiquitousItemKey, .ubiquitousItemDownloadingStatusKey])
-            guard values?.isUbiquitousItem == true else { return isLocal }
-            if values?.ubiquitousItemDownloadingStatus == .current { return true }
+            guard isLocal || manager.fileExists(atPath: Self.placeholder(for: url).path) else {
+                throw ICloudStoreError.notFound
+            }
+            if isLocal {
+                let values = try url.resourceValues(forKeys: [.isUbiquitousItemKey, .ubiquitousItemDownloadingStatusKey])
+                if values.isUbiquitousItem != true || values.ubiquitousItemDownloadingStatus == .current { return (false, false) }
+            }
             try manager.startDownloadingUbiquitousItem(at: url)
-            return false
+            return (true, !isLocal)
         }
-        guard let present else { throw ICloudStoreError.notFound }
-        if present { return }
+        if !needsDownload { return false }
         let step: UInt64 = 500_000_000
         var waited: UInt64 = 0
         while waited < downloadWaitNanoseconds {
@@ -275,7 +316,7 @@ final class ICloudDriveStore: ICloudDocumentStore {
                 return (try? url.resourceValues(forKeys: [.ubiquitousItemDownloadingStatusKey]))?
                     .ubiquitousItemDownloadingStatus == .current
             }
-            if current { return }
+            if current { return fromPlaceholder }
         }
         throw ICloudStoreError.stillDownloading
     }
@@ -283,10 +324,18 @@ final class ICloudDriveStore: ICloudDocumentStore {
     func create(name: String, data: Data, expectedIdentity: Data? = nil) async throws -> ICloudBackupItem {
         guard data.count <= Self.maximumBytes else { throw ICloudStoreError.tooLarge }
         return try await offMain {
-            let url = try self.folder(expectedIdentity: expectedIdentity).appendingPathComponent(name, isDirectory: false)
+            self.publicationLock.lock()
+            defer { self.publicationLock.unlock() }
+            let documents = try self.folder(expectedIdentity: expectedIdentity)
+            let url = documents.appendingPathComponent(name, isDirectory: false)
+            let manager = FileManager.default
+            if manager.fileExists(atPath: url.path) || manager.fileExists(atPath: Self.placeholder(for: url).path) {
+                throw ICloudStoreError.exists
+            }
+            let uploads = try self.uploadState(in: documents)
+            guard !uploads.waiting else { throw ICloudStoreError.stillUploading }
             try Self.coordinated(writing: url, options: []) { target in
                 try self.checkIdentity(expectedIdentity)
-                let manager = FileManager.default
                 if manager.fileExists(atPath: target.path) || manager.fileExists(atPath: Self.placeholder(for: target).path) {
                     throw ICloudStoreError.exists
                 }
