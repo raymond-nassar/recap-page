@@ -152,7 +152,6 @@ function oneDriveAdapter({ clientId, fetchImpl, clock }) {
     },
     refresh: (refreshToken) => refreshTokens({ fetchImpl, clientId, clock, refreshToken }),
     drive: (options) => createOneDrive({ fetchImpl, clock, tracker, ...options }),
-    forget: async () => {},
   };
 }
 
@@ -166,17 +165,18 @@ function googleDriveAdapter({ clientId, clientSecret, fetchImpl, clock }) {
     async signIn({ code, authorization, redirectUri }) {
       const tokens = await google.redeemCode({ fetchImpl, clientId, clientSecret, clock, code, verifier: authorization.verifier, redirectUri });
       if (!tokens.refreshToken || !google.grantsDriveFile(tokens.scope)) {
-        // A grant without the one scope is no use, and is handed back rather than left in the account.
-        await google.revokeToken({ fetchImpl, token: tokens.refreshToken ?? tokens.accessToken });
+        // A grant without the one scope is no use and is never kept. It is not revoked, because revoking at
+        // Google ends the grant for every client of the project, so this would sign the person's other
+        // devices out of a Google Drive they already back up to.
         throw new ProviderError('refused', 'Google did not grant the access cloud backup needs.');
       }
       const found = await google.createGoogleDrive({ fetchImpl, clock, accessToken: async () => tokens.accessToken }).identify();
+      // Sessions left from an earlier sign-in, perhaps to another account, are not this one's to ask about.
+      tracker.unsettled.clear();
       return { tokens, account: found.account, hint: found.hint, folder: found.folder };
     },
     refresh: (refreshToken) => google.refreshTokens({ fetchImpl, clientId, clientSecret, clock, refreshToken }),
     drive: (options) => google.createGoogleDrive({ fetchImpl, clock, tracker, ...options }),
-    // Disconnecting also takes Recap Page off the Google Account's list of connected apps.
-    forget: (refreshToken) => google.revokeToken({ fetchImpl, token: refreshToken }),
   };
 }
 
@@ -374,15 +374,13 @@ export function createCloudHost({
     signIn = null;
     job?.close();
     access = null;
-    let gone = null;
+    // Only this computer forgets the sign-in. Google's revocation would end the grant for every client of
+    // the project, signing the person's other devices out too, and Microsoft offers none to call.
     await serial(async () => {
-      gone = record;
       await store.clear();
       record = null;
     });
     message = null;
-    // After the sign-in is off this computer, so a slow answer from the service never holds it back.
-    if (gone?.refreshToken) void adapters[gone.provider]?.forget(gone.refreshToken).catch(() => {});
     return status();
   }
 

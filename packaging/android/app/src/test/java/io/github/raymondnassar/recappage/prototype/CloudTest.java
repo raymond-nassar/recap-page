@@ -247,6 +247,7 @@ public final class CloudTest {
         deadline();
         largeCreate();
         largeRead();
+        GoogleDriveCases.run();
         if (firstFailure != null) throw new AssertionError(firstFailure);
         for (String reply : replies) {
             for (String secret : new String[] {ACCESS, REFRESH, RENEWED, NEXT_REFRESH, "CODE1"}) {
@@ -694,4 +695,254 @@ public final class CloudTest {
         pool.shutdown();
         check(pool.awaitTermination(5, TimeUnit.SECONDS), "The work behind it finishes");
     }
-}
+
+    // Google Drive's operations on Android (#810, P04), driven directly: nothing makes one yet, because
+    // Android has no Google sign-in until the owner chooses how it should work. host/googleDrive.mjs and
+    // test/google-drive.test.js hold the Windows half, which these cases follow request for request.
+    static final class GoogleDriveCases {
+        private GoogleDriveCases() {}
+
+        interface Operation {
+            void run() throws CloudError;
+        }
+
+        static String code(Operation operation) {
+            try {
+                operation.run();
+                return null;
+            } catch (CloudError error) {
+                return error.code;
+            }
+        }
+
+        static final class Fixture {
+            final Script http = new Script();
+            final CloudGoogleDrive.Tracker tracker = new CloudGoogleDrive.Tracker();
+            final List<String> learned = new ArrayList<>();
+            final List<Boolean> renewals = new ArrayList<>();
+
+            CloudGoogleDrive drive(String folder) {
+                return new CloudGoogleDrive(http, renew -> {
+                    renewals.add(renew);
+                    return renew ? RENEWED : ACCESS;
+                }, () -> 1_900_000_000_000L, tracker, folder, learned::add);
+            }
+        }
+
+        static void run() {
+            identify();
+            dataOperations();
+            settling();
+            folderRace();
+            folderGone();
+            renewal();
+        }
+
+        static void identify() {
+            Fixture f = new Fixture();
+            f.http.then(request -> json(200, "{\"user\":{\"permissionId\":\"PERM1\",\"emailAddress\":\"reader@example.com\"}}"))
+                    .then(request -> json(200, "{\"files\":[{\"id\":\"GFOLDER1\",\"createdTime\":\"2026-10-01T00:00:00Z\"}]}"));
+            CloudGoogleDrive.Identity found;
+            try {
+                found = f.drive(null).identify();
+            } catch (CloudError error) {
+                throw new AssertionError(error.getMessage());
+            }
+            check("google:PERM1".equals(found.account) && "reader@example.com".equals(found.hint) && "GFOLDER1".equals(found.folder),
+                    "Google: the account is Drive's permission id, shown by its address, with the oldest folder");
+            CloudHttp.Request about = f.http.seen.get(0);
+            check(about.url.equals(CloudGoogleDrive.DRIVE + "/about?fields=user%28emailAddress%2CdisplayName%2CpermissionId%29")
+                    && ("Bearer " + ACCESS).equals(about.headers.get("authorization")), "Google: the account is asked of Drive");
+            String folder = f.http.seen.get(1).url;
+            check(folder.startsWith(CloudGoogleDrive.DRIVE + "/files?q=name%20%3D%20%27Recap%20Page%27%20and%20mimeType%20%3D%20")
+                    && folder.contains("%27root%27%20in%20parents") && folder.contains("&spaces=drive") && folder.contains("&orderBy=createdTime"),
+                    "Google: the oldest Recap Page folder at the top of the Drive is looked for");
+            f.http.then(request -> json(200, "{\"user\":{\"emailAddress\":\"reader@example.com\"}}"));
+            check("invalid".equals(code(() -> f.drive(null).identify())), "Google: an answer without the account is refused");
+            f.http.done("Google identify");
+        }
+
+        static void dataOperations() {
+            Fixture f = new Fixture();
+            CloudGoogleDrive drive = f.drive("GFOLDER1");
+            f.http.then(request -> json(200, "{\"id\":\"GFOLDER1\",\"trashed\":false}"))
+                    .then(request -> json(200, "{\"nextPageToken\":\"P2\",\"files\":[{\"id\":\"A1\",\"name\":\"recap-page-a\",\"size\":\"5\","
+                            + "\"createdTime\":\"2026-10-29T10:00:00Z\"},{\"id\":\"..\",\"name\":\"bad\"}]}"))
+                    .then(request -> json(200, "{\"files\":[{\"id\":\"A2\",\"name\":\"recap-page-b\"}]}"));
+            List<CloudOneDrive.Item> items = new ArrayList<>();
+            check(code(() -> items.addAll(drive.list())) == null && items.size() == 2, "Google: every page is listed and a malformed item dropped");
+            check(Long.valueOf(1_793_268_000_000L).equals(items.get(0).created) && Long.valueOf(5).equals(items.get(0).size),
+                    "Google: a size written as a string is read");
+            check(f.http.seen.get(0).url.equals(CloudGoogleDrive.DRIVE + "/files/GFOLDER1?fields=id,trashed"), "Google: the recorded folder is checked first");
+            String page = f.http.seen.get(1).url;
+            check(page.contains("q=%27GFOLDER1%27%20in%20parents%20and%20trashed%20%3D%20false") && !page.contains("pageToken"),
+                    "Google: the list asks for the folder's files outside the trash");
+            check(f.http.seen.get(2).url.endsWith("&pageToken=P2"), "Google: the next page is asked for by its token");
+            f.http.done("Google list");
+
+            int before = f.http.seen.size();
+            f.http.then(request -> json(200, "{}", "Location", "https://www.googleapis.com/upload/drive/v3/files?upload_id=U1"))
+                    .then(request -> json(200, "{\"id\":\"C1\",\"name\":\"recap-page-c\",\"size\":\"3\"}"));
+            CloudOneDrive.Item[] created = new CloudOneDrive.Item[1];
+            check(code(() -> created[0] = drive.create("recap-page-c", "abc".getBytes(StandardCharsets.UTF_8))) == null
+                    && "C1".equals(created[0].id), "Google: a create answers its item");
+            CloudHttp.Request open = f.http.seen.get(before);
+            CloudHttp.Request put = f.http.seen.get(before + 1);
+            check(open.url.startsWith(CloudGoogleDrive.DRIVE_UPLOAD + "/files?uploadType=resumable") && authorized(open)
+                    && new String(open.body, StandardCharsets.UTF_8).contains("\"parents\":[\"GFOLDER1\"]")
+                    && "3".equals(open.headers.get("x-upload-content-length")), "Google: the upload opens in the folder with its size");
+            check(put.method.equals("PUT") && put.url.equals("https://www.googleapis.com/upload/drive/v3/files?upload_id=U1") && !authorized(put),
+                    "Google: the upload address never carries the token");
+
+            f.http.then(request -> {
+                check(request.method.equals("POST") && request.url.equals(CloudGoogleDrive.DRIVE + "/files/C1?fields=id")
+                        && "PATCH".equals(request.headers.get("x-http-method-override"))
+                        && new String(request.body, StandardCharsets.UTF_8).equals("{\"trashed\":true}"),
+                        "Google: a delete puts the item in the trash through the PATCH override");
+                return json(200, "{\"id\":\"C1\"}");
+            });
+            check(code(() -> drive.delete("C1")) == null, "Google: a delete answers");
+            f.http.then(request -> json(404, "{}"));
+            check(code(() -> drive.delete("C1")) == null, "Google: an item already gone counts as deleted");
+            f.http.then(request -> json(403, "{\"error\":{\"errors\":[{\"reason\":\"storageQuotaExceeded\"}]}}"));
+            check("quota".equals(code(() -> drive.delete("C1"))), "Google: a full Drive is quota");
+            f.http.then(request -> json(403, "{\"error\":{\"errors\":[{\"reason\":\"userRateLimitExceeded\"}]}}", "Retry-After", "30"));
+            try {
+                drive.delete("C1");
+                check(false, "Google: a rate limit is an error");
+            } catch (CloudError busy) {
+                check("unavailable".equals(busy.code) && busy.retryAfterMs == 30_000, "Google: a rate limit is unavailable with the wait");
+            }
+            f.http.then(request -> json(403, "{}"));
+            check("refused".equals(code(() -> drive.delete("C1"))), "Google: any other 403 is refused");
+
+            f.http.then(request -> {
+                check(request.url.equals(CloudGoogleDrive.DRIVE + "/files/R1?alt=media") && authorized(request)
+                        && request.maxBytes == CloudRules.MAX_ITEM_BYTES, "Google: a read is one capped request to Drive");
+                return json(200, "hello");
+            });
+            byte[][] read = new byte[1][];
+            check(code(() -> read[0] = drive.read("R1")) == null && "hello".equals(new String(read[0], StandardCharsets.UTF_8)),
+                    "Google: a read answers the bytes");
+            f.http.done("Google data");
+        }
+
+        static void settling() {
+            Fixture f = new Fixture();
+            CloudGoogleDrive drive = f.drive("GFOLDER1");
+            byte[] abc = "abc".getBytes(StandardCharsets.UTF_8);
+            Step opened = request -> json(200, "{}", "Location", "https://www.googleapis.com/upload/drive/v3/files?upload_id=U2");
+            // The reply is lost, and asking the session finds the file complete.
+            f.http.then(opened).then(request -> {
+                throw new IOException("reset");
+            }).then(request -> {
+                check(request.method.equals("PUT") && "bytes */3".equals(request.headers.get("content-range")) && !authorized(request)
+                        && request.body.length == 0, "Google: the session is asked what it holds, without the token");
+                return json(200, "{\"id\":\"D1\",\"name\":\"recap-page-d\"}");
+            });
+            CloudOneDrive.Item[] landed = new CloudOneDrive.Item[1];
+            check(code(() -> landed[0] = drive.create("recap-page-d", abc)) == null && "D1".equals(landed[0].id),
+                    "Google: a lost reply whose file landed answers it");
+            // A server failure after the bytes, and the session still missing some: it never appears later.
+            f.http.then(opened).then(request -> json(503, "", "Retry-After", "5")).then(request -> json(308, ""));
+            try {
+                drive.create("recap-page-d", abc);
+                check(false, "Google: a create that did not land is an error");
+            } catch (CloudError lost) {
+                check("unavailable".equals(lost.code) && lost.retryAfterMs == 5000, "Google: a create that did not land is unavailable, keeping the wait");
+            }
+            // The file landed, but neither reply describes it: unknown, never refused, since it will be listed.
+            f.http.then(opened).then(request -> json(200, "{\"id\":")).then(request -> json(200, "{\"name\":\"recap-page-d\"}"));
+            check("timeout".equals(code(() -> drive.create("recap-page-d", abc))), "Google: a complete upload with an unreadable answer is a timeout");
+            check(f.tracker.unsettled.isEmpty(), "Google: and, being complete, is not asked about again");
+            // The session cannot be asked, so the outcome is unknown until the next list asks again.
+            f.http.then(opened).then(request -> {
+                throw new IOException("offline");
+            }).then(request -> {
+                throw new IOException("offline");
+            });
+            check("timeout".equals(code(() -> drive.create("recap-page-d", abc))), "Google: an unsettled create is a timeout");
+            f.http.then(request -> {
+                check(request.url.endsWith("upload_id=U2") && "bytes */3".equals(request.headers.get("content-range")),
+                        "Google: the next list asks the session first");
+                return json(308, "");
+            }).then(request -> json(200, "{\"id\":\"GFOLDER1\"}")).then(request -> json(200, "{\"files\":[]}"));
+            check(code(drive::list) == null, "Google: then the list goes ahead");
+            f.http.then(request -> json(200, "{\"id\":\"GFOLDER1\"}")).then(request -> json(200, "{\"files\":[]}"));
+            check(code(drive::list) == null, "Google: a settled session is not asked again");
+            // Each unsettled session costs a request before every list, so only the newest are kept.
+            for (int index = 0; index <= CloudGoogleDrive.MAX_UNSETTLED; index++) {
+                f.http.then(opened).then(request -> {
+                    throw new IOException("offline");
+                }).then(request -> {
+                    throw new IOException("offline");
+                });
+                String name = "recap-page-u" + index;
+                check("timeout".equals(code(() -> drive.create(name, abc))), "Google: each is a timeout");
+            }
+            check(f.tracker.unsettled.size() == CloudGoogleDrive.MAX_UNSETTLED && !f.tracker.unsettled.containsKey("recap-page-u0")
+                    && f.tracker.unsettled.containsKey("recap-page-u" + CloudGoogleDrive.MAX_UNSETTLED), "Google: the oldest unsettled session gives way");
+            f.tracker.unsettled.clear();
+            f.http.then(request -> json(200, "{}", "Location", "http://upload.example.com/g"));
+            check("invalid".equals(code(() -> drive.create("recap-page-d", abc))), "Google: an http upload address is refused");
+            f.http.done("Google settling");
+        }
+
+        static void folderRace() {
+            // No folder yet lists as empty, and the next create makes it. Another device made one at the same
+            // moment, so this one's is put in the trash and the older is used and learned.
+            Fixture f = new Fixture();
+            CloudGoogleDrive drive = f.drive(null);
+            f.http.then(request -> json(200, "{\"files\":[]}"));
+            List<CloudOneDrive.Item> empty = new ArrayList<>();
+            check(code(() -> empty.addAll(drive.list())) == null && empty.isEmpty() && f.learned.isEmpty(), "Google: with no folder the list is empty");
+            f.http.then(request -> json(200, "{\"files\":[]}"))
+                    .then(request -> {
+                        check(request.url.equals(CloudGoogleDrive.DRIVE + "/files?fields=id") && new String(request.body, StandardCharsets.UTF_8)
+                                .equals("{\"name\":\"Recap Page\",\"mimeType\":\"application/vnd.google-apps.folder\",\"parents\":[\"root\"]}"),
+                                "Google: the folder is made at the top of the Drive");
+                        return json(200, "{\"id\":\"GFOLDER3\"}");
+                    })
+                    .then(request -> json(200, "{\"files\":[{\"id\":\"GFOLDER2\"},{\"id\":\"GFOLDER3\"}]}"))
+                    .then(request -> {
+                        check(request.url.equals(CloudGoogleDrive.DRIVE + "/files/GFOLDER3?fields=id")
+                                && "PATCH".equals(request.headers.get("x-http-method-override")), "Google: the folder this create made is put in the trash");
+                        return json(200, "{\"id\":\"GFOLDER3\"}");
+                    })
+                    .then(request -> {
+                        check(new String(request.body, StandardCharsets.UTF_8).contains("\"parents\":[\"GFOLDER2\"]"), "Google: the older folder is used");
+                        return json(200, "{}", "Location", "https://www.googleapis.com/upload/drive/v3/files?upload_id=U3");
+                    })
+                    .then(request -> json(200, "{\"id\":\"E1\",\"name\":\"recap-page-e\"}"));
+            check(code(() -> drive.create("recap-page-e", new byte[] {'a'})) == null, "Google: the create goes ahead");
+            check(Collections.singletonList("GFOLDER2").equals(f.learned), "Google: the older folder is learned");
+            f.http.done("Google folder race");
+        }
+
+        static void folderGone() {
+            Fixture f = new Fixture();
+            f.http.then(request -> json(200, "{\"id\":\"GFOLDER1\",\"trashed\":true}"));
+            check("folder-gone".equals(code(f.drive("GFOLDER1")::list)), "Google: a folder in the trash counts as deleted");
+            f.http.then(request -> json(404, "{}"));
+            check("folder-gone".equals(code(f.drive("GFOLDER1")::list)), "Google: a deleted folder too");
+            f.http.then(request -> json(404, "{}"));
+            check("folder-gone".equals(code(() -> f.drive("GFOLDER1").create("recap-page-f", new byte[] {'a'}))),
+                    "Google: an upload into a deleted folder too");
+            f.http.done("Google folder gone");
+        }
+
+        static void renewal() {
+            Fixture f = new Fixture();
+            f.http.then(request -> json(401, ""))
+                    .then(request -> {
+                        check(("Bearer " + RENEWED).equals(request.headers.get("authorization")), "Google: the request is made again with a renewed token");
+                        return json(200, "{\"id\":\"GFOLDER1\"}");
+                    })
+                    .then(request -> json(200, "{\"files\":[]}"));
+            check(code(f.drive("GFOLDER1")::list) == null && java.util.Arrays.asList(false, true, false).equals(f.renewals),
+                    "Google: a turned-away token is renewed once");
+            f.http.then(request -> json(401, "")).then(request -> json(401, ""));
+            check("needs-sign-in".equals(code(f.drive("GFOLDER1")::list)), "Google: a second 401 needs a sign-in");
+            f.http.done("Google renewal");
+        }
+    }}

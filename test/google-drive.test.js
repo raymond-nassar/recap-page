@@ -5,11 +5,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 import { createServer, request } from 'node:http';
 import { CLOUD_CLIENT_FORMAT, parseCloudClient } from '../host/cloudConfig.mjs';
 import { CLOUD_API_HEADER, CLOUD_API_PREFIX, createCloudHost } from '../host/cloudHost.mjs';
 import {
-  DRIVE, DRIVE_UPLOAD, FOLDER_NAME, FOLDER_TYPE, GOOGLE_AUTHORIZE, GOOGLE_REVOKE, GOOGLE_SCOPE, GOOGLE_TOKEN, MAX_ITEM_BYTES,
+  DRIVE, DRIVE_UPLOAD, FOLDER_NAME, FOLDER_TYPE, GOOGLE_AUTHORIZE, GOOGLE_SCOPE, GOOGLE_TOKEN, MAX_ITEM_BYTES, MAX_UNSETTLED,
   authorizationUrl, createGoogleDrive, createUploadTracker, driveHeaders, grantsDriveFile, redeemCode, refreshTokens,
 } from '../host/googleDrive.mjs';
 
@@ -40,7 +41,7 @@ function json(status, body, headers = {}) {
   return new Response(body === null ? null : JSON.stringify(body), { status, headers: { 'content-type': 'application/json', ...headers } });
 }
 
-// Google's token, revoke and Drive endpoints, with one account's Drive in memory. Every call is kept, with
+// Google's token and Drive endpoints, with one account's Drive in memory. Every call is kept, with
 // whether it carried an Authorization header. `answers` replaces the answer for a kind of call once.
 function google({ scope = GOOGLE_SCOPE, permissionId = 'perm-one', email = 'reader@example.test' } = {}) {
   const state = { folders: [], items: [], next: 1, uploads: new Map(), revoked: [], answers: {}, refreshes: 0 };
@@ -70,8 +71,10 @@ function google({ scope = GOOGLE_SCOPE, permissionId = 'perm-one', email = 'read
       }
       return json(200, { access_token: 'access-1', refresh_token: 'refresh-1', expires_in: 3599, scope, token_type: 'Bearer' });
     }
-    if (url.href === GOOGLE_REVOKE) {
-      state.revoked.push(form().token);
+    // Revoking at Google ends the grant for every client of the project, so on every path it must never
+    // be asked for; any request that could be one is recorded for the tests to refuse.
+    if (/revoke/i.test(url.href)) {
+      state.revoked.push(url.href);
       return new Response(null, { status: 200 });
     }
     if (url.href === UPLOAD || url.href.startsWith(`${UPLOAD}&`)) {
@@ -300,6 +303,19 @@ test('an upload whose reply is lost is settled by asking the session, and an unk
   await service.list();
   assert.equal(tracker.unsettled.size, 0, 'the next list settled it first');
 
+  fake.state.answers.put = new Response('{"id":', { status: 200 });
+  fake.state.answers.status = json(200, { name: NAME });
+  await assert.rejects(service.create(`${NAME}.5`, Buffer.from('x')), { code: 'timeout' }, 'a complete upload with an unreadable answer is never refused');
+  assert.equal(tracker.unsettled.size, 0, 'and, being complete, is not asked about again');
+
+  for (let index = 0; index <= MAX_UNSETTLED; index += 1) {
+    fake.state.answers.put = new TypeError('connection reset');
+    fake.state.answers.status = new TypeError('connection reset');
+    await assert.rejects(service.create(`${NAME}.u${index}`, Buffer.from('x')), { code: 'timeout' });
+  }
+  assert.equal(tracker.unsettled.size, MAX_UNSETTLED, 'only the newest unsettled sessions are kept');
+  assert.ok(!tracker.unsettled.has(`${NAME}.u0`) && tracker.unsettled.has(`${NAME}.u${MAX_UNSETTLED}`), 'the oldest gives way');
+
   fake.state.answers.put = json(400, { error: { errors: [{ reason: 'badRequest' }] } });
   await assert.rejects(service.create(`${NAME}.4`, Buffer.from('x')), { code: 'invalid' }, 'a definite refusal is not settled');
 });
@@ -436,7 +452,7 @@ test('the host offers Google Drive only when its Windows client is configured, a
   }
 });
 
-test('connecting to Google Drive signs in on the loopback address, keeps only protected tokens, and disconnecting revokes the grant', async () => {
+test('connecting to Google Drive signs in on the loopback address, keeps only protected tokens, and disconnecting forgets it on this computer alone', async () => {
   const env = host();
   const api = await hostServer(env.instance);
   try {
@@ -461,18 +477,30 @@ test('connecting to Google Drive signs in on the loopback address, keeps only pr
     await until(() => env.store.saved.folder !== null, 'the folder id is learned');
     for (const answer of [status, created, listed]) assert.ok(!/access-|refresh-|placeholder-desktop/.test(JSON.stringify(answer)), 'no token or secret reaches the page');
 
+    // A create left unsettled belongs to this sign-in, and is not asked about once it is gone.
+    env.fake.state.answers.put = new TypeError('connection reset');
+    env.fake.state.answers.status = new TypeError('connection reset');
+    assert.equal((await api.call('create', { connection: status.connection, name: `${NAME}.2`, bytes: 'eA==' })).error.code, 'timeout');
+    const before = env.fake.calls.length;
     const gone = await api.call('disconnect');
     assert.equal(gone.status.state, 'not-connected');
     assert.equal(env.store.saved, null);
-    await until(() => env.fake.state.revoked.length === 1, 'the grant is revoked');
-    assert.deepEqual(env.fake.state.revoked, ['refresh-1']);
+    await settle();
+    assert.equal(env.fake.calls.length, before, 'disconnecting sends nothing to Google');
+    assert.deepEqual(env.fake.state.revoked, [], 'revoking would end the grant on the person\'s other devices too');
+    await signIn(env, api);
+    const again = (await api.call('status')).status;
+    const after = env.fake.calls.length;
+    assert.equal((await api.call('list', { connection: again.connection })).ok, true);
+    assert.ok(!env.fake.calls.slice(after).some((call) => call.range), 'the earlier sign-in\'s session is not asked about');
+    assert.deepEqual(env.fake.state.revoked, []);
   } finally {
     env.instance.close();
     await api.close();
   }
 });
 
-test('a Google grant without drive.file is handed back and nothing is kept', async () => {
+test('a Google grant without drive.file counts as not signed in, and is neither kept nor revoked', async () => {
   const env = host({ fake: google({ scope: 'https://www.googleapis.com/auth/drive.appdata' }) });
   const api = await hostServer(env.instance);
   try {
@@ -480,7 +508,7 @@ test('a Google grant without drive.file is handed back and nothing is kept', asy
     const { status } = await api.call('status');
     assert.deepEqual([status.state, status.message], ['not-connected', 'Google did not grant the access cloud backup needs.']);
     assert.equal(env.store.saved, null);
-    assert.deepEqual(env.fake.state.revoked, ['refresh-1']);
+    assert.deepEqual(env.fake.state.revoked, []);
   } finally {
     env.instance.close();
     await api.close();
@@ -531,6 +559,15 @@ test('a deleted Recap Page folder in Google Drive asks every browser again, in G
   } finally {
     env.instance.close();
     await api.close();
+  }
+});
+
+test('no path in the Windows host can revoke a Google grant', async () => {
+  // Revoking at Google ends the grant for every client of the project, so one computer disconnecting
+  // would sign the person's phone out too. The behavior is pinned above; this pins the code itself.
+  for (const file of ['../host/googleDrive.mjs', '../host/cloudHost.mjs']) {
+    const source = await readFile(new URL(file, import.meta.url), 'utf8');
+    assert.doesNotMatch(source, /oauth2\/revoke|googleapis\.com\/revoke|\/revoke\b/, file);
   }
 });
 
