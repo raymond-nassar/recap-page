@@ -51,12 +51,11 @@ export function createIssueView({
 
   function issueContextText(context, issueId) {
     if (!context) return '';
-    const position = context.total ? `${context.position} of ${context.total}` : '';
     const deferred = context.kind === 'list' && isDeferred(getState(), context.id, issueId);
     const intent = deferred
       ? isRead(getState(), issueId) ? 'Read; deferral kept if marked unread' : 'Deferred in this Reading List'
       : '';
-    return [context.name, context.collectedIn, position, intent].filter(Boolean).join(' · ');
+    return [context.name, context.collectedIn, intent].filter(Boolean).join(' · ');
   }
 
   function paint(result) {
@@ -100,8 +99,6 @@ export function createIssueView({
     const override = context?.override ?? getState().overrides[issue.issueId] ?? null;
     const presentation = issuePresentation(issue, {
       override,
-      position: context?.position ?? null,
-      total: context?.total ?? null,
       description: synopsisFallback(issue, getSynopsis(issue.issueId)),
     });
     nodes.heading.textContent = presentation.title;

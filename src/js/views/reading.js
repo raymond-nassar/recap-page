@@ -623,11 +623,8 @@ export function createReadingView({
     }
 
     const override = getState().overrides[issue.issueId];
-    const position = (getState().lists[id]?.itemIds.indexOf(issue.issueId) ?? -1) + 1;
     const presentation = issuePresentation(issue, {
       override,
-      position,
-      total,
       description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),
     });
 

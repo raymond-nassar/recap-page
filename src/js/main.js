@@ -1201,8 +1201,31 @@ function wireMobileNavigation() {
   document.addEventListener('focusout', () => queueMicrotask(() => paint(
     header.classList.contains('mobile-nav-hidden'),
   )));
-  window.visualViewport?.addEventListener('resize', revealMobileNavigation);
-  window.visualViewport?.addEventListener('scroll', revealMobileNavigation);
+  const viewportGeometry = () => {
+    const viewport = window.visualViewport;
+    return viewport && {
+      size: [viewport.width, viewport.height, viewport.scale].join(','),
+      offset: [viewport.offsetLeft, viewport.offsetTop].join(','),
+      zoomed: viewport.scale > 1,
+    };
+  };
+  let previousViewport = viewportGeometry();
+  // #1063: on the iPhone SE at the largest text, a passive tap on Home's read count withdrew nothing
+  // and scrolled nothing (the count's rect was 340.45 before and after), yet the bar reappeared
+  // 705 ms later through this listener. At scale 1 an offset alone is WebKit settling the document's
+  // own scroll, which the scroll handler already judges with its 16px threshold. Only a keyboard or
+  // zoom (a size or scale change), or a pan while zoomed, reveals the bar here.
+  const onViewportChange = () => {
+    const geometry = viewportGeometry();
+    const previous = previousViewport;
+    previousViewport = geometry;
+    if (!geometry || !previous) return;
+    if (geometry.size !== previous.size || (geometry.zoomed && geometry.offset !== previous.offset)) {
+      revealMobileNavigation();
+    }
+  };
+  window.visualViewport?.addEventListener('resize', onViewportChange);
+  window.visualViewport?.addEventListener('scroll', onViewportChange);
   // The fit waits a frame, as changing the bar inside its own observer is a loop. Labels are watched too: in two rows they can shrink while the bar keeps its size.
   const observer = new ResizeObserver(() => {
     if (fitFrame === null) fitFrame = requestAnimationFrame(() => { fitFrame = null; fitLabels(); });

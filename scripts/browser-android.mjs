@@ -1871,9 +1871,7 @@ async function readingEvidence(page, profile, id = profile.id) {
   const result = await readingGeometry(page);
   result.sourceRevision = JSON.parse(await readFile(join(ANDROID_ASSET_DIR, 'build-info.json'), 'utf8')).sourceRevision;
   const state = readingState(profile);
-  const presentation = issuePresentation(state.issues[readingIssue.issueId], {
-    position: READING_ISSUE_POSITION, total: readingOrder.items.length,
-  });
+  const presentation = issuePresentation(state.issues[readingIssue.issueId]);
   assert.ok(result.readCount === 1 && result.readVisible && !result.readDisabled
     && Number.isFinite(result.read.bottom) && result.read.height > 0, `${id}: positive Read measurement`);
   assert.equal(result.issue, state.issues[readingIssue.issueId].title, `${id}: exact fixture issue`);
@@ -2150,9 +2148,7 @@ async function readingCompositionCheck(page, profile) {
   }
   if (readingFactsAx) {
     const state = readingState(profile);
-    const presentation = issuePresentation(state.issues[readingIssue.issueId], {
-      position: READING_ISSUE_POSITION, total: readingOrder.items.length,
-    });
+    const presentation = issuePresentation(state.issues[readingIssue.issueId]);
     await readingAccessibility(page, { ...presentation, issue: state.issues[readingIssue.issueId].title }, profile.id);
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), KEY), before,
       `${profile.id}: factual AX confirmation preserves saved state`);
@@ -4047,11 +4043,14 @@ async function progressGlanceCheck(page, label, viewport) {
   }
   const heroOrder = await page.evaluate(() => {
     const at = (selector) => document.querySelector(selector).getBoundingClientRect();
-    return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
+    return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top,
+      tops: [Math.round(at('#btn-hero-read').top), Math.round(at('#btn-hero-done').top)] };
   });
   if (viewport.doneAbove) {
     check(hero.scrollY === 0 && heroOrder.done <= hero.fold,
       `${name}: the reading screen opens with Done above the bottom bar too, as #1061 keeps it ${JSON.stringify({ hero, heroOrder })}`);
+    check(heroOrder.tops[0] === heroOrder.tops[1],
+      `${name}: Read and Done share one row, as the owner chose for phones in #1061 ${JSON.stringify(heroOrder)}`);
   }
   check(hero.text === `3 of ${total} read` && hero.figure === '3' && hero.sizes[0] >= hero.sizes[1] * 1.25
     && Math.abs(hero.share - 3 / total) * hero.barWidth <= 0.5 && hero.inside && !hero.overflow
@@ -4794,11 +4793,15 @@ try {
   // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text. #1061: the
   // iOS overlay's own text sizes at 390 by 844, where its 14px body text once shrank the cover's reserve
   // and put Read 13px under the bar. Done opens above it too wherever the cover has grown past its 96px,
-  // which a reserve held for Read alone had left 59px under the bar on iOS there.
+  // which a reserve held for Read alone had left 59px under the bar on iOS there. The owner's 2026-11-02
+  // choices, Read and Done in one row and a compact heading on short phones, hold both above the bar at
+  // 360x800 and at 375x667 in both shells, where Done had opened 148px and 153px under it.
   if (progressGlance) viewports = [
-    { width: 360, height: 800, theme: 'light', heroAbove: true, homeAbove: true },
+    { width: 360, height: 800, theme: 'light', heroAbove: true, doneAbove: true, homeAbove: true },
     { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, doneAbove: true, homeAbove: true },
     { width: 390, height: 844, theme: 'light', heroAbove: true, doneAbove: true, iosText: true },
+    { width: 375, height: 667, theme: 'dark', heroAbove: true, doneAbove: true },
+    { width: 375, height: 667, theme: 'light', heroAbove: true, doneAbove: true, iosText: true },
     { width: 800, height: 360, theme: 'dark', homeAbove: true },
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 412, height: 915, textScale: 2, theme: 'light', covers: true },

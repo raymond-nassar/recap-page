@@ -2346,23 +2346,27 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   /* #1061, the owner's request on 2026-11-01: the cover is centered and as large as the screen allows
      while Read and Done stay above the bottom bar when the screen opens, with the list's heading still
      above the card. The reserve is measured from the top of the screen for that reason, and a list note
-     adds its line to it. 40.5rem held only Read and left Done 23px under the bar at 390x844 and above,
-     whatever the height; 42.5rem lifts it there with a 109px cover, 168px at 430x932. Where the cover is
-     already at its floor Done sits where it did before, as at 360x800, 38px under on opening then too.
-     The floor and gap are the 96px and --space-4 the cover had before, and 14.4dvh holds them there at 375x667
-     at any text size, never under 96px in landscape: the list's heading keeps Read under the bar there,
-     and only a cover under half of 96px would lift it. Being in rem, larger text shrinks the cover first. */
+     adds its line to it. With Read and Done in one row, 38.75rem leaves Done 9px above the bar from
+     390x844 up with a 149px cover, 208px at 430x932, where two stacked rows needed 42.5rem for 109px
+     and 168px. The floor and gap are the 96px and --space-4 the cover had before, and 14.4dvh holds them
+     there at 375x667 at any text size, never under 96px in landscape. There the compact heading below
+     lifts Done 13px clear of the bar; with a list note it stays 42px under, and only a cover under half
+     of 96px would lift it. Being in rem, larger text shrinks the cover first. */
   #hero .hero-in > .art {
-    --hero-reserve: 42.5rem;
+    --hero-reserve: 38.75rem;
     float: none; max-width: none; margin: 0 auto var(--space-4);
     width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
   }
-  #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: 46rem; }
+  #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: 42.25rem; }
   #hero-title { clear: both; }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
   #hero .cta, #hero-facts, #hero-desc, .reading-comic-actions { clear: both; }
   #hero-facts { gap: var(--space-4) var(--space-5); margin: var(--space-5) 0 var(--space-4); }
-  #hero-primary-actions > .btn { min-height: var(--target-touch); width: 100%; justify-content: center; }
+  /* #1061, the owner's decision on 2026-11-02: Read and Done share one row on a phone, so Done is in
+     view wherever Read is. The basis is in rem, so a larger text size, or a label wider than its half,
+     wraps the row back to stacked full-width buttons rather than truncating either. */
+  #hero-primary-actions { align-items: stretch; }
+  #hero-primary-actions > .btn { flex: 1 1 8rem; min-height: var(--target-touch); justify-content: center; }
   .reading-comic-actions > .btn { min-height: var(--target-touch); }
   #view-data .setting-more > summary { min-height: var(--target-touch); box-sizing: border-box; }
   #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: var(--target-touch); min-height: var(--target-touch); }
@@ -2371,6 +2375,25 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
   #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-lines-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
   #catalog-filters { min-width: 0; max-width: 100%; }
+}
+/* #1061, the owner's decision on 2026-11-02: on a short phone the list's heading is compact, so Read
+   and Done open above the bottom bar. The title steps down a size and the progress ring moves up
+   beside the subtitle instead of taking a row of its own. Nothing is hidden or cut: a longer title
+   or larger text wraps and the screen scrolls, as it does at any size. At 375x667 Done had opened
+   171px under the bar; with one button row and this heading it opens 13px above it. */
+@media (max-width: 700px) and (max-height: 820px) {
+  #view-read > .breadcrumb { margin-bottom: var(--space-4); }
+  #view-read > .head {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center;
+    gap: 0 var(--space-5); margin-bottom: var(--space-5);
+  }
+  #view-read > .head > .head-left { display: contents; }
+  #view-read > .head h1 { grid-column: 1 / -1; font-size: var(--t-subtitle); line-height: 1.25; }
+  #view-read > .head .sub, #view-read > .head .order-desc { grid-column: 1; }
+  #view-read > .head .order-desc { margin-top: var(--space-2); }
+  #view-read > .head > .headright { grid-column: 2; grid-row: 2 / span 2; }
+  /* Its margin stood an empty status row 8px tall above the card while nothing was running. */
+  #view-read .list-work:not(:has(> :not([hidden]))) { margin-bottom: 0; }
 }
 .btn-lg { padding: var(--space-5) var(--space-8); font-size: var(--t-body-lg); font-weight: 700; border-radius: var(--radius-lg); }
 .btn-link {

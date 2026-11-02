@@ -146,15 +146,18 @@ export const readingCardFocus = {
 };
 
 // #1061, the owner's request on 2026-11-01: the cover is centered and takes more of the screen, Read
-// and Done stay visible without scrolling, and the Marvel Unlimited record and the position move to
-// Issue details. Before it, a phone showed the cover floated left at 96px. Read and Done must also stay
-// above the fold when the screen opens, with the list's heading above the card, and a list note above it
-// as well, unless the cover is already back at that 96px: then they open where they did before, as at
-// 360x800, where Done opened under the bar before #1061 too. So the cover grows only from 390px wide.
-// 375x667, the iPhone SE size, is held to the cover and gap it had before: 96px and half a rem. On opening, the
-// list's heading and the card's title keep Read under the bottom bar there, as before #1061, and lifting
-// it with the cover alone would take one under half that 96px, so the pin records that too.
+// and Done stay visible without scrolling, and the Marvel Unlimited record moves to Issue details. Before
+// it, a phone showed the cover floated left at 96px. The owner's 2026-11-02 choices then put Read and
+// Done side by side on phones and made the list's heading compact on short screens, so at default text
+// both open above the bottom bar on every phone here, 375x667 and 360x800 included, where before #1061
+// Done opened 171px and 38px under it. The covers are held to no smaller than this branch measured
+// before those choices. One case still opens under the bar and is pinned as measured rather than hidden:
+// 375x667 with a list note, where the cover is already at its 96px floor and Done ends 42px under.
 // Read and Done are then checked with the card scrolled to its top, as the owner's screenshot shows it.
+const posterCoverBefore = {
+  '360x800': [96, 96], '375x667': [96, 96], '390x844': [109, 96], '393x851': [114, 96],
+  '412x915': [157, 119], '414x896': [144, 107], '430x932': [168, 131],
+};
 export const readingCardPoster = {
   id: 'reading-card-poster',
   title: 'the reading card centers a larger cover with Read and Done above the fold, and leaves the record and position to Issue details',
@@ -165,40 +168,43 @@ export const readingCardPoster = {
       for (const { text, note } of [{}, { text: '200%' }, ...(width <= 700 ? [{ note: 'Read the Avengers issues first.' }] : [])]) {
         const name = `${width}x${height}${text ? ` at ${text} text` : ''}${note ? ' with a list note' : ''}`;
         const undo = await setup(page, { width, height, theme: 'dark', text, note });
-        if (!text && height >= 700) {
+        if (!text) {
           const opened = await page.evaluate(() => {
             const rail = document.querySelector('.rail-header');
             const bar = rail.getBoundingClientRect();
             const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
             const note = document.querySelector('#list-note');
+            const read = document.querySelector('#btn-hero-read').getBoundingClientRect();
+            const done = document.querySelector('#btn-hero-done').getBoundingClientRect();
+            const clipped = ['#view-read > .head h1', '#order-sub', '#btn-hero-read', '#btn-hero-done']
+              .filter((selector) => { const node = document.querySelector(selector);
+                return node.scrollWidth > node.clientWidth + 1 || node.scrollHeight > node.clientHeight + 1; });
             return { scrollY: Math.round(scrollY), fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
-              read: Math.round(document.querySelector('#btn-hero-read').getBoundingClientRect().bottom),
-              done: Math.round(document.querySelector('#btn-hero-done').getBoundingClientRect().bottom),
+              read: Math.round(read.bottom), done: Math.round(done.bottom), rows: [Math.round(read.top), Math.round(done.top)],
               art: Math.round(document.querySelector('#hero .hero-in > .art').getBoundingClientRect().width),
-              note: note.hidden ? 0 : Math.round(note.getBoundingClientRect().height) };
+              note: note.hidden ? 0 : Math.round(note.getBoundingClientRect().height), clipped };
           });
-          t.check(`${name}: Read and Done are above the fold when the screen opens, unless the cover is at its 96px`,
-            opened.scrollY === 0 && !!opened.note === !!note
-              && ((opened.read <= opened.fold && opened.done <= opened.fold) || Math.abs(opened.art - 96) <= 1),
-            JSON.stringify(opened));
+          const residual = width === 375 && height === 667 && !!note;
+          t.check(residual
+            ? `${name}: Done opens under the bar as measured, with the cover at its 96px floor`
+            : `${name}: Read and Done are above the fold when the screen opens`,
+          opened.scrollY === 0 && !!opened.note === !!note && opened.clipped.length === 0
+              && (residual ? opened.done > opened.fold && Math.abs(opened.art - 96) <= 1
+                : opened.read <= opened.fold && opened.done <= opened.fold),
+          JSON.stringify(opened));
+          if (width <= 700) {
+            t.check(`${name}: Read and Done open side by side in one row`,
+              opened.rows[0] === opened.rows[1], JSON.stringify(opened));
+          }
         }
-        if (width === 375 && height === 667) {
-          const opened = await page.evaluate(() => {
-            const rail = document.querySelector('.rail-header');
-            const bar = rail.getBoundingClientRect();
-            const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+        if (width === 375 && height === 667 && !text) {
+          const gap = await page.evaluate(() => {
             const art = document.querySelector('#hero .hero-in > .art').getBoundingClientRect();
-            return { scrollY: Math.round(scrollY), fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
-              read: Math.round(document.querySelector('#btn-hero-read').getBoundingClientRect().bottom),
-              art: Math.round(art.width), tall: Math.round(art.height),
-              rem: parseFloat(getComputedStyle(document.documentElement).fontSize),
+            return { art: Math.round(art.width), rem: parseFloat(getComputedStyle(document.documentElement).fontSize),
               gap: Math.round(document.querySelector('#hero-title').getBoundingClientRect().top - art.bottom) };
           });
           t.check(`${name}: the cover keeps the 96px and half-rem gap it had before`,
-            Math.abs(opened.art - 96) <= 1 && opened.gap <= opened.rem / 2 + 1, JSON.stringify(opened));
-          t.check(`${name}: on opening Read is under the bar, and the cover alone could lift it only under half its 96px`,
-            opened.scrollY === 0 && opened.read > opened.fold && (opened.tall - (opened.read - opened.fold)) * 2 / 3 < 48,
-            JSON.stringify(opened));
+            Math.abs(gap.art - 96) <= 1 && gap.gap <= gap.rem / 2 + 1, JSON.stringify(gap));
         }
         await page.evaluate(() => {
           const hero = document.querySelector('#hero');
@@ -230,11 +236,12 @@ export const readingCardPoster = {
         if (width <= 700) {
           t.check(`${name}: the cover is centered`, Math.abs(seen.offset) <= 2, JSON.stringify(seen));
           if (!text) {
-            t.check(`${name}: the cover is ${width >= 390 && !note ? 'larger than' : 'no smaller than'} the 96px it was`,
-              seen.art >= (width >= 390 && !note ? 104 : 96), JSON.stringify(seen));
+            const before = posterCoverBefore[`${width}x${height}`][note ? 1 : 0];
+            t.check(`${name}: the cover is no smaller than the ${before}px it was`,
+              seen.art >= before, JSON.stringify(seen));
           }
         }
-        t.check(`${name}: the card leaves the Unlimited record and the position to Issue details`,
+        t.check(`${name}: the card leaves the Unlimited record to Issue details and shows no position`,
           !/Unlimited|Position/.test(seen.facts), seen.facts);
         await undo();
       }
@@ -243,8 +250,10 @@ export const readingCardPoster = {
     await page.$eval('#btn-hero-inspect', (node) => node.click());
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     const details = await page.$eval('#issue-focus-facts', (node) => node.textContent);
-    t.check('Issue details shows the Unlimited record and the position', /Marvel Unlimited record/.test(details)
-      && /Position4 of \d+/.test(details), details);
+    const context = await page.$eval('#issue-focus-context', (node) => node.textContent);
+    t.check('Issue details shows the Unlimited record and, by the owner\'s 2026-11-02 choice, no position',
+      /Marvel Unlimited record/.test(details) && !/Position|\d+ of \d+/.test(details) && !/\d+ of \d+/.test(context),
+      JSON.stringify({ details, context }));
     await page.evaluate(() => localStorage.clear());
     t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
   },
@@ -339,7 +348,7 @@ function offerState(page) {
   });
 }
 
-async function checkPhoneUndo(page, t, { width, height, note = '', reduced = false, clearance = 8 }) {
+async function checkPhoneUndo(page, t, { width, height, note = '', reduced = false, clearance = 8, opensClear = false }) {
   await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: reduced ? 'reduce' : 'no-preference' }]);
   const clean = await setup(page, { width, height, theme: 'dark', note, touch: true });
   const name = `${width}x${height}${note ? ' with a list note' : ''}${reduced ? ' with reduced motion' : ''}`;
@@ -349,7 +358,7 @@ async function checkPhoneUndo(page, t, { width, height, note = '', reduced = fal
   if (before.reached) await page.touchscreen.tap(before.x, before.y);
   await settle(page);
   const offered = await offerState(page);
-  const covered = clearance === 8;
+  const covered = clearance === 8 && !opensClear;
   const expectedScroll = offered.inserted
     ? Math.max(0, offered.inserted.bottom - (height - offered.inserted.padding)) : 0;
   const minimal = offered.calls.length === 1 && offered.calls[0].options?.block === 'nearest'
@@ -383,7 +392,9 @@ export const readingCardUndo = {
     page.on('pageerror', (error) => errors.push(error.message));
     for (const [width, height] of phoneSizes) {
       for (const note of ['', 'Read the Avengers issues first.']) {
-        await checkPhoneUndo(page, t, { width, height, note });
+        // #1061's compact heading opens Done 114px above the bar at 360x800 with nothing above it
+        // to scroll away, so the helper cannot bring it down and the whole notice lands clear.
+        await checkPhoneUndo(page, t, { width, height, note, opensClear: width === 360 && !note });
       }
     }
     await checkPhoneUndo(page, t, { width: 390, height: 844, reduced: true });

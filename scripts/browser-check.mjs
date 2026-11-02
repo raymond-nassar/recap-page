@@ -13515,11 +13515,72 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
       t.check('downward scroll withdraws the bottom bar without writing progress',
         await page.evaluate(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight));
-      await page.evaluate(() => window.scrollTo(0, 195));
-      await page.waitForFunction(() => scrollY === 195);
+      const passiveViewport = await page.evaluate(async () => {
+        const rail = document.querySelector('.rail-header');
+        const count = document.querySelector('#chero-count > b');
+        const before = { focus: document.activeElement, state: localStorage.getItem('mrt.state.v2') };
+        count.click();
+        window.visualViewport.dispatchEvent(new Event('scroll'));
+        window.visualViewport.dispatchEvent(new Event('resize'));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return {
+          hidden: rail.classList.contains('mobile-nav-hidden'),
+          focus: before.focus === document.activeElement,
+          state: before.state === localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      t.check('a passive Home count and unchanged visual viewport notifications leave the bar withdrawn',
+        passiveViewport.hidden && passiveViewport.focus && passiveViewport.state, JSON.stringify(passiveViewport));
+      const settledViewport = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        const rail = document.querySelector('.rail-header');
+        Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 12 });
+        viewport.dispatchEvent(new Event('scroll'));
+        delete viewport.offsetTop;
+        viewport.dispatchEvent(new Event('scroll'));
+        return rail.classList.contains('mobile-nav-hidden');
+      });
+      t.check('an unzoomed visual viewport offset settling leaves the bar withdrawn', settledViewport);
+      const zoomedPan = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        const rail = document.querySelector('.rail-header');
+        Object.defineProperty(viewport, 'scale', { configurable: true, value: 2 });
+        viewport.dispatchEvent(new Event('resize'));
+        rail.classList.add('mobile-nav-hidden');
+        Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 12 });
+        viewport.dispatchEvent(new Event('scroll'));
+        const revealed = !rail.classList.contains('mobile-nav-hidden');
+        delete viewport.offsetTop;
+        delete viewport.scale;
+        viewport.dispatchEvent(new Event('resize'));
+        return revealed;
+      });
+      t.check('a pan while zoomed still reveals navigation', zoomedPan);
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      const keyboardViewport = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        Object.defineProperty(viewport, 'height', { configurable: true, value: innerHeight / 2 });
+        viewport.dispatchEvent(new Event('resize'));
+        const hidden = document.querySelector('.rail-header').classList.contains('mobile-nav-hidden');
+        delete viewport.height;
+        viewport.dispatchEvent(new Event('resize'));
+        return { hidden, revealed: !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden') };
+      });
+      t.check('a keyboard-sized viewport hides navigation and its restoration reveals it',
+        keyboardViewport.hidden && keyboardViewport.revealed, JSON.stringify(keyboardViewport));
+      await page.evaluate(async () => {
+        window.scrollTo(0, 200);
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
+      await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.evaluate(() => window.scrollTo(0, 245));
+      await page.waitForFunction(() => scrollY === 245);
       t.check('a five-pixel reversal does not jitter the bar visible',
         await page.evaluate(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
-      await page.evaluate(() => window.scrollTo(0, 175));
+      await page.evaluate(() => window.scrollTo(0, 225));
       await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
       t.check('upward scroll reveals Home, Library, Search and More',
         await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
