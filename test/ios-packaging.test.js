@@ -8,7 +8,7 @@ import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
-  prepareIos, readIosIdentity,
+  prepareIos, readIosFeatures, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
 import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
@@ -381,6 +381,74 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
     assert.match(`/${entry.path}`, /^\/[A-Za-z0-9_./-]+$/, entry.path);
   }
   assert.equal(prepared.manifest.build.platform, 'ios');
+});
+
+test('the switched-off iCloud preparation is byte-identical to the accepted iOS wording baseline', async () => {
+  const baselineUrl = new URL('../scripts/prepare-ios.mjs', import.meta.url);
+  let baseline = execFileSync('git', ['show', 'e974125bc2bbdfc9c8fbcf015447b17b0c4d1d93:scripts/prepare-ios.mjs'], { encoding: 'utf8' });
+  baseline = baseline.replaceAll('import.meta.url', JSON.stringify(baselineUrl.href))
+    .replace(/from '(\.[^']+)'/g, (_, specifier) => `from '${new URL(specifier, baselineUrl).href}'`);
+  const { prepareIos: prepareBaseline } = await import(`data:text/javascript;base64,${Buffer.from(baseline).toString('base64')}`);
+  const baselineOutput = join(scratch, 'baseline-web');
+  await prepareBaseline(baselineOutput);
+  const paths = await filesUnder(output);
+  assert.deepEqual(paths, await filesUnder(baselineOutput));
+  for (const name of paths) {
+    assert.deepEqual(await readFile(join(output, name)), await readFile(join(baselineOutput, name)), name);
+  }
+  assert.deepEqual(JSON.parse(read('packaging/ios/features.json')), { schemaVersion: 1, iCloudBackup: false });
+  assert.ok(!paths.some((name) => /^ios\/(?:cloud\.js|icloudTransport\.js)$/.test(name)));
+  const page = await readFile(join(output, 'index.html'), 'utf8');
+  assert.doesNotMatch(page, /id="cloud-backup"|btn-cloud-sign-in|btn-cloud-connect-icloud|Sign in with (Microsoft|Google)/);
+});
+
+test('an iCloud web preview keeps only its own action, truthful storage copy and an ordered installer', async () => {
+  const featuresPath = join(scratch, 'icloud-on.json');
+  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+  const preview = join(scratch, 'icloud-web');
+  const result = await prepareIos(preview, { featuresPath });
+  const page = await readFile(join(preview, 'index.html'), 'utf8');
+  assert.match(page, /id="cloud-backup" hidden/);
+  assert.match(page, /id="btn-cloud-connect-icloud"[^>]*>Connect iCloud<\/button>/);
+  assert.doesNotMatch(page, /btn-cloud-sign-in|Sign in with (Microsoft|Google)|OneDrive|Google Drive|recycle bin|Windows account/);
+  assert.match(page, /Back up this device automatically/);
+  assert.match(page, /older backups are deleted only after a newer backup has uploaded/);
+  assert.match(page, /only if you turn on cloud backup/);
+  const entry = await readFile(join(preview, 'ios', 'app.js'), 'utf8');
+  assert.equal(entry, `import './cloud.js';\n${read('packaging/ios/web/app.js')}`);
+  for (const name of ['cloud.js', 'icloudTransport.js']) {
+    assert.deepEqual(await readFile(join(preview, 'ios', name)), await readFile(new URL(`packaging/ios/icloud-web/${name}`, ROOT)));
+    assert.ok(result.manifest.files.some((item) => item.path === `ios/${name}`));
+  }
+  for (const asset of result.manifest.files) {
+    assert.equal(asset.sha256, sha256(await readFile(join(preview, asset.path))), asset.path);
+  }
+  assert.equal(read('packaging/ios/RecapPage.xcodeproj/project.pbxproj'), project);
+});
+
+test('iOS feature configuration fails closed and preview overrides cannot enter a reserved release', async () => {
+  const featuresPath = join(scratch, 'invalid-features.json');
+  for (const invalid of [null, [], {}, { schemaVersion: 2, iCloudBackup: false },
+    { schemaVersion: 1, iCloudBackup: 'true' }, { schemaVersion: 1, iCloudBackup: false, extra: true }]) {
+    await writeFile(featuresPath, JSON.stringify(invalid));
+    await assert.rejects(readIosFeatures(featuresPath), /unexpected fields/);
+  }
+  await writeFile(featuresPath, '{');
+  await assert.rejects(readIosFeatures(featuresPath), SyntaxError);
+  await assert.rejects(readIosFeatures(join(scratch, 'absent-features.json')), { code: 'ENOENT' });
+  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+  const previous = process.env.RECAP_IOS_BUILD_NUMBER;
+  try {
+    process.env.RECAP_IOS_BUILD_NUMBER = '6';
+    await assert.rejects(prepareIos(join(scratch, 'release-preview'), { featuresPath }), /cannot be used for a reserved release/);
+  } finally {
+    if (previous === undefined) delete process.env.RECAP_IOS_BUILD_NUMBER;
+    else process.env.RECAP_IOS_BUILD_NUMBER = previous;
+  }
+  for (const name of ['packaging/ios/RecapPage.xcodeproj/project.pbxproj', 'packaging/ios/RecapPage-Info.plist']) {
+    const baseline = execFileSync('git', ['show', `e974125bc2bbdfc9c8fbcf015447b17b0c4d1d93:${name}`], { encoding: 'utf8' });
+    assert.equal(read(name).replaceAll('\r', ''), baseline.replaceAll('\r', ''), `${name}: build 6 configuration is untouched`);
+  }
 });
 
 test('the generated Read launcher stylesheet is linked, hashed and served by the iOS app', async () => {

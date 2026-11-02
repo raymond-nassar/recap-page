@@ -100,7 +100,7 @@ final class ICloudBackupHandler {
             return statusBody(state: "not-connected", message: Self.accountChanged, reason: Self.accountChanged)
         }
         do {
-            let uploads = try await store.uploadState()
+            let uploads = try await store.uploadState(expectedIdentity: current.identity)
             return statusBody(
                 state: uploads.iCloudFull ? "unavailable" : "connected",
                 connection: current.connection,
@@ -114,7 +114,7 @@ final class ICloudBackupHandler {
 
     func connect() async throws -> [String: Any] {
         guard let identity = store.currentIdentity() else { throw ICloudStoreError.driveOff }
-        try await store.prepare()
+        try await store.prepare(expectedIdentity: identity)
         // The device may have signed in to another account while the folder was being reached.
         guard let latest = store.currentIdentity(), store.isSameIdentity(latest, identity) else {
             throw ICloudStoreError.driveOff
@@ -133,7 +133,7 @@ final class ICloudBackupHandler {
 
     // The connection a data operation names, held to the one this device recorded for the account it is
     // signed in to now.
-    private func connected(_ input: [String: Any]) throws {
+    private func connected(_ input: [String: Any]) throws -> Data {
         guard let connection = input["connection"] as? String,
               connection.range(of: "^[a-f0-9]{32}$", options: .regularExpression) != nil else {
             throw ICloudStoreError(code: "invalid", message: "The request did not name a connection.")
@@ -146,6 +146,7 @@ final class ICloudBackupHandler {
         guard current.connection == connection else {
             throw ICloudStoreError(code: "needs-consent", message: Self.connectedAgain)
         }
+        return current.identity
     }
 
     private static func itemName(_ input: [String: Any], key: String) throws -> String {
@@ -179,27 +180,27 @@ final class ICloudBackupHandler {
             let current = await disconnect()
             return ["status": current]
         case "list":
-            try connected(input)
-            let items = try await store.list()
+            let identity = try connected(input)
+            let items = try await store.list(expectedIdentity: identity)
             return ["items": items.map(Self.json)]
         case "read":
-            try connected(input)
-            let data = try await store.read(name: Self.itemName(input, key: "id"))
+            let identity = try connected(input)
+            let data = try await store.read(name: Self.itemName(input, key: "id"), expectedIdentity: identity)
             guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
             return ["bytes": data.base64EncodedString()]
         case "create":
-            try connected(input)
+            let identity = try connected(input)
             let name = try Self.itemName(input, key: "name")
             guard let text = input["bytes"] as? String, let data = Data(base64Encoded: text) else {
                 throw ICloudStoreError(code: "invalid", message: "The backup to upload is not readable.")
             }
             guard !data.isEmpty else { throw ICloudStoreError(code: "invalid", message: "That backup is empty.") }
             guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
-            let item = try await store.create(name: name, data: data)
+            let item = try await store.create(name: name, data: data, expectedIdentity: identity)
             return ["item": Self.json(item)]
         case "delete":
-            try connected(input)
-            try await store.delete(name: Self.itemName(input, key: "id"))
+            let identity = try connected(input)
+            try await store.delete(name: Self.itemName(input, key: "id"), expectedIdentity: identity)
             return [:]
         default:
             throw ICloudStoreError(code: "invalid", message: "There is no such cloud operation.")

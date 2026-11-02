@@ -346,8 +346,11 @@ shared backup engine, its schedule and its restore are unchanged.
   only under the `RECAP_ICLOUD` compilation condition or in Debug, and a packaging test fails if
   any of it can reach a Release build without that condition. The page half lives in
   `packaging/ios/icloud-web`, outside the folder the build copies whole, so a build without it never
-  installs the iCloud transport and the backup card stays removed.
-- **Why the switch is not wired yet.** Turning it on needs the iCloud entitlements, the
+  installs the iCloud transport and the backup card stays removed. `packaging/ios/features.json`
+  keeps `iCloudBackup` false. Preparation reads it strictly and its off output is byte-identical to
+  the accepted iOS wording baseline, including the asset manifest. A development preview can supply
+  an alternate features file to `prepareIos`; a reserved release refuses that override.
+- **Why the native switch is not wired yet.** Turning it on needs the iCloud entitlements, the
   `NSUbiquitousContainers` entry in the app's Info.plist and a build setting for the condition. Those
   change the signed export, which only the protected release workflow exercises, so they follow in a
   separate change once iOS build 6 is cut, and the first TestFlight export with them is the proof

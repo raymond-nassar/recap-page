@@ -1089,6 +1089,9 @@ handler. The provider is `icloud`, the only entry in its `providers`, and `conne
 records a connection against the device's current iCloud identity. The page sees no identity token.
 Disconnect forgets that connection, not the device's iCloud sign-in. Files live in Documents in the
 app's ubiquity container, which the Files app shows as **Recap Page**, not in CloudKit.
+Every native file operation carries its validated account identity into the store. The store checks it
+again after the off-main container lookup and before coordinated file I/O, so a change of account
+while lookup is suspended refuses the operation instead of using the other account's folder.
 
 The native store coordinates file reads and writes and refuses a create whose name already exists.
 A read requests a download if needed and returns a retryable refusal if it is still downloading.

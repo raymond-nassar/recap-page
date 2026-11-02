@@ -337,6 +337,40 @@ final class ICloudDriveStoreTests: XCTestCase {
         }
     }
 
+    func testAnAccountSwitchDuringContainerLookupCannotReachTheOtherAccountsFiles() async throws {
+        let documents = root.appendingPathComponent("Documents", isDirectory: true)
+        try FileManager.default.createDirectory(at: documents, withIntermediateDirectories: true)
+        let original = Data([4, 5, 6])
+        let file = documents.appendingPathComponent(backupName)
+        try original.write(to: file)
+        let newName = "recap-page-backup-v1-\(String(repeating: "e", count: 32))-3.json.gz"
+        for operation in ["prepare", "list", "uploadState", "read", "create", "delete"] {
+            var token: NSString = "first-account"
+            let root = root!
+            let changing = ICloudDriveStore(
+                locate: { token = "other-account"; return root },
+                identity: { token },
+                downloadWaitSeconds: 0
+            )
+            let expected = try XCTUnwrap(changing.currentIdentity())
+            do {
+                switch operation {
+                case "prepare": try await changing.prepare(expectedIdentity: expected)
+                case "list": _ = try await changing.list(expectedIdentity: expected)
+                case "uploadState": _ = try await changing.uploadState(expectedIdentity: expected)
+                case "read": _ = try await changing.read(name: backupName, expectedIdentity: expected)
+                case "create": _ = try await changing.create(name: newName, data: Data([1]), expectedIdentity: expected)
+                default: try await changing.delete(name: backupName, expectedIdentity: expected)
+                }
+                XCTFail("\(operation) reached another account's folder")
+            } catch {
+                XCTAssertEqual(error as? ICloudStoreError, .driveOff, operation)
+            }
+            XCTAssertEqual(try Data(contentsOf: file), original, operation)
+            XCTAssertFalse(FileManager.default.fileExists(atPath: documents.appendingPathComponent(newName).path), operation)
+        }
+    }
+
     func testIdentityComparesTheAccountNotTheArchiveBytes() throws {
         let store = store()
         let first = try XCTUnwrap(store.currentIdentity())

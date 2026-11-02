@@ -20,18 +20,19 @@ final class ICloudFakeStore: ICloudDocumentStore {
 
     func isSameIdentity(_ first: Data, _ second: Data) -> Bool { first == second }
 
-    private func begin(_ operation: String) throws {
+    private func begin(_ operation: String, expectedIdentity: Data?) throws {
         calls.append(operation)
         if let failure = failures.removeValue(forKey: operation) { throw failure }
         guard folderAvailable, identity != nil else { throw ICloudStoreError.driveOff }
+        if let expectedIdentity, expectedIdentity != identity { throw ICloudStoreError.driveOff }
     }
 
-    func prepare() async throws {
-        try begin("prepare")
+    func prepare(expectedIdentity: Data? = nil) async throws {
+        try begin("prepare", expectedIdentity: expectedIdentity)
     }
 
-    func list() async throws -> [ICloudBackupItem] {
-        try begin("list")
+    func list(expectedIdentity: Data? = nil) async throws -> [ICloudBackupItem] {
+        try begin("list", expectedIdentity: expectedIdentity)
         return files.keys.sorted().map { name in
             ICloudBackupItem(
                 name: name,
@@ -41,13 +42,13 @@ final class ICloudFakeStore: ICloudDocumentStore {
         }
     }
 
-    func uploadState() async throws -> ICloudUploadState {
-        try begin("uploadState")
+    func uploadState(expectedIdentity: Data? = nil) async throws -> ICloudUploadState {
+        try begin("uploadState", expectedIdentity: expectedIdentity)
         return ICloudUploadState(waiting: !notUploaded.isEmpty, iCloudFull: iCloudFull && !notUploaded.isEmpty)
     }
 
-    func read(name: String) async throws -> Data {
-        try begin("read")
+    func read(name: String, expectedIdentity: Data? = nil) async throws -> Data {
+        try begin("read", expectedIdentity: expectedIdentity)
         guard let data = files[name] else { throw ICloudStoreError.notFound }
         if notDownloaded.remove(name) != nil { throw ICloudStoreError.stillDownloading }
         guard data.count <= ICloudDriveStore.maximumBytes else { throw ICloudStoreError.tooLarge }
@@ -55,16 +56,16 @@ final class ICloudFakeStore: ICloudDocumentStore {
         return data
     }
 
-    func create(name: String, data: Data) async throws -> ICloudBackupItem {
-        try begin("create")
+    func create(name: String, data: Data, expectedIdentity: Data? = nil) async throws -> ICloudBackupItem {
+        try begin("create", expectedIdentity: expectedIdentity)
         guard files[name] == nil else { throw ICloudStoreError.exists }
         files[name] = data
         if !automaticallyUpload { notUploaded.insert(name) }
         return ICloudBackupItem(name: name, size: data.count, isUploaded: automaticallyUpload)
     }
 
-    func delete(name: String) async throws {
-        try begin("delete")
+    func delete(name: String, expectedIdentity: Data? = nil) async throws {
+        try begin("delete", expectedIdentity: expectedIdentity)
         files[name] = nil
         notUploaded.remove(name)
         notDownloaded.remove(name)
