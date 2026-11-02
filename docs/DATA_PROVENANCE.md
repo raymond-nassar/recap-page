@@ -633,7 +633,7 @@ above is listed separately because it is third-party material outside the usual 
 | `storyTypes` | Optional and closed, at most three. The kinds of story a list tells, such as espionage or space opera, so a reader can find lists by the kind of story they want. A judgment this project makes, informed by the guide the list already credits and by general references; no text is copied from any of them, and no tag is inferred from a field |
 | `tones` | Optional and closed, at most two. How a list reads, such as epic or street level. Authored on the same terms as `storyTypes`, and absent where no tone stands out |
 | `writers` | Catalog only, at most three. The writers credited on at least a quarter of a list's issues, most credited first, so a finished list can suggest others by the same writer. Derived when the catalog is built from the writer credits already in the list's own bundled issues; never authored, and absent where no writer reaches that share |
-
+| `contains` | Catalog only. The other bundled lists whose every issue is also in this list, so finishing this list never suggests one the reader has just read inside it. Derived when the catalog is built from the issue ids already in the bundled orders; never authored, and absent where a list wholly contains no other |
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
@@ -1104,7 +1104,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:10764-10815`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:15833-15970`.
+`src/data/catalog.json:16145-16282`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2981,7 +2981,7 @@ response.
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:448-452`, `scripts/vendor-orders.mjs:515-516`, `scripts/vendor-orders.mjs:559-560`).
+(`scripts/vendor-orders.mjs:467-471`, `scripts/vendor-orders.mjs:534-535`, `scripts/vendor-orders.mjs:578-579`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
 provider details and covers remain empty. No comic image bytes are stored and no Unlimited
 availability is inferred.

@@ -63,6 +63,10 @@ export function similarLists({
   }
   const chapterSource = isModernTimelineChapterId(sourceEntry.id);
 
+  // A list whose every issue sits inside the source, or inside a saved list already finished, has
+  // nothing left to read. Review 5800239b found 13 of 332 shipped lists suggesting one, 8 as the
+  // first card. The catalog records containment at build time, so this costs no order fetches.
+  const alreadyRead = new Set(strings(sourceEntry.contains));
   const savedByCatalogId = new Map();
   const savedIds = new Set([...(state.listOrder ?? []), ...Object.keys(state.lists)]);
   for (const id of savedIds) {
@@ -71,6 +75,7 @@ export function similarLists({
     if (!entry) continue;
     if (isCompleted(state, id) === true || fullyRead(state, saved.itemIds)) {
       excluded.add(storyKey(entry));
+      for (const inside of strings(entry.contains)) alreadyRead.add(inside);
     } else if (!savedByCatalogId.has(entry.id) || id === state.active) {
       savedByCatalogId.set(entry.id, id);
     }
@@ -80,7 +85,9 @@ export function similarLists({
   const ranked = [];
   for (const story of groupCatalog(catalog.lists)) {
     if (excluded.has(story.key)) continue;
-    const entry = defaultPath(story, (list) => savedByCatalogId.has(list.id));
+    // A story with a wider path the reader has not read through stays eligible on that path.
+    const unread = story.lists.filter((list) => !alreadyRead.has(list.id));
+    const entry = defaultPath({ lists: unread }, (list) => savedByCatalogId.has(list.id));
     if (!discoverable(entry) || exclude.has(entry.id)) continue;
     if (chapterSource && isModernTimelineChapterId(entry.id)) continue;
     const types = shared(sourceEntry.storyTypes, entry.storyTypes);

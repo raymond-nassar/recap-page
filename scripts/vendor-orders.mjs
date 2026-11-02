@@ -343,6 +343,25 @@ export function catalogWriters(payload) {
     .map(([name]) => name);
 }
 
+// The other bundled lists each list wholly contains, so a finished list never suggests one the
+// reader has just read every issue of, without the device loading every order to find out (#1060).
+// Derived from the pinned payloads, like the writers. A list that holds the source and more stays
+// a fair suggestion, so only full containment counts, and an order with no issues contains nothing.
+export function catalogContains(payloadById) {
+  const rosters = [...payloadById].map(([id, payload]) => [id, new Set(
+    (Array.isArray(payload?.items) ? payload.items : []).map((item) => item?.issueId).filter((value) => value != null),
+  )]);
+  const contains = new Map();
+  for (const [id, roster] of rosters) {
+    const inside = rosters
+      .filter(([other, otherRoster]) => other !== id && otherRoster.size > 0 && otherRoster.size <= roster.size
+        && [...otherRoster].every((issueId) => roster.has(issueId)))
+      .map(([other]) => other);
+    if (inside.length) contains.set(id, inside);
+  }
+  return contains;
+}
+
 // Derived from the payload rather than restated, so the issue count a reader sees before
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
@@ -657,7 +676,15 @@ async function main() {
     addCatalogOutputs(order, parsedOrder, payload, { writeChildren: catalogOnly });
   }
 
-  const catalog = orders.flatMap((order) => catalogById.get(order.id));
+  const assembled = orders.flatMap((order) => catalogById.get(order.id));
+  const containsById = catalogContains(new Map(assembled.map((entry) => [entry.id, payloadByCatalogId.get(entry.id)])));
+  // Beside the writers, ahead of the count, and only on a list that contains another, so every
+  // other entry keeps its exact bytes.
+  const catalog = assembled.map((entry) => (containsById.has(entry.id)
+    ? Object.fromEntries(Object.entries(entry).flatMap(([key, value]) => (key === 'count'
+      ? [['contains', containsById.get(entry.id)], [key, value]]
+      : [[key, value]])))
+    : entry));
   const checked = parseCatalog({ lists: catalog });
   if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
   const outputGeneratedAt = catalogOnly

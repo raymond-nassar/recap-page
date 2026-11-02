@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { catalogWriters } from '../scripts/vendor-orders.mjs';
+import { catalogContains, catalogWriters } from '../scripts/vendor-orders.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { MAX_SIMILAR_LISTS, nearEnd, similarLists } from '../src/js/lib/similarLists.js';
 
@@ -156,6 +156,71 @@ test('catalogWriters keeps writers on at least a quarter of the issues, most cre
     ['W', 'X', 'Y']);
   assert.deepEqual(catalogWriters({ items: [{ creators: [{ name: 'Only Art', role: 'inker' }] }] }), []);
   assert.deepEqual(catalogWriters(null), []);
+});
+
+test('never suggests a list wholly inside the source or a finished saved list, but keeps one that contains more', () => {
+  const catalog = fixture([
+    list('source', { storyTypes: ['war'], contains: ['inside'] }),
+    list('inside', { storyTypes: ['war'] }),
+    list('wider', { storyTypes: ['war'], contains: ['source', 'inside'] }),
+    list('finished', { storyTypes: ['comedy'], contains: ['inside-finished'] }),
+    list('inside-finished', { storyTypes: ['war'] }),
+    list('elsewhere', { storyTypes: ['war'] }),
+  ]);
+  const state = stateFor({ a: saved('source'), b: saved('finished', [7]) }, { 7: 1 });
+  const results = similarLists({ catalog, state, sourceListId: 'a', isCompleted: notCompleted, limit: 5 });
+  assert.deepEqual(ids(results).sort(), ['elsewhere', 'wider']);
+});
+
+// The four cases code review 5800239b found by finishing each shipped list in turn: every one of
+// these suggestions named a list whose every issue the reader had just read.
+for (const [sourceId, readId] of [
+  ['planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'planet-hulk'],
+  ['miles-morales-spider-man-reading-order', 'miles-morales-best-of'],
+  ['mcu-prep-captain-america-civil-war-2016', 'civil-war-essential'],
+  ['captain-america-best-of', 'captain-america-reading-order-modern-marvel-era'],
+]) {
+  test(`finishing ${sourceId} never suggests ${readId}, already read inside it`, async () => {
+    const raw = JSON.parse(await readFile(path.join('src', 'data', 'catalog.json'), 'utf8'));
+    const catalog = parseCatalog(raw);
+    const entry = (id) => catalog.lists.find((row) => row.id === id);
+    const order = async (id) => JSON.parse(await readFile(path.join('src', 'data', entry(id).file), 'utf8'))
+      .items.map((item) => item.issueId);
+    const itemIds = await order(sourceId);
+    assert.ok((await order(readId)).every((id) => itemIds.includes(id)), `${readId} is inside ${sourceId}`);
+    const state = stateFor({ a: { catalogId: sourceId, itemIds } },
+      Object.fromEntries(itemIds.map((id) => [id, 1])));
+    for (const limit of [1, MAX_SIMILAR_LISTS, 50]) {
+      const results = similarLists({ catalog, state, sourceListId: 'a', isCompleted: () => true, limit });
+      assert.ok(!ids(results).includes(readId), `${readId} suggested at limit ${limit}: ${ids(results)}`);
+    }
+  });
+}
+
+test('every catalog entry records exactly the other bundled lists its own order wholly contains', async () => {
+  const catalog = JSON.parse(await readFile(path.join('src', 'data', 'catalog.json'), 'utf8'));
+  const payloads = new Map();
+  for (const entry of catalog.lists) {
+    payloads.set(entry.id, JSON.parse(await readFile(path.join('src', 'data', entry.file), 'utf8')));
+  }
+  const expected = catalogContains(payloads);
+  for (const entry of catalog.lists) assert.deepEqual(entry.contains ?? [], expected.get(entry.id) ?? [], entry.id);
+  assert.ok(catalog.lists.some((entry) => entry.contains?.length));
+});
+
+test('catalogContains needs every issue inside, ignores empty orders, and keeps catalog order', () => {
+  const payload = (...issueIds) => ({ items: issueIds.map((issueId) => ({ issueId })) });
+  const contains = catalogContains(new Map([
+    ['big', payload(1, 2, 3, 4)],
+    ['part', payload(2, 3)],
+    ['same', payload(1, 2, 3, 4)],
+    ['partly-outside', payload(3, 9)],
+    ['empty', payload()],
+  ]));
+  assert.deepEqual(contains.get('big'), ['part', 'same']);
+  assert.deepEqual(contains.get('same'), ['big', 'part']);
+  assert.equal(contains.has('part'), false);
+  assert.equal(contains.has('empty'), false);
 });
 
 test('every catalog entry carries the writers its own bundled order credits', async () => {

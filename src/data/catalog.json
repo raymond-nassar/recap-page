@@ -201,6 +201,10 @@
       "writers": [
         "Jonathan Hickman"
       ],
+      "contains": [
+        "marvel-super-heroes-secret-wars",
+        "avengers-doomsday-secret-wars"
+      ],
       "count": 69,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1121,6 +1125,9 @@
       "writers": [
         "Jonathan Hickman"
       ],
+      "contains": [
+        "x-men-inferno"
+      ],
       "count": 54,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1553,6 +1560,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "contains": [
+        "new-ultimate-universe-trades"
       ],
       "count": 138,
       "placeholderCount": 0,
@@ -2191,6 +2201,9 @@
         "Mark Waid",
         "Tom Peyer"
       ],
+      "contains": [
+        "house-of-m-essential"
+      ],
       "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2355,6 +2368,9 @@
       "writers": [
         "Greg Pak"
       ],
+      "contains": [
+        "planet-hulk"
+      ],
       "count": 107,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2408,6 +2424,9 @@
       ],
       "writers": [
         "Paul Jenkins"
+      ],
+      "contains": [
+        "civil-war-essential"
       ],
       "count": 31,
       "placeholderCount": 0,
@@ -2636,6 +2655,9 @@
         "Brian Michael Bendis",
         "Brian Reed"
       ],
+      "contains": [
+        "secret-invasion-essential"
+      ],
       "count": 36,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2859,6 +2881,11 @@
       "storyTypes": [
         "science-fiction"
       ],
+      "contains": [
+        "civil-war-essential",
+        "marvel-knights-to-planet-x-50",
+        "avengers-disassembled"
+      ],
       "count": 497,
       "placeholderCount": 4,
       "emptyRecordCount": 0,
@@ -2907,6 +2934,13 @@
         "political",
         "science-fiction"
       ],
+      "contains": [
+        "x-men-battle-of-the-atom",
+        "x-men-inferno",
+        "marvel-knights-to-planet-x-12",
+        "marvel-knights-to-planet-x-15",
+        "marvel-knights-to-planet-x-42"
+      ],
       "count": 793,
       "placeholderCount": 2,
       "emptyRecordCount": 0,
@@ -2952,6 +2986,12 @@
       "spotlightKind": "other",
       "storyTypes": [
         "science-fiction"
+      ],
+      "contains": [
+        "the-night-gwen-stacy-died",
+        "marvel-knights-to-planet-x-21",
+        "marvel-knights-to-planet-x-24",
+        "clone-conspiracy"
       ],
       "count": 492,
       "placeholderCount": 10,
@@ -3003,6 +3043,9 @@
       ],
       "writers": [
         "Doug Moench"
+      ],
+      "contains": [
+        "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings"
       ],
       "count": 298,
       "placeholderCount": 8,
@@ -3208,6 +3251,13 @@
         "street-level",
         "lighthearted"
       ],
+      "contains": [
+        "house-of-m-essential",
+        "secret-invasion-essential",
+        "kree-skrull-war",
+        "avengers-defenders-war",
+        "avengers-disassembled"
+      ],
       "count": 663,
       "placeholderCount": 1,
       "emptyRecordCount": 6,
@@ -3304,6 +3354,9 @@
       "writers": [
         "Bruce Jones",
         "Jeph Loeb"
+      ],
+      "contains": [
+        "marvel-knights-to-planet-x-17"
       ],
       "count": 13,
       "placeholderCount": 0,
@@ -3471,6 +3524,10 @@
       "writers": [
         "Roy Thomas",
         "Brian Michael Bendis"
+      ],
+      "contains": [
+        "kree-skrull-war",
+        "avengers-disassembled"
       ],
       "count": 15,
       "placeholderCount": 0,
@@ -3732,6 +3789,10 @@
       "writers": [
         "Mark Millar"
       ],
+      "contains": [
+        "civil-war-essential",
+        "captain-america-reading-order-modern-marvel-era"
+      ],
       "count": 23,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3912,6 +3973,9 @@
       "writers": [
         "Kelly Sue Deconnick",
         "Roy Thomas"
+      ],
+      "contains": [
+        "kree-skrull-war"
       ],
       "count": 24,
       "placeholderCount": 0,
@@ -4443,6 +4507,9 @@
       "writers": [
         "Stan Lee"
       ],
+      "contains": [
+        "marvel-knights-to-planet-x-34"
+      ],
       "count": 28,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4953,6 +5020,9 @@
       "tones": [
         "epic"
       ],
+      "contains": [
+        "thanos-imperative"
+      ],
       "count": 371,
       "placeholderCount": 2,
       "emptyRecordCount": 0,
@@ -5007,6 +5077,9 @@
       "writers": [
         "Scott Lobdell",
         "Chris Claremont"
+      ],
+      "contains": [
+        "phalanx-covenant"
       ],
       "count": 28,
       "placeholderCount": 0,
@@ -5148,6 +5221,15 @@
         "street-level",
         "dark"
       ],
+      "contains": [
+        "marvel-knights-to-planet-x-02",
+        "marvel-knights-to-planet-x-13",
+        "marvel-knights-to-planet-x-19",
+        "marvel-knights-to-planet-x-35",
+        "marvel-knights-to-planet-x-44",
+        "marvel-knights-to-planet-x-52",
+        "marvel-knights-to-planet-x-55"
+      ],
       "count": 638,
       "placeholderCount": 94,
       "emptyRecordCount": 2,
@@ -5243,6 +5325,9 @@
       "tones": [
         "dark"
       ],
+      "contains": [
+        "marvel-super-heroes-secret-wars"
+      ],
       "count": 91,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -5292,6 +5377,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "contains": [
+        "revolutionary-war",
+        "damnation"
       ],
       "count": 556,
       "placeholderCount": 5,
@@ -5395,6 +5484,9 @@
       "tones": [
         "epic"
       ],
+      "contains": [
+        "avengers-defenders-war"
+      ],
       "count": 295,
       "placeholderCount": 0,
       "emptyRecordCount": 1,
@@ -5486,6 +5578,9 @@
       "storyTypes": [
         "magic-supernatural"
       ],
+      "contains": [
+        "avengers-defenders-war"
+      ],
       "count": 259,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -5532,6 +5627,10 @@
       ],
       "writers": [
         "Rainbow Rowell"
+      ],
+      "contains": [
+        "marvel-knights-to-planet-x-61",
+        "marvel-knights-to-planet-x-75"
       ],
       "count": 114,
       "placeholderCount": 0,
@@ -5623,6 +5722,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "contains": [
+        "mcu-prep-black-panther-2018"
       ],
       "count": 364,
       "placeholderCount": 0,
@@ -5870,6 +5972,12 @@
         "science-fiction",
         "thriller"
       ],
+      "contains": [
+        "generations",
+        "mcu-prep-iron-man-2008",
+        "mcu-prep-iron-man-3-2013",
+        "marvel-knights-to-planet-x-68"
+      ],
       "count": 811,
       "placeholderCount": 0,
       "emptyRecordCount": 7,
@@ -5919,6 +6027,19 @@
       ],
       "tones": [
         "dark"
+      ],
+      "contains": [
+        "x-men-battle-of-the-atom",
+        "x-men-trial-of-jean-grey",
+        "marvel-knights-to-planet-x-05",
+        "marvel-knights-to-planet-x-12",
+        "marvel-knights-to-planet-x-15",
+        "marvel-knights-to-planet-x-29",
+        "marvel-knights-to-planet-x-32",
+        "marvel-knights-to-planet-x-42",
+        "marvel-knights-to-planet-x-73",
+        "messiah-war",
+        "second-coming"
       ],
       "count": 278,
       "placeholderCount": 0,
@@ -5970,6 +6091,9 @@
         "epic",
         "dark"
       ],
+      "contains": [
+        "thanos-war"
+      ],
       "count": 272,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -6013,6 +6137,10 @@
       "storyTypes": [
         "science-fiction",
         "comedy"
+      ],
+      "contains": [
+        "civil-war-essential",
+        "mcu-prep-ant-man-2015"
       ],
       "count": 389,
       "placeholderCount": 0,
@@ -6061,6 +6189,13 @@
       ],
       "tones": [
         "dark"
+      ],
+      "contains": [
+        "house-of-m-essential",
+        "civil-war-essential",
+        "secret-invasion-essential",
+        "mcu-prep-captain-america-civil-war-2016",
+        "captain-america-reading-order-modern-marvel-era"
       ],
       "count": 484,
       "placeholderCount": 4,
@@ -6115,6 +6250,18 @@
       "tones": [
         "dark"
       ],
+      "contains": [
+        "hunt-for-wolverine",
+        "house-of-m-essential",
+        "phoenix-saga",
+        "fatal-attractions",
+        "marvel-knights-to-planet-x-05",
+        "marvel-knights-to-planet-x-15",
+        "marvel-knights-to-planet-x-29",
+        "marvel-knights-to-planet-x-32",
+        "marvel-knights-to-planet-x-42",
+        "marvel-knights-to-planet-x-73"
+      ],
       "count": 1207,
       "placeholderCount": 756,
       "emptyRecordCount": 0,
@@ -6159,6 +6306,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "contains": [
+        "messiah-war",
+        "messiah-complex"
       ],
       "count": 261,
       "placeholderCount": 6,
@@ -6214,6 +6365,16 @@
       "tones": [
         "dark"
       ],
+      "contains": [
+        "planet-hulk",
+        "marvel-super-heroes-secret-wars",
+        "marvel-knights-to-planet-x-17",
+        "marvel-knights-to-planet-x-25",
+        "marvel-knights-to-planet-x-31",
+        "marvel-knights-to-planet-x-43",
+        "marvel-knights-to-planet-x-54",
+        "marvel-knights-to-planet-x-65"
+      ],
       "count": 1149,
       "placeholderCount": 0,
       "emptyRecordCount": 9,
@@ -6260,6 +6421,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "contains": [
+        "bloodties"
       ],
       "count": 567,
       "placeholderCount": 0,
@@ -6309,6 +6473,19 @@
         "street-level",
         "dark"
       ],
+      "contains": [
+        "dead-mans-hand",
+        "marvel-knights-to-planet-x-13",
+        "marvel-knights-to-planet-x-19",
+        "marvel-knights-to-planet-x-20",
+        "marvel-knights-to-planet-x-26",
+        "marvel-knights-to-planet-x-45",
+        "marvel-knights-to-planet-x-53",
+        "marvel-knights-to-planet-x-56",
+        "marvel-knights-to-planet-x-58",
+        "marvel-knights-to-planet-x-69",
+        "mcu-prep-daredevil-born-again"
+      ],
       "count": 869,
       "placeholderCount": 0,
       "emptyRecordCount": 1,
@@ -6356,6 +6533,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "contains": [
+        "damnation"
       ],
       "count": 414,
       "placeholderCount": 18,
@@ -6459,6 +6639,10 @@
       "tones": [
         "dark"
       ],
+      "contains": [
+        "minimum-carnage",
+        "marvel-knights-to-planet-x-64"
+      ],
       "count": 643,
       "placeholderCount": 0,
       "emptyRecordCount": 33,
@@ -6502,6 +6686,10 @@
       "spotlightKind": "complete-guide",
       "storyTypes": [
         "myth-fantasy"
+      ],
+      "contains": [
+        "mcu-prep-thor-the-dark-world-2013",
+        "avengers-defenders-war"
       ],
       "count": 656,
       "placeholderCount": 0,
@@ -6548,6 +6736,10 @@
         "street-level",
         "dark"
       ],
+      "contains": [
+        "damnation",
+        "mcu-prep-moon-knight"
+      ],
       "count": 382,
       "placeholderCount": 0,
       "emptyRecordCount": 8,
@@ -6592,6 +6784,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "contains": [
+        "x-men-trial-of-jean-grey"
       ],
       "count": 312,
       "placeholderCount": 0,
@@ -6639,6 +6834,11 @@
       "storyTypes": [
         "magic-supernatural"
       ],
+      "contains": [
+        "damnation",
+        "avengers-defenders-war",
+        "rise-of-the-midnight-sons"
+      ],
       "count": 734,
       "placeholderCount": 0,
       "emptyRecordCount": 23,
@@ -6683,6 +6883,9 @@
       "storyTypes": [
         "political",
         "science-fiction"
+      ],
+      "contains": [
+        "silent-war"
       ],
       "count": 255,
       "placeholderCount": 0,
@@ -6775,6 +6978,18 @@
       "writers": [
         "Chris Claremont"
       ],
+      "contains": [
+        "x-men-age-of-x",
+        "x-men-inferno",
+        "house-of-m-essential",
+        "muir-island-saga",
+        "bloodties",
+        "phoenix-saga",
+        "dark-phoenix-saga",
+        "days-of-future-past",
+        "fatal-attractions",
+        "magneto-war"
+      ],
       "count": 752,
       "placeholderCount": 1,
       "emptyRecordCount": 2,
@@ -6822,6 +7037,11 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "contains": [
+        "mutant-massacre",
+        "x-cutioners-song",
+        "messiah-war"
       ],
       "count": 262,
       "placeholderCount": 12,
@@ -6879,6 +7099,12 @@
       ],
       "writers": [
         "Chris Claremont"
+      ],
+      "contains": [
+        "phoenix-saga",
+        "dark-phoenix-saga",
+        "days-of-future-past",
+        "mutant-massacre"
       ],
       "count": 318,
       "placeholderCount": 2,
@@ -6942,6 +7168,12 @@
       ],
       "writers": [
         "Chris Claremont"
+      ],
+      "contains": [
+        "phoenix-saga",
+        "dark-phoenix-saga",
+        "days-of-future-past",
+        "mutant-massacre"
       ],
       "count": 404,
       "placeholderCount": 4,
@@ -7059,6 +7291,9 @@
       "writers": [
         "Mike Carey"
       ],
+      "contains": [
+        "marvel-knights-to-planet-x-05"
+      ],
       "count": 58,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7104,6 +7339,11 @@
       ],
       "tones": [
         "epic"
+      ],
+      "contains": [
+        "avengers-enemy-within",
+        "kree-skrull-war",
+        "marvel-super-heroes-secret-wars"
       ],
       "count": 527,
       "placeholderCount": 0,
@@ -7207,6 +7447,10 @@
       ],
       "writers": [
         "Ed Brubaker"
+      ],
+      "contains": [
+        "mcu-prep-captain-america-the-winter-soldier-2014",
+        "captain-america-reading-order-modern-marvel-era"
       ],
       "count": 114,
       "placeholderCount": 0,
@@ -7320,6 +7564,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "contains": [
+        "marvel-super-heroes-secret-wars"
       ],
       "count": 104,
       "placeholderCount": 0,
@@ -7594,6 +7841,9 @@
       "tones": [
         "epic"
       ],
+      "contains": [
+        "kree-skrull-war"
+      ],
       "count": 120,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7652,6 +7902,12 @@
       "writers": [
         "Fabian Nicieza"
       ],
+      "contains": [
+        "childs-play",
+        "x-cutioners-song",
+        "messiah-war",
+        "necrosha"
+      ],
       "count": 285,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7694,6 +7950,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "contains": [
+        "messiah-war"
       ],
       "count": 291,
       "placeholderCount": 0,
@@ -13154,6 +13413,12 @@
       "tones": [
         "street-level"
       ],
+      "contains": [
+        "house-of-m-essential",
+        "civil-war-essential",
+        "mcu-prep-captain-america-civil-war-2016",
+        "captain-america-reading-order-modern-marvel-era"
+      ],
       "count": 494,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13205,6 +13470,15 @@
       "tones": [
         "epic"
       ],
+      "contains": [
+        "reckoning-war",
+        "reed-richards-and-sue-storms-wedding",
+        "marvel-knights-to-planet-x-34",
+        "marvel-knights-to-planet-x-49",
+        "marvel-knights-to-planet-x-62",
+        "doomwar",
+        "fantastic-four-and-power-pack"
+      ],
       "count": 973,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13245,6 +13519,9 @@
       "storyTypes": [
         "espionage",
         "war"
+      ],
+      "contains": [
+        "secret-war"
       ],
       "count": 269,
       "placeholderCount": 129,
@@ -13345,6 +13622,9 @@
       ],
       "writers": [
         "Brian Michael Bendis"
+      ],
+      "contains": [
+        "civil-war-essential"
       ],
       "count": 83,
       "placeholderCount": 0,
@@ -13452,6 +13732,10 @@
       ],
       "writers": [
         "Jonathan Hickman"
+      ],
+      "contains": [
+        "hickman-minimal",
+        "marvel-super-heroes-secret-wars"
       ],
       "count": 69,
       "placeholderCount": 0,
@@ -14315,6 +14599,9 @@
       "writers": [
         "Brian Michael Bendis"
       ],
+      "contains": [
+        "miles-morales-best-of"
+      ],
       "count": 385,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14362,6 +14649,25 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "contains": [
+        "the-death-of-ms-marvel",
+        "civil-war-essential",
+        "the-night-gwen-stacy-died",
+        "original-clone-saga",
+        "kravens-last-hunt",
+        "marvel-knights-to-planet-x-07",
+        "marvel-knights-to-planet-x-21",
+        "marvel-knights-to-planet-x-24",
+        "marvel-knights-to-planet-x-28",
+        "marvel-knights-to-planet-x-36",
+        "marvel-knights-to-planet-x-46",
+        "marvel-knights-to-planet-x-47",
+        "marvel-knights-to-planet-x-63",
+        "marvel-knights-to-planet-x-64",
+        "marvel-knights-to-planet-x-76",
+        "spider-man-identity-crisis",
+        "secret-war"
       ],
       "count": 2041,
       "placeholderCount": 7,
@@ -15294,6 +15600,9 @@
         "Marc Sumerak",
         "Fred Van Lente"
       ],
+      "contains": [
+        "fantastic-four-and-power-pack"
+      ],
       "count": 44,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -15345,6 +15654,9 @@
       ],
       "writers": [
         "Frank Miller"
+      ],
+      "contains": [
+        "marvel-knights-to-planet-x-26"
       ],
       "count": 37,
       "placeholderCount": 0,

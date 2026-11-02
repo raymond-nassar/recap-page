@@ -519,6 +519,24 @@ test('#1060: one quiet similar story appears only near the end of a list', async
   assert.equal(h.nodes.similar.hidden, true);
 });
 
+test('#1060: on a 20-issue list the line waits for the last tenth, not the last three', async () => {
+  const h = fixture({ catalog: similarCatalog });
+  h.state = setDeferred(h.state, 'a', 3, false);
+  h.state = addIssuesToList(h.state, 'a', Array.from({ length: 17 }, (_, index) => (
+    { issueId: index + 4, title: `Issue ${index + 4}` }
+  ))).state;
+  assert.equal(h.state.lists.a.itemIds.length, 20);
+  for (let id = 2; id <= 17; id += 1) h.state = markRead(h.state, id, true, 1000 + id);
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similarHint.hidden, true, 'three unread of twenty is not yet near the end');
+  h.state = markRead(h.state, 18, true, 1018);
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similarHint.hidden, false, 'two unread of twenty is near the end');
+  assert.equal(h.nodes.similarHint.children[1].text, 'Alike story');
+});
+
 test('#1060: More like this still appears when What to read next fails or has nothing', async () => {
   for (const [label, resolves] of [
     ['failed', async () => { throw new Error('offline'); }],

@@ -1357,7 +1357,8 @@ export function approvalDigestFor(relationshipReview) {
 
 // Story types and tones are discovery judgments added after a list's packet was approved and
 // revised without a new relationship review, so frozen packets and digests compare without them.
-// Writers are derived for discovery at the same time, from credits the packet already reviewed.
+// Writers are derived for discovery at the same time, from credits the packet already reviewed,
+// and so is the list of other bundled lists each one wholly contains.
 export function withoutDiscoveryTags(entry) {
   if (!entry) return entry;
   const rest = { ...entry };
@@ -1365,6 +1366,7 @@ export function withoutDiscoveryTags(entry) {
   delete rest.tones;
   delete rest.chapterTags;
   delete rest.writers;
+  delete rest.contains;
   return rest;
 }
 
@@ -1392,6 +1394,7 @@ export function libraryDigestFor(manifest, orderIssueIds) {
       storyTypes: _storyTypes,
       tones: _tones,
       writers: _writers,
+      contains: _contains,
       chapterTags: _chapterTags,
       ...entry
     }) => entry),
