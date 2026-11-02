@@ -428,3 +428,20 @@ test('the complete download refuses while this page holds import source it could
   assert.equal(backup.components.draft.rawText, f.draft.rawText, 'with nothing unsaved, the stored draft is captured as before');
   assert.equal(f.writes(), 0);
 });
+
+test('complete backup digest refusals name the app on iOS and preserve browser wording on web', async () => {
+  const { backup } = await captureCompleteBackup({ storage: completeFixture().storage, ...crypto });
+  const originalDocument = globalThis.document;
+  try {
+    globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+    await assert.rejects(createCompleteBackup(backup.components, { cryptoProvider: {} }), (error) => error instanceof CompleteBackupError
+      && error.message === 'This app cannot check backup digests, so complete backups are unavailable here.');
+
+    delete globalThis.document;
+    await assert.rejects(createCompleteBackup(backup.components, { cryptoProvider: {} }), (error) => error instanceof CompleteBackupError
+      && error.message === 'This browser cannot check backup digests, so complete backups are unavailable here.');
+  } finally {
+    if (originalDocument === undefined) delete globalThis.document;
+    else globalThis.document = originalDocument;
+  }
+});

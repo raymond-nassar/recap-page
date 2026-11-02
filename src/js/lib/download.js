@@ -1,3 +1,5 @@
+import { isIosApp } from './platform.js';
+
 // true confirms native output; requested means only that a browser download was asked for.
 let handler = browserDownload;
 
@@ -12,7 +14,10 @@ export async function saveDownload(filename, text, type) {
 }
 
 export function downloadMessage(result, name) {
-  return result === true ? `${name} downloaded.` : `${name} download requested. Check your browser's downloads to confirm it was saved.`;
+  if (result === true) return `${name} downloaded.`;
+  return isIosApp()
+    ? `${name} could not be saved in this app. Try again.`
+    : `${name} download requested. Check your browser's downloads to confirm it was saved.`;
 }
 
 export function browserDownload({ filename, text, type }) {

@@ -4,7 +4,9 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { createDataView, eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
+import {
+  completeRestoreQuestion, createDataView, eraseDialogBody, eraseOutcome, keepCurrentQuestion,
+} from '../src/js/views/data.js';
 import {
   cloudBackupStatus, cloudCardStatus, cloudEraseNote, createCloudBackupView, renderCloudCopy,
 } from '../src/js/views/cloud.js';
@@ -19,6 +21,24 @@ test('eraseDialogBody and eraseOutcome are importable from the data view module'
   assert.equal(typeof eraseOutcome, 'function');
   assert.match(eraseDialogBody([]), /^This clears all lists, notes, issue ratings, reading progress/);
   assert.equal(eraseOutcome(false, []), 'All local data erased.');
+});
+
+test('iOS recovery questions name app-local storage and avoid tab-specific instructions', () => {
+  assert.match(eraseDialogBody(null, { isIos: true }), /This app cannot list its other saved copies/);
+  assert.doesNotMatch(eraseDialogBody(null, { isIos: true }), /browser/i);
+  const outcome = eraseOutcome(true, null, { isIos: true, currentFacts: true });
+  assert.match(outcome, /saved in this app/);
+  assert.match(outcome, /This app will not list/);
+  assert.doesNotMatch(outcome, /browser/i);
+  const uncheckedErase = eraseOutcome(false, [], { isIos: true, readerChanged: null });
+  assert.match(uncheckedErase, /Close and reopen the app/);
+  assert.doesNotMatch(uncheckedErase, /browser|reload/i);
+  const question = keepCurrentQuestion({ download: 'raw' }, { isIos: true });
+  assert.match(question, /data this app holds now/);
+  assert.doesNotMatch(question, /browser/i);
+  const restore = completeRestoreQuestion({ lists: 1, records: 1, draft: false }, { isIos: true });
+  assert.match(restore, /Close other copies of Recap Page/);
+  assert.doesNotMatch(restore, /\btabs\b|\bwindows\b/i);
 });
 
 // -- construction uniqueness --
@@ -172,6 +192,10 @@ test('Data paints local connection and cache status through its interface', () =
   assert.equal(nodes.cacheUsage.textContent, '2 cached responses, about 1.00 MB of a 10 MB budget.');
   view.renderCacheUsage(null);
   assert.match(nodes.cacheUsage.textContent, /Cache unavailable/);
+  const iosNodes = stubElements();
+  const iosView = createDataView(stubDeps({ elements: () => iosNodes, isIos: true }));
+  iosView.renderCacheUsage(null);
+  assert.equal(iosNodes.cacheUsage.textContent, 'Cache unavailable in this app. The app still works, just with more network requests.');
 });
 
 test('restore notifies error for oversized file', async () => {
@@ -464,7 +488,7 @@ function buttonsIn(node) {
 }
 
 function cloudNodes() {
-  const nodes = Object.fromEntries(['card', ...CONTROLS, 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
+  const nodes = Object.fromEntries(['card', ...CONTROLS, 'signInGoogle', 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
   // The line under the card, which the page's notify writes into and the card withdraws from.
   nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
   nodes.found = stubNode({
@@ -501,6 +525,28 @@ function cloudCard(model, overrides = {}) {
   const shown = () => CONTROLS.filter((key) => !nodes[key].hidden);
   return { nodes, view, state, shown, show(next) { state.model = next; view.render(next); } };
 }
+
+test('the Google sign-in button follows the offered providers and sends the chosen provider', async () => {
+  const signedOut = { ...CLOUD, host: 'not-connected', account: null };
+  const card = cloudCard({ ...signedOut, providers: ['onedrive'] });
+  assert.equal(card.nodes.signIn.hidden, false);
+  assert.equal(card.nodes.signInGoogle.hidden, true);
+  card.show({ ...signedOut, providers: ['onedrive', 'googledrive'] });
+  assert.equal(card.nodes.signIn.hidden, false);
+  assert.equal(card.nodes.signInGoogle.hidden, false);
+  card.nodes.signInGoogle._fire();
+  await settled();
+  assert.deepEqual(card.state.calls, [['connect', 'googledrive']]);
+  card.show({ ...CLOUD, provider: 'googledrive', host: 'needs-sign-in', providers: ['onedrive', 'googledrive'] });
+  assert.equal(card.nodes.signIn.hidden, true);
+  assert.equal(card.nodes.signInGoogle.hidden, false);
+  card.nodes.signInGoogle._fire();
+  await settled();
+  assert.deepEqual(card.state.calls, [['connect', 'googledrive'], ['connect', 'googledrive']]);
+  card.show({ ...CLOUD, provider: 'googledrive', providers: ['onedrive', 'googledrive'] });
+  assert.equal(card.nodes.signIn.hidden, true);
+  assert.equal(card.nodes.signInGoogle.hidden, true);
+});
 
 test('the cloud card shows only what each state allows, and nothing at all in a build without cloud backup', () => {
   const card = cloudCard({ ...CLOUD, shown: false });

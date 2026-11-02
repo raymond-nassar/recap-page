@@ -7,6 +7,7 @@
 
 import { wireFieldValidation } from './shared/field-validation.js';
 import { RESTORE_MESSAGES } from '../lib/completeRestore.js';
+import { isIosApp } from '../lib/platform.js';
 
 // ------------------------------------------------------------------ reading-data contents
 //
@@ -26,7 +27,7 @@ const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, de
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:637-640` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:688-691` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from
@@ -64,7 +65,7 @@ const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, de
 // survived. The copy gets the same three answers as the kept-aside ones, with storage that will
 // not say treated as not knowing, and it is named before the settings sentence so that what is
 // erased and what is kept never share a sentence.
-export function eraseDialogBody(copies, { completionHistory = false, savedCopy = false } = {}) {
+export function eraseDialogBody(copies, { completionHistory = false, savedCopy = false, isIos = isIosApp() } = {}) {
   const tail = ' Export a backup first if you are not sure. It cannot be undone.';
   const lead = `This clears all ${READING_DATA_CONTENTS}.`;
   const history = completionHistory ? ' Completion and enjoyment history will also be erased.' : '';
@@ -73,8 +74,10 @@ export function eraseDialogBody(copies, { completionHistory = false, savedCopy =
     : savedCopy ? ' The saved reading-data copy will be erased too.' : '';
   const scope = `${lead}${history}${saved} Your settings are kept.`;
   if (copies === null) {
-    return `${scope} This browser will not let the app list what else it has stored, so anything `
-      + `kept aside after a failed read is not reached and stays where it is.${tail}`;
+    const storageAccess = isIos
+      ? 'This app cannot list its other saved copies, so anything '
+      : 'This browser will not let the app list what else it has stored, so anything ';
+    return `${scope} ${storageAccess}kept aside after a failed read is not reached and stays where it is.${tail}`;
   }
   if (copies.length === 0) return `${scope}${tail}`;
   const one = copies.length === 1;
@@ -99,6 +102,7 @@ export function eraseDialogBody(copies, { completionHistory = false, savedCopy =
 // disclosing them and merely not having lied.
 export function eraseOutcome(snapshotKept, copies, {
   historyKept = false, historyError = null, readerChanged = false, cacheFailure = null, currentFacts = false, draftKept = false,
+  isIos = isIosApp(),
 } = {}) {
   const notes = [];
   if (draftKept === null) {
@@ -118,11 +122,11 @@ export function eraseOutcome(snapshotKept, copies, {
     notes.push('The pre-restore copy could not be checked. Do not assume it was removed; check the saved reading-data copy controls before erasing again.');
   } else if (snapshotKept) {
     notes.push(currentFacts
-      ? 'One pre-restore copy is still saved in this browser, under the saved reading-data copy controls.'
-      : 'One copy could not be removed and is still in this browser, under the saved reading-data copy controls.');
+      ? `One pre-restore copy is still saved in ${isIos ? 'this app' : 'this browser'}, under the saved reading-data copy controls.`
+      : `One copy could not be removed and is still in ${isIos ? 'this app' : 'this browser'}, under the saved reading-data copy controls.`);
   }
   if (copies === null) {
-    notes.push('This browser will not list what else it has stored, so anything kept aside after a failed read is still here.');
+    notes.push(`${isIos ? 'This app' : 'This browser'} will not list what else it has stored, so anything kept aside after a failed read is still here.`);
   } else if (copies.length === 1) {
     notes.push('One copy kept after a failed read is still here, under "Copies kept after a failed read".');
   } else if (copies.length > 1) {
@@ -130,7 +134,9 @@ export function eraseOutcome(snapshotKept, copies, {
   }
   if (notes.length === 0 && readerChanged === false) return 'All local data erased.';
   const lead = readerChanged === null
-    ? 'Reading data could not be checked after the erase. Reload and check your library before erasing again.'
+    ? isIos
+      ? 'Reading data could not be checked after the erase. Close and reopen the app and check your library before erasing again.'
+      : 'Reading data could not be checked after the erase. Reload and check your library before erasing again.'
     : readerChanged ? 'Reading data changed after the erase. Check your library before erasing again.' : 'Lists and reading progress erased.';
   return [lead, ...notes].join(' ');
 }
@@ -169,6 +175,7 @@ export function createDataView({
   getRecoveryCopy = null,
   getCloudEraseNote = null,
   eraseHistory = false,
+  isIos = isIosApp(),
 }) {
   let restoring = false;
 
@@ -183,7 +190,7 @@ export function createDataView({
       nodes.restoreCopySummary.textContent = !offer.ok ? offer.errors.join(' ')
         : !offer.available ? 'No saved reading-data copy is available.'
           : `${offer.summary} ${offer.kind === 'undo'
-            ? 'This is your reading data from before the last restore in this tab.'
+            ? `This is your reading data from before the last restore in ${isIos ? 'this app' : 'this tab'}.`
             : 'Direction is not recorded for this retained copy. Restoring it replaces your current reading data.'}`
             + (offer.edited ? ' Reading data has changed since that restore; Undo would replace those edits.' : '')
             + (offer.identical ? ' This copy already matches your saved data.' : '');
@@ -210,7 +217,9 @@ export function createDataView({
     if (res.ok) notify('#restore-report', success, 'ok');
     else {
       const lead = res.changed === null
-        ? 'Restore did not finish. The saved reading-data outcome is unknown. Keep this page open, download any retained copy, then reload and check your library.'
+        ? isIos
+          ? 'Restore did not finish. The saved reading-data outcome is unknown. Keep this app open, download any retained copy, then close and reopen it to check your library.'
+          : 'Restore did not finish. The saved reading-data outcome is unknown. Keep this page open, download any retained copy, then reload and check your library.'
         : res.changed === true ? 'Reading data changed, but restore did not finish. Check your library and retained copy.'
           : 'Reading data is unchanged. Choose a reading-data JSON backup from this app and try again.';
       notify('#restore-report', `${lead} ${res.errors.join(' ')}`, 'error');
@@ -243,7 +252,7 @@ export function createDataView({
       ? (usage.count
         ? `${usage.count} cached responses, about ${(usage.bytes / 1024 / 1024).toFixed(2)} MB of a ${(usage.budget / 1024 / 1024).toFixed(0)} MB budget.`
         : 'Nothing cached yet.')
-      : 'Cache unavailable in this browser. The app still works, just with more network requests.';
+      : `Cache unavailable in ${isIos ? 'this app' : 'this browser'}. The app still works, just with more network requests.`;
   }
 
   function wire() {
@@ -301,7 +310,10 @@ export function createDataView({
         }
         notify('#draft-transfer-report', result.ok
           ? 'Import draft restored. Reading data was not changed. Review Resume saved import in Search.'
-          : `${result.changed === null ? 'Draft storage outcome is unknown; export retained source before reloading.' : 'Draft restore did not finish.'} ${result.error}`, result.ok ? 'ok' : 'error');
+          : `${result.changed === null
+            ? isIos ? 'Draft storage outcome is unknown; export retained source before closing the app.'
+              : 'Draft storage outcome is unknown; export retained source before reloading.'
+            : 'Draft restore did not finish.'} ${result.error}`, result.ok ? 'ok' : 'error');
       } catch (error) {
         draftValidation.fail(`Import draft restore refused: ${error.message}`);
       } finally {
@@ -485,13 +497,15 @@ export function withOutcome(lead, message, said) {
 // The counts belong to the file, so they are attached to it: a device with ten lists restoring a file
 // with two is replacing its ten with the file's two, not "your reading data (2 lists)". A backup chosen
 // from cloud backup is named as a backup rather than a file.
-export function completeRestoreQuestion({ lists, records, draft }, { source = 'file' } = {}) {
+export function completeRestoreQuestion({ lists, records, draft }, { source = 'file', isIos = isIosApp() } = {}) {
   const counted = `This replaces your reading data with this ${source}'s ${plural(lists, 'list')}, your completion history with its ${plural(records, 'record')}`;
   return `${counted}${draft
     ? `, your display and reading preferences with the ones in this ${source}, and your import draft with the one in this ${source}. `
     : ` and your display and reading preferences with the ones in this ${source}, and removes any import draft, because this ${source} has none. `}`
     + 'A finished complete restore cannot be undone as a whole, so download a complete backup first if you might want the current data back. '
-    + 'Close any other Recap Page tabs and windows first, including ones running an older version.';
+    + (isIos
+      ? 'Close other copies of Recap Page before restoring, including any running an older version.'
+      : 'Close any other Recap Page tabs and windows first, including ones running an older version.');
 }
 
 // Keeping the current data deletes the recovery copy only when one can be read, so the question says
@@ -499,16 +513,16 @@ export function completeRestoreQuestion({ lists, records, draft }, { source = 'f
 // full disk, goes at a later start instead (#947), except one that fails its checks: the next start
 // offers that one again (#954). The exact prior copy can be downloaded but not restored by this
 // version, so the question says so before the copy goes.
-export function keepCurrentQuestion(recovery) {
-  const lead = 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data.';
-  const when = 'at once, or at a later start if this browser cannot remove it yet';
+export function keepCurrentQuestion(recovery, { isIos = isIosApp() } = {}) {
+  const lead = `Recovery ends and saving starts again with the data ${isIos ? 'this app' : 'this browser'} holds now, which may mix restored and earlier data.`;
+  const when = `at once, or at a later start if ${isIos ? 'the app' : 'this browser'} cannot remove it yet`;
   if (recovery?.download === 'prior') {
     return `${lead} The recovery copy is then deleted, ${when}, so download the exact prior copy first if you might need it. `
       + 'This version cannot restore that copy: it is for recovering the earlier data by hand or with help.';
   }
   if (recovery?.download === 'raw') {
     return `${lead} The recovery copy, which this version cannot read, is then deleted, so download it first if you might need it. `
-      + 'If this browser cannot remove it yet, the next start offers it again. Its data can only be recovered by hand or with help.';
+      + `If ${isIos ? 'the app' : 'this browser'} cannot remove it yet, the next start offers it again. Its data can only be recovered by hand or with help.`;
   }
   if (recovery?.kind === 'unchecked') {
     return `${lead} The recovery copy could not be checked, so it is left in place, and a later start offers it again if it can.`;

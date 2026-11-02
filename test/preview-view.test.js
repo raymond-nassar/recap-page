@@ -222,6 +222,22 @@ test('Preview puts its offline status above the held actions, not among them', a
     assert.equal(status['aria-live'], 'polite');
     assert.equal(status.textContent, 'Offline preparation is not available in this browser.');
     view.invalidate();
+
+    const iosNodes = Object.fromEntries([
+      'add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'offline', 'offlineStatus', 'paths', 'source',
+    ].map((key) => [key, node()]));
+    const iosView = createPreviewView({
+      isIos: true,
+      captureFocus: () => null, el: withAttributes, elements: () => iosNodes,
+      getState: () => ({ lists: {}, listOrder: [] }),
+      isInLibrary: () => null, issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
+      onAdd: async () => null, onClose: async () => {}, onIssueLoadFailure: async (failure) => { throw failure.error; },
+      offlineContent: { readiness: async () => ({ state: 'unsupported', error: 'This browser does not support offline app storage.' }) },
+      onOpen: () => {}, presentation: { attributionLine: () => null }, restoreFocus: () => {},
+    });
+    await iosView.open(list('two'));
+    assert.equal(iosNodes.offlineStatus.children[0].textContent, 'Offline preparation is not available in this app.');
+    iosView.invalidate();
   } finally {
     delete globalThis.document;
   }
