@@ -15,6 +15,8 @@ import {
   digestCanonicalJson, gapEvidenceDigestFor, mappingDigestFor, packetDigestFor,
   sourceCountsForPacket, sourceGapResolutionDigestFor, sourceIdentityKey, sourcePositionsForPacket,
   validateApprovalDigest, validateFrozenPacket, validateMappingDigest, validatePacketProposal, validateReportDigest,
+  withoutDiscoveryTags,
+  withPublishedDiscoveryTags,
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
@@ -1129,7 +1131,8 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   validateReportDigest(previousReport);
   assert.equal(mapping.packetDigest, packet.packetDigest);
   assert.equal(canonicalJson(mapping.proposedManifest), canonicalJson(packet.proposedManifest));
-  const currentManifestEntry = manifest.lists.find((entry) => entry.id === request.id);
+  const publishedManifestEntry = manifest.lists.find((entry) => entry.id === request.id);
+  const currentManifestEntry = withoutDiscoveryTags(publishedManifestEntry);
   const approvedManifestEntry = canonicalJson(currentManifestEntry) === canonicalJson(packet.proposedManifest)
     ? currentManifestEntry : beforeMcuEditorialEntry(currentManifestEntry);
   assert.equal(canonicalJson(approvedManifestEntry),
@@ -1459,10 +1462,10 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   };
   const nextManifest = {
     ...manifest,
-    lists: manifest.lists.map((entry) => entry.id === request.id ? {
+    lists: manifest.lists.map((entry) => entry.id === request.id ? withPublishedDiscoveryTags({
       ...nextPacket.proposedManifest,
       description: request.description ?? currentManifestEntry.description,
-    } : entry),
+    }, publishedManifestEntry) : entry),
   };
   assert.deepEqual(parseManifest(nextManifest).errors, []);
   const outputValues = [

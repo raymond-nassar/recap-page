@@ -16,6 +16,35 @@ export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
 // would gain members nobody chose for it. A list carrying one is shelved by it rather than by its
 // type, so a young readers' list has Young readers as its one screen (#897).
 export const LIST_AUDIENCES = ['young-readers'];
+// What kind of story a list tells and how it feels (#1060). Closed for the reason audience is: a
+// free word would split one kind of story across spellings and leave lists out of a search for it.
+// Story type labels follow the Library of Congress genre terms for comics where one exists.
+// "Superhero" is absent on purpose, because it describes every list and so finds nothing.
+export const STORY_TYPES = Object.freeze({
+  espionage: 'Espionage',
+  thriller: 'Thriller',
+  'crime-noir': 'Crime and noir',
+  political: 'Political',
+  war: 'War',
+  'space-opera': 'Space opera',
+  'science-fiction': 'Science fiction',
+  'myth-fantasy': 'Myth and fantasy',
+  'magic-supernatural': 'Magic and supernatural',
+  horror: 'Horror',
+  'martial-arts': 'Martial arts',
+  'coming-of-age': 'Coming of age',
+  comedy: 'Comedy',
+});
+export const STORY_TONES = Object.freeze({
+  epic: 'Epic',
+  'street-level': 'Street level',
+  dark: 'Dark',
+  lighthearted: 'Lighthearted',
+});
+// A list is tagged for what its guide singles out, not every issue in it, so a long run that
+// changes mood carries its dominant mode rather than everything it ever touched.
+export const MAX_STORY_TYPES = 3;
+export const MAX_STORY_TONES = 2;
 
 const SPOTLIGHT_KIND_LABELS = {
   all: 'All',
@@ -141,6 +170,17 @@ export function safeOrderFile(v) {
   return /^[A-Za-z0-9._-]+\.md$/.test(s) && !s.startsWith('.') ? s : null;
 }
 
+// Unknown and repeated tags are dropped rather than failing the whole catalog, matching how an
+// unknown audience reads as none: the manifest validator is where a bad tag is refused.
+function knownTags(value, vocabulary, max) {
+  if (!Array.isArray(value)) return [];
+  const kept = [];
+  for (const tag of value) {
+    if (Object.hasOwn(vocabulary, tag) && !kept.includes(tag)) kept.push(tag);
+  }
+  return kept.slice(0, max);
+}
+
 function normalizeEntry(raw) {
   if (!raw || typeof raw !== 'object') return null;
   if (Object.hasOwn(raw, 'storylines') && typeof raw.storylines !== 'boolean') {
@@ -179,6 +219,8 @@ function normalizeEntry(raw) {
     storylines: raw.storylines === true,
     spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
     audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
+    storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
+    tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
     source: str(raw.source),
@@ -559,6 +601,8 @@ function haystack(list) {
     list.description,
     typeLabel(list.type),
     depthLabel(list.depth),
+    ...(list.storyTypes ?? []).map((tag) => STORY_TYPES[tag]),
+    ...(list.tones ?? []).map((tag) => STORY_TONES[tag]),
     ...list.characters,
     ...list.keywords,
   ].filter(Boolean).join(' '));

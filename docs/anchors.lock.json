@@ -1594,8 +1594,8 @@
     "fp": "4e2c08fc7d7cb7d2",
     "head": "await this.journal.begin(record);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:617-671|0": {
-    "anchor": "scripts/vendor-orders.mjs:617-671",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:619-673|0": {
+    "anchor": "scripts/vendor-orders.mjs:619-673",
     "fp": "d7f8b76b9f7b7b8c",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1754,13 +1754,13 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1496-1549|0": {
-    "anchor": "src/js/lib/catalog.js:1496-1549",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1540-1593|0": {
+    "anchor": "src/js/lib/catalog.js:1540-1593",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:708-726|0": {
-    "anchor": "src/js/lib/catalog.js:708-726",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:752-770|0": {
+    "anchor": "src/js/lib/catalog.js:752-770",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -2034,13 +2034,13 @@
     "fp": "9c4a55814397835e",
     "head": "async function networkThenCache(event) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:226-232|0": {
-    "anchor": "src/js/lib/catalog.js:226-232",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:268-274|0": {
+    "anchor": "src/js/lib/catalog.js:268-274",
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:910-933|0": {
-    "anchor": "src/js/lib/catalog.js:910-933",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:954-977|0": {
+    "anchor": "src/js/lib/catalog.js:954-977",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -2054,28 +2054,28 @@
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:388-409|0": {
-    "anchor": "scripts/vendor-orders.mjs:388-409",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:390-411|0": {
+    "anchor": "scripts/vendor-orders.mjs:390-411",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:834-856|0": {
-    "anchor": "scripts/lib/owner-guide.mjs:834-856",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:836-858|0": {
+    "anchor": "scripts/lib/owner-guide.mjs:836-858",
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:422-426|0": {
-    "anchor": "scripts/vendor-orders.mjs:422-426",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:424-428|0": {
+    "anchor": "scripts/vendor-orders.mjs:424-428",
     "fp": "b5164475feb84ad2",
     "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:489-490|0": {
-    "anchor": "scripts/vendor-orders.mjs:489-490",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:491-492|0": {
+    "anchor": "scripts/vendor-orders.mjs:491-492",
     "fp": "c089d2cbfead089a",
     "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:533-534|0": {
-    "anchor": "scripts/vendor-orders.mjs:533-534",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:535-536|0": {
+    "anchor": "scripts/vendor-orders.mjs:535-536",
     "fp": "7b74eea9291f2eae",
     "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
   },
@@ -2114,13 +2114,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12804-12941|0": {
-    "anchor": "src/data/catalog.json:12804-12941",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12932-13069|0": {
+    "anchor": "src/data/catalog.json:12932-13069",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:8433-8484|0": {
-    "anchor": "src/data/curated-lists.json:8433-8484",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:8561-8612|0": {
+    "anchor": "src/data/curated-lists.json:8561-8612",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },

@@ -1355,6 +1355,28 @@ export function approvalDigestFor(relationshipReview) {
   return digestCanonicalJson(payload);
 }
 
+// Story types and tones are discovery judgments added after a list's packet was approved and
+// revised without a new relationship review, so frozen packets and digests compare without them.
+export function withoutDiscoveryTags(entry) {
+  if (!entry) return entry;
+  const rest = { ...entry };
+  delete rest.storyTypes;
+  delete rest.tones;
+  return rest;
+}
+
+// Carries a published entry's discovery tags onto an entry rebuilt from its packet, in the
+// published key order, so a rewrite that changes nothing else leaves the manifest byte-identical.
+export function withPublishedDiscoveryTags(next, published) {
+  const tagged = { ...next };
+  for (const field of ['storyTypes', 'tones']) {
+    if (Object.hasOwn(published ?? {}, field)) tagged[field] = published[field];
+  }
+  const order = Object.keys(published ?? {}).filter((key) => Object.hasOwn(tagged, key));
+  const keys = [...order, ...Object.keys(tagged).filter((key) => !order.includes(key))];
+  return Object.fromEntries(keys.map((key) => [key, tagged[key]]));
+}
+
 export function libraryDigestFor(manifest, orderIssueIds) {
   const reviewedManifest = {
     ...manifest,
@@ -1364,6 +1386,8 @@ export function libraryDigestFor(manifest, orderIssueIds) {
       catalog: _catalog,
       storylines: _storylines,
       storylinesChildren: _storylinesChildren,
+      storyTypes: _storyTypes,
+      tones: _tones,
       ...entry
     }) => entry),
   };

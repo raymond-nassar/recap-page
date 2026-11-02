@@ -338,6 +338,8 @@ function catalogEntry(order, payload) {
     // Written only when a list has one, so every catalog entry that predates the field keeps
     // its exact bytes.
     ...(order.audience ? { audience: order.audience } : {}),
+    ...(order.storyTypes ? { storyTypes: order.storyTypes } : {}),
+    ...(order.tones ? { tones: order.tones } : {}),
     count: payload.count,
     placeholderCount: placeholders,
     emptyRecordCount: empty,

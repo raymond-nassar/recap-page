@@ -469,6 +469,17 @@ title, description or source address. Every reading in a story group must use th
 recommends for younger readers, so a Home category can gather those lists without moving them off
 their shelf. Omit it everywhere else; the manifest refuses any other value.
 
+`storyTypes` and `tones` say what kind of story a list is and how it reads, so a reader can search
+for it that way. Both are closed lists defined in the catalog module: up to three story types and
+up to two tones, no repeats, and never on a hidden partition parent. Choose them as this project's
+own judgment, informed by the guide the list credits, and copy no wording from any source. A list
+may carry no tone. Every list is meant to carry at least one story type once the existing lists
+are tagged; until then an untagged list is simply not found by these words. Tags can be added or
+corrected without a new relationship review: reviewed library digests and owner identity updates
+compare a list with its tags set aside, and an identity update keeps them. The tests that hold a
+list to its frozen approved packet set tags aside only for lists tagged so far. Many still compare
+the whole entry, so the change that first tags a list also sets its tags aside in those tests.
+
 Rebuild only the order being added:
 
 ```text
