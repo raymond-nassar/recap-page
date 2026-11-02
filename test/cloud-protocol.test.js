@@ -1249,11 +1249,11 @@ function windowsHost(transport, { account = 'reader@example.test' } = {}) {
   });
 }
 
-function page({ env, home = device(), channel = null, databases, savedChanges = null } = {}) {
+function page({ env, home = device(), channel = null, databases, savedChanges = null, device: label = 'Microsoft Edge on Windows' } = {}) {
   const time = fakeTime();
   const protocol = env.make({ clock: time.now });
   const cloud = createCloudBackup({
-    transport: env.transport, protocol, device: 'Microsoft Edge on Windows', channel, setTimer: time.setTimer, savedChanges,
+    transport: env.transport, protocol, ...(label === null ? {} : { device: label }), channel, setTimer: time.setTimer, savedChanges,
     capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }),
     databases: databases ?? (async () => [...env.idb.databases.keys()].map((name) => ({ name, version: 1 }))),
     coordinator: {
@@ -1272,6 +1272,39 @@ test('other devices see this one by its browser and the system it runs on', () =
   assert.equal(browserDeviceLabel(undefined), 'Recap Page');
   assert.equal(browserDeviceLabel(edge, 'device'), 'Recap Page on Android');
   assert.equal(browserDeviceLabel(undefined, 'device'), 'Recap Page on Android');
+});
+
+test('a transport supplies the iOS device name; absent device keeps existing labels byte for byte', async () => {
+  for (const [scope, supplied, expected] of [
+    ['device', 'Recap Page on iPhone', 'Recap Page on iPhone'],
+    ['device', 'Recap Page on iPad', 'Recap Page on iPad'],
+    ['device', undefined, 'Recap Page on Android'],
+    ['profiles', undefined, browserDeviceLabel(globalThis.navigator, 'profiles')],
+  ]) {
+    const env = harness();
+    windowsHost(env.transport);
+    env.transport.scope = scope;
+    if (supplied !== undefined) env.transport.device = supplied;
+    const tab = page({ env, device: null });
+    await tab.cloud.enter();
+    await tab.cloud.turnOn();
+    assert.equal((await tab.protocol.record()).device, expected);
+    tab.cloud.beforeErase();
+  }
+});
+
+test('the page carries an upload wait to the card and withdraws it after the next status', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const currentStatus = env.transport.status;
+  let waiting = true;
+  env.transport.status = async () => ({ ...await currentStatus(), provider: 'icloud', waitingForUpload: waiting });
+  const tab = page({ env });
+  assert.equal((await tab.cloud.enter()).waitingForUpload, true);
+  assert.match(cloudCardStatus(tab.cloud.model), /iCloud has not finished uploading/);
+  waiting = false;
+  assert.equal((await tab.cloud.refresh()).waitingForUpload, undefined);
+  assert.doesNotMatch(cloudCardStatus(tab.cloud.model), /iCloud has not finished uploading/);
 });
 
 test('in a build without cloud backup the page shows nothing, asks once when the card opens, and never opens the record', async () => {
@@ -1918,4 +1951,32 @@ test('listening for other tabs keeps no process alive', async () => {
       (error) => resolve(error ? (error.killed ? 'still running after 20 seconds' : error.message) : 'exited'));
   });
   assert.equal(outcome, 'exited', `after ${Date.now() - started} ms`);
+});
+
+test('two iCloud read-backs waiting for upload never prune confirmed backups or count as verified', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  for (const generation of [1, 2]) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  for (const generation of [3, 4]) {
+    home.mark(generation);
+    env.transport.calls.length = 0;
+    env.transport.faults.read.push('unavailable');
+    await assert.rejects(protocol.upload(await home.snapshot()), { code: 'unavailable' });
+    assert.equal(env.transport.calls.includes('delete'), false, 'no retention delete after a pending read-back');
+    assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [2, 1]);
+    assert.deepEqual(env.transport.generations(stream), Array.from({ length: generation }, (_, at) => at + 1),
+      'pending files stay in listings without becoming retained verified generations');
+  }
+  home.mark(5);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [5, 2]);
+  assert.deepEqual(env.transport.generations(stream), [2, 3, 4, 5], 'the prior confirmed backup is kept beside its confirmed replacement');
+  home.mark(6);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [6, 5]);
+  assert.equal(env.transport.generations(stream).includes(2), false, 'only a later confirmed replacement allows that backup to be pruned');
 });

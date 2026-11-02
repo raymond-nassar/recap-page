@@ -95,7 +95,7 @@ export default [
   },
   {
     // Everything served out of src/ runs in the browser, and so do the app shells' own web files.
-    files: ['src/**/*.js', 'packaging/android/web/*.js', 'packaging/ios/web/*.js'],
+    files: ['src/**/*.js', 'packaging/android/web/*.js', 'packaging/ios/web/*.js', 'packaging/ios/icloud-web/*.js'],
     languageOptions: { globals: globals.browser },
     rules: noEmDashInShippedCopy,
   },

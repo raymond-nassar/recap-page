@@ -50,7 +50,7 @@ export function browserDeviceLabel(nav = globalThis.navigator, scope) {
 export function createCloudBackup({
   transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
-  device = browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
+  device = transport?.device ?? browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
   coordinator: coordinatorOptions = {}, onChange = () => {},
 } = {}) {
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
@@ -95,12 +95,15 @@ export function createCloudBackup({
     return Object.freeze({
       shown: enabled() || agreed !== null,
       provider: (enabled() && status.provider) || agreed?.provider || 'onedrive',
+      // The services this device can sign in to; the card offers a choice only when there are several.
+      providers: enabled() && Array.isArray(status.providers) ? status.providers : [],
       host: enabled() ? status.state : agreed ? 'not-answering' : 'absent',
       account: enabled() ? status.account : null,
       message: enabled() ? status.message : null,
       // Why this browser is asked again, when the host knows: the person deleted the app folder.
       reason: enabled() ? status.reason ?? null : null,
       signInExpiresAt: enabled() ? status.signInExpiresAt : null,
+      ...(enabled() && status.waitingForUpload === true ? { waitingForUpload: true } : {}),
       agreed: agreed !== null,
       on: isOn(),
       askedAgain: Boolean(agreed && linked && !isOn()),
@@ -280,8 +283,9 @@ export function createCloudBackup({
     notify() { coordinator?.notify(); },
     retry() { coordinator?.retry(); },
 
-    async connect() {
-      status = await transport.connect();
+    // Signs in to the service the person chose, or the transport's own when there was no choice to make.
+    async connect(provider) {
+      status = await (provider === undefined ? transport.connect() : transport.connect({ provider }));
       publish();
       watchSignIn();
       return model;

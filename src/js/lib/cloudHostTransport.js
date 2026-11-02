@@ -18,6 +18,10 @@ export const CLOUD_HOST_HEADER = 'x-recap-cloud';
 // returns at once, so a host that takes longer than this is treated as not answering.
 const ACCOUNT_MS = 15_000;
 const STATES = new Set(['unavailable', 'not-connected', 'signing-in', 'connected', 'needs-sign-in']);
+const PROVIDER = /^[a-z]{1,32}$/;
+// Google Drive permits duplicate names, and iCloud can resolve concurrent writes on other devices.
+// Both need the protocol's second list after a create; OneDrive refuses a second item of one name.
+const DUPLICATE_NAMES = new Set(['googledrive', 'icloud']);
 const NOT_ENABLED = Object.freeze({ enabled: false });
 const NOT_ANSWERED = Object.freeze({ enabled: false, transient: true });
 const CHUNK = 0x8000;
@@ -52,24 +56,35 @@ function fromBase64(value) {
   return bytes;
 }
 
+// The services the host offers, as short lowercase names. A host older than the choice of service sends
+// none, and offers only the one it names.
+function providersOf(value, provider) {
+  const named = Array.isArray(value) ? value.filter((entry) => typeof entry === 'string' && PROVIDER.test(entry)) : [];
+  const offered = [...new Set(named)].slice(0, 8);
+  return offered.length > 0 ? offered : provider ? [provider] : [];
+}
+
 // The host's account status, keeping only the fields the card shows or the protocol needs, and only in
 // the shapes the host writes.
 function statusOf(value) {
   if (!object(value) || !STATES.has(value.state)) return NOT_ENABLED;
+  const provider = typeof value.provider === 'string' && PROVIDER.test(value.provider) ? value.provider : null;
   return {
     enabled: true,
-    provider: text(value.provider, 32),
+    provider,
+    providers: providersOf(value.providers, provider),
     state: value.state,
     connection: text(value.connection, 128),
     account: text(value.account, 256),
     message: text(value.message, 1024),
     reason: text(value.reason, 1024),
     signInExpiresAt: Number.isSafeInteger(value.signInExpiresAt) ? value.signInExpiresAt : null,
+    ...(value.waitingForUpload === true ? { waitingForUpload: true } : {}),
   };
 }
 
 function unavailable(message) {
-  return { enabled: true, provider: null, state: 'unavailable', connection: null, account: null, message, reason: null, signInExpiresAt: null };
+  return { enabled: true, provider: null, providers: [], state: 'unavailable', connection: null, account: null, message, reason: null, signInExpiresAt: null };
 }
 
 function failure(error, code, fallback) {
@@ -126,23 +141,35 @@ export function createCloudHostTransport({
   }
 
   const within = (operation) => deadlines[operation] + graceMs;
+  // The service the host last named, which decides whether a create is checked for a second item under
+  // its name. A status that names none leaves it as it was.
+  let provider = null;
+  const heard = (status) => {
+    if (status.provider) provider = status.provider;
+    return status;
+  };
 
   return {
+    get duplicateNames() { return DUPLICATE_NAMES.has(provider); },
+
     // Never refuses: "not enabled" when something other than the host answered, transient when nothing
     // answered or the host was busy, and "unavailable" with the reason when the host cannot serve this page.
     async status() {
       let answer;
       try { answer = await request('status', {}, accountMs); } catch { return NOT_ANSWERED; }
       const { code, body } = answer;
-      if (code === 200 && object(body) && body.ok === true) return statusOf(body.status);
+      if (code === 200 && object(body) && body.ok === true) return heard(statusOf(body.status));
       if (code >= 500) return NOT_ANSWERED;
       if (!object(body) || body.ok !== false || !object(body.error)) return NOT_ENABLED;
       if (code === 200) return unavailable(text(body.error.message, 1024) ?? 'Cloud backup stopped unexpectedly.');
       if (TURNED_AWAY_UNREAD.has(code)) return { ...unavailable(BUSY), transient: true };
       return unavailable(TURNED_AWAY[body.error.code] ?? REFUSED);
     },
-    async connect() { return statusOf((await post('connect', {}, accountMs)).status); },
-    async disconnect() { return statusOf((await post('disconnect', {}, accountMs)).status); },
+    // Signs in to the service named, or to OneDrive when none is, as every host before the choice did.
+    async connect({ provider: chosen } = {}) {
+      return heard(statusOf((await post('connect', chosen === undefined ? {} : { provider: chosen }, accountMs)).status));
+    },
+    async disconnect() { return heard(statusOf((await post('disconnect', {}, accountMs)).status)); },
 
     async list({ connection } = {}) {
       const { items } = await post('list', { connection }, within('list'));

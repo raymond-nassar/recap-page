@@ -2,13 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHomeUpdatesView } from '../src/js/views/home-updates.js';
 import { createHomeUpdatesSeen, HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
+import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 
 const settle = async () => { await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); };
 const catalog = { lists: ['a', 'b', 'c', 'd'].map((id) => ({ id, name: `Guide ${id}`, file: `actual_${id}.json` })) };
 const batch = { id: 50, features: ['Literal <b>benefit</b>', 'Two', 'Three', 'Four'], listIds: ['a', 'b', 'c', 'd'] };
 const walk = (root) => [root, ...root.children.flatMap(walk)];
 
-function harness({ content = { version: '1.0.0', batch }, locks = { request: async (_key, fn) => fn() } } = {}) {
+function harness({
+  content = { version: '1.0.0', batch }, locks = { request: async (_key, fn) => fn() }, isIos = false,
+} = {}) {
   const listeners = () => ({
     listeners: {},
     addEventListener(name, fn) { (this.listeners[name] ??= []).push(fn); },
@@ -53,6 +56,7 @@ function harness({ content = { version: '1.0.0', batch }, locks = { request: asy
     isCovered: () => calls.covered,
     loadCatalog: () => setup.loader(),
     onPreview: (entry) => calls.previews.push({ entry, opener: doc.activeElement }),
+    isIos,
   });
   return {
     view, nodes, doc, host, calls, storage, map, setup, seen,
@@ -60,6 +64,33 @@ function harness({ content = { version: '1.0.0', batch }, locks = { request: asy
     button: (id) => walk(nodes.content).find((item) => item.dataset.homeUpdatesList === id),
   };
 }
+
+test('iOS projects platform-specific highlights without changing the generated source copy', () => {
+  const sourceFeatures = homeUpdatesContent.batch.features.slice();
+  const h = harness({ content: homeUpdatesContent, isIos: true });
+  h.view.wire();
+  const text = walk(h.nodes.content).map((item) => item.textContent).join(' ');
+  const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
+  assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length,
+    'every real feature needs reviewed iOS copy, not omission');
+  assert.match(text, /Move your reading data with one complete backup file/);
+  assert.match(text, /Use clearer phone layouts and screen reader labels/);
+  assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google Play|Microsoft Store|OneDrive|Microsoft)\b/);
+  assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
+});
+
+test('iOS wiring omits unreviewed proper names but retains ordinary edge and windows prose', () => {
+  const features = ['Aligned along the bottom edge.', 'Read in windows of time.', 'install the app from Edge'];
+  const content = { version: '1.0.0', batch: { ...batch, features, listIds: [] } };
+  const ios = harness({ content, isIos: true });
+  assert.doesNotThrow(() => ios.view.wire());
+  const rendered = walk(ios.nodes.content).filter((item) => item.tag === 'li').map((item) => item.textContent);
+  assert.deepEqual(rendered, features.slice(0, 2));
+  assert.equal(ios.nodes.details.listeners.toggle.length, 1, 'wiring continues after omission');
+  const web = harness({ content });
+  web.view.wire();
+  assert.deepEqual(walk(web.nodes.content).filter((item) => item.tag === 'li').map((item) => item.textContent), features);
+});
 
 test('construction is lazy and one-time wiring stays closed without acknowledging', () => {
   const h = harness();
@@ -86,6 +117,10 @@ test('explicit opening clears New, reports local faults and never acknowledges a
   assert.equal(failed.nodes.marker.hidden, true);
   assert.match(failed.nodes.status.textContent, /could not be remembered.*may return/);
   assert.equal(failed.map.has(HOME_UPDATES_SEEN_KEY), false);
+  const failedIos = harness({ locks: null, isIos: true });
+  failedIos.view.wire();
+  await failedIos.open();
+  assert.match(failedIos.nodes.status.textContent, /app storage locking is unavailable/);
   const empty = harness({ content: { version: '1.0.0', batch: null } });
   empty.view.wire();
   await empty.open();
