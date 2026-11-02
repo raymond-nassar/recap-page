@@ -26,7 +26,7 @@ import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dial
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
-  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel, storyTypeFacets, storyTypeStories,
+  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel, storyTypeFacets, storyTypeStarters, storyTypeStories,
 } from '../src/js/lib/catalog.js';
 
 const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith('--only='));
@@ -1305,6 +1305,11 @@ async function categoryFixtures(page) {
 async function storyTypesDropdowns(page, profile, label) {
   const stories = catalogEntries(parseCatalog(catalog).lists);
   const all = storyTypeStories(stories);
+  const starters = storyTypeStarters(stories);
+  assert.equal(starters.length, 10, 'All ten starting lists are in the bundled catalog');
+  const starterTitles = starters.map((story) => story.lists[0].name);
+  const sameStarters = (shown) => JSON.stringify(shown.cards) === JSON.stringify(starters.map((story) => story.key))
+    && JSON.stringify(shown.titles) === JSON.stringify(starterTitles);
   await route(page, 'story-types');
   await page.waitForSelector('#story-types-type option[value="espionage"]');
   const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
@@ -1323,6 +1328,8 @@ async function storyTypesDropdowns(page, profile, label) {
       count: document.querySelector('#story-types-count').textContent,
       prompt: document.querySelector('#story-types-results').textContent,
       cards: [...document.querySelectorAll('#story-types-results .catalog-card')].map((node) => node.dataset.story),
+      titles: [...document.querySelectorAll('#story-types-results .catalog-card-title')].map((node) => node.textContent),
+      heading: document.querySelector('#story-types-results h2')?.textContent ?? '',
       hash: location.hash, focused: document.activeElement?.id,
       overflow: document.documentElement.scrollWidth > innerWidth,
     };
@@ -1336,8 +1343,8 @@ async function storyTypesDropdowns(page, profile, label) {
     ['Any tone', ...facets.tones.map(({ label: name, count }) => `${name} (${count})`)],
   ]), `${label}: dropdown options retain every facet and its count`);
   check(initial.count === `${all.length} Reading Lists`
-    && initial.prompt.includes('Choose a story type or a tone') && initial.cards.length === 0,
-  `${label}: default view keeps its choose-a-story prompt`);
+    && initial.heading === 'Popular places to start' && sameStarters(initial),
+  `${label}: default view shows the ten starting lists in the owner's order ${JSON.stringify({ titles: initial.titles, expected: starterTitles })}`);
   check(!initial.overflow && initial.boxes.every((box) => box.width >= 24 && box.height >= 24),
     `${label}: dropdowns retain target size without page overflow`);
   check(profile.desktop ? initial.boxes[0].top === initial.boxes[1].top
@@ -1378,8 +1385,9 @@ async function storyTypesDropdowns(page, profile, label) {
   check((await snapshot()).type === 'espionage', `${label}: Forward restores both dropdown choices`);
   await choose('#story-types-tone', '');
   await choose('#story-types-type', '');
-  check((await snapshot()).prompt.includes('Choose a story type or a tone'),
-    `${label}: clearing both choices restores the prompt`);
+  state = await snapshot();
+  check(state.heading === 'Popular places to start' && sameStarters(state),
+    `${label}: clearing both choices brings the ten starting lists back`);
   const empty = facets.types.flatMap(({ key: type }) => facets.tones.map(({ key: tone }) => ({ type, tone })))
     .find((choice) => storyTypeStories(stories, choice).length === 0);
   assert.ok(empty, 'The bundled vocabulary includes an empty intersection to exercise');

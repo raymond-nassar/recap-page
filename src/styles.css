@@ -1096,6 +1096,8 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
   min-width: 0;
 }
 .story-type-label { margin: 0; color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+/* The starting lists' hint reads as a subtitle, so it shares the heading's left edge. */
+.story-type-results > .rail-hint { margin: var(--space-2) 0 var(--space-3); }
 @media (max-width: 700px) {
   .story-type-choices { grid-template-columns: minmax(0, 1fr); }
 }
