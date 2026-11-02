@@ -2738,6 +2738,82 @@ async function enjoymentLabels(page, label, narrow) {
     && document.querySelector('#list-enjoyment').hidden);
 }
 
+async function holdMobileMediaCallbacks(page) {
+  await page.evaluateOnNewDocument(() => {
+    const match = window.matchMedia.bind(window);
+    const control = {
+      holding: false,
+      queued: [],
+      blur: false,
+      release() {
+        this.holding = false;
+        const queued = this.queued.splice(0);
+        for (const deliver of queued) deliver();
+      },
+    };
+    window.__listMediaTest = control;
+    window.matchMedia = (query) => {
+      const media = match(query);
+      if (query !== '(max-width: 880px)' || !new Error().stack.includes('mobile-ui.js')) return media;
+      const add = media.addEventListener.bind(media);
+      media.addEventListener = (type, listener, options) => {
+        if (type !== 'change') return add(type, listener, options);
+        return add(type, (event) => {
+          if (control.holding) control.queued.push(() => listener.call(media, event));
+          else listener.call(media, event);
+        }, options);
+      };
+      return media;
+    };
+  });
+}
+
+async function focusedActionHiddenBeforeMediaCallback(page, label) {
+  const wide = { width: 1280, height: 900, isMobile: true, hasTouch: true };
+  const narrow = { width: 800, height: 360, isMobile: true, hasTouch: true };
+  for (let pass = 1; pass <= 3; pass += 1) {
+    await page.setViewport(wide);
+    await page.$eval('#list-actions', (node) => { node.open = true; });
+    await page.focus('#btn-list-note');
+    await page.evaluate(() => {
+      const control = window.__listMediaTest;
+      control.blur = false;
+      control.holding = true;
+      document.querySelector('#btn-list-note').addEventListener('focusout', () => { control.blur = true; }, { once: true });
+    });
+    await page.setViewport(narrow);
+    await page.waitForFunction(() => window.__listMediaTest.blur && window.__listMediaTest.queued.length > 0);
+    const before = await page.evaluate(() => ({
+      blurred: window.__listMediaTest.blur,
+      hidden: !document.querySelector('#btn-list-note').checkVisibility(),
+      queued: window.__listMediaTest.queued.length,
+      triggerVisible: document.querySelector('#android-list-options').checkVisibility(),
+      focus: document.activeElement?.id || document.activeElement?.tagName,
+    }));
+    check(before.blurred && before.hidden && before.queued > 0 && before.triggerVisible,
+      `${label}: forced focus-out precedes the held media callback, pass ${pass} ${JSON.stringify(before)}`);
+    await page.evaluate(() => window.__listMediaTest.release());
+    const after = await page.evaluate(() => ({
+      focus: document.activeElement?.id,
+      triggerVisible: document.querySelector('#android-list-options').checkVisibility(),
+    }));
+    console.log(`CHECKED ${label}: forced focus order ${pass} ${JSON.stringify({ before, after })}`);
+    check(after.focus === 'android-list-options' && after.triggerVisible,
+      `${label}: the hidden command transfers focus to visible list options, pass ${pass} ${JSON.stringify(after)}`);
+  }
+  await page.setViewport(wide);
+  await page.$eval('#list-actions', (node) => { node.open = true; });
+  await page.focus('#btn-list-note');
+  await page.focus('#view-read details.full > summary');
+  await page.evaluate(() => { window.__listMediaTest.holding = true; });
+  await page.setViewport(narrow);
+  await page.waitForFunction(() => window.__listMediaTest.queued.length > 0);
+  await page.evaluate(() => window.__listMediaTest.release());
+  check(await page.$eval('#view-read details.full > summary', (node) => document.activeElement === node),
+    `${label}: narrowing does not reclaim focus that the reader already moved elsewhere`);
+  await page.setViewport(wide);
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
   // Home's start actions became native hash links on 2026-10-06, so links are collected; buttons still
@@ -3133,6 +3209,7 @@ async function mobileLayout(page, label, narrow) {
   }));
   check(restored.inTools && restored.visible,
     `${label}: widening an open sheet restores focus to a visible list action or its summary ${JSON.stringify(restored)}`);
+  if (label === '800x360') await focusedActionHiddenBeforeMediaCallback(page, label);
   await page.$eval('#list-actions', (node) => { node.open = true; });
   await page.focus('#btn-list-note');
   await page.setViewport(phoneViewport);
@@ -4937,6 +5014,7 @@ try {
     const imageRequests = [];
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
+    if (mobileUi && viewport.width === 800 && viewport.height === 360) await holdMobileMediaCallbacks(page);
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
     if (readingComposition) await readingFixtures(page, viewport);

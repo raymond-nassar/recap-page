@@ -116,6 +116,11 @@ export function wireMobileUi({ arrivalHeading }) {
     if (event.target.closest('button:not(:disabled)')) dismiss();
   }, true);
   window.addEventListener('hashchange', dismiss, true);
+  // Chromium may blur a command as the narrow rules hide it before the media callback sees focus.
+  tools.addEventListener('focusout', (event) => {
+    if (!narrow.matches || sheet.open || event.relatedTarget || tools.checkVisibility() || !trigger.checkVisibility()) return;
+    trigger.focus({ preventScroll: true });
+  });
   narrow.addEventListener('change', () => {
     if (!narrow.matches) dismiss();
     else if (tools.contains(document.activeElement) && trigger.checkVisibility()) trigger.focus({ preventScroll: true });
