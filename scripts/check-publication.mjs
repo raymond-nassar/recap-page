@@ -171,6 +171,8 @@ export const ALLOWED = new Map([
   ['packaging/android/app/src/test/java/io/github/raymondnassar/recappage/prototype/CloudTest.java'
     + '|a bearer token written out|Bearer ' + 'ACCESS-TOKEN-never-shown',
   'the fixed noncredential access-token sentinel the Android cloud tests assert never reaches the page'],
+  ['packaging/ios/RecapPageTests/ICloudBackupTests.swift|a secret assigned in code|' + 'token' + ' = "other-account"',
+    'the fixed fabricated iCloud identity used by the account-switch race test, not a credential'],
 ]);
 
 export function findings(label, text, sink) {
