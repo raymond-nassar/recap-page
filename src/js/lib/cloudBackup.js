@@ -50,7 +50,7 @@ export function browserDeviceLabel(nav = globalThis.navigator, scope) {
 export function createCloudBackup({
   transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
-  device = browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
+  device = transport?.device ?? browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
   coordinator: coordinatorOptions = {}, onChange = () => {},
 } = {}) {
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
@@ -103,6 +103,7 @@ export function createCloudBackup({
       // Why this browser is asked again, when the host knows: the person deleted the app folder.
       reason: enabled() ? status.reason ?? null : null,
       signInExpiresAt: enabled() ? status.signInExpiresAt : null,
+      ...(enabled() && status.waitingForUpload === true ? { waitingForUpload: true } : {}),
       agreed: agreed !== null,
       on: isOn(),
       askedAgain: Boolean(agreed && linked && !isOn()),

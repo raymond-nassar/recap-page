@@ -18,6 +18,7 @@ enum DebugSupport {
     static let clearReadingDataKey = "RECAP_IOS_CLEAR_READING_DATA"
     static let failFifthJournalPutKey = "RECAP_IOS_FAIL_FIFTH_JOURNAL_PUT"
     static let screenshotSeedKey = "RECAP_IOS_SCREENSHOT_SEED"
+    static let iCloudFakeKey = "RECAP_IOS_ICLOUD_FAKE"
     static let probeResultIdentifier = "recap-probe-result"
     static let handOffRecorderIdentifier = "ios-handoff-recorder"
 
@@ -47,6 +48,19 @@ enum DebugSupport {
 
     static var seedsUnreadableRecovery: Bool {
         environment[unreadableRecoveryKey] == "1"
+    }
+
+    /// iCloud backup over the in-memory store, for UI tests: "1" signed in, "signed-out" with no account.
+    /// Its connection record lives in a suite of its own, emptied on every launch, so no run inherits one.
+    @MainActor
+    static func iCloudFakeHandler() -> ICloudBackupHandler? {
+        guard let mode = environment[iCloudFakeKey], mode == "1" || mode == "signed-out" else { return nil }
+        let suite = "recap.ios.icloud.fake"
+        let defaults = UserDefaults(suiteName: suite) ?? .standard
+        defaults.removePersistentDomain(forName: suite)
+        let store = ICloudFakeStore()
+        if mode == "signed-out" { store.identity = nil }
+        return ICloudBackupHandler(store: store, defaults: defaults)
     }
 
     static var seedsRestoreTest: Bool {
