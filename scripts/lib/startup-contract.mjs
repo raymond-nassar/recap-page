@@ -16,13 +16,13 @@ export const STARTUP_FILES = Object.freeze([
   'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs', 'RecapPageVerifier.exe',
   'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js',
   'host/cloudConfig.mjs', 'host/cloudHost.mjs', 'host/cloudSession.mjs', 'host/cloudSignIn.mjs',
-  'host/cloudTokens.mjs', 'host/oneDrive.mjs',
+  'host/cloudTokens.mjs', 'host/googleDrive.mjs', 'host/oneDrive.mjs',
   'native-build.json', 'src/msix-generation.json',
 ]);
 // The cloud backup host's modules are bound as startup files although they load only at the first
 // control-API request of a build with a client configuration: server.mjs names them in its one dynamic
 // import, so their bytes decide what that server can run (#810, P02-T01 section 3.6).
-const HOST_FILES = ['cloudConfig', 'cloudHost', 'cloudSession', 'cloudSignIn', 'cloudTokens', 'oneDrive']
+const HOST_FILES = ['cloudConfig', 'cloudHost', 'cloudSession', 'cloudSignIn', 'cloudTokens', 'googleDrive', 'oneDrive']
   .map((name) => [`host/${name}.mjs`, `host/${name}.mjs`]);
 export const SOURCE_FILES = Object.freeze([
   ['Launcher.mjs', 'packaging/windows/Launcher.mjs'],
@@ -35,9 +35,10 @@ export const SOURCE_FILES = Object.freeze([
 // one another, so no package outside this repository can enter what the server runs.
 const LOCAL_IMPORTS = Object.freeze({
   'server.mjs': ['./src/js/lib/coverHost.js', './src/js/lib/localServer.js'],
-  'host/cloudHost.mjs': ['./cloudConfig.mjs', './cloudSession.mjs', './cloudSignIn.mjs', './cloudTokens.mjs', './oneDrive.mjs'],
+  'host/cloudHost.mjs': ['./cloudConfig.mjs', './cloudSession.mjs', './cloudSignIn.mjs', './cloudTokens.mjs', './googleDrive.mjs', './oneDrive.mjs'],
   'host/cloudSignIn.mjs': ['./cloudSession.mjs'],
   'host/cloudTokens.mjs': ['./cloudSession.mjs'],
+  'host/googleDrive.mjs': ['./cloudSignIn.mjs'],
   'host/oneDrive.mjs': ['./cloudSignIn.mjs'],
 });
 // And each one's Node built-ins, exactly, so none that loads code by another route, such as node:module's

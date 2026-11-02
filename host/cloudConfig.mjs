@@ -30,8 +30,24 @@ function exactFields(value, fields) {
   return object(value) && Object.keys(value).sort().join(',') === [...fields].sort().join(',');
 }
 
+// The secret Google issues a Desktop client, which its guide says an installed app cannot keep
+// confidential. Anything of this shape is accepted, so fixtures can use placeholders.
+const CLIENT_SECRET = /^[A-Za-z0-9_-]{8,128}$/;
+// Google Drive, which is optional (#810, P04): a Desktop client for the Windows host, with its secret. A
+// build without one has no Google Drive. Android has no Google sign-in yet, so nothing here is for it.
+function parseGoogleDrive(value) {
+  if (!exactFields(value, ['windows'])) throw unusable();
+  const windows = value.windows;
+  if (!exactFields(windows, ['clientId', 'clientSecret']) || typeof windows.clientId !== 'string' || !CLIENT_ID.test(windows.clientId)
+    || typeof windows.clientSecret !== 'string' || !CLIENT_SECRET.test(windows.clientSecret)) throw unusable();
+  return Object.freeze({ windows: Object.freeze({ clientId: windows.clientId, clientSecret: windows.clientSecret }) });
+}
+
+function unusable() {
+  return new CloudConfigError('The Google Drive registration in the cloud client configuration is not usable.');
+}
 // The whole file is checked and nothing unknown is kept, so a configuration can only ever say what this
-// version understands. OneDrive is the one provider P02 adds; Google Drive joins in a later version.
+// version understands. OneDrive is required; Google Drive is optional (P04).
 export function parseCloudClient(text) {
   if (typeof text !== 'string' || Buffer.byteLength(text, 'utf8') > MAX_CLOUD_CLIENT_BYTES) {
     throw new CloudConfigError('The cloud client configuration is missing or too large.');
@@ -40,7 +56,8 @@ export function parseCloudClient(text) {
   try { value = JSON.parse(text.replace(/^\uFEFF/, '')); }
   catch { throw new CloudConfigError('The cloud client configuration is not readable JSON.'); }
   if (!exactFields(value, ['format', 'version', 'providers']) || value.format !== CLOUD_CLIENT_FORMAT
-    || value.version !== CLOUD_CLIENT_VERSION || !exactFields(value.providers, ['onedrive'])) {
+    || value.version !== CLOUD_CLIENT_VERSION
+    || !(exactFields(value.providers, ['onedrive']) || exactFields(value.providers, ['onedrive', 'googledrive']))) {
     throw new CloudConfigError('The cloud client configuration is not one this version understands.');
   }
   const onedrive = value.providers.onedrive;
@@ -48,8 +65,7 @@ export function parseCloudClient(text) {
     || typeof onedrive.clientId !== 'string' || !CLIENT_ID.test(onedrive.clientId)) {
     throw new CloudConfigError('The OneDrive registration in the cloud client configuration is not usable.');
   }
-  return Object.freeze({
-    format: CLOUD_CLIENT_FORMAT, version: CLOUD_CLIENT_VERSION,
-    providers: Object.freeze({ onedrive: Object.freeze({ clientId: onedrive.clientId, authority: 'consumers' }) }),
-  });
+  const providers = { onedrive: Object.freeze({ clientId: onedrive.clientId, authority: 'consumers' }) };
+  if ('googledrive' in value.providers) providers.googledrive = parseGoogleDrive(value.providers.googledrive);
+  return Object.freeze({ format: CLOUD_CLIENT_FORMAT, version: CLOUD_CLIENT_VERSION, providers: Object.freeze(providers) });
 }

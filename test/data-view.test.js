@@ -488,7 +488,7 @@ function buttonsIn(node) {
 }
 
 function cloudNodes() {
-  const nodes = Object.fromEntries(['card', ...CONTROLS, 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
+  const nodes = Object.fromEntries(['card', ...CONTROLS, 'signInGoogle', 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
   // The line under the card, which the page's notify writes into and the card withdraws from.
   nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
   nodes.found = stubNode({
@@ -525,6 +525,28 @@ function cloudCard(model, overrides = {}) {
   const shown = () => CONTROLS.filter((key) => !nodes[key].hidden);
   return { nodes, view, state, shown, show(next) { state.model = next; view.render(next); } };
 }
+
+test('the Google sign-in button follows the offered providers and sends the chosen provider', async () => {
+  const signedOut = { ...CLOUD, host: 'not-connected', account: null };
+  const card = cloudCard({ ...signedOut, providers: ['onedrive'] });
+  assert.equal(card.nodes.signIn.hidden, false);
+  assert.equal(card.nodes.signInGoogle.hidden, true);
+  card.show({ ...signedOut, providers: ['onedrive', 'googledrive'] });
+  assert.equal(card.nodes.signIn.hidden, false);
+  assert.equal(card.nodes.signInGoogle.hidden, false);
+  card.nodes.signInGoogle._fire();
+  await settled();
+  assert.deepEqual(card.state.calls, [['connect', 'googledrive']]);
+  card.show({ ...CLOUD, provider: 'googledrive', host: 'needs-sign-in', providers: ['onedrive', 'googledrive'] });
+  assert.equal(card.nodes.signIn.hidden, true);
+  assert.equal(card.nodes.signInGoogle.hidden, false);
+  card.nodes.signInGoogle._fire();
+  await settled();
+  assert.deepEqual(card.state.calls, [['connect', 'googledrive'], ['connect', 'googledrive']]);
+  card.show({ ...CLOUD, provider: 'googledrive', providers: ['onedrive', 'googledrive'] });
+  assert.equal(card.nodes.signIn.hidden, true);
+  assert.equal(card.nodes.signInGoogle.hidden, true);
+});
 
 test('the cloud card shows only what each state allows, and nothing at all in a build without cloud backup', () => {
   const card = cloudCard({ ...CLOUD, shown: false });
