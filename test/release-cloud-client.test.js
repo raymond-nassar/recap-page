@@ -92,22 +92,79 @@ test('Android manifest checks admit only the exact configured redirect and rejec
     + '<queries><intent><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="https"/></intent></queries>'
     + '<application android:allowBackup="false" android:usesCleartextTraffic="false" android:fullBackupContent="@xml/backup_rules" android:dataExtractionRules="@xml/data_extraction_rules" android:networkSecurityConfig="@xml/network_security_config">'
     + `<activity android:name="${packageName}.prototype.MainActivity" android:exported="true"/>${redirect}</application></manifest>`;
+  const consent = `<activity android:name="${packageName}.prototype.GoogleConsentActivity" android:exported="false" android:excludeFromRecents="true" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>`;
+  const sdk = '<activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:exported="false" android:excludeFromRecents="true" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>'
+    + '<service android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" android:exported="true" android:visibleToInstantApps="true"/>'
+    + '<activity android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>'
+    + '<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>';
+  const withSdk = (text) => text.replace('<application ', '<application android:appComponentFactory="androidx.core.app.CoreComponentFactory" ')
+    .replace('</application>', `${sdk}</application>`);
+  const sdkRedirect = activity.replace('</activity>', '<meta-data android:name="recap.cloud.google" android:value="false"/></activity>');
   try {
     const compiled = spawnSync('javac', ['--release', '17', '-d', scratch, source], { encoding: 'utf8' });
     assert.equal(compiled.status, 0, compiled.stderr);
     const expectation = join(scratch, 'expectation');
     const xml = join(scratch, 'manifest.xml');
+    const resources = join(scratch, 'resources.txt');
+    const resourceTable = 'resource 0x7f0d0000 xml/backup_rules\n'
+      + 'resource 0x7f0d0001 xml/data_extraction_rules\n'
+      + 'resource 0x7f0d0002 xml/network_security_config\n'
+      + 'resource 0x7f0d0003 xml/splits0\n  () (file) res/xml/splits0.xml type=XML\n'
+      + 'resource 0x7f080000 integer/google_play_services_version\n  () 12451000\n';
     await writeFile(expectation, `${CLIENT}\n${HASH}\n`);
-    const run = async (text, enabled = true) => {
+    const run = async (text, enabled = true, profile = 'publishing', table = null) => {
       await writeFile(xml, text);
       const env = { ...process.env };
       delete env.RECAP_ANDROID_CLOUD_EXPECTATION;
       if (enabled) env.RECAP_ANDROID_CLOUD_EXPECTATION = expectation;
+      if (table !== null) await writeFile(resources, table);
       return spawnSync('java', ['-cp', scratch, 'VerifyBundle', 'manifest', xml, packageName,
-        '3000003', '4.3.0', 'app', 'publishing'], { env, encoding: 'utf8' });
+        '3000003', '4.3.0', 'app', profile, ...(table === null ? [] : [resources])], { env, encoding: 'utf8' });
     };
     assert.equal((await run(manifest(activity))).status, 0);
-    assert.equal((await run(manifest(''), false)).status, 0);
+    const legacy = await run(manifest(''), false);
+    assert.equal(legacy.status, 0);
+    assert.deepEqual(JSON.parse(legacy.stdout), { verified: true, playServices: false });
+    const dormant = withSdk(manifest(''));
+    const configured = withSdk(manifest(sdkRedirect + consent));
+    const approved = await run(dormant, false);
+    assert.equal(approved.status, 0, 'The exact dormant SDK manifest is approved');
+    assert.deepEqual(JSON.parse(approved.stdout), { verified: true, playServices: true });
+    assert.equal((await run(configured)).status, 0, 'The configured SDK manifest stays switched off');
+    const derived = dormant.replace('android:minSdkVersion="26"', 'android:minSdkVersion="32"')
+      .replace('</application>', '<meta-data android:name="com.android.vending.splits.required" android:value="true"/>'
+        + '<meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/></application>');
+    assert.equal((await run(derived, false, 'bundletool-1.18.3-api36')).status, 0);
+    for (const text of [
+      derived.replace('<meta-data android:name="com.android.vending.splits.required" android:value="true"/>', ''),
+      derived.replace('com.android.vending.splits.required" android:value="true"',
+        'com.android.vending.splits.required" android:value="false"'),
+      derived.replace('com.android.vending.splits.required" android:value="true"',
+        'com.android.vending.splits.required" android:value="true" android:exported="true"'),
+      derived.replace('<meta-data android:name="com.android.vending.splits.required" android:value="true"/>',
+        '<meta-data android:name="com.android.vending.splits.required" android:value="true"/>'
+          + '<meta-data android:name="com.android.vending.splits.required" android:value="true"/>'),
+    ]) assert.equal((await run(text, false, 'bundletool-1.18.3-api36')).status, 1);
+    const numeric = derived.replace('@integer/google_play_services_version', '@ref/0x7f080000');
+    assert.equal((await run(numeric, false, 'bundletool-1.18.3-api36', resourceTable)).status, 0);
+    for (const [text, table] of [
+      [numeric.replace('@ref/0x7f080000', '@ref/0x7f080001'), resourceTable],
+      [numeric, resourceTable.replace('  () 12451000', '  () 12451001')],
+      [numeric, resourceTable.replace('  () 12451000', '  () 12451000\n  (fr) 12451001')],
+      [numeric, resourceTable + 'resource 0x7f080001 integer/google_play_services_version\n  () 12451000\n'],
+    ]) assert.equal((await run(text, false, 'bundletool-1.18.3-api36', table)).status, 1);
+    for (const text of [
+      dormant.replace('</application>', '<receiver android:name=".Unexpected" android:exported="true"/></application>'),
+      dormant.replace('androidx.core.app.CoreComponentFactory', 'foreign.ComponentFactory'),
+      dormant.replace('signin.internal.SignInHubActivity" android:exported="false"', 'signin.internal.SignInHubActivity" android:exported="true"'),
+      dormant.replace('signin.permission.REVOCATION_NOTIFICATION', 'foreign.PERMISSION'),
+      dormant.replace('android:visibleToInstantApps="true"', 'android:visibleToInstantApps="false"'),
+      dormant.replace('@integer/google_play_services_version', '@integer/unapproved'),
+      dormant.replace(sdk, sdk + sdk),
+      dormant.replace(sdk, ''),
+      configured.replace('name="recap.cloud.google" android:value="false"', 'name="recap.cloud.google" android:value="true"'),
+      configured.replace('GoogleConsentActivity" android:exported="false"', 'GoogleConsentActivity" android:exported="true"'),
+    ]) assert.equal((await run(text, text.includes('SignInRedirectActivity'))).status, 1);
     for (const text of [
       manifest(''), manifest(activity + activity),
       manifest(activity.replace('android:exported="true"', 'android:exported="false"')),

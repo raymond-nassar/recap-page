@@ -75,10 +75,14 @@ public final class CloudTest {
         String stored;
         boolean failProbe;
         boolean unreadable;
+        Runnable duringProbe;
 
         @Override
         public void probe() throws CloudError {
             if (failProbe) throw new CloudError("failed", FAILED);
+            Runnable action = duringProbe;
+            duringProbe = null;
+            if (action != null) action.run();
         }
 
         @Override
@@ -140,6 +144,7 @@ public final class CloudTest {
         final List<String> launched = new ArrayList<>();
         final List<Runnable> scheduled = new ArrayList<>();
         boolean launchFails;
+        Runnable duringSchedule;
         long now = 1_800_000_000_000L;
         final CloudAccount account;
 
@@ -148,13 +153,18 @@ public final class CloudTest {
         }
 
         Harness(ExecutorService workers, Map<String, Long> deadlines) {
+            this(workers, deadlines, null);
+        }
+
+        Harness(ExecutorService workers, Map<String, Long> deadlines, CloudAccount.Google google) {
             account = new CloudAccount(http, vault, url -> {
                 if (launchFails) throw new IllegalStateException("no browser");
                 launched.add(url);
             }, (task, delay) -> {
                 scheduled.add(task);
+                if (duringSchedule != null) duringSchedule.run();
                 return () -> scheduled.remove(task);
-            }, workers, () -> now, new Random(7), CLIENT, REDIRECT, deadlines);
+            }, workers, () -> now, new Random(7), CLIENT, REDIRECT, deadlines, google);
         }
 
         Map<String, Object> call(String operation, String body) {
@@ -231,6 +241,15 @@ public final class CloudTest {
     }
 
     public static void main(String[] args) throws Exception {
+        if (args.length > 0) {
+            if (args.length != 1) throw new IllegalArgumentException("Unknown test selection");
+            if ("google-attempt-lifetime".equals(args[0])) GoogleAccountCases.attemptLifetime();
+            else if ("google-provider-probe-race".equals(args[0])) GoogleAccountCases.providerProbeRace();
+            else if ("google-without-play-services".equals(args[0])) GoogleAccountCases.withoutPlayServices();
+            else throw new IllegalArgumentException("Unknown test selection");
+            System.out.println(args[0] + ": " + checks + " checks passed");
+            return;
+        }
         redirects();
         authorizationRequest();
         answers();
@@ -248,6 +267,7 @@ public final class CloudTest {
         largeCreate();
         largeRead();
         GoogleDriveCases.run();
+        GoogleAccountCases.run();
         if (firstFailure != null) throw new AssertionError(firstFailure);
         for (String reply : replies) {
             for (String secret : new String[] {ACCESS, REFRESH, RENEWED, NEXT_REFRESH, "CODE1"}) {
@@ -696,9 +716,8 @@ public final class CloudTest {
         check(pool.awaitTermination(5, TimeUnit.SECONDS), "The work behind it finishes");
     }
 
-    // Google Drive's operations on Android (#810, P04), driven directly: nothing makes one yet, because
-    // Android has no Google sign-in until the owner chooses how it should work. host/googleDrive.mjs and
-    // test/google-drive.test.js hold the Windows half, which these cases follow request for request.
+    // Google Drive's operations on Android (#810, P04), driven directly. The Windows implementation in
+    // host/googleDrive.mjs and test/google-drive.test.js cover the same requests.
     static final class GoogleDriveCases {
         private GoogleDriveCases() {}
 
@@ -944,5 +963,364 @@ public final class CloudTest {
             f.http.then(request -> json(401, "")).then(request -> json(401, ""));
             check("needs-sign-in".equals(code(f.drive("GFOLDER1")::list)), "Google: a second 401 needs a sign-in");
             f.http.done("Google renewal");
+        }
+    }
+
+    // The account with Google's sign-in, which Play services owns on a device, stood in for by a fake.
+    static final class GoogleAccountCases {
+        private GoogleAccountCases() {}
+
+        static final String SCOPE = CloudAccount.GOOGLE_SCOPE;
+
+        static final class FakeGoogle implements CloudAccount.Google {
+            final class Attempt implements CloudAccount.GoogleAttempt {
+                final String account;
+                final CloudAccount.Consent consent;
+                boolean started;
+                boolean cancelled;
+
+                Attempt(String account, CloudAccount.Consent consent) {
+                    this.account = account;
+                    this.consent = consent;
+                }
+
+                @Override
+                public void start() {
+                    if (beforeStart != null) beforeStart.run();
+                    if (cancelled || started) return;
+                    started = true;
+                    asked.add(String.valueOf(account));
+                    if (afterStart != null) afterStart.run();
+                }
+
+                @Override
+                public void cancel() {
+                    cancelled = true;
+                }
+            }
+
+            final List<String> asked = new ArrayList<>();
+            final List<CloudAccount.Consent> consents = new ArrayList<>();
+            final List<Attempt> attempts = new ArrayList<>();
+            final List<String> tokenCalls = new ArrayList<>();
+            final Deque<String> tokens = new java.util.LinkedList<>();
+            boolean authorizeFails;
+            Runnable beforeStart;
+            Runnable afterStart;
+
+            @Override
+            public CloudAccount.GoogleAttempt authorize(String account, CloudAccount.Consent consent) throws Exception {
+                if (authorizeFails) throw new IllegalStateException("no Play services");
+                consents.add(consent);
+                Attempt attempt = new Attempt(account, consent);
+                attempts.add(attempt);
+                return attempt;
+            }
+
+            @Override
+            public String token(String account, String stale) {
+                tokenCalls.add(account + "|" + stale);
+                return tokens.poll();
+            }
+
+            CloudAccount.Consent last() {
+                return consents.get(consents.size() - 1);
+            }
+        }
+
+        static Map<?, ?> statusOf(Map<String, Object> reply) {
+            return (Map<?, ?>) reply.get("status");
+        }
+
+        static void identified(Harness h) {
+            h.http.then(request -> json(200, "{\"user\":{\"permissionId\":\"PERM1\",\"emailAddress\":\"reader@example.com\"}}"))
+                    .then(request -> json(200, "{\"files\":[{\"id\":\"GFOLDER1\"}]}"));
+        }
+
+        static Harness signedIn(FakeGoogle google) {
+            Harness h = new Harness(new Direct(), CloudAccount.DEADLINES_MS, google);
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            identified(h);
+            google.last().granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            h.http.done("Google sign-in");
+            return h;
+        }
+
+        static void run() {
+            offered();
+            refusedGrant();
+            signIn();
+            renewal();
+            endings();
+            attemptLifetime();
+            providerProbeRace();
+            withoutPlayServices();
+        }
+
+        static void providerProbeRace() {
+            FakeGoogle google = new FakeGoogle();
+            Harness h = new Harness(new Direct(), CloudAccount.DEADLINES_MS, google);
+            h.vault.duringProbe = () -> {
+                h.call("connect", "");
+                String nonce = h.param("nonce");
+                h.http.then(request -> json(200, "{\"access_token\":\"" + ACCESS + "\",\"refresh_token\":\"" + REFRESH
+                        + "\",\"id_token\":\"" + idToken(nonce, CLIENT) + "\",\"scope\":\"Files.ReadWrite.AppFolder\",\"expires_in\":3600}"))
+                        .then(request -> json(200, "{\"id\":\"FOLDER1\",\"parentReference\":{\"driveId\":\"DRIVE1\"}}"));
+                h.account.redirect(REDIRECT + "?code=CODE1&state=" + h.param("state"));
+                String connection = h.connection();
+                h.now += 2 * 3600_000L;
+                h.http.then(request -> json(400, "{\"error\":\"invalid_grant\"}"));
+                check("needs-sign-in".equals(error(h.call("list", "{\"connection\":\"" + connection + "\"}"))),
+                        "Provider race: OneDrive keeps its connection after renewal fails");
+            };
+            Map<String, Object> refusedGoogle = h.call("connect", "{\"provider\":\"googledrive\"}");
+            check("invalid".equals(error(refusedGoogle)) && CloudAccount.ONE_AT_A_TIME.equals(errorMessage(refusedGoogle)),
+                    "Provider race: Google cannot replace OneDrive while the vault is being checked");
+            check("onedrive".equals(h.status().get("provider")) && "needs-sign-in".equals(h.status().get("state"))
+                    && google.attempts.isEmpty() && h.vault.stored.contains("\"provider\":\"onedrive\""),
+                    "Provider race: OneDrive remains saved and Google is not started");
+            h.http.done("Provider race with OneDrive");
+
+            FakeGoogle otherGoogle = new FakeGoogle();
+            Harness other = new Harness(new Direct(), CloudAccount.DEADLINES_MS, otherGoogle);
+            other.vault.duringProbe = () -> {
+                other.call("connect", "{\"provider\":\"googledrive\"}");
+                identified(other);
+                otherGoogle.last().granted(ACCESS, java.util.Arrays.asList(SCOPE));
+                String connection = other.connection();
+                other.now += CloudAccount.GOOGLE_TOKEN_MS;
+                otherGoogle.tokens.add(null);
+                check("needs-sign-in".equals(error(other.call("list", "{\"connection\":\"" + connection + "\"}"))),
+                        "Provider race: Google keeps its connection after renewal fails");
+            };
+            Map<String, Object> refusedOneDrive = other.call("connect", "");
+            check("invalid".equals(error(refusedOneDrive)) && CloudAccount.ONE_AT_A_TIME.equals(errorMessage(refusedOneDrive)),
+                    "Provider race: OneDrive cannot replace Google while the vault is being checked");
+            check("googledrive".equals(other.status().get("provider")) && "needs-sign-in".equals(other.status().get("state"))
+                    && other.launched.isEmpty() && other.vault.stored.contains("\"provider\":\"googledrive\""),
+                    "Provider race: Google remains saved and OneDrive is not started");
+            other.http.done("Provider race with Google");
+
+            FakeGoogle pendingGoogle = new FakeGoogle();
+            Harness pending = new Harness(new Direct(), CloudAccount.DEADLINES_MS, pendingGoogle);
+            pending.vault.duringProbe = () -> pending.call("connect", "{\"provider\":\"googledrive\"}");
+            Map<String, Object> refusedPending = pending.call("connect", "");
+            check("invalid".equals(error(refusedPending)) && CloudAccount.ONE_AT_A_TIME.equals(errorMessage(refusedPending))
+                    && "googledrive".equals(pending.status().get("provider")) && pending.launched.isEmpty(),
+                    "Provider race: a competing Google sign-in is not reported as OneDrive's success");
+
+            FakeGoogle sameGoogle = new FakeGoogle();
+            Harness same = new Harness(new Direct(), CloudAccount.DEADLINES_MS, sameGoogle);
+            same.vault.duringProbe = () -> same.call("connect", "{\"provider\":\"googledrive\"}");
+            Map<?, ?> repeated = statusOf(same.call("connect", "{\"provider\":\"googledrive\"}"));
+            check("signing-in".equals(repeated.get("state")) && "googledrive".equals(repeated.get("provider"))
+                    && sameGoogle.attempts.size() == 1, "Provider race: the same provider keeps its one sign-in");
+        }
+
+        static void offered() {
+            Harness plain = new Harness();
+            check(java.util.Arrays.asList("onedrive").equals(plain.status().get("providers")),
+                    "Google account: a build without Google's sign-in offers OneDrive alone");
+            Map<String, Object> refused = plain.call("connect", "{\"provider\":\"googledrive\"}");
+            check("invalid".equals(error(refused)) && CloudAccount.NOT_OFFERED.equals(errorMessage(refused)),
+                    "Google account: and refuses to connect to Google Drive");
+            Harness h = new Harness(new Direct(), CloudAccount.DEADLINES_MS, new FakeGoogle());
+            check(java.util.Arrays.asList("onedrive", "googledrive").equals(h.status().get("providers")),
+                    "Google account: a build with it offers both");
+            check("onedrive".equals(h.status().get("provider")), "Google account: OneDrive is still the service named before any choice");
+            List<String> methods = new ArrayList<>();
+            for (java.lang.reflect.Method method : CloudAccount.Google.class.getDeclaredMethods()) methods.add(method.getName());
+            Collections.sort(methods);
+            check(java.util.Arrays.asList("authorize", "token").equals(methods),
+                    "Google account: the sign-in can only authorize and hand out tokens, never revoke");
+        }
+
+        static void withoutPlayServices() {
+            Harness connected = signedIn(new FakeGoogle());
+            String saved = connected.vault.stored;
+            String connection = connected.connection();
+            Harness unavailable = new Harness();
+            unavailable.vault.stored = saved;
+
+            Map<String, Object> status = unavailable.status();
+            check("connected".equals(status.get("state")) && "googledrive".equals(status.get("provider"))
+                    && connection.equals(status.get("connection")) && saved.equals(unavailable.vault.stored),
+                    "Google without Play services: the existing sign-in is kept");
+            check(java.util.Arrays.asList("onedrive").equals(status.get("providers")),
+                    "Google without Play services: only OneDrive can be newly connected");
+
+            Map<String, Object> list = unavailable.call("list", "{\"connection\":\"" + connection + "\"}");
+            check("unavailable".equals(error(list)) && errorMessage(list).contains("cannot reach the service")
+                    && unavailable.http.seen.isEmpty() && saved.equals(unavailable.vault.stored),
+                    "Google without Play services: backup operations stop without discarding the sign-in");
+            Map<String, Object> switchProvider = unavailable.call("connect", "");
+            check("invalid".equals(error(switchProvider)) && CloudAccount.ONE_AT_A_TIME.equals(errorMessage(switchProvider)),
+                    "Google without Play services: switching still requires disconnecting");
+
+            unavailable.call("disconnect", "");
+            check(unavailable.vault.stored == null && "not-connected".equals(unavailable.status().get("state")),
+                    "Google without Play services: disconnect forgets the local sign-in");
+            Map<?, ?> signingIn = statusOf(unavailable.call("connect", ""));
+            check("signing-in".equals(signingIn.get("state")) && "onedrive".equals(signingIn.get("provider"))
+                    && unavailable.launched.size() == 1 && unavailable.http.seen.isEmpty(),
+                    "Google without Play services: OneDrive can be selected after disconnecting");
+        }
+
+        static void refusedGrant() {
+            FakeGoogle google = new FakeGoogle();
+            Harness h = new Harness(new Direct(), CloudAccount.DEADLINES_MS, google);
+            Map<?, ?> started = statusOf(h.call("connect", "{\"provider\":\"googledrive\"}"));
+            check("signing-in".equals(started.get("state")) && "googledrive".equals(started.get("provider")),
+                    "Google account: Connect starts Google's sign-in");
+            check(java.util.Arrays.asList("null").equals(google.asked) && h.launched.isEmpty(),
+                    "Google account: Play services is asked, with no browser and no account chosen beforehand");
+            check("invalid".equals(error(h.call("connect", ""))), "Google account: OneDrive cannot start while Google's sign-in is under way");
+            google.last().granted(ACCESS, java.util.Arrays.asList("https://www.googleapis.com/auth/drive.appdata"));
+            Map<String, Object> status = h.status();
+            check("not-connected".equals(status.get("state")) && CloudAccount.GOOGLE_REFUSED.equals(status.get("message"))
+                    && h.vault.stored == null && h.http.seen.isEmpty(),
+                    "Google account: a grant without drive.file counts as not signed in, and nothing is kept or sent");
+            check("signing-in".equals(statusOf(h.call("connect", "{\"provider\":\"googledrive\"}")).get("state")),
+                    "Google account: Connect can start again afterwards");
+            google.consents.get(0).granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            check("signing-in".equals(h.status().get("state")) && h.http.seen.isEmpty(), "Google account: an answer to an earlier sign-in is ignored");
+            google.authorizeFails = true;
+            h.call("disconnect", "");
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            check(CloudAccount.GOOGLE_LAUNCH_FAILED.equals(h.status().get("message")), "Google account: Play services that cannot start is said so");
+        }
+
+        static void signIn() {
+            FakeGoogle google = new FakeGoogle();
+            Harness h = signedIn(google);
+            Map<String, Object> status = h.status();
+            check("connected".equals(status.get("state")) && "googledrive".equals(status.get("provider")), "Google account: the grant connects");
+            Map<String, Object> stored = CloudJson.object(h.vault.stored);
+            check("googledrive".equals(stored.get("provider")) && "reader@example.com".equals(stored.get("googleAccount"))
+                    && !stored.containsKey("refreshToken") && "GFOLDER1".equals(stored.get("folder"))
+                    && !h.vault.stored.contains(ACCESS), "Google account: only the address is stored, never a token");
+            check(("Bearer " + ACCESS).equals(h.http.seen.get(0).headers.get("authorization")), "Google account: the account is asked of Drive with the grant's token");
+            google.last().granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            check(h.http.seen.size() == 2, "Google account: a second answer to the same sign-in is ignored");
+            Map<String, Object> other = h.call("connect", "");
+            check("invalid".equals(error(other)) && CloudAccount.ONE_AT_A_TIME.equals(errorMessage(other)),
+                    "Google account: OneDrive is refused while Google Drive is connected");
+            String connection = h.connection();
+            h.http.then(request -> {
+                check(("Bearer " + ACCESS).equals(request.headers.get("authorization")), "Google account: the grant's token is used while fresh");
+                return json(200, "{\"id\":\"GFOLDER1\"}");
+            }).then(request -> json(200, "{\"files\":[]}"));
+            Map<String, Object> listed = h.call("list", "{\"connection\":\"" + connection + "\"}");
+            check(listed.get("items") instanceof List && google.tokenCalls.isEmpty(), "Google account: a list goes to Google Drive");
+            Map<?, ?> previous = h.status();
+            h.call("disconnect", "");
+            check(h.vault.stored == null && "not-connected".equals(h.status().get("state")) && google.tokenCalls.isEmpty()
+                    && google.asked.size() == 1 && previous != null, "Google account: disconnecting forgets the sign-in here and asks nothing of Google");
+            h.http.done("Google account list");
+        }
+
+        static void renewal() {
+            FakeGoogle google = new FakeGoogle();
+            Harness h = signedIn(google);
+            String connection = h.connection();
+            google.tokens.add(RENEWED);
+            h.http.then(request -> json(401, ""))
+                    .then(request -> {
+                        check(("Bearer " + RENEWED).equals(request.headers.get("authorization")), "Google account: the renewed token is used");
+                        return json(200, "{\"id\":\"GFOLDER1\"}");
+                    })
+                    .then(request -> json(200, "{\"files\":[]}"));
+            h.call("list", "{\"connection\":\"" + connection + "\"}");
+            check(java.util.Arrays.asList("reader@example.com|" + ACCESS).equals(google.tokenCalls),
+                    "Google account: renewal asks for the stored address and clears the refused token");
+            h.now += CloudAccount.GOOGLE_TOKEN_MS;
+            google.tokens.add(null);
+            Map<String, Object> stopped = h.call("list", "{\"connection\":\"" + connection + "\"}");
+            check("needs-sign-in".equals(error(stopped)) && "needs-sign-in".equals(h.status().get("state"))
+                    && "reader@example.com|null".equals(google.tokenCalls.get(1)), "Google account: an expired token is renewed without clearing, and a refusal needs a sign-in");
+            check(CloudJson.object(h.vault.stored).get("googleAccount") == null && connection.equals(h.connection()),
+                    "Google account: the address is forgotten and the connection kept");
+            check("signing-in".equals(statusOf(h.call("connect", "{\"provider\":\"googledrive\"}")).get("state")),
+                    "Google account: Connect signs in again");
+            identified(h);
+            google.last().granted(RENEWED, java.util.Arrays.asList(SCOPE));
+            check("connected".equals(h.status().get("state")) && connection.equals(h.connection()),
+                    "Google account: the same account and folder carry on the same connection");
+            h.http.done("Google account renewal");
+        }
+
+        static void endings() {
+            FakeGoogle google = new FakeGoogle();
+            Harness h = new Harness(new Direct(), CloudAccount.DEADLINES_MS, google);
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            google.last().ended("declined");
+            check("not-connected".equals(h.status().get("state")) && "Sign-in was cancelled.".equals(h.status().get("message")),
+                    "Google account: a dismissed consent screen is a cancelled sign-in");
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            h.http.then(request -> json(200, "{\"user\":{\"permissionId\":\"PERM1\",\"displayName\":\"Reader\"}}"))
+                    .then(request -> json(200, "{\"files\":[]}"));
+            google.last().granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            check("not-connected".equals(h.status().get("state")) && h.vault.stored == null,
+                    "Google account: a sign-in Drive cannot name an address for is not kept");
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            check(h.scheduled.size() == 1, "Google account: the sign-in has its five minutes");
+            h.scheduled.get(0).run();
+            check("not-connected".equals(h.status().get("state")) && h.status().get("message").toString().startsWith("Sign-in did not finish"),
+                    "Google account: and ends when they pass");
+            h.http.done("Google account endings");
+        }
+
+        static void attemptLifetime() {
+            FakeGoogle google = new FakeGoogle();
+            Harness h = new Harness(new Direct(), CloudAccount.DEADLINES_MS, google);
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            FakeGoogle.Attempt first = google.attempts.get(0);
+            check(first.started && !first.cancelled, "Google account: a prepared sign-in starts");
+            h.call("disconnect", "");
+            check(first.cancelled, "Google account: disconnect cancels only the local attempt");
+
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            FakeGoogle.Attempt second = google.attempts.get(1);
+            first.consent.granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            check("signing-in".equals(h.status().get("state")) && !second.cancelled,
+                    "Google account: an old result cannot disturb the current attempt");
+            h.scheduled.get(0).run();
+            check(second.cancelled && "not-connected".equals(h.status().get("state")),
+                    "Google account: expiry cancels the local attempt");
+
+            google.beforeStart = () -> h.call("disconnect", "");
+            h.call("connect", "{\"provider\":\"googledrive\"}");
+            FakeGoogle.Attempt third = google.attempts.get(2);
+            check(third.cancelled && !third.started && "not-connected".equals(h.status().get("state")),
+                    "Google account: disconnect before start prevents the prepared attempt from starting");
+            h.http.done("Google account attempts");
+
+            FakeGoogle scheduledGoogle = new FakeGoogle();
+            Harness scheduled = new Harness(new Direct(), CloudAccount.DEADLINES_MS, scheduledGoogle);
+            scheduled.duringSchedule = () -> scheduled.call("disconnect", "");
+            scheduled.call("connect", "{\"provider\":\"googledrive\"}");
+            check(scheduledGoogle.attempts.isEmpty() && scheduled.scheduled.isEmpty()
+                            && "not-connected".equals(scheduled.status().get("state")),
+                    "Google account: a disconnect during scheduling leaves no attempt or expiry behind");
+
+            FakeGoogle closingGoogle = new FakeGoogle();
+            Harness closing = new Harness(new Direct(), CloudAccount.DEADLINES_MS, closingGoogle);
+            closing.call("connect", "{\"provider\":\"googledrive\"}");
+            closing.account.close();
+            check(closingGoogle.attempts.get(0).cancelled && closing.scheduled.isEmpty(),
+                    "Google account: closing cancels the local attempt and expiry");
+            closingGoogle.last().granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            check("not-connected".equals(closing.status().get("state")) && closing.vault.stored == null
+                            && closing.http.seen.isEmpty(),
+                    "Google account: an answer after closing cannot connect or contact Drive");
+
+            FakeGoogle immediateGoogle = new FakeGoogle();
+            Harness immediate = new Harness(new Direct(), CloudAccount.DEADLINES_MS, immediateGoogle);
+            identified(immediate);
+            immediateGoogle.afterStart = () -> immediateGoogle.last().granted(ACCESS, java.util.Arrays.asList(SCOPE));
+            immediate.call("connect", "{\"provider\":\"googledrive\"}");
+            check("connected".equals(immediate.status().get("state")) && immediateGoogle.attempts.get(0).cancelled,
+                    "Google account: an immediate answer is bound and releases its attempt");
+            immediate.http.done("Google immediate answer");
         }
     }}

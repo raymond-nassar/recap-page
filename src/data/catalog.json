@@ -863,6 +863,13 @@
       "description": "Malekith invades Earth, drawing Thor and Marvel heroes into a war across the ten realms.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 66,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1728,6 +1735,12 @@
       "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
       "type": "era",
       "depth": "partial",
+      "storyTypes": [
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 94,
       "placeholderCount": 3,
       "emptyRecordCount": 0,
@@ -1866,6 +1879,13 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 15,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1948,6 +1968,12 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 31,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2045,6 +2071,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 25,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2453,6 +2487,10 @@
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
+      "storyTypes": [
+        "martial-arts",
+        "espionage"
+      ],
       "count": 298,
       "placeholderCount": 8,
       "emptyRecordCount": 0,
@@ -4192,6 +4230,13 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 638,
       "placeholderCount": 94,
       "emptyRecordCount": 2,
@@ -4516,6 +4561,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "coming-of-age"
+      ],
       "count": 114,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4961,6 +5009,13 @@
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
+      "storyTypes": [
+        "espionage",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 484,
       "placeholderCount": 4,
       "emptyRecordCount": 0,
@@ -5172,6 +5227,13 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 869,
       "placeholderCount": 0,
       "emptyRecordCount": 1,
@@ -5378,6 +5440,13 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 382,
       "placeholderCount": 0,
       "emptyRecordCount": 8,
@@ -5416,6 +5485,12 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "space-opera"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 312,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -5459,6 +5534,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "count": 734,
       "placeholderCount": 0,
       "emptyRecordCount": 23,
@@ -5939,6 +6017,14 @@
       "type": "character-run",
       "depth": "essential",
       "spotlightKind": "best-of",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 114,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -6631,6 +6717,13 @@
       "description": "Nine Avengers chapters following the interstellar conflict between the Kree and Skrull empires.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -6857,6 +6950,13 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7164,6 +7264,13 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10714,6 +10821,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "storyTypes": [
+        "espionage",
+        "war"
+      ],
       "count": 269,
       "placeholderCount": 129,
       "emptyRecordCount": 0,
@@ -11465,6 +11576,11 @@
       "description": "The five-issue 2004 Secret War miniseries in the exact sequence given by Comic Book Herald.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "political"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12245,6 +12361,12 @@
       "depth": "complete",
       "spotlightKind": "other",
       "audience": "young-readers",
+      "storyTypes": [
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "count": 47,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12326,6 +12448,12 @@
       "depth": "complete",
       "spotlightKind": "other",
       "audience": "young-readers",
+      "storyTypes": [
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "count": 58,
       "placeholderCount": 0,
       "emptyRecordCount": 0,

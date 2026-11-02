@@ -9,6 +9,7 @@ import {
   validateFrozenPacket,
   validateMappingDigest,
   validateReportDigest,
+  withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -150,7 +151,7 @@ test('Runaways publishes exact reader-visible rows while preserving owner-direct
 
   assert.equal(inventoryRecord.deliveryStatus, 'shipped');
   assert.deepEqual(inventoryRecord.overlapIds, ['civil-war', 'civil-war-avengers', 'secret-invasion']);
-  assert.deepEqual(manifestRecord, mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(manifestRecord), mapping.approvedManifest);
   assert.equal(payload.count, 114);
   assert.equal(payload.placeholders, 0);
   assert.deepEqual(payload.unresolved, []);

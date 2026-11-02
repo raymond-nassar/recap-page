@@ -16,6 +16,35 @@ export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
 // would gain members nobody chose for it. A list carrying one is shelved by it rather than by its
 // type, so a young readers' list has Young readers as its one screen (#897).
 export const LIST_AUDIENCES = ['young-readers'];
+// What kind of story a list tells and how it feels (#1060). Closed for the reason audience is: a
+// free word would split one kind of story across spellings and leave lists out of a search for it.
+// Story type labels follow the Library of Congress genre terms for comics where one exists.
+// "Superhero" is absent on purpose, because it describes every list and so finds nothing.
+export const STORY_TYPES = Object.freeze({
+  espionage: 'Espionage',
+  thriller: 'Thriller',
+  'crime-noir': 'Crime and noir',
+  political: 'Political',
+  war: 'War',
+  'space-opera': 'Space opera',
+  'science-fiction': 'Science fiction',
+  'myth-fantasy': 'Myth and fantasy',
+  'magic-supernatural': 'Magic and supernatural',
+  horror: 'Horror',
+  'martial-arts': 'Martial arts',
+  'coming-of-age': 'Coming of age',
+  comedy: 'Comedy',
+});
+export const STORY_TONES = Object.freeze({
+  epic: 'Epic',
+  'street-level': 'Street level',
+  dark: 'Dark',
+  lighthearted: 'Lighthearted',
+});
+// A list is tagged for what its guide singles out, not every issue in it, so a long run that
+// changes mood carries its dominant mode rather than everything it ever touched.
+export const MAX_STORY_TYPES = 3;
+export const MAX_STORY_TONES = 2;
 
 const SPOTLIGHT_KIND_LABELS = {
   all: 'All',
@@ -141,6 +170,17 @@ export function safeOrderFile(v) {
   return /^[A-Za-z0-9._-]+\.md$/.test(s) && !s.startsWith('.') ? s : null;
 }
 
+// Unknown and repeated tags are dropped rather than failing the whole catalog, matching how an
+// unknown audience reads as none: the manifest validator is where a bad tag is refused.
+function knownTags(value, vocabulary, max) {
+  if (!Array.isArray(value)) return [];
+  const kept = [];
+  for (const tag of value) {
+    if (Object.hasOwn(vocabulary, tag) && !kept.includes(tag)) kept.push(tag);
+  }
+  return kept.slice(0, max);
+}
+
 function normalizeEntry(raw) {
   if (!raw || typeof raw !== 'object') return null;
   if (Object.hasOwn(raw, 'storylines') && typeof raw.storylines !== 'boolean') {
@@ -179,6 +219,8 @@ function normalizeEntry(raw) {
     storylines: raw.storylines === true,
     spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
     audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
+    storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
+    tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
     source: str(raw.source),
@@ -559,6 +601,8 @@ function haystack(list) {
     list.description,
     typeLabel(list.type),
     depthLabel(list.depth),
+    ...(list.storyTypes ?? []).map((tag) => STORY_TYPES[tag]),
+    ...(list.tones ?? []).map((tag) => STORY_TONES[tag]),
     ...list.characters,
     ...list.keywords,
   ].filter(Boolean).join(' '));
@@ -789,8 +833,8 @@ export const CATALOG_SHELVES = [
     types: null,
     sections: 'decades',
     heading: 'Storylines',
-    blurb: 'Selected named stories, events and arcs, whole runs, and on-screen companion picks. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
-    empty: 'No storylines or on-screen companion picks are bundled with this build.',
+    blurb: 'Selected named stories, events and arcs, and whole runs. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
+    empty: 'No storylines are bundled with this build.',
   },
   // Chosen by who a list is for rather than by what kind of reading it is, so it names every type: a
   // list its sources mark for younger readers is found here whatever it is, and only here (#897).
@@ -819,8 +863,8 @@ const FALLBACK_SHELF = CATALOG_SHELVES.find((shelf) => !shelf.types);
 
 // Which shelf a story belongs to. Every one of its readings has to match, not merely one of them: a
 // story mixing types falls through to the shelf that takes everything, which is the one that cannot
-// cut a reading path in two. No bundled story mixes types today, so the rule decides nothing yet.
-// It decides what happens the first time one does.
+// cut a reading path in two. The Doomsday companion and Hickman creator runs share one group, so
+// they keep one canonical shelf even though their browse views select different readings.
 //
 // A reading matches on its stated audience as well as its type. A shelf naming no audience takes
 // only readings that state none, so Character spotlights and Young readers cannot both claim a
@@ -842,11 +886,14 @@ export function shelfStories(stories, key) {
   return all.filter((story) => shelfKey(story) === key);
 }
 
+// MCU Prep lists still fall to the `lines` shelf, because the partition has to file them somewhere,
+// but they are companions to films and series rather than complete storylines, so the Storylines
+// screen leaves them to MCU Prep (#1066).
 export function storylinesStories(stories) {
   const all = Array.isArray(stories) ? stories : [];
   const eligible = new Set(groupCatalog(all.flatMap((story) => story.lists ?? []))
     .filter((story) => shelfKey(story) === 'lines' || story.lists.every((list) => list.storylines === true))
-    .flatMap((story) => story.lists.map((list) => list.id)));
+    .flatMap((story) => story.lists.filter((list) => list.type !== 'screen-companion').map((list) => list.id)));
   const seen = new Set();
   return all.flatMap((story) => {
     const lists = (story.lists ?? []).filter((list) => {
@@ -885,6 +932,16 @@ export function catalogListShelf(lists, id) {
   const story = groupCatalog(Array.isArray(lists) ? lists : [])
     .find((candidate) => candidate.lists.some((list) => list.id === id));
   return story ? shelfKey(story) : null;
+}
+
+// The screen a reader browses to find a list, which is what an issue's breadcrumb names. It is the
+// canonical shelf for everything except MCU Prep lists: those are filed on `lines` but shown only
+// on the MCU Prep screen, so naming Storylines would send the reader where the list is not (#1066).
+export function catalogListBrowseRoute(lists, id) {
+  const shelf = catalogListShelf(lists, id);
+  if (!shelf) return null;
+  const list = lists.find((candidate) => candidate?.id === id);
+  return list?.type === 'screen-companion' ? 'marvel-on-screen' : shelf;
 }
 
 export const MODERN_TIMELINE_START_YEAR = 1998;

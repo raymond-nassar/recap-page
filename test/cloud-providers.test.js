@@ -106,3 +106,16 @@ test('only a true upload wait survives the transport and appears in connected fe
     assert.match(cloudCardStatus({ ...model, on: true, backup: { phase: 'saving' } }), /Backing up now\.$/);
   }
 });
+
+test('the card describes the Android Google sign-in screen without changing browser sign-ins', () => {
+  const pending = { host: 'signing-in', provider: 'googledrive', scope: 'device', signInExpiresAt: 42 };
+  const options = { at: (value) => `time ${value}` };
+  assert.equal(cloudCardStatus(pending, options),
+    'Finish signing in to Google on the sign-in screen. The sign-in stops by itself at time 42.');
+  assert.equal(cloudCardStatus({ ...pending, signInExpiresAt: null }, options),
+    'Finish signing in to Google on the sign-in screen.');
+  assert.equal(cloudCardStatus({ ...pending, scope: 'profiles' }, options),
+    'Finish signing in to Google in the browser window that opened. The sign-in stops by itself at time 42.');
+  assert.equal(cloudCardStatus({ ...pending, provider: 'onedrive' }, options),
+    'Finish signing in to Microsoft in the browser window that opened. The sign-in stops by itself at time 42.');
+});

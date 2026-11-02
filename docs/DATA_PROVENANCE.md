@@ -58,6 +58,12 @@ approved as a partial overlap with the existing Spider-Man best-of path. Neither
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
+Since #1066, MCU Prep lists appear and can be searched on the MCU Prep screen, not Storylines.
+This supersedes the earlier delivery records below that place a companion on the Storylines shelf.
+The Doomsday & Secret Wars list keeps its manifest group with the Hickman readings, preserving
+their shared Reading Path progress and preventing duplicate recommendations. The MCU Prep screen
+still shows the companion as its own card.
+
 The separate owner-authored Daredevil companion does not change that fourteen-source CBH
 inventory or its original six published selections. Its owner credit, five supplied positions and
 approved six-collection expansion are recorded under
@@ -624,6 +630,8 @@ above is listed separately because it is third-party material outside the usual 
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
 | `audience` | Optional and closed. `young-readers` marks a list its sources recommend for younger readers, so a Home category can gather those lists across shelves. Authored here, never inferred, and absent on every other list |
+| `storyTypes` | Optional and closed, at most three. The kinds of story a list tells, such as espionage or space opera, so a reader can find lists by the kind of story they want. A judgment this project makes, informed by the guide the list already credits and by general references; no text is copied from any of them, and no tag is inferred from a field |
+| `tones` | Optional and closed, at most two. How a list reads, such as epic or street level. Authored on the same terms as `storyTypes`, and absent where no tone stands out |
 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
@@ -921,7 +929,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1227-1231`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1207-1211`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -966,9 +974,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:637` and the issue-details view at
-`src/js/views/issue.js:109`. The function behind both already answers for the absence at
-`src/js/views/reading.js:83-95`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/views/reading.js:684` and the issue-details view at
+`src/js/views/issue.js:102`. The function behind both already answers for the absence at
+`src/js/views/reading.js:82-94`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1092,10 +1100,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:8433-8484`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:8561-8612`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:12804-12941`.
+`src/data/catalog.json:12932-13069`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2970,9 +2978,9 @@ its original source position and provider 404 rather than turning owner evidence
 response.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:834-856`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:422-426`, `scripts/vendor-orders.mjs:489-490`, `scripts/vendor-orders.mjs:533-534`).
+(`scripts/vendor-orders.mjs:424-428`, `scripts/vendor-orders.mjs:491-492`, `scripts/vendor-orders.mjs:535-536`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
 provider details and covers remain empty. No comic image bytes are stored and no Unlimited
 availability is inferred.
@@ -2980,7 +2988,7 @@ availability is inferred.
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:223-225`,
-`src/js/views/reading.js:55`, `src/js/views/reading.js:62-64`). The actor, date, URL and confirmation
+`src/js/views/reading.js:54`, `src/js/views/reading.js:61-63`). The actor, date, URL and confirmation
 comment stay in the repository evidence. This additive marker does not change saved-data version 4;
 existing saves need no migration, and older builds may discard the marker without changing reading
 progress or issue identity.

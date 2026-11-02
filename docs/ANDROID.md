@@ -46,8 +46,8 @@ The link above a page title opens its immediate parent, such as **Home** or **Li
 It replaces the full breadcrumb trail and current title. Android Back follows your history;
 the parent link goes to its named destination.
 
-On a Reading List, open **List options** to rename, edit notes, duplicate, export, manage metadata
-or delete. Every command shows at once in the bottom sheet, grouped, with **Mark as Completed**
+On a Reading List, open **Reading List options** after Read and Done to rename, edit notes, duplicate,
+export, manage metadata or delete. Every command shows at once in the bottom sheet, grouped, with **Mark as Completed**
 apart and first while comics are queued and **Remove from library** apart and last, so each is one
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
 Android Back, Escape or a tap outside dismisses the sheet without taking action.
@@ -55,12 +55,14 @@ Android Back, Escape or a tap outside dismisses the sheet without taking action.
 Read and **Done** stay together. **About this comic** opens the comic's own page, which leads with
 its cover: centered above the title on an upright screen, and in a column beside the title and
 everything under it on a screen turned on its side or a wide one. **Read** follows the title, then
-useful comic information and optional, spoiler-protected story summaries. With cover art off, the
+useful comic information, creators credited by role where the metadata records it, and any story
+summary loaded in this session, shown in full. With cover art off, the
 cover's stand-in takes the same place and size. A short split-screen window keeps the details card
 with **Read** first.
 **More comic actions** contains deferral and the external comic page.
-**Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
-putting availability in the main comic details. An active temporary-link warning stays
+**Trouble opening this comic?** contains the full Unlimited status and reader-link help. The
+Marvel Unlimited record and the comic's position in the list appear in its details, not on the
+reading card. An active temporary-link warning stays
 visible outside that disclosure, and editing still requires a matching saved comic.
 
 Add leads with search and series, with other methods under **More ways to add**. An empty search
@@ -123,8 +125,9 @@ Marvel's service.
 The Java-only Android module uses `enableKotlin = false` to disable AGP 9.4.1's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
-application DEX checks still reject foreign runtime classes. The one generated shape they accept
-is D8's empty `<Owner>-IA` access marker, only for an owner class in the app's own package. See the official
+application DEX checks admit the exact approved Play services runtime class inventory and reject
+other foreign classes. The one generated app-class shape they accept is D8's empty `<Owner>-IA`
+access marker, only for an owner class in the app's own package. See the official
 [Java-only module guidance](https://developer.android.com/build/migrate-to-built-in-kotlin)
 and [AGP 9.4 API](https://developer.android.com/reference/tools/gradle-api/9.4/com/android/build/api/dsl/CommonExtension),
 read on 2026-09-30. This setting does not by itself prove a rebuilt artifact or test harness passes.
@@ -319,7 +322,8 @@ The producer builds clean pinned source with the approved later ledger. It signs
 narrow temporary-key step and deletes upload material before native proof. It checks signed
 entries, manifest/resources/permissions, embedded source/build records and native-library
 inventory. Unexpected native libraries stop qualification pending a separate ABI/16 KB assessment.
-Release shrinking stays off, and no runtime dependencies are added.
+Release shrinking stays off. The owner approved Google Play services auth and its transitive runtime
+libraries for Android Google Drive sign-in (#810); the library ships even when Google Drive is off.
 
 APK splits come from those exact signed AAB bytes, with an explicitly disposable local signer
 and a matching release instrumentation APK. The existing six methods and restart pair run on
@@ -344,14 +348,21 @@ the tool or proof profile requires renewed qualification, not an SDK fallback.
 See the pinned [variant-minimum implementation](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/splitters/ModuleSplitter.java),
 read on 2026-09-30.
 
-Publishing manifests still permit only the original activity. Derived-base inspection additionally
-requires exactly one `com.android.vending.splits` metadata entry, whose resource reference must
-resolve to `xml/splits0` and the packaged `res/xml/splits0.xml`. The current native source has no
-localized resource directories or collision with that generated filename, so its language-mapping
-set must be empty. Inspection checks the closed XML structure and the decoded split inventory;
+Publishing manifests permit the main activity and the exact approved Play services components.
+A configured cloud build also permits the existing sign-in redirect and the non-exported Google
+consent activity, with Google Drive switched off. Other components are rejected. Derived-base
+inspection additionally requires exactly one `com.android.vending.splits` metadata entry, whose
+resource reference must resolve to `xml/splits0` and the packaged `res/xml/splits0.xml`. When the
+approved SDK is present, its density resources also cause bundletool to add the exact
+`com.android.vending.splits.required=true` installer hint to the derived base; no other form of
+that entry is accepted.
+
+The current native source has no localized resource directories or collision with the generated
+filename, and the Android build retains only English from the library resources. Its language-mapping
+set must therefore be empty. Inspection checks the closed XML structure and the decoded split inventory;
 new localization or a source collision requires a reviewed profile update, not an ignored mismatch.
-Unknown or duplicate metadata, scalar metadata values, extra executable components and wrong or
-dangling resource bindings fail. Conditional tool metadata is not generally exempted. This follows
+Unknown or duplicate metadata, extra executable components and wrong or dangling resource bindings
+fail. Conditional tool metadata is not generally exempted. This follows
 the pinned [splits-resource generator](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/model/utils/SplitsXmlInjector.java),
 read on 2026-09-30.
 
@@ -526,7 +537,7 @@ in the reading view at 412x915 and 360x800 with 200% text tokens, and at 360x800
 800x360. It taps Done and Undo as a finger would, refuses one save to reach Try again, and raises
 Done's hint by keyboard focus with Done near the top of the screen, where the only room left for
 it is over the result. A first case without a result requires the hint to still show below Done.
-In the four portrait profiles, where Read is stacked above Done, it then raises each one's hint by
+In the four portrait profiles it then raises each one's hint by
 keyboard focus at its natural place and near the top. It checks that neither hint covers the other
 button, and that a tap on the edge of either button nearest the other lands on that button.
 Home is not visited because no hint shows there on a phone. Use `--viewport=412x915@2` for the
@@ -534,8 +545,8 @@ reported case. These are Edge web checks, not native fontScale or TalkBack accep
 
 `npm run android:browser -- --only=completion-focus` holds a completion-history save open from the
 page at 412x915 and 800x360, by keyboard and by tap, and checks where focus is. On a narrow screen
-with comics queued, Complete lives in the List options sheet, which closes as Complete is pressed
-and gives focus to List options. So focus stays on List options while Complete saves and after
+with comics queued, Complete lives in the Reading List options sheet, which closes as Complete is pressed
+and gives focus to Reading List options. So focus stays on Reading List options while Complete saves and after
 another tab's write refuses it, and moves to Reopen when the save succeeds. Reopen keeps focus while
 it saves and after a refusal. When it succeeds the reading view's heading takes focus, because
 Complete is in the closed sheet. No rendered frame may find focus on the page. These are Edge web
@@ -560,7 +571,7 @@ On short landscape screens a question-sized dialog widens so its answers share o
 restores, undoes and declines the saved copy, and must leave the reading data as it found it. With
 the list then completed, it opens the dialogs that share the questions' shell the way a phone reader
 reaches them: the rating from an issue's details, the list feedback note, the personal checklist
-from List options, and House of M's Preview from the catalog. Each must open at its start with its
+from Reading List options, and House of M's Preview from the catalog. Each must open at its start with its
 title clear of what it holds and its focus inside, hold its answers in view with its scroll padded
 clear of them, and keep every control Tab reaches clear of them. Preview, whose only Close is in its
 head, must hold that head in view to the end of its list as well. On Android, Preview must offer no
@@ -662,8 +673,8 @@ stable package. Update the pinned archive, checksum and emulator/image revision 
 `scripts/android-emulator-ci.sh` deliberately. Candidate qualification uses the workflow's native
 runner and checker while keeping application builds in the exact source checkout.
 
-AndroidX dependencies are confined to the separate test APK. They are not shipped in the app.
-Emulator results do not complete the physical-device checklist below.
+AndroidX ships in the app through Play services; the explicit instrumentation-test dependencies
+remain in the separate test APK. Emulator results do not complete the physical-device checklist below.
 
 ### Observed emulator result
 
@@ -732,7 +743,7 @@ somebody performs them on a physical device:
 - [ ] Check portrait and landscape, light and dark themes, larger system fonts, display cutouts,
   gesture and three-button navigation, and fields near the bottom with the keyboard open.
 - [ ] Recheck the Galaxy S26 reports: focused Home starting choices, compact parent links,
-  no heading rectangle after touch navigation, scrollable filters, and List options with working
+  no heading rectangle after touch navigation, scrollable filters, and Reading List options with working
   editors, exports, cancellation and Back.
 - [ ] Confirm the installed package's backup/transfer exclusions and document-provider behavior.
 

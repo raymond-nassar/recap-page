@@ -21,6 +21,13 @@
             </intent-filter>
             <meta-data android:name="recap.cloud.client" android:value="${recapCloudClient}" />
             <meta-data android:name="recap.cloud.redirectHash" android:value="${recapCloudRedirectHash}" />
+            <meta-data android:name="recap.cloud.google" android:value="${recapCloudGoogle}" />
         </activity>
+        <!-- Google's consent screen, shown only when Play services asks for it (#810, P04). Not exported. -->
+        <activity
+            android:name=".GoogleConsentActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>

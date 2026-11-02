@@ -38,6 +38,7 @@ import {
   sourcePositionsForPacket,
   validateBatchNoDuplicates,
   validateFrozenPacket,
+  withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
@@ -1175,7 +1176,7 @@ test('the approved Comic Book Herald packet stays exact through every generated 
       assert.ok(row.note.trim(), `${id} manual series selection has no note`);
     }
     assert.equal(mapping.packetReview, '.copilot-tracking/reviews/logs/2026-08-21/modern-marvel-continuity-guides-packet-review.md');
-    assert.deepEqual(manifestEntry, approved, `${id} manifest fields differ from the approved packet`);
+    assert.deepEqual(withoutDiscoveryTags(manifestEntry), approved, `${id} manifest fields differ from the approved packet`);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourcePosition'), false);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourceReference'), false);
     assert.equal(parsed.unresolved.length, 0, `${id} has unresolved Markdown rows`);

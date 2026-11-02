@@ -82,8 +82,12 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
   switch (model.host) {
     case 'unavailable': return cloudErrorText(model.message, model.scope) ?? 'Cloud backup is not available right now.';
     case 'not-answering': return device ? "Automatic backup is on, but the app's cloud backup is not answering, so backups wait until it does." : 'Automatic backup is on in this browser, but the Recap Page app is not answering for it, so backups wait until it does.';
-    case 'signing-in': return `Finish signing in to ${companyOf(model)} in the browser window that opened.${
-      Number.isSafeInteger(model.signInExpiresAt) ? ` The sign-in stops by itself at ${at(model.signInExpiresAt)}.` : ''}`;
+    case 'signing-in': {
+      const destination = device && model.provider === 'googledrive'
+        ? 'on the sign-in screen' : 'in the browser window that opened';
+      return `Finish signing in to ${companyOf(model)} ${destination}.${
+        Number.isSafeInteger(model.signInExpiresAt) ? ` The sign-in stops by itself at ${at(model.signInExpiresAt)}.` : ''}`;
+    }
     case 'not-connected': return cloudErrorText(model.message, model.scope) ?? '';
     case 'needs-sign-in': return `${companyOf(model)} asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.`;
     case 'connected': {

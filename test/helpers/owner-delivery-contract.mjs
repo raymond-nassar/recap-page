@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
   assertMappingMatchesPacketOccurrences, CBH_SOURCE_PROVIDER, digestCanonicalJson, libraryDigestFor, reportDigestFor, sourceCountsForPacket,
-  validateApprovalDigest, validateMappingDigest, validateReportDigest,
+  validateApprovalDigest, validateMappingDigest, validateReportDigest, withoutDiscoveryTags,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
 import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
@@ -130,7 +130,7 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(payload.sourceSection, contract.sourceSection);
     assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
   }
-  const currentEntry = manifest.lists.find((row) => row.id === id);
+  const currentEntry = withoutDiscoveryTags(manifest.lists.find((row) => row.id === id));
   assert.deepEqual(currentEntry.description === packet.proposedManifest.description
     ? currentEntry : beforeMcuEditorialEntry(currentEntry), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
@@ -257,7 +257,7 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   assert.equal(payload.description, contract.description);
   assert.equal(payload.sourceOrigin, contract.sourceOrigin);
   assert.equal(contract.sourceOrigin, CBH_SOURCE_PROVIDER.sourceOrigin);
-  assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(manifest.lists.find((entry) => entry.id === id)), packet.proposedManifest);
   assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
   for (const [file, digest] of Object.entries(contract.cbhBaseline.files)) {
     assert.equal(hash(beforeIdentityText(file, contract.cbhBaseline.sourceCommit).replace(/\r\n/g, '\n')), digest, file);

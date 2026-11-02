@@ -58,9 +58,9 @@ test('the Android overlay sizes every control for touch through the shared token
 
 // UX-08 (#836): behind List actions, with Export a second disclosure inside it, most list commands took
 // three taps. The sheet opens both groups and hides their summaries, so every command is one tap, and
-// puts the reader's own List actions choice back on the way out. Escape closes the sheet itself, because
-// List actions would otherwise close with focus inside it and keep the sheet open.
-test('Android List options lists every command at once, with both groups open and their summaries hidden', async () => {
+// puts the reader's own Reading List options choice back on the way out. Escape closes the sheet itself,
+// because Reading List options would otherwise close with focus inside it and keep the sheet open.
+test('Android Reading List options lists every command at once, with both groups open and their summaries hidden', async () => {
   const [css, overlay] = await Promise.all([
     readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
     readFile(new URL('../packaging/android/web/mobile-ui.js', import.meta.url), 'utf8'),
@@ -131,6 +131,17 @@ test('Android package identity comes from the shared reserved-build contract', a
   assert.match(build, /versionName buildMetadata\.versionName/);
   assert.match(build, /inputs\.property 'buildIdentity'/);
   assert.doesNotMatch(build, /betaRevision/);
+});
+
+test('Android packages library resources in the app language', async () => {
+  const [build, html, resources] = await Promise.all([
+    readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),
+    readFile(new URL('../src/index.html', import.meta.url), 'utf8'),
+    readdir(new URL('../packaging/android/app/src/main/res', import.meta.url)),
+  ]);
+  assert.match(html, /<html\b[^>]*\blang="en"/);
+  assert.match(build, /androidResources\s*\{[^}]*localeFilters\.add\('en'\)/);
+  assert.ok(resources.every((name) => !/^values-[a-z]{2}(?:-r[A-Z]{2})?$/.test(name)));
 });
 
 test('Android wrapper bootstrap matches the distribution and runs before the Windows launcher', async () => {
