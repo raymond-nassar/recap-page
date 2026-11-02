@@ -324,8 +324,8 @@ test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs
   assert.match(ipad, /-only-testing:RecapPageUITests\/PresentationUITests/);
   assert.doesNotMatch(ipad, /-only-testing:RecapPageUITests\s|-only-testing:RecapPageTests|live_cors/);
   assert.match(ipad, /name: iPad presentation on the newest runtime/);
-  assert.match(ipad, /timeout-minutes: 86/);
-  assert.match(ipad, /timeout-minutes: 35\n {8}run: \|/);
+  assert.match(ipad, /timeout-minutes: 96/);
+  assert.match(ipad, /timeout-minutes: 45\n {8}run: \|/);
   assert.match(ipad, /ios-results-ipad-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
 });
 
