@@ -219,8 +219,10 @@ test('the generated catalog replaces the parent with every child and the owner-o
 
   for (const { chapter, order } of family.children) {
     const entry = children.find((candidate) => candidate.id === chapter.id);
+    const rawEntry = raw.lists.find((candidate) => candidate.id === chapter.id);
     const copy = ledger.descriptionCopy.entries.find((candidate) => candidate.id === chapter.id);
     assert.ok(entry, `${chapter.id} is missing from the catalog`);
+    assert.ok(rawEntry, `${chapter.id} is missing from the generated catalog`);
     assert.equal(entry.file, order.out);
     assert.equal(entry.name, chapter.name);
     assert.equal(entry.description, copy.description);
@@ -228,6 +230,10 @@ test('the generated catalog replaces the parent with every child and the owner-o
     assert.equal(entry.collections, 0);
     assert.equal(entry.timeline, chapter.timelineYear);
     assert.equal(entry.group, null);
+    assert.deepEqual(rawEntry.storyTypes ?? [], order.storyTypes ?? [], `${chapter.id} catalog story types`);
+    assert.deepEqual(rawEntry.tones ?? [], order.tones ?? [], `${chapter.id} catalog tones`);
+    assert.deepEqual(entry.storyTypes, rawEntry.storyTypes ?? [], `${chapter.id} searchable story types`);
+    assert.deepEqual(entry.tones, rawEntry.tones ?? [], `${chapter.id} searchable tones`);
   }
 
   const ownerPath = raw.paths.find((entry) => entry.id === ledger.path.id);
