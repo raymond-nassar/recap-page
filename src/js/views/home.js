@@ -14,6 +14,7 @@ const CATEGORY_ICONS = {
   E714: 'screen',
   E7BE: 'reader',
   E81C: 'ages',
+  E8EC: 'story-types',
 };
 
 export function createHomeView({

@@ -206,6 +206,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['about', ['Home', 'About this app']],
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
+    ['story-types', ['Home', 'Story types']],
     ['issue', ['Home', 'Issue details']],
   ]);
   for (const shelf of CATALOG_SHELVES) {
@@ -855,4 +856,19 @@ test('a malformed or repeated ratings filter falls back to its own default only'
   assert.equal(parseRoute('#/library-rated?min=5').rated.min, 5);
   assert.equal(parseRoute(`#/library-rated?q=${'x'.repeat(500)}`).rated.q, '');
   assert.equal(parseRoute('#/library-rated/list-a'), null);
+});
+
+test('Story types carries one known story type and tone in its address and nothing else', () => {
+  const base = {
+    view: 'story-types', listId: null, filter: null, full: false,
+  };
+  assert.equal(formatRoute({ view: 'story-types', storyType: 'espionage', tone: 'dark' }),
+    '#/story-types?type=espionage&tone=dark');
+  assert.equal(formatRoute({ view: 'story-types', storyType: 'nope', tone: 'grim' }), '#/story-types');
+  assert.equal(formatRoute({ view: 'marvel-ages', storyType: 'espionage', tone: 'dark' }), '#/marvel-ages');
+  assert.deepEqual(parseRoute('#/story-types?type=espionage&tone=dark'),
+    { ...base, storyType: 'espionage', tone: 'dark' });
+  assert.deepEqual(parseRoute('#/story-types?type=toString&tone=__proto__'), base);
+  assert.deepEqual(parseRoute('#/story-types?type=espionage&type=horror&tone=dark'), { ...base, tone: 'dark' });
+  assert.deepEqual(parseRoute('#/marvel-ages?type=espionage'), { ...base, view: 'marvel-ages' });
 });

@@ -7,7 +7,9 @@
 
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
-import { CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catalog.js';
+import {
+  CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES, STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE,
+} from './catalog.js';
 import { MAX_NAME } from './model.js';
 import { RATING_SORTS, DEFAULT_RATING_SORT, RATING_THRESHOLDS } from './ratedComics.js';
 
@@ -199,6 +201,10 @@ const SPOTLIGHT_POPULARITY_SORT = 'popularity';
 // filter change returns the previous one.
 const FILTER_KEY = 'filter';
 const FULL_KEY = 'full'; const PATH_KEY = 'path'; const PATH_TOKEN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+// Story types carries its choice in the address so a story type can be bookmarked and Back returns
+// to the previous one (#1060). Only words from the closed vocabulary are written or read.
+const STORY_TYPE_KEY = 'type';
+const STORY_TONE_KEY = 'tone';
 const ISSUE_CONTEXT_KEYS = new Set(['list', 'order']);
 
 function issueId(value) {
@@ -261,7 +267,7 @@ function parseRatedRoute(search) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -287,6 +293,8 @@ export function formatRoute({
   // The path the Modern Timeline is following, so a followed path can be bookmarked and Back
   // returns to the previous choice (#897).
   if (canonical === 'catalog' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
+  if (canonical === STORY_TYPES_ROUTE && Object.hasOwn(STORY_TYPES, storyType ?? '')) query.set(STORY_TYPE_KEY, storyType);
+  if (canonical === STORY_TYPES_ROUTE && Object.hasOwn(STORY_TONES, tone ?? '')) query.set(STORY_TONE_KEY, tone);
   const search = query.toString();
   const suffix = search ? `?${search}` : '';
   const segment = canonical === 'home' && at === HOME_CARDS ? HOME_CARDS_SEGMENT : canonical;
@@ -366,6 +374,14 @@ export function parseRoute(hash) {
   const sort = view === 'spotlights' && rawSort === SPOTLIGHT_POPULARITY_SORT
     ? rawSort
     : null;
+  // A repeated key is ambiguous, so it is dropped like an unknown word and the trailing sync
+  // corrects the address.
+  const single = (key, vocabulary) => {
+    const values = view === STORY_TYPES_ROUTE ? params.getAll(key) : [];
+    return values.length === 1 && Object.hasOwn(vocabulary, values[0]) ? values[0] : null;
+  };
+  const storyType = single(STORY_TYPE_KEY, STORY_TYPES);
+  const tone = single(STORY_TONE_KEY, STORY_TONES);
 
   return sort
     ? {
@@ -374,5 +390,7 @@ export function parseRoute(hash) {
     : {
       view, listId: listId || null, filter, full, ...(atCards ? { at: HOME_CARDS } : {}),
       ...(view === 'catalog' && pathId ? { pathId } : {}),
+      ...(storyType ? { storyType } : {}),
+      ...(tone ? { tone } : {}),
     };
 }

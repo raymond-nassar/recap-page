@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:811-818`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:812-819`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1081,6 +1081,23 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .filter-legend {
   float: left; align-self: center; margin: 0; padding: 0;
   color: var(--muted); font-size: var(--t-caption); font-weight: 600;
+}
+/* Story types (#1060) are links rather than radios, because each choice is its own address. They
+   wear the filter pill so choosing one reads as the same act, and the current one also turns bold
+   so the state does not rest on color alone. */
+.story-type-choices { display: grid; gap: var(--space-4); margin: var(--space-6) 0 var(--space-5); }
+.story-type-group { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.story-type-label { margin: 0; color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+.story-type-pills { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.story-type-pill {
+  display: inline-block; min-height: var(--target-min); border: var(--stroke-1) solid var(--line-2);
+  border-radius: var(--radius-pill); padding: var(--space-2) var(--space-5);
+  color: var(--muted); font-size: var(--t-body); text-decoration: none;
+}
+.story-type-pill:hover { color: var(--text); }
+.story-type-pill[aria-current] {
+  background: rgb(var(--accent-line) / 10%); color: var(--accent-text);
+  border-color: var(--accent-text); font-weight: 600;
 }
 
 @media (max-width: 620px) {
@@ -2284,6 +2301,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .timeline-position-label { border-color: Highlight; color: CanvasText; }
   .timeline-position-status { border-color: Highlight; background: Canvas; color: CanvasText; }
   .fp input:checked + span { border: var(--stroke-2) solid Highlight; }
+  .story-type-pill[aria-current] { border: var(--stroke-2) solid Highlight; }
 }
 
 /* Unreadable-data recovery. Deliberately loud: saving is paused and the user must choose. */

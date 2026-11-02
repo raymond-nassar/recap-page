@@ -52,7 +52,7 @@ test('the MCU Prep card counts every MCU Prep list', () => {
     currentReadingCensus.mcu);
 });
 
-test('the current gateway offers three primary modes and three secondary gateways', () => {
+test('the current gateway offers three primary modes and four secondary gateways', () => {
   const categories = availableHomeCategories(stories, HOME_CATEGORIES);
   assert.deepEqual(
     categories.map(({ key }) => key),
@@ -61,12 +61,12 @@ test('the current gateway offers three primary modes and three secondary gateway
       'storylines',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages', 'young-readers',
+      'marvel-ages', 'young-readers', 'story-types',
     ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {

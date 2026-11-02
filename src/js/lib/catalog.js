@@ -1202,6 +1202,48 @@ const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : 
     return lists.length > 0 && lists.every((list) => list?.type === type);
   });
 
+// Story types browse what a list is like rather than where it is filed (#1060). MCU Prep companions
+// carry tags so search finds them, but the owner kept them off this screen: they are chosen by the
+// film a reader is about to watch, and listing them beside the runs would crowd every story type
+// with entries that answer a different question.
+export const STORY_TYPES_ROUTE = 'story-types';
+
+function discoverableList(list) {
+  return list?.type !== 'screen-companion'
+    && Array.isArray(list?.storyTypes) && list.storyTypes.length > 0;
+}
+
+function listMatches(list, type, tone) {
+  return discoverableList(list)
+    && (!type || list.storyTypes.includes(type))
+    && (!tone || (Array.isArray(list.tones) && list.tones.includes(tone)));
+}
+
+export function storyTypeStories(stories, { type = null, tone = null } = {}) {
+  return (Array.isArray(stories) ? stories : []).filter((story) => {
+    const lists = Array.isArray(story?.lists) ? story.lists : [];
+    return lists.some((list) => listMatches(list, type, tone));
+  });
+}
+
+// Each group counts against the other group's choice, so a number beside a pill is what choosing it
+// would show. A pill that would show nothing is left out unless it is the current choice, which has
+// to stay visible so the reader can see what is narrowing the results and choose again.
+export function storyTypeFacets(stories, { type = null, tone = null } = {}) {
+  const lists = (Array.isArray(stories) ? stories : [])
+    .flatMap((story) => (Array.isArray(story?.lists) ? story.lists : []))
+    .filter(discoverableList);
+  const count = (predicate) => lists.filter(predicate).length;
+  return {
+    types: Object.entries(STORY_TYPES)
+      .map(([key, label]) => ({ key, label, count: count((list) => listMatches(list, key, tone)) }))
+      .filter((facet) => facet.count > 0 || facet.key === type),
+    tones: Object.entries(STORY_TONES)
+      .map(([key, label]) => ({ key, label, count: count((list) => listMatches(list, type, key)) }))
+      .filter((facet) => facet.count > 0 || facet.key === tone),
+  };
+}
+
 export const MARVEL_AGES_CATEGORY = {
   key: 'marvel-ages',
   route: 'marvel-ages',
@@ -1265,6 +1307,16 @@ export const HOME_CATEGORIES = [
     icon: 'E7BE',
     tier: 'secondary',
     select: shelfCategory('young-readers'),
+  },
+  {
+    key: STORY_TYPES_ROUTE,
+    route: STORY_TYPES_ROUTE,
+    heading: 'Story types',
+    label: 'Browse by kind of story',
+    icon: 'E8EC',
+    tier: 'secondary',
+    highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],
+    select: (stories) => storyTypeStories(stories),
   },
 ];
 
