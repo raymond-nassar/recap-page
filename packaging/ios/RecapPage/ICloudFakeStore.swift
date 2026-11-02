@@ -14,6 +14,7 @@ final class ICloudFakeStore: ICloudDocumentStore {
     var automaticallyUpload = true
     var uploadDelaySeconds: TimeInterval = 0
     var uploadWaitSeconds: TimeInterval = 540
+    var onUploadWaitPause: (@MainActor () async -> Void)?
     private(set) var elapsed: TimeInterval = 0
     private var uploadAt: [String: TimeInterval] = [:]
     /// The next failure each operation meets, once, by operation name.
@@ -61,6 +62,10 @@ final class ICloudFakeStore: ICloudDocumentStore {
             timeout: uploadWaitSeconds,
             clock: { self.elapsed },
             pause: { nanoseconds in
+                if let onPause = self.onUploadWaitPause {
+                    self.onUploadWaitPause = nil
+                    await onPause()
+                }
                 self.advance(seconds: Double(nanoseconds) / 1_000_000_000)
                 await Task.yield()
             },

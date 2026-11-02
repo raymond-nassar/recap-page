@@ -208,6 +208,74 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertTrue(store.notUploaded.isEmpty)
     }
 
+    func testDiscoveryReadOfPendingFileRefusesWhileVerificationWaits() async throws {
+        let connection = try await connect()
+        store.uploadDelaySeconds = 10
+        let created = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
+        XCTAssertEqual(created["ok"] as? Bool, true)
+
+        var discoveryRead: [String: Any]?
+        var discoveryElapsed: TimeInterval?
+        store.onUploadWaitPause = { [self] in
+            let started = store.elapsed
+            do {
+                let listed = try await call("list", ["connection": connection])
+                let items = try XCTUnwrap(listed["items"] as? [[String: Any]])
+                XCTAssertEqual(items.first?["id"] as? String, backupName)
+                discoveryRead = try await call("read", ["connection": connection, "id": backupName])
+                discoveryElapsed = store.elapsed - started
+            } catch {
+                XCTFail("Could not inspect the pending backup: \(error)")
+            }
+        }
+
+        let verification = try await call("read", ["connection": connection, "id": backupName])
+        let discovery = try XCTUnwrap(discoveryRead)
+        let failure = discovery["error"] as? [String: Any]
+        XCTAssertEqual(discovery["ok"] as? Bool, false)
+        XCTAssertEqual(failure?["code"] as? String, "unavailable")
+        XCTAssertEqual(failure?["retryAfterMs"] as? Int, 15_000)
+        let lookupElapsed = try XCTUnwrap(discoveryElapsed)
+        XCTAssertEqual(lookupElapsed, 0)
+        XCTAssertEqual(verification["ok"] as? Bool, true)
+        XCTAssertEqual(verification["bytes"] as? String, "AQID")
+        XCTAssertEqual(store.elapsed, 10)
+    }
+
+    func testAReadAfterTimedOutVerificationDoesNotWaitAgain() async throws {
+        let connection = try await connect()
+        store.automaticallyUpload = false
+        store.uploadWaitSeconds = 2
+        _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
+
+        let verification = try await refusal("read", ["connection": connection, "id": backupName])
+        XCTAssertEqual(verification.code, "unavailable")
+        XCTAssertEqual(store.elapsed, 2)
+        _ = try await call("list", ["connection": connection])
+        let started = store.elapsed
+        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
+        XCTAssertEqual(discovery.code, "unavailable")
+        XCTAssertEqual(discovery.retry, 15_000)
+        XCTAssertEqual(store.elapsed, started)
+    }
+
+    func testAReconnectedDiscoveryDoesNotWaitForAnEarlierCreate() async throws {
+        let connection = try await connect()
+        store.automaticallyUpload = false
+        store.uploadWaitSeconds = 2
+        _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
+        _ = try await status("disconnect")
+        let renewed = try await connect()
+        XCTAssertNotEqual(renewed, connection)
+
+        _ = try await call("list", ["connection": renewed])
+        let started = store.elapsed
+        let discovery = try await refusal("read", ["connection": renewed, "id": backupName])
+        XCTAssertEqual(discovery.code, "unavailable")
+        XCTAssertEqual(discovery.retry, 15_000)
+        XCTAssertEqual(store.elapsed, started)
+    }
+
     func testOfflineRetriesCannotPublishASecondPendingFile() async throws {
         let connection = try await connect()
         store.automaticallyUpload = false
@@ -370,6 +438,27 @@ final class ICloudDriveStoreTests: XCTestCase {
         )
         let bytes = try await store.read(name: backupName)
         XCTAssertEqual(bytes, expected)
+    }
+
+    func testAnExistingPendingFileRefusesWithoutWaitingForUpload() async throws {
+        let root = root!
+        let documents = root.appendingPathComponent("Documents", isDirectory: true)
+        try FileManager.default.createDirectory(at: documents, withIntermediateDirectories: true)
+        try Data([1]).write(to: documents.appendingPathComponent(backupName))
+        let store = ICloudDriveStore(
+            locate: { root }, identity: { "account" as NSString },
+            downloadWaitSeconds: 0, uploadWaitSeconds: 8
+        )
+        let clock = ContinuousClock()
+        let started = clock.now
+        do {
+            _ = try await store.read(name: backupName)
+            XCTFail("a local-only backup was returned as uploaded")
+        } catch {
+            XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
+        }
+        let elapsed = started.duration(to: clock.now).components.seconds
+        XCTAssertLessThan(elapsed, 4, "discovery must not wait for upload confirmation")
     }
 
     func testAMissingBackupIsNotFoundAndDeletingItTwiceSucceeds() async throws {
