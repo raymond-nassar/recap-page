@@ -377,7 +377,6 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--mobile-nav-height, 80px) - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
   }
   #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: max(43rem, 43em); }
-  #hero-title, #hero-by { text-align: center; }
 }
 /* Where the commands share one row they center under the title. On a phone Read spans the width and
    the rest wrap under it, which reads as a list, so they keep to the start there. */

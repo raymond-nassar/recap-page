@@ -2347,7 +2347,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
      while Read and Done stay above the bottom bar when the screen opens, with the list's heading still
      above the card. The reserve is measured from the top of the screen for that reason, and a list note
      adds its line to it. 40.5rem held only Read and left Done 23px under the bar at 390x844 and above,
-     whatever the height; 42.5rem lifts it there with a 109px cover, 178px at 430x932. Where the cover is
+     whatever the height; 42.5rem lifts it there with a 109px cover, 168px at 430x932. Where the cover is
      already at its floor Done sits where it did before, as at 360x800, 38px under on opening then too.
      The floor and gap are the 96px and --space-4 the cover had before, and 14.4dvh holds them there at 375x667
      at any text size, never under 96px in landscape: the list's heading keeps Read under the bar there,
@@ -2358,7 +2358,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
     width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
   }
   #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: 46rem; }
-  #hero-title, #hero-by { text-align: center; }
   #hero-title { clear: both; }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
   #hero .cta, #hero-facts, #hero-desc, .reading-comic-actions { clear: both; }

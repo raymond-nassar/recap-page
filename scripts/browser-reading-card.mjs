@@ -219,10 +219,14 @@ export const readingCardPoster = {
             art: Math.round(art.width), offset: Math.round((art.left + art.right) / 2 - (left + right) / 2),
             overflow: document.documentElement.scrollWidth > innerWidth,
             facts: document.querySelector('#hero-facts').textContent,
+            alignment: ['#hero-title', '#hero-by', '#hero-facts']
+              .map((selector) => getComputedStyle(document.querySelector(selector)).textAlign),
           };
         });
         t.check(`${name}: Read and Done sit above the fold with the card at its top`,
           seen.read <= seen.fold && seen.done <= seen.fold && !seen.overflow, JSON.stringify(seen));
+        t.check(`${name}: the comic title, series and facts stay start-aligned`,
+          seen.alignment.every((alignment) => ['start', 'left'].includes(alignment)), JSON.stringify(seen.alignment));
         if (width <= 700) {
           t.check(`${name}: the cover is centered`, Math.abs(seen.offset) <= 2, JSON.stringify(seen));
           if (!text) {
