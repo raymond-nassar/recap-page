@@ -17,8 +17,12 @@
 import {
   LIST_AUDIENCES,
   LIST_TYPES,
+  MAX_STORY_TONES,
+  MAX_STORY_TYPES,
   READING_DEPTHS,
   SPOTLIGHT_KINDS,
+  STORY_TONES,
+  STORY_TYPES,
   safeFile,
   safeOrderFile,
   storyKey,
@@ -127,6 +131,22 @@ function checkEntry(raw, index, seen) {
   if (Object.hasOwn(raw, 'audience') && !LIST_AUDIENCES.includes(raw.audience)) {
     at(`audience must be one of ${LIST_AUDIENCES.join(', ')} when present`);
   }
+  // Story types and tones are closed for the same reason. They are capped because a list tagged
+  // with everything it touches answers every search and so stops answering any; and they are
+  // refused on a partition parent, which is never shown, so a tag there would describe nothing.
+  for (const [field, vocabulary, max] of [
+    ['storyTypes', STORY_TYPES, MAX_STORY_TYPES],
+    ['tones', STORY_TONES, MAX_STORY_TONES],
+  ]) {
+    if (!Object.hasOwn(raw, field)) continue;
+    const tags = raw[field];
+    const known = Object.keys(vocabulary);
+    if (partitionFile) at(`${field} belongs on a listed reading, not a partition parent`);
+    else if (!Array.isArray(tags) || !tags.length || tags.length > max
+      || tags.some((tag) => !known.includes(tag)) || new Set(tags).size !== tags.length) {
+      at(`${field} must list 1 to ${max} unique values from ${known.join(', ')} when present`);
+    }
+  }
   if (raw.expect != null && !(Number.isInteger(raw.expect) && raw.expect > 0)) {
     at('expect must be a positive whole number of issues when present');
   }
@@ -177,6 +197,8 @@ function checkEntry(raw, index, seen) {
       depth: raw.depth,
       ...(raw.type === 'character-run' ? { spotlightKind: raw.spotlightKind } : {}),
       ...(Object.hasOwn(raw, 'audience') ? { audience: raw.audience } : {}),
+      ...(Object.hasOwn(raw, 'storyTypes') ? { storyTypes: [...raw.storyTypes] } : {}),
+      ...(Object.hasOwn(raw, 'tones') ? { tones: [...raw.tones] } : {}),
       characters: strings(raw.characters),
       keywords: strings(raw.keywords),
       // Optional: ties this order to a story that has more than one reading path.

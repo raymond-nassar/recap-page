@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { validateInventoryState } from '../scripts/lib/cbh-inventory.mjs';
+import { validateInventoryState, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
   catalogListShelf, decadeSections, groupCatalog, parseCatalog, shelfLists, shelfStories,
@@ -248,7 +248,7 @@ test('Marvel Zombies renewed relationship receipt covers every current library p
   assert.deepEqual(new Set(report.comparisons.map((entry) => entry.orderId)),
     new Set(expectedOrderIds));
   assert.equal(mapping.reviewStatus, 'approved');
-  assert.deepEqual(mapping.approvedManifest, manifest.lists.find((entry) => entry.id === id));
+  assert.deepEqual(mapping.approvedManifest, withoutDiscoveryTags(manifest.lists.find((entry) => entry.id === id)));
   assert.equal(mapping.relationshipReview.approvalDigest,
     '1d41cde7518c02234a7a00c91c7cae17f3dd038685a74f7eb9d293692034f02f');
   assert.doesNotThrow(() => assertApprovedRelationshipReview({

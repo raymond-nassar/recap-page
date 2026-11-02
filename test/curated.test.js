@@ -84,6 +84,33 @@ test('audience is a closed vocabulary, carried only when a list states one', () 
   }
 });
 
+// #1060. Search and the planned Home category select on these values, so a misspelling, a
+// repeat or an over-long list has to fail the manifest rather than reach a reader.
+test('story types and tones are closed, capped and carried only when stated', () => {
+  const stated = parseManifest({ lists: [{ ...valid, storyTypes: ['espionage', 'thriller', 'political'], tones: ['epic', 'dark'] }] });
+  assert.deepEqual(stated.errors, []);
+  assert.deepEqual(stated.entries[0].storyTypes, ['espionage', 'thriller', 'political']);
+  assert.deepEqual(stated.entries[0].tones, ['epic', 'dark']);
+
+  const unstated = parseManifest({ lists: [valid] }).entries[0];
+  assert.equal(Object.hasOwn(unstated, 'storyTypes'), false);
+  assert.equal(Object.hasOwn(unstated, 'tones'), false);
+
+  const refused = [
+    { storyTypes: [] }, { storyTypes: 'espionage' }, { storyTypes: ['spy'] }, { storyTypes: ['Espionage'] },
+    { storyTypes: ['war', 'war'] }, { storyTypes: ['war', 'horror', 'comedy', 'political'] },
+    { tones: [] }, { tones: ['grim'] }, { tones: ['epic', 'dark', 'lighthearted'] }, { tones: null },
+  ];
+  for (const extra of refused) {
+    const { entries, errors } = parseManifest({ lists: [{ ...valid, ...extra }] });
+    assert.equal(entries.length, 0, `accepted ${JSON.stringify(extra)}`);
+    assert.match(errors.join('\n'), /(storyTypes|tones) must list 1 to [23] unique values/);
+  }
+  const parent = { ...valid, sourceUrl: undefined, sourceFile: 'civil_war.md',
+    partitionFile: 'parts.json', catalog: false, storyTypes: ['war'] };
+  assert.match(parseManifest({ lists: [parent] }).errors.join('\n'), /storyTypes belongs on a listed reading/);
+});
+
 test('expect is optional', () => {
   const { entries, errors } = parseManifest({ lists: [{ ...valid, expect: undefined }] });
   assert.deepEqual(errors, []);
@@ -317,6 +344,10 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
     assert.equal(list.variant, entry.variant);
     assert.equal(list.audience, entry.audience ?? null, `${entry.id} audience drifted from the manifest`);
     assert.equal(rawList.audience ?? null, entry.audience ?? null, `${entry.id} generated a different audience`);
+    assert.deepEqual(list.storyTypes, entry.storyTypes ?? [], `${entry.id} story types drifted from the manifest`);
+    assert.deepEqual(list.tones, entry.tones ?? [], `${entry.id} tones drifted from the manifest`);
+    assert.deepEqual(rawList.storyTypes, entry.storyTypes, `${entry.id} generated different story types`);
+    assert.deepEqual(rawList.tones, entry.tones, `${entry.id} generated different tones`);
     if (entry.expect != null) assert.equal(list.count, entry.expect, `${entry.id} count drifted`);
   }
 });

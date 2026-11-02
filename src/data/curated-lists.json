@@ -707,6 +707,13 @@
       "description": "Malekith invades Earth, drawing Thor and Marvel heroes into a war across the ten realms.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1411,6 +1418,12 @@
       "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
       "type": "era",
       "depth": "partial",
+      "storyTypes": [
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1526,6 +1539,13 @@
       "description": "Fifteen chapters taking Hulk from his arrival on Sakaar through the complete Planet Hulk storyline.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1594,6 +1614,12 @@
       "description": "Marvel's 2006 superhuman registration war in publication order: the seven-issue main series plus every mini-series and one-shot Marvel branded with the Civil War name, from Front Line through The Confession. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Amazing Spider-Man #529-538.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "group": "civil-war",
       "groupName": "Civil War",
@@ -1675,6 +1701,14 @@
       "description": "The 2006 cosmic war that rebuilt Marvel's space corner, in publication order: the Prologue, the four lead-in mini-series, the six-issue main series, and the Heralds of Galactus epilogue. Assembled from Marvel series metadata. Annihilation: Conquest is a separate 2007 sequel event and is not included here.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": true,
       "coverIssueId": 4788,
       "sourceFile": "annihilation.md",
@@ -2009,6 +2043,10 @@
       "description": "Follow Shang-Chi's original martial-arts comics, team appearances and later Ten Rings stories in Comic Book Herald's selected reading order.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "martial-arts",
+        "espionage"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -3433,6 +3471,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3701,6 +3746,9 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
       "beginner": true,
       "coverIssueId": 15061,
       "group": null,
@@ -4070,6 +4118,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "espionage",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4247,6 +4302,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4419,6 +4481,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4450,6 +4519,12 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4486,6 +4561,9 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4887,6 +4965,14 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": true,
       "sourceFile": "captain-america-best-of.md",
       "sourcePage": "https://www.comicbookherald.com/the-best-of-captain-america-comics-in-marvel-unlimited/",
@@ -5443,6 +5529,13 @@
       "description": "Nine Avengers chapters following the interstellar conflict between the Kree and Skrull empires.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5629,6 +5722,13 @@
       "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5884,6 +5984,13 @@
       "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6729,6 +6836,10 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "war"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7332,6 +7443,11 @@
       "description": "The five-issue 2004 Secret War miniseries in the exact sequence given by Comic Book Herald.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "political"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7970,6 +8086,12 @@
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
+      "storyTypes": [
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "depth": "complete",
       "beginner": true,
       "group": null,
@@ -8037,6 +8159,12 @@
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
+      "storyTypes": [
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "depth": "complete",
       "beginner": true,
       "group": null,
