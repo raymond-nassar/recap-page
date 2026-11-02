@@ -45,29 +45,51 @@ test('the Story types card counts every tagged list outside MCU Prep', () => {
   assert.equal(category.count, 3);
 });
 
-test('the view keeps only known choices and links every pill to its own address', () => {
+test('the view keeps known selections in labeled native dropdowns without replacing the controls', () => {
   const el = (tag, props = {}, children = []) => ({
-    tag, props, children: [children].flat(),
+    tag, props, id: props.id, children: [children].flat(),
     replaceChildren(...next) { this.children = next; },
     append(...next) { this.children.push(...next); },
     querySelector: () => null,
   });
   const count = { textContent: '' };
   const results = el('div');
+  const navigations = [];
   const view = createStoryTypesView({
     el,
     elements: () => ({ count, results }),
     isCurrent: () => true,
     presentation: { catalogCard: (story) => ({ card: story.lists[0].id }) },
-    onNavigate: () => {},
+    onNavigate: () => navigations.push(view.selection()),
   });
   view.set({ storyType: 'espionage', tone: 'grim' });
   assert.deepEqual(view.selection(), { storyType: 'espionage', tone: null });
   view.render({ lists: fixture().map((story) => story.lists[0]) });
   assert.equal(count.textContent, '2 of 3 Reading Lists');
-  const links = view.controls().children
-    .flatMap((group) => group.children[1].children.map((item) => item.children[0].props));
-  const current = links.filter((props) => props['aria-current']).map((props) => props.href);
-  assert.deepEqual(current, ['#/story-types?type=espionage', '#/story-types?type=espionage']);
-  assert.ok(links.every((props) => props.href.startsWith('#/story-types')));
+  const root = view.controls();
+  const [type, tone] = root.children.map((group) => group.children[1]);
+  assert.deepEqual([type.tag, tone.tag], ['select', 'select']);
+  assert.deepEqual(root.children.map((group) => group.children[0].props.for), [type.id, tone.id]);
+  assert.deepEqual(root.children.map((group) => group.children[0].props.text), ['Story type', 'Tone']);
+  assert.deepEqual([type.value, tone.value], ['espionage', '']);
+  assert.equal(type.children[0].props.text, 'Any story type');
+  assert.equal(tone.children[0].props.text, 'Any tone');
+  assert.ok(type.children.some(({ props }) => props.text === 'Espionage (2)'));
+  tone.props.onchange({ currentTarget: { value: 'dark' } });
+  assert.deepEqual(navigations.at(-1), { storyType: 'espionage', tone: 'dark' });
+  assert.equal(count.textContent, '1 of 3 Reading Lists');
+  assert.deepEqual(root.children.map((group) => group.children[1]), [type, tone]);
+  assert.equal(tone.value, 'dark');
+  view.set({ storyType: 'space-opera', tone: 'dark' });
+  view.render({ lists: fixture().map((story) => story.lists[0]) });
+  assert.deepEqual([type.value, tone.value], ['space-opera', 'dark']);
+  assert.ok(type.children.some(({ props }) => props.text === 'Space opera (0)'));
+  assert.equal(count.textContent, '0 of 3 Reading Lists');
+  tone.props.onchange({ currentTarget: { value: '' } });
+  assert.deepEqual(navigations.at(-1), { storyType: 'space-opera', tone: null });
+  type.props.onchange({ currentTarget: { value: '' } });
+  assert.deepEqual(view.selection(), { storyType: null, tone: null });
+  assert.equal(count.textContent, '3 Reading Lists');
+  assert.equal(results.children[0].props.text, 'Choose a story type or a tone to see its Reading Lists.');
+  assert.deepEqual(root.children.map((group) => group.children[1]), [type, tone]);
 });

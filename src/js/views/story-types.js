@@ -1,14 +1,12 @@
 import {
   STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE, catalogEntries, storyTypeFacets, storyTypeStories,
 } from '../lib/catalog.js';
-import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const ROUTE = STORY_TYPES_ROUTE;
 
 const known = (vocabulary, value) => (Object.hasOwn(vocabulary, value ?? '') ? value : null);
 
-// Browsing by story type and tone (#1060). Each choice is a link to its own address rather than a
-// radio, so a story type can be bookmarked, opened in a new tab, and returned to with Back.
+// Choices remain in the address, so the filtered shelf can be bookmarked and restored with Back.
 export function createStoryTypesView({
   el, elements, isCurrent, presentation, onNavigate,
 }) {
@@ -17,9 +15,24 @@ export function createStoryTypesView({
   let catalog = null;
   let requestIsCurrent = () => false;
   let root;
+  let typeSelect;
+  let toneSelect;
 
   function controls() {
-    root ??= el('nav', { id: `${ROUTE}-choices`, class: 'story-type-choices', 'aria-label': 'Story types and tones' });
+    if (!root) {
+      typeSelect = el('select', {
+        id: `${ROUTE}-type`,
+        onchange: (event) => choose({ storyType: event.currentTarget.value, tone }),
+      });
+      toneSelect = el('select', {
+        id: `${ROUTE}-tone`,
+        onchange: (event) => choose({ storyType: type, tone: event.currentTarget.value }),
+      });
+      root = el('div', { id: `${ROUTE}-choices`, class: 'story-type-choices' }, [
+        group('Story type', typeSelect),
+        group('Tone', toneSelect),
+      ]);
+    }
     return root;
   }
 
@@ -32,51 +45,32 @@ export function createStoryTypesView({
     tone = known(STORY_TONES, nextTone);
   }
 
-  function choose(next, focusKey) {
+  function choose(next) {
     set(next);
     paint();
     onNavigate();
-    root?.querySelector(`a[data-choice="${focusKey}"]`)?.focus();
   }
 
-  function pill({ choice, label, count, next, current }) {
-    return el('li', {}, el('a', {
-      href: formatRoute({ view: ROUTE, ...next }),
-      class: 'story-type-pill',
-      'aria-current': current ? 'true' : null,
-      dataset: { choice },
-      text: count == null ? label : `${label} (${count})`,
-      onclick: (event) => {
-        if (!isPlainNavigation(event)) return;
-        event.preventDefault();
-        choose(next, choice);
-      },
-    }));
-  }
-
-  function group(id, heading, pills) {
+  function group(heading, select) {
     return el('div', { class: 'story-type-group' }, [
-      el('p', { id, class: 'story-type-label', text: heading }),
-      el('ul', { class: 'story-type-pills', 'aria-labelledby': id }, pills),
+      el('label', { for: select.id, class: 'story-type-label', text: heading }),
+      select,
     ]);
   }
 
   function paintChoices(stories) {
     const facets = storyTypeFacets(stories, { type, tone });
-    controls().replaceChildren(
-      group(`${ROUTE}-type-h`, 'Story type', [
-        pill({ choice: 'type:any', label: 'Any story type', next: { storyType: null, tone }, current: !type }),
-        ...facets.types.map(({ key, label, count }) => pill({
-          choice: `type:${key}`, label, count, next: { storyType: key, tone }, current: key === type,
-        })),
-      ]),
-      group(`${ROUTE}-tone-h`, 'Tone', [
-        pill({ choice: 'tone:any', label: 'Any tone', next: { storyType: type, tone: null }, current: !tone }),
-        ...facets.tones.map(({ key, label, count }) => pill({
-          choice: `tone:${key}`, label, count, next: { storyType: type, tone: key }, current: key === tone,
-        })),
-      ]),
-    );
+    controls();
+    for (const [select, any, choices, value] of [
+      [typeSelect, 'Any story type', facets.types, type],
+      [toneSelect, 'Any tone', facets.tones, tone],
+    ]) {
+      select.replaceChildren(
+        el('option', { value: '', text: any }),
+        ...choices.map(({ key, label, count }) => el('option', { value: key, text: `${label} (${count})` })),
+      );
+      select.value = value ?? '';
+    }
   }
 
   function paint() {
