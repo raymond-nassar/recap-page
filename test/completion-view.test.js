@@ -40,7 +40,7 @@ function node(props = {}, children = []) {
 
 const element = (_tag, props, children) => node(props, children);
 
-function fixture() {
+function fixture({ isIos = false } = {}) {
   let state = createList(createEmptyState(), { id: 'a', name: 'Private list name', catalogId: 'source' });
   state = addIssuesToList(state, 'a', [{ issueId: 1, title: 'One' }, { issueId: 2, title: 'Two' }, { issueId: 3, title: 'Three' }]).state;
   state = markRead(state, 1, true, 1000);
@@ -112,12 +112,20 @@ function fixture() {
     announce: (message) => calls.announce.push(message),
     focusCurrentView: () => { calls.focus += 1; },
     createIcon: (name) => node({ icon: name }),
+    isIos,
   });
   h.view = view;
   h.flush = async () => { await new Promise((resolve) => setImmediate(resolve)); await view.render(); };
   view.wire();
   return h;
 }
+
+test('iOS completion history describes app-local history', async () => {
+  const h = fixture({ isIos: true });
+  await h.view.render();
+  assert.match(h.nodes.historyStatus.textContent, /This history is private to this app\./);
+  assert.doesNotMatch(h.nodes.historyStatus.textContent, /browser/i);
+});
 
 function useLegacyReader(h, schemaVersion, replaceAfterSave = false) {
   const initial = schemaVersion === 1 ? {
@@ -587,7 +595,7 @@ test('864 a Reopen save in flight holds the commands the same way, then focuses 
   assert.deepEqual(h.calls.announce, ['Reading List reopened. Comic progress and your enjoyment choice are unchanged.']);
 });
 
-test('864 when Complete cannot be seen, as in the closed Android List options sheet, a successful Reopen focuses the view heading', async () => {
+test('864 when Complete cannot be seen, as in the closed Android Reading List options sheet, a successful Reopen focuses the view heading', async () => {
   const h = fixture();
   await h.history.complete('a');
   await h.view.render();
@@ -653,16 +661,16 @@ test('874 the wrap-up opens with the All read line exactly while every comic in 
   assert.equal(JSON.stringify(h.state), before, 'drawing it writes nothing');
 });
 
-// UX-19 (#830): Mark as Completed lives in List actions while comics are queued, so Read comes before it,
+// UX-19 (#830): Mark as Completed lives in Reading List options while comics are queued, so Read comes before it,
 // and moves beside the hero once nothing is queued: the wrap-up when every comic is read, Nothing queued
 // when the rest are deferred. One element moves, so it keeps its listeners and its saving contract.
-test('UX-19 Mark as Completed sits in List actions while comics are queued, and beside the hero once nothing is', async () => {
+test('UX-19 Mark as Completed sits in Reading List options while comics are queued, and beside the hero once nothing is', async () => {
   const h = fixture();
   const home = () => ['listActions', 'wrapupActions', 'deferredActions']
     .filter((name) => h.nodes[name].children.includes(h.nodes.complete));
   await h.view.render();
   assert.deepEqual(home(), ['listActions'], 'one comic is queued');
-  assert.equal(h.nodes.listActions.children[0], h.nodes.complete, 'first in List actions, before its hairline');
+  assert.equal(h.nodes.listActions.children[0], h.nodes.complete, 'first in Reading List options, before its hairline');
   h.state = markRead(h.state, 2, true, 2000);
   await h.view.render();
   assert.deepEqual(home(), ['deferredActions'], 'the last unread comic is deferred, so Nothing queued holds it');
@@ -684,7 +692,7 @@ test('UX-19 Mark as Completed sits in List actions while comics are queued, and 
   const emptyHome = ['listActions', 'wrapupActions', 'deferredActions']
     .filter((name) => empty.nodes[name].children.includes(empty.nodes.complete));
   assert.deepEqual(emptyHome, ['listActions'],
-    'an empty list has nothing queued, but nothing to wrap up either, so it keeps List actions');
+    'an empty list has nothing queued, but nothing to wrap up either, so it keeps Reading List options');
   h.nodes.complete.listeners.click();
   await h.flush();
   assert.equal(h.nodes.complete.hidden, true, 'the moved element still completes the list');
@@ -704,7 +712,7 @@ test('UX-19 a move while Mark as Completed holds focus hands focus to it again, 
   h.nodes.complete.checkVisibility = () => false;
   h.state = markRead(h.state, 2, false);
   await h.view.render();
-  assert.equal(h.calls.focus, 1, 'back in a closed List actions it cannot be seen, so the heading takes focus');
+  assert.equal(h.calls.focus, 1, 'back in closed Reading List options it cannot be seen, so the heading takes focus');
   page.activeElement = null;
   h.state = markRead(h.state, 2, true, 2000);
   await h.view.render();

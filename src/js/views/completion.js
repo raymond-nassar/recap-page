@@ -32,6 +32,7 @@ export function createCompletionView({
   announce,
   focusCurrentView,
   createIcon = uiIcon,
+  isIos = false,
 }) {
   let enjoyed = false;
   let pendingAction = false;
@@ -81,7 +82,7 @@ export function createCompletionView({
   }
 
   // The command that replaces the pressed one takes focus where it can be seen. On a narrow Android
-  // screen Complete lives in the closed List options sheet, and measured in the Android build in Edge
+  // screen Complete lives in the closed Reading List options sheet, and measured in the Android build in Edge
   // 155 on 2026-10-26 (#864), focusing it there left focus on the page after a successful Reopen. The
   // view heading takes focus instead, as it does when a refused save hides the pressed command.
   function focusReplacement(command) {
@@ -199,7 +200,7 @@ export function createCompletionView({
     return held.promise;
   }
 
-  // UX-19 (#830): Mark as Completed sits in List actions while comics are queued, so Read comes before
+  // UX-19 (#830): Mark as Completed sits in Reading List options while comics are queued, so Read comes before
   // it, and an empty list keeps it there. Once nothing is queued it moves beside the hero: into the
   // wrap-up when every comic is read, or into Nothing queued when the rest are deferred. It stays one
   // element, so the focus-while-saving contract of #858 and #864 holds in every home, and a move while
@@ -344,7 +345,7 @@ export function createCompletionView({
     const nodes = elements();
     const counts = history.counts(getState());
     nodes.historyStatus.textContent = !history.known ? history.lastError || 'Completion history could not be read.'
-      : history.writeUnavailable || history.lastError || `${counts.completed} saved lists completed. ${counts.enjoyed} enjoyed. This history is private to this browser.`;
+      : history.writeUnavailable || history.lastError || `${counts.completed} saved lists completed. ${counts.enjoyed} enjoyed. This history is private to ${isIos ? 'this app' : 'this browser'}.`;
     nodes.historyExport.disabled = !history.known || history.busy;
     nodes.historyRestore.disabled = restoring || history.busy || !!history.writeUnavailable || history.seenRaw === undefined;
     nodes.historyRetry.disabled = history.busy;
@@ -368,7 +369,9 @@ export function createCompletionView({
       const saved = await download(copy ? 'recap-page-completion-saved-copy.json' : 'recap-page-completion-history.json', text, 'application/json');
       if (saved) announce(saved === true
         ? copy ? 'Completion-history saved-value copy downloaded.' : 'Completion-history backup downloaded.'
-        : 'Completion-history download requested. Check your browser\'s downloads to confirm it was saved.');
+        : isIos
+          ? 'Completion-history file could not be saved in this app. Try again.'
+          : 'Completion-history download requested. Check your browser\'s downloads to confirm it was saved.');
     } catch (error) {
       notify('#history-report', `Completion history could not be exported (${error.message}). Its saved value is unchanged.`, 'error');
     }

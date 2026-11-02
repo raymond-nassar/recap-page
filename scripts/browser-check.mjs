@@ -9671,6 +9671,38 @@ const SCENARIOS = [
       t.check('synthetic issue requests retain no-store',
         await page.evaluate(() => window.__disclosure447.requests.length > 0
           && window.__disclosure447.requests.every((request) => request.cache === 'no-store')));
+
+      const oldFile = await page.evaluate(async () => {
+        const { captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
+        const { backup } = await captureCompleteBackup({ storage: localStorage });
+        const components = structuredClone(backup.components);
+        components.settings.hideDescriptions = true;
+        return (await createCompleteBackup(components)).text;
+      });
+      await page.evaluate(() => { location.hash = '#/data'; });
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+      await pickFile(page, '#restore-complete', oldFile);
+      await page.waitForSelector('#ask[open]');
+      await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Complete backup restored'));
+      const restoredChoice = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).hideDescriptions);
+      await navigate(readHash);
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
+      await fetchBulk();
+      const heroAfterRestore = await shown('#hero-desc', second) && await page.evaluate(() => (
+        !document.querySelector('#btn-hero-description')
+        && ![...document.querySelectorAll('#hero button')].some((button) => /^(Show|Hide) story summary/i.test(button.textContent.trim()))
+      ));
+      await inspect(second);
+      const issueAfterRestore = await shown('#issue-focus-desc', second) && await page.evaluate(() => (
+        !document.querySelector('#btn-issue-description')
+        && ![...document.querySelectorAll('#view-issue button')].some((button) => /^(Show|Hide) story summary/i.test(button.textContent.trim()))
+      ));
+      t.check('#1061 an older backup restores its hiding choice but loaded summaries still show in full without reveal controls',
+        restoredChoice === true && heroAfterRestore && issueAfterRestore,
+        JSON.stringify({ restoredChoice, heroAfterRestore, issueAfterRestore }));
       t.check('summary journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
     },
   },
@@ -18277,7 +18309,7 @@ async function responsiveReading(page, { checked = false } = {}) {
   }));
   console.log(`UX09-FIXTURE ${JSON.stringify({ naturalListActions: natural,
     qualified: natural.open === false })}`);
-  if (natural.open !== false) throw new Error('Natural List actions closed state did not qualify');
+  if (natural.open !== false) throw new Error('Natural Reading List options closed state did not qualify');
   if (!natural.open) await click(page, '#list-actions > summary');
   await click(page, '#btn-synopsis');
   await page.waitForSelector('#ask[open]');
@@ -18426,7 +18458,7 @@ async function responsiveCommands(page) {
       return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
         width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
     };
-    // UX-19 (#830): while comics are queued, Complete heads List actions rather than standing before it.
+    // UX-19 (#830): while comics are queued, Complete heads Reading List options rather than standing before it.
     const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
       open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
       completeInside: Boolean(body?.contains(complete)), completeFirst: body?.firstElementChild === complete,
@@ -18572,7 +18604,7 @@ SCENARIOS.push(responsiveOwner({
       overlap: commands.overlap === 0,
       expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
     };
-    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in List actions while comics are queued',
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in Reading List options while comics are queued',
       { ...commands, subpredicates: commandPredicates },
       Object.values(commandPredicates).every(Boolean));
     responsiveStep(page, 'RF07-text-modes');
@@ -18920,7 +18952,7 @@ SCENARIOS.push(responsiveOwner({
     await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
       { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
         expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
-          pending: 'painted outside editing disclosure', complete: 'inside List actions while queued; completed hidden; unavailable disabled' },
+          pending: 'painted outside editing disclosure', complete: 'inside Reading List options while queued; completed hidden; unavailable disabled' },
         subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
 
     responsiveStep(page, 'RC04-native-note');
@@ -21987,10 +22019,20 @@ SCENARIOS.push(saveNotice.saveNoticePlacement);
 MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);
+SCENARIOS.push(readingCard.readingCardPhoneOverview);
 SCENARIOS.push(readingCard.readingCardPoster);
 SCENARIOS.push(readingCard.readingCardUndo);
 SCENARIOS.push(readingCard.readingCardUndoStill);
 MUTATIONS.push(...readingCard.readingCardMutations);
+MUTATIONS.push({
+  id: 'synopsis-restored-hiding-1061',
+  breaks: 'synopsis-disclosure-447',
+  why: 'an older restored hiding choice hides a loaded summary again',
+  rewriteReading: (source) => source.replace(
+    "$('#hero-desc').hidden = false;",
+    "$('#hero-desc').hidden = JSON.parse(localStorage.getItem('mrt.settings') ?? '{}').hideDescriptions === true;",
+  ),
+});
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);

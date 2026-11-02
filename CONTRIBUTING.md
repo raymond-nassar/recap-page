@@ -91,7 +91,7 @@ Use concise labels and one prominent primary action per task group, not one for 
 Give secondary and repeated row actions less visual weight, and avoid explanatory paragraphs
 after controls or repeated information.
 
-Reading-list administration starts behind List actions on desktop and touch. Row commands use
+Reading-list administration starts behind Reading List options on desktop and touch. Row commands use
 an explicit More actions disclosure, not a hover-only panel that reserves empty space. Preserve
 the reader's expanded/collapsed choice and focus when the viewport changes.
 

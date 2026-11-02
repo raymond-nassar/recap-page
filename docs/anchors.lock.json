@@ -1509,8 +1509,8 @@
     "fp": "6db2dec2e99dd8a3",
     "head": "if (/^\\s*absent:/.test(cell)) ranges.push([offset + from, offset + from + cell.length]);"
   },
-  ".github/copilot-instructions.md|what-the-app-is|src/js/storage.js:16|0": {
-    "anchor": "src/js/storage.js:16",
+  ".github/copilot-instructions.md|what-the-app-is|src/js/storage.js:17|0": {
+    "anchor": "src/js/storage.js:17",
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
@@ -1569,28 +1569,28 @@
     "fp": "f5c2fbf10ed259d6",
     "head": "export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hid"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:158|0": {
-    "anchor": "src/js/lib/completeRestore.js:158",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:216|0": {
+    "anchor": "src/js/lib/completeRestore.js:216",
     "fp": "4ea7082d4cf406af",
     "head": "tx = mode === 'readwrite' ? db.transaction(JOURNAL_STORE, mode, { durability: 'strict' }) : db.trans"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:294|0": {
-    "anchor": "src/js/lib/completeRestore.js:294",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:352|0": {
+    "anchor": "src/js/lib/completeRestore.js:352",
     "fp": "b64917b5675de610",
     "head": "export function decideRestoreState(marker, journal, storage, now) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:46|0": {
-    "anchor": "src/js/lib/completeRestore.js:46",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:48|0": {
+    "anchor": "src/js/lib/completeRestore.js:48",
     "fp": "f3d6cfa7a0ac9997",
     "head": "export const KEEP_FINISHED_JOURNAL_MS = 24 * 60 * 60 * 1000;"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:621-625|0": {
-    "anchor": "src/js/lib/completeRestore.js:621-625",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:679-683|0": {
+    "anchor": "src/js/lib/completeRestore.js:679-683",
     "fp": "c551965afe6556d6",
     "head": "async cleanUp(id, { journal = true, offered = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:774-779|0": {
-    "anchor": "src/js/lib/completeRestore.js:774-779",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:834-839|0": {
+    "anchor": "src/js/lib/completeRestore.js:834-839",
     "fp": "4e2c08fc7d7cb7d2",
     "head": "await this.journal.begin(record);"
   },
@@ -1644,53 +1644,53 @@
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:1009-1017|0": {
-    "anchor": "src/js/storage.js:1009-1017",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:1073-1081|0": {
+    "anchor": "src/js/storage.js:1073-1081",
     "fp": "c10d8af0b6ad7801",
     "head": "// A successful restore is a deliberate overwrite, so it also clears the block."
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:377-409|0": {
-    "anchor": "src/js/storage.js:377-409",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:416-448|0": {
+    "anchor": "src/js/storage.js:416-448",
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:673-700|0": {
-    "anchor": "src/js/storage.js:673-700",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:724-751|0": {
+    "anchor": "src/js/storage.js:724-751",
     "fp": "b7d36f9e697421d1",
     "head": "update(fn) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:863-944|0": {
-    "anchor": "src/js/storage.js:863-944",
-    "fp": "ac161ff9c9fd46ca",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:920-1004|0": {
+    "anchor": "src/js/storage.js:920-1004",
+    "fp": "eda54b5863c96712",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1121-1125|0": {
-    "anchor": "src/js/views/add.js:1121-1125",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1129-1133|0": {
+    "anchor": "src/js/views/add.js:1129-1133",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:30-67|0": {
-    "anchor": "src/js/views/add.js:30-67",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:31-68|0": {
+    "anchor": "src/js/views/add.js:31-68",
     "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:331-374|0": {
-    "anchor": "src/js/views/add.js:331-374",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:337-380|0": {
+    "anchor": "src/js/views/add.js:337-380",
     "fp": "db2a727c16a4b4f7",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:607-631|0": {
-    "anchor": "src/js/views/add.js:607-631",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:613-637|0": {
+    "anchor": "src/js/views/add.js:613-637",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:69-92|0": {
-    "anchor": "src/js/views/add.js:69-92",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:70-93|0": {
+    "anchor": "src/js/views/add.js:70-93",
     "fp": "2f677131e0096b88",
     "head": "export function persistSearchSelection(readerStore, items, destination = {}, onSaved = () => null) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:94-186|0": {
-    "anchor": "src/js/views/add.js:94-186",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:95-187|0": {
+    "anchor": "src/js/views/add.js:95-187",
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
@@ -1739,13 +1739,13 @@
     "fp": "4151342a7f145254",
     "head": "function paintTimelinePosition(root, position, {"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:436-446|0": {
-    "anchor": "src/js/storage.js:436-446",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:475-485|0": {
+    "anchor": "src/js/storage.js:475-485",
     "fp": "8a51ad8622832a60",
     "head": "// The main slot is asked directly rather than through the walk, so that a storage which"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:397-423|0": {
-    "anchor": "test/storage.test.js:397-423",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:444-470|0": {
+    "anchor": "test/storage.test.js:444-470",
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
@@ -1909,14 +1909,14 @@
     "fp": "5f15902e5826b2b6",
     "head": "export async function writeCachePurgeMark("
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:781|0": {
-    "anchor": "src/js/lib/completeRestore.js:781",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:841|0": {
+    "anchor": "src/js/lib/completeRestore.js:841",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-list-history-v1|src/js/lib/listHistory.js:360-388|0": {
-    "anchor": "src/js/lib/listHistory.js:360-388",
-    "fp": "3515bfe1b12bfcfb",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-list-history-v1|src/js/lib/listHistory.js:371-402|0": {
+    "anchor": "src/js/lib/listHistory.js:371-402",
+    "fp": "2180bcb59f08dea5",
     "head": "saveRecords(records) {"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-saveeducation-v1|src/js/lib/saveEducation.js:25-74|0": {
@@ -1929,28 +1929,28 @@
     "fp": "32e1a1770e043829",
     "head": "const serialized = JSON.stringify({"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1038-1055|0": {
-    "anchor": "src/js/storage.js:1038-1055",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1102-1119|0": {
+    "anchor": "src/js/storage.js:1102-1119",
     "fp": "6a45bb40e47d2dfa",
     "head": "rewindSnapshot(held) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1057-1074|0": {
-    "anchor": "src/js/storage.js:1057-1074",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1121-1138|0": {
+    "anchor": "src/js/storage.js:1121-1138",
     "fp": "6c7b045c5fd6f21c",
     "head": "undoRestore(expected) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:902-914|0": {
-    "anchor": "src/js/storage.js:902-914",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:959-971|0": {
+    "anchor": "src/js/storage.js:959-971",
     "fp": "b3fd908f89413bfd",
     "head": "this.storage?.setItem(TEMP_KEY, serialized);"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:467-473|0": {
-    "anchor": "src/js/storage.js:467-473",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:506-512|0": {
+    "anchor": "src/js/storage.js:506-512",
     "fp": "b429c9cf55d87586",
     "head": "freeArchiveKey() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:762|0": {
-    "anchor": "src/js/storage.js:762",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:816|0": {
+    "anchor": "src/js/storage.js:816",
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
@@ -1979,8 +1979,8 @@
     "fp": "16469826d87add0a",
     "head": "export const ACTIVE_DB_NAME = 'mrt-cache-v2';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/lib/listHistory.js:7|0": {
-    "anchor": "src/js/lib/listHistory.js:7",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/lib/listHistory.js:8|0": {
+    "anchor": "src/js/lib/listHistory.js:8",
     "fp": "69a25f36afadeea5",
     "head": "export const LIST_HISTORY_KEY = 'mrt.list-history.v1';"
   },
@@ -1994,18 +1994,18 @@
     "fp": "215b776d62ddf598",
     "head": "export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:1144-1153|0": {
-    "anchor": "src/js/storage.js:1144-1153",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:1208-1217|0": {
+    "anchor": "src/js/storage.js:1208-1217",
     "fp": "a2caa4caf14defd5",
     "head": "export const SETTINGS_KEY = 'mrt.settings';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:16-20|0": {
-    "anchor": "src/js/storage.js:16-20",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:17-21|0": {
+    "anchor": "src/js/storage.js:17-21",
     "fp": "28ca251f3ab3db02",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:599-622|0": {
-    "anchor": "src/js/storage.js:599-622",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:650-673|0": {
+    "anchor": "src/js/storage.js:650-673",
     "fp": "a217fd173d10b27a",
     "head": "salvageCopies() {"
   },
@@ -2334,8 +2334,8 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:281-302|0": {
-    "anchor": "src/js/views/preview.js:281-302",
+  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:284-305|0": {
+    "anchor": "src/js/views/preview.js:284-305",
     "fp": "44d857d58fee459f",
     "head": "function paint(list) {"
   },
@@ -6334,8 +6334,8 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "src/js/views/data.js|preamble|src/js/storage.js:637-640|0": {
-    "anchor": "src/js/storage.js:637-640",
+  "src/js/views/data.js|preamble|src/js/storage.js:688-691|0": {
+    "anchor": "src/js/storage.js:688-691",
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
@@ -6354,8 +6354,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:364-373|0": {
-    "anchor": "src/js/views/add.js:364-373",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:370-379|0": {
+    "anchor": "src/js/views/add.js:370-379",
     "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },

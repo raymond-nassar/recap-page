@@ -255,31 +255,6 @@
             </div>
 
             <div id="reading-body" hidden>
-              <div class="list-tools">
-                <details id="list-actions" class="list-actions action-disclosure">
-                  <summary>List actions</summary>
-                  <div class="list-actions-body">
-                    <span class="tool-sep" aria-hidden="true"></span>
-                    <button type="button" class="quiet" id="btn-rename-list">Rename</button>
-                    <button type="button" class="quiet" id="btn-list-note">Note</button>
-                    <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
-                    <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
-                    <details id="list-export">
-                      <summary class="quiet">Export</summary>
-                      <div class="field-row">
-                        <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
-                        <button type="button" class="quiet" id="btn-export-order">Export order only</button>
-                      </div>
-                    </details>
-                    <span class="grow"></span>
-                    <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
-                    <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
-                    <!-- Removal keeps comic progress but removes the reader's own order and note. -->
-                    <span class="tool-sep" aria-hidden="true"></span>
-                    <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
-                  </div>
-                </details>
-              </div>
               <!-- Pending and terminal feedback stays visible without expanding the command strip. -->
               <div class="list-work">
                 <span id="hydration-status" class="rail-hint" hidden></span>
@@ -288,10 +263,7 @@
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
               </div>
 
-              <!-- The reader's own note about this order. Sits above the hero because it is
-                   context for the whole list, and a note placed below the rows would be found
-                   only by someone who had already scrolled past everything it was meant to
-                   inform. -->
+              <!-- On a phone the list context moves below the comic, but remains above its rows. -->
               <p class="list-note" id="list-note" hidden></p>
 
               <!-- hero: the comic up next -->
@@ -322,10 +294,35 @@
                         Done
                       </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
                     </div>
+                    <div id="reading-list-options">
+                      <div class="list-tools">
+                        <details id="list-actions" class="list-actions action-disclosure">
+                          <summary>Reading List options</summary>
+                          <div class="list-actions-body">
+                            <span class="tool-sep" aria-hidden="true"></span>
+                            <button type="button" class="quiet" id="btn-rename-list">Rename</button>
+                            <button type="button" class="quiet" id="btn-list-note">Note</button>
+                            <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
+                            <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
+                            <details id="list-export">
+                              <summary class="quiet">Export</summary>
+                              <div class="field-row">
+                                <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
+                                <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                              </div>
+                            </details>
+                            <span class="grow"></span>
+                            <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
+                            <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
+                            <!-- Removal keeps comic progress but removes the reader's own order and note. -->
+                            <span class="tool-sep" aria-hidden="true"></span>
+                            <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
                     <p id="hero-reader-temporary" class="rail-hint" hidden></p>
-                    <!-- Progress at a glance (#876). The header's ring already reads out how far through the
-                         list the reader is, and stays on screen when this card does not, so this row is
-                         for the eye and is not read a second time. -->
+                    <!-- The ring reads progress once. This visual row moves with it on a phone. -->
                     <div class="glance" id="hero-progress" aria-hidden="true">
                       <p class="glance-count" id="hero-progress-count"></p>
                       <div class="glance-bar"><i id="hero-progress-fill"></i></div>
@@ -347,6 +344,8 @@
                   </div>
                 </div>
               </section>
+
+              <div id="reading-overview"></div>
 
               <!-- The one-time note that saving is automatic follows the hero rather than leading it.
                    Above the hero it was 238px tall on a phone's first visit and put Read under the

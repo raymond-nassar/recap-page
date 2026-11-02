@@ -167,6 +167,51 @@ export function createReadingView({
   let rowsPending = false;
   let arrowing = false;
   let review = null;
+  let phoneOverview = null;
+
+  function placeListOptions(anchor) {
+    const options = $('#reading-list-options');
+    if (anchor.nextElementSibling === options) return;
+    const focused = options.contains(document.activeElement) ? document.activeElement : null;
+    anchor.after(options);
+    const target = focused?.getClientRects().length ? focused : (focused ? $('#android-list-options') : null);
+    if (target?.getClientRects().length) target.focus({ preventScroll: true });
+  }
+
+  function syncReadingProgress() {
+    const list = getState().lists[activeListId()];
+    const shown = !!list && !$('#hero').hidden;
+    const phone = !!phoneOverview?.matches;
+    $('#ring-sub').classList.toggle('visually-hidden', phone && shown);
+    $('#hero-progress').hidden = !shown;
+    if (!shown) return;
+    const { read, total, deferred } = listReadingProgress(getState(), activeListId());
+    const suffix = phone && deferred ? `. ${deferred} deferred` : '';
+    paintGlance(el, { count: $('#hero-progress-count'), fill: $('#hero-progress-fill') },
+      { read, total }, ` of ${total} read${suffix}`);
+  }
+
+  function syncPhoneOverview() {
+    const overview = $('#reading-overview');
+    const sub = $('#order-sub');
+    const ring = $('#ring-wrap');
+    const progress = $('#hero-progress');
+    const description = $('#order-desc');
+    const note = $('#list-note');
+    const moved = [sub, ring, progress, description, note];
+    const focused = moved.some((entry) => entry.contains(document.activeElement)) ? document.activeElement : null;
+    if (phoneOverview.matches) {
+      overview.append(...moved);
+    } else {
+      $('#view-read > .head > .head-left').append(sub, description);
+      $('#view-read > .head > .headright').append(ring);
+      $('#hero-reader-temporary').after(progress);
+      $('#reading-body > .list-work').after(note);
+    }
+    if ($('#hero').hidden) placeListOptions(phoneOverview.matches ? overview : note);
+    syncReadingProgress();
+    if (focused?.getClientRects().length) focused.focus({ preventScroll: true });
+  }
 
   function openReview() {
     const id = activeListId();
@@ -276,6 +321,9 @@ export function createReadingView({
   }
 
   function wire() {
+    phoneOverview = globalThis.matchMedia('(max-width: 700px)');
+    phoneOverview.addEventListener('change', syncPhoneOverview);
+    syncPhoneOverview();
     $('#btn-mark-all-read')?.addEventListener('click', onMarkAllRead);
     const details = $('#list-actions');
     const summary = details.querySelector('summary');
@@ -610,7 +658,14 @@ export function createReadingView({
     const empty = getState().lists[id]?.itemIds.length === 0;
     const { read, total, deferred } = listReadingProgress(getState(), id);
 
-    $('#hero').hidden = !issue;
+    const hero = $('#hero');
+    const options = $('#reading-list-options');
+    if (issue) hero.hidden = false;
+    if (hero.contains(options) !== !!issue) {
+      placeListOptions(issue ? $('#hero-primary-actions') : (phoneOverview?.matches ? $('#reading-overview') : $('#list-note')));
+    }
+    hero.hidden = !issue;
+    syncReadingProgress();
     $('#reading-empty').hidden = !empty;
     $('#all-read').hidden = completed || total === 0 || read !== total;
     $('#all-deferred').hidden = completed || !!issue || deferred === 0;
@@ -651,9 +706,6 @@ export function createReadingView({
     $('#hero-facts').replaceChildren(...presentation.facts.filter((item) => !item.detailsOnly).map((item) => (
       fact(item.key, item.value, item.className, item.hint)
     )));
-    // The same numbers the header's ring reads out, set large for the eye (#876).
-    paintGlance(el, { count: $('#hero-progress-count'), fill: $('#hero-progress-fill') }, { read, total }, ` of ${total} read`);
-
     const info = $('#btn-hero-info');
     const infoHref = presentation.detailUrl;
     info.hidden = !infoHref;

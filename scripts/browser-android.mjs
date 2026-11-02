@@ -1725,7 +1725,7 @@ async function issueNoteReadability(page, label, desktop) {
 
 const READING_LIST = 'reading-composition';
 const READING_ISSUE_POSITION = 4;
-const READING_SYNOPSIS = 'Original synthetic description for the reading composition check. It stays hidden until deliberately revealed, then wraps without covering any action.';
+const READING_SYNOPSIS = 'Original synthetic description for the reading composition check. Once the reader loads it, the full text appears and wraps without covering any action.';
 const readingProfiles = [
   { id: 'M01', width: 360, height: 800 },
   { id: 'M03', width: 412, height: 915 },
@@ -1797,7 +1797,7 @@ async function readingGeometry(page) {
     const art = hero.querySelector('.art');
     // Chromium still lays out the content of a closed disclosure, so its rectangles alone would
     // count Defer and Issue page as shown while More comic actions (9bb3a427) keeps them closed.
-    const visible = (node) => node.checkVisibility() && !node.closest('[hidden]');
+    const visible = (node) => node.checkVisibility() && !node.closest('[hidden], .visually-hidden');
     const inside = (rect, bounds) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
       && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
     const intersects = (a, b) => a.left < b.right - 1 && a.right > b.left + 1
@@ -1891,14 +1891,16 @@ async function readingEvidence(page, profile, id = profile.id) {
     .map(({ key, value }) => ({ key, value }))),
   `${id}: every exact factual value retained`);
   const scale = profile.textScale || 1;
-  check(result.body === (profile.desktop ? 14 : 16 * scale) && result.titleFont === 28 * scale
+  const compactHeading = profile.width <= 700 && profile.height <= 820;
+  check(result.body === (profile.desktop ? 14 : 16 * scale)
+    && result.titleFont === (compactHeading ? 20 : 28) * scale
     && result.issueFont === (profile.desktop ? 40 : 32 * scale) && result.android === !profile.desktop,
-  `${id}: actual platform and unchanged text scale`);
+  `${id}: actual platform and text scale, including the compact short-screen heading`);
   check(result.ranges > 15 && !result.clipped.length && !result.overlaps.length && !result.overflow,
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
-  // Read, Done, About this comic, the More comic actions summary and the two actions it discloses.
+  // Read, Done, Reading List options, About this comic, the More comic actions summary and its two actions.
   // M05 loads a summary, which before #1061 also brought a Hide button.
-  check(result.controls.length === 6
+  check(result.controls.length === 7
     && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
   `${id}: all existing action hit rectangles`);
   if (['M01', 'M02'].includes(id)) {
@@ -1910,10 +1912,11 @@ async function readingEvidence(page, profile, id = profile.id) {
   if (profile.desktop && !process.argv.includes('--viewport=1280x900')) {
     assert.ok(process.env.MRT_READING_BASELINE, 'Full reading batch requires the retained desktop baseline directory');
     const baseline = JSON.parse(await readFile(join(process.env.MRT_READING_BASELINE, 'reading-D01.json'), 'utf8'));
-    const signature = ({ header, hero, art, issueBox, factsBox, controls, body, titleFont, issueFont }) => (
-      { header, hero, art, issueBox, factsBox, controls, body, titleFont, issueFont }
-    );
-    check(JSON.stringify(signature(result)) === JSON.stringify(signature(baseline)), 'D01: unchanged shared desktop geometry');
+    const signature = ({ header, hero, body, titleFont, issueFont }) => ({
+      header, hero: { left: hero.left, right: hero.right, width: hero.width }, body, titleFont, issueFont,
+    });
+    check(JSON.stringify(signature(result)) === JSON.stringify(signature(baseline)),
+      'D01: unchanged desktop heading, card width and typography');
   }
   if (!disclosed) await click(page, '#hero-more-actions > summary');
   return result;
@@ -1965,8 +1968,9 @@ async function readingAccessibility(page, result, id) {
     assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
     previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
     assert.ok(previous >= 0, `${id}: exact byline precedes facts`);
-    // Read and Done have come before the facts since 9bb3a427 put reading actions first.
-    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary)) {
+    // Read, Done and Reading List options precede the facts.
+    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary
+      || entry.selector === '#android-list-options')) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(control.text));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${control.text}`);
       previous = index;
@@ -1998,7 +2002,8 @@ async function readingAccessibility(page, result, id) {
       previous = definition;
     }
     if (readingFactsAx) return;
-    for (const { text: name } of result.controls.filter((control) => !control.primary)) {
+    for (const { text: name } of result.controls.filter((control) => !control.primary
+      && control.selector !== '#android-list-options')) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(name));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${name}`);
       previous = index;
@@ -2008,8 +2013,9 @@ async function readingAccessibility(page, result, id) {
   }
   if (disclose) await click(page, '#hero-more-actions > summary');
   await page.focus('#order-name');
-  const expected = ['#order-desc > summary', '#android-list-options',
-    ...result.controls.map((control) => control.selector)];
+  const controls = result.controls.map((control) => control.selector);
+  const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
+  const expected = phone ? [...controls, '#order-desc > summary'] : ['#order-desc > summary', ...controls];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
     check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
@@ -2936,6 +2942,28 @@ async function mobileLayout(page, label, narrow) {
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;
+  const placement = await page.evaluate((onPhone) => {
+    const row = document.querySelector('#hero-primary-actions');
+    const control = document.querySelector(onPhone ? '#android-list-options' : '#list-actions > summary');
+    const rowBox = row.getBoundingClientRect();
+    const box = control.getBoundingClientRect();
+    const style = getComputedStyle(control);
+    return {
+      afterRow: !!row.nextElementSibling?.contains(control), name: control.textContent.trim(),
+      row: [rowBox.left, rowBox.right, rowBox.bottom], control: [box.left, box.right, box.top, box.height],
+      gap: parseFloat(getComputedStyle(row).columnGap), background: style.backgroundColor,
+      border: style.borderColor, colour: style.color, dim: getComputedStyle(document.querySelector('#hero-by')).color,
+    };
+  }, narrow);
+  check(placement.afterRow, `${label}: Reading List options follow Read and Done ${JSON.stringify(placement)}`);
+  check(placement.name === 'Reading List options',
+    `${label}: list options have their distinct visible name ${JSON.stringify(placement)}`);
+  check(Math.abs(placement.control[0] - placement.row[0]) <= 1
+    && Math.abs(placement.control[1] - placement.row[1]) <= 1
+    && placement.control[2] - placement.row[2] > placement.gap && placement.control[3] >= 48
+    && placement.background === 'rgba(0, 0, 0, 0)' && placement.border === 'rgba(0, 0, 0, 0)'
+    && placement.colour === placement.dim,
+  `${label}: the quieter Reading List options group aligns with the action row and has a larger gap ${JSON.stringify(placement)}`);
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
@@ -2953,7 +2981,7 @@ async function mobileLayout(page, label, narrow) {
     return {
       bottom: Math.abs(box.bottom - innerHeight) <= 1,
       fits: box.top >= 0 && box.height <= innerHeight,
-      labelled: !!document.getElementById(node.getAttribute('aria-labelledby'))?.textContent,
+      labelled: document.getElementById(node.getAttribute('aria-labelledby'))?.textContent === 'Reading List options',
       vertical: getComputedStyle(node.querySelector('.list-tools')).flexDirection === 'column',
     };
   });
@@ -2989,7 +3017,7 @@ async function mobileLayout(page, label, narrow) {
   check(commands.names.length >= 8 && JSON.stringify(commands.names) === JSON.stringify(commands.expected)
     && !commands.summaries.length && !commands.closed.length && !commands.small.length
     && commands.last === 'btn-delete-list' && commands.apart && commands.completeApart,
-  `${label}: List options shows every command at once, one tap each, Complete and Remove from library each set apart ${JSON.stringify(commands)}`);
+  `${label}: Reading List options shows every command at once, one tap each, Complete and Remove from library each set apart ${JSON.stringify(commands)}`);
   await page.keyboard.down('Shift');
   await page.keyboard.press('Tab');
   await page.keyboard.up('Shift');
@@ -2999,8 +3027,8 @@ async function mobileLayout(page, label, narrow) {
   await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
   check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
     `${label}: Android Back closes sheet and restores trigger focus`);
-  // List actions closes itself on Escape, which inside the sheet would hide every command and keep the
-  // sheet open. Escape from a command closes the sheet and leaves both groups as the reader had them.
+  // Reading List options closes itself on Escape, which inside the sheet would hide every command and keep
+  // the sheet open. Escape from a command closes the sheet and leaves both groups as the reader had them.
   await click(page, '#android-list-options');
   await page.focus('#btn-list-note');
   await page.keyboard.press('Escape');
@@ -3011,7 +3039,7 @@ async function mobileLayout(page, label, narrow) {
     home: document.querySelector('#android-list-options').nextElementSibling?.matches('.list-tools') ?? false,
   }));
   check(!escaped.open && escaped.focus === 'android-list-options' && !escaped.actions && !escaped.exports && escaped.home,
-    `${label}: Escape from a command closes the sheet, returns to List options and restores both groups ${JSON.stringify(escaped)}`);
+    `${label}: Escape from a command closes the sheet, returns to Reading List options and restores both groups ${JSON.stringify(escaped)}`);
   for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-mark-all-read', '#btn-delete-list']) {
     await click(page, '#android-list-options');
     await click(page, action);
@@ -3076,10 +3104,53 @@ async function mobileLayout(page, label, narrow) {
     `${label}: navigating away dismisses list options`);
   await route(page, 'read');
   await click(page, '#android-list-options');
+  const peer = await page.browserContext().newPage();
+  await peer.goto(new URL('/icons/ui.svg', page.url()).href);
+  await peer.evaluate((key) => {
+    const state = JSON.parse(localStorage.getItem(key));
+    for (const issueId of state.lists[state.active].itemIds) state.read[issueId] = Date.now();
+    localStorage.setItem(key, JSON.stringify(state));
+  }, KEY);
+  await peer.close();
+  await page.waitForFunction(() => document.querySelector('#hero').hidden);
+  check(await page.$eval('#android-list-sheet', (node) => node.open && !!node.querySelector('#btn-rename-list')),
+    `${label}: another tab finishing the list keeps the open options sheet intact`);
+  await backDialog(page);
+  check(await page.$eval('#android-list-options', (node) => node.checkVisibility() && document.activeElement === node
+    && !document.querySelector('#hero').contains(node)),
+  `${label}: closing the sheet restores focus to visible options without a hero`);
+  await click(page, '#android-list-options');
+  const phoneViewport = page.viewport();
   await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
   await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
-  check(await page.$eval('#reading-body > .list-tools', (node) => !!node.getClientRects().length),
+  check(await page.$eval('#reading-list-options > .list-tools', (node) => !!node.getClientRects().length),
     `${label}: widening restores original actions outside the sheet`);
+  const restored = await page.evaluate(() => ({
+    open: document.querySelector('#list-actions').open,
+    focus: document.activeElement?.id || `${document.activeElement?.parentElement?.id}>${document.activeElement?.tagName}`,
+    visible: document.activeElement?.checkVisibility(),
+    inTools: document.querySelector('#reading-list-options > .list-tools').contains(document.activeElement),
+  }));
+  check(restored.inTools && restored.visible,
+    `${label}: widening an open sheet restores focus to a visible list action or its summary ${JSON.stringify(restored)}`);
+  await page.$eval('#list-actions', (node) => { node.open = true; });
+  await page.focus('#btn-list-note');
+  await page.setViewport(phoneViewport);
+  await page.waitForFunction(() => document.querySelector('#android-list-options').checkVisibility());
+  check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
+    `${label}: narrowing an open and focused list disclosure transfers focus to its visible trigger`);
+  await click(page, '#android-list-options');
+  await page.waitForSelector('#android-list-sheet[open]');
+  await page.focus('#btn-list-note');
+  await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
+  const held = await page.evaluate(() => ({
+    open: document.querySelector('#list-actions').open,
+    focused: document.activeElement?.id,
+    visible: document.activeElement?.checkVisibility(),
+  }));
+  check(held.open && held.focused === 'btn-list-note' && held.visible,
+    `${label}: widening restores an expanded list disclosure and its focused command ${JSON.stringify(held)}`);
 }
 
 // #855: no visual hint may cover Done's result, the confirmation or the failure of the change just
@@ -3286,9 +3357,9 @@ async function doneHintGeometry(page, label) {
 }
 
 // #864: Complete and Reopen keep keyboard focus while their completion-history save is held, and after
-// another tab's write refuses it. On a narrow Android screen Complete lives in the List options sheet,
+// another tab's write refuses it. On a narrow Android screen Complete lives in the Reading List options sheet,
 // which closes as Complete is pressed and gives focus to its own trigger, so Complete is pressed
-// through the sheet and List options is where focus belongs while it saves. Reopen stays on the page,
+// through the sheet and Reading List options is where focus belongs while it saves. Reopen stays on the page,
 // and when it succeeds the view heading takes focus, Complete being in the closed sheet. Measured on
 // main in Edge phone emulation on 2026-10-26: Reopen's held and refused saves left focus on the page,
 // and so did its success.
@@ -3412,7 +3483,7 @@ async function completionFocusJourney(page, label) {
     });
     const wrong = rows.filter((row) => row.focus !== expected[row.step]);
     check(rows.length === 6 && !wrong.length,
-      `${label} ${how}: focus stays on the command or List options through a held and a refused save, and a success hands it to Reopen or the heading ${JSON.stringify(wrong.length ? wrong : rows)}`);
+      `${label} ${how}: focus stays on the command or Reading List options through a held and a refused save, and a success hands it to Reopen or the heading ${JSON.stringify(wrong.length ? wrong : rows)}`);
     check(frames.length > 0 && !frames.includes('BODY'),
       `${label} ${how}: no rendered frame from the first press to the last had focus on the page ${JSON.stringify({ frames: frames.length, onPage: frames.filter((entry) => entry === 'BODY').length })}`);
     console.log(`CHECKED ${label} ${how}: completion focus ${JSON.stringify(rows.map((row) => [row.step, row.focus]))}`);
@@ -3939,8 +4010,8 @@ async function milestoneJourney(page, label) {
 }
 
 // #876: progress at a glance in the Android build, at the phone sizes and text scales the Issue names.
-// On the reading screen's hero and on Home's Continue reading card the read figure is set larger than
-// its words over the outlined bar, inside its card at every text size; the figure clears 4.5:1 and the
+// On the reading screen and on Home's Continue reading card the read figure is set larger than
+// its words over the outlined bar; the figure clears 4.5:1 and the
 // bar's fill and outline 3:1 against what is painted behind them; each screen reads its progress out
 // once; and Read stays fully above the bottom bar wherever #836 and #857 hold it there.
 const GLANCE = {
@@ -3954,7 +4025,9 @@ async function progressGlanceCheck(page, label, viewport) {
   const look = (scope) => page.evaluate((selectors) => {
     const count = document.querySelector(selectors.count);
     const figure = count.querySelector('.glance-n');
-    const card = document.querySelector(selectors.card).getBoundingClientRect();
+    const surface = selectors.card === '#hero' && matchMedia('(max-width: 700px)').matches
+      ? '#reading-overview' : selectors.card;
+    const card = document.querySelector(surface).getBoundingClientRect();
     const bar = document.querySelector(selectors.bar).getBoundingClientRect();
     const fill = document.querySelector(selectors.fill).getBoundingClientRect();
     const range = document.createRange();
@@ -4033,7 +4106,8 @@ async function progressGlanceCheck(page, label, viewport) {
     return { times: said.split(phrase).length - 1, bars, said };
   };
 
-  await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
+  await page.waitForSelector('#hero:not([hidden])');
+  await page.waitForSelector('#hero-progress-count .glance-n');
   await page.evaluate(() => document.fonts.ready);
   await still();
   const hero = await look('hero');
@@ -4044,6 +4118,7 @@ async function progressGlanceCheck(page, label, viewport) {
   const heroOrder = await page.evaluate(() => {
     const at = (selector) => document.querySelector(selector).getBoundingClientRect();
     return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top,
+      heroBottom: at('#hero').bottom, phone: matchMedia('(max-width: 700px)').matches,
       tops: [Math.round(at('#btn-hero-read').top), Math.round(at('#btn-hero-done').top)] };
   });
   if (viewport.doneAbove) {
@@ -4054,8 +4129,9 @@ async function progressGlanceCheck(page, label, viewport) {
   }
   check(hero.text === `3 of ${total} read` && hero.figure === '3' && hero.sizes[0] >= hero.sizes[1] * 1.25
     && Math.abs(hero.share - 3 / total) * hero.barWidth <= 0.5 && hero.inside && !hero.overflow
-    && heroOrder.row >= heroOrder.done && heroOrder.facts >= heroOrder.row,
-  `${name}: the hero's row reads 3 of ${total} read under Read and Done, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify({ hero, heroOrder })}`);
+    && heroOrder.row >= heroOrder.done
+    && (heroOrder.phone ? heroOrder.row >= heroOrder.heroBottom : heroOrder.facts >= heroOrder.row),
+  `${name}: the progress row reads 3 of ${total} read in its intended place, its figure larger than its words and its bar filled to match ${JSON.stringify({ hero, heroOrder })}`);
   check(hero.blank < hero.line, `${name}: the hero's bar follows the last line of words, with no blank line between ${JSON.stringify(hero)}`);
   const heroTree = await readings('hero', `3 of ${total} read`);
   check(heroTree.times === 1 && heroTree.bars === 0,
@@ -4282,7 +4358,7 @@ async function confirmationQuestions(page, label, viewport) {
 
 // #830: the dialogs that now share the questions' shell, opened the way a reader on a phone reaches
 // them, at the sizes and text scale #849 measured the questions at: the rating from an issue's details,
-// the list feedback note from a completed list, the personal checklist from List options, and a guide's
+// the list feedback note from a completed list, the personal checklist from Reading List options, and a guide's
 // Preview from the catalog. Each closes with Android Back. The list is completed only after the
 // questions above, so they are asked exactly as #849 measured them.
 async function shellDialogs(page, label, viewport) {

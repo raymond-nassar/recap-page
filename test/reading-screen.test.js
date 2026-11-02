@@ -39,10 +39,10 @@ test('narrow hero prose and idle list commands use their available width', () =>
   assert.match(css, /\.list-actions > summary \{[^}]*min-height: var\(--target\)/);
 });
 
-test('native list actions start closed and retain completion and pending controls with focus before close', () => {
+test('native Reading List options start closed and retain completion and pending controls with focus before close', () => {
   assert.match(html, /<details id="list-actions" class="list-actions action-disclosure">/);
   const opener = html.indexOf('<details id="list-actions"');
-  assert.ok(opener >= 0, 'outer List actions opener is missing');
+  assert.ok(opener >= 0, 'outer Reading List options opener is missing');
   let depth = 0;
   let end = null;
   for (const match of html.slice(opener).matchAll(/<\/?details\b[^>]*>/g)) {
@@ -52,12 +52,42 @@ test('native list actions start closed and retain completion and pending control
       break;
     }
   }
-  assert.ok(end !== null, 'balanced outer List actions closer is missing');
+  assert.ok(end !== null, 'balanced outer Reading List options closer is missing');
   const editing = html.slice(opener, end);
   assert.match(editing, /<details id="list-export">/);
   assert.doesNotMatch(editing, /id="(?:hydration-status|synopsis-status|btn-cancel-hydrate|btn-cancel-synopsis)"/);
   assert.match(reading, /summary\.focus\(\);\s*details\.open = false/);
   assert.doesNotMatch(reading, /details\.open = !narrow/);
+});
+
+test('Reading List options follow the Read and Done row', () => {
+  const primary = html.indexOf('id="hero-primary-actions"');
+  const options = html.indexOf('<details id="list-actions"');
+  const following = html.indexOf('id="hero-reader-temporary"');
+  assert.ok(primary >= 0 && primary < options && options < following,
+    'list options should follow the primary actions inside the reading card');
+});
+
+test('Reading List options have a quieter group with a larger spacing token than the action row', () => {
+  const row = css.match(/\.hero \.cta \{([^}]*)\}/)?.[1] ?? '';
+  const group = css.match(/#hero #reading-list-options \{([^}]*)\}/)?.[1] ?? '';
+  const trigger = css.match(/#reading-list-options :is\(#android-list-options, #list-actions > summary\) \{([^}]*)\}/)?.[1] ?? '';
+  const tokens = rootTokens(css);
+  const rowGap = row.match(/gap: var\((--space-\d+)\)/)?.[1];
+  const groupGap = group.match(/margin-top: var\((--space-\d+)\)/)?.[1];
+  assert.ok(rowGap && groupGap && parseFloat(tokens.get(groupGap)) > parseFloat(tokens.get(rowGap)));
+  assert.match(trigger, /width: 100%/);
+  assert.match(trigger, /background: none/);
+  assert.match(trigger, /border-color: transparent/);
+  assert.match(trigger, /color: var\(--dim\)/);
+});
+
+test('Reading List options use the same distinctive name in the page and mobile sheet', () => {
+  const mobile = read('packaging/android/web/mobile-ui.js');
+  assert.match(html, /<details id="list-actions"[^>]*>\s*<summary>Reading List options<\/summary>/);
+  assert.match(mobile, /trigger\.textContent = 'Reading List options';/);
+  assert.match(mobile, /title\.textContent = 'Reading List options';/);
+  assert.match(html, /<summary>More comic actions<\/summary>/);
 });
 
 test('page titles use ordinary focus-visible rather than a forced navigation box', () => {
@@ -113,7 +143,9 @@ test('the one-time save note follows the reading card, so it never pushes Read d
   const next = html.indexOf('<section id="reading-empty"');
   assert.ok(body >= 0 && hero > body && heroEnd > hero, 'the reading body and its card are missing');
   assert.ok(note > heroEnd && note < next, 'the save note must sit right after the reading card, inside the reading body');
-  assert.doesNotMatch(html.slice(heroEnd, note), /<(?:section|div|button|details|aside)\b/);
+  const between = html.slice(heroEnd, note);
+  assert.match(between, /<div id="reading-overview"><\/div>/);
+  assert.doesNotMatch(between.replace('<div id="reading-overview"></div>', ''), /<(?:section|div|button|details|aside)\b/);
 });
 test('the reading card clips its decorative layer without becoming a scroll container', () => {
   // #846: hidden made the card a scroll container, and its decorative layer, scaled 1.3, reached
@@ -288,7 +320,7 @@ test('UX-13 row command groups are ruled apart, the override in force is marked 
   assert.match(forced, /\.availability-choice\[aria-pressed="true"\] \{ border-color: Highlight; \}/);
 });
 
-test('UX-19 List actions opens with a hairline for Mark as Completed, and Nothing queued has a row to hold it', () => {
+test('UX-19 Reading List options opens with a hairline for Mark as Completed, and Nothing queued has a row to hold it', () => {
   const body = html.match(/<div class="list-actions-body">\s*([\s\S]*?)<\/div>\s*<\/details>\s*<\/div>/)?.[1] ?? '';
   assert.match(body, /^<span class="tool-sep" aria-hidden="true"><\/span>/, 'the hairline Mark as Completed is placed before');
   assert.match(css, /\.list-actions-body > \.tool-sep:first-child, #btn-complete-list\[hidden\] \+ \.tool-sep \{ display: none; \}/,
@@ -335,7 +367,7 @@ test('the full Reading List action and state hooks receive the accepted copy', (
   }
 });
 
-test('all editing commands remain reachable through native List actions', () => {
+test('all editing commands remain reachable through native Reading List options', () => {
   assert.match(css, /\.list-actions-body \{[^}]*border: var\(--stroke-1\) solid var\(--line\)/);
   const ordinaryStrip = css.match(/^\.list-tools \{[^}]*\}/m)?.[0] ?? '';
   assert.match(ordinaryStrip, /display: flex/);

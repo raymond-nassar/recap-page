@@ -367,24 +367,22 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   #issue-focus-card .issue-reading-controls { margin-bottom: var(--space-7); }
 }
 @media (max-width: 880px) and (min-height: 600px) {
-  /* #1061, the owner's request on 2026-11-01: the reading card leads with the same poster, centered
-     above its title. Its reserve is measured from the top of the screen, because #836 has Read and
-     Done open above the bottom bar: it holds the list's heading and progress, the card's padding, a
-     two-line title, the byline, Read and Done, and a list note adds its line. Measured at 360 by 800,
-     25em left Read 152px under the bar. In rem it holds iOS too, whose 14px text made the em reserve
-     smaller while its 28px title stands 18px taller than Android's: 35rem left Done 59px under the bar at
-     390x844 there. The em term still grows it with Dynamic Type. With Read and Done in one row by the
-     owner's 2026-11-02 choice, 35.75rem keeps Done 56px above the bar at 390x844 on Android and 13px on
-     iOS, where 39.5rem had stacked them, and the cover grows by 40px there. The floor and gap stay the
-     96px and --space-4 of before at 375x667 and any text size, as styles.css says.
-     A block of its own, so #980's poster rules above can still be lifted out whole for comparison. */
+  /* The mobile reserve includes the app bar and grows with Dynamic Type. */
   #hero .hero-in { display: flow-root; }
   #hero .hero-in > .art {
     --hero-reserve: max(35.75rem, 35.75em);
     float: none; max-width: none; margin: 0 auto var(--space-4);
     width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--mobile-nav-height, 80px) - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
   }
+}
+@media (min-width: 701px) and (max-width: 880px) and (min-height: 600px) {
   #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: max(39.25rem, 39.25em); }
+}
+@media (max-width: 700px) and (min-height: 600px) {
+  #hero .hero-in > .art { --hero-reserve: max(32.75rem, 32.75em); }
+}
+@media (max-width: 700px) and (min-height: 600px) and (max-height: 820px) {
+  #hero .hero-in > .art { --hero-reserve: max(27.75rem, 27.75em); }
 }
 /* Where the commands share one row they center under the title. On a phone Read spans the width and
    the rest wrap under it, which reads as a list, so they keep to the start there. */

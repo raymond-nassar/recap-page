@@ -438,10 +438,10 @@ importing a file with no issues does not create one.
 
 **Export personal checklist** opens a preview with read checkboxes by default and notes available
 only when selected. Notes do not re-import from either Markdown format.
-On a narrow reading screen, open **List actions**, then **Export**. The same editing and fetch
+On a narrow reading screen, open **Reading List options**, then **Export**. The same editing and fetch
 commands remain available there. Active fetch status/Stop controls stay outside the disclosure, and
 **Mark as Completed** is inside it while comics are queued. Widening the screen opens it without
-moving focus; narrowing it returns focus to **List actions** before hiding a focused editing
+moving focus; narrowing it returns focus to **Reading List options** before hiding a focused editing
 command.
 **Download JSON backup** preserves all reader data, including notes and progress. Use it to
 protect saved data, not to share a reading order.

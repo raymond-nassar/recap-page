@@ -25,6 +25,7 @@ import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, parseListHistory, prepareListHis
 import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, validateImportDraft } from './importDraft.js';
 import { DEFAULT_FILTER, readingFilter } from './readingFilters.js';
 import { THEMES, normaliseTheme } from './theme.js';
+import { isIosApp } from './platform.js';
 
 export const COMPLETE_BACKUP_FORMAT = 'recap-page-complete-backup';
 export const COMPLETE_BACKUP_VERSION = 1;
@@ -32,8 +33,8 @@ export const COMPLETE_BACKUP_FILENAME = 'recap-page-complete-backup.json';
 // The ceiling of the complete file alone. Each component inside it is still held to the 8 MiB limit
 // its own single-kind backup has, so this is a guard on what is read before parsing, not a raised limit.
 export const MAX_COMPLETE_BACKUP_BYTES = 32 * 1024 * 1024;
-// hideDescriptions stays in the format although nothing reads it since #1061: backups written before
-// then require the field, and dropping it would make this version refuse them and older ones refuse ours.
+// hideDescriptions stays in the format although #1061 ignores it when showing summaries: earlier backups
+// carry the field, and dropping it would make this version refuse them and older ones refuse ours.
 // Every backup carries it as false, which is what this version shows.
 export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hideDescriptions']);
 export const PORTABLE_DRAFT_FIELDS = Object.freeze(['format', 'version', 'rawText', 'occurrences', 'destination', 'previousSources']);
@@ -179,7 +180,9 @@ export function validateComponents(input) {
 
 async function sha256(text, cryptoProvider) {
   if (typeof cryptoProvider?.subtle?.digest !== 'function') {
-    refuse('This browser cannot check backup digests, so complete backups are unavailable here.', 'unsupported');
+    refuse(isIosApp()
+      ? 'This app cannot check backup digests, so complete backups are unavailable here.'
+      : 'This browser cannot check backup digests, so complete backups are unavailable here.', 'unsupported');
   }
   let hash;
   try { hash = await cryptoProvider.subtle.digest('SHA-256', new TextEncoder().encode(text)); }
@@ -281,9 +284,13 @@ function fromWitness(witness) {
 // so a file read from storage alone would leave it out while claiming to hold everything. That case
 // is refused, as a pending import is, and the import-draft download, which does carry it, is named.
 export async function captureCompleteBackup({ storage, cryptoProvider = globalThis.crypto, importDraft = null } = {}) {
-  if (typeof storage?.getItem !== 'function') throw new TypeError('A complete backup needs browser storage.');
+  if (typeof storage?.getItem !== 'function') {
+    throw new TypeError(isIosApp() ? 'A complete backup needs app storage.' : 'A complete backup needs browser storage.');
+  }
   if (importDraft && ((importDraft.recovery?.length ?? 0) > 0 || importDraft.uncertain === true)) {
-    refuse('This page holds import source that could not be saved, and the complete backup would leave it out. Download it with Download import-draft backup instead.', 'unsaved');
+    refuse(isIosApp()
+      ? 'This app holds import source that could not be saved, and the complete backup would leave it out. Download it with Download import-draft backup instead.'
+      : 'This page holds import source that could not be saved, and the complete backup would leave it out. Download it with Download import-draft backup instead.', 'unsaved');
   }
   const read = () => {
     try {
@@ -366,7 +373,9 @@ export function prepareCompleteRestore({ backup, storage, isExclusive, draftReco
     throw new TypeError('Retained import draft sources must be exact strings.');
   }
   const read = () => {
-    if (isExclusive() !== true) refuse('Close other Recap Page tabs, then try again. Nothing was replaced.', 'blocked');
+    if (isExclusive() !== true) refuse(isIosApp()
+      ? 'Close other copies of Recap Page, then try again. Nothing was replaced.'
+      : 'Close other Recap Page tabs, then try again. Nothing was replaced.', 'blocked');
     try { return readImage(storage, RESTORE_KEYS); }
     catch { refuse('Saved data could not be read, so it could not be kept for recovery. Nothing was replaced.', 'storage'); }
   };

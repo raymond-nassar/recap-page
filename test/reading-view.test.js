@@ -86,6 +86,11 @@ function node(props = {}, children = []) {
     name: props.name,
     open: props.open ?? false,
     parentNode: null,
+    get nextElementSibling() {
+      if (!this.parentNode) return null;
+      const siblings = this.parentNode.childNodes;
+      return siblings[siblings.indexOf(this) + 1] ?? null;
+    },
     role: props.role,
     style: { setProperty(name, value) { this[name] = value; } },
     tag: props.tag ?? 'div',
@@ -98,7 +103,14 @@ function node(props = {}, children = []) {
       this.listeners[name].push(listener);
     },
     append(...next) {
-      for (const child of next.flat()) this.childNodes.push(attach(this, child));
+      for (const child of next.flat()) {
+        if (child?.parentNode) {
+          if (child.contains?.(globalThis.document?.activeElement)) globalThis.document.activeElement = null;
+          const previous = child.parentNode.childNodes.indexOf(child);
+          if (previous !== -1) child.parentNode.childNodes.splice(previous, 1);
+        }
+        this.childNodes.push(attach(this, child));
+      }
     },
     // Done's result is placed beside a static anchor and replaced where it stands, so the stub
     // needs both sibling operations, and connection follows the node in and out of a parent.
@@ -106,6 +118,7 @@ function node(props = {}, children = []) {
       const parent = this.parentNode;
       if (!parent) return;
       for (const [offset, child] of next.entries()) {
+        if (child?.parentNode && child.contains?.(globalThis.document?.activeElement)) globalThis.document.activeElement = null;
         child.parentNode?.childNodes.splice(child.parentNode.childNodes.indexOf(child), 1);
         parent.childNodes.splice(parent.childNodes.indexOf(this) + 1 + offset, 0, attach(parent, child));
         child.isConnected = true;
@@ -338,7 +351,7 @@ function harness(overrides = {}) {
     cheer: node({ id: 'list-wrap-up-cheer', tag: 'p' }),
   };
   nodes.full = node({ id: 'full', tag: 'details', open: overrides.fullOpen ?? true }, [nodes.fullSummary, nodes.fullAction, nodes.fullCount, nodes.readingFilters]);
-  nodes.listActionsSummary = node({ tag: 'summary', text: 'List actions' });
+  nodes.listActionsSummary = node({ tag: 'summary', text: 'Reading List options' });
   nodes.listExport = node({ id: 'list-export', tag: 'details' }, [
     node({ tag: 'summary', text: 'Export' }), nodes.btnExportMd, nodes.btnExportOrder,
   ]);
@@ -350,12 +363,14 @@ function harness(overrides = {}) {
     ]),
   ]);
   nodes.listTools = node({ class: 'list-tools' }, [nodes.listActions]);
+  nodes.readingListOptions = node({ id: 'reading-list-options' }, [nodes.listTools]);
   nodes.listWork = node({ class: 'list-work' }, [
     nodes.hydrationStatus, nodes.btnCancelHydrate, nodes.synopsisStatus, nodes.btnCancelSynopsis,
   ]);
 
   const selectorMap = new Map([
     ['#list-actions', nodes.listActions],
+    ['#reading-list-options', nodes.readingListOptions],
     ['#reading-filters', nodes.readingFilters],
     ['#save-education-settings', nodes.saveEducationSettings],
     ['#full', nodes.full],
@@ -421,10 +436,25 @@ function harness(overrides = {}) {
   // group, which is what Done's result is placed against and what hiding a section hides.
   nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
   nodes.heroProgress.append(nodes.heroProgressCount, node({ class: 'glance-bar' }, [nodes.heroProgressFill]));
-  nodes.hero.append(node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.heroReaderTemporary, nodes.heroProgress]));
+  nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.readingListOptions,
+    nodes.heroReaderTemporary, nodes.heroProgress, nodes.heroFacts]);
+  nodes.hero.append(nodes.heroBody);
+  nodes.orderDescSummary = node({ tag: 'summary', text: 'About this order' });
+  nodes.orderDesc.append(nodes.orderDescSummary, nodes.orderDescText);
+  nodes.ringWrap.append(nodes.ringLabel, nodes.ringSub);
+  nodes.headingLeft = node({ class: 'head-left' }, [nodes.orderName, nodes.orderSub, nodes.orderDesc]);
+  nodes.headingRight = node({ class: 'headright' }, [nodes.ringWrap]);
+  nodes.heading = node({ class: 'head' }, [nodes.headingLeft, nodes.headingRight]);
+  nodes.readingOverview = node({ id: 'reading-overview' });
+  nodes.readingBody.append(nodes.listWork, nodes.listNote, nodes.hero, nodes.readingOverview);
+  nodes.viewRead.append(nodes.heading, nodes.readingBody);
   nodes.allRead.append(nodes.allReadHeading);
   nodes['all-deferred'].append(nodes['all-deferred-h']);
   selectorMap.set('#hero-primary-actions', nodes.heroPrimaryActions);
+  selectorMap.set('#reading-overview', nodes.readingOverview);
+  selectorMap.set('#view-read > .head > .head-left', nodes.headingLeft);
+  selectorMap.set('#view-read > .head > .headright', nodes.headingRight);
+  selectorMap.set('#reading-body > .list-work', nodes.listWork);
   for (const [selector, entry] of [['#hero-progress', nodes.heroProgress], ['#hero-progress-count', nodes.heroProgressCount],
     ['#hero-progress-fill', nodes.heroProgressFill]]) selectorMap.set(selector, entry);
   // Home's Continue reading card has a Done for the same list. Its result goes after the card's
@@ -534,18 +564,20 @@ function harness(overrides = {}) {
     constructor(callback) { this.callback = callback; observers.push(this); }
     observe(target) { this.target = target; }
   };
+  const phoneMedia = {
+    media: '(max-width: 700px)',
+    matches: overrides.phone === true,
+    listeners: [],
+    addEventListener(type, listener) {
+      assert.equal(type, 'change');
+      this.listeners.push(listener);
+    },
+  };
   globalThis.matchMedia = (media) => {
     // #874: a milestone asks once whether to play its moment.
     if (media === '(prefers-reduced-motion: reduce)') return { media, matches: overrides.reducedMotion === true };
     assert.equal(media, '(max-width: 700px)');
-    return {
-      media, matches: false,
-      addEventListener(type, listener) {
-        assert.equal(type, 'change');
-        assert.equal(typeof listener, 'function');
-        this.listener = listener;
-      },
-    };
+    return phoneMedia;
   };
   if (readerStore) {
     readerStore.onChange = (next, error) => {
@@ -568,6 +600,10 @@ function harness(overrides = {}) {
     notices,
     settings,
     setActive(listId) { state = setActive(state, listId); },
+    setPhone(matches) {
+      phoneMedia.matches = matches;
+      for (const listener of phoneMedia.listeners) listener(phoneMedia);
+    },
     setWriteFailures(count) { writeFailures = count; },
     setDialogOpen(open) { selectorMap.set('dialog[open]', open ? node() : null); },
     state: () => state,
@@ -603,6 +639,87 @@ function harness(overrides = {}) {
   };
 }
 
+function heldText(entry) {
+  if (typeof entry === 'string') return entry;
+  return entry.childNodes.length ? entry.childNodes.map(heldText).join('') : entry.textContent;
+}
+
+test('phone reading context follows the comic and returns to the heading without losing focus', () => {
+  const state = setDeferred(seededState(), 'list-a', 3, true);
+  const h = harness({ state, phone: true });
+  try {
+    const saved = JSON.stringify(h.state());
+    h.view.wire();
+    h.view.render();
+    assert.deepEqual(h.nodes.readingOverview.childNodes.map((entry) => entry.id),
+      ['order-sub', 'ring-wrap', 'hero-progress', 'order-desc', 'list-note']);
+
+    h.nodes.orderDescSummary.focus();
+    h.setPhone(false);
+    assert.deepEqual(h.nodes.headingLeft.childNodes.map((entry) => entry.id), ['order-name', 'order-sub', 'order-desc']);
+    assert.deepEqual(h.nodes.headingRight.childNodes.map((entry) => entry.id), ['ring-wrap']);
+    assert.equal(h.nodes.heroProgress.parentNode, h.nodes.heroBody);
+    assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.listNote) < h.nodes.readingBody.childNodes.indexOf(h.nodes.hero));
+    assert.equal(h.nodes.ringSub.classList.contains('visually-hidden'), false);
+    assert.equal(h.nodes.orderDesc.open, true);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderDescSummary);
+
+    h.setPhone(true);
+    assert.equal(h.nodes.heroProgress.parentNode, h.nodes.readingOverview);
+    assert.equal(h.nodes.orderDesc.open, true);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderDescSummary);
+    assert.equal(JSON.stringify(h.state()), saved);
+  } finally { h.restore(); }
+});
+
+test('phone queued progress keeps one visible count with deferred issues and one spoken count', () => {
+  const state = setDeferred(seededState(), 'list-a', 3, true);
+  const h = harness({ state, phone: true });
+  try {
+    h.view.wire();
+    h.view.render();
+    assert.equal(h.nodes.ringSub.textContent, '1 of 3 read. 1 deferred');
+    assert.equal(h.nodes.ringSub.classList.contains('visually-hidden'), true);
+    assert.equal(heldText(h.nodes.heroProgressCount), h.nodes.ringSub.textContent);
+    assert.equal(h.nodes.heroProgress.hidden, false);
+    assert.equal(h.nodes.heroProgress.getAttribute('aria-hidden'), 'true');
+    h.setPhone(false);
+    assert.equal(h.nodes.ringSub.classList.contains('visually-hidden'), false);
+    assert.equal(heldText(h.nodes.heroProgressCount), '1 of 3 read');
+  } finally { h.restore(); }
+});
+
+test('phone context keeps the only visible progress and reachable options when nothing is queued', () => {
+  const deferred = setDeferred(setDeferred(seededState(), 'list-a', 2, true), 'list-a', 3, true);
+  const empty = createList(createEmptyState(), { id: 'empty', name: 'Empty' });
+  for (const [label, state, completed, expected] of [
+    ['deferred', deferred, false, '1 of 3 read. 2 deferred'],
+    ['completed', seededState(), true, '1 of 3 read'],
+    ['empty', empty, false, 'Nothing in this list'],
+  ]) {
+    const h = harness({ state, phone: true, isCompleted: () => completed });
+    try {
+      h.view.wire();
+      h.view.render();
+      assert.equal(h.nodes.hero.hidden, true, label);
+      assert.equal(h.nodes.heroProgress.hidden, true, label);
+      assert.equal(h.nodes.ringSub.classList.contains('visually-hidden'), false, label);
+      assert.equal(h.nodes.ringSub.textContent, expected, label);
+      assert.equal(h.nodes.ringWrap.parentNode, h.nodes.readingOverview, label);
+      assert.equal(h.nodes.readingListOptions.parentNode, h.nodes.readingBody, label);
+      assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.readingListOptions)
+        > h.nodes.readingBody.childNodes.indexOf(h.nodes.readingOverview), label);
+      h.setPhone(false);
+      assert.equal(h.nodes.readingListOptions.parentNode, h.nodes.readingBody, label);
+      assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.readingListOptions)
+        > h.nodes.readingBody.childNodes.indexOf(h.nodes.listNote), label);
+      h.setPhone(true);
+      assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.readingListOptions)
+        > h.nodes.readingBody.childNodes.indexOf(h.nodes.readingOverview), label);
+    } finally { h.restore(); }
+  }
+});
+
 test('reading filter geometry reserves actual sticky clearance without changing saved state', () => {
   const h = harness();
   try {
@@ -621,7 +738,7 @@ test('reading filter geometry reserves actual sticky clearance without changing 
   }
 });
 
-test('list actions remain closed until opened and Escape restores focus before closing', () => {
+test('Reading List options remain closed until opened and Escape restores focus before closing', () => {
   const h = harness();
   try {
     h.view.wire();

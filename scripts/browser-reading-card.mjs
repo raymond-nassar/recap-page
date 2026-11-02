@@ -16,10 +16,11 @@ const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', impo
 const order = JSON.parse(readFileSync(new URL(`../src/data/${catalog.lists.find((list) => list.id === 'hickman-minimal').file}`, import.meta.url), 'utf8'));
 const next = order.items[3].title;
 
-function fixture(note = '', other = false) {
+function fixture(note = '', other = false, { empty = false, single = false } = {}) {
   let state = createList(createEmptyState(), { id: 'card', name: order.name, description: order.description, catalogId: order.id, note });
-  state = addIssuesToList(state, 'card', order.items).state;
-  for (const item of order.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
+  const items = empty ? [] : single ? order.items.slice(3, 4) : order.items;
+  state = addIssuesToList(state, 'card', items).state;
+  if (!single) for (const item of order.items.slice(0, empty ? 0 : 3)) state = markRead(state, item.issueId, true, 1767225600000);
   if (other) {
     state = createList(state, { id: 'other', name: 'Another reading list' });
     state = addIssuesToList(state, 'other', order.items.slice(3, 6)).state;
@@ -32,7 +33,7 @@ const settle = (page) => page.evaluate(() => new Promise((resolve) => {
 }));
 
 // A list under way, past the one-time save note, so the card is the first thing in the reading view.
-async function setup(page, { width, height, theme, text, note, touch = false, other = false }) {
+async function setup(page, { width, height, theme, text, note, touch = false, other = false, empty = false, single = false }) {
   await page.goto('about:blank');
   await page.setViewport({ width, height, ...(touch ? { isMobile: true, hasTouch: true } : {}) });
   const { identifier } = await page.evaluateOnNewDocument((initial, key, educationKey, education, chosen) => {
@@ -47,10 +48,11 @@ async function setup(page, { width, height, theme, text, note, touch = false, ot
       return url.origin === location.origin ? real(input, init)
         : Promise.reject(new TypeError('Reading card fixture blocks external requests'));
     };
-  }, exportBackup(fixture(note, other)), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
+  }, exportBackup(fixture(note, other, { empty, single })), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
   await page.goto(`${page.__origin}/#/read/card`, { waitUntil: 'load' });
-  await page.waitForFunction((name) => !document.querySelector('#view-read').hidden
-    && document.querySelector('#hero-title').textContent === name, {}, next);
+  await page.waitForFunction((name, isEmpty) => !document.querySelector('#view-read').hidden
+    && (isEmpty ? !document.querySelector('#reading-empty').hidden
+      : document.querySelector('#hero-title').textContent === name), {}, next, empty);
   if (text) await page.evaluate((size) => { document.documentElement.style.fontSize = size; }, text);
   await settle(page);
   return async () => {
@@ -75,7 +77,7 @@ function measure(page) {
     return {
       scrollTop: hero.scrollTop,
       first: Math.round((hero.querySelector('.hero-in > .art').getBoundingClientRect().top - card.top) * 10) / 10,
-      focus: focused?.id || focused?.tagName || null, inCard,
+      focus: focused?.id || focused?.tagName || null, focusParent: focused?.parentElement?.id || null, inCard,
       control: control ? [Math.round(control.top), Math.round(control.bottom)] : null,
       fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
     };
@@ -95,6 +97,38 @@ export const readingCardFocus = {
     ]) {
       const undo = await setup(page, pass);
       const rest = await measure(page);
+      const options = await page.evaluate(() => {
+        const row = document.querySelector('#hero-primary-actions');
+        const summary = document.querySelector('#list-actions > summary');
+        return {
+          afterRow: !!row.nextElementSibling?.contains(summary),
+          label: summary.textContent.trim(),
+          comicLabel: document.querySelector('#hero-more-actions > summary').textContent.trim(),
+        };
+      });
+      t.check(`${pass.name}: Reading List options follow Read and Done`, options.afterRow, JSON.stringify(options));
+      t.check(`${pass.name}: Reading List options and More comic actions have distinct names`,
+        options.label === 'Reading List options' && options.comicLabel === 'More comic actions', JSON.stringify(options));
+      if (pass.width === 1280) {
+        const openOptions = await page.evaluate(() => {
+          const details = document.querySelector('#list-actions');
+          details.open = true;
+          const column = document.querySelector('#hero .hero-body').getBoundingClientRect();
+          const body = details.querySelector('.list-actions-body').getBoundingClientRect();
+          const result = {
+            inColumn: document.querySelector('#hero .hero-body').contains(details),
+            column: [column.left, column.right], body: [body.left, body.right],
+            visible: details.querySelector('#btn-rename-list').checkVisibility(),
+            overflow: document.documentElement.scrollWidth > innerWidth,
+          };
+          details.open = false;
+          return result;
+        });
+        t.check(`${pass.name}: open Reading List options fit the hero text column`,
+          openOptions.inColumn && openOptions.visible && !openOptions.overflow
+            && openOptions.body[0] >= openOptions.column[0] - 1
+            && openOptions.body[1] <= openOptions.column[1] + 1, JSON.stringify(openOptions));
+      }
       // Tab from Read through every control the card holds, opening More comic actions on the way
       // where the pass asks, as the Issue's keyboard pass did, until focus leaves the card.
       await page.$eval('#btn-hero-read', (node) => node.focus({ preventScroll: true }));
@@ -105,7 +139,7 @@ export const readingCardFocus = {
         await settle(page);
         let now = await measure(page);
         if (!now.inCard) break;
-        if (pass.open && !opened && now.focus === 'SUMMARY') {
+        if (pass.open && !opened && now.focus === 'SUMMARY' && now.focusParent === 'hero-more-actions') {
           await page.keyboard.press('Enter');
           opened = true;
           await settle(page);
@@ -115,7 +149,7 @@ export const readingCardFocus = {
       }
       const moved = steps.filter((step) => step.scrollTop !== 0 || step.first !== rest.first);
       t.check(`${pass.name}: Tab through the card's controls leaves its content where it was`,
-        steps.length >= 3 && steps.some((step) => step.focus === 'SUMMARY') && opened === !!pass.open && !moved.length,
+        steps.length >= 3 && steps.some((step) => step.focusParent === 'hero-more-actions') && opened === !!pass.open && !moved.length,
         JSON.stringify({ rest, moved, path: steps.map((step) => step.focus) }));
       t.check(`${pass.name}: each control the card holds comes into view clear of the bottom bar as it takes focus`,
         steps.every((step) => step.control[0] >= 0 && step.control[1] <= step.fold),
@@ -141,7 +175,148 @@ export const readingCardFocus = {
       t.check(`${pass.name}: the card cannot be scrolled from inside`, forced.top === 0, JSON.stringify(forced));
       await undo();
     }
+    let undo = await setup(page, { width: 1280, height: 900, theme: 'dark', empty: true });
+    const empty = await page.evaluate(() => ({
+      heroHidden: document.querySelector('#hero').hidden,
+      optionsShown: document.querySelector('#list-actions > summary').checkVisibility(),
+      optionsOutsideHero: !document.querySelector('#hero').contains(document.querySelector('#list-actions')),
+    }));
+    t.check('an empty list keeps Reading List options reachable without a hero',
+      empty.heroHidden && empty.optionsShown && empty.optionsOutsideHero, JSON.stringify(empty));
+    await undo();
+
+    undo = await setup(page, { width: 1280, height: 900, theme: 'dark', single: true });
+    await page.evaluate(() => { document.querySelector('#list-actions').open = true; });
+    await page.focus('#btn-rename-list');
+    const other = await page.browserContext().newPage();
+    await other.goto(`${page.__origin}/icons/ui.svg`);
+    await other.evaluate((key, issueId) => {
+      const state = JSON.parse(localStorage.getItem(key));
+      state.read[issueId] = Date.now();
+      localStorage.setItem(key, JSON.stringify(state));
+    }, KEY, order.items[3].issueId);
+    await other.close();
+    await page.waitForFunction(() => document.querySelector('#hero').hidden);
+    const completed = await page.evaluate(() => ({
+      optionsShown: document.querySelector('#list-actions > summary').checkVisibility(),
+      optionsOutsideHero: !document.querySelector('#hero').contains(document.querySelector('#list-actions')),
+      open: document.querySelector('#list-actions').open,
+      focus: document.activeElement?.id,
+    }));
+    t.check('another tab finishing the list keeps its open options reachable and preserves command focus',
+      completed.optionsShown && completed.optionsOutsideHero && completed.open && completed.focus === 'btn-rename-list',
+      JSON.stringify(completed));
+    await undo();
     t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const readingCardPhoneOverview = {
+  id: 'reading-card-phone-overview',
+  title: 'phone Reading List context follows the comic and the options group is distinct',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    for (const theme of ['dark', 'light']) {
+      const clean = await setup(page, {
+        width: 390, height: 844, theme, note: 'Read the Avengers issues first.',
+      });
+      const layout = await page.evaluate(() => {
+        const selectors = [
+          '#order-name', '#hero', '#order-sub', '#ring-wrap', '#hero-progress', '#order-desc', '#list-note',
+        ];
+        const nodes = selectors.map((selector) => document.querySelector(selector));
+        const boxes = nodes.map((node) => {
+          const { top, bottom } = node.getBoundingClientRect();
+          return [top, bottom];
+        });
+        const row = document.querySelector('#hero-primary-actions');
+        const options = document.querySelector('#list-actions > summary');
+        const done = document.querySelector('#btn-hero-done');
+        const read = document.querySelector('#btn-hero-read');
+        const rowBox = row.getBoundingClientRect(), optionsBox = options.getBoundingClientRect();
+        const rowStyle = getComputedStyle(row), optionStyle = getComputedStyle(options), doneStyle = getComputedStyle(done);
+        const readBox = read.getBoundingClientRect(), doneBox = done.getBoundingClientRect();
+        return {
+          dom: nodes.every((node, at) => at === 0 || !!(nodes[at - 1].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)),
+          visual: boxes.every((box, at) => at === 0 || boxes[at - 1][0] <= box[0]),
+          boxes,
+          afterCard: boxes[2][0] >= boxes[1][1],
+          optionGroup: {
+            gap: optionsBox.top - rowBox.bottom,
+            rowGap: readBox.right <= doneBox.left ? doneBox.left - readBox.right : parseFloat(rowStyle.columnGap),
+            edges: [rowBox.left, rowBox.right, optionsBox.left, optionsBox.right],
+            optionBackground: optionStyle.backgroundColor, doneBackground: doneStyle.backgroundColor,
+            optionBorder: optionStyle.borderTopColor, doneBorder: doneStyle.borderTopColor,
+          },
+        };
+      });
+      t.check(`${theme}: the phone's title, comic and moved list context share DOM and visual order`,
+        layout.dom && layout.visual && layout.afterCard, JSON.stringify(layout));
+      const group = layout.optionGroup;
+      t.check(`${theme}: Reading List options form a quieter, edge-aligned group with a larger gap`,
+        group.gap > group.rowGap && Math.abs(group.edges[0] - group.edges[2]) <= 1
+          && Math.abs(group.edges[1] - group.edges[3]) <= 1
+          && group.optionBackground !== group.doneBackground && group.optionBorder !== group.doneBorder,
+        JSON.stringify(group));
+
+      const status = await page.evaluate(() => {
+        const status = document.querySelector('#hydration-status');
+        const stop = document.querySelector('#btn-cancel-hydrate');
+        status.hidden = false;
+        status.textContent = 'Fetching details';
+        stop.hidden = false;
+        const result = {
+          status: status.checkVisibility(), stop: stop.checkVisibility(),
+          beforeHero: stop.compareDocumentPosition(document.querySelector('#hero')) & Node.DOCUMENT_POSITION_FOLLOWING,
+        };
+        status.hidden = true;
+        stop.hidden = true;
+        return result;
+      });
+      t.check(`${theme}: pending work and Stop stay visible before the comic`,
+        status.status && status.stop && !!status.beforeHero, JSON.stringify(status));
+
+      await page.$eval('#order-desc > summary', (summary) => {
+        summary.parentElement.open = true;
+        summary.focus({ preventScroll: true });
+      });
+      const saved = await page.evaluate((key) => localStorage.getItem(key), KEY);
+      for (const [width, height, phone] of [[1024, 900, false], [390, 844, true]]) {
+        await page.setViewport({ width, height });
+        await settle(page);
+        const restored = await page.evaluate((key) => {
+          const hero = document.querySelector('#hero');
+          const sub = document.querySelector('#order-sub');
+          const note = document.querySelector('#list-note');
+          const glance = document.querySelector('#hero-progress');
+          const details = document.querySelector('#order-desc');
+          return {
+            after: !!(hero.compareDocumentPosition(sub) & Node.DOCUMENT_POSITION_FOLLOWING),
+            noteAfter: !!(hero.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING),
+            glanceInHero: hero.contains(glance), open: details.open,
+            focused: document.activeElement === details.querySelector('summary'),
+            saved: localStorage.getItem(key),
+          };
+        }, KEY);
+        t.check(`${theme}: ${phone ? 'phone' : 'wide'} resize restores order without losing focus, expansion or saved data`,
+          restored.after === phone && restored.noteAfter === phone && restored.glanceInHero !== phone
+            && restored.open && restored.focused && restored.saved === saved, JSON.stringify(restored));
+      }
+      await page.evaluate(() => {
+        document.querySelector('#list-actions').open = true;
+        document.querySelector('#btn-rename-list').focus({ preventScroll: true });
+      });
+      for (const [width, height] of [[1024, 900], [390, 844]]) {
+        await page.setViewport({ width, height });
+        await settle(page);
+        t.check(`${theme}: ${width}px resize keeps the open Reading List options and their focused action`,
+          await page.evaluate(() => document.activeElement === document.querySelector('#btn-rename-list')
+            && document.querySelector('#list-actions').open), 'focus or expansion lost');
+      }
+      await clean();
+    }
+    t.check('the phone overview passes raise no page errors', errors.length === 0, errors.join(' / '));
   },
 };
 
@@ -150,10 +325,10 @@ export const readingCardFocus = {
 // it, a phone showed the cover floated left at 96px. The owner's 2026-11-02 choices then put Read and
 // Done side by side on phones and made the list's heading compact on short screens, so at default text
 // both open above the bottom bar on every phone here, 375x667 and 360x800 included, where before #1061
-// Done opened 171px and 38px under it. The covers are held to no smaller than this branch measured
-// before those choices. One case still opens under the bar and is pinned as measured rather than hidden:
-// 375x667 with a list note, where the cover is already at its 96px floor and Done ends 42px under.
-// Read and Done are then checked with the card scrolled to its top, as the owner's screenshot shows it.
+// Done opened 171px and 38px under it. Placing Reading List options after the buttons also clears them
+// at 375x667 with a list note and the cover at its 96px floor. The covers are held to no smaller than
+// this branch measured before those choices. Read and Done are then checked with the card scrolled to
+// its top, as the owner's screenshot shows it.
 const posterCoverBefore = {
   '360x800': [96, 96], '375x667': [96, 96], '390x844': [109, 96], '393x851': [114, 96],
   '412x915': [157, 119], '414x896': [144, 107], '430x932': [168, 131],
@@ -184,14 +359,11 @@ export const readingCardPoster = {
               art: Math.round(document.querySelector('#hero .hero-in > .art').getBoundingClientRect().width),
               note: note.hidden ? 0 : Math.round(note.getBoundingClientRect().height), clipped };
           });
-          const residual = width === 375 && height === 667 && !!note;
-          t.check(residual
-            ? `${name}: Done opens under the bar as measured, with the cover at its 96px floor`
-            : `${name}: Read and Done are above the fold when the screen opens`,
-          opened.scrollY === 0 && !!opened.note === !!note && opened.clipped.length === 0
-              && (residual ? opened.done > opened.fold && Math.abs(opened.art - 96) <= 1
-                : opened.read <= opened.fold && opened.done <= opened.fold),
-          JSON.stringify(opened));
+          t.check(`${name}: Read and Done are above the fold when the screen opens`,
+            opened.scrollY === 0 && !!opened.note === !!note && opened.clipped.length === 0
+              && opened.read <= opened.fold && opened.done <= opened.fold
+              && opened.art >= 96,
+            JSON.stringify(opened));
           if (width <= 700) {
             t.check(`${name}: Read and Done open side by side in one row`,
               opened.rows[0] === opened.rows[1], JSON.stringify(opened));
@@ -203,8 +375,8 @@ export const readingCardPoster = {
             return { art: Math.round(art.width), rem: parseFloat(getComputedStyle(document.documentElement).fontSize),
               gap: Math.round(document.querySelector('#hero-title').getBoundingClientRect().top - art.bottom) };
           });
-          t.check(`${name}: the cover keeps the 96px and half-rem gap it had before`,
-            Math.abs(gap.art - 96) <= 1 && gap.gap <= gap.rem / 2 + 1, JSON.stringify(gap));
+          t.check(`${name}: the cover keeps at least 96px and its half-rem gap`,
+            gap.art >= 96 && gap.gap <= gap.rem / 2 + 1, JSON.stringify(gap));
         }
         await page.evaluate(() => {
           const hero = document.querySelector('#hero');
@@ -392,12 +564,11 @@ export const readingCardUndo = {
     page.on('pageerror', (error) => errors.push(error.message));
     for (const [width, height] of phoneSizes) {
       for (const note of ['', 'Read the Avengers issues first.']) {
-        // #1061's compact heading opens Done 114px above the bar at 360x800 with nothing above it
-        // to scroll away, so the helper cannot bring it down and the whole notice lands clear.
-        await checkPhoneUndo(page, t, { width, height, note, opensClear: width === 360 && !note });
+        // After moving the context below the card, the two shortest profiles still cover the offer.
+        await checkPhoneUndo(page, t, { width, height, note, opensClear: height > 800 });
       }
     }
-    await checkPhoneUndo(page, t, { width: 390, height: 844, reduced: true });
+    await checkPhoneUndo(page, t, { width: 360, height: 800, reduced: true });
     await page.emulateMediaFeatures([]);
     t.check('the Undo visibility passes raise no page errors', errors.length === 0, errors.join(' / '));
   },
@@ -411,7 +582,7 @@ export const readingCardUndoStill = {
     page.on('pageerror', (error) => errors.push(error.message));
     await checkPhoneUndo(page, t, { width: 390, height: 844, clearance: 180 });
 
-    const hidden = await setup(page, { width: 390, height: 844, theme: 'dark', touch: true });
+    const hidden = await setup(page, { width: 360, height: 800, theme: 'dark', touch: true });
     const visible = await readyDone(page);
     await page.$eval('.rail-header', (rail) => { rail.style.visibility = 'hidden'; });
     await watchOffer(page);
@@ -424,7 +595,7 @@ export const readingCardUndoStill = {
     await hidden();
 
     for (const intervention of ['scroll', 'list', 'view']) {
-      const clean = await setup(page, { width: 390, height: 844, theme: 'dark', touch: true, other: intervention === 'list' });
+      const clean = await setup(page, { width: 360, height: 800, theme: 'dark', touch: true, other: intervention === 'list' });
       const before = await readyDone(page);
       await watchOffer(page, intervention);
       await page.$eval('#btn-hero-done', (button) => button.click());
@@ -481,6 +652,14 @@ export const readingCardMutations = [
       const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('/styles.css'));
       sheet?.insertRule('@media (max-width: 700px) { #hero .hero-in > .art { float: left !important; width: 96px !important; margin: 0 20px 16px 0 !important; } }', sheet.cssRules.length);
     }),
+  },
+  {
+    id: 'reading-card-undo-no-reveal', breaks: 'reading-card-undo',
+    why: 'a covered Undo offer remains under the bottom bar',
+    rewriteReading: (source) => source.replace(
+      '    revealCoveredDone(result, scrollContext);',
+      '',
+    ),
   },
   {
     id: 'reading-card-undo-reduced-motion', breaks: 'reading-card-undo',
