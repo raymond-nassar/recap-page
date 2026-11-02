@@ -13,6 +13,7 @@ export function wireMobileUi({ arrivalHeading }) {
 
   const tools = document.querySelector('.list-tools');
   const actions = tools.querySelector('#list-actions');
+  const actionsSummary = actions.querySelector('summary');
   const exportChoices = tools.querySelector('#list-export');
   let actionsWereOpen = false;
   const trigger = document.createElement('button');
@@ -51,7 +52,7 @@ export function wireMobileUi({ arrivalHeading }) {
     trigger.setAttribute('aria-expanded', 'false');
     const target = narrow.matches ? trigger
       : focused && tools.contains(focused) && focused.checkVisibility() && !focused.matches(':disabled')
-        ? focused : actions.querySelector('summary');
+        ? focused : actionsSummary;
     if (target?.checkVisibility() && target.getClientRects().length) target.focus({ preventScroll: true });
   }
 
@@ -121,9 +122,16 @@ export function wireMobileUi({ arrivalHeading }) {
     if (!narrow.matches || sheet.open || event.relatedTarget || tools.checkVisibility() || !trigger.checkVisibility()) return;
     trigger.focus({ preventScroll: true });
   });
+  trigger.addEventListener('focusout', (event) => {
+    if (narrow.matches || sheet.open || event.relatedTarget || trigger.checkVisibility() || !actionsSummary.checkVisibility()) return;
+    actionsSummary.focus({ preventScroll: true });
+  });
   narrow.addEventListener('change', () => {
-    if (!narrow.matches) dismiss();
-    else if (tools.contains(document.activeElement) && trigger.checkVisibility()) trigger.focus({ preventScroll: true });
+    if (!narrow.matches) {
+      const focused = document.activeElement === trigger;
+      dismiss();
+      if (focused && actionsSummary.checkVisibility()) actionsSummary.focus({ preventScroll: true });
+    } else if (tools.contains(document.activeElement) && trigger.checkVisibility()) trigger.focus({ preventScroll: true });
   });
   const view = document.querySelector('#view-read');
   const body = document.querySelector('#reading-body');

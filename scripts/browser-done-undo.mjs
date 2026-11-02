@@ -607,9 +607,11 @@ async function heroHints(page, t, width) {
   await toTop(page, '#btn-hero-done');
   await raise(page, '#btn-hero-done', 'focus');
   const clear = await hints(page);
-  t.check(`${width}px: with nothing to keep clear, Done's hint at the top of the window shows below Done as before`,
+  const options = await pairHints(page, '#btn-hero-done', '#list-actions > summary');
+  t.check(`${width}px: at the top, Done's hint gives way to Reading List options even before a result exists`,
     clear.result === null && clear.anchor?.top <= 20
-    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom'), JSON.stringify(clear));
+    && !clear.tips.some((tip) => tip.id === 'action-tip')
+    && options.points > 0 && !options.covers && options.taken === 0, JSON.stringify({ clear, options }));
 
   // Each pass starts wherever the last left the list, so Done is followed by the hero changing
   // rather than by a particular comic.
@@ -799,23 +801,25 @@ export const readDoneHints = {
             await settle(page);
             if (position === 'top') await toTop(page, trigger);
             await raise(page, trigger, how);
-            rows.push({ step: `${name(trigger)} ${position} ${how}`, ...(await pairHints(page, trigger, other)) });
+            const options = await pairHints(page, trigger, '#list-actions > summary');
+            rows.push({ step: `${name(trigger)} ${position} ${how}`, ...(await pairHints(page, trigger, other)),
+              options: { box: options.other, points: options.points, taken: options.taken, covers: options.covers } });
           }
         }
       }
-      const wrong = rows.filter((row) => row.covers || row.taken > 0
+      const wrong = rows.filter((row) => row.covers || row.taken > 0 || row.options.covers || row.options.taken > 0
         || (row.step.includes(' top ') && !(row.box.top <= 20)) || (row.step.includes(' natural ') && row.points === 0));
-      t.check(`${width}px: no hint raised by focus or pointer on Read or Done, at its natural place or near the top, covers the other button or answers a point of it`,
+      t.check(`${width}px: no hint raised by focus or pointer on Read or Done covers the other button or Reading List options`,
         rows.length === 8 && wrong.length === 0, JSON.stringify(wrong.length ? wrong : rows));
 
       const stacked = rows[0].box.bottom <= rows[0].other.top;
       const expected = stacked
-        ? { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'bottom', 'Done top': 'bottom' }
-        : { 'Read natural': 'top', 'Read top': 'bottom', 'Done natural': 'top', 'Done top': 'bottom' };
+        ? { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'none', 'Done top': 'none' }
+        : { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'top', 'Done top': 'none' };
       const sides = rows.map((row) => [row.step, row.tips.find((tip) => tip.id === 'action-tip')?.side ?? 'none']);
       t.check(stacked
-        ? `${width}px stacked: Done's hint shows below Done and Read's above Read, and near the top Read's gives way, its only room being over Done`
-        : `${width}px side by side: each hint keeps the place it had`,
+        ? `${width}px stacked: hints give way when their only room is over another action`
+        : `${width}px side by side: hints show above at rest and give way to Reading List options near the top`,
       sides.every(([step, side]) => expected[step.replace(/ (focus|pointer)$/, '')] === side), JSON.stringify(sides));
 
       if (width === 390) {
@@ -824,12 +828,21 @@ export const readDoneHints = {
         await page.hover(DONE);
         await settle(page);
         const moved = await pairHints(page, DONE, READ);
+        const options = await pairHints(page, DONE, '#list-actions > summary');
         const tip = moved.tips.find((item) => item.id === 'action-tip');
+        const room = tip && {
+          betweenDoneAndOptions: options.other.top - moved.box.bottom,
+          hintHeight: tip.box.bottom - tip.box.top,
+          hintGap: moved.box.top - tip.box.bottom,
+        };
+        console.log(`UX1063-DONE-TIP ${JSON.stringify({ done: moved.box, read: moved.other, options: options.other, tip, room })}`);
         const visible = () => page.$eval('#action-tip', (node) => !node.hidden);
         let gap = false;
         let over = false;
         if (tip) {
-          await page.mouse.move((moved.box.left + moved.box.right) / 2, (moved.box.bottom + tip.box.top) / 2, { steps: 12 });
+          const gapY = tip.side === 'top' ? (moved.box.top + tip.box.bottom) / 2
+            : (moved.box.bottom + tip.box.top) / 2;
+          await page.mouse.move((moved.box.left + moved.box.right) / 2, gapY, { steps: 12 });
           await settle(page);
           gap = await visible();
           await page.mouse.move((tip.box.left + tip.box.right) / 2, (tip.box.top + tip.box.bottom) / 2, { steps: 12 });
@@ -843,10 +856,13 @@ export const readDoneHints = {
           hidden: document.querySelector('#action-tip').hidden, focus: document.activeElement?.id,
           described: document.querySelector('#btn-hero-done').getAttribute('aria-describedby'),
         }));
-        t.check('390px: the hint moved below Done stays visual only, holds through the gap and onto itself, and Escape dismisses it with focus kept on Done',
-          tip?.side === 'bottom' && tip.ariaHidden === 'true' && gap && over
+        t.check('390px: the top hint clears Read and Reading List options, stays hoverable and visual only, and Escape keeps focus on Done',
+          moved.box.top < moved.other.bottom && moved.other.top < moved.box.bottom
+          && tip?.side === 'top' && tip.ariaHidden === 'true'
+          && moved.points > 0 && !moved.covers && moved.taken === 0
+          && options.points > 0 && !options.covers && options.taken === 0 && gap && over
           && after.hidden && after.focus === 'btn-hero-done' && after.described === 'hero-done-help',
-          JSON.stringify({ tip, gap, over, after }));
+          JSON.stringify({ moved, options, room, gap, over, after }));
       }
 
       const clicks = [];
@@ -871,6 +887,19 @@ export const readDoneHints = {
         && clicks.filter((row) => row.step.startsWith('Read')).every((row) => row.shown.length === 1),
         JSON.stringify(clicks));
     }
+    await page.setViewport({ width: 390, height: 900 });
+    await fresh(page);
+    await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+    await settle(page);
+    await toTop(page, READ);
+    await raise(page, DONE, 'pointer');
+    const enlargedRead = await pairHints(page, DONE, READ);
+    const enlargedOptions = await pairHints(page, DONE, '#list-actions > summary');
+    t.check('390px at 200% text: a stacked Done hint leaves Read and Reading List options clear and clickable',
+      enlargedRead.other.bottom <= enlargedRead.box.top
+      && enlargedRead.points > 0 && !enlargedRead.covers && enlargedRead.taken === 0
+      && enlargedOptions.points > 0 && !enlargedOptions.covers && enlargedOptions.taken === 0,
+      JSON.stringify({ read: enlargedRead, options: enlargedOptions }));
     t.check('the checks raise no page errors', errors.length === 0, errors.join(' / '));
   },
 };
@@ -883,5 +912,14 @@ export const readDoneHintsMutations = [
       "    $('#btn-hero-read').addEventListener('click', (e) => {",
       "    $('#hero-primary-actions').removeAttribute('data-tooltip-group');\n    $('#btn-hero-read').addEventListener('click', (e) => {",
     ),
+  },
+  {
+    id: 'read-done-hints-options-unprotected', breaks: 'read-done-hints',
+    why: 'without the protection the stacked Done hint takes clicks meant for Reading List options',
+    script: () => {
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('#reading-list-options').removeAttribute('data-keep-uncovered');
+      });
+    },
   },
 ];

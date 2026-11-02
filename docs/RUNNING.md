@@ -401,7 +401,7 @@ in the selected list's current order. Move through the earlier portion with **Ea
 whose first comic is unread have no earlier candidate; use **Open full Reading List** instead.
 
 The picker does not fetch or reveal descriptions. Open a comic's details for description
-controls, then go Back to the picker. With hiding off, Details can show text already fetched.
+controls, then go Back to the picker.
 Return to Reading's **Read next issue** to continue the order. The reader button in Details opens
 the comic you are inspecting.
 

@@ -153,7 +153,7 @@ export function wireTooltips({ resolve, document: doc = document, window: win = 
     // A pixel of overlap with both edges, because pointers land on whole pixels and hit testing snaps
     // while the hint's edge may not. Measured on #1061's reading card at 1280x900, the hint's foot was
     // at y 367.36: the pointer's step to 367 hit the card instead, fell outside a corridor that began at
-    // 367.36, and the hint closed under a pointer travelling onto it.
+    // 367.36, and the hint closed under a pointer traveling onto it.
     return point.x >= left - 1 && point.x <= right + 1 && point.y >= top - 1 && point.y <= bottom + 1;
   }
 

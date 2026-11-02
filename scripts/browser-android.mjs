@@ -2800,6 +2800,32 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
     console.log(`CHECKED ${label}: forced focus order ${pass} ${JSON.stringify({ before, after })}`);
     check(after.focus === 'android-list-options' && after.triggerVisible,
       `${label}: the hidden command transfers focus to visible list options, pass ${pass} ${JSON.stringify(after)}`);
+    await page.evaluate(() => {
+      const control = window.__listMediaTest;
+      control.blur = false;
+      control.holding = true;
+      document.querySelector('#android-list-options').addEventListener('focusout', () => { control.blur = true; }, { once: true });
+    });
+    await page.setViewport(wide);
+    await page.waitForFunction(() => window.__listMediaTest.blur && window.__listMediaTest.queued.length > 0);
+    const beforeWide = await page.evaluate(() => ({
+      blurred: window.__listMediaTest.blur,
+      hidden: !document.querySelector('#android-list-options').checkVisibility(),
+      queued: window.__listMediaTest.queued.length,
+      summaryVisible: document.querySelector('#list-actions > summary').checkVisibility(),
+      focus: document.activeElement?.id || document.activeElement?.tagName,
+    }));
+    check(beforeWide.blurred && beforeWide.hidden && beforeWide.queued > 0 && beforeWide.summaryVisible,
+      `${label}: forced trigger focus-out precedes the held widening callback, pass ${pass} ${JSON.stringify(beforeWide)}`);
+    await page.evaluate(() => window.__listMediaTest.release());
+    const afterWide = await page.evaluate(() => ({
+      summaryFocused: document.activeElement === document.querySelector('#list-actions > summary'),
+      summaryVisible: document.querySelector('#list-actions > summary').checkVisibility(),
+      focus: document.activeElement?.id || document.activeElement?.tagName,
+    }));
+    console.log(`CHECKED ${label}: forced widening focus order ${pass} ${JSON.stringify({ before: beforeWide, after: afterWide })}`);
+    check(afterWide.summaryFocused && afterWide.summaryVisible,
+      `${label}: the hidden trigger transfers focus to the visible list disclosure, pass ${pass} ${JSON.stringify(afterWide)}`);
   }
   await page.setViewport(wide);
   await page.$eval('#list-actions', (node) => { node.open = true; });
@@ -2812,6 +2838,8 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
   check(await page.$eval('#view-read details.full > summary', (node) => document.activeElement === node),
     `${label}: narrowing does not reclaim focus that the reader already moved elsewhere`);
   await page.setViewport(wide);
+  check(await page.$eval('#view-read details.full > summary', (node) => document.activeElement === node),
+    `${label}: widening does not reclaim focus from another control`);
 }
 
 async function mobileLayout(page, label, narrow) {
@@ -3231,8 +3259,8 @@ async function mobileLayout(page, label, narrow) {
 }
 
 // #855: no visual hint may cover Done's result, the confirmation or the failure of the change just
-// made. On a phone Done spans the screen, so with it near the top the only room left for its hint is
-// below, over the result, and there the hint gives way. It was reported at 412x915 with text at 200
+// made. With Done near the top the only room left for its hint is below, where it could cover either
+// the result or Reading List options. The result overlap was reported at 412x915 with text at 200
 // per cent, where the first Done retires the save note above the hero and lifts Done to the top.
 // Home is not visited: its commands carry no hints, and the rail's show only on wide screens.
 const hintTitle = (n) => `Hint fixture (2026) #${n}`;
@@ -3272,10 +3300,16 @@ async function doneHintGeometry(page, label) {
       .filter((tip) => !tip.hidden && tip.getClientRects().length)
       .map((tip) => ({ id: tip.id, side: tip.dataset.side ?? null, box: box(tip) }));
     const done = document.querySelector('#btn-hero-done');
+    const optionsNode = document.querySelector('#android-list-options');
+    const options = optionsNode.getClientRects().length ? box(optionsNode) : null;
+    const edge = options ? { x: (options.left + options.right) / 2, y: options.top + 3 } : null;
     return {
       text: node?.querySelector('.grow')?.textContent ?? null, result, tips,
       covered: !!result && tips.some(({ box: tip }) => tip.left < result.right && result.left < tip.right
         && tip.top < result.bottom && result.top < tip.bottom),
+      options, edge, optionsHit: !!edge && optionsNode.contains(document.elementFromPoint(edge.x, edge.y)),
+      optionsCovered: !!options && tips.some(({ box: tip }) => tip.left < options.right && options.left < tip.right
+        && tip.top < options.bottom && options.top < tip.bottom),
       done: done.getClientRects().length ? box(done) : null,
     };
   });
@@ -3305,9 +3339,15 @@ async function doneHintGeometry(page, label) {
   await page.waitForSelector('#view-read:not([hidden]) #btn-hero-done');
   await settle();
   const clear = await focusAtTop();
-  check(clear.result === null && clear.done?.top <= 20
-    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom'),
-  `${label}: with nothing to keep clear, Done's hint at the top shows below Done as before ${JSON.stringify(clear)}`);
+  check(clear.result === null && clear.done?.top <= 20 && clear.options && clear.optionsHit
+    && !clear.optionsCovered && !clear.tips.some((tip) => tip.id === 'action-tip'),
+  `${label}: Done's hint gives way to Reading List options at the top ${JSON.stringify(clear)}`);
+  await page.touchscreen.tap(clear.edge.x, clear.edge.y);
+  await settle();
+  const openedOptions = await page.$eval('#android-list-sheet', (sheet) => sheet.open);
+  check(openedOptions, `${label}: a tap on the edge of Reading List options opens its sheet`);
+  if (openedOptions) await backDialog(page);
+  console.log(`CHECKED ${label}: Done and Reading List options ${JSON.stringify({ done: clear.done, options: clear.options })}`);
 
   const rows = [];
   await page.evaluate(() => scrollTo(0, 0));
@@ -3335,15 +3375,14 @@ async function doneHintGeometry(page, label) {
   await page.waitForFunction(() => document.querySelector('#done-result button')?.textContent === 'Try again');
   await page.evaluate(() => window.__hintRestoreSet());
   rows.push({ step: 'Try again at the top', ...(await focusAtTop()) });
-  const wrong = rows.filter((row) => !row.result || row.covered || (row.step.endsWith('at the top') && !(row.done?.top <= 20)));
+  const wrong = rows.filter((row) => !row.result || row.covered || row.optionsCovered
+    || (row.step.endsWith('at the top') && !(row.done?.top <= 20)));
   check(rows.length === 5 && !wrong.length,
-    `${label}: no hint covers Done's result after a tap on Done or Undo, or after a refused save ${JSON.stringify(wrong)}`);
+    `${label}: no hint covers Done's result or Reading List options after Done, Undo, or a refused save ${JSON.stringify(wrong)}`);
   console.log(`CHECKED ${label}: Done's hint and result ${JSON.stringify(rows.map((row) => [row.step, row.tips.map((tip) => tip.side).join() || 'none']))}`);
 
-  // #860: on a phone Read is stacked above Done, and each one's hint covered part of the other button
-  // and took taps meant for it: about half of Read at its natural place, and with 200 per cent text
-  // nearly all of it. Leaving the reading view retires the refused save's result, so the pair is
-  // checked with nothing to keep clear. In landscape the two sit side by side.
+  // #860: each hint used to cover part of the other button and take taps meant for it. Leaving the
+  // reading view retires the refused save's result; Reading List options still needs to stay clear.
   if (page.viewport().width > page.viewport().height) return;
   await page.evaluate(() => { location.hash = '#/home'; });
   await page.waitForSelector('#view-home:not([hidden])');
@@ -3391,22 +3430,26 @@ async function doneHintGeometry(page, label) {
   for (const [trigger, other] of [['#btn-hero-read', '#btn-hero-done'], ['#btn-hero-done', '#btn-hero-read']]) {
     for (const position of ['natural', 'top']) {
       await place(trigger, position);
-      pairRows.push({ step: `${trigger === '#btn-hero-read' ? 'Read' : 'Done'} ${position}`, ...(await pair(trigger, other)) });
+      pairRows.push({ step: `${trigger === '#btn-hero-read' ? 'Read' : 'Done'} ${position}`, ...(await pair(trigger, other)),
+        options: await pair(trigger, '#android-list-options') });
     }
   }
-  const expected = { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'bottom', 'Done top': 'bottom' };
-  const misplaced = pairRows.filter((row) => row.covers || row.taken > 0 || row.side !== expected[row.step]
+  const expected = { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'top', 'Done top': 'none' };
+  const misplaced = pairRows.filter((row) => row.covers || row.taken > 0 || row.options.covers || row.options.taken > 0
+    || row.side !== expected[row.step] || (row.step.endsWith('top') && row.options.points === 0)
     || (row.step.endsWith('top') && !(row.box.top <= 20)) || (row.step.endsWith('natural') && row.points === 0));
   check(retired && pairRows.length === 4 && !misplaced.length,
-    `${label}: neither Read's hint nor Done's covers the other button or answers a point of it, raised by keyboard focus at the natural place or near the top ${JSON.stringify(misplaced.length ? misplaced : pairRows)}`);
+    `${label}: neither hint covers or takes taps from the other button or Reading List options ${JSON.stringify(misplaced.length ? misplaced : pairRows)}`);
 
   // A finger on the edge of one button nearest the other, where the other's hint used to sit.
   const tapBeside = async (target, from) => {
     const point = await page.evaluate((targetSelector, fromSelector) => {
       const near = document.querySelector(targetSelector).getBoundingClientRect();
       const far = document.querySelector(fromSelector).getBoundingClientRect();
-      const x = (near.left + near.right) / 2;
-      return near.bottom <= far.top ? { x, y: near.bottom - 3 } : { x, y: near.top + 3 };
+      const middle = { x: (near.left + near.right) / 2, y: (near.top + near.bottom) / 2 };
+      if (near.bottom <= far.top) return { x: middle.x, y: near.bottom - 3 };
+      if (near.top >= far.bottom) return { x: middle.x, y: near.top + 3 };
+      return near.right <= far.left ? { x: near.right - 3, y: middle.y } : { x: near.left + 3, y: middle.y };
     }, target, from);
     const under = await page.evaluate(({ x, y }) => {
       const hit = document.elementFromPoint(x, y);
@@ -3427,7 +3470,7 @@ async function doneHintGeometry(page, label) {
   const onDone = await tapBeside('#btn-hero-done', '#btn-hero-read');
   const marked = await page.$eval('#hero-title', (node) => node.textContent) !== before;
   const afterDone = await pair('#btn-hero-done', '#btn-hero-read');
-  check(shown === 'bottom' && launched && onRead.under !== 'action-tip' && !afterRead.covers
+  check(shown === 'top' && launched && onRead.under !== 'action-tip' && !afterRead.covers
     && marked && onDone.under !== 'action-tip' && !afterDone.covers,
   `${label}: a tap on Read's edge beside Done's hint opens the reader, a tap on Done's edge beside Read marks the comic, and neither tap leaves a hint over the other button ${JSON.stringify({ shown, onRead, launched, afterRead, onDone, marked, afterDone })}`);
   console.log(`CHECKED ${label}: Read and Done hints ${JSON.stringify(pairRows.map((row) => [row.step, row.side]))}`);
@@ -4095,6 +4138,13 @@ const GLANCE = {
   hero: { count: '#hero-progress-count', bar: '#hero-progress .glance-bar', fill: '#hero-progress-fill', card: '#hero', read: '#btn-hero-read', root: '#view-read' },
   home: { count: '#chero-count', bar: '#chero-bar', fill: '#chero-fill', card: '#home-continue', read: '#btn-chero-read', root: '#home-continue' },
 };
+async function iosTextTokens(scale = 1) {
+  const tokens = [...(await readFile(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'))
+    .matchAll(/(--t-[\w-]+): calc\(var\(--ios-text-scale\) \* (\d+)px\)/g)];
+  assert.ok(tokens.length >= 6, 'the iOS overlay still declares its text tokens');
+  return tokens.map(([, name, px]) => [name, `${Number(px) * scale}px`]);
+}
+
 async function progressGlanceCheck(page, label, viewport) {
   const name = `${label} ${viewport.theme}${viewport.covers ? ' covers' : ''}`;
   const total = readingOrder.items.length;
@@ -4242,6 +4292,89 @@ async function progressGlanceCheck(page, label, viewport) {
   await screenshot(page, name, 'progress-glance-home');
   await page.evaluate(() => window.scrollTo(0, 0));
   console.log(`CHECKED ${name}: progress at a glance ${JSON.stringify({ heroRead: hero.read, homeRead: home.read, fold: home.fold, hero: heroPaint, home: homePaint })}`);
+}
+
+async function readingActionWrapCheck(page) {
+  await route(page, 'read');
+  await page.waitForSelector('#hero:not([hidden]) #btn-hero-read');
+  const androidTokens = await page.evaluate(() => {
+    const root = getComputedStyle(document.documentElement);
+    return ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
+      .map((name) => [name, root.getPropertyValue(name).trim()]);
+  });
+  await page.evaluate(() => {
+    const Clock = Date;
+    window.__actionWrapClock = new Clock(2026, 11, 6, 12).getTime();
+    window.Date = class extends Clock {
+      constructor(...args) { super(...(args.length ? args : [window.__actionWrapClock])); }
+      static now() { return window.__actionWrapClock; }
+    };
+  });
+  const profiles = [
+    { name: 'Android 360x800 200%', width: 360, height: 800, tokens: androidTokens, stackLong: true },
+    { name: 'iOS 390x844 AX3 tokens', width: 390, height: 844, tokens: await iosTextTokens(40 / 17) },
+    { name: 'iOS 375x667 AX5 tokens', width: 375, height: 667, tokens: await iosTextTokens(53 / 17), largest: true, stackLong: true },
+  ];
+  for (const profile of profiles) {
+    await page.setViewport({ width: profile.width, height: profile.height, isMobile: true, hasTouch: true });
+    await page.evaluate(({ tokens, largest }) => {
+      const root = document.documentElement;
+      for (const [name, value] of tokens) root.style.setProperty(name, value);
+      root.dataset.iosLargestText = largest ? 'true' : 'false';
+    }, profile);
+    for (const [day, expected] of [[6, 'Read'], [7, 'Find on Marvel Comics']]) {
+      await page.evaluate((date) => {
+        window.__actionWrapClock = new Date(2026, 11, date, 12).getTime();
+        window.dispatchEvent(new Event('focus'));
+      }, day);
+      await page.waitForFunction((text) => document.querySelector('#btn-hero-read')?.textContent.trim() === text, {}, expected);
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const measured = await page.evaluate(() => {
+        const box = (node) => {
+          const rect = node.getBoundingClientRect();
+          return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height };
+        };
+        const buttons = ['#btn-hero-read', '#btn-hero-done'].map((selector) => {
+          const node = document.querySelector(selector);
+          const bounds = node.getBoundingClientRect();
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+          const words = [];
+          while (walker.nextNode()) {
+            const text = walker.currentNode;
+            for (const match of text.textContent.matchAll(/\S+/g)) {
+              const range = document.createRange();
+              range.setStart(text, match.index);
+              range.setEnd(text, match.index + match[0].length);
+              const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+              words.push({ word: match[0], lines: rects.length, inside: rects.every((rect) => (
+                rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+                && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1
+              )) });
+            }
+          }
+          return { text: node.textContent.trim(), name: node.getAttribute('aria-label'), box: box(node), words };
+        });
+        const [read, done] = buttons;
+        return { buttons, group: box(document.querySelector('#hero-primary-actions')),
+          stacked: done.box.top >= read.box.bottom - 0.5,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 };
+      });
+      const [read, done] = measured.buttons;
+      const words = [...read.words, ...done.words];
+      check(read.text === expected && read.name?.includes(expected) && done.text === 'Done'
+        && words.length === expected.split(' ').length + 1
+        && words.every((word) => word.lines === 1 && word.inside)
+        && measured.buttons.every(({ box }) => box.width >= 48 && box.height >= 48
+          && box.left >= -1 && box.right <= profile.width + 1)
+        && (measured.stacked || (done.box.left >= read.box.right - 0.5 && Math.abs(done.box.top - read.box.top) < 0.5))
+        && !measured.overflow,
+      `${profile.name} ${expected}: every action word stays whole and inside a reachable button ${JSON.stringify(measured)}`);
+      if ((day === 7 && profile.stackLong) || profile.largest) {
+        check(measured.stacked, `${profile.name} ${expected}: the action row stacks rather than splitting a word ${JSON.stringify(measured)}`);
+      }
+      console.log(`CHECKED ${profile.name} ${expected}: ${JSON.stringify(measured)}`);
+    }
+  }
 }
 
 // #866: the More menu's link to the Reading List keeps the list's name on one line, and below 880px
@@ -5130,9 +5263,7 @@ try {
       }, viewport.textScale);
     }
     if (viewport.iosText) {
-      const tokens = [...(await readFile(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'))
-        .matchAll(/(--t-[\w-]+): calc\(var\(--ios-text-scale\) \* (\d+)px\)/g)].map(([, name, px]) => [name, `${px}px`]);
-      assert.ok(tokens.length >= 6, 'the iOS overlay still declares its text tokens');
+      const tokens = await iosTextTokens();
       await page.evaluate((pairs) => {
         for (const [name, value] of pairs) document.documentElement.style.setProperty(name, value);
       }, tokens);
@@ -5359,6 +5490,7 @@ try {
     }
     if (progressGlance) {
       await progressGlanceCheck(page, label, viewport);
+      if (viewport.width === 360 && viewport.height === 800 && viewport.textScale === 2) await readingActionWrapCheck(page);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

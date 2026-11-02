@@ -276,6 +276,11 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   #view-read > .head { row-gap: 0; }
 }
 
+/* WebView scales text but not rem, so the phone row needs its content minimum to keep words whole. */
+@media (max-width: 700px) {
+  #hero-primary-actions > .btn { min-width: auto; overflow-wrap: normal; }
+}
+
 /* On a short landscape viewport, a wrapping sticky filter can cover most of the reading area. */
 @media (max-height: 500px) {
   #reading-filters { position: static; }
