@@ -55,12 +55,14 @@ Android Back, Escape or a tap outside dismisses the sheet without taking action.
 Read and **Done** stay together. **About this comic** opens the comic's own page, which leads with
 its cover: centered above the title on an upright screen, and in a column beside the title and
 everything under it on a screen turned on its side or a wide one. **Read** follows the title, then
-useful comic information and optional, spoiler-protected story summaries. With cover art off, the
+useful comic information, creators credited by role where the metadata records it, and any story
+summary loaded in this session, shown in full. With cover art off, the
 cover's stand-in takes the same place and size. A short split-screen window keeps the details card
 with **Read** first.
 **More comic actions** contains deferral and the external comic page.
-**Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
-putting availability in the main comic details. An active temporary-link warning stays
+**Trouble opening this comic?** contains the full Unlimited status and reader-link help. The
+Marvel Unlimited record and the comic's position in the list appear in its details, not on the
+reading card. An active temporary-link warning stays
 visible outside that disclosure, and editing still requires a matching saved comic.
 
 Add leads with search and series, with other methods under **More ways to add**. An empty search

@@ -29,7 +29,6 @@ import { ResponseCache } from './cache.js';
 import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
-import { createSynopsisDisclosure } from './lib/synopsisDisclosure.js';
 import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
 import { readerClosureNotice } from './lib/readerDestination.js';
 import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
@@ -144,7 +143,6 @@ const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
 const sessionSynopsis = new SessionSynopsis();
-const synopsisDisclosure = createSynopsisDisclosure({ hiding: () => settings.hideDescriptions });
 const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: onSynopsisStatus });
 
 // One key, every tab. A save in another tab is news here, and taking it is what keeps two tabs
@@ -414,7 +412,7 @@ function loadSettings() {
       // preference instead of overriding it.
       theme: normaliseTheme(raw.theme),
       readingShortcut: raw.readingShortcut !== false,
-      hideDescriptions: raw.hideDescriptions !== false,
+      // A hideDescriptions value saved before #1061 is left unread: summaries are no longer hidden.
       // Not checked against the filters that exist here, because that is a question about the
       // document rather than about storage. wireReading() answers it and writes the answer back,
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
@@ -428,7 +426,6 @@ function loadSettings() {
       covers: true,
       theme: DEFAULT_THEME,
       readingShortcut: true,
-      hideDescriptions: true,
       filter: 'all',
       rejectedApiBase: null,
     };
@@ -511,7 +508,9 @@ function saveSettings() {
       theme: settings.theme,
       filter: settings.filter,
       readingShortcut: settings.readingShortcut,
-      hideDescriptions: settings.hideDescriptions,
+      // #1061: nothing is hidden now, so the stored choice always says so. Leaving it out let a restored
+      // false fall back to true in the next backup, which an earlier version would then restore as hiding.
+      hideDescriptions: false,
     });
     localStorage.setItem(SETTINGS_KEY, serialized);
     return localStorage.getItem(SETTINGS_KEY) === serialized;
@@ -891,26 +890,6 @@ function setTheme(next) {
 // attribute is already absent, the meta tags already carry "dark light" and their own schemes'
 // colours, and the control already reads 'system'. It was found by mutation, not by review:
 // removing it left a browser check that was written to catch exactly that still reporting a pass.
-
-function setDescriptionHiding(on) {
-  const next = on !== false;
-  const changed = settings.hideDescriptions !== next;
-  settings.hideDescriptions = next;
-  const saved = saveSettings();
-  $('#opt-description-hiding').checked = next;
-  if (changed) {
-    synopsisDisclosure.clear();
-    readingView.renderHero();
-    issueView.refreshDescription();
-  }
-  const status = `Description hiding ${next ? 'on' : 'off'}.`;
-  if (!saved) {
-    notify('#description-hiding-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
-    return;
-  }
-  $('#description-hiding-report').replaceChildren();
-  announce(status);
-}
 
 function applyReadingShortcutSetting() {
   const enabled = settings.readingShortcut;
@@ -1843,15 +1822,15 @@ function openInReader(issue, event, source, control = event?.currentTarget) {
 
 // ------------------------------------------------------------------ synopsis fetching
 
-export function synopsisDisclaimer({ reveal = false } = {}) {
+export function synopsisDisclaimer({ single = false } = {}) {
   return {
-    title: reveal ? 'Load this story summary?' : 'Fetch synopses from the community metadata service?',
+    title: single ? 'Load this story summary?' : 'Fetch synopses from the community metadata service?',
     body: "Marvel's synopses come from an unaffiliated community service, "
       + 'and stay in this tab until reload. '
-      + (reveal
-        ? 'This story summary may contain spoilers and loading it uses your request allowance.'
+      + (single
+        ? 'Loading one uses your request allowance.'
         : 'Fetching a whole Reading List takes a few minutes and uses your request allowance.'),
-    confirmLabel: reveal ? 'Load and show summary' : 'Fetch synopses',
+    confirmLabel: single ? 'Load summary' : 'Fetch synopses',
   };
 }
 
@@ -1913,7 +1892,7 @@ async function startIssueSynopsis(isCurrent) {
   const issueId = issueView.result()?.issue?.issueId;
   if (!Number.isInteger(issueId) || issueId < 1 || synopsisRunner.active) return false;
   const requestApi = api;
-  const yes = await askConfirm(synopsisDisclaimer({ reveal: true }));
+  const yes = await askConfirm(synopsisDisclaimer({ single: true }));
   if (!yes || !isCurrent() || api !== requestApi || synopsisRunner.active
     || view !== 'issue' || issueRoute?.issueId !== issueId) return false;
   issueSynopsisId = issueId;
@@ -2152,7 +2131,6 @@ const dataView = createDataView({
     optCovers: $('#opt-covers'),
     optTheme: $('#opt-theme'),
     optReadingShortcut: $('#opt-reading-shortcut'),
-    optDescriptionHiding: $('#opt-description-hiding'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     backupContents: $('#backup-contents'),
@@ -2225,7 +2203,6 @@ const dataView = createDataView({
   onSetCovers: (on) => setCovers(on),
   onSetTheme: (value) => setTheme(value),
   onSetReadingShortcut: (on) => setReadingShortcut(on),
-  onSetDescriptionHiding: setDescriptionHiding,
   onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
   onApiBaseSubmit: (value) => {
     settings.apiBase = value;
@@ -2248,7 +2225,6 @@ const dataView = createDataView({
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;
     sessionSynopsis.clear();
-    synopsisDisclosure.clear();
     issueView.resetSynopsis();
     readingView.resetSynopsis();
     readingView.renderSynopsis(null);
@@ -2955,7 +2931,6 @@ export function boot() {
   applyCoversSetting();
   applyThemeSetting();
   applyReadingShortcutSetting();
-  $('#opt-description-hiding').checked = settings.hideDescriptions;
   ensurePublishingViews();
   wireSidebar();
   wireNav();
@@ -3268,7 +3243,6 @@ const readingView = createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
-  synopsisDisclosure,
   synopsisStatusLine,
   updateState: (updater) => {
     const state = store.update(updater);
@@ -3326,7 +3300,6 @@ const issueView = createIssueView({
     card: $('#issue-focus-card'),
     context: $('#issue-focus-context'),
     description: $('#issue-focus-desc'),
-    disclosure: $('#btn-issue-description'),
     facts: $('#issue-focus-facts'),
     fallback: $('#issue-focus-fb'),
     heading: $('#issue-focus-h'),
@@ -3379,7 +3352,6 @@ const issueView = createIssueView({
   readerPresentation,
   seriesOnly,
   synopsisFallback,
-  synopsisDisclosure,
   synopsisStatusLine,
 });
 

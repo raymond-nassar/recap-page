@@ -10,7 +10,7 @@ import { readFileSync } from 'node:fs';
 import {
   COMPLETE_BACKUP_FORMAT, COMPLETE_BACKUP_VERSION, MAX_COMPLETE_BACKUP_BYTES, CompleteBackupError,
   captureCompleteBackup, createCompleteBackup, parseCompleteBackup, prepareCompleteRestore, restorePlan,
-  completeBackupFileRefusal, completeBackupSummary, settingsFromStorage, classifyComponent,
+  completeBackupFileRefusal, completeBackupSummary, settingsFromStorage, prepareSettingsRestore, classifyComponent,
 } from '../src/js/lib/completeBackup.js';
 import {
   createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue, MAX_BACKUP_BYTES,
@@ -42,7 +42,12 @@ test('complete backup capture preserves installed historical reader-link drafts 
     ]);
     const storage = { getItem: (key) => map.get(key) ?? null };
     const captured = await captureCompleteBackup({ storage, ...crypto });
-    assert.equal(captured.text, fixture.text, 'capture preserves the baseline portable content and digest');
+    // #1061: the baselines were captured when an absent hiding choice meant true. Every backup now says
+    // false, so that one field differs and the rest must still match byte for byte, digest included.
+    const components = { ...expected.components, settings: { ...expected.components.settings, hideDescriptions: false } };
+    assert.equal(expected.components.settings.hideDescriptions, true, fixture.name);
+    assert.equal(captured.text, (await createCompleteBackup(components, crypto)).text,
+      'capture preserves the baseline portable content and digest');
   }
 });
 
@@ -186,8 +191,26 @@ test('an empty installation backs up explicit absences: no draft, and the sideba
   assert.equal(expanded.backup.components.settings.sidebarCollapsed, false);
   assert.equal(new Set([empty, collapsed, expanded].map((each) => each.backup.digest)).size, 3, 'all three sidebar states differ');
   assert.deepEqual(settingsFromStorage('{not json', 'maybe'), {
-    covers: true, theme: 'system', filter: 'all', readingShortcut: true, hideDescriptions: true, sidebarCollapsed: null,
+    covers: true, theme: 'system', filter: 'all', readingShortcut: true, hideDescriptions: false, sidebarCollapsed: null,
   });
+});
+
+// #1061: nothing hides story summaries now, so every backup says so whatever is stored. Before this, a
+// settings save after a restore dropped the stored false, the next backup read the absence as true, and
+// restoring that file on an earlier version turned hiding back on there.
+test('a backup records summaries as shown, whatever hiding choice is stored or missing', async () => {
+  for (const stored of ['{"covers":false}', '{"hideDescriptions":true}', '{"hideDescriptions":false}', '{"hideDescriptions":"no"}']) {
+    assert.equal(settingsFromStorage(stored, null).hideDescriptions, false, stored);
+  }
+  const restore = prepareSettingsRestore({
+    covers: true, theme: 'dark', filter: 'all', readingShortcut: true, hideDescriptions: false, sidebarCollapsed: null,
+  }, null, null);
+  const restored = JSON.parse(restore.effects.find((each) => each.key === SETTINGS_KEY).value);
+  const { hideDescriptions, ...savedAfterwards } = restored;
+  assert.equal(hideDescriptions, false);
+  const map = new Map([[SETTINGS_KEY, JSON.stringify(savedAfterwards)]]);
+  const { backup } = await captureCompleteBackup({ storage: { getItem: (key) => map.get(key) ?? null }, ...crypto });
+  assert.equal(backup.components.settings.hideDescriptions, false);
 });
 
 test('a complete backup refuses unsupported formats, missing components and changed contents', async () => {

@@ -89,7 +89,7 @@ export function pageState(screen) {
 export function seedScript(screen) {
   const state = JSON.stringify(pageState(screen));
   const settings = JSON.stringify({
-    covers: false, theme: screen.theme, filter: 'all', ...(screen.synopsis ? { hideDescriptions: false } : {}),
+    covers: false, theme: screen.theme, filter: 'all',
   });
   const health = previewResponse(`${FIXTURE_API}/health`, 'GET', new Map());
   const healthUrl = JSON.stringify(`${DEFAULT_BASE}/health`);

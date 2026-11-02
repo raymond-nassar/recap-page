@@ -1,8 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { createSynopsisDisclosure, renderSynopsisDescription } from '../src/js/lib/synopsisDisclosure.js';
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 const html = read('../src/index.html');
@@ -220,7 +219,7 @@ test('reading groups Read and Done together, with comic details and infrequent a
   assert.match(more, /<summary>More comic actions<\/summary>/);
   assert.match(more, /id="btn-hero-defer"/);
   assert.match(more, /<a[^>]*id="btn-hero-info"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
-  assert.ok(reading.indexOf('id="hero-primary-actions"') < reading.indexOf('id="btn-hero-description"'));
+  assert.doesNotMatch(reading, /Read this next|btn-hero-description/, '#1061 retired the label and the reveal');
 });
 
 test('comic details put Read before artwork and destination help without retired link controls', () => {
@@ -241,7 +240,7 @@ test('comic details put Read before artwork and destination help without retired
   assert.doesNotMatch(help, /id="reader-link-temporary"/);
   assert.doesNotMatch(help, /id="issue-focus-facts"/);
   assert.ok(issue.indexOf('id="issue-focus-facts"') < helpAt, 'Normal availability belongs with the other metadata');
-  assert.match(issue, /id="btn-issue-synopsis"[^>]*>\s*Show story summary \(may contain spoilers\)/);
+  assert.match(issue, /id="btn-issue-synopsis"[^>]*>\s*Load story summary\s*</);
 });
 
 test('a completed list has a Browse action without replacing deferred continuation', () => {
@@ -353,28 +352,12 @@ test('backup and restore precede optional exports while reports and recovery sta
   assert.ok(settings.indexOf('<h2>Advanced</h2>') < settings.indexOf('id="metadata-settings"'));
 });
 
-test('story-summary terminology preserves default hiding, explicit reveal and accessible spoiler labels', () => {
-  const disclosure = createSynopsisDisclosure();
-  const button = { setAttribute(name, value) { this[name] = value; } };
-  const description = { id: 'summary' };
-  const render = () => renderSynopsisDescription({
-    button, description, issue: { issueId: 7, title: 'Fixture comic' },
-    entry: 'Held story text', fallback: 'Not loaded', disclosure,
-  });
-  render();
-  assert.equal(description.hidden, true);
-  assert.equal(description.textContent, '');
-  assert.equal(button.textContent, 'Show story summary (may contain spoilers)');
-  assert.equal(button['aria-label'], 'Show story summary may contain spoilers: Fixture comic');
-  assert.equal(button['aria-expanded'], 'false');
-  disclosure.reveal(7);
-  render();
-  assert.equal(description.textContent, 'Held story text');
-  assert.equal(button['aria-label'], 'Hide story summary: Fixture comic');
-  assert.equal(button['aria-expanded'], 'true');
-  disclosure.toggle(7);
-  render();
-  assert.equal(description.hidden, true);
+test('#1061 story summaries have no reveal controls, setting or spoiler label', () => {
+  const html = read('../src/index.html');
+  assert.doesNotMatch(html, /btn-(hero|issue)-description|opt-description-hiding|description-hiding/);
+  assert.doesNotMatch(html, /may contain spoilers/i);
+  assert.match(html, /id="btn-issue-synopsis"[^>]*>\s*Load story summary\s*</);
+  assert.equal(existsSync(new URL('../src/js/lib/synopsisDisclosure.js', import.meta.url)), false);
 });
 
 test('Coming up Read buttons carry their name once, with no title repeating it', () => {

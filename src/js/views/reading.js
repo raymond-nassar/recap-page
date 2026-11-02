@@ -27,7 +27,6 @@ import { isPlainNavigation } from '../lib/route.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
-import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { earlierIssueIds } from '../lib/reorientation.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 import { paintGlance } from '../lib/progressGlance.js';
@@ -144,7 +143,6 @@ export function createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
-  synopsisDisclosure,
   synopsisStatusLine,
   updateState,
   withSaveEducation,
@@ -444,13 +442,6 @@ export function createReadingView({
     $('#btn-cancel-hydrate').addEventListener('click', onCancelHydrate);
     $('#btn-synopsis').addEventListener('click', onStartSynopsis);
     $('#btn-cancel-synopsis').addEventListener('click', onCancelSynopsis);
-    $('#btn-hero-description').addEventListener('click', () => {
-      if (isCompleted(getState(), activeListId())) return;
-      const issue = upNext(getState(), activeListId());
-      if (!issue) return;
-      synopsisDisclosure.toggle(issue.issueId);
-      renderHero();
-    });
 
     $('#btn-hero-read').addEventListener('click', (e) => {
       if (isCompleted(getState(), activeListId())) return;
@@ -531,10 +522,13 @@ export function createReadingView({
 
   function markCurrentRead(surface = 'hero') {
     retireReaderHelp();
-    if (isCompleted(getState(), activeListId())) return;
-    const issue = upNext(getState(), activeListId());
+    const listId = activeListId();
+    if (isCompleted(getState(), listId)) return;
+    const issue = upNext(getState(), listId);
     if (!issue) return;
+    const surfaceWasCurrent = DONE_SURFACES[surface].current();
     beginDone(surface);
+    const scrollContext = doneScrollContext(surface);
     const wasRead = isRead(getState(), issue.issueId);
     let before = null;
     const { state } = updateState((current) => { before = current; return markRead(current, issue.issueId, true); });
@@ -549,7 +543,7 @@ export function createReadingView({
     const said = next ? `${issue.title} marked read.${section} Next up: ${next.title}.`
       : deferred ? `${issue.title} marked read.${section} Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
         : `${issue.title} marked read. That is the whole order finished.`;
-    announce(withSaveEducation([said, offerDoneUndo(issue, surface, section)].filter(Boolean).join(' '), transition));
+    announce(withSaveEducation([said, offerDoneUndo(issue, surface, listId, surfaceWasCurrent, scrollContext, section)].filter(Boolean).join(' '), transition));
     celebrate(milestone);
     if (!next) focusDoneLanding(surface);
   }
@@ -637,8 +631,10 @@ export function createReadingView({
       description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),
     });
 
-    paintCover($('#hero-img'), $('#hero-fb'), issue, 'portrait_uncanny');
-    $('#hero-img').alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
+    // #1061: the cover now shows up to 320px wide, past the 300px portrait_uncanny image, so it asks for
+    // the 500px detail image the blurred backdrop below already loads, one request instead of two.
+    paintCover($('#hero-img'), $('#hero-fb'), issue, 'detail');
+    $('#hero-img').alt = coverUrl(issue, 'detail') ? `Cover of ${issue.title}` : '';
     $('#hero-fs').textContent = seriesOnly(issue.seriesName);
     $('#hero-fn').textContent = issue.number ? `#${issue.number}` : '';
 
@@ -652,12 +648,10 @@ export function createReadingView({
     inspect.dataset.contextId = id;
 
     $('#hero-by').textContent = presentation.byline;
-    renderSynopsisDescription({
-      button: $('#btn-hero-description'), description: $('#hero-desc'), issue,
-      entry: getSynopsis(issue.issueId), fallback: presentation.description,
-      disclosure: synopsisDisclosure,
-    });
-    $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
+    // #1061: a loaded summary shows in full, with nothing to reveal first.
+    $('#hero-desc').hidden = false;
+    $('#hero-desc').textContent = presentation.description;
+    $('#hero-facts').replaceChildren(...presentation.facts.filter((item) => !item.detailsOnly).map((item) => (
       fact(item.key, item.value, item.className, item.hint)
     )));
     // The same numbers the header's ring reads out, set large for the eye (#876).
@@ -676,8 +670,6 @@ export function createReadingView({
   function resetSynopsis() {
     $('#hero-desc').textContent = '';
     $('#hero-desc').hidden = true;
-    $('#btn-hero-description').hidden = true;
-    $('#btn-hero-description').setAttribute('aria-expanded', 'false');
   }
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
@@ -1402,6 +1394,28 @@ export function createReadingView({
   // focus inside it.
   let doneResult = null;
 
+  function doneScrollContext(surface) {
+    if (surface !== 'hero' || typeof window === 'undefined' || !isCurrent()) return null;
+    const rect = $('#btn-hero-done').getBoundingClientRect();
+    if (rect.bottom <= 0 || rect.top >= window.innerHeight || rect.right <= 0 || rect.left >= window.innerWidth) return null;
+    return { listId: activeListId(), x: window.scrollX, y: window.scrollY };
+  }
+
+  function revealCoveredDone(result, context) {
+    if (!context || doneResult !== result || !doneResultHolds(result) || !result.node?.isConnected
+      || context.listId !== activeListId() || window.scrollX !== context.x || window.scrollY !== context.y) return;
+    const rail = document.querySelector('.rail-header');
+    if (!rail) return;
+    const style = window.getComputedStyle(rail);
+    if (style.position !== 'fixed' || style.visibility !== 'visible') return;
+    const bar = rail.getBoundingClientRect();
+    const notice = result.node.getBoundingClientRect();
+    if (Math.max(0, bar.left, notice.left) < Math.min(window.innerWidth, bar.right, notice.right)
+      && Math.max(0, bar.top, notice.top) < Math.min(window.innerHeight, bar.bottom, notice.bottom)) {
+      result.node.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+    }
+  }
+
   function wireDone() {
     const done = $('#btn-hero-done');
     done.addEventListener('click', () => markCurrentRead());
@@ -1476,11 +1490,19 @@ export function createReadingView({
   // Only a saved mark is offered back: a refused write has been reported already, and its rollback
   // left nothing for Undo to reverse. What this returns joins Done's own announcement, because the
   // result is deliberately not a live region and that announcement is the one thing said.
-  function offerDoneUndo(issue, surface, reached = '') {
-    if (!isRead(getState(), issue.issueId)) return '';
+  function offerDoneUndo(issue, surface, listId, surfaceWasCurrent, scrollContext, reached = '') {
+    if (!isRead(getState(), issue.issueId) || activeListId() !== listId) return '';
     const result = { issueId: issue.issueId, title: issue.title, offered: true, surface };
-    result.context = doneContext(activeListId(), issue.issueId, getState(), surface);
-    return paintDoneResult(result, `Marked ${issue.title} read.${reached}`, 'ok', 'Undo') ? 'Undo is available.' : '';
+    result.context = doneContext(listId, issue.issueId, getState(), surface);
+    // A route change during insertion can otherwise leave an offer after its repaint has passed.
+    if ((surfaceWasCurrent && !doneResultHolds(result))
+      || !paintDoneResult(result, `Marked ${issue.title} read.${reached}`, 'ok', 'Undo')) return '';
+    if (surfaceWasCurrent && !doneResultHolds(result)) {
+      if (doneResult === result) retireDoneResult();
+      return '';
+    }
+    revealCoveredDone(result, scrollContext);
+    return 'Undo is available.';
   }
 
   // One paragraph in the shared notice pattern. A later phase replaces it where it stands, so a

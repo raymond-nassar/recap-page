@@ -379,29 +379,19 @@ repair a reading-data quota failure. Download and check a backup before removing
 recovery copies or reading lists. After the same change saves successfully, its earlier
 not-saved warning disappears; unrelated warnings remain.
 
-### Choosing when to see story summaries
+### Loading story summaries
 
-**Hide story summaries until I reveal them** is on by default. **Fetch synopses** asks permission to
-fetch a Reading List's descriptions without revealing them. Use **Show story summary (may contain
-spoilers)** on Reading or Issue Details to see one, and **Hide story summary** to close it.
-For an unfetched description, Issue Details offers the same **Show story summary** action with
-confirmation before loading and revealing it. Neither action is needed to open the official reader.
+**Fetch synopses** asks permission to load a Reading List's story summaries, and **Load story
+summary** on Issue Details asks the same for one comic. Each load uses your request allowance. Once
+loaded, a summary shows in full on Reading and Issue Details, with nothing to reveal first. Neither
+action is needed to open the official reader.
 
-With hiding on, every issue starts collapsed, including read and untracked issues. Its last
-reveal or hide choice follows that exact issue between views in this tab. Changing its read flag
-does not change the choice or reveal the next issue.
+Reloading or saving the metadata-source setting clears loaded summaries. They are never saved in
+lists or backups, and loading one does not change progress or notes. Titles, covers and
+cross-story references may still contain spoilers.
 
-Reloading or saving the metadata-source setting clears descriptions and choices. Neither is saved
-in lists or backups. Revealing does not change progress or notes. Titles, covers and cross-story
-references may still contain spoilers.
-
-To show fetched descriptions without Reveal/Hide controls, turn hiding off in
-**Backup & settings**, under **Personalization**. Fetching still needs consent. Changing the
-setting resets individual choices in both views but keeps fetched text. Turning hiding back on
-starts collapsed again.
-
-Only the boolean preference is saved, separately from progress, and only a complete backup includes
-it. If saving fails, a warning says it applies to this tab only.
+Earlier versions had a setting to hide summaries until revealed. A saved choice from that setting,
+in this browser or in a backup, is ignored.
 
 ### Reviewing earlier comics
 
