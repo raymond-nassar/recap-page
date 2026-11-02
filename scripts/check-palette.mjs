@@ -36,7 +36,7 @@ export const CATEGORY_CARDS = [
   ['the MCU Prep card', '--azure-line', '--azure-line'],
   ['the Marvel Ages card', '--magenta-line', '--magenta-line'],
   ['the Young readers card', '--green-line', '--green-line'],
-  ['the Story types card', '--cyan-line', '--cyan-line'],
+  ['the Genres card', '--cyan-line', '--cyan-line'],
 ];
 
 // The eleven Marvel era tiles that #875 gave an accent of their own: the era's key, the name of the

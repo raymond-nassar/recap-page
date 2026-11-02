@@ -30,7 +30,7 @@ export function createStoryTypesView({
         onchange: (event) => choose({ storyType: type, tone: event.currentTarget.value }),
       });
       root = el('div', { id: `${ROUTE}-choices`, class: 'story-type-choices' }, [
-        group('Story type', typeSelect),
+        group('Genre', typeSelect),
         group('Tone', toneSelect),
       ]);
     }
@@ -63,7 +63,7 @@ export function createStoryTypesView({
     const facets = storyTypeFacets(stories, { type, tone });
     controls();
     for (const [select, any, choices, value] of [
-      [typeSelect, 'Any story type', facets.types, type],
+      [typeSelect, 'Any genre', facets.types, type],
       [toneSelect, 'Any tone', facets.tones, tone],
     ]) {
       select.replaceChildren(
@@ -87,11 +87,11 @@ export function createStoryTypesView({
       if (!starters.length) {
         nodes.results.append(el('p', {
           class: 'rail-hint',
-          text: 'Choose a story type or a tone to see its Reading Lists.',
+          text: 'Choose a genre or a tone to see its Reading Lists.',
         }));
         return;
       }
-      nodes.results.append(results(starters, 'Popular places to start', 'Or choose a story type or tone above.'));
+      nodes.results.append(results(starters, 'Popular places to start', 'Or choose a genre or tone above.'));
       return;
     }
     const matches = storyTypeStories(stories, { type, tone });
@@ -100,7 +100,7 @@ export function createStoryTypesView({
     if (!matches.length) {
       nodes.results.append(el('p', {
         class: 'rail-hint publishing-empty',
-        text: `No Reading Lists are tagged ${heading}. Choose another story type or tone.`,
+        text: `No Reading Lists are tagged ${heading}. Choose another genre or tone.`,
       }));
       return;
     }

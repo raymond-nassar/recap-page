@@ -37,7 +37,7 @@ this table, so reusing a glyph for something else fails it.
 | screen | MCU Prep | The MCU Prep card, `#/marvel-on-screen` |
 | ages | Marvel Ages | The Marvel Ages card, `#/marvel-ages`, and the card of every age and period inside it |
 | reader | Young readers | The Young readers card, `#/young-readers` |
-| story-types | Story types | The Story types card, `#/story-types` |
+| story-types | Genres | The Genres card, `#/genres` |
 | arrow-right | Opens a category | The destination arrow on every category card |
 | thumb-up | Enjoyed | Rating a completed Reading List |
 | thumb-down | Did not enjoy | Rating a completed Reading List |

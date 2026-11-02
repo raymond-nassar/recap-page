@@ -40,7 +40,7 @@ test('each facet counts what choosing it would show and keeps an empty current c
   ]);
 });
 
-test('the Story types card counts every tagged list outside MCU Prep', () => {
+test('the Genres card counts every tagged list outside MCU Prep', () => {
   const category = availableHomeCategories(fixture(), HOME_CATEGORIES)
     .find(({ key }) => key === STORY_TYPES_ROUTE);
   assert.equal(category.count, 3);
@@ -54,12 +54,12 @@ test('#1060: the ten starting lists all exist and show as the exact versions the
   for (const id of STORY_TYPE_STARTERS) assert.ok(ids.has(id), `${id} is in the catalog`);
   const shown = storyTypeStarters(catalogEntries(catalog.lists));
   assert.deepEqual(shown.map((story) => story.lists[0].id), [...STORY_TYPE_STARTERS]);
-  for (const story of shown) assert.equal(storyTypeStories([story]).length, 1, `${story.lists[0].id} can appear on Story types`);
+  for (const story of shown) assert.equal(storyTypeStories([story]).length, 1, `${story.lists[0].id} can appear on Genres`);
   const claremont = shown.find((story) => story.lists[0].id === 'xmen-claremont');
   assert.equal(claremont.lists[0].count, 318);
 });
 
-test('#1060: a starting list that leaves the catalog or Story types is skipped', () => {
+test('#1060: a starting list that leaves the catalog or Genres is skipped', () => {
   const stories = catalogEntries([
     list('kept', ['espionage']),
     list('mcu', ['espionage'], [], { type: 'screen-companion' }),
@@ -94,9 +94,9 @@ test('the view keeps known selections in labeled native dropdowns without replac
   const [type, tone] = root.children.map((group) => group.children[1]);
   assert.deepEqual([type.tag, tone.tag], ['select', 'select']);
   assert.deepEqual(root.children.map((group) => group.children[0].props.for), [type.id, tone.id]);
-  assert.deepEqual(root.children.map((group) => group.children[0].props.text), ['Story type', 'Tone']);
+  assert.deepEqual(root.children.map((group) => group.children[0].props.text), ['Genre', 'Tone']);
   assert.deepEqual([type.value, tone.value], ['espionage', '']);
-  assert.equal(type.children[0].props.text, 'Any story type');
+  assert.equal(type.children[0].props.text, 'Any genre');
   assert.equal(tone.children[0].props.text, 'Any tone');
   assert.ok(type.children.some(({ props }) => props.text === 'Espionage (2)'));
   tone.props.onchange({ currentTarget: { value: 'dark' } });
@@ -114,7 +114,7 @@ test('the view keeps known selections in labeled native dropdowns without replac
   type.props.onchange({ currentTarget: { value: '' } });
   assert.deepEqual(view.selection(), { storyType: null, tone: null });
   assert.equal(count.textContent, '3 Reading Lists');
-  assert.equal(results.children[0].props.text, 'Choose a story type or a tone to see its Reading Lists.');
+  assert.equal(results.children[0].props.text, 'Choose a genre or a tone to see its Reading Lists.');
   assert.deepEqual(root.children.map((group) => group.children[1]), [type, tone]);
 });
 
@@ -142,7 +142,7 @@ test('#1060: with no choice the view shows the starting lists, gives way to a fi
   };
   view.render(catalog);
   assert.deepEqual(shown(), { heading: 'Popular places to start', cards: [STORY_TYPE_STARTERS[0], starter] });
-  assert.equal(results.children[0].children[1].props.text, 'Or choose a story type or tone above.');
+  assert.equal(results.children[0].children[1].props.text, 'Or choose a genre or tone above.');
   assert.equal(count.textContent, '3 Reading Lists');
   const [type] = view.controls().children.map((group) => group.children[1]);
   type.props.onchange({ currentTarget: { value: 'espionage' } });

@@ -1310,12 +1310,12 @@ async function storyTypesDropdowns(page, profile, label) {
   const starterTitles = starters.map((story) => story.lists[0].name);
   const sameStarters = (shown) => JSON.stringify(shown.cards) === JSON.stringify(starters.map((story) => story.key))
     && JSON.stringify(shown.titles) === JSON.stringify(starterTitles);
-  await route(page, 'story-types');
-  await page.waitForSelector('#story-types-type option[value="espionage"]');
+  await route(page, 'genres');
+  await page.waitForSelector('#genres-type option[value="espionage"]');
   const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
   const snapshot = () => page.evaluate(() => {
-    const type = document.querySelector('#story-types-type');
-    const tone = document.querySelector('#story-types-tone');
+    const type = document.querySelector('#genres-type');
+    const tone = document.querySelector('#genres-tone');
     const box = (node) => {
       const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
       return { left, right, top, bottom, width, height };
@@ -1325,21 +1325,21 @@ async function storyTypesDropdowns(page, profile, label) {
       options: [type, tone].map((node) => [...node.options].map((option) => option.textContent)),
       labels: [type, tone].map((node) => [...node.labels].map((entry) => entry.textContent).join('')),
       boxes: [type, tone].map(box),
-      count: document.querySelector('#story-types-count').textContent,
-      prompt: document.querySelector('#story-types-results').textContent,
-      cards: [...document.querySelectorAll('#story-types-results .catalog-card')].map((node) => node.dataset.story),
-      titles: [...document.querySelectorAll('#story-types-results .catalog-card-title')].map((node) => node.textContent),
-      heading: document.querySelector('#story-types-results h2')?.textContent ?? '',
+      count: document.querySelector('#genres-count').textContent,
+      prompt: document.querySelector('#genres-results').textContent,
+      cards: [...document.querySelectorAll('#genres-results .catalog-card')].map((node) => node.dataset.story),
+      titles: [...document.querySelectorAll('#genres-results .catalog-card-title')].map((node) => node.textContent),
+      heading: document.querySelector('#genres-results h2')?.textContent ?? '',
       hash: location.hash, focused: document.activeElement?.id,
       overflow: document.documentElement.scrollWidth > innerWidth,
     };
   });
   const initial = await snapshot();
-  check(initial.type === '' && initial.tone === '' && initial.labels.join('|') === 'Story type|Tone',
+  check(initial.type === '' && initial.tone === '' && initial.labels.join('|') === 'Genre|Tone',
     `${label}: two native dropdowns have visible associated labels and Any defaults`);
   const facets = storyTypeFacets(stories);
   check(JSON.stringify(initial.options) === JSON.stringify([
-    ['Any story type', ...facets.types.map(({ label: name, count }) => `${name} (${count})`)],
+    ['Any genre', ...facets.types.map(({ label: name, count }) => `${name} (${count})`)],
     ['Any tone', ...facets.tones.map(({ label: name, count }) => `${name} (${count})`)],
   ]), `${label}: dropdown options retain every facet and its count`);
   check(initial.count === `${all.length} Reading Lists`
@@ -1352,7 +1352,7 @@ async function storyTypesDropdowns(page, profile, label) {
   `${label}: dropdowns are ${profile.desktop ? 'side by side' : 'stacked'}`);
   for (const theme of ['dark', 'light']) {
     await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-    check(await page.$$eval('#story-types-choices select', (nodes) => nodes.every((node) =>
+    check(await page.$$eval('#genres-choices select', (nodes) => nodes.every((node) =>
       node.checkVisibility() && node.getBoundingClientRect().right <= innerWidth)),
     `${label}: ${theme} theme retains both dropdowns without clipping`);
   }
@@ -1363,39 +1363,39 @@ async function storyTypesDropdowns(page, profile, label) {
     check(await page.$eval(selector, (node) => node === document.activeElement),
       `${label}: change leaves focus on ${selector}`);
   };
-  await choose('#story-types-type', 'espionage');
+  await choose('#genres-type', 'espionage');
   let state = await snapshot();
   check(parseRoute(state.hash).storyType === 'espionage' && !parseRoute(state.hash).tone
     && JSON.stringify(state.cards) === JSON.stringify(storyTypeStories(stories, { type: 'espionage' }).map((story) => story.key)),
-  `${label}: story type change updates its URL and exact results without MCU Prep ${JSON.stringify({
+  `${label}: genre change updates its URL and exact results without MCU Prep ${JSON.stringify({
     hash: state.hash, cards: state.cards, expected: storyTypeStories(stories, { type: 'espionage' }).map((story) => story.key),
   })}`);
-  await choose('#story-types-tone', 'dark');
+  await choose('#genres-tone', 'dark');
   state = await snapshot();
   check(parseRoute(state.hash).tone === 'dark'
     && JSON.stringify(state.cards) === JSON.stringify(storyTypeStories(stories, { type: 'espionage', tone: 'dark' }).map((story) => story.key)),
-  `${label}: tone narrows the existing story type with the same filtering ${JSON.stringify({
+  `${label}: tone narrows the existing genre with the same filtering ${JSON.stringify({
     hash: state.hash, cards: state.cards, expected: storyTypeStories(stories, { type: 'espionage', tone: 'dark' }).map((story) => story.key),
   })}`);
   await page.goBack();
-  await page.waitForFunction(() => document.querySelector('#story-types-tone').value === '');
+  await page.waitForFunction(() => document.querySelector('#genres-tone').value === '');
   check((await snapshot()).type === 'espionage', `${label}: Back restores the type-only dropdown state`);
   await page.goForward();
-  await page.waitForFunction(() => document.querySelector('#story-types-tone').value === 'dark');
+  await page.waitForFunction(() => document.querySelector('#genres-tone').value === 'dark');
   check((await snapshot()).type === 'espionage', `${label}: Forward restores both dropdown choices`);
-  await choose('#story-types-tone', '');
-  await choose('#story-types-type', '');
+  await choose('#genres-tone', '');
+  await choose('#genres-type', '');
   state = await snapshot();
   check(state.heading === 'Popular places to start' && sameStarters(state),
     `${label}: clearing both choices brings the ten starting lists back`);
   const empty = facets.types.flatMap(({ key: type }) => facets.tones.map(({ key: tone }) => ({ type, tone })))
     .find((choice) => storyTypeStories(stories, choice).length === 0);
   assert.ok(empty, 'The bundled vocabulary includes an empty intersection to exercise');
-  await page.evaluate(({ type, tone }) => { location.hash = `#/story-types?type=${type}&tone=${tone}`; }, empty);
-  await page.waitForFunction(({ type, tone }) => document.querySelector('#story-types-type').value === type
-    && document.querySelector('#story-types-tone').value === tone, {}, empty);
+  await page.evaluate(({ type, tone }) => { location.hash = `#/genres?type=${type}&tone=${tone}`; }, empty);
+  await page.waitForFunction(({ type, tone }) => document.querySelector('#genres-type').value === type
+    && document.querySelector('#genres-tone').value === tone, {}, empty);
   await page.reload({ waitUntil: 'networkidle0' });
-  await page.waitForSelector('#story-types-type');
+  await page.waitForSelector('#genres-type');
   state = await snapshot();
   check(state.type === empty.type && state.tone === empty.tone && state.cards.length === 0
     && state.prompt.includes('No Reading Lists are tagged'),

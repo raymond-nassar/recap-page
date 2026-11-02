@@ -1421,7 +1421,7 @@ function syncHash({ push = false } = {}) {
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
         sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
-        ...(view === 'story-types' ? storyTypesView.selection() : {}),
+        ...(view === 'genres' ? storyTypesView.selection() : {}),
       });
   if (!next || next === location.hash) return;
 
@@ -1497,7 +1497,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
-    if (route.view === 'story-types') storyTypesView.set(route);
+    if (route.view === 'genres') storyTypesView.set(route);
     if (route.view === 'catalog') {
       catalogView.setFollowedPath(route.pathId ?? null, {
         orFirst: route.orFirstPath === true,
@@ -2722,7 +2722,7 @@ function ensurePublishingViews() {
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
       ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
-      ...(category.route === 'story-types' ? [storyTypesView.controls()] : []),
+      ...(category.route === 'genres' ? [storyTypesView.controls()] : []),
       ...(category.kind === 'publishing-index' ? [] : [el('section', {
         id: `${category.route}-categories`,
         class: 'publishing-periods',
@@ -2834,7 +2834,7 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     await mcuPrepView.render(catalog, { isCurrent: current });
     return;
   }
-  if (route === 'story-types') {
+  if (route === 'genres') {
     storyTypesView.render(catalog, { isCurrent: current });
     return;
   }
@@ -3492,7 +3492,7 @@ const homeView = createHomeView({
     isCurrent,
   }),
   onNavigateCategory: (category) => {
-    if (category.route === 'story-types') storyTypesView.set();
+    if (category.route === 'genres') storyTypesView.set();
     showView(category.route, { push: true });
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
@@ -3660,10 +3660,10 @@ const mcuPrepView = createMcuPrepView({
 const storyTypesView = createStoryTypesView({
   el,
   elements: () => ({
-    count: $('#story-types-count'),
-    results: $('#story-types-results'),
+    count: $('#genres-count'),
+    results: $('#genres-results'),
   }),
-  isCurrent: () => view === 'story-types',
+  isCurrent: () => view === 'genres',
   presentation: catalogPresentation,
   onNavigate: () => syncHash({ push: true }),
 });
