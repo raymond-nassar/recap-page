@@ -192,6 +192,12 @@ function node(props = {}, children = []) {
         this.classList = classList(value);
       }
     },
+    toggleAttribute(name, force) {
+      const present = force === undefined ? !Object.hasOwn(this.attributes, name) : Boolean(force);
+      if (present) this.setAttribute(name, '');
+      else this.removeAttribute(name);
+      return present;
+    },
   };
   for (const [name, value] of Object.entries(props)) {
     if (name.startsWith('aria-')) result.attributes[name] = value;
@@ -364,6 +370,7 @@ function harness(overrides = {}) {
   ]);
   nodes.listTools = node({ class: 'list-tools' }, [nodes.listActions]);
   nodes.readingListOptions = node({ id: 'reading-list-options' }, [nodes.listTools]);
+  nodes.readingListOptions.setAttribute('data-keep-uncovered', '');
   nodes.listWork = node({ class: 'list-work' }, [
     nodes.hydrationStatus, nodes.btnCancelHydrate, nodes.synopsisStatus, nodes.btnCancelSynopsis,
   ]);
@@ -1659,6 +1666,31 @@ function removalOffer(h) {
   assert.equal(notice.dismiss.label, 'Dismiss');
   return notice;
 }
+
+test('Reading List options protect hints only while inside the queued comic card', () => {
+  const h = removalHarness();
+  try {
+    const options = h.nodes.readingListOptions;
+    const protectedInCard = () => h.nodes.hero.contains(options)
+      && options.getAttribute('data-keep-uncovered') === '';
+    const outsideUnprotected = () => !h.nodes.hero.contains(options)
+      && options.getAttribute('data-keep-uncovered') === undefined;
+    assert.ok(protectedInCard(), 'queued comic keeps the options protected');
+    h.nodes['btn-hero-defer'].fire('click');
+    h.nodes['btn-hero-defer'].fire('click');
+    assert.equal(h.nodes['all-deferred'].hidden, false);
+    assert.ok(outsideUnprotected(), 'all-deferred options no longer suppress sidebar labels');
+    h.setPhone(true);
+    assert.ok(outsideUnprotected(), 'phone overview keeps the relocated options unprotected');
+    h.setPhone(false);
+    assert.ok(outsideUnprotected(), 'desktop relocation keeps the options unprotected');
+    h.store.update((state) => setDeferred(state, 'list-a', 2, false));
+    assert.ok(protectedInCard(), 'resuming a comic restores protection');
+    h.store.update((state) => setActive(createList(state, { id: 'empty', name: 'Empty list' }), 'empty'));
+    assert.equal(h.nodes.readingEmpty.hidden, false);
+    assert.ok(outsideUnprotected(), 'empty list leaves sidebar labels available');
+  } finally { h.restore(); }
+});
 
 test('510 Reading deferral, Done, shelf and review agree without false completion or source changes', () => {
   const h = removalHarness({ fullOpen: false, state: markRead(seededState(), 1, false) });

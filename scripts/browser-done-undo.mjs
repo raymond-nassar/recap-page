@@ -27,7 +27,7 @@ function fixture() {
   }))).state;
 }
 
-async function setup(page, width, route = '#/read/undo') {
+async function setup(page, width, route = '#/read/undo', initial = fixture()) {
   await page.setViewport({ width, height: 900 });
   await page.evaluateOnNewDocument((initial, key) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(initial));
@@ -51,7 +51,7 @@ async function setup(page, width, route = '#/read/undo') {
       return url.origin === location.origin ? real(input, init)
         : Promise.reject(new TypeError('Undo fixture blocks external requests'));
     };
-  }, exportBackup(fixture()), KEY);
+  }, exportBackup(initial), KEY);
   await page.goto(`${page.__origin}/${route}`, { waitUntil: 'load' });
   await page.waitForSelector(route.startsWith('#/home') ? '#view-home:not([hidden])' : '#view-read:not([hidden])');
 }
@@ -923,3 +923,101 @@ export const readDoneHintsMutations = [
     },
   },
 ];
+
+export const sidebarOptionsHints = {
+  id: 'sidebar-options-hints',
+  title: 'Collapsed sidebar labels remain available when Reading List options leave the comic card',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const initial = createList(fixture(), { id: 'empty', name: 'Empty fixture' });
+    await setup(page, 1280, '#/read/undo', initial);
+    if (await page.$eval('#btn-rail-toggle', (toggle) => toggle.getAttribute('aria-expanded') === 'true')) {
+      await click(page, '#btn-rail-toggle');
+    }
+    await page.waitForFunction(() => document.querySelector('#sidebar').getBoundingClientRect().width < 60);
+    await wait(500);
+    const placement = () => page.evaluate(() => {
+      const options = document.querySelector('#reading-list-options');
+      return { inside: document.querySelector('#hero').contains(options),
+        protected: options.hasAttribute('data-keep-uncovered') };
+    });
+    const queued = await placement();
+    t.check('queued comic keeps Reading List options protected', queued.inside && queued.protected, JSON.stringify(queued));
+    await full(page);
+    for (const id of ids) await rowAction(page, id, 'defer');
+    await page.waitForFunction(() => !document.querySelector('#all-deferred').hidden);
+    const deferred = await placement();
+    t.check('all-deferred list moves options out of the card without protecting the whole row',
+      !deferred.inside && !deferred.protected, JSON.stringify(deferred));
+
+    await page.setViewport({ width: 390, height: 900 });
+    await settle(page);
+    const phone = await placement();
+    await page.setViewport({ width: 1280, height: 900 });
+    await settle(page);
+    const desktop = await placement();
+    t.check('phone overview and the return to desktop keep relocated options unprotected',
+      !phone.inside && !phone.protected && !desktop.inside && !desktop.protected, JSON.stringify({ phone, desktop }));
+
+    // The empty list has no rows to make the page scroll. Extra space below its content lets the
+    // real options row be aligned with either fixed sidebar item without changing the row itself.
+    await page.$eval('#reading-body', (body) => { body.style.paddingBottom = '1200px'; });
+    for (const [width, height] of [[1280, 900], [1024, 768]]) {
+      await page.setViewport({ width, height });
+      for (const [list, heading] of [['undo', '#all-deferred'], ['empty', '#reading-empty']]) {
+        await page.evaluate((id) => { location.hash = `#/read/${id}`; }, list);
+        await page.waitForFunction((selector) => !document.querySelector(selector).hidden, {}, heading);
+        for (const [selector, name] of [['#list-nav .ri', 'Continue reading'], ['#sidebar-panel .ri[data-view="library"]', 'Library']]) {
+          await page.$eval('#reading-list-options', (options, target) => {
+            const row = options.getBoundingClientRect();
+            const item = document.querySelector(target).getBoundingClientRect();
+            scrollBy(0, (row.top + row.bottom - item.top - item.bottom) / 2);
+          }, selector);
+          await settle(page);
+          for (const how of ['focus', 'pointer']) {
+            await raise(page, selector, how);
+            const actual = await page.evaluate((target) => {
+              const options = document.querySelector('#reading-list-options');
+              const tip = document.querySelector('#rail-tip');
+              const box = (node) => {
+                const rect = node.getBoundingClientRect();
+                return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right };
+              };
+              return { inside: document.querySelector('#hero').contains(options),
+                protected: options.hasAttribute('data-keep-uncovered'),
+                row: box(options), item: box(document.querySelector(target)),
+                tip: tip.hidden ? null : { text: tip.textContent.trim(), box: box(tip) } };
+            }, selector);
+            const aligned = actual.row.top < actual.item.bottom && actual.item.top < actual.row.bottom;
+            const tip = actual.tip?.box;
+            const overlaps = tip && tip.left < actual.row.right && actual.row.left < tip.right
+              && tip.top < actual.row.bottom && actual.row.top < tip.bottom;
+            t.check(`${width}x${height} ${list}: ${name} shows on ${how} beside the relocated options row`,
+              !actual.inside && !actual.protected && aligned && overlaps && actual.tip.text.startsWith(name),
+              JSON.stringify(actual));
+          }
+        }
+      }
+    }
+    await page.evaluate(() => { location.hash = '#/read/undo'; });
+    await page.waitForFunction(() => !document.querySelector('#all-deferred').hidden);
+    await full(page);
+    await rowAction(page, ids[0], 'defer');
+    await heroIs(page, 1);
+    const resumed = await placement();
+    t.check('resuming a comic returns options to the card and restores protection',
+      resumed.inside && resumed.protected, JSON.stringify(resumed));
+    t.check('the checks raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const sidebarOptionsHintsMutations = [{
+  id: 'sidebar-options-always-protected',
+  breaks: 'sidebar-options-hints',
+  why: 'protecting the relocated full-width row hides collapsed sidebar labels',
+  rewriteReading: (source) => source.replace(
+    "    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));",
+    "    options.setAttribute('data-keep-uncovered', '');",
+  ),
+}];

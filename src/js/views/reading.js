@@ -174,6 +174,7 @@ export function createReadingView({
     if (anchor.nextElementSibling === options) return;
     const focused = options.contains(document.activeElement) ? document.activeElement : null;
     anchor.after(options);
+    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));
     const target = focused?.getClientRects().length ? focused : (focused ? $('#android-list-options') : null);
     if (target?.getClientRects().length) target.focus({ preventScroll: true });
   }
