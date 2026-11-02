@@ -249,7 +249,6 @@ export function parseCatalog(raw) {
     seen.add(list.id);
     lists.push(list);
   }
-  separateScreenCompanions(lists);
   for (const story of groupCatalog(lists)) {
     if (new Set(story.lists.map((list) => list.storylines)).size > 1) {
       throw new Error(`Catalog group "${story.key}" has conflicting storylines metadata`);
@@ -264,29 +263,6 @@ export function parseCatalog(raw) {
   // that survived, and a path naming an entry this function just dropped is one it will skip. The
   // manifest is where a path is checked; by the time it is in the generated catalog it has been.
   return { lists: sortCatalog(lists), paths: Array.isArray(raw?.paths) ? raw.paths : [], dropped };
-}
-
-// A screen companion prepares a reader for a film or series, so it is never a reading of the same
-// story as a Storylines entry, even when the manifest groups them (#1066). The Doomsday fast track
-// shared the Hickman group, which put an MCU Prep list on Storylines and made the story count on
-// Home disagree with the MCU Prep screen. Split here rather than in the manifest, because the
-// manifest's grouping is part of the library digest that frozen relationship reviews approved.
-function separateScreenCompanions(lists) {
-  const members = new Map();
-  for (const list of lists) {
-    if (!list.group) continue;
-    if (!members.has(list.group)) members.set(list.group, []);
-    members.get(list.group).push(list);
-  }
-  for (const group of members.values()) {
-    if (group.every((list) => list.type === 'screen-companion')) continue;
-    for (const list of group) {
-      if (list.type !== 'screen-companion') continue;
-      list.group = null;
-      list.groupName = null;
-      list.variant = null;
-    }
-  }
 }
 
 // These are the same two gaps import describes after the order is saved, shortened to fit beside
@@ -843,8 +819,8 @@ const FALLBACK_SHELF = CATALOG_SHELVES.find((shelf) => !shelf.types);
 
 // Which shelf a story belongs to. Every one of its readings has to match, not merely one of them: a
 // story mixing types falls through to the shelf that takes everything, which is the one that cannot
-// cut a reading path in two. No bundled story mixes types today, so the rule decides nothing yet.
-// It decides what happens the first time one does.
+// cut a reading path in two. The Doomsday companion and Hickman creator runs share one group, so
+// they keep one canonical shelf even though their browse views select different readings.
 //
 // A reading matches on its stated audience as well as its type. A shelf naming no audience takes
 // only readings that state none, so Character spotlights and Young readers cannot both claim a
@@ -1176,12 +1152,10 @@ export function publishingAgeGroups(stories) {
 // on Home. `route` is explicit rather than inferred from `key`: current categories lead to shelves,
 // while a later overlapping category must have its own route without changing canonical placement.
 const shelfCategory = (key) => (stories) => shelfStories(stories, key);
-// Kept by list rather than by story, so a story that mixes a companion with another kind of reading
-// still counts its companion, and Home's card counts what the category's own screen lists (#1066).
 const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : [])
-  .flatMap((story) => {
-    const lists = (Array.isArray(story?.lists) ? story.lists : []).filter((list) => list?.type === type);
-    return lists.length ? [{ ...story, lists }] : [];
+  .filter((story) => {
+    const lists = Array.isArray(story?.lists) ? story.lists : [];
+    return lists.length > 0 && lists.every((list) => list?.type === type);
   });
 
 export const MARVEL_AGES_CATEGORY = {

@@ -974,11 +974,11 @@ test('independent choices retain their own years while logical stops retain thei
     assert.equal(storyYear(story), years.length ? Math.min(...years) : null, story.key);
   }
   const hickman = entries.filter(({ groupKey }) => groupKey === 'hickman-secret-wars');
-  assert.deepEqual(hickman.map(storyYear), [2012, 2012]);
-  // The MCU Prep fast track is a companion to the films, not a third way through Hickman (#1066).
+  assert.deepEqual(hickman.map(storyYear), [2012, 2012, null]);
   const companion = groupCatalog(lists).find((story) => story.lists.some((list) => list.id === 'avengers-doomsday-secret-wars'));
-  assert.deepEqual(companion.lists.map((list) => list.id), ['avengers-doomsday-secret-wars']);
-  assert.equal(storyYear(companion), null);
+  assert.deepEqual(companion.lists.map((list) => list.id),
+    ['hickman-minimal', 'avengers-doomsday-secret-wars', 'hickman-full']);
+  assert.equal(storyYear(companion), 2012);
 });
 
 // ------------------------------------------------------------------ shelf sections

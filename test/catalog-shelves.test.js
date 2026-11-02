@@ -60,6 +60,9 @@ test('Storylines discovery overlaps canonical shelves with complete original gro
   }
   const hickman = projected.find((story) => story.lists.some((list) => list.id === 'hickman-minimal'));
   assert.deepEqual(hickman.lists.map((list) => list.id), ['hickman-minimal', 'hickman-full']);
+  const canonicalHickman = stories.find((story) => story.lists.some((list) => list.id === 'hickman-minimal'));
+  assert.deepEqual(canonicalHickman.lists.map((list) => list.id),
+    ['hickman-minimal', 'avengers-doomsday-secret-wars', 'hickman-full']);
 });
 
 // MCU Prep lists are companions to films and series rather than complete storylines (#1066), so
