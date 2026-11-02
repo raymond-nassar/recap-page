@@ -126,6 +126,28 @@ function harness({ readerRaw = readerValue(), historyRaw = null, locks = serialL
   return fixture;
 }
 
+test('iOS completion-history failures name app storage and other app copies', () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const h = harness({ locks: null });
+    assert.equal(h.history.writeUnavailable,
+      'App storage locking is unavailable. Completion history can be viewed and backed up, but changes cannot be saved safely in this app.');
+
+    const unavailable = new ListHistoryStore({ readerStore: { storage: null }, storage: null, locks: null });
+    assert.match(unavailable.load().error, /App storage is unavailable/);
+    assert.throws(() => unavailable.exportStoredCopy(), /App storage is unavailable/);
+
+    h.storage.map.set(LIST_HISTORY_KEY, historyValue([]));
+    const conflict = h.history.checkFresh(null);
+    assert.match(conflict.error, /Another copy of the app changed completion history/);
+    assert.doesNotMatch(conflict.error, /\bbrowser\b|\btab\b/i);
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
 test('completion preserves current reader bytes, actual progress, deferral and reader backup fields', async () => {
   const h = harness();
   const raw = h.storage.getItem(KEY);

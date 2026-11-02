@@ -11,12 +11,17 @@ import {
   addIssuesToList, createEmptyState, createList, normalizeIssue,
 } from '../src/js/lib/model.js';
 import {
-  ComicSearchRunner, createAddView, mergeSearchSelection, persistSearchSelection,
+  ComicSearchRunner, createAddView, draftSourceRemovalQuestion, mergeSearchSelection, persistSearchSelection,
 } from '../src/js/views/add.js';
 import { KEY, Store, ImportDraftStore, IMPORT_DRAFT_KEY } from '../src/js/storage.js';
 import { wireFieldValidation } from '../src/js/views/shared/field-validation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+test('draft removal copy uses the app scope on iOS and preserves browser wording elsewhere', () => {
+  assert.match(draftSourceRemovalQuestion(true), /snapshots from this app/);
+  assert.match(draftSourceRemovalQuestion(false), /snapshots from this browser/);
+});
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
