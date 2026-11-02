@@ -7918,6 +7918,14 @@
       "description": "This chapter resets Daredevil with sharper emotional stakes and a grounded tone. Black Widow’s stories expand the street-level world and set up the character-driven focus of the era.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "espionage"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 21,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7953,6 +7961,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "crime-noir",
+        "comedy"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7986,6 +8002,14 @@
       "description": "Marvel Boy introduces a sharp, rebellious energy that signals Marvel’s shift toward modern storytelling. Uncanny X-Men picks up that momentum with a fresh thematic direction.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "space-opera"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8020,6 +8044,14 @@
       "description": "This launch pushes the X-Men into globe-spanning missions with a focus on independence and identity. It sets up a parallel spine to the main mutant titles.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8053,6 +8085,14 @@
       "description": "The X-Men enter a new era with bold ideas and a modern tone. The story reframes mutants as cultural icons and raises the stakes for the entire line.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 3,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8086,6 +8126,13 @@
       "description": "These issues deepen Matt’s emotional world and explore the cost of heroism. The tone stays grounded and personal.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 10,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8120,6 +8167,13 @@
       "description": "Spider-Man shifts into a more introspective and mythic style. The story blends street-level challenges with larger mysteries.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8154,6 +8208,13 @@
       "description": "The X-Men confront fame, culture, and the pressure of being public figures. The arc mixes action with social commentary.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8187,6 +8248,12 @@
       "description": "A new team jumps across realities to fix broken timelines. The concept opens the door to constant reinvention.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8221,6 +8288,13 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "crime-noir",
+        "coming-of-age"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8254,6 +8328,13 @@
       "description": "The team faces survival challenges in a hostile environment. The story highlights leadership and trust.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8287,6 +8368,14 @@
       "description": "The X-Men confront biological threats and ethical dilemmas. The arc pushes the mutant metaphor into new territory.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8321,6 +8410,14 @@
       "description": "Frank takes on street-level corruption with relentless focus. The story keeps the tone sharp and unforgiving.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "comedy"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8354,6 +8451,13 @@
       "description": "The team faces political tension and moral conflict. The annual expands the stakes with a supernatural twist.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8388,6 +8492,15 @@
       "description": "The X-Men deal with cosmic politics and power struggles. The arc raises the scale without losing emotional focus.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8421,6 +8534,13 @@
       "description": "The team faces internal fractures and shifting alliances. The setup builds toward a larger conflict.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 3,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8455,6 +8575,13 @@
       "description": "Bruce confronts the monster within through a tense, psychological story. The tone is quiet, eerie, and character-driven.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8488,6 +8615,14 @@
       "description": "The team faces a reality that challenges their core values. The arc tests loyalty and purpose.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8521,6 +8656,13 @@
       "description": "Frank deals with the fallout of urban decay. The story keeps the focus tight and personal.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 2,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8555,6 +8697,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8588,6 +8738,13 @@
       "description": "Peter confronts hidden truths that reshape his relationships. The tone is emotional and reflective.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 3,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8621,6 +8778,15 @@
       "description": "The X-Men face a dangerous new mutant organization. The story blends political tension with action.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8654,6 +8820,14 @@
       "description": "The team responds to a global threat with high stakes. The arc emphasizes teamwork and resilience.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8687,6 +8861,13 @@
       "description": "Peter faces moral dilemmas and personal loss. The story keeps the focus on responsibility.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8720,6 +8901,13 @@
       "description": "Bruce deals with rising pressure and unstable alliances. The arc pushes him toward a breaking point.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8754,6 +8942,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8787,6 +8983,12 @@
       "description": "The team confronts a mission that challenges their future. The arc raises emotional stakes.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8820,6 +9022,14 @@
       "description": "Peter faces a familiar enemy with new complications. The story blends nostalgia with danger.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8853,6 +9063,13 @@
       "description": "The X-Men expand their mission and confront cultural change. The tone is ambitious and forward-looking.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 2,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8886,6 +9103,12 @@
       "description": "The team faces personal conflict and shifting loyalties. The arc explores trust and identity.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 2,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8919,6 +9142,13 @@
       "description": "Bruce faces political manipulation and moral pressure. The story tests his control.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8952,6 +9182,13 @@
       "description": "The X-Men push deeper into global influence. The arc builds momentum toward larger themes.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8985,6 +9222,13 @@
       "description": "The team deals with loss and renewal. The story focuses on emotional recovery.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9018,6 +9262,13 @@
       "description": "The team embraces exploration and optimism. The arc highlights creativity and family.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "lighthearted"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9051,6 +9302,14 @@
       "description": "Frank confronts street-level chaos with brutal efficiency. The tone stays sharp and direct.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "comedy"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9084,6 +9343,14 @@
       "description": "Peter faces moral choices that test his limits. The story blends action with introspection.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9117,6 +9384,13 @@
       "description": "The team deals with media pressure and internal conflict. The arc explores perception and division.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9151,6 +9425,14 @@
       "description": "Steve faces threats that challenge his ideals. The story keeps the focus on leadership.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9185,6 +9467,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "political",
+        "war",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9218,6 +9508,13 @@
       "description": "The team faces biological and ideological threats. The arc pushes the mutant metaphor forward.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9251,6 +9548,13 @@
       "description": "The team confronts the consequences of their missions. The story explores responsibility.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9284,6 +9588,14 @@
       "description": "The school faces rebellion and cultural tension. The arc is sharp, loud, and emotional.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "coming-of-age",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9317,6 +9629,13 @@
       "description": "Bruce faces psychological manipulation. The tone stays tense and atmospheric.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9350,6 +9669,14 @@
       "description": "Frank confronts organized crime with precision. The story keeps the stakes personal.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9383,6 +9710,14 @@
       "description": "Matt faces corruption and moral decay. The arc digs into the cost of heroism.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9416,6 +9751,12 @@
       "description": "Peter deals with fallout from past choices. The story focuses on accountability.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9450,6 +9791,12 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9483,6 +9830,14 @@
       "description": "The team faces ideological conflict and spiritual tension. The arc blends action with belief.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9517,6 +9872,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "magic-supernatural",
+        "horror"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9550,6 +9913,14 @@
       "description": "The team faces political threats and personal fallout. The arcs highlight teamwork and recovery.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9583,6 +9954,14 @@
       "description": "The team confronts ideological extremism. The story expands on classic themes.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9616,6 +9995,13 @@
       "description": "Frank uncovers secrets that reshape his mission. The tone stays tight and focused.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9649,6 +10035,14 @@
       "description": "Matt faces escalating violence and political pressure. The arc tests his resolve.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9682,6 +10076,13 @@
       "description": "Bruce tries to disappear but cannot escape conflict. The story blends tension with introspection.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9715,6 +10116,13 @@
       "description": "Frank confronts violence in a new environment. The arc explores justice outside the city.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9748,6 +10156,14 @@
       "description": "Elektra faces internal conflict and personal growth. The tone is quiet and sharp.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "martial-arts"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9781,6 +10197,14 @@
       "description": "Logan confronts a violent conspiracy. The story keeps the pace fast and direct.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9814,6 +10238,14 @@
       "description": "Elektra faces ghosts from her past. The arc blends action with reflection.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "martial-arts"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9847,6 +10279,13 @@
       "description": "The team faces primal threats and moral tests. The story pushes them into unfamiliar territory.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9880,6 +10319,14 @@
       "description": "A new class of mutants learns to work together. The tone is youthful and energetic.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level",
+        "lighthearted"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9914,6 +10361,14 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "coming-of-age",
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9947,6 +10402,14 @@
       "description": "The team takes bold action and faces cosmic consequences. The arcs explore leadership and legacy.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9980,6 +10443,12 @@
       "description": "Peter confronts time, memory, and responsibility. The story mixes celebration with danger.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10013,6 +10482,14 @@
       "description": "Peter faces a predatory threat that tests his limits. The tone is tense and focused.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10046,6 +10523,13 @@
       "description": "Bruce faces choices that reshape his future. The arc blends action with psychology.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10079,6 +10563,14 @@
       "description": "The team confronts a mythic threat with personal ties. The story pushes characters into crisis.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10112,6 +10604,13 @@
       "description": "The team explores new realities with high stakes. The arc emphasizes discovery.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "lighthearted"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10145,6 +10644,14 @@
       "description": "Tony faces political and technological pressure. The story focuses on responsibility and innovation.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "thriller",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10178,6 +10685,14 @@
       "description": "Echo confronts her past and identity. The arc blends action with emotional depth.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "martial-arts"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10211,6 +10726,14 @@
       "description": "Logan faces a brutal chase across the border. The tone is gritty and fast.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10244,6 +10767,13 @@
       "description": "The team faces emotional and social challenges. The arc deepens their relationships.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10277,6 +10807,13 @@
       "description": "The team deals with tragedy in a small town. The story blends romance with conflict.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10310,6 +10847,15 @@
       "description": "The X-Men confront the roots of mutant experimentation. The arc is intense and revealing.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10343,6 +10889,14 @@
       "description": "The team faces political unrest and moral conflict. The story pushes them into difficult choices.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10376,6 +10930,14 @@
       "description": "The teens grow into their roles and face new threats. The tone stays sharp and character-driven.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "lighthearted"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10409,6 +10971,14 @@
       "description": "Peter confronts mystical forces tied to his origin. The arc blends mythology with action.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "thriller"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10442,6 +11012,14 @@
       "description": "Storm faces a brutal test of strength and leadership. The story is focused and intense.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "martial-arts",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10476,6 +11054,15 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "storyTypes": [
+        "science-fiction",
+        "war",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "count": 25,
       "placeholderCount": 0,
       "emptyRecordCount": 0,

@@ -37,6 +37,22 @@ const strings = (v) => (Array.isArray(v) ? [...new Set(v.map(str).filter(Boolean
 // repository has been bitten by; the shape is what distinguishes a licence from a sentence.
 const SPDX = /^[A-Za-z0-9.+-]+(?: (?:AND|OR|WITH) [A-Za-z0-9.+-]+)*$/;
 
+const DISCOVERY_TAG_FIELDS = ['storyTypes', 'tones'];
+
+// Story types and tones are closed for the same reason audience is. They are capped because a list
+// tagged with everything it touches answers every search and so stops answering any.
+function discoveryTagProblem(field, tags) {
+  const [vocabulary, max] = field === 'storyTypes'
+    ? [STORY_TYPES, MAX_STORY_TYPES]
+    : [STORY_TONES, MAX_STORY_TONES];
+  const known = Object.keys(vocabulary);
+  if (!Array.isArray(tags) || !tags.length || tags.length > max
+    || tags.some((tag) => !known.includes(tag)) || new Set(tags).size !== tags.length) {
+    return `${field} must list 1 to ${max} unique values from ${known.join(', ')} when present`;
+  }
+  return null;
+}
+
 // Orders are fetched over the network at vendor time, so the manifest may only point at https.
 function httpsUrl(v) {
   const s = str(v);
@@ -131,20 +147,39 @@ function checkEntry(raw, index, seen) {
   if (Object.hasOwn(raw, 'audience') && !LIST_AUDIENCES.includes(raw.audience)) {
     at(`audience must be one of ${LIST_AUDIENCES.join(', ')} when present`);
   }
-  // Story types and tones are closed for the same reason. They are capped because a list tagged
-  // with everything it touches answers every search and so stops answering any; and they are
-  // refused on a partition parent, which is never shown, so a tag there would describe nothing.
-  for (const [field, vocabulary, max] of [
-    ['storyTypes', STORY_TYPES, MAX_STORY_TYPES],
-    ['tones', STORY_TONES, MAX_STORY_TONES],
-  ]) {
+  // Story types and tones are refused on a partition parent, which is never shown, so a tag there
+  // would describe nothing.
+  for (const field of DISCOVERY_TAG_FIELDS) {
     if (!Object.hasOwn(raw, field)) continue;
-    const tags = raw[field];
-    const known = Object.keys(vocabulary);
     if (partitionFile) at(`${field} belongs on a listed reading, not a partition parent`);
-    else if (!Array.isArray(tags) || !tags.length || tags.length > max
-      || tags.some((tag) => !known.includes(tag)) || new Set(tags).size !== tags.length) {
-      at(`${field} must list 1 to ${max} unique values from ${known.join(', ')} when present`);
+    else {
+      const problem = discoveryTagProblem(field, raw[field]);
+      if (problem) at(problem);
+    }
+  }
+  // A partition parent's chapters are generated, so their tags are held here keyed by exact child
+  // ID, beside storylinesChildren, rather than in the chapter ledger whose boundaries the owner
+  // approved. The build refuses an ID that is not one of the ledger's chapters.
+  if (Object.hasOwn(raw, 'chapterTags')) {
+    const tagsById = raw.chapterTags;
+    if (!partitionFile || !tagsById || typeof tagsById !== 'object' || Array.isArray(tagsById)) {
+      at('chapterTags must be an object keyed by exact child IDs on a partition parent');
+    } else {
+      for (const [child, tags] of Object.entries(tagsById)) {
+        const label = `chapterTags["${child}"]`;
+        if (!child || child !== child.trim()) at(`${label} must be keyed by an exact child ID`);
+        if (!tags || typeof tags !== 'object' || Array.isArray(tags)
+          || Object.keys(tags).some((key) => !DISCOVERY_TAG_FIELDS.includes(key))) {
+          at(`${label} may hold only ${DISCOVERY_TAG_FIELDS.join(' and ')}`);
+          continue;
+        }
+        if (!Object.hasOwn(tags, 'storyTypes')) at(`${label} must list at least one story type`);
+        for (const field of DISCOVERY_TAG_FIELDS) {
+          if (!Object.hasOwn(tags, field)) continue;
+          const problem = discoveryTagProblem(field, tags[field]);
+          if (problem) at(`${label} ${problem}`);
+        }
+      }
     }
   }
   if (raw.expect != null && !(Number.isInteger(raw.expect) && raw.expect > 0)) {
@@ -183,7 +218,17 @@ function checkEntry(raw, index, seen) {
       partitionFile,
       catalog: raw.catalog !== false,
       ...(partitionFile
-        ? (Object.hasOwn(raw, 'storylinesChildren') ? { storylinesChildren: [...raw.storylinesChildren] } : {})
+        ? {
+          ...(Object.hasOwn(raw, 'storylinesChildren') ? { storylinesChildren: [...raw.storylinesChildren] } : {}),
+          ...(Object.hasOwn(raw, 'chapterTags')
+            ? {
+              chapterTags: Object.fromEntries(Object.entries(raw.chapterTags).map(([child, tags]) => [child, {
+                storyTypes: [...tags.storyTypes],
+                ...(Object.hasOwn(tags, 'tones') ? { tones: [...tags.tones] } : {}),
+              }])),
+            }
+            : {}),
+        }
         : { storylines: raw.storylines === true }),
       // The page a reader can open is not always the raw file we fetch; fall back to the raw
       // URL so attribution is never blank. An order authored here has no upstream page, so it

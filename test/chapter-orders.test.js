@@ -67,6 +67,32 @@ test('Storylines child IDs select metadata only, never inherited parent eligibil
   assert.throws(() => build({ ...f.order, storylines: true }), /storylines/);
 });
 
+// #1065. The owner tagged all 78 chapters on #1065; each generated chapter carries exactly its own
+// tags and nothing else changes, and a tag keyed to a chapter the ledger does not have is refused.
+test('chapter tags reach exactly their own chapter and never change a payload', async () => {
+  const f = await fixture();
+  const ids = f.ledger.chapters.map((chapter) => chapter.id);
+  assert.deepEqual(Object.keys(f.order.chapterTags).sort(), [...ids].sort());
+  for (const child of f.family.children) {
+    const tags = f.order.chapterTags[child.order.id];
+    assert.deepEqual(child.order.storyTypes, tags.storyTypes, `${child.order.id} story types`);
+    assert.deepEqual(child.order.tones, tags.tones, `${child.order.id} tones`);
+    assert.equal(Object.hasOwn(child.order, 'chapterTags'), false);
+  }
+  const build = (order) => buildChapterFamily({ ...f, order,
+    existingPathIds: f.manifest.paths.map((entry) => entry.id) });
+  const untagged = { ...f.order };
+  delete untagged.chapterTags;
+  for (const [index, child] of build(untagged).children.entries()) {
+    assert.equal(Object.hasOwn(child.order, 'storyTypes'), false);
+    assert.equal(Object.hasOwn(child.order, 'tones'), false);
+    assert.deepEqual(child.payload, f.family.children[index].payload);
+  }
+  assert.throws(() => build({ ...f.order, chapterTags: { ...f.order.chapterTags, [`${parentId}-79`]: { storyTypes: ['war'] } } }),
+    /chapterTags names unknown child IDs: marvel-knights-to-planet-x-79/);
+  assert.throws(() => build({ ...f.order, chapterTags: [] }), /chapterTags must be an object/);
+});
+
 test('the corrected owner ledger pins every chapter field and source position', async () => {
   const {
     parsed, ledger, family,
@@ -193,8 +219,10 @@ test('the generated catalog replaces the parent with every child and the owner-o
 
   for (const { chapter, order } of family.children) {
     const entry = children.find((candidate) => candidate.id === chapter.id);
+    const rawEntry = raw.lists.find((candidate) => candidate.id === chapter.id);
     const copy = ledger.descriptionCopy.entries.find((candidate) => candidate.id === chapter.id);
     assert.ok(entry, `${chapter.id} is missing from the catalog`);
+    assert.ok(rawEntry, `${chapter.id} is missing from the generated catalog`);
     assert.equal(entry.file, order.out);
     assert.equal(entry.name, chapter.name);
     assert.equal(entry.description, copy.description);
@@ -202,6 +230,10 @@ test('the generated catalog replaces the parent with every child and the owner-o
     assert.equal(entry.collections, 0);
     assert.equal(entry.timeline, chapter.timelineYear);
     assert.equal(entry.group, null);
+    assert.deepEqual(rawEntry.storyTypes ?? [], order.storyTypes ?? [], `${chapter.id} catalog story types`);
+    assert.deepEqual(rawEntry.tones ?? [], order.tones ?? [], `${chapter.id} catalog tones`);
+    assert.deepEqual(entry.storyTypes, rawEntry.storyTypes ?? [], `${chapter.id} searchable story types`);
+    assert.deepEqual(entry.tones, rawEntry.tones ?? [], `${chapter.id} searchable tones`);
   }
 
   const ownerPath = raw.paths.find((entry) => entry.id === ledger.path.id);

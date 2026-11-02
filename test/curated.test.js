@@ -111,6 +111,42 @@ test('story types and tones are closed, capped and carried only when stated', ()
   assert.match(parseManifest({ lists: [parent] }).errors.join('\n'), /storyTypes belongs on a listed reading/);
 });
 
+// #1065. A partition parent's chapters are generated, so their tags are held on the parent keyed
+// by child ID. Each chapter answers to the same closed lists and caps as an ordinary list, and
+// must name at least one story type, so an owner's tag cannot be misspelled or overfilled here.
+test('chapter tags are partition-parent-only and each chapter obeys the list rules', () => {
+  const parent = { ...valid, sourceUrl: undefined, sourceFile: 'civil_war.md',
+    partitionFile: 'parts.json', catalog: false };
+  const chapterTags = {
+    'civil-war-01': { storyTypes: ['war', 'political', 'thriller'], tones: ['epic', 'dark'] },
+    'civil-war-02': { storyTypes: ['crime-noir'] },
+  };
+  const stated = parseManifest({ lists: [{ ...parent, chapterTags }] });
+  assert.deepEqual(stated.errors, []);
+  assert.deepEqual(stated.entries[0].chapterTags, chapterTags);
+  assert.equal(Object.hasOwn(parseManifest({ lists: [parent] }).entries[0], 'chapterTags'), false);
+
+  assert.match(parseManifest({ lists: [{ ...valid, chapterTags }] }).errors.join('\n'),
+    /chapterTags must be an object keyed by exact child IDs on a partition parent/);
+  const refused = [
+    [null, /chapterTags must be an object/],
+    [[], /chapterTags must be an object/],
+    [{ ' civil-war-01': { storyTypes: ['war'] } }, /must be keyed by an exact child ID/],
+    [{ 'civil-war-01': { storyTypes: ['spy'] } }, /storyTypes must list 1 to 3/],
+    [{ 'civil-war-01': { storyTypes: ['war', 'horror', 'comedy', 'political'] } }, /storyTypes must list 1 to 3/],
+    [{ 'civil-war-01': { storyTypes: ['war'], tones: ['grim'] } }, /tones must list 1 to 2/],
+    [{ 'civil-war-01': { storyTypes: ['war'], tones: ['epic', 'dark', 'lighthearted'] } }, /tones must list 1 to 2/],
+    [{ 'civil-war-01': { tones: ['dark'] } }, /must list at least one story type/],
+    [{ 'civil-war-01': { storyTypes: ['war'], keywords: ['x'] } }, /may hold only storyTypes and tones/],
+    [{ 'civil-war-01': ['war'] }, /may hold only storyTypes and tones/],
+  ];
+  for (const [bad, message] of refused) {
+    const { entries, errors } = parseManifest({ lists: [{ ...parent, chapterTags: bad }] });
+    assert.equal(entries.length, 0, `accepted ${JSON.stringify(bad)}`);
+    assert.match(errors.join('\n'), message);
+  }
+});
+
 test('expect is optional', () => {
   const { entries, errors } = parseManifest({ lists: [{ ...valid, expect: undefined }] });
   assert.deepEqual(errors, []);

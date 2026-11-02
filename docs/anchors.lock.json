@@ -1749,8 +1749,8 @@
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|scripts/lib/chapter-orders.mjs:392-402|0": {
-    "anchor": "scripts/lib/chapter-orders.mjs:392-402",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|scripts/lib/chapter-orders.mjs:406-416|0": {
+    "anchor": "scripts/lib/chapter-orders.mjs:406-416",
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
@@ -2114,13 +2114,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12932-13069|0": {
-    "anchor": "src/data/catalog.json:12932-13069",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:13519-13656|0": {
+    "anchor": "src/data/catalog.json:13519-13656",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:8561-8612|0": {
-    "anchor": "src/data/curated-lists.json:8561-8612",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:9306-9357|0": {
+    "anchor": "src/data/curated-lists.json:9306-9357",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },
