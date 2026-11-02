@@ -4049,6 +4049,10 @@ async function progressGlanceCheck(page, label, viewport) {
     const at = (selector) => document.querySelector(selector).getBoundingClientRect();
     return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
   });
+  if (viewport.doneAbove) {
+    check(hero.scrollY === 0 && heroOrder.done <= hero.fold,
+      `${name}: the reading screen opens with Done above the bottom bar too, as #1061 keeps it ${JSON.stringify({ hero, heroOrder })}`);
+  }
   check(hero.text === `3 of ${total} read` && hero.figure === '3' && hero.sizes[0] >= hero.sizes[1] * 1.25
     && Math.abs(hero.share - 3 / total) * hero.barWidth <= 0.5 && hero.inside && !hero.overflow
     && heroOrder.row >= heroOrder.done && heroOrder.facts >= heroOrder.row,
@@ -4789,11 +4793,12 @@ try {
   // #876: the phone sizes the Issue names, with and without 200% text, and the short landscape screen
   // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text. #1061: the
   // iOS overlay's own text sizes at 390 by 844, where its 14px body text once shrank the cover's reserve
-  // and put Read 13px under the bar.
+  // and put Read 13px under the bar. Done opens above it too wherever the cover has grown past its 96px,
+  // which a reserve held for Read alone had left 59px under the bar on iOS there.
   if (progressGlance) viewports = [
     { width: 360, height: 800, theme: 'light', heroAbove: true, homeAbove: true },
-    { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, homeAbove: true },
-    { width: 390, height: 844, theme: 'light', heroAbove: true, iosText: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, doneAbove: true, homeAbove: true },
+    { width: 390, height: 844, theme: 'light', heroAbove: true, doneAbove: true, iosText: true },
     { width: 800, height: 360, theme: 'dark', homeAbove: true },
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 412, height: 915, textScale: 2, theme: 'light', covers: true },

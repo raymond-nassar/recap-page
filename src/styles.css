@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:792-799`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:795-802`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2344,17 +2344,20 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 @media (max-width: 700px) {
   #hero .hero-in { display: flow-root; padding: var(--space-6); }
   /* #1061, the owner's request on 2026-11-01: the cover is centered and as large as the screen allows
-     while Read stays above the bottom bar when the screen opens, with the list's heading still above
-     the card. The reserve is measured from the top of the screen for that reason: 27rem, measured from
-     the card's own top, put Read 137px under the bar at 390x844 on a first visit. 40.5rem leaves a 131px
-     wide cover there, 189px at 430x932, and 101px at 360x800, where 40rem and an 8rem floor put Read 4px under it.
+     while Read and Done stay above the bottom bar when the screen opens, with the list's heading still
+     above the card. The reserve is measured from the top of the screen for that reason, and a list note
+     adds its line to it. 40.5rem held only Read and left Done 23px under the bar at 390x844 and above,
+     whatever the height; 42.5rem lifts it there with a 109px cover, 178px at 430x932. Where the cover is
+     already at its floor Done sits where it did before, as at 360x800, 38px under on opening then too.
      The floor and gap are the 96px and --space-4 the cover had before, and 14.4dvh holds them there at 375x667
      at any text size, never under 96px in landscape: the list's heading keeps Read under the bar there,
      and only a cover under half of 96px would lift it. Being in rem, larger text shrinks the cover first. */
   #hero .hero-in > .art {
+    --hero-reserve: 42.5rem;
     float: none; max-width: none; margin: 0 auto var(--space-4);
-    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - 40.5rem) * 2 / 3), 62vw, 20rem));
+    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
   }
+  #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: 46rem; }
   #hero-title, #hero-by { text-align: center; }
   #hero-title { clear: both; }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }

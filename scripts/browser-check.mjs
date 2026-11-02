@@ -2458,9 +2458,10 @@ const SCENARIOS = [
       t.check('picker, Details, fetching and settings preserve saved progress and notes bytes',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
       await settings();
-      t.check('#1061 Settings no longer offers to hide story summaries',
+      t.check('#1061 Settings no longer offers to hide story summaries, nor lists that choice among those a backup holds',
         await page.evaluate(() => !document.querySelector('#opt-description-hiding')
-          && !/Hide story summaries/.test(document.querySelector('#view-data').textContent)));
+          && !/Hide story summaries/.test(document.querySelector('#view-data').textContent)
+          && !/story summary/i.test(document.querySelector('#complete-backup-contents').textContent)));
       // #1061: a hiding choice saved by an earlier version is ignored rather than refused, and the
       // reader's other settings come through untouched.
       for (const raw of [true, false, 'false', 0, null]) {
@@ -2477,6 +2478,19 @@ const SCENARIOS = [
             && localStorage.getItem('mrt.state.v2') === before
             && !localStorage.getItem('mrt.settings').includes('Synthetic narrative'), saved));
       }
+      // #1061: a restored backup leaves false stored, and the next settings save must keep it, or the
+      // backups made afterwards would say true and an older build restoring one would hide summaries.
+      await page.evaluate(() => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        prefs.hideDescriptions = false;
+        localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+      });
+      await page.reload({ waitUntil: 'networkidle0' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.$eval('#opt-covers', (node) => node.click());
+      await page.$eval('#opt-covers', (node) => node.click());
+      t.check('#1061 a settings save stores the hiding choice as false, which is what this version shows',
+        await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).hideDescriptions === false));
       await page.evaluate(() => {
         const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
         delete prefs.theme;

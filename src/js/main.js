@@ -508,6 +508,9 @@ function saveSettings() {
       theme: settings.theme,
       filter: settings.filter,
       readingShortcut: settings.readingShortcut,
+      // #1061: nothing is hidden now, so the stored choice always says so. Leaving it out let a restored
+      // false fall back to true in the next backup, which an earlier version would then restore as hiding.
+      hideDescriptions: false,
     });
     localStorage.setItem(SETTINGS_KEY, serialized);
     return localStorage.getItem(SETTINGS_KEY) === serialized;

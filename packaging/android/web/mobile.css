@@ -362,18 +362,21 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
 }
 @media (max-width: 880px) and (min-height: 600px) {
   /* #1061, the owner's request on 2026-11-01: the reading card leads with the same poster, centered
-     above its title. Its 35em reserve is measured from the top of the screen, because #836 has Read
-     open above the bottom bar: it holds the list's heading and progress, the card's padding, a
-     two-line title, the byline and Read. Measured at 360 by 800, 25em left Read 152px under the bar.
-     35rem holds iOS to it too, whose 14px text made 35em a 490px reserve and put Read 13px under the
-     bar at 390x844; 35em still grows it with Dynamic Type. The floor and gap stay the 96px and --space-4 of
-     before at 375x667 and any text size, as styles.css says.
+     above its title. Its reserve is measured from the top of the screen, because #836 has Read and
+     Done open above the bottom bar: it holds the list's heading and progress, the card's padding, a
+     two-line title, the byline, Read and Done, and a list note adds its line. Measured at 360 by 800,
+     25em left Read 152px under the bar. In rem it holds iOS too, whose 14px text made the em reserve
+     smaller while its 28px title stands 18px taller than Android's: 35rem left Done 59px under the bar at
+     390x844 there. The em term still grows it with Dynamic Type. The floor and gap stay the 96px and
+     --space-4 of before at 375x667 and any text size, as styles.css says.
      A block of its own, so #980's poster rules above can still be lifted out whole for comparison. */
   #hero .hero-in { display: flow-root; }
   #hero .hero-in > .art {
+    --hero-reserve: max(39.5rem, 39.5em);
     float: none; max-width: none; margin: 0 auto var(--space-4);
-    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--mobile-nav-height, 80px) - max(35rem, 35em)) * 2 / 3), 62vw, 20rem));
+    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--mobile-nav-height, 80px) - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
   }
+  #view-read:has(#list-note:not([hidden])) #hero .hero-in > .art { --hero-reserve: max(43rem, 43em); }
   #hero-title, #hero-by { text-align: center; }
 }
 /* Where the commands share one row they center under the title. On a phone Read spans the width and

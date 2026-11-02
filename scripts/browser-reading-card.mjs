@@ -16,8 +16,8 @@ const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', impo
 const order = JSON.parse(readFileSync(new URL(`../src/data/${catalog.lists.find((list) => list.id === 'hickman-minimal').file}`, import.meta.url), 'utf8'));
 const next = order.items[3].title;
 
-function fixture() {
-  let state = createList(createEmptyState(), { id: 'card', name: order.name, description: order.description, catalogId: order.id });
+function fixture(note = '') {
+  let state = createList(createEmptyState(), { id: 'card', name: order.name, description: order.description, catalogId: order.id, note });
   state = addIssuesToList(state, 'card', order.items).state;
   for (const item of order.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
   return state;
@@ -28,7 +28,7 @@ const settle = (page) => page.evaluate(() => new Promise((resolve) => {
 }));
 
 // A list under way, past the one-time save note, so the card is the first thing in the reading view.
-async function setup(page, { width, height, theme, text }) {
+async function setup(page, { width, height, theme, text, note }) {
   await page.goto('about:blank');
   await page.setViewport({ width, height });
   const { identifier } = await page.evaluateOnNewDocument((initial, key, educationKey, education, chosen) => {
@@ -43,7 +43,7 @@ async function setup(page, { width, height, theme, text }) {
       return url.origin === location.origin ? real(input, init)
         : Promise.reject(new TypeError('Reading card fixture blocks external requests'));
     };
-  }, exportBackup(fixture()), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
+  }, exportBackup(fixture(note)), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
   await page.goto(`${page.__origin}/#/read/card`, { waitUntil: 'load' });
   await page.waitForFunction((name) => !document.querySelector('#view-read').hidden
     && document.querySelector('#hero-title').textContent === name, {}, next);
@@ -143,9 +143,10 @@ export const readingCardFocus = {
 
 // #1061, the owner's request on 2026-11-01: the cover is centered and takes more of the screen, Read
 // and Done stay visible without scrolling, and the Marvel Unlimited record and the position move to
-// Issue details. Before it, a phone showed the cover floated left at 96px. Read must also stay above the
-// fold when the screen opens, with the list's heading above the card, which leaves the smallest phones
-// little more than that: a third larger is the floor from 390px wide, and never smaller below it.
+// Issue details. Before it, a phone showed the cover floated left at 96px. Read and Done must also stay
+// above the fold when the screen opens, with the list's heading above the card, and a list note above it
+// as well, unless the cover is already back at that 96px: then they open where they did before, as at
+// 360x800, where Done opened under the bar before #1061 too. So the cover grows only from 390px wide.
 // 375x667, the iPhone SE size, is held to the cover and gap it had before: 96px and half a rem. On opening, the
 // list's heading and the card's title keep Read under the bottom bar there, as before #1061, and lifting
 // it with the cover alone would take one under half that 96px, so the pin records that too.
@@ -156,20 +157,26 @@ export const readingCardPoster = {
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    for (const [width, height] of [[360, 800], [375, 667], [390, 844], [430, 932], [820, 1180], [1024, 1366], [1280, 900]]) {
-      for (const text of [null, '200%']) {
-        const name = `${width}x${height}${text ? ` at ${text} text` : ''}`;
-        const undo = await setup(page, { width, height, theme: 'dark', text });
+    for (const [width, height] of [[360, 800], [375, 667], [390, 844], [393, 851], [412, 915], [414, 896], [430, 932], [820, 1180], [1024, 1366], [1280, 900]]) {
+      for (const { text, note } of [{}, { text: '200%' }, ...(width <= 700 ? [{ note: 'Read the Avengers issues first.' }] : [])]) {
+        const name = `${width}x${height}${text ? ` at ${text} text` : ''}${note ? ' with a list note' : ''}`;
+        const undo = await setup(page, { width, height, theme: 'dark', text, note });
         if (!text && height >= 700) {
           const opened = await page.evaluate(() => {
             const rail = document.querySelector('.rail-header');
             const bar = rail.getBoundingClientRect();
             const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+            const note = document.querySelector('#list-note');
             return { scrollY: Math.round(scrollY), fold: Math.round(barred ? innerHeight - bar.height : innerHeight),
-              read: Math.round(document.querySelector('#btn-hero-read').getBoundingClientRect().bottom) };
+              read: Math.round(document.querySelector('#btn-hero-read').getBoundingClientRect().bottom),
+              done: Math.round(document.querySelector('#btn-hero-done').getBoundingClientRect().bottom),
+              art: Math.round(document.querySelector('#hero .hero-in > .art').getBoundingClientRect().width),
+              note: note.hidden ? 0 : Math.round(note.getBoundingClientRect().height) };
           });
-          t.check(`${name}: Read is above the fold when the screen opens`,
-            opened.scrollY === 0 && opened.read <= opened.fold, JSON.stringify(opened));
+          t.check(`${name}: Read and Done are above the fold when the screen opens, unless the cover is at its 96px`,
+            opened.scrollY === 0 && !!opened.note === !!note
+              && ((opened.read <= opened.fold && opened.done <= opened.fold) || Math.abs(opened.art - 96) <= 1),
+            JSON.stringify(opened));
         }
         if (width === 375 && height === 667) {
           const opened = await page.evaluate(() => {
@@ -215,8 +222,8 @@ export const readingCardPoster = {
         if (width <= 700) {
           t.check(`${name}: the cover is centered`, Math.abs(seen.offset) <= 2, JSON.stringify(seen));
           if (!text) {
-            t.check(`${name}: the cover is ${width >= 390 ? 'at least a third larger than' : 'no smaller than'} the 96px it was`,
-              seen.art >= (width >= 390 ? 128 : 96), JSON.stringify(seen));
+            t.check(`${name}: the cover is ${width >= 390 && !note ? 'larger than' : 'no smaller than'} the 96px it was`,
+              seen.art >= (width >= 390 && !note ? 104 : 96), JSON.stringify(seen));
           }
         }
         t.check(`${name}: the card leaves the Unlimited record and the position to Issue details`,

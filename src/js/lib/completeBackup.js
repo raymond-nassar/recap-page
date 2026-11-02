@@ -34,6 +34,7 @@ export const COMPLETE_BACKUP_FILENAME = 'recap-page-complete-backup.json';
 export const MAX_COMPLETE_BACKUP_BYTES = 32 * 1024 * 1024;
 // hideDescriptions stays in the format although nothing reads it since #1061: backups written before
 // then require the field, and dropping it would make this version refuse them and older ones refuse ours.
+// Every backup carries it as false, which is what this version shows.
 export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hideDescriptions']);
 export const PORTABLE_DRAFT_FIELDS = Object.freeze(['format', 'version', 'rawText', 'occurrences', 'destination', 'previousSources']);
 export const PREPARED_FORMAT = 'recap-page-complete-restore-prepared';
@@ -237,7 +238,9 @@ export function settingsFromStorage(rawSettings, rawSidebar) {
     theme: normaliseTheme(stored.theme),
     filter: readingFilter(stored.filter) ? stored.filter : DEFAULT_FILTER,
     readingShortcut: stored.readingShortcut !== false,
-    hideDescriptions: stored.hideDescriptions !== false,
+    // #1061: what this version shows, whatever an earlier one stored, so restoring the file there shows
+    // summaries too rather than reading an absent value as hiding them.
+    hideDescriptions: false,
     sidebarCollapsed: rawSidebar === 'true' ? true : rawSidebar === 'false' ? false : null,
   };
 }
