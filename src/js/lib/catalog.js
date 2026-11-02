@@ -221,6 +221,7 @@ function normalizeEntry(raw) {
     audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
     storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
     tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
+    writers: strings(raw.writers).slice(0, 3),
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
     source: str(raw.source),

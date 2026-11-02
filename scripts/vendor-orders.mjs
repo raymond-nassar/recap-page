@@ -321,9 +321,32 @@ function catalogCover(order, payload) {
   return first ? { coverIssueId: first.issueId, cover: first.cover } : { coverIssueId: null, cover: null };
 }
 
+// The writers a list is mostly by, so a finished list can suggest another by the same writer
+// without the device loading every order to find out (#1060). Derived from the payload's own
+// credits, like the issue count, and kept to writers credited on at least a quarter of its issues:
+// a crossover credits dozens of writers once each, and naming them all would link every event to
+// every other.
+export function catalogWriters(payload) {
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  const counts = new Map();
+  for (const item of items) {
+    const names = new Set((Array.isArray(item?.creators) ? item.creators : [])
+      .filter((credit) => credit?.role === 'writer' && typeof credit.name === 'string' && credit.name.trim())
+      .map((credit) => credit.name.trim()));
+    for (const name of names) counts.set(name, (counts.get(name) ?? 0) + 1);
+  }
+  const floor = Math.max(1, Math.ceil(items.length / 4));
+  return [...counts]
+    .filter(([, count]) => count >= floor)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'en'))
+    .slice(0, 3)
+    .map(([name]) => name);
+}
+
 // Derived from the payload rather than restated, so the issue count a reader sees before
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
+  const writers = catalogWriters(payload);
   const { coverIssueId, cover } = catalogCover(order, payload);
   const { placeholders, empty, ownerConfirmed } = countOrderGaps(payload);
   return {
@@ -340,6 +363,7 @@ function catalogEntry(order, payload) {
     ...(order.audience ? { audience: order.audience } : {}),
     ...(order.storyTypes ? { storyTypes: order.storyTypes } : {}),
     ...(order.tones ? { tones: order.tones } : {}),
+    ...(writers.length ? { writers } : {}),
     count: payload.count,
     placeholderCount: placeholders,
     emptyRecordCount: empty,

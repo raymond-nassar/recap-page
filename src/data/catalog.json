@@ -14,6 +14,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Mike Carey"
+      ],
       "count": 11,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -56,6 +59,10 @@
       "storyTypes": [
         "political"
       ],
+      "writers": [
+        "Jason Aaron",
+        "Kieron Gillen"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -96,6 +103,9 @@
       "depth": "complete",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Dan Slott"
       ],
       "count": 13,
       "placeholderCount": 0,
@@ -185,6 +195,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Jonathan Hickman"
+      ],
       "count": 69,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -239,6 +252,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Jonathan Hickman"
+      ],
       "count": 219,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -291,6 +307,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Christopher Yost",
+        "Cullen Bunn"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -335,6 +355,11 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "David Lapham",
+        "Greg Pak",
+        "Marjorie Liu"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -374,6 +399,9 @@
       "depth": "complete",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Kelly Sue Deconnick"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -417,6 +445,10 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Brian Michael Bendis",
+        "Jason Aaron"
+      ],
       "count": 10,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -458,6 +490,11 @@
       "storyTypes": [
         "science-fiction",
         "magic-supernatural"
+      ],
+      "writers": [
+        "Alan Cowsill",
+        "Andy Lanning",
+        "Rob Williams"
       ],
       "count": 8,
       "placeholderCount": 0,
@@ -503,6 +540,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -545,6 +585,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Cullen Bunn"
       ],
       "count": 13,
       "placeholderCount": 0,
@@ -589,6 +632,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Cullen Bunn"
       ],
       "count": 11,
       "placeholderCount": 0,
@@ -680,6 +726,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Gerry Duggan"
+      ],
       "count": 46,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -726,6 +775,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Donny Cates"
       ],
       "count": 88,
       "placeholderCount": 0,
@@ -779,6 +831,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Donny Cates",
+        "Nick Spencer"
+      ],
       "count": 15,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -823,6 +879,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Charles Soule"
       ],
       "count": 24,
       "placeholderCount": 0,
@@ -869,6 +928,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Christos Gage"
+      ],
       "count": 25,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -911,6 +973,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Ed Brisson"
       ],
       "count": 9,
       "placeholderCount": 0,
@@ -1000,6 +1065,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Jason Aaron"
+      ],
       "count": 66,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1045,6 +1113,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Jonathan Hickman"
       ],
       "count": 54,
       "placeholderCount": 0,
@@ -1097,6 +1168,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Donny Cates"
+      ],
       "count": 31,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1139,6 +1213,10 @@
       "storyTypes": [
         "science-fiction",
         "political"
+      ],
+      "writers": [
+        "Christos Gage",
+        "Dan Slott"
       ],
       "count": 18,
       "placeholderCount": 0,
@@ -1183,6 +1261,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Jason Aaron"
+      ],
       "count": 18,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1221,6 +1302,9 @@
       "depth": "complete",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Jed Mackay"
       ],
       "count": 10,
       "placeholderCount": 0,
@@ -1266,6 +1350,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Al Ewing"
       ],
       "count": 9,
       "placeholderCount": 0,
@@ -1314,6 +1401,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Jed Mackay"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1361,6 +1451,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Jonathan Hickman"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1405,6 +1498,9 @@
       "tones": [
         "street-level",
         "dark"
+      ],
+      "writers": [
+        "Chip Zdarsky"
       ],
       "count": 24,
       "placeholderCount": 0,
@@ -1553,6 +1649,10 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Paul Jenkins",
+        "Kurt Busiek"
+      ],
       "count": 21,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1601,6 +1701,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Dan Slott"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1643,6 +1746,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Kieron Gillen"
       ],
       "count": 44,
       "placeholderCount": 0,
@@ -1687,6 +1793,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Zeb Wells"
       ],
       "count": 22,
       "placeholderCount": 0,
@@ -1734,6 +1843,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Kieron Gillen"
+      ],
       "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1778,6 +1890,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Zeb Wells"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -1818,6 +1933,9 @@
       "depth": "selected",
       "storyTypes": [
         "magic-supernatural"
+      ],
+      "writers": [
+        "Stephanie Phillips"
       ],
       "count": 9,
       "placeholderCount": 0,
@@ -1862,6 +1980,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Zeb Wells"
       ],
       "count": 31,
       "placeholderCount": 0,
@@ -1913,6 +2034,10 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Gerry Duggan",
+        "Kieron Gillen"
       ],
       "count": 34,
       "placeholderCount": 0,
@@ -2054,6 +2179,11 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Brian Michael Bendis",
+        "Mark Waid",
+        "Tom Peyer"
+      ],
       "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2110,6 +2240,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2165,6 +2298,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Greg Pak"
+      ],
       "count": 15,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2208,6 +2344,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Greg Pak"
       ],
       "count": 107,
       "placeholderCount": 0,
@@ -2259,6 +2398,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Paul Jenkins"
       ],
       "count": 31,
       "placeholderCount": 0,
@@ -2314,6 +2456,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Mark Millar"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -2371,6 +2516,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Keith Giffen"
+      ],
       "count": 25,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2424,6 +2572,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Christopher Yost"
+      ],
       "count": 48,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2472,6 +2623,10 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Brian Michael Bendis",
+        "Brian Reed"
       ],
       "count": 36,
       "placeholderCount": 0,
@@ -2532,6 +2687,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -2587,6 +2745,10 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Tini Howard",
+        "Jonathan Hickman"
       ],
       "count": 25,
       "placeholderCount": 0,
@@ -2828,6 +2990,9 @@
       "storyTypes": [
         "martial-arts",
         "espionage"
+      ],
+      "writers": [
+        "Doug Moench"
       ],
       "count": 298,
       "placeholderCount": 8,
@@ -3079,6 +3244,11 @@
         "science-fiction",
         "thriller"
       ],
+      "writers": [
+        "David Michelinie",
+        "Dennis O'neil",
+        "Bob Layton"
+      ],
       "count": 16,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3119,6 +3289,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Bruce Jones",
+        "Jeph Loeb"
+      ],
       "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3156,6 +3330,10 @@
       "storyTypes": [
         "science-fiction",
         "espionage"
+      ],
+      "writers": [
+        "Len Kaminski",
+        "David Michelinie"
       ],
       "count": 29,
       "placeholderCount": 0,
@@ -3197,6 +3375,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Rob Rodi"
+      ],
       "count": 14,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3232,6 +3413,9 @@
       "depth": "selected",
       "storyTypes": [
         "war"
+      ],
+      "writers": [
+        "Fred Van Lente"
       ],
       "count": 4,
       "placeholderCount": 0,
@@ -3272,6 +3456,10 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Roy Thomas",
+        "Brian Michael Bendis"
+      ],
       "count": 15,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3307,6 +3495,11 @@
       "storyTypes": [
         "science-fiction",
         "thriller"
+      ],
+      "writers": [
+        "Matt Fraction",
+        "Joe Casey",
+        "Warren Ellis"
       ],
       "count": 24,
       "placeholderCount": 0,
@@ -3346,6 +3539,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Bryan J.L. Glass"
       ],
       "count": 14,
       "placeholderCount": 0,
@@ -3388,6 +3584,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Ed Brubaker",
+        "Mark Waid"
+      ],
       "count": 18,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3426,6 +3626,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Brian Michael Bendis"
       ],
       "count": 25,
       "placeholderCount": 0,
@@ -3469,6 +3672,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Nick Spencer",
+        "Robert Kirkman"
+      ],
       "count": 22,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3509,6 +3716,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Mark Millar"
       ],
       "count": 23,
       "placeholderCount": 0,
@@ -3553,6 +3763,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Greg Pak"
+      ],
       "count": 30,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3592,6 +3805,10 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Ta-Nehisi Coates",
+        "Christopher Priest"
       ],
       "count": 54,
       "placeholderCount": 0,
@@ -3633,6 +3850,10 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Jim Starlin",
+        "Jason Aaron"
       ],
       "count": 19,
       "placeholderCount": 0,
@@ -3676,6 +3897,10 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Kelly Sue Deconnick",
+        "Roy Thomas"
+      ],
       "count": 24,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3712,6 +3937,10 @@
       "depth": "selected",
       "storyTypes": [
         "magic-supernatural"
+      ],
+      "writers": [
+        "Jason Aaron",
+        "Brian K. Vaughan"
       ],
       "count": 18,
       "placeholderCount": 0,
@@ -3752,6 +3981,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Jason Aaron",
+        "Brian Michael Bendis"
       ],
       "count": 17,
       "placeholderCount": 0,
@@ -3795,6 +4028,10 @@
         "magic-supernatural",
         "coming-of-age"
       ],
+      "writers": [
+        "Peter David",
+        "J. Michael Straczynski"
+      ],
       "count": 17,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3835,6 +4072,10 @@
       "depth": "selected",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Mark Gruenwald",
+        "Peter B. Gillis"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -3878,6 +4119,11 @@
       "depth": "selected",
       "storyTypes": [
         "magic-supernatural"
+      ],
+      "writers": [
+        "Al Ewing",
+        "Jim Zub",
+        "Mark Waid"
       ],
       "count": 56,
       "placeholderCount": 0,
@@ -3926,6 +4172,11 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Dan Slott",
+        "Roger Stern",
+        "Stan Lee"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -3967,6 +4218,10 @@
       "storyTypes": [
         "martial-arts",
         "espionage"
+      ],
+      "writers": [
+        "Gene Yang",
+        "Greg Pak"
       ],
       "count": 37,
       "placeholderCount": 0,
@@ -4016,6 +4271,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Ed Brubaker"
       ],
       "count": 35,
       "placeholderCount": 0,
@@ -4068,6 +4326,11 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Jed Mackay",
+        "Warren Ellis",
+        "Jeff Lemire"
+      ],
       "count": 17,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4115,6 +4378,10 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Neil Gaiman",
+        "Kieron Gillen"
+      ],
       "count": 24,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4160,6 +4427,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Stan Lee"
       ],
       "count": 28,
       "placeholderCount": 0,
@@ -4216,6 +4486,9 @@
         "street-level",
         "lighthearted"
       ],
+      "writers": [
+        "Nick Spencer"
+      ],
       "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4262,6 +4535,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Charles Soule"
       ],
       "count": 13,
       "placeholderCount": 0,
@@ -4310,6 +4586,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "G. Willow Wilson",
+        "Saladin Ahmed"
+      ],
       "count": 18,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4353,6 +4633,11 @@
       "storyTypes": [
         "political",
         "thriller"
+      ],
+      "writers": [
+        "Jeph Loeb",
+        "Nick Spencer",
+        "Rick Remender"
       ],
       "count": 19,
       "placeholderCount": 0,
@@ -4404,6 +4689,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Andy Lanning",
+        "Dan Abnett"
+      ],
       "count": 28,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4451,6 +4740,9 @@
       "storyTypes": [
         "magic-supernatural"
       ],
+      "writers": [
+        "Steve Orlando"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -4496,6 +4788,10 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Jeff Parker",
+        "Greg Pak"
       ],
       "count": 80,
       "placeholderCount": 0,
@@ -4588,6 +4884,9 @@
       "storyTypes": [
         "martial-arts",
         "coming-of-age"
+      ],
+      "writers": [
+        "Al Ewing"
       ],
       "count": 82,
       "placeholderCount": 0,
@@ -4689,6 +4988,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Scott Lobdell",
+        "Chris Claremont"
       ],
       "count": 28,
       "placeholderCount": 0,
@@ -4873,6 +5176,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Andy Lanning",
+        "Dan Abnett"
+      ],
       "count": 75,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -5020,6 +5327,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Peter David"
+      ],
       "count": 170,
       "placeholderCount": 15,
       "emptyRecordCount": 0,
@@ -5117,6 +5427,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Peter David"
+      ],
       "count": 127,
       "placeholderCount": 0,
       "emptyRecordCount": 1,
@@ -5200,6 +5513,9 @@
       "storyTypes": [
         "coming-of-age"
       ],
+      "writers": [
+        "Rainbow Rowell"
+      ],
       "count": 114,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -5243,6 +5559,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Jim Starlin"
       ],
       "count": 225,
       "placeholderCount": 0,
@@ -5331,6 +5650,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Dan Abnett",
+        "Andy Lanning"
+      ],
       "count": 76,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -5373,6 +5696,9 @@
       "spotlightKind": "other",
       "storyTypes": [
         "coming-of-age"
+      ],
+      "writers": [
+        "Robbie Thompson"
       ],
       "count": 74,
       "placeholderCount": 7,
@@ -5422,6 +5748,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Jason Latour"
       ],
       "count": 127,
       "placeholderCount": 0,
@@ -5474,6 +5803,10 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Andy Lanning",
+        "Dan Abnett"
       ],
       "count": 99,
       "placeholderCount": 0,
@@ -6055,6 +6388,9 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 352,
       "placeholderCount": 1,
       "emptyRecordCount": 8,
@@ -6415,6 +6751,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 752,
       "placeholderCount": 1,
       "emptyRecordCount": 2,
@@ -6517,6 +6856,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 318,
       "placeholderCount": 2,
       "emptyRecordCount": 0,
@@ -6576,6 +6918,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Chris Claremont"
       ],
       "count": 404,
       "placeholderCount": 4,
@@ -6637,6 +6982,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 74,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -6686,6 +7034,9 @@
       "storyTypes": [
         "political",
         "science-fiction"
+      ],
+      "writers": [
+        "Mike Carey"
       ],
       "count": 58,
       "placeholderCount": 0,
@@ -6779,6 +7130,9 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "G. Willow Wilson"
+      ],
       "count": 192,
       "placeholderCount": 5,
       "emptyRecordCount": 0,
@@ -6829,6 +7183,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Ed Brubaker"
       ],
       "count": 114,
       "placeholderCount": 0,
@@ -6997,6 +7354,9 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Stan Lee"
+      ],
       "count": 233,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7053,6 +7413,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Jason Aaron"
+      ],
       "count": 131,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7106,6 +7469,9 @@
       "spotlightKind": "best-of",
       "storyTypes": [
         "comedy"
+      ],
+      "writers": [
+        "Cullen Bunn"
       ],
       "count": 38,
       "placeholderCount": 0,
@@ -7263,6 +7629,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Fabian Nicieza"
+      ],
       "count": 285,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7355,6 +7724,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Fabian Nicieza",
+        "Chris Claremont"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7399,6 +7772,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Howard Mackie"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -7446,6 +7822,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Bob Harras"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7488,6 +7867,9 @@
       "storyTypes": [
         "coming-of-age"
       ],
+      "writers": [
+        "Fabian Nicieza"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7527,6 +7909,11 @@
       "depth": "complete",
       "storyTypes": [
         "magic-supernatural"
+      ],
+      "writers": [
+        "Kurt Busiek",
+        "Glenn Herdling",
+        "Howard Mackie"
       ],
       "count": 4,
       "placeholderCount": 0,
@@ -7571,6 +7958,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Stan Lee"
       ],
       "count": 1,
       "placeholderCount": 0,
@@ -7618,6 +8008,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Roy Thomas"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7664,6 +8057,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Mike Friedrich"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7709,6 +8105,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Gerry Conway"
+      ],
       "count": 2,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7751,6 +8150,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Steve Englehart"
       ],
       "count": 8,
       "placeholderCount": 0,
@@ -7796,6 +8198,9 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Gerry Conway"
+      ],
       "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7839,6 +8244,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Chris Claremont"
       ],
       "count": 8,
       "placeholderCount": 0,
@@ -7885,6 +8293,10 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Chris Claremont",
+        "John Byrne"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7930,6 +8342,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 2,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -7972,6 +8387,11 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Bill Mantlo",
+        "Mark Gruenwald",
+        "Steven Grant"
       ],
       "count": 3,
       "placeholderCount": 0,
@@ -8062,6 +8482,10 @@
         "science-fiction",
         "war"
       ],
+      "writers": [
+        "Chris Claremont",
+        "Roger Stern"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8105,6 +8529,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Jim Shooter"
       ],
       "count": 40,
       "placeholderCount": 0,
@@ -8152,6 +8579,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Chris Claremont",
+        "Louise Simonson"
+      ],
       "count": 11,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8198,6 +8629,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Louise Simonson",
+        "Chris Claremont"
+      ],
       "count": 29,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8243,6 +8678,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "J.M. DeMatteis"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8284,6 +8722,10 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Mark Gruenwald",
+        "Steve Englehart"
       ],
       "count": 11,
       "placeholderCount": 0,
@@ -8331,6 +8773,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Louise Simonson"
+      ],
       "count": 39,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8375,6 +8820,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Peter Sanderson"
+      ],
       "count": 17,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8415,6 +8863,11 @@
       "depth": "complete",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Louise Simonson",
+        "Chris Claremont",
+        "Len Kaminski"
       ],
       "count": 4,
       "placeholderCount": 0,
@@ -8461,6 +8914,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Louise Simonson",
+        "Chris Claremont"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8504,6 +8961,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Jim Starlin"
       ],
       "count": 191,
       "placeholderCount": 17,
@@ -8600,6 +9060,11 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Chuck Dixon",
+        "D.G. Chichester",
+        "Fabian Nicieza"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8643,6 +9108,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Howard Mackie"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -8688,6 +9156,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Fabian Nicieza"
+      ],
       "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8729,6 +9200,9 @@
         "magic-supernatural",
         "science-fiction"
       ],
+      "writers": [
+        "Dan Abnett"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8768,6 +9242,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Fabian Nicieza"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -8809,6 +9286,9 @@
       "storyTypes": [
         "science-fiction",
         "coming-of-age"
+      ],
+      "writers": [
+        "Fabian Nicieza"
       ],
       "count": 8,
       "placeholderCount": 0,
@@ -8854,6 +9334,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Scott Lobdell",
+        "Fabian Nicieza"
       ],
       "count": 9,
       "placeholderCount": 0,
@@ -8901,6 +9385,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Scott Lobdell"
       ],
       "count": 74,
       "placeholderCount": 1,
@@ -8951,6 +9438,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "James Robinson",
+        "Scott Lobdell"
+      ],
       "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -8998,6 +9489,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Kevin Smith"
+      ],
       "count": 21,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9041,6 +9535,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Garth Ennis"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9081,6 +9578,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Grant Morrison"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -9124,6 +9624,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9165,6 +9668,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Grant Morrison"
+      ],
       "count": 3,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9204,6 +9710,10 @@
       "tones": [
         "street-level",
         "dark"
+      ],
+      "writers": [
+        "Jeph Loeb",
+        "Brian Michael Bendis"
       ],
       "count": 10,
       "placeholderCount": 0,
@@ -9246,6 +9756,9 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "J. Michael Straczynski"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9287,6 +9800,9 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Joe Casey"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9325,6 +9841,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Judd Winick"
       ],
       "count": 4,
       "placeholderCount": 0,
@@ -9367,6 +9886,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Paul Jenkins"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9406,6 +9928,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Chris Claremont"
       ],
       "count": 4,
       "placeholderCount": 0,
@@ -9447,6 +9972,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Grant Morrison"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -9530,6 +10058,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9573,6 +10104,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Grant Morrison"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9612,6 +10146,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Joe Casey",
+        "Bill Sienkiewicz"
       ],
       "count": 3,
       "placeholderCount": 0,
@@ -9654,6 +10192,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Bruce Jones"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9694,6 +10235,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Judd Winick"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -9817,6 +10361,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "J. Michael Straczynski"
+      ],
       "count": 3,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9859,6 +10406,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Joe Casey"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9900,6 +10450,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Chris Claremont"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9940,6 +10493,9 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "J. Michael Straczynski"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -9979,6 +10535,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Bruce Jones"
       ],
       "count": 4,
       "placeholderCount": 0,
@@ -10022,6 +10581,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10060,6 +10622,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Judd Winick"
       ],
       "count": 8,
       "placeholderCount": 0,
@@ -10102,6 +10667,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Paul Jenkins"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10142,6 +10710,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Grant Morrison"
+      ],
       "count": 2,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10180,6 +10751,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Joe Casey"
       ],
       "count": 2,
       "placeholderCount": 0,
@@ -10221,6 +10795,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Bruce Jones"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10261,6 +10838,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Grant Morrison"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10300,6 +10880,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Stan Lee",
+        "Chuck Austen"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -10423,6 +11007,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "J. Michael Straczynski"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10462,6 +11049,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Chris Claremont"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -10505,6 +11095,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "John Ney Rieber"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10546,6 +11139,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Robert Morales"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -10668,6 +11264,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Grant Morrison"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10707,6 +11306,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Bruce Jones"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -10829,6 +11431,10 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "J. Michael Straczynski",
+        "Fiona Kelly"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -10868,6 +11474,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Jeph Loeb"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -10909,6 +11518,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Chuck Austen"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -10993,6 +11605,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Geoff Johns"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11033,6 +11648,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Chris Claremont"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -11155,6 +11773,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Bruce Jones"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11194,6 +11815,9 @@
       "tones": [
         "street-level",
         "dark"
+      ],
+      "writers": [
+        "Garth Ennis"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -11235,6 +11859,9 @@
       "tones": [
         "street-level",
         "dark"
+      ],
+      "writers": [
+        "Greg Rucka"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -11318,6 +11945,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Greg Rucka"
+      ],
       "count": 7,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11357,6 +11987,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Chuck Austen"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -11398,6 +12031,10 @@
       "tones": [
         "street-level",
         "lighthearted"
+      ],
+      "writers": [
+        "Christina Weir",
+        "Nunzio Defilippis"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -11441,6 +12078,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Brian K. Vaughan"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11482,6 +12122,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Mark Waid"
+      ],
       "count": 9,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11520,6 +12163,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "J. Michael Straczynski"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -11562,6 +12208,9 @@
         "street-level",
         "dark"
       ],
+      "writers": [
+        "Paul Jenkins"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11601,6 +12250,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Bruce Jones"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -11642,6 +12294,10 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Chuck Austen",
+        "Stan Lee"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -11723,6 +12379,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "John Jackson Miller"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -11846,6 +12505,10 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Christina Weir",
+        "Nunzio Defilippis"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -11885,6 +12548,10 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Chuck Austen",
+        "Stan Lee"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -12178,6 +12845,11 @@
       "tones": [
         "street-level"
       ],
+      "writers": [
+        "Howard Mackie",
+        "Todd Dezago",
+        "Tom Defalco"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12217,6 +12889,10 @@
       "depth": "complete",
       "storyTypes": [
         "thriller"
+      ],
+      "writers": [
+        "Joe Kelly",
+        "Steve Seagle"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -12260,6 +12936,11 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Fabian Nicieza",
+        "Alan Davis",
+        "Joe Pruett"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12298,6 +12979,10 @@
       "storyTypes": [
         "science-fiction",
         "coming-of-age"
+      ],
+      "writers": [
+        "Brian Michael Bendis",
+        "Mark Millar"
       ],
       "count": 121,
       "placeholderCount": 0,
@@ -12348,6 +13033,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Peter David"
       ],
       "count": 172,
       "placeholderCount": 0,
@@ -12576,6 +13264,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12625,6 +13316,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 83,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12673,6 +13367,9 @@
       "depth": "selected",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Tom King"
       ],
       "count": 44,
       "placeholderCount": 0,
@@ -12726,6 +13423,9 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Jonathan Hickman"
+      ],
       "count": 69,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12777,6 +13477,9 @@
       "storyTypes": [
         "political"
       ],
+      "writers": [
+        "Mike Carey"
+      ],
       "count": 19,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12823,6 +13526,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Brian Michael Bendis",
+        "Christos Gage"
       ],
       "count": 75,
       "placeholderCount": 0,
@@ -12877,6 +13584,10 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Andy Lanning",
+        "Dan Abnett"
+      ],
       "count": 32,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12923,6 +13634,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Duane Swierczynski",
+        "Christopher Yost"
+      ],
       "count": 10,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -12967,6 +13682,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Matt Fraction"
+      ],
       "count": 14,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13008,6 +13726,9 @@
       "depth": "complete",
       "storyTypes": [
         "political"
+      ],
+      "writers": [
+        "Matt Fraction"
       ],
       "count": 20,
       "placeholderCount": 0,
@@ -13055,6 +13776,11 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Christopher Yost",
+        "Craig Kyle",
+        "Mike Carey"
+      ],
       "count": 14,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13099,6 +13825,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Jonathan Maberry"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -13145,6 +13874,9 @@
       "tones": [
         "epic",
         "dark"
+      ],
+      "writers": [
+        "Christopher Yost"
       ],
       "count": 23,
       "placeholderCount": 0,
@@ -13193,6 +13925,10 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Andy Lanning",
+        "Dan Abnett"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13237,6 +13973,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Brian Michael Bendis"
       ],
       "count": 92,
       "placeholderCount": 0,
@@ -13284,6 +14023,9 @@
       "depth": "complete",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Mark Waid"
       ],
       "count": 92,
       "placeholderCount": 0,
@@ -13339,6 +14081,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Jason Aaron"
+      ],
       "count": 59,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13391,6 +14136,9 @@
         "thriller",
         "political"
       ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13436,6 +14184,11 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "J. Michael Straczynski",
+        "Peter David",
+        "Reginald Hudlin"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13478,6 +14231,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Brian Michael Bendis"
       ],
       "count": 84,
       "placeholderCount": 0,
@@ -13524,6 +14280,9 @@
       ],
       "tones": [
         "street-level"
+      ],
+      "writers": [
+        "Brian Michael Bendis"
       ],
       "count": 385,
       "placeholderCount": 0,
@@ -13615,6 +14374,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "David Hine"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13661,6 +14423,10 @@
         "epic",
         "dark"
       ],
+      "writers": [
+        "Dan Abnett",
+        "Andy Lanning"
+      ],
       "count": 29,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13706,6 +14472,9 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Ed Brubaker"
+      ],
       "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13747,6 +14516,11 @@
       "storyTypes": [
         "science-fiction",
         "myth-fantasy"
+      ],
+      "writers": [
+        "Greg Pak",
+        "Fred Van Lente",
+        "Jeph Loeb"
       ],
       "count": 26,
       "placeholderCount": 0,
@@ -13791,6 +14565,9 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Victor Gischler"
       ],
       "count": 18,
       "placeholderCount": 0,
@@ -13886,6 +14663,10 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Jason Aaron",
+        "Marjorie Liu"
+      ],
       "count": 15,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -13928,6 +14709,10 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Fred Van Lente",
+        "Greg Pak"
       ],
       "count": 19,
       "placeholderCount": 0,
@@ -13973,6 +14758,9 @@
       ],
       "tones": [
         "epic"
+      ],
+      "writers": [
+        "Rick Remender"
       ],
       "count": 55,
       "placeholderCount": 0,
@@ -14021,6 +14809,9 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Dan Slott"
+      ],
       "count": 35,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14061,6 +14852,10 @@
       "depth": "complete",
       "storyTypes": [
         "science-fiction"
+      ],
+      "writers": [
+        "Cullen Bunn",
+        "Jeff Lemire"
       ],
       "count": 13,
       "placeholderCount": 0,
@@ -14103,6 +14898,10 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Dan Slott",
+        "Christos Gage"
       ],
       "count": 24,
       "placeholderCount": 0,
@@ -14150,6 +14949,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Marc Sumerak"
       ],
       "count": 15,
       "placeholderCount": 0,
@@ -14199,6 +15001,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Paul Tobin"
       ],
       "count": 39,
       "placeholderCount": 0,
@@ -14251,6 +15056,9 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Robbie Thompson"
+      ],
       "count": 18,
       "placeholderCount": 6,
       "emptyRecordCount": 0,
@@ -14297,6 +15105,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Brandon Montclare"
       ],
       "count": 47,
       "placeholderCount": 0,
@@ -14345,6 +15156,9 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Roger Langridge"
+      ],
       "count": 8,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14390,6 +15204,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Ryan North"
       ],
       "count": 58,
       "placeholderCount": 0,
@@ -14439,6 +15256,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Marc Sumerak",
+        "Fred Van Lente"
+      ],
       "count": 44,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14487,6 +15308,9 @@
       "tones": [
         "street-level",
         "dark"
+      ],
+      "writers": [
+        "Frank Miller"
       ],
       "count": 37,
       "placeholderCount": 0,
@@ -14540,6 +15364,9 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Nilah Magruder"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14585,6 +15412,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Matt Manning"
       ],
       "count": 11,
       "placeholderCount": 0,
@@ -14634,6 +15464,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Delilah S. Dawson",
+        "Erik Burnham"
+      ],
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14677,6 +15511,10 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Kyle Baker",
+        "Vita Ayala"
       ],
       "count": 6,
       "placeholderCount": 0,
@@ -14723,6 +15561,9 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Sam Maggs"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14766,6 +15607,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Jim Mccann"
       ],
       "count": 5,
       "placeholderCount": 0,
@@ -14814,6 +15658,9 @@
       ],
       "tones": [
         "lighthearted"
+      ],
+      "writers": [
+        "Mairghread Scott"
       ],
       "count": 7,
       "placeholderCount": 0,
@@ -14864,6 +15711,10 @@
       "tones": [
         "lighthearted"
       ],
+      "writers": [
+        "Fred Van Lente",
+        "Chris Giarrusso"
+      ],
       "count": 4,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -14906,6 +15757,11 @@
       ],
       "tones": [
         "dark"
+      ],
+      "writers": [
+        "Charles Soule",
+        "Jeff Lemire",
+        "Cullen Bunn"
       ],
       "count": 20,
       "placeholderCount": 0,

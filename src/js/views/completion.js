@@ -4,6 +4,11 @@ import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
 import { wireFieldValidation } from './shared/field-validation.js';
 import { HOME_CARDS, formatRoute, isPlainNavigation } from '../lib/route.js';
+import { similarLists } from '../lib/similarLists.js';
+
+// #1060: the quiet "similar story" line appears once this few comics are left, and only while the
+// reader has read more of the list than remains, so a short list does not offer it on arrival.
+export const NEAR_END_UNREAD = 3;
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -47,6 +52,11 @@ export function createCompletionView({
   // other nodes this view moves into place, so the reading view can play its moment by id.
   let cheer = null;
   const gateways = new Map();
+  // #1060: "More like this" is worked out on the device from the bundled catalog, which this view
+  // keeps once loaded. A failed load stays quiet until the reader asks for suggestions again.
+  let similarCatalog = null;
+  let similarLoad = null;
+  let nextIds = new Set();
 
   function currentList() {
     const state = getState();
@@ -124,6 +134,24 @@ export function createCompletionView({
   function cancelRecommendations() {
     request?.abort.abort();
     request = null;
+    nextIds = new Set();
+  }
+
+  function suggestionCard(suggestion, act) {
+    const label = suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List';
+    return el('li', { class: 'recommendation-card' }, [
+      el('h3', { text: suggestion.name }),
+      el('ul', { class: 'recommendation-reasons' }, suggestion.reasons.map((reason) => el('li', {
+        text: reason.text,
+      }))),
+      el('button', {
+        type: 'button', class: 'btn btn-g',
+        dataset: { recommendation: suggestion.catalogId },
+        text: label,
+        'aria-label': labelledName(label, suggestion.name),
+        onclick: act,
+      }),
+    ]);
   }
 
   function recommendationCurrent(held) {
@@ -167,24 +195,13 @@ export function createCompletionView({
         nodes.suggestions.replaceChildren(...result.suggestions.map((suggestion) => {
           const entry = catalog.lists.find((candidate) => candidate.id === suggestion.catalogId);
           if (!entry) throw new Error('A suggested Reading List is missing from the catalog.');
-          return el('li', { class: 'recommendation-card' }, [
-            el('h3', { text: suggestion.name }),
-            el('ul', { class: 'recommendation-reasons' }, suggestion.reasons.map((reason) => el('li', {
-              text: reason.text,
-            }))),
-            el('button', {
-              type: 'button', class: 'btn btn-g',
-              dataset: { recommendation: suggestion.catalogId },
-              text: suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List',
-              'aria-label': labelledName(suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List', suggestion.name),
-              onclick: () => {
-                if (!recommendationCurrent(held)) return;
-                if (suggestion.savedListId) openList(suggestion.savedListId);
-                else previewRecommendation(entry, suggestion, catalog);
-              },
-            }),
-          ]);
+          return suggestionCard(suggestion, () => {
+            if (!recommendationCurrent(held)) return;
+            if (suggestion.savedListId) openList(suggestion.savedListId);
+            else previewRecommendation(entry, suggestion, catalog);
+          });
         }));
+        nextIds = new Set(result.suggestions.map((suggestion) => suggestion.catalogId));
         const failures = result.failures.map((failure) => failure.message);
         nodes.recommendationStatus.textContent = failures.length
           ? `Some suggestions could not be checked. ${failures.join(' ')}` : '';
@@ -195,9 +212,75 @@ export function createCompletionView({
         nodes.recommendationStatus.textContent = `Next reading could not be checked (${error.message}). Browse Reading Lists or try again.`;
         nodes.recommendationStatus.hidden = false;
         nodes.recommendationRetry.hidden = false;
+      } finally {
+        if (recommendationCurrent(held)) {
+          held.settled = true;
+          renderSimilar();
+        }
       }
     })();
     return held.promise;
+  }
+
+  // #1060: up to three stories like this one, after any Reading Path next stop, once every comic is
+  // read; and one quiet line as the reader nears the end. Ranked only by what the lists are like.
+  function renderSimilar() {
+    const nodes = elements();
+    const list = currentList();
+    const state = getState();
+    const progress = getView() === 'read' && list ? listReadingProgress(state, list.id) : null;
+    const completed = !!progress && history.isCompleted(state, list.id);
+    const finished = completed || (!!progress && progress.total > 0 && progress.read === progress.total);
+    const unread = progress ? progress.total - progress.read : 0;
+    const nearEnd = !finished && unread > 0 && unread <= NEAR_END_UNREAD && unread < progress.read;
+    // While "What to read next" is still resolving, its picks are unknown, so a similar card could
+    // repeat one of them; the section waits for it to settle rather than reshuffle in front of the reader.
+    const waiting = completed && request && !request.settled;
+    let picks = [];
+    if ((finished && !waiting) || nearEnd) {
+      if (similarCatalog) {
+        picks = similarLists({
+          catalog: similarCatalog, state, sourceListId: list.id,
+          isCompleted: (current, id) => history.isCompleted(current, id),
+          exclude: completed ? nextIds : new Set(),
+          limit: nearEnd ? 1 : undefined,
+        });
+      } else {
+        similarLoad ??= Promise.resolve().then(() => loadCatalog()).then((catalog) => {
+          similarCatalog = catalog;
+          renderSimilar();
+        }, () => {});
+      }
+    }
+    const identity = listHistoryIdentity(list);
+    const act = (suggestion) => () => {
+      if (getView() !== 'read' || listHistoryIdentity(currentList()) !== identity) return;
+      const entry = similarCatalog.lists.find((candidate) => candidate.id === suggestion.catalogId);
+      if (suggestion.savedListId) openList(suggestion.savedListId);
+      else if (entry) previewRecommendation(entry, suggestion, similarCatalog);
+    };
+    if (finished && !waiting) {
+      nodes.similarSuggestions.replaceChildren(...picks.map((suggestion) => suggestionCard(suggestion, act(suggestion))));
+    } else if (!finished) {
+      nodes.similarSuggestions.replaceChildren();
+    }
+    nodes.similar.hidden = !finished || waiting || picks.length === 0;
+    if (nearEnd && picks.length) {
+      const [pick] = picks;
+      nodes.similarHint.replaceChildren(
+        'Nearly finished. For a similar story, try ',
+        el('button', {
+          type: 'button', class: 'btn btn-link',
+          dataset: { similar: pick.catalogId },
+          text: pick.name,
+          onclick: act(pick),
+        }),
+      );
+      nodes.similarHint.hidden = false;
+    } else {
+      nodes.similarHint.replaceChildren();
+      nodes.similarHint.hidden = true;
+    }
   }
 
   // UX-19 (#830): Mark as Completed sits in Reading List options while comics are queued, so Read comes before
@@ -360,7 +443,9 @@ export function createCompletionView({
     renderGateways();
     renderHistory();
     if (getView() !== 'data' && restoring) importGeneration += 1;
-    return refreshRecommendations();
+    const pending = refreshRecommendations();
+    renderSimilar();
+    return pending;
   }
 
   async function exportHistory(copy = false) {
@@ -463,7 +548,10 @@ export function createCompletionView({
     for (const radio of nodes.collectionFilters) {
       radio.addEventListener('change', () => { enjoyed = radio.value === 'enjoyed'; renderCollection(); });
     }
-    nodes.recommendationRetry.addEventListener('click', () => { void refreshRecommendations({ force: true }); });
+    nodes.recommendationRetry.addEventListener('click', () => {
+      similarLoad = null;
+      void refreshRecommendations({ force: true });
+    });
     nodes.recommendationBrowse.addEventListener('click', (event) => {
       if (!isPlainNavigation(event)) return;
       event.preventDefault();

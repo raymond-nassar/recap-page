@@ -1594,8 +1594,8 @@
     "fp": "4e2c08fc7d7cb7d2",
     "head": "await this.journal.begin(record);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:619-673|0": {
-    "anchor": "scripts/vendor-orders.mjs:619-673",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:643-697|0": {
+    "anchor": "scripts/vendor-orders.mjs:643-697",
     "fp": "d7f8b76b9f7b7b8c",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1754,13 +1754,13 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1592-1645|0": {
-    "anchor": "src/js/lib/catalog.js:1592-1645",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1593-1646|0": {
+    "anchor": "src/js/lib/catalog.js:1593-1646",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:752-770|0": {
-    "anchor": "src/js/lib/catalog.js:752-770",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:753-771|0": {
+    "anchor": "src/js/lib/catalog.js:753-771",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -1889,8 +1889,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1507|0": {
-    "anchor": "src/index.html:1507",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1512|0": {
+    "anchor": "src/index.html:1512",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2034,13 +2034,13 @@
     "fp": "9c4a55814397835e",
     "head": "async function networkThenCache(event) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:268-274|0": {
-    "anchor": "src/js/lib/catalog.js:268-274",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:269-275|0": {
+    "anchor": "src/js/lib/catalog.js:269-275",
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:954-977|0": {
-    "anchor": "src/js/lib/catalog.js:954-977",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:955-978|0": {
+    "anchor": "src/js/lib/catalog.js:955-978",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -2054,8 +2054,8 @@
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:390-411|0": {
-    "anchor": "scripts/vendor-orders.mjs:390-411",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:414-435|0": {
+    "anchor": "scripts/vendor-orders.mjs:414-435",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
@@ -2064,18 +2064,18 @@
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:424-428|0": {
-    "anchor": "scripts/vendor-orders.mjs:424-428",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:448-452|0": {
+    "anchor": "scripts/vendor-orders.mjs:448-452",
     "fp": "b5164475feb84ad2",
     "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:491-492|0": {
-    "anchor": "scripts/vendor-orders.mjs:491-492",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:515-516|0": {
+    "anchor": "scripts/vendor-orders.mjs:515-516",
     "fp": "c089d2cbfead089a",
     "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:535-536|0": {
-    "anchor": "scripts/vendor-orders.mjs:535-536",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:559-560|0": {
+    "anchor": "scripts/vendor-orders.mjs:559-560",
     "fp": "7b74eea9291f2eae",
     "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
   },
@@ -2114,8 +2114,8 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:14941-15078|0": {
-    "anchor": "src/data/catalog.json:14941-15078",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:15797-15934|0": {
+    "anchor": "src/data/catalog.json:15797-15934",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
@@ -2139,8 +2139,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1207-1211|0": {
-    "anchor": "src/index.html:1207-1211",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1208-1212|0": {
+    "anchor": "src/index.html:1208-1212",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2269,13 +2269,13 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:560-563|0": {
-    "anchor": "src/index.html:560-563",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:561-564|0": {
+    "anchor": "src/index.html:561-564",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:511-556|0": {
-    "anchor": "src/index.html:511-556",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:512-557|0": {
+    "anchor": "src/index.html:512-557",
     "fp": "52e2355cee9f16b3",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2309,23 +2309,23 @@
     "fp": "72dca1e12f8ee5ee",
     "head": "test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:270-346|0": {
-    "anchor": "src/index.html:270-346",
+  "docs/UX_STUDY.md|job-stories|src/index.html:271-347|0": {
+    "anchor": "src/index.html:271-347",
     "fp": "04d78f1652fc7968",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:293-294|0": {
-    "anchor": "src/index.html:293-294",
+  "docs/UX_STUDY.md|job-stories|src/index.html:294-295|0": {
+    "anchor": "src/index.html:294-295",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:560-563|0": {
-    "anchor": "src/index.html:560-563",
+  "docs/UX_STUDY.md|job-stories|src/index.html:561-564|0": {
+    "anchor": "src/index.html:561-564",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:562-566|0": {
-    "anchor": "src/index.html:562-566",
+  "docs/UX_STUDY.md|job-stories|src/index.html:563-567|0": {
+    "anchor": "src/index.html:563-567",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -2364,8 +2364,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:270-346|0": {
-    "anchor": "src/index.html:270-346",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:271-347|0": {
+    "anchor": "src/index.html:271-347",
     "fp": "04d78f1652fc7968",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2404,8 +2404,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:649-655|0": {
-    "anchor": "src/index.html:649-655",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:650-656|0": {
+    "anchor": "src/index.html:650-656",
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
@@ -2449,8 +2449,8 @@
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:290-292|0": {
-    "anchor": "src/index.html:290-292",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:291-293|0": {
+    "anchor": "src/index.html:291-293",
     "fp": "b22251e455876ddc",
     "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
@@ -2479,8 +2479,8 @@
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:270-346|0": {
-    "anchor": "src/index.html:270-346",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:271-347|0": {
+    "anchor": "src/index.html:271-347",
     "fp": "04d78f1652fc7968",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2524,8 +2524,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:794|0": {
-    "anchor": "src/index.html:794",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:795|0": {
+    "anchor": "src/index.html:795",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2544,8 +2544,8 @@
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:270-346|0": {
-    "anchor": "src/index.html:270-346",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:271-347|0": {
+    "anchor": "src/index.html:271-347",
     "fp": "04d78f1652fc7968",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2584,8 +2584,8 @@
     "fp": "ba4d0e152f725f15",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:293-294|0": {
-    "anchor": "src/index.html:293-294",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:294-295|0": {
+    "anchor": "src/index.html:294-295",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -2644,13 +2644,13 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1224-1235|0": {
-    "anchor": "src/index.html:1224-1235",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1225-1236|0": {
+    "anchor": "src/index.html:1225-1236",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:293-294|0": {
-    "anchor": "src/index.html:293-294",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:294-295|0": {
+    "anchor": "src/index.html:294-295",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -2679,8 +2679,8 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:511-556|0": {
-    "anchor": "src/index.html:511-556",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:512-557|0": {
+    "anchor": "src/index.html:512-557",
     "fp": "52e2355cee9f16b3",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
