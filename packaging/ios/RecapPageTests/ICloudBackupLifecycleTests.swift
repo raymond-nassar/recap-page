@@ -55,7 +55,25 @@ private final class ICloudLifecycleBridge: NSObject, WKScriptMessageHandlerWithR
 
 @MainActor
 final class ICloudBackupLifecycleTests: XCTestCase {
-    private func run(offline: Bool) async throws -> [String: Any] {
+    private func originState(of webView: WKWebView) async throws -> String {
+        let value = try await WebTestSupport.evaluate(webView, """
+        const values = (storage) => Object.keys(storage).sort().map((key) => [key, storage.getItem(key)]);
+        const databases = await indexedDB.databases();
+        const { CLOUD_BACKUP_DATABASE } = await import(new URL('js/storage.js', location.href).href);
+        let cloudRecord = null;
+        if (databases.some(({ name }) => name === CLOUD_BACKUP_DATABASE)) {
+          const { createCloudRecordStore } = await import(new URL('js/lib/cloudProtocol.js', location.href).href);
+          const records = createCloudRecordStore();
+          try { cloudRecord = await records.read(); } finally { await records.close(); }
+        }
+        const probes = databases.filter(({ name }) => typeof name === 'string' && name.startsWith(`${CLOUD_BACKUP_DATABASE}-probe-`))
+          .map(({ name, version }) => [name, version]).sort(([a], [b]) => a.localeCompare(b));
+        return JSON.stringify({ local: values(localStorage), session: values(sessionStorage), probes, cloudRecord });
+        """)
+        return try XCTUnwrap(value as? String)
+    }
+
+    private func run(offline: Bool, failAfterConsent: Bool = false) async throws -> [String: Any] {
         let assets = try AppAssets.bundled()
         let webView = await WebTestSupport.makeWebView(assets: assets)
         let bridge = ICloudLifecycleBridge(offline: offline)
@@ -66,15 +84,38 @@ final class ICloudBackupLifecycleTests: XCTestCase {
             webView.removeFromSuperview()
         }
         try await WebTestSupport.loadAppPage(webView, assets: assets)
+        try await WebTestSupport.waitFor(webView, "localStorage.getItem('mrt.cache-purge.v1') !== null")
         let source = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("probes/icloud-backup.js")
         let script = try String(contentsOf: source, encoding: .utf8)
-        let result = try await WebTestSupport.evaluate(
-            webView, script + "\nreturn await window.recapICloudBackupProbe({ offline: \(offline) });"
-        )
+        let before = try await originState(of: webView)
+        let invocation: String
+        if failAfterConsent {
+            invocation = """
+            try {
+              await window.recapICloudBackupProbe({ offline: \(offline), failAfterConsent: true });
+            } catch (error) {
+              if (error?.message !== 'The probe stopped after saving fake consent.') throw error;
+              return JSON.stringify({ failure: error.message });
+            }
+            throw new Error('The injected probe failure did not fire.');
+            """
+        } else {
+            invocation = "return await window.recapICloudBackupProbe({ offline: \(offline) });"
+        }
+        let result = try await WebTestSupport.evaluate(webView, script + "\n" + invocation)
+        let unchanged = try await originState(of: webView) == before
+        let scenario = failAfterConsent ? "interrupted" : offline ? "offline" : "delayed"
+        WebTestSupport.record("icloud-origin-cleanup-\(scenario)", "{\"unchanged\":\(unchanged)}", in: self)
+        XCTAssertTrue(unchanged, "the probe leaves app-origin storage and the cloud record unchanged")
         let json = try XCTUnwrap(result as? String)
-        WebTestSupport.record("icloud-lifecycle-\(offline ? "offline" : "delayed")", json, in: self)
+        WebTestSupport.record("icloud-lifecycle-\(scenario)", json, in: self)
         return try WebTestSupport.object(json)
+    }
+
+    func testAnInterruptedProbeLeavesAppOriginDataUnchanged() async throws {
+        let result = try await run(offline: false, failAfterConsent: true)
+        XCTAssertEqual(result["failure"] as? String, "The probe stopped after saving fake consent.")
     }
 
     func testTenSecondUploadsVerifyEveryChangeOverAnHourWithoutAccumulatingFiles() async throws {
