@@ -11,6 +11,7 @@ import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import {
   CompleteRestore, KEEP_FINISHED_JOURNAL_MS, PRIOR_COPY_FORMAT, RESTORE_MESSAGES, decideRestoreState, readMarker,
+  recoveryTextForPlatform, restoreMessagesForPlatform,
 } from '../src/js/lib/completeRestore.js';
 import {
   createCompleteBackup, prepareCompleteRestore, restorePlan, canonical, RESTORE_KEYS,
@@ -23,6 +24,17 @@ import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences } from '../src/js/lib/im
 
 const API_BASE = 'https://metadata.example.test/v1';
 const DAY = KEEP_FINISHED_JOURNAL_MS;
+
+test('iOS restore and recovery messages describe the app rather than browser tabs', () => {
+  const messages = restoreMessagesForPlatform(true);
+  const recovery = recoveryTextForPlatform(true);
+  assert.match(messages.unchecked, /Close and reopen the app/);
+  assert.match(messages.copyUnchecked, /saved here/);
+  assert.match(recovery.lost, /the app closed/);
+  for (const text of [...Object.values(messages), ...Object.values(recovery)]) {
+    assert.doesNotMatch(text, /\b(?:browser|tabs?|windows?|reload(?:ing)?|this page)\b/i);
+  }
+});
 
 function readerContent(state) {
   const value = exportBackup(state);
@@ -1317,4 +1329,25 @@ test('a write the browser refuses stops the restore part way, and recovery puts 
   env.storage.refuse.clear();
   assert.equal((await tab.recover('prior')).ok, true);
   assertImage(env, prior, 'put back');
+});
+
+test('iOS complete restore quota failure names app storage', async () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const env = environment();
+    const prior = priorOf(env);
+    env.storage.refuse.add(LIST_HISTORY_KEY);
+    const tab = await env.open();
+    const result = await tab.restore((await fileBackup()).text);
+    assert.equal(result.ok, false);
+    assert.match(result.error, /App storage is full/);
+    assert.doesNotMatch(result.error, /browser/i);
+    env.storage.refuse.clear();
+    assert.equal((await tab.recover('prior')).ok, true);
+    assertImage(env, prior, 'put back');
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
 });

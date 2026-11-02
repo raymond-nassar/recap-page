@@ -11,6 +11,53 @@ function importFixture(storage = fakeStorage()) {
   return { storage, reader, draft: new ImportDraftStore({ reader, locks: draftLocks }) };
 }
 
+test('iOS import-draft lock failure describes app storage', async () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const { reader } = importFixture();
+    const draft = new ImportDraftStore({ reader, locks: null });
+    const result = await draft.start(importSource);
+    assert.equal(result.error, 'This app cannot coordinate import-draft saving with another copy. Source was kept; nothing was published.');
+    assert.equal(result.changed, false);
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('iOS import-draft conflict asks to reopen the app, not reload a page', async () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const { reader, draft } = importFixture();
+    assert.equal((await draft.start(importSource)).ok, true);
+    reader.blocked = true;
+    const result = await draft.resume();
+    assert.equal(result.ok, false);
+    assert.match(result.error, /Close and reopen the app before reviewing this draft/);
+    assert.doesNotMatch(result.error, /reload/i);
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('iOS restore preparation failure gives app-specific recovery instructions', () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const result = new Store({ storage: null }).captureRestore();
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join(' '), /App storage is unavailable/);
+    assert.match(result.errors.join(' '), /Close and reopen the app/);
+    assert.doesNotMatch(result.errors.join(' '), /\bbrowser\b|reload/i);
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
 test('draft prepare throw, silent no-op and unknown readback refuse reader publication and retain source', async () => {
   for (const mode of ['throw', 'silent', 'unknown']) {
     const { storage, reader, draft } = importFixture();

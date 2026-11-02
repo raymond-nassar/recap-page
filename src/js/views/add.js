@@ -22,6 +22,7 @@ import { formatRoute } from '../lib/route.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
 import { wireFieldValidation } from './shared/field-validation.js';
+import { isIosApp } from '../lib/platform.js';
 
 const NAME_SEARCH_LIMIT = 40;
 const ISSUE_SEARCH_LIMIT = 50;
@@ -202,11 +203,16 @@ export function manualDetailUrl(url, digitalId) {
   return digitalId ? null : (url || null);
 }
 
+export function draftSourceRemovalQuestion(isIos) {
+  return `This removes the saved source, unresolved positions, selected matches and any previous source snapshots from ${isIos ? 'this app' : 'this browser'}. Already saved comics and reading progress stay. Download the separate draft backup first if you need it.`;
+}
+
 export function createAddView({
   $,
   announce,
   askConfirm,
   el,
+  isIos = isIosApp(),
   ensureList,
   friendly,
   getActiveListId,
@@ -834,7 +840,9 @@ export function createAddView({
     }));
     if (dirty && field.value !== draft.rawText.replace(/\r\n?/g, '\n')) box.append(el('p', {
       class: 'notice notice-warn',
-      text: 'This tab also has unsaved text. It has not been replaced by the saved draft. Copy it before leaving.',
+      text: isIosApp()
+        ? 'This app also has unsaved text. It has not been replaced by the saved draft. Copy it before leaving.'
+        : 'This tab also has unsaved text. It has not been replaced by the saved draft. Copy it before leaving.',
     }));
     box.append(el('button', {
       type: 'button', class: 'btn btn-g', text: 'Resume saved import',
@@ -848,7 +856,7 @@ export function createAddView({
         button.disabled = true;
         const yes = await askConfirm({
           title: 'Discard this import source?',
-          body: 'This removes the saved source, unresolved positions, selected matches and any previous source snapshots from this browser. Already saved comics and reading progress stay. Download the separate draft backup first if you need it.',
+          body: draftSourceRemovalQuestion(isIos),
           confirmLabel: 'Discard draft',
           danger: true,
         });
