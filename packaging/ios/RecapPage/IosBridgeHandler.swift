@@ -115,6 +115,11 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
     private let pickerDriver: PickerDriver?
     private let dataLossState: IOSDataLossState
     private var pending: PendingExport?
+    #if RECAP_ICLOUD || DEBUG
+    /// iCloud backup, set only by a build that carries it; without it a cloud request is answered 404,
+    /// which the page reads as cloud backup not being part of this build.
+    var cloud: ICloudBackupHandler?
+    #endif
 
     init(
         policy: NavigationPolicy,
@@ -171,6 +176,22 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
         case "dismiss-data-loss":
             dataLossState.dismissNotice()
             replyHandler(["v": 1, "kind": "data-loss-result", "status": "dismissed"], nil)
+        #if RECAP_ICLOUD || DEBUG
+        case "cloud":
+            guard let operation = body["op"] as? String, let text = body["body"] as? String else {
+                replyHandler(nil, "This cloud request is not supported.")
+                return
+            }
+            guard let cloud else {
+                // A null body, as Android sends: the page then reads "not part of this build" rather than a refusal.
+                replyHandler(["v": 1, "kind": "cloud-result", "status": 404, "body": "null"], nil)
+                return
+            }
+            Task {
+                let reply = await cloud.handle(operation: operation, body: text)
+                replyHandler(["v": 1, "kind": "cloud-result", "status": reply.status, "body": reply.body], nil)
+            }
+        #endif
         default:
             replyHandler(nil, "This iOS request is not supported.")
         }
