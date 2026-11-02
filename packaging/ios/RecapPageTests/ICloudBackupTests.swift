@@ -10,7 +10,7 @@ final class ICloudBackupHandlerTests: XCTestCase {
     private var suite: String!
     private var minted: [String] = []
     private var handler: ICloudBackupHandler!
-    private let name = "recap-page-backup-v1-\(String(repeating: "c", count: 32))-1.json.gz"
+    private let backupName = "recap-page-backup-v1-\(String(repeating: "c", count: 32))-1.json.gz"
     private let first = String(repeating: "a", count: 32)
     private let second = String(repeating: "b", count: 32)
     private let stranger = String(repeating: "d", count: 32)
@@ -129,10 +129,10 @@ final class ICloudBackupHandlerTests: XCTestCase {
         let connection = try await connect()
         store.automaticallyUpload = false
         let bytes = Data([0x1f, 0x8b, 0x08, 0x00, 0x01])
-        let created = try await call("create", ["connection": connection, "name": name, "bytes": bytes.base64EncodedString()])
+        let created = try await call("create", ["connection": connection, "name": backupName, "bytes": bytes.base64EncodedString()])
         let item = try XCTUnwrap(created["item"] as? [String: Any])
-        XCTAssertEqual(item["id"] as? String, name)
-        XCTAssertEqual(item["name"] as? String, name)
+        XCTAssertEqual(item["id"] as? String, backupName)
+        XCTAssertEqual(item["name"] as? String, backupName)
         XCTAssertEqual(item["size"] as? Int, bytes.count)
         XCTAssertTrue(item["created"] is NSNull)
 
@@ -150,49 +150,49 @@ final class ICloudBackupHandlerTests: XCTestCase {
 
         let listed = try await call("list", ["connection": connection])
         let items = try XCTUnwrap(listed["items"] as? [[String: Any]])
-        XCTAssertEqual(items.map { $0["id"] as? String }, [name])
-        let read = try await call("read", ["connection": connection, "id": name])
+        XCTAssertEqual(items.map { $0["id"] as? String }, [backupName])
+        let read = try await call("read", ["connection": connection, "id": backupName])
         XCTAssertEqual(read["bytes"] as? String, bytes.base64EncodedString())
 
-        let taken = try await refusal("create", ["connection": connection, "name": name, "bytes": "AQID"])
+        let taken = try await refusal("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
         XCTAssertEqual(taken.code, "exists")
-        XCTAssertEqual(store.files[name], bytes, "a backup is never overwritten")
+        XCTAssertEqual(store.files[backupName], bytes, "a backup is never overwritten")
 
-        let deleted = try await call("delete", ["connection": connection, "id": name])
+        let deleted = try await call("delete", ["connection": connection, "id": backupName])
         XCTAssertEqual(deleted["ok"] as? Bool, true)
-        let repeated = try await call("delete", ["connection": connection, "id": name])
+        let repeated = try await call("delete", ["connection": connection, "id": backupName])
         XCTAssertEqual(repeated["ok"] as? Bool, true, "a repeated delete succeeds")
-        let gone = try await refusal("read", ["connection": connection, "id": name])
+        let gone = try await refusal("read", ["connection": connection, "id": backupName])
         XCTAssertEqual(gone.code, "not-found")
     }
 
     func testABackupNotYetDownloadedIsRetriedNotLost() async throws {
         let connection = try await connect()
-        store.files[name] = Data([1, 2, 3])
-        store.notDownloaded.insert(name)
+        store.files[backupName] = Data([1, 2, 3])
+        store.notDownloaded.insert(backupName)
         let listed = try await call("list", ["connection": connection])
         let items = try XCTUnwrap(listed["items"] as? [[String: Any]])
         XCTAssertTrue(items.first?["size"] is NSNull)
-        let waiting = try await refusal("read", ["connection": connection, "id": name])
+        let waiting = try await refusal("read", ["connection": connection, "id": backupName])
         XCTAssertEqual(waiting.code, "unavailable")
         XCTAssertEqual(waiting.retry, 15_000)
-        let read = try await call("read", ["connection": connection, "id": name])
+        let read = try await call("read", ["connection": connection, "id": backupName])
         XCTAssertEqual(read["bytes"] as? String, "AQID")
     }
 
     func testPendingFilesStayListedButReadBackWaitsForCloudConfirmation() async throws {
         let connection = try await connect()
         store.automaticallyUpload = false
-        let created = try await call("create", ["connection": connection, "name": name, "bytes": "AQID"])
+        let created = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
         XCTAssertEqual(created["ok"] as? Bool, true, "local publication can finish before upload")
         let listed = try await call("list", ["connection": connection])
         let items = try XCTUnwrap(listed["items"] as? [[String: Any]])
-        XCTAssertEqual(items.first?["id"] as? String, name, "pending names remain visible for collision checks")
-        let pending = try await refusal("read", ["connection": connection, "id": name])
+        XCTAssertEqual(items.first?["id"] as? String, backupName, "pending names remain visible for collision checks")
+        let pending = try await refusal("read", ["connection": connection, "id": backupName])
         XCTAssertEqual(pending.code, "unavailable")
         XCTAssertEqual(pending.retry, 15_000)
         store.finishUploads()
-        let confirmed = try await call("read", ["connection": connection, "id": name])
+        let confirmed = try await call("read", ["connection": connection, "id": backupName])
         XCTAssertEqual(confirmed["bytes"] as? String, "AQID")
     }
 
@@ -206,12 +206,12 @@ final class ICloudBackupHandlerTests: XCTestCase {
 
     func testCreateRefusesWhatCloudBackupDoesNotWrite() async throws {
         let connection = try await connect()
-        for bad in ["backup.json", "../\(name)", "recap-page-", "Recap-page-x"] {
+        for bad in ["backup.json", "../\(backupName)", "recap-page-", "Recap-page-x"] {
             let refused = try await refusal("create", ["connection": connection, "name": bad, "bytes": "AQID"])
             XCTAssertEqual(refused.code, "invalid", bad)
         }
         for bytes in ["%%%", ""] {
-            let refused = try await refusal("create", ["connection": connection, "name": name, "bytes": bytes])
+            let refused = try await refusal("create", ["connection": connection, "name": backupName, "bytes": bytes])
             XCTAssertEqual(refused.code, "invalid", bytes)
         }
         let outside = try await refusal("read", ["connection": connection, "id": "../x"])
@@ -250,24 +250,24 @@ final class ICloudDriveStoreTests: XCTestCase {
         return ICloudDriveStore(locate: { located ? root : nil }, identity: { "account" as NSString }, downloadWaitSeconds: 0)
     }
 
-    private let name = "recap-page-backup-v1-\(String(repeating: "e", count: 32))-2.json.gz"
+    private let backupName = "recap-page-backup-v1-\(String(repeating: "e", count: 32))-2.json.gz"
 
     func testWritesIntoTheVisibleFolderAndNeverOverwrites() async throws {
         let store = store()
         try await store.prepare()
-        let item = try await store.create(name: name, data: Data([9, 8, 7]))
-        XCTAssertEqual(item, ICloudBackupItem(name: name, size: 3, isUploaded: false))
-        let file = root.appendingPathComponent("Documents/\(name)")
+        let item = try await store.create(name: backupName, data: Data([9, 8, 7]))
+        XCTAssertEqual(item, ICloudBackupItem(name: backupName, size: 3, isUploaded: false))
+        let file = root.appendingPathComponent("Documents/\(backupName)")
         XCTAssertEqual(try Data(contentsOf: file), Data([9, 8, 7]))
         do {
-            _ = try await store.create(name: name, data: Data([1]))
+            _ = try await store.create(name: backupName, data: Data([1]))
             XCTFail("a second backup of the same name was written")
         } catch {
             XCTAssertEqual(error as? ICloudStoreError, .exists)
         }
         XCTAssertEqual(try Data(contentsOf: file), Data([9, 8, 7]))
         do {
-            _ = try await store.read(name: name)
+            _ = try await store.read(name: backupName)
             XCTFail("a local-only file was returned as an uploaded backup")
         } catch {
             XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
@@ -278,13 +278,13 @@ final class ICloudDriveStoreTests: XCTestCase {
         let store = store()
         try await store.prepare()
         let documents = root.appendingPathComponent("Documents", isDirectory: true)
-        try Data([1]).write(to: documents.appendingPathComponent(name))
+        try Data([1]).write(to: documents.appendingPathComponent(backupName))
         try Data([1]).write(to: documents.appendingPathComponent("notes.txt"))
         let other = "recap-page-backup-v1-\(String(repeating: "f", count: 32))-1.json.gz"
         try Data([1]).write(to: documents.appendingPathComponent(".\(other).icloud"))
-        try Data([1]).write(to: documents.appendingPathComponent(".\(name).icloud"))
+        try Data([1]).write(to: documents.appendingPathComponent(".\(backupName).icloud"))
         let items = try await store.list()
-        XCTAssertEqual(items.map(\.name), [name, other])
+        XCTAssertEqual(items.map(\.name), [backupName, other])
         XCTAssertEqual(items.first?.size, 1)
         XCTAssertNil(items.last?.size, "a backup not downloaded has no size yet")
         let state = try await store.uploadState()
@@ -295,14 +295,14 @@ final class ICloudDriveStoreTests: XCTestCase {
         let store = store()
         try await store.prepare()
         do {
-            _ = try await store.read(name: name)
+            _ = try await store.read(name: backupName)
             XCTFail("a missing backup was read")
         } catch {
             XCTAssertEqual(error as? ICloudStoreError, .notFound)
         }
-        _ = try await store.create(name: name, data: Data([1]))
-        try await store.delete(name: name)
-        try await store.delete(name: name)
+        _ = try await store.create(name: backupName, data: Data([1]))
+        try await store.delete(name: backupName)
+        try await store.delete(name: backupName)
         let items = try await store.list()
         XCTAssertTrue(items.isEmpty)
     }
@@ -312,16 +312,16 @@ final class ICloudDriveStoreTests: XCTestCase {
         try await store.prepare()
         let bytes = Data(repeating: 1, count: ICloudDriveStore.maximumBytes + 1)
         do {
-            _ = try await store.create(name: name, data: bytes)
+            _ = try await store.create(name: backupName, data: bytes)
             XCTFail("an oversized backup was created")
         } catch {
             XCTAssertEqual(error as? ICloudStoreError, .tooLarge)
         }
-        let file = root.appendingPathComponent("Documents").appendingPathComponent(name)
+        let file = root.appendingPathComponent("Documents").appendingPathComponent(backupName)
         XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
         try bytes.write(to: file)
         do {
-            _ = try await store.read(name: name)
+            _ = try await store.read(name: backupName)
             XCTFail("an oversized backup was returned")
         } catch {
             XCTAssertEqual(error as? ICloudStoreError, .tooLarge)

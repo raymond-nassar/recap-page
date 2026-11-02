@@ -324,7 +324,7 @@ export function createCloudBackupView({
     }
     if (nodes.intro && introText === null) introText = nodes.intro.textContent;
     if (nodes.intro) {
-      nodes.intro.textContent = choices.length > 1
+      nodes.intro.textContent = choices.length > 0
         ? `Keep a complete backup in your own ${choices.map((provider) => PROVIDERS[provider].name).join(' or ')}, made automatically as you read.`
         : introText;
     }
