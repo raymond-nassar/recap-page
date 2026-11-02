@@ -101,7 +101,19 @@ function google({ scope = GOOGLE_SCOPE, permissionId = 'perm-one', email = 'read
     if (method === 'GET' && url.pathname === '/drive/v3/files') {
       const q = url.searchParams.get('q');
       if (q.startsWith('name = ')) {
-        const found = state.folders.filter((entry) => !entry.trashed).sort((a, b) => a.createdTime.localeCompare(b.createdTime));
+        const found = state.folders.filter((entry) => q.split(' and ').every((clause) => {
+          if (clause === 'trashed = false') return !entry.trashed;
+          const field = /^(name|mimeType) = '([^']+)'$/.exec(clause);
+          if (field) return entry[field[1]] === field[2];
+          const parent = /^'([^']+)' in parents$/.exec(clause);
+          assert.ok(parent, `the fake must implement the query clause: ${clause}`);
+          return entry.parents.includes(parent[1]);
+        }));
+        const orderBy = url.searchParams.get('orderBy');
+        if (orderBy) {
+          assert.ok(['createdTime', 'createdTime desc'].includes(orderBy), `unsupported order: ${orderBy}`);
+          found.sort((a, b) => a.createdTime.localeCompare(b.createdTime) * (orderBy.endsWith(' desc') ? -1 : 1));
+        }
         return json(200, { files: found.map(({ id, createdTime }) => ({ id, createdTime })) });
       }
       const parent = /^'([^']+)' in parents and trashed = false$/.exec(q)?.[1];
@@ -257,15 +269,24 @@ test('creating makes one visible Recap Page folder at the top of the Drive, uplo
 
 test('two devices that make the folder at once settle on the older, and the newer empty one goes to the trash', async () => {
   const fake = google();
-  fake.state.folders.push({ id: 'OLDER', name: FOLDER_NAME, mimeType: FOLDER_TYPE, parents: ['root'], createdTime: '2026-11-01T00:00:00.000Z', trashed: false });
+  const folder = { name: FOLDER_NAME, mimeType: FOLDER_TYPE, parents: ['root'], trashed: false };
+  fake.state.folders.push(
+    { ...folder, id: 'NEWER', createdTime: '2026-11-01T01:00:00.000Z' },
+    { ...folder, id: 'TRASHED', createdTime: '2026-10-01T00:00:00.000Z', trashed: true },
+    { ...folder, id: 'NOT-A-FOLDER', createdTime: '2026-10-02T00:00:00.000Z', mimeType: 'application/json' },
+    { ...folder, id: 'NESTED', createdTime: '2026-10-03T00:00:00.000Z', parents: ['elsewhere'] },
+    { ...folder, id: 'OTHER-NAME', createdTime: '2026-10-04T00:00:00.000Z', name: 'Another app' },
+    { ...folder, id: 'OLDER', createdTime: '2026-11-01T00:00:00.000Z' },
+  );
   // The first search finds nothing, as if the other device's folder arrived just after it.
   fake.state.answers['GET /drive/v3/files'] = json(200, { files: [] });
   const { service } = drive(fake);
   const created = await service.create(NAME, Buffer.from('hello'));
   assert.ok(created);
-  const mine = fake.state.folders.find((entry) => entry.id !== 'OLDER');
+  const mine = fake.state.folders.find((entry) => entry.id.startsWith('FOLDER'));
   assert.equal(mine.trashed, true);
   assert.deepEqual(fake.state.items[0].parents, ['OLDER']);
+  assert.equal(fake.state.folders.find((entry) => entry.id === 'NEWER').trashed, false, 'another device owns that folder');
 });
 
 test('a recorded folder that is deleted or in the trash means the person deleted it', async () => {
@@ -499,6 +520,24 @@ test('connecting to Google Drive signs in on the loopback address, keeps only pr
 
 test('a Google grant without drive.file counts as not signed in, and is neither kept nor revoked', async () => {
   const env = host({ fake: google({ scope: 'https://www.googleapis.com/auth/drive.appdata' }) });
+  const api = await hostServer(env.instance);
+  try {
+    await signIn(env, api);
+    const { status } = await api.call('status');
+    assert.deepEqual([status.state, status.message], ['not-connected', 'Google did not grant the access cloud backup needs.']);
+    assert.equal(env.store.saved, null);
+    assert.deepEqual(env.fake.state.revoked, []);
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
+test('a Google grant without a refresh token counts as not signed in, and is neither kept nor revoked', async () => {
+  const env = host();
+  env.fake.state.answers.authorization_code = json(200, {
+    access_token: 'access-1', expires_in: 3599, scope: GOOGLE_SCOPE, token_type: 'Bearer',
+  });
   const api = await hostServer(env.instance);
   try {
     await signIn(env, api);
