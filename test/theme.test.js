@@ -461,7 +461,7 @@ test('every declared surface is one a pair actually renders on', () => {
   }
 });
 
-test('the seven category cards on Home take seven different hues in every theme', () => {
+test('the six category cards on Home take six different hues in every theme', () => {
   // #872: MCU Prep, Marvel Ages and Reading paths all wore the brand purple of Modern Timeline. Hues
   // are compared as OKLCH angles, so two purples a few units apart cannot pass as two colours. Every
   // category remains at least 30 degrees from every other category, including Genres.
@@ -481,7 +481,7 @@ test('the seven category cards on Home take seven different hues in every theme'
     const bAxis = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s;
     return (Math.atan2(bAxis, a) * 180 / Math.PI + 360) % 360;
   };
-  assert.equal(HOME_CATEGORIES.length, 7);
+  assert.equal(HOME_CATEGORIES.length, 6);
   for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
     const tokens = tokensIn(css, selector);
     const cards = HOME_CATEGORIES.map(({ key }) => {

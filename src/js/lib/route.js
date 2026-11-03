@@ -23,7 +23,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'issue', 'library', 'add', 'catalog', 'lines', 'young-readers', 'spotlights', 'progress',
+  'home', 'read', 'issue', 'library', 'add', 'catalog', 'young-readers', 'spotlights', 'progress',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -32,7 +32,10 @@ export const VIEWS = [
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
 // renderable views, so every member of VIEWS still names a real panel.
-export const LEGACY_VIEW_ALIASES = {};
+export const LEGACY_VIEW_ALIASES = Object.freeze({
+  lines: STORY_TYPES_ROUTE,
+  storylines: STORY_TYPES_ROUTE,
+});
 
 // Browse was a screen of its own until #831, and it showed exactly Home's category cards. Its
 // address now names that place on Home, so a bookmark, a Back entry or a link written for Browse
@@ -117,7 +120,8 @@ export function breadcrumbHierarchy({
       ];
     }
     if (context?.kind === 'order' && typeof context.id === 'string' && context.id) {
-      const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === context.shelf);
+      const browseRoute = canonicalView(context.shelf);
+      const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === browseRoute);
       if (shelf) {
         return [
           cards,
@@ -128,7 +132,7 @@ export function breadcrumbHierarchy({
       // A Home category with no shelf of its own, such as MCU Prep, is still the screen its list
       // was opened from. Marvel Ages is an index of other screens rather than one, so it is not.
       const category = HOME_CATEGORIES.find((candidate) => !candidate.shelf && !candidate.kind
-        && candidate.route === context.shelf);
+        && candidate.route === browseRoute);
       if (category && VIEWS.includes(category.route)) {
         return [
           cards,
@@ -180,7 +184,7 @@ export function breadcrumbHierarchy({
 }
 
 function canonicalView(view) {
-  return LEGACY_VIEW_ALIASES[view] ?? view;
+  return Object.hasOwn(LEGACY_VIEW_ALIASES, view) ? LEGACY_VIEW_ALIASES[view] : view;
 }
 
 const PREFIX = '#/';

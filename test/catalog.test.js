@@ -1020,7 +1020,7 @@ test('a story whose every reading is a character run is a spotlight', () => {
   assert.equal(shelfKey({ lists: [{ type: 'character-run' }, { type: 'character-run' }] }), 'spotlights');
 });
 
-test('a screen companion uses the existing Storylines browse fallback', () => {
+test('a screen companion retains its internal fallback classification', () => {
   assert.equal(shelfKey({ lists: [{ type: 'screen-companion' }] }), 'lines');
 });
 

@@ -9,7 +9,6 @@ import { shownName } from '../lib/accname.js';
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
   E736: 'timeline',
-  E8FD: 'storylines',
   E77B: 'characters',
   E714: 'screen',
   E7BE: 'reader',

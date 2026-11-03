@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1224-1235`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1202-1213`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:831`,
-  `src/styles.css:2273-2275`.
+  `src/styles.css:2272-2274`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:649-655`, `src/js/views/catalog.js:638-679`.
+  so the criterion is met. Evidence: `src/index.html:649-655`, `src/js/views/catalog.js:637-678`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1172-1175` and `src/styles.css:2728-2729`, sizing both from `src/styles.css:82-83`.
+`src/styles.css:1172-1175` and `src/styles.css:2727-2728`, sizing both from `src/styles.css:82-83`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -391,7 +391,7 @@ Rationale: affects every notice in the product, and duplicate speech is disrupti
 blocking
 Confidence: Observed
 Evidence: `src/js/views/shared/feedback.js:206-219`, `src/js/views/shared/feedback.js:229-252`, `src/index.html:27`,
-`src/index.html:113`, `src/index.html:794`
+`src/index.html:113`, `src/index.html:772`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
 then also calls `announce()`, which writes the same message into the dedicated `#announcer` live
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2273-2275`.
+`src/styles.css:2272-2274`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:831`, `src/styles.css:2273-2275`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:831`, `src/styles.css:2272-2274`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -742,10 +742,10 @@ Library now holds saved lists, Everything read, Progress by series and Added by 
 Navigation depth is shallow. The rail opens the Library and Search hubs, Home holds the categories, and
 each exposes its related destinations without making the rail itself scroll through them. The five ways
 to add comics remain separate addressable screens, while the Search address, `#/add`, opens their hub.
-Evidence: `src/index.html:62-97`, `src/js/lib/route.js:24-35`.
+Evidence: `src/index.html:62-97`, `src/js/lib/route.js:24-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
-Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:91-180`,
+Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:94-184`,
 `src/js/main.js:1615-1658`, `test/ux-completion.test.js:87-98`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
@@ -976,8 +976,8 @@ assertions, and 14 real-catalog assertions at 1280 by 900 and 390 by 844 confirm
 no horizontal overflow. Sharing 25 source-required issues with each of Rocket and Groot does not
 combine the cards or shorten any sequence.
 
-**MCU Prep scope is explicit.** The Hub adds one non-empty category after Timeline,
-Storylines, and Character Spotlights. Its first four cards are screen companions rather than
+**MCU Prep scope was explicit in this sweep.** The Hub added one non-empty category after Timeline,
+Storylines, and Character Spotlights. Its first four cards were screen companions rather than
 character spotlights, and all four carry no timeline year because their picks span decades. The
 category uses Home's category gateway and disappears when no matching guide is present.
 Its generated child page preserves the four-card order without adding a fourth canonical shelf.

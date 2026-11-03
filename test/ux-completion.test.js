@@ -255,7 +255,7 @@ test('Home headings are not explained twice', () => {
 });
 
 test('standing explanations move behind disclosures or become compact labels', () => {
-  for (const view of ['catalog', 'lines', 'young-readers', 'spotlights']) {
+  for (const view of ['catalog', 'young-readers', 'spotlights']) {
     const page = between(html, `id="view-${view}"`, '\n          <section id="view-');
     assert.doesNotMatch(page, /<div class="sub">/, `${view} still has an explanatory page subtitle`);
   }
@@ -331,14 +331,14 @@ test('list reporting is an opt-in account-free Microsoft form with no saved-data
 });
 
 test('every search field may shrink to a narrow screen', () => {
-  // The Android catalog-cards owner measures Storylines, MCU Prep and Young readers at 200 per cent
+  // The Android catalog-cards owner measures MCU Prep and Young readers at 200 per cent
   // text, where each made a 320px page 409px wide, and series-readability measures Find a series and
   // Browse a creator there, where they made a 360px page 422px wide (#871). Only the first runs in CI,
   // so the rule and its targets are held here.
-  assert.match(styles, /#form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, #form-young-readers-search, \.mcu-prep-search \{ grid-template-columns: minmax\(0, 1fr\); \}/);
-  assert.match(styles, /#form-search \.field-row, #form-series \.field-row, #form-creator \.field-row, #form-catalog-search \.field-row, #form-lines-search \.field-row, #form-young-readers-search \.field-row, \.mcu-prep-search \.field-row \{ min-width: 0; \}/);
+  assert.match(styles, /#form-search, #form-series, #form-creator, #form-catalog-search, #form-young-readers-search, \.mcu-prep-search \{ grid-template-columns: minmax\(0, 1fr\); \}/);
+  assert.match(styles, /#form-search \.field-row, #form-series \.field-row, #form-creator \.field-row, #form-catalog-search \.field-row, #form-young-readers-search \.field-row, \.mcu-prep-search \.field-row \{ min-width: 0; \}/);
   for (const id of ['form-search', 'form-series', 'form-creator']) assert.match(html, new RegExp(`<form id="${id}" class="stack">`));
-  assert.match(html, /<form id="form-lines-search" class="stack" role="search"/);
+  assert.doesNotMatch(html, /id="form-lines-search"/);
   assert.match(html, /<form id="form-young-readers-search" class="stack" role="search"/);
   assert.match(read('src/js/views/mcu-prep.js'), /el\('form', \{ class: 'stack mcu-prep-search'/);
 });

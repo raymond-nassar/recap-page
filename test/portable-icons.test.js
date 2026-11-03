@@ -96,7 +96,7 @@ test('sprite provenance and browser distribution preserve zero runtime dependenc
   assert.match(read('../scripts/pack-windows.mjs'), /path\.startsWith\('src\/'\)/);
 });
 
-test('the seven Home category cards draw seven different symbols', () => {
+test('the six Home category cards draw six different symbols', () => {
   // #873: Modern Timeline and Marvel Ages both drew the open book, so two of the six looked alike.
   const names = [];
   const view = createHomeView({
@@ -107,8 +107,8 @@ test('the seven Home category cards draw seven different symbols', () => {
     },
   });
   for (const category of HOME_CATEGORIES) view.categoryTile({ ...category, count: 1 });
-  assert.equal(names.length, 7);
-  assert.equal(new Set(names).size, 7, JSON.stringify(names));
+  assert.equal(names.length, 6);
+  assert.equal(new Set(names).size, 6, JSON.stringify(names));
 });
 
 test('the provenance table lists exactly the symbols the sprite draws', () => {

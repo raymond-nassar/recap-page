@@ -166,7 +166,7 @@ test('First Steps is one independent MCU Prep choice and never revives the retir
   assert.equal(selected.filter((selectedId) => selectedId === id).length, 1);
   const choice = stories.find((story) => story.key === `list:${id}`);
   assert.deepEqual(choice.lists.map((list) => list.id), [id]);
-  assert.ok(!HOME_CATEGORIES.find((category) => category.key === 'storylines').select(stories)
+  assert.ok(!HOME_CATEGORIES.find((category) => category.key === 'genres').select(stories)
     .some((story) => story.key === `list:${id}`));
   assert.ok(!HOME_CATEGORIES.find((category) => category.key === 'character-spotlights').select(stories)
     .some((story) => story.key === `list:${id}`));

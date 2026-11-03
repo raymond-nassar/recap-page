@@ -36,7 +36,7 @@ final class AppStoreScreenshotUITests: XCTestCase {
         let expected: [String]
         switch appearance {
         case "dark":
-            expected = ["01-home", "02-modern-timeline", "03-reading-list", "04-storylines"]
+            expected = ["01-home", "02-modern-timeline", "03-reading-list", "04-genres"]
         case "light":
             expected = ["05-professor-x", "06-library", "07-backup-settings"]
         default:

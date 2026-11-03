@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { AXE_VERSION } from '../scripts/browser-axe.mjs';
 
 // #832 item 1 (UX-33). What the UI owners job must keep doing for its result to mean anything: run
-// the four owners the audit named against installed Edge, gate the alignment owner on a baseline
+// the four owners the audit named and Genres against installed Edge, gate the alignment owner on a baseline
 // from its own tree, and record the comparison with the base without ever failing on it. Each of
 // those is one edited line away from a job that stays green while checking less.
 
@@ -25,6 +25,7 @@ test('each owner the audit named runs in its own step, after the driver installe
   const owners = [
     ['browser-check.mjs', 'responsive-reflow'],
     ['browser-check.mjs', 'narrow-navigation'],
+    ['browser-check.mjs', 'genres-discovery-actual-data'],
     ['browser-android.mjs', 'catalog-cards'],
     ['browser-android.mjs', 'alignment'],
   ];
