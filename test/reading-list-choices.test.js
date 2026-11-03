@@ -165,15 +165,19 @@ test('Modern Timeline names both choices that start the path they share', async 
 });
 
 // Character spotlights shows three groups of pills, so its category group names itself on the page
-// as Sort and Show do (UX-14, #830).
-test('Character spotlights labels its category group visibly', async () => {
+// as Sort and Show do (UX-14, #830). Modern Timeline and Young readers, whose categories are their
+// only group, keep the hidden legend.
+test('Character spotlights labels its category group visibly, and other shelves keep the hidden legend', async () => {
   const lists = (type, extra) => Array.from({ length: 14 }, (_, index) => entry(`${type}-${index}`, {
     type, beginner: index < 3, ...extra,
   }));
+  const hidden = { class: 'visually-hidden', text: 'Filter the catalog by category' };
   for (const [key, shelf, legend] of [
     ['spotlights', lists('character-run', { timeline: null, spotlightKind: 'other' }), {
       class: 'filter-legend', text: 'Category',
     }],
+    ['catalog', lists('event', { timeline: 2012 }), hidden],
+    ['young-readers', lists('creator-run', { audience: 'young-readers' }), hidden],
   ]) {
     const fixture = viewFixture(shelf);
     await fixture.view.render(key);
@@ -185,9 +189,9 @@ test('Character spotlights labels its category group visibly', async () => {
 
 test('search threshold counts individually visible cards rather than collapsed groups', async () => {
   const fixture = viewFixture(Array.from({ length: 13 }, (_, index) => (
-    entry(`choice-${index}`, { group: 'many', groupName: 'Many choices' })
+    entry(`choice-${index}`, { group: 'many', groupName: 'Many choices', audience: 'young-readers' })
   )));
-  await fixture.view.render('lines');
+  await fixture.view.render('young-readers');
   assert.equal(fixture.nodes.search.hidden, false);
   assert.equal(fixture.cards.length, 13);
 });

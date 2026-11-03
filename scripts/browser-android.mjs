@@ -3072,7 +3072,12 @@ async function mobileLayout(page, label, narrow) {
   `${label}: touch after typing returns to Home's category cards without a heading rectangle`);
   await route(page, 'catalog');
   await click(page, '#catalog-clear');
-  await route(page, 'lines');
+  // Genres replaced Storylines (#1060). The Hickman fast track is not among its starting lists, so
+  // reach it through a genre it carries.
+  await route(page, 'genres');
+  await page.waitForSelector('#genres-type option[value="science-fiction"]');
+  await page.select('#genres-type', 'science-fiction');
+  await page.waitForSelector('button[data-act="import"][data-key="hickman-minimal"]');
   await click(page, 'button[data-act="import"][data-key="hickman-minimal"]');
   await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2'))?.listOrder.length === 1, { timeout: 5000 })
     .catch(async (error) => {
