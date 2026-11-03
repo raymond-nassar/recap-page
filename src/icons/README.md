@@ -33,7 +33,7 @@ this table, so reusing a glyph for something else fails it.
 | issue-add | Add an issue by hand | `#/add-manual`, on Search and under Other ways to find comics |
 | characters | Characters | Characters and the Character spotlights card, both `#/spotlights` |
 | timeline | Modern Timeline | Reading guides and the Modern Timeline card, both `#/catalog` |
-| storylines | Storylines | The Storylines card, `#/lines` |
+| storylines | Archived symbol | Retained for older artifacts; the Storylines screen has been replaced by Genres |
 | screen | MCU Prep | The MCU Prep card, `#/marvel-on-screen` |
 | ages | Marvel Ages | The Marvel Ages card, `#/marvel-ages`, and the card of every age and period inside it |
 | reader | Young readers | The Young readers card, `#/young-readers` |

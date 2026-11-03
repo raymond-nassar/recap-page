@@ -234,7 +234,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
   }), /not approved/);
 });
 
-test('Infinity Saga pinned payload and catalog preserve Storylines discovery and gap provenance', async () => {
+test('Infinity Saga pinned payload and catalog preserve historical Storylines metadata and gap provenance', async () => {
   const [payload, catalog] = await Promise.all([
     readJson(`src/data/${packet.proposedManifest.out}`),
     readJson('src/data/catalog.json'),

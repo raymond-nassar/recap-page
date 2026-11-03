@@ -891,9 +891,8 @@ export function shelfStories(stories, key) {
   return all.filter((story) => shelfKey(story) === key);
 }
 
-// MCU Prep lists still fall to the `lines` shelf, because the partition has to file them somewhere,
-// but they are companions to films and series rather than complete storylines, so the Storylines
-// screen leaves them to MCU Prep (#1066).
+// MCU Prep lists still fall to the `lines` classification, but companions are not part of the
+// retained Storylines projection (#1066).
 export function storylinesStories(stories) {
   const all = Array.isArray(stories) ? stories : [];
   const eligible = new Set(groupCatalog(all.flatMap((story) => story.lists ?? []))
@@ -939,14 +938,17 @@ export function catalogListShelf(lists, id) {
   return story ? shelfKey(story) : null;
 }
 
-// The screen a reader browses to find a list, which is what an issue's breadcrumb names. It is the
-// canonical shelf for everything except MCU Prep lists: those are filed on `lines` but shown only
-// on the MCU Prep screen, so naming Storylines would send the reader where the list is not (#1066).
+// The internal shelf is not always an active browse screen: fallback readings and older events
+// are reached through Genres, and MCU Prep companions through their own screen.
 export function catalogListBrowseRoute(lists, id) {
   const shelf = catalogListShelf(lists, id);
   if (!shelf) return null;
   const list = lists.find((candidate) => candidate?.id === id);
-  return list?.type === 'screen-companion' ? 'marvel-on-screen' : shelf;
+  if (list?.type === 'screen-companion') return 'marvel-on-screen';
+  if (shelf === 'lines' || (shelf === 'catalog' && !modernTimelineLists(lists).some((entry) => entry.id === id))) {
+    return STORY_TYPES_ROUTE;
+  }
+  return shelf;
 }
 
 export const MODERN_TIMELINE_START_YEAR = 1998;
@@ -1193,8 +1195,8 @@ export function publishingAgeGroups(stories) {
 // ------------------------------------------------------------------ Home categories
 
 // Home categories answer how somebody wants to browse; shelves answer where a story is filed. Those
-// are deliberately separate questions. A shelf is an exclusive partition, while a future category
-// such as MCU Prep or Bronze Age can overlap Timeline, Storylines and Character spotlights.
+// are deliberately separate questions. A shelf is an exclusive partition, while Genres, MCU Prep
+// and Marvel Ages can overlap the other browse screens.
 //
 // Each definition owns its availability selector. Empty results disappear before rendering, so a
 // category can be declared before its first published Reading List without leaving an empty promise
@@ -1305,14 +1307,14 @@ export const HOME_CATEGORIES = [
     select: modernTimelineStories,
   },
   {
-    key: 'storylines',
-    route: 'lines',
-    shelf: 'lines',
-    heading: 'Storylines',
-    label: 'Browse complete arcs',
-    icon: 'E8FD',
+    key: STORY_TYPES_ROUTE,
+    route: STORY_TYPES_ROUTE,
+    heading: 'Genres',
+    label: 'Browse by genre and tone',
+    icon: 'E8EC',
     tier: 'primary',
-    select: storylinesStories,
+    highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],
+    select: (stories) => storyTypeStories(stories),
   },
   {
     key: 'character-spotlights',
@@ -1344,16 +1346,6 @@ export const HOME_CATEGORIES = [
     icon: 'E7BE',
     tier: 'secondary',
     select: shelfCategory('young-readers'),
-  },
-  {
-    key: STORY_TYPES_ROUTE,
-    route: STORY_TYPES_ROUTE,
-    heading: 'Genres',
-    label: 'Browse by genre and tone',
-    icon: 'E8EC',
-    tier: 'secondary',
-    highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],
-    select: (stories) => storyTypeStories(stories),
   },
 ];
 
@@ -1617,7 +1609,7 @@ export function decadeSections(stories) {
     sections.push({
       key: 'across-eras',
       heading: 'Across eras',
-      blurb: 'Storylines that range across publishing history rather than beginning at one point.',
+      blurb: 'Reading Lists that range across publishing history rather than beginning at one point.',
       span: null,
       stories: undated,
       undated: true,

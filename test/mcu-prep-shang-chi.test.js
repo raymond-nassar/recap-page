@@ -140,7 +140,7 @@ test('Shang-Chi MCU Prep keeps collected editions and selected material honest w
   assert.ok(payload.items.every((row) => !Object.hasOwn(row, 'storyProgress')));
 });
 
-test('Shang-Chi MCU Prep reaches the existing gateway and Storylines without a new taxonomy', () => {
+test('Shang-Chi MCU Prep reaches its gateway and retains its internal fallback classification', () => {
   assert.equal(parseManifest(manifest).errors.length, 0);
   assert.equal(entry.name, fixture.name);
   for (const row of [entry, rawCatalog.lists.find((item) => item.id === id), card]) {

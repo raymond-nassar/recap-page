@@ -3006,7 +3006,9 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
-  for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
+  for (const shelf of CATALOG_SHELVES) {
+    if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
+  }
   homeView.wire();
   const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
   const closureNotice = $('#reader-closure-notice');

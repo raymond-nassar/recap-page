@@ -31,12 +31,11 @@ export const LARGE = 3;
 // text color (#873). Young readers took Reading paths' place and its green channel (#897).
 export const CATEGORY_CARDS = [
   ['the Modern Timeline card', '--accent-line', '--accent-text'],
-  ['the Storylines card', '--amber-line', '--amber'],
+  ['the Genres card', '--amber-line', '--amber'],
   ['the Character spotlights card', '--teal-line', '--teal'],
   ['the MCU Prep card', '--azure-line', '--azure-line'],
   ['the Marvel Ages card', '--magenta-line', '--magenta-line'],
   ['the Young readers card', '--green-line', '--green-line'],
-  ['the Genres card', '--cyan-line', '--cyan-line'],
 ];
 
 // The eleven Marvel era tiles that #875 gave an accent of their own: the era's key, the name of the
@@ -162,7 +161,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2338`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2337`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -225,7 +224,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2314`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2313`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -240,7 +239,7 @@ export const SURFACES = {
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
   // card at rest (`src/styles.css:1987-1989`) and 19% over the raised card on hover
-  // (`src/styles.css:2006-2008`).
+  // (`src/styles.css:2005-2007`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],

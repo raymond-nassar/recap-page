@@ -1995,12 +1995,11 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   background: rgb(var(--home-path-line));
 }
 .home-path[data-category="timeline"] { --home-path-ink: var(--accent-text); }
-.home-path[data-category="storylines"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
+.home-path[data-category="genres"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
 .home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); --home-path-ink: var(--teal); }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
 .home-path[data-category="young-readers"] { --home-path-line: var(--green-line); }
-.home-path[data-category="genres"] { --home-path-line: var(--cyan-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:
@@ -2404,9 +2403,9 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #view-data .setting-more > summary { min-height: var(--target-touch); box-sizing: border-box; }
   #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: var(--target-touch); min-height: var(--target-touch); }
   /* Without a shrinkable column a search form grows to its field's intrinsic width: at 200 per cent
-     text the Storylines and MCU Prep fields stayed 393px wide on 320 and 360px phones. */
-  #form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
-  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-lines-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
+     text the MCU Prep field stayed 393px wide on 320 and 360px phones. */
+  #form-search, #form-series, #form-creator, #form-catalog-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
+  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
   #catalog-filters { min-width: 0; max-width: 100%; }
 }
 /* On a short phone the title is compact and the lower list context leaves more height for the cover. */

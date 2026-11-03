@@ -16,7 +16,6 @@ import {
   resolveReadingPaths,
   searchCatalog,
   shelfLists,
-  storylinesLists,
   sortSpotlightStories,
   spotlightKindLabel,
   spotlightSortLabel,
@@ -481,7 +480,7 @@ export function createCatalogView({
       ? followedStories.map((story) => defaultPath(story, owned))
       : key === 'catalog'
         ? modernTimelineLists(catalog.lists)
-        : key === 'lines' ? storylinesLists(catalog.lists) : shelfLists(catalog.lists, key);
+        : shelfLists(catalog.lists, key);
     const canonicalTimelineStories = key === 'catalog' ? followedStories ?? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
     if (!mine.length) {

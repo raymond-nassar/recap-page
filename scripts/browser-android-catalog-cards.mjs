@@ -27,12 +27,12 @@ export const catalogCardProfiles = [
   })),
   ...[320, 360, 412].map((width, index) => ({
     id: `M0${index + 7}`, width, height: width === 320 ? 740 : width === 360 ? 800 : 915,
-    route: 'lines', list: 'ultimate-marvel-intro', theme: 'light',
+    route: 'genres', list: 'ultimate-marvel-intro', theme: 'light',
   })),
   { id: 'M10', width: 360, height: 800, route: 'age-silver', list: AMAZING, theme: 'dark', textScale: 1.5 },
   { id: 'M11', width: 320, height: 740, route: 'catalog', theme: 'dark', textScale: 2 },
   { id: 'M12', width: 412, height: 915, route: 'spotlights', list: 'xmen-claremont', theme: 'light', textScale: 2 },
-  { id: 'M13', width: 360, height: 800, route: 'lines', list: 'hickman-minimal', theme: 'dark', textScale: 1.5 },
+  { id: 'M13', width: 360, height: 800, route: 'genres', list: 'hickman-minimal', theme: 'dark', textScale: 1.5 },
   { id: 'M14', width: 800, height: 360, route: 'age-silver', list: AMAZING, theme: 'light' },
   { id: 'M15', width: 1280, height: 900, route: 'catalog', theme: 'light' },
   { id: 'M16', width: 1280, height: 900, route: 'catalog', theme: 'light', desktop: true },
@@ -536,12 +536,29 @@ async function withoutCatalogComposition(page, selector) {
   }
 }
 
-// M11 is the one 200 per cent case on a 320px phone, where the Storylines and MCU Prep search
-// fields once made the page 409px wide; 360px overflowed the same way, so it is measured here too.
+// M11 is the one 200 per cent case on a 320px phone, where MCU Prep once overflowed to 409px.
 async function searchFieldReflow(page, profile, check, route) {
   for (const [width, height] of [[320, 740], [360, 800]]) {
     await page.setViewport({ width, height, isMobile: true, hasTouch: true });
-    for (const [view, form] of [['lines', '#form-lines-search'], ['marvel-on-screen', '.mcu-prep-search'], ['young-readers', '#form-young-readers-search']]) {
+    await route(page, 'genres');
+    await page.waitForSelector('#genres-choices select', { visible: true });
+    const genres = await page.$eval('#genres-choices', async (node) => {
+      await document.fonts.ready;
+      await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+      const root = document.documentElement;
+      const parts = [...node.querySelectorAll('label, select')].map((part) => {
+        const { left, right, width: size } = part.getBoundingClientRect();
+        return { left, right, width: size, text: part.tagName === 'LABEL' ? part.textContent : part.value };
+      });
+      return { scroll: root.scrollWidth, client: root.clientWidth,
+        font: parseFloat(getComputedStyle(document.body).fontSize), parts };
+    });
+    check(genres.font === 16 * profile.textScale && genres.parts.length === 4,
+      `${profile.id} Genres at ${width}px: both labelled controls keep the profile's text size`);
+    check(genres.scroll <= genres.client + 1
+      && genres.parts.every((part) => part.width > 0 && part.left >= -1 && part.right <= genres.client + 1),
+    `${profile.id} Genres at ${width}px: labels and dropdowns stay on screen ${JSON.stringify(genres)}`);
+    for (const [view, form] of [['marvel-on-screen', '.mcu-prep-search'], ['young-readers', '#form-young-readers-search']]) {
       await route(page, view);
       const selector = `#view-${view} ${form}`;
       await page.waitForSelector(`${selector} input[type="search"]`, { visible: true });
@@ -599,7 +616,7 @@ async function readingOptionInteractions(page, primary, catalog, check, click, r
   const selected = catalog.lists.find((list) => list.id === 'hickman-full');
   // Since 2026-10-03 each reading has its own card and Preview offers no reading choice, so the
   // alternative reading is added from its own card instead of being chosen inside Preview.
-  const selectedCard = `#view-lines .catalog-card[data-story="${catalogEntryKey(selected)}"]`;
+  const selectedCard = `#view-genres .catalog-card[data-story="${catalogEntryKey(selected)}"]`;
   const requests = [], failures = [];
   const onRequest = (request) => {
     if (new URL(request.url()).pathname.startsWith('/data/')) requests.push(request.url());
@@ -655,7 +672,9 @@ async function readingOptionInteractions(page, primary, catalog, check, click, r
     check(imported.name === order.name && JSON.stringify(imported.itemIds)
       === JSON.stringify([...new Set(order.items.map((item) => item.issueId))])
       && Object.keys(saved.read).length === 0, 'M13: Add preserves exact selected issue order without marking read');
-    await route(page, 'lines');
+    await route(page, 'genres');
+    await page.waitForSelector('#genres-type option[value="science-fiction"]');
+    await page.select('#genres-type', 'science-fiction');
     await page.waitForSelector(`${selectedCard} [data-act="open"][data-key="${selected.id}"]`);
     check(true, 'M13: selected reading option adds exact list and becomes Open');
   } catch (error) {
@@ -702,6 +721,10 @@ export async function catalogCardReadability({
   };
   await page.evaluate((theme) => { document.documentElement.dataset.theme = theme; }, profile.theme);
   await route(page, profile.route);
+  if (profile.route === 'genres') {
+    await page.waitForSelector('#genres-type option[value="science-fiction"]');
+    await page.select('#genres-type', 'science-fiction');
+  }
   await page.waitForSelector(`#view-${profile.route} .catalog-card`);
   if (process.argv.includes('--catalog-interactions-only')) {
     assert.ok(['M05', 'M13'].includes(profile.id), 'Interaction-only continuation must name its aimed-at case');
@@ -747,7 +770,7 @@ export async function catalogCardReadability({
   if (profile.route === 'age-silver' && compact && await page.$(selectorFor('xmen-claremont'))) {
     selectors.push(selectorFor('xmen-claremont'));
   }
-  if (profile.route === 'lines' && profile.list !== 'hickman-minimal') selectors.push(selectorFor('hickman-minimal'));
+  if (profile.route === 'genres' && profile.list !== 'hickman-minimal') selectors.push(selectorFor('hickman-minimal'));
   if (profile.id === 'M11') selectors.push(
     '#modern-timeline-feature .catalog-card',
     selectorFor('revolutionary-war'), selectorFor('marvel-knights-to-planet-x-62'),

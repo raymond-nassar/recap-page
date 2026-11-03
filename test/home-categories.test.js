@@ -34,10 +34,12 @@ const presentationSource = [
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = catalogEntries(catalog.lists);
 
-test('Storylines gateway count uses the same complete eligible pool as ordinary browsing', () => {
-  const pool = HOME_CATEGORIES.find((category) => category.key === 'storylines').select(stories);
-  const gateway = availableHomeCategories(stories).find((category) => category.key === 'storylines');
-  assert.equal(gateway.count, currentReadingCensus.storylines);
+test('Genres gateway counts the same eligible lists as genre browsing', () => {
+  const pool = HOME_CATEGORIES.find((category) => category.key === 'genres').select(stories);
+  const gateway = availableHomeCategories(stories).find((category) => category.key === 'genres');
+  const eligible = catalog.lists.filter((list) => list.type !== 'screen-companion' && list.storyTypes.length);
+  assert.equal(gateway.count, eligible.length);
+  assert.equal(gateway.count, 295);
   assert.equal(gateway.count, pool.reduce((total, story) => total + story.lists.length, 0));
   assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
 });
@@ -52,21 +54,21 @@ test('the MCU Prep card counts every MCU Prep list', () => {
     currentReadingCensus.mcu);
 });
 
-test('the current gateway offers three primary modes and four secondary gateways', () => {
+test('the current gateway offers three primary modes and three secondary gateways', () => {
   const categories = availableHomeCategories(stories, HOME_CATEGORIES);
   assert.deepEqual(
     categories.map(({ key }) => key),
     [
       'timeline',
-      'storylines',
+      'genres',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages', 'young-readers', 'genres',
+      'marvel-ages', 'young-readers',
     ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {

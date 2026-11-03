@@ -1719,18 +1719,18 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3671-3713|0": {
-    "anchor": "src/js/main.js:3671-3713",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3673-3715|0": {
+    "anchor": "src/js/main.js:3673-3715",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:210-266|0": {
-    "anchor": "src/js/views/catalog.js:210-266",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:209-265|0": {
+    "anchor": "src/js/views/catalog.js:209-265",
     "fp": "0addf43c7832c8f4",
     "head": "function paintTimelineContext(context, { announceChange = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:30-72|0": {
-    "anchor": "src/js/views/catalog.js:30-72",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:29-71|0": {
+    "anchor": "src/js/views/catalog.js:29-71",
     "fp": "da02c5953a2ee9c2",
     "head": "// One index preserves listForCatalogId's first-listOrder answer without repeating its linear scan"
   },
@@ -1754,8 +1754,8 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1629-1682|0": {
-    "anchor": "src/js/lib/catalog.js:1629-1682",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1621-1674|0": {
+    "anchor": "src/js/lib/catalog.js:1621-1674",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
@@ -1764,13 +1764,13 @@
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:293-295|0": {
-    "anchor": "src/js/lib/route.js:293-295",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:297-299|0": {
+    "anchor": "src/js/lib/route.js:297-299",
     "fp": "5e4308126a42e7e9",
     "head": "// The path the Modern Timeline is following, so a followed path can be bookmarked and Back"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:336-342|0": {
-    "anchor": "src/js/lib/route.js:336-342",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:340-346|0": {
+    "anchor": "src/js/lib/route.js:340-346",
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
@@ -1779,63 +1779,63 @@
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3598-3617|0": {
-    "anchor": "src/js/main.js:3598-3617",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3600-3619|0": {
+    "anchor": "src/js/main.js:3600-3619",
     "fp": "30f600f9bd9e5fc8",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3619-3776|0": {
-    "anchor": "src/js/main.js:3619-3776",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3621-3778|0": {
+    "anchor": "src/js/main.js:3621-3778",
     "fp": "78e87d5b08a617f1",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3685-3691|0": {
-    "anchor": "src/js/main.js:3685-3691",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3687-3693|0": {
+    "anchor": "src/js/main.js:3687-3693",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3711-3712|0": {
-    "anchor": "src/js/main.js:3711-3712",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3713-3714|0": {
+    "anchor": "src/js/main.js:3713-3714",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:379-403|0": {
-    "anchor": "src/js/views/catalog.js:379-403",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:378-402|0": {
+    "anchor": "src/js/views/catalog.js:378-402",
     "fp": "fcf3ae561a3e2b46",
     "head": "// The jump the path's own page had, moved with it (#897): to any stop by name, or to the next"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:405-416|0": {
-    "anchor": "src/js/views/catalog.js:405-416",
-    "fp": "b43c3c1cfef221b1",
-    "head": "// Back to a path from a stop opened or previewed on it returns focus to that stop's Open or Preview"
-  },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:41-55|0": {
-    "anchor": "src/js/views/catalog.js:41-55",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:40-54|0": {
+    "anchor": "src/js/views/catalog.js:40-54",
     "fp": "19194659e851e7da",
     "head": "// The reading a stop is shown and counted by, and whether it is finished: its first saved reading,"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:418-421|0": {
-    "anchor": "src/js/views/catalog.js:418-421",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:404-415|0": {
+    "anchor": "src/js/views/catalog.js:404-415",
+    "fp": "b43c3c1cfef221b1",
+    "head": "// Back to a path from a stop opened or previewed on it returns focus to that stop's Open or Preview"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:417-420|0": {
+    "anchor": "src/js/views/catalog.js:417-420",
     "fp": "79a8f31c93434de4",
     "head": "async function render(key, { isCurrent: isRequestCurrent = () => true } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:462-476|0": {
-    "anchor": "src/js/views/catalog.js:462-476",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:461-475|0": {
+    "anchor": "src/js/views/catalog.js:461-475",
     "fp": "7dacc66641a02fed",
     "head": "// Following a bundled path narrows the Modern Timeline to that path's stops, every one of them"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:653-663|0": {
-    "anchor": "src/js/views/catalog.js:653-663",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:652-662|0": {
+    "anchor": "src/js/views/catalog.js:652-662",
     "fp": "db874268d2673038",
     "head": "// Focus stays on the choice, and the narrowed result is announced as the other narrowing is. A"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:75-97|0": {
-    "anchor": "src/js/views/catalog.js:75-97",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:74-96|0": {
+    "anchor": "src/js/views/catalog.js:74-96",
     "fp": "3261c3d6fcb283cd",
     "head": "// Where the reader is on one bundled path: its first unfinished stop, and how many of its stops are"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:99-111|0": {
-    "anchor": "src/js/views/catalog.js:99-111",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:98-110|0": {
+    "anchor": "src/js/views/catalog.js:98-110",
     "fp": "31db5df35eb23cd1",
     "head": "// A bundled path's stops as the stories the follow mode shows, in the path's order. Each leads with"
   },
@@ -1846,7 +1846,7 @@
   },
   "docs/ARCHITECTURE.md|routes-and-generated-views|src/js/lib/route.js:16-31|0": {
     "anchor": "src/js/lib/route.js:16-31",
-    "fp": "954bf17119ccdab8",
+    "fp": "18d13404f9cac883",
     "head": "const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));"
   },
   "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/author-cbh-packet.mjs:6|0": {
@@ -1889,8 +1889,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1512|0": {
-    "anchor": "src/index.html:1512",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1490|0": {
+    "anchor": "src/index.html:1490",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2039,8 +2039,8 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:959-982|0": {
-    "anchor": "src/js/lib/catalog.js:959-982",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:961-984|0": {
+    "anchor": "src/js/lib/catalog.js:961-984",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -2139,8 +2139,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1208-1212|0": {
-    "anchor": "src/index.html:1208-1212",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1186-1190|0": {
+    "anchor": "src/index.html:1186-1190",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2289,14 +2289,14 @@
     "fp": "3377f80fe0c004ac",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:24-35|0": {
-    "anchor": "src/js/lib/route.js:24-35",
-    "fp": "820857e84204ff28",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:24-31|0": {
+    "anchor": "src/js/lib/route.js:24-31",
+    "fp": "533691777c309d98",
     "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:91-180|0": {
-    "anchor": "src/js/lib/route.js:91-180",
-    "fp": "967900374f80b802",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:94-184|0": {
+    "anchor": "src/js/lib/route.js:94-184",
+    "fp": "8ea322cec11367be",
     "head": "export function breadcrumbHierarchy({"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1615-1658|0": {
@@ -2409,13 +2409,13 @@
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:638-679|0": {
-    "anchor": "src/js/views/catalog.js:638-679",
+  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:637-678|0": {
+    "anchor": "src/js/views/catalog.js:637-678",
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2273-2275|0": {
-    "anchor": "src/styles.css:2273-2275",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2272-2274|0": {
+    "anchor": "src/styles.css:2272-2274",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2439,8 +2439,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2273-2275|0": {
-    "anchor": "src/styles.css:2273-2275",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2272-2274|0": {
+    "anchor": "src/styles.css:2272-2274",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2494,8 +2494,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2728-2729|0": {
-    "anchor": "src/styles.css:2728-2729",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2727-2728|0": {
+    "anchor": "src/styles.css:2727-2728",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2524,8 +2524,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:795|0": {
-    "anchor": "src/index.html:795",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:773|0": {
+    "anchor": "src/index.html:773",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2564,8 +2564,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2273-2275|0": {
-    "anchor": "src/styles.css:2273-2275",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2272-2274|0": {
+    "anchor": "src/styles.css:2272-2274",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2644,8 +2644,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1225-1236|0": {
-    "anchor": "src/index.html:1225-1236",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1203-1214|0": {
+    "anchor": "src/index.html:1203-1214",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
@@ -6259,18 +6259,18 @@
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2006-2008|0": {
-    "anchor": "src/styles.css:2006-2008",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2005-2007|0": {
+    "anchor": "src/styles.css:2005-2007",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2314|0": {
-    "anchor": "src/styles.css:2314",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2313|0": {
+    "anchor": "src/styles.css:2313",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2338|0": {
-    "anchor": "src/styles.css:2338",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2337|0": {
+    "anchor": "src/styles.css:2337",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6304,8 +6304,8 @@
     "fp": "95da3e6147977222",
     "head": "permissions:"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:414-416|0": {
-    "anchor": ".github/workflows/ci.yml:414-416",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:419-421|0": {
+    "anchor": ".github/workflows/ci.yml:419-421",
     "fp": "d7904643223f00ed",
     "head": "permissions:"
   },

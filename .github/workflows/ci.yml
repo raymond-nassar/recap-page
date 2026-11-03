@@ -262,7 +262,7 @@ jobs:
     # The steps below declare 57 minutes between them, so this is the backstop for time outside any
     # step, in the same order the other jobs keep. Measured locally, no owner took over 35 seconds;
     # each step allows several times its owner, until this job has runs of its own to measure.
-    timeout-minutes: 60
+    timeout-minutes: 65
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 3
@@ -306,6 +306,11 @@ jobs:
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         timeout-minutes: 4
         run: node scripts/browser-check.mjs --only=narrow-navigation
+
+      - name: Desktop owner genres-discovery-actual-data
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        timeout-minutes: 4
+        run: node scripts/browser-check.mjs --only=genres-discovery-actual-data
 
       - name: Android owner catalog-cards
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}

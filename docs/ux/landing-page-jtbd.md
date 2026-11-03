@@ -19,8 +19,8 @@ anything new, so I do not have to remember which issue was next.
 - Ask one first-run question: **Where do you want to start?**
 - Explain that Browse contains curated Reading Lists while Add handles individual issues and a
   reader's own list.
-- Present Modern Timeline, Storylines and Character spotlights as equal current paths.
-- Present MCU Prep and Marvel Ages as secondary paths when their bundled Reading Lists exist.
+- Present Modern Timeline, Genres and Character spotlights as equal current paths.
+- Present MCU Prep, Marvel Ages and Young readers as secondary paths when their bundled Reading Lists exist.
 - Keep Modern Timeline primary while Marvel Ages groups populated publishing periods chronologically.
 - Let readers choose a Modern period from Marvel Ages or open Modern Age as one aggregate.
 - Use 1998 as this app's chosen Modern Timeline boundary without presenting it as an official Marvel
@@ -29,8 +29,7 @@ anything new, so I do not have to remember which issue was next.
   Preview without adding it automatically.
 - Feature that same Reading List above the guided normal timeline cards without duplicating or
   counting it. Keep Marvel Knights to Planet X as the 1998 opening before the sequence resumes with
-  Avengers Disassembled in 2004, while other events remain discoverable through Marvel Ages and
-  direct addresses.
+  Avengers Disassembled in 2004, while other events remain discoverable through Genres and Marvel Ages.
 - Use compact browse labels and counts instead of explanatory paragraphs.
 - Reveal future overlapping categories only when content and a destination both exist.
 - Keep Continue reading and Your Reading Lists ahead of discovery for returning readers.

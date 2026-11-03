@@ -660,28 +660,6 @@
             <div id="catalog-results" class="results"></div>
           </section>
 
-          <!-- ---------------------------------------- line-wide reading lists view
-
-               The four catalog screens are one renderer over one table, so every id here is the
-               shelf key with the same suffix the catalog view uses. Changing a suffix on one screen
-               and not the others is how they would drift apart, and a test asserts all four carry
-               the same set. -->
-          <section id="view-lines" class="view" hidden aria-labelledby="lines-h">
-            <div class="head"><div class="head-left"><h1 id="lines-h">Storylines</h1></div></div>
-            <div id="lines-report" class="report"></div>
-            <form id="form-lines-search" class="stack" role="search" hidden>
-              <label for="lines-q">Search the catalog by title or character</label>
-              <div class="field-row">
-                <input type="search" id="lines-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
-                <button type="button" class="btn search-clear" id="lines-clear" hidden>Clear</button>
-              </div>
-            </form>
-            <fieldset class="filters" id="lines-filters" hidden>
-              <legend class="visually-hidden">Filter the catalog by category</legend>
-            </fieldset>
-            <div id="lines-results" class="results"></div>
-          </section>
-
           <!-- ---------------------------------------- character spotlights view -->
           <section id="view-spotlights" class="view" hidden aria-labelledby="spotlights-h">
             <div class="head">

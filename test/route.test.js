@@ -274,7 +274,7 @@ test('dynamic Reading List and issue hierarchies use only validated context', ()
       issueTitle: 'A bundled issue',
       context: { kind: 'order', id: 'order-a', name: 'Transient Preview title', shelf: 'lines' },
     }).map(({ label }) => label),
-    ['Home', 'Storylines', 'A bundled issue'],
+    ['Home', 'Genres', 'A bundled issue'],
   );
   // MCU Prep is a Home category rather than a shelf, and an issue opened from one of its lists
   // names it (#1066).
@@ -760,9 +760,9 @@ test('the Modern Timeline carries the path it follows, while a path query on ano
     assert.equal(Object.hasOwn(parseRoute(unusable), 'pathId'), false, unusable);
   }
   assert.deepEqual(parseRoute('#/lines?path=modern-avengers'), {
-    view: 'lines', listId: null, filter: null, full: false,
+    view: 'genres', listId: null, filter: null, full: false,
   });
-  assert.equal(formatRoute({ view: 'lines', pathId: 'modern-avengers' }), '#/lines');
+  assert.equal(formatRoute({ view: 'lines', pathId: 'modern-avengers' }), '#/genres');
 });
 
 const HOME_CARDS = 'categories';
@@ -871,4 +871,26 @@ test('Genres carries one known genre and tone in its address and nothing else', 
   assert.deepEqual(parseRoute('#/genres?type=toString&tone=__proto__'), base);
   assert.deepEqual(parseRoute('#/genres?type=espionage&type=horror&tone=dark'), { ...base, tone: 'dark' });
   assert.deepEqual(parseRoute('#/marvel-ages?type=espionage'), { ...base, view: 'marvel-ages' });
+});
+
+test('retired Storylines addresses open Genres with or without a query', () => {
+  const base = { view: 'genres', listId: null, filter: null, full: false };
+  assert.equal(VIEWS.includes('lines'), false);
+  assert.equal(VIEWS.includes('storylines'), false);
+  for (const hash of [
+    '#/lines',
+    '#/storylines',
+    '#/lines?search=Spider-Man&unknown=value',
+    '#/storylines?search=Spider-Man&unknown=value',
+  ]) {
+    assert.deepEqual(parseRoute(hash), base, hash);
+  }
+  assert.deepEqual(parseRoute('#/lines/saved-list?filter=unread'), {
+    ...base, listId: 'saved-list', filter: 'unread',
+  });
+  assert.deepEqual(parseRoute('#/storylines?type=espionage&tone=dark'), {
+    ...base, storyType: 'espionage', tone: 'dark',
+  });
+  assert.equal(formatRoute({ view: 'lines' }), '#/genres');
+  assert.equal(formatRoute({ view: 'storylines' }), '#/genres');
 });
