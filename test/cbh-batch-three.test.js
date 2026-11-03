@@ -18,6 +18,7 @@ import {
   historicalReadingChoiceManifest,
   historicalReadingChoiceIssueIds,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -187,7 +188,7 @@ test('batch three stays exact through mapping, Markdown, payload, catalog, and i
     assert.equal(mapping.rows.length, EXPECTED_COUNTS[id]);
     assert.equal(sequenceDigest(expectedIds), EXPECTED_SEQUENCE_SHA256[id]);
     assert.equal(new Set(expectedIds).size, expectedIds.length);
-    assert.deepEqual(withoutDiscoveryTags(manifestEntry), approved);
+    assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifestEntry)), approved);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourcePosition'), false);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourceReference'), false);
     assert.equal(parsed.unresolved.length, 0);

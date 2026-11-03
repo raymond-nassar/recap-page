@@ -6,6 +6,7 @@ import test from 'node:test';
 import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 
 import { assertComparisonCoverage } from '../scripts/author-cbh-packet.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { digestCanonicalJson, libraryDigestFor, reportDigestFor, validateSourceIdentities } from '../scripts/lib/cbh-inventory.mjs';
 import { validateMcuCompanionInventory } from '../scripts/lib/cbh-mcu-companion.mjs';
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
@@ -175,7 +176,8 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
   const sourceIds = new Set(report.coverage.sourceOrderIds);
   const childIds = new Set(report.coverage.generatedChildIds);
   const sourceEntries = historicalReadingChoiceManifest(manifest).lists.filter((row) => sourceIds.has(row.id));
-  const childEntries = rawCatalog.lists.filter((row) => childIds.has(row.id));
+  const childEntries = rawCatalog.lists.filter((row) => childIds.has(row.id))
+    .map((row) => descriptionRevisions.undoEntry(row));
   assert.equal(sourceEntries.length, 203);
   assert.equal(childEntries.length, 78);
   assert.equal(report.coverage.visibleCatalogCount, 280);

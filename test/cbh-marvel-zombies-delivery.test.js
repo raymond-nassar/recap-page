@@ -15,6 +15,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'marvel-zombies-reading-order';
 const readJson = async (path) => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
@@ -248,7 +249,7 @@ test('Marvel Zombies renewed relationship receipt covers every current library p
   assert.deepEqual(new Set(report.comparisons.map((entry) => entry.orderId)),
     new Set(expectedOrderIds));
   assert.equal(mapping.reviewStatus, 'approved');
-  assert.deepEqual(mapping.approvedManifest, withoutDiscoveryTags(manifest.lists.find((entry) => entry.id === id)));
+  assert.deepEqual(mapping.approvedManifest, withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id))));
   assert.equal(mapping.relationshipReview.approvalDigest,
     '1d41cde7518c02234a7a00c91c7cae17f3dd038685a74f7eb9d293692034f02f');
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
