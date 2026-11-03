@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { firstSentence, parseCatalog, STORY_TYPES, STORY_TONES } from '../src/js/lib/catalog.js';
+import {
+  catalogEntries, firstSentence, parseCatalog, PUBLISHING_CATEGORIES, publishingCategoryStories,
+  STORY_TYPES, STORY_TONES, storyTypeStories,
+} from '../src/js/lib/catalog.js';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const json = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -24,6 +28,44 @@ const guides = [
     ],
   },
 ];
+
+test('all four owner additions remain discoverable through Genres and truthful Marvel Ages', async () => {
+  const { lists, dropped } = parseCatalog(await json('src/data/catalog.json'));
+  assert.equal(dropped, 0);
+  const stories = catalogEntries(lists);
+  const ages = new Map([
+    ['mc2', null],
+    ['second-clone-saga', 'early-modern'],
+    ['marvel-1602', 'marvel-knights-heroes-return'],
+    ['blood-and-thunder', 'early-modern'],
+  ]);
+  for (const [id, age] of ages) {
+    const list = lists.find((row) => row.id === id);
+    for (const type of list.storyTypes) {
+      assert.ok(storyTypeStories(stories, { type })
+        .some((story) => story.lists.some((row) => row.id === id)), `${id}: ${type}`);
+    }
+    if (age) {
+      assert.ok(PUBLISHING_CATEGORIES.some((category) => category.key === age));
+      assert.ok(publishingCategoryStories(stories, age)
+        .some((story) => story.lists.some((row) => row.id === id)), `${id}: ${age}`);
+    } else {
+      assert.equal(list.timeline, null, 'MC2 does not invent a main-continuity publication period.');
+    }
+  }
+});
+
+test('the description revision record leaves the four new guide descriptions untouched', async () => {
+  const manifest = await json('src/data/curated-lists.json');
+  for (const id of ['mc2', 'second-clone-saga', ...guides.map((guide) => guide.id)]) {
+    assert.ok(!descriptionRevisions.entries.some((entry) => entry.id === id));
+    const entry = manifest.lists.find((row) => row.id === id);
+    assert.equal(descriptionRevisions.undoEntry(entry), entry);
+    const file = `src/data/${id.replaceAll('-', '_')}.json`;
+    const source = await readFile(file, 'utf8');
+    assert.equal(descriptionRevisions.undoPayloadText(entry.out, source), source);
+  }
+});
 
 for (const guide of guides) {
   test(`${guide.id} retains every source position and publishes only exact originals`, async () => {

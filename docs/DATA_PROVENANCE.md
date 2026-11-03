@@ -3306,12 +3306,12 @@ from its guide Issue. Gaps are not fabricated payload items or silently omitted 
 the published checklists explicitly show the unresolved references outside the resolved selection.
 Both cards say partial reading.
 
-MC2 is an alternate-future imprint spanning several leads, so its `era` classification reaches
-Storylines without claiming a place on the main-continuity Modern Timeline. Its Coming of age
+MC2 is an alternate-future imprint spanning several leads, so its tags make it reachable through
+Genres without claiming a place on the main-continuity Modern Timeline. Its Coming of age
 and Science fiction tags describe teenage successors in an alternative future; no single tone
 is assigned across the imprint. Second Clone Saga is a separate `event`, with 1994 as the
-principal story's start rather than the publication year of recalled origin issues. Its explicit
-Storylines selection keeps it browsable without changing the Modern Timeline cutoff. Its tags
+principal story's start rather than the publication year of recalled origin issues. Genres and
+Early Modern in Marvel Ages keep it browsable without changing the Modern Timeline cutoff. Its tags
 are Science fiction and Thriller, with Street level as its tone.
 
 The Second Clone Saga is a sequel, not a different depth of the Original Clone Saga. Their
@@ -3376,8 +3376,8 @@ Elizabethan intelligence work, with Epic as its tone. Blood and Thunder begins i
 interleaves Thor, Silver Surfer, Warlock Chronicles and Warlock and the Infinity Watch. Space opera
 and Myth and fantasy describe the cosmic and Asgardian conflict, with Epic as its tone. Both are
 dated selections in Marvel Ages: Marvel 1602 belongs to Marvel Knights / Heroes Return
-(1998 to 2003), and Blood and Thunder to Early Modern (1991 to 1997). Both carry an explicit
-Storylines selection in the current catalog.
+(1998 to 2003), and Blood and Thunder to Early Modern (1991 to 1997). Their genre tags also
+make both reachable through Genres; Storylines is no longer a browse screen.
 Neither is relabeled merely to enter Modern Timeline.
 
 The project-written Marvel 1602 premise is independently supported by

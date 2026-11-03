@@ -18028,7 +18028,7 @@ SCENARIOS.push(
           await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
         t.check('the bundled catalog reports the current Timeline and Genres lists',
           census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
-            && census.includes('295 Reading Lists'), JSON.stringify(census));
+            && census.includes('299 Reading Lists'), JSON.stringify(census));
 
         await chooseGenre(page, 'political');
         const searched = await page.evaluate(() => [...document.querySelectorAll(

@@ -39,7 +39,7 @@ test('Genres gateway counts the same eligible lists as genre browsing', () => {
   const gateway = availableHomeCategories(stories).find((category) => category.key === 'genres');
   const eligible = catalog.lists.filter((list) => list.type !== 'screen-companion' && list.storyTypes.length);
   assert.equal(gateway.count, eligible.length);
-  assert.equal(gateway.count, 295);
+  assert.equal(gateway.count, 299);
   assert.equal(gateway.count, pool.reduce((total, story) => total + story.lists.length, 0));
   assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
 });

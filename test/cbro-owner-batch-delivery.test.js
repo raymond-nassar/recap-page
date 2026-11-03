@@ -7,7 +7,7 @@ import {
   curatedLedgerDigestFor, curatedRelationshipReportDigestFor,
 } from '../scripts/lib/owner-guide.mjs';
 import {
-  firstSentence, groupCatalog, parseCatalog, storylinesLists,
+  firstSentence, groupCatalog, parseCatalog, storyTypeStories,
 } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { assertCurrentReadingRoster } from './helpers/current-reading-library.mjs';
@@ -94,7 +94,8 @@ for (const guide of guides) {
     assert.ok(firstSentence(card.description).length <= 140);
     assert.doesNotMatch(firstSentence(card.description), /\d|reading order|\bpath\b|\blist\b|CBRO|Comic Book Reading Orders/i);
     assert.doesNotMatch(card.description, /[\u2013\u2014]/);
-    assert.ok(storylinesLists(lists).some((row) => row.id === guide.id));
+    assert.ok(storyTypeStories(groupCatalog(lists), { type: card.storyTypes[0] })
+      .some((story) => story.lists.some((row) => row.id === guide.id)));
     assert.equal(groupCatalog(lists).find((story) => story.lists.some((row) => row.id === guide.id)).lists.length, 1);
     assertCurrentReadingRoster(manifest, rawCatalog);
   });

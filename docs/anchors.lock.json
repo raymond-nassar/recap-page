@@ -2046,7 +2046,7 @@
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:8-92|0": {
     "anchor": "test/helpers/current-reading-library.mjs:8-92",
-    "fp": "47c900c9d1ea7520",
+    "fp": "b54916278a47d7c9",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:204-230|0": {
