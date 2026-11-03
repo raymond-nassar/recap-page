@@ -309,6 +309,10 @@ final class ICloudBackupHandlerTests: XCTestCase {
             XCTAssertEqual(refused.retry, 15_000, "purpose \(purpose ?? "none")")
             XCTAssertEqual(store.elapsed, started, "purpose \(purpose ?? "none") never waits")
         }
+        let restore = try await call("read", ["connection": connection, "id": backupName, "purpose": "restore"])
+        let failure = try XCTUnwrap(restore["error"] as? [String: Any])
+        XCTAssertEqual(failure["message"] as? String, "iCloud has not confirmed this backup uploaded yet. Try again once iCloud has uploaded it.",
+                       "a read that does not wait asks the reader to try again rather than promising a retry")
 
         let started = store.elapsed
         let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
@@ -454,13 +458,12 @@ final class ICloudBackupHandlerTests: XCTestCase {
         _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
         store.uploadDelaySeconds = 10
         _ = try await call("create", ["connection": connection, "name": secondBackupName, "bytes": "BAUG"])
+        let started = store.elapsed
+        let newer = try await call("read", ["connection": connection, "id": secondBackupName, "purpose": "verify"])
+        XCTAssertEqual(newer["bytes"] as? String, "BAUG")
+        XCTAssertEqual(store.elapsed - started, 10)
         let old = try await call("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         XCTAssertEqual(old["bytes"] as? String, "AQID")
-
-        let started = store.elapsed
-        let newer = try await refusal("read", ["connection": connection, "id": secondBackupName, "purpose": "verify"])
-        XCTAssertEqual(newer.code, "unavailable")
-        XCTAssertEqual(store.elapsed, started)
     }
 
     func testAnInvalidCreateDisarmsVerification() async throws {
@@ -623,7 +626,7 @@ final class ICloudDriveStoreTests: XCTestCase {
             _ = try await store.read(name: backupName)
             XCTFail("a local-only file was returned as an uploaded backup")
         } catch {
-            XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
+            XCTAssertEqual(error as? ICloudStoreError, .uploadNotReady)
         }
     }
 
@@ -691,7 +694,10 @@ final class ICloudDriveStoreTests: XCTestCase {
             _ = try await store.read(name: backupName)
             XCTFail("a local-only backup was returned as uploaded")
         } catch {
-            XCTAssertEqual(error as? ICloudStoreError, .stillUploading)
+            let refusal = try XCTUnwrap(error as? ICloudStoreError)
+            XCTAssertEqual(refusal.code, "unavailable")
+            XCTAssertEqual(refusal.retryAfterMs, 15_000)
+            XCTAssertEqual(refusal.message, "iCloud has not confirmed this backup uploaded yet. Try again once iCloud has uploaded it.")
         }
         let elapsed = started.duration(to: clock.now).components.seconds
         XCTAssertLessThan(elapsed, 4, "discovery must not wait for upload confirmation")

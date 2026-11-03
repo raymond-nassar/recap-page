@@ -424,6 +424,36 @@ async function uploadForKept(protocol, home, change) {
 }
 
 const keptCreates = (transport) => transport.created.filter((name) => name.startsWith('recap-page-kept-v1-'));
+function purposeTransport() {
+  const transport = fakeTransport();
+  const reads = [];
+  const read = transport.read.bind(transport);
+  transport.read = (id, options) => {
+    reads.push({ id, purpose: options?.purpose });
+    return read(id, options);
+  };
+  return { transport, reads };
+}
+
+test('read purpose: a kept copy is read back with verify', async () => {
+  const { transport, reads } = purposeTransport();
+  const { protocol } = await consented(harness({ transport }));
+  const request = await uploadForKept(protocol, device(), 1);
+  reads.length = 0;
+  const kept = await protocol.keepBackup(request);
+  assert.deepEqual(reads.filter(({ id }) => id === kept.id), [{ id: kept.id, purpose: 'verify' }]);
+});
+
+test('read purpose: fetching a backup reads it with restore', async () => {
+  const { transport, reads } = purposeTransport();
+  const { protocol } = await consented(harness({ transport }));
+  await protocol.upload(await device().snapshot());
+  const [entry] = (await protocol.discover(ON)).devices;
+  reads.length = 0;
+  await protocol.fetchBackup(entry.current, ON);
+  assert.deepEqual(reads, [{ id: entry.current.id, purpose: 'restore' }]);
+});
+
 const quickCleanupTimer = (callback, ms) => setTimeout(callback,
   ms === 1000 || ms === CLOUD_TRANSPORT_DEADLINES_MS.read + CLOUD_DEADLINE_GRACE_MS ? 20 : ms);
 
