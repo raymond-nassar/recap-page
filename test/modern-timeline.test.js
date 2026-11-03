@@ -191,7 +191,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   ), true);
   assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
   assert.ok(unplacedSection.stories.some(({ key }) => key === 'list:one-world-under-doom'));
-  assert.equal(olderEvents.length, 37);
+  assert.equal(olderEvents.length, 38);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),
     [
@@ -227,7 +227,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   assert.equal(selectedLists.some(({ id }) => id === MODERN_TIMELINE_FEATURED_ID), false);
   assert.deepEqual(
     excluded.map(({ id }) => id),
-    ['spider-man-identity-crisis', 'hunt-for-xavier', 'eighth-day', 'magneto-war', 'maximum-security'],
+    ['spider-man-identity-crisis', 'hunt-for-xavier', 'eighth-day', 'magneto-war', 'maximum-security', 'marvel-1602'],
   );
   assert.ok(excluded.every(({ id }) => periodIds.has(id)));
   assert.equal(datedSections[0].from, MODERN_TIMELINE_START_YEAR);

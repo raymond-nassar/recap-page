@@ -2479,7 +2479,7 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
   )), false);
   const provenance = await readFile(path.join(root, 'docs', 'DATA_PROVENANCE.md'), 'utf8');
   assert.match(provenance, /sixth continuation release adds 46 exact issue rows/i);
-  assert.match(provenance, /Forty-one lists in this repository now come from that site/);
+  assert.match(provenance, /Forty-three lists in this repository now come from that site/);
   const maintaining = await readFile(path.join(root, 'docs', 'MAINTAINING.md'), 'utf8');
   assert.match(maintaining, /currently ships 39 guides/);
   assert.match(maintaining, /sequential.*source is exhausted/i);
@@ -2594,8 +2594,10 @@ test('batch seven authority preserves seven outcomes and four complete blocker r
       ['scripts', 'data', 'cbro-packets', `${expected.id}.json`],
       ['scripts', 'data', 'cbro-mappings', `${expected.id}.json`],
       ['scripts', 'data', 'cbro-overlaps', `${expected.id}.json`],
-      ['src', 'data', 'orders', `${expected.id}.md`],
-      ['src', 'data', `${expected.id.replaceAll('-', '_')}.json`],
+      ...(expected.id === 'blood-and-thunder' ? [] : [
+        ['src', 'data', 'orders', `${expected.id}.md`],
+        ['src', 'data', `${expected.id.replaceAll('-', '_')}.json`],
+      ]),
     ]) {
       await assert.rejects(() => access(path.join(root, ...relativePath)), /ENOENT/);
     }

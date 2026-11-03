@@ -876,7 +876,7 @@ conditions and two exclusions:
 - Build nothing from the Marvel Master Reading Order.
 - Build nothing from any reading order that site keeps behind its Patreon.
 
-Forty-one lists in this repository now come from that site. Each credits Comic Book Reading Orders
+Forty-three lists in this repository now come from that site. Each credits Comic Book Reading Orders
 and links to the exact source page and section followed, which is the pattern the reply permitted.
 The site publishes no terms of use, which makes the reply the only statement of its position that
 exists.
@@ -1100,10 +1100,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:10836-10887`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:10911-10962`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:15063-15200`.
+`src/data/catalog.json:15152-15289`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3344,3 +3344,64 @@ provider description, comic image bytes or Marvel page is copied or fetched. The
 share.marvel.com Read links are never requested. No statement promises Marvel Unlimited access,
 and the metadata gaps are not claims that a comic does not exist. Existing saved reading data,
 backups and issue vectors remain unchanged.
+
+## Owner-requested Marvel 1602 and Blood and Thunder
+
+The owner requested [Marvel 1602 in Issue 1087](https://github.com/raymond-nassar/recap-page/issues/1087)
+and [Blood and Thunder in Issue 1088](https://github.com/raymond-nassar/recap-page/issues/1088),
+then reopened the earlier delivery with the direction "please deliver all of the new reading
+lists in the same PR". The combined delivery includes these two guides, MC2 and Second Clone Saga.
+Both additional CBRO pages were retrieved on 2026-11-03 and checked against the credited-and-linked
+grant: public event pages, not Master or Patreon-exclusive orders. No source prose is copied.
+
+| Guide | Exact source | Source positions | Published exact issues | Metadata gaps | Repeats |
+| --- | --- | --- | --- | --- | --- |
+| Marvel 1602 | [CBRO Marvel 1602](https://comicbookreadingorders.com/marvel/events/marvel-1602-reading-order/) | 23 | 23 | 0 | 0 |
+| Blood and Thunder | [CBRO Blood and Thunder](https://comicbookreadingorders.com/marvel/events/blood-and-thunder-reading-order/) | 13 | 12 | 1 | 0 |
+
+The source ledgers preserve every displayed source position and exact original; local checklists
+and ordinary vendoring publish only resolved issues. Marvel 1602 includes all selected originals.
+Blood and Thunder retains Warlock Chronicles (1993) #8 at source position 11 as an explicit gap,
+not a placeholder or substituted issue. Its [assigned gap Issue](https://github.com/raymond-nassar/recap-page/issues/1092)
+records the complete successful series lookup with no exact match. Its historical CBRO blocker
+capture stays unchanged.
+
+These remain separate events. Blood and Thunder (1993) precedes Modern Timeline's 1998 opening.
+Marvel 1602 (2003) falls within the 1998 to 2003 span where that view includes only Marvel
+Knights to Planet X chapters, so it is excluded by the same rule as that span's other events.
+Marvel 1602 begins with the 2003 alternate-world story and continues through New World, Fantastick Four and Spider-Man
+1602. Its Magic and supernatural and Espionage tags describe the supernatural investigation and
+Elizabethan intelligence work, with Epic as its tone. Blood and Thunder begins in 1993 and
+interleaves Thor, Silver Surfer, Warlock Chronicles and Warlock and the Infinity Watch. Space opera
+and Myth and fantasy describe the cosmic and Asgardian conflict, with Epic as its tone. Both are
+dated selections in Marvel Ages: Marvel 1602 belongs to Marvel Knights / Heroes Return
+(1998 to 2003), and Blood and Thunder to Early Modern (1991 to 1997). Both carry an explicit
+Storylines selection in the current catalog.
+Neither is relabeled merely to enter Modern Timeline.
+
+The project-written Marvel 1602 premise is independently supported by
+[Wikipedia](https://en.wikipedia.org/wiki/Marvel_1602) and
+[TV Tropes](https://tvtropes.org/pmwiki/pmwiki.php/Comicbook/Marvel1602).
+The Blood and Thunder premise is independently supported by
+[Omniverse Comics Guide](https://omniversecomics.guide/2025/03/24/blood-and-thunder-1993-1994-reading-order/)
+and [Comic Vine](https://comicvine.gamespot.com/thor-blood-and-thunder/4045-55698/).
+All four sources were retrieved on 2026-11-03; the exact payload series support the previews.
+
+The four-guide supplemental content review in
+`scripts/data/cbro-owner-november-2026-batch-review.json` compares each candidate against all
+336 visible or retained-hidden peers. It is explicitly agent content review, not human authority.
+Marvel 1602 shares no originals with another bundled guide. Blood and Thunder is a source-selected
+event subset of the broader Adam Warlock and Thanos guides, not a duplicate of either complete
+selection. Neither additional guide shares originals with a registered owner guide.
+
+The earlier Second Clone Saga ledger and its digest-bound stronger-model Onslaught approval
+remain unchanged. The supplemental review accounts for the expanded library without rewriting
+that approved snapshot. Only the catalog and payload descriptions' gap notices change: About this
+order renders description text, not the checklist's unresolved-position table, so the notices say
+that unresolved comics do not appear among the order's issues. They do not invent an in-app notes
+panel. The original card premises remain unchanged.
+
+All four guides preserve credited source addresses and store cover addresses only. No provider
+description, source commentary, comic image or Marvel page is stored or fetched, including the
+pages' share.marvel.com Read links. No availability is promised and no existing saved data,
+backups or original issue vector is changed.

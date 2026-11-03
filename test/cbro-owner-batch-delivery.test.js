@@ -111,9 +111,12 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
   })));
   for (const guide of guides) {
     const ledger = await readJson(`scripts/data/curated-source-ledgers/${guide.id}.json`);
+    // Keep the coordinator's approved two-guide snapshot intact; the supplemental review below
+    // accounts for the owner's two later admissions against the complete current library.
     const report = buildComparisonReport({
       candidateIds: ledger.resolvedVector,
-      orders: orders.filter((entry) => entry.orderId !== guide.id),
+      orders: orders.filter((entry) => entry.orderId !== guide.id
+        && !['marvel-1602', 'blood-and-thunder'].includes(entry.orderId)),
     });
     assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger));
     const sealedReport = { candidateId: guide.id, ledgerDigest: ledger.ledgerDigest, ...report };
@@ -128,6 +131,23 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
       assert.equal(decision.authorityType, 'agent-content-review');
       assert.ok(decision.rationale);
     }
+  }
+  const supplemental = await readJson('scripts/data/cbro-owner-november-2026-batch-review.json');
+  assert.deepEqual(supplemental.guideIssues, [1085, 1086, 1087, 1088]);
+  assert.equal(supplemental.authorityType, 'agent-content-review');
+  assert.deepEqual(supplemental.reports.map(({ report }) => report.candidateId),
+    ['mc2', 'second-clone-saga', 'marvel-1602', 'blood-and-thunder']);
+  for (const { report, decisions } of supplemental.reports) {
+    const candidate = await readJson(`scripts/data/curated-source-ledgers/${report.candidateId}.json`);
+    const expected = { candidateId: candidate.id, ledgerDigest: candidate.ledgerDigest,
+      ...buildComparisonReport({ candidateIds: candidate.resolvedVector,
+        orders: orders.filter((entry) => entry.orderId !== candidate.id) }) };
+    expected.reportDigest = curatedRelationshipReportDigestFor(expected);
+    assert.deepEqual(report, expected);
+    assert.deepEqual(decisions.map(({ orderId, relationship, sharedIds }) => [orderId, relationship, sharedIds]),
+      report.comparisons.filter((row) => row.relationship !== 'none')
+        .map(({ orderId, relationship, sharedIds }) => [orderId, relationship, sharedIds]));
+    assert.ok(decisions.every((decision) => decision.authorityType === 'agent-content-review' && decision.rationale));
   }
   const ledger = await readJson('scripts/data/curated-source-ledgers/second-clone-saga.json');
   const original = ledger.relationshipReview.report.comparisons.find((row) => row.orderId === 'original-clone-saga');

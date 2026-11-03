@@ -80,8 +80,8 @@ export const currentReadingCensus = Object.freeze({
   allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
-  // MC2 and the Second Clone Saga extend the non-MCU Storylines pool (#1085, #1086).
-  storylines: 48,
+  // The four owner-requested CBRO guides extend the non-MCU pool (#1085 through #1088).
+  storylines: 50,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta - 2

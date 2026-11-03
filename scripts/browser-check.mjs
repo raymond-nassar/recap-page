@@ -22624,12 +22624,13 @@ async function runLongCollectionNavigation(page, t) {
     const ageExpected = ux10AgeCards('marvel-knights-heroes-return');
     const ageIds = await ageVector('marvel-knights-heroes-return');
     const ageOptions = await page.$$eval('#age-marvel-knights-heroes-return-navigation option', (nodes) => nodes.filter((node) => node.value).map((node) => node.value.slice(6)));
-    receipt('LC02', '81 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
-      cards81: ageIds.length === 81, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
-      guides6: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 6,
+    receipt('LC02', '82 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
+      cards82: ageIds.length === 82, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
+      guides7: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 7,
       cardOrder: isDeepStrictEqual(ageIds, ageExpected.map(({ id }) => id)), optionOrder: isDeepStrictEqual(ageIds, ageOptions),
     });
-    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${ageIds[80]}`, 'list:marvel-knights-to-planet-x-78', true);
+    const lastAgeId = ageExpected.at(-1).id;
+    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${lastAgeId}`, lastAgeId, true);
     receipt('LC02', 'original heading and whole collection', { tag: 'H4', tabindex: '-1' }, lastAge.focus, {
       headingPreserved: lastAge.focus.tag === 'H4' && lastAge.focus.tabindex === '-1',
       fullVectorRetained: isDeepStrictEqual(await ageVector('marvel-knights-heroes-return'), ageIds),
@@ -22656,7 +22657,7 @@ async function runLongCollectionNavigation(page, t) {
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
       ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
-      ['early-modern', 17, 'operation-zero-tolerance'],
+      ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);
       const ids = await ageVector(key);
