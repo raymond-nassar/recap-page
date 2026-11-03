@@ -6,6 +6,13 @@
       "description": "Eleven chapters combining Alpha, X-Men Legacy, New Mutants, Universe, and the two aftermath issues.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -38,6 +45,10 @@
       "description": "Seven chapters interleaving the five-part Schism event with the two Generation Hope tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -69,6 +80,9 @@
       "description": "Thirteen story issues combining Amazing Spider-Man, Venom, and the Deadly Foes one-shot.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -99,6 +113,10 @@
       "description": "Forty-three distinct chapters following the post-Schism teams across the X-Men family of titles.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -132,6 +150,14 @@
       "description": "A ten-section trade-based route to Secret Wars (2015), with the original Secret Wars and Ultimate Reed Richards background. Follows Comic Book Herald's fast track, including only New Avengers #1-3, interleaved Avengers and New Avengers in Time Runs Out, and Secret Wars #0-9.",
       "type": "creator-run",
       "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 10580,
       "group": "hickman-secret-wars",
@@ -171,6 +197,14 @@
       "description": "The complete Hickman saga including tie-ins, ending with Secret Wars (2015).",
       "type": "creator-run",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 52447,
       "group": "hickman-secret-wars",
@@ -209,6 +243,13 @@
       "description": "Six chapters alternating Scarlet Spider and Venom between the Alpha and Omega one-shots.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -240,6 +281,12 @@
       "description": "Eight chapters crossing Age of Apocalypse, X-Treme X-Men, Astonishing X-Men, and X-Termination.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -270,6 +317,9 @@
       "description": "The five-part crossover through The Enemy Within, Avengers Assemble, and Captain Marvel.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -299,6 +349,12 @@
       "description": "Ten interleaved chapters across the two event issues and four ongoing X-Men series.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -330,6 +386,10 @@
       "description": "Eight one-shots following Alpha through the linked Marvel UK heroes and the event conclusion.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "magic-supernatural"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -361,6 +421,13 @@
       "description": "Six alternating chapters joining All-New X-Men with the Guardians of the Galaxy.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -391,6 +458,12 @@
       "description": "Thirteen chapters combining the five-part event with all eight 1.MU battleground issues.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "adventure"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -421,6 +494,13 @@
       "description": "Eleven core chapters from Edge of Venomverse through War Stories and the five-part event.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -450,6 +530,10 @@
       "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -486,6 +570,13 @@
       "description": "Forty-six chapters covering the explicit Countdown and Wars issue-by-issue flow and its tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -517,6 +608,15 @@
       "description": "Comic Book Herald's selected Donny Cates Marvel sequence, from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. Includes the source's guest-written connections; linked event guides stay separate.",
       "type": "creator-run",
       "depth": "selected",
+      "storyTypes": [
+        "space-opera",
+        "magic-supernatural",
+        "horror"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -555,6 +655,13 @@
       "description": "Fifteen chapters combining the four-part event with Doctor Strange, Iron Fist, Scarlet Spider, and Ghost Rider.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -587,6 +694,12 @@
       "description": "The search for Logan across four investigations, Dead Ends, and his five-part return.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -617,6 +730,14 @@
       "description": "A multiversal Spider-Man crossover that reunites the web warriors against the Inheritors.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -647,6 +768,12 @@
       "description": "Nine chapters closing the original five X-Men time-travel story and carrying its immediate epilogue forward.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -677,6 +804,13 @@
       "description": "An alternate X-Men world where the X-Men confront a society without love.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -746,6 +880,13 @@
       "description": "Jonathan Hickman's Krakoa-era X-Men story from House of X and Powers of X through Inferno, limited to issues he wrote or co-wrote.",
       "type": "creator-run",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -783,6 +924,13 @@
       "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -815,6 +963,10 @@
       "description": "Tony Stark confronts a machine uprising led by the Arno Stark of 2020.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -845,6 +997,12 @@
       "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -874,6 +1032,9 @@
       "description": "The Infinity Stones pass through eight annuals and two Black Cat chapters.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "adventure"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -905,6 +1066,13 @@
       "description": "Dormammu's cosmic invasion draws the Guardians, S.W.O.R.D., Cable, and Wakanda into one final stand.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -938,6 +1106,13 @@
       "description": "Doctor Strange dies, and the fallout reaches his allies across the Marvel Universe.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -971,6 +1146,14 @@
       "description": "Mystique and Destiny force Krakoa's founders to answer for their hidden bargain.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "thriller",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1001,6 +1184,14 @@
       "description": "Wilson Fisk outlaws New York's heroes and turns the city's institutions against them.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1034,6 +1225,13 @@
       "description": "Jonathan Hickman's rebuilt Ultimate line in publication-adjacent order, from Ultimate Invasion (2023) through Ultimate Impact: Reborn.",
       "type": "era",
       "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "coverIssueId": 97145,
       "sourceFile": "new-ultimate-universe.md",
@@ -1069,6 +1267,13 @@
       "description": "The same line read the way it is collected, one section per trade paperback, for readers who buy the books rather than the single issues. Each section is a volume you can buy, and it tracks its own progress. Reading is shared with the issue-by-issue order, so an issue ticked in one is ticked in the other. The volume line-up follows Comic Book Herald's collected-edition guide and is not derived from Marvel metadata, which carries no collection records for this era. Six issues Marvel has not collected are left out: the 2024 Free Comic Book Day issue and the five-part Ultimate Impact: Reborn.",
       "type": "era",
       "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "coverIssueId": 97145,
       "sourceFile": "new-ultimate-universe-trades.md",
@@ -1105,6 +1310,13 @@
       "description": "A product-curated orientation path through Marvels and Sentry stories that sets readers up for the Modern Timeline.",
       "type": "era",
       "depth": "essential",
+      "storyTypes": [
+        "thriller",
+        "everyday-life"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": true,
       "timeline": null,
       "coverIssueId": 75504,
@@ -1136,6 +1348,13 @@
       "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1165,6 +1384,13 @@
       "description": "The Avengers, Eternals, and X-Men collide as the Progenitor judges Earth.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1195,6 +1421,13 @@
       "description": "Spider-Man, the X-Men, and Venom collide as Chasm and the Goblin Queen remake New York.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1227,6 +1460,13 @@
       "description": "Mister Sinister remakes mutant history across a century of impossible futures.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1258,6 +1498,12 @@
       "description": "Follow the six-part Amazing Spider-Man story leading to Kamala Khan's death, then the Fallen Friend tribute one-shot.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1289,6 +1535,9 @@
       "description": "Agatha Harkness sets a magical contest in motion. Read the Scarlet Witch prelude and eight annuals in the supplied order through the Avengers finale.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1320,6 +1569,12 @@
       "description": "Spider-Man and New York's street-level heroes face a citywide gang conflict. Follow the supplied prelude, main event and Miles Morales aftermath.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1355,6 +1610,15 @@
       "description": "The final Krakoan-era conflict across Fall of the House of X, Rise of the Powers of X, and their linked series.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1386,6 +1650,12 @@
       "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": 2025,
       "sourceFile": "one-world-under-doom.md",
@@ -1459,6 +1729,14 @@
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event, in publication order: the eight-issue main series, its branded tie-in mini-series, and the Decimation epilogue. Assembled from Marvel series metadata, so it covers the series Marvel branded with the event name and not the House of M chapters published in unbranded ongoing titles such as Wolverine #33-35.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": "house-of-m",
       "groupName": "House of M",
@@ -1499,6 +1777,14 @@
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event: the eight-issue main series on its own, without the branded tie-in mini-series or the Decimation epilogue. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
       "depth": "essential",
+      "storyTypes": [
+        "magic-supernatural",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": "house-of-m",
       "groupName": "House of M",
@@ -1576,6 +1862,13 @@
       "description": "Follow Comic Book Herald's selected Hulk route through Planet Hulk, World War Hulk, Skaar and Amadeus Cho, with the source's directed issue order.",
       "type": "creator-run",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1661,6 +1954,12 @@
       "description": "Marvel's 2006 superhuman registration war: the seven-issue main series on its own, without the mini-series and one-shots branded with the Civil War name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
       "depth": "essential",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "group": "civil-war",
       "groupName": "Civil War",
@@ -1745,6 +2044,13 @@
       "description": "Forty-eight aftermath issues following the X-Men, X-Factor, X-Force, Wolverine, Cable, and the Young X-Men after Messiah Complex.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1779,6 +2085,14 @@
       "description": "The Skrull infiltration of 2008 in publication order: the eight-issue main series plus every mini-series and one-shot Marvel branded with the Secret Invasion name, ending with Dark Reign. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as New Avengers and Mighty Avengers.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": "secret-invasion",
       "groupName": "Secret Invasion",
@@ -1822,6 +2136,14 @@
       "description": "The Skrull infiltration of 2008: the eight-issue main series on its own, without the mini-series and one-shots branded with the Secret Invasion name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
       "depth": "essential",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": "secret-invasion",
       "groupName": "Secret Invasion",
@@ -1864,6 +2186,13 @@
       "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1895,6 +2224,14 @@
       "description": "Knull brings the symbiote god-war to Earth in 2020-2021, in publication order: the five-issue main series plus its branded tie-in mini-series and one-shots. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Venom #30-35.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 85649,
       "sourceFile": "king-in-black.md",
@@ -1935,6 +2272,9 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -1971,6 +2311,11 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "coming-of-age",
+        "political",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2007,6 +2352,9 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2083,6 +2431,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "espionage",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2122,6 +2477,14 @@
       "description": "Follow Namor from Golden Age originals through Atlantis, the Defenders, the Invaders and later stories in Comic Book Herald's selected reading order.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "war",
+        "political",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -2160,6 +2523,12 @@
       "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "space-opera"
+      ],
+      "tones": [
+        "dark"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -2196,6 +2565,15 @@
       "description": "Follow Clint Barton and Kate Bishop through their solo and team stories in Comic Book Herald's selected Hawkeye reading order.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "crime-noir",
+        "comedy",
+        "everyday-life"
+      ],
+      "tones": [
+        "street-level",
+        "lighthearted"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -2235,6 +2613,10 @@
       "description": "Read Iron Monger and Armor Wars to understand Tony Stark's fight to keep his technology out of the wrong hands. Obadiah Stane's campaign against Tony gives context to the film's armored rival, while Armor Wars explores the consequences of stolen designs. These are battles over Tony's legacy, not a retelling of his origin.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-iron-man-2008.md",
@@ -2260,6 +2642,14 @@
       "description": "Explore Bruce Banner's origins and life on the run to understand the man, monster and relationships behind The Incredible Hulk. Hulk: Gray revisits his early days and bond with Betty Ross, while Return of the Monster follows a hunted Banner. These comics explore the tension the film draws on rather than its exact events.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "thriller",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-the-incredible-hulk-2008.md",
@@ -2286,6 +2676,10 @@
       "description": "Explore Tony Stark's vulnerabilities and meet Whiplash, Black Widow and War Machine in comics that add context to Iron Man 2. Demon in a Bottle tests Tony beyond the armor, Deadly Origin explores Natasha's past, and the War Machine issues develop Rhodey's armored role. Iron Man vs. Whiplash offers a comics take on the villain rather than the film's exact story.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "espionage"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-iron-man-2-2010.md",
@@ -2313,6 +2707,12 @@
       "description": "Meet Thor and Loki in the comics to understand the family rivalry and questions of worthiness behind Thor's first film. Season One revisits Thor's beginnings, Blood Brothers gives Loki's perspective, and the early Simonson issues introduce Beta Ray Bill, another wielder of Thor's power. Bill broadens the mythology rather than appearing in the film.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-thor-2011.md",
@@ -2339,6 +2739,9 @@
       "description": "Read First Vengeance, the film's comics prelude, to meet the people who shape Steve Rogers' path to becoming Captain America. These four chapters add background to the allies, enemies and wartime experiences surrounding the First Avenger.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "war"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-captain-america-the-first-avenger-2011.md",
@@ -2365,6 +2768,12 @@
       "description": "Explore how the Avengers come together in the comics to understand the uneasy teamwork behind their first film. Season One revisits their beginnings, the Kree/Skrull War tests them on a cosmic scale, and Disassembled shows how fragile their unity can be. These later crises broaden the team's background rather than retelling the film.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "space-opera"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-the-avengers-2012.md",
@@ -2390,6 +2799,10 @@
       "description": "Read Extremis to understand the dangerous technology adapted for Iron Man 3 and the questions it raises about Tony Stark. Enter the Mandarin introduces a very different version of his enemy, while The Five Nightmares and Stark Disassembled test Tony's inventions, identity and resilience. The film reshapes these ideas rather than following every comics plot.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-iron-man-3-2013.md",
@@ -2416,6 +2829,12 @@
       "description": "Meet Malekith and the Dark Elves in Thor's comics to understand the enemies brought to the screen in The Dark World. First Thunder revisits Thor's early days on Earth, then the opening Simonson run introduces Beta Ray Bill and Malekith's threat. The reading expands Asgard's mythology rather than retelling the film's Aether story.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-thor-the-dark-world-2013.md",
@@ -2443,6 +2862,13 @@
       "description": "Discover Bucky Barnes' return in Winter Soldier, the comics storyline behind the film's mysterious assassin. Man Out of Time first explores Steve Rogers' adjustment to the present, then the Winter Soldier arc turns his wartime past into a personal crisis. Expect a different conspiracy from the film's.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "espionage",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-captain-america-the-winter-soldier-2014.md",
@@ -2469,6 +2895,12 @@
       "description": "Explore Ultron's comics history to understand the Avengers' mechanical enemy beyond the film's version. The Origin introduces the team, while Ultron Unbound and Rage of Ultron explore the robot's ties to Hank Pym and Vision. Age of Ultron supplies the film's title, not the same plot.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-avengers-age-of-ultron-2015.md",
@@ -2497,6 +2929,13 @@
       "description": "Get to know Scott Lang's second-chance heroics and the Ant-Man legacy behind the film's shrinking suit. Hank Pym and Janet van Dyne's beginnings lead into Scott's struggles with work, crime and fatherhood. The Irredeemable Ant-Man introduces a different suit-wearer, Eric O'Grady, rather than another Scott Lang adventure.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "comedy",
+        "crime-noir"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-ant-man-2015.md",
@@ -2525,6 +2964,12 @@
       "description": "Read Civil War to understand the comics' clash over superhero registration behind the film's divided Avengers. Captain America's surrounding issues follow the build-up, Steve Rogers' resistance and the conflict's aftermath. The comics involve a much wider superhero community than the film.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-captain-america-civil-war-2016.md",
@@ -2553,6 +2998,14 @@
       "description": "Read Ragnarok and Planet Hulk to explore the comics behind the film's Asgardian apocalypse and gladiator world. Earlier Thor adventures establish his mythic world before Ragnarok confronts its destruction. Planet Hulk follows Hulk on Sakaar, a story the film reshapes around Thor rather than adapting unchanged.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "myth-fantasy",
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-thor-ragnarok-2017.md",
@@ -2580,6 +3033,12 @@
       "description": "Explore T'Challa's rule and Killmonger's rebellion to understand the struggle over Wakanda at the heart of Black Panther. Who Is the Black Panther? introduces the king and his nation, while Panther's Rage pits him against Killmonger. Later runs deepen Wakanda's politics and the tensions between royal duty and responsibility to its people.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-black-panther-2018.md",
@@ -2607,6 +3066,13 @@
       "description": "Follow Thanos and the Infinity Gauntlet to understand the comics behind the films' universe-threatening stakes. Thanos Rising and The Thanos Quest trace his past and pursuit of the gems before Infinity Gauntlet brings the heroes together against him. Infinity War follows with a different conflict, not a retelling of the film.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "space-opera"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-avengers-infinity-war-endgame.md",
@@ -2635,6 +3101,13 @@
       "description": "Explore Carol Danvers as Captain Marvel and the Kree-Skrull conflict for background on the film's hero and warring empires. The Avengers' Kree/Skrull War introduces the cosmic struggle, while Carol's later space adventures show her leadership and independence. These are comics counterparts, not a retelling of her MCU origin.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-captain-marvel-2019.md",
@@ -2662,6 +3135,9 @@
       "description": "Explore Doctor Strange's origins and life as a sorcerer to understand the magical responsibilities behind the film's hero. Season One introduces his beginnings, while The Oath tests his duties as a doctor and protector. The Way of the Weird, The Last Days of Magic and What Is It That Disturbs You, Stephen? explore the cost of defending a magical world.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-doctor-strange-2016.md",
@@ -2687,6 +3163,13 @@
       "description": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2718,6 +3201,10 @@
       "description": "Swing through Peter's tangled past, a desperate fight to protect the people he loves, and a brush with Doctor Strange's magic. Nostalgia, heartbreak, and magical trouble, all in one web.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural",
+        "coming-of-age"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2749,6 +3236,9 @@
       "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2782,6 +3272,9 @@
       "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2815,6 +3308,13 @@
       "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "thriller",
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2846,6 +3346,10 @@
       "description": "Explore Shang-Chi's family legacy in modern comics for context on the film's conflict between duty and independence. Agents of Atlas and Sword Master introduce allies before Shang-Chi confronts his family's organization and later takes up the Ten Rings. Those later rings are comics counterparts to the film's weapons, not their original source; anthology selections open whole issues.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "martial-arts",
+        "espionage"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2881,6 +3385,13 @@
       "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "espionage",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2917,6 +3428,13 @@
       "description": "Explore Marc Spector's identities and bond with Khonshu for background on Moon Knight's troubled hero. From the Dead, Lunatic and The Midnight Mission offer different approaches to his street-level work, sense of reality and responsibilities. These are distinct comics interpretations, not the show's exact history.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2950,6 +3468,13 @@
       "description": "Meet the Eternals, Deviants and Celestials in the comics to make sense of the film's ancient cosmic family. The original Eternals run introduces their mythology, the 2006 miniseries explores forgotten identities, and Only Death Is Eternal examines their society. These versions provide background rather than the film's exact history.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "myth-fantasy",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -2982,6 +3507,13 @@
       "description": "Meet the Fantastic Four and read the Galactus Trilogy for the family and cosmic threats behind First Steps. Their earliest adventures introduce the team, Galactus and the Silver Surfer, then later stories deepen the family's scientific curiosity and bonds. New Dawn adds the Silver Surfer's own adventures beyond that first encounter. The Point One selection opens the whole anthology, including stories beyond its Silver Surfer material.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "space-opera"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3023,6 +3555,14 @@
       "description": "Explore Peter Parker's fresh starts in the comics, including Brand New Day, for background on the film's namesake era. Coming Home, Brand New Day and Back to Basics show different ways of rebuilding Spider-Man's life and responsibilities. This is character context, not a prediction of the film's plot. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "comedy",
+        "everyday-life"
+      ],
+      "tones": [
+        "street-level",
+        "lighthearted"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3056,6 +3596,12 @@
       "description": "Meet Jennifer Walters as both lawyer and She-Hulk to understand the superhero legal comedy behind the series. Her first appearance introduces her transformation, while Single Green Female and Law and Disorder explore the collisions between legal work, superhero clients and everyday life.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3090,6 +3636,12 @@
       "description": "Meet Kamala Khan in her earliest comics to understand the family, fandom and community behind the show's hero. No Normal and Generation Why follow her first steps as a Jersey City superhero, then Destined expands her adventures. Her comics powers and origin differ from the series, and the Point One selection opens the whole anthology.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3123,6 +3675,10 @@
       "description": "Get to know Sam Wilson as Captain America and meet Red Hulk, two comics foundations for Brave New World. Hydra Ascendant and Not My Captain America explore Sam's choices, the shield's legacy and public resistance to his role. The opening Hulk collection introduces Red Hulk in a separate story, not the film's plot.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "political",
+        "thriller"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3159,6 +3715,14 @@
       "description": "Discover the Guardians' comics formation and unlikely friendships for context on the films' found family. Annihilation: Conquest and Legacy bring the modern team together, followed by Rocket's solo misadventures and a later Guardians lineup. The comics' origins and team history differ from the films.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "space-opera",
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-guardians-of-the-galaxy.md",
@@ -3196,6 +3760,9 @@
       "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-agatha-all-along.md",
@@ -3227,6 +3794,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3262,6 +3836,10 @@
       "description": "Get to know Deadpool's chaotic humor and Wolverine's troubled past before their screen team-up. Weapon X explores Logan's brutal experimentation, while Deadpool's early adventures and Dead Presidents introduce Wade's mercenary world. Gifted adds X-Men context, and Old Man Logan visits an alternate future rather than the film's Wolverine.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "comedy",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3297,6 +3875,10 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "martial-arts",
+        "coming-of-age"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3333,6 +3915,14 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "space-opera",
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "coverIssueId": 23363,
       "group": null,
@@ -3370,6 +3960,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3405,6 +4002,14 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "space-opera"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3438,6 +4043,9 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3507,6 +4115,14 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3541,6 +4157,12 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3577,6 +4199,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "magic-supernatural",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3613,6 +4242,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3648,6 +4284,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3683,6 +4326,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3712,6 +4362,9 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3779,6 +4432,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "coverIssueId": 11958,
       "group": null,
@@ -3810,6 +4470,12 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3839,6 +4505,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3872,6 +4545,10 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "coming-of-age",
+        "everyday-life"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3908,6 +4585,12 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -3946,6 +4629,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -3979,6 +4669,10 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4014,6 +4708,13 @@
       "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
       "type": "character-run",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "group": null,
@@ -4050,6 +4751,14 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "partial",
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4084,6 +4793,10 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "comedy"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4163,6 +4876,14 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "martial-arts",
+        "crime-noir"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4194,6 +4915,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction",
+        "coming-of-age"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 16600,
       "group": null,
@@ -4235,6 +4963,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4268,6 +5003,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4342,6 +5084,13 @@
       "description": "Follow Comic Book Herald's Iron Fist route from the early originals through Heroes for Hire, Immortal Iron Fist and the later selected stories.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "martial-arts",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -4379,6 +5128,12 @@
       "description": "Read Comic Book Herald's selected Peter Parker and Miles Morales stories across the original Ultimate universe, later Miles adventures and the separate new Ultimate universe.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -4416,6 +5171,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4450,6 +5212,9 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4520,7 +5285,8 @@
       "spotlightKind": "complete-guide",
       "depth": "complete",
       "storyTypes": [
-        "space-opera"
+        "space-opera",
+        "science-fiction"
       ],
       "tones": [
         "epic"
@@ -4598,6 +5364,10 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4631,6 +5401,9 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -4662,6 +5435,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4694,6 +5474,14 @@
       "description": "Follow Comic Book Herald's Age of Apocalypse reading order and separately grouped Apocalypse history, later returns and older-edition companion.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "timeline": null,
@@ -4735,6 +5523,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "group": "xmen-claremont",
       "groupName": "X-Men: Silver Age to Claremont",
@@ -4780,6 +5575,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": "xmen-claremont",
       "groupName": "X-Men: Silver Age to Claremont",
@@ -4825,6 +5627,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 12433,
       "group": null,
@@ -4864,6 +5673,10 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "selected",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
       "beginner": false,
       "coverIssueId": 12436,
       "group": null,
@@ -4895,6 +5708,13 @@
       "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
       "type": "character-run",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -4928,6 +5748,12 @@
       "description": "Follow Kamala Khan through her solo stories, Avengers and Champions teams, and later adventures in Comic Book Herald's selected reading order.",
       "type": "character-run",
       "depth": "partial",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "spotlightKind": "other",
       "beginner": false,
       "coverIssueId": 49089,
@@ -5012,6 +5838,14 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "thriller",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -5052,6 +5886,14 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
+      "storyTypes": [
+        "political",
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "sourceFile": "doctor-doom-primer.md",
       "sourcePage": "https://www.comicbookherald.com/the-best-of-doctor-doom-comics/",
@@ -5088,6 +5930,12 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": true,
       "sourceFile": "spider-man-best-of.md",
       "sourcePage": "https://www.comicbookherald.com/the-best-spider-man-peter-parker-comics-of-all-time/",
@@ -5127,6 +5975,12 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "sourceFile": "thor-best-of.md",
       "sourcePage": "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
@@ -5167,6 +6021,9 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
+      "storyTypes": [
+        "comedy"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -5203,6 +6060,9 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
       "beginner": true,
       "sourceFile": "scarlet-witch-best-of.md",
       "sourcePage": "https://www.comicbookherald.com/the-best-of-the-scarlet-witch/",
@@ -5240,6 +6100,13 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": true,
       "sourceFile": "essential-avengers.md",
       "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
@@ -5277,6 +6144,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "war",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 10441,
       "group": null,
@@ -5306,6 +6180,13 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 1534,
       "group": null,
@@ -5341,6 +6222,14 @@
       "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5372,6 +6261,13 @@
       "description": "Five supernatural chapters linking Nightstalkers, Ghost Rider, Darkhold, Morbius, and the Spirits of Vengeance.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5404,6 +6300,13 @@
       "description": "Five chapters bringing the Avengers and X-Men together during the Genosha crisis.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "war"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5436,6 +6339,9 @@
       "description": "Four chapters crossing X-Force and the New Warriors during the Upstarts confrontation.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5466,6 +6372,10 @@
       "description": "Four chapters uniting Iron Man, Spider-Man, and Juggernaut against the Exemplars.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5497,6 +6407,13 @@
       "description": "One annual issue bringing Marvel's heroes together for Reed Richards and Sue Storm's wedding.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5568,6 +6485,13 @@
       "description": "Twelve chapters across Iron Man, Captain Marvel, Marvel Feature, and Avengers tracing Thanos's first major campaign.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5600,6 +6524,13 @@
       "description": "Two landmark Amazing Spider-Man issues centered on Gwen Stacy and the Green Goblin.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5630,6 +6561,12 @@
       "description": "Eight chapters alternating between the Avengers and Defenders as both teams enter the same conflict.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5661,6 +6598,13 @@
       "description": "Thirteen chapters following Spider-Man through the original Clone Saga.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5691,6 +6635,13 @@
       "description": "Eight X-Men chapters introducing the Phoenix era.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5760,6 +6711,13 @@
       "description": "Two X-Men chapters presenting Days of Future Past.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5790,6 +6748,12 @@
       "description": "Three chapters from Marvel's first Contest of Champions.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "adventure"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5821,6 +6785,13 @@
       "description": "Twelve chapters carrying Marvel's original Secret Wars from Battleworld's opening to its conclusion.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5854,6 +6825,10 @@
       "description": "Seven essential Wraith War chapters from Hulk, Avengers, and Uncanny X-Men, selected from the full source order.",
       "type": "event",
       "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5886,6 +6861,12 @@
       "description": "Forty selected Secret Wars II chapters, omitting two nonessential tie-ins that are not discoverable through Marvel Unlimited.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5919,6 +6900,13 @@
       "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "horror",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -5952,6 +6940,13 @@
       "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6021,6 +7016,12 @@
       "description": "Eleven annual chapters carrying the Evolutionary War across Marvel heroes and teams.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6054,6 +7055,13 @@
       "description": "Thirty-nine chapters interleaving X-Men, X-Factor, New Mutants, Spider-Man, and related Inferno stories.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6086,6 +7094,12 @@
       "description": "Seventeen chapters carrying Atlantis Attacks across annuals and related Marvel stories.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6118,6 +7132,9 @@
       "description": "Four annual chapters connecting Fantastic Four, X-Factor, New Mutants, and X-Men.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6150,6 +7167,13 @@
       "description": "Nine chapters interleaving X-Men, X-Factor, and New Mutants through X-Tinction Agenda.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "war"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6181,6 +7205,13 @@
       "description": "Read the original Infinity trilogy with Comic Book Herald's issue order, selected preludes, aftermath and alternate continuations.",
       "type": "era",
       "depth": "partial",
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "timeline": null,
       "group": null,
@@ -6217,6 +7248,14 @@
       "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6249,6 +7288,13 @@
       "description": "Nine chapters connecting Daredevil, Nomad, and the Punisher through Dead Man's Hand.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6280,6 +7326,13 @@
       "description": "Six chapters assembling Ghost Rider, Morbius, and the Midnight Sons against Lilith.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6311,6 +7364,13 @@
       "description": "Thirteen chapters interleaving X-Men, X-Factor, and X-Force through X-Cutioner's Song.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6342,6 +7402,10 @@
       "description": "Four issues forming the complete Mys-Tech Wars event.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6369,6 +7433,12 @@
       "description": "Six chapters carrying Fatal Attractions across the X-Men family.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6400,6 +7470,10 @@
       "description": "Eight chapters carrying the New Warriors through a time-spanning conflict.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "coming-of-age"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6432,6 +7506,13 @@
       "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6466,6 +7547,13 @@
       "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
       "type": "event",
       "depth": "partial",
+      "storyTypes": [
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "timeline": 1996,
       "group": null,
@@ -6500,6 +7588,13 @@
       "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -6696,7 +7791,8 @@
         "marvel-knights-to-planet-x-17": {
           "storyTypes": [
             "horror",
-            "thriller"
+            "thriller",
+            "science-fiction"
           ],
           "tones": [
             "dark"
@@ -6995,7 +8091,8 @@
         "marvel-knights-to-planet-x-49": {
           "storyTypes": [
             "magic-supernatural",
-            "horror"
+            "horror",
+            "science-fiction"
           ],
           "tones": [
             "epic",
@@ -7325,6 +8422,12 @@
       "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7356,6 +8459,10 @@
       "description": "Six chapters following the X-Men through The Hunt for Xavier.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7385,6 +8492,14 @@
       "description": "Eight chapters following the X-Men through Magneto War.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "war",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7414,6 +8529,10 @@
       "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
       "type": "era",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "coming-of-age"
+      ],
       "beginner": true,
       "group": "ultimate-marvel-earth-1610",
       "groupName": "Ultimate Marvel Universe",
@@ -7450,6 +8569,13 @@
       "description": "A selected 172-issue tour through Marvel 2099, preserving the exact available chapters from the full alternate-universe source order.",
       "type": "event",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7481,6 +8607,13 @@
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7514,6 +8647,12 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7550,6 +8689,13 @@
       "description": "A complete Fantastic Four character reading order.",
       "type": "character-run",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "space-opera"
+      ],
+      "tones": [
+        "epic"
+      ],
       "spotlightKind": "complete-guide",
       "beginner": false,
       "coverIssueId": 12894,
@@ -7616,6 +8762,13 @@
       "description": "The 2004 story that pulls the Avengers apart, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It is four issues of Brian Michael Bendis at the end of the 1998 series plus the one-shot that closes it out, and it is the shortest order in this catalog on purpose. It ends the Busiek, Perez and Johns era and sets up everything the modern Avengers books do next.",
       "type": "event",
       "depth": "essential",
+      "storyTypes": [
+        "thriller",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": true,
       "sourceFile": "avengers-disassembled.md",
       "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
@@ -7648,6 +8801,12 @@
       "description": "The Avengers path through Civil War and out the other side, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It pairs the seven-issue event with the New Avengers issues that run alongside it, the Young Avengers and Runaways tie-in, and Warren Ellis and Mike Deodato's Thunderbolts, which is not an Avengers title but is what makes Dark Avengers make sense later. It then follows the split into Mighty Avengers, the Initiative, Avengers/Invaders and the Illuminati.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": "civil-war",
       "groupName": "Civil War",
@@ -7686,6 +8845,9 @@
       "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "timeline": null,
       "sourceFile": "mcu-prep-visionquest.md",
@@ -7722,6 +8884,14 @@
       "description": "Doctor Doom at his most brilliant and ruthless, building toward the moment he becomes a literal god ruling over the wreckage of a shattered multiverse. This is the deep end of Marvel cosmic stakes, with Doom finally taking center stage.",
       "type": "screen-companion",
       "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "coverIssueId": 52447,
       "group": "hickman-secret-wars",
@@ -7763,6 +8933,10 @@
       "description": "Nineteen issues following the X-Men move to San Francisco through Uncanny X-Men, Wolverine, the anthology, and Eternals.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7796,6 +8970,13 @@
       "description": "The Avengers path through Dark Reign, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. Norman Osborn runs his own Avengers, the Initiative and the real team go underground, and the Utopia crossover interrupts Dark Avengers partway through, which is why the run is read with a gap and picked up again later. It closes with Dark Reign: Young Avengers and the Children's Crusade.",
       "type": "era",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "thriller"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "sourceFile": "dark-reign-avengers.md",
       "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
@@ -7831,6 +9012,13 @@
       "description": "Thirty-two chapters interleaving the six-part Kree and Shi'ar war with Nova, Guardians of the Galaxy, Darkhawk, and Ascension.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7863,6 +9051,13 @@
       "description": "Ten chapters following Cable, Hope, and X-Force through the future-set Messiah War crossover.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "war"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7894,6 +9089,13 @@
       "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7926,6 +9128,10 @@
       "description": "Twenty chapters interleaving Uncanny X-Men, X-Men Legacy, Deadpool, Nation X, and the X-Factor one-shot.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7958,6 +9164,14 @@
       "description": "Fourteen alternating chapters from The Gathering through X-Force, New Mutants, and X-Men Legacy.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -7989,6 +9203,13 @@
       "description": "The complete six-issue conflict between Wakanda and Doctor Doom.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "war",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8020,6 +9241,14 @@
       "description": "Twenty-three chapters combining the main event with X-Force, X-Factor, New Mutants, Legacy, and Revelations.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "war",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8052,6 +9281,14 @@
       "description": "The eight-part cosmic finale from Ignition through the six-issue event and Devastation.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "horror"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8083,6 +9320,13 @@
       "description": "The Avengers titles of 2010 to 2012 read together, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. Avengers, New Avengers and Secret Avengers alternate volume by volume from the Heroic Age launch through Fear Itself and on to the edge of Avengers vs X-Men, with Avengers Prime as the prologue. Where two of the outline's volumes share an issue at the boundary, it is read once, in the earlier one.",
       "type": "era",
       "depth": "complete",
+      "storyTypes": [
+        "espionage",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "sourceFile": "heroic-age-avengers.md",
       "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
@@ -8116,6 +9360,9 @@
       "description": "The Avengers line after Secret Wars, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. Rage of Ultron opens it, then the All-New, All-Different team, Uncanny Avengers, the A.I.M. New Avengers and A-Force, through the Standoff and Civil War II eras and into Secret Empire. It also carries the smaller books of the period, Great Lakes Avengers, Occupy Avengers and U.S.Avengers, in the order the outline gives them.",
       "type": "era",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "sourceFile": "all-new-all-different-avengers.md",
       "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
@@ -8152,6 +9399,13 @@
       "description": "Jason Aaron's Avengers and the books around it, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. The Final Host assembles the team, Wakanda Forever runs across three one-shots and an annual, and the West Coast Avengers and Savage Avengers run alongside the main title through the World Tour, the War of the Vampires and No Road Home. The gaps in the main series are the outline's own.",
       "type": "era",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "sourceFile": "marvel-fresh-start-avengers.md",
       "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
@@ -8224,6 +9478,13 @@
       "description": "The twelve-part crossover alternating Friendly Neighborhood Spider-Man, Marvel Knights Spider-Man, and Amazing Spider-Man.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8254,6 +9515,12 @@
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "selected",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8286,6 +9553,12 @@
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8321,6 +9594,12 @@
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
+      "storyTypes": [
+        "everyday-life"
+      ],
+      "tones": [
+        "street-level"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8349,6 +9628,13 @@
       "description": "The six-issue conflict between the Inhumans and the United States after Son of M.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "war"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8380,6 +9666,14 @@
       "description": "Twenty-nine chapters combining the prologue, lead-in mini-series, Nova, and the six-part cosmic event.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "war"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8412,6 +9706,13 @@
       "description": "Thirteen alternating chapters following the race to find the first mutant born after M-Day.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "thriller",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8443,6 +9744,10 @@
       "description": "Twenty-six aftermath issues spanning Damage Control, Incredible Hercules, Warbound, Red Hulk, Skaar, and the next Hulk stories.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "myth-fantasy"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8474,6 +9779,13 @@
       "description": "Eighteen chapters following the vampire conflict through X-Men, Namor, Deadpool, and four one-shots.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8507,6 +9819,15 @@
       "description": "Twenty-nine issues following the core Shadowland series through Daredevil and its street-level tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "martial-arts",
+        "crime-noir",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8538,6 +9859,13 @@
       "description": "Fifteen chapters alternating Wolverine, Daken, and X-23 through the opening Goes to Hell storyline.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "horror",
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8568,6 +9896,12 @@
       "description": "Nineteen issues combining the five-part event with Hercules, Thor, Alpha Flight, X-Men, and Incredible Hulks tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8600,6 +9934,13 @@
       "description": "Fifty-five issues from the March to Axis prelude through the nine-part event and its immediate tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "science-fiction"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8633,6 +9974,13 @@
       "description": "Thirty-five issues from Edge of Spider-Verse through the main Amazing Spider-Man event and its team books.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "epic"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8664,6 +10012,9 @@
       "description": "Thirteen alternating chapters from Extraordinary X-Men, Uncanny X-Men, and All-New X-Men.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8692,6 +10043,13 @@
       "description": "Twenty-four issues combining the five-part event with Amazing Spider-Man, Silk, Prowler, and the Omega conclusion.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "horror"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -8725,6 +10083,13 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8760,6 +10125,13 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "adventure",
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8798,6 +10170,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "partial",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8872,6 +10250,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "myth-fantasy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8945,6 +10329,13 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "group": null,
       "groupName": null,
@@ -8980,6 +10371,13 @@
       "description": "Read Born Again to understand Kingpin's assault on Matt Murdock's life and the Daredevil story behind the show's title. The Man Without Fear introduces Matt's beginnings, then later runs test his exposed identity, conscience and place in Hell's Kitchen. The reading offers character background rather than a scene-by-scene guide to the series.",
       "type": "screen-companion",
       "depth": "selected",
+      "storyTypes": [
+        "crime-noir"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
@@ -9019,6 +10417,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-rising.md",
@@ -9052,6 +10456,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "partial",
+      "storyTypes": [
+        "adventure"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-action-avengers.md",
@@ -9087,6 +10497,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "coming-of-age"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-action-spider-man.md",
@@ -9118,6 +10534,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "adventure"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-action-black-panther.md",
@@ -9149,6 +10571,13 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "adventure",
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-action-captain-marvel.md",
@@ -9180,6 +10609,12 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-super-hero-adventures.md",
@@ -9214,6 +10649,14 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "space-opera",
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "marvel-universe-guardians-of-the-galaxy-infinite-comic.md",
@@ -9249,6 +10692,13 @@
       "spotlightKind": "other",
       "audience": "young-readers",
       "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "comedy"
+      ],
+      "tones": [
+        "lighthearted"
+      ],
       "beginner": true,
       "timeline": null,
       "sourceFile": "fantastic-four-and-power-pack.md",
@@ -9278,6 +10728,14 @@
       "description": "Twenty chapters alternating the seven-part event with X-Men, Inhumans, and Mercs for Money tie-ins.",
       "type": "event",
       "depth": "complete",
+      "storyTypes": [
+        "political",
+        "war",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
       "beginner": false,
       "group": null,
       "groupName": null,
