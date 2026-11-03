@@ -22656,7 +22656,7 @@ async function runLongCollectionNavigation(page, t) {
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
       ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
-      ['early-modern', 16, 'operation-zero-tolerance'],
+      ['early-modern', 17, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);
       const ids = await ageVector(key);

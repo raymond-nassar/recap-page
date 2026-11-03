@@ -191,7 +191,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   ), true);
   assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
   assert.ok(unplacedSection.stories.some(({ key }) => key === 'list:one-world-under-doom'));
-  assert.equal(olderEvents.length, 36);
+  assert.equal(olderEvents.length, 37);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),
     [

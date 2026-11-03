@@ -1,0 +1,5795 @@
+{
+  "schemaVersion": 1,
+  "id": "mc2",
+  "guideIssue": "https://github.com/raymond-nassar/recap-page/issues/1085",
+  "source": {
+    "provider": "comic-book-reading-orders",
+    "url": "https://comicbookreadingorders.com/marvel/events/mc2-reading-order/",
+    "retrievedAt": "2026-11-03",
+    "contentSha256": "c92f7bc1e04903625845c2dd75b31b9200eb1b4fa3d945d6bbb5376e8a12993f",
+    "boundary": "The active Single Issues panel, in displayed order.",
+    "originalByteCount": 161311,
+    "publishedSourceIdentitySha256": "1ce10ad53e746a26e3331d9270ddeb7818205885a4bf33ca6fe916fa51bc2a60",
+    "historicalLedger": "scripts/data/cbro-blockers/mc2.json",
+    "historicalLedgerSha256": "d263100604a750694091af2640aac013dcd7018c89639ee3395cb7b62e7cb2e2",
+    "historicalLedgerHashFormat": "JSON.stringify",
+    "permission": "Credited and linked factual orders permitted by CBRO reply dated 2026-08-20, recorded in docs/DATA_PROVENANCE.md. Rechecked 2026-11-03: this public event page is neither a Master order nor a Patreon-exclusive order. No source prose copied.",
+    "sourceReconciliation": "All published source positions and issue numbers match the preserved ledger. Current display labels omit some articles and revise punctuation; source keys and series volume labels retain identity. What If...? #105 is the preserved What If? (1989) #105, not the first volume."
+  },
+  "counts": {
+    "sourcePositions": 224,
+    "resolved": 207,
+    "gaps": 17,
+    "repeats": 0
+  },
+  "sourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceKey": "what-if-v2-105",
+      "sourceTitle": "What If...? #105",
+      "sourceIssueReference": "What If? Vol. 2 #105",
+      "sourceSeriesTitle": "What If? Vol. 2",
+      "seriesYear": 1989,
+      "issueNumber": "105",
+      "seriesId": 3648,
+      "selectedIssueId": 18301,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "What If? (1989) #105",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18301/what_if_1989_105",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/18301"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceKey": "spider-girl-1",
+      "sourceTitle": "Spider-Girl #1",
+      "sourceIssueReference": "Spider-Girl #1 (1998)",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "1",
+      "seriesId": 417,
+      "selectedIssueId": 13326,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13326/spider-girl_1998_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13326"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceKey": "j2-1",
+      "sourceTitle": "J2 #1",
+      "sourceIssueReference": "J2 #1 (1998)",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": 1998,
+      "issueNumber": "1",
+      "seriesId": 2031,
+      "selectedIssueId": 9660,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "J2 (1998) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9660/j2_1998_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/9660"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceKey": "a-next-1",
+      "sourceTitle": "A-Next #1",
+      "sourceIssueReference": "A-Next #1 (1998)",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "1",
+      "seriesId": 3620,
+      "selectedIssueId": 17739,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17739/a-next_1998_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17739"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceKey": "j2-2",
+      "sourceTitle": "J2 #2",
+      "sourceIssueReference": "J2 #2",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": 1998,
+      "issueNumber": "2",
+      "seriesId": 2031,
+      "selectedIssueId": 9664,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "J2 (1998) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9664/j2_1998_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/9664"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceKey": "a-next-2",
+      "sourceTitle": "A-Next #2",
+      "sourceIssueReference": "A-Next #2",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "2",
+      "seriesId": 3620,
+      "selectedIssueId": 17743,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17743/a-next_1998_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17743"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceKey": "spider-girl-2",
+      "sourceTitle": "Spider-Girl #2",
+      "sourceIssueReference": "Spider-Girl #2",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "2",
+      "seriesId": 417,
+      "selectedIssueId": 13337,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13337/spider-girl_1998_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13337"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceKey": "spider-girl-3",
+      "sourceTitle": "Spider-Girl #3",
+      "sourceIssueReference": "Spider-Girl #3",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "3",
+      "seriesId": 417,
+      "selectedIssueId": 13348,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13348/spider-girl_1998_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13348"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceKey": "spider-girl-4",
+      "sourceTitle": "Spider-Girl #4",
+      "sourceIssueReference": "Spider-Girl #4",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "4",
+      "seriesId": 417,
+      "selectedIssueId": 13359,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13359/spider-girl_1998_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13359"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceKey": "a-next-3",
+      "sourceTitle": "A-Next #3",
+      "sourceIssueReference": "A-Next #3",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "3",
+      "seriesId": 3620,
+      "selectedIssueId": 17744,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17744/a-next_1998_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17744"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceKey": "j2-3",
+      "sourceTitle": "J2 #3",
+      "sourceIssueReference": "J2 #3",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": 1998,
+      "issueNumber": "3",
+      "seriesId": 2031,
+      "selectedIssueId": 9665,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "J2 (1998) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9665/j2_1998_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/9665"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceKey": "a-next-4",
+      "sourceTitle": "A-Next #4",
+      "sourceIssueReference": "A-Next #4",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "4",
+      "seriesId": 3620,
+      "selectedIssueId": 17745,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17745/a-next_1998_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17745"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceKey": "j2-4",
+      "sourceTitle": "J2 #4",
+      "sourceIssueReference": "J2 #4",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": 1998,
+      "issueNumber": "4",
+      "seriesId": 2031,
+      "selectedIssueId": 9666,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "J2 (1998) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9666/j2_1998_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/9666"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceKey": "spider-girl-5",
+      "sourceTitle": "Spider-Girl #5",
+      "sourceIssueReference": "Spider-Girl #5",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "5",
+      "seriesId": 417,
+      "selectedIssueId": 13370,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13370/spider-girl_1998_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13370"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceKey": "a-next-5",
+      "sourceTitle": "A-Next #5",
+      "sourceIssueReference": "A-Next #5",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "5",
+      "seriesId": 3620,
+      "selectedIssueId": 17746,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17746/a-next_1998_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17746"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceKey": "spider-girl-6",
+      "sourceTitle": "Spider-Girl #6",
+      "sourceIssueReference": "Spider-Girl #6",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "6",
+      "seriesId": 417,
+      "selectedIssueId": 13381,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13381/spider-girl_1998_6",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13381"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceKey": "j2-5",
+      "sourceTitle": "J2 #5",
+      "sourceIssueReference": "J2 #5",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": 1998,
+      "issueNumber": "5",
+      "seriesId": 2031,
+      "selectedIssueId": 9667,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "J2 (1998) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9667/j2_1998_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/9667"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceKey": "a-next-6",
+      "sourceTitle": "A-Next #6",
+      "sourceIssueReference": "A-Next #6",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "6",
+      "seriesId": 3620,
+      "selectedIssueId": 17747,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17747/a-next_1998_6",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17747"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceKey": "j2-6",
+      "sourceTitle": "J2 #6",
+      "sourceIssueReference": "J2 #6",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": 1998,
+      "issueNumber": "6",
+      "seriesId": 2031,
+      "selectedIssueId": 9668,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "J2 (1998) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9668/j2_1998_6",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/9668"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceKey": "spider-girl-7",
+      "sourceTitle": "Spider-Girl #7",
+      "sourceIssueReference": "Spider-Girl #7",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "7",
+      "seriesId": 417,
+      "selectedIssueId": 13387,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13387/spider-girl_1998_7",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13387"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceKey": "j2-7",
+      "sourceTitle": "J2 #7",
+      "sourceIssueReference": "J2 #7",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": null,
+      "issueNumber": "7",
+      "seriesId": 2031,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2031/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:53:10.401Z",
+          "responseSha256": "795f048a8875139519c6bc7eb6eca29b49c5b4acbcebd0640a4edb7975e75117",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceKey": "a-next-7",
+      "sourceTitle": "A-Next #7",
+      "sourceIssueReference": "A-Next #7",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "7",
+      "seriesId": 3620,
+      "selectedIssueId": 17748,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17748/a-next_1998_7",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17748"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceKey": "a-next-8",
+      "sourceTitle": "A-Next #8",
+      "sourceIssueReference": "A-Next #8",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "8",
+      "seriesId": 3620,
+      "selectedIssueId": 17749,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17749/a-next_1998_8",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17749"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceKey": "spider-girl-8",
+      "sourceTitle": "Spider-Girl #8",
+      "sourceIssueReference": "Spider-Girl #8",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "8",
+      "seriesId": 417,
+      "selectedIssueId": 13388,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13388/spider-girl_1998_8",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13388"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceKey": "j2-8",
+      "sourceTitle": "J2 #8",
+      "sourceIssueReference": "J2 #8",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": null,
+      "issueNumber": "8",
+      "seriesId": 2031,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2031/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:53:10.401Z",
+          "responseSha256": "795f048a8875139519c6bc7eb6eca29b49c5b4acbcebd0640a4edb7975e75117",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceKey": "spider-girl-9",
+      "sourceTitle": "Spider-Girl #9",
+      "sourceIssueReference": "Spider-Girl #9",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "9",
+      "seriesId": 417,
+      "selectedIssueId": 13389,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13389/spider-girl_1998_9",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13389"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceKey": "j2-9",
+      "sourceTitle": "J2 #9",
+      "sourceIssueReference": "J2 #9",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": null,
+      "issueNumber": "9",
+      "seriesId": 2031,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2031/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:53:10.401Z",
+          "responseSha256": "795f048a8875139519c6bc7eb6eca29b49c5b4acbcebd0640a4edb7975e75117",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceKey": "spider-girl-10",
+      "sourceTitle": "Spider-Girl #10",
+      "sourceIssueReference": "Spider-Girl #10",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "10",
+      "seriesId": 417,
+      "selectedIssueId": 13327,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13327/spider-girl_1998_10",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13327"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceKey": "spider-girl-11",
+      "sourceTitle": "Spider-Girl #11",
+      "sourceIssueReference": "Spider-Girl #11",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "11",
+      "seriesId": 417,
+      "selectedIssueId": 13328,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13328/spider-girl_1998_11",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13328"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceKey": "j2-10",
+      "sourceTitle": "J2 #10",
+      "sourceIssueReference": "J2 #10",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": null,
+      "issueNumber": "10",
+      "seriesId": 2031,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2031/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:53:10.401Z",
+          "responseSha256": "795f048a8875139519c6bc7eb6eca29b49c5b4acbcebd0640a4edb7975e75117",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceKey": "j2-11",
+      "sourceTitle": "J2 #11",
+      "sourceIssueReference": "J2 #11",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": null,
+      "issueNumber": "11",
+      "seriesId": 2031,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2031/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:53:10.401Z",
+          "responseSha256": "795f048a8875139519c6bc7eb6eca29b49c5b4acbcebd0640a4edb7975e75117",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceKey": "a-next-9",
+      "sourceTitle": "A-Next #9",
+      "sourceIssueReference": "A-Next #9",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "9",
+      "seriesId": 3620,
+      "selectedIssueId": 17750,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17750/a-next_1998_9",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17750"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceKey": "a-next-10",
+      "sourceTitle": "A-Next #10",
+      "sourceIssueReference": "A-Next #10",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "10",
+      "seriesId": 3620,
+      "selectedIssueId": 17740,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17740/a-next_1998_10",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17740"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceKey": "a-next-11",
+      "sourceTitle": "A-Next #11",
+      "sourceIssueReference": "A-Next #11",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "11",
+      "seriesId": 3620,
+      "selectedIssueId": 17741,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17741/a-next_1998_11",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17741"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceKey": "a-next-12",
+      "sourceTitle": "A-Next #12",
+      "sourceIssueReference": "A-Next #12",
+      "sourceSeriesTitle": "A-Next",
+      "seriesYear": 1998,
+      "issueNumber": "12",
+      "seriesId": 3620,
+      "selectedIssueId": 17742,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "A-Next (1998) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17742/a-next_1998_12",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17742"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceKey": "spider-girl-12",
+      "sourceTitle": "Spider-Girl #12",
+      "sourceIssueReference": "Spider-Girl #12",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "12",
+      "seriesId": 417,
+      "selectedIssueId": 13329,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13329/spider-girl_1998_12",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13329"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceKey": "j2-12",
+      "sourceTitle": "J2 #12",
+      "sourceIssueReference": "J2 #12",
+      "sourceSeriesTitle": "J2",
+      "seriesYear": null,
+      "issueNumber": "12",
+      "seriesId": 2031,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2031/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:53:10.401Z",
+          "responseSha256": "795f048a8875139519c6bc7eb6eca29b49c5b4acbcebd0640a4edb7975e75117",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceKey": "spider-girl-annual-1",
+      "sourceTitle": "Spider-Girl Annual #1",
+      "sourceIssueReference": "Spider-Girl Annual #1 (1999)",
+      "sourceSeriesTitle": "Spider-Girl Annual",
+      "seriesYear": 1999,
+      "issueNumber": "1",
+      "seriesId": 3689,
+      "selectedIssueId": 18831,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "SPIDER-GIRL ANNUAL 1 (1999) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18831/spider-girl_annual_1_1999_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/18831"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceKey": "spider-girl-13",
+      "sourceTitle": "Spider-Girl #13",
+      "sourceIssueReference": "Spider-Girl #13",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "13",
+      "seriesId": 417,
+      "selectedIssueId": 13330,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13330/spider-girl_1998_13",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13330"
+    },
+    {
+      "sourcePosition": 40,
+      "sourceKey": "wild-thing-0",
+      "sourceTitle": "Wild Thing #0",
+      "sourceIssueReference": "Wild Thing #0 (1999)",
+      "sourceSeriesTitle": "Wild Thing",
+      "seriesYear": 1999,
+      "issueNumber": "0",
+      "seriesId": 3901,
+      "selectedIssueId": 20814,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Wild Thing (1999)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20814/wild_thing_1999",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20814"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceKey": "fantastic-five-1",
+      "sourceTitle": "Fantastic Five #1",
+      "sourceIssueReference": "Fantastic Five # 1 (1999)",
+      "sourceSeriesTitle": "Fantastic Five",
+      "seriesYear": 1999,
+      "issueNumber": "1",
+      "seriesId": 2119,
+      "selectedIssueId": 12849,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (1999) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12849/fantastic_five_1999_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12849"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceKey": "wild-thing-1",
+      "sourceTitle": "Wild Thing #1",
+      "sourceIssueReference": "Wild Thing #1",
+      "sourceSeriesTitle": "Wild Thing",
+      "seriesYear": 1999,
+      "issueNumber": "1",
+      "seriesId": 3901,
+      "selectedIssueId": 20768,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Wild Thing (1999) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20768/wild_thing_1999_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20768"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceKey": "spider-girl-14",
+      "sourceTitle": "Spider-Girl #14",
+      "sourceIssueReference": "Spider-Girl #14",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "14",
+      "seriesId": 417,
+      "selectedIssueId": 13331,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #14",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13331/spider-girl_1998_14",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13331"
+    },
+    {
+      "sourcePosition": 44,
+      "sourceKey": "spider-girl-15",
+      "sourceTitle": "Spider-Girl #15",
+      "sourceIssueReference": "Spider-Girl #15",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "15",
+      "seriesId": 417,
+      "selectedIssueId": 13332,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #15",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13332/spider-girl_1998_15",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13332"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceKey": "wild-thing-2",
+      "sourceTitle": "Wild Thing #2",
+      "sourceIssueReference": "Wild Thing #2",
+      "sourceSeriesTitle": "Wild Thing",
+      "seriesYear": 1999,
+      "issueNumber": "2",
+      "seriesId": 3901,
+      "selectedIssueId": 20769,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Wild Thing (1999) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20769/wild_thing_1999_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20769"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceKey": "fantastic-five-2",
+      "sourceTitle": "Fantastic Five #2",
+      "sourceIssueReference": "Fantastic Five #2",
+      "sourceSeriesTitle": "Fantastic Five",
+      "seriesYear": 1999,
+      "issueNumber": "2",
+      "seriesId": 2119,
+      "selectedIssueId": 12850,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (1999) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12850/fantastic_five_1999_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12850"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceKey": "spider-girl-16",
+      "sourceTitle": "Spider-Girl #16",
+      "sourceIssueReference": "Spider-Girl #16",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "16",
+      "seriesId": 417,
+      "selectedIssueId": 13333,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #16",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13333/spider-girl_1998_16",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13333"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceKey": "wild-thing-3",
+      "sourceTitle": "Wild Thing #3",
+      "sourceIssueReference": "Wild Thing #3",
+      "sourceSeriesTitle": "Wild Thing",
+      "seriesYear": 1999,
+      "issueNumber": "3",
+      "seriesId": 3901,
+      "selectedIssueId": 20770,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Wild Thing (1999) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20770/wild_thing_1999_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20770"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceKey": "fantastic-five-3",
+      "sourceTitle": "Fantastic Five #3",
+      "sourceIssueReference": "Fantastic Five #3",
+      "sourceSeriesTitle": "Fantastic Five",
+      "seriesYear": 1999,
+      "issueNumber": "3",
+      "seriesId": 2119,
+      "selectedIssueId": 12851,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (1999) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12851/fantastic_five_1999_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12851"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceKey": "fantastic-five-4",
+      "sourceTitle": "Fantastic Five #4",
+      "sourceIssueReference": "Fantastic Five #4",
+      "sourceSeriesTitle": "Fantastic Five",
+      "seriesYear": 1999,
+      "issueNumber": "4",
+      "seriesId": 2119,
+      "selectedIssueId": 12852,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (1999) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12852/fantastic_five_1999_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12852"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceKey": "wild-thing-4",
+      "sourceTitle": "Wild Thing #4",
+      "sourceIssueReference": "Wild Thing #4",
+      "sourceSeriesTitle": "Wild Thing",
+      "seriesYear": 1999,
+      "issueNumber": "4",
+      "seriesId": 3901,
+      "selectedIssueId": 20771,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Wild Thing (1999) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20771/wild_thing_1999_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20771"
+    },
+    {
+      "sourcePosition": 52,
+      "sourceKey": "spider-girl-17",
+      "sourceTitle": "Spider-Girl #17",
+      "sourceIssueReference": "Spider-Girl #17",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "17",
+      "seriesId": 417,
+      "selectedIssueId": 13334,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #17",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13334/spider-girl_1998_17",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13334"
+    },
+    {
+      "sourcePosition": 53,
+      "sourceKey": "fantastic-five-5",
+      "sourceTitle": "Fantastic Five #5",
+      "sourceIssueReference": "Fantastic Five #5",
+      "sourceSeriesTitle": "Fantastic Five",
+      "seriesYear": 1999,
+      "issueNumber": "5",
+      "seriesId": 2119,
+      "selectedIssueId": 12853,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (1999) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12853/fantastic_five_1999_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12853"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceKey": "wild-thing-5",
+      "sourceTitle": "Wild Thing #5",
+      "sourceIssueReference": "Wild Thing #5",
+      "sourceSeriesTitle": "Wild Thing",
+      "seriesYear": 1999,
+      "issueNumber": "5",
+      "seriesId": 3901,
+      "selectedIssueId": 20772,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Wild Thing (1999) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20772/wild_thing_1999_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20772"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceKey": "the-buzz-1",
+      "sourceTitle": "The Buzz #1",
+      "sourceIssueReference": "The Buzz #1 (2000)",
+      "sourceSeriesTitle": "The Buzz",
+      "seriesYear": 2000,
+      "issueNumber": "1",
+      "seriesId": 3673,
+      "selectedIssueId": 18776,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl Presents: The Buzz (2000) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18776/spider-girl_presents_the_buzz_2000_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/18776"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceKey": "spider-girl-18",
+      "sourceTitle": "Spider-Girl #18",
+      "sourceIssueReference": "Spider-Girl #18",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "18",
+      "seriesId": 417,
+      "selectedIssueId": 13335,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #18",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13335/spider-girl_1998_18",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13335"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceKey": "spider-girl-19",
+      "sourceTitle": "Spider-Girl #19",
+      "sourceIssueReference": "Spider-Girl #19",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "19",
+      "seriesId": 417,
+      "selectedIssueId": 13336,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #19",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13336/spider-girl_1998_19",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13336"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceKey": "spider-girl-20",
+      "sourceTitle": "Spider-Girl #20",
+      "sourceIssueReference": "Spider-Girl #20",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "20",
+      "seriesId": 417,
+      "selectedIssueId": 13338,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #20",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13338/spider-girl_1998_20",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13338"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceKey": "spider-girl-21",
+      "sourceTitle": "Spider-Girl #21",
+      "sourceIssueReference": "Spider-Girl #21",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "21",
+      "seriesId": 417,
+      "selectedIssueId": 13339,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #21",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13339/spider-girl_1998_21",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13339"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceKey": "spider-girl-22",
+      "sourceTitle": "Spider-Girl #22",
+      "sourceIssueReference": "Spider-Girl #22",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "22",
+      "seriesId": 417,
+      "selectedIssueId": 13340,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #22",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13340/spider-girl_1998_22",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13340"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceKey": "the-buzz-2",
+      "sourceTitle": "The Buzz #2",
+      "sourceIssueReference": "The Buzz #2",
+      "sourceSeriesTitle": "The Buzz",
+      "seriesYear": 2000,
+      "issueNumber": "2",
+      "seriesId": 3673,
+      "selectedIssueId": 18777,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl Presents: The Buzz (2000) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18777/spider-girl_presents_the_buzz_2000_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/18777"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceKey": "the-buzz-3",
+      "sourceTitle": "The Buzz #3",
+      "sourceIssueReference": "The Buzz #3",
+      "sourceSeriesTitle": "The Buzz",
+      "seriesYear": 2000,
+      "issueNumber": "3",
+      "seriesId": 3673,
+      "selectedIssueId": 18778,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl Presents: The Buzz (2000) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18778/spider-girl_presents_the_buzz_2000_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/18778"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceKey": "spider-girl-23",
+      "sourceTitle": "Spider-Girl #23",
+      "sourceIssueReference": "Spider-Girl #23",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "23",
+      "seriesId": 417,
+      "selectedIssueId": 13341,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #23",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13341/spider-girl_1998_23",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13341"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceKey": "spider-girl-24",
+      "sourceTitle": "Spider-Girl #24",
+      "sourceIssueReference": "Spider-Girl #24",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "24",
+      "seriesId": 417,
+      "selectedIssueId": 13342,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #24",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13342/spider-girl_1998_24",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13342"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceKey": "spider-girl-25",
+      "sourceTitle": "Spider-Girl #25",
+      "sourceIssueReference": "Spider-Girl #25",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "25",
+      "seriesId": 417,
+      "selectedIssueId": 13343,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #25",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13343/spider-girl_1998_25",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13343"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceKey": "spider-girl-26",
+      "sourceTitle": "Spider-Girl #26",
+      "sourceIssueReference": "Spider-Girl #26",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "26",
+      "seriesId": 417,
+      "selectedIssueId": 13344,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #26",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13344/spider-girl_1998_26",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13344"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceKey": "spider-girl-27",
+      "sourceTitle": "Spider-Girl #27",
+      "sourceIssueReference": "Spider-Girl #27",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "27",
+      "seriesId": 417,
+      "selectedIssueId": 13345,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #27",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13345/spider-girl_1998_27",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13345"
+    },
+    {
+      "sourcePosition": 68,
+      "sourceKey": "darkdevil-1",
+      "sourceTitle": "Darkdevil #1",
+      "sourceIssueReference": "DarkDevil #1 (2000)",
+      "sourceSeriesTitle": "DarkDevil",
+      "seriesYear": 2000,
+      "issueNumber": "1",
+      "seriesId": 3746,
+      "selectedIssueId": 20460,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Darkdevil (2000) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20460/darkdevil_2000_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20460"
+    },
+    {
+      "sourcePosition": 69,
+      "sourceKey": "darkdevil-2",
+      "sourceTitle": "Darkdevil #2",
+      "sourceIssueReference": "DarkDevil #2",
+      "sourceSeriesTitle": "DarkDevil",
+      "seriesYear": 2000,
+      "issueNumber": "2",
+      "seriesId": 3746,
+      "selectedIssueId": 20461,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Darkdevil (2000) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20461/darkdevil_2000_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20461"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceKey": "darkdevil-3",
+      "sourceTitle": "Darkdevil #3",
+      "sourceIssueReference": "DarkDevil #3",
+      "sourceSeriesTitle": "DarkDevil",
+      "seriesYear": 2000,
+      "issueNumber": "3",
+      "seriesId": 3746,
+      "selectedIssueId": 20462,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Darkdevil (2000) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20462/darkdevil_2000_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20462"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceKey": "spider-girl-28",
+      "sourceTitle": "Spider-Girl #28",
+      "sourceIssueReference": "Spider-Girl #28",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "28",
+      "seriesId": 417,
+      "selectedIssueId": 13346,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #28",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13346/spider-girl_1998_28",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13346"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceKey": "spider-girl-29",
+      "sourceTitle": "Spider-Girl #29",
+      "sourceIssueReference": "Spider-Girl #29",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "29",
+      "seriesId": 417,
+      "selectedIssueId": 13347,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #29",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13347/spider-girl_1998_29",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13347"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceKey": "spider-girl-30",
+      "sourceTitle": "Spider-Girl #30",
+      "sourceIssueReference": "Spider-Girl #30",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "30",
+      "seriesId": 417,
+      "selectedIssueId": 13349,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #30",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13349/spider-girl_1998_30",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13349"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceKey": "spider-girl-31",
+      "sourceTitle": "Spider-Girl #31",
+      "sourceIssueReference": "Spider-Girl #31",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "31",
+      "seriesId": 417,
+      "selectedIssueId": 13350,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #31",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13350/spider-girl_1998_31",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13350"
+    },
+    {
+      "sourcePosition": 75,
+      "sourceKey": "spider-girl-32",
+      "sourceTitle": "Spider-Girl #32",
+      "sourceIssueReference": "Spider-Girl #32",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "32",
+      "seriesId": 417,
+      "selectedIssueId": 13351,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #32",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13351/spider-girl_1998_32",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13351"
+    },
+    {
+      "sourcePosition": 76,
+      "sourceKey": "spider-girl-33",
+      "sourceTitle": "Spider-Girl #33",
+      "sourceIssueReference": "Spider-Girl #33",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "33",
+      "seriesId": 417,
+      "selectedIssueId": 13352,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #33",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13352/spider-girl_1998_33",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13352"
+    },
+    {
+      "sourcePosition": 77,
+      "sourceKey": "spider-girl-34",
+      "sourceTitle": "Spider-Girl #34",
+      "sourceIssueReference": "Spider-Girl #34",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "34",
+      "seriesId": 417,
+      "selectedIssueId": 13353,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #34",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13353/spider-girl_1998_34",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13353"
+    },
+    {
+      "sourcePosition": 78,
+      "sourceKey": "spider-girl-35",
+      "sourceTitle": "Spider-Girl #35",
+      "sourceIssueReference": "Spider-Girl #35",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "35",
+      "seriesId": 417,
+      "selectedIssueId": 13354,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #35",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13354/spider-girl_1998_35",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13354"
+    },
+    {
+      "sourcePosition": 79,
+      "sourceKey": "spider-girl-36",
+      "sourceTitle": "Spider-Girl #36",
+      "sourceIssueReference": "Spider-Girl #36",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "36",
+      "seriesId": 417,
+      "selectedIssueId": 13355,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #36",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13355/spider-girl_1998_36",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13355"
+    },
+    {
+      "sourcePosition": 80,
+      "sourceKey": "spider-girl-37",
+      "sourceTitle": "Spider-Girl #37",
+      "sourceIssueReference": "Spider-Girl #37",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "37",
+      "seriesId": 417,
+      "selectedIssueId": 13356,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #37",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13356/spider-girl_1998_37",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13356"
+    },
+    {
+      "sourcePosition": 81,
+      "sourceKey": "spider-girl-38",
+      "sourceTitle": "Spider-Girl #38",
+      "sourceIssueReference": "Spider-Girl #38",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "38",
+      "seriesId": 417,
+      "selectedIssueId": 13357,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #38",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13357/spider-girl_1998_38",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13357"
+    },
+    {
+      "sourcePosition": 82,
+      "sourceKey": "spider-girl-39",
+      "sourceTitle": "Spider-Girl #39",
+      "sourceIssueReference": "Spider-Girl #39",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "39",
+      "seriesId": 417,
+      "selectedIssueId": 13358,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #39",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13358/spider-girl_1998_39",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13358"
+    },
+    {
+      "sourcePosition": 83,
+      "sourceKey": "spider-girl-40",
+      "sourceTitle": "Spider-Girl #40",
+      "sourceIssueReference": "Spider-Girl #40",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "40",
+      "seriesId": 417,
+      "selectedIssueId": 13360,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #40",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13360/spider-girl_1998_40",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13360"
+    },
+    {
+      "sourcePosition": 84,
+      "sourceKey": "spider-girl-41",
+      "sourceTitle": "Spider-Girl #41",
+      "sourceIssueReference": "Spider-Girl #41",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "41",
+      "seriesId": 417,
+      "selectedIssueId": 13361,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #41",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13361/spider-girl_1998_41",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13361"
+    },
+    {
+      "sourcePosition": 85,
+      "sourceKey": "spider-girl-42",
+      "sourceTitle": "Spider-Girl #42",
+      "sourceIssueReference": "Spider-Girl #42",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "42",
+      "seriesId": 417,
+      "selectedIssueId": 13362,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #42",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13362/spider-girl_1998_42",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13362"
+    },
+    {
+      "sourcePosition": 86,
+      "sourceKey": "spider-girl-43",
+      "sourceTitle": "Spider-Girl #43",
+      "sourceIssueReference": "Spider-Girl #43",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "43",
+      "seriesId": 417,
+      "selectedIssueId": 13363,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #43",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13363/spider-girl_1998_43",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13363"
+    },
+    {
+      "sourcePosition": 87,
+      "sourceKey": "spider-girl-44",
+      "sourceTitle": "Spider-Girl #44",
+      "sourceIssueReference": "Spider-Girl #44",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "44",
+      "seriesId": 417,
+      "selectedIssueId": 13364,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #44",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13364/spider-girl_1998_44",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13364"
+    },
+    {
+      "sourcePosition": 88,
+      "sourceKey": "spider-girl-45",
+      "sourceTitle": "Spider-Girl #45",
+      "sourceIssueReference": "Spider-Girl #45",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "45",
+      "seriesId": 417,
+      "selectedIssueId": 13365,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #45",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13365/spider-girl_1998_45",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13365"
+    },
+    {
+      "sourcePosition": 89,
+      "sourceKey": "spider-girl-46",
+      "sourceTitle": "Spider-Girl #46",
+      "sourceIssueReference": "Spider-Girl #46",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "46",
+      "seriesId": 417,
+      "selectedIssueId": 13366,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #46",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13366/spider-girl_1998_46",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13366"
+    },
+    {
+      "sourcePosition": 90,
+      "sourceKey": "spider-girl-47",
+      "sourceTitle": "Spider-Girl #47",
+      "sourceIssueReference": "Spider-Girl #47",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "47",
+      "seriesId": 417,
+      "selectedIssueId": 13367,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #47",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13367/spider-girl_1998_47",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13367"
+    },
+    {
+      "sourcePosition": 91,
+      "sourceKey": "spider-girl-48",
+      "sourceTitle": "Spider-Girl #48",
+      "sourceIssueReference": "Spider-Girl #48",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "48",
+      "seriesId": 417,
+      "selectedIssueId": 13368,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #48",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13368/spider-girl_1998_48",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13368"
+    },
+    {
+      "sourcePosition": 92,
+      "sourceKey": "spider-girl-49",
+      "sourceTitle": "Spider-Girl #49",
+      "sourceIssueReference": "Spider-Girl #49",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "49",
+      "seriesId": 417,
+      "selectedIssueId": 13369,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #49",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13369/spider-girl_1998_49",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13369"
+    },
+    {
+      "sourcePosition": 93,
+      "sourceKey": "spider-girl-50",
+      "sourceTitle": "Spider-Girl #50",
+      "sourceIssueReference": "Spider-Girl #50",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "50",
+      "seriesId": 417,
+      "selectedIssueId": 13371,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #50",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13371/spider-girl_1998_50",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13371"
+    },
+    {
+      "sourcePosition": 94,
+      "sourceKey": "spider-girl-51",
+      "sourceTitle": "Spider-Girl #51",
+      "sourceIssueReference": "Spider-Girl #51",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "51",
+      "seriesId": 417,
+      "selectedIssueId": 13372,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #51",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13372/spider-girl_1998_51",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13372"
+    },
+    {
+      "sourcePosition": 95,
+      "sourceKey": "spider-girl-52",
+      "sourceTitle": "Spider-Girl #52",
+      "sourceIssueReference": "Spider-Girl #52",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "52",
+      "seriesId": 417,
+      "selectedIssueId": 13373,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #52",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13373/spider-girl_1998_52",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13373"
+    },
+    {
+      "sourcePosition": 96,
+      "sourceKey": "spider-girl-53",
+      "sourceTitle": "Spider-Girl #53",
+      "sourceIssueReference": "Spider-Girl #53",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "53",
+      "seriesId": 417,
+      "selectedIssueId": 13374,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #53",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13374/spider-girl_1998_53",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13374"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceKey": "spider-girl-54",
+      "sourceTitle": "Spider-Girl #54",
+      "sourceIssueReference": "Spider-Girl #54",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "54",
+      "seriesId": 417,
+      "selectedIssueId": 13375,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #54",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13375/spider-girl_1998_54",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13375"
+    },
+    {
+      "sourcePosition": 98,
+      "sourceKey": "spider-girl-55",
+      "sourceTitle": "Spider-Girl #55",
+      "sourceIssueReference": "Spider-Girl #55",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "55",
+      "seriesId": 417,
+      "selectedIssueId": 13376,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #55",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13376/spider-girl_1998_55",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13376"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceKey": "spider-girl-56",
+      "sourceTitle": "Spider-Girl #56",
+      "sourceIssueReference": "Spider-Girl #56",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "56",
+      "seriesId": 417,
+      "selectedIssueId": 13377,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #56",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13377/spider-girl_1998_56",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13377"
+    },
+    {
+      "sourcePosition": 100,
+      "sourceKey": "spider-girl-57",
+      "sourceTitle": "Spider-Girl #57",
+      "sourceIssueReference": "Spider-Girl #57",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "57",
+      "seriesId": 417,
+      "selectedIssueId": 13378,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #57",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13378/spider-girl_1998_57",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13378"
+    },
+    {
+      "sourcePosition": 101,
+      "sourceKey": "spider-girl-58",
+      "sourceTitle": "Spider-Girl #58",
+      "sourceIssueReference": "Spider-Girl #58",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "58",
+      "seriesId": 417,
+      "selectedIssueId": 13379,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #58",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13379/spider-girl_1998_58",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13379"
+    },
+    {
+      "sourcePosition": 102,
+      "sourceKey": "spider-girl-59",
+      "sourceTitle": "Spider-Girl #59",
+      "sourceIssueReference": "Spider-Girl #59",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "59",
+      "seriesId": 417,
+      "selectedIssueId": 13380,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #59",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13380/spider-girl_1998_59",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13380"
+    },
+    {
+      "sourcePosition": 103,
+      "sourceKey": "spider-girl-60",
+      "sourceTitle": "Spider-Girl #60",
+      "sourceIssueReference": "Spider-Girl #60",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "60",
+      "seriesId": 417,
+      "selectedIssueId": 13382,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #60",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13382/spider-girl_1998_60",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13382"
+    },
+    {
+      "sourcePosition": 104,
+      "sourceKey": "spider-girl-61",
+      "sourceTitle": "Spider-Girl #61",
+      "sourceIssueReference": "Spider-Girl #61",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "61",
+      "seriesId": 417,
+      "selectedIssueId": 13383,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #61",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13383/spider-girl_1998_61",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13383"
+    },
+    {
+      "sourcePosition": 105,
+      "sourceKey": "spider-girl-62",
+      "sourceTitle": "Spider-Girl #62",
+      "sourceIssueReference": "Spider-Girl #62",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "62",
+      "seriesId": 417,
+      "selectedIssueId": 13384,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #62",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13384/spider-girl_1998_62",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13384"
+    },
+    {
+      "sourcePosition": 106,
+      "sourceKey": "spider-girl-63",
+      "sourceTitle": "Spider-Girl #63",
+      "sourceIssueReference": "Spider-Girl #63",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "63",
+      "seriesId": 417,
+      "selectedIssueId": 13385,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #63",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13385/spider-girl_1998_63",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13385"
+    },
+    {
+      "sourcePosition": 107,
+      "sourceKey": "spider-girl-64",
+      "sourceTitle": "Spider-Girl #64",
+      "sourceIssueReference": "Spider-Girl #64",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "64",
+      "seriesId": 417,
+      "selectedIssueId": 13386,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #64",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13386/spider-girl_1998_64",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13386"
+    },
+    {
+      "sourcePosition": 108,
+      "sourceKey": "spider-girl-65",
+      "sourceTitle": "Spider-Girl #65",
+      "sourceIssueReference": "Spider-Girl #65",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "65",
+      "seriesId": 417,
+      "selectedIssueId": 193,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #65",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/193/spider-girl_1998_65",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/193"
+    },
+    {
+      "sourcePosition": 109,
+      "sourceKey": "spider-girl-66",
+      "sourceTitle": "Spider-Girl #66",
+      "sourceIssueReference": "Spider-Girl #66",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "66",
+      "seriesId": 417,
+      "selectedIssueId": 192,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #66",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/192/spider-girl_1998_66",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/192"
+    },
+    {
+      "sourcePosition": 110,
+      "sourceKey": "spider-girl-67",
+      "sourceTitle": "Spider-Girl #67",
+      "sourceIssueReference": "Spider-Girl #67",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "67",
+      "seriesId": 417,
+      "selectedIssueId": 191,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #67",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/191/spider-girl_1998_67",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/191"
+    },
+    {
+      "sourcePosition": 111,
+      "sourceKey": "spider-girl-68",
+      "sourceTitle": "Spider-Girl #68",
+      "sourceIssueReference": "Spider-Girl #68",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "68",
+      "seriesId": 417,
+      "selectedIssueId": 189,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #68",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/189/spider-girl_1998_68",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/189"
+    },
+    {
+      "sourcePosition": 112,
+      "sourceKey": "spider-girl-69",
+      "sourceTitle": "Spider-Girl #69",
+      "sourceIssueReference": "Spider-Girl #69",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "69",
+      "seriesId": 417,
+      "selectedIssueId": 247,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #69",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/247/spider-girl_1998_69",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/247"
+    },
+    {
+      "sourcePosition": 113,
+      "sourceKey": "spider-girl-70",
+      "sourceTitle": "Spider-Girl #70",
+      "sourceIssueReference": "Spider-Girl #70",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "70",
+      "seriesId": 417,
+      "selectedIssueId": 188,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #70",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/188/spider-girl_1998_70",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/188"
+    },
+    {
+      "sourcePosition": 114,
+      "sourceKey": "spider-girl-71",
+      "sourceTitle": "Spider-Girl #71",
+      "sourceIssueReference": "Spider-Girl #71",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "71",
+      "seriesId": 417,
+      "selectedIssueId": 396,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #71",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/396/spider-girl_1998_71",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/396"
+    },
+    {
+      "sourcePosition": 115,
+      "sourceKey": "spider-girl-72",
+      "sourceTitle": "Spider-Girl #72",
+      "sourceIssueReference": "Spider-Girl #72",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "72",
+      "seriesId": 417,
+      "selectedIssueId": 458,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #72",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/458/spider-girl_1998_72",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/458"
+    },
+    {
+      "sourcePosition": 116,
+      "sourceKey": "spider-girl-73",
+      "sourceTitle": "Spider-Girl #73",
+      "sourceIssueReference": "Spider-Girl #73",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "73",
+      "seriesId": 417,
+      "selectedIssueId": 623,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #73",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/623/spider-girl_1998_73",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/623"
+    },
+    {
+      "sourcePosition": 117,
+      "sourceKey": "spider-girl-74",
+      "sourceTitle": "Spider-Girl #74",
+      "sourceIssueReference": "Spider-Girl #74",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "74",
+      "seriesId": 417,
+      "selectedIssueId": 656,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #74",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/656/spider-girl_1998_74",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/656"
+    },
+    {
+      "sourcePosition": 118,
+      "sourceKey": "spider-girl-75",
+      "sourceTitle": "Spider-Girl #75",
+      "sourceIssueReference": "Spider-Girl #75",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "75",
+      "seriesId": 417,
+      "selectedIssueId": 683,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #75",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/683/spider-girl_1998_75",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/683"
+    },
+    {
+      "sourcePosition": 119,
+      "sourceKey": "spider-girl-76",
+      "sourceTitle": "Spider-Girl #76",
+      "sourceIssueReference": "Spider-Girl #76",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "76",
+      "seriesId": 417,
+      "selectedIssueId": 603,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #76",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/603/spider-girl_1998_76",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/603"
+    },
+    {
+      "sourcePosition": 120,
+      "sourceKey": "spider-girl-77",
+      "sourceTitle": "Spider-Girl #77",
+      "sourceIssueReference": "Spider-Girl #77",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "77",
+      "seriesId": 417,
+      "selectedIssueId": 566,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #77",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/566/spider-girl_1998_77",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/566"
+    },
+    {
+      "sourcePosition": 121,
+      "sourceKey": "spider-girl-78",
+      "sourceTitle": "Spider-Girl #78",
+      "sourceIssueReference": "Spider-Girl #78",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "78",
+      "seriesId": 417,
+      "selectedIssueId": 794,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #78",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/794/spider-girl_1998_78",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/794"
+    },
+    {
+      "sourcePosition": 122,
+      "sourceKey": "spider-girl-79",
+      "sourceTitle": "Spider-Girl #79",
+      "sourceIssueReference": "Spider-Girl #79",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "79",
+      "seriesId": 417,
+      "selectedIssueId": 873,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #79",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/873/spider-girl_1998_79",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/873"
+    },
+    {
+      "sourcePosition": 123,
+      "sourceKey": "spider-girl-80",
+      "sourceTitle": "Spider-Girl #80",
+      "sourceIssueReference": "Spider-Girl #80",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "80",
+      "seriesId": 417,
+      "selectedIssueId": 36,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #80",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36/spider-girl_1998_80",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/36"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceKey": "spider-girl-81",
+      "sourceTitle": "Spider-Girl #81",
+      "sourceIssueReference": "Spider-Girl #81",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "81",
+      "seriesId": 417,
+      "selectedIssueId": 1434,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #81",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1434/spider-girl_1998_81",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1434"
+    },
+    {
+      "sourcePosition": 125,
+      "sourceKey": "spider-girl-82",
+      "sourceTitle": "Spider-Girl #82",
+      "sourceIssueReference": "Spider-Girl #82",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "82",
+      "seriesId": 417,
+      "selectedIssueId": 1578,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #82",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1578/spider-girl_1998_82",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1578"
+    },
+    {
+      "sourcePosition": 126,
+      "sourceKey": "spider-girl-83",
+      "sourceTitle": "Spider-Girl #83",
+      "sourceIssueReference": "Spider-Girl #83",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "83",
+      "seriesId": 417,
+      "selectedIssueId": 1667,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #83",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1667/spider-girl_1998_83",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1667"
+    },
+    {
+      "sourcePosition": 127,
+      "sourceKey": "spider-girl-84",
+      "sourceTitle": "Spider-Girl #84",
+      "sourceIssueReference": "Spider-Girl #84",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "84",
+      "seriesId": 417,
+      "selectedIssueId": 1763,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #84",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1763/spider-girl_1998_84",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1763"
+    },
+    {
+      "sourcePosition": 128,
+      "sourceKey": "spider-girl-85",
+      "sourceTitle": "Spider-Girl #85",
+      "sourceIssueReference": "Spider-Girl #85",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "85",
+      "seriesId": 417,
+      "selectedIssueId": 1869,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #85",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1869/spider-girl_1998_85",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1869"
+    },
+    {
+      "sourcePosition": 129,
+      "sourceKey": "spider-girl-86",
+      "sourceTitle": "Spider-Girl #86",
+      "sourceIssueReference": "Spider-Girl #86",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "86",
+      "seriesId": 417,
+      "selectedIssueId": 1968,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #86",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1968/spider-girl_1998_86",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1968"
+    },
+    {
+      "sourcePosition": 130,
+      "sourceKey": "spider-girl-87",
+      "sourceTitle": "Spider-Girl #87",
+      "sourceIssueReference": "Spider-Girl #87",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "87",
+      "seriesId": 417,
+      "selectedIssueId": 2070,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #87",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2070/spider-girl_1998_87",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2070"
+    },
+    {
+      "sourcePosition": 131,
+      "sourceKey": "spider-girl-88",
+      "sourceTitle": "Spider-Girl #88",
+      "sourceIssueReference": "Spider-Girl #88",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "88",
+      "seriesId": 417,
+      "selectedIssueId": 2223,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #88",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2223/spider-girl_1998_88",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2223"
+    },
+    {
+      "sourcePosition": 132,
+      "sourceKey": "last-hero-standing-1",
+      "sourceTitle": "Last Hero Standing #1",
+      "sourceIssueReference": "Last Hero Standing #1 (2005)",
+      "sourceSeriesTitle": "Last Hero Standing",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 43498,
+      "selectedIssueId": 2133,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Hero Standing (2005) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2133/last_hero_standing_2005_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2133"
+    },
+    {
+      "sourcePosition": 133,
+      "sourceKey": "last-hero-standing-2",
+      "sourceTitle": "Last Hero Standing #2",
+      "sourceIssueReference": "Last Hero Standing #2",
+      "sourceSeriesTitle": "Last Hero Standing",
+      "seriesYear": 2005,
+      "issueNumber": "2",
+      "seriesId": 43498,
+      "selectedIssueId": 2134,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Hero Standing (2005) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2134/last_hero_standing_2005_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2134"
+    },
+    {
+      "sourcePosition": 134,
+      "sourceKey": "last-hero-standing-3",
+      "sourceTitle": "Last Hero Standing #3",
+      "sourceIssueReference": "Last Hero Standing #3",
+      "sourceSeriesTitle": "Last Hero Standing",
+      "seriesYear": 2005,
+      "issueNumber": "3",
+      "seriesId": 43498,
+      "selectedIssueId": 2135,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Hero Standing (2005) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2135/last_hero_standing_2005_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2135"
+    },
+    {
+      "sourcePosition": 135,
+      "sourceKey": "last-hero-standing-4",
+      "sourceTitle": "Last Hero Standing #4",
+      "sourceIssueReference": "Last Hero Standing #4",
+      "sourceSeriesTitle": "Last Hero Standing",
+      "seriesYear": 2005,
+      "issueNumber": "4",
+      "seriesId": 43498,
+      "selectedIssueId": 2136,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Hero Standing (2005) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2136/last_hero_standing_2005_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2136"
+    },
+    {
+      "sourcePosition": 136,
+      "sourceKey": "last-hero-standing-5",
+      "sourceTitle": "Last Hero Standing #5",
+      "sourceIssueReference": "Last Hero Standing #5",
+      "sourceSeriesTitle": "Last Hero Standing",
+      "seriesYear": 2005,
+      "issueNumber": "5",
+      "seriesId": 43498,
+      "selectedIssueId": 2137,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Hero Standing (2005) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2137/last_hero_standing_2005_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2137"
+    },
+    {
+      "sourcePosition": 137,
+      "sourceKey": "spider-girl-89",
+      "sourceTitle": "Spider-Girl #89",
+      "sourceIssueReference": "Spider-Girl #89",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "89",
+      "seriesId": 417,
+      "selectedIssueId": 2336,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #89",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2336/spider-girl_1998_89",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2336"
+    },
+    {
+      "sourcePosition": 138,
+      "sourceKey": "spider-girl-90",
+      "sourceTitle": "Spider-Girl #90",
+      "sourceIssueReference": "Spider-Girl #90",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "90",
+      "seriesId": 417,
+      "selectedIssueId": 2824,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #90",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2824/spider-girl_1998_90",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2824"
+    },
+    {
+      "sourcePosition": 139,
+      "sourceKey": "spider-girl-91",
+      "sourceTitle": "Spider-Girl #91",
+      "sourceIssueReference": "Spider-Girl #91",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "91",
+      "seriesId": 417,
+      "selectedIssueId": 2468,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #91",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2468/spider-girl_1998_91",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2468"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceKey": "spider-girl-92",
+      "sourceTitle": "Spider-Girl #92",
+      "sourceIssueReference": "Spider-Girl #92",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "92",
+      "seriesId": 417,
+      "selectedIssueId": 3031,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #92",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3031/spider-girl_1998_92",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3031"
+    },
+    {
+      "sourcePosition": 141,
+      "sourceKey": "spider-girl-93",
+      "sourceTitle": "Spider-Girl #93",
+      "sourceIssueReference": "Spider-Girl #93",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "93",
+      "seriesId": 417,
+      "selectedIssueId": 3139,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #93",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3139/spider-girl_1998_93",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3139"
+    },
+    {
+      "sourcePosition": 142,
+      "sourceKey": "spider-girl-94",
+      "sourceTitle": "Spider-Girl #94",
+      "sourceIssueReference": "Spider-Girl #94",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "94",
+      "seriesId": 417,
+      "selectedIssueId": 3366,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #94",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3366/spider-girl_1998_94",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3366"
+    },
+    {
+      "sourcePosition": 143,
+      "sourceKey": "spider-girl-95",
+      "sourceTitle": "Spider-Girl #95",
+      "sourceIssueReference": "Spider-Girl #95",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "95",
+      "seriesId": 417,
+      "selectedIssueId": 3477,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #95",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3477/spider-girl_1998_95",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3477"
+    },
+    {
+      "sourcePosition": 144,
+      "sourceKey": "spider-girl-96",
+      "sourceTitle": "Spider-Girl #96",
+      "sourceIssueReference": "Spider-Girl #96",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "96",
+      "seriesId": 417,
+      "selectedIssueId": 3890,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #96",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3890/spider-girl_1998_96",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3890"
+    },
+    {
+      "sourcePosition": 145,
+      "sourceKey": "spider-girl-97",
+      "sourceTitle": "Spider-Girl #97",
+      "sourceIssueReference": "Spider-Girl #97",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "97",
+      "seriesId": 417,
+      "selectedIssueId": 4024,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #97",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4024/spider-girl_1998_97",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4024"
+    },
+    {
+      "sourcePosition": 146,
+      "sourceKey": "spider-girl-98",
+      "sourceTitle": "Spider-Girl #98",
+      "sourceIssueReference": "Spider-Girl #98",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "98",
+      "seriesId": 417,
+      "selectedIssueId": 4144,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #98",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4144/spider-girl_1998_98",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4144"
+    },
+    {
+      "sourcePosition": 147,
+      "sourceKey": "spider-girl-99",
+      "sourceTitle": "Spider-Girl #99",
+      "sourceIssueReference": "Spider-Girl #99",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "99",
+      "seriesId": 417,
+      "selectedIssueId": 4256,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #99",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4256/spider-girl_1998_99",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4256"
+    },
+    {
+      "sourcePosition": 148,
+      "sourceKey": "spider-girl-100",
+      "sourceTitle": "Spider-Girl #100",
+      "sourceIssueReference": "Spider-Girl #100",
+      "sourceSeriesTitle": "Spider-Girl",
+      "seriesYear": 1998,
+      "issueNumber": "100",
+      "seriesId": 417,
+      "selectedIssueId": 4415,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl (1998) #100",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4415/spider-girl_1998_100",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4415"
+    },
+    {
+      "sourcePosition": 149,
+      "sourceKey": "last-planet-standing-1",
+      "sourceTitle": "Last Planet Standing #1",
+      "sourceIssueReference": "Last Planet Standing #1 (2006)",
+      "sourceSeriesTitle": "Last Planet Standing",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 991,
+      "selectedIssueId": 4190,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Planet Standing (2006) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4190/last_planet_standing_2006_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4190"
+    },
+    {
+      "sourcePosition": 150,
+      "sourceKey": "last-planet-standing-2",
+      "sourceTitle": "Last Planet Standing #2",
+      "sourceIssueReference": "Last Planet Standing #2",
+      "sourceSeriesTitle": "Last Planet Standing",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 991,
+      "selectedIssueId": 4191,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Planet Standing (2006) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4191/last_planet_standing_2006_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4191"
+    },
+    {
+      "sourcePosition": 151,
+      "sourceKey": "last-planet-standing-3",
+      "sourceTitle": "Last Planet Standing #3",
+      "sourceIssueReference": "Last Planet Standing #3",
+      "sourceSeriesTitle": "Last Planet Standing",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 991,
+      "selectedIssueId": 4288,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Planet Standing (2006) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4288/last_planet_standing_2006_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4288"
+    },
+    {
+      "sourcePosition": 152,
+      "sourceKey": "last-planet-standing-4",
+      "sourceTitle": "Last Planet Standing #4",
+      "sourceIssueReference": "Last Planet Standing #4",
+      "sourceSeriesTitle": "Last Planet Standing",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 991,
+      "selectedIssueId": 4289,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Planet Standing (2006) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4289/last_planet_standing_2006_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4289"
+    },
+    {
+      "sourcePosition": 153,
+      "sourceKey": "last-planet-standing-5",
+      "sourceTitle": "Last Planet Standing #5",
+      "sourceIssueReference": "Last Planet Standing #5",
+      "sourceSeriesTitle": "Last Planet Standing",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "seriesId": 991,
+      "selectedIssueId": 4444,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Last Planet Standing (2006) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4444/last_planet_standing_2006_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/4444"
+    },
+    {
+      "sourcePosition": 154,
+      "sourceKey": "the-amazing-spider-girl-0",
+      "sourceTitle": "Amazing Spider-Girl #0",
+      "sourceIssueReference": "The Amazing Spider-Girl #0 (2006)",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "0",
+      "seriesId": 1126,
+      "selectedIssueId": 5286,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5286/amazing_spider-girl_2006",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5286"
+    },
+    {
+      "sourcePosition": 155,
+      "sourceKey": "the-amazing-spider-girl-1",
+      "sourceTitle": "Amazing Spider-Girl #1",
+      "sourceIssueReference": "The Amazing Spider-Girl #1",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1126,
+      "selectedIssueId": 5281,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5281/amazing_spider-girl_2006_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5281"
+    },
+    {
+      "sourcePosition": 156,
+      "sourceKey": "avengers-next-1",
+      "sourceTitle": "Avengers Next #1",
+      "sourceIssueReference": "Avengers Next #1 (2006)",
+      "sourceSeriesTitle": "Avengers Next",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1143,
+      "selectedIssueId": 5475,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Avengers Next (2006) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5475/avengers_next_2006_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5475"
+    },
+    {
+      "sourcePosition": 157,
+      "sourceKey": "avengers-next-2",
+      "sourceTitle": "Avengers Next #2",
+      "sourceIssueReference": "Avengers Next #2",
+      "sourceSeriesTitle": "Avengers Next",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1143,
+      "selectedIssueId": 5476,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Avengers Next (2006) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5476/avengers_next_2006_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5476"
+    },
+    {
+      "sourcePosition": 158,
+      "sourceKey": "the-amazing-spider-girl-2",
+      "sourceTitle": "Amazing Spider-Girl #2",
+      "sourceIssueReference": "The Amazing Spider-Girl #2",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1126,
+      "selectedIssueId": 5591,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5591/amazing_spider-girl_2006_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5591"
+    },
+    {
+      "sourcePosition": 159,
+      "sourceKey": "the-amazing-spider-girl-3",
+      "sourceTitle": "Amazing Spider-Girl #3",
+      "sourceIssueReference": "The Amazing Spider-Girl #3",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1126,
+      "selectedIssueId": 5701,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5701/amazing_spider-girl_2006_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5701"
+    },
+    {
+      "sourcePosition": 160,
+      "sourceKey": "the-amazing-spider-girl-4",
+      "sourceTitle": "Amazing Spider-Girl #4",
+      "sourceIssueReference": "The Amazing Spider-Girl #4",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1126,
+      "selectedIssueId": 5843,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5843/amazing_spider-girl_2006_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5843"
+    },
+    {
+      "sourcePosition": 161,
+      "sourceKey": "the-amazing-spider-girl-5",
+      "sourceTitle": "Amazing Spider-Girl #5",
+      "sourceIssueReference": "The Amazing Spider-Girl #5",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "seriesId": 1126,
+      "selectedIssueId": 5997,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5997/amazing_spider-girl_2006_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5997"
+    },
+    {
+      "sourcePosition": 162,
+      "sourceKey": "avengers-next-3",
+      "sourceTitle": "Avengers Next #3",
+      "sourceIssueReference": "Avengers Next #3",
+      "sourceSeriesTitle": "Avengers Next",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1143,
+      "selectedIssueId": 5728,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Avengers Next (2006) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5728/avengers_next_2006_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5728"
+    },
+    {
+      "sourcePosition": 163,
+      "sourceKey": "avengers-next-4",
+      "sourceTitle": "Avengers Next #4",
+      "sourceIssueReference": "Avengers Next #4",
+      "sourceSeriesTitle": "Avengers Next",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1143,
+      "selectedIssueId": 5729,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Avengers Next (2006) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5729/avengers_next_2006_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5729"
+    },
+    {
+      "sourcePosition": 164,
+      "sourceKey": "avengers-next-5",
+      "sourceTitle": "Avengers Next #5",
+      "sourceIssueReference": "Avengers Next #5",
+      "sourceSeriesTitle": "Avengers Next",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "seriesId": 1143,
+      "selectedIssueId": 5875,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Avengers Next (2006) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5875/avengers_next_2006_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/5875"
+    },
+    {
+      "sourcePosition": 165,
+      "sourceKey": "the-amazing-spider-girl-6",
+      "sourceTitle": "Amazing Spider-Girl #6",
+      "sourceIssueReference": "The Amazing Spider-Girl #6",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "6",
+      "seriesId": 1126,
+      "selectedIssueId": 6130,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6130/amazing_spider-girl_2006_6",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6130"
+    },
+    {
+      "sourcePosition": 166,
+      "sourceKey": "the-amazing-spider-girl-7",
+      "sourceTitle": "Amazing Spider-Girl #7",
+      "sourceIssueReference": "The Amazing Spider-Girl #7",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "7",
+      "seriesId": 1126,
+      "selectedIssueId": 6270,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6270/amazing_spider-girl_2006_7",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6270"
+    },
+    {
+      "sourcePosition": 167,
+      "sourceKey": "fantastic-five-v2-1",
+      "sourceTitle": "Fantastic Five Vol. 2 #1",
+      "sourceIssueReference": "Fantastic Five Vol. 2 #1 (2007)",
+      "sourceSeriesTitle": "Fantastic Five Vol. 2",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2535,
+      "selectedIssueId": 16003,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (2007) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16003/fantastic_five_2007_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16003"
+    },
+    {
+      "sourcePosition": 168,
+      "sourceKey": "fantastic-five-v2-2",
+      "sourceTitle": "Fantastic Five Vol. 2 #2",
+      "sourceIssueReference": "Fantastic Five Vol. 2 #2",
+      "sourceSeriesTitle": "Fantastic Five Vol. 2",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2535,
+      "selectedIssueId": 16004,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (2007) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16004/fantastic_five_2007_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16004"
+    },
+    {
+      "sourcePosition": 169,
+      "sourceKey": "fantastic-five-v2-3",
+      "sourceTitle": "Fantastic Five Vol. 2 #3",
+      "sourceIssueReference": "Fantastic Five Vol. 2 #3",
+      "sourceSeriesTitle": "Fantastic Five Vol. 2",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2535,
+      "selectedIssueId": 16186,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (2007) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16186/fantastic_five_2007_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16186"
+    },
+    {
+      "sourcePosition": 170,
+      "sourceKey": "fantastic-five-v2-4",
+      "sourceTitle": "Fantastic Five Vol. 2 #4",
+      "sourceIssueReference": "Fantastic Five Vol. 2 #4",
+      "sourceSeriesTitle": "Fantastic Five Vol. 2",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2535,
+      "selectedIssueId": 16187,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (2007) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16187/fantastic_five_2007_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16187"
+    },
+    {
+      "sourcePosition": 171,
+      "sourceKey": "fantastic-five-v2-5",
+      "sourceTitle": "Fantastic Five Vol. 2 #5",
+      "sourceIssueReference": "Fantastic Five Vol. 2 #5",
+      "sourceSeriesTitle": "Fantastic Five Vol. 2",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 2535,
+      "selectedIssueId": 16592,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Fantastic Five (2007) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16592/fantastic_five_2007_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16592"
+    },
+    {
+      "sourcePosition": 172,
+      "sourceKey": "the-amazing-spider-girl-8",
+      "sourceTitle": "Amazing Spider-Girl #8",
+      "sourceIssueReference": "The Amazing Spider-Girl #8",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "8",
+      "seriesId": 1126,
+      "selectedIssueId": 13478,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13478/amazing_spider-girl_2006_8",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13478"
+    },
+    {
+      "sourcePosition": 173,
+      "sourceKey": "the-amazing-spider-girl-9",
+      "sourceTitle": "Amazing Spider-Girl #9",
+      "sourceIssueReference": "The Amazing Spider-Girl #9",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "9",
+      "seriesId": 1126,
+      "selectedIssueId": 15856,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15856/amazing_spider-girl_2006_9",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/15856"
+    },
+    {
+      "sourcePosition": 174,
+      "sourceKey": "the-amazing-spider-girl-10",
+      "sourceTitle": "Amazing Spider-Girl #10",
+      "sourceIssueReference": "The Amazing Spider-Girl #10",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "10",
+      "seriesId": 1126,
+      "selectedIssueId": 15966,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15966/amazing_spider-girl_2006_10",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/15966"
+    },
+    {
+      "sourcePosition": 175,
+      "sourceKey": "the-amazing-spider-girl-11",
+      "sourceTitle": "Amazing Spider-Girl #11",
+      "sourceIssueReference": "The Amazing Spider-Girl #11",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "11",
+      "seriesId": 1126,
+      "selectedIssueId": 16151,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16151/amazing_spider-girl_2006_11",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16151"
+    },
+    {
+      "sourcePosition": 176,
+      "sourceKey": "the-amazing-spider-girl-12",
+      "sourceTitle": "Amazing Spider-Girl #12",
+      "sourceIssueReference": "The Amazing Spider-Girl #12",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "12",
+      "seriesId": 1126,
+      "selectedIssueId": 16522,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16522/amazing_spider-girl_2006_12",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16522"
+    },
+    {
+      "sourcePosition": 177,
+      "sourceKey": "the-amazing-spider-girl-13",
+      "sourceTitle": "Amazing Spider-Girl #13",
+      "sourceIssueReference": "The Amazing Spider-Girl #13",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "13",
+      "seriesId": 1126,
+      "selectedIssueId": 16523,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16523/amazing_spider-girl_2006_13",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16523"
+    },
+    {
+      "sourcePosition": 178,
+      "sourceKey": "the-amazing-spider-girl-14",
+      "sourceTitle": "Amazing Spider-Girl #14",
+      "sourceIssueReference": "The Amazing Spider-Girl #14",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "14",
+      "seriesId": 1126,
+      "selectedIssueId": 17249,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #14",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17249/amazing_spider-girl_2006_14",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17249"
+    },
+    {
+      "sourcePosition": 179,
+      "sourceKey": "the-amazing-spider-girl-15",
+      "sourceTitle": "Amazing Spider-Girl #15",
+      "sourceIssueReference": "The Amazing Spider-Girl #15",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "15",
+      "seriesId": 1126,
+      "selectedIssueId": 17385,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #15",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17385/amazing_spider-girl_2006_15",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17385"
+    },
+    {
+      "sourcePosition": 180,
+      "sourceKey": "the-amazing-spider-girl-16",
+      "sourceTitle": "Amazing Spider-Girl #16",
+      "sourceIssueReference": "The Amazing Spider-Girl #16",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "16",
+      "seriesId": 1126,
+      "selectedIssueId": 17629,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #16",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17629/amazing_spider-girl_2006_16",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17629"
+    },
+    {
+      "sourcePosition": 181,
+      "sourceKey": "the-amazing-spider-girl-17",
+      "sourceTitle": "Amazing Spider-Girl #17",
+      "sourceIssueReference": "The Amazing Spider-Girl #17",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "17",
+      "seriesId": 1126,
+      "selectedIssueId": 70668,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #17",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70668/amazing_spider-girl_2006_17",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/70668"
+    },
+    {
+      "sourcePosition": 182,
+      "sourceKey": "the-amazing-spider-girl-18",
+      "sourceTitle": "Amazing Spider-Girl #18",
+      "sourceIssueReference": "The Amazing Spider-Girl #18",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "18",
+      "seriesId": 1126,
+      "selectedIssueId": 20868,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #18",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20868/amazing_spider-girl_2006_18",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20868"
+    },
+    {
+      "sourcePosition": 183,
+      "sourceKey": "the-amazing-spider-girl-19",
+      "sourceTitle": "Amazing Spider-Girl #19",
+      "sourceIssueReference": "The Amazing Spider-Girl #19",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "19",
+      "seriesId": 1126,
+      "selectedIssueId": 21003,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #19",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21003/amazing_spider-girl_2006_19",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21003"
+    },
+    {
+      "sourcePosition": 184,
+      "sourceKey": "american-dream-1",
+      "sourceTitle": "American Dream #1",
+      "sourceIssueReference": "American Dream #1 (2008)",
+      "sourceSeriesTitle": "American Dream",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4876,
+      "selectedIssueId": 21259,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "American Dream (2008) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21259/american_dream_2008_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21259"
+    },
+    {
+      "sourcePosition": 185,
+      "sourceKey": "american-dream-2",
+      "sourceTitle": "American Dream #2",
+      "sourceIssueReference": "American Dream #2",
+      "sourceSeriesTitle": "American Dream",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 4876,
+      "selectedIssueId": 21260,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "American Dream (2008) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21260/american_dream_2008_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21260"
+    },
+    {
+      "sourcePosition": 186,
+      "sourceKey": "american-dream-3",
+      "sourceTitle": "American Dream #3",
+      "sourceIssueReference": "American Dream #3",
+      "sourceSeriesTitle": "American Dream",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 4876,
+      "selectedIssueId": 21404,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "American Dream (2008) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21404/american_dream_2008_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21404"
+    },
+    {
+      "sourcePosition": 187,
+      "sourceKey": "american-dream-4",
+      "sourceTitle": "American Dream #4",
+      "sourceIssueReference": "American Dream #4",
+      "sourceSeriesTitle": "American Dream",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 4876,
+      "selectedIssueId": 21405,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "American Dream (2008) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21405/american_dream_2008_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21405"
+    },
+    {
+      "sourcePosition": 188,
+      "sourceKey": "american-dream-5",
+      "sourceTitle": "American Dream #5",
+      "sourceIssueReference": "American Dream #5",
+      "sourceSeriesTitle": "American Dream",
+      "seriesYear": 2008,
+      "issueNumber": "5",
+      "seriesId": 4876,
+      "selectedIssueId": 21577,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "American Dream (2008) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21577/american_dream_2008_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21577"
+    },
+    {
+      "sourcePosition": 189,
+      "sourceKey": "the-amazing-spider-girl-20",
+      "sourceTitle": "Amazing Spider-Girl #20",
+      "sourceIssueReference": "The Amazing Spider-Girl #20",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "20",
+      "seriesId": 1126,
+      "selectedIssueId": 21214,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #20",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21214/amazing_spider-girl_2006_20",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21214"
+    },
+    {
+      "sourcePosition": 190,
+      "sourceKey": "the-amazing-spider-girl-21",
+      "sourceTitle": "Amazing Spider-Girl #21",
+      "sourceIssueReference": "The Amazing Spider-Girl #21",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "21",
+      "seriesId": 1126,
+      "selectedIssueId": 21357,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #21",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21357/amazing_spider-girl_2006_21",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21357"
+    },
+    {
+      "sourcePosition": 191,
+      "sourceKey": "the-amazing-spider-girl-22",
+      "sourceTitle": "Amazing Spider-Girl #22",
+      "sourceIssueReference": "The Amazing Spider-Girl #22",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "22",
+      "seriesId": 1126,
+      "selectedIssueId": 21539,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #22",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21539/amazing_spider-girl_2006_22",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21539"
+    },
+    {
+      "sourcePosition": 192,
+      "sourceKey": "the-amazing-spider-girl-23",
+      "sourceTitle": "Amazing Spider-Girl #23",
+      "sourceIssueReference": "The Amazing Spider-Girl #23",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "23",
+      "seriesId": 1126,
+      "selectedIssueId": 21737,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #23",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21737/amazing_spider-girl_2006_23",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21737"
+    },
+    {
+      "sourcePosition": 193,
+      "sourceKey": "the-amazing-spider-girl-24",
+      "sourceTitle": "Amazing Spider-Girl #24",
+      "sourceIssueReference": "The Amazing Spider-Girl #24",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "24",
+      "seriesId": 1126,
+      "selectedIssueId": 21970,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #24",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21970/amazing_spider-girl_2006_24",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21970"
+    },
+    {
+      "sourcePosition": 194,
+      "sourceKey": "the-amazing-spider-girl-25",
+      "sourceTitle": "Amazing Spider-Girl #25",
+      "sourceIssueReference": "The Amazing Spider-Girl #25",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "25",
+      "seriesId": 1126,
+      "selectedIssueId": 22294,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #25",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22294/amazing_spider-girl_2006_25",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/22294"
+    },
+    {
+      "sourcePosition": 195,
+      "sourceKey": "the-amazing-spider-girl-26",
+      "sourceTitle": "Amazing Spider-Girl #26",
+      "sourceIssueReference": "The Amazing Spider-Girl #26",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "26",
+      "seriesId": 1126,
+      "selectedIssueId": 22501,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #26",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22501/amazing_spider-girl_2006_26",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/22501"
+    },
+    {
+      "sourcePosition": 196,
+      "sourceKey": "the-amazing-spider-girl-27",
+      "sourceTitle": "Amazing Spider-Girl #27",
+      "sourceIssueReference": "The Amazing Spider-Girl #27",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "27",
+      "seriesId": 1126,
+      "selectedIssueId": 22903,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #27",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22903/amazing_spider-girl_2006_27",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/22903"
+    },
+    {
+      "sourcePosition": 197,
+      "sourceKey": "the-amazing-spider-girl-28",
+      "sourceTitle": "Amazing Spider-Girl #28",
+      "sourceIssueReference": "The Amazing Spider-Girl #28",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "28",
+      "seriesId": 1126,
+      "selectedIssueId": 23107,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #28",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23107/amazing_spider-girl_2006_28",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/23107"
+    },
+    {
+      "sourcePosition": 198,
+      "sourceKey": "the-amazing-spider-girl-29",
+      "sourceTitle": "Amazing Spider-Girl #29",
+      "sourceIssueReference": "The Amazing Spider-Girl #29",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "29",
+      "seriesId": 1126,
+      "selectedIssueId": 23604,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #29",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23604/amazing_spider-girl_2006_29",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/23604"
+    },
+    {
+      "sourcePosition": 199,
+      "sourceKey": "the-amazing-spider-girl-30",
+      "sourceTitle": "Amazing Spider-Girl #30",
+      "sourceIssueReference": "The Amazing Spider-Girl #30",
+      "sourceSeriesTitle": "The Amazing Spider-Girl",
+      "seriesYear": 2006,
+      "issueNumber": "30",
+      "seriesId": 1126,
+      "selectedIssueId": 23763,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Girl (2006) #30",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23763/amazing_spider-girl_2006_30",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/23763"
+    },
+    {
+      "sourcePosition": 200,
+      "sourceKey": "amazing-spider-man-family-1",
+      "sourceTitle": "Amazing Spider-Man Family #1",
+      "sourceIssueReference": "Amazing Spider-Man Family #1 (2008)",
+      "sourceSeriesTitle": "Amazing Spider-Man Family",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5376,
+      "selectedIssueId": 21798,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Man Family (2008) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21798/amazing_spider-man_family_2008_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/21798"
+    },
+    {
+      "sourcePosition": 201,
+      "sourceKey": "amazing-spider-man-family-2",
+      "sourceTitle": "Amazing Spider-Man Family #2",
+      "sourceIssueReference": "Amazing Spider-Man Family #2",
+      "sourceSeriesTitle": "Amazing Spider-Man Family",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 5376,
+      "selectedIssueId": 22372,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Man Family (2008) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22372/amazing_spider-man_family_2008_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/22372"
+    },
+    {
+      "sourcePosition": 202,
+      "sourceKey": "amazing-spider-man-family-3",
+      "sourceTitle": "Amazing Spider-Man Family #3",
+      "sourceIssueReference": "Amazing Spider-Man Family #3",
+      "sourceSeriesTitle": "Amazing Spider-Man Family",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 5376,
+      "selectedIssueId": 22979,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Man Family (2008) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22979/amazing_spider-man_family_2008_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/22979"
+    },
+    {
+      "sourcePosition": 203,
+      "sourceKey": "amazing-spider-man-family-4",
+      "sourceTitle": "Amazing Spider-Man Family #4",
+      "sourceIssueReference": "Amazing Spider-Man Family #4",
+      "sourceSeriesTitle": "Amazing Spider-Man Family",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 5376,
+      "selectedIssueId": 23642,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Spider-Man Family (2008) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23642/amazing_spider-man_family_2008_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/23642"
+    },
+    {
+      "sourcePosition": 204,
+      "sourceKey": "the-spectacular-spider-girl-1",
+      "sourceTitle": "Spectacular Spider-Girl #1",
+      "sourceIssueReference": "The Spectacular Spider-Girl #1 (2010)",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8891,
+      "selectedIssueId": 27834,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spectacular Spider-Girl Digital Comic (2009) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27834/spectacular_spider-girl_digital_comic_2009_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/27834"
+    },
+    {
+      "sourcePosition": 205,
+      "sourceKey": "the-spectacular-spider-girl-2",
+      "sourceTitle": "Spectacular Spider-Girl #2",
+      "sourceIssueReference": "The Spectacular Spider-Girl #2",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 206,
+      "sourceKey": "the-spectacular-spider-girl-3",
+      "sourceTitle": "Spectacular Spider-Girl #3",
+      "sourceIssueReference": "The Spectacular Spider-Girl #3",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 207,
+      "sourceKey": "the-spectacular-spider-girl-4",
+      "sourceTitle": "Spectacular Spider-Girl #4",
+      "sourceIssueReference": "The Spectacular Spider-Girl #4",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "seriesId": 8891,
+      "selectedIssueId": 27837,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spectacular Spider-Girl Digital Comic (2009) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27837/spectacular_spider-girl_digital_comic_2009_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/27837"
+    },
+    {
+      "sourcePosition": 208,
+      "sourceKey": "the-spectacular-spider-girl-5",
+      "sourceTitle": "Spectacular Spider-Girl #5",
+      "sourceIssueReference": "The Spectacular Spider-Girl #5",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "5",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 209,
+      "sourceKey": "the-spectacular-spider-girl-6",
+      "sourceTitle": "Spectacular Spider-Girl #6",
+      "sourceIssueReference": "The Spectacular Spider-Girl #6",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "6",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 210,
+      "sourceKey": "the-spectacular-spider-girl-7",
+      "sourceTitle": "Spectacular Spider-Girl #7",
+      "sourceIssueReference": "The Spectacular Spider-Girl #7",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "7",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 211,
+      "sourceKey": "the-spectacular-spider-girl-8",
+      "sourceTitle": "Spectacular Spider-Girl #8",
+      "sourceIssueReference": "The Spectacular Spider-Girl #8",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "8",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 212,
+      "sourceKey": "the-spectacular-spider-girl-9",
+      "sourceTitle": "Spectacular Spider-Girl #9",
+      "sourceIssueReference": "The Spectacular Spider-Girl #9",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "9",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 213,
+      "sourceKey": "the-spectacular-spider-girl-10",
+      "sourceTitle": "Spectacular Spider-Girl #10",
+      "sourceIssueReference": "The Spectacular Spider-Girl #10",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": null,
+      "issueNumber": "10",
+      "seriesId": 8891,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/8891/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.072Z",
+          "responseSha256": "f85fc1baf496665c04e0da02e5c3059587618bdb2c73bba856135d276fd7ef28",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 214,
+      "sourceKey": "the-spectacular-spider-girl-11",
+      "sourceTitle": "Spectacular Spider-Girl #11",
+      "sourceIssueReference": "The Spectacular Spider-Girl #11",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl",
+      "seriesYear": 2009,
+      "issueNumber": "11",
+      "seriesId": 8891,
+      "selectedIssueId": 33568,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spectacular Spider-Girl Digital Comic (2009) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/33568/spectacular_spider-girl_digital_comic_2009_11",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/33568"
+    },
+    {
+      "sourcePosition": 215,
+      "sourceKey": "the-spectacular-spider-girl-v2-1",
+      "sourceTitle": "Spectacular Spider-Girl Vol. 2 #1",
+      "sourceIssueReference": "The Spectacular Spider-Girl Vol. 2 #1 (2010)",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl Vol. 2",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": 9801,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/9801/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.424Z",
+          "responseSha256": "558e1daca0575c4c00cd145ef7313c9929e62788bbdd02184c1dfdb3d9f81328",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 216,
+      "sourceKey": "the-spectacular-spider-girl-v2-2",
+      "sourceTitle": "Spectacular Spider-Girl Vol. 2 #2",
+      "sourceIssueReference": "The Spectacular Spider-Girl Vol. 2 #2",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl Vol. 2",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "seriesId": 9801,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/9801/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.424Z",
+          "responseSha256": "558e1daca0575c4c00cd145ef7313c9929e62788bbdd02184c1dfdb3d9f81328",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 217,
+      "sourceKey": "the-spectacular-spider-girl-v2-3",
+      "sourceTitle": "Spectacular Spider-Girl Vol. 2 #3",
+      "sourceIssueReference": "The Spectacular Spider-Girl Vol. 2 #3",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl Vol. 2",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9801,
+      "selectedIssueId": 33392,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spectacular Spider-Girl (2010) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/33392/spectacular_spider-girl_2010_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/33392"
+    },
+    {
+      "sourcePosition": 218,
+      "sourceKey": "the-spectacular-spider-girl-v2-4",
+      "sourceTitle": "Spectacular Spider-Girl Vol. 2 #4",
+      "sourceIssueReference": "The Spectacular Spider-Girl Vol. 2 #4",
+      "sourceSeriesTitle": "The Spectacular Spider-Girl Vol. 2",
+      "seriesYear": null,
+      "issueNumber": "4",
+      "seriesId": 9801,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/9801/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:55:36.424Z",
+          "responseSha256": "558e1daca0575c4c00cd145ef7313c9929e62788bbdd02184c1dfdb3d9f81328",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1089"
+    },
+    {
+      "sourcePosition": 219,
+      "sourceKey": "spider-girl-the-end-1",
+      "sourceTitle": "Spider-Girl: The End! #1",
+      "sourceIssueReference": "Spider-Girl: The End #1 (2010)",
+      "sourceSeriesTitle": "Spider-Girl: The End",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 12595,
+      "selectedIssueId": 35559,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Girl: The End! (2010) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/35559/spider-girl_the_end_2010_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/35559"
+    },
+    {
+      "sourcePosition": 220,
+      "sourceKey": "captain-america-corps-1",
+      "sourceTitle": "Captain America Corps #1",
+      "sourceIssueReference": "Captain America Corps #1 (2011)",
+      "sourceSeriesTitle": "Captain America Corps",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 13199,
+      "selectedIssueId": 36952,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Captain America Corps (2011) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36952/captain_america_corps_2011_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/36952"
+    },
+    {
+      "sourcePosition": 221,
+      "sourceKey": "captain-america-corps-2",
+      "sourceTitle": "Captain America Corps #2",
+      "sourceIssueReference": "Captain America Corps #2",
+      "sourceSeriesTitle": "Captain America Corps",
+      "seriesYear": 2011,
+      "issueNumber": "2",
+      "seriesId": 13199,
+      "selectedIssueId": 36951,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Captain America Corps (2011) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36951/captain_america_corps_2011_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/36951"
+    },
+    {
+      "sourcePosition": 222,
+      "sourceKey": "captain-america-corps-3",
+      "sourceTitle": "Captain America Corps #3",
+      "sourceIssueReference": "Captain America Corps #3",
+      "sourceSeriesTitle": "Captain America Corps",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 13199,
+      "selectedIssueId": 36950,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Captain America Corps (2011) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36950/captain_america_corps_2011_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/36950"
+    },
+    {
+      "sourcePosition": 223,
+      "sourceKey": "captain-america-corps-4",
+      "sourceTitle": "Captain America Corps #4",
+      "sourceIssueReference": "Captain America Corps #4",
+      "sourceSeriesTitle": "Captain America Corps",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 13199,
+      "selectedIssueId": 36955,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Captain America Corps (2011) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36955/captain_america_corps_2011_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/36955"
+    },
+    {
+      "sourcePosition": 224,
+      "sourceKey": "captain-america-corps-5",
+      "sourceTitle": "Captain America Corps #5",
+      "sourceIssueReference": "Captain America Corps #5",
+      "sourceSeriesTitle": "Captain America Corps",
+      "seriesYear": 2011,
+      "issueNumber": "5",
+      "seriesId": 13199,
+      "selectedIssueId": 36949,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Captain America Corps (2011) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36949/captain_america_corps_2011_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/36949"
+    }
+  ],
+  "resolvedVector": [
+    18301,
+    13326,
+    9660,
+    17739,
+    9664,
+    17743,
+    13337,
+    13348,
+    13359,
+    17744,
+    9665,
+    17745,
+    9666,
+    13370,
+    17746,
+    13381,
+    9667,
+    17747,
+    9668,
+    13387,
+    17748,
+    17749,
+    13388,
+    13389,
+    13327,
+    13328,
+    17750,
+    17740,
+    17741,
+    17742,
+    13329,
+    18831,
+    13330,
+    20814,
+    12849,
+    20768,
+    13331,
+    13332,
+    20769,
+    12850,
+    13333,
+    20770,
+    12851,
+    12852,
+    20771,
+    13334,
+    12853,
+    20772,
+    18776,
+    13335,
+    13336,
+    13338,
+    13339,
+    13340,
+    18777,
+    18778,
+    13341,
+    13342,
+    13343,
+    13344,
+    13345,
+    20460,
+    20461,
+    20462,
+    13346,
+    13347,
+    13349,
+    13350,
+    13351,
+    13352,
+    13353,
+    13354,
+    13355,
+    13356,
+    13357,
+    13358,
+    13360,
+    13361,
+    13362,
+    13363,
+    13364,
+    13365,
+    13366,
+    13367,
+    13368,
+    13369,
+    13371,
+    13372,
+    13373,
+    13374,
+    13375,
+    13376,
+    13377,
+    13378,
+    13379,
+    13380,
+    13382,
+    13383,
+    13384,
+    13385,
+    13386,
+    193,
+    192,
+    191,
+    189,
+    247,
+    188,
+    396,
+    458,
+    623,
+    656,
+    683,
+    603,
+    566,
+    794,
+    873,
+    36,
+    1434,
+    1578,
+    1667,
+    1763,
+    1869,
+    1968,
+    2070,
+    2223,
+    2133,
+    2134,
+    2135,
+    2136,
+    2137,
+    2336,
+    2824,
+    2468,
+    3031,
+    3139,
+    3366,
+    3477,
+    3890,
+    4024,
+    4144,
+    4256,
+    4415,
+    4190,
+    4191,
+    4288,
+    4289,
+    4444,
+    5286,
+    5281,
+    5475,
+    5476,
+    5591,
+    5701,
+    5843,
+    5997,
+    5728,
+    5729,
+    5875,
+    6130,
+    6270,
+    16003,
+    16004,
+    16186,
+    16187,
+    16592,
+    13478,
+    15856,
+    15966,
+    16151,
+    16522,
+    16523,
+    17249,
+    17385,
+    17629,
+    70668,
+    20868,
+    21003,
+    21259,
+    21260,
+    21404,
+    21405,
+    21577,
+    21214,
+    21357,
+    21539,
+    21737,
+    21970,
+    22294,
+    22501,
+    22903,
+    23107,
+    23604,
+    23763,
+    21798,
+    22372,
+    22979,
+    23642,
+    27834,
+    27837,
+    33568,
+    33392,
+    35559,
+    36952,
+    36951,
+    36950,
+    36955,
+    36949
+  ],
+  "resolvedVectorSha256": "59a7f8a17d389cf019b00cfbec3bea2525b7e48f17387d2a5557a97cb7d6fdf0",
+  "repeats": [],
+  "placement": {
+    "type": "era",
+    "timeline": null,
+    "browse": "Storylines",
+    "insertionAnchor": {
+      "beforeId": "mcu-prep-daredevil-born-again"
+    },
+    "groupDecision": "separate-story",
+    "rationale": "An alternate-future imprint spanning several leads, not a single main-continuity event or a complete single-character guide. Coming of age and science fiction describe the teenage successors and alternative future. No single tone is assigned across the imprint and its crossovers."
+  },
+  "editorial": {
+    "description": "Spider-Man's daughter May Parker grows into her own hero in a future shared with a new generation of Avengers. Her adventures connect with J2, A-Next, the Fantastic Five and later MC2 crossovers. Unresolved comics remain recorded in the source notes.",
+    "storyTypes": [
+      "coming-of-age",
+      "science-fiction"
+    ],
+    "evidenceSources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Marvel_Comics_2",
+        "retrievedAt": "2026-11-03"
+      },
+      {
+        "url": "https://www.comicbooktreasury.com/mayday-parker-reading-order/",
+        "retrievedAt": "2026-11-03"
+      }
+    ],
+    "evidenceBasis": "An alternate-future imprint spanning several leads, not a single main-continuity event or a complete single-character guide. Coming of age and science fiction describe the teenage successors and alternative future. No single tone is assigned across the imprint and its crossovers."
+  },
+  "relationshipReview": {
+    "reviewer": "Copilot Reading Lists lane",
+    "authorityType": "agent-content-review",
+    "reviewedAt": "2026-11-03T04:11:40.702Z",
+    "report": {
+      "candidateId": "mc2",
+      "ledgerDigest": "3c619114d9f13ae341caeedd90a11ede24b6da45bb16eaf756403d95f5bd832c",
+      "candidateCount": 207,
+      "comparisonCount": 334,
+      "comparisons": [
+        {
+          "orderId": "abomination-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "absolute-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "adam-warlock-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agatha-harkness-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "age-of-x-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agents-of-atlas-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "all-new-all-different-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+          "sharedCount": 3,
+          "sharedIds": [
+            "5281",
+            "5591",
+            "5701"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "annihilation-conquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ant-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "apocalypse-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "atlantis-attacks",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-defenders-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-disassembled",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-doomsday-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-enemy-within",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "axis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "best-ultron-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-panther-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-widow-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "bloodties",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-reading-order-modern-marvel-era",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-marvel-ms-marvel-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "chaos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "childs-play",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "clone-conspiracy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-champions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-chaos",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "damnation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "daredevil-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-phoenix-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-reign-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-web",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-past",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-present",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dead-mans-hand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "deadpool-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "death-of-doctor-strange",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "devils-reign",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-doom-primer",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-octopus-otto-octavius-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-multiverse-of-madness",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "donny-cates-marvel-universe-reading-order-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doomwar",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "eighth-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "emma-frost-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "essential-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "evolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "falcon-sam-wilson-captain-america-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-house-x-rise-powers-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-and-power-pack",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fatal-attractions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "franklin-richards-one-shots",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "gang-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "generations",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "groot-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "guardians-of-the-galaxy-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hawkeye-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroes-reborn-2021",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroic-age-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-full",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-minimal",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hope-summers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-xavier",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinite-destinies",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinity-countdown-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-vs-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-fist-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-2020",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "judgment-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "king-in-black",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kravens-last-hunt",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kree-skrull-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "last-annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "loki-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-2099",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-black-panther",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-captain-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-spider-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-adventures-the-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-fresh-start-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-01",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-02",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-03",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-04",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-05",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-06",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-07",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-08",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-09",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-10",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-11",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-12",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-13",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-14",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-15",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-16",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-17",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-18",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-19",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-20",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-21",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-22",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-23",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-24",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-25",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-26",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-27",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-28",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-29",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-30",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-31",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-32",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-33",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-34",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-35",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-36",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-37",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-38",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-39",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-40",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-41",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-42",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-43",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-44",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-45",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-46",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-47",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-48",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-49",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-50",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-51",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-52",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-53",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-54",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-55",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-56",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-57",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-58",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-59",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-60",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-61",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-62",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-63",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-64",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-65",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-66",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-67",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-68",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-69",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-70",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-71",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-72",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-73",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-74",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-75",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-76",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-77",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-78",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-rising",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-hero-adventures",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-heroes-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-what-if",
+          "sharedCount": 1,
+          "sharedIds": [
+            "18301"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "marvel-zombies-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-best-phoenix-comics",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "maximum-security",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-agatha-all-along",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ant-man-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-infinity-war-endgame",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-black-panther-2018",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-brave-new-world",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-civil-war-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-marvel-2019",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-daredevil-born-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-deadpool-and-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-doctor-strange-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-eternals",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-fantastic-four-first-steps",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-guardians-of-the-galaxy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2-2010",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-3-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-moon-knight",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-she-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-spider-man-brand-new-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-avengers-2012",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-incredible-hulk-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-ragnarok-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-the-dark-world-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thunderbolts",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-visionquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mephisto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-complex",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "midnight-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "minimum-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "modern-x-men-fast-track",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "monsters-unleashed",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-girl-and-devil-dinosaur",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-knight-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ms-marvel-kamala-khan-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "muir-island-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mutant-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mys-tech-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "namor-sub-mariner-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nebula-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "necrosha",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe-trades",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nick-fury-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nova-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "one-world-under-doom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-galactic-storm",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-zero-tolerance",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "original-clone-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-covenant",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phoenix-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "power-pack-pack-attack-and-team-ups",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "professor-x-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "punisher-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reckoning-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reed-richards-and-sue-storms-wedding",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "revolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rise-of-the-midnight-sons",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rocket-raccoon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "runaways-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "scarlet-witch-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-clone-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-coming",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-wars-ii",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "setup-to-modern-timeline",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadow-king-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadowland",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shang-chi-master-of-kung-fu-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silent-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silk-cindy-moon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silver-surfer-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "sins-of-sinister",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-geddon",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-gwen-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-island",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-2099-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-far-from-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-identity-crisis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-no-way-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-the-other",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-verse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spidey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "star-lord-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-imperative",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-death-of-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-defenders-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-night-gwen-stacy-died",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-unbeatable-squirrel-girl",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-vision-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-the-mighty-avenger",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thunderbolts-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "time-and-time-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-marvel-intro",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venom-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venomverse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wandavision",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-kings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-the-realms",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "white-tiger-ava-ayala",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "winter-soldier-bucky-barnes-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-goes-to-hell",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "world-war-hulk-aftersmash",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wraith-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-23-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-cutioners-song",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-force-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-age-of-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-battle-of-the-atom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-curse-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-divided-we-stand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-extermination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-manifest-destiny",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-nation-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-regenesis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-schism",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-trial-of-jean-grey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-utopia",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-of-swords",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-termination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-tinction-agenda",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "young-avengers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ],
+      "reportDigest": "e99f99972a4c2c320abbd70a5910a2e47865657a0968ebe43aee35e40e4f3e2c"
+    },
+    "inventorySha256": "0fdb18978af9a2a2c9f29e68959bc9c8399e06fcd2b7d6670e928d2a0a3452de",
+    "decisions": [
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "sharedCount": 3,
+        "sharedIds": [
+          "5281",
+          "5591",
+          "5701"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "The MC2 imprint sequence keeps its exact source-selected originals; the peer selects a crossover or character appearance from this future. Neither replaces the other."
+      },
+      {
+        "orderId": "marvel-what-if",
+        "sharedCount": 1,
+        "sharedIds": [
+          "18301"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "The MC2 imprint sequence keeps its exact source-selected originals; the peer selects a crossover or character appearance from this future. Neither replaces the other."
+      }
+    ]
+  },
+  "ledgerDigest": "3c619114d9f13ae341caeedd90a11ede24b6da45bb16eaf756403d95f5bd832c"
+}

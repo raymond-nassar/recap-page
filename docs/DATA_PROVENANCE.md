@@ -343,9 +343,9 @@ gaps across 49 source rows. Eighth Day's 4 rows were already shipped and were no
 again. Position 58 exhausts the maintained pre-Maximum Security sequence; at that point, Marvel 2099
 and Second Clone Saga remained deferred for separate review.
 
-Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161-row source order.
-Its blocker record preserves every source occurrence and exact configured result without publishing a
-partial reading list.
+The preserved historical record says Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161-row source order.
+Its blocker record still preserves every source occurrence and exact configured result. The later
+owner-requested gap-tolerant delivery is recorded separately below.
 
 Marvel 2099 publishes a selected alternate-universe guide from its complete 271-position source
 order. The packet preserves 172 distinct exact issues, one later source occurrence of the same
@@ -508,7 +508,7 @@ incidental property of the schema.
 | Compiled for this project | 10 | The whole sequence, by hand. This includes the noncatalog Marvel Knights to Planet X partition parent and the separately attributed Thunderbolts*, Eternals, Deadpool & Wolverine and Fantastic Four: First Steps owner selections. The retired No Way Home checklist remains archived but is not an active source order. See the trail at the top of each file in [`src/data/orders/`](../src/data/orders) |
 | Compiled for this project from Comic Book Herald's guide | 150 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from the owner's selected Comic Book Herald excerpt | 1 | The owner's seven-block Shang-Chi selection, expanded to original issues. The card links to the exact owner input record; its authored source and factual ledger separately credit the verified CBH page and section |
-| Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
+| Compiled for this project from Comic Book Reading Orders | 41 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
 | Selected by raymond-nassar for MCU Prep | 7 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals; Agatha retains one introduction, six Orlando originals and five explicit House of Harkness gaps |
@@ -876,7 +876,7 @@ conditions and two exclusions:
 - Build nothing from the Marvel Master Reading Order.
 - Build nothing from any reading order that site keeps behind its Patreon.
 
-Thirty-nine lists in this repository now come from that site. Each credits Comic Book Reading Orders
+Forty-one lists in this repository now come from that site. Each credits Comic Book Reading Orders
 and links to the exact source page and section followed, which is the pattern the reply permitted.
 The site publishes no terms of use, which makes the reply the only statement of its position that
 exists.
@@ -1100,10 +1100,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:10764-10815`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:10836-10887`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:14977-15114`.
+`src/data/catalog.json:15063-15200`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3273,3 +3273,74 @@ Request-bound responses from the configured metadata provider supply issue ident
 cover addresses. No comic image, provider description or source prose is stored, and no marvel.com
 or read.marvel.com page was requested. `sourceLicense` stays null. No name or description says a
 comic is on Marvel Unlimited. Saved reading data, backups and existing lists are unchanged.
+
+## Owner-requested MC2 and Second Clone Saga
+
+The owner requested [MC2 in Issue 1085](https://github.com/raymond-nassar/recap-page/issues/1085)
+and [Second Clone Saga in Issue 1086](https://github.com/raymond-nassar/recap-page/issues/1086)
+on 2026-11-02, then combined them as one batch. The public CBRO pages were retrieved on
+2026-11-03. Both are event pages with visible single-issue orders, not Master or Patreon-exclusive
+orders. The site's credited-and-linked permission recorded above was rechecked; it applies to
+the factual selection and arrangement, not to source commentary or Marvel's material.
+
+| Guide | Exact source | Source positions | Published exact issues | Metadata gaps | Repeats |
+| --- | --- | --- | --- | --- | --- |
+| MC2 | [CBRO MC2](https://comicbookreadingorders.com/marvel/events/mc2-reading-order/) | 224 | 207 | 17 | 0 |
+| Second Clone Saga | [CBRO Second Clone Saga](https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/) | 161 | 141 | 20 | 0 |
+
+These are local curated-checklist additions under the owner's gap-tolerant publication policy,
+not new releases of the frozen historical CBRO program. Its inventory and blocker records remain
+unchanged. The factual source ledgers in `scripts/data/curated-source-ledgers/` preserve every
+source position, current display label, historical identity, exact resolved vector, and successful
+lookup without a matching original. Their request URLs, retrieval times and response hashes
+remain reproducible without requiring a private page copy or metadata cache.
+
+All source positions and issue numbers match the preserved historical ledgers. The current pages
+omit some leading articles and revise punctuation. MC2's displayed What If...? #105 is What If?
+(1989) #105, as in the existing ledger, not the first volume. No issue identity is changed.
+The [MC2 gap bundle](https://github.com/raymond-nassar/recap-page/issues/1089) and
+[Second Clone Saga gap bundle](https://github.com/raymond-nassar/recap-page/issues/1090)
+name every unresolved comic and failed exact lookup. Each is assigned to the owner and linked
+from its guide Issue. Gaps are not fabricated payload items or silently omitted source positions;
+the published checklists explicitly show the unresolved references outside the resolved selection.
+Both cards say partial reading.
+
+MC2 is an alternate-future imprint spanning several leads, so its `era` classification reaches
+Storylines without claiming a place on the main-continuity Modern Timeline. Its Coming of age
+and Science fiction tags describe teenage successors in an alternative future; no single tone
+is assigned across the imprint. Second Clone Saga is a separate `event`, with 1994 as the
+principal story's start rather than the publication year of recalled origin issues. Its explicit
+Storylines selection keeps it browsable without changing the Modern Timeline cutoff. Its tags
+are Science fiction and Thriller, with Street level as its tone.
+
+The Second Clone Saga is a sequel, not a different depth of the Original Clone Saga. Their
+shared Amazing Spider-Man #149 and #151 are recalled background. The later Clone Conspiracy
+has no shared originals with this selection. All three remain separate stories, and the existing
+two lists are unchanged. Agent content review, not human approval, compared both additions with
+every visible guide and retained hidden source parent. MC2 has two partial relationships;
+Second Clone Saga has seven. The exact shared IDs and bounded decisions are in each source ledger.
+Neither new list duplicates another list, and they share no originals with each other.
+
+The Second Clone Saga's three shared Onslaught originals also enter the earlier guide's
+owner-confirmation compatibility check. A local curated ledger now meets the same reciprocal
+bar as a later CBH mapping: valid factual-ledger and report digests, an approved review, a named
+human or stronger-model disposition, and the exact inverse relationship, count and shared IDs.
+Agent content review alone does not satisfy that bar. The factual ledger digest excludes its
+digest field and relationship review to avoid self-signing; the report, approval and disposition
+separately bind it. A changed ledger or report requires a new disposition. The source ledger
+retains the actual reciprocal authority separately from its original agent content review.
+
+The descriptions are this project's own premise-first wording, not copied source prose. MC2's
+premise is supported independently by [Wikipedia's MC2 overview](https://en.wikipedia.org/wiki/Marvel_Comics_2)
+and [Comic Book Treasury's Mayday Parker guide](https://www.comicbooktreasury.com/mayday-parker-reading-order/).
+Second Clone Saga's premise and sequel distinction are supported independently by
+[Wikipedia's Clone Saga overview](https://en.wikipedia.org/wiki/Clone_Saga) and
+[Comic Book Treasury's Clone Saga guide](https://www.comicbooktreasury.com/spider-man-clone-saga-reading-order/).
+All four were retrieved on 2026-11-03. The payload supports the preview's named series and interleaving.
+
+The configured metadata API supplies the exact identities and digital IDs through request-bound
+responses and the ordinary vendor. Only cover addresses are stored. No source commentary,
+provider description, comic image bytes or Marvel page is copied or fetched. The pages'
+share.marvel.com Read links are never requested. No statement promises Marvel Unlimited access,
+and the metadata gaps are not claims that a comic does not exist. Existing saved reading data,
+backups and issue vectors remain unchanged.

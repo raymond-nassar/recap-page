@@ -2046,7 +2046,7 @@
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:8-92|0": {
     "anchor": "test/helpers/current-reading-library.mjs:8-92",
-    "fp": "be3dc6ddefd7e6fd",
+    "fp": "a439a7753baee935",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:200-226|0": {
@@ -2114,13 +2114,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:14977-15114|0": {
-    "anchor": "src/data/catalog.json:14977-15114",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:15063-15200|0": {
+    "anchor": "src/data/catalog.json:15063-15200",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:10764-10815|0": {
-    "anchor": "src/data/curated-lists.json:10764-10815",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:10836-10887|0": {
+    "anchor": "src/data/curated-lists.json:10836-10887",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },

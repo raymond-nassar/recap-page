@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T23:07:39.400Z",
+  "generatedAt": "2026-11-03T04:39:27.832Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -14507,6 +14507,92 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "mc2",
+      "file": "mc2.json",
+      "name": "MC2",
+      "description": "Spider-Man's daughter May Parker grows into her own hero in a future shared with a new generation of Avengers. Her adventures connect with J2, A-Next, the Fantastic Five and later MC2 crossovers. Unresolved comics remain recorded in the source notes.",
+      "type": "era",
+      "depth": "partial",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "count": 207,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Girl",
+        "May Parker",
+        "A-Next",
+        "J2",
+        "Fantastic Five",
+        "American Dream"
+      ],
+      "keywords": [
+        "MC2"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 18301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5f46ce6981d33",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/mc2-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-03T04:25:24.964Z"
+    },
+    {
+      "id": "second-clone-saga",
+      "file": "second_clone_saga.json",
+      "name": "Second Clone Saga",
+      "description": "Ben Reilly's return forces Peter Parker to question which of them is the original Spider-Man. The struggle follows both men across the Spider-Man titles as clones and the Jackal upend their lives. Unresolved comics remain recorded in the source notes.",
+      "type": "event",
+      "depth": "partial",
+      "storylines": true,
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "street-level"
+      ],
+      "count": 141,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Ben Reilly",
+        "Scarlet Spider",
+        "Kaine",
+        "Jackal"
+      ],
+      "keywords": [
+        "Second Clone Saga"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1994,
+      "coverIssueId": 6537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/57bb551e3146d",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-03T04:39:27.832Z"
     },
     {
       "id": "mcu-prep-daredevil-born-again",

@@ -22,12 +22,11 @@ const eventIds = [...legacyEventIds, 'one-world-under-doom'];
 test('four independently registered events extend the library without becoming MCU or Storylines selections', async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface === undefined).length - 2;
-  // Young readers' owner picks and local curated guides join the rosters but are neither MCU Prep
-  // nor Storylines selections.
+  // Young readers' owner picks and local curated guides join the rosters without becoming MCU Prep.
   const otherAdditions = registeredYoungReaderContracts.length + registeredCuratedGuides.length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
     [220 + laterMcu + otherAdditions, 297 + laterMcu + otherAdditions, 298 + laterMcu + otherAdditions]);
-  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 46]);
+  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 48]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
   const doomIndex = catalog.lists.findIndex((entry) => entry.id === 'one-world-under-doom');
