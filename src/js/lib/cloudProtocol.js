@@ -22,6 +22,7 @@
 
 import { CLOUD_BACKUP_DATABASE, CLOUD_BACKUP_LOCK } from '../storage.js';
 import { MAX_COMPLETE_BACKUP_BYTES, canonical, completeBackupSummary, parseCompleteBackup } from './completeBackup.js';
+import { personalDigest as digestPersonalBackup } from './cloudSync.js';
 
 export const CLOUD_ENVELOPE_FORMAT = 'recap-page-cloud-backup';
 export const CLOUD_ENVELOPE_VERSION = 1;
@@ -34,7 +35,7 @@ export const MAX_CLOUD_BACKUP_BYTES = MAX_COMPLETE_BACKUP_BYTES;
 // stay for good.
 export const CLOUD_PRUNE_PER_BACKUP = 2;
 // What discovery reads at most: the newest streams first, and in each, files until two pass.
-export const CLOUD_DISCOVERY_LIMITS = Object.freeze({ streams: 16, readsPerStream: 4 });
+export const CLOUD_DISCOVERY_LIMITS = Object.freeze({ streams: 16, readsPerStream: 4, retainedReads: 16 });
 // The longest each transport operation may take, which every provider stays within. A read or a create
 // moves at most 32 MiB, and ten minutes carries that at 56 KB a second, a slow mobile link. A list may
 // follow many pages, and on the Windows host it first waits for a create still under way. The engine
@@ -43,14 +44,28 @@ export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read:
 export const CLOUD_DEADLINE_GRACE_MS = 15_000;
 
 const NAME = /^recap-page-backup-v1-([a-f0-9]{32})-([1-9][0-9]{0,15})\.json\.gz$/;
+const KEPT_NAME = /^recap-page-kept-v1-([a-f0-9]{32})-([1-9][0-9]{0,15})-([a-f0-9]{32})\.json\.gz$/;
 const STREAM = /^[a-f0-9]{32}$/;
 const DIGEST = /^[a-f0-9]{64}$/;
 const PROVIDER = /^[a-z][a-z0-9-]{0,31}$/;
 const RECORD_STORE = 'stream';
 const RECORD_SLOT = 'record';
+const SYNC_SLOT = 'sync';
+const KEPT_LEDGER_SLOT = 'kept-ledger';
 const RECORD_OPEN_MS = 5000;
+const KEPT_LIMIT = 3;
+const KEPT_RETRY_WAIT_MS = CLOUD_TRANSPORT_DEADLINES_MS.create;
+const KEPT_STALE_RESERVATION_MS = 60 * 60 * 1000;
+const KEPT_CLEANUP_WAIT_MS = 1000;
 // suspended holds consent an erase has set aside until it forgets or restores the record (S3a-7).
 const RECORD_FIELDS = ['consent', 'device', 'nextGeneration', 'stream', 'suspended', 'validated', 'version'];
+const SYNC_FIELDS = ['connection', 'consentId', 'declinedDigest', 'kept', 'matchedDigest', 'stream', 'version'];
+const KEPT_FIELDS = ['byteDigest', 'connection', 'contentDigest', 'generation', 'id', 'name', 'personalDigest', 'stream'];
+const KEPT_LEDGER_FIELDS = ['entries', 'next', 'stream', 'version'];
+const KEPT_ENTRY_FIELDS = [
+  'byteDigest', 'changedOutside', 'connection', 'contentDigest', 'deleting', 'generation', 'id', 'name', 'order',
+  'personalDigest', 'provider', 'reservedAt', 'size', 'staleAbsent', 'stream', 'verified',
+];
 // The id is random for every consent, so an acknowledgement can tell consent given again from the consent
 // its backup was made under, even for the same connection in the same millisecond (stage 1 review, L1).
 const CONSENT_FIELDS = ['at', 'connection', 'id', 'provider'];
@@ -61,7 +76,7 @@ const MAX_DEVICE_CHARACTERS = 64;
 const INFLATE_SLICE = 1024;
 const NOT_ON = 'Cloud backup is not turned on for this browser, so nothing was uploaded.';
 // Refusals that every later delete in the same account would meet too.
-const STOPS_DELETION = new Set(['needs-sign-in', 'needs-consent', 'not-connected']);
+const STOPS_DELETION = new Set(['needs-sign-in', 'needs-consent', 'not-connected', 'storage']);
 
 export class CloudBackupError extends Error {
   constructor(message, code) {
@@ -72,10 +87,28 @@ export class CloudBackupError extends Error {
 }
 
 function refuse(message, code) { throw new CloudBackupError(message, code); }
+function cleanupStopped(signal) {
+  if (signal?.aborted) refuse('Saved-copy cleanup will be retried.', 'cleanup-stopped');
+}
+function waitForCleanup(operation, signal) {
+  cleanupStopped(signal);
+  return new Promise((resolve, reject) => {
+    const stop = () => reject(new CloudBackupError('Saved-copy cleanup will be retried.', 'cleanup-stopped'));
+    signal.addEventListener('abort', stop, { once: true });
+    operation.then(
+      (value) => { signal.removeEventListener('abort', stop); resolve(value); },
+      (error) => { signal.removeEventListener('abort', stop); reject(error); },
+    );
+  });
+}
 // A record failure can stop any operation, so these say only what went wrong, and each operation adds what
 // that left undone. None claims an outcome its operation did not have (stage 1 review, L3).
 const RECORD_LOST = 'This browser could not keep its cloud backup record.';
 const RECORD_UNREADABLE = 'This browser\'s cloud backup record cannot be read.';
+const SYNC_UNREADABLE = 'This browser\'s cloud sync record cannot be read, so its saved copies were kept.';
+const KEPT_UNREADABLE = 'This browser\'s saved cloud-copy record cannot be read, so its saved copies were kept.';
+const KEPT_UNCONFIRMED = 'The cloud copy could not be confirmed, so nothing was loaded and this device\'s data is unchanged. Try again.';
+const KEPT_CHANGED = 'A saved cloud copy changed outside the app or could not be checked, so it was not deleted. Check it in your cloud folder.';
 // A backup's number another copy of this record already used, by the provider's refusal or a second item
 // under the same name.
 const TAKEN = 'A backup with this number was already in the account, perhaps made by a device restored from this one, so this browser now starts its backups afresh, and this one will be made again.';
@@ -85,6 +118,11 @@ const recordLost = () => new CloudBackupError(RECORD_LOST, 'storage');
 // S3b-7).
 export function isUnreadableRecord(error) {
   return error instanceof CloudBackupError && error.message === RECORD_UNREADABLE;
+}
+// A saved-copy record that is there but fails its checks, as against a read that failed outright, which
+// cannot say whether there is a record at all.
+export function isUnreadableKeptLedger(error) {
+  return error instanceof CloudBackupError && error.message === KEPT_UNREADABLE;
 }
 async function saying(consequence, operation) {
   try { return await operation(); }
@@ -102,11 +140,14 @@ function controlFree(text) {
     return code > 0x1f && (code < 0x7f || code > 0x9f);
   });
 }
+function validConnection(value) {
+  return typeof value === 'string' && value.length > 0 && value.length <= 128 && controlFree(value);
+}
 function hex(bytes) { return [...bytes].map((value) => value.toString(16).padStart(2, '0')).join(''); }
 const mebibytes = (bytes) => bytes / (1024 * 1024);
 // The connection a page names for discovery, a restore or a deletion, as the host reported it.
 function connectionOf(value) {
-  if (typeof value !== 'string' || value.length === 0 || value.length > 128 || !controlFree(value)) {
+  if (!validConnection(value)) {
     refuse('No cloud connection was named, so nothing was read or changed.', 'invalid');
   }
   return value;
@@ -122,6 +163,17 @@ export function cloudBackupName(stream, generation) {
 // format and its gzip compression, so nothing is ever decoded by guessing.
 export function parseCloudBackupName(name) {
   const match = typeof name === 'string' ? NAME.exec(name) : null;
+  if (!match) return null;
+  const generation = Number(match[2]);
+  return Number.isSafeInteger(generation) ? { stream: match[1], generation } : null;
+}
+
+function keptBackupName(stream, generation, id) {
+  return `recap-page-kept-v1-${stream}-${generation}-${id}.json.gz`;
+}
+
+function parseKeptBackupName(name) {
+  const match = typeof name === 'string' ? KEPT_NAME.exec(name) : null;
   if (!match) return null;
   const generation = Number(match[2]);
   return Number.isSafeInteger(generation) ? { stream: match[1], generation } : null;
@@ -143,8 +195,7 @@ export function cloudDeviceLabel(value) {
 // ------------------------------------------------------------------ the record
 
 function validConsent(value) {
-  return exactFields(value, CONSENT_FIELDS) && typeof value.connection === 'string' && value.connection.length > 0
-    && value.connection.length <= 128 && controlFree(value.connection)
+  return exactFields(value, CONSENT_FIELDS) && validConnection(value.connection)
     && typeof value.provider === 'string' && PROVIDER.test(value.provider) && nonNegative(value.at)
     && typeof value.id === 'string' && STREAM.test(value.id);
 }
@@ -170,8 +221,130 @@ function checkRecord(value) {
   return value;
 }
 
-// One record in a database of its own: not a response cache, so cache cleanup never reaches it. Every
-// write asks for strict durability, so its complete event means the record is on disk.
+function validDigest(value) {
+  return typeof value === 'string' && DIGEST.test(value);
+}
+
+function validKept(kept) {
+  const name = parseKeptBackupName(kept?.name);
+  return exactFields(kept, KEPT_FIELDS) && validConnection(kept.connection)
+    && typeof kept.stream === 'string' && STREAM.test(kept.stream)
+    && Number.isSafeInteger(kept.generation) && kept.generation >= 1 && validDigest(kept.personalDigest)
+    && validDigest(kept.contentDigest) && validDigest(kept.byteDigest) && typeof kept.id === 'string' && kept.id.length > 0
+    && name?.stream === kept.stream && name.generation === kept.generation;
+}
+
+function keptReference(entry) {
+  const { connection, stream, generation, personalDigest, contentDigest, byteDigest, id, name } = entry;
+  return { connection, stream, generation, personalDigest, contentDigest, byteDigest, id, name };
+}
+
+function validKeptEntry(entry) {
+  const name = parseKeptBackupName(entry?.name);
+  return exactFields(entry, KEPT_ENTRY_FIELDS) && validConnection(entry.connection)
+    && typeof entry.provider === 'string' && PROVIDER.test(entry.provider)
+    && typeof entry.stream === 'string' && STREAM.test(entry.stream)
+    && Number.isSafeInteger(entry.generation) && entry.generation >= 1
+    && validDigest(entry.personalDigest) && validDigest(entry.contentDigest) && validDigest(entry.byteDigest)
+    && (entry.id === null || (typeof entry.id === 'string' && entry.id.length > 0))
+    && typeof entry.verified === 'boolean' && (!entry.verified || entry.id !== null)
+    && typeof entry.changedOutside === 'boolean'
+    && typeof entry.deleting === 'boolean' && (!entry.deleting || entry.id !== null)
+    && typeof entry.staleAbsent === 'boolean' && (!entry.staleAbsent || entry.id === null)
+    && Number.isSafeInteger(entry.size) && entry.size > 0
+    && Number.isSafeInteger(entry.order) && entry.order >= 1 && nonNegative(entry.reservedAt)
+    && name?.stream === entry.stream && name.generation === entry.generation;
+}
+
+function checkKeptLedger(value) {
+  const valid = exactFields(value, KEPT_LEDGER_FIELDS) && value.version === 1
+    && typeof value.stream === 'string' && STREAM.test(value.stream)
+    && Number.isSafeInteger(value.next) && value.next >= 1 && Array.isArray(value.entries)
+    && value.entries.every((entry) => validKeptEntry(entry) && entry.order < value.next)
+    && new Set(value.entries.map((entry) => entry.name)).size === value.entries.length
+    && new Set(value.entries.map((entry) => entry.order)).size === value.entries.length;
+  if (!valid) refuse(KEPT_UNREADABLE, 'storage');
+  const identities = value.entries.filter((entry) => entry.id !== null)
+    .map((entry) => JSON.stringify([entry.connection, entry.id]));
+  if (new Set(identities).size !== identities.length) refuse(KEPT_UNREADABLE, 'storage');
+  return value;
+}
+
+function checkSyncState(value) {
+  const kept = value?.kept;
+  const valid = exactFields(value, SYNC_FIELDS) && value.version === 1 && validConnection(value.connection)
+    && typeof value.stream === 'string' && STREAM.test(value.stream)
+    && typeof value.consentId === 'string' && STREAM.test(value.consentId)
+    && (value.matchedDigest === null || validDigest(value.matchedDigest))
+    && (value.declinedDigest === null || validDigest(value.declinedDigest))
+    && (kept === null || validKept(kept));
+  if (!valid) refuse(SYNC_UNREADABLE, 'storage');
+  return value;
+}
+
+function currentConsent(value, connection) {
+  const record = value === null ? null : checkRecord(value);
+  if (!record?.consent || record.consent.connection !== connection) {
+    refuse('Cloud backup is not turned on for this connection, so nothing was changed.', 'needs-consent');
+  }
+  return record;
+}
+
+function syncContext({ connection, stream, consentId }) {
+  const named = connectionOf(connection);
+  if (typeof stream !== 'string' || !STREAM.test(stream)
+    || typeof consentId !== 'string' || !STREAM.test(consentId)) {
+    refuse('Cloud sync needs the current device and consent, so nothing was changed.', 'invalid');
+  }
+  return { connection: named, stream, consentId };
+}
+
+function requireSyncContext(value, context) {
+  const record = currentConsent(value, context.connection);
+  if (record.stream !== context.stream || record.consent.id !== context.consentId) {
+    refuse('Cloud backup changed while this was being checked, so nothing was changed.', 'needs-consent');
+  }
+  return record;
+}
+
+function sameSyncContext(state, record) {
+  return state !== null && state.connection === record.consent.connection
+    && state.stream === record.stream && state.consentId === record.consent.id;
+}
+
+function storedContext(value) {
+  if (value === null) return null;
+  let record;
+  try { record = checkRecord(value); }
+  catch (error) {
+    if (!isUnreadableRecord(error)) throw error;
+    return null;
+  }
+  const consent = record.consent ?? record.suspended;
+  return consent ? { connection: consent.connection, stream: record.stream, consentId: consent.id } : null;
+}
+
+function storedStream(value) {
+  if (value === null) return null;
+  try { return checkRecord(value).stream; }
+  catch (error) {
+    if (!isUnreadableRecord(error)) throw error;
+    return null;
+  }
+}
+
+function sameContext(left, right) {
+  if (left === null || right === null) return left === right;
+  return left.connection === right.connection && left.stream === right.stream && left.consentId === right.consentId;
+}
+
+function syncBelongsTo(state, context) {
+  return context !== null && state.connection === context.connection
+    && state.stream === context.stream && state.consentId === context.consentId;
+}
+
+// The cloud database is not a response cache, so cache cleanup never reaches its record or sync key.
+// Every write asks for strict durability, so its complete event means the transaction is on disk.
 export function createCloudRecordStore(factory = globalThis.indexedDB, { timeoutMs = RECORD_OPEN_MS } = {}) {
   let opening = null;
   function open() {
@@ -253,14 +426,108 @@ export function createCloudRecordStore(factory = globalThis.indexedDB, { timeout
       const request = store.get(RECORD_SLOT);
       request.onsuccess = () => {
         const before = request.result ?? null;
-        let after;
-        try { after = change(before); }
-        catch (error) { stop(error); return; }
-        if (after === undefined) { set({ before, after: before }); return; }
-        if (after === null) store.delete(RECORD_SLOT);
-        else store.put(after, RECORD_SLOT);
-        set({ before, after });
+        const sync = store.get(SYNC_SLOT);
+        const key = store.getKey(SYNC_SLOT);
+        const kept = store.get(KEPT_LEDGER_SLOT);
+        const keptKey = store.getKey(KEPT_LEDGER_SLOT);
+        keptKey.onsuccess = () => {
+          let after;
+          try {
+            after = change(before);
+            if (after === undefined) { set({ before, after: before }); return; }
+            const previous = storedContext(before);
+            const next = storedContext(after);
+            if (key.result !== undefined && !sameContext(previous, next)) {
+              if (!previous || !next) store.delete(SYNC_SLOT);
+              else {
+                const state = checkSyncState(sync.result ?? null);
+                if (!syncBelongsTo(state, previous) || before.consent === null) store.delete(SYNC_SLOT);
+                else store.put({
+                  ...state, ...next, matchedDigest: null, declinedDigest: null,
+                  kept: state.kept?.connection === next.connection ? state.kept : null,
+                }, SYNC_SLOT);
+              }
+            }
+            if (keptKey.result !== undefined) {
+              const priorStream = storedStream(before);
+              const nextStream = storedStream(after);
+              if (!priorStream || !nextStream) store.delete(KEPT_LEDGER_SLOT);
+              else {
+                let ledger;
+                try { ledger = checkKeptLedger(kept.result); }
+                catch (error) {
+                  if (!(error instanceof CloudBackupError) || error.message !== KEPT_UNREADABLE) throw error;
+                  ledger = null;
+                }
+                if (ledger && ledger.stream !== priorStream) store.delete(KEPT_LEDGER_SLOT);
+                else if (ledger && priorStream !== nextStream) store.put({ ...ledger, stream: nextStream }, KEPT_LEDGER_SLOT);
+              }
+            }
+            if (after === null) store.delete(RECORD_SLOT);
+            else store.put(after, RECORD_SLOT);
+            set({ before, after });
+          } catch (error) { stop(error); }
+        };
       };
+    }),
+    readSync: () => run('readonly', (store, { set }) => {
+      const request = store.get(RECORD_SLOT);
+      request.onsuccess = () => {
+        const record = request.result ?? null;
+        const sync = store.get(SYNC_SLOT);
+        const key = store.getKey(SYNC_SLOT);
+        key.onsuccess = () => set({ record, sync: sync.result ?? null, syncPresent: key.result !== undefined });
+      };
+    }),
+    writeSync: (change) => run('readwrite', (store, { set, refuse: stop }) => {
+      const request = store.get(RECORD_SLOT);
+      request.onsuccess = () => {
+        const record = request.result ?? null;
+        const sync = store.get(SYNC_SLOT);
+        const key = store.getKey(SYNC_SLOT);
+        key.onsuccess = () => {
+          const before = sync.result ?? null;
+          let after;
+          try { after = change(before, record, key.result !== undefined); }
+          catch (error) { stop(error); return; }
+          if (after === undefined) { set({ before, after: before }); return; }
+          if (after === null) store.delete(SYNC_SLOT);
+          else store.put(after, SYNC_SLOT);
+          set({ before, after });
+        };
+      };
+    }),
+    readKeptLedger: () => run('readonly', (store, { set }) => {
+      const request = store.get(RECORD_SLOT);
+      request.onsuccess = () => {
+        const record = request.result ?? null;
+        const ledger = store.get(KEPT_LEDGER_SLOT);
+        const key = store.getKey(KEPT_LEDGER_SLOT);
+        key.onsuccess = () => set({ record, ledger: ledger.result ?? null, ledgerPresent: key.result !== undefined });
+      };
+    }),
+    writeKeptLedger: (change) => run('readwrite', (store, { set, refuse: stop }) => {
+      const request = store.get(RECORD_SLOT);
+      request.onsuccess = () => {
+        const record = request.result ?? null;
+        const ledger = store.get(KEPT_LEDGER_SLOT);
+        const key = store.getKey(KEPT_LEDGER_SLOT);
+        key.onsuccess = () => {
+          const before = ledger.result ?? null;
+          let after;
+          try { after = change(before, record, key.result !== undefined); }
+          catch (error) { stop(error); return; }
+          if (after === undefined) { set({ before, after: before }); return; }
+          if (after === null) store.delete(KEPT_LEDGER_SLOT);
+          else store.put(after, KEPT_LEDGER_SLOT);
+          set({ before, after });
+        };
+      };
+    }),
+    forget: () => run('readwrite', (store) => {
+      store.delete(RECORD_SLOT);
+      store.delete(SYNC_SLOT);
+      store.delete(KEPT_LEDGER_SLOT);
     }),
     async close() {
       const pending = opening;
@@ -328,8 +595,8 @@ export class CloudBackupProtocol {
   //   read(id, { connection }) resolves to the item's bytes, refusing with 'too-large' an item whose stored
   //   bytes exceed 32 MiB, without returning them, and with 'not-found' one that is gone.
   //   create(name, bytes, { connection }) makes a new item and resolves to it. It never knowingly replaces
-  //   one, refuses with 'exists' a name it can tell is taken, and a create refused with any code but
-  //   'timeout' never appears later.
+  //   one, and refuses with 'exists' a name it can tell is taken. A lost host reply can be reported as
+  //   unavailable rather than timeout, so a kept-copy reservation survives either kind of failure.
   //   delete(id, { connection }) removes one, and an item already gone counts as removed.
   //   Each settles within CLOUD_TRANSPORT_DEADLINES_MS, and a refusal may carry the wait the provider
   //   asked for as retryAfterMs. Item ids are opaque and may equal names.
@@ -342,11 +609,15 @@ export class CloudBackupProtocol {
     if (['list', 'read', 'create', 'delete'].some((operation) => typeof transport?.[operation] !== 'function')) {
       throw new TypeError('Cloud backup needs a transport that can list, read, create and delete.');
     }
-    if (typeof records?.read !== 'function' || typeof records?.write !== 'function' || typeof clock !== 'function') {
+    if (['read', 'write', 'readSync', 'writeSync', 'readKeptLedger', 'writeKeptLedger', 'forget']
+      .some((operation) => typeof records?.[operation] !== 'function')
+      || typeof clock !== 'function') {
       throw new TypeError('Cloud backup needs its record and a clock.');
     }
     Object.assign(this, { transport, records, cryptoProvider, streams, clock, maxBytes, limits, deadlines, graceMs, setTimer, clearTimer });
     this.locks = typeof locks?.request === 'function' ? locks : null;
+    this.keptRetryCursor = 0;
+    this.keptCleanupProblems = new Set();
   }
 
   // Every transport call is held to its deadline and the grace, so a provider that never answers cannot
@@ -376,6 +647,563 @@ export class CloudBackupProtocol {
   async record() {
     const value = await this.records.read();
     return value === null ? null : checkRecord(value);
+  }
+
+  async keptLedger() {
+    const { record: rawRecord, ledger, ledgerPresent } = await this.records.readKeptLedger();
+    const record = rawRecord === null ? null : checkRecord(rawRecord);
+    if (!ledgerPresent || record === null) return null;
+    const held = checkKeptLedger(ledger);
+    return held.stream === record.stream ? held : null;
+  }
+
+  async changeKeptLedger(change) {
+    let expected;
+    await this.records.writeKeptLedger((rawLedger, rawRecord, present) => {
+      if (rawRecord === null) throw recordLost();
+      const record = checkRecord(rawRecord);
+      const prior = present ? checkKeptLedger(rawLedger) : null;
+      const ledger = prior?.stream === record.stream ? prior : { version: 1, stream: record.stream, next: 1, entries: [] };
+      expected = checkKeptLedger(change(ledger, record));
+      return expected;
+    });
+    const held = await this.keptLedger();
+    if (canonical(held) !== canonical(expected)) throw recordLost();
+    return held;
+  }
+
+  async keptCopySummary({ connection } = {}) {
+    const named = connection === null ? null : connectionOf(connection);
+    const ledger = await this.keptLedger();
+    const entries = ledger?.entries ?? [];
+    const own = entries.filter((entry) => named !== null && entry.connection === named);
+    const unresolved = own.filter((entry) => entry.changedOutside || entry.deleting || entry.staleAbsent).length;
+    const excess = Math.max(0, own.filter((entry) => entry.id !== null && !entry.deleting && !entry.changedOutside).length - KEPT_LIMIT);
+    return {
+      earlier: entries.filter((entry) => named === null || entry.connection !== named).length,
+      attention: unresolved + excess,
+      problem: named !== null && this.keptCleanupProblems.has(named),
+    };
+  }
+
+  async earlierKeptCopies(options) {
+    return (await this.keptCopySummary(options)).earlier;
+  }
+
+  async syncState({ connection } = {}) {
+    const named = connectionOf(connection);
+    const { record: rawRecord, sync, syncPresent } = await this.records.readSync();
+    const record = currentConsent(rawRecord, named);
+    if (!syncPresent) return null;
+    const state = checkSyncState(sync);
+    if (!sameSyncContext(state, record)) return null;
+    return { ...state, kept: state.kept?.connection === named ? state.kept : null, current: true };
+  }
+
+  async rememberSync({ connection, stream, consentId, matchedDigest, declinedDigest } = {}) {
+    const context = syncContext({ connection, stream, consentId });
+    if ([matchedDigest, declinedDigest].some((value) => value !== undefined && value !== null && !validDigest(value))) {
+      refuse('Cloud sync needs valid saved-state digests, so nothing was changed.', 'invalid');
+    }
+    await this.records.writeSync((rawState, rawRecord, present) => {
+      const record = requireSyncContext(rawRecord, context);
+      const prior = present ? checkSyncState(rawState) : null;
+      const same = sameSyncContext(prior, record);
+      return {
+        version: 1, connection: context.connection, stream: record.stream, consentId: record.consent.id,
+        matchedDigest: matchedDigest === undefined ? (same ? prior.matchedDigest : null) : matchedDigest,
+        declinedDigest: declinedDigest === undefined ? (same ? prior.declinedDigest : null) : declinedDigest,
+        kept: same && prior.kept?.connection === context.connection ? prior.kept : null,
+      };
+    });
+    const { record: rawRecord, sync, syncPresent } = await this.records.readSync();
+    const record = requireSyncContext(rawRecord, context);
+    const held = syncPresent ? checkSyncState(sync) : null;
+    if (!held || !sameSyncContext(held, record) || (matchedDigest !== undefined && held.matchedDigest !== matchedDigest)
+      || (declinedDigest !== undefined && held.declinedDigest !== declinedDigest)) throw recordLost();
+    return { ...held, current: true };
+  }
+
+  async forgetKeptEntry(entry) {
+    await this.changeKeptLedger((ledger) => {
+      const current = ledger.entries.find((held) => held.name === entry.name);
+      if (!current || canonical(current) !== canonical(entry)) throw recordLost();
+      return { ...ledger, entries: ledger.entries.filter((held) => held.name !== entry.name) };
+    });
+  }
+
+  keptCleanup() {
+    const controller = new AbortController();
+    const { signal } = controller;
+    return {
+      signal,
+      wait: async (operation, provider = false) => {
+        cleanupStopped(signal);
+        // Provider calls already have their own deadlines; this shorter wait bounds local records.
+        if (provider) return operation;
+        const timer = this.setTimer(() => controller.abort(), KEPT_CLEANUP_WAIT_MS);
+        try { return await waitForCleanup(operation, signal); }
+        finally { this.clearTimer(timer); }
+      },
+    };
+  }
+
+  // An exact reserved name is only an intent. It becomes an identity after unique listing and byte checks.
+  async checkKeptEntry(entry, connection, cleanup = null) {
+    const signal = cleanup?.signal;
+    const wait = cleanup?.wait ?? ((operation) => operation);
+    const listed = await wait(this.listed(connection), true);
+    cleanupStopped(signal);
+    const matches = listed.retained.filter((item) => item.name === entry.name);
+    const count = listed.nameCounts.get(entry.name) ?? 0;
+    if (count === 0 && entry.id === null) return null;
+    if (count === 0 && entry.id !== null) {
+      try { await wait(this.call('read', entry.id, { connection }), true); }
+      catch (error) {
+        cleanupStopped(signal);
+        if (error?.code === 'not-found') return null;
+        throw error;
+      }
+      cleanupStopped(signal);
+      refuse(KEPT_UNCONFIRMED, 'verify');
+    }
+    if (count !== 1 || matches.length !== 1 || listed.duplicateIds.has(matches[0].id)
+      || (entry.id !== null && entry.id !== matches[0].id)
+      || (matches[0].size !== null && matches[0].size > this.maxBytes)) refuse(KEPT_UNCONFIRMED, 'verify');
+    const item = matches[0];
+    let bytes;
+    try { bytes = bytesOf(await wait(this.call('read', item.id, { connection }), true)); }
+    catch (error) {
+      cleanupStopped(signal);
+      if (error?.code === 'not-found') return null;
+      if (error?.code === 'too-large') refuse(KEPT_UNCONFIRMED, 'verify');
+      throw error;
+    }
+    cleanupStopped(signal);
+    if (!bytes || bytes.byteLength > this.maxBytes || await this.digest(bytes) !== entry.byteDigest) {
+      refuse(KEPT_UNCONFIRMED, 'verify');
+    }
+    cleanupStopped(signal);
+    const checked = await this.decode(bytes, item);
+    cleanupStopped(signal);
+    if (!checked) refuse(KEPT_UNCONFIRMED, 'verify');
+    const backup = await parseCompleteBackup(checked.text, { cryptoProvider: this.cryptoProvider });
+    if (backup.digest !== entry.contentDigest || await digestPersonalBackup(backup, this.cryptoProvider) !== entry.personalDigest) {
+      refuse(KEPT_UNCONFIRMED, 'verify');
+    }
+    cleanupStopped(signal);
+    const latest = await wait(this.listed(connection), true);
+    cleanupStopped(signal);
+    const again = latest.retained.filter((candidate) => candidate.name === entry.name);
+    if (latest.nameCounts.get(entry.name) !== 1 || again.length !== 1 || again[0].id !== item.id
+      || latest.duplicateIds.has(item.id) || (again[0].size !== null && again[0].size !== bytes.byteLength)) {
+      refuse(KEPT_UNCONFIRMED, 'verify');
+    }
+    if (entry.id === item.id && entry.verified && !entry.changedOutside) return entry;
+    const held = await wait(this.changeKeptLedger((ledger) => {
+      cleanupStopped(signal);
+      const current = ledger.entries.find((candidate) => candidate.name === entry.name);
+      if (!current || canonical(current) !== canonical(entry)) throw recordLost();
+      return {
+        ...ledger,
+        entries: ledger.entries.map((candidate) => candidate.name === entry.name
+          ? { ...candidate, id: item.id, verified: true, changedOutside: false, staleAbsent: false } : candidate),
+      };
+    }));
+    return held.entries.find((candidate) => candidate.name === entry.name);
+  }
+
+  async checkKeptBeforeDeletion(entry, connection, cleanup = null) {
+    const signal = cleanup?.signal;
+    const wait = cleanup?.wait ?? ((operation) => operation);
+    let checked;
+    try { checked = await this.checkKeptEntry(entry, connection, cleanup); }
+    catch (error) {
+      cleanupStopped(signal);
+      if (error instanceof CloudBackupError && error.code === 'storage') throw error;
+      await wait(this.markKeptForAttention(entry));
+      const code = STOPS_DELETION.has(error?.code) ? error.code : 'changed';
+      throw Object.assign(new CloudBackupError(KEPT_CHANGED, code), { changedOutside: true });
+    }
+    cleanupStopped(signal);
+    if (checked || entry.id === null) return checked;
+    await wait(this.markKeptForAttention(entry));
+    throw Object.assign(new CloudBackupError(KEPT_CHANGED, 'changed'), { changedOutside: true });
+  }
+
+  async markKeptForAttention(entry) {
+    if (entry.changedOutside) return entry;
+    const held = await this.changeKeptLedger((ledger) => {
+      const current = ledger.entries.find((candidate) => candidate.name === entry.name);
+      if (!current || canonical(current) !== canonical(entry)) throw recordLost();
+      return {
+        ...ledger,
+        entries: ledger.entries.map((candidate) => candidate.name === entry.name
+          ? { ...candidate, changedOutside: true } : candidate),
+      };
+    });
+    return held.entries.find((candidate) => candidate.name === entry.name);
+  }
+
+  async noteKeptProblem(entry, connection) {
+    this.keptCleanupProblems.add(connection);
+    const controller = new AbortController();
+    const { signal } = controller;
+    const timer = this.setTimer(() => controller.abort(), KEPT_CLEANUP_WAIT_MS);
+    try {
+      const current = (await waitForCleanup(this.keptLedger(), signal))?.entries.find((candidate) => candidate.name === entry.name
+        && candidate.connection === connection && candidate.byteDigest === entry.byteDigest);
+      cleanupStopped(signal);
+      if (current && !current.deleting) await waitForCleanup(this.markKeptForAttention(current), signal);
+    } catch (error) {
+      if (signal.aborted && error?.code === 'cleanup-stopped') return;
+      if (!(error instanceof CloudBackupError) || error.code !== 'storage') throw error;
+    } finally {
+      this.clearTimer(timer);
+    }
+  }
+
+  async markKeptDeleting(entry) {
+    if (entry.deleting) return entry;
+    const held = await this.changeKeptLedger((ledger) => {
+      const current = ledger.entries.find((candidate) => candidate.name === entry.name);
+      if (!current || canonical(current) !== canonical(entry) || entry.id === null) throw recordLost();
+      return {
+        ...ledger,
+        entries: ledger.entries.map((candidate) => candidate.name === entry.name
+          ? { ...candidate, deleting: true } : candidate),
+      };
+    });
+    return held.entries.find((candidate) => candidate.name === entry.name);
+  }
+
+  async finishKeptDeletion(entry, connection, onRemoved = () => {}, cleanup = null) {
+    const signal = cleanup?.signal;
+    const wait = cleanup?.wait ?? ((operation) => operation);
+    let bytes;
+    try { bytes = bytesOf(await wait(this.call('read', entry.id, { connection }), true)); }
+    catch (error) {
+      cleanupStopped(signal);
+      if (error?.code === 'not-found') {
+        await wait(this.forgetKeptEntry(entry));
+        return;
+      }
+      if (STOPS_DELETION.has(error?.code)) throw error;
+      await wait(this.markKeptForAttention(entry));
+      throw Object.assign(new CloudBackupError(KEPT_CHANGED, 'changed'), { changedOutside: true });
+    }
+    cleanupStopped(signal);
+    const matches = bytes && bytes.byteLength <= this.maxBytes && await this.digest(bytes) === entry.byteDigest;
+    cleanupStopped(signal);
+    if (!matches) {
+      await wait(this.markKeptForAttention(entry));
+      throw Object.assign(new CloudBackupError(KEPT_CHANGED, 'changed'), { changedOutside: true });
+    }
+    const latest = await wait(this.keptLedger());
+    cleanupStopped(signal);
+    if (!latest?.entries.some((candidate) => canonical(candidate) === canonical(entry) && candidate.deleting)) throw recordLost();
+    await wait(this.remove(entry.id, connection), true);
+    onRemoved();
+    await wait(this.forgetKeptEntry(entry));
+  }
+
+  async reconcileKept(connection) {
+    const ledger = await this.keptLedger();
+    const pending = ledger?.entries.filter((entry) => entry.connection === connection && !entry.verified && !entry.deleting) ?? [];
+    for (const entry of pending.filter((candidate) => candidate.id === null && !candidate.staleAbsent)) {
+      const checked = await this.checkKeptEntry(entry, connection);
+      if (checked
+        || this.now() < entry.reservedAt || this.now() - entry.reservedAt < KEPT_STALE_RESERVATION_MS) continue;
+      const listed = await this.listed(connection);
+      if (listed.nameCounts.has(entry.name)) continue;
+      await this.changeKeptLedger((current) => {
+        const held = current.entries.find((candidate) => candidate.name === entry.name);
+        if (!held || canonical(held) !== canonical(entry)) throw recordLost();
+        return {
+          ...current,
+          entries: current.entries.map((candidate) => candidate.name === entry.name
+            ? { ...candidate, staleAbsent: true, changedOutside: true } : candidate),
+        };
+      });
+    }
+    const known = pending.filter((entry) => entry.id !== null && !entry.changedOutside);
+    if (known.length === 0) return;
+    const cleanup = this.keptCleanup();
+    for (const entry of known) {
+      try {
+        cleanupStopped(cleanup.signal);
+        await this.checkKeptBeforeDeletion(entry, connection, cleanup);
+      } catch (error) {
+        if (cleanup.signal.aborted) {
+          this.keptCleanupProblems.add(connection);
+          return;
+        }
+        if (error instanceof CloudBackupError && error.code === 'storage') {
+          await this.noteKeptProblem(entry, connection);
+          continue;
+        }
+        if (error?.changedOutside && !STOPS_DELETION.has(error.code)) continue;
+        throw error;
+      }
+    }
+  }
+
+  async rememberKept(context, entry) {
+    const kept = keptReference(entry);
+    await this.records.writeSync((rawState, rawRecord, present) => {
+      const record = requireSyncContext(rawRecord, context);
+      const prior = present ? checkSyncState(rawState) : null;
+      const same = sameSyncContext(prior, record);
+      return {
+        version: 1, connection: context.connection, stream: record.stream, consentId: record.consent.id,
+        matchedDigest: same ? prior.matchedDigest : null,
+        declinedDigest: same ? prior.declinedDigest : null,
+        kept,
+      };
+    });
+    const { record: rawRecord, sync, syncPresent } = await this.records.readSync();
+    const record = requireSyncContext(rawRecord, context);
+    const held = syncPresent ? checkSyncState(sync) : null;
+    if (!held || !sameSyncContext(held, record) || canonical(held.kept) !== canonical(kept)) throw recordLost();
+    return kept;
+  }
+
+  async pruneKept(context) {
+    const cleanup = this.keptCleanup();
+    const { signal, wait } = cleanup;
+    let activeEntry = null;
+    try {
+      const ledger = await wait(this.keptLedger());
+      if (!ledger) return;
+      const own = ledger.entries.filter((entry) => entry.connection === context.connection && entry.id !== null)
+        .sort((a, b) => b.order - a.order);
+      const protectedReference = async (entry) => {
+        cleanupStopped(signal);
+        const { record: rawRecord, sync, syncPresent } = await wait(this.records.readSync());
+        cleanupStopped(signal);
+        const record = requireSyncContext(rawRecord, context);
+        const state = syncPresent ? checkSyncState(sync) : null;
+        return sameSyncContext(state, record) && state.kept?.id === entry.id && state.kept.name === entry.name;
+      };
+      let listed;
+      try { listed = await wait(this.listed(context.connection), true); }
+      catch (error) {
+        // The verified replacement is already the go-back copy, so only a stop on deletion itself may fail it.
+        if (STOPS_DELETION.has(error?.code)) throw error;
+        this.keptCleanupProblems.add(context.connection);
+        return;
+      }
+      const checkedEntries = [];
+      for (const entry of own.filter((candidate) => !candidate.deleting && !candidate.changedOutside)) {
+        activeEntry = entry;
+        const matches = listed.retained.filter((item) => item.name === entry.name);
+        const unique = entry.verified && listed.nameCounts.get(entry.name) === 1 && matches.length === 1
+          && matches[0].id === entry.id && !listed.duplicateIds.has(entry.id);
+        if (unique && matches[0].size === entry.size) {
+          checkedEntries.push(entry);
+          continue;
+        }
+        if (!unique || matches[0].size !== null) {
+          await wait(this.markKeptForAttention(entry));
+          continue;
+        }
+        // iCloud lists a copy that is not downloaded without a size, so its bytes are the only check.
+        try {
+          if (await this.checkKeptBeforeDeletion(entry, context.connection, cleanup)) checkedEntries.push(entry);
+        } catch (error) {
+          if (!error?.changedOutside || (STOPS_DELETION.has(error.code) && error.code !== 'storage')) throw error;
+        }
+      }
+      for (const entry of checkedEntries.slice(KEPT_LIMIT)) {
+        activeEntry = entry;
+        if (await protectedReference(entry)) continue;
+        const marked = await wait(this.markKeptDeleting(entry));
+        cleanupStopped(signal);
+        try {
+          await this.finishKeptDeletion(marked, context.connection, () => {}, cleanup);
+        } catch (error) {
+          if (signal.aborted) {
+            this.keptCleanupProblems.add(context.connection);
+            return;
+          }
+          if (error instanceof CloudBackupError && error.code === 'storage') {
+            await this.noteKeptProblem(marked, context.connection);
+            return;
+          }
+          if (STOPS_DELETION.has(error?.code) && error.code !== 'storage') throw error;
+          // The durable intent remains visible and can be retried on a later pass.
+        }
+      }
+      const retry = ledger.entries.filter((entry) => entry.connection === context.connection
+        && (entry.deleting || entry.changedOutside));
+      if (retry.length === 0) {
+        this.keptCleanupProblems.delete(context.connection);
+        return;
+      }
+      const entry = retry[this.keptRetryCursor % retry.length];
+      activeEntry = entry;
+      this.keptRetryCursor += 1;
+      if (await protectedReference(entry)) {
+        this.keptCleanupProblems.delete(context.connection);
+        return;
+      }
+      try {
+        const operation = entry.deleting
+          ? this.finishKeptDeletion(entry, context.connection, () => {}, cleanup)
+          : this.checkKeptBeforeDeletion(entry, context.connection, cleanup);
+        await operation;
+      } catch (error) {
+        if (signal.aborted) return;
+        if (STOPS_DELETION.has(error?.code) && error.code !== 'storage') throw error;
+        // The recorded attention stays visible until a later retry can resolve it.
+      }
+      this.keptCleanupProblems.delete(context.connection);
+    } catch (error) {
+      if (signal.aborted && error?.code === 'cleanup-stopped') {
+        this.keptCleanupProblems.add(context.connection);
+        return;
+      }
+      if (error instanceof CloudBackupError && error.code === 'storage') {
+        if (activeEntry) await this.noteKeptProblem(activeEntry, context.connection);
+        else this.keptCleanupProblems.add(context.connection);
+        return;
+      }
+      throw error;
+    }
+  }
+
+  async keepBackup({ connection, stream, consentId, generation, personalDigest, contentDigest } = {}) {
+    const context = syncContext({ connection, stream, consentId });
+    if (!Number.isSafeInteger(generation) || generation < 1 || !validDigest(personalDigest) || !validDigest(contentDigest)) {
+      refuse('That backup cannot be kept because its identity is incomplete.', 'invalid');
+    }
+    if (!this.locks) refuse('This browser cannot safely keep a cloud copy while other tabs are open.', 'unsupported');
+    this.supported();
+    return this.exclusive(async () => {
+      const verified = (record) => {
+        const entry = record.validated.find((item) => item.generation === generation);
+        if (!entry) refuse('That backup is no longer a verified copy on this device.', 'gone');
+        if (entry.personalDigest !== personalDigest) refuse('That backup does not match the saved copy to keep.', 'invalid');
+      };
+      requireSyncContext(await this.records.read(), context);
+      await this.reconcileKept(context.connection);
+      let ledger = await this.keptLedger();
+      const candidates = (ledger?.entries ?? []).filter((entry) => entry.connection === context.connection
+        && entry.stream === stream && entry.generation === generation && entry.personalDigest === personalDigest
+        && entry.contentDigest === contentDigest && entry.verified && !entry.deleting && !entry.changedOutside)
+        .sort((a, b) => b.order - a.order);
+      let kept = null;
+      for (const entry of candidates) {
+        try { kept = await this.checkKeptBeforeDeletion(entry, context.connection); }
+        catch (error) {
+          if (error instanceof CloudBackupError && error.code === 'storage') {
+            await this.noteKeptProblem(entry, context.connection);
+            continue;
+          }
+          if (STOPS_DELETION.has(error?.code)) throw error;
+          continue;
+        }
+        if (kept) break;
+      }
+      if (!kept) {
+        ledger = await this.keptLedger();
+        const pending = (ledger?.entries ?? []).filter((entry) => entry.connection === context.connection
+          && entry.id === null && !entry.staleAbsent);
+        // A recorded copy that no pass has yet verified or flagged could still be this very copy, however
+        // the pass that should have settled it ended.
+        const unsettled = (ledger?.entries ?? []).some((entry) => entry.connection === context.connection
+          && entry.id !== null && !entry.verified && !entry.changedOutside && !entry.deleting);
+        if (unsettled || pending.length >= KEPT_LIMIT || pending.some((entry) => entry.id === null
+          && (this.now() < entry.reservedAt || this.now() - entry.reservedAt < KEPT_RETRY_WAIT_MS))) {
+          refuse(KEPT_UNCONFIRMED, 'verify');
+        }
+        verified(requireSyncContext(await this.records.read(), context));
+        const { known, nameCounts, ids, duplicateIds } = await this.listed(context.connection);
+        const source = known.filter((item) => item.stream === stream && item.generation === generation);
+        if (source.length === 0) refuse('That backup is no longer in the cloud account. Nothing was changed.', 'gone');
+        if (source.length !== 1 || nameCounts.get(source[0].name) !== 1 || duplicateIds.has(source[0].id)) {
+          refuse('That backup has an ambiguous cloud identity, so none was selected.', 'invalid');
+        }
+        let bytes;
+        try { bytes = bytesOf(await this.call('read', source[0].id, { connection: context.connection })); }
+        catch (error) {
+          if (error?.code === 'not-found') refuse('That backup is no longer in the cloud account. Nothing was changed.', 'gone');
+          if (error?.code === 'too-large') refuse('That backup cannot be checked, so it was not kept.', 'invalid');
+          throw error;
+        }
+        const checked = await this.decode(bytes, source[0]);
+        if (!checked) refuse('That backup was changed or cannot be read, so it was not kept.', 'invalid');
+        const backup = await parseCompleteBackup(checked.text, { cryptoProvider: this.cryptoProvider });
+        if (backup.digest !== contentDigest || await digestPersonalBackup(backup, this.cryptoProvider) !== personalDigest) {
+          refuse('That backup does not match the saved copy to keep.', 'invalid');
+        }
+        const name = keptBackupName(stream, generation, this.randomId());
+        if (nameCounts.has(name)) refuse('A kept copy already uses that name, so nothing was changed.', 'exists');
+        const byteDigest = await this.digest(bytes);
+        let reserved;
+        ledger = await this.changeKeptLedger((current, record) => {
+          verified(requireSyncContext(record, context));
+          if (!Number.isSafeInteger(current.next + 1)) throw recordLost();
+          reserved = {
+            connection: context.connection, provider: record.consent.provider, stream, generation,
+            personalDigest, contentDigest, name, byteDigest, id: null, verified: false,
+            changedOutside: false, deleting: false, staleAbsent: false, order: current.next, reservedAt: this.now(), size: bytes.byteLength,
+          };
+          return { ...current, next: current.next + 1, entries: [...current.entries, reserved] };
+        });
+        if (!ledger.entries.some((entry) => canonical(entry) === canonical(reserved))) throw recordLost();
+        let made;
+        try { made = itemOf(await this.call('create', name, bytes, { connection: context.connection })); }
+        catch (error) {
+          if (error?.code === 'exists') await this.forgetKeptEntry(reserved);
+          throw error;
+        }
+        if (!made || made.name !== name || ids.has(made.id)) {
+          refuse('The kept cloud copy was not created separately, so it cannot be used.', 'verify');
+        }
+        ledger = await this.changeKeptLedger((current) => {
+          const entry = current.entries.find((candidate) => candidate.name === name);
+          if (!entry || canonical(entry) !== canonical(reserved)) throw recordLost();
+          return {
+            ...current, entries: current.entries.map((candidate) => candidate.name === name
+              ? { ...candidate, id: made.id } : candidate),
+          };
+        });
+        const recorded = ledger.entries.find((entry) => entry.name === name);
+        kept = await this.checkKeptEntry(recorded, context.connection);
+        if (!kept) refuse(KEPT_UNCONFIRMED, 'verify');
+      }
+      const reference = await this.rememberKept(context, kept);
+      await this.pruneKept(context);
+      requireSyncContext(await this.records.read(), context);
+      return reference;
+    });
+  }
+
+  async fetchKeptBackup({ connection, stream, consentId, kept } = {}) {
+    const context = syncContext({ connection, stream, consentId });
+    if (!validKept(kept)) refuse('That kept backup cannot be found.', 'invalid');
+    if (kept.connection !== context.connection) {
+      refuse('That kept backup belongs to an earlier cloud connection. Nothing was changed.', 'gone');
+    }
+    const stillKept = async () => {
+      const { record, sync, syncPresent } = await this.records.readSync();
+      const current = requireSyncContext(record, context);
+      const state = syncPresent ? checkSyncState(sync) : null;
+      if (!sameSyncContext(state, current) || canonical(state.kept) !== canonical(kept)) {
+        refuse('That kept backup is no longer the one offered. Nothing was changed.', 'gone');
+      }
+    };
+    await stillKept();
+    const item = await this.retainedByName(kept.name, context.connection, kept.id);
+    const checked = await this.fetchBackup(item, { connection: context.connection, expectedByteDigest: kept.byteDigest });
+    const backup = await parseCompleteBackup(checked.text, { cryptoProvider: this.cryptoProvider });
+    if (backup.digest !== kept.contentDigest || await digestPersonalBackup(backup, this.cryptoProvider) !== kept.personalDigest) {
+      refuse('That kept backup was changed, so it was not restored. Nothing was changed.', 'invalid');
+    }
+    await this.retainedByName(kept.name, context.connection, item.id);
+    await stillKept();
+    return checked;
   }
 
   // For the coordinator: this browser's newest verified backup, read afresh every time, because another
@@ -479,8 +1307,10 @@ export class CloudBackupProtocol {
   // device's. Read back raw, because a record too damaged to check is exactly the one being removed.
   async forget() {
     return saying('Cloud backup may still be on.', async () => {
-      await this.records.write(() => null);
-      if (await this.records.read() !== null) throw recordLost();
+      await this.records.forget();
+      const { record, syncPresent } = await this.records.readSync();
+      const { ledgerPresent } = await this.records.readKeptLedger();
+      if (record !== null || syncPresent || ledgerPresent) throw recordLost();
       return null;
     });
   }
@@ -624,20 +1454,35 @@ export class CloudBackupProtocol {
     };
   }
 
-  // Every item whose name this version writes, with its stream and generation, and how many others there
-  // were. The others are never read or touched.
+  // Ordinary backups and independent kept copies have distinct names so ordinary pruning cannot remove
+  // a kept copy, including when another installation owns a copy of this stream.
   async listed(connection) {
     const items = await this.call('list', { connection });
     if (!Array.isArray(items)) refuse('The cloud account did not answer with a list.', 'invalid');
     const known = [];
+    const retained = [];
+    const nameCounts = new Map();
+    const seenIds = new Set();
+    const duplicateIds = new Set();
     let unrecognized = 0;
+    let malformedRetained = 0;
     for (const value of items) {
+      if (typeof value?.id === 'string' && value.id.length > 0) {
+        if (seenIds.has(value.id)) duplicateIds.add(value.id);
+        seenIds.add(value.id);
+      }
+      const backupName = typeof value?.name === 'string' ? parseCloudBackupName(value.name) : null;
+      const keptName = typeof value?.name === 'string' ? parseKeptBackupName(value.name) : null;
+      if (backupName || keptName) nameCounts.set(value.name, (nameCounts.get(value.name) ?? 0) + 1);
       const item = itemOf(value);
-      const parsed = item && parseCloudBackupName(item.name);
+      const parsed = item && backupName;
+      const kept = item && keptName;
       if (parsed) known.push({ ...item, ...parsed });
+      else if (kept) retained.push({ ...item, ...kept });
+      else if (typeof value?.name === 'string' && value.name.startsWith('recap-page-kept-v1-')) malformedRetained += 1;
       else unrecognized += 1;
     }
-    return { known, unrecognized };
+    return { known, retained, nameCounts, unrecognized, ids: seenIds, duplicateIds, malformedRetained };
   }
 
   async discard(id, connection) {
@@ -726,7 +1571,13 @@ export class CloudBackupProtocol {
     const record = await saying('The backup was uploaded, but it does not count as made.',
       () => this.acknowledge({ stream, generation, consent, personalDigest, uploadedAt: this.now() }));
     // The backup is made and verified, so a failure from here on only leaves a file for a later backup.
-    try { await this.prune(record, known, connection); } catch { /* deletes may lag */ }
+    try { await this.prune(record, known, connection); }
+    catch (error) {
+      if (error instanceof CloudBackupError && error.code === 'storage') {
+        throw new CloudBackupError(`${error.message} This backup was uploaded and checked, but older copies were not removed.`, 'storage');
+      }
+      // Other delete failures can be retried by a later backup.
+    }
     return { stream, generation, name };
   }
 
@@ -736,6 +1587,8 @@ export class CloudBackupProtocol {
   async prune(record, known, connection) {
     const floor = record.validated[1]?.generation;
     if (floor === undefined) return 0;
+    const current = await this.record();
+    if (!current || current.stream !== record.stream || canonical(current.consent) !== canonical(record.consent)) return 0;
     const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)
       .sort((a, b) => a.generation - b.generation).slice(0, CLOUD_PRUNE_PER_BACKUP);
     for (const item of stale) await this.remove(item.id, connection);
@@ -748,11 +1601,12 @@ export class CloudBackupProtocol {
   // stream, the newest file that passes every check and the one before it. It only lists and reads, so it
   // never creates anything in the account. The connection is the one the host reports, since discovery
   // comes before this browser's consent.
-  async discover({ connection } = {}) {
+  async discover({ connection, includeRetained = false } = {}) {
     this.supported();
     const named = connectionOf(connection);
+    if (typeof includeRetained !== 'boolean') refuse('The kept-backup discovery option is invalid.', 'invalid');
     const own = await this.record().then((record) => record?.stream ?? null, () => null);
-    const { known, unrecognized } = await this.listed(named);
+    const { known, retained, nameCounts, unrecognized, duplicateIds, malformedRetained } = await this.listed(named);
     const groups = new Map();
     let oversized = 0;
     for (const item of known) {
@@ -783,12 +1637,64 @@ export class CloudBackupProtocol {
       }
       devices.push({ stream, own: stream === own, current: found[0] ?? null, previous: found[1] ?? null, invalid, files: items.length });
     }
-    return { own, devices, omitted: Math.max(0, ordered.length - this.limits.streams), unrecognized: unrecognized + oversized };
+    if (!includeRetained) {
+      return {
+        own, devices, omitted: Math.max(0, ordered.length - this.limits.streams),
+        unrecognized: unrecognized + oversized + retained.length + malformedRetained,
+      };
+    }
+    let retainedInvalid = malformedRetained;
+    const candidates = retained.filter((item) => {
+      if (duplicateIds.has(item.id) || nameCounts.get(item.name) !== 1 || (item.size !== null && item.size > this.maxBytes)) {
+        retainedInvalid += 1;
+        return false;
+      }
+      return true;
+    }).sort((a, b) => (b.created ?? 0) - (a.created ?? 0)
+      || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+    const limit = this.limits.retainedReads ?? CLOUD_DISCOVERY_LIMITS.retainedReads;
+    if (!Number.isSafeInteger(limit) || limit < 0) refuse('The kept-backup discovery limit is invalid.', 'invalid');
+    let retainedOmitted = Math.max(0, candidates.length - limit);
+    const checkedRetained = [];
+    for (const item of candidates.slice(0, limit)) {
+      const checked = await this.inspect(item, named, { includeByteDigest: true });
+      if (checked === undefined) { retainedOmitted += 1; continue; }
+      if (checked === null) { retainedInvalid += 1; continue; }
+      const shown = { ...checked, name: item.name, contentDigest: JSON.parse(checked.text).digest };
+      delete shown.text;
+      checkedRetained.push(shown);
+    }
+    let visibleRetained = checkedRetained;
+    if (checkedRetained.length) {
+      const { retained: latestRetained, nameCounts: latestCounts, duplicateIds: latestDuplicates } = await this.listed(named);
+      const latestByName = new Map();
+      for (const item of latestRetained) {
+        if (!latestByName.has(item.name)) latestByName.set(item.name, []);
+        latestByName.get(item.name).push(item);
+      }
+      visibleRetained = checkedRetained.filter((shown) => {
+        const matches = latestByName.get(shown.name) ?? [];
+        const count = latestCounts.get(shown.name) ?? 0;
+        if (count > 1) { retainedInvalid += count; return false; }
+        const item = matches[0];
+        if (!item || item.id !== shown.id) { retainedOmitted += 1; return false; }
+        if (latestDuplicates.has(item.id) || (item.size !== null && item.size > this.maxBytes)) {
+          retainedInvalid += 1;
+          return false;
+        }
+        if (item.size !== null && item.size !== shown.size) { retainedOmitted += 1; return false; }
+        return true;
+      });
+    }
+    return {
+      own, devices, retained: visibleRetained, retainedInvalid, retainedOmitted,
+      omitted: Math.max(0, ordered.length - this.limits.streams), unrecognized: unrecognized + oversized,
+    };
   }
 
   // The checked file, null when it fails a check, or undefined when it was gone by the time it was read. A
   // read refused as too large is a file that fails a check, since its stored bytes pass the cap.
-  async inspect(item, connection) {
+  async inspect(item, connection, { expectedByteDigest, includeByteDigest = false } = {}) {
     let bytes;
     try { bytes = bytesOf(await this.call('read', item.id, { connection })); }
     catch (error) {
@@ -796,38 +1702,87 @@ export class CloudBackupProtocol {
       if (error?.code === 'too-large') return null;
       throw error;
     }
-    return this.decode(bytes, item);
+    if (!bytes || bytes.byteLength > this.maxBytes) return null;
+    const byteDigest = expectedByteDigest !== undefined || includeByteDigest ? await this.digest(bytes) : null;
+    if (expectedByteDigest !== undefined && byteDigest !== expectedByteDigest) return null;
+    const checked = await this.decode(bytes, item);
+    return checked && includeByteDigest ? { ...checked, byteDigest } : checked;
   }
 
   // A backup chosen from discovery, read and checked again, because the account may have changed since.
   // Its text goes to the complete restore engine, which checks it once more and journals before writing.
-  async fetchBackup({ id, stream, generation } = {}, { connection } = {}) {
+  async fetchBackup({ id, stream, generation } = {}, { connection, expectedByteDigest } = {}) {
     this.supported();
     const named = connectionOf(connection);
     if (typeof id !== 'string' || id.length === 0 || typeof stream !== 'string' || !STREAM.test(stream)
-      || !Number.isSafeInteger(generation) || generation < 1) refuse('That backup cannot be found.', 'invalid');
-    const checked = await this.inspect({ id, stream, generation }, named);
+      || !Number.isSafeInteger(generation) || generation < 1
+      || (expectedByteDigest !== undefined && !validDigest(expectedByteDigest))) refuse('That backup cannot be found.', 'invalid');
+    const checked = await this.inspect({ id, stream, generation }, named, { expectedByteDigest });
     if (checked === undefined) refuse('That backup is no longer in the cloud account. Nothing was changed.', 'gone');
     if (checked === null) refuse('That backup was changed or cannot be read, so it was not restored. Nothing was changed.', 'invalid');
     return checked;
   }
 
+  async retainedByName(name, connection, expectedId = null) {
+    const { retained, nameCounts, duplicateIds } = await this.listed(connection);
+    const candidates = retained.filter((item) => item.name === name);
+    if ((nameCounts.get(name) ?? 0) > 1 || candidates.length > 1
+      || candidates.some((item) => duplicateIds.has(item.id))) {
+      refuse('More than one kept cloud copy has that name or identity, so none was selected.', 'invalid');
+    }
+    if (candidates.length === 0) {
+      if (nameCounts.has(name)) refuse('That kept backup cannot be checked, so nothing was restored.', 'invalid');
+      refuse('That kept backup is no longer in the cloud account. Nothing was changed.', 'gone');
+    }
+    const item = candidates[0];
+    if (expectedId !== null && item.id !== expectedId) {
+      refuse('That kept backup is no longer the one selected. Nothing was changed.', 'gone');
+    }
+    if (item.size !== null && item.size > this.maxBytes) {
+      refuse('That kept backup is too large to check, so nothing was restored.', 'invalid');
+    }
+    return item;
+  }
+
+  async fetchRetainedBackup({ id, name, stream, generation, contentDigest, byteDigest, device, createdAt } = {}, { connection } = {}) {
+    const named = connectionOf(connection);
+    const parsed = parseKeptBackupName(name);
+    if (typeof id !== 'string' || id.length === 0 || !parsed || parsed.stream !== stream || parsed.generation !== generation
+      || !validDigest(contentDigest) || !validDigest(byteDigest) || !validDevice(device) || !nonNegative(createdAt)) {
+      refuse('That kept backup cannot be found.', 'invalid');
+    }
+    const item = await this.retainedByName(name, named, id);
+    const checked = await this.fetchBackup(item, { connection: named, expectedByteDigest: byteDigest });
+    if (JSON.parse(checked.text).digest !== contentDigest || checked.device !== device || checked.createdAt !== createdAt) {
+      refuse('That kept backup was changed, so it was not restored. Nothing was changed.', 'invalid');
+    }
+    await this.retainedByName(name, named, id);
+    return checked;
+  }
+
   // ---------------------------------------------------------------- deleting
 
-  // "Delete this device's cloud backups": consent is withdrawn first, then every file of this stream is
-  // deleted, every generation, in the account of the connection the host reports. It waits for a backup
-  // another tab has under way, so a file that backup creates cannot be missed. Other streams and
-  // unrecognized files are never touched.
+  // Consent is withdrawn before the lock, so another tab cannot count a backup that deletion removes.
+  // Independently kept files are selected only from the ledger for this exact connection.
   async deleteOwnBackups({ connection } = {}) {
     const named = connectionOf(connection);
     const record = await saying('Nothing was deleted, and cloud backup may still be on.', () => this.withdraw());
     if (!record) return { deleted: 0, failed: [] };
     return this.exclusive(async () => {
+      const failed = [];
+      let ledger = null;
+      try { ledger = await this.keptLedger(); }
+      catch (error) {
+        if (!(error instanceof CloudBackupError) || error.code !== 'storage') throw error;
+        failed.push({ id: null, name: null, code: 'storage' });
+      }
+      const retained = ledger?.entries.filter((entry) => entry.connection === named) ?? [];
+      const earlier = ledger?.entries.filter((entry) => entry.connection !== named).length ?? 0;
       const { known } = await this.listed(named);
       const own = known.filter((item) => item.stream === record.stream).sort((a, b) => a.generation - b.generation);
       let deleted = 0;
       let stopped = null;
-      const failed = [];
+      let attention = 0;
       for (const item of own) {
         if (stopped) { failed.push({ id: item.id, name: item.name, code: stopped }); continue; }
         try {
@@ -840,7 +1795,31 @@ export class CloudBackupProtocol {
           if (STOPS_DELETION.has(code)) stopped = code;
         }
       }
-      return { deleted, failed };
+      for (const entry of retained) {
+        if (stopped) {
+          failed.push({ id: entry.id, name: entry.name, code: stopped });
+          continue;
+        }
+        let removed = false;
+        try {
+          const checked = entry.id !== null ? entry : await this.checkKeptBeforeDeletion(entry, named);
+          if (checked) {
+            const marked = await this.markKeptDeleting(checked);
+            await this.finishKeptDeletion(marked, named, () => { removed = true; deleted += 1; });
+          } else {
+            await this.markKeptForAttention(entry);
+            attention += 1;
+          }
+        } catch (error) {
+          const code = typeof error?.code === 'string' ? error.code : 'transient';
+          failed.push({
+            id: entry.id, name: entry.name, code, ...(removed ? { deleted: true } : {}),
+            ...(error?.changedOutside ? { changedOutside: true } : {}),
+          });
+          if (STOPS_DELETION.has(code)) stopped = code;
+        }
+      }
+      return { deleted, failed, ...(earlier ? { earlier } : {}), ...(attention ? { attention } : {}) };
     });
   }
 

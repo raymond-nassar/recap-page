@@ -163,16 +163,16 @@ export const ownerNoWayHomeActualData = {
       await page.waitForSelector(card(legacyId));
       await preview(legacyId, legacyExpected, width);
       await click(page, '#preview-close');
-      await goto('lines');
-      await page.waitForSelector('#view-lines:not([hidden]) .catalog-card');
-      const storylines = await page.evaluate((retiredId) => ({
-        choices: document.querySelectorAll('#view-lines .catalog-card').length,
-        retiredCards: document.querySelectorAll(`#view-lines [data-story="list:${retiredId}"]`).length,
-        retiredImports: document.querySelectorAll(`#view-lines button[data-act="import"][data-key="${retiredId}"]`).length,
+      await goto('genres?type=science-fiction');
+      await page.waitForSelector('#view-genres:not([hidden]) .catalog-card');
+      const genres = await page.evaluate((retiredId) => ({
+        choices: document.querySelectorAll('#view-genres .catalog-card').length,
+        retiredCards: document.querySelectorAll(`#view-genres [data-story="list:${retiredId}"]`).length,
+        retiredImports: document.querySelectorAll(`#view-genres button[data-act="import"][data-key="${retiredId}"]`).length,
       }), id);
-      t.check(`${width}px populated Storylines offers no retired card or import control`,
-        storylines.choices > 0 && storylines.retiredCards === 0 && storylines.retiredImports === 0,
-        JSON.stringify(storylines));
+      t.check(`${width}px populated Genres offers no retired card or import control`,
+        genres.choices > 0 && genres.retiredCards === 0 && genres.retiredImports === 0,
+        JSON.stringify(genres));
     }
     await page.setViewport({ width: 1280, height: 900 });
     await goto('marvel-on-screen');

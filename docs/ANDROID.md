@@ -512,7 +512,8 @@ Android assets and the shared desktop entry. Its fixed 16-case matrix covers 320
 both themes, 150/200% text-token stress, landscape and desktop, plus 700/701px boundary
 measurements. It measures full-width prose, timeline markers, complete credits and gap text,
 meaningful accessibility order, Preview/Add and filter/sort compatibility. Its 320px 200% case
-also checks that the Storylines and MCU Prep search fields fit at 320 and 360px. Its 360px 150%
+also checks that the Genres dropdowns and MCU Prep and Young readers search fields fit at 320 and
+360px. Its 360px 150%
 case also checks that Preview offers no offline copy and says nothing about one, because the
 Android app runs no service worker (#928). Cover geometry
 uses an original local test image, never publisher artwork. Use `--case=M02` for one case;

@@ -8,6 +8,8 @@ import {
   CATALOG_SHELVES,
   HOME_CATEGORIES,
   PUBLISHING_AGES,
+  PUBLISHING_CATEGORIES,
+  catalogEntries,
   catalogListBrowseRoute,
   catalogListShelf,
   decadeSections,
@@ -15,35 +17,37 @@ import {
   filterBySpotlightKind,
   groupCatalog,
   inPublishingAge,
+  isPublishingCategoryLeaf,
   modernTimelineFeaturedList,
-  modernTimelineStories,
+  modernTimelineLists,
   parseCatalog,
-  publishingAgeGroups,
+  publishingCategoryStories,
   resetCatalogNarrowing,
   shelfLists,
   shelfSections,
   pathPlacements,
   shelfStories,
+  storyTypeFacets,
+  storyTypeStories,
   storyYear,
   storylinesLists,
+  storylinesStories,
   timelineYears,
 } from '../src/js/lib/catalog.js';
-import { VIEWS } from '../src/js/lib/route.js';
+import { mcuPrepSections } from '../src/js/lib/mcuPrep.js';
+import { VIEWS, parseRoute } from '../src/js/lib/route.js';
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 
-// The catalog is split across four screens. Four screens is four chances to drop a story, and a
-// story reachable from no screen at all is the worst outcome available here: it is bundled with the
-// app, listed in no index, and the reader has no way to learn it exists. So the partition is
-// asserted as a property rather than as four counts, and it is asserted at both levels, because a
-// story is only whole on a shelf if every one of its readings came with it.
+// Internal shelves remain a partition even though browse screens can overlap. The reachability
+// check below also requires every bundled list to appear on at least one active screen.
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
 const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
 
-test('Storylines discovery overlaps canonical shelves with complete original groups and no duplicate IDs', () => {
-  const projected = HOME_CATEGORIES.find((category) => category.key === 'storylines').select(stories);
+test('the retained Storylines classification preserves complete original groups and no duplicate IDs', () => {
+  const projected = storylinesStories(stories);
   const ids = projected.flatMap((story) => story.lists.map((list) => list.id));
   for (const id of ['civil-war-essential', 'civil-war', 'civil-war-avengers',
     'house-of-m', 'house-of-m-essential', 'secret-invasion', 'secret-invasion-essential',
@@ -65,9 +69,8 @@ test('Storylines discovery overlaps canonical shelves with complete original gro
     ['hickman-minimal', 'avengers-doomsday-secret-wars', 'hickman-full']);
 });
 
-// MCU Prep lists are companions to films and series rather than complete storylines (#1066), so
-// they are found on the MCU Prep screen and in search, never on Storylines.
-test('Storylines holds no MCU Prep list while eras and creator runs stay on it', () => {
+// The historical projection excludes MCU Prep companions and retains eras and creator runs.
+test('the historical Storylines projection excludes MCU Prep and retains eras and creator runs', () => {
   const companions = catalog.lists.filter((list) => list.type === 'screen-companion');
   assert.equal(companions.length, currentReadingCensus.mcu);
   const ids = new Set(storylinesLists(catalog.lists).map((list) => list.id));
@@ -75,19 +78,26 @@ test('Storylines holds no MCU Prep list while eras and creator runs stay on it',
   for (const type of ['era', 'creator-run']) {
     const kept = catalog.lists.filter((list) => list.type === type);
     assert.ok(kept.length > 0, `no ${type} lists are bundled`);
-    for (const list of kept) assert.ok(ids.has(list.id), `${list.id} left Storylines`);
+    for (const list of kept) assert.ok(ids.has(list.id), `${list.id} left the historical Storylines projection`);
   }
   const lines = CATALOG_SHELVES.find((shelf) => shelf.key === 'lines');
   for (const text of [lines.blurb, lines.empty]) assert.doesNotMatch(text, /companion/i);
 });
 
-test('an MCU Prep list opens from MCU Prep while every other list keeps its canonical shelf', () => {
+test('each issue breadcrumb resolves to an active browse screen', () => {
+  const timeline = new Set(modernTimelineLists(catalog.lists).map(({ id }) => id));
   for (const list of catalog.lists) {
-    const expected = list.type === 'screen-companion' ? 'marvel-on-screen' : catalogListShelf(catalog.lists, list.id);
-    assert.equal(catalogListBrowseRoute(catalog.lists, list.id), expected, list.id);
+    const shelf = catalogListShelf(catalog.lists, list.id);
+    const expected = list.type === 'screen-companion' ? 'marvel-on-screen'
+      : shelf === 'lines' || (shelf === 'catalog' && !timeline.has(list.id)) ? 'genres' : shelf;
+    const route = catalogListBrowseRoute(catalog.lists, list.id);
+    assert.equal(route, expected, list.id);
+    assert.ok(VIEWS.includes(route), `${list.id} names a retired screen`);
   }
   assert.equal(catalogListBrowseRoute(catalog.lists, 'avengers-doomsday-secret-wars'), 'marvel-on-screen');
-  assert.equal(catalogListBrowseRoute(catalog.lists, 'hickman-minimal'), 'lines');
+  assert.equal(catalogListBrowseRoute(catalog.lists, 'hickman-minimal'), 'genres');
+  assert.equal(catalogListBrowseRoute(catalog.lists, 'dark-phoenix-saga'), 'genres');
+  assert.equal(catalogListBrowseRoute(catalog.lists, 'house-of-m'), 'catalog');
   for (const [lists, id] of [[null, 'a'], [catalog.lists, ''], [catalog.lists, 'missing']]) {
     assert.equal(catalogListBrowseRoute(lists, id), null);
   }
@@ -224,7 +234,7 @@ test('a path arrival clears the subset that would hide Essential Avengers', () =
   assert.equal(filterBySpotlightKind(spotlights, state.spotlight).includes(essential), true);
 });
 
-test('every story reaches exactly one screen', () => {
+test('every story belongs to exactly one internal shelf', () => {
   const reached = new Map();
   for (const key of keys) {
     for (const story of shelfStories(stories, key)) {
@@ -235,45 +245,64 @@ test('every story reaches exactly one screen', () => {
   const unreachable = stories
     .filter((s) => !reached.has(s.key))
     .map((s) => `${s.name ?? s.lists[0].name} (${s.lists.map((l) => l.type).join('/')})`);
-  assert.deepEqual(unreachable, [], `listed on no screen at all: ${unreachable.join(', ')}`);
+  assert.deepEqual(unreachable, [], `listed on no shelf at all: ${unreachable.join(', ')}`);
 
   const twice = [...reached.entries()].filter(([, on]) => on.length > 1);
-  assert.deepEqual(twice, [], `listed on more than one screen: ${twice.map(([k, on]) => `${k} on ${on.join(' and ')}`).join(', ')}`);
+  assert.deepEqual(twice, [], `listed on more than one shelf: ${twice.map(([k, on]) => `${k} on ${on.join(' and ')}`).join(', ')}`);
 });
 
-test('the screens sum to the catalog, in stories and in reading paths alike', () => {
+test('the internal shelves sum to the catalog, in stories and in reading paths alike', () => {
   const byStory = keys.reduce((n, key) => n + shelfStories(stories, key).length, 0);
-  assert.equal(byStory, stories.length, 'the screens and the catalog disagree about how many stories exist');
+  assert.equal(byStory, stories.length, 'the shelves and the catalog disagree about how many stories exist');
 
   const byList = keys.reduce((n, key) => n + shelfLists(catalog.lists, key).length, 0);
-  assert.equal(byList, catalog.lists.length, 'the screens and the catalog disagree about how many orders exist');
+  assert.equal(byList, catalog.lists.length, 'the shelves and the catalog disagree about how many orders exist');
 });
 
-test('filtering Modern Timeline leaves every story on a discovery path', () => {
-  const discovered = new Set();
-  const add = (matches) => {
-    for (const story of matches) discovered.add(story.key);
-  };
+test('every bundled Reading List remains reachable without the retired Storylines screen', () => {
+  assert.equal(HOME_CATEGORIES.some(({ key }) => key === 'storylines'), false);
+  assert.equal(VIEWS.includes('lines'), false);
+  const entries = catalogEntries(catalog.lists);
+  const enabled = (route) => HOME_CATEGORIES.some((category) => category.route === route)
+    && VIEWS.includes(route);
+  const ids = (stories) => stories.flatMap((story) => story.lists.map((list) => list.id));
+  const reachable = new Set();
+  const timeline = new Set(enabled('catalog') ? modernTimelineLists(catalog.lists).map(({ id }) => id) : []);
+  if (enabled('catalog')) timeline.add(modernTimelineFeaturedList(catalog.lists)?.id);
+  const genres = new Set();
+  if (enabled('genres')) {
+    for (const { key } of storyTypeFacets(entries).types) {
+      for (const id of ids(storyTypeStories(entries, { type: key }))) genres.add(id);
+    }
+  }
+  const ages = new Set();
+  if (enabled('marvel-ages')) {
+    for (const category of PUBLISHING_CATEGORIES.filter(isPublishingCategoryLeaf)) {
+      if (!VIEWS.includes(category.route)) continue;
+      for (const id of ids(publishingCategoryStories(entries, category.key))) ages.add(id);
+    }
+  }
+  for (const set of [timeline, genres, ages]) for (const id of set) reachable.add(id);
+  for (const [route, shelf] of [['spotlights', 'spotlights'], ['young-readers', 'young-readers']]) {
+    if (enabled(route)) for (const list of shelfLists(catalog.lists, shelf)) reachable.add(list.id);
+  }
+  const companions = mcuPrepSections(catalog.lists, null).flatMap((section) => section.entries.map(({ list }) => list.id));
+  if (enabled('marvel-on-screen')) for (const id of companions) reachable.add(id);
 
-  add(modernTimelineStories(stories));
-  add(shelfStories(stories, 'lines'));
-  add(shelfStories(stories, 'spotlights'));
-  add(shelfStories(stories, 'young-readers'));
-  add(publishingAgeGroups(stories).stories);
-
-  const featured = modernTimelineFeaturedList(catalog.lists);
-  const featuredStory = stories.find((story) => story.lists.includes(featured));
-  assert.ok(featuredStory, 'the featured setup guide has no catalog story');
-  discovered.add(featuredStory.key);
-
-  const missing = stories.filter((story) => !discovered.has(story.key)).map((story) => story.key);
-  assert.deepEqual(missing, [], `stories disappeared from every discovery path: ${missing.join(', ')}`);
+  const missing = catalog.lists.filter(({ id }) => !reachable.has(id)).map(({ id }) => id);
+  assert.deepEqual(missing, [], `lists on no active browse screen: ${missing.join(', ')}`);
+  assert.deepEqual(companions.filter((id) => genres.has(id)), [], 'MCU Prep stays on its own screen');
+  const events = storylinesLists(catalog.lists).filter(({ type }) => type === 'event');
+  assert.equal(events.length, 31);
+  for (const list of events) {
+    assert.ok(genres.has(list.id), `${list.id} is missing from Genres`);
+    if (list.timeline < 1998) assert.ok(ages.has(list.id), `${list.id} is missing from Marvel Ages`);
+    else assert.ok(timeline.has(list.id), `${list.id} is missing from Modern Timeline`);
+  }
 });
 
-// A story is assigned by all of its readings together, so a story read two ways cannot be torn in
-// half and drawn on two screens. No bundled story mixes types today, which is why this is asserted
-// on a fixture: the rule decides nothing yet, and it decides everything the first time one does.
-test('a story whose readings disagree about type is not split across two screens', () => {
+// A story is classified by all its readings together, even though browse categories may overlap.
+test('a story whose readings disagree about type is not split across shelves', () => {
   const mixed = [{
     key: 'mixed',
     lists: [
@@ -282,34 +311,33 @@ test('a story whose readings disagree about type is not split across two screens
     ],
   }];
   const on = keys.filter((key) => shelfStories(mixed, key).length);
-  assert.deepEqual(on.length, 1, `a mixed story was drawn on ${on.length} screens: ${on.join(', ')}`);
+  assert.deepEqual(on.length, 1, `a mixed story was assigned to ${on.length} shelves: ${on.join(', ')}`);
   const fallback = CATALOG_SHELVES.find((shelf) => !shelf.types);
-  assert.equal(on[0], fallback.key, 'a mixed story went to a typed screen rather than to the one that takes everything');
+  assert.equal(on[0], fallback.key, 'a mixed story went to a typed shelf rather than the fallback');
 });
 
 // Exactly one shelf takes whatever the others refuse. Two would make the assignment depend on which
-// row is written first; none would let a new type fall off every screen at once.
-test('exactly one screen takes what the others refuse', () => {
+// row is written first; none would leave a new type without a classification.
+test('exactly one shelf takes what the others refuse', () => {
   const open = CATALOG_SHELVES.filter((shelf) => !shelf.types);
   assert.equal(open.length, 1, 'the shelves declare no single home for a type none of them names');
 });
 
-test('a type no screen names still reaches a reader', () => {
+test('a type no shelf names still receives a classification', () => {
   const odd = [{ key: 'odd', lists: [{ id: 'odd', name: 'Odd', type: 'not-a-type', timeline: 2006 }] }];
   const on = keys.filter((key) => shelfStories(odd, key).length);
-  assert.equal(on.length, 1, `an unknown type was drawn on ${on.length} screens`);
+  assert.equal(on.length, 1, `an unknown type was assigned to ${on.length} shelves`);
 });
 
-test('screen companions remain reachable on the existing Storylines screen', () => {
+test('the internal fallback classification still includes screen companions', () => {
   const companion = { key: 'screen', lists: [{ type: 'screen-companion' }] };
   assert.deepEqual(keys.filter((key) => shelfStories([companion], key).length), ['lines']);
-  // The fourth is Young readers, added by #897 as its lists' one screen.
-  assert.equal(CATALOG_SHELVES.length, 4, 'a fifth browse screen was added');
+  // Young readers is the fourth internal shelf, independently of overlapping browse categories.
+  assert.equal(CATALOG_SHELVES.length, 4, 'a fifth internal shelf was added');
 });
 
-// #897. Young readers is chosen by audience, so it is the one screen for every young readers' list
-// of any type, and no other screen takes one. The table's order decides none of it.
-test('young readers\' lists reach Young readers alone, whatever their type', () => {
+// #897. The Young readers shelf is chosen by audience rather than type or table order.
+test('young readers\' lists use the Young readers shelf, whatever their type', () => {
   const young = shelfLists(catalog.lists, 'young-readers');
   assert.deepEqual(young.map((list) => list.id).sort(),
     catalog.lists.filter((list) => list.audience === 'young-readers').map((list) => list.id).sort());
@@ -329,10 +357,7 @@ test('young readers\' lists reach Young readers alone, whatever their type', () 
     'a story whose readings disagree about audience goes where a story mixing types goes');
 });
 
-// An empty screen is dropped rather than drawn as a heading with nothing under it, the same rule the
-// eras follow. Home draws every shelf, and a search narrowing the catalog to one kind of reading is
-// a state a reader reaches rather than a theoretical one.
-test('a screen with nothing on it is not drawn', () => {
+test('an empty shelf section is not drawn', () => {
   const events = shelfStories(stories, 'catalog');
   assert.ok(events.length, 'the events shelf is empty');
   const drawn = shelfSections(events);
@@ -340,7 +365,7 @@ test('a screen with nothing on it is not drawn', () => {
   assert.equal(drawn[0].key, 'catalog');
 });
 
-test('every screen carries the words its own empty state and heading need', () => {
+test('every internal shelf carries heading and empty-state metadata', () => {
   for (const shelf of CATALOG_SHELVES) {
     for (const field of ['key', 'heading', 'blurb', 'empty']) {
       assert.equal(typeof shelf[field], 'string', `the ${shelf.key} shelf has no ${field}`);
@@ -349,17 +374,17 @@ test('every screen carries the words its own empty state and heading need', () =
     assert.equal('sub' in shelf, false, `the ${shelf.key} shelf still carries a redundant subtitle`);
   }
   const headings = CATALOG_SHELVES.map((shelf) => shelf.heading);
-  assert.equal(new Set(headings).size, headings.length, 'two screens share a heading');
+  assert.equal(new Set(headings).size, headings.length, 'two shelves share a heading');
 });
 
-test('Modern Timeline uses named eras and Storylines uses decade breaks', () => {
+test('Modern Timeline uses named eras and the historical Storylines grouping uses decade breaks', () => {
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').heading, 'Modern Timeline');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').sections, 'eras');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'lines').sections, 'decades');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'spotlights').sections, null);
 });
 
-test('Storylines decade sections account for every story exactly once', () => {
+test('historical Storylines decade sections account for every story exactly once', () => {
   const storylines = shelfStories(stories, 'lines');
   const sections = decadeSections(storylines);
   const drawn = sections.flatMap((section) => section.stories);
@@ -398,11 +423,15 @@ test('browse cards take exactly the first authored sentence', () => {
   assert.equal(firstSentence(null), '');
 });
 
-// The shelf key doubles as the view id, so a shelf the router does not know is a rail entry leading
-// nowhere and a screen with no address.
-test('every screen is a route the app can reach', () => {
+// The retained fallback classification is not a screen; its old address opens Genres instead.
+test('active shelf screens remain routable and the fallback address opens Genres', () => {
   for (const shelf of CATALOG_SHELVES) {
-    assert.ok(VIEWS.includes(shelf.key), `the ${shelf.key} shelf is not a view the router accepts`);
+    if (shelf.key === 'lines') {
+      assert.equal(VIEWS.includes(shelf.key), false);
+      assert.equal(parseRoute('#/lines').view, 'genres');
+    } else {
+      assert.ok(VIEWS.includes(shelf.key), `the ${shelf.key} shelf is not a view the router accepts`);
+    }
   }
 });
 
@@ -433,30 +462,19 @@ test('an undated story is not guessed into a publishing age', () => {
 
 // ------------------------------------------------------------- path links
 
-// A "Next" that crosses a screen boundary is a link, so it has to know which screen. The answer
-// travels on the stop rather than being worked out by whichever renderer drew the row, because a
-// shelf's renderer only ever sees its own share of the catalog and could not resolve a stop that is
-// not its.
-test('every path stop carries the screen it is drawn on', () => {
+test('every path stop retains its internal shelf classification', () => {
   const placed = pathPlacements(catalog.paths, catalog.lists);
   assert.ok(placed.size >= 2, 'the catalog ships a reading path');
   for (const [key, placement] of placed) {
     assert.ok(placement.first, `${key} carries no head of its path, so its name can link nowhere`);
     for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
-      assert.ok(keys.includes(stop.shelf), `${key}'s neighbour ${stop.key} names a screen that exists`);
+      assert.ok(keys.includes(stop.shelf), `${key}'s neighbour ${stop.key} has no classification`);
       assert.equal('onHome' in stop, false, `${key}'s neighbour ${stop.key} carries retired Home placement`);
     }
   }
 });
 
-// The one that keeps the link honest, and the reason arriving clears the destination's search box
-// and facet chips. A link names one order and lands the reader at the top of a screen; if that
-// order is not on the screen at all, the app has told them something untrue. Nothing at render time
-// can repair that, so it is settled here instead: the screen a stop names is a screen that lists
-// it, for every stop of every path, at both the story level and the reading level the facet counts
-// are taken from. The head of the path is in this set because the path's own name links to it, so
-// it makes the same promise the forward link does and has to keep it the same way.
-test('every stop is listed on the screen its own link names', () => {
+test('every stop belongs to its internal shelf at story and reading level', () => {
   const placed = pathPlacements(catalog.paths, catalog.lists);
   const named = new Set();
   for (const placement of placed.values()) {
@@ -467,11 +485,11 @@ test('every stop is listed on the screen its own link names', () => {
   for (const stop of named) {
     assert.ok(
       shelfStories(stories, stop.shelf).some((s) => s.key === stop.key),
-      `${stop.name} is linked to ${stop.shelf}, which does not list it`,
+      `${stop.name} is classified under ${stop.shelf}, which does not contain it`,
     );
     assert.ok(
       groupCatalog(shelfLists(catalog.lists, stop.shelf)).some((s) => s.key === stop.key),
-      `${stop.name}'s readings do not reach ${stop.shelf}, so that screen would count it and not draw it`,
+      `${stop.name}'s readings do not belong to ${stop.shelf}`,
     );
   }
 });

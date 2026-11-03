@@ -170,12 +170,11 @@ export const firstStepsActualData = {
         JSON.stringify({ ...layout, cards: names.length }));
     }
     await resize(page, 1280);
-    await page.goto(`${page.__origin}/?catalog=actual#/lines`, { waitUntil: 'load' });
-    // MCU Prep lists are companions to a film or series rather than complete storylines (#1066).
-    const storylineCard = `#lines-results [data-story="list:${id}"]`;
-    await page.waitForSelector('#lines-results .catalog-card');
-    t.check('Storylines leaves First Steps to MCU Prep',
-      await page.$$eval(storylineCard, (nodes) => nodes.length) === 0);
+    await page.goto(`${page.__origin}/?catalog=actual#/genres?type=science-fiction`, { waitUntil: 'load' });
+    const genreCard = `#genres-results [data-story="list:${id}"]`;
+    await page.waitForSelector('#genres-results .catalog-card');
+    t.check('Genres leaves First Steps to MCU Prep',
+      await page.$$eval(genreCard, (nodes) => nodes.length) === 0);
     await page.$eval('.brand[data-view="home"]', (node) => node.click());
     await page.waitForSelector('#view-home [data-category="marvel-on-screen"]');
     await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());

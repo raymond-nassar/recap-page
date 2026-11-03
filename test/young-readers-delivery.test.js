@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import { CBH_SOURCE_PROVIDER, libraryDigestExcludingOrders, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { readOwnerGuideRegistry } from '../scripts/lib/owner-guide-registry.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
@@ -143,7 +144,9 @@ test('the Comic Book Herald inventory, packets and relationship approvals stay c
   const registry = await readJson('test/fixtures/curated-guide-additions.json');
   const later = registry.guides.slice(registry.guides.findLastIndex((guide) => cbhIds.includes(guide.id)) + 1)
     .map((guide) => guide.id);
-  const reviewedDigest = libraryDigestExcludingOrders(library, [...cbhIds, ...ownerIds, ...later]);
+  const reviewedDigest = libraryDigestExcludingOrders({
+    ...library, manifest: descriptionRevisions.undoManifest(library.manifest),
+  }, [...cbhIds, ...ownerIds, ...later]);
   const mappings = Object.fromEntries(await Promise.all(cbhIds.map(async (id) => [id,
     await readJson(`scripts/data/cbh-mappings/${id}.json`)])));
   for (const record of inventory) {

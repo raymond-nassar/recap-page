@@ -3,15 +3,19 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, setDeferred,
 } from '../src/js/lib/model.js';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { KEY } from '../src/js/storage.js';
 
 const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
 const identityRevisions = json('scripts/data/owner-identity-revisions.json');
+// The later spoiler-softening revision rewrote some of these again, so expect its shipped copy.
 const edits = json('scripts/data/mcu-prep-description-revision.json').entries.map((edit) => {
   const identity = identityRevisions.guides.find(({ id }) => id === edit.id);
-  return { ...edit, after: identity?.publishedDescription ?? identity?.description ?? edit.after };
+  const published = identity?.publishedDescription ?? identity?.description ?? edit.after;
+  const { description } = descriptionRevisions.redoEntry({ id: edit.id, file: edit.file, description: published });
+  return { ...edit, after: description };
 });
 const catalog = json('src/data/catalog.json');
 const orders = new Map(edits.map((edit) => [edit.id, json(`src/data/${edit.file}`)]));
@@ -251,15 +255,31 @@ export const mcuPrepDescriptions = {
       && isDeepStrictEqual(backup.notes, expectedRetired.notes)
       && isDeepStrictEqual(backup.overrides, expectedRetired.overrides),
       JSON.stringify(backup.lists));
-    for (const route of ['marvel-on-screen', 'lines']) {
+    // Genres replaced Storylines (#1060), and its starting lists alone could never show this card.
+    // Science fiction is the genre the Days of Future Past pair carries, and 13 MCU Prep lists carry it
+    // too, so the filtered screen would show either if its exclusions broke.
+    const companionIds = companions.map(({ id }) => id);
+    for (const [label, route, view] of [
+      ['marvel-on-screen', 'marvel-on-screen', 'marvel-on-screen'],
+      ['Genres filtered to Science fiction', 'genres?type=science-fiction', 'genres'],
+    ]) {
       await page.goto(`${page.__origin}/?catalog=actual#/${route}`, { waitUntil: 'load' });
-      await page.waitForSelector('.catalog-card');
-      const withdrawal = await page.evaluate((id) => ({
-        cards: document.querySelectorAll(`[data-story="list:${id}"]`).length,
-        imports: document.querySelectorAll(`button[data-act="import"][data-key="${id}"]`).length,
-      }), retiredOrder.id);
-      t.check(`${route} offers no withdrawn card or import while its saved copy remains readable`,
-        withdrawal.cards === 0 && withdrawal.imports === 0);
+      await page.waitForSelector(`#view-${view}:not([hidden]) .catalog-card`);
+      const withdrawal = await page.evaluate((id, view, companionIds) => {
+        const root = document.querySelector(`#view-${view}`);
+        return {
+          shown: root.querySelectorAll('.catalog-card').length,
+          cards: document.querySelectorAll(`[data-story="list:${id}"]`).length,
+          imports: document.querySelectorAll(`button[data-act="import"][data-key="${id}"]`).length,
+          companions: companionIds.filter((companion) => root.querySelector(`[data-story="list:${companion}"]`)).length,
+        };
+      }, retiredOrder.id, view, companionIds);
+      t.check(`${label} offers no withdrawn card or import while its saved copy remains readable`,
+        withdrawal.shown > 0 && withdrawal.cards === 0 && withdrawal.imports === 0, JSON.stringify(withdrawal));
+      if (view === 'genres') {
+        t.check('Genres filtered to Science fiction offers no MCU Prep list',
+          withdrawal.companions === 0, JSON.stringify(withdrawal));
+      }
     }
     t.check('The description journey makes no external request or browser error',
       external.length === 0 && errors.length === 0, JSON.stringify({ external, errors }));

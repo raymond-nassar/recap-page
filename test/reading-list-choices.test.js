@@ -7,6 +7,7 @@ import { createEmptyState } from '../src/js/lib/model.js';
 import { createCatalogView, modernTimelinePosition } from '../src/js/views/catalog.js';
 import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 import { createPreviewView } from '../src/js/views/preview.js';
+import { createStoryTypesView } from '../src/js/views/story-types.js';
 
 const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
 const titles = new Map([
@@ -134,16 +135,21 @@ test('independent spotlight choices retain their shared subject rank and stable 
 
 // A card no longer shows its path step (UX-11, #830), and only Modern Timeline, where paths are
 // followed, says where one starts (UX-14). Sibling choices still render as cards of their own.
-test('Storylines renders both choices independently and names no path start', async () => {
+test('Genres renders both choices independently and names no path start', () => {
   const after = entry('after', { timeline: 2015 });
-  const fixture = viewFixture([fast, full, after], {
-    paths: [{ id: 'route', name: 'Route', steps: ['fast', 'after'] }],
+  const lists = [fast, full, after].map((list) => ({ ...list, storyTypes: ['science-fiction'] }));
+  const nodes = { count: node(), results: node() };
+  const cards = [];
+  const view = createStoryTypesView({
+    el, elements: () => nodes, isCurrent: () => true, onNavigate: () => {},
+    presentation: { catalogCard: (story) => { cards.push(story); return node(); } },
   });
-  await fixture.view.render('lines');
-  assert.equal(fixture.cards.length, 3);
-  assert.deepEqual(fixture.cards.map(({ story }) => story.key), ['list:fast', 'list:full', 'list:after']);
-  assert.ok(fixture.cards.every(({ story }) => story.lists.length === 1));
-  assert.equal(fixture.nodes.results.children
+  view.set({ storyType: 'science-fiction' });
+  view.render({ lists });
+  assert.equal(cards.length, 3);
+  assert.deepEqual(cards.map((story) => story.key), ['list:fast', 'list:full', 'list:after']);
+  assert.ok(cards.every((story) => story.lists.length === 1));
+  assert.equal(nodes.results.children
     .some(({ class: name }) => name === 'rail-hint shelf-orientation'), false);
 });
 
@@ -159,17 +165,19 @@ test('Modern Timeline names both choices that start the path they share', async 
 });
 
 // Character spotlights shows three groups of pills, so its category group names itself on the page
-// as Sort and Show do (UX-14, #830). A shelf whose categories are its only group keeps the hidden
-// legend it had.
+// as Sort and Show do (UX-14, #830). Modern Timeline and Young readers, whose categories are their
+// only group, keep the hidden legend.
 test('Character spotlights labels its category group visibly, and other shelves keep the hidden legend', async () => {
   const lists = (type, extra) => Array.from({ length: 14 }, (_, index) => entry(`${type}-${index}`, {
     type, beginner: index < 3, ...extra,
   }));
+  const hidden = { class: 'visually-hidden', text: 'Filter the catalog by category' };
   for (const [key, shelf, legend] of [
     ['spotlights', lists('character-run', { timeline: null, spotlightKind: 'other' }), {
       class: 'filter-legend', text: 'Category',
     }],
-    ['lines', lists('creator-run'), { class: 'visually-hidden', text: 'Filter the catalog by category' }],
+    ['catalog', lists('event', { timeline: 2012 }), hidden],
+    ['young-readers', lists('creator-run', { audience: 'young-readers' }), hidden],
   ]) {
     const fixture = viewFixture(shelf);
     await fixture.view.render(key);
@@ -181,9 +189,9 @@ test('Character spotlights labels its category group visibly, and other shelves 
 
 test('search threshold counts individually visible cards rather than collapsed groups', async () => {
   const fixture = viewFixture(Array.from({ length: 13 }, (_, index) => (
-    entry(`choice-${index}`, { group: 'many', groupName: 'Many choices' })
+    entry(`choice-${index}`, { group: 'many', groupName: 'Many choices', audience: 'young-readers' })
   )));
-  await fixture.view.render('lines');
+  await fixture.view.render('young-readers');
   assert.equal(fixture.nodes.search.hidden, false);
   assert.equal(fixture.cards.length, 13);
 });

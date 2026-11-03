@@ -6,7 +6,7 @@ import path from 'node:path';
 import { approvalDigestFor, mappingDigestFor } from '../scripts/lib/cbh-inventory.mjs';
 import { readOwnerGuideRegistry } from '../scripts/lib/owner-guide-registry.mjs';
 import {
-  groupCatalog, HOME_CATEGORIES, modernTimelineLists, parseCatalog,
+  groupCatalog, HOME_CATEGORIES, modernTimelineLists, parseCatalog, storylinesLists,
 } from '../src/js/lib/catalog.js';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { beforeIdentityJson, beforeIdentityText } from './helpers/owner-identity-history.mjs';
@@ -19,7 +19,7 @@ const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, imp
 const legacyEventIds = ['the-death-of-ms-marvel', 'contest-of-chaos', 'gang-war'];
 const eventIds = [...legacyEventIds, 'one-world-under-doom'];
 
-test('four independently registered events extend the library without becoming MCU or Storylines selections', async () => {
+test('four independent events remain on Timeline and Genres, not MCU Prep or the historical Storylines projection', async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface === undefined).length - 2;
   // Young readers' owner picks and local curated guides join the rosters without becoming MCU Prep.
@@ -34,10 +34,12 @@ test('four independently registered events extend the library without becoming M
   assert.ok(doomIndex >= 0 && anchorIndex >= 0);
   assert.ok(doomIndex < anchorIndex);
   const stories = groupCatalog(catalog.lists);
-  for (const category of ['marvel-on-screen', 'storylines']) {
-    const selected = HOME_CATEGORIES.find((entry) => entry.key === category).select(stories);
-    assert.ok(selected.every((story) => story.lists.every((list) => !eventIds.includes(list.id))));
-  }
+  const mcu = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen').select(stories);
+  assert.ok(mcu.every((story) => story.lists.every((list) => !eventIds.includes(list.id))));
+  assert.ok(storylinesLists(catalog.lists).every((list) => !eventIds.includes(list.id)));
+  const genreIds = new Set(HOME_CATEGORIES.find((entry) => entry.key === 'genres').select(stories)
+    .flatMap((story) => story.lists.map((list) => list.id)));
+  assert.ok(eventIds.every((id) => genreIds.has(id)));
   const timeline = modernTimelineLists(catalog.lists);
   assert.equal(timeline.length, 152);
   assert.deepEqual(timeline.filter((entry) => entry.timeline === 2023).map((entry) => entry.id), legacyEventIds);

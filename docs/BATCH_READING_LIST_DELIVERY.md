@@ -82,7 +82,7 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. These are the current inclusion
-rules in `src/js/lib/catalog.js:957-980`, not a classification to assign just to make a list appear.
+rules in `src/js/lib/catalog.js:959-982`, not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
@@ -132,7 +132,7 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:8-92` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:200-226` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:204-230` require registered contracts, current approval
 evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
 registration without a frozen whole-library peer-approval digest. A new Reading Path changes every
 reconstructed review library that keeps today's paths, so the shared history helpers drop any path

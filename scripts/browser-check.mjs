@@ -43,7 +43,7 @@ import {
 } from '../src/js/lib/localServer.js';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
-  availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
+  availablePublishingCategories, catalogEntries, eraSections, parseCatalog, publishingAgeGroups,
   shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
   publishingCategoryStories, resolveReadingPaths, storyYear,
 } from '../src/js/lib/catalog.js';
@@ -55,6 +55,7 @@ import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -280,6 +281,7 @@ const shelfEntry = (id, name, extra = {}) => ({
   collections: 0,
   characters: [],
   keywords: [],
+  storyTypes: ['science-fiction'],
   group: null,
   groupName: null,
   variant: null,
@@ -482,7 +484,6 @@ const FIXTURE_SHELVES = new Map(
   shelfSections(catalogEntries(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
-const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines').filter((story) => story.lists.every((list) => list.type !== 'screen-companion')));
 const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_MODERN_PERIODS = availablePublishingCategories(
@@ -501,12 +502,12 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
-    id: 'storylines-canonical-only',
-    breaks: 'storylines-discovery-actual-data',
-    why: 'secondary Storylines projection wrongly excludes eligible canonical Timeline groups',
+    id: 'genres-missing-variant',
+    breaks: 'genres-discovery-actual-data',
+    why: 'genre browsing loses one of the eligible Civil War readings',
     rewriteCatalog: (source) => source.replace(
-      /export function storylinesStories\(stories\) \{[\s\S]*?\n\}/,
-      "export function storylinesStories(stories) {\n  return shelfStories(stories, 'lines');\n}",
+      'return discoverableList(list)',
+      "return discoverableList(list) && list.id !== 'civil-war-essential'",
     ),
   },
   {
@@ -1877,12 +1878,9 @@ async function checkOfflineSelectedList(browser, origin, t) {
       if (!list?.file) throw new Error('House of M is missing from the actual catalog.');
       return { id: list.id, name: list.name, file: list.file };
     });
-    await openBrowseCategory(page, 'storylines');
-    await page.$eval('#lines-q', (input, name) => {
-      input.value = name;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }, selected.name);
-    const card = `#lines-results [data-story="list:${selected.id}"]`;
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'magic-supernatural');
+    const card = `#genres-results [data-story="list:${selected.id}"]`;
     await page.waitForSelector(card, { timeout: 15000 });
     await click(page, `${card} [data-act="preview"]`);
     await page.waitForSelector('#preview[open] #preview-offline [data-act="offline"]');
@@ -1992,11 +1990,8 @@ async function checkOfflineSelectedList(browser, origin, t) {
       && responses.get('/') === true && responses.get('/js/main.js') === true,
       JSON.stringify({ fresh, priorDocument, responses: [...responses] }));
 
-    await openBrowseCategory(page, 'storylines');
-    await page.$eval('#lines-q', (input, name) => {
-      input.value = name;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }, selected.name);
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'magic-supernatural');
     await page.waitForSelector(card, { timeout: 15000 });
     await click(page, `${card} [data-act="preview"]`);
     await page.waitForSelector('#preview[open] .preview-issue-link', { timeout: 15000 });
@@ -2748,19 +2743,15 @@ const SCENARIOS = [
         JSON.stringify(narrowTimeline));
       await page.setViewport({ width: 1280, height: 900 });
 
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
-      const lines = await readShelf('#lines-results');
-      const expectedStorylineHeadings = FIXTURE_STORYLINE_SECTIONS.map(({ heading }) => heading);
-      const expectedStorylineTitles = FIXTURE_STORYLINE_SECTIONS.flatMap(
-        ({ stories }) => stories.map((story) => story.name ?? story.lists[0].name),
-      );
-      t.check('Storylines holds every whole-line reading under its derived decade',
-        JSON.stringify(lines.filter((x) => x.kind === 'head').map((x) => x.heading))
-          === JSON.stringify(expectedStorylineHeadings)
-        && JSON.stringify(lines.filter((x) => x.kind === 'row').map((x) => x.title))
-          === JSON.stringify(expectedStorylineTitles),
-        JSON.stringify(lines));
+      await openBrowseCategory(page, 'genres');
+      await chooseGenre(page, 'science-fiction');
+      const genres = await readShelf('#genres-results');
+      const expectedGenres = parseCatalog(CATALOG).lists
+        .filter((list) => list.type !== 'screen-companion').map((list) => list.name);
+      t.check('Genres lists every matching reading without pulling in MCU Prep companions',
+        JSON.stringify(genres.filter((x) => x.kind === 'row').map((x) => x.title))
+          === JSON.stringify(expectedGenres),
+        JSON.stringify(genres));
 
       await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
@@ -2971,8 +2962,8 @@ const SCENARIOS = [
         !restored.active && restored.borderWidth === '1px',
         JSON.stringify(restored));
 
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
+      await openBrowseCategory(page, 'genres');
+      await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
       await click(page, '[data-view="spotlights"]');
       await page.waitForFunction(() => (
         document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'complete-guide'
@@ -3116,7 +3107,7 @@ const SCENARIOS = [
         ['library-read', ['Home', 'Library', 'Everything read']],
         ['library-manual', ['Home', 'Library', 'Added by hand']],
         ['catalog', ['Home', 'Modern Timeline']],
-        ['lines', ['Home', 'Storylines']],
+        ['genres', ['Home', 'Genres']],
         ['spotlights', ['Home', 'Character spotlights']],
         ['marvel-on-screen', ['Home', 'MCU Prep']],
         ['marvel-ages', ['Home', 'Marvel Ages']],
@@ -3412,7 +3403,7 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '3 Reading Lists' },
+          { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
@@ -3606,7 +3597,7 @@ const SCENARIOS = [
 
       for (const [category, view] of [
         ['timeline', 'catalog'],
-        ['storylines', 'lines'],
+        ['genres', 'genres'],
         ['character-spotlights', 'spotlights'],
       ]) {
         await click(page, `[data-category="${category}"]`);
@@ -4699,12 +4690,9 @@ const SCENARIOS = [
       });
 
       await open(page, '/?catalog=actual#/home');
-      await openBrowseCategory(page, 'storylines');
-      await page.$eval('#lines-q', (input) => {
-        input.value = 'Marvel Zombies';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      const cardSelector = '#lines-results [data-story="list:marvel-zombies-reading-order"]';
+      await openBrowseCategory(page, 'genres');
+      await chooseGenre(page, 'horror');
+      const cardSelector = '#genres-results [data-story="list:marvel-zombies-reading-order"]';
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -4712,11 +4700,10 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-        era: node.closest('.catalog-grid')?.previousElementSibling
-          ?.querySelector('.shelf-section-title')?.textContent.trim(),
+        genre: node.closest('.story-type-results')?.querySelector('h2')?.textContent.trim(),
       }));
-      t.check('Storylines Across eras discovers one credited partial guide with three disclosed gaps',
-        card.name === 'Marvel Zombies' && card.era === 'Across eras'
+      t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
+        card.name === 'Marvel Zombies' && card.genre === 'Horror'
         && card.meta === '94 issues · 3 issues have no Marvel Unlimited links yet and cannot be opened'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
@@ -5405,7 +5392,7 @@ const SCENARIOS = [
         && timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
         && timeline.doom.meta.startsWith('85 issues')
         && timeline.doom.meta.includes(
           '10 issues have owner-confirmed identities but no provider details or covers',
@@ -5422,7 +5409,7 @@ const SCENARIOS = [
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows'),
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025'),
         JSON.stringify(timeline.doom));
       t.check('the chapter years are derived exactly and only 1999 remains empty before 2004',
         timeline.spine[0]?.year === 1998
@@ -5572,7 +5559,9 @@ const SCENARIOS = [
         openName === 'Open: Setup to Modern Timeline', openName);
 
       await page.$eval('#catalog-q', (input) => {
-        input.value = 'Avengers Disassembled';
+        // MCU Prep: The Avengers (2012) names Disassembled in its revised description, so the
+        // query adds a word only the event's own record carries to keep one result.
+        input.value = 'Avengers Disassembled Finale';
         input.dispatchEvent(new Event('input', { bubbles: true }));
       });
       await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
@@ -5668,20 +5657,17 @@ const SCENARIOS = [
           count: 25,
           first: 'New X-Men (2001) #146',
         },
-      ];
+      ].map((chapter) => descriptionRevisions.redoEntry(chapter));
       const representativeResults = [];
       for (const representative of representatives) {
         await page.$eval('#catalog-q', (input, name) => {
           input.value = name;
           input.dispatchEvent(new Event('input', { bubbles: true }));
         }, representative.name);
-        await page.waitForFunction(
-          (name) => document.querySelectorAll('#catalog-results .catalog-card').length === 1
-              && document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() === name,
-          { timeout: 15000 },
-          representative.name,
-        );
-        const preview = '#catalog-results .catalog-card [data-act="preview"]';
+        // A chapter's name can also appear in a neighbor's revised description, as Storm: The Arena
+        // names the Planet X crossover cluster, so the result is found by identity, not by count.
+        const preview = `#catalog-results [data-story="list:${representative.id}"] [data-act="preview"]`;
+        await page.waitForSelector(preview, { timeout: 15000 });
         await page.focus(preview);
         await page.keyboard.press('Enter');
         await page.waitForFunction(
@@ -7199,7 +7185,7 @@ const SCENARIOS = [
       const browse = [];
       for (const [view, category] of [
         ['catalog', 'timeline'],
-        ['lines', 'storylines'],
+        ['genres', 'genres'],
         ['spotlights', 'character-spotlights'],
       ]) {
         await openBrowseCategory(page, category);
@@ -7213,7 +7199,7 @@ const SCENARIOS = [
       }
       t.check('browse headings carry no sentence that repeats the screen structure',
         browse.every((screen) => screen.subtitle === null), JSON.stringify(browse));
-      t.check('Timeline keeps era context while Storylines drops decade explanations',
+      t.check('Timeline keeps era context while Genres avoids decade explanations',
         browse[0].blurbs.length > 0 && browse[0].blurbs.every((text) => text.length > 40)
         && browse[1].blurbs.length === 0,
         JSON.stringify(browse));
@@ -7563,15 +7549,15 @@ const SCENARIOS = [
         && gateway.hash === '#/browse' && gateway.home === 'page' && gateway.current === 0,
         JSON.stringify(gateway));
 
-      await click(page, '#view-home [data-category="storylines"]');
-      await page.waitForFunction(() => document.querySelector('#view-lines')?.hidden === false);
+      await click(page, '#view-home [data-category="genres"]');
+      await page.waitForFunction(() => document.querySelector('#view-genres')?.hidden === false);
       const browseChild = await page.evaluate(() => ({
         hash: location.hash,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
         home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
       }));
       t.check('a category page shows Home as its current section',
-        browseChild.hash === '#/lines' && browseChild.current === null && browseChild.home === 'page',
+        browseChild.hash === '#/genres' && browseChild.current === null && browseChild.home === 'page',
         JSON.stringify(browseChild));
 
       await click(page, '.ri[data-view="add"]');
@@ -7934,7 +7920,6 @@ const SCENARIOS = [
       const seen = [];
       for (const [route, form, query] of [
         ['catalog', '#form-catalog-search', 'Avengers'],
-        ['lines', '#form-lines-search', 'X-Men'],
         ['spotlights', '#form-spotlights-search', 'Spider'],
         ['young-readers', '#form-young-readers-search', 'Spidey'],
         ['marvel-on-screen', '.mcu-prep-search', 'Thor'],
@@ -7970,7 +7955,7 @@ const SCENARIOS = [
           && document.activeElement === document.querySelector(selector), {}, field);
       }
       t.check('every search Clear is unfilled and borderless at rest, never the primary fill',
-        seen.length === 5 && seen.every((entry) => entry.text === 'Clear'
+        seen.length === 4 && seen.every((entry) => entry.text === 'Clear'
           && entry.background === 'rgba(0, 0, 0, 0)' && entry.border === 'rgba(0, 0, 0, 0)'
           && entry.primaryFill !== entry.background && entry.height >= 24),
         JSON.stringify(seen));
@@ -17249,6 +17234,12 @@ async function openBrowseCategory(page, category) {
   await click(page, selector);
 }
 
+async function chooseGenre(page, type) {
+  await page.waitForSelector(`#genres-type option[value="${type}"]`, { timeout: 15000 });
+  await page.select('#genres-type', type);
+  await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
+}
+
 async function visibleView(page) {
   return page.evaluate(() => document.querySelector('.view:not([hidden])')?.id ?? null);
 }
@@ -17990,39 +17981,66 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
 
 SCENARIOS.push(
   {
-    id: 'storylines-discovery-actual-data',
-    title: 'one curated Storylines pool includes real event variants without moving canonical identity',
+    id: 'genres-discovery-actual-data',
+    title: 'Genres and legacy addresses preserve real event variants and canonical identity',
     async run(page, t) {
       try {
         const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
-        await open(page, '/?catalog=actual#/lines');
-        await page.waitForFunction(() => document.querySelector('#lines-results .catalog-card'));
-        const initial = await page.evaluate(() => [...document.querySelectorAll(
-          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        await open(page, '/?catalog=actual');
+        await page.evaluate((saved) => {
+          localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        }, fixtureReadingState());
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
+        await page.waitForSelector('#view-home [data-category="genres"] .home-path-count', { timeout: 15000 });
+        const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+        const census = await page.$$eval('#view-home .home-path-count', (nodes) => nodes.map((node) => node.textContent.trim()));
+        const initialHistory = await page.evaluate(() => history.length);
+        await page.goto(`${page.__origin}/?catalog=actual#/lines?query=Civil+War`, { waitUntil: 'load' });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const legacy = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('a bookmarked Storylines address with a query opens Genres without a second history entry',
+          legacy.length === initialHistory + 1, JSON.stringify({ initialHistory, legacy }));
+
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const reloaded = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('reloading the old address opens Genres without changing history',
+          reloaded.length === legacy.length, JSON.stringify({ legacy, reloaded }));
+        await page.evaluate(() => { location.hash = '#/about'; });
+        await page.waitForSelector('#view-about:not([hidden])', { timeout: 15000 });
+        const beforeBack = await page.evaluate(() => history.length);
+        await page.goBack();
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const returned = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('one Back returns to the old address in Genres without adding an entry',
+          returned.length === beforeBack && returned.hash === reloaded.hash,
+          JSON.stringify({ beforeBack, returned, reloaded }));
+        await page.evaluate(() => { location.hash = '#/about'; });
+        await page.waitForSelector('#view-about:not([hidden])', { timeout: 15000 });
+        const beforeAlias = await page.evaluate(() => history.length);
+        await page.evaluate(() => { location.hash = '#/storylines?legacy=anything'; });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const alias = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('the alternate Storylines address also opens Genres with one history entry',
+          alias.length === beforeAlias + 1, JSON.stringify({ beforeAlias, alias }));
+        t.check('opening old addresses leaves saved reading data unchanged',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
+        t.check('the bundled catalog reports the current Timeline and Genres lists',
+          census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
+            && census.includes('295 Reading Lists'), JSON.stringify(census));
+
+        await chooseGenre(page, 'political');
+        const searched = await page.evaluate(() => [...document.querySelectorAll(
+          '#genres-results [data-act="import"], #genres-results [data-act="open"]',
         )].map((node) => node.dataset.key));
         const civilWar = ['civil-war-essential', 'civil-war', 'civil-war-avengers'];
-        t.check('normal Storylines browsing includes all three original Civil War readings',
-          civilWar.every((id) => initial.includes(id)), JSON.stringify(initial));
-        t.check('the secondary pool includes the current readings without duplicates or scaffold chapters',
-          initial.length === currentReadingCensus.storylines && new Set(initial).size === currentReadingCensus.storylines
-            && initial.includes('marvel-knights-to-planet-x-02')
-            && initial.includes('marvel-knights-to-planet-x-78')
-            && !initial.includes('marvel-knights-to-planet-x-01'), JSON.stringify(initial));
-        await page.evaluate(() => {
-          const query = document.querySelector('#lines-q');
-          query.value = 'Civil War';
-          query.dispatchEvent(new Event('input', { bubbles: true }));
-        });
-        await page.waitForFunction(() => !document.querySelector('#lines-results')?.textContent.includes('Loading the catalog'));
-        const searched = await page.evaluate(() => [...document.querySelectorAll(
-          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
-        )].map((node) => node.dataset.key));
-        t.check('scoped Storylines search retains every genuine Civil War variant',
+        t.check('the Political genre retains every genuine Civil War variant without duplicates',
           civilWar.every((id) => searched.includes(id)) && new Set(searched).size === searched.length,
           JSON.stringify(searched));
         if (!civilWar.every((id) => searched.includes(id))) return;
         const actual = ACTUAL_CATALOG.lists.find((list) => list.id === 'civil-war-essential');
-        await click(page, '#lines-results [data-story="list:civil-war-essential"] [data-act="preview"]');
+        await click(page, '#genres-results [data-story="list:civil-war-essential"] [data-act="preview"]');
         await page.waitForFunction(() => document.querySelector('#preview')?.open === true);
         await click(page, '#preview-add [data-act="main"]');
         await page.waitForFunction(() => {
@@ -18045,7 +18063,7 @@ SCENARIOS.push(
           await click(page, '#preview-close');
           await page.waitForFunction((expected) => window.__ux08Close?.delivered
             && !document.querySelector('#preview')?.open
-            && document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
+            && document.querySelector('#genres-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
           {}, href);
         } finally {
           await page.evaluate(() => {
@@ -18058,19 +18076,20 @@ SCENARIOS.push(
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           const saved = state.lists[id];
           return { catalogId: saved.catalogId, count: saved.itemIds.length,
-            href: document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
+            href: document.querySelector('#genres-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
         }, savedId);
         t.check('Preview save preserves the original catalog ID/count and the actual saved native destination',
           identity.catalogId === actual.id && identity.count === actual.count && identity.href === href,
           JSON.stringify(identity));
-        await click(page, '#lines-results a[data-key="civil-war-essential"]');
+        await click(page, '#genres-results a[data-key="civil-war-essential"]');
         await page.waitForFunction((expected) => location.hash === expected, {}, href);
         t.check('saved Open names the actual reading subject',
           (await page.title()).includes(actual.name), await page.title());
         await page.goBack();
-        await page.waitForFunction(() => location.hash.startsWith('#/lines'));
-        t.check('Back returns to the independent Storylines document',
-          await page.$eval('#view-lines', (node) => !node.hidden));
+        await page.waitForFunction(() => location.hash.startsWith('#/genres'));
+        t.check('Back restores the Political genre',
+          await page.$eval('#view-genres', (node) => !node.hidden)
+            && await page.$eval('#genres-type', (node) => node.value) === 'political');
         const beforeTimeline = await page.evaluate((id) => {
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return { itemIds: state.lists[id].itemIds, read: state.read,
@@ -18096,7 +18115,7 @@ SCENARIOS.push(
             && JSON.stringify(reused.listOrder) === JSON.stringify(beforeTimeline.listOrder),
           JSON.stringify(reused));
       } catch (error) {
-        console.error('storylines-discovery-actual-data original failure:', error.message, error.stack);
+        console.error('genres-discovery-actual-data original failure:', error.message, error.stack);
         throw error;
       }
     },
@@ -19821,11 +19840,12 @@ function cloudFixtureHost(provider = 'onedrive') {
   return {
     host, handle,
     signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test', reason: null }); },
+    reconnected() { Object.assign(host, { connection: 'd'.repeat(32), reason: null }); },
     // The person deleted the Recap Page folder, and another browser's backup found it gone: the host forgot
     // the folder, started a new connection and says why, as host/cloudHost.mjs does.
     folderDeleted() {
       host.items.clear();
-      Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
+      Object.assign(host, { connection: 'e'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
     },
   };
 }
@@ -19841,6 +19861,33 @@ async function installCloudFixture(page, fixture) {
       return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
     };
   }, CLOUD_PREFIX_PATH);
+}
+
+async function keepNewestCloudCopy(page, fixture) {
+  const items = [...fixture.host.items.values()].map(({ id, name }) => ({ id, name }));
+  return page.evaluate(async (listed) => {
+    const { CloudBackupProtocol, parseCloudBackupName } = await import('/js/lib/cloudProtocol.js');
+    const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+    const transport = createCloudHostTransport();
+    await transport.status();
+    const protocol = new CloudBackupProtocol({ transport });
+    const record = await protocol.record();
+    const newest = record.validated[0];
+    const source = listed.find((item) => {
+      const parsed = parseCloudBackupName(item.name);
+      return parsed?.stream === record.stream && parsed.generation === newest.generation;
+    });
+    if (!source) throw new Error('The verified cloud backup is missing from the fixture.');
+    const connection = record.consent.connection;
+    const checked = await protocol.fetchBackup({
+      id: source.id, stream: record.stream, generation: newest.generation,
+    }, { connection });
+    return protocol.keepBackup({
+      connection, stream: record.stream, consentId: record.consent.id,
+      generation: newest.generation, personalDigest: newest.personalDigest,
+      contentDigest: JSON.parse(checked.text).digest,
+    });
+  }, items);
 }
 
 async function cloudCard(page) {
@@ -20082,7 +20129,7 @@ SCENARIOS.push({
     let release = () => {};
     fixture.host.gate = new Promise((resolve) => { release = resolve; });
     await click(page, '#opt-cloud-auto');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backing up now.'), { timeout: 20000 });
     const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
     // The moving half is pinned rather than inherited. A host whose own setting is reduced motion, as
     // Edge launched with --force-prefers-reduced-motion is, hid the bar before the first sample and
@@ -20104,6 +20151,11 @@ SCENARIOS.push({
       fixture.host.items.size === 1 && [...fixture.host.items.values()][0].name.startsWith('recap-page-backup-v1-')
         && (await cloudCard(page)).report.includes('Automatic backup is on for this browser.'),
       JSON.stringify(fixture.host.calls));
+
+    const kept = await keepNewestCloudCopy(page, fixture);
+    t.check('a verified kept copy is a separate file rather than an ordinary backup',
+      fixture.host.items.has(kept.id) && kept.name.startsWith('recap-page-kept-v1-')
+        && fixture.host.items.size === 2, JSON.stringify(kept));
 
     await click(page, '#cloud-discovery-list button[data-cloud-action="check"]');
     await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]');
@@ -20211,19 +20263,41 @@ SCENARIOS.push({
       (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
 
     const stored = fixture.host.items.size;
+    const keptFile = { ...fixture.host.items.get(kept.id) };
+    const changed = Buffer.from('Changed outside Recap Page');
+    fixture.host.items.set(kept.id, { ...keptFile, bytes: changed.toString('base64'), size: changed.length });
     const remove = await ask('#btn-cloud-delete');
-    t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
+    t.check('deleting asks about the account and the recycle bin, and adds no saved-copy notice while none is needed',
       remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
-        && remove.body.includes('every backup this browser made in the OneDrive account reader@example.test.')
+        && remove.body.includes('deletes every backup this browser made in the OneDrive account reader@example.test.')
+        && !/kept cop|saved cop|cloud folders/i.test(remove.body)
         && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days'),
       JSON.stringify(remove));
     await click(page, '#ask-ok');
-    await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
-    t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
-      stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
-        && (await cloudCard(page)).report.includes('from the OneDrive account reader@example.test, where')
-        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied'),
-      `${stored}: ${(await cloudCard(page)).report}`);
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('could not be deleted'), { timeout: 15000 });
+    const partial = await cloudCard(page);
+    t.check('a changed kept copy is left alone and the partial deletion is reported without saying it was deleted',
+      stored >= 2 && fixture.host.items.size === 1 && fixture.host.items.has(kept.id) && !partial.checked
+        && partial.report.includes(`Deleted ${stored - 1} of ${stored} backups`)
+        && partial.report.includes('a kept copy changed outside the app or could not be checked'),
+      `${stored}: ${partial.report}`);
+    t.check('the card reports the recorded copy that still needs attention',
+      partial.status.includes('One saved or attempted cloud copy could not be confirmed or removed.')
+        && partial.status.includes('delete any unwanted copies by hand'),
+      partial.status);
+    fixture.host.items.set(kept.id, keptFile);
+    const retryQuestion = await ask('#btn-cloud-delete');
+    t.check('the next delete question includes the recorded attention before confirmation',
+      retryQuestion.body.includes('One saved or attempted cloud copy could not be confirmed or removed.'),
+      retryQuestion.body);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Deleted 1 backup'), { timeout: 15000 });
+    await page.waitForFunction(() => !document.querySelector('#cloud-backup-status').textContent.includes('saved or attempted cloud copy'), { timeout: 15000 });
+    t.check('a verified kept copy can be deleted on retry, with the recycle-bin outcome stated',
+      fixture.host.items.size === 0 && !(await cloudCard(page)).checked
+        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied')
+        && !(await cloudCard(page)).status.includes('saved or attempted cloud copy'),
+      (await cloudCard(page)).report);
 
     await page.focus('#btn-cloud-disconnect');
     await click(page, '#btn-cloud-disconnect');
@@ -20256,8 +20330,29 @@ SCENARIOS.push({
     // folder was deleted rather than that anyone signed in again (P02-T07 decision 2).
     fixture.signedIn();
     await open(page, '/#/data');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to OneDrive as reader@example.test.'
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive as reader@example.test.')
       && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    const earlier = await keepNewestCloudCopy(page, fixture);
+    fixture.reconnected();
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('One recorded kept copy from an earlier connection may remain.'),
+      { timeout: 15000 });
+    const reconnected = await cloudCard(page);
+    t.check('after reconnecting the card reports the recorded earlier copy and leaves automatic backup off until consent',
+      !reconnected.checked && reconnected.status.includes('delete them by hand in their cloud folders.'), JSON.stringify(reconnected));
+    const earlierQuestion = await ask('#btn-cloud-delete');
+    t.check('the delete question gives the recorded earlier-copy count without promising to delete it',
+      earlierQuestion.body.includes('One recorded kept copy from an earlier connection may remain.')
+        && earlierQuestion.body.includes('deletes every backup this browser made in'), earlierQuestion.body);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('One recorded kept copy from an earlier connection may remain.'),
+      { timeout: 15000 });
+    t.check('deleting under the new connection leaves the earlier copy and reports it',
+      fixture.host.items.size === 1 && fixture.host.items.has(earlier.id) && !(await cloudCard(page)).checked,
+      JSON.stringify(await cloudCard(page)));
     await click(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
     // Every announcement from here on, as the page's announcer receives it (stage 3 review, S3b-2).
@@ -20271,11 +20366,11 @@ SCENARIOS.push({
     await open(page, '/#/about');
     await open(page, '/#/data');
     const deleted = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
-    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.endsWith(reason),
+    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.includes(reason),
       { timeout: 15000 }, deleted).then(() => true, () => false);
     const asked = await cloudCard(page);
     t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
-      told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
+      told && asked.status.startsWith(`Connected to OneDrive as reader@example.test. ${deleted}`) && asked.auto && !asked.checked, JSON.stringify(asked));
     t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
     await page.waitForFunction((reason) => window.__cloudSpoken.some((text) => text.includes(reason)), { timeout: 3000 }, deleted).catch(() => {});
     await new Promise((resolve) => { setTimeout(resolve, 300); });
@@ -20973,7 +21068,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = !process.argv.includes('--ephemeral') && ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = !process.argv.includes('--ephemeral') && ['genres-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -22167,7 +22262,7 @@ SCENARIOS.push({
     const knownRefusedIds = order.items
       .filter(({ issueId, detailsRefused }) => issueId > 0 && detailsRefused)
       .map(({ issueId }) => issueId);
-    const cardSelector = `#lines-results [data-story="list:${id}"]`;
+    const cardSelector = `#genres-results [data-story="list:${id}"]`;
     const errors = [];
     const externalRequests = [];
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -22222,17 +22317,18 @@ SCENARIOS.push({
       title: node.querySelector('.rt')?.textContent.trim(),
     })));
     await open(page, '/?catalog=actual#/catalog');
-    await openBrowseCategory(page, 'storylines');
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'space-opera');
     await page.waitForSelector(cardSelector, { timeout: 15000 });
     const card = await page.$eval(cardSelector, (node) => ({
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
       source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-      section: node.parentElement?.previousElementSibling?.textContent,
+      section: node.closest('.story-type-results')?.querySelector('h2')?.textContent,
     }));
-    t.check('undated storyline is discoverable in Across eras with the exact credited guide',
+    t.check('the undated storyline is discoverable in Space opera with the exact credited guide',
       card.name === 'Infinity Trilogy (Gauntlet, War, Crusade)'
       && card.source === order.source
-      && (card.section ?? '').includes('Across eras'),
+      && card.section === 'Space opera',
       JSON.stringify(card));
     await click(page, `${cardSelector} [data-act="preview"]`);
     await page.waitForFunction(() =>

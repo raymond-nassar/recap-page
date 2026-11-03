@@ -33,21 +33,23 @@ this table, so reusing a glyph for something else fails it.
 | issue-add | Add an issue by hand | `#/add-manual`, on Search and under Other ways to find comics |
 | characters | Characters | Characters and the Character spotlights card, both `#/spotlights` |
 | timeline | Modern Timeline | Reading guides and the Modern Timeline card, both `#/catalog` |
-| storylines | Storylines | The Storylines card, `#/lines` |
+| storylines | Archived symbol | Retained for older artifacts; the Storylines screen has been replaced by Genres |
 | screen | MCU Prep | The MCU Prep card, `#/marvel-on-screen` |
 | ages | Marvel Ages | The Marvel Ages card, `#/marvel-ages`, and the card of every age and period inside it |
 | reader | Young readers | The Young readers card, `#/young-readers` |
+| story-types | Genres | The Genres card, `#/genres` |
 | arrow-right | Opens a category | The destination arrow on every category card |
 | thumb-up | Enjoyed | Rating a completed Reading List |
 | thumb-down | Did not enjoy | Rating a completed Reading List |
 | star | Rating | Your ratings, `#/library-rated`, Rate this issue, and the rating dialog's five stars |
 
-This is 22 symbols. Static markup draws them 25 times in navigation, Library, Search and its search
+This is 23 symbols. Static markup draws them 25 times in navigation, Library, Search and its search
 controls, and draws the star six more times: beside Rate this issue and on the rating dialog's five
-buttons. The completed-list rating adds the two thumbs. Each of Home's six category cards has an
-icon and a destination arrow, adding 12 SVG instances. The six category icons all differ, and each
+buttons. The completed-list rating adds the two thumbs. Each of Home's seven category cards has an
+icon and a destination arrow, adding 14 SVG instances. The seven category icons all differ, and each
 names only its own destination. The hourglass was drawn for Marvel Ages in #873, `series`,
-`creator` and `timeline` for #831, and the reader behind an open book for Young readers in #897.
+`creator` and `timeline` for #831, the reader behind an open book for Young readers in #897, and
+the tag for Genres in #1060.
 The same category renderer supplies the age and period cards inside Marvel Ages when those screens
 open; each adds an `ages` and `arrow-right` pair. These are not a fixed runtime node count.
 
