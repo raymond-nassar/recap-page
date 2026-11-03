@@ -23843,9 +23843,11 @@ SCENARIOS.push({
               const geometry = await page.$eval('#add-other-methods > summary', (summary) => {
                 const rect = summary.getBoundingClientRect();
                 const style = getComputedStyle(summary, '::after');
+                // CDP's quad is viewport-relative. At 375px the taller Search form scrolls 119px
+                // on focus, so adding scrollY only to the summary falsely puts its chevron outside.
                 return {
-                  summary: { left: rect.left, right: rect.right, top: rect.top + scrollY, bottom: rect.bottom + scrollY },
-                  document: document.documentElement.scrollWidth, viewport: innerWidth,
+                  summary: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom },
+                  document: document.documentElement.scrollWidth, viewport: innerWidth, scrollY,
                   box: { width: style.width, height: style.height, lineHeight: style.lineHeight, marginRight: style.marginRight },
                   content: style.content, transform: style.transform, transition: style.transitionDuration,
                   focused: document.activeElement === summary,
