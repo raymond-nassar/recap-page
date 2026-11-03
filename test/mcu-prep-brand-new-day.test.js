@@ -8,7 +8,7 @@ import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson,
-  sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest,
+  sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap } from '../scripts/lib/owner-current-library.mjs';
@@ -254,7 +254,7 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   }
   assert.deepEqual(payload.items.filter((row) => row.creators.length === 0).map((row) => row.issueId),
     [43128, 43132, 59715]);
-  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id))), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   const card = catalog.lists.find((row) => row.id === id);

@@ -11,7 +11,7 @@ import {
   existingEntriesForPacket,
   manifestEntryForMapping,
 } from '../scripts/author-cbh-packet.mjs';
-import { validateBatchNoDuplicates } from '../scripts/lib/cbh-inventory.mjs';
+import { validateBatchNoDuplicates, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog, sortCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -187,7 +187,7 @@ test('batch three stays exact through mapping, Markdown, payload, catalog, and i
     assert.equal(mapping.rows.length, EXPECTED_COUNTS[id]);
     assert.equal(sequenceDigest(expectedIds), EXPECTED_SEQUENCE_SHA256[id]);
     assert.equal(new Set(expectedIds).size, expectedIds.length);
-    assert.deepEqual(manifestEntry, approved);
+    assert.deepEqual(withoutDiscoveryTags(manifestEntry), approved);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourcePosition'), false);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourceReference'), false);
     assert.equal(parsed.unresolved.length, 0);

@@ -8,7 +8,7 @@ import {
   digestCanonicalJson,
   validateFrozenPacket,
   validateInventoryState,
-  validateMappingDigest,
+  validateMappingDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
@@ -245,7 +245,7 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   assert.equal(inventory.length, 133);
 
   assert.doesNotThrow(() => validateInventoryState(inventory));
-  assert.deepEqual(entry, mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(entry), mapping.approvedManifest);
   assert.equal(entry.coverIssueId, 15311);
   assert.equal(card.coverIssueId, 15311);
   assert.equal(packet.sourceUrl, sourceUrl);

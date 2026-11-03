@@ -9,7 +9,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import {
   assertApprovedRelationshipReview,
@@ -229,7 +229,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');
   assert.equal(manifest.lists[position + 1].id, 'civil-war');
-  assert.deepEqual(manifest.lists[position], mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(manifest.lists[position]), mapping.approvedManifest);
   assert.equal(manifest.lists[position].spotlightKind, undefined);
   const card = parseCatalog(catalogRaw).lists.find((entry) => entry.id === id);
   assert.equal(card.count, 107);
