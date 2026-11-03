@@ -222,7 +222,7 @@ test('Thunderbolts keeps the exact minus-one gap without a guessed replacement o
     copy.entries.find((entry) => entry.id === id).after);
 });
 
-test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf without CBH attribution', async () => {
+test('Thunderbolts uses the MCU Prep gateway without CBH attribution', async () => {
   const [rawManifest, rawCatalog, inventory] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),

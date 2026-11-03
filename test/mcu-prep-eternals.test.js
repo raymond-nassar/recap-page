@@ -134,7 +134,7 @@ test('Eternals publishes all 24 originals once, grouped, with no hidden metadata
     && !row.detailsRefused && row.description === null));
 });
 
-test('Eternals uses the existing owner-attributed MCU Prep gateway and stays off Storylines', async () => {
+test('Eternals uses the owner-attributed MCU Prep gateway and stays off Genres', async () => {
   const { packet } = await evidence();
   const [manifest, rawCatalog] = await Promise.all([
     readJson('src/data/curated-lists.json'), readJson('src/data/catalog.json'),
@@ -163,9 +163,9 @@ test('Eternals uses the existing owner-attributed MCU Prep gateway and stays off
   assert.deepEqual(selected, catalog.lists.filter((list) => list.type === 'screen-companion')
     .map((list) => list.id));
   assert.equal(selected.filter((selectedId) => selectedId === id).length, 1);
-  const storylines = HOME_CATEGORIES.find((category) => category.key === 'storylines');
+  const genres = HOME_CATEGORIES.find((category) => category.key === 'genres');
   const spotlights = HOME_CATEGORIES.find((category) => category.key === 'character-spotlights');
-  assert.ok(!storylines.select(stories).some((story) => story.lists.some((list) => list.id === id)));
+  assert.ok(!genres.select(stories).some((story) => story.lists.some((list) => list.id === id)));
   assert.ok(!spotlights.select(stories).some((story) => story.lists.some((list) => list.id === id)));
 });
 

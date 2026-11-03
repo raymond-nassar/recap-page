@@ -6,20 +6,20 @@ const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, im
 const catalog = data('catalog.json');
 const fastId = 'hickman-minimal';
 const movieId = 'avengers-doomsday-secret-wars';
-const retainedLines = [
+const retainedOrders = [
   fastId, 'hickman-full', movieId, 'new-ultimate-universe', 'new-ultimate-universe-trades',
 ];
 const eligibleEvents = [
   'house-of-m', 'house-of-m-essential', 'civil-war', 'civil-war-essential', 'civil-war-avengers',
   'secret-invasion', 'secret-invasion-essential',
 ];
-// #1066: the Doomsday fast track is an MCU Prep list, so it is fetched but not expected on Storylines.
-const expectedLines = new Set([...retainedLines, ...eligibleEvents]
-  .filter((id) => id !== movieId).map((id) => `list:${id}`));
 const wanted = new Set([
-  ...retainedLines, ...eligibleEvents, 'xmen-claremont', 'xmen-claremont-complete',
+  ...retainedOrders, ...eligibleEvents, 'xmen-claremont', 'xmen-claremont-complete',
 ]);
 const lists = catalog.lists.filter(({ id }) => wanted.has(id));
+const expectedGenres = new Set(lists
+  .filter((list) => list.type !== 'screen-companion' && list.storyTypes?.includes('political'))
+  .map((list) => `list:${list.id}`));
 const orders = Object.fromEntries(lists.map((list) => [list.file, data(list.file)]));
 const legacyIds = [
   43528, 43532, 43533, 43534, 43535, 43536, 43537, 43538, 43539, 43540, 43541, 43542, 43543, 43544,
@@ -80,9 +80,9 @@ export const readingListChoices = {
     if (firstCount !== 7) return;
 
     for (const [surface, expected] of [
-      ['catalog', 7], ['lines', expectedLines.size], ['spotlights', 2], ['age-event-era', 7], ['marvel-on-screen', 1],
+      ['catalog', 7], ['genres', expectedGenres.size], ['spotlights', 2], ['age-event-era', 7], ['marvel-on-screen', 1],
     ]) {
-      await page.goto(`${page.__origin}/#/${surface}`, { waitUntil: 'load' });
+      await page.goto(`${page.__origin}/#/${surface}${surface === 'genres' ? '?type=political' : ''}`, { waitUntil: 'load' });
       await page.waitForSelector(`#${surface}-results .catalog-card`);
       const cards = await page.$$eval(`#${surface}-results .catalog-card`, (nodes) => nodes.map((card) => ({
         key: card.dataset.story,
@@ -93,7 +93,7 @@ export const readingListChoices = {
       })));
       t.check(`${surface}: every choice has its own title, and the title is its Preview button`,
         cards.length === expected && new Set(cards.map(({ key }) => key)).size === expected
-        && (surface !== 'lines' || cards.every(({ key }) => expectedLines.has(key)))
+        && (surface !== 'genres' || cards.every(({ key }) => expectedGenres.has(key)))
         && cards.every(({ key, title, preview, previewName, previewTag }) => preview === title
           && previewName === shownName([title], 'Preview') && previewTag === 'BUTTON'
           && lists.some((list) => `list:${list.id}` === key && list.name === title)),
@@ -117,8 +117,8 @@ export const readingListChoices = {
       await page.setViewport({ width: 1280, height: 900 });
     }
 
-    await page.goto(`${page.__origin}/#/lines`, { waitUntil: 'load' });
-    const fastCard = cardSelector('lines', fastId);
+    await page.goto(`${page.__origin}/#/genres?type=political`, { waitUntil: 'load' });
+    const fastCard = cardSelector('genres', fastId);
     await page.waitForSelector(fastCard);
     t.check('the renamed fast-track card opens the original saved copy rather than offering another Add',
       await page.$eval(`${fastCard} [data-act="open"]`, (button) => button.dataset.key) === fastId);
@@ -165,7 +165,7 @@ export const readingListChoices = {
       && JSON.stringify(withMovie.read) === JSON.stringify(before.read));
 
     await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
-    await page.goto(`${page.__origin}/#/lines`, { waitUntil: 'load' });
+    await page.goto(`${page.__origin}/#/genres?type=political`, { waitUntil: 'load' });
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector(`${fastCard} [data-act="import"]`);
     await click(page, `${fastCard} [data-act="import"]`);

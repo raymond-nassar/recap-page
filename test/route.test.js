@@ -206,6 +206,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['about', ['Home', 'About this app']],
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
+    ['genres', ['Home', 'Genres']],
     ['issue', ['Home', 'Issue details']],
   ]);
   for (const shelf of CATALOG_SHELVES) {
@@ -273,7 +274,7 @@ test('dynamic Reading List and issue hierarchies use only validated context', ()
       issueTitle: 'A bundled issue',
       context: { kind: 'order', id: 'order-a', name: 'Transient Preview title', shelf: 'lines' },
     }).map(({ label }) => label),
-    ['Home', 'Storylines', 'A bundled issue'],
+    ['Home', 'Genres', 'A bundled issue'],
   );
   // MCU Prep is a Home category rather than a shelf, and an issue opened from one of its lists
   // names it (#1066).
@@ -759,9 +760,9 @@ test('the Modern Timeline carries the path it follows, while a path query on ano
     assert.equal(Object.hasOwn(parseRoute(unusable), 'pathId'), false, unusable);
   }
   assert.deepEqual(parseRoute('#/lines?path=modern-avengers'), {
-    view: 'lines', listId: null, filter: null, full: false,
+    view: 'genres', listId: null, filter: null, full: false,
   });
-  assert.equal(formatRoute({ view: 'lines', pathId: 'modern-avengers' }), '#/lines');
+  assert.equal(formatRoute({ view: 'lines', pathId: 'modern-avengers' }), '#/genres');
 });
 
 const HOME_CARDS = 'categories';
@@ -855,4 +856,41 @@ test('a malformed or repeated ratings filter falls back to its own default only'
   assert.equal(parseRoute('#/library-rated?min=5').rated.min, 5);
   assert.equal(parseRoute(`#/library-rated?q=${'x'.repeat(500)}`).rated.q, '');
   assert.equal(parseRoute('#/library-rated/list-a'), null);
+});
+
+test('Genres carries one known genre and tone in its address and nothing else', () => {
+  const base = {
+    view: 'genres', listId: null, filter: null, full: false,
+  };
+  assert.equal(formatRoute({ view: 'genres', storyType: 'espionage', tone: 'dark' }),
+    '#/genres?type=espionage&tone=dark');
+  assert.equal(formatRoute({ view: 'genres', storyType: 'nope', tone: 'grim' }), '#/genres');
+  assert.equal(formatRoute({ view: 'marvel-ages', storyType: 'espionage', tone: 'dark' }), '#/marvel-ages');
+  assert.deepEqual(parseRoute('#/genres?type=espionage&tone=dark'),
+    { ...base, storyType: 'espionage', tone: 'dark' });
+  assert.deepEqual(parseRoute('#/genres?type=toString&tone=__proto__'), base);
+  assert.deepEqual(parseRoute('#/genres?type=espionage&type=horror&tone=dark'), { ...base, tone: 'dark' });
+  assert.deepEqual(parseRoute('#/marvel-ages?type=espionage'), { ...base, view: 'marvel-ages' });
+});
+
+test('retired Storylines addresses open Genres with or without a query', () => {
+  const base = { view: 'genres', listId: null, filter: null, full: false };
+  assert.equal(VIEWS.includes('lines'), false);
+  assert.equal(VIEWS.includes('storylines'), false);
+  for (const hash of [
+    '#/lines',
+    '#/storylines',
+    '#/lines?search=Spider-Man&unknown=value',
+    '#/storylines?search=Spider-Man&unknown=value',
+  ]) {
+    assert.deepEqual(parseRoute(hash), base, hash);
+  }
+  assert.deepEqual(parseRoute('#/lines/saved-list?filter=unread'), {
+    ...base, listId: 'saved-list', filter: 'unread',
+  });
+  assert.deepEqual(parseRoute('#/storylines?type=espionage&tone=dark'), {
+    ...base, storyType: 'espionage', tone: 'dark',
+  });
+  assert.equal(formatRoute({ view: 'lines' }), '#/genres');
+  assert.equal(formatRoute({ view: 'storylines' }), '#/genres');
 });

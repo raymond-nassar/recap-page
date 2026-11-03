@@ -103,10 +103,10 @@ with those human observations.
 
 Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.
 
-### Curated Storylines discovery metadata
+### Historical Storylines metadata
 
-The editorial manifest owns secondary Storylines eligibility, not canonical placement. Ordinary
-lists may declare the literal boolean `storylines`; every variant in one group must agree.
+The editorial manifest retains the historical Storylines classification, not canonical placement.
+Ordinary lists may declare the literal boolean `storylines`; every variant in one group must agree.
 Partition parents use only `storylinesChildren`, an exact allowlist of existing ledger child IDs,
 and remain excluded from the visible catalog. Invalid declarations or unknown child IDs fail
 before generation outputs are written. Runtime invalid or conflicting eligibility fails catalog
@@ -118,10 +118,10 @@ existing classification metadata. Catalog discovery does
 not redefine approved issue-library evidence. All other manifest fields, paths, order membership
 and ordering, and issue vectors remain digest-bound; unknown or nested metadata is not ignored.
 
-The initial cohort contains 18 original groups and nine named generated arcs. It is a finite
+The historical cohort contains 18 original groups and nine named generated arcs. It is a finite
 editorial selection, not an exhaustive taxonomy or permission to include every generated chapter.
-All original IDs, files, variants and canonical routes remain unchanged. Home counts and normal
-Storylines browsing, search and facets use the same pool.
+Its metadata remains part of the catalog, but Genres replaces the Storylines screen. Genres uses
+the separately authored story types and tones; old Storylines addresses open Genres.
 
 A pinned catalog-only rebuild does not refetch metadata. It may emit the catalog, chapter payloads
 and overlap evidence, so compare the complete pinned data boundary and ordered vectors. Only
@@ -164,7 +164,7 @@ stays untouched. The targeted `cache-generations`,
 `catalog-gaps`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
 `defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, `ordered-import`,
-`import-draft-lifecycle`, `reading-state-clarity`, `storylines-discovery-actual-data`,
+`import-draft-lifecycle`, `reading-state-clarity`, `genres-discovery-actual-data`,
 `discovery-priorities`, `mcu-prep-organization` and `local-server-recovery` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 For isolated targeted work on a shared machine, add `--ephemeral` to keep that server running.
@@ -786,8 +786,8 @@ For an MCU Prep addition, keep `type` as `screen-companion`, `depth` as `selecte
 MCU Prep only when populated, and that its generated child page contains every selected card
 once at desktop and narrow widths. The page groups guides by screen-release phase and defaults
 to oldest release first; newest first reverses that order, with unassigned guides always last.
-Do not add a fourth canonical shelf or
-a Character Spotlight classification; Storylines remains the canonical shelf.
+Do not add a fourth canonical shelf or a Character Spotlight classification. The historical
+fallback classification remains intact, but its browse destination is MCU Prep.
 
 Screen-release organization is authored separately in `src/data/mcu-prep.json`, never inferred
 from a guide title or its comic years. Add exact guide-to-release IDs there after verifying the
@@ -800,7 +800,7 @@ associated title displayed and searchable. New or general guides without an asso
 under **More MCU reading**. Empty phases and releases without published guides are not shown.
 The registry is not a second catalog: `npm run vendor -- --catalog-only` continues to own the
 catalog and leaves this authored discovery file alone. Search and sort are page-local; they never
-change saved lists, backups, comic order, or the Storylines inventory.
+change saved lists, backups, comic order, or the historical Storylines inventory.
 
 An owner-selected excerpt uses the existing local `sourceFile` compilation path. Link the exact
 owner input in `sourcePage`, explicitly credit its factual upstream in `sourceOrigin`, and retain
