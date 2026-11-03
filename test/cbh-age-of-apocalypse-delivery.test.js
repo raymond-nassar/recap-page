@@ -10,7 +10,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown, selectedIssueIds } from '../scripts/author-cbh-packet.mjs';
 
@@ -218,7 +218,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
-  assert.deepEqual(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id)), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id))), packet.proposedManifest);
   assert.doesNotThrow(() => validateInventoryState(inventory));
 });
 

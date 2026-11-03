@@ -16,7 +16,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
@@ -1182,7 +1182,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     expectedOrderIds,
   }));
 
-  assert.deepEqual(descriptionRevisions.undoEntry(manifestRecord), mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifestRecord)), mapping.approvedManifest);
   assert.equal(catalogRecord.count, 225);
   assert.equal(catalogRecord.placeholderCount, 0);
   assert.equal(payload.count, 225);

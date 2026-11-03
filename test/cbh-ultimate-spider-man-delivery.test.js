@@ -8,7 +8,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import {
   assertApprovedRelationshipReview,
@@ -349,7 +349,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
-  assert.deepEqual(descriptionRevisions.undoEntry(manifest.lists[position]), mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists[position])), mapping.approvedManifest);
   assert.doesNotThrow(() => validateInventoryState(inventory));
   const record = inventory.find((row) => row.id === id);
   assert.equal(record.position, 113);

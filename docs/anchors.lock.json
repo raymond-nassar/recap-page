@@ -1569,13 +1569,13 @@
     "fp": "f5c2fbf10ed259d6",
     "head": "export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hid"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:216|0": {
-    "anchor": "src/js/lib/completeRestore.js:216",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:220|0": {
+    "anchor": "src/js/lib/completeRestore.js:220",
     "fp": "4ea7082d4cf406af",
     "head": "tx = mode === 'readwrite' ? db.transaction(JOURNAL_STORE, mode, { durability: 'strict' }) : db.trans"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:352|0": {
-    "anchor": "src/js/lib/completeRestore.js:352",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:356|0": {
+    "anchor": "src/js/lib/completeRestore.js:356",
     "fp": "b64917b5675de610",
     "head": "export function decideRestoreState(marker, journal, storage, now) {"
   },
@@ -1584,13 +1584,13 @@
     "fp": "f3d6cfa7a0ac9997",
     "head": "export const KEEP_FINISHED_JOURNAL_MS = 24 * 60 * 60 * 1000;"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:679-683|0": {
-    "anchor": "src/js/lib/completeRestore.js:679-683",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:684-688|0": {
+    "anchor": "src/js/lib/completeRestore.js:684-688",
     "fp": "c551965afe6556d6",
     "head": "async cleanUp(id, { journal = true, offered = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:834-839|0": {
-    "anchor": "src/js/lib/completeRestore.js:834-839",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:841-846|0": {
+    "anchor": "src/js/lib/completeRestore.js:841-846",
     "fp": "4e2c08fc7d7cb7d2",
     "head": "await this.journal.begin(record);"
   },
@@ -1754,13 +1754,13 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1540-1593|0": {
-    "anchor": "src/js/lib/catalog.js:1540-1593",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1543-1596|0": {
+    "anchor": "src/js/lib/catalog.js:1543-1596",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:752-770|0": {
-    "anchor": "src/js/lib/catalog.js:752-770",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:755-773|0": {
+    "anchor": "src/js/lib/catalog.js:755-773",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -1909,8 +1909,8 @@
     "fp": "176f70a1f1fe990d",
     "head": "export async function writeCachePurgeMark("
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:841|0": {
-    "anchor": "src/js/lib/completeRestore.js:841",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:848|0": {
+    "anchor": "src/js/lib/completeRestore.js:848",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },
@@ -2034,13 +2034,13 @@
     "fp": "9c4a55814397835e",
     "head": "async function networkThenCache(event) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:268-274|0": {
-    "anchor": "src/js/lib/catalog.js:268-274",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:271-277|0": {
+    "anchor": "src/js/lib/catalog.js:271-277",
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:954-977|0": {
-    "anchor": "src/js/lib/catalog.js:954-977",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:957-980|0": {
+    "anchor": "src/js/lib/catalog.js:957-980",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -2114,13 +2114,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:13519-13656|0": {
-    "anchor": "src/data/catalog.json:13519-13656",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:14977-15114|0": {
+    "anchor": "src/data/catalog.json:14977-15114",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:9306-9357|0": {
-    "anchor": "src/data/curated-lists.json:9306-9357",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:10764-10815|0": {
+    "anchor": "src/data/curated-lists.json:10764-10815",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },

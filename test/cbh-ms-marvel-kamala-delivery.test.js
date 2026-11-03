@@ -9,7 +9,7 @@ import {
   sourceCountsForPacket,
   validateFrozenPacket,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
@@ -249,7 +249,7 @@ test('Kamala publishes the exact generated checklist, 187 issues, five honest ga
     [...gapIssueIds.values()]);
   assert.ok(payload.items.every((item) => item.description == null));
   const entry = manifest.lists.find((row) => row.id === id);
-  assert.deepEqual(descriptionRevisions.undoEntry(entry), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), packet.proposedManifest);
   assert.equal(manifest.lists[manifest.lists.indexOf(entry) + 1].id, packet.insertionAnchor.beforeId);
   const catalog = parseCatalog(rawCatalog);
   const card = catalog.lists.find((row) => row.id === id);

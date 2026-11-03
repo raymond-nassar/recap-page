@@ -6,7 +6,7 @@ import {
   assertMappingMatchesPacketOccurrences,
   validateFrozenPacket,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 
@@ -237,7 +237,7 @@ test('Namor checklist and pinned payload publish the complete source-grounded ou
   const entryIndex = manifest.lists.findIndex((row) => row.id === id);
   assert.ok(entryIndex >= 0);
   assert.equal(manifest.lists[entryIndex + 1].id, 'nebula-reading-order');
-  assert.deepEqual(descriptionRevisions.undoEntry(manifest.lists[entryIndex]), mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists[entryIndex])), mapping.approvedManifest);
   const card = parseCatalog(catalogRaw).lists.find((row) => row.id === id);
   assert.equal(card?.count, 700);
   assert.equal(card?.placeholderCount, 8);

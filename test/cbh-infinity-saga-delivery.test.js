@@ -9,7 +9,7 @@ import {
   sourceCountsForPacket,
   validateFrozenPacket,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
@@ -174,9 +174,9 @@ test('Infinity Saga admission and relationship review stay current under Across 
   const entry = manifest.lists.find((row) => row.id === id);
   const index = manifest.lists.indexOf(entry);
   const inventoryEntry = inventory.find((row) => row.position === 51);
-  assert.deepEqual(descriptionRevisions.undoEntry(entry), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), packet.proposedManifest);
   assert.equal(mapping.reviewStatus, 'approved');
-  assert.deepEqual(descriptionRevisions.undoEntry(entry), mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), mapping.approvedManifest);
   assert.equal(manifest.lists[index + 1].id, 'operation-galactic-storm');
   assert.equal(entry.type, 'era');
   assert.equal(entry.depth, 'partial');

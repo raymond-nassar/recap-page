@@ -33,7 +33,10 @@ export const STORY_TYPES = Object.freeze({
   horror: 'Horror',
   'martial-arts': 'Martial arts',
   'coming-of-age': 'Coming of age',
+  'everyday-life': 'Everyday life',
   comedy: 'Comedy',
+  // Only where no other type fits, so it never becomes the default every list carries (#1060).
+  adventure: 'Adventure',
 });
 export const STORY_TONES = Object.freeze({
   epic: 'Epic',
