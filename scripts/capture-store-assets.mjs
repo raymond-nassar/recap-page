@@ -25,14 +25,12 @@ const SCREENSHOTS = [
     state: 'empty',
   },
   {
-    // Browse left with #907 (#831), and its address now opens Home, which 01 already shows: the two
-    // captures came out byte for byte the same. So 02 shows Storylines, one of Home's category cards
-    // (#911). The file keeps its name, so the packet's asset inventory and its check stand.
+    // The second image shows the current category rather than repeating Home (#1060).
     file: '02-browse-reading-lists.png',
-    route: '#/lines',
-    view: 'view-lines',
-    wait: '#lines-results .catalog-card',
-    text: ['Storylines', 'Beginner-friendly', '1980s', 'Comic Book Reading Orders'],
+    route: '#/genres',
+    view: 'view-genres',
+    wait: '#genres-results .catalog-card',
+    text: ['Browse Genres', 'Genre', 'Tone', 'Popular places to start'],
     state: 'empty',
   },
   {

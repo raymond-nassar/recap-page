@@ -46,8 +46,8 @@ The link above a page title opens its immediate parent, such as **Home** or **Li
 It replaces the full breadcrumb trail and current title. Android Back follows your history;
 the parent link goes to its named destination.
 
-On a Reading List, open **List options** to rename, edit notes, duplicate, export, manage metadata
-or delete. Every command shows at once in the bottom sheet, grouped, with **Mark as Completed**
+On a Reading List, open **Reading List options** after Read and Done to rename, edit notes, duplicate,
+export, manage metadata or delete. Every command shows at once in the bottom sheet, grouped, with **Mark as Completed**
 apart and first while comics are queued and **Remove from library** apart and last, so each is one
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
 Android Back, Escape or a tap outside dismisses the sheet without taking action.
@@ -55,12 +55,14 @@ Android Back, Escape or a tap outside dismisses the sheet without taking action.
 Read and **Done** stay together. **About this comic** opens the comic's own page, which leads with
 its cover: centered above the title on an upright screen, and in a column beside the title and
 everything under it on a screen turned on its side or a wide one. **Read** follows the title, then
-useful comic information and optional, spoiler-protected story summaries. With cover art off, the
+useful comic information, creators credited by role where the metadata records it, and any story
+summary loaded in this session, shown in full. With cover art off, the
 cover's stand-in takes the same place and size. A short split-screen window keeps the details card
 with **Read** first.
 **More comic actions** contains deferral and the external comic page.
-**Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
-putting availability in the main comic details. An active temporary-link warning stays
+**Trouble opening this comic?** contains the full Unlimited status and reader-link help. The
+Marvel Unlimited record and the comic's position in the list appear in its details, not on the
+reading card. An active temporary-link warning stays
 visible outside that disclosure, and editing still requires a matching saved comic.
 
 Add leads with search and series, with other methods under **More ways to add**. An empty search
@@ -510,7 +512,8 @@ Android assets and the shared desktop entry. Its fixed 16-case matrix covers 320
 both themes, 150/200% text-token stress, landscape and desktop, plus 700/701px boundary
 measurements. It measures full-width prose, timeline markers, complete credits and gap text,
 meaningful accessibility order, Preview/Add and filter/sort compatibility. Its 320px 200% case
-also checks that the Storylines and MCU Prep search fields fit at 320 and 360px. Its 360px 150%
+also checks that the Genres dropdowns and MCU Prep and Young readers search fields fit at 320 and
+360px. Its 360px 150%
 case also checks that Preview offers no offline copy and says nothing about one, because the
 Android app runs no service worker (#928). Cover geometry
 uses an original local test image, never publisher artwork. Use `--case=M02` for one case;
@@ -535,7 +538,7 @@ in the reading view at 412x915 and 360x800 with 200% text tokens, and at 360x800
 800x360. It taps Done and Undo as a finger would, refuses one save to reach Try again, and raises
 Done's hint by keyboard focus with Done near the top of the screen, where the only room left for
 it is over the result. A first case without a result requires the hint to still show below Done.
-In the four portrait profiles, where Read is stacked above Done, it then raises each one's hint by
+In the four portrait profiles it then raises each one's hint by
 keyboard focus at its natural place and near the top. It checks that neither hint covers the other
 button, and that a tap on the edge of either button nearest the other lands on that button.
 Home is not visited because no hint shows there on a phone. Use `--viewport=412x915@2` for the
@@ -543,8 +546,8 @@ reported case. These are Edge web checks, not native fontScale or TalkBack accep
 
 `npm run android:browser -- --only=completion-focus` holds a completion-history save open from the
 page at 412x915 and 800x360, by keyboard and by tap, and checks where focus is. On a narrow screen
-with comics queued, Complete lives in the List options sheet, which closes as Complete is pressed
-and gives focus to List options. So focus stays on List options while Complete saves and after
+with comics queued, Complete lives in the Reading List options sheet, which closes as Complete is pressed
+and gives focus to Reading List options. So focus stays on Reading List options while Complete saves and after
 another tab's write refuses it, and moves to Reopen when the save succeeds. Reopen keeps focus while
 it saves and after a refusal. When it succeeds the reading view's heading takes focus, because
 Complete is in the closed sheet. No rendered frame may find focus on the page. These are Edge web
@@ -569,7 +572,7 @@ On short landscape screens a question-sized dialog widens so its answers share o
 restores, undoes and declines the saved copy, and must leave the reading data as it found it. With
 the list then completed, it opens the dialogs that share the questions' shell the way a phone reader
 reaches them: the rating from an issue's details, the list feedback note, the personal checklist
-from List options, and House of M's Preview from the catalog. Each must open at its start with its
+from Reading List options, and House of M's Preview from the catalog. Each must open at its start with its
 title clear of what it holds and its focus inside, hold its answers in view with its scroll padded
 clear of them, and keep every control Tab reaches clear of them. Preview, whose only Close is in its
 head, must hold that head in view to the end of its list as well. On Android, Preview must offer no
@@ -741,7 +744,7 @@ somebody performs them on a physical device:
 - [ ] Check portrait and landscape, light and dark themes, larger system fonts, display cutouts,
   gesture and three-button navigation, and fields near the bottom with the keyboard open.
 - [ ] Recheck the Galaxy S26 reports: focused Home starting choices, compact parent links,
-  no heading rectangle after touch navigation, scrollable filters, and List options with working
+  no heading rectangle after touch navigation, scrollable filters, and Reading List options with working
   editors, exports, cancellation and Back.
 - [ ] Confirm the installed package's backup/transfer exclusions and document-provider behavior.
 

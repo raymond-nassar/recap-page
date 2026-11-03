@@ -255,31 +255,6 @@
             </div>
 
             <div id="reading-body" hidden>
-              <div class="list-tools">
-                <details id="list-actions" class="list-actions action-disclosure">
-                  <summary>List actions</summary>
-                  <div class="list-actions-body">
-                    <span class="tool-sep" aria-hidden="true"></span>
-                    <button type="button" class="quiet" id="btn-rename-list">Rename</button>
-                    <button type="button" class="quiet" id="btn-list-note">Note</button>
-                    <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
-                    <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
-                    <details id="list-export">
-                      <summary class="quiet">Export</summary>
-                      <div class="field-row">
-                        <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
-                        <button type="button" class="quiet" id="btn-export-order">Export order only</button>
-                      </div>
-                    </details>
-                    <span class="grow"></span>
-                    <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
-                    <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
-                    <!-- Removal keeps comic progress but removes the reader's own order and note. -->
-                    <span class="tool-sep" aria-hidden="true"></span>
-                    <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
-                  </div>
-                </details>
-              </div>
               <!-- Pending and terminal feedback stays visible without expanding the command strip. -->
               <div class="list-work">
                 <span id="hydration-status" class="rail-hint" hidden></span>
@@ -288,13 +263,11 @@
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
               </div>
 
-              <!-- The reader's own note about this order. Sits above the hero because it is
-                   context for the whole list, and a note placed below the rows would be found
-                   only by someone who had already scrolled past everything it was meant to
-                   inform. -->
+              <!-- On a phone the list context moves below the comic, but remains above its rows. -->
               <p class="list-note" id="list-note" hidden></p>
+              <p class="rail-hint" id="list-similar-hint" hidden></p>
 
-              <!-- hero: read this next -->
+              <!-- hero: the comic up next -->
               <section class="hero" id="hero" aria-labelledby="hero-title">
                 <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
                 <div class="hero-fade" aria-hidden="true"></div>
@@ -307,7 +280,6 @@
                     </div>
                   </div>
                   <div class="hero-body">
-                    <p class="eyebrow">Read this next</p>
                     <!-- Carries real text before the first render. An empty heading is a
                          WCAG 1.3.1 failure whether or not its section is on screen, and this
                          one labels the hero, so it cannot simply be dropped. renderHero
@@ -323,10 +295,35 @@
                         Done
                       </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
                     </div>
+                    <div id="reading-list-options" data-keep-uncovered>
+                      <div class="list-tools">
+                        <details id="list-actions" class="list-actions action-disclosure">
+                          <summary>Reading List options</summary>
+                          <div class="list-actions-body">
+                            <span class="tool-sep" aria-hidden="true"></span>
+                            <button type="button" class="quiet" id="btn-rename-list">Rename</button>
+                            <button type="button" class="quiet" id="btn-list-note">Note</button>
+                            <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
+                            <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
+                            <details id="list-export">
+                              <summary class="quiet">Export</summary>
+                              <div class="field-row">
+                                <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
+                                <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                              </div>
+                            </details>
+                            <span class="grow"></span>
+                            <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
+                            <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
+                            <!-- Removal keeps comic progress but removes the reader's own order and note. -->
+                            <span class="tool-sep" aria-hidden="true"></span>
+                            <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
                     <p id="hero-reader-temporary" class="rail-hint" hidden></p>
-                    <!-- Progress at a glance (#876). The header's ring already reads out how far through the
-                         list the reader is, and stays on screen when this card does not, so this row is
-                         for the eye and is not read a second time. -->
+                    <!-- The ring reads progress once. This visual row moves with it on a phone. -->
                     <div class="glance" id="hero-progress" aria-hidden="true">
                       <p class="glance-count" id="hero-progress-count"></p>
                       <div class="glance-bar"><i id="hero-progress-fill"></i></div>
@@ -344,11 +341,12 @@
                         </div>
                       </details>
                     </div>
-                    <button type="button" class="btn btn-g" id="btn-hero-description" aria-controls="hero-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                     <p class="desc" id="hero-desc"></p>
                   </div>
                 </div>
               </section>
+
+              <div id="reading-overview"></div>
 
               <!-- The one-time note that saving is automatic follows the hero rather than leading it.
                    Above the hero it was 238px tall on a phone's first visit and put Read under the
@@ -398,7 +396,7 @@
               <section id="review-earlier" class="review-earlier" hidden aria-labelledby="review-h">
                 <h2 id="review-h" tabindex="-1">Review earlier issues</h2>
                 <p id="review-context"></p>
-                <p class="rail-hint">Choose a comic to open its details and deliberately fetch or reveal its description. This is the current order, not a record of your last reading session.</p>
+                <p class="rail-hint">Choose a comic to open its details and load its story summary if you want one. This is the current order, not a record of your last reading session.</p>
                 <p id="review-position" role="status"></p>
                 <div id="review-candidate"></div>
                 <div class="cta">
@@ -481,14 +479,13 @@
                 </div>
                 <div class="hero-body">
                   <p class="byline" id="issue-focus-by"></p>
-                  <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">
-                      Show story summary (may contain spoilers)
+                      Load story summary
                     </button>
                     <button type="button" class="btn btn-g" id="btn-cancel-issue-synopsis" hidden>
                       Stop loading summary
@@ -661,28 +658,6 @@
               <legend class="visually-hidden">Filter the catalog by category</legend>
             </fieldset>
             <div id="catalog-results" class="results"></div>
-          </section>
-
-          <!-- ---------------------------------------- line-wide reading lists view
-
-               The four catalog screens are one renderer over one table, so every id here is the
-               shelf key with the same suffix the catalog view uses. Changing a suffix on one screen
-               and not the others is how they would drift apart, and a test asserts all four carry
-               the same set. -->
-          <section id="view-lines" class="view" hidden aria-labelledby="lines-h">
-            <div class="head"><div class="head-left"><h1 id="lines-h">Storylines</h1></div></div>
-            <div id="lines-report" class="report"></div>
-            <form id="form-lines-search" class="stack" role="search" hidden>
-              <label for="lines-q">Search the catalog by title or character</label>
-              <div class="field-row">
-                <input type="search" id="lines-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
-                <button type="button" class="btn search-clear" id="lines-clear" hidden>Clear</button>
-              </div>
-            </form>
-            <fieldset class="filters" id="lines-filters" hidden>
-              <legend class="visually-hidden">Filter the catalog by category</legend>
-            </fieldset>
-            <div id="lines-results" class="results"></div>
           </section>
 
           <!-- ---------------------------------------- character spotlights view -->
@@ -958,7 +933,7 @@
                 </section>
                 <details class="setting-more">
                   <summary>About complete backups</summary>
-                  <p class="rail-hint" id="complete-backup-contents">It holds everything the other backups hold, plus your cover art, theme, reading filter, reading shortcut, story summary and sidebar choices, but not the metadata source under Advanced.</p>
+                  <p class="rail-hint" id="complete-backup-contents">It holds everything the other backups hold, plus your cover art, theme, reading filter, reading shortcut and sidebar choices, but not the metadata source under Advanced.</p>
                   <p class="rail-hint">Close other Recap Page tabs before restoring. If a restore is interrupted, this card offers to finish it or put the earlier data back.</p>
                 </details>
               </div>
@@ -974,6 +949,7 @@
                 <div class="field-row" id="cloud-backup-primary">
                   <button type="button" id="btn-cloud-sign-in" class="btn btn-g" hidden><img src="./brands/ms-symbollockup_mssymbol_19.svg" alt="" width="21" height="21" loading="lazy" />Sign in with Microsoft</button>
                   <button type="button" id="btn-cloud-sign-in-google" class="btn btn-g" hidden><img src="./brands/g-logo.png" alt="" width="20" height="20" loading="lazy" />Sign in with Google</button>
+                  <button type="button" id="btn-cloud-connect-icloud" class="btn btn-g" hidden>Connect iCloud</button>
                   <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
                 </div>
                 <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
@@ -1103,22 +1079,6 @@
                     High contrast mode and reduced motion are still honoured whichever you pick.
                   </p>
                 </details>
-              </div>
-              <div class="card card-static setting">
-                <h3>Story summaries</h3>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-description-hiding" aria-describedby="description-hiding-help" /> Hide story summaries until I reveal them</label>
-                <p id="description-hiding-help" class="rail-hint setting-desc">
-                  On by default. Loading a summary still asks permission. Titles and covers may contain spoilers.
-                </p>
-                <details class="setting-more">
-                  <summary>What this choice changes</summary>
-                  <p class="rail-hint">
-                    Turn off to show loaded summaries without Show and Hide.
-                    It does not hide spoilers in titles or covers.
-                    Only a complete backup includes this choice.
-                  </p>
-                </details>
-                <div id="description-hiding-report" class="results"></div>
               </div>
             </section>
 
@@ -1349,6 +1309,10 @@
               <p id="list-recommendation-status" class="rail-hint" role="status"></p>
               <ul id="list-suggestions" class="recommendation-grid"></ul>
               <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><a href="#/browse" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</a></div>
+            </section>
+            <section id="list-similar" class="completion-recommendations" hidden aria-labelledby="list-similar-h">
+              <h3 id="list-similar-h">More like this</h3>
+              <ul id="list-similar-suggestions" class="recommendation-grid"></ul>
             </section>
           </section>
           <section id="completion-history-controls" class="card card-static" aria-labelledby="completion-history-h">

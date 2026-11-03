@@ -31,8 +31,8 @@
 
 import { RESTORE_MARKER_KEY, RESTORE_LOCK, RESTORE_DATABASE } from '../storage.js';
 import {
-  CompleteBackupError, RESTORE_KEYS, canonical, classifyComponent, imageOf, parseCompleteBackup,
-  prepareCompleteRestore, restorePlan,
+  CAPTURE_KEYS, CompleteBackupError, RESTORE_KEYS, canonical, captureCompleteBackup, classifyComponent,
+  imageOf, parseCompleteBackup, prepareCompleteRestore, restorePlan,
 } from './completeBackup.js';
 import { isIosApp } from './platform.js';
 
@@ -115,6 +115,10 @@ export function restoreMessagesForPlatform(isIos = isIosApp()) {
     copyOffered: 'The recovery copy could not be removed, perhaps because storage is full, so the next start offers it again.',
     copyStuck: 'Recap Page could not remove the recovery copy from an earlier complete restore, perhaps because storage is full, so complete restore is off until a later start removes it. Every other backup still works.',
     copyStuckOffered: 'Recap Page could not remove a recovery copy it cannot read, perhaps because storage is full, so complete restore is off and the next start offers that copy again. Every other backup still works.',
+    markerUnchecked: platformText(
+      'The restore marker could not be checked, so nothing was replaced. The recovery copy was kept. Reload the page before trying again.',
+      'The restore marker could not be checked, so nothing was replaced. The recovery copy was kept. Close and reopen the app before trying again.',
+    ),
     reloading: platformText(
       'Another Recap Page tab changed saved data, so this page is reloading to show it.',
       'Another copy of Recap Page changed saved data, so this app is updating to show it.',
@@ -483,7 +487,8 @@ export class CompleteRestore {
     else if (!this.shared) { phase = 'pending'; message = RESTORE_MESSAGES.starting; }
     this.phase = phase;
     const unavailableReason = this.unavailableReason ?? (this.journalUnchecked ? RESTORE_MESSAGES.journalUnchecked : null)
-      ?? (this.copyStuck === 'offered' ? RESTORE_MESSAGES.copyStuckOffered : this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
+      ?? (this.copyStuck === 'marker' ? RESTORE_MESSAGES.markerUnchecked
+        : this.copyStuck === 'offered' ? RESTORE_MESSAGES.copyStuckOffered : this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
     this.state = Object.freeze({
       phase, message, recovery: this.recovery,
       available: this.capable && !unavailableReason && !this.recovery && phase === 'open',
@@ -706,7 +711,8 @@ export class CompleteRestore {
       try {
         return (await operation()) ?? { ok: true };
       } catch (error) {
-        if (error?.copyKept) this.copyStuck = error.offered ? 'offered' : true;
+        if (error?.copyKept) this.copyStuck = error.markerUnchecked ? 'marker' : error.offered ? 'offered' : true;
+        if (error?.markerUnchecked) this.reloadNow();
         return {
           ok: false, changed: error && 'changed' in error ? error.changed : false,
           error: error?.message || 'The complete restore could not continue.',
@@ -718,7 +724,8 @@ export class CompleteRestore {
     } finally {
       if (lease) await lease.release();
       this.busy = false;
-      await this.acquireShared();
+      if (this.stale) this.refresh();
+      else await this.acquireShared();
     }
   }
 
@@ -768,7 +775,7 @@ export class CompleteRestore {
     return next;
   }
 
-  async apply(found, record, direction) {
+  async apply(found, record, direction, beforeStep = null) {
     let current = record;
     const components = direction === 'forward' ? found.plan.components : [...found.plan.components].reverse();
     for (const component of components) {
@@ -780,6 +787,7 @@ export class CompleteRestore {
         ? Array.from({ length: component.effects.length - where.highest }, (_, i) => where.highest + i)
         : Array.from({ length: where.lowest }, (_, i) => where.lowest - 1 - i);
       for (const step of steps) {
+        if (beforeStep) beforeStep();
         if (this.writeStep(component, step, direction, current)) {
           current = await this.checkpoint({ ...current, writes: current.writes + 1 });
         }
@@ -789,24 +797,61 @@ export class CompleteRestore {
     if (check.foreign || !(direction === 'forward' ? check.allPrepared : check.allPrior)) {
       throw new Error('Saved data does not match the restore, so it stopped. Recovery is available.');
     }
+    if (beforeStep) beforeStep();
     current = await this.checkpoint({ ...current, phase: 'done', finishedAt: this.clock() });
+    if (beforeStep) beforeStep();
     this.markOwn(`done:${current.id}`);
     return current;
   }
 
   // Leaves storage exactly as it was found, or with a recovery the next start offers. Never both
   // half-written and unrecorded.
-  async restore(text, { draftRecovery = [] } = {}) {
+  async restore(text, { draftRecovery = [], expectedPriorDigest, importDraft } = {}) {
     if (!this.capable || this.unavailableReason) return { ok: false, changed: false, error: this.unavailableReason ?? RESTORE_MESSAGES.noJournal };
     if (this.recovery) return { ok: false, changed: false, error: RESTORE_MESSAGES.recovery };
+    if (expectedPriorDigest !== undefined && (typeof expectedPriorDigest !== 'string' || !HEX.test(expectedPriorDigest))) {
+      return { ok: false, changed: false, error: 'The saved copy could not be checked, so nothing was replaced. Check again.' };
+    }
     let backup;
     try { backup = await parseCompleteBackup(text, { cryptoProvider: this.cryptoProvider }); }
     catch (error) { return { ok: false, changed: false, invalid: true, error: error.message }; }
     return this.withExclusive(async () => {
+      const changed = 'Saved data changed after the cloud copy was kept, so nothing was replaced. Check again.';
+      const assertDraft = () => {
+        if (expectedPriorDigest === undefined) return;
+        if (!importDraft || !Array.isArray(importDraft.recovery) || typeof importDraft.uncertain !== 'boolean') {
+          throw new Error('The import draft could not be checked. Download its backup before trying again.');
+        }
+        if (!Array.isArray(draftRecovery) || draftRecovery.some((source) => typeof source !== 'string')) {
+          throw new TypeError('Retained import draft sources must be exact strings.');
+        }
+        if (draftRecovery.length || importDraft.recovery.length || importDraft.uncertain) {
+          throw new Error('The import draft has unsaved or unchecked source. Download its import-draft backup before trying again.');
+        }
+      };
+      let witness = null;
+      if (expectedPriorDigest !== undefined) {
+        assertDraft();
+        const current = await captureCompleteBackup({
+          storage: this.raw, cryptoProvider: this.cryptoProvider, importDraft,
+        });
+        assertDraft();
+        if (current.backup.digest !== expectedPriorDigest) throw new Error(changed);
+        witness = current.witness;
+      }
+      const assertCurrent = () => {
+        if (!witness) return;
+        assertDraft();
+        let matches;
+        try { matches = CAPTURE_KEYS.every((key) => (this.raw.getItem(key) ?? null) === witness[key]); }
+        catch { throw new Error('Saved data could not be checked, so nothing was replaced. Check again.'); }
+        if (!matches) throw new Error(changed);
+      };
       // Whatever an earlier restore left is settled first: a kept journal is cleaned up, an orphan that
       // never wrote is discarded, and anything that still needs the reader refuses this restore.
       const marker = readMarker(this.raw);
       const earlier = await this.readJournal();
+      assertCurrent();
       // A journal that cannot be read now may still be the only copy of what an earlier restore
       // replaced, and this restore's journal would be written over it.
       if (earlier.kind === 'unreadable') throw new Error(RESTORE_MESSAGES.restoreUnchecked);
@@ -822,29 +867,44 @@ export class CompleteRestore {
       if (before.kind === 'discard') await this.removeJournal();
       else if (before.kind === 'cleanup') await this.cleanUp(before.id);
       else if (marker.state === 'done') await this.cleanUp(marker.id);
+      assertCurrent();
       const prepared = prepareCompleteRestore({
         backup, storage: this.raw, isExclusive: () => this.exclusiveHeld, draftRecovery,
       });
+      if (witness && CAPTURE_KEYS.some((key) => prepared.before[key] !== witness[key])) throw new Error(changed);
       const record = {
         version: 1, id: randomId(this.cryptoProvider), backup: canonical(backup), prepared,
         writes: 0, direction: 'forward', phase: 'applying', finishedAt: null,
       };
       const found = await checkRecord(record, this.cryptoProvider);
+      assertCurrent();
+      const abandon = async (error) => {
+        try { await this.removeJournal(); }
+        catch (cleanupError) {
+          if (!cleanupError?.copyKept) throw cleanupError;
+          throw Object.assign(new Error(`${error.message} ${cleanupError.message}`), { copyKept: true });
+        }
+        throw error;
+      };
       // The journal, read back whole, before the marker that relies on it.
       await this.journal.begin(record);
       const stored = await this.journal.read().catch(() => null);
-      if (!stored || canonical(stored) !== canonical(record)) {
-        await this.removeJournal().catch(() => {});
-        throw new Error('The recovery copy could not be saved, so nothing was replaced.');
+      let matches = false;
+      try { matches = Boolean(stored) && canonical(stored) === canonical(record); }
+      catch (error) {
+        if (!(error instanceof CompleteBackupError)) await abandon(error);
       }
+      if (!matches) await abandon(new Error('The recovery copy could not be saved, so nothing was replaced.'));
+      try { assertCurrent(); }
+      catch (error) { await abandon(error); }
       this.verified = record;
       try { this.markOwn(`active:${record.id}`); }
       catch (error) {
-        await this.removeJournal().catch(() => {});
-        throw error;
+        if (readMarker(this.raw).state === 'absent') await abandon(error);
+        throw Object.assign(new Error(RESTORE_MESSAGES.markerUnchecked), { copyKept: true, markerUnchecked: true });
       }
       try {
-        await this.apply(found, record, 'forward');
+        await this.apply(found, record, 'forward', expectedPriorDigest === undefined ? null : assertDraft);
       } catch (error) {
         await this.settleFailure();
         error.changed = null;

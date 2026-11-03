@@ -53,7 +53,7 @@ test('the capture matches the three App Store slots and their screens in order',
   assert.deepEqual(SETS.map(({ folder, width, height }) => [folder, width, height]),
     [['ipad-13', 2064, 2752], ['iphone-6.3', 1206, 2622], ['iphone-6.9', 1320, 2868]]);
   assert.deepEqual(SCREENS.map(({ name, theme }) => [name, theme]), [
-    ['01-home', 'dark'], ['02-modern-timeline', 'dark'], ['03-reading-list', 'dark'], ['04-storylines', 'dark'],
+    ['01-home', 'dark'], ['02-modern-timeline', 'dark'], ['03-reading-list', 'dark'], ['04-genres', 'dark'],
     ['05-professor-x', 'light'], ['06-library', 'light'], ['07-backup-settings', 'light'],
   ]);
   assert.equal(SCREENS[6].caption, 'Download a complete backup of your lists and progress.');
@@ -95,7 +95,7 @@ test('the seed is the fictional Play listing state with covers off and no notes'
   assert.deepEqual(home.settings, { covers: false, theme: 'dark', filter: 'all' });
   const list = evaluate(SCREENS[2]);
   assert.equal(list.settings.theme, 'dark');
-  assert.equal(list.settings.hideDescriptions, false);
+  assert.deepEqual(list.settings, { covers: false, theme: 'dark', filter: 'all' }, '#1061: no hiding choice to seed');
   assert.equal(evaluate(SCREENS[5]).settings.theme, 'light');
   assert.ok(Object.keys(list.state.issues).length > 0);
   assert.ok(Object.keys(list.state.issues).every((id) => Number(id) < 0), 'every issue is fictional');

@@ -16,7 +16,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
@@ -38,6 +38,7 @@ import {
   loadHistoricalReadingChoiceLibrary,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const abominationCandidateId = 'abomination-reading-order';
@@ -804,6 +805,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   const selected = structuredClone(discoveryManifest);
   selected.lists[0].storylines = true;
   selected.lists[1].storylinesChildren = ['parent-02'];
+  selected.lists[1].chapterTags = { 'parent-02': { storyTypes: ['war'], tones: ['dark'] } };
   assert.equal(libraryDigestFor(selected, vectors), baseline,
     'valid ordinary and partition-child discovery selectors must not redefine the issue library');
   for (const [field, value] of [
@@ -1180,7 +1182,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     expectedOrderIds,
   }));
 
-  assert.deepEqual(manifestRecord, mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifestRecord)), mapping.approvedManifest);
   assert.equal(catalogRecord.count, 225);
   assert.equal(catalogRecord.placeholderCount, 0);
   assert.equal(payload.count, 225);

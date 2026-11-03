@@ -271,7 +271,8 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
   await page.setViewport({ width: 1280, height: 900 });
   await recordNote(page, t, '#issue-focus-facts');
   await route(page, '#/read/fixture', '#view-read:not([hidden])');
-  await recordNote(page, t, '#hero-facts');
+  t.check('#1061 the reading card leaves the record to Issue details', await page.$eval('#hero-facts',
+    (node, heading) => !node.textContent.includes(heading), RECORD_HEADING));
   const historical = [
     'No recorded Unlimited date',
     'Unlimited date: 2027-01-01 (future)',

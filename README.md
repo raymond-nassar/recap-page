@@ -86,7 +86,7 @@ Unfinished selections are not saved across a reload; the browser warns before yo
 
 ### Record a list you have already read
 
-Open the saved Reading List, expand **List actions** (**List options** on Android), and choose
+Open the saved Reading List, expand **Reading List options**, and choose
 **Mark All Read**, then confirm the unread count in the dialog. This includes
 deferred comics and issues hidden by filters, and keeps existing read dates unchanged.
 Read progress is shared, so the same comics count as read in other lists too.
@@ -99,7 +99,7 @@ individual read checkboxes in **Full Reading List**.
 ### Finish a reading list without removing it
 
 Choose **Mark as Completed** when you are finished, even if you skipped or deferred comics.
-While comics are still queued it waits in **List actions** (**List options** on Android). Once
+While comics are still queued it waits in **Reading List options**. Once
 nothing is queued it moves onto the page, into the wrap-up or under **Nothing queued**.
 The list keeps its order, notes, and actual reading progress. It leaves active reading shelves,
 but remains available under **Library > Completed lists**. **Reopen list** brings it back.

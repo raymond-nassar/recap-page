@@ -839,7 +839,7 @@ main { min-width: 0; }
 .list-work { margin-bottom: var(--space-4); overflow-wrap: anywhere; }
 /* The rule that keeps the destructive command apart from the reversible ones. */
 .tool-sep { width: 1px; align-self: stretch; margin: var(--space-1) var(--space-4); background: var(--line); }
-/* UX-19 (#830): a hairline also sets Mark as Completed apart at the head of List actions, and goes with
+/* UX-19 (#830): a hairline also sets Mark as Completed apart at the head of Reading List options, and goes with
    it when it moves out or hides. */
 .list-actions-body > .tool-sep:first-child, #btn-complete-list[hidden] + .tool-sep { display: none; }
 /* The order's blurb sits under the title, so it needs the header's own left edge rather than the
@@ -1081,6 +1081,25 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .filter-legend {
   float: left; align-self: center; margin: 0; padding: 0;
   color: var(--muted); font-size: var(--t-caption); font-weight: 600;
+}
+/* Native dropdowns keep the complete vocabulary from taking over the screen (#1060). */
+.story-type-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  max-width: 42rem;
+  margin: var(--space-6) 0 var(--space-5);
+}
+.story-type-group {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.story-type-label { margin: 0; color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+/* The starting lists' hint reads as a subtitle, so it shares the heading's left edge. */
+.story-type-results > .rail-hint { margin: var(--space-2) 0 var(--space-3); }
+@media (max-width: 700px) {
+  .story-type-choices { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 620px) {
@@ -1398,18 +1417,19 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    a file input are drawn by the platform in a style that belongs to no part of this app, and the
    file input in particular announces itself as "Choose File / No file chosen" in the middle of a
    surface where every other control is a labelled button. */
-#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select {
+#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select {
   appearance: none;
+  background-color: var(--card-2);
   background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%),
     linear-gradient(135deg, currentcolor 50%, transparent 50%);
   background-repeat: no-repeat;
   background-size: 5px 5px, 5px 5px;
   background-position: right 1rem top 55%, right .75rem top 55%;
-  color: var(--muted); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
+  color: var(--text); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
-#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
@@ -1975,7 +1995,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   background: rgb(var(--home-path-line));
 }
 .home-path[data-category="timeline"] { --home-path-ink: var(--accent-text); }
-.home-path[data-category="storylines"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
+.home-path[data-category="genres"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
 .home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); --home-path-ink: var(--teal); }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
@@ -2284,6 +2304,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .timeline-position-label { border-color: Highlight; color: CanvasText; }
   .timeline-position-status { border-color: Highlight; background: Canvas; color: CanvasText; }
   .fp input:checked + span { border: var(--stroke-2) solid Highlight; }
+  .story-type-choices select:focus-visible { outline-color: Highlight; }
 }
 
 /* Unreadable-data recovery. Deliberately loud: saving is paused and the user must choose. */
@@ -2341,25 +2362,60 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    job. The Unlimited button grows, `Done, next` stays a ghost because it is an action, and the
    issue page becomes a link because that is what it is: a way out of the app. */
 .hero .cta { gap: var(--space-5); align-items: center; }
+#hero #reading-list-options { margin-top: var(--space-6); }
+#reading-list-options > .list-tools, #reading-list-options > .list-tools > .list-actions { width: 100%; }
+#reading-list-options :is(#android-list-options, #list-actions > summary) {
+  box-sizing: border-box; width: 100%; min-height: var(--target-touch); justify-content: space-between;
+  background: none; color: var(--dim); border-color: transparent; font-weight: 600;
+}
+#reading-list-options :is(#android-list-options, #list-actions > summary):is(:hover, :focus-visible) {
+  color: var(--text); border-color: var(--line-2); filter: none;
+}
+#reading-list-options #android-list-options::after {
+  content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); transform: rotate(90deg);
+}
 .reading-comic-actions { display: flex; align-items: flex-start; flex-wrap: wrap; gap: var(--space-5); margin: var(--space-4) 0 var(--space-5); }
 .comic-options { flex: 1 1 12rem; border: 0; }
 .comic-options > .cta { padding-bottom: var(--space-4); }
 @media (max-width: 700px) {
+  #reading-overview { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); margin: var(--space-7) 0; }
+  #reading-overview #order-sub { color: var(--muted); font-size: var(--t-body); max-width: 62ch; }
+  #reading-overview :is(#hero-progress, #order-desc, #list-note) { margin: 0; }
+  #reading-overview #hero-progress { width: 100%; }
   #hero .hero-in { display: flow-root; padding: var(--space-6); }
-  #hero .hero-in > .art { float: left; width: 96px; margin: 0 var(--space-5) var(--space-4) 0; }
+  /* The reserve leaves room for the title and both commands above the bottom bar. The list context
+     is after the card, so a note does not reduce the cover. The rem term yields to larger text. */
+  #hero .hero-in > .art {
+    --hero-reserve: 35.75rem;
+    float: none; max-width: none; margin: 0 auto var(--space-4);
+    width: max(min(30vw, 6rem, max(14.4dvh, 96px)), min(calc((100dvh - var(--hero-reserve)) * 2 / 3), 62vw, 20rem));
+  }
   #hero-title { clear: both; }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
   #hero .cta, #hero-facts, #hero-desc, .reading-comic-actions { clear: both; }
   #hero-facts { gap: var(--space-4) var(--space-5); margin: var(--space-5) 0 var(--space-4); }
-  #hero-primary-actions > .btn { min-height: var(--target-touch); width: 100%; justify-content: center; }
+  /* #1061, the owner's decision on 2026-11-02: Read and Done share one row on a phone, so Done is in
+     view wherever Read is. The basis is in rem, so a larger text size, or a label wider than its half,
+     wraps the row back to stacked full-width buttons rather than truncating either. */
+  #hero-primary-actions { align-items: stretch; }
+  #hero-primary-actions > .btn { flex: 1 1 8rem; min-height: var(--target-touch); justify-content: center; }
   .reading-comic-actions > .btn { min-height: var(--target-touch); }
   #view-data .setting-more > summary { min-height: var(--target-touch); box-sizing: border-box; }
   #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: var(--target-touch); min-height: var(--target-touch); }
   /* Without a shrinkable column a search form grows to its field's intrinsic width: at 200 per cent
-     text the Storylines and MCU Prep fields stayed 393px wide on 320 and 360px phones. */
-  #form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
-  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-lines-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
+     text the MCU Prep field stayed 393px wide on 320 and 360px phones. */
+  #form-search, #form-series, #form-creator, #form-catalog-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
+  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
   #catalog-filters { min-width: 0; max-width: 100%; }
+}
+/* On a short phone the title is compact and the lower list context leaves more height for the cover. */
+@media (max-width: 700px) and (max-height: 820px) {
+  #view-read > .breadcrumb { margin-bottom: var(--space-4); }
+  #view-read > .head { margin-bottom: var(--space-5); }
+  #view-read > .head h1 { font-size: var(--t-subtitle); line-height: 1.25; }
+  #hero .hero-in > .art { --hero-reserve: 30.75rem; }
+  /* Its margin stood an empty status row 8px tall above the card while nothing was running. */
+  #view-read .list-work:not(:has(> :not([hidden]))) { margin-bottom: 0; }
 }
 .btn-lg { padding: var(--space-5) var(--space-8); font-size: var(--t-body-lg); font-weight: 700; border-radius: var(--radius-lg); }
 .btn-link {
@@ -2374,6 +2430,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .search-clear:hover { color: var(--text); border-color: var(--line-2); filter: none; }
 
 @media (min-width: 1100px) { .hero-in { grid-template-columns: 248px 1fr; } }
+/* #1061: beside the text, the reading card's cover grows with the window's height up to 320px, which
+   at 1280 by 900 still ends well above the fold, with Read and Done at the top of the text column. */
+@media (min-width: 701px) {
+  #hero .hero-in { grid-template-columns: auto minmax(0, 1fr); }
+  #hero .hero-in > .art { width: clamp(216px, min(calc((100dvh - 128px) * 2 / 3), 36vw), 320px); }
+}
 
 /* The expanded command group owns the edge; individual commands gain weight only when reached.
    Their names, tab order and confirmations do not depend on the disclosure's presentation. */

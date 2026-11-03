@@ -17,7 +17,7 @@ import {
   availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
-  catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
+  catalogListBrowseRoute, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
 import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY } from './storage.js';
@@ -29,7 +29,6 @@ import { ResponseCache } from './cache.js';
 import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
-import { createSynopsisDisclosure } from './lib/synopsisDisclosure.js';
 import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
 import { readerClosureNotice } from './lib/readerDestination.js';
 import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
@@ -65,6 +64,7 @@ import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
+import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
@@ -85,7 +85,7 @@ import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
 import { cloudTransport } from './lib/cloudTransports.js';
 import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 import { isIosApp } from './lib/platform.js';
-
+import { shouldRevealMobileNavigation } from './lib/mobileNavigation.js';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const iosApp = isIosApp();
 // Made before any owner of saved data, so the first write any of them attempts already passes its
@@ -146,7 +146,6 @@ const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
 const sessionSynopsis = new SessionSynopsis();
-const synopsisDisclosure = createSynopsisDisclosure({ hiding: () => settings.hideDescriptions });
 const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: onSynopsisStatus });
 
 // One key, every tab. A save in another tab is news here, and taking it is what keeps two tabs
@@ -418,7 +417,7 @@ function loadSettings() {
       // preference instead of overriding it.
       theme: normaliseTheme(raw.theme),
       readingShortcut: raw.readingShortcut !== false,
-      hideDescriptions: raw.hideDescriptions !== false,
+      // A hideDescriptions value saved before #1061 is left unread: summaries are no longer hidden.
       // Not checked against the filters that exist here, because that is a question about the
       // document rather than about storage. wireReading() answers it and writes the answer back,
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
@@ -432,7 +431,6 @@ function loadSettings() {
       covers: true,
       theme: DEFAULT_THEME,
       readingShortcut: true,
-      hideDescriptions: true,
       filter: 'all',
       rejectedApiBase: null,
     };
@@ -517,7 +515,9 @@ function saveSettings() {
       theme: settings.theme,
       filter: settings.filter,
       readingShortcut: settings.readingShortcut,
-      hideDescriptions: settings.hideDescriptions,
+      // #1061: nothing is hidden now, so the stored choice always says so. Leaving it out let a restored
+      // false fall back to true in the next backup, which an earlier version would then restore as hiding.
+      hideDescriptions: false,
     });
     localStorage.setItem(SETTINGS_KEY, serialized);
     return localStorage.getItem(SETTINGS_KEY) === serialized;
@@ -908,28 +908,6 @@ function setTheme(next) {
 // colours, and the control already reads 'system'. It was found by mutation, not by review:
 // removing it left a browser check that was written to catch exactly that still reporting a pass.
 
-function setDescriptionHiding(on) {
-  const next = on !== false;
-  const changed = settings.hideDescriptions !== next;
-  settings.hideDescriptions = next;
-  const saved = saveSettings();
-  $('#opt-description-hiding').checked = next;
-  if (changed) {
-    synopsisDisclosure.clear();
-    readingView.renderHero();
-    issueView.refreshDescription();
-  }
-  const status = `Description hiding ${next ? 'on' : 'off'}.`;
-  if (!saved) {
-    notify('#description-hiding-report', `${status} ${iosApp
-      ? 'This applies to this app, but could not be saved. It may change after you close and reopen the app.'
-      : 'This applies to this tab, but could not be saved. It may change after reload.'}`, 'error');
-    return;
-  }
-  $('#description-hiding-report').replaceChildren();
-  announce(status);
-}
-
 function applyReadingShortcutSetting() {
   const enabled = settings.readingShortcut;
   $('#opt-reading-shortcut').checked = enabled;
@@ -1010,7 +988,7 @@ function renderSidebar() {
 // UX-09 (#836): on a narrow screen More opens the rail's panel as a modal bottom sheet on the bar,
 // beside the control that opened it. It used to show the panel at the top of the page and scroll there,
 // so More at the bottom right of a phone took the reader to the top. The panel moves into the sheet, as
-// List options moves its commands, so its links and status keep one source.
+// Reading List options moves its commands, so its links and status keep one source.
 function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
   if (!isNarrow) return;
   const sheet = $('#more-sheet');
@@ -1242,8 +1220,31 @@ function wireMobileNavigation() {
   document.addEventListener('focusout', () => queueMicrotask(() => paint(
     header.classList.contains('mobile-nav-hidden'),
   )));
-  window.visualViewport?.addEventListener('resize', revealMobileNavigation);
-  window.visualViewport?.addEventListener('scroll', revealMobileNavigation);
+  const viewportGeometry = () => {
+    const viewport = window.visualViewport;
+    return viewport && {
+      size: [viewport.width, viewport.height, viewport.scale].join(','),
+      offset: [viewport.offsetLeft, viewport.offsetTop].join(','),
+      zoomed: viewport.scale > 1,
+      scrollY: window.scrollY,
+    };
+  };
+  let previousViewport = viewportGeometry();
+  // On the SE, a passive Home tap scrolled nothing yet revealed the bar 705 ms later.
+  // Ignore that settling, not real scrolling: the previous viewport event owns this baseline,
+  // because WebKit may deliver window scroll first. Its handler would already hold the new Y.
+  // Keyboard, zoom and zoomed pan must still reveal navigation.
+  const onViewportChange = () => {
+    const geometry = viewportGeometry();
+    const previous = previousViewport;
+    previousViewport = geometry;
+    if (shouldRevealMobileNavigation(previous, geometry)) {
+      revealMobileNavigation();
+    }
+  };
+  window.visualViewport?.addEventListener('resize', onViewportChange);
+  window.visualViewport?.addEventListener('scroll', onViewportChange);
+
   // The fit waits a frame, as changing the bar inside its own observer is a loop. Labels are watched too: in two rows they can shrink while the bar keeps its size.
   const observer = new ResizeObserver(() => {
     if (fitFrame === null) fitFrame = requestAnimationFrame(() => { fitFrame = null; fitLabels(); });
@@ -1420,6 +1421,7 @@ function syncHash({ push = false } = {}) {
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
         sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+        ...(view === 'genres' ? storyTypesView.selection() : {}),
       });
   if (!next || next === location.hash) return;
 
@@ -1495,6 +1497,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
+    if (route.view === 'genres') storyTypesView.set(route);
     if (route.view === 'catalog') {
       catalogView.setFollowedPath(route.pathId ?? null, {
         orFirst: route.orFirstPath === true,
@@ -1871,15 +1874,15 @@ function openInReader(issue, event, source, control = event?.currentTarget) {
 
 // ------------------------------------------------------------------ synopsis fetching
 
-export function synopsisDisclaimer({ reveal = false, isIos = iosApp } = {}) {
+export function synopsisDisclaimer({ single = false, isIos = iosApp } = {}) {
   return {
-    title: reveal ? 'Load this story summary?' : 'Fetch synopses from the community metadata service?',
+    title: single ? 'Load this story summary?' : 'Fetch synopses from the community metadata service?',
     body: "Marvel's synopses come from an unaffiliated community service, "
       + `and stay in ${isIos ? 'this app until you close it' : 'this tab until reload'}. `
-      + (reveal
-        ? 'This story summary may contain spoilers and loading it uses your request allowance.'
+      + (single
+        ? 'Loading one uses your request allowance.'
         : 'Fetching a whole Reading List takes a few minutes and uses your request allowance.'),
-    confirmLabel: reveal ? 'Load and show summary' : 'Fetch synopses',
+    confirmLabel: single ? 'Load summary' : 'Fetch synopses',
   };
 }
 
@@ -1941,7 +1944,7 @@ async function startIssueSynopsis(isCurrent) {
   const issueId = issueView.result()?.issue?.issueId;
   if (!Number.isInteger(issueId) || issueId < 1 || synopsisRunner.active) return false;
   const requestApi = api;
-  const yes = await askConfirm(synopsisDisclaimer({ reveal: true }));
+  const yes = await askConfirm(synopsisDisclaimer({ single: true }));
   if (!yes || !isCurrent() || api !== requestApi || synopsisRunner.active
     || view !== 'issue' || issueRoute?.issueId !== issueId) return false;
   issueSynopsisId = issueId;
@@ -2180,7 +2183,6 @@ const dataView = createDataView({
     optCovers: $('#opt-covers'),
     optTheme: $('#opt-theme'),
     optReadingShortcut: $('#opt-reading-shortcut'),
-    optDescriptionHiding: $('#opt-description-hiding'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     backupContents: $('#backup-contents'),
@@ -2253,7 +2255,6 @@ const dataView = createDataView({
   onSetCovers: (on) => setCovers(on),
   onSetTheme: (value) => setTheme(value),
   onSetReadingShortcut: (on) => setReadingShortcut(on),
-  onSetDescriptionHiding: setDescriptionHiding,
   onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
   onApiBaseSubmit: (value) => {
     settings.apiBase = value;
@@ -2276,7 +2277,6 @@ const dataView = createDataView({
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;
     sessionSynopsis.clear();
-    synopsisDisclosure.clear();
     issueView.resetSynopsis();
     readingView.resetSynopsis();
     readingView.renderSynopsis(null);
@@ -2438,6 +2438,7 @@ const cloudBackupView = createCloudBackupView({
     card: $('#cloud-backup'), intro: $('#cloud-backup-intro'), status: $('#cloud-backup-status'),
     progress: $('#cloud-backup-progress'), primary: $('#cloud-backup-primary'), signIn: $('#btn-cloud-sign-in'),
     signInGoogle: $('#btn-cloud-sign-in-google'),
+    connectICloud: $('#btn-cloud-connect-icloud'),
     retry: $('#btn-cloud-retry'), auto: $('#cloud-auto'), autoInput: $('#opt-cloud-auto'), discovery: $('#cloud-discovery'),
     discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
     remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),
@@ -2721,6 +2722,7 @@ function ensurePublishingViews() {
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
       ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
+      ...(category.route === 'genres' ? [storyTypesView.controls()] : []),
       ...(category.kind === 'publishing-index' ? [] : [el('section', {
         id: `${category.route}-categories`,
         class: 'publishing-periods',
@@ -2830,6 +2832,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   if (!current()) return;
   if (route === 'marvel-on-screen') {
     await mcuPrepView.render(catalog, { isCurrent: current });
+    return;
+  }
+  if (route === 'genres') {
+    storyTypesView.render(catalog, { isCurrent: current });
     return;
   }
   const allStories = catalogEntries(catalog.lists);
@@ -2984,7 +2990,6 @@ export function boot() {
   applyCoversSetting();
   applyThemeSetting();
   applyReadingShortcutSetting();
-  $('#opt-description-hiding').checked = settings.hideDescriptions;
   ensurePublishingViews();
   wireSidebar();
   wireNav();
@@ -3001,7 +3006,9 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
-  for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
+  for (const shelf of CATALOG_SHELVES) {
+    if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
+  }
   homeView.wire();
   const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
   const closureNotice = $('#reader-closure-notice');
@@ -3297,7 +3304,6 @@ const readingView = createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
-  synopsisDisclosure,
   synopsisStatusLine,
   updateState: (updater) => {
     const state = store.update(updater);
@@ -3345,7 +3351,7 @@ const issueView = createIssueView({
   decorateResult: (result, { catalog }) => ({
     ...result,
     breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
-      ? catalogListShelf(catalog?.lists, result.context.id)
+      ? catalogListBrowseRoute(catalog?.lists, result.context.id)
       : null,
   }),
   elements: () => ({
@@ -3355,7 +3361,6 @@ const issueView = createIssueView({
     card: $('#issue-focus-card'),
     context: $('#issue-focus-context'),
     description: $('#issue-focus-desc'),
-    disclosure: $('#btn-issue-description'),
     facts: $('#issue-focus-facts'),
     fallback: $('#issue-focus-fb'),
     heading: $('#issue-focus-h'),
@@ -3408,7 +3413,6 @@ const issueView = createIssueView({
   readerPresentation,
   seriesOnly,
   synopsisFallback,
-  synopsisDisclosure,
   synopsisStatusLine,
 });
 
@@ -3490,6 +3494,7 @@ const homeView = createHomeView({
     isCurrent,
   }),
   onNavigateCategory: (category) => {
+    if (category.route === 'genres') storyTypesView.set();
     showView(category.route, { push: true });
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
@@ -3654,6 +3659,17 @@ const mcuPrepView = createMcuPrepView({
   }),
 });
 
+const storyTypesView = createStoryTypesView({
+  el,
+  elements: () => ({
+    count: $('#genres-count'),
+    results: $('#genres-results'),
+  }),
+  isCurrent: () => view === 'genres',
+  presentation: catalogPresentation,
+  onNavigate: ({ push }) => syncHash({ push }),
+});
+
 const catalogView = createCatalogView({
   announce,
   clearLoadNotice: () => clearNotice(CATALOG_LOAD),
@@ -3791,6 +3807,9 @@ const completionView = createCompletionView({
     recommendationStatus: $('#list-recommendation-status'),
     recommendationRetry: $('#btn-retry-recommendations'),
     recommendationBrowse: $('#btn-recommendation-browse'),
+    similar: $('#list-similar'),
+    similarSuggestions: $('#list-similar-suggestions'),
+    similarHint: $('#list-similar-hint'),
     collectionCount: $('#completed-count'),
     collectionStatus: $('#completed-status'),
     collectionSection: $('#completed-section'),

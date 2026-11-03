@@ -8,7 +8,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 
@@ -18,6 +18,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'silk-cindy-moon-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/';
@@ -167,7 +168,7 @@ test('Silk ships 67 exact issues, seven original digital placeholders and source
   assert.deepEqual(record.catalogIds, [id]);
   assert.deepEqual(record.overlapIds, report.comparisons.filter((row) => row.relationship !== 'none')
     .map((row) => row.orderId).sort());
-  assert.deepEqual(entry, mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), mapping.approvedManifest);
   assert.equal(card.coverIssueId, 45798);
   assert.equal(card.count, 74);
   assert.equal(card.placeholderCount, 7);

@@ -508,3 +508,28 @@ wait() { trace wait; return 0; }
     await rm(scratch, { recursive: true, force: true });
   }
 });
+
+test('native restart evidence ignores the retired summary setting and checks the other settings', async () => {
+  const { runInNewContext } = await import('node:vm');
+  const root = '../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/';
+  const source = readFileSync(new URL(`${root}NativeIntegrationTest.java`, import.meta.url), 'utf8');
+  const start = source.indexOf('settingsMatched = truth(web,');
+  const end = source.indexOf('assertTrue("Restart preserves', start);
+  assert.ok(start >= 0 && end > start);
+  const expression = [...source.slice(start, end).matchAll(/"([^"\r\n]*)"/g)]
+    .map((match) => match[1]).join('');
+  const settings = { covers: false, theme: 'dark', apiBase: 'http://127.0.0.1:9/v1' };
+  const matches = (value) => runInNewContext(expression, {
+    localStorage: { getItem: (key) => {
+      assert.equal(key, 'mrt.settings');
+      return JSON.stringify(value);
+    } },
+  });
+  for (const choice of [undefined, true, false, 'unrecognized']) {
+    const saved = choice === undefined ? settings : { ...settings, hideDescriptions: choice };
+    assert.equal(matches(saved), true, `retired choice ${String(choice)}`);
+  }
+  for (const changed of [{ covers: true }, { theme: 'light' }, { apiBase: 'http://127.0.0.1:8/v1' }]) {
+    assert.equal(matches({ ...settings, ...changed }), false, JSON.stringify(changed));
+  }
+});

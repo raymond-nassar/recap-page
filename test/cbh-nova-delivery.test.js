@@ -9,7 +9,7 @@ import {
   sourceCountsForPacket,
   validateFrozenPacket,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
@@ -19,6 +19,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'nova-reading-order';
 const mappingPath = `scripts/data/cbh-mappings/${id}.json`;
@@ -313,7 +314,7 @@ test('Nova publishes 371 canonical entries and the two negative-ID gaps without 
   const card = parseCatalog(catalog).lists.find((row) => row.id === id);
   const slot = inventory.find((row) => row.id === id);
   const index = manifest.lists.indexOf(entry);
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), packet.proposedManifest);
   assert.equal(manifest.lists[index + 1].id, 'phalanx-reading-order');
   assert.equal(entry.timeline, null);
   assert.equal(entry.depth, 'partial');

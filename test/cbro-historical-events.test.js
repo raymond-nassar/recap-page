@@ -2479,7 +2479,7 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
   )), false);
   const provenance = await readFile(path.join(root, 'docs', 'DATA_PROVENANCE.md'), 'utf8');
   assert.match(provenance, /sixth continuation release adds 46 exact issue rows/i);
-  assert.match(provenance, /Thirty-nine lists in this repository now come from that site/);
+  assert.match(provenance, /Forty-three lists in this repository now come from that site/);
   const maintaining = await readFile(path.join(root, 'docs', 'MAINTAINING.md'), 'utf8');
   assert.match(maintaining, /currently ships 39 guides/);
   assert.match(maintaining, /sequential.*source is exhausted/i);
@@ -2594,8 +2594,10 @@ test('batch seven authority preserves seven outcomes and four complete blocker r
       ['scripts', 'data', 'cbro-packets', `${expected.id}.json`],
       ['scripts', 'data', 'cbro-mappings', `${expected.id}.json`],
       ['scripts', 'data', 'cbro-overlaps', `${expected.id}.json`],
-      ['src', 'data', 'orders', `${expected.id}.md`],
-      ['src', 'data', `${expected.id.replaceAll('-', '_')}.json`],
+      ...(expected.id === 'blood-and-thunder' ? [] : [
+        ['src', 'data', 'orders', `${expected.id}.md`],
+        ['src', 'data', `${expected.id.replaceAll('-', '_')}.json`],
+      ]),
     ]) {
       await assert.rejects(() => access(path.join(root, ...relativePath)), /ENOENT/);
     }
@@ -3048,8 +3050,6 @@ test('Second Clone Saga blocker preserves all 161 recorded source and resolution
     ['scripts', 'data', 'cbro-packets', 'second-clone-saga.json'],
     ['scripts', 'data', 'cbro-mappings', 'second-clone-saga.json'],
     ['scripts', 'data', 'cbro-overlaps', 'second-clone-saga.json'],
-    ['src', 'data', 'orders', 'second-clone-saga.md'],
-    ['src', 'data', 'second_clone_saga.json'],
   ]) {
     await assert.rejects(() => access(path.join(root, ...relativePath)), /ENOENT/);
   }
@@ -3269,8 +3269,10 @@ test('batch nine authority conserves the final 291 source rows and both complete
       ['scripts', 'data', 'cbro-packets', `${id}.json`],
       ['scripts', 'data', 'cbro-mappings', `${id}.json`],
       ['scripts', 'data', 'cbro-overlaps', `${id}.json`],
-      ['src', 'data', 'orders', `${id}.md`],
-      ['src', 'data', `${id.replaceAll('-', '_')}.json`],
+      ...(id === 'mc2' ? [] : [
+        ['src', 'data', 'orders', `${id}.md`],
+        ['src', 'data', `${id.replaceAll('-', '_')}.json`],
+      ]),
     ]) {
       await assert.rejects(() => access(path.join(root, ...relativePath)), /ENOENT/);
     }

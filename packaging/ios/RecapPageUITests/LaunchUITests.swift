@@ -160,14 +160,14 @@ final class LaunchUITests: XCTestCase {
     }
 
     private static let eraseReadingData = """
-    const waitFor = async (findElement, description, timeout = 30000) => {
+    const waitFor = async (findElement, description, timeout = 30000, failureDetail = () => '') => {
       const deadline = Date.now() + timeout;
       while (Date.now() < deadline) {
         const element = findElement();
         if (element) return element;
         await new Promise((resolve) => setTimeout(resolve, 100));
       }
-      throw new Error(`Timed out waiting for ${description}`);
+      throw new Error(`Timed out waiting for ${description}${failureDetail()}`);
     };
     const settingsLink = await waitFor(() => document.querySelector('[data-view="data"]'), 'Backup & settings navigation');
     settingsLink.click();
@@ -186,12 +186,14 @@ final class LaunchUITests: XCTestCase {
     const report = await waitFor(() => {
       const announcer = document.getElementById('announcer');
       return announcer && announcer.textContent.toLowerCase().includes('erased') ? announcer : null;
-    }, 'erase confirmation (#announcer)');
+    }, 'erase confirmation (#announcer)', 30000,
+    () => `; #save-report: ${document.getElementById('save-report')?.textContent ?? '(missing)'}`);
     const notice = await waitFor(() => document.getElementById('ios-data-loss-notice'), 'data-loss notice (#ios-data-loss-notice)');
     return JSON.stringify({
       readingDataPresent: localStorage.getItem('mrt.state.v2') !== null,
       noticeHidden: notice.hidden,
       report: report.textContent,
+      saveReport: document.getElementById('save-report')?.textContent ?? null,
     });
     """
 
@@ -256,6 +258,7 @@ final class LaunchUITests: XCTestCase {
 
         let app = launch(probe: Self.eraseReadingData)
         let result = try probeResult(of: app)
+        try record("in-app-erase", result)
         XCTAssertEqual(result["readingDataPresent"] as? Bool, true)
         XCTAssertEqual(result["noticeHidden"] as? Bool, true)
         XCTAssertFalse(app.buttons["Dismiss"].exists)

@@ -10,7 +10,7 @@
 // Backup & settings costs one status request that such a build answers 404.
 
 import { CLOUD_BACKUP_DATABASE } from '../storage.js';
-import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel, isUnreadableRecord } from './cloudProtocol.js';
+import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel, isUnreadableKeptLedger, isUnreadableRecord } from './cloudProtocol.js';
 import { CloudBackupCoordinator } from './cloudCoordinator.js';
 import { cloudErrorText } from './cloudCopy.js';
 
@@ -50,7 +50,7 @@ export function browserDeviceLabel(nav = globalThis.navigator, scope) {
 export function createCloudBackup({
   transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
-  device = browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
+  device = transport?.device ?? browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
   coordinator: coordinatorOptions = {}, onChange = () => {},
 } = {}) {
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
@@ -63,6 +63,10 @@ export function createCloudBackup({
   let record = null;
   let recordProblem = null;
   let recordUnreadable = false;
+  let earlierKept = null;
+  let keptAttention = null;
+  let keptProblem = false;
+  let keptRevision = 0;
   let coordinator = null;
   let discovery = IDLE;
   let discoveries = 0;
@@ -103,6 +107,7 @@ export function createCloudBackup({
       // Why this browser is asked again, when the host knows: the person deleted the app folder.
       reason: enabled() ? status.reason ?? null : null,
       signInExpiresAt: enabled() ? status.signInExpiresAt : null,
+      ...(enabled() && status.waitingForUpload === true ? { waitingForUpload: true } : {}),
       agreed: agreed !== null,
       on: isOn(),
       askedAgain: Boolean(agreed && linked && !isOn()),
@@ -113,6 +118,9 @@ export function createCloudBackup({
       recordProblem,
       // Turning on starts a new stream only for a record that fails its checks (stage 3 review, S3b-7).
       recordUnreadable,
+      earlierKept,
+      keptAttention,
+      keptProblem,
       backup: coordinator?.state ?? OFF,
       discovery,
       scope,
@@ -160,11 +168,43 @@ export function createCloudBackup({
     return coordinator;
   }
 
+  async function refreshKeptCopies() {
+    const revision = ++keptRevision;
+    earlierKept = null;
+    keptAttention = null;
+    keptProblem = false;
+    if (!record) return;
+    const connection = linkedConnection();
+    if (!connection && status?.state !== 'not-connected') return;
+    let counts = null;
+    let problem;
+    try {
+      counts = await protocol.keptCopySummary({ connection });
+      problem = counts.problem === true;
+    }
+    // A read that failed outright leaves the counts unknown rather than claiming a record that may not
+    // exist; only a record that is there and fails its checks is reported.
+    catch (error) { problem = isUnreadableKeptLedger(error); }
+    if (revision !== keptRevision || connection !== linkedConnection()
+      || (connection === null && status?.state !== 'not-connected')) return;
+    earlierKept = counts?.earlier ?? null;
+    keptAttention = counts?.attention ?? null;
+    keptProblem = problem;
+  }
+
   // Runs one at a time, each reading everything afresh, so an answer given meanwhile is never lost.
   function refresh() {
     const run = queue.then(async () => {
       const before = status?.state ?? null;
+      const beforeConnection = linkedConnection();
       try { status = await transport.status(); } catch { status = NOT_ANSWERING; }
+      if (before !== status?.state || beforeConnection !== linkedConnection()) {
+        keptRevision += 1;
+        earlierKept = null;
+        keptAttention = null;
+        keptProblem = false;
+        publish();
+      }
       const exists = await recordExists();
       recordProblem = null;
       recordUnreadable = false;
@@ -177,6 +217,7 @@ export function createCloudBackup({
           recordUnreadable = isUnreadableRecord(error);
         }
       }
+      await refreshKeptCopies();
       // A host that did not answer, or was too busy to, is not a host that said no: backups this browser
       // agreed to keep running, or start, and their own backoff carries the outage until it answers. Only
       // a definite answer stops them (stage 3 review, S3a-3).
@@ -285,6 +326,9 @@ export function createCloudBackup({
     // Signs in to the service the person chose, or the transport's own when there was no choice to make.
     async connect(provider) {
       status = await (provider === undefined ? transport.connect() : transport.connect({ provider }));
+      const checking = refreshKeptCopies();
+      publish();
+      await checking;
       publish();
       watchSignIn();
       return model;

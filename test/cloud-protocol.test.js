@@ -102,6 +102,7 @@ function fakeIndexedDB() {
         };
         tx.objectStore = () => ({
           get: (key) => request((map) => clone(map.get(key))),
+          getKey: (key) => request((map) => (map.has(key) ? key : undefined)),
           put: (value, key) => request((map) => { map.set(key, clone(value)); return key; }),
           delete: (key) => request((map) => { map.delete(key); }),
         });
@@ -138,13 +139,36 @@ function fakeIndexedDB() {
   };
 }
 
+// A pre-sync tab changes only the original record key.
+async function legacyRecordWrite(idb, change) {
+  const db = await new Promise((resolve, reject) => {
+    const request = idb.open(CLOUD_BACKUP_DATABASE, 1);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(new Error('The old record store could not open.'));
+  });
+  try {
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction('stream', 'readwrite');
+      const store = tx.objectStore('stream');
+      const request = store.get('record');
+      request.onsuccess = () => {
+        const after = change(request.result ?? null);
+        if (after === null) store.delete('record');
+        else if (after !== undefined) store.put(after, 'record');
+      };
+      tx.oncomplete = resolve;
+      tx.onabort = () => reject(new Error('The old record write failed.'));
+    });
+  } finally { db.close(); }
+}
+
 // The app's own area of one account, in memory, as a host holding one connection serves it. Every call is
 // logged, so a test can count what a backup costs, and faults holds what the next call of each kind does
 // instead of succeeding: a code to reject with, a function to wait on first, or one of the named shapes
 // below. Every call must name the connection the host holds now, which a test can change between calls to
 // stand for another profile reconnecting the host. Names are refused twice, as OneDrive is asked to;
 // { duplicates: true } allows them, as Google Drive does.
-function fakeTransport({ duplicates = false, connection = 'connection-one' } = {}) {
+function fakeTransport({ duplicates = false, connection = 'connection-one', latency = 0 } = {}) {
   const files = new Map();
   const calls = [];
   const created = [];
@@ -163,6 +187,7 @@ function fakeTransport({ duplicates = false, connection = 'connection-one' } = {
     return id;
   };
   const fault = async (kind) => {
+    if (latency) await new Promise((resolve) => { setTimeout(resolve, latency); });
     const planned = faults[kind].shift();
     if (typeof planned === 'function') { await planned(); return null; }
     return planned ?? null;
@@ -374,6 +399,249 @@ async function consented(env, overrides) {
   const record = await protocol.recordConsent(CONSENT);
   return { protocol, stream: record.stream };
 }
+
+async function syncContext(protocol, connection = CONSENT.connection) {
+  const record = await protocol.record();
+  assert.equal(record.consent.connection, connection);
+  return { connection, stream: record.stream, consentId: record.consent.id };
+}
+
+async function remember(protocol, { connection = CONSENT.connection, ...changes } = {}) {
+  return protocol.rememberSync({ ...await syncContext(protocol, connection), ...changes });
+}
+
+async function uploadForKept(protocol, home, change) {
+  home.mark(change);
+  const saved = await home.snapshot();
+  const made = await protocol.upload(saved);
+  const record = await protocol.record();
+  return {
+    ...await syncContext(protocol, record.consent.connection), generation: made.generation,
+    personalDigest: saved.personalDigest, contentDigest: saved.backup.digest,
+  };
+}
+
+const keptCreates = (transport) => transport.created.filter((name) => name.startsWith('recap-page-kept-v1-'));
+const quickCleanupTimer = (callback, ms) => setTimeout(callback,
+  ms === 1000 || ms === CLOUD_TRANSPORT_DEADLINES_MS.read + CLOUD_DEADLINE_GRACE_MS ? 20 : ms);
+
+for (const latency of [50, 120, 200, 300]) {
+  test(`review: six kept copies retain three without attention at ${latency} ms per provider call`, async () => {
+    const env = harness({ transport: fakeTransport({ latency }) });
+    const { protocol } = await consented(env);
+    const home = device();
+    const copies = [];
+    for (let change = 1; change <= 6; change += 1) {
+      copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+      assert.equal(copies.filter((copy) => env.transport.files.has(copy.id)).length, Math.min(change, 3));
+      const summary = await protocol.keptCopySummary(ON);
+      assert.equal(summary.problem, false);
+      assert.equal(summary.attention, 0);
+    }
+    assert.deepEqual(copies.filter((copy) => env.transport.files.has(copy.id)), copies.slice(-3));
+  });
+}
+
+for (const latency of [400, 600]) {
+  test(`review: an unverified recorded identity is adopted at ${latency} ms per provider call`, async () => {
+    const env = harness({ transport: fakeTransport({ latency }) });
+    const { protocol } = await consented(env);
+    const request = await uploadForKept(protocol, device(), 1);
+    env.transport.faults.read.push(null, 'timeout');
+    await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+    const original = (await protocol.keptLedger()).entries[0];
+    assert.ok(original.id);
+    assert.equal((await protocol.keepBackup(request)).id, original.id);
+    assert.equal(keptCreates(env.transport).length, 1);
+    assert.deepEqual(await protocol.keptCopySummary(ON), { earlier: 0, attention: 0, problem: false });
+  });
+}
+
+for (const code of ['unavailable', 'timeout', 'invalid']) {
+  test(`review: a cleanup listing that fails as ${code} cannot fail the verified kept copy`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const home = device();
+    const copies = [];
+    for (let change = 1; change <= 3; change += 1) {
+      copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    }
+    const prune = protocol.pruneKept;
+    protocol.pruneKept = (context) => {
+      env.transport.faults.list.push(code);
+      return prune.call(protocol, context);
+    };
+    const kept = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    protocol.pruneKept = prune;
+    assert.equal((await protocol.syncState(ON)).kept.id, kept.id);
+    assert.ok(copies.every((copy) => env.transport.files.has(copy.id)), 'nothing is deleted without a listing');
+    assert.equal((await protocol.keptCopySummary(ON)).problem, true, 'the unfinished cleanup is reported');
+    const fifth = await protocol.keepBackup(await uploadForKept(protocol, home, 5));
+    assert.deepEqual([...copies, kept, fifth].filter((copy) => env.transport.files.has(copy.id)),
+      [copies[2], kept, fifth]);
+    assert.equal((await protocol.keptCopySummary(ON)).problem, false);
+  });
+}
+
+test('review: kept copies listed without a size are checked by their bytes before they count', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const evicted = new Set();
+  const list = env.transport.list;
+  env.transport.list = async (options) => (await list(options))
+    .map((item) => (evicted.has(item.id) ? { ...item, size: null } : item));
+  const copies = [];
+  for (let change = 1; change <= 6; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    if (change >= 3) for (const copy of copies) evicted.add(copy.id);
+    assert.equal(copies.filter((copy) => env.transport.files.has(copy.id)).length, Math.min(change, 3));
+    assert.deepEqual(await protocol.keptCopySummary(ON), { earlier: 0, attention: 0, problem: false });
+  }
+  assert.deepEqual(copies.filter((copy) => env.transport.files.has(copy.id)), copies.slice(-3));
+  env.transport.files.get(copies[3].id).bytes = new Uint8Array([9, 8, 7]);
+  copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, 7)));
+  assert.ok(env.transport.files.has(copies[3].id), 'a sizeless copy that fails its check is kept and reported');
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+});
+
+test('review: an interrupted reconcile cannot let a second kept copy be created', async () => {
+  const env = harness();
+  const { protocol } = await consented(env, { setTimer: quickCleanupTimer });
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const original = (await protocol.keptLedger()).entries[0];
+  assert.ok(original.id && !original.verified);
+  const change = protocol.changeKeptLedger;
+  let slow = true;
+  protocol.changeKeptLedger = async (...args) => {
+    if (slow) {
+      slow = false;
+      await new Promise((resolve) => { setTimeout(resolve, 100); });
+    }
+    return change.apply(protocol, args);
+  };
+  await assert.rejects(protocol.keepBackup(request), { code: 'verify' });
+  assert.equal(keptCreates(env.transport).length, 1, 'no second copy while the recorded one is unchecked');
+  await new Promise((resolve) => { setTimeout(resolve, 150); });
+  protocol.changeKeptLedger = change;
+  assert.equal((await protocol.keepBackup(request)).id, original.id, 'a later pass adopts the recorded copy');
+  assert.equal(keptCreates(env.transport).length, 1);
+});
+
+test('review: a kept copy listed at another size is reported, not counted or deleted', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const list = env.transport.list;
+  env.transport.list = async (options) => (await list(options))
+    .map((item) => (item.id === copies[0].id ? { ...item, size: item.size + 1 } : item));
+  await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  assert.ok(env.transport.files.has(copies[0].id), 'a copy whose listed size changed is not deleted');
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+});
+
+test('review: an unverified recorded copy never counts toward the newest three', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const fourth = await uploadForKept(protocol, home, 4);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(fourth), { code: 'timeout' });
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id !== null && !entry.verified));
+  await protocol.pruneKept(await syncContext(protocol));
+  assert.ok(copies.every((copy) => env.transport.files.has(copy.id)), 'an unchecked copy cannot evict a verified one');
+});
+
+test('review: an unreadable kept ledger does not block regular backup deletion', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  await protocol.keepBackup(await uploadForKept(protocol, home, 1));
+  await uploadForKept(protocol, home, 2);
+  await protocol.records.writeKeptLedger((ledger) => ({ ...ledger, unexpected: true }));
+  const result = await protocol.deleteOwnBackups(ON);
+  assert.equal(result.deleted, 2);
+  assert.deepEqual(env.transport.generations(stream), []);
+  assert.equal(result.failed.length, 1);
+  assert.equal(result.failed[0].code, 'storage');
+  assert.equal([...env.transport.files.values()].filter((file) => file.name.startsWith('recap-page-kept-v1-')).length, 1);
+  const retry = await protocol.deleteOwnBackups(ON);
+  assert.equal(retry.deleted, 0);
+  assert.equal(retry.failed[0].code, 'storage');
+});
+
+test('review: explicit deletion reconciles a hand-deleted exact identity without permanent attention', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const kept = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  env.transport.files.delete(kept.id);
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const result = await protocol.deleteOwnBackups(ON);
+    assert.deepEqual(result.failed, []);
+    assert.equal((await protocol.keptCopySummary(ON)).attention, 0);
+    assert.deepEqual((await protocol.keptLedger()).entries, []);
+  }
+});
+
+test('review: an absent create reservation is attention, not an undeleted backup', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('late');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const result = await protocol.deleteOwnBackups(ON);
+    assert.deepEqual(result.failed, []);
+    assert.equal(result.attention, 1);
+    assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+  }
+});
+
+test('review: a same-name same-bytes replacement with a new ID is never adopted or pruned', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const first = await protocol.keepBackup(await uploadForKept(protocol, home, 1));
+  const entry = (await protocol.keptLedger()).entries[0];
+  const file = env.transport.files.get(first.id);
+  env.transport.files.delete(first.id);
+  const replacement = env.transport.store(file.name, file.bytes);
+  await assert.rejects(protocol.checkKeptEntry(entry, CONSENT.connection), { code: 'verify' });
+  for (let change = 2; change <= 5; change += 1) {
+    await protocol.keepBackup(await uploadForKept(protocol, home, change));
+  }
+  assert.ok(env.transport.files.has(replacement));
+  assert.ok((await protocol.keptLedger()).entries.some((held) => held.id === first.id && held.changedOutside));
+});
+
+test('review: retention protects a go-back reference older than the newest three', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const prune = protocol.pruneKept;
+  protocol.pruneKept = async () => {};
+  const copies = [];
+  for (let change = 1; change <= 4; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const entry = (await protocol.keptLedger()).entries.find((held) => held.id === copies[0].id);
+  const context = await syncContext(protocol);
+  await protocol.rememberKept(context, entry);
+  protocol.pruneKept = prune;
+  await protocol.pruneKept(context);
+  assert.ok(env.transport.files.has(copies[0].id), 'the active recovery reference is not expendable');
+  assert.equal((await protocol.syncState(ON)).kept.id, copies[0].id);
+});
 
 // A file as this version writes one, assembled here so a test can alter any part of it.
 function envelopeFile({ stream, generation, backup, device: label = 'Planted', createdAt = 5 }) {
@@ -1249,11 +1517,11 @@ function windowsHost(transport, { account = 'reader@example.test' } = {}) {
   });
 }
 
-function page({ env, home = device(), channel = null, databases, savedChanges = null } = {}) {
+function page({ env, home = device(), channel = null, databases, savedChanges = null, device: label = 'Microsoft Edge on Windows' } = {}) {
   const time = fakeTime();
   const protocol = env.make({ clock: time.now });
   const cloud = createCloudBackup({
-    transport: env.transport, protocol, device: 'Microsoft Edge on Windows', channel, setTimer: time.setTimer, savedChanges,
+    transport: env.transport, protocol, ...(label === null ? {} : { device: label }), channel, setTimer: time.setTimer, savedChanges,
     capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }),
     databases: databases ?? (async () => [...env.idb.databases.keys()].map((name) => ({ name, version: 1 }))),
     coordinator: {
@@ -1272,6 +1540,137 @@ test('other devices see this one by its browser and the system it runs on', () =
   assert.equal(browserDeviceLabel(undefined), 'Recap Page');
   assert.equal(browserDeviceLabel(edge, 'device'), 'Recap Page on Android');
   assert.equal(browserDeviceLabel(undefined, 'device'), 'Recap Page on Android');
+});
+
+test('a transport supplies the iOS device name; absent device keeps existing labels byte for byte', async () => {
+  for (const [scope, supplied, expected] of [
+    ['device', 'Recap Page on iPhone', 'Recap Page on iPhone'],
+    ['device', 'Recap Page on iPad', 'Recap Page on iPad'],
+    ['device', undefined, 'Recap Page on Android'],
+    ['profiles', undefined, browserDeviceLabel(globalThis.navigator, 'profiles')],
+  ]) {
+    const env = harness();
+    windowsHost(env.transport);
+    env.transport.scope = scope;
+    if (supplied !== undefined) env.transport.device = supplied;
+    const tab = page({ env, device: null });
+    await tab.cloud.enter();
+    await tab.cloud.turnOn();
+    assert.equal((await tab.protocol.record()).device, expected);
+    tab.cloud.beforeErase();
+  }
+});
+
+test('the page carries an upload wait to the card and withdraws it after the next status', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const currentStatus = env.transport.status;
+  let waiting = true;
+  env.transport.status = async () => ({ ...await currentStatus(), provider: 'icloud', waitingForUpload: waiting });
+  const tab = page({ env });
+  assert.equal((await tab.cloud.enter()).waitingForUpload, true);
+  assert.match(cloudCardStatus(tab.cloud.model), /iCloud has not finished uploading/);
+  waiting = false;
+  assert.equal((await tab.cloud.refresh()).waitingForUpload, undefined);
+  assert.doesNotMatch(cloudCardStatus(tab.cloud.model), /iCloud has not finished uploading/);
+});
+
+test('the page reports earlier-connection copies without mistaking an unreadable ledger for none', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.protocol.keepBackup(await uploadForKept(tab.protocol, tab.home, 1));
+  assert.equal((await tab.cloud.refresh()).earlierKept, 0);
+
+  env.transport.signedIn('connection-two');
+  const reconnected = await tab.cloud.refresh();
+  assert.equal(reconnected.earlierKept, 1);
+  assert.equal(reconnected.keptProblem, false);
+  assert.match(cloudCardStatus(reconnected), /One recorded kept copy from an earlier connection may remain/);
+
+  await tab.protocol.records.writeKeptLedger(() => ({ version: 999 }));
+  const unreadable = await tab.cloud.refresh();
+  assert.equal(unreadable.earlierKept, null);
+  assert.equal(unreadable.keptProblem, true);
+  assert.match(cloudCardStatus(unreadable), /saved-copy record could not be checked/i);
+});
+
+test('a saved-copy read that fails outright leaves the counts unknown without claiming a record', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  tab.protocol.records.readKeptLedger = async () => { throw new Error('The browser storage did not answer.'); };
+  const failed = await tab.cloud.refresh();
+  assert.equal(failed.earlierKept, null);
+  assert.equal(failed.keptAttention, null);
+  assert.equal(failed.keptProblem, false);
+  assert.doesNotMatch(cloudCardStatus(failed), /saved-copy|kept cop/i);
+});
+
+test('the page reports current-connection residual copies that need attention', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await tab.protocol.keepBackup(await uploadForKept(tab.protocol, tab.home, change)));
+  }
+  env.transport.files.delete(copies[0].id);
+  await tab.protocol.keepBackup(await uploadForKept(tab.protocol, tab.home, 4));
+  const model = await tab.cloud.refresh();
+  assert.equal(model.keptAttention, 1);
+  assert.match(cloudCardStatus(model), /saved or attempted cloud copy could not be confirmed or removed/i);
+});
+
+test('the page withdraws stale saved-copy counts while a connection changes', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.protocol.keepBackup(await uploadForKept(tab.protocol, tab.home, 1));
+  assert.equal((await tab.cloud.refresh()).earlierKept, 0);
+
+  const count = tab.protocol.keptCopySummary.bind(tab.protocol);
+  let releaseOld;
+  let releaseNew;
+  let startedOld = false;
+  let startedNew = false;
+  const oldGate = new Promise((resolve) => { releaseOld = resolve; });
+  const newGate = new Promise((resolve) => { releaseNew = resolve; });
+  tab.protocol.keptCopySummary = async ({ connection }) => {
+    const result = await count({ connection });
+    if (connection === 'connection-one') { startedOld = true; await oldGate; }
+    if (connection === 'connection-two') { startedNew = true; await newGate; }
+    return result;
+  };
+  env.transport.connect = async () => {
+    env.transport.signedIn('connection-two');
+    return env.transport.status();
+  };
+  const old = tab.cloud.refresh();
+  let next;
+  try {
+    await until(() => startedOld, 'the first connection count is waiting');
+    next = tab.cloud.connect();
+    await until(() => startedNew, 'the next connection count is waiting');
+    assert.equal(tab.cloud.model.earlierKept, null, 'the old count is withdrawn before the new count returns');
+    releaseNew();
+    assert.equal((await next).earlierKept, 1);
+    releaseOld();
+    await old;
+    assert.equal(tab.cloud.model.earlierKept, 1, 'a late count cannot overwrite the new connection');
+  } finally {
+    releaseOld();
+    releaseNew();
+    await Promise.allSettled([old, next]);
+  }
 });
 
 test('in a build without cloud backup the page shows nothing, asks once when the card opens, and never opens the record', async () => {
@@ -1293,6 +1692,23 @@ test('in a build without cloud backup the page shows nothing, asks once when the
   assert.equal(env.transport.host.statuses, 1, 'a browser that cannot list its databases does not guess at startup');
   assert.equal((await blind.cloud.enter()).shown, false);
   assert.equal(env.idb.databases.size, 0, 'nor open one to look, with no host to back up to');
+});
+
+test('ordinary cloud discovery leaves kept-looking files as other files until sync controls request them', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const stream = 'a'.repeat(32);
+  const { backup } = await device().snapshot();
+  const name = `recap-page-kept-v1-${stream}-1-${'b'.repeat(32)}.json.gz`;
+  env.transport.store(name, envelopeFile({ stream, generation: 1, backup }));
+  env.transport.store('recap-page-kept-v1-invalid.json.gz', Buffer.from('not a backup'));
+  env.transport.faults.read.push('unavailable');
+
+  const model = await page({ env }).cloud.enter();
+  assert.equal(model.discovery.state, 'ready', 'an unrelated unreadable file does not fail ordinary discovery');
+  assert.deepEqual(model.discovery.result.devices, []);
+  assert.equal(model.discovery.result.unrecognized, 2, 'both files remain visible as other files');
+  assert.deepEqual(env.transport.calls, ['list'], 'ordinary discovery does not read unused retained files');
 });
 
 test('turning on agrees to the connection shown, backs up at once, and goes on at the next start without asking', async () => {
@@ -1936,4 +2352,1786 @@ test('listening for other tabs keeps no process alive', async () => {
       (error) => resolve(error ? (error.killed ? 'still running after 20 seconds' : error.message) : 'exited'));
   });
   assert.equal(outcome, 'exited', `after ${Date.now() - started} ms`);
+});
+
+test('two iCloud read-backs waiting for upload never prune confirmed backups or count as verified', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  for (const generation of [1, 2]) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  for (const generation of [3, 4]) {
+    home.mark(generation);
+    env.transport.calls.length = 0;
+    env.transport.faults.read.push('unavailable');
+    await assert.rejects(protocol.upload(await home.snapshot()), { code: 'unavailable' });
+    assert.equal(env.transport.calls.includes('delete'), false, 'no retention delete after a pending read-back');
+    assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [2, 1]);
+    assert.deepEqual(env.transport.generations(stream), Array.from({ length: generation }, (_, at) => at + 1),
+      'pending files stay in listings without becoming retained verified generations');
+  }
+  home.mark(5);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [5, 2]);
+  assert.deepEqual(env.transport.generations(stream), [2, 3, 4, 5], 'the prior confirmed backup is kept beside its confirmed replacement');
+  home.mark(6);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [6, 5]);
+  assert.equal(env.transport.generations(stream).includes(2), false, 'only a later confirmed replacement allows that backup to be pruned');
+});
+
+test('sync state is a durable separate key and leaves the version 1 backup record unchanged', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const original = await protocol.record();
+  const matchedDigest = 'a'.repeat(64);
+  const declinedDigest = 'b'.repeat(64);
+  assert.equal(await protocol.syncState(ON), null);
+
+  await remember(protocol, { matchedDigest, declinedDigest });
+  const later = await env.make().syncState(ON);
+  assert.deepEqual(later, {
+    version: 1, connection: ON.connection, stream, consentId: original.consent.id,
+    matchedDigest, declinedDigest, kept: null, current: true,
+  });
+  assert.deepEqual(await protocol.record(), original, 'the existing record has no additional fields');
+  const writes = env.idb.log.filter((entry) => entry.mode === 'readwrite');
+  assert.ok(writes.every((entry) => entry.name === CLOUD_BACKUP_DATABASE && entry.durability === 'strict'));
+});
+
+test('sync state updates in different tabs do not clobber each other and a new consent resets the baseline', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const other = env.make();
+  const matchedDigest = 'a'.repeat(64);
+  const declinedDigest = 'b'.repeat(64);
+  await Promise.all([
+    remember(protocol, { matchedDigest }),
+    remember(other, { declinedDigest }),
+  ]);
+  const first = await protocol.syncState(ON);
+  assert.deepEqual([first.matchedDigest, first.declinedDigest, first.current], [matchedDigest, declinedDigest, true]);
+
+  env.transport.connection = 'connection-two';
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  const switched = await protocol.syncState({ connection: 'connection-two' });
+  assert.deepEqual([switched.matchedDigest, switched.declinedDigest, switched.current], [null, null, true]);
+  await remember(protocol, { connection: 'connection-two', matchedDigest: 'c'.repeat(64) });
+  assert.equal((await protocol.syncState({ connection: 'connection-two' })).matchedDigest, 'c'.repeat(64));
+
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  const reconsented = await protocol.syncState({ connection: 'connection-two' });
+  assert.deepEqual([reconsented.matchedDigest, reconsented.declinedDigest, reconsented.current], [null, null, true]);
+});
+
+test('sync state refuses corrupt, aborted and lost writes without replacing the prior state', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const matchedDigest = 'a'.repeat(64);
+  for (const fault of ['abort', 'drop']) {
+    env.idb.faults[fault] = 1;
+    await assert.rejects(remember(protocol, { matchedDigest }), { code: 'storage' }, fault);
+    assert.equal((await protocol.records.readSync()).sync, null);
+  }
+
+  const corrupt = { version: 999, matchedDigest };
+  await protocol.records.writeSync(() => corrupt);
+  await assert.rejects(protocol.syncState(ON), { code: 'storage' });
+  await assert.rejects(remember(protocol, { matchedDigest }), { code: 'storage' });
+  assert.deepEqual((await protocol.records.readSync()).sync, corrupt, 'corruption is not overwritten as an empty marker');
+
+  await protocol.records.close();
+  env.idb.faults.open = 'error';
+  await assert.rejects(protocol.syncState(ON), { code: 'storage' }, 'a failed read is not an absent marker');
+});
+
+test('sync state treats a present null or undefined as corruption, not an absent pin', async () => {
+  for (const value of [null, undefined]) {
+    const env = harness();
+    const { protocol, stream } = await consented(env);
+    const home = device();
+    await protocol.upload(await home.snapshot());
+    home.mark(2);
+    await protocol.upload(await home.snapshot());
+    env.idb.databases.get(CLOUD_BACKUP_DATABASE).get('stream').set('sync', value);
+
+    await assert.rejects(protocol.syncState(ON), { code: 'storage' }, String(value));
+    await assert.rejects(remember(protocol, { matchedDigest: 'a'.repeat(64) }), { code: 'storage' }, String(value));
+    home.mark(3);
+    await protocol.upload(await home.snapshot());
+    assert.deepEqual(env.transport.generations(stream), [2, 3], 'ordinary pruning does not depend on sync state');
+  }
+});
+
+test('sync state survives a cancelled erase and is forgotten atomically with a completed erase', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  await remember(tab.protocol, { matchedDigest: 'a'.repeat(64), declinedDigest: 'b'.repeat(64) });
+  const before = await tab.protocol.syncState(ON);
+
+  await tab.cloud.beforeErase();
+  await tab.cloud.afterErase(false);
+  assert.deepEqual(await tab.protocol.syncState(ON), before, 'a cancelled erase keeps the marker');
+
+  await tab.cloud.beforeErase();
+  tab.home.storage.clear();
+  assert.deepEqual(await tab.cloud.afterErase(true), { ok: true, problems: [] });
+  assert.deepEqual(await tab.protocol.records.readSync(), { record: null, sync: null, syncPresent: false });
+});
+
+for (const lostWrites of [1, 2]) {
+  test(`sync state from a failed erase cannot become a later baseline (lost writes: ${lostWrites})`, async () => {
+    const env = harness();
+    windowsHost(env.transport);
+    const tab = page({ env });
+    await tab.cloud.enter();
+    await tab.cloud.turnOn();
+    await tab.run(0);
+    await remember(tab.protocol, { matchedDigest: 'a'.repeat(64) });
+
+    await tab.cloud.beforeErase();
+    tab.home.storage.clear();
+    env.idb.faults.drop = lostWrites;
+    const outcome = await tab.cloud.afterErase(true);
+    assert.equal(outcome.ok, false, 'a lost forget is reported');
+    const stored = await tab.protocol.records.readSync();
+    assert.notEqual(stored.record, null, 'the cloud record was not forgotten');
+    assert.equal(stored.record.consent, null, 'a failed erase cannot resume automatic backups');
+    assert.equal(stored.syncPresent, lostWrites === 2,
+      'a successful withdrawal clears the marker; a lost withdrawal leaves it suspended');
+    await tab.protocol.recordConsent(CONSENT);
+    assert.equal(await tab.protocol.syncState(ON), null, 'renewed consent cannot adopt an incompletely erased marker');
+  });
+}
+
+test('sync state left by an older erase is cleared before a fresh record is created', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const kept = await protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  });
+  await remember(protocol, { matchedDigest: snapshot.personalDigest });
+  await legacyRecordWrite(env.idb, () => null);
+  assert.equal((await protocol.records.readSync()).syncPresent, true, 'an older erase does not know the sync key');
+
+  await protocol.recordConsent(CONSENT);
+  assert.equal(await protocol.syncState(ON), null, 'the old local marker and kept reference are not resurrected');
+  await remember(protocol, { matchedDigest: 'a'.repeat(64) });
+  assert.equal((await protocol.syncState(ON)).kept, null);
+  assert.ok(env.transport.files.has(kept.id), 'erase did not delete the cloud copy');
+});
+
+for (const oldLast of [false, true]) {
+  test(`sync state never resurrects an erased reference when an older tab recreates the record (oldLast=${oldLast})`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const snapshot = await device().snapshot();
+    await protocol.upload(snapshot);
+    const kept = await protocol.keepBackup({
+      ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+    });
+    await remember(protocol, { matchedDigest: snapshot.personalDigest });
+    const before = await protocol.record();
+    const oldRecreation = {
+      ...before, stream: 'e'.repeat(32), nextGeneration: 1, validated: [],
+      consent: { ...before.consent, id: 'd'.repeat(32) }, suspended: null,
+    };
+    const oldEraseAndRecreate = async () => {
+      await legacyRecordWrite(env.idb, () => null);
+      await legacyRecordWrite(env.idb, () => oldRecreation);
+    };
+    if (oldLast) {
+      await protocol.recordConsent(CONSENT);
+      await oldEraseAndRecreate();
+    } else {
+      await oldEraseAndRecreate();
+      await protocol.recordConsent(CONSENT);
+    }
+
+    const current = await protocol.syncState(ON);
+    assert.equal(current?.kept ?? null, null, `an erased reference stayed hidden when oldLast=${oldLast}`);
+    const latest = await syncContext(protocol);
+    await assert.rejects(protocol.fetchKeptBackup({ ...latest, kept }), { code: 'gone' });
+    await remember(protocol, { matchedDigest: 'a'.repeat(64) });
+    assert.equal((await protocol.syncState(ON)).kept, null, 'a new marker cannot adopt the old reference');
+    assert.ok(env.transport.files.has(kept.id), 'forgetting the local reference does not delete the cloud file');
+  });
+}
+
+test('sync state refuses a delayed result after the consent or stream changes', async () => {
+  for (const change of ['consent', 'stream']) {
+    const env = harness();
+    const { protocol } = await consented(env);
+    await remember(protocol, { matchedDigest: 'a'.repeat(64) });
+    const before = await syncContext(protocol);
+    const record = await protocol.record();
+    if (change === 'consent') await protocol.recordConsent(CONSENT);
+    else await protocol.restream({ stream: record.stream, consent: record.consent }, { allocate: false });
+
+    await assert.rejects(protocol.rememberSync({ ...before, matchedDigest: 'b'.repeat(64) }), { code: 'needs-consent' }, change);
+    const after = await protocol.syncState(ON);
+    assert.deepEqual([after.current, after.matchedDigest], [true, null], 'the new context has no baseline');
+    assert.equal((await protocol.records.readSync()).sync.matchedDigest, null, 'the stale result wrote nothing');
+  }
+});
+
+test('kept ledger retains the newest three exact identities without touching other copies', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  const copies = [];
+  let foreign;
+  for (let change = 1; change <= 5; change += 1) {
+    const request = await uploadForKept(protocol, home, change);
+    copies.push(await protocol.keepBackup(request));
+    if (change === 2) {
+      foreign = env.transport.store(`recap-page-kept-v1-${OTHER}-1-${'a'.repeat(32)}.json.gz`,
+        env.transport.files.get(copies[1].id).bytes);
+      env.transport.store(cloudBackupName(OTHER, 1), new Uint8Array([7]));
+    }
+  }
+  assert.deepEqual(copies.filter((copy) => env.transport.files.has(copy.id)).map((copy) => copy.id),
+    copies.slice(-3).map((copy) => copy.id));
+  assert.ok(env.transport.files.has(foreign), 'a kept-looking copy outside the ledger is not deleted');
+  assert.deepEqual(env.transport.generations(stream), [4, 5], 'the ordinary retention rule is unchanged');
+  assert.deepEqual(env.transport.generations(OTHER), [1], 'another installation is untouched');
+  assert.equal((await protocol.syncState(ON)).kept.id, copies[4].id, 'the current go-back copy is never pruned');
+});
+
+test('kept ledger retries a created but unverified copy by its exact identity', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const [id] = [...env.transport.files].find(([, file]) => file.name.startsWith('recap-page-kept-v1-'));
+  const before = keptCreates(env.transport).length;
+  const held = await protocol.keepBackup(request);
+  assert.equal(held.id, id, 'verification resumes the original copy');
+  assert.equal(keptCreates(env.transport).length, before, 'retry creates no second copy');
+  const entries = (await protocol.records.readKeptLedger()).ledger.entries;
+  assert.equal(entries.find((entry) => entry.id === id)?.verified, true);
+});
+
+test('kept ledger counts unverified copies only after a replacement is checked', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const kept = [];
+  for (let change = 1; change <= 3; change += 1) {
+    kept.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const fourth = await uploadForKept(protocol, home, 4);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(fourth), { code: 'timeout' });
+  const pendingId = [...env.transport.files].find(([, file]) => file.name === keptCreates(env.transport).at(-1))[0];
+  assert.ok(kept.every((copy) => env.transport.files.has(copy.id)), 'an unverified replacement deletes nothing');
+  const fifth = await protocol.keepBackup(await uploadForKept(protocol, home, 5));
+  assert.deepEqual(kept.filter((copy) => env.transport.files.has(copy.id)).map((copy) => copy.id), [kept[2].id]);
+  assert.ok(env.transport.files.has(pendingId), 'the earlier pending copy counted among the newest three');
+  assert.ok(env.transport.files.has(fifth.id));
+  assert.equal((await protocol.records.readKeptLedger()).ledger.entries.find((entry) => entry.id === pendingId).verified, true);
+});
+
+test('kept ledger adopts a lost create reply only after unique matching bytes are read', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('lost');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const [id] = [...env.transport.files].find(([, file]) => file.name.startsWith('recap-page-kept-v1-'));
+  const held = await protocol.keepBackup(request);
+  assert.equal(held.id, id, 'the uniquely matched original is adopted');
+  assert.equal(keptCreates(env.transport).length, 1);
+  assert.equal((await protocol.records.readKeptLedger()).ledger.entries[0].verified, true);
+});
+
+test('kept ledger preserves a reservation when a non-timeout connection failure loses the create reply', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  const create = env.transport.create;
+  env.transport.create = async (...args) => {
+    await create(...args);
+    throw Object.assign(new Error('The connection closed before its reply.'), { code: 'unavailable' });
+  };
+  await assert.rejects(protocol.keepBackup(request), { code: 'unavailable' });
+  const [id] = [...env.transport.files].find(([, file]) => file.name.startsWith('recap-page-kept-v1-'));
+  env.transport.create = create;
+  const kept = await protocol.keepBackup(request);
+  assert.equal(kept.id, id, 'the completed create is found without another upload');
+  assert.equal(keptCreates(env.transport).length, 1);
+});
+
+test('kept ledger reconciles a create whose identity write was lost', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  const create = env.transport.create;
+  env.transport.create = async (...args) => {
+    const made = await create(...args);
+    env.idb.faults.drop = 1;
+    return made;
+  };
+  await assert.rejects(protocol.keepBackup(request), { code: 'storage' });
+  const [id] = [...env.transport.files].find(([, file]) => file.name.startsWith('recap-page-kept-v1-'));
+  assert.equal((await protocol.records.readKeptLedger()).ledger.entries[0].id, null);
+  env.transport.create = create;
+  assert.equal((await protocol.keepBackup(request)).id, id);
+  assert.equal(keptCreates(env.transport).length, 1);
+});
+
+test('kept ledger retains a temporarily missing unverified identity for later reconciliation', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const [id, file] = [...env.transport.files].find(([, item]) => item.name.startsWith('recap-page-kept-v1-'));
+  env.transport.files.delete(id);
+
+  const replacement = await protocol.keepBackup(request);
+  let ledger = (await protocol.records.readKeptLedger()).ledger;
+  assert.ok(ledger.entries.some((entry) => entry.id === id && !entry.verified),
+    'a missing unverified identity remains recorded');
+  env.transport.files.set(id, file);
+  await protocol.keepBackup(request);
+  ledger = (await protocol.records.readKeptLedger()).ledger;
+  assert.ok(ledger.entries.some((entry) => entry.id === id && entry.verified));
+  assert.ok(env.transport.files.has(replacement.id));
+});
+
+test('kept ledger never adopts or deletes different bytes under a reserved name', async () => {
+  const env = harness({ transport: fakeTransport({ duplicates: true }) });
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('late');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const name = keptCreates(env.transport)[0];
+  const otherId = env.transport.store(name, new Uint8Array([1, 2, 3]));
+  await assert.rejects(protocol.keepBackup(request), { code: 'verify' });
+  assert.equal(keptCreates(env.transport).length, 1, 'a conflicting item is not treated as an absent create');
+  assert.ok(env.transport.files.has(otherId), 'the conflicting item is never deleted');
+  assert.equal((await protocol.records.readKeptLedger()).ledger.entries[0].id, null);
+  const refused = await protocol.deleteOwnBackups(ON);
+  assert.ok(refused.failed.some((entry) => entry.id === null && entry.code === 'changed' && entry.changedOutside));
+  assert.ok(env.transport.files.has(otherId), 'explicit deletion also leaves different bytes alone');
+  assert.equal((await protocol.records.readKeptLedger()).ledger.entries[0].changedOutside, true);
+});
+
+test('kept ledger waits before replacing an absent uncertain create and later reconciles it', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('late');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  await assert.rejects(protocol.keepBackup(request), { code: 'verify' }, 'the original may still arrive');
+  assert.equal(keptCreates(env.transport).length, 1);
+  env.time.now += CLOUD_TRANSPORT_DEADLINES_MS.create + 1;
+  const replacement = await protocol.keepBackup(request);
+  assert.equal(keptCreates(env.transport).length, 2, 'a later check may create a replacement');
+  env.transport.land();
+  const creates = keptCreates(env.transport).length;
+  await protocol.keepBackup(request);
+  assert.equal(keptCreates(env.transport).length, creates);
+  const entries = (await protocol.records.readKeptLedger()).ledger.entries;
+  assert.equal(entries.length, 2);
+  assert.ok(entries.every((entry) => entry.id && entry.verified), 'the late original is identified too');
+  assert.ok(env.transport.files.has(replacement.id));
+});
+
+test('kept ledger stops at three outstanding create reservations with a plain refusal', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    env.transport.faults.create.push('late');
+    await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+    env.time.now += CLOUD_TRANSPORT_DEADLINES_MS.create + 1;
+  }
+  await assert.rejects(protocol.keepBackup(request), (error) => {
+    assert.match(error.message, /could not be confirmed/i);
+    assert.match(error.message, /nothing was loaded/i);
+    assert.match(error.message, /data is unchanged/i);
+    return true;
+  });
+  assert.equal(keptCreates(env.transport).length, 3);
+  assert.equal((await protocol.records.readKeptLedger()).ledger.entries.filter((entry) => entry.id === null).length, 3);
+});
+
+test('three hour-old absent create reservations stay recorded without blocking a new kept copy', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    env.transport.faults.create.push('late');
+    await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+    env.time.now += CLOUD_TRANSPORT_DEADLINES_MS.create + 1;
+  }
+  await assert.rejects(protocol.keepBackup(request), { code: 'verify' });
+  env.time.now += 60 * 60 * 1000;
+  const kept = await protocol.keepBackup(request);
+  let ledger = (await protocol.records.readKeptLedger()).ledger;
+  assert.equal(ledger.entries.filter((entry) => entry.id === null && entry.staleAbsent).length, 3);
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 3);
+  assert.ok(env.transport.files.has(kept.id));
+
+  env.transport.land();
+  for (let retry = 0; retry < 4; retry += 1) await protocol.keepBackup(request);
+  ledger = (await protocol.records.readKeptLedger()).ledger;
+  assert.equal(ledger.entries.filter((entry) => entry.id === null).length, 0, 'late copies were identified or cleaned up');
+  assert.ok(ledger.entries.every((entry) => entry.verified));
+  assert.ok(ledger.entries.length <= 3);
+  assert.ok(env.transport.files.has(kept.id), 'the current go-back copy is never pruned');
+});
+
+test('a failed exact-name check does not expire an old create reservation', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('late');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  env.time.now += 60 * 60 * 1000;
+  env.transport.faults.list.push('timeout');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  assert.equal((await protocol.keptLedger()).entries[0].staleAbsent, false);
+  assert.equal(keptCreates(env.transport).length, 1);
+});
+
+test('kept ledger reports a failed cleanup without blocking, then retries without another copy', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const first = [];
+  for (let change = 1; change <= 3; change += 1) {
+    first.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const fourth = await uploadForKept(protocol, home, 4);
+  env.transport.faults.delete.push('timeout');
+  const kept = await protocol.keepBackup(fourth);
+  assert.ok(first.every((copy) => env.transport.files.has(copy.id)), 'failed cleanup leaves the earlier copies');
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 1, 'the unfinished deletion is reported');
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === first[0].id && entry.deleting));
+  const created = keptCreates(env.transport).length;
+  assert.equal((await protocol.keepBackup(fourth)).id, kept.id);
+  assert.equal(keptCreates(env.transport).length, created, 'the verified replacement is reused');
+  assert.equal(env.transport.files.has(first[0].id), false);
+  assert.ok(env.transport.files.has(kept.id));
+});
+
+test('kept ledger does not forget a missing cleanup candidate before it can be checked', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const file = env.transport.files.get(copies[0].id);
+  env.transport.files.delete(copies[0].id);
+  const request = await uploadForKept(protocol, home, 4);
+  await protocol.keepBackup(request);
+  assert.ok((await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === copies[0].id && entry.changedOutside));
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+  env.transport.files.set(copies[0].id, file);
+  await protocol.keepBackup(request);
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === copies[0].id && !entry.changedOutside));
+  await protocol.keepBackup(request);
+  assert.equal(env.transport.files.has(copies[0].id), false);
+});
+
+test('kept ledger explicit deletion includes retained identities and retries failures', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  const kept = await protocol.keepBackup(request);
+  const foreign = env.transport.store(`recap-page-kept-v1-${OTHER}-1-${'b'.repeat(32)}.json.gz`,
+    env.transport.files.get(kept.id).bytes);
+  const remove = env.transport.delete;
+  let once = true;
+  env.transport.delete = async (id, options) => {
+    if (id === kept.id && once) { once = false; throw Object.assign(new Error('Injected failure'), { code: 'timeout' }); }
+    return remove(id, options);
+  };
+  const first = await protocol.deleteOwnBackups(ON);
+  assert.deepEqual(first.failed.map((item) => item.id), [kept.id]);
+  assert.ok(env.transport.files.has(kept.id));
+  assert.ok((await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === kept.id));
+  const second = await protocol.deleteOwnBackups(ON);
+  assert.deepEqual(second, { deleted: 1, failed: [] });
+  assert.equal(env.transport.files.has(kept.id), false);
+  assert.ok(env.transport.files.has(foreign), 'unowned kept-looking files are untouched');
+});
+
+for (const operation of ['retention', 'explicit deletion']) {
+  for (const problem of ['changed', 'unreadable']) {
+    test(`kept ledger preserves and reports ${problem} copies during ${operation}`, async () => {
+      const env = harness();
+      const { protocol } = await consented(env);
+      const home = device();
+      const copies = [];
+      for (let change = 1; change <= (operation === 'retention' ? 3 : 1); change += 1) {
+        copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+      }
+      const victim = copies[0];
+      const originalBytes = env.transport.files.get(victim.id).bytes;
+      const otherBytes = new Uint8Array([1, 2, 3, 4]);
+      if (problem === 'changed') env.transport.files.get(victim.id).bytes = otherBytes;
+      const read = env.transport.read;
+      if (problem === 'unreadable') {
+        env.transport.read = async (id, options) => {
+          if (id === victim.id) throw Object.assign(new Error('The saved copy is not readable.'), { code: 'timeout' });
+          return read(id, options);
+        };
+      }
+      const request = operation === 'retention' ? await uploadForKept(protocol, home, 4) : null;
+      let outcome;
+      if (operation === 'retention') {
+        outcome = await protocol.keepBackup(request);
+      } else {
+        outcome = await protocol.deleteOwnBackups(ON);
+      }
+      assert.ok(env.transport.files.has(victim.id), 'the unchecked copy is not deleted');
+      if (problem === 'changed') assert.deepEqual(env.transport.files.get(victim.id).bytes, otherBytes);
+      const marked = (await protocol.records.readKeptLedger()).ledger.entries.find((entry) => entry.id === victim.id);
+      assert.equal(marked?.changedOutside, true, 'the recorded copy is marked for attention');
+      if (operation === 'retention') {
+        assert.ok(env.transport.files.has(outcome.id), 'the verified replacement remains available');
+        assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+      } else {
+        assert.ok(outcome.failed.some((entry) => entry.id === victim.id && entry.code === 'changed'));
+      }
+      env.transport.files.get(victim.id).bytes = originalBytes;
+      env.transport.read = read;
+      const verified = await protocol.checkKeptEntry(marked, CONSENT.connection);
+      assert.equal(verified.changedOutside, false, 'successful rechecking clears the attention marker');
+      if (operation === 'retention') await protocol.keepBackup(request);
+      else assert.deepEqual(await protocol.deleteOwnBackups(ON), { deleted: 1, failed: [] });
+      assert.equal(env.transport.files.has(victim.id), false, 'a verified retry can finish');
+    });
+  }
+}
+
+test('kept deletion stops if an unchecked copy cannot be marked in durable storage', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const first = await protocol.keepBackup(await uploadForKept(protocol, home, 1));
+  const second = await protocol.keepBackup(await uploadForKept(protocol, home, 2));
+  env.transport.files.get(first.id).bytes = new Uint8Array([1, 2, 3]);
+  const read = env.transport.read;
+  env.transport.read = async (id, options) => {
+    if (id === first.id) env.idb.faults.abort = 1;
+    return read(id, options);
+  };
+  const result = await protocol.deleteOwnBackups(ON);
+  assert.ok(env.transport.files.has(first.id), 'the unchecked copy is left alone');
+  assert.ok(env.transport.files.has(second.id), 'no later kept copies are removed after the record failure');
+  assert.deepEqual(result.failed.map(({ id, code }) => ({ id, code })), [
+    { id: first.id, code: 'storage' },
+    { id: second.id, code: 'storage' },
+  ]);
+});
+
+test('delete intent must be durable before a kept copy is sent for deletion', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const kept = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  const mark = protocol.markKeptDeleting.bind(protocol);
+  protocol.markKeptDeleting = async (entry) => {
+    env.idb.faults.abort = 1;
+    return mark(entry);
+  };
+  const result = await protocol.deleteOwnBackups(ON);
+  assert.ok(env.transport.files.has(kept.id), 'the provider was not asked to delete without a durable intent');
+  assert.ok(result.failed.some((entry) => entry.id === kept.id && entry.code === 'storage'));
+});
+
+test('a failed retention intent is reported but cannot block the verified replacement', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  const { protocol, home } = tab;
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const request = await uploadForKept(protocol, home, 4);
+  const mark = protocol.markKeptDeleting.bind(protocol);
+  protocol.markKeptDeleting = async (entry) => {
+    if (entry.id === copies[0].id) env.idb.faults.abort = 1;
+    return mark(entry);
+  };
+  const fourth = await protocol.keepBackup(request);
+  assert.ok(env.transport.files.has(fourth.id));
+  assert.ok(env.transport.files.has(copies[0].id), 'the provider was not asked to delete without an intent');
+  assert.equal((await protocol.keptCopySummary(ON)).problem, true);
+  assert.ok((await env.make().keptLedger()).entries.find((entry) => entry.id === copies[0].id).changedOutside,
+    'a later page can see the recorded cleanup attention');
+  assert.match(cloudCardStatus(await tab.cloud.refresh()), /saved-copy record could not be checked or updated/i);
+  protocol.markKeptDeleting = mark;
+  await protocol.keepBackup(request);
+  await protocol.keepBackup(request);
+  assert.equal(env.transport.files.has(copies[0].id), false);
+  assert.equal((await protocol.keptCopySummary(ON)).problem, false);
+  assert.doesNotMatch(cloudCardStatus(await tab.cloud.refresh()), /saved-copy record could not be checked or updated/i);
+});
+
+for (const state of ['verified', 'unverified']) {
+  test(`an unchecked ${state} copy with an unwritable attention record cannot block a replacement`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const request = await uploadForKept(protocol, device(), 1);
+    if (state === 'unverified') {
+      env.transport.faults.read.push(null, 'timeout');
+      await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+    } else await protocol.keepBackup(request);
+    const original = (await protocol.keptLedger()).entries[0];
+    const read = env.transport.read;
+    env.transport.read = async (id, options) => {
+      if (id === original.id) {
+        env.idb.faults.abort = 1;
+        throw Object.assign(new Error('The saved copy is not readable.'), { code: 'timeout' });
+      }
+      return read(id, options);
+    };
+    const replacement = await protocol.keepBackup(request);
+    assert.notEqual(replacement.id, original.id);
+    assert.ok(env.transport.files.has(original.id));
+    const summary = await protocol.keptCopySummary(ON);
+    assert.ok(summary.problem || summary.attention > 0);
+    assert.equal((await env.make().keptCopySummary(ON)).attention, 1, 'a later page can report the unchecked copy');
+    env.transport.read = read;
+    env.idb.faults.abort = 0;
+    await protocol.keepBackup(request);
+    assert.equal((await protocol.keptCopySummary(ON)).problem, false);
+  });
+}
+
+test('delete intent reconciles a confirmed deletion after the ledger update fails', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const kept = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  const remove = env.transport.delete;
+  env.transport.delete = async (id, options) => {
+    await remove(id, options);
+    if (id === kept.id) env.idb.faults.abort = 1;
+  };
+  const result = await protocol.deleteOwnBackups(ON);
+  assert.equal(env.transport.files.has(kept.id), false);
+  assert.ok(result.failed.some((entry) => entry.id === kept.id && entry.code === 'storage' && entry.deleted === true));
+  assert.ok((await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === kept.id && entry.deleting),
+    'the exact identity and deletion intent remain recorded');
+  const retry = await protocol.deleteOwnBackups(ON);
+  assert.deepEqual(retry, { deleted: 0, failed: [] }, 'the exact absent identity can be reconciled');
+  assert.ok(!(await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === kept.id));
+});
+
+test('delete intent never deletes changed bytes on retry and later finishes the recorded deletion', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const kept = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  const original = env.transport.files.get(kept.id).bytes;
+  env.transport.faults.delete.push(null, 'timeout');
+  const first = await protocol.deleteOwnBackups(ON);
+  assert.ok(first.failed.some((entry) => entry.id === kept.id && entry.code === 'timeout'));
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === kept.id && entry.deleting));
+  env.transport.files.get(kept.id).bytes = new Uint8Array([9, 8, 7]);
+  const changed = await protocol.deleteOwnBackups(ON);
+  assert.ok(changed.failed.some((entry) => entry.id === kept.id && entry.changedOutside));
+  assert.ok(env.transport.files.has(kept.id), 'different bytes under the recorded identity are not deleted');
+  env.transport.files.get(kept.id).bytes = original;
+  assert.deepEqual(await protocol.deleteOwnBackups(ON), { deleted: 1, failed: [] });
+  assert.equal(env.transport.files.has(kept.id), false);
+});
+
+test('delete intent left by failed retention cleanup cannot block a later kept copy', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const remove = env.transport.delete;
+  env.transport.delete = async (id, options) => {
+    await remove(id, options);
+    if (id === copies[0].id) env.idb.faults.abort = 1;
+  };
+  const fourth = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  assert.equal(env.transport.files.has(copies[0].id), false);
+  assert.ok((await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === copies[0].id && entry.deleting));
+  const fifth = await protocol.keepBackup(await uploadForKept(protocol, home, 5));
+  assert.ok(env.transport.files.has(fourth.id) && env.transport.files.has(fifth.id));
+  assert.ok(!(await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === copies[0].id));
+});
+
+for (const problem of ['missing', 'changed', 'unreadable']) {
+  test(`residual ${problem} attention does not block a kept copy or evict a newer verified copy`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const home = device();
+    const copies = [];
+    for (let change = 1; change <= 3; change += 1) {
+      copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    }
+    const victim = copies[0];
+    if (problem === 'missing') env.transport.files.delete(victim.id);
+    if (problem === 'changed') env.transport.files.get(victim.id).bytes = new Uint8Array([1, 2, 3]);
+    const read = env.transport.read;
+    if (problem === 'unreadable') {
+      env.transport.read = async (id, options) => {
+        if (id === victim.id) throw Object.assign(new Error('The saved copy is not readable.'), { code: 'timeout' });
+        return read(id, options);
+      };
+    }
+    const fourth = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    assert.ok(copies.slice(1).every((copy) => env.transport.files.has(copy.id)));
+    assert.ok(env.transport.files.has(fourth.id));
+    const ledger = await protocol.keptLedger();
+    assert.ok(ledger.entries.some((entry) => entry.id === victim.id && entry.changedOutside));
+    assert.equal((await protocol.keptCopySummary(ON)).attention, 1, 'the remaining attention is reported');
+  });
+}
+
+test('recent residual attention cannot evict an older verified kept copy', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  env.transport.files.delete(copies[2].id);
+  const fourth = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  assert.ok(copies.slice(0, 2).every((copy) => env.transport.files.has(copy.id)),
+    'both valid older copies still fit after the missing recent copy is excluded');
+  assert.ok(env.transport.files.has(fourth.id));
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === copies[2].id && entry.changedOutside));
+});
+
+test('a residual attention entry cannot block when clearing its marker fails', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const original = env.transport.files.get(copies[0].id);
+  env.transport.files.delete(copies[0].id);
+  await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === copies[0].id && entry.changedOutside));
+  env.transport.files.set(copies[0].id, original);
+  const request = await uploadForKept(protocol, home, 5);
+  const read = env.transport.read;
+  env.transport.read = async (id, options) => {
+    const bytes = await read(id, options);
+    if (id === copies[0].id) env.idb.faults.abort = 1;
+    return bytes;
+  };
+  const fifth = await protocol.keepBackup(request);
+  assert.ok(env.transport.files.has(fifth.id));
+  assert.ok(env.transport.files.has(copies[0].id), 'the unresolved entry is not deleted');
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === copies[0].id && entry.changedOutside));
+});
+
+test('a stalled residual copy does not hold a new verified kept copy', async () => {
+  const env = harness();
+  const quickTimer = quickCleanupTimer;
+  const { protocol } = await consented(env, { setTimer: quickTimer });
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const original = env.transport.files.get(copies[0].id);
+  env.transport.files.delete(copies[0].id);
+  await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  env.transport.files.set(copies[0].id, original);
+  const request = await uploadForKept(protocol, home, 5);
+  const read = env.transport.read;
+  let release;
+  let started = false;
+  let finished = false;
+  const gate = new Promise((resolve) => { release = resolve; });
+  env.transport.read = async (id, options) => {
+    if (id === copies[0].id) { started = true; await gate; }
+    return read(id, options);
+  };
+  const pending = protocol.keepBackup(request).then((value) => { finished = true; return value; });
+  try {
+    await until(() => started || finished, 'the cleanup check starts or the new copy is returned');
+    await new Promise((resolve) => { setTimeout(resolve, 100); });
+    assert.equal(finished, true, 'an earlier unchecked copy must not hold the new verified copy');
+    const kept = await pending;
+    assert.ok(env.transport.files.has(kept.id));
+    assert.ok(env.transport.files.has(copies[0].id), 'the stalled copy is not deleted');
+  } finally {
+    release();
+    await pending;
+  }
+});
+
+for (const stage of ['ledger read', 'deletion intent']) {
+  test(`a stalled cleanup ${stage} cannot hold a verified replacement or start a late delete`, async () => {
+    const env = harness();
+    const quickTimer = (callback, ms) => setTimeout(callback, ms === 1000 ? 20 : ms);
+    const { protocol } = await consented(env, { setTimer: quickTimer });
+    const home = device();
+    const copies = [];
+    for (let change = 1; change <= 3; change += 1) {
+      copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    }
+    const request = await uploadForKept(protocol, home, 4);
+    let release;
+    const blocked = new Promise((resolve) => { release = resolve; });
+    let stall = false;
+    let started = false;
+    if (stage === 'ledger read') {
+      const readLedger = protocol.keptLedger.bind(protocol);
+      const remember = protocol.rememberKept.bind(protocol);
+      protocol.rememberKept = async (...args) => {
+        const kept = await remember(...args);
+        stall = true;
+        return kept;
+      };
+      protocol.keptLedger = async () => {
+        if (stall) { started = true; await blocked; stall = false; }
+        return readLedger();
+      };
+    } else {
+      const mark = protocol.markKeptDeleting.bind(protocol);
+      protocol.markKeptDeleting = async (...args) => {
+        started = true;
+        await blocked;
+        return mark(...args);
+      };
+    }
+    let finished = false;
+    const pending = protocol.keepBackup(request).finally(() => { finished = true; });
+    try {
+      await until(() => started || finished, `the cleanup ${stage} starts or the new copy is returned`);
+      await new Promise((resolve) => { setTimeout(resolve, 100); });
+      assert.equal(finished, true, 'a stalled cleanup must not hold the new verified copy');
+      assert.ok(env.transport.files.has(copies[0].id), 'the earlier copy has not been deleted');
+    } finally {
+      release();
+      await pending;
+    }
+    await new Promise((resolve) => { setTimeout(resolve, 20); });
+    assert.ok(env.transport.files.has(copies[0].id), 'abandoned cleanup cannot start a late delete');
+  });
+}
+
+test('a stalled attention-record retry cannot hold a verified replacement or write later', async () => {
+  const env = harness();
+  const quickTimer = (callback, ms) => setTimeout(callback, ms === 1000 ? 20 : ms);
+  const { protocol } = await consented(env, { setTimer: quickTimer });
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const request = await uploadForKept(protocol, home, 4);
+  const mark = protocol.markKeptDeleting.bind(protocol);
+  protocol.markKeptDeleting = async (entry) => {
+    if (entry.id === copies[0].id) env.idb.faults.abort = 1;
+    return mark(entry);
+  };
+  let release;
+  const blocked = new Promise((resolve) => { release = resolve; });
+  let inRetry = false;
+  let started = false;
+  const retry = protocol.noteKeptProblem.bind(protocol);
+  const readLedger = protocol.keptLedger.bind(protocol);
+  protocol.noteKeptProblem = async (...args) => {
+    inRetry = true;
+    return retry(...args);
+  };
+  protocol.keptLedger = async () => {
+    if (inRetry && !started) { started = true; await blocked; }
+    return readLedger();
+  };
+  let finished = false;
+  const pending = protocol.keepBackup(request).finally(() => { finished = true; });
+  try {
+    await until(() => started || finished, 'the attention retry starts or the new copy is returned');
+    await new Promise((resolve) => { setTimeout(resolve, 100); });
+    assert.equal(finished, true, 'the optional attention retry must not hold the verified replacement');
+    assert.equal((await protocol.keptCopySummary(ON)).problem, true);
+  } finally {
+    release();
+    await pending;
+  }
+  await new Promise((resolve) => { setTimeout(resolve, 20); });
+  const entry = (await readLedger()).entries.find((candidate) => candidate.id === copies[0].id);
+  assert.equal(entry.changedOutside, false, 'an abandoned retry does not begin a late attention write');
+  assert.ok(env.transport.files.has(copies[0].id));
+});
+
+test('a stalled marked deletion cannot hold a new copy or delete after its check was abandoned', async () => {
+  const env = harness();
+  const quickTimer = quickCleanupTimer;
+  const { protocol } = await consented(env, { setTimer: quickTimer });
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const fourth = await uploadForKept(protocol, home, 4);
+  env.transport.faults.delete.push('timeout');
+  await protocol.keepBackup(fourth);
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === copies[0].id && entry.deleting));
+  const request = await uploadForKept(protocol, home, 5);
+  const read = env.transport.read;
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  env.transport.read = async (id, options) => {
+    if (id === copies[0].id) await gate;
+    return read(id, options);
+  };
+  let pending;
+  let deadline;
+  try {
+    pending = protocol.keepBackup(request);
+    const result = await Promise.race([
+      pending,
+      new Promise((resolve, reject) => { deadline = setTimeout(() => reject(new Error('A marked deletion blocked the new copy.')), 500); }),
+    ]);
+    assert.ok(env.transport.files.has(result.id));
+    release();
+    await settle();
+    await settle();
+    assert.ok(env.transport.files.has(copies[0].id), 'a late read cannot start a deletion after cleanup returned');
+    assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === copies[0].id && entry.deleting));
+  } finally {
+    clearTimeout(deadline);
+    release();
+    if (pending) await pending;
+  }
+});
+
+test('a stale create whose read stalls remains reported and is reconciled on a later pass', async () => {
+  const env = harness();
+  const quickTimer = quickCleanupTimer;
+  const { protocol } = await consented(env, { setTimer: quickTimer });
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('late');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  env.time.now += 60 * 60 * 1000;
+  const kept = await protocol.keepBackup(request);
+  env.transport.land();
+  const old = [...env.transport.files].find(([, file]) => file.name === keptCreates(env.transport)[0])[0];
+  const read = env.transport.read;
+  const digest = protocol.digest.bind(protocol);
+  let release;
+  let observedLateDigest;
+  let lateReadReturned = false;
+  const lateDigest = new Promise((resolve) => { observedLateDigest = resolve; });
+  const gate = new Promise((resolve) => { release = resolve; });
+  env.transport.read = async (id, options) => {
+    if (id !== old) return read(id, options);
+    await gate;
+    const bytes = await read(id, options);
+    lateReadReturned = true;
+    return bytes;
+  };
+  protocol.digest = async (bytes) => {
+    if (lateReadReturned) observedLateDigest();
+    return digest(bytes);
+  };
+  let deadline;
+  let pending;
+  try {
+    pending = protocol.keepBackup(request);
+    const result = await Promise.race([
+      pending,
+      new Promise((resolve, reject) => { deadline = setTimeout(() => reject(new Error('A stale create blocked the new copy.')), 500); }),
+    ]);
+    assert.equal(result.id, kept.id);
+    release();
+    const continued = await Promise.race([
+      lateDigest.then(() => true),
+      new Promise((resolve) => { setTimeout(() => resolve(false), 200); }),
+    ]);
+    assert.equal(continued, false, 'a late read cannot continue validation after cleanup returned');
+    assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === null && entry.staleAbsent));
+  } finally {
+    clearTimeout(deadline);
+    release();
+    if (pending) await pending;
+  }
+  env.transport.read = read;
+  protocol.digest = digest;
+  await protocol.keepBackup(request);
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id === old && entry.verified));
+});
+
+test('kept ledger reports an uncertain create on deletion and deletes it if it later arrives', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.create.push('late');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const pending = await protocol.deleteOwnBackups(ON);
+  assert.equal(pending.failed.length, 0, 'an absent reservation is not an undeleted backup');
+  assert.equal(pending.attention, 1, 'a late create is still reported for attention');
+  env.transport.land();
+  const done = await protocol.deleteOwnBackups(ON);
+  assert.deepEqual(done, { deleted: 1, failed: [] });
+  assert.equal(env.transport.files.size, 0);
+});
+
+test('kept ledger reconciles an absent known identity without claiming another deletion', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const [id] = [...env.transport.files].find(([, item]) => item.name.startsWith('recap-page-kept-v1-'));
+  env.transport.files.delete(id);
+  const result = await protocol.deleteOwnBackups(ON);
+  assert.deepEqual(result, { deleted: 1, failed: [] }, 'only the regular generation was deleted');
+  assert.ok(!(await protocol.records.readKeptLedger()).ledger.entries.some((entry) => entry.id === id));
+  assert.deepEqual(await protocol.deleteOwnBackups(ON), { deleted: 0, failed: [] });
+  assert.equal(env.transport.files.has(id), false);
+});
+
+for (const oldLast of [false, true]) {
+  test(`kept ledger is not adopted after an older tab erases and recreates its record (oldLast=${oldLast})`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const kept = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+    const before = await protocol.record();
+    const replacement = {
+      ...before, stream: 'e'.repeat(32), nextGeneration: 1, validated: [],
+      consent: { ...before.consent, id: 'd'.repeat(32) }, suspended: null,
+    };
+    const oldEraseAndRecreate = async () => {
+      await legacyRecordWrite(env.idb, () => null);
+      await legacyRecordWrite(env.idb, () => replacement);
+    };
+    if (oldLast) {
+      await protocol.recordConsent(CONSENT);
+      await oldEraseAndRecreate();
+    } else {
+      await oldEraseAndRecreate();
+      await protocol.recordConsent(CONSENT);
+    }
+    assert.equal(await protocol.keptLedger(), null);
+    assert.deepEqual(await protocol.deleteOwnBackups(ON), { deleted: 0, failed: [] });
+    assert.ok(env.transport.files.has(kept.id), 'the orphaned ledger cannot delete an earlier copy');
+  });
+}
+
+test('kept ledger leaves earlier connections alone even for the same identity and bytes', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const first = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  const firstFile = env.transport.files.get(first.id);
+  env.transport.connection = 'connection-two';
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  const copy = await protocol.keepBackup(await uploadForKept(protocol, device(), 2));
+  assert.ok(env.transport.files.has(first.id));
+  assert.deepEqual(env.transport.files.get(first.id).bytes, firstFile.bytes, 'the old file has the same bytes and name');
+  const result = await protocol.deleteOwnBackups({ connection: 'connection-two' });
+  assert.equal(result.failed.length, 0);
+  assert.equal(env.transport.files.has(copy.id), false);
+  assert.ok(env.transport.files.has(first.id), 'the old-connection identity is never deleted in the new connection');
+  assert.equal(result.earlier, 1, 'the card can report the earlier connection');
+});
+
+test('kept ledger does not offer a previous connection reference after reconnect', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const previous = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  env.transport.connection = 'connection-two';
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  const current = await syncContext(protocol, 'connection-two');
+  assert.equal((await protocol.syncState({ connection: 'connection-two' })).kept, null);
+  await assert.rejects(protocol.fetchKeptBackup({ ...current, kept: previous }), { code: 'gone' });
+  assert.ok(env.transport.files.has(previous.id));
+  assert.equal(await protocol.earlierKeptCopies({ connection: 'connection-two' }), 1);
+});
+
+test('sync pin keeps the independent copy through later uploads and a failed replacement', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const home = device();
+  const first = await home.snapshot();
+  const made = await protocol.upload(first);
+  const pin = { ...ON, stream, generation: made.generation, personalDigest: first.personalDigest, contentDigest: first.backup.digest };
+  const kept = await protocol.keepBackup({ ...pin, consentId });
+
+  for (let generation = 2; generation <= 6; generation += 1) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  assert.deepEqual(env.transport.generations(stream), [5, 6], 'ordinary pruning keeps the newest two generations');
+  assert.ok(env.transport.files.has(kept.id), 'the independent recovery copy survives');
+  assert.deepEqual((await protocol.syncState(ON)).kept, kept);
+
+  home.mark(7);
+  env.transport.faults.read.push('timeout');
+  const deletedBefore = env.transport.calls.filter((call) => call === 'delete').length;
+  await assert.rejects(protocol.upload(await home.snapshot()), { code: 'timeout' });
+  assert.equal(env.transport.calls.filter((call) => call === 'delete').length, deletedBefore,
+    'an unverified replacement deletes nothing');
+  assert.ok(env.transport.files.has(kept.id), 'the independent recovery copy is still present');
+});
+
+test('sync pin is replaced only after the new verified copy and the pin itself are kept', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const home = device();
+  const first = await home.snapshot();
+  await protocol.upload(first);
+  const pin1 = { ...ON, stream, generation: 1, personalDigest: first.personalDigest, contentDigest: first.backup.digest };
+  const kept1 = await protocol.keepBackup({ ...pin1, consentId });
+
+  home.mark(2);
+  const second = await home.snapshot();
+  await protocol.upload(second);
+  const pin2 = { ...ON, stream, generation: 2, personalDigest: second.personalDigest, contentDigest: second.backup.digest };
+  env.idb.faults.drop = 1;
+  await assert.rejects(protocol.keepBackup({ ...pin2, consentId }), { code: 'storage' });
+  assert.deepEqual((await protocol.syncState(ON)).kept, kept1, 'a lost pin write keeps the old reference');
+
+  const kept2 = await protocol.keepBackup({ ...pin2, consentId });
+  assert.deepEqual((await protocol.syncState(ON)).kept, kept2);
+  for (let generation = 3; generation <= 5; generation += 1) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  assert.deepEqual(env.transport.generations(stream), [4, 5], 'only the newest two ordinary backups remain');
+  assert.ok(env.transport.files.has(kept1.id), 'the earlier independent recovery copy is not deleted automatically');
+  assert.ok(env.transport.files.has(kept2.id), 'the replacement recovery copy is also retained');
+});
+
+test('sync pin refuses a missing, changed, duplicated, unverified or unlocked backup', async () => {
+  for (const fault of ['missing', 'changed', 'duplicated', 'unverified', 'mismatched-content', 'unlocked']) {
+    const env = harness({ transport: fakeTransport({ duplicates: true }) });
+    const { protocol, stream } = await consented(env);
+    const { consentId } = await syncContext(protocol);
+    const snapshot = await device().snapshot();
+    const digest = fault === 'mismatched-content' ? 'f'.repeat(64) : snapshot.personalDigest;
+    const made = await protocol.upload({ ...snapshot, personalDigest: digest });
+    const pin = { ...ON, stream, generation: made.generation, personalDigest: digest, contentDigest: snapshot.backup.digest };
+    const [id, file] = [...env.transport.files.entries()][0];
+    if (fault === 'missing') env.transport.files.delete(id);
+    if (fault === 'changed') env.transport.files.set(id, { ...file, bytes: new Uint8Array([0]) });
+    if (fault === 'duplicated') env.transport.store(file.name, file.bytes);
+    if (fault === 'unverified') pin.personalDigest = 'f'.repeat(64);
+    const candidate = fault === 'unlocked' ? env.make({ locks: null }) : protocol;
+    await assert.rejects(candidate.keepBackup({ ...pin, consentId }), {
+      code: fault === 'missing' ? 'gone' : fault === 'unlocked' ? 'unsupported' : 'invalid',
+    }, fault);
+    assert.equal((await protocol.records.readSync()).sync, null, 'a refused pin changes no state');
+  }
+});
+
+test('sync pin and pruning use the same lock, so a copy pruned first cannot then be pinned', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const home = device();
+  const first = await home.snapshot();
+  await protocol.upload(first);
+  home.mark(2);
+  await protocol.upload(await home.snapshot());
+  home.mark(3);
+  const third = await home.snapshot();
+  let releaseRead;
+  env.transport.faults.read.push(() => new Promise((resolve) => { releaseRead = resolve; }));
+  const uploading = env.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive' }, () => protocol.upload(third));
+  await until(() => releaseRead, 'the replacement read-back is pending');
+  let pin;
+  try {
+    pin = protocol.keepBackup({
+      ...ON, stream, consentId, generation: 1, personalDigest: first.personalDigest, contentDigest: first.backup.digest,
+    });
+    await until(() => env.locks.waiting(CLOUD_BACKUP_LOCK) === 1, 'the pin waits for pruning');
+  } finally {
+    releaseRead();
+    await uploading;
+  }
+  await assert.rejects(pin, { code: 'gone' });
+  assert.equal((await protocol.records.readSync()).sync, null);
+});
+
+test('sync state corruption does not prevent independent ordinary pruning', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  for (let generation = 1; generation <= 2; generation += 1) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  await protocol.records.writeSync(() => ({ version: 999 }));
+  home.mark(3);
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual(env.transport.generations(stream), [2, 3], 'the independent copy does not require an ordinary pin');
+  assert.equal((await protocol.record()).validated[0].generation, 3, 'the verified upload is still recorded');
+  const { known } = await protocol.listed(ON.connection);
+  const record = await protocol.record();
+  await protocol.records.close();
+  env.idb.faults.open = 'error';
+  await assert.rejects(protocol.prune(record, known, ON.connection), { code: 'storage' }, 'an unreadable record still stops pruning');
+  assert.deepEqual(env.transport.generations(stream), [2, 3]);
+});
+
+test('sync pin cannot cross a consent change while the cloud copy is being verified', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  env.transport.faults.read.push(async () => { await protocol.recordConsent(CONSENT); });
+  await assert.rejects(protocol.keepBackup({
+    ...ON, stream, consentId, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  }), { code: 'needs-consent' });
+  assert.equal((await protocol.records.readSync()).sync, null);
+});
+
+test('sync pin keeps an earlier cloud copy without carrying its reference to a new connection', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const home = device();
+  const snapshot = await home.snapshot();
+  await protocol.upload(snapshot);
+  const pin = { ...ON, stream, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest };
+  const kept = await protocol.keepBackup({ ...pin, consentId });
+
+  env.transport.connection = 'connection-two';
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  await remember(protocol, { connection: 'connection-two', matchedDigest: 'c'.repeat(64) });
+  assert.equal((await protocol.syncState({ connection: 'connection-two' })).kept, null);
+  for (let generation = 2; generation <= 6; generation += 1) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  assert.deepEqual(env.transport.generations(stream), [5, 6]);
+  assert.ok(env.transport.files.has(kept.id), 'the earlier-connection copy is left alone');
+});
+
+for (const corrupt of [false, true]) {
+  test(`sync consent can be withdrawn while the protection record is ${corrupt ? 'corrupt' : 'valid'}`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const snapshot = await device().snapshot();
+    await protocol.upload(snapshot);
+    const kept = await protocol.keepBackup({
+      ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+    });
+    if (corrupt) await protocol.records.writeSync(() => ({ version: 999 }));
+    await protocol.withdrawConsent();
+    const stored = await protocol.records.readSync();
+    assert.equal(stored.record.consent, null, 'no consent remains to authorize uploads');
+    assert.equal(stored.syncPresent, false, 'withdrawal clears the no-longer-valid local reference');
+    assert.ok(env.transport.files.has(kept.id), 'the independent cloud file is not deleted');
+    assert.equal((await protocol.discover({ ...ON, includeRetained: true })).retained[0].id, kept.id);
+  });
+}
+
+test('sync pin checks the full saved snapshot even when only the active list changed', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const home = device();
+  const first = await home.snapshot();
+  await protocol.upload(first);
+  home.open('later');
+  const current = await home.snapshot();
+  assert.equal(current.personalDigest, first.personalDigest, 'automatic backup ignores the active list');
+  assert.notEqual(current.backup.digest, first.backup.digest, 'the complete saved snapshot did change');
+  await assert.rejects(protocol.keepBackup({
+    ...ON, stream, consentId, generation: 1, personalDigest: current.personalDigest, contentDigest: current.backup.digest,
+  }), { code: 'invalid' });
+  assert.equal((await protocol.records.readSync()).sync, null);
+});
+
+test('sync pin survives pruning by another installation with a copied stream', async () => {
+  const transport = fakeTransport();
+  const first = harness({ transport });
+  const second = harness({ transport });
+  const { protocol, stream } = await consented(first);
+  const { consentId } = await syncContext(protocol);
+  const home = device();
+  const snapshot = await home.snapshot();
+  await protocol.upload(snapshot);
+  const copied = await protocol.record();
+  const other = second.make();
+  await other.records.write(() => copied);
+  await protocol.keepBackup({
+    ...ON, stream, consentId, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  });
+
+  for (let generation = 2; generation <= 4; generation += 1) {
+    home.mark(generation);
+    await other.upload(await home.snapshot());
+  }
+  const kept = (await protocol.syncState(ON)).kept;
+  assert.ok(transport.files.has(kept.id),
+    `the retained copy survives; the original generation is present: ${transport.generations(stream).includes(1)}`);
+  const checked = await protocol.fetchBackup(kept, ON);
+  assert.equal(checked.text, snapshot.text, 'the retained copy still holds the original saved data');
+});
+
+test('sync pin survives pruning by an older tab that does not read the pin', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const oldTab = env.make();
+  oldTab.prune = async (record, known, connection) => {
+    const floor = record.validated[1]?.generation;
+    if (floor === undefined) return 0;
+    const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)
+      .sort((a, b) => a.generation - b.generation).slice(0, CLOUD_PRUNE_PER_BACKUP);
+    for (const item of stale) await oldTab.remove(item.id, connection);
+    return stale.length;
+  };
+  const home = device();
+  const snapshot = await home.snapshot();
+  await protocol.upload(snapshot);
+  await protocol.keepBackup({
+    ...ON, stream, consentId, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  });
+  for (let generation = 2; generation <= 4; generation += 1) {
+    home.mark(generation);
+    const next = await home.snapshot();
+    await env.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive' }, () => oldTab.upload(next));
+  }
+  const kept = (await protocol.syncState(ON)).kept;
+  assert.ok(env.transport.files.has(kept.id),
+    `the retained copy survives; the original generation is present: ${env.transport.generations(stream).includes(1)}`);
+  assert.equal((await protocol.fetchBackup(kept, ON)).text, snapshot.text);
+});
+
+test('sync pin leaves a failed independent copy and the earlier recovery reference untouched', async () => {
+  for (const fault of ['read-timeout', 'read-corrupt', 'create-lost', 'lost-reference']) {
+    const env = harness();
+    const { protocol, stream } = await consented(env);
+    const { consentId } = await syncContext(protocol);
+    const home = device();
+    const first = await home.snapshot();
+    await protocol.upload(first);
+    const kept = await protocol.keepBackup({
+      ...ON, stream, consentId, generation: 1, personalDigest: first.personalDigest, contentDigest: first.backup.digest,
+    });
+    home.mark(2);
+    const next = await home.snapshot();
+    await protocol.upload(next);
+    if (fault === 'read-timeout') env.transport.faults.read.push(null, 'timeout');
+    if (fault === 'read-corrupt') env.transport.faults.read.push(null, 'corrupt');
+    if (fault === 'create-lost') env.transport.faults.create.push('lost');
+    if (fault === 'lost-reference') env.idb.faults.drop = 1;
+    const deletes = env.transport.calls.filter((call) => call === 'delete').length;
+    const code = fault === 'read-corrupt' ? 'verify' : fault === 'lost-reference' ? 'storage' : 'timeout';
+    await assert.rejects(protocol.keepBackup({
+      ...ON, stream, consentId, generation: 2, personalDigest: next.personalDigest, contentDigest: next.backup.digest,
+    }), { code }, fault);
+    assert.deepEqual((await protocol.syncState(ON)).kept, kept, 'the earlier reference remains');
+    assert.ok(env.transport.files.has(kept.id), 'the earlier independent copy remains');
+    assert.equal(env.transport.calls.filter((call) => call === 'delete').length, deletes, 'a failed attempt deletes nothing');
+  }
+});
+
+test('sync pin refuses a purported new copy that reuses an unrecognized file identity', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const source = [...env.transport.files.values()][0];
+  const foreignId = env.transport.store('notes.txt', source.bytes);
+  env.transport.create = async (name, bytes) => ({ id: foreignId, name, size: bytes.byteLength, created: 1 });
+  await assert.rejects(protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  }), { code: 'verify' });
+  assert.equal((await protocol.records.readSync()).syncPresent, false);
+  assert.equal(env.transport.files.get(foreignId).name, 'notes.txt');
+});
+
+test('sync pin refuses a purported new copy that reuses a malformed listed identity', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const source = [...env.transport.files.values()][0];
+  const foreignId = env.transport.store('notes.txt', source.bytes);
+  const list = env.transport.list;
+  env.transport.list = async (options) => (await list(options)).map((item) => (
+    item.id === foreignId ? { id: foreignId } : item
+  ));
+  env.transport.create = async (name, bytes) => ({ id: foreignId, name, size: bytes.byteLength, created: 1 });
+  await assert.rejects(protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  }), { code: 'verify' });
+  assert.equal((await protocol.records.readSync()).syncPresent, false);
+  assert.equal(env.transport.files.get(foreignId).name, 'notes.txt');
+});
+
+test('sync pin refuses an ordinary source whose listed identity is ambiguous', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const sourceId = [...env.transport.files.keys()][0];
+  const list = env.transport.list;
+  env.transport.list = async (options) => {
+    const items = await list(options);
+    return [...items, { ...items.find((item) => item.id === sourceId), name: 'notes.txt' }];
+  };
+  await assert.rejects(protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  }), { code: 'invalid' });
+  assert.equal((await protocol.records.readSync()).syncPresent, false);
+});
+
+test('sync pin refuses an ordinary source whose name is duplicated by a malformed listing', async () => {
+  const env = harness({ transport: fakeTransport({ duplicates: true }) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const source = [...env.transport.files.values()][0];
+  const list = env.transport.list;
+  env.transport.list = async (options) => [...await list(options), { name: source.name }];
+  await assert.rejects(protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  }), { code: 'invalid' });
+  assert.equal((await protocol.records.readSync()).syncPresent, false);
+});
+
+for (const ambiguity of ['name without an id', 'id without a name']) {
+  test(`sync pin refuses a duplicate ${ambiguity} appearing after creation`, async () => {
+    const env = harness({ transport: fakeTransport({ duplicates: true }) });
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const snapshot = await device().snapshot();
+    await protocol.upload(snapshot);
+    let made = null;
+    const create = env.transport.create;
+    const list = env.transport.list;
+    env.transport.create = async (...args) => {
+      made = await create(...args);
+      return made;
+    };
+    env.transport.list = async (options) => {
+      const items = await list(options);
+      if (!made) return items;
+      return [...items, ambiguity === 'name without an id' ? { name: made.name } : { id: made.id }];
+    };
+    await assert.rejects(protocol.keepBackup({
+      ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+    }), { code: 'verify' });
+    assert.equal((await protocol.records.readSync()).syncPresent, false);
+  });
+}
+
+test('sync pin copies remain discoverable without a local record and are not ordinary sync backups', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const { consentId } = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const kept = await protocol.keepBackup({
+    ...ON, stream, consentId, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  });
+  await protocol.forget();
+  for (const [id, file] of env.transport.files) {
+    if (parseCloudBackupName(file.name)) env.transport.files.delete(id);
+  }
+  assert.ok(env.transport.files.has(kept.id), 'erasing the local record does not delete the cloud copy');
+
+  const fresh = env.make();
+  const found = await fresh.discover({ ...ON, includeRetained: true });
+  assert.deepEqual(found.devices, [], 'a kept copy is not offered as a newer device backup');
+  assert.equal(found.unrecognized, 0, 'a kept copy is not an unknown file');
+  assert.equal(found.retained.length, 1);
+  assert.deepEqual([found.retained[0].id, found.retained[0].name], [kept.id, kept.name]);
+  assert.equal((await fresh.fetchRetainedBackup(found.retained[0], ON)).text, snapshot.text);
+});
+
+test('sync retained discovery only exposes uniquely named backups that pass the content and size checks', async () => {
+  const env = harness({ transport: fakeTransport({ duplicates: true }) });
+  const stream = 'a'.repeat(32);
+  const { backup } = await device().snapshot();
+  const name = (generation, token) => `recap-page-kept-v1-${stream}-${generation}-${token.repeat(32)}.json.gz`;
+  const valid = env.transport.store(name(1, '1'), envelopeFile({ stream, generation: 1, backup, device: 'Phone' }));
+  const corrupt = env.transport.store(name(2, '2'), Buffer.from('not a gzip backup'));
+  const wrongIdentity = env.transport.store(name(3, '3'), envelopeFile({ stream, generation: 1, backup }));
+  const alteredBackup = structuredClone(backup);
+  alteredBackup.components.settings.theme = alteredBackup.components.settings.theme === 'dark' ? 'light' : 'dark';
+  const altered = env.transport.store(name(6, '6'), envelopeFile({ stream, generation: 6, backup: alteredBackup }));
+  const duplicateName = name(4, '4');
+  const duplicateA = env.transport.store(duplicateName, envelopeFile({ stream, generation: 4, backup }));
+  const duplicateB = env.transport.store(duplicateName, envelopeFile({ stream, generation: 4, backup }));
+  const oversized = env.transport.store(name(5, '5'), Buffer.from('not a backup'));
+  const malformedName = env.transport.store('recap-page-kept-v1-not-a-valid-name.json.gz', Buffer.from('not a backup'));
+  const list = env.transport.list;
+  env.transport.list = async (options) => (await list(options)).map((item) => (
+    item.id === oversized ? { ...item, size: MAX_CLOUD_BACKUP_BYTES + 1 } : item
+  ));
+  const readIds = [];
+  const read = env.transport.read;
+  env.transport.read = async (id, options) => { readIds.push(id); return read(id, options); };
+
+  const found = await env.make().discover({ ...ON, includeRetained: true });
+  assert.deepEqual(found.retained.map((item) => item.id), [valid]);
+  assert.deepEqual([found.retainedInvalid, found.retainedOmitted], [7, 0]);
+  assert.equal(found.retained[0].device, 'Phone');
+  assert.equal(found.retained[0].name, name(1, '1'));
+  assert.equal('text' in found.retained[0], false, 'discovery exposes metadata, not the saved data');
+  assert.deepEqual(new Set(readIds), new Set([valid, corrupt, wrongIdentity, altered]));
+  assert.ok(!readIds.some((id) => [duplicateA, duplicateB, oversized, malformedName].includes(id)));
+});
+
+test('sync retained discovery bounds reads and reports valid-looking files it did not inspect', async () => {
+  const env = harness();
+  const stream = 'b'.repeat(32);
+  const { backup } = await device().snapshot();
+  const ids = [];
+  for (let generation = 1; generation <= 5; generation += 1) {
+    const name = `recap-page-kept-v1-${stream}-${generation}-${String(generation).repeat(32)}.json.gz`;
+    ids.push(env.transport.store(name, envelopeFile({ stream, generation, backup })));
+  }
+  const readIds = [];
+  const read = env.transport.read;
+  env.transport.read = async (id, options) => { readIds.push(id); return read(id, options); };
+  const found = await env.make({ limits: { streams: 16, readsPerStream: 4, retainedReads: 2 } })
+    .discover({ ...ON, includeRetained: true });
+  assert.deepEqual(found.retained.map((item) => item.id), [ids[4], ids[3]], 'newest candidates are checked first');
+  assert.deepEqual(readIds, [ids[4], ids[3]]);
+  assert.deepEqual([found.retainedInvalid, found.retainedOmitted], [0, 3]);
+});
+
+for (const ambiguity of ['duplicate name without an id', 'duplicate id without a name']) {
+  for (const action of ['discovery', 'restore']) {
+    test(`sync retained ${action} refuses a ${ambiguity}`, async () => {
+      const env = harness({ transport: fakeTransport({ duplicates: true }) });
+      const stream = 'b'.repeat(32);
+      const { backup } = await device().snapshot();
+      const name = `recap-page-kept-v1-${stream}-1-${'a'.repeat(32)}.json.gz`;
+      const id = env.transport.store(name, envelopeFile({ stream, generation: 1, backup }));
+      const protocol = env.make();
+      const [chosen] = (await protocol.discover({ ...ON, includeRetained: true })).retained;
+      const list = env.transport.list;
+      env.transport.list = async (options) => [
+        ...await list(options),
+        ambiguity === 'duplicate name without an id' ? { name } : { id },
+      ];
+
+      if (action === 'discovery') {
+        const found = await protocol.discover({ ...ON, includeRetained: true });
+        assert.deepEqual(found.retained, []);
+        assert.ok(found.retainedInvalid > 0, 'an ambiguous file is reported');
+      } else {
+        await assert.rejects(protocol.fetchRetainedBackup(chosen, ON), { code: 'invalid' });
+      }
+    });
+  }
+}
+
+for (const change of [
+  'duplicate-name', 'duplicate-id', 'duplicate-name-without-id', 'duplicate-id-without-name',
+  'replaced', 'oversized', 'size-changed',
+]) {
+  test(`sync retained discovery withdraws a ${change} entry that changes during its read`, async () => {
+    const env = harness({ transport: fakeTransport({ duplicates: true }) });
+    const stream = 'b'.repeat(32);
+    const { backup } = await device().snapshot();
+    const name = `recap-page-kept-v1-${stream}-1-${'a'.repeat(32)}.json.gz`;
+    const bytes = envelopeFile({ stream, generation: 1, backup });
+    const id = env.transport.store(name, bytes);
+    const list = env.transport.list;
+    let changed = false;
+    env.transport.list = async (options) => {
+      const items = await list(options);
+      if (!changed) return items;
+      if (change === 'duplicate-id') return [...items, { ...items[0], name: 'notes.txt' }];
+      if (change === 'duplicate-name-without-id') return [...items, { name }];
+      if (change === 'duplicate-id-without-name') return [...items, { id }];
+      if (change === 'oversized') return items.map((item) => (
+        item.id === id ? { ...item, size: MAX_CLOUD_BACKUP_BYTES + 1 } : item
+      ));
+      if (change === 'size-changed') return items.map((item) => (
+        item.id === id ? { ...item, size: item.size + 1 } : item
+      ));
+      return items;
+    };
+    const read = env.transport.read;
+    env.transport.read = async (selected, options) => {
+      const result = await read(selected, options);
+      changed = true;
+      if (change === 'duplicate-name') env.transport.store(name, bytes);
+      if (change === 'replaced') {
+        env.transport.files.delete(id);
+        env.transport.store(name, bytes);
+      }
+      return result;
+    };
+    const found = await env.make().discover({ ...ON, includeRetained: true });
+    assert.deepEqual(found.retained, []);
+    assert.ok(['replaced', 'size-changed'].includes(change) ? found.retainedOmitted > 0 : found.retainedInvalid > 0);
+  });
+}
+
+for (const change of ['missing', 'duplicate', 'changed', 'duplicate-during-read']) {
+  test(`sync retained restore refuses a ${change} file after discovery`, async () => {
+    const env = harness({ transport: fakeTransport({ duplicates: true }) });
+    const stream = 'c'.repeat(32);
+    const home = device();
+    const original = await home.snapshot();
+    const name = `recap-page-kept-v1-${stream}-1-${'a'.repeat(32)}.json.gz`;
+    const bytes = envelopeFile({ stream, generation: 1, backup: original.backup });
+    const id = env.transport.store(name, bytes);
+    const protocol = env.make();
+    const [chosen] = (await protocol.discover({ ...ON, includeRetained: true })).retained;
+    if (change === 'missing') env.transport.files.delete(id);
+    else if (change === 'duplicate') env.transport.store(name, bytes);
+    else if (change === 'changed') {
+      home.mark(3);
+      const changed = await home.snapshot();
+      env.transport.files.set(id, { ...env.transport.files.get(id), bytes: envelopeFile({ stream, generation: 1, backup: changed.backup }) });
+    } else env.transport.faults.read.push(async () => { env.transport.store(name, bytes); });
+    await assert.rejects(() => protocol.fetchRetainedBackup(chosen, ON), { code: change === 'missing' ? 'gone' : 'invalid' });
+  });
+}
+
+test('sync pin revalidates the full kept copy, active consent and current reference on every fetch', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const first = await home.snapshot();
+  await protocol.upload(first);
+  const kept = await protocol.keepBackup({
+    ...context, generation: 1, personalDigest: first.personalDigest, contentDigest: first.backup.digest,
+  });
+  assert.equal((await protocol.fetchKeptBackup({ ...context, kept })).text, first.text);
+
+  const file = env.transport.files.get(kept.id);
+  home.open('later');
+  const altered = await home.snapshot();
+  assert.equal(altered.personalDigest, first.personalDigest);
+  env.transport.files.set(kept.id, {
+    ...file, bytes: envelopeFile({ stream, generation: 1, backup: altered.backup, device: CONSENT.device }),
+  });
+  await assert.rejects(protocol.fetchKeptBackup({ ...context, kept }), { code: 'invalid' }, 'a different full snapshot is refused');
+  env.transport.files.set(kept.id, file);
+
+  env.transport.faults.read.push(async () => { await protocol.recordConsent(CONSENT); });
+  await assert.rejects(protocol.fetchKeptBackup({ ...context, kept }), { code: 'needs-consent' }, 'consent changed during the read');
+  const renewed = await syncContext(protocol);
+  assert.equal((await protocol.fetchKeptBackup({ ...renewed, kept })).text, first.text, 'a new consent revalidates the same file');
+
+  await protocol.records.writeSync((state) => ({ ...state, kept: null }));
+  await assert.rejects(protocol.fetchKeptBackup({ ...renewed, kept }), { code: 'gone' }, 'a withdrawn reference is not offered');
+});
+
+test('sync pin revalidation refuses a missing or ambiguous kept name', async () => {
+  for (const change of ['missing', 'duplicate']) {
+    const env = harness({ transport: fakeTransport({ duplicates: true }) });
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const snapshot = await device().snapshot();
+    await protocol.upload(snapshot);
+    const kept = await protocol.keepBackup({
+      ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+    });
+    if (change === 'missing') env.transport.files.delete(kept.id);
+    else env.transport.store(kept.name, env.transport.files.get(kept.id).bytes);
+    await assert.rejects(protocol.fetchKeptBackup({ ...context, kept }), { code: change === 'missing' ? 'gone' : 'invalid' }, change);
+  }
+});
+
+test('sync pin revalidation refuses a new file under the old name', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const kept = await protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  });
+  const file = env.transport.files.get(kept.id);
+  env.transport.files.delete(kept.id);
+  const replacementId = env.transport.store(kept.name, file.bytes);
+  assert.notEqual(replacementId, kept.id);
+  await assert.rejects(protocol.fetchKeptBackup({ ...context, kept }), { code: 'gone' });
+  const [discovered] = (await protocol.discover({ ...ON, includeRetained: true })).retained;
+  assert.equal(discovered.id, replacementId, 'the validated replacement remains separately discoverable');
+});
+
+test('a same-name replacement with the same snapshot is not the recorded kept copy', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  const kept = await protocol.keepBackup({
+    ...context, generation: 1, personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+  });
+  const [chosen] = (await protocol.discover({ ...ON, includeRetained: true })).retained;
+  const file = env.transport.files.get(kept.id);
+  const replaced = new Uint8Array(file.bytes);
+  replaced[9] = replaced[9] === 0 ? 1 : 0;
+  assert.deepEqual(gunzipSync(replaced), gunzipSync(file.bytes), 'the replacement decodes to the same backup');
+  env.transport.files.set(kept.id, { ...file, bytes: replaced });
+
+  await assert.rejects(protocol.fetchKeptBackup({ ...context, kept }), { code: 'invalid' });
+  await assert.rejects(protocol.fetchRetainedBackup(chosen, ON), { code: 'invalid' });
+  const [neutral] = (await protocol.discover({ ...ON, includeRetained: true })).retained;
+  assert.match(kept.byteDigest, /^[a-f0-9]{64}$/);
+  assert.equal(chosen.byteDigest, kept.byteDigest);
+  assert.notEqual(neutral.byteDigest, kept.byteDigest, 'the valid replacement can only receive the neutral label');
+});
+
+test('sync pin safety lets unlocked workers prune ordinary backups without deleting a kept copy', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env, { locks: null });
+  const home = device();
+  for (let generation = 1; generation <= 4; generation += 1) {
+    home.mark(generation);
+    await protocol.upload(await home.snapshot());
+  }
+  assert.deepEqual(env.transport.generations(stream), [3, 4], 'ordinary cleanup still works without Web Locks');
+
+  const second = harness();
+  const { protocol: locked, stream: keptStream } = await consented(second);
+  const context = await syncContext(locked);
+  const first = await home.snapshot();
+  await locked.upload(first);
+  const kept = await locked.keepBackup({
+    ...context, generation: 1, personalDigest: first.personalDigest, contentDigest: first.backup.digest,
+  });
+  const unlocked = new CloudBackupProtocol({
+    transport: second.transport, records: locked.records, locks: null, clock: second.clock,
+  });
+  for (let generation = 2; generation <= 4; generation += 1) {
+    home.mark(generation);
+    await unlocked.upload(await home.snapshot());
+  }
+  assert.deepEqual(second.transport.generations(keptStream), [3, 4], 'ordinary pruning keeps only the newest two');
+  assert.equal((await unlocked.fetchKeptBackup({ ...context, kept })).text, first.text);
 });

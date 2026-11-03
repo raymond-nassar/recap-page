@@ -43,7 +43,7 @@ import {
 } from '../src/js/lib/localServer.js';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
-  availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
+  availablePublishingCategories, catalogEntries, eraSections, parseCatalog, publishingAgeGroups,
   shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
   publishingCategoryStories, resolveReadingPaths, storyYear,
 } from '../src/js/lib/catalog.js';
@@ -55,6 +55,7 @@ import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -280,6 +281,7 @@ const shelfEntry = (id, name, extra = {}) => ({
   collections: 0,
   characters: [],
   keywords: [],
+  storyTypes: ['science-fiction'],
   group: null,
   groupName: null,
   variant: null,
@@ -482,7 +484,6 @@ const FIXTURE_SHELVES = new Map(
   shelfSections(catalogEntries(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
-const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
 const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_MODERN_PERIODS = availablePublishingCategories(
@@ -501,12 +502,12 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
-    id: 'storylines-canonical-only',
-    breaks: 'storylines-discovery-actual-data',
-    why: 'secondary Storylines projection wrongly excludes eligible canonical Timeline groups',
+    id: 'genres-missing-variant',
+    breaks: 'genres-discovery-actual-data',
+    why: 'genre browsing loses one of the eligible Civil War readings',
     rewriteCatalog: (source) => source.replace(
-      /export function storylinesStories\(stories\) \{[\s\S]*?\n\}/,
-      "export function storylinesStories(stories) {\n  return shelfStories(stories, 'lines');\n}",
+      'return discoverableList(list)',
+      "return discoverableList(list) && list.id !== 'civil-war-essential'",
     ),
   },
   {
@@ -1462,19 +1463,10 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'synopsis-disclosure-default-open-447',
+    id: 'synopsis-hero-held-back-1061',
     breaks: 'synopsis-disclosure-447',
-    why: 'bulk-fetched prose is exposed without an exact-issue reveal',
-    rewriteMain: (source) => source.replaceAll(
-      '  synopsisDisclosure,',
-      '  synopsisDisclosure: { ...synopsisDisclosure, isRevealed: () => true },',
-    ),
-  },
-  {
-    id: 'synopsis-disclosure-source-choice-retained-447',
-    breaks: 'synopsis-disclosure-447',
-    why: 'a source save incorrectly retains the old exact-issue reveal choices',
-    rewriteMain: (source) => source.replace('    synopsisDisclosure.clear();', ''),
+    why: 'the reading card holds a loaded summary back again, which #1061 removed',
+    rewriteReading: (source) => source.replace("$('#hero-desc').hidden = false;", "$('#hero-desc').hidden = true;"),
   },
   {
     id: 'synopsis-consent-decline-off',
@@ -1886,12 +1878,9 @@ async function checkOfflineSelectedList(browser, origin, t) {
       if (!list?.file) throw new Error('House of M is missing from the actual catalog.');
       return { id: list.id, name: list.name, file: list.file };
     });
-    await openBrowseCategory(page, 'storylines');
-    await page.$eval('#lines-q', (input, name) => {
-      input.value = name;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }, selected.name);
-    const card = `#lines-results [data-story="list:${selected.id}"]`;
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'magic-supernatural');
+    const card = `#genres-results [data-story="list:${selected.id}"]`;
     await page.waitForSelector(card, { timeout: 15000 });
     await click(page, `${card} [data-act="preview"]`);
     await page.waitForSelector('#preview[open] #preview-offline [data-act="offline"]');
@@ -2001,11 +1990,8 @@ async function checkOfflineSelectedList(browser, origin, t) {
       && responses.get('/') === true && responses.get('/js/main.js') === true,
       JSON.stringify({ fresh, priorDocument, responses: [...responses] }));
 
-    await openBrowseCategory(page, 'storylines');
-    await page.$eval('#lines-q', (input, name) => {
-      input.value = name;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }, selected.name);
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'magic-supernatural');
     await page.waitForSelector(card, { timeout: 15000 });
     await click(page, `${card} [data-act="preview"]`);
     await page.waitForSelector('#preview[open] .preview-issue-link', { timeout: 15000 });
@@ -2376,20 +2362,14 @@ const SCENARIOS = [
   },
   {
     id: 'reorientation-445',
-    title: '445 earlier-issue review and optional description hiding preserve identity and saved data',
+    title: '445 earlier-issue review and loaded summaries preserve identity and saved data',
     async run(page, t) {
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
       await page.evaluateOnNewDocument(() => {
         const original = window.fetch;
-        window.__review445 = { requests: [], opens: [], fault: null };
+        window.__review445 = { requests: [], opens: [] };
         window.open = (...args) => { window.__review445.opens.push(args); return {}; };
-        const write = Storage.prototype.setItem;
-        Storage.prototype.setItem = function (key, value) {
-          if (key === 'mrt.settings' && window.__review445.fault === 'throw') throw new DOMException('Synthetic quota', 'QuotaExceededError');
-          if (key === 'mrt.settings' && window.__review445.fault === 'ignore') return;
-          return write.call(this, key, value);
-        };
         window.fetch = (input, init) => {
           const url = new URL(typeof input === 'string' ? input : input.url, location.href);
           if (url.origin === location.origin) return original(input, init);
@@ -2419,13 +2399,6 @@ const SCENARIOS = [
       };
       const reading = () => go(`#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
       const settings = () => go('#/data', '#view-data:not([hidden])');
-      const setMode = async (value) => {
-        await page.$eval('#opt-description-hiding', (node, checked) => {
-          node.checked = checked;
-          node.dispatchEvent(new Event('change', { bubbles: true }));
-        }, value);
-        await frames();
-      };
       const candidate = () => page.$eval('#review-candidate a', (node) => Number(node.dataset.issueId));
       const inspect = async () => {
         await page.focus('#review-candidate a');
@@ -2458,34 +2431,21 @@ const SCENARIOS = [
           && box.top >= 0 && box.bottom <= innerHeight;
       }, ids[1]));
       await inspect();
-      t.check('same issue retains its explicit reveal without another request', await page.$eval('#issue-focus-desc',
-        (node) => !node.hidden && node.textContent.startsWith('Synthetic narrative 445')));
-      await click(page, '#btn-issue-description');
-      await settings();
-      await setMode(false);
-      const requests = await page.evaluate(() => window.__review445.requests.length);
-      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      t.check('OFF shows held Details prose without disclosure controls', await page.evaluate(() => (
-        !document.querySelector('#issue-focus-desc').hidden && document.querySelector('#btn-issue-description').hidden
-      )));
-      await settings();
-      await setMode(true);
-      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      t.check('OFF to ON clears old choices and collapses held text', await page.$eval('#issue-focus-desc',
-        (node) => node.hidden && node.textContent === ''));
-      await click(page, '#btn-issue-description');
-      await settings();
-      await setMode(true);
-      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      t.check('an unchanged setting preserves deliberate individual choices', await page.$eval('#issue-focus-desc', (node) => !node.hidden));
+      t.check('#1061 the same issue shows its loaded summary in full, with no reveal control, without another request',
+        await page.evaluate(() => {
+          const desc = document.querySelector('#issue-focus-desc');
+          return !desc.hidden && desc.textContent.startsWith('Synthetic narrative 445')
+            && !document.querySelector('#btn-issue-description') && window.__review445.requests.length === 1;
+        }));
       await go(`#/issue/${ids[2]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
       await fetchOne();
-      await settings();
-      await setMode(false);
       await reading();
-      t.check('Reading uses the same OFF policy for the current next issue', await page.evaluate(() => (
-        !document.querySelector('#hero-desc').hidden && document.querySelector('#btn-hero-description').hidden
-      )));
+      t.check('#1061 Reading shows the loaded summary of the current next issue in full, with no reveal control',
+        await page.evaluate((id) => {
+          const desc = document.querySelector('#hero-desc');
+          return !desc.hidden && desc.textContent === `Synthetic narrative 445 for ${id}.`
+            && !document.querySelector('#btn-hero-description');
+        }, ids[2]));
       t.check('only deliberately requested exact IDs used no-store', await page.evaluate((expected) => (
         window.__review445.requests.length === 2
         && window.__review445.requests.every((r, i) => r.id === expected[i] && r.cache === 'no-store')
@@ -2493,31 +2453,45 @@ const SCENARIOS = [
       t.check('picker, Details, fetching and settings preserve saved progress and notes bytes',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
       await settings();
-      for (const fault of ['throw', 'ignore']) {
-        await page.evaluate((mode) => { window.__review445.fault = mode; }, fault);
-        await setMode(true);
-        t.check(`${fault} settings write reports tab-only failure without fetching or false saved feedback`,
-          await page.$eval('#description-hiding-report', (node) => /could not be saved.*reload/.test(node.textContent))
-          && await page.evaluate((count) => window.__review445.requests.length === count + 1, requests));
-        await page.evaluate(() => { window.__review445.fault = null; });
-        await setMode(false);
-      }
-      await page.reload({ waitUntil: 'networkidle0' });
-      await page.waitForSelector('#view-data:not([hidden])');
-      t.check('OFF persists but synopsis text and individual choices do not survive reload',
-        await page.$eval('#opt-description-hiding', (node) => !node.checked)
-        && await page.evaluate(() => !localStorage.getItem('mrt.settings').includes('Synthetic narrative')));
-      for (const raw of [undefined, 'false', 0, null]) {
+      t.check('#1061 Settings no longer offers to hide story summaries, nor lists that choice among those a backup holds',
+        await page.evaluate(() => !document.querySelector('#opt-description-hiding')
+          && !/Hide story summaries/.test(document.querySelector('#view-data').textContent)
+          && !/story summary/i.test(document.querySelector('#complete-backup-contents').textContent)));
+      // #1061: a hiding choice saved by an earlier version is ignored rather than refused, and the
+      // reader's other settings come through untouched.
+      for (const raw of [true, false, 'false', 0, null]) {
         await page.evaluate((value) => {
-          const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
-          if (value === undefined) delete prefs.hideDescriptions;
-          else prefs.hideDescriptions = value;
+          const prefs = JSON.parse(localStorage.getItem('mrt.settings') ?? '{}');
+          prefs.hideDescriptions = value;
+          prefs.theme = 'light';
           localStorage.setItem('mrt.settings', JSON.stringify(prefs));
         }, raw);
         await page.reload({ waitUntil: 'networkidle0' });
         await page.waitForSelector('#view-data:not([hidden])');
-        t.check(`missing/invalid preference ${String(raw)} defaults ON`, await page.$eval('#opt-description-hiding', (node) => node.checked));
+        t.check(`#1061 an old saved hiding choice ${JSON.stringify(raw)} is ignored without an error`, errors.length === 0
+          && await page.evaluate((before) => document.documentElement.dataset.theme === 'light'
+            && localStorage.getItem('mrt.state.v2') === before
+            && !localStorage.getItem('mrt.settings').includes('Synthetic narrative'), saved));
       }
+      // #1061: a restored backup leaves false stored, and the next settings save must keep it, or the
+      // backups made afterwards would say true and an older build restoring one would hide summaries.
+      await page.evaluate(() => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        prefs.hideDescriptions = false;
+        localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+      });
+      await page.reload({ waitUntil: 'networkidle0' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.$eval('#opt-covers', (node) => node.click());
+      await page.$eval('#opt-covers', (node) => node.click());
+      t.check('#1061 a settings save stores the hiding choice as false, which is what this version shows',
+        await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).hideDescriptions === false));
+      await page.evaluate(() => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        delete prefs.theme;
+        localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+      });
+      await page.reload({ waitUntil: 'networkidle0' });
       await reading();
       await click(page, '#btn-review-earlier');
       for (const theme of ['dark', 'light']) {
@@ -2769,19 +2743,15 @@ const SCENARIOS = [
         JSON.stringify(narrowTimeline));
       await page.setViewport({ width: 1280, height: 900 });
 
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
-      const lines = await readShelf('#lines-results');
-      const expectedStorylineHeadings = FIXTURE_STORYLINE_SECTIONS.map(({ heading }) => heading);
-      const expectedStorylineTitles = FIXTURE_STORYLINE_SECTIONS.flatMap(
-        ({ stories }) => stories.map((story) => story.name ?? story.lists[0].name),
-      );
-      t.check('Storylines holds every whole-line reading under its derived decade',
-        JSON.stringify(lines.filter((x) => x.kind === 'head').map((x) => x.heading))
-          === JSON.stringify(expectedStorylineHeadings)
-        && JSON.stringify(lines.filter((x) => x.kind === 'row').map((x) => x.title))
-          === JSON.stringify(expectedStorylineTitles),
-        JSON.stringify(lines));
+      await openBrowseCategory(page, 'genres');
+      await chooseGenre(page, 'science-fiction');
+      const genres = await readShelf('#genres-results');
+      const expectedGenres = parseCatalog(CATALOG).lists
+        .filter((list) => list.type !== 'screen-companion').map((list) => list.name);
+      t.check('Genres lists every matching reading without pulling in MCU Prep companions',
+        JSON.stringify(genres.filter((x) => x.kind === 'row').map((x) => x.title))
+          === JSON.stringify(expectedGenres),
+        JSON.stringify(genres));
 
       await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
@@ -2992,8 +2962,8 @@ const SCENARIOS = [
         !restored.active && restored.borderWidth === '1px',
         JSON.stringify(restored));
 
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
+      await openBrowseCategory(page, 'genres');
+      await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
       await click(page, '[data-view="spotlights"]');
       await page.waitForFunction(() => (
         document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'complete-guide'
@@ -3137,7 +3107,7 @@ const SCENARIOS = [
         ['library-read', ['Home', 'Library', 'Everything read']],
         ['library-manual', ['Home', 'Library', 'Added by hand']],
         ['catalog', ['Home', 'Modern Timeline']],
-        ['lines', ['Home', 'Storylines']],
+        ['genres', ['Home', 'Genres']],
         ['spotlights', ['Home', 'Character spotlights']],
         ['marvel-on-screen', ['Home', 'MCU Prep']],
         ['marvel-ages', ['Home', 'Marvel Ages']],
@@ -3433,7 +3403,7 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '8 Reading Lists' },
+          { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
@@ -3627,7 +3597,7 @@ const SCENARIOS = [
 
       for (const [category, view] of [
         ['timeline', 'catalog'],
-        ['storylines', 'lines'],
+        ['genres', 'genres'],
         ['character-spotlights', 'spotlights'],
       ]) {
         await click(page, `[data-category="${category}"]`);
@@ -4720,12 +4690,9 @@ const SCENARIOS = [
       });
 
       await open(page, '/?catalog=actual#/home');
-      await openBrowseCategory(page, 'storylines');
-      await page.$eval('#lines-q', (input) => {
-        input.value = 'Marvel Zombies';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      const cardSelector = '#lines-results [data-story="list:marvel-zombies-reading-order"]';
+      await openBrowseCategory(page, 'genres');
+      await chooseGenre(page, 'horror');
+      const cardSelector = '#genres-results [data-story="list:marvel-zombies-reading-order"]';
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -4733,11 +4700,10 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-        era: node.closest('.catalog-grid')?.previousElementSibling
-          ?.querySelector('.shelf-section-title')?.textContent.trim(),
+        genre: node.closest('.story-type-results')?.querySelector('h2')?.textContent.trim(),
       }));
-      t.check('Storylines Across eras discovers one credited partial guide with three disclosed gaps',
-        card.name === 'Marvel Zombies' && card.era === 'Across eras'
+      t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
+        card.name === 'Marvel Zombies' && card.genre === 'Horror'
         && card.meta === '94 issues · 3 issues have no Marvel Unlimited links yet and cannot be opened'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
@@ -5426,7 +5392,7 @@ const SCENARIOS = [
         && timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
         && timeline.doom.meta.startsWith('85 issues')
         && timeline.doom.meta.includes(
           '10 issues have owner-confirmed identities but no provider details or covers',
@@ -5443,7 +5409,7 @@ const SCENARIOS = [
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows'),
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025'),
         JSON.stringify(timeline.doom));
       t.check('the chapter years are derived exactly and only 1999 remains empty before 2004',
         timeline.spine[0]?.year === 1998
@@ -5689,20 +5655,17 @@ const SCENARIOS = [
           count: 25,
           first: 'New X-Men (2001) #146',
         },
-      ];
+      ].map((chapter) => descriptionRevisions.redoEntry(chapter));
       const representativeResults = [];
       for (const representative of representatives) {
         await page.$eval('#catalog-q', (input, name) => {
           input.value = name;
           input.dispatchEvent(new Event('input', { bubbles: true }));
         }, representative.name);
-        await page.waitForFunction(
-          (name) => document.querySelectorAll('#catalog-results .catalog-card').length === 1
-              && document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() === name,
-          { timeout: 15000 },
-          representative.name,
-        );
-        const preview = '#catalog-results .catalog-card [data-act="preview"]';
+        // A chapter's name can also appear in a neighbor's revised description, as Storm: The Arena
+        // names the Planet X crossover cluster, so the result is found by identity, not by count.
+        const preview = `#catalog-results [data-story="list:${representative.id}"] [data-act="preview"]`;
+        await page.waitForSelector(preview, { timeout: 15000 });
         await page.focus(preview);
         await page.keyboard.press('Enter');
         await page.waitForFunction(
@@ -7220,7 +7183,7 @@ const SCENARIOS = [
       const browse = [];
       for (const [view, category] of [
         ['catalog', 'timeline'],
-        ['lines', 'storylines'],
+        ['genres', 'genres'],
         ['spotlights', 'character-spotlights'],
       ]) {
         await openBrowseCategory(page, category);
@@ -7234,7 +7197,7 @@ const SCENARIOS = [
       }
       t.check('browse headings carry no sentence that repeats the screen structure',
         browse.every((screen) => screen.subtitle === null), JSON.stringify(browse));
-      t.check('Timeline keeps era context while Storylines drops decade explanations',
+      t.check('Timeline keeps era context while Genres avoids decade explanations',
         browse[0].blurbs.length > 0 && browse[0].blurbs.every((text) => text.length > 40)
         && browse[1].blurbs.length === 0,
         JSON.stringify(browse));
@@ -7584,15 +7547,15 @@ const SCENARIOS = [
         && gateway.hash === '#/browse' && gateway.home === 'page' && gateway.current === 0,
         JSON.stringify(gateway));
 
-      await click(page, '#view-home [data-category="storylines"]');
-      await page.waitForFunction(() => document.querySelector('#view-lines')?.hidden === false);
+      await click(page, '#view-home [data-category="genres"]');
+      await page.waitForFunction(() => document.querySelector('#view-genres')?.hidden === false);
       const browseChild = await page.evaluate(() => ({
         hash: location.hash,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
         home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
       }));
       t.check('a category page shows Home as its current section',
-        browseChild.hash === '#/lines' && browseChild.current === null && browseChild.home === 'page',
+        browseChild.hash === '#/genres' && browseChild.current === null && browseChild.home === 'page',
         JSON.stringify(browseChild));
 
       await click(page, '.ri[data-view="add"]');
@@ -7955,7 +7918,6 @@ const SCENARIOS = [
       const seen = [];
       for (const [route, form, query] of [
         ['catalog', '#form-catalog-search', 'Avengers'],
-        ['lines', '#form-lines-search', 'X-Men'],
         ['spotlights', '#form-spotlights-search', 'Spider'],
         ['young-readers', '#form-young-readers-search', 'Spidey'],
         ['marvel-on-screen', '.mcu-prep-search', 'Thor'],
@@ -7991,7 +7953,7 @@ const SCENARIOS = [
           && document.activeElement === document.querySelector(selector), {}, field);
       }
       t.check('every search Clear is unfilled and borderless at rest, never the primary fill',
-        seen.length === 5 && seen.every((entry) => entry.text === 'Clear'
+        seen.length === 4 && seen.every((entry) => entry.text === 'Clear'
           && entry.background === 'rgba(0, 0, 0, 0)' && entry.border === 'rgba(0, 0, 0, 0)'
           && entry.primaryFill !== entry.background && entry.height >= 24),
         JSON.stringify(seen));
@@ -9490,7 +9452,7 @@ const SCENARIOS = [
   },
   {
     id: 'synopsis-disclosure-447',
-    title: '447 exact-issue disclosure preserves consent, focus and tab-only privacy',
+    title: '447 and #1061 loaded summaries show in full and keep consent, focus and tab-only privacy',
     async run(page, t) {
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
@@ -9545,7 +9507,6 @@ const SCENARIOS = [
         } else await page.waitForSelector('#view-read:not([hidden])');
       };
       const inspect = (id) => navigate(`#/issue/${id}?list=${encodeURIComponent(listId)}`);
-      const hidden = (selector) => page.$eval(selector, (node) => node.hidden && node.textContent === '');
       const fetchBulk = async () => {
         await click(page, '#btn-synopsis');
         await page.waitForSelector('#ask[open]');
@@ -9559,46 +9520,30 @@ const SCENARIOS = [
         await page.evaluate((before) => window.__disclosure447.opens.length === 1
           && window.__disclosure447.requests.length === 0
           && localStorage.getItem('mrt.state.v2') === before, saved));
+      const shown = (selector, id) => page.$eval(selector, (node, want) => (
+        !node.hidden && node.textContent === `Synthetic plot 447 for ${want}.`
+      ), id);
+      const unloaded = (selector) => page.$eval(selector, (node) => !node.textContent.includes('Synthetic plot 447'));
+      t.check('#1061 the hero has no summary before one is loaded', await unloaded('#hero-desc'));
       await fetchBulk();
-      t.check('bulk prose starts empty and hidden in the hero', await hidden('#hero-desc'));
-      await page.focus('#btn-hero-description');
-      await page.keyboard.press('Enter');
-      t.check('native Enter reveals exactly one plot with an expanded, named and visibly focused button',
-        await page.evaluate(() => {
-          const button = document.querySelector('#btn-hero-description');
-          const style = getComputedStyle(button);
-          const rect = button.getBoundingClientRect();
-          return document.querySelector('#hero-desc').textContent.startsWith('Synthetic plot 447')
-            && button.getAttribute('aria-expanded') === 'true'
-            && button.getAttribute('aria-controls') === 'hero-desc'
-            && button.getAttribute('aria-label').includes('Hide story summary')
-            && button === document.activeElement && rect.width > 0 && rect.height > 0
-            && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0
-            && window.__disclosure447.opens.length === 1;
-        }));
-      await page.keyboard.press('Space');
-      t.check('native Space hides plot without moving focus',
-        await hidden('#hero-desc') && await page.$eval('#btn-hero-description',
-          (node) => node === document.activeElement && node.getAttribute('aria-expanded') === 'false'));
-      await page.keyboard.press('Enter');
+      t.check('#1061 a fetched summary shows in full in the hero at once, with no reveal control',
+        await shown('#hero-desc', first)
+        && await page.evaluate(() => !document.querySelector('#btn-hero-description')
+          && !/Show story summary|Hide story summary|spoiler/i.test(document.querySelector('#hero').textContent)
+          && window.__disclosure447.opens.length === 1));
       await inspect(first);
-      t.check('Issue Details shares only the exact revealed issue',
-        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
-      await page.focus('#btn-issue-description');
-      await page.keyboard.press('Space');
+      t.check('#1061 Issue Details shows the same loaded summary in full, with no reveal control',
+        await shown('#issue-focus-desc', first) && await page.evaluate(() => !document.querySelector('#btn-issue-description')));
       await navigate(readHash);
-      t.check('Hide in details also hides the same hero on revisit', await hidden('#hero-desc'));
-      t.check('fetching and disclosure leave all saved bytes and notes unchanged',
+      t.check('fetching and showing summaries leave all saved bytes and notes unchanged',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
-      await click(page, '#btn-hero-description');
       await click(page, '#btn-hero-done');
       await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
-      t.check('Done does not reveal the next issue', await hidden('#hero-desc'));
+      t.check('#1061 Done moves the hero to the next comic and shows its loaded summary', await shown('#hero-desc', second));
       await inspect(first);
-      t.check('the read flag does not erase an exact-issue reveal choice',
-        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
+      t.check('the read flag does not erase a loaded summary', await shown('#issue-focus-desc', first));
       await inspect(second);
-      t.check('an unrevealed issue stays collapsed in details', await hidden('#issue-focus-desc'));
+      t.check('#1061 every loaded summary shows in details', await shown('#issue-focus-desc', second));
       const afterDone = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
 
       // Known factual metadata comes from the same synthetic source, but only explicit synopsis
@@ -9611,10 +9556,12 @@ const SCENARIOS = [
       await page.focus('#btn-issue-synopsis');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#ask[open]');
-      t.check('individual consent explicitly warns of exposure and retains the storage promises',
-        await page.$eval('#ask-body', (node) => node.textContent.includes('may contain spoilers')
+      t.check('#1061 individual consent keeps the storage and allowance promises without a spoiler warning',
+        await page.$eval('#ask-body', (node) => !/spoiler/i.test(node.textContent)
           && node.textContent.includes('stay in this tab until reload')
-          && node.textContent.trim().split(/(?<=[.!?])\s+/).length === 2));
+          && node.textContent.includes('uses your request allowance')
+          && node.textContent.trim().split(/(?<=[.!?])\s+/).length === 2)
+        && await page.$eval('#ask-ok', (node) => node.textContent.trim() === 'Load summary'));
       await click(page, '#ask-cancel');
       await frames();
       t.check('declining individual consent makes no synopsis request',
@@ -9633,9 +9580,9 @@ const SCENARIOS = [
       await page.waitForSelector('#ask[open]');
       await click(page, '#ask-ok');
       await page.waitForFunction(() => document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic plot 447'));
-      t.check('confirmed individual fetch reveals without a second action and preserves focus',
-        await page.$eval('#btn-issue-description', (node) => node.getAttribute('aria-expanded') === 'true'
-          && document.activeElement === node));
+      t.check('#1061 a confirmed individual load shows in full and moves focus to the summary',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && document.activeElement === node
+          && node.textContent === 'Synthetic plot 447 for 947001.'));
 
       await navigate('#/issue/947002');
       await page.evaluate(() => { window.__disclosure447.mode = 'missing'; });
@@ -9676,7 +9623,6 @@ const SCENARIOS = [
           && !document.querySelector('#issue-focus-desc').textContent.includes('Synthetic plot 447')));
 
       await navigate(readHash);
-      await click(page, '#btn-hero-description');
       await inspect(second);
       await click(page, '.ri[data-view="data"]');
       await page.waitForSelector('#view-data:not([hidden])');
@@ -9688,12 +9634,12 @@ const SCENARIOS = [
         ))));
       await navigate(readHash);
       await fetchBulk();
-      t.check('refetching after same-source save does not inherit the previous reveal', await hidden('#hero-desc'));
-      await click(page, '#btn-hero-description');
+      t.check('#1061 refetching after a same-source save shows the summary in full again', await shown('#hero-desc', second));
       await page.reload({ waitUntil: 'load' });
       await page.waitForSelector('#view-read:not([hidden])');
+      t.check('a loaded summary does not survive reload', await unloaded('#hero-desc'));
       await fetchBulk();
-      t.check('reload and refetch reset the exact-issue reveal choice', await hidden('#hero-desc'));
+      t.check('#1061 refetching after reload shows the summary in full', await shown('#hero-desc', second));
       t.check('all synopsis journeys preserve read progress and notes after the deliberate Done action',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, afterDone));
       t.check('no disclosure or prose enters localStorage, sessionStorage or exported backups',
@@ -9703,12 +9649,44 @@ const SCENARIOS = [
           const durable = JSON.stringify([
             ...Object.entries(localStorage), ...Object.entries(sessionStorage), exportBackup(state),
           ]);
-          return !/Synthetic plot 447|synopsisDisclosure|isRevealed/.test(durable);
+          return !/Synthetic plot 447/.test(durable);
         }));
       t.check('synthetic issue requests retain no-store',
         await page.evaluate(() => window.__disclosure447.requests.length > 0
           && window.__disclosure447.requests.every((request) => request.cache === 'no-store')));
-      t.check('disclosure journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
+
+      const oldFile = await page.evaluate(async () => {
+        const { captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
+        const { backup } = await captureCompleteBackup({ storage: localStorage });
+        const components = structuredClone(backup.components);
+        components.settings.hideDescriptions = true;
+        return (await createCompleteBackup(components)).text;
+      });
+      await page.evaluate(() => { location.hash = '#/data'; });
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+      await pickFile(page, '#restore-complete', oldFile);
+      await page.waitForSelector('#ask[open]');
+      await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Complete backup restored'));
+      const restoredChoice = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).hideDescriptions);
+      await navigate(readHash);
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
+      await fetchBulk();
+      const heroAfterRestore = await shown('#hero-desc', second) && await page.evaluate(() => (
+        !document.querySelector('#btn-hero-description')
+        && ![...document.querySelectorAll('#hero button')].some((button) => /^(Show|Hide) story summary/i.test(button.textContent.trim()))
+      ));
+      await inspect(second);
+      const issueAfterRestore = await shown('#issue-focus-desc', second) && await page.evaluate(() => (
+        !document.querySelector('#btn-issue-description')
+        && ![...document.querySelectorAll('#view-issue button')].some((button) => /^(Show|Hide) story summary/i.test(button.textContent.trim()))
+      ));
+      t.check('#1061 an older backup restores its hiding choice but loaded summaries still show in full without reveal controls',
+        restoredChoice === true && heroAfterRestore && issueAfterRestore,
+        JSON.stringify({ restoredChoice, heroAfterRestore, issueAfterRestore }));
+      t.check('summary journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
     },
   },
   {
@@ -9776,9 +9754,8 @@ const SCENARIOS = [
       );
 
       const expectedIds = ORDER.items.map((issue) => issue.issueId);
-      t.check('bulk-fetched plot stays collapsed before the durability reveal',
-        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
-      await click(page, '#btn-hero-description');
+      t.check('#1061 bulk-fetched plot shows in full without a reveal',
+        await page.$eval('#hero-desc', (node) => !node.hidden && node.textContent.includes('Fixture synopsis from')));
       const observed = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         requests: window.__mrtIssueRequestLog ?? [],
@@ -9885,7 +9862,6 @@ const SCENARIOS = [
         () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
         { timeout: 20000 },
       );
-      await click(page, '#btn-hero-description');
       const before = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         hash: location.hash,
@@ -9937,8 +9913,10 @@ const SCENARIOS = [
         () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
         { timeout: 20000 },
       );
-      t.check('the new source does not inherit the previous source reveal choice',
-        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
+      // #1061: with nothing hidden, the new source's summary shows at once, from the new service.
+      t.check('the new source shows its own summary, never the previous source\'s',
+        await page.$eval('#hero-desc', (node) => !node.hidden && node.textContent.includes('Fixture synopsis from')
+          && node.textContent.includes(new URL('https://synopsis-next.example.test/v1').host)));
     },
   },
   {
@@ -9984,9 +9962,8 @@ const SCENARIOS = [
         () => (window.__mrtIssueRequestLog ?? []).length === 9,
         { timeout: 20000 },
       );
-      t.check('an arrived current plot stays collapsed during bulk fetching',
-        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
-      await click(page, '#btn-hero-description');
+      t.check('#1061 an arrived current plot shows in full during bulk fetching',
+        await page.$eval('#hero-desc', (node) => !node.hidden && node.textContent.trim() !== ''));
       const running = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent.trim() ?? '',
         fetchHidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
@@ -13553,11 +13530,87 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
       t.check('downward scroll withdraws the bottom bar without writing progress',
         await page.evaluate(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight));
-      await page.evaluate(() => window.scrollTo(0, 195));
-      await page.waitForFunction(() => scrollY === 195);
+      t.check('WebKit document scrolling reveals navigation when window scroll arrives first',
+        await page.evaluate(() => {
+          window.visualViewport.dispatchEvent(new Event('scroll'));
+          return !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden');
+        }));
+      const viewportFirst = await page.evaluate(async () => {
+        window.scrollTo(0, 220);
+        window.visualViewport.dispatchEvent(new Event('scroll'));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const rail = document.querySelector('.rail-header');
+        const revealed = !rail.classList.contains('mobile-nav-hidden');
+        rail.classList.add('mobile-nav-hidden');
+        return revealed;
+      });
+      t.check('WebKit document scrolling reveals navigation when visualViewport scroll arrives first', viewportFirst);
+      const passiveViewport = await page.evaluate(async () => {
+        const rail = document.querySelector('.rail-header');
+        const count = document.querySelector('#chero-count > b');
+        const before = { focus: document.activeElement, state: localStorage.getItem('mrt.state.v2') };
+        count.click();
+        window.visualViewport.dispatchEvent(new Event('scroll'));
+        window.visualViewport.dispatchEvent(new Event('resize'));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return {
+          hidden: rail.classList.contains('mobile-nav-hidden'),
+          focus: before.focus === document.activeElement,
+          state: before.state === localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      t.check('a passive Home count and unchanged visual viewport notifications leave the bar withdrawn',
+        passiveViewport.hidden && passiveViewport.focus && passiveViewport.state, JSON.stringify(passiveViewport));
+      const settledViewport = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        const rail = document.querySelector('.rail-header');
+        Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 12 });
+        viewport.dispatchEvent(new Event('scroll'));
+        delete viewport.offsetTop;
+        viewport.dispatchEvent(new Event('scroll'));
+        return rail.classList.contains('mobile-nav-hidden');
+      });
+      t.check('an unzoomed visual viewport offset settling leaves the bar withdrawn', settledViewport);
+      const zoomedPan = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        const rail = document.querySelector('.rail-header');
+        Object.defineProperty(viewport, 'scale', { configurable: true, value: 2 });
+        viewport.dispatchEvent(new Event('resize'));
+        rail.classList.add('mobile-nav-hidden');
+        Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 12 });
+        viewport.dispatchEvent(new Event('scroll'));
+        const revealed = !rail.classList.contains('mobile-nav-hidden');
+        delete viewport.offsetTop;
+        delete viewport.scale;
+        viewport.dispatchEvent(new Event('resize'));
+        return revealed;
+      });
+      t.check('a pan while zoomed still reveals navigation', zoomedPan);
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      const keyboardViewport = await page.evaluate(() => {
+        const viewport = window.visualViewport;
+        Object.defineProperty(viewport, 'height', { configurable: true, value: innerHeight / 2 });
+        viewport.dispatchEvent(new Event('resize'));
+        const hidden = document.querySelector('.rail-header').classList.contains('mobile-nav-hidden');
+        delete viewport.height;
+        viewport.dispatchEvent(new Event('resize'));
+        return { hidden, revealed: !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden') };
+      });
+      t.check('a keyboard-sized viewport hides navigation and its restoration reveals it',
+        keyboardViewport.hidden && keyboardViewport.revealed, JSON.stringify(keyboardViewport));
+      await page.evaluate(async () => {
+        window.scrollTo(0, 200);
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
+      await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.evaluate(() => window.scrollTo(0, 245));
+      await page.waitForFunction(() => scrollY === 245);
       t.check('a five-pixel reversal does not jitter the bar visible',
         await page.evaluate(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
-      await page.evaluate(() => window.scrollTo(0, 175));
+      await page.evaluate(() => window.scrollTo(0, 225));
       await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
       t.check('upward scroll reveals Home, Library, Search and More',
         await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
@@ -15172,8 +15225,9 @@ SCENARIOS.push({
       await click(page, row(first.issueId, act));
       const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
       const hero = await page.$eval('#hero-facts', (node) => node.textContent);
-      t.check(`${act} is explicit and both row and hero retain the same state`,
-        visible === text && hero.includes(text), `${visible} / ${hero}`);
+      // #1061: the record moved off the reading card into Issue details, which the next check reads.
+      t.check(`${act} is explicit in the row and the reading card leaves the record to Issue details`,
+        visible === text && !hero.includes('Unlimited'), `${visible} / ${hero}`);
     }
 
     await click(page, '#btn-hero-inspect');
@@ -17178,6 +17232,12 @@ async function openBrowseCategory(page, category) {
   await click(page, selector);
 }
 
+async function chooseGenre(page, type) {
+  await page.waitForSelector(`#genres-type option[value="${type}"]`, { timeout: 15000 });
+  await page.select('#genres-type', type);
+  await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
+}
+
 async function visibleView(page) {
   return page.evaluate(() => document.querySelector('.view:not([hidden])')?.id ?? null);
 }
@@ -17919,39 +17979,66 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
 
 SCENARIOS.push(
   {
-    id: 'storylines-discovery-actual-data',
-    title: 'one curated Storylines pool includes real event variants without moving canonical identity',
+    id: 'genres-discovery-actual-data',
+    title: 'Genres and legacy addresses preserve real event variants and canonical identity',
     async run(page, t) {
       try {
         const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
-        await open(page, '/?catalog=actual#/lines');
-        await page.waitForFunction(() => document.querySelector('#lines-results .catalog-card'));
-        const initial = await page.evaluate(() => [...document.querySelectorAll(
-          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        await open(page, '/?catalog=actual');
+        await page.evaluate((saved) => {
+          localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        }, fixtureReadingState());
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
+        await page.waitForSelector('#view-home [data-category="genres"] .home-path-count', { timeout: 15000 });
+        const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+        const census = await page.$$eval('#view-home .home-path-count', (nodes) => nodes.map((node) => node.textContent.trim()));
+        const initialHistory = await page.evaluate(() => history.length);
+        await page.goto(`${page.__origin}/?catalog=actual#/lines?query=Civil+War`, { waitUntil: 'load' });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const legacy = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('a bookmarked Storylines address with a query opens Genres without a second history entry',
+          legacy.length === initialHistory + 1, JSON.stringify({ initialHistory, legacy }));
+
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const reloaded = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('reloading the old address opens Genres without changing history',
+          reloaded.length === legacy.length, JSON.stringify({ legacy, reloaded }));
+        await page.evaluate(() => { location.hash = '#/about'; });
+        await page.waitForSelector('#view-about:not([hidden])', { timeout: 15000 });
+        const beforeBack = await page.evaluate(() => history.length);
+        await page.goBack();
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const returned = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('one Back returns to the old address in Genres without adding an entry',
+          returned.length === beforeBack && returned.hash === reloaded.hash,
+          JSON.stringify({ beforeBack, returned, reloaded }));
+        await page.evaluate(() => { location.hash = '#/about'; });
+        await page.waitForSelector('#view-about:not([hidden])', { timeout: 15000 });
+        const beforeAlias = await page.evaluate(() => history.length);
+        await page.evaluate(() => { location.hash = '#/storylines?legacy=anything'; });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const alias = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('the alternate Storylines address also opens Genres with one history entry',
+          alias.length === beforeAlias + 1, JSON.stringify({ beforeAlias, alias }));
+        t.check('opening old addresses leaves saved reading data unchanged',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
+        t.check('the bundled catalog reports the current Timeline and Genres lists',
+          census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
+            && census.includes('299 Reading Lists'), JSON.stringify(census));
+
+        await chooseGenre(page, 'political');
+        const searched = await page.evaluate(() => [...document.querySelectorAll(
+          '#genres-results [data-act="import"], #genres-results [data-act="open"]',
         )].map((node) => node.dataset.key));
         const civilWar = ['civil-war-essential', 'civil-war', 'civil-war-avengers'];
-        t.check('normal Storylines browsing includes all three original Civil War readings',
-          civilWar.every((id) => initial.includes(id)), JSON.stringify(initial));
-        t.check('the secondary pool includes the current readings without duplicates or scaffold chapters',
-          initial.length === currentReadingCensus.storylines && new Set(initial).size === currentReadingCensus.storylines
-            && initial.includes('marvel-knights-to-planet-x-02')
-            && initial.includes('marvel-knights-to-planet-x-78')
-            && !initial.includes('marvel-knights-to-planet-x-01'), JSON.stringify(initial));
-        await page.evaluate(() => {
-          const query = document.querySelector('#lines-q');
-          query.value = 'Civil War';
-          query.dispatchEvent(new Event('input', { bubbles: true }));
-        });
-        await page.waitForFunction(() => !document.querySelector('#lines-results')?.textContent.includes('Loading the catalog'));
-        const searched = await page.evaluate(() => [...document.querySelectorAll(
-          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
-        )].map((node) => node.dataset.key));
-        t.check('scoped Storylines search retains every genuine Civil War variant',
+        t.check('the Political genre retains every genuine Civil War variant without duplicates',
           civilWar.every((id) => searched.includes(id)) && new Set(searched).size === searched.length,
           JSON.stringify(searched));
         if (!civilWar.every((id) => searched.includes(id))) return;
         const actual = ACTUAL_CATALOG.lists.find((list) => list.id === 'civil-war-essential');
-        await click(page, '#lines-results [data-story="list:civil-war-essential"] [data-act="preview"]');
+        await click(page, '#genres-results [data-story="list:civil-war-essential"] [data-act="preview"]');
         await page.waitForFunction(() => document.querySelector('#preview')?.open === true);
         await click(page, '#preview-add [data-act="main"]');
         await page.waitForFunction(() => {
@@ -17974,7 +18061,7 @@ SCENARIOS.push(
           await click(page, '#preview-close');
           await page.waitForFunction((expected) => window.__ux08Close?.delivered
             && !document.querySelector('#preview')?.open
-            && document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
+            && document.querySelector('#genres-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
           {}, href);
         } finally {
           await page.evaluate(() => {
@@ -17987,19 +18074,20 @@ SCENARIOS.push(
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           const saved = state.lists[id];
           return { catalogId: saved.catalogId, count: saved.itemIds.length,
-            href: document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
+            href: document.querySelector('#genres-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
         }, savedId);
         t.check('Preview save preserves the original catalog ID/count and the actual saved native destination',
           identity.catalogId === actual.id && identity.count === actual.count && identity.href === href,
           JSON.stringify(identity));
-        await click(page, '#lines-results a[data-key="civil-war-essential"]');
+        await click(page, '#genres-results a[data-key="civil-war-essential"]');
         await page.waitForFunction((expected) => location.hash === expected, {}, href);
         t.check('saved Open names the actual reading subject',
           (await page.title()).includes(actual.name), await page.title());
         await page.goBack();
-        await page.waitForFunction(() => location.hash.startsWith('#/lines'));
-        t.check('Back returns to the independent Storylines document',
-          await page.$eval('#view-lines', (node) => !node.hidden));
+        await page.waitForFunction(() => location.hash.startsWith('#/genres'));
+        t.check('Back restores the Political genre',
+          await page.$eval('#view-genres', (node) => !node.hidden)
+            && await page.$eval('#genres-type', (node) => node.value) === 'political');
         const beforeTimeline = await page.evaluate((id) => {
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return { itemIds: state.lists[id].itemIds, read: state.read,
@@ -18025,7 +18113,7 @@ SCENARIOS.push(
             && JSON.stringify(reused.listOrder) === JSON.stringify(beforeTimeline.listOrder),
           JSON.stringify(reused));
       } catch (error) {
-        console.error('storylines-discovery-actual-data original failure:', error.message, error.stack);
+        console.error('genres-discovery-actual-data original failure:', error.message, error.stack);
         throw error;
       }
     },
@@ -18253,7 +18341,7 @@ async function responsiveReading(page, { checked = false } = {}) {
   }));
   console.log(`UX09-FIXTURE ${JSON.stringify({ naturalListActions: natural,
     qualified: natural.open === false })}`);
-  if (natural.open !== false) throw new Error('Natural List actions closed state did not qualify');
+  if (natural.open !== false) throw new Error('Natural Reading List options closed state did not qualify');
   if (!natural.open) await click(page, '#list-actions > summary');
   await click(page, '#btn-synopsis');
   await page.waitForSelector('#ask[open]');
@@ -18261,18 +18349,14 @@ async function responsiveReading(page, { checked = false } = {}) {
   await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent
     === 'All synopses fetched, for this tab only.');
   if (!natural.open) await click(page, '#list-actions > summary');
-  await page.focus('#btn-hero-description');
-  await page.keyboard.press('Enter');
   if (checked) {
     await click(page, '#rows .cb[data-key="900002"]');
   }
   const qualified = await page.evaluate((wantChecked) => {
     const prose = document.querySelector('#hero-desc');
-    const button = document.querySelector('#btn-hero-description');
     const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
     return prose.textContent === 'Synthetic plot 447 for 900001.' && !prose.hidden
-      && prose.getBoundingClientRect().height > 0 && button.getAttribute('aria-expanded') === 'true'
-      && button.getAttribute('aria-controls') === 'hero-desc'
+      && prose.getBoundingClientRect().height > 0
       && !state.read[900001] && !state.read[900003]
       && Boolean(state.read[900002]) === wantChecked;
   }, checked);
@@ -18406,7 +18490,7 @@ async function responsiveCommands(page) {
       return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
         width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
     };
-    // UX-19 (#830): while comics are queued, Complete heads List actions rather than standing before it.
+    // UX-19 (#830): while comics are queued, Complete heads Reading List options rather than standing before it.
     const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
       open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
       completeInside: Boolean(body?.contains(complete)), completeFirst: body?.firstElementChild === complete,
@@ -18552,7 +18636,7 @@ SCENARIOS.push(responsiveOwner({
       overlap: commands.overlap === 0,
       expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
     };
-    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in List actions while comics are queued',
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in Reading List options while comics are queued',
       { ...commands, subpredicates: commandPredicates },
       Object.values(commandPredicates).every(Boolean));
     responsiveStep(page, 'RF07-text-modes');
@@ -18564,8 +18648,6 @@ SCENARIOS.push(responsiveOwner({
     await click(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent === 'All synopses fetched, for this tab only.');
     await click(page, '#list-actions > summary');
-    await page.focus('#btn-hero-description');
-    await page.keyboard.press('Enter');
     const doubledRule = await page.evaluate(() => {
       const style = getComputedStyle(document.documentElement);
       return ':root { ' + ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
@@ -18601,10 +18683,6 @@ SCENARIOS.push(responsiveOwner({
       await responsiveRoute(page, '#/age-bronze', 'age-bronze');
       const modeCard = await responsiveCard(page);
       await responsiveRoute(page, '#/read/' + (await readState(page)).active, 'read');
-      if (await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') !== 'true')) {
-        await page.focus('#btn-hero-description');
-        await page.keyboard.press('Enter');
-      }
       const modeHero = await responsiveHero(page);
       const modeCommands = await responsiveCommands(page);
       const subpredicates = responsiveReflowPredicates(modeBuild, modeCard, modeHero, modeCommands, true);
@@ -18906,7 +18984,7 @@ SCENARIOS.push(responsiveOwner({
     await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
       { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
         expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
-          pending: 'painted outside editing disclosure', complete: 'inside List actions while queued; completed hidden; unavailable disabled' },
+          pending: 'painted outside editing disclosure', complete: 'inside Reading List options while queued; completed hidden; unavailable disabled' },
         subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
 
     responsiveStep(page, 'RC04-native-note');
@@ -19023,10 +19101,11 @@ SCENARIOS.push(responsiveOwner({
       [`${width}:${entry.id}:inside`, entry.inside],
       [`${width}:${entry.id}:target`, entry.height >= 24],
     ])));
+    // #1061 retired the story summaries switch, so a build without cloud backup shows two.
     await responsiveReceipt(page, t, 'RC10', 'settings switches set the track beside an unboxed label at wide and narrow widths',
-      { switches, expected: { switches: 3, border: '0px', trackBeforeLabel: true, minimumHeight: 24 },
+      { switches, expected: { switches: 2, border: '0px', trackBeforeLabel: true, minimumHeight: 24 },
         subpredicates: switchPredicates },
-      switches.every(({ measured }) => measured.length === 3) && Object.values(switchPredicates).every(Boolean));
+      switches.every(({ measured }) => measured.length === 2) && Object.values(switchPredicates).every(Boolean));
     responsiveStep(page, 'RC03-markdown');
     await open(page, '/#/add-import');
     const preSelector = '.import-guide pre';
@@ -19699,12 +19778,14 @@ SCENARIOS.push({
 // state outlives the reload a restore ends in.
 const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
 
-function cloudFixtureHost() {
-  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null };
+function cloudFixtureHost(provider = 'onedrive') {
+  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null,
+    waitingForUpload: false, connectFailure: false, chosenProvider: null };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
   const status = () => ({
-    provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
+    provider, state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
     message: null, reason: linked() ? host.reason : null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
+    ...(host.waitingForUpload ? { waitingForUpload: true } : {}),
   });
   const refuse = (code, message) => ({ ok: false, error: { code, message } });
   const guard = (input) => {
@@ -19722,6 +19803,12 @@ function cloudFixtureHost() {
     host.calls.push(operation);
     if (operation === 'status') return { ok: true, status: status() };
     if (operation === 'connect') {
+      host.chosenProvider = input.provider ?? 'onedrive';
+      if (host.connectFailure) return refuse('unavailable', 'iCloud Drive is not available. Turn on iCloud Drive in Settings.');
+      if (provider === 'icloud') {
+        Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: null });
+        return { ok: true, status: status() };
+      }
       if (host.state === 'not-connected' || host.state === 'needs-sign-in') host.state = 'signing-in';
       return { ok: true, status: status() };
     }
@@ -19751,13 +19838,54 @@ function cloudFixtureHost() {
   return {
     host, handle,
     signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test', reason: null }); },
+    reconnected() { Object.assign(host, { connection: 'd'.repeat(32), reason: null }); },
     // The person deleted the Recap Page folder, and another browser's backup found it gone: the host forgot
     // the folder, started a new connection and says why, as host/cloudHost.mjs does.
     folderDeleted() {
       host.items.clear();
-      Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
+      Object.assign(host, { connection: 'e'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
     },
   };
+}
+
+async function installCloudFixture(page, fixture) {
+  await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
+  await page.evaluateOnNewDocument((prefix) => {
+    const prior = window.fetch;
+    window.fetch = async (input, init = {}) => {
+      const url = new URL(typeof input === 'string' ? input : input?.url ?? String(input), location.href);
+      if (url.origin !== location.origin || !url.pathname.startsWith(prefix)) return prior(input, init);
+      const answer = await window.__mrtCloudHost(url.pathname.slice(prefix.length), init.body ? JSON.parse(init.body) : {});
+      return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
+    };
+  }, CLOUD_PREFIX_PATH);
+}
+
+async function keepNewestCloudCopy(page, fixture) {
+  const items = [...fixture.host.items.values()].map(({ id, name }) => ({ id, name }));
+  return page.evaluate(async (listed) => {
+    const { CloudBackupProtocol, parseCloudBackupName } = await import('/js/lib/cloudProtocol.js');
+    const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+    const transport = createCloudHostTransport();
+    await transport.status();
+    const protocol = new CloudBackupProtocol({ transport });
+    const record = await protocol.record();
+    const newest = record.validated[0];
+    const source = listed.find((item) => {
+      const parsed = parseCloudBackupName(item.name);
+      return parsed?.stream === record.stream && parsed.generation === newest.generation;
+    });
+    if (!source) throw new Error('The verified cloud backup is missing from the fixture.');
+    const connection = record.consent.connection;
+    const checked = await protocol.fetchBackup({
+      id: source.id, stream: record.stream, generation: newest.generation,
+    }, { connection });
+    return protocol.keepBackup({
+      connection, stream: record.stream, consentId: record.consent.id,
+      generation: newest.generation, personalDigest: newest.personalDigest,
+      contentDigest: JSON.parse(checked.text).digest,
+    });
+  }, items);
 }
 
 async function cloudCard(page) {
@@ -19922,16 +20050,7 @@ SCENARIOS.push({
   title: 'cloud backup signs in beside Microsoft\'s logo, shows the account before asking, backs up at once, restores through the complete restore engine, and asks Cancel first before anything without a way back',
   async run(page, t) {
     const fixture = cloudFixtureHost();
-    await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
-    await page.evaluateOnNewDocument((prefix) => {
-      const prior = window.fetch;
-      window.fetch = async (input, init = {}) => {
-        const url = new URL(typeof input === 'string' ? input : input?.url ?? String(input), location.href);
-        if (url.origin !== location.origin || !url.pathname.startsWith(prefix)) return prior(input, init);
-        const answer = await window.__mrtCloudHost(url.pathname.slice(prefix.length), init.body ? JSON.parse(init.body) : {});
-        return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
-      };
-    }, CLOUD_PREFIX_PATH);
+    await installCloudFixture(page, fixture);
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await seedFixtureState(page);
@@ -20008,7 +20127,7 @@ SCENARIOS.push({
     let release = () => {};
     fixture.host.gate = new Promise((resolve) => { release = resolve; });
     await click(page, '#opt-cloud-auto');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backing up now.'), { timeout: 20000 });
     const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
     // The moving half is pinned rather than inherited. A host whose own setting is reduced motion, as
     // Edge launched with --force-prefers-reduced-motion is, hid the bar before the first sample and
@@ -20030,6 +20149,11 @@ SCENARIOS.push({
       fixture.host.items.size === 1 && [...fixture.host.items.values()][0].name.startsWith('recap-page-backup-v1-')
         && (await cloudCard(page)).report.includes('Automatic backup is on for this browser.'),
       JSON.stringify(fixture.host.calls));
+
+    const kept = await keepNewestCloudCopy(page, fixture);
+    t.check('a verified kept copy is a separate file rather than an ordinary backup',
+      fixture.host.items.has(kept.id) && kept.name.startsWith('recap-page-kept-v1-')
+        && fixture.host.items.size === 2, JSON.stringify(kept));
 
     await click(page, '#cloud-discovery-list button[data-cloud-action="check"]');
     await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]');
@@ -20137,19 +20261,41 @@ SCENARIOS.push({
       (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
 
     const stored = fixture.host.items.size;
+    const keptFile = { ...fixture.host.items.get(kept.id) };
+    const changed = Buffer.from('Changed outside Recap Page');
+    fixture.host.items.set(kept.id, { ...keptFile, bytes: changed.toString('base64'), size: changed.length });
     const remove = await ask('#btn-cloud-delete');
-    t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
+    t.check('deleting asks about the account and the recycle bin, and adds no saved-copy notice while none is needed',
       remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
-        && remove.body.includes('every backup this browser made in the OneDrive account reader@example.test.')
+        && remove.body.includes('deletes every backup this browser made in the OneDrive account reader@example.test.')
+        && !/kept cop|saved cop|cloud folders/i.test(remove.body)
         && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days'),
       JSON.stringify(remove));
     await click(page, '#ask-ok');
-    await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
-    t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
-      stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
-        && (await cloudCard(page)).report.includes('from the OneDrive account reader@example.test, where')
-        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied'),
-      `${stored}: ${(await cloudCard(page)).report}`);
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('could not be deleted'), { timeout: 15000 });
+    const partial = await cloudCard(page);
+    t.check('a changed kept copy is left alone and the partial deletion is reported without saying it was deleted',
+      stored >= 2 && fixture.host.items.size === 1 && fixture.host.items.has(kept.id) && !partial.checked
+        && partial.report.includes(`Deleted ${stored - 1} of ${stored} backups`)
+        && partial.report.includes('a kept copy changed outside the app or could not be checked'),
+      `${stored}: ${partial.report}`);
+    t.check('the card reports the recorded copy that still needs attention',
+      partial.status.includes('One saved or attempted cloud copy could not be confirmed or removed.')
+        && partial.status.includes('delete any unwanted copies by hand'),
+      partial.status);
+    fixture.host.items.set(kept.id, keptFile);
+    const retryQuestion = await ask('#btn-cloud-delete');
+    t.check('the next delete question includes the recorded attention before confirmation',
+      retryQuestion.body.includes('One saved or attempted cloud copy could not be confirmed or removed.'),
+      retryQuestion.body);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Deleted 1 backup'), { timeout: 15000 });
+    await page.waitForFunction(() => !document.querySelector('#cloud-backup-status').textContent.includes('saved or attempted cloud copy'), { timeout: 15000 });
+    t.check('a verified kept copy can be deleted on retry, with the recycle-bin outcome stated',
+      fixture.host.items.size === 0 && !(await cloudCard(page)).checked
+        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied')
+        && !(await cloudCard(page)).status.includes('saved or attempted cloud copy'),
+      (await cloudCard(page)).report);
 
     await page.focus('#btn-cloud-disconnect');
     await click(page, '#btn-cloud-disconnect');
@@ -20182,8 +20328,29 @@ SCENARIOS.push({
     // folder was deleted rather than that anyone signed in again (P02-T07 decision 2).
     fixture.signedIn();
     await open(page, '/#/data');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to OneDrive as reader@example.test.'
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive as reader@example.test.')
       && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    const earlier = await keepNewestCloudCopy(page, fixture);
+    fixture.reconnected();
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('One recorded kept copy from an earlier connection may remain.'),
+      { timeout: 15000 });
+    const reconnected = await cloudCard(page);
+    t.check('after reconnecting the card reports the recorded earlier copy and leaves automatic backup off until consent',
+      !reconnected.checked && reconnected.status.includes('delete them by hand in their cloud folders.'), JSON.stringify(reconnected));
+    const earlierQuestion = await ask('#btn-cloud-delete');
+    t.check('the delete question gives the recorded earlier-copy count without promising to delete it',
+      earlierQuestion.body.includes('One recorded kept copy from an earlier connection may remain.')
+        && earlierQuestion.body.includes('deletes every backup this browser made in'), earlierQuestion.body);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('One recorded kept copy from an earlier connection may remain.'),
+      { timeout: 15000 });
+    t.check('deleting under the new connection leaves the earlier copy and reports it',
+      fixture.host.items.size === 1 && fixture.host.items.has(earlier.id) && !(await cloudCard(page)).checked,
+      JSON.stringify(await cloudCard(page)));
     await click(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
     // Every announcement from here on, as the page's announcer receives it (stage 3 review, S3b-2).
@@ -20197,11 +20364,11 @@ SCENARIOS.push({
     await open(page, '/#/about');
     await open(page, '/#/data');
     const deleted = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
-    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.endsWith(reason),
+    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.includes(reason),
       { timeout: 15000 }, deleted).then(() => true, () => false);
     const asked = await cloudCard(page);
     t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
-      told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
+      told && asked.status.startsWith(`Connected to OneDrive as reader@example.test. ${deleted}`) && asked.auto && !asked.checked, JSON.stringify(asked));
     t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
     await page.waitForFunction((reason) => window.__cloudSpoken.some((text) => text.includes(reason)), { timeout: 3000 }, deleted).catch(() => {});
     await new Promise((resolve) => { setTimeout(resolve, 300); });
@@ -20210,6 +20377,47 @@ SCENARIOS.push({
     t.check('stopped backups are announced once and the status line wears the warning notice',
       spoken.filter((text) => text.includes(deleted)).length === 1 && warned, JSON.stringify({ spoken, warned }));
     t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-icloud',
+  title: 'the shared card offers only iCloud, reports connection failure, and keeps upload feedback until the next status refresh',
+  async run(page, t) {
+    const fixture = cloudFixtureHost('icloud');
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await installCloudFixture(page, fixture);
+    await seedFixtureState(page);
+    await open(page, '/#/data');
+    await page.waitForSelector('#cloud-backup:not([hidden])');
+    const offered = await page.$eval('#cloud-backup', (card) => ({
+      buttons: [...card.querySelectorAll('#cloud-backup-primary button')].filter((node) => !node.hidden).map((node) => node.textContent.trim()),
+      intro: card.querySelector('#cloud-backup-intro').textContent,
+    }));
+    t.check('an iCloud-only transport has one clearly named action and an iCloud introduction',
+      JSON.stringify(offered.buttons) === JSON.stringify(['Connect iCloud'])
+        && offered.intro === 'Keep a complete backup in your own iCloud, made automatically as you read.', JSON.stringify(offered));
+    await page.focus('#btn-cloud-connect-icloud');
+    fixture.host.connectFailure = true;
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('iCloud could not be connected.'));
+    t.check('a failed connection retains a usable Connect iCloud action and explains what to fix',
+      await page.$eval('#btn-cloud-connect-icloud', (button) => !button.hidden && !button.disabled)
+        && (await cloudCard(page)).report.includes('Turn on iCloud Drive in Settings.'));
+    fixture.host.connectFailure = false;
+    fixture.host.waitingForUpload = true;
+    await click(page, '#btn-cloud-connect-icloud');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('iCloud has not finished uploading'));
+    t.check('connection names iCloud and preserves the pending-upload feedback',
+      fixture.host.chosenProvider === 'icloud' && (await cloudCard(page)).status === 'Connected to iCloud. iCloud has not finished uploading the latest backup yet.');
+    fixture.host.waitingForUpload = false;
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to iCloud.');
+    t.check('a subsequent status refresh withdraws the upload wait, without a polling loop',
+      (await cloudCard(page)).status === 'Connected to iCloud.');
+    t.check('the iCloud card raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
 
@@ -20858,7 +21066,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = !process.argv.includes('--ephemeral') && ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = !process.argv.includes('--ephemeral') && ['genres-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -21812,19 +22020,35 @@ SCENARIOS.push({
     t.check('second Escape retains the existing row-menu dismissal and focus rescue',
       await page.$eval('#rows .row:first-child [data-act="more"]', (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
 
+    const longHint = 'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+    await reset();
+    await page.$eval('#btn-hero-done', (node, text) => {
+      node.dataset.tooltip = text;
+      scrollBy(0, node.getBoundingClientRect().top - 12);
+    }, longHint);
+    await page.focus('#btn-hero-done');
+    await settle();
+    const blocked = await tooltipVisual449(page, '#btn-hero-done', 'action-tip');
+    const options = await page.evaluate(() => {
+      const wrapper = document.querySelector('#reading-list-options');
+      const summary = document.querySelector('#list-actions > summary');
+      const box = summary.getBoundingClientRect();
+      const hit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
+      return { protected: wrapper.hasAttribute('data-keep-uncovered'), hit: summary.contains(hit) };
+    });
+    t.check('320px: Done hint yields to Reading List options without moving focus',
+      !blocked.visible && blocked.focus && options.hit, JSON.stringify({ blocked, options }));
+
     const client = await page.createCDPSession();
     for (const { name, selector, tipId } of families) {
-      await page.setViewport({ width: name === 'rail' ? 1000 : 320, height: 900 });
+      await page.setViewport({ width: name === 'rail' ? 1000 : 390, height: 900 });
       await reset();
-      // Done goes near the top of the window rather than to the middle (#860). At 320px Read is
-      // stacked above Done, and at 200 per cent zoom the middle left the long hint room only above
-      // Done, over Read, where a hint in Read and Done's group may not go.
-      await page.$eval(selector, (node) => {
-        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] =
-          'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+      // At 390px the actions share a row, leaving room above Done without covering Read or options.
+      await page.$eval(selector, (node, text) => {
+        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] = text;
         if (node.closest('#sidebar')) node.scrollIntoView({ block: 'center' });
-        else scrollBy(0, node.getBoundingClientRect().top - 12);
-      });
+        else scrollBy(0, node.getBoundingClientRect().top - 300);
+      }, longHint);
       await page.focus(selector);
       await settle();
       const long = await tooltipVisual449(page, selector, tipId);
@@ -21850,6 +22074,7 @@ SCENARIOS.push({
       }, tipId);
       console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      if (name === 'action') await page.$eval(selector, (node) => node.scrollIntoView({ block: 'nearest', inline: 'nearest' }));
       await settle();
       const zoom = await tooltipVisual449(page, selector, tipId);
       t.check(`${name}: 200 percent zoom retains visible, non-overlapping keyboard hints`, zoom.visible && zoom.focus && fits(zoom), JSON.stringify(zoom));
@@ -21948,6 +22173,21 @@ MUTATIONS.push({
   ),
 });
 
+MUTATIONS.push({
+  id: 'tooltip-options-unprotected-1061',
+  breaks: 'tooltip-lifecycle-449',
+  why: 'without options protection the long Done hint covers Reading List options',
+  script: () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#reading-list-options').removeAttribute('data-keep-uncovered');
+    });
+  },
+  rewriteReading: (source) => source.replace(
+    "    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));",
+    "    options.removeAttribute('data-keep-uncovered');",
+  ),
+});
+
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
@@ -21962,8 +22202,8 @@ MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 SCENARIOS.push((await import('./browser-bulk-read.mjs')).bulkRead);
 const doneUndo = await import('./browser-done-undo.mjs');
-SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints);
-MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations);
+SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints, doneUndo.sidebarOptionsHints);
+MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations, ...doneUndo.sidebarOptionsHintsMutations);
 const milestones = await import('./browser-milestones.mjs');
 SCENARIOS.push(milestones.milestones, milestones.milestonePreferences);
 MUTATIONS.push(...milestones.milestoneMutations);
@@ -21972,7 +22212,20 @@ SCENARIOS.push(saveNotice.saveNoticePlacement);
 MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);
+SCENARIOS.push(readingCard.readingCardPhoneOverview);
+SCENARIOS.push(readingCard.readingCardPoster);
+SCENARIOS.push(readingCard.readingCardUndo);
+SCENARIOS.push(readingCard.readingCardUndoStill);
 MUTATIONS.push(...readingCard.readingCardMutations);
+MUTATIONS.push({
+  id: 'synopsis-restored-hiding-1061',
+  breaks: 'synopsis-disclosure-447',
+  why: 'an older restored hiding choice hides a loaded summary again',
+  rewriteReading: (source) => source.replace(
+    "$('#hero-desc').hidden = false;",
+    "$('#hero-desc').hidden = JSON.parse(localStorage.getItem('mrt.settings') ?? '{}').hideDescriptions === true;",
+  ),
+});
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);
@@ -22007,7 +22260,7 @@ SCENARIOS.push({
     const knownRefusedIds = order.items
       .filter(({ issueId, detailsRefused }) => issueId > 0 && detailsRefused)
       .map(({ issueId }) => issueId);
-    const cardSelector = `#lines-results [data-story="list:${id}"]`;
+    const cardSelector = `#genres-results [data-story="list:${id}"]`;
     const errors = [];
     const externalRequests = [];
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -22062,17 +22315,18 @@ SCENARIOS.push({
       title: node.querySelector('.rt')?.textContent.trim(),
     })));
     await open(page, '/?catalog=actual#/catalog');
-    await openBrowseCategory(page, 'storylines');
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'space-opera');
     await page.waitForSelector(cardSelector, { timeout: 15000 });
     const card = await page.$eval(cardSelector, (node) => ({
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
       source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-      section: node.parentElement?.previousElementSibling?.textContent,
+      section: node.closest('.story-type-results')?.querySelector('h2')?.textContent,
     }));
-    t.check('undated storyline is discoverable in Across eras with the exact credited guide',
+    t.check('the undated storyline is discoverable in Space opera with the exact credited guide',
       card.name === 'Infinity Trilogy (Gauntlet, War, Crusade)'
       && card.source === order.source
-      && (card.section ?? '').includes('Across eras'),
+      && card.section === 'Space opera',
       JSON.stringify(card));
     await click(page, `${cardSelector} [data-act="preview"]`);
     await page.waitForFunction(() =>
@@ -22464,12 +22718,13 @@ async function runLongCollectionNavigation(page, t) {
     const ageExpected = ux10AgeCards('marvel-knights-heroes-return');
     const ageIds = await ageVector('marvel-knights-heroes-return');
     const ageOptions = await page.$$eval('#age-marvel-knights-heroes-return-navigation option', (nodes) => nodes.filter((node) => node.value).map((node) => node.value.slice(6)));
-    receipt('LC02', '81 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
-      cards81: ageIds.length === 81, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
-      guides6: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 6,
+    receipt('LC02', '82 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
+      cards82: ageIds.length === 82, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
+      guides7: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 7,
       cardOrder: isDeepStrictEqual(ageIds, ageExpected.map(({ id }) => id)), optionOrder: isDeepStrictEqual(ageIds, ageOptions),
     });
-    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${ageIds[80]}`, 'list:marvel-knights-to-planet-x-78', true);
+    const lastAgeId = ageExpected.at(-1).id;
+    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${lastAgeId}`, lastAgeId, true);
     receipt('LC02', 'original heading and whole collection', { tag: 'H4', tabindex: '-1' }, lastAge.focus, {
       headingPreserved: lastAge.focus.tag === 'H4' && lastAge.focus.tabindex === '-1',
       fullVectorRetained: isDeepStrictEqual(await ageVector('marvel-knights-heroes-return'), ageIds),
@@ -22496,7 +22751,7 @@ async function runLongCollectionNavigation(page, t) {
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
       ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
-      ['early-modern', 16, 'operation-zero-tolerance'],
+      ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);
       const ids = await ageVector(key);
@@ -23573,6 +23828,116 @@ async function waitForCacheReport(page, legacy, wait, expected, options, since) 
     throw err;
   }
 }
+
+SCENARIOS.push({
+  id: 'cloud-icloud-prepared',
+  title: 'the prepared iOS page boots with only iCloud and connects through its native adapter',
+  async run(page, t) {
+    const { mkdtemp, readFile, rm, writeFile } = await import('node:fs/promises');
+    const { tmpdir } = await import('node:os');
+    const { extname } = await import('node:path');
+    const { prepareIos } = await import('./prepare-ios.mjs');
+    const scratch = await mkdtemp(join(tmpdir(), 'recap-ios-cloud-browser-'));
+    let server;
+    let listening = false;
+    let actual;
+    try {
+      const featuresPath = join(scratch, 'features.json');
+      await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+      const output = join(scratch, 'web');
+      const prepared = await prepareIos(output, { featuresPath });
+      const allowed = new Set(prepared.manifest.files.map(({ path }) => path));
+      const types = { '.js': 'text/javascript', '.html': 'text/html', '.css': 'text/css',
+        '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
+        '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
+      server = createStaticServer(async (req, res) => {
+        const path = new URL(req.url, `http://${HOST}`).pathname.slice(1) || 'index.html';
+        if (req.method !== 'GET' || !allowed.has(path)) {
+          res.writeHead(404);
+          res.end();
+          return;
+        }
+        const bytes = await readFile(join(output, path));
+        res.writeHead(200, { ...prepared.config.securityHeaders,
+          'content-type': types[extname(path)] ?? 'application/octet-stream' });
+        res.end(bytes);
+      });
+      await new Promise((resolve, reject) => {
+        server.once('error', reject);
+        server.listen(0, HOST, () => {
+          server.off('error', reject);
+          resolve();
+        });
+      });
+      listening = true;
+      const origin = `http://${HOST}:${server.address().port}`;
+      actual = await page.browserContext().newPage();
+      await actual.setViewport({ width: 1280, height: 900 });
+      await actual.setRequestInterception(true);
+      actual.on('request', (request) => {
+        if (new URL(request.url()).origin === origin) void request.continue();
+        else void request.abort();
+      });
+      const errors = [];
+      actual.on('pageerror', (error) => errors.push(error.message));
+      await actual.evaluateOnNewDocument(() => {
+        let connected = false;
+        window.__iosCloudCalls = [];
+        window.webkit = { messageHandlers: { recap: {
+          async postMessage(message) {
+            window.__iosCloudCalls.push(message);
+            if (message.kind !== 'cloud') return { v: 1, kind: 'data-loss-result', status: 'recorded' };
+            if (message.op === 'connect') connected = true;
+            const body = message.op === 'list' ? { ok: true, items: [] } : {
+              ok: true, status: {
+                provider: 'icloud', providers: ['icloud'], state: connected ? 'connected' : 'not-connected',
+                connection: connected ? 'a'.repeat(32) : null, account: null,
+              },
+            };
+            return { v: 1, kind: 'cloud-result', status: 200, body: JSON.stringify(body) };
+          },
+        } } };
+      });
+      await actual.goto(`${origin}/#/data`, { waitUntil: 'load' });
+      const booted = await actual.waitForSelector('#cloud-backup:not([hidden])', { timeout: 10000 })
+        .then(() => true, () => false);
+      const buttons = await actual.$eval('#cloud-backup-primary', (row) => ({
+        visible: [...row.querySelectorAll('button')].filter((node) => !node.hidden).map((node) => node.textContent.trim()),
+        otherProviders: Boolean(row.querySelector('#btn-cloud-sign-in, #btn-cloud-sign-in-google')),
+      }));
+      t.check('the prepared page boots and offers only its iCloud action',
+        booted && !buttons.otherProviders && JSON.stringify(buttons.visible) === JSON.stringify(['Connect iCloud']),
+        JSON.stringify({ booted, buttons, errors }));
+      t.check('the prepared page raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+      if (!booted) return;
+      await actual.focus('#btn-cloud-connect-icloud');
+      await actual.keyboard.press('Enter');
+      const connected = await actual.waitForFunction(
+        () => document.querySelector('#cloud-backup-status').textContent === 'Connected to iCloud.',
+        { timeout: 10000 },
+      ).then(() => true, () => false);
+      const calls = await actual.evaluate(() => window.__iosCloudCalls);
+      const request = calls.find((call) => call.op === 'connect');
+      t.check('keyboard activation connects with the iCloud provider through the installed adapter',
+        connected && request && JSON.stringify(JSON.parse(request.body)) === JSON.stringify({ provider: 'icloud' }),
+        JSON.stringify({ connected, request, errors }));
+      t.check('connection raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+    } finally {
+      try {
+        if (actual) await actual.close();
+      } finally {
+        try {
+          if (listening) {
+            server.closeAllConnections();
+            await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+          }
+        } finally {
+          await rm(scratch, { recursive: true, force: true });
+        }
+      }
+    }
+  },
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

@@ -82,12 +82,12 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. These are the current inclusion
-rules in `src/js/lib/catalog.js:941-964`, not a classification to assign just to make a list appear.
+rules in `src/js/lib/catalog.js:961-984`, not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
 Review chronology from source evidence, not merely the earliest publication date. Equal years
-retain manifest order (`src/js/lib/catalog.js:268-274`), so approve an intentional insertion anchor
+retain manifest order (`src/js/lib/catalog.js:273-279`), so approve an intentional insertion anchor
 and review the order among same-year stories.
 
 | Hypothetical input | Placement decision |
@@ -132,7 +132,7 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:8-92` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:200-226` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:204-230` require registered contracts, current approval
 evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
 registration without a frozen whole-library peer-approval digest. A new Reading Path changes every
 reconstructed review library that keeps today's paths, so the shared history helpers drop any path
@@ -168,6 +168,17 @@ an exact historical inverse when updating its assertions. A later Comic Book Her
 guide that shares issues with one of them needs no owner registration: the identity
 updater accepts that guide's own approved review as the reciprocal authority, but only
 while its digests hold and its approved relationship is the exact inverse of the one observed.
+
+The same bar applies to a later local curated-source ledger. The identity updater reads its
+factual ledger and complete relationship report as publication inputs. Both canonical digests
+must hold, the review must be approved, and exactly one disposition must name the earlier guide
+with `human` or `stronger-model` authority. The inverse relationship, shared count and shared IDs
+must match the current comparison exactly. An agent content review alone is rejected.
+The ledger digest covers every factual field except `ledgerDigest` and `relationshipReview`,
+so approval does not sign itself. The report digest covers every report field except
+`reportDigest` and binds the ledger digest; the separately signed approval and disposition bind
+both. Record the actual reviewer's decision verbatim, and obtain a new review if either digest
+changes. This does not convert the guide to an owner authoring contract or re-sign an earlier one.
 
 The maintained capture is [the baseline registration tool](../scripts/register-cbh-owner-baselines.mjs);
 its [eligibility checks](../test/older-owner-guides.test.js) bind the proposed
@@ -292,7 +303,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Selected-list vendoring failed; stop shared in
 
 The cache must contain genuine request-bound responses, not hand-built metadata projections;
 follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-only vending accepts
-exactly one source order (`scripts/vendor-orders.mjs:390-411`). Live `--only=id1,id2` can select
+exactly one source order (`scripts/vendor-orders.mjs:433-454`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 

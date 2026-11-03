@@ -54,6 +54,9 @@
   <symbol id="reader" viewBox="0 0 24 24">
     <circle cx="12" cy="5.5" r="3"/><path d="M12 13.5C9.5 11.9 6.5 11.3 3 11.5v8c3.5-.2 6.5.4 9 2 2.5-1.6 5.5-2.2 9-2v-8c-3.5-.2-6.5.4-9 2zM12 13.5v8"/>
   </symbol>
+  <symbol id="story-types" viewBox="0 0 24 24">
+    <path d="M3 3h8l10 10-8 8-10-10z"/><circle cx="7.5" cy="7.5" r="1.5"/>
+  </symbol>
   <symbol id="arrow-right" viewBox="0 0 24 24">
     <path d="M4 12h16m-7-7 7 7-7 7"/>
   </symbol>

@@ -16,6 +16,7 @@ import { cloudErrorText } from '../lib/cloudCopy.js';
 const PROVIDERS = Object.freeze({
   onedrive: Object.freeze({ name: 'OneDrive', company: 'Microsoft', bin: 'recycle bin', button: 'signIn' }),
   googledrive: Object.freeze({ name: 'Google Drive', company: 'Google', bin: 'trash', button: 'signInGoogle' }),
+  icloud: Object.freeze({ name: 'iCloud', company: 'Apple', bin: null, button: 'connectICloud' }),
 });
 const DELETED = /\bnothing was deleted\b/i;
 const WAITS = Object.freeze({
@@ -74,8 +75,29 @@ export function cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { name
   return '';
 }
 
+// Each notice says something only when the saved-copy record holds copies, or a check of it or a cleanup
+// failed, so a connection that never kept a copy reads exactly as it did before copies could be kept.
+function earlierCopiesNotice({ earlierKept, keptProblem } = {}) {
+  if (keptProblem) {
+    return 'The saved-copy record could not be checked or updated. Kept copies from earlier connections may need deleting by hand in their cloud folders; other kept copies may need the same.';
+  }
+  if (earlierKept === 1) {
+    return 'One recorded kept copy from an earlier connection may remain. Check for this and any other earlier copies, and delete them by hand in their cloud folders.';
+  }
+  if (Number.isSafeInteger(earlierKept) && earlierKept > 1) {
+    return `${earlierKept} recorded kept copies from earlier connections may remain. Check for these and any other earlier copies, and delete them by hand in their cloud folders.`;
+  }
+  return '';
+}
+
+function keptAttentionNotice({ keptAttention } = {}) {
+  if (!Number.isSafeInteger(keptAttention) || keptAttention < 1) return '';
+  const count = keptAttention === 1 ? 'One saved or attempted cloud copy' : `${keptAttention} saved or attempted cloud copies`;
+  return `${count} could not be confirmed or removed. Check your cloud folder and delete any unwanted copies by hand.`;
+}
+
 // The card's persistent line: the account, and what is happening to backups.
-export function cloudCardStatus(model, { when = longTime, at = shortTime } = {}) {
+function cloudConnectionStatus(model, { when = longTime, at = shortTime } = {}) {
   const name = cloudProviderName(model);
   const device = model.scope === 'device';
   switch (model.host) {
@@ -90,7 +112,9 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
     case 'not-connected': return cloudErrorText(model.message, model.scope) ?? '';
     case 'needs-sign-in': return `${companyOf(model)} asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.`;
     case 'connected': {
-      const account = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
+      const connected = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
+      const account = model.waitingForUpload === true
+        ? `${connected} iCloud has not finished uploading the latest backup yet.` : connected;
       if (model.askedAgain) {
         return model.reason ? `${account} ${cloudErrorText(model.reason, model.scope)}`
           : device ? `${account} ${name} was connected again after you turned on automatic backup, so check the backups below before turning it on again.`
@@ -113,9 +137,14 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
   }
 }
 
+export function cloudCardStatus(model, options = {}) {
+  return [cloudConnectionStatus(model, options), earlierCopiesNotice(model), keptAttentionNotice(model)].filter(Boolean).join(' ');
+}
+
 // Stopped and failed states, which wear the warning notice, whose mark does not rely on color.
 export function cloudCardWarns(model) {
   const { host } = model;
+  if (model.keptProblem || model.keptAttention > 0) return true;
   if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
   if (host === 'not-connected') return Boolean(model.message);
   if (host === 'connected') return Boolean(model.askedAgain || model.suspended || model.recordUnreadable || (model.on && model.backup.phase === 'failed'));
@@ -153,28 +182,46 @@ function accountIn(model) {
 
 // Deleting this device's backups, in the owner's words approved 2026-10-28 (stage 3 review, S3a-2 and
 // S3b-5) and shortened with the owner's approval on 2026-10-30 (#810, P03-T04 session): the deletion reaches only the account the host holds now, so the question and the reports name
-// it, and say where any backups made in another account are.
+// it, and say where any backups made in another account are. A saved-copy notice is added only when there is one.
 export function cloudDeleteQuestion(model) {
   const name = cloudProviderName(model);
-  const rest = `Backups from other devices or other accounts are kept; delete those in ${name}. Deleted backups stay in ${name}'s ${binOf(model)} for up to 30 days, but Recap Page cannot bring them back.`;
+  const recovery = model.provider === 'icloud' ? 'Recap Page cannot bring deleted backups back.'
+    : `Deleted backups stay in ${name}'s ${binOf(model)} for up to 30 days, but Recap Page cannot bring them back.`;
+  const rest = [`Backups from other devices or other accounts are kept; delete those in ${name}.`,
+    earlierCopiesNotice(model), keptAttentionNotice(model), recovery].filter(Boolean).join(' ');
   if (model.scope === 'device') return `This turns automatic backup off and deletes every backup made on this device in ${accountIn(model)}. ${rest}`;
   return `This turns automatic backup off and deletes every backup this browser made in ${accountIn(model)}. ${rest}`;
 }
 
-export function cloudDeleteReport({ deleted, failed }, model) {
+export function cloudDeleteReport({ deleted, failed, earlier, attention: unresolved }, model) {
   const name = cloudProviderName(model);
   const where = accountIn(model);
   const device = model.scope === 'device';
   const from = device ? 'made on this device' : 'of this browser';
   const off = device ? 'Automatic backup is off' : 'Automatic backup is off for this browser';
-  if (failed.length === 0) {
-    return deleted === 0
+  const remaining = failed.filter((entry) => !entry.deleted);
+  let message;
+  if (remaining.length === 0) {
+    message = deleted === 0
       ? `No backups ${from} were in ${where}. Any ${device ? 'made' : 'it made'} in another account are still there. ${off}.`
-      : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the ${binOf(model)} for up to 30 days unless it is emptied. ${off}.`;
+      : model.provider === 'icloud'
+        ? `Deleted ${plural(deleted, 'backup')} ${from} from ${where}. Recap Page cannot bring deleted backups back. ${off}.`
+        : `Deleted ${plural(deleted, 'backup')} ${from} from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the ${binOf(model)} for up to 30 days unless it is emptied. ${off}.`;
+  } else {
+    const reason = remaining[0].code === 'needs-sign-in' ? 'sign in again first'
+      : remaining[0].code === 'timeout' ? `${name} did not answer in time`
+        : remaining[0].code === 'unconfirmed' ? 'the kept copy could not be confirmed'
+          : remaining[0].code === 'changed' ? 'a kept copy changed outside the app or could not be checked'
+            : remaining[0].code === 'storage' ? 'the saved-copy record could not be updated'
+              : `${name} did not delete ${remaining.length === 1 ? 'it' : 'them'}`;
+    message = `Deleted ${deleted} of ${plural(deleted + remaining.length, 'backup')} ${from} from ${where}. ${plural(remaining.length, 'backup')} could not be deleted (${reason}). ${off}; delete again to finish.`;
   }
-  const reason = failed[0].code === 'needs-sign-in' ? 'sign in again first'
-    : failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${failed.length === 1 ? 'it' : 'them'}`;
-  return `Deleted ${deleted} of ${plural(deleted + failed.length, 'backup')} ${from} from ${where}. ${plural(failed.length, 'backup')} could not be deleted (${reason}). ${off}; delete again to finish.`;
+  const attention = failed.some((entry) => entry.changedOutside)
+    ? 'A kept copy changed outside the app or could not be checked. Check it in its cloud folder.' : '';
+  const recordAttention = failed.some((entry) => entry.deleted)
+    ? 'The saved-copy record could not be updated after a deletion. Check the cloud folder before trying again.' : '';
+  return [message, attention, recordAttention, earlierCopiesNotice({ earlierKept: earlier }),
+    keptAttentionNotice({ keptAttention: unresolved })].filter(Boolean).join(' ');
 }
 
 // A deletion that stopped before deleting anything, which says automatic backup is off only when it is,
@@ -189,10 +236,15 @@ export function cloudDeleteFailure(message, off, model = {}) {
 export function cloudDisconnectQuestion(model, choice) {
   const name = cloudProviderName(model);
   // The Android app holds one sign-in for itself alone (#810, P03-T03).
-  const lead = model.scope === 'device'
-    ? `Recap Page forgets the ${name} sign-in on this device, and automatic backup stops.`
-    : `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
-  if (choice) return `${lead} Backups already in ${name} stay there unless you also delete this device's.`;
+  const lead = model.provider === 'icloud'
+    ? 'Recap Page forgets its iCloud connection on this device, and automatic backup stops. This does not sign you out of iCloud.'
+    : model.scope === 'device'
+      ? `Recap Page forgets the ${name} sign-in on this device, and automatic backup stops.`
+      : `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
+  if (choice) {
+    return [`${lead} Backups already in ${name} stay there unless you also delete this device's.`,
+      earlierCopiesNotice(model), keptAttentionNotice(model)].filter(Boolean).join(' ');
+  }
   const first = model.host === 'needs-sign-in' && model.hasStream
     ? ' To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.' : '';
   return `${lead} Backups already in ${name} stay there.${first}`;
@@ -310,8 +362,10 @@ export function createCloudBackupView({
     nodes.status.classList?.toggle('notice', warns);
     nodes.status.classList?.toggle('notice-warn', warns);
     const notice = noticeOf(model, heard?.host);
-    if (heard && notice && notice !== heard.notice && said) announce(said);
-    heard = { host, notice };
+    const newKeptProblem = model.keptProblem && !heard?.keptProblem;
+    const newKeptAttention = model.keptAttention > (heard?.keptAttention ?? 0);
+    if (heard && said && (newKeptProblem || newKeptAttention || (notice && notice !== heard.notice))) announce(said);
+    heard = { host, notice, keptProblem: Boolean(model.keptProblem), keptAttention: model.keptAttention ?? 0 };
     nodes.progress.hidden = !(model.on && model.backup.phase === 'saving');
     const choices = cloudSignInChoices(model);
     for (const [provider, { button }] of Object.entries(PROVIDERS)) {
@@ -319,7 +373,7 @@ export function createCloudBackupView({
     }
     if (nodes.intro && introText === null) introText = nodes.intro.textContent;
     if (nodes.intro) {
-      nodes.intro.textContent = choices.length > 1
+      nodes.intro.textContent = choices.length > 0
         ? `Keep a complete backup in your own ${choices.map((provider) => PROVIDERS[provider].name).join(' or ')}, made automatically as you read.`
         : introText;
     }
@@ -345,7 +399,7 @@ export function createCloudBackupView({
     nodes.remove.hidden = !(connected && model.hasStream);
     nodes.disconnect.hidden = !(connected || host === 'needs-sign-in' || host === 'unavailable');
     nodes.actions.hidden = nodes.remove.hidden && nodes.disconnect.hidden;
-    for (const control of [nodes.signIn, nodes.signInGoogle, nodes.retry, nodes.remove, nodes.disconnect, ...(nodes.found.querySelectorAll?.('button') ?? [])]) {
+    for (const control of [nodes.signIn, nodes.signInGoogle, nodes.connectICloud, nodes.retry, nodes.remove, nodes.disconnect, ...(nodes.found.querySelectorAll?.('button') ?? [])]) {
       if (control) control.disabled = working;
     }
     nodes.autoInput.disabled = working || (!nodes.autoInput.checked && !connected);
@@ -355,7 +409,7 @@ export function createCloudBackupView({
   // focus back to it when it closes. It is handed back here once usable; when the action has moved the
   // card on and the control is gone, focus goes to the card's status, or, when that says nothing, to the
   // report of what was done, so it never falls to the page (stage 3 review, S3b-1).
-  async function run(action) {
+  async function run(action, { reportWhenGone = false } = {}) {
     if (working) return;
     const opener = globalThis.document?.activeElement ?? null;
     working = true;
@@ -369,6 +423,7 @@ export function createCloudBackupView({
         const usable = (node) => node?.isConnected && !node.disabled && !node.closest?.('[hidden]');
         const { status, report: line } = elements();
         if (usable(opener)) opener.focus();
+        else if (reportWhenGone && usable(line)) line.focus();
         else if (usable(status)) status.focus();
         else line?.focus?.();
       }
@@ -379,7 +434,10 @@ export function createCloudBackupView({
   function signIn(provider) {
     return run(async () => {
       try { await (provider === undefined ? onConnect() : onConnect(provider)); }
-      catch (error) { report(`Sign-in did not start. ${cloudErrorText(error.message, getModel().scope)}`); }
+      catch (error) {
+        const stopped = provider === 'icloud' ? 'iCloud could not be connected.' : 'Sign-in did not start.';
+        report(`${stopped} ${cloudErrorText(error.message, getModel().scope)}`);
+      }
     });
   }
 
@@ -508,14 +566,15 @@ export function createCloudBackupView({
       } catch (error) {
         report(`${name} is still connected. ${cloudErrorText(error.message, getModel().scope)}`);
       }
-    });
+    }, { reportWhenGone: true });
   }
 
   function wire() {
     const nodes = elements();
     if (!nodes.card) return;
-    nodes.signIn.addEventListener('click', () => { void signIn(); });
+    nodes.signIn?.addEventListener('click', () => { void signIn(); });
     nodes.signInGoogle?.addEventListener('click', () => { void signIn('googledrive'); });
+    nodes.connectICloud?.addEventListener('click', () => { void signIn('icloud'); });
     nodes.retry.addEventListener('click', () => { void run(async () => { onRetry(); }); });
     nodes.autoInput.addEventListener('change', (event) => { void toggle(event); });
     nodes.discovery.addEventListener('toggle', () => {

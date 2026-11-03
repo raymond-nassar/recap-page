@@ -787,7 +787,7 @@ export const completionCommandFocus = {
     }, LIST_HISTORY_KEY);
 
     await holdHistory(page);
-    // UX-19 (#830): with comics queued, Complete is inside List actions, so the reader opens it first.
+    // UX-19 (#830): with comics queued, Complete is inside Reading List options, so the reader opens it first.
     await page.evaluate(() => { document.querySelector('#list-actions').open = true; });
     await page.focus('#btn-complete-list');
     await page.evaluate(() => { window.__commandFrames = []; });
@@ -876,13 +876,13 @@ export const completionCommandFocus = {
   },
 };
 
-// UX-19 (#830): Mark as Completed sits in List actions while comics are queued, so Read comes first, and
+// UX-19 (#830): Mark as Completed sits in Reading List options while comics are queued, so Read comes first, and
 // moves beside the hero once nothing is queued: into Nothing queued while the rest are deferred, into the
 // wrap-up once every comic is read. It is one element, so it takes focus with it when it moves while
 // focused, and its focus-while-saving contract holds in its new home.
 export const completionHomes = {
   id: 'completion-homes',
-  title: 'Mark as Completed waits in List actions while comics are queued and moves beside the hero once none are',
+  title: 'Mark as Completed waits in Reading List options while comics are queued and moves beside the hero once none are',
   async run(page, t) {
     await setup(page);
     const where = () => page.evaluate(() => {
@@ -898,11 +898,11 @@ export const completionHomes = {
         size: [Math.round(box.width), Math.round(box.height)] };
     });
     const queued = await where();
-    t.check('with a comic queued, Mark as Completed waits inside closed List actions, so Read comes first',
+    t.check('with a comic queued, Mark as Completed waits inside closed Reading List options, so Read comes first',
       queued.home === 'list-actions' && !queued.shown && queued.readAt >= 0 && queued.completeAt === -1, JSON.stringify(queued));
     await page.evaluate(() => { document.querySelector('#list-actions').open = true; });
     const opened = await where();
-    t.check('opening List actions shows it first, set apart by a hairline, on a 44px target',
+    t.check('opening Reading List options shows it first, set apart by a hairline, on a 44px target',
       opened.shown && opened.hairline && opened.size[1] >= 44
       && await page.$eval('#btn-complete-list', (node) => node.parentElement.firstElementChild === node), JSON.stringify(opened));
 
@@ -945,7 +945,7 @@ export const completionHomes = {
     await page.waitForFunction(() => !document.querySelector('#btn-complete-list').hidden
       && document.activeElement === document.querySelector('#btn-complete-list'), { timeout: 5000 }).catch(() => {});
     const roundTrip = await where();
-    t.check('in the wrap-up, Complete hands focus to Reopen and Reopen hands it back, as in List actions',
+    t.check('in the wrap-up, Complete hands focus to Reopen and Reopen hands it back, as in Reading List options',
       roundTrip.home === 'wrap-up' && roundTrip.focused, JSON.stringify(roundTrip));
     t.check('the homes raise no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
   },

@@ -107,14 +107,11 @@ export const gregPakHulkActualData = {
     });
     await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
     await page.$eval('.brand[data-view="home"]', (node) => node.click());
-    await page.waitForSelector('#view-home [data-category="storylines"]');
-    await page.$eval('#view-home [data-category="storylines"]', (node) => node.click());
-    await page.waitForSelector('#lines-q');
-    await page.$eval('#lines-q', (input) => {
-      input.value = 'Greg Pak';
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-    const selector = `#lines-results [data-story="list:${id}"]`;
+    await page.waitForSelector('#view-home [data-category="genres"]');
+    await page.$eval('#view-home [data-category="genres"]', (node) => node.click());
+    await page.waitForSelector('#genres-type option[value="science-fiction"]');
+    await page.select('#genres-type', 'science-fiction');
+    const selector = `#genres-results [data-story="list:${id}"]`;
     await page.waitForSelector(selector);
     const card = await page.$eval(selector, (node) => ({
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -122,7 +119,7 @@ export const gregPakHulkActualData = {
       source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       importLabel: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
-    t.check('the separate credited creator route is discoverable in Storylines',
+    t.check('the separate credited creator route is discoverable in Genres',
       card.name === name && card.text.includes('107 issues')
       && card.source === mapping.sourceUrl && card.importLabel === `Add to library: ${name}`,
       JSON.stringify(card));

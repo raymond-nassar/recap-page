@@ -33,7 +33,10 @@ export const STORY_TYPES = Object.freeze({
   horror: 'Horror',
   'martial-arts': 'Martial arts',
   'coming-of-age': 'Coming of age',
+  'everyday-life': 'Everyday life',
   comedy: 'Comedy',
+  // Only where no other type fits, so it never becomes the default every list carries (#1060).
+  adventure: 'Adventure',
 });
 export const STORY_TONES = Object.freeze({
   epic: 'Epic',
@@ -221,6 +224,8 @@ function normalizeEntry(raw) {
     audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
     storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
     tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
+    writers: strings(raw.writers).slice(0, 3),
+    contains: strings(raw.contains),
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
     source: str(raw.source),
@@ -833,8 +838,8 @@ export const CATALOG_SHELVES = [
     types: null,
     sections: 'decades',
     heading: 'Storylines',
-    blurb: 'Selected named stories, events and arcs, whole runs, and on-screen companion picks. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
-    empty: 'No storylines or on-screen companion picks are bundled with this build.',
+    blurb: 'Selected named stories, events and arcs, and whole runs. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
+    empty: 'No storylines are bundled with this build.',
   },
   // Chosen by who a list is for rather than by what kind of reading it is, so it names every type: a
   // list its sources mark for younger readers is found here whatever it is, and only here (#897).
@@ -863,8 +868,8 @@ const FALLBACK_SHELF = CATALOG_SHELVES.find((shelf) => !shelf.types);
 
 // Which shelf a story belongs to. Every one of its readings has to match, not merely one of them: a
 // story mixing types falls through to the shelf that takes everything, which is the one that cannot
-// cut a reading path in two. No bundled story mixes types today, so the rule decides nothing yet.
-// It decides what happens the first time one does.
+// cut a reading path in two. The Doomsday companion and Hickman creator runs share one group, so
+// they keep one canonical shelf even though their browse views select different readings.
 //
 // A reading matches on its stated audience as well as its type. A shelf naming no audience takes
 // only readings that state none, so Character spotlights and Young readers cannot both claim a
@@ -886,11 +891,13 @@ export function shelfStories(stories, key) {
   return all.filter((story) => shelfKey(story) === key);
 }
 
+// MCU Prep lists still fall to the `lines` classification, but companions are not part of the
+// retained Storylines projection (#1066).
 export function storylinesStories(stories) {
   const all = Array.isArray(stories) ? stories : [];
   const eligible = new Set(groupCatalog(all.flatMap((story) => story.lists ?? []))
     .filter((story) => shelfKey(story) === 'lines' || story.lists.every((list) => list.storylines === true))
-    .flatMap((story) => story.lists.map((list) => list.id)));
+    .flatMap((story) => story.lists.filter((list) => list.type !== 'screen-companion').map((list) => list.id)));
   const seen = new Set();
   return all.flatMap((story) => {
     const lists = (story.lists ?? []).filter((list) => {
@@ -929,6 +936,19 @@ export function catalogListShelf(lists, id) {
   const story = groupCatalog(Array.isArray(lists) ? lists : [])
     .find((candidate) => candidate.lists.some((list) => list.id === id));
   return story ? shelfKey(story) : null;
+}
+
+// The internal shelf is not always an active browse screen: fallback readings and older events
+// are reached through Genres, and MCU Prep companions through their own screen.
+export function catalogListBrowseRoute(lists, id) {
+  const shelf = catalogListShelf(lists, id);
+  if (!shelf) return null;
+  const list = lists.find((candidate) => candidate?.id === id);
+  if (list?.type === 'screen-companion') return 'marvel-on-screen';
+  if (shelf === 'lines' || (shelf === 'catalog' && !modernTimelineLists(lists).some((entry) => entry.id === id))) {
+    return STORY_TYPES_ROUTE;
+  }
+  return shelf;
 }
 
 export const MODERN_TIMELINE_START_YEAR = 1998;
@@ -1175,8 +1195,8 @@ export function publishingAgeGroups(stories) {
 // ------------------------------------------------------------------ Home categories
 
 // Home categories answer how somebody wants to browse; shelves answer where a story is filed. Those
-// are deliberately separate questions. A shelf is an exclusive partition, while a future category
-// such as MCU Prep or Bronze Age can overlap Timeline, Storylines and Character spotlights.
+// are deliberately separate questions. A shelf is an exclusive partition, while Genres, MCU Prep
+// and Marvel Ages can overlap the other browse screens.
 //
 // Each definition owns its availability selector. Empty results disappear before rendering, so a
 // category can be declared before its first published Reading List without leaving an empty promise
@@ -1188,6 +1208,80 @@ const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : 
     const lists = Array.isArray(story?.lists) ? story.lists : [];
     return lists.length > 0 && lists.every((list) => list?.type === type);
   });
+
+// Genres browse what a list is like rather than where it is filed (#1060). MCU Prep companions
+// carry tags so search finds them, but the owner kept them off this screen: they are chosen by the
+// film a reader is about to watch, and listing them beside the runs would crowd every genre
+// with entries that answer a different question.
+export const STORY_TYPES_ROUTE = 'genres';
+
+function discoverableList(list) {
+  return list?.type !== 'screen-companion'
+    && Array.isArray(list?.storyTypes) && list.storyTypes.length > 0;
+}
+
+function listMatches(list, type, tone) {
+  return discoverableList(list)
+    && (!type || list.storyTypes.includes(type))
+    && (!tone || (Array.isArray(list.tones) && list.tones.includes(tone)));
+}
+
+export function storyTypeStories(stories, { type = null, tone = null } = {}) {
+  return (Array.isArray(stories) ? stories : []).filter((story) => {
+    const lists = Array.isArray(story?.lists) ? story.lists : [];
+    return lists.some((list) => listMatches(list, type, tone));
+  });
+}
+
+// Each group counts against the other group's choice, so an option's number is what choosing it
+// would show. An option that would show nothing is left out unless it is the current choice, which has
+// to stay visible so the reader can see what is narrowing the results and choose again.
+// With no choice made, Genres opens on these instead of an empty prompt, which the owner found
+// confusing (#1060 comment 6589224122): one beginner-friendly list for each of ten popular titles,
+// in the owner's order. A constant rather than a data file because only this screen reads it and it
+// is editorial, not catalog data. Each id names the exact version to show, even where its story has
+// another, and an id that leaves the catalog or stops being browsable is skipped, not an error.
+export const STORY_TYPE_STARTERS = Object.freeze([
+  'spider-man-best-of',
+  'iron-man-reading-order',
+  'captain-america-best-of',
+  'planet-hulk',
+  'thor-best-of',
+  'marvel-knights-to-planet-x-10',
+  'xmen-claremont',
+  'essential-avengers',
+  'black-panther-reading-order',
+  'deadpool-best-of',
+]);
+
+export function storyTypeStarters(stories, ids = STORY_TYPE_STARTERS) {
+  const all = Array.isArray(stories) ? stories : [];
+  return ids.flatMap((id) => {
+    for (const story of all) {
+      const lists = Array.isArray(story?.lists) ? story.lists : [];
+      const list = lists.find((candidate) => candidate?.id === id);
+      if (!list) continue;
+      if (!discoverableList(list)) return [];
+      return [{ ...story, lists: [list, ...lists.filter((other) => other !== list)] }];
+    }
+    return [];
+  });
+}
+
+export function storyTypeFacets(stories, { type = null, tone = null } = {}) {
+  const lists = (Array.isArray(stories) ? stories : [])
+    .flatMap((story) => (Array.isArray(story?.lists) ? story.lists : []))
+    .filter(discoverableList);
+  const count = (predicate) => lists.filter(predicate).length;
+  return {
+    types: Object.entries(STORY_TYPES)
+      .map(([key, label]) => ({ key, label, count: count((list) => listMatches(list, key, tone)) }))
+      .filter((facet) => facet.count > 0 || facet.key === type),
+    tones: Object.entries(STORY_TONES)
+      .map(([key, label]) => ({ key, label, count: count((list) => listMatches(list, type, key)) }))
+      .filter((facet) => facet.count > 0 || facet.key === tone),
+  };
+}
 
 export const MARVEL_AGES_CATEGORY = {
   key: 'marvel-ages',
@@ -1213,14 +1307,14 @@ export const HOME_CATEGORIES = [
     select: modernTimelineStories,
   },
   {
-    key: 'storylines',
-    route: 'lines',
-    shelf: 'lines',
-    heading: 'Storylines',
-    label: 'Browse complete arcs',
-    icon: 'E8FD',
+    key: STORY_TYPES_ROUTE,
+    route: STORY_TYPES_ROUTE,
+    heading: 'Genres',
+    label: 'Browse by genre and tone',
+    icon: 'E8EC',
     tier: 'primary',
-    select: storylinesStories,
+    highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],
+    select: (stories) => storyTypeStories(stories),
   },
   {
     key: 'character-spotlights',
@@ -1515,7 +1609,7 @@ export function decadeSections(stories) {
     sections.push({
       key: 'across-eras',
       heading: 'Across eras',
-      blurb: 'Storylines that range across publishing history rather than beginning at one point.',
+      blurb: 'Reading Lists that range across publishing history rather than beginning at one point.',
       span: null,
       stories: undated,
       undated: true,

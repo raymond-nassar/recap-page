@@ -49,7 +49,8 @@ test('every cover fallback opts into the shared split-initial artwork', () => {
 });
 
 test('reading surfaces identify fallbacks from each comic rather than the reading order', () => {
-  assert.match(readingView, /paintCover\(\$\('#hero-img'\), \$\('#hero-fb'\), issue, 'portrait_uncanny'\)/);
+  // #1061: the larger reading card cover uses the same detail image as its backdrop.
+  assert.match(readingView, /paintCover\(\$\('#hero-img'\), \$\('#hero-fb'\), issue, 'detail'\)/);
   // The shelf and the full order each paint their own tile fallback rather than sharing one, so
   // this call site is expected exactly twice: once per renderer.
   const tileCalls = readingView.match(/paintCover\(img, fb, item, 'portrait_incredible'\)/g) ?? [];

@@ -1,0 +1,27 @@
+# Marvel 1602: Issue-by-Issue Reading Checklist
+
+Compiled for this project from [Comic Book Reading Orders](https://comicbookreadingorders.com/marvel/events/marvel-1602-reading-order/), retrieved 2026-11-03. Factual issue identities and source order only; no source commentary is reproduced. 23 exact issues are published from 23 source positions. See [the data provenance record](../../../docs/DATA_PROVENANCE.md#owner-requested-marvel-1602-and-blood-and-thunder).
+
+- [ ] [Marvel 1602 (2003) #1 <!-- mrt:source-occurrence=1 -->](https://www.marvel.com/comics/issue/20630/marvel_1602_2003_1)
+- [ ] [Marvel 1602 (2003) #2 <!-- mrt:source-occurrence=2 -->](https://www.marvel.com/comics/issue/50114/marvel_1602_2003_2)
+- [ ] [Marvel 1602 (2003) #3 <!-- mrt:source-occurrence=3 -->](https://www.marvel.com/comics/issue/377/marvel_1602_2003_3)
+- [ ] [Marvel 1602 (2003) #4 <!-- mrt:source-occurrence=4 -->](https://www.marvel.com/comics/issue/148/marvel_1602_2003_4)
+- [ ] [Marvel 1602 (2003) #5 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/147/marvel_1602_2003_5)
+- [ ] [Marvel 1602 (2003) #6 <!-- mrt:source-occurrence=6 -->](https://www.marvel.com/comics/issue/146/marvel_1602_2003_6)
+- [ ] [Marvel 1602 (2003) #7 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/145/marvel_1602_2003_7)
+- [ ] [Marvel 1602 (2003) #8 <!-- mrt:source-occurrence=8 -->](https://www.marvel.com/comics/issue/440/marvel_1602_2003_8)
+- [ ] [Marvel 1602: New World (2005) #1 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/2292/marvel_1602_new_world_2005_1)
+- [ ] [Marvel 1602: New World (2005) #2 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/2969/marvel_1602_new_world_2005_2)
+- [ ] [Marvel 1602: New World (2005) #3 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/2393/marvel_1602_new_world_2005_3)
+- [ ] [Marvel 1602: New World (2005) #4 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/2394/marvel_1602_new_world_2005_4)
+- [ ] [Marvel 1602: New World (2005) #5 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/2995/marvel_1602_new_world_2005_5)
+- [ ] [Marvel 1602: Fantastick Four (2006) #1 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/5103/marvel_1602_fantastick_four_2006_1)
+- [ ] [Marvel 1602: Fantastick Four (2006) #2 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/5257/marvel_1602_fantastick_four_2006_2)
+- [ ] [Marvel 1602: Fantastick Four (2006) #3 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/5428/marvel_1602_fantastick_four_2006_3)
+- [ ] [Marvel 1602: Fantastick Four (2006) #4 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/5684/marvel_1602_fantastick_four_2006_4)
+- [ ] [Marvel 1602: Fantastick Four (2006) #5 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/5823/marvel_1602_fantastick_four_2006_5)
+- [ ] [Spider-Man 1602 (2009) #1 <!-- mrt:source-occurrence=19 -->](https://www.marvel.com/comics/issue/26384/spider-man_1602_2009_1)
+- [ ] [Spider-Man 1602 (2009) #2 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/26385/spider-man_1602_2009_2)
+- [ ] [Spider-Man 1602 (2009) #3 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/26386/spider-man_1602_2009_3)
+- [ ] [Spider-Man 1602 (2009) #4 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/26387/spider-man_1602_2009_4)
+- [ ] [Spider-Man 1602 (2009) #5 <!-- mrt:source-occurrence=23 -->](https://www.marvel.com/comics/issue/26388/spider-man_1602_2009_5)

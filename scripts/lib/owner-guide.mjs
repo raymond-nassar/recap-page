@@ -997,7 +997,59 @@ function assertLaterCbhReciprocal(current, entry, { mapping, report }) {
   assert.deepEqual([...reciprocal.sharedIds].sort(), [...entry.sharedIds].sort());
 }
 
-export function assertRelationshipReportExtension(previous, current, laterGuides = [], laterCbhGuides = []) {
+export function curatedLedgerDigestFor(ledger) {
+  const payload = { ...ledger };
+  delete payload.ledgerDigest;
+  delete payload.relationshipReview;
+  return digestCanonicalJson(payload);
+}
+
+export function curatedRelationshipReportDigestFor(report) {
+  const payload = { ...report };
+  delete payload.reportDigest;
+  return digestCanonicalJson(payload);
+}
+
+function assertLaterCuratedReciprocal(current, entry, ledger) {
+  assert.equal(ledger.schemaVersion, 1);
+  assert.equal(ledger.id, entry.orderId);
+  assert.ok(Array.isArray(ledger.resolvedVector) && ledger.resolvedVector.length > 0
+    && ledger.resolvedVector.every(positiveId));
+  assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger), 'Local curated ledger digest is stale.');
+  const review = ledger.relationshipReview;
+  const report = review?.report;
+  assert.ok(report, 'Local curated reciprocal authority requires a report.');
+  assert.equal(report.reportDigest, curatedRelationshipReportDigestFor(report), 'Local curated report digest is stale.');
+  assert.equal(report.candidateId, ledger.id);
+  assert.equal(report.ledgerDigest, ledger.ledgerDigest);
+  assert.equal(report.candidateCount, ledger.resolvedVector.length);
+  assert.equal(report.comparisonCount, report.comparisons.length);
+  validateApprovalDigest(review, ledger.id);
+  assert.equal(review.status, 'approved');
+  const reciprocal = report.comparisons.filter(({ orderId }) => orderId === current.candidateId);
+  const authorities = review.dispositions.filter(({ orderId }) => orderId === current.candidateId);
+  assert.equal(reciprocal.length, 1, 'Local curated report must name this earlier guide exactly once.');
+  assert.equal(authorities.length, 1, 'Local curated review must name this earlier guide exactly once.');
+  const candidateIds = new Set(ledger.resolvedVector.map(String));
+  assert.ok(reciprocal[0].sharedIds.every((id) => candidateIds.has(String(id))));
+  const authority = authorities[0];
+  assert.equal(authority.decision, 'approved');
+  assert.ok(['human', 'stronger-model'].includes(authority.authorityType),
+    'Local curated reciprocal authority requires human or stronger-model approval.');
+  assert.ok(typeof authority.authority === 'string' && authority.authority.trim());
+  assert.equal(authority.ledgerDigest, ledger.ledgerDigest);
+  assert.equal(authority.reportDigest, report.reportDigest);
+  assert.equal(authority.relationship, reciprocal[0].relationship);
+  assert.equal(entry.relationship, RECIPROCAL_RELATIONSHIP[reciprocal[0].relationship]);
+  for (const comparison of [reciprocal[0], authority]) {
+    assert.equal(comparison.sharedCount, entry.sharedCount);
+    assert.deepEqual([...comparison.sharedIds].sort(), [...entry.sharedIds].sort());
+  }
+}
+
+export function assertRelationshipReportExtension(
+  previous, current, laterGuides = [], laterCbhGuides = [], laterCuratedGuides = [],
+) {
   for (const field of [
     'candidateId', 'packetDigest', 'mappingDigest', 'peerDigests', 'sourceCounts', 'candidateCount',
   ]) {
@@ -1023,7 +1075,15 @@ export function assertRelationshipReportExtension(previous, current, laterGuides
     const laterCbh = later ? null : laterCbhGuides.find(({ registeredId, mapping }) => (
       registeredId === entry.orderId && mapping?.id === entry.orderId
     ));
-    assert.ok(later || laterCbh, `New library entries with shared issues require a registered reciprocal review: ${entry.orderId}`);
+    const laterCurated = later || laterCbh ? null : laterCuratedGuides.find(({ registeredId, ledger }) => (
+      registeredId === entry.orderId && ledger?.id === entry.orderId
+    ));
+    assert.ok(later || laterCbh || laterCurated,
+      `New library entries with shared issues require a registered reciprocal review: ${entry.orderId}`);
+    if (laterCurated) {
+      assertLaterCuratedReciprocal(current, entry, laterCurated.ledger);
+      continue;
+    }
     if (laterCbh) {
       assertLaterCbhReciprocal(current, entry, laterCbh);
       continue;
@@ -1094,6 +1154,12 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       const report = path.join(root, 'scripts', 'data', 'cbh-overlaps', `${id}.json`);
       return await exists(mapping) && await exists(report) ? { id, mapping, report } : null;
     }))).filter(Boolean);
+  const laterCuratedPaths = (await Promise.all(currentLibrary.manifest.lists
+    .filter(({ id }) => !previousOrderIds.has(id) && !ownerRegisteredIds.has(id))
+    .map(async ({ id }) => {
+      const ledger = path.join(root, 'scripts', 'data', 'curated-source-ledgers', `${id}.json`);
+      return await exists(ledger) ? { id, ledger } : null;
+    }))).filter(Boolean);
   const targetPaths = Object.values(paths).map((name) => path.join(root, name));
   const payloadFile = path.join(root, 'src', 'data', `${request.id.replaceAll('-', '_')}.json`);
   const thunderboltsSourcePath = path.join(root, 'scripts', 'data', 'mcu-prep-thunderbolts-source.json');
@@ -1102,6 +1168,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     ...(request.id === THUNDERBOLTS_MISMATCH.guideId ? [thunderboltsSourcePath] : []),
     ...laterGuidePaths.flatMap(({ contract, mapping, report }) => [contract, mapping, report]),
     ...laterCbhPaths.flatMap(({ mapping, report }) => [mapping, report]),
+    ...laterCuratedPaths.map(({ ledger }) => ledger),
     ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
   ];
   const inputs = await readPublicationInputs({ root, paths: inputPaths });
@@ -1166,6 +1233,8 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     contract: inputs.json(entry.contract), mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
   })), laterCbhPaths.map((entry) => ({
     registeredId: entry.id, mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
+  })), laterCuratedPaths.map((entry) => ({
+    registeredId: entry.id, ledger: inputs.json(entry.ledger),
   })));
 
   const gapByPosition = new Map((packet.sourceGaps ?? []).map((gap) => [gap.sourcePosition, gap]));

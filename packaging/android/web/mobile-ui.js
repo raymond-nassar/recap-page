@@ -13,13 +13,14 @@ export function wireMobileUi({ arrivalHeading }) {
 
   const tools = document.querySelector('.list-tools');
   const actions = tools.querySelector('#list-actions');
+  const actionsSummary = actions.querySelector('summary');
   const exportChoices = tools.querySelector('#list-export');
   let actionsWereOpen = false;
   const trigger = document.createElement('button');
   trigger.type = 'button';
   trigger.id = 'android-list-options';
   trigger.className = 'btn btn-g';
-  trigger.textContent = 'List options';
+  trigger.textContent = 'Reading List options';
   trigger.setAttribute('aria-haspopup', 'dialog');
   trigger.setAttribute('aria-controls', 'android-list-sheet');
   trigger.setAttribute('aria-expanded', 'false');
@@ -32,7 +33,7 @@ export function wireMobileUi({ arrivalHeading }) {
   header.className = 'android-sheet-header';
   const title = document.createElement('h2');
   title.id = 'android-list-sheet-title';
-  title.textContent = 'List options';
+  title.textContent = 'Reading List options';
   const close = document.createElement('button');
   close.type = 'button';
   close.className = 'btn btn-g';
@@ -41,27 +42,30 @@ export function wireMobileUi({ arrivalHeading }) {
   sheet.append(header);
   document.body.append(sheet);
 
-  function restore() {
+  function restore(focused = null) {
     if (tools.parentElement !== sheet) return;
     trigger.after(tools);
-    // The sheet stood both groups open to list every command. The reader's own choice for List actions
+    // The sheet stood both groups open to list every command. The reader's own choice for Reading List options
     // comes back with them, and Export closes as it always has.
     actions.open = actionsWereOpen;
     exportChoices.open = false;
     trigger.setAttribute('aria-expanded', 'false');
-    const target = narrow.matches ? trigger : tools.querySelector('button:not([hidden]):not(:disabled)');
-    if (target?.getClientRects().length) target.focus({ preventScroll: true });
+    const target = narrow.matches ? trigger
+      : focused && tools.contains(focused) && focused.checkVisibility() && !focused.matches(':disabled')
+        ? focused : actionsSummary;
+    if (target?.checkVisibility() && target.getClientRects().length) target.focus({ preventScroll: true });
   }
 
   function dismiss() {
     if (!sheet.open) return;
+    const focused = document.activeElement;
     sheet.close();
-    restore();
+    restore(focused);
   }
 
   trigger.addEventListener('click', () => {
-    // UX-08 (#836): the sheet is already the disclosure, so it lists every command at once. Behind List
-    // actions, with Export a second disclosure inside it, Rename, Note, Duplicate, Export and Remove each
+    // UX-08 (#836): the sheet is already the disclosure, so it lists every command at once. Behind Reading
+    // List options, with Export a second disclosure inside it, Rename, Note, Duplicate, Export and Remove each
     // took three taps.
     actionsWereOpen = actions.open;
     actions.open = true;
@@ -80,7 +84,7 @@ export function wireMobileUi({ arrivalHeading }) {
   sheet.addEventListener('close', () => {
     if (!sheet.open) restore();
   });
-  // List actions closes itself on Escape and sends focus to its summary, which the sheet hides, and that
+  // Reading List options closes itself on Escape and sends focus to its summary, which the sheet hides, and that
   // would also keep the sheet open. Escape anywhere in the sheet closes the sheet, as Back does.
   sheet.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
@@ -113,8 +117,21 @@ export function wireMobileUi({ arrivalHeading }) {
     if (event.target.closest('button:not(:disabled)')) dismiss();
   }, true);
   window.addEventListener('hashchange', dismiss, true);
+  // Chromium may blur a command as the narrow rules hide it before the media callback sees focus.
+  tools.addEventListener('focusout', (event) => {
+    if (!narrow.matches || sheet.open || event.relatedTarget || tools.checkVisibility() || !trigger.checkVisibility()) return;
+    trigger.focus({ preventScroll: true });
+  });
+  trigger.addEventListener('focusout', (event) => {
+    if (narrow.matches || sheet.open || event.relatedTarget || trigger.checkVisibility() || !actionsSummary.checkVisibility()) return;
+    actionsSummary.focus({ preventScroll: true });
+  });
   narrow.addEventListener('change', () => {
-    if (!narrow.matches) dismiss();
+    if (!narrow.matches) {
+      const focused = document.activeElement === trigger;
+      dismiss();
+      if (focused && actionsSummary.checkVisibility()) actionsSummary.focus({ preventScroll: true });
+    } else if (tools.contains(document.activeElement) && trigger.checkVisibility()) trigger.focus({ preventScroll: true });
   });
   const view = document.querySelector('#view-read');
   const body = document.querySelector('#reading-body');
