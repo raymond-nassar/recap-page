@@ -499,6 +499,7 @@ export function createAddView({
       }
       refreshBuilders();
       if (config.focusResults) resultHeading.focus();
+      else revealResults(config, status, box, box);
       config.focusResults = false;
       return;
     }
@@ -607,7 +608,20 @@ export function createAddView({
     });
     renderRows();
     if (config.focusResults) resultHeading.focus();
+    else revealResults(config, status, resultHeading, box.querySelector('.comic-choice') ?? resultHeading);
     config.focusResults = false;
+  }
+
+  // Reading Lists sit above the comics on Search and stay put through an issue search, so six of
+  // them pushed the first comic below a 900px window. Scrolling, rather than focusing, brings the
+  // comics the reader asked for into view while focus stays in the field they typed in.
+  function revealResults(config, status, heading, target) {
+    if (!config.revealResults || status.phase === 'cancelled') return;
+    config.revealResults = false;
+    const first = target.getBoundingClientRect();
+    if (heading.getBoundingClientRect().top < 0 || first.bottom > window.innerHeight) {
+      heading.scrollIntoView({ block: 'start' });
+    }
   }
 
   for (const config of searches) {
@@ -1095,6 +1109,7 @@ export function createAddView({
           const query = $(config.input).value.trim();
           if (!query) return;
           beginSearch(config);
+          config.revealResults = true;
           void config.runner.start({ name: query });
         });
       } else {

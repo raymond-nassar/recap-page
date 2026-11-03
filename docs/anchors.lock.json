@@ -1664,8 +1664,8 @@
     "fp": "eda54b5863c96712",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1129-1133|0": {
-    "anchor": "src/js/views/add.js:1129-1133",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1144-1148|0": {
+    "anchor": "src/js/views/add.js:1144-1148",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
@@ -1679,8 +1679,8 @@
     "fp": "db2a727c16a4b4f7",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:613-637|0": {
-    "anchor": "src/js/views/add.js:613-637",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:627-651|0": {
+    "anchor": "src/js/views/add.js:627-651",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
@@ -1719,8 +1719,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3688-3730|0": {
-    "anchor": "src/js/main.js:3688-3730",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3687-3729|0": {
+    "anchor": "src/js/main.js:3687-3729",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1779,23 +1779,23 @@
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3595-3614|0": {
-    "anchor": "src/js/main.js:3595-3614",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3594-3613|0": {
+    "anchor": "src/js/main.js:3594-3613",
     "fp": "30f600f9bd9e5fc8",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3616-3799|0": {
-    "anchor": "src/js/main.js:3616-3799",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3615-3798|0": {
+    "anchor": "src/js/main.js:3615-3798",
     "fp": "e39bca2125a3fd00",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3702-3708|0": {
-    "anchor": "src/js/main.js:3702-3708",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3701-3707|0": {
+    "anchor": "src/js/main.js:3701-3707",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3728-3729|0": {
-    "anchor": "src/js/main.js:3728-3729",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3727-3728|0": {
+    "anchor": "src/js/main.js:3727-3728",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },

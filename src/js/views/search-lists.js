@@ -16,7 +16,6 @@ export function createSearchListsView({
   let query = '';
   let found = [];
   let expanded = false;
-  let folded = false;
   let timer = null;
 
   function quiet() {
@@ -40,23 +39,18 @@ export function createSearchListsView({
 
   function render() {
     const nodes = elements();
-    const shown = folded ? [] : expanded ? found : found.slice(0, LIST_RESULTS_INITIAL);
+    const shown = expanded ? found : found.slice(0, LIST_RESULTS_INITIAL);
     nodes.section.hidden = false;
     nodes.count.textContent = found.length ? counted(found.length) : 'No Reading Lists match';
     nodes.grid.replaceChildren(...shown.map(card));
     nodes.grid.hidden = !shown.length;
     nodes.more.hidden = shown.length === found.length;
-    nodes.more.textContent = folded
-      ? `Show ${found.length === 1 ? '1 Reading List' : `${found.length} Reading Lists`}`
-      : `Show all ${found.length} Reading Lists`;
+    nodes.more.textContent = `Show all ${found.length} Reading Lists`;
     return nodes;
   }
 
   async function update(next) {
-    if (next !== query) {
-      expanded = false;
-      folded = false;
-    }
+    if (next !== query) expanded = false;
     query = next;
     const mine = ++generation;
     if (!listSearchTerms(query).length) {
@@ -83,19 +77,10 @@ export function createSearchListsView({
   }
 
   async function showAll() {
-    const from = folded ? 0 : expanded ? found.length : LIST_RESULTS_INITIAL;
-    folded = false;
+    const from = expanded ? found.length : LIST_RESULTS_INITIAL;
     expanded = true;
     const nodes = render();
     nodes.grid.children[from]?.querySelector('.catalog-card-preview')?.focus();
-  }
-
-  // Six rows still push the comics below a 900px window even at desktop width, so once the reader
-  // asks for comics the rows fold behind their count and one button, which keeps the lists first
-  // and leaves the comics they asked for in view (#1083). A new query unfolds them.
-  function fold() {
-    folded = true;
-    if (!elements().section.hidden) render();
   }
 
   // After Preview adds a list its card has to turn from Add into Open without losing the group.
@@ -103,5 +88,5 @@ export function createSearchListsView({
     if (found.length) render();
   }
 
-  return { update, showAll, refresh, fold };
+  return { update, showAll, refresh };
 }

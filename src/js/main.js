@@ -2996,7 +2996,6 @@ export function boot() {
   addView.wire();
   $('#search-q').addEventListener('input', (event) => void searchListsView.update(event.target.value));
   $('#search-lists-more').addEventListener('click', () => void searchListsView.showAll());
-  $('#form-search').addEventListener('submit', () => searchListsView.fold());
   dataView.wire();
   completeBackupView.wire();
   cloudBackupView.wire();

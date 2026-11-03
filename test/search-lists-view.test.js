@@ -91,28 +91,16 @@ test('Show all reveals every match and moves focus to the first newly shown card
   assert.equal(h.cards().length, 6, 'a new query starts collapsed again');
 });
 
-test('a comic search folds the rows behind their count so the comics lead, and Show brings every match back', async () => {
+test('re-entering Search with the same query keeps the rows the reader had, collapsed or expanded', async () => {
   const h = harness();
   await h.view.update('mcu prep');
-  h.view.fold();
-  assert.equal(h.nodes.section.hidden, false);
-  assert.equal(h.cards().length, 0);
-  assert.equal(h.nodes.count.textContent, '37 Reading Lists match');
-  assert.equal(h.nodes.more.hidden, false);
-  assert.equal(h.nodes.more.textContent, 'Show 37 Reading Lists');
   await h.view.update('mcu prep');
-  assert.equal(h.cards().length, 0, 'returning to the same query keeps the fold');
+  assert.equal(h.cards().length, 6);
+  assert.equal(h.nodes.more.textContent, 'Show all 37 Reading Lists');
   await h.view.showAll();
-  assert.equal(h.cards().length, 37);
-  assert.equal(h.focused()?.story.lists[0], h.cards()[0]);
-  h.view.fold();
-  await h.view.update('mcu pre');
-  assert.equal(h.cards().length, 6, 'typing a different query unfolds the rows');
-  const pending = h.view.update('house of m');
-  h.view.fold();
-  await pending;
-  assert.equal(h.cards().length, 0, 'a fold made while the catalog loads holds once it arrives');
-  assert.equal(h.nodes.count.textContent.endsWith('match') || h.nodes.count.textContent.endsWith('matches'), true);
+  await h.view.update('mcu prep');
+  assert.equal(h.cards().length, 37, 'the same query keeps Show all');
+  assert.equal(h.nodes.more.hidden, true);
 });
 
 test('one match reads in the singular and needs no Show all button', async () => {

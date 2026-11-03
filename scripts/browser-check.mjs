@@ -10358,28 +10358,35 @@ const SCENARIOS = [
         comics: document.querySelector('#search-results').textContent.trim(),
         api: window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues')).length,
       }));
-      t.check('a failed comic search keeps the matching lists one press away',
-        offline.section && offline.rows === 0 && offline.count === '14 Reading Lists match'
-          && offline.more === 'Show 14 Reading Lists' && offline.comics.length > 0 && offline.api === 1,
+      t.check('a failed comic search leaves every matching list in place',
+        offline.section && offline.rows === 14 && offline.count === '14 Reading Lists match'
+          && offline.more === false && offline.comics.length > 0 && offline.api === 1,
         JSON.stringify(offline));
-      await click(page, '#search-lists-more');
-      const shown = await page.evaluate(() => ({
-        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
-        focus: document.activeElement?.textContent.trim(),
-      }));
-      t.check('Show after a comic search returns every list and focuses the first',
-        shown.rows === 14 && shown.focus === 'Fixture Event 1', JSON.stringify(shown));
 
       await page.evaluate(() => { window.__mrtListSearchOffline = false; });
-      await click(page, '#form-search button[type="submit"]');
+      await type('Fixture Even');
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.focus('#search-q');
+      await page.keyboard.press('Enter');
       await page.waitForSelector('#search-results .comic-choice');
-      const comics = await page.evaluate(() => ({
-        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
-        top: document.querySelector('#search-results .comic-choice').getBoundingClientRect().top,
-        bottom: document.querySelector('#search-results .comic-choice').getBoundingClientRect().bottom,
-      }));
-      t.check('a comic search folds the list rows so the first comic is in view',
-        comics.rows === 0 && comics.top >= 0 && comics.bottom <= 900, JSON.stringify(comics));
+      const comics = await page.evaluate(() => {
+        const first = document.querySelector('#search-results .comic-choice').getBoundingClientRect();
+        return {
+          rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+          more: document.querySelector('#search-lists-more').checkVisibility()
+            && document.querySelector('#search-lists-more').textContent,
+          below: document.querySelector('#search-lists').compareDocumentPosition(document.querySelector('#search-results .comic-choice'))
+            === Node.DOCUMENT_POSITION_FOLLOWING,
+          inView: first.top >= 0 && first.bottom <= window.innerHeight,
+          focus: document.activeElement?.id,
+        };
+      });
+      t.check('a comic search keeps six list rows and Show all, with the comics below them',
+        comics.rows === 6 && comics.more === 'Show all 14 Reading Lists' && comics.below, JSON.stringify(comics));
+      t.check('Enter brings the first comic into view and leaves focus in the field',
+        comics.inView && comics.focus === 'search-q', JSON.stringify(comics));
+      await page.evaluate(() => window.scrollTo(0, 0));
 
       await type('Fixture Even');
       await type('Fixture Event');
