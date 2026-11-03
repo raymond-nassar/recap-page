@@ -128,6 +128,29 @@ export function createCatalogPresentation({
     ]);
   }
 
+  // Search answers with rows rather than cards, so six matching lists still leave the comics a
+  // reader asked for within one phone screen (#1083). The row keeps the card's title Preview, its
+  // credit line and its one action, and drops only the cover and description, which Preview shows.
+  function catalogRow(list, { report, level = 'h3' }) {
+    return el('article', { class: 'result catalog-row', dataset: { story: `list:${list.id}` } }, [
+      el('div', { class: 'result-main' }, [
+        el(level, { class: 'catalog-card-title result-title' }, el('button', {
+          class: 'catalog-card-preview',
+          type: 'button',
+          'aria-label': shownName([list.name], 'Preview'),
+          dataset: { key: `list:${list.id}`, act: 'preview' },
+          onclick: () => onPreview(list),
+        }, el('span', { text: list.name }))),
+        el('p', {
+          class: 'result-meta',
+          text: [`${list.count} issue${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
+        }),
+        el('div', { class: 'result-source' }, [attributionLine(list, { compact: true })].filter(Boolean)),
+      ]),
+      primaryButton(list, report),
+    ]);
+  }
+
   function paintTimelinePosition(root, position, {
     message = '',
     narrowed = false,
@@ -346,6 +369,7 @@ export function createCatalogPresentation({
   return {
     attributionLine,
     catalogCard,
+    catalogRow,
     chosenPath,
     ensureSetupGuideFeature,
     setSetupGuideVisibility,
