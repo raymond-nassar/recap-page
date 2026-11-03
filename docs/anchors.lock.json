@@ -1524,35 +1524,35 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudCoordinator.js:25-31|0": {
-    "anchor": "src/js/lib/cloudCoordinator.js:25-31",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudCoordinator.js:28-34|0": {
+    "anchor": "src/js/lib/cloudCoordinator.js:28-34",
     "fp": "095eb3e10df0bee6",
     "head": "export const CLOUD_BACKUP_CADENCE = Object.freeze({"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:42|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:42",
-    "fp": "f763d40c3a35479d",
-    "head": "export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 60"
-  },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:490-501|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:490-501",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1320-1331|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1320-1331",
     "fp": "2499eb9e27356a8a",
     "head": "async allocate() {"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:588|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:588",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1418|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1418",
     "fp": "677baafd30c320ae",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:687-688|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:687-688",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1532-1533|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1532-1533",
     "fp": "6646963445582955",
     "head": "const { known } = await this.listed(connection);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:739-740|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:739-740",
-    "fp": "5513fa894d547460",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1592-1594|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1592-1594",
+    "fp": "96364a1531f6737d",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
+  },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:43|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:43",
+    "fp": "f763d40c3a35479d",
+    "head": "export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 60"
   },
   "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:2424|0": {
     "anchor": "src/js/main.js:2424",
@@ -1589,9 +1589,9 @@
     "fp": "c551965afe6556d6",
     "head": "async cleanUp(id, { journal = true, offered = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:841-846|0": {
-    "anchor": "src/js/lib/completeRestore.js:841-846",
-    "fp": "4e2c08fc7d7cb7d2",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:890-897|0": {
+    "anchor": "src/js/lib/completeRestore.js:890-897",
+    "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
   "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:662-724|0": {
@@ -1909,8 +1909,8 @@
     "fp": "176f70a1f1fe990d",
     "head": "export async function writeCachePurgeMark("
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:848|0": {
-    "anchor": "src/js/lib/completeRestore.js:848",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:901|0": {
+    "anchor": "src/js/lib/completeRestore.js:901",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },
@@ -2049,8 +2049,8 @@
     "fp": "be3dc6ddefd7e6fd",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:200-226|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:200-226",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:204-230|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:204-230",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },

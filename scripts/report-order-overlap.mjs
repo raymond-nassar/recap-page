@@ -76,8 +76,11 @@ export async function loadManifest(manifestPath) {
 export async function loadLibrarySnapshot({
   manifestFile = manifestPath,
   payloadDir = dataDir,
+  manifest: providedManifest = null,
 } = {}) {
-  const manifest = JSON.parse(await readFile(manifestFile, 'utf8'));
+  // History checks pass a reconstructed manifest so a later copy revision does not move the
+  // library a recorded review hashed.
+  const manifest = providedManifest ?? JSON.parse(await readFile(manifestFile, 'utf8'));
   const lists = Array.isArray(manifest.lists) ? manifest.lists : [];
   const orders = await Promise.all(lists.map(async (item) => {
     const filePath = path.join(payloadDir, item.out || `${item.id}.json`);

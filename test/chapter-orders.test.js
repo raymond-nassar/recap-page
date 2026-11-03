@@ -102,8 +102,8 @@ test('the corrected owner ledger pins every chapter field and source position', 
   assert.equal(ledger.issueIdsSha256, '0223bbdca9912019ebe609de5dcdfc6f703682787e6ff59fc7e863bfc52dd00d');
   assert.equal(ledger.chapterContractSha256, '498cdd1fa3183ba9a0d48fa8b85ec4de2bc0f3bf8ca75cb5367782a6a0bc7c35');
   assert.equal(ledger.chapterNamesSha256, '315b0761581e77095e06b08a076f51820521542d77d0c130a230fdf519fbd784');
-  assert.equal(ledger.descriptionCopy.ownerAttachmentSha256, 'f24a85f558c3c0d9b2856edcf5af753b6fdbb72fad9a0a27494bb9d1891db6ce');
-  assert.equal(ledger.descriptionCopy.entriesSha256, 'dc1e9b712f7782407ac8598cdf97720899b2a912c80dc564aee18e1a77af1bed');
+  assert.equal(ledger.descriptionCopy.ownerAttachmentSha256, '95296c6a3ea1edb3e0c775159ee669b39b63080a3cc02ac49c48b58445dd5582');
+  assert.equal(ledger.descriptionCopy.entriesSha256, '165f5ddd4547425a08c7e181506e5ec33c0466e5d7816b596650f721a2996146');
   assert.equal(ledger.path.stepsSha256, '0c2c3296ee07bd2a7e3a3878efff6af2f12810cdac27319f921ed34f5bec85b7');
 
   assert.equal(parsed.sourcePositions.length, 99);

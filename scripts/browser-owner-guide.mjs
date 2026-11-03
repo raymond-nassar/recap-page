@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -92,7 +93,11 @@ export function hasDedicatedCbhOwnerScenario(guide, scenarioIds) {
 }
 
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
-  const expectedDescription = afterMcuEditorialEntry(contract).description;
+  // The accepted copy predates the recorded description revisions, so the preview is held to the
+  // revised side of that record rather than to a second hand-typed copy of it.
+  const expectedDescription = descriptionRevisions.afterEntry({
+    id: contract.id, description: afterMcuEditorialEntry(contract).description,
+  }).description;
   const event = contract.surface === 'modern-timeline';
   // Young readers' lists are found on Young readers, the one screen #897 gave them, by name among
   // that shelf's other lists.

@@ -3,15 +3,19 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, setDeferred,
 } from '../src/js/lib/model.js';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { KEY } from '../src/js/storage.js';
 
 const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
 const identityRevisions = json('scripts/data/owner-identity-revisions.json');
+// The later spoiler-softening revision rewrote some of these again, so expect its shipped copy.
 const edits = json('scripts/data/mcu-prep-description-revision.json').entries.map((edit) => {
   const identity = identityRevisions.guides.find(({ id }) => id === edit.id);
-  return { ...edit, after: identity?.publishedDescription ?? identity?.description ?? edit.after };
+  const published = identity?.publishedDescription ?? identity?.description ?? edit.after;
+  const { description } = descriptionRevisions.redoEntry({ id: edit.id, file: edit.file, description: published });
+  return { ...edit, after: description };
 });
 const catalog = json('src/data/catalog.json');
 const orders = new Map(edits.map((edit) => [edit.id, json(`src/data/${edit.file}`)]));

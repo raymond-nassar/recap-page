@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { digestCanonicalJson, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import {
@@ -139,9 +140,9 @@ test('all thirty recommendations identify the reading benefit with exact current
   assert.equal(mcuEditorial.issue, 'https://github.com/raymond-nassar/recap-page/issues/811');
   assert.equal(mcuEditorial.sha256, 'e23cde5bc6484ab5a41cb08d96ad0ac54d1562c656a5ce04f8e338880e7e92d8');
   for (const edit of mcuEditorial.entries) {
-    const entry = manifest.lists.find(({ id }) => id === edit.id);
-    const card = catalog.lists.find(({ id }) => id === edit.id);
-    const currentPayload = await json(`src/data/${edit.file}`);
+    const entry = descriptionRevisions.undoEntry(manifest.lists.find(({ id }) => id === edit.id));
+    const card = descriptionRevisions.undoEntry(catalog.lists.find(({ id }) => id === edit.id));
+    const currentPayload = descriptionRevisions.undoEntry(await json(`src/data/${edit.file}`));
     const { description, ...payload } = beforeIdentityPayload(edit.file, currentPayload);
     const identity = identityRevisions.guides.find(({ id }) => id === edit.id);
     const publishedDescription = identity?.publishedDescription ?? identity?.description ?? edit.after;
