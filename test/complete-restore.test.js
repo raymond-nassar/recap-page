@@ -273,6 +273,106 @@ function assertImage(env, image, message) {
 
 // ------------------------------------------------------------------ a whole restore
 
+test('a regular restore reports a refused journal removal after its marker cannot be saved', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const before = priorOf(env);
+  const begin = env.journal.begin;
+  env.journal.begin = async (record) => {
+    await begin(record);
+    env.storage.refuse.add(RESTORE_MARKER_KEY);
+    env.journal.faults.remove = true;
+  };
+  const result = await tab.restore((await fileBackup()).text);
+  assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.match(result.error, /restore marker could not be saved/i);
+  assert.match(result.error, /recovery copy could not be removed/i);
+  assertImage(env, before, 'failed setup does not replace data');
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+  assert.ok(env.journal.record);
+  assert.equal(tab.state.available, false);
+});
+
+async function checkMarkerReadFailure(persistent, optionsFor = async () => ({})) {
+  const env = environment();
+  const tab = await env.open();
+  const options = await optionsFor(env);
+  const before = priorOf(env);
+  const get = env.storage.getItem;
+  const set = env.storage.setItem;
+  let activeWritten = false;
+  let failed = false;
+  env.storage.setItem = (key, value) => {
+    set(key, value);
+    if (key === RESTORE_MARKER_KEY && value.startsWith('active:')) activeWritten = true;
+  };
+  env.storage.getItem = (key) => {
+    if (key === RESTORE_MARKER_KEY && activeWritten && (persistent || !failed)) {
+      failed = true;
+      throw new Error('Injected marker read failure');
+    }
+    return get(key);
+  };
+
+  const result = await tab.restore((await fileBackup()).text, options);
+  env.storage.getItem = get;
+  assert.equal(readMarker(env.storage).state, 'active');
+  assert.ok(env.journal.record, 'an active marker must not outlive its recovery journal');
+  assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.match(result.error, /recovery copy was kept/i);
+  assertImage(env, before, 'a failed marker check does not replace data');
+  assert.equal(tab.state.available, false);
+  assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.markerUnchecked);
+}
+
+for (const landed of [false, true]) {
+  test(`review: an unchecked marker reloads before a settings edit can be lost (landed: ${landed})`, async () => {
+    const env = environment();
+    const tab = await env.open();
+    const get = env.storage.getItem;
+    const set = env.storage.setItem;
+    let attempted = false;
+    let failures = 0;
+    env.storage.setItem = (key, value) => {
+      if (key !== RESTORE_MARKER_KEY || !value.startsWith('active:')) return set(key, value);
+      attempted = true;
+      if (landed) set(key, value);
+      else throw new Error('The active marker write was refused.');
+    };
+    env.storage.getItem = (key) => {
+      if (key === RESTORE_MARKER_KEY && attempted) {
+        if (failures++ < 2) throw new Error('The marker could not be read.');
+        return null;
+      }
+      return get(key);
+    };
+    const file = await fileBackup();
+    const result = await tab.restore(file.text);
+    assert.equal(result.copyKept, true);
+    if (tab.state.phase === 'open') {
+      const image = preparedImage(restorePlan(env.journal.record.prepared, file.backup));
+      env.storage.setItem(SETTINGS_KEY, image[SETTINGS_KEY]);
+    }
+    assert.equal(tab.state.reloading, true, 'unknown marker ownership must make this tab stale');
+    assert.equal(tab.state.phase, 'paused', 'settings cannot be saved from the uncertain tab');
+    assert.equal(env.reloads, 1);
+    env.storage.getItem = get;
+    env.storage.setItem = set;
+    await tab.releaseShared();
+    const next = await env.open();
+    if (landed) assert.equal(next.state.recovery.canKeep, true);
+    else {
+      assert.equal(next.state.phase, 'open');
+      assert.equal(env.journal.record, null, 'an unwritten journal is discarded before saving resumes');
+    }
+  });
+}
+
+for (const persistent of [false, true]) {
+  test(`a regular restore retains its journal if an active marker write cannot be read back (persistent: ${persistent})`,
+    () => checkMarkerReadFailure(persistent));
+}
+
 test('a restore journals and reads back before its marker, writes in order, and keeps the journal once done', async () => {
   const env = environment();
   const prior = priorOf(env);
