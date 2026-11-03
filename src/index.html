@@ -265,6 +265,7 @@
 
               <!-- On a phone the list context moves below the comic, but remains above its rows. -->
               <p class="list-note" id="list-note" hidden></p>
+              <p class="rail-hint" id="list-similar-hint" hidden></p>
 
               <!-- hero: the comic up next -->
               <section class="hero" id="hero" aria-labelledby="hero-title">
@@ -1322,6 +1323,10 @@
               <p id="list-recommendation-status" class="rail-hint" role="status"></p>
               <ul id="list-suggestions" class="recommendation-grid"></ul>
               <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><a href="#/browse" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</a></div>
+            </section>
+            <section id="list-similar" class="completion-recommendations" hidden aria-labelledby="list-similar-h">
+              <h3 id="list-similar-h">More like this</h3>
+              <ul id="list-similar-suggestions" class="recommendation-grid"></ul>
             </section>
           </section>
           <section id="completion-history-controls" class="card card-static" aria-labelledby="completion-history-h">
