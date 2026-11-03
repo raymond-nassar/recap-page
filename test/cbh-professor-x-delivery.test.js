@@ -17,6 +17,7 @@ import { firstSentence, parseCatalog, resolveReadingPaths } from '../src/js/lib/
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { registeredOwnerIds } from './helpers/current-reading-library.mjs';
 import { recordedOwnerManifest } from './helpers/owner-delivery-contract.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 // #981. The owner's Professor X selection from Comic Book Herald's guide, verified against the page,
 // with the X-Men lists that continue his story offered as a Reading Path rather than copied inside.
@@ -39,7 +40,10 @@ const issueAt = (position) => mapping.rows.find((row) => row.sourcePosition === 
 // The approval bound the library as it stood before this guide and its path. Lists and paths added
 // since then are named by what the reviewed roster lacks, so a later addition needs no edit here.
 async function reviewedLibrary() {
-  const library = await loadLibrarySnapshot();
+  // The review also predates the description revision record, so it hashed the earlier copy.
+  const library = await loadLibrarySnapshot({
+    manifest: descriptionRevisions.undoManifest(await readJson('src/data/curated-lists.json')),
+  });
   const reviewed = new Set(report.comparisons.map((row) => row.orderId));
   const later = library.manifest.lists.map((entry) => entry.id).filter((listId) => !reviewed.has(listId));
   const laterPaths = (library.manifest.paths ?? []).map((entry) => entry.id)
@@ -75,7 +79,7 @@ test('Professor X keeps the frozen packet, mapping, full report and approval ali
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: excluded,
+    excludedOrderIds: excluded, manifest: library.manifest,
   });
 
   assert.deepEqual(regenerated, report);

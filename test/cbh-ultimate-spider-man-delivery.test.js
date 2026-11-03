@@ -23,6 +23,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'ultimate-spider-man-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -348,7 +349,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
-  assert.deepEqual(withoutDiscoveryTags(manifest.lists[position]), mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists[position])), mapping.approvedManifest);
   assert.doesNotThrow(() => validateInventoryState(inventory));
   const record = inventory.find((row) => row.id === id);
   assert.equal(record.position, 113);

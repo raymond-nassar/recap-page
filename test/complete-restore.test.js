@@ -14,7 +14,7 @@ import {
   recoveryTextForPlatform, restoreMessagesForPlatform,
 } from '../src/js/lib/completeRestore.js';
 import {
-  createCompleteBackup, prepareCompleteRestore, restorePlan, canonical, RESTORE_KEYS,
+  captureCompleteBackup, createCompleteBackup, prepareCompleteRestore, restorePlan, canonical, RESTORE_KEYS,
 } from '../src/js/lib/completeBackup.js';
 import { keepCurrentQuestion, keptNotice } from '../src/js/views/data.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue } from '../src/js/lib/model.js';
@@ -224,6 +224,7 @@ function environment(entries = localEntries()) {
 }
 
 const priorOf = (env) => Object.fromEntries(RESTORE_KEYS.map((key) => [key, env.storage.map.get(key) ?? null]));
+const emptyImportDraft = () => ({ recovery: [], uncertain: false });
 
 test('complete restore applies authentic pre-withdrawal reader drafts and keeps their exact source and selections', async () => {
   const { readFileSync } = await import('node:fs');
@@ -272,6 +273,332 @@ function assertImage(env, image, message) {
 }
 
 // ------------------------------------------------------------------ a whole restore
+
+test('a guarded restore refuses changed local data before cleaning the previous recovery journal', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const priorMarker = env.storage.getItem(RESTORE_MARKER_KEY);
+  const saved = JSON.parse(env.storage.getItem(SETTINGS_KEY));
+  tab.storage.setItem(SETTINGS_KEY, JSON.stringify({ ...saved, theme: 'light' }));
+  const current = priorOf(env);
+  const journalLog = env.journal.log.slice();
+
+  const result = await tab.restore(text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /changed.*nothing was replaced/i);
+  assertImage(env, current, 'the later save was not replaced');
+  assert.deepEqual(env.journal.record, priorJournal, 'the previous recovery copy remains');
+  assert.deepEqual(env.journal.log, journalLog, 'no journal was removed or written');
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), priorMarker);
+});
+
+test('a guarded restore checks the current digest only after taking the exclusive lock', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const request = env.locks.request;
+  env.locks.request = (name, options, callback) => request(name, options, (lock) => {
+    if (lock && options.mode === 'exclusive') {
+      const saved = JSON.parse(env.storage.getItem(SETTINGS_KEY));
+      env.storage.setItem(SETTINGS_KEY, JSON.stringify({ ...saved, theme: 'dark' }));
+    }
+    return callback(lock);
+  });
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'dark');
+  assert.equal(env.journal.record, null, 'the restore never writes a recovery journal');
+});
+
+test('a guarded restore detects a late save before cleaning the earlier journal', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const priorMarker = env.storage.getItem(RESTORE_MARKER_KEY);
+  const read = env.journal.read;
+  env.journal.read = async () => {
+    const saved = JSON.parse(env.storage.getItem(SETTINGS_KEY));
+    env.storage.setItem(SETTINGS_KEY, JSON.stringify({ ...saved, theme: 'light' }));
+    return read();
+  };
+  const result = await tab.restore(text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'light');
+  assert.deepEqual(env.journal.record, priorJournal);
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), priorMarker);
+});
+
+test('a guarded restore rejects an invalid expected digest without touching an earlier journal', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const priorJournal = env.journal.record;
+  const priorMarker = env.storage.getItem(RESTORE_MARKER_KEY);
+  const current = priorOf(env);
+  for (const expectedPriorDigest of [null, '', 'not-a-digest', 'A'.repeat(64), 42]) {
+    const result = await tab.restore(text, { expectedPriorDigest });
+    assert.deepEqual([result.ok, result.changed], [false, false]);
+    assert.match(result.error, /could not be checked.*nothing was replaced/i);
+    assertImage(env, current, 'invalid expectations do not replace data');
+    assert.deepEqual(env.journal.record, priorJournal);
+    assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), priorMarker);
+  }
+});
+
+test('a guarded restore refuses a save made while its new journal is written', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const begin = env.journal.begin;
+  env.journal.begin = async (record) => {
+    await begin(record);
+    const saved = JSON.parse(env.storage.getItem(SETTINGS_KEY));
+    env.storage.setItem(SETTINGS_KEY, JSON.stringify({ ...saved, theme: 'dark' }));
+  };
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.equal(env.storage.getItem(KEY), before[KEY], 'the reading data was not replaced');
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'dark');
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+  assert.equal(env.journal.record, null, 'the unused new journal is removed');
+});
+
+test('a guarded restore with a matching digest uses the existing recovery journal', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.equal(result.ok, true, result.error);
+  assert.deepEqual(env.journal.record.prepared.before, before);
+  assert.equal(env.journal.record.phase, 'done');
+});
+
+test('a guarded restore preserves an earlier journal when the current save cannot be read', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const priorMarker = env.storage.getItem(RESTORE_MARKER_KEY);
+  const getItem = env.storage.getItem;
+  env.storage.getItem = (key) => {
+    if (key === KEY) throw new Error('Injected read failure');
+    return getItem(key);
+  };
+  const result = await tab.restore(text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /could not be read/i);
+  assert.deepEqual(env.journal.record, priorJournal);
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), priorMarker);
+});
+
+test('a guarded restore preserves an earlier journal when import source is unsaved', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const priorMarker = env.storage.getItem(RESTORE_MARKER_KEY);
+  const result = await tab.restore(text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft(), draftRecovery: ['unsaved source'],
+  });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /import draft.*unsaved or unchecked/i);
+  assert.deepEqual(env.journal.record, priorJournal);
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), priorMarker);
+});
+
+test('a guarded restore reports when its unused new journal cannot be removed', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const begin = env.journal.begin;
+  env.journal.begin = async (record) => {
+    await begin(record);
+    const saved = JSON.parse(env.storage.getItem(SETTINGS_KEY));
+    env.storage.setItem(SETTINGS_KEY, JSON.stringify({ ...saved, theme: 'dark' }));
+    env.journal.faults.remove = true;
+  };
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.match(result.error, /saved data changed/i);
+  assert.match(result.error, /recovery copy could not be removed/i);
+  assert.equal(env.storage.getItem(KEY), before[KEY]);
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'dark');
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+  assert.equal(env.journal.record.phase, 'applying');
+  assert.equal(tab.state.available, false, 'another restore stays unavailable until cleanup succeeds');
+});
+
+test('a guarded restore requires the live import-draft state', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const result = await tab.restore(text, { expectedPriorDigest: kept.backup.digest });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /import draft.*could not be checked/i);
+  assert.deepEqual(env.journal.record, priorJournal);
+});
+
+test('a guarded restore refuses an uncertain live import draft before journal cleanup', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const result = await tab.restore(text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: { recovery: [], uncertain: true },
+  });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /import draft.*unsaved or unchecked/i);
+  assert.deepEqual(env.journal.record, priorJournal);
+});
+
+test('a guarded restore detects unsaved import source while reading the earlier journal', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const priorJournal = env.journal.record;
+  const draft = { recovery: [], uncertain: false };
+  const read = env.journal.read;
+  env.journal.read = async () => {
+    draft.recovery = ['unsaved source'];
+    return read();
+  };
+  const result = await tab.restore(text, { expectedPriorDigest: kept.backup.digest, importDraft: draft });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.deepEqual(draft.recovery, ['unsaved source']);
+  assert.deepEqual(env.journal.record, priorJournal);
+});
+
+test('a guarded restore stops before its marker when import source becomes unsaved during journal creation', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const draft = { recovery: [], uncertain: false };
+  const begin = env.journal.begin;
+  env.journal.begin = async (record) => {
+    await begin(record);
+    draft.recovery = ['unsaved source'];
+  };
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: draft });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.equal(env.storage.getItem(KEY), before[KEY]);
+  assert.deepEqual(draft.recovery, ['unsaved source']);
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+  assert.equal(env.journal.record, null);
+});
+
+test('a guarded restore retains recovery if import source becomes unsaved between restore writes', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const draft = { recovery: [], uncertain: false };
+  const progress = env.journal.progress;
+  env.journal.progress = async (record) => {
+    await progress(record);
+    if (record.writes === 1) draft.recovery = ['unsaved source'];
+  };
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: draft });
+  assert.deepEqual([result.ok, result.changed], [false, null]);
+  assert.match(result.error, /import draft.*unsaved or unchecked/i);
+  assert.deepEqual(draft.recovery, ['unsaved source']);
+  assert.equal(env.storage.getItem(KEY), before[KEY]);
+  assert.equal(env.journal.record.writes, 1);
+  assert.equal(tab.state.phase, 'paused');
+  assert.ok(tab.state.recovery, 'the interrupted restore remains recoverable');
+});
+
+test('a guarded restore does not report success when the import state becomes uncertain at completion', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const draft = { recovery: [], uncertain: false };
+  const progress = env.journal.progress;
+  env.journal.progress = async (record) => {
+    await progress(record);
+    if (record.phase === 'done') draft.uncertain = true;
+  };
+  const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: draft });
+  assert.deepEqual([result.ok, result.changed], [false, null]);
+  assert.equal(draft.uncertain, true);
+  assert.equal(env.journal.record.phase, 'done');
+  assert.equal(tab.state.phase, 'paused');
+  assert.ok(tab.state.recovery);
+});
+
+test('a guarded restore stops before new writes if an older tab saves during earlier journal cleanup', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text)).ok, true);
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const remove = env.journal.remove;
+  env.journal.remove = async () => {
+    const saved = JSON.parse(env.storage.getItem(SETTINGS_KEY));
+    env.storage.setItem(SETTINGS_KEY, JSON.stringify({ ...saved, theme: 'light' }));
+    return remove();
+  };
+  const result = await tab.restore(text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.equal(env.storage.getItem(KEY), before[KEY]);
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'light');
+  assert.equal(env.journal.record, null, 'the earlier cleanup cannot be undone');
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+});
+
+for (const failure of ['read-back', 'invalid read-back', 'marker']) {
+  test(`a guarded restore reports a refused journal removal after ${failure} fails`, async () => {
+    const env = environment();
+    const tab = await env.open();
+    const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+    const before = priorOf(env);
+    const begin = env.journal.begin;
+    env.journal.begin = async (record) => {
+      await begin(record);
+      if (failure === 'read-back') env.journal.faults.read = 1;
+      else if (failure === 'invalid read-back') {
+        const read = env.journal.read;
+        let once = true;
+        env.journal.read = async () => {
+          if (once) { once = false; return { invalid: undefined }; }
+          return read();
+        };
+      } else env.storage.refuse.add(RESTORE_MARKER_KEY);
+      env.journal.faults.remove = true;
+    };
+    const result = await tab.restore((await fileBackup()).text, { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() });
+    assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+    assert.match(result.error, /recovery copy could not be removed/i);
+    assert.match(result.error, failure === 'marker' ? /restore marker could not be saved/i : /recovery copy could not be saved/i);
+    assertImage(env, before, 'failed setup does not replace data');
+    assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+    assert.ok(env.journal.record);
+    assert.equal(tab.state.available, false);
+  });
+}
 
 test('a regular restore reports a refused journal removal after its marker cannot be saved', async () => {
   const env = environment();
@@ -371,6 +698,14 @@ for (const landed of [false, true]) {
 for (const persistent of [false, true]) {
   test(`a regular restore retains its journal if an active marker write cannot be read back (persistent: ${persistent})`,
     () => checkMarkerReadFailure(persistent));
+}
+
+for (const persistent of [false, true]) {
+  test(`a guarded restore retains its journal if an active marker write cannot be read back (persistent: ${persistent})`,
+    () => checkMarkerReadFailure(persistent, async (env) => {
+      const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+      return { expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft() };
+    }));
 }
 
 test('a restore journals and reads back before its marker, writes in order, and keeps the journal once done', async () => {
