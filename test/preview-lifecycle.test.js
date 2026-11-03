@@ -384,7 +384,7 @@ test('a catalog refresh obeys its close owner cancellation after an awaited load
     onSortChange: () => {},
     presentation: {},
   });
-  const rendering = view.render('lines', { isCurrent: () => current });
+  const rendering = view.render('young-readers', { isCurrent: () => current });
   const loading = nodes.results.children[0];
   current = false;
   pending.resolve({ lists: [], paths: [] });
