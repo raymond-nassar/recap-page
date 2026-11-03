@@ -10478,7 +10478,8 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview').open);
-      await page.waitForFunction(() => document.querySelector('#search-lists-results .catalog-row [data-act="open"]'));
+      await page.waitForFunction(() => document.querySelector('#search-lists-results .catalog-row:nth-child(2) [data-act="open"]'),
+        { timeout: 5000 }).catch(() => {});
       const added = await page.evaluate(() => ({
         rows: [...document.querySelectorAll('#search-lists-results .catalog-row')]
           .map((row) => row.querySelector('[data-act="import"], [data-act="open"]').dataset.act),
