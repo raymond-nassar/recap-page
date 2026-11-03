@@ -337,24 +337,24 @@ pending until the presentation checks pass.
 
 ## iCloud backup
 
-Built but switched off (#949, P04). When it is on, backups go to a visible **Recap Page** folder in
+The local switch-on candidate (#949, P04) sends backups to a visible **Recap Page** folder in
 iCloud Drive: the Documents folder of the permanent container above, which the Files app shows. The
 app answers the same cloud backup contract the Windows host and the Android app answer, so the
 shared backup engine, its schedule and its restore are unchanged.
 
-- **Two switches, both off.** The native store, its handler and the bridge's `cloud` case compile
+- **Two switches, both on in this candidate.** The native store, handler and bridge's `cloud` case compile
   only under the `RECAP_ICLOUD` compilation condition or in Debug, and a packaging test fails if
   any of it can reach a Release build without that condition. The page half lives in
   `packaging/ios/icloud-web`, outside the folder the build copies whole, so a build without it never
   installs the iCloud transport and the backup card stays removed. `packaging/ios/features.json`
-  keeps `iCloudBackup` false. Tests pin the removed card and adapter, the iCloud-only preview page,
-  and Release compilation. A one-time comparison with the integration base checks the off output.
+  now sets `iCloudBackup` true. Tests pin the explicit off preview, the default iCloud-only page,
+  the app-only signing settings and the native conditional boundary, including the Debug-only fake.
   A preview can use an alternate features file; a reserved release refuses that override.
-- **Why the native switch is not wired yet.** Turning it on needs the iCloud entitlements, the
-  `NSUbiquitousContainers` entry in the app's Info.plist and a build setting for the condition. Those
-  change the signed export, which only the protected release workflow exercises, so they follow in a
-  separate change once iOS build 6 is cut, and the first TestFlight export with them is the proof
-  that signing accepts them.
+- **Not release approval.** This candidate wires iCloud Documents entitlements, the public
+  `NSUbiquitousContainers` folder and `RECAP_ICLOUD` in both app configurations. The owner must
+  choose whether build 6 stays off or includes these signed-export changes before any release action.
+  Signing needs its own protected export proof. The read-purpose signal recorded on #949 remains
+  required before enabling for readers; this packaging change does not implement that signal.
 - **What iOS decides.** iOS uploads on its schedule. Read-back waits up to nine minutes for confirmation,
   and a pending local backup blocks another create before it writes. Retention runs only after a newer
   backup is confirmed. Restoring another device's backup may first need a download and a retry.

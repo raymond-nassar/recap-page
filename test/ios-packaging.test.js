@@ -340,7 +340,9 @@ const setting = (settings, name) => new RegExp(`\\b${name} = ("[^"]*"|[^;]+);`).
 before(async () => {
   scratch = await mkdtemp(join(tmpdir(), 'recap-ios-assets-'));
   output = join(scratch, 'web');
-  prepared = await prepareIos(output);
+  const featuresPath = join(scratch, 'icloud-off.json');
+  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: false }));
+  prepared = await prepareIos(output, { featuresPath });
   desktop = await readFile(new URL('src/index.html', ROOT), 'utf8');
 });
 
@@ -412,8 +414,7 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   assert.equal(prepared.manifest.build.platform, 'ios');
 });
 
-test('the default iOS build removes the iCloud card and does not install its adapter', async () => {
-  assert.deepEqual(JSON.parse(read('packaging/ios/features.json')), { schemaVersion: 1, iCloudBackup: false });
+test('an explicitly off iOS preview removes the iCloud card and does not install its adapter', async () => {
   const paths = await filesUnder(output);
   assert.ok(!paths.some((name) => /^ios\/(?:cloud\.js|icloudTransport\.js)$/.test(name)));
   assert.ok(!prepared.manifest.files.some(({ path }) => /^ios\/(?:cloud\.js|icloudTransport\.js)$/.test(path)));
@@ -423,11 +424,10 @@ test('the default iOS build removes the iCloud card and does not install its ada
   assert.doesNotMatch(page, /id="cloud-backup"|btn-cloud-sign-in|btn-cloud-connect-icloud|Sign in with (Microsoft|Google)/);
 });
 
-test('an iCloud web preview keeps only its own action, truthful storage copy and an ordered installer', async () => {
-  const featuresPath = join(scratch, 'icloud-on.json');
-  await writeFile(featuresPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: true }));
+test('the default iCloud build keeps only its own action, truthful storage copy and an ordered installer', async () => {
+  assert.deepEqual(JSON.parse(read('packaging/ios/features.json')), { schemaVersion: 1, iCloudBackup: true });
   const preview = join(scratch, 'icloud-web');
-  const result = await prepareIos(preview, { featuresPath });
+  const result = await prepareIos(preview);
   const page = await readFile(join(preview, 'index.html'), 'utf8');
   assert.match(page, /id="cloud-backup" hidden/);
   assert.match(page, /id="btn-cloud-connect-icloud"[^>]*>Connect iCloud<\/button>/);
@@ -855,9 +855,8 @@ test('Debug-only test surfaces and methods called by name cannot reach a Release
   assert.ok(debug.some(({ settings }) => setting(settings, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS') === 'DEBUG $(inherited)'));
 });
 
-// iCloud backup ships switched off until the owner's signed-in test on a real device, and a Release build
-// cut meanwhile must carry none of it. Release defines neither DEBUG, which the test above holds, nor
-// RECAP_ICLOUD, which no build setting defines yet, so code held to those conditions compiles out of it.
+// Keep the conditional boundary even in an enabled build: the fake must never enter Release,
+// and a future off build still needs a way to leave the real implementation out.
 const ICLOUD_CONDITIONS = new Set(['#if DEBUG', '#if RECAP_ICLOUD', '#if RECAP_ICLOUD || DEBUG']);
 const ICLOUD_USE = /\bICloud[A-Z]\w*|\biCloudFake\w*|\.cloud\b|\b(?:var|let) cloud\b|"cloud"|\bcloud\.handle\b/;
 
@@ -897,12 +896,46 @@ test('a Release build without the iCloud switch compiles none of the iCloud back
   }
   assert.deepEqual(outside, []);
   assert.ok(uses >= 6, `found ${uses} uses of iCloud backup outside its own files, so this would barely check`);
-  assert.doesNotMatch(project, /RECAP_ICLOUD/, 'no build setting defines the switch yet');
-  assert.doesNotMatch(project, /CODE_SIGN_ENTITLEMENTS/, 'no build carries the iCloud entitlement yet');
-  assert.doesNotMatch(read('packaging/ios/RecapPage-Info.plist'), /NSUbiquitousContainers/, 'nor shows the folder yet');
   const store = appSource('ICloudDocumentStore');
   const identity = JSON.parse(read('packaging/ios/identity.json'));
   assert.ok(store.includes(`static let containerIdentifier = "${identity.iCloudContainer}"`), 'the store names the app\'s own container');
+});
+
+test('iCloud Documents signing and the public folder are wired only to the app configurations', () => {
+  const app = targetConfigurations(project, 'RecapPage');
+  assert.deepEqual(app.map(({ name }) => name).sort(), ['Debug', 'Release']);
+  for (const { settings } of app) {
+    assert.equal(setting(settings, 'CODE_SIGN_ENTITLEMENTS'), 'RecapPage-iCloud.entitlements');
+    assert.equal(setting(settings, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'), '$(inherited) RECAP_ICLOUD');
+  }
+  for (const target of ['RecapPageTests', 'RecapPageUITests']) {
+    for (const { settings } of targetConfigurations(project, target)) {
+      assert.equal(setting(settings, 'CODE_SIGN_ENTITLEMENTS'), undefined);
+      assert.equal(setting(settings, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'), undefined);
+    }
+  }
+  const container = JSON.parse(read('packaging/ios/identity.json')).iCloudContainer;
+  const entitlements = read('packaging/ios/RecapPage-iCloud.entitlements');
+  assert.deepEqual([...entitlements.matchAll(/<key>([^<]+)<\/key>/g)].map(([, key]) => key).sort(), [
+    'com.apple.developer.icloud-container-identifiers',
+    'com.apple.developer.icloud-services',
+    'com.apple.developer.ubiquity-container-identifiers',
+  ]);
+  for (const key of ['com.apple.developer.icloud-container-identifiers', 'com.apple.developer.ubiquity-container-identifiers']) {
+    const values = new RegExp(`<key>${key.replaceAll('.', '\\.')}</key>\\s*<array>\\s*<string>([^<]+)</string>\\s*</array>`).exec(entitlements);
+    assert.equal(values?.[1], container, `${key} grants exactly the permanent container`);
+  }
+  assert.match(entitlements, /<key>com\.apple\.developer\.icloud-services<\/key>\s*<array>\s*<string>CloudDocuments<\/string>\s*<\/array>/);
+  const info = read('packaging/ios/RecapPage-Info.plist');
+  const declaration = /<key>NSUbiquitousContainers<\/key>\s*<dict>([\s\S]*?)<\/dict>\s*<\/dict>/.exec(info)?.[1];
+  assert.ok(declaration, 'one public container declaration exists');
+  assert.deepEqual([...declaration.matchAll(/<key>([^<]+)<\/key>/g)].map(([, key]) => key), [
+    container, 'NSUbiquitousContainerIsDocumentScopePublic', 'NSUbiquitousContainerName',
+    'NSUbiquitousContainerSupportedFolderLevels',
+  ]);
+  assert.match(declaration, /<key>NSUbiquitousContainerIsDocumentScopePublic<\/key>\s*<true\/>/);
+  assert.match(declaration, /<key>NSUbiquitousContainerName<\/key>\s*<string>Recap Page<\/string>/);
+  assert.match(declaration, /<key>NSUbiquitousContainerSupportedFolderLevels<\/key>\s*<string>Any<\/string>/);
 });
 
 test('the Swift code reaches WebKit only through methods iOS 18 has', async () => {
