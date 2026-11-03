@@ -176,8 +176,8 @@ export function createCloudHostTransport({
       if (!Array.isArray(items)) throw new CloudBackupError('The cloud account did not answer with a list.', 'invalid');
       return items;
     },
-    async read(id, { connection } = {}) {
-      const { bytes } = await post('read', { connection, id }, within('read'));
+    async read(id, { connection, purpose } = {}) {
+      const { bytes } = await post('read', { connection, id, purpose }, within('read'));
       const decoded = typeof bytes === 'string' ? fromBase64(bytes) : null;
       if (!decoded) throw new CloudBackupError('The cloud copy could not be read.', 'invalid');
       return decoded;

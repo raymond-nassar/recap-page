@@ -46,6 +46,20 @@ test('through the shared transport, a build without iCloud reads as not enabled 
   assert.equal(native.sent[0].body, '{}');
 });
 
+// Only the read-back after a create may wait for iCloud to store a new file, and the handler knows which
+// read that is only from the purpose the engine states, so the shared transport has to carry it through.
+test('a read carries the purpose the engine states, and a read without one sends none', async () => {
+  const native = nativeHandler(() => reply(200, { ok: true, bytes: 'AQ==' }));
+  const transport = createICloudTransport({ native, nav: { userAgent: 'iPhone' }, createTransport: createCloudHostTransport });
+  const connection = 'a'.repeat(32);
+  assert.deepEqual(await transport.read('f', { connection, purpose: 'verify' }), new Uint8Array([1]));
+  await transport.read('f', { connection });
+  assert.deepEqual(native.sent.map((message) => JSON.parse(message.body)), [
+    { connection, id: 'f', purpose: 'verify' },
+    { connection, id: 'f' },
+  ]);
+});
+
 test('a reply in any other shape, or a handler that cannot be reached, is a fault rather than an answer', async () => {
   for (const bad of [null, { v: 2, kind: 'cloud-result', status: 200, body: '{}' }, { v: 1, kind: 'other', status: 200, body: '{}' },
     { v: 1, kind: 'cloud-result', status: '200', body: '{}' }, { v: 1, kind: 'cloud-result', status: 200, body: { ok: true } }]) {

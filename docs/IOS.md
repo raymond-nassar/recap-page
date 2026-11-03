@@ -356,8 +356,9 @@ shared backup engine, its schedule and its restore are unchanged.
   separate change once iOS build 6 is cut, and the first TestFlight export with them is the proof
   that signing accepts them.
 - **What iOS decides.** iOS uploads on its schedule. Read-back waits up to nine minutes for confirmation,
-  and a pending local backup blocks another create before it writes. Retention runs only after a newer
-  backup is confirmed. Restoring another device's backup may first need a download and a retry.
+  and only that read waits: any other read of a file still waiting to upload is refused at once and tried
+  again later. A pending local backup blocks another create before it writes. Retention runs only after
+  a newer backup is confirmed. Restoring another device's backup may first need a download and a retry.
 - **Account changes.** A connection is recorded against the iCloud account the device was signed in
   to. Signing out makes backup unavailable, and a different account needs connecting again, so one
   account's backups are never written into another's folder.

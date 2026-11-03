@@ -202,7 +202,7 @@ final class ICloudBackupHandlerTests: XCTestCase {
         let connection = try await connect()
         store.uploadDelaySeconds = 10
         _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
-        let read = try await call("read", ["connection": connection, "id": backupName])
+        let read = try await call("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         XCTAssertEqual(read["ok"] as? Bool, true)
         XCTAssertEqual(read["bytes"] as? String, "AQID")
         XCTAssertEqual(store.elapsed, 10)
@@ -223,14 +223,14 @@ final class ICloudBackupHandlerTests: XCTestCase {
                 let listed = try await call("list", ["connection": connection])
                 let items = try XCTUnwrap(listed["items"] as? [[String: Any]])
                 XCTAssertEqual(items.first?["id"] as? String, backupName)
-                discoveryRead = try await call("read", ["connection": connection, "id": backupName])
+                discoveryRead = try await call("read", ["connection": connection, "id": backupName, "purpose": "discover"])
                 discoveryElapsed = store.elapsed - started
             } catch {
                 XCTFail("Could not inspect the pending backup: \(error)")
             }
         }
 
-        let verification = try await call("read", ["connection": connection, "id": backupName])
+        let verification = try await call("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         let discovery = try XCTUnwrap(discoveryRead)
         let failure = discovery["error"] as? [String: Any]
         XCTAssertEqual(discovery["ok"] as? Bool, false)
@@ -249,14 +249,14 @@ final class ICloudBackupHandlerTests: XCTestCase {
         store.uploadWaitSeconds = 2
         _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
 
-        let verification = try await refusal("read", ["connection": connection, "id": backupName])
+        let verification = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         XCTAssertEqual(verification.code, "unavailable")
         XCTAssertEqual(store.elapsed, 2)
         _ = try await call("list", ["connection": connection])
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
-        XCTAssertEqual(discovery.retry, 15_000)
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
+        XCTAssertEqual(readBack.retry, 15_000)
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -271,40 +271,52 @@ final class ICloudBackupHandlerTests: XCTestCase {
 
         _ = try await call("list", ["connection": renewed])
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": renewed, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
-        XCTAssertEqual(discovery.retry, 15_000)
+        let readBack = try await refusal("read", ["connection": renewed, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
+        XCTAssertEqual(readBack.retry, 15_000)
         XCTAssertEqual(store.elapsed, started)
     }
 
-    func testOnePostCreateListStillAllowsDelayedVerification() async throws {
+    func testListsAfterACreateStillLetTheReadBackWait() async throws {
         let connection = try await connect()
         store.uploadDelaySeconds = 10
         _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
         _ = try await call("list", ["connection": connection])
+        _ = try await call("list", ["connection": connection])
 
-        let verification = try await call("read", ["connection": connection, "id": backupName])
+        let verification = try await call("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         XCTAssertEqual(verification["ok"] as? Bool, true)
         XCTAssertEqual(verification["bytes"] as? String, "AQID")
         XCTAssertEqual(store.elapsed, 10)
     }
 
-    func testASecondPostCreateListDisarmsVerification() async throws {
+    // The engine states why it reads. Only the read-back after its own create may wait for the upload;
+    // every other read of the waiting file, or one stating no purpose, is refused at once and leaves the
+    // read-back still to come able to wait.
+    func testOnlyTheVerifyReadWaitsAndOtherReadsLeaveItArmed() async throws {
         let connection = try await connect()
         store.automaticallyUpload = false
         store.uploadWaitSeconds = 2
         _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
         _ = try await call("list", ["connection": connection])
-        _ = try await call("list", ["connection": connection])
+
+        for purpose in [nil, "discover", "restore", "keep", "check", "other"] as [String?] {
+            var input: [String: Any] = ["connection": connection, "id": backupName]
+            if let purpose { input["purpose"] = purpose }
+            let started = store.elapsed
+            let refused = try await refusal("read", input)
+            XCTAssertEqual(refused.code, "unavailable", "purpose \(purpose ?? "none")")
+            XCTAssertEqual(refused.retry, 15_000, "purpose \(purpose ?? "none")")
+            XCTAssertEqual(store.elapsed, started, "purpose \(purpose ?? "none") never waits")
+        }
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
-        XCTAssertEqual(discovery.retry, 15_000)
-        XCTAssertEqual(store.elapsed, started)
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
+        XCTAssertEqual(store.elapsed, started + 2, "the read-back still waits")
     }
 
-    func testAFailedPostCreateListDisarmsVerification() async throws {
+    func testAFailedListDoesNotDisarmVerification() async throws {
         let connection = try await connect()
         store.automaticallyUpload = false
         store.uploadWaitSeconds = 2
@@ -315,57 +327,14 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(failedList.retry, 30_000)
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
-        XCTAssertEqual(store.elapsed, started)
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
+        XCTAssertEqual(store.elapsed, started + 2)
     }
 
-    func testAnInterveningListCannotRearmVerification() async throws {
-        let connection = try await connect()
-        store.automaticallyUpload = false
-        store.uploadWaitSeconds = 2
-        _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
-        var interveningListSucceeded = false
-        store.onListPause = { [self] in
-            do {
-                let listed = try await call("list", ["connection": connection])
-                interveningListSucceeded = listed["ok"] as? Bool == true
-            } catch {
-                XCTFail("Could not run the intervening list: \(error)")
-            }
-        }
-        _ = try await call("list", ["connection": connection])
-        XCTAssertTrue(interveningListSucceeded)
-
-        let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
-        XCTAssertEqual(store.elapsed, started)
-    }
-
-    func testACancelledListCannotRearmVerification() async throws {
-        let connection = try await connect()
-        store.automaticallyUpload = false
-        store.uploadWaitSeconds = 2
-        _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
-        var listTask: Task<Bool, Error>?
-        store.onListPause = {
-            listTask?.cancel()
-        }
-        listTask = Task { @MainActor in
-            let reply = try await self.call("list", ["connection": connection])
-            return reply["ok"] as? Bool == true
-        }
-        let listed = try await XCTUnwrap(listTask).value
-        XCTAssertTrue(listed)
-
-        let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
-        XCTAssertEqual(store.elapsed, started)
-    }
-
-    func testAnInterveningListDuringCreatePreventsArmingVerification() async throws {
+    // A discovery listing in flight while the create completes no longer stops the create's read-back from
+    // waiting, and the discovery's own read of the waiting file is refused at once.
+    func testAListDuringCreateStillLetsTheReadBackWait() async throws {
         let connection = try await connect()
         store.automaticallyUpload = false
         store.uploadWaitSeconds = 2
@@ -382,10 +351,15 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(created["ok"] as? Bool, true)
         XCTAssertTrue(interveningListSucceeded)
 
-        let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
+        var started = store.elapsed
+        let discovery = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "discover"])
         XCTAssertEqual(discovery.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
+
+        started = store.elapsed
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
+        XCTAssertEqual(store.elapsed, started + 2)
     }
 
     func testACancelledCreateDoesNotArmVerification() async throws {
@@ -404,8 +378,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertTrue(created, "cancellation cannot turn a published file into a failed create")
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -424,8 +398,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(created["ok"] as? Bool, true)
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -438,8 +412,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(deleted["ok"] as? Bool, true)
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -455,8 +429,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertNotNil(store.files[backupName])
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -470,8 +444,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertNil(store.files[secondBackupName])
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -480,11 +454,11 @@ final class ICloudBackupHandlerTests: XCTestCase {
         _ = try await call("create", ["connection": connection, "name": backupName, "bytes": "AQID"])
         store.uploadDelaySeconds = 10
         _ = try await call("create", ["connection": connection, "name": secondBackupName, "bytes": "BAUG"])
-        let old = try await call("read", ["connection": connection, "id": backupName])
+        let old = try await call("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         XCTAssertEqual(old["bytes"] as? String, "AQID")
 
         let started = store.elapsed
-        let newer = try await refusal("read", ["connection": connection, "id": secondBackupName])
+        let newer = try await refusal("read", ["connection": connection, "id": secondBackupName, "purpose": "verify"])
         XCTAssertEqual(newer.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
@@ -498,8 +472,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         XCTAssertEqual(invalid.code, "invalid")
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -516,8 +490,8 @@ final class ICloudBackupHandlerTests: XCTestCase {
         instant = instant.advanced(by: .seconds(150))
 
         let started = store.elapsed
-        let discovery = try await refusal("read", ["connection": connection, "id": backupName])
-        XCTAssertEqual(discovery.code, "unavailable")
+        let readBack = try await refusal("read", ["connection": connection, "id": backupName, "purpose": "verify"])
+        XCTAssertEqual(readBack.code, "unavailable")
         XCTAssertEqual(store.elapsed, started)
     }
 
@@ -532,7 +506,7 @@ final class ICloudBackupHandlerTests: XCTestCase {
         _ = try await call("list", ["connection": connection])
         instant = instant.advanced(by: .seconds(149))
 
-        let verification = try await call("read", ["connection": connection, "id": backupName])
+        let verification = try await call("read", ["connection": connection, "id": backupName, "purpose": "verify"])
         XCTAssertEqual(verification["ok"] as? Bool, true)
         XCTAssertEqual(verification["bytes"] as? String, "AQID")
         XCTAssertEqual(store.elapsed, 10)

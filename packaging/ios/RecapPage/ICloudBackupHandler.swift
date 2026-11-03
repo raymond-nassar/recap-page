@@ -16,7 +16,8 @@ final class ICloudBackupHandler {
     static let smallBody = 16 * 1024
     static let createBody = (ICloudDriveStore.maximumBytes + 2) / 3 * 4 + 16 * 1024
     private static let recordKey = "recap.ios.icloud.connection"
-    // The collision list has 120 seconds plus 15 seconds of reply grace; allow another 15 seconds.
+    // The read-back follows the collision list, which has 120 seconds plus 15 seconds of reply grace;
+    // allow another 15 seconds.
     private static let verificationWindow: Duration = .seconds(150)
     // Leave the create reply's 15-second grace to reach the page before it gives up.
     private static let createWindow: Duration = .seconds(600)
@@ -41,7 +42,6 @@ final class ICloudBackupHandler {
         let name: String
         let connection: String
         let expires: ContinuousClock.Instant
-        var listed = false
     }
 
     private let store: ICloudDocumentStore
@@ -64,7 +64,7 @@ final class ICloudBackupHandler {
         self.newConnection = newConnection
     }
 
-    // An awaited create or list cannot rearm a candidate after another operation intervenes.
+    // An awaited create cannot arm a candidate after another operation intervenes.
     private func disarmVerification() {
         verification = nil
         verificationEpoch &+= 1
@@ -210,25 +210,18 @@ final class ICloudBackupHandler {
             return ["status": current]
         case "list":
             let identity = try connected(input)
-            let candidate = verification
-            disarmVerification()
-            let epoch = verificationEpoch
             let items = try await store.list(expectedIdentity: identity)
-            if var candidate,
-               !candidate.listed,
-               candidate.connection == (input["connection"] as? String),
-               candidate.expires > clock(),
-               verificationEpoch == epoch,
-               !Task.isCancelled,
-               record?.connection == candidate.connection {
-                candidate.listed = true
-                verification = candidate
-            }
             return ["items": items.map(Self.json)]
         case "read":
             let identity = try connected(input)
-            let candidate = verification
-            disarmVerification()
+            // The engine says why it reads. Only its read-back of the file it has just created may wait for
+            // iCloud to store it, and that read uses the candidate up. Any other read of a waiting file is
+            // refused at once, and leaves the candidate for the read-back still to come.
+            var candidate: VerificationCandidate?
+            if input["purpose"] as? String == "verify" {
+                candidate = verification
+                disarmVerification()
+            }
             let name = try Self.itemName(input, key: "id")
             let waitForUpload = candidate.map {
                 $0.name == name && $0.connection == (input["connection"] as? String) && $0.expires > clock()
