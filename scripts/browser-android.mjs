@@ -108,8 +108,10 @@ const spotlightGeometry = [];
 const readingCaseArg = process.argv.find((arg) => arg.startsWith('--reading-composition-case='));
 const readingCase = readingCaseArg?.slice('--reading-composition-case='.length);
 if (readingCaseArg !== undefined) {
-  assert.ok(readingComposition && !readingFactsAx && readingCase === 'M01' && process.argv.includes('--viewport=360x800'),
-    'Reading case selection must be M01 with --only=reading-composition --viewport=360x800');
+  assert.ok(readingComposition && !readingFactsAx
+    && ((readingCase === 'M01' && process.argv.includes('--viewport=360x800'))
+      || (readingCase === 'near-end' && !process.argv.some((arg) => arg.startsWith('--viewport=')))),
+  'Reading case selection requires M01 at 360x800 or near-end at its two phone profiles');
 }
 if (readingFactsAx) {
   assert.ok(process.env.MRT_READING_AX_EVIDENCE && !process.env.MRT_ANDROID_SCREENSHOTS
@@ -1896,8 +1898,19 @@ const readingProfiles = [
   { id: 'M06', width: 360, height: 800, textScale: 2, long: true },
   { id: 'D01', width: 1280, height: 900, desktop: true },
 ];
+const nearEndProfiles = [
+  { id: 'near-end-375x667', width: 375, height: 667, nearEnd: true },
+  { id: 'near-end-412x915', width: 412, height: 915, nearEnd: true },
+];
 let readingOrder;
 let readingIssue;
+let nearEndOrder;
+if (readingComposition && !readingFactsAx) {
+  const entry = catalog.lists.find((list) => list.id === 'house-of-m');
+  assert.ok(entry, 'Near-end reading composition requires House of M');
+  nearEndOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
+  assert.equal(nearEndOrder.items.length, 20);
+}
 if (readingComposition || alignment || saveNotice || homeContinue || progressGlance) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
@@ -1911,12 +1924,15 @@ if (readingComposition || alignment || saveNotice || homeContinue || progressGla
 }
 
 function readingState(profile = {}) {
+  const order = profile.nearEnd ? nearEndOrder : readingOrder;
   let state = createList(createEmptyState(), {
-    id: READING_LIST, name: readingOrder.name, description: readingOrder.description,
-    catalogId: readingOrder.id,
+    id: READING_LIST, name: order.name, description: order.description,
+    catalogId: order.id,
   });
-  state = addIssuesToList(state, READING_LIST, readingOrder.items).state;
-  for (const item of readingOrder.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
+  state = addIssuesToList(state, READING_LIST, order.items).state;
+  for (const item of order.items.slice(0, profile.nearEnd ? 18 : 3)) {
+    state = markRead(state, item.issueId, true, 1767225600000);
+  }
   if (profile.long) {
     state.lists[READING_LIST].name = 'Hickman to Secret Wars: a deliberately long Reading List title with every word retained';
     state.issues[readingIssue.issueId].title = `${readingIssue.title}: a long issue title with each word kept and room to read at a larger text size`;
@@ -2294,8 +2310,53 @@ async function readingSemantics(page) {
 async function readingCompositionCheck(page, profile) {
   await route(page, 'read');
   await page.waitForFunction((expected) => document.querySelector('#hero-title')?.textContent === expected,
-    {}, readingState(profile).issues[readingIssue.issueId].title);
+    {}, readingState(profile).issues[profile.nearEnd ? nearEndOrder.items[18].issueId : readingIssue.issueId].title);
   const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  if (profile.nearEnd) {
+    await page.waitForFunction(() => !document.querySelector('#list-similar-hint').hidden
+      && document.querySelector('#list-similar-hint button'));
+    const inspect = () => page.evaluate(() => {
+      const hint = document.querySelector('#list-similar-hint');
+      const hero = document.querySelector('#hero');
+      const navigation = document.querySelector('.rail-header');
+      const ceiling = navigation?.getBoundingClientRect().top ?? innerHeight;
+      return {
+        belowCard: hint.getBoundingClientRect().top >= hero.getBoundingClientRect().bottom,
+        moved: hint.parentElement.id === 'reading-overview',
+        aboveCard: hint.getBoundingClientRect().bottom <= hero.getBoundingClientRect().top,
+        count: document.querySelectorAll('#list-similar-hint').length,
+        controls: ['#btn-hero-read', '#btn-hero-done'].map((selector) => {
+          const node = document.querySelector(selector);
+          const rect = node.getBoundingClientRect();
+          const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+          return { selector, top: rect.top, bottom: rect.bottom, ceiling,
+            visible: node.checkVisibility() && rect.top >= 0 && rect.bottom <= ceiling
+              && rect.left >= 0 && rect.right <= innerWidth && (hit === node || node.contains(hit)) };
+        }),
+      };
+    });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    const opened = await inspect();
+    check(opened.moved && opened.belowCard, `${profile.id}: near-end hint follows the comic in the phone overview`);
+    for (const control of opened.controls) {
+      check(control.visible, `${profile.id}: ${control.selector} fully visible on opening ${JSON.stringify(control)}`);
+    }
+    await screenshot(page, profile.id, 'near-end-opening');
+    if (!opened.moved) return;
+    for (const width of [701, 700, profile.width]) {
+      await page.setViewport({ width, height: profile.height });
+      await page.waitForFunction((phone) => (document.querySelector('#list-similar-hint').parentElement.id
+        === 'reading-overview') === phone, {}, width <= 700);
+      const resized = await inspect();
+      check(width <= 700 ? resized.moved && resized.belowCard : resized.aboveCard,
+        `${profile.id}: near-end hint follows the 700px placement boundary at ${width}px`);
+      check(resized.count === 1, `${profile.id}: resizing retains exactly one near-end hint`);
+    }
+    check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
+      `${profile.id}: near-end placement preserves saved progress`);
+    console.log(`NEAR END ${profile.id}: ${JSON.stringify(opened)}`);
+    return;
+  }
   if (profile.id === 'M05') {
     await page.focus('#btn-hero-inspect');
     await click(page, '#btn-hero-inspect');
@@ -5187,7 +5248,9 @@ try {
   if (storyTypesOnly) viewports = [
     { width: 1280, height: 900, desktop: true }, { width: 412, height: 915 },
   ];
-  if (readingComposition) viewports = readingFactsAx ? readingProfiles.filter((profile) => !profile.desktop) : readingProfiles;
+  if (readingComposition) viewports = readingFactsAx
+    ? readingProfiles.filter((profile) => !profile.desktop) : [...readingProfiles, ...nearEndProfiles];
+  if (readingCase === 'near-end') viewports = nearEndProfiles;
   if (issuePoster) viewports = issuePosterProfiles;
   if (spotlightControls) viewports = [
     { width: 320, height: 740 },
@@ -5356,7 +5419,8 @@ try {
         imageRequests.push(request.url());
         return request.respond({ status: 200, contentType: 'image/svg+xml', body: POSTER_COVER_SVG });
       }
-      if (((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance) && request.resourceType() === 'image'
+      if (((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance)
+        && (request.resourceType() === 'image' || viewport.nearEnd)
         || storyTypesOnly) && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
@@ -5385,7 +5449,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || storyTypesOnly ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || storyTypesOnly || viewport.nearEnd ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -5395,8 +5459,8 @@ try {
         body: JSON.stringify({ status: 'ok', ...order.items[0], items: [], data: [] }),
       });
     });
-    await page.evaluateOnNewDocument((reading, spotlight) => {
-      if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: false, theme: 'light' } : { covers: false }));
+    await page.evaluateOnNewDocument((reading, spotlight, nearEnd) => {
+      if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: nearEnd, theme: 'light' } : { covers: false }));
       window.addEventListener('load', () => {
         const channel = new MessageChannel();
         const harness = { requests: [], replies: [], autoSave: true };
@@ -5421,7 +5485,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly, viewport.nearEnd === true);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');

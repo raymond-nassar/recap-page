@@ -5559,9 +5559,7 @@ const SCENARIOS = [
         openName === 'Open: Setup to Modern Timeline', openName);
 
       await page.$eval('#catalog-q', (input) => {
-        // MCU Prep: The Avengers (2012) names Disassembled in its revised description, so the
-        // query adds a word only the event's own record carries to keep one result.
-        input.value = 'Avengers Disassembled Finale';
+        input.value = 'Avengers Disassembled';
         input.dispatchEvent(new Event('input', { bubbles: true }));
       });
       await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
