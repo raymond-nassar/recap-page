@@ -49,8 +49,10 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
   assert.equal(field(fieldWithBlankLine, 'Example'), 'value\n');
 });
 
-test('the 4.3.0 privacy policy is the approved text', () => {
-  assert.equal(digest(read('PRIVACY.md')), '23eb5374e446adb36bcf908b5ac3525bfa91548a36eb2333948503a298a1efe0');
+// The owner approved this privacy policy paragraph on #1079:
+// https://github.com/raymond-nassar/recap-page/issues/1079#issuecomment-6591655469
+test('the privacy policy is the owner-approved text', () => {
+  assert.equal(digest(read('PRIVACY.md')), 'a35dee4f2097949a38984bdbaedbc125d35182b8716be6178444ec1f870197b1');
 });
 
 test('the 4.3.0 Microsoft Store fields are the approved text', () => {
