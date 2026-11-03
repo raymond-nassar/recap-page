@@ -104,12 +104,14 @@ test('re-entering Search with the same query keeps the rows the reader had, coll
 });
 
 test('one match reads in the singular and needs no Show all button', async () => {
-  const h = harness();
+  // A one-list catalog, because how many bundled lists mention any real name moves whenever their
+  // descriptions are rewritten: "House of M" matched 6 and then 7 after #1093.
+  const only = catalog.lists.find((list) => list.id === 'house-of-m');
+  const h = harness({ loadCatalog: async () => ({ lists: [only] }) });
   await h.view.update('House of M');
-  assert.equal(h.cards()[0].id, 'house-of-m');
-  const count = h.cards().length;
-  assert.equal(h.nodes.count.textContent, count === 1 ? '1 Reading List matches' : `${count} Reading Lists match`);
-  assert.equal(h.nodes.more.hidden, count <= 6);
+  assert.deepEqual(h.cards().map((list) => list.id), ['house-of-m']);
+  assert.equal(h.nodes.count.textContent, '1 Reading List matches');
+  assert.equal(h.nodes.more.hidden, true);
 });
 
 test('no terms hides the group, and a query with no match says so', async () => {
