@@ -82,12 +82,12 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. These are the current inclusion
-rules in `src/js/lib/catalog.js:954-977`, not a classification to assign just to make a list appear.
+rules in `src/js/lib/catalog.js:957-980`, not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
 Review chronology from source evidence, not merely the earliest publication date. Equal years
-retain manifest order (`src/js/lib/catalog.js:268-274`), so approve an intentional insertion anchor
+retain manifest order (`src/js/lib/catalog.js:271-277`), so approve an intentional insertion anchor
 and review the order among same-year stories.
 
 | Hypothetical input | Placement decision |

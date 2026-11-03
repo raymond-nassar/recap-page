@@ -8,7 +8,7 @@ import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson,
-  sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest,
+  sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
@@ -222,7 +222,7 @@ test('Ms. Marvel publishes eighteen originals with guide-local shared anthology 
     assert.equal(Object.hasOwn(item, 'notes'), false);
     assert.equal(Object.hasOwn(item, 'storyId'), false);
   }
-  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id))), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   const card = catalog.lists.find((row) => row.id === id);

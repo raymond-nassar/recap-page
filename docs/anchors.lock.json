@@ -1754,13 +1754,13 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1540-1593|0": {
-    "anchor": "src/js/lib/catalog.js:1540-1593",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1543-1596|0": {
+    "anchor": "src/js/lib/catalog.js:1543-1596",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:752-770|0": {
-    "anchor": "src/js/lib/catalog.js:752-770",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:755-773|0": {
+    "anchor": "src/js/lib/catalog.js:755-773",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -2034,13 +2034,13 @@
     "fp": "9c4a55814397835e",
     "head": "async function networkThenCache(event) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:268-274|0": {
-    "anchor": "src/js/lib/catalog.js:268-274",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:271-277|0": {
+    "anchor": "src/js/lib/catalog.js:271-277",
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:954-977|0": {
-    "anchor": "src/js/lib/catalog.js:954-977",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:957-980|0": {
+    "anchor": "src/js/lib/catalog.js:957-980",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -2114,13 +2114,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:13519-13656|0": {
-    "anchor": "src/data/catalog.json:13519-13656",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:14977-15114|0": {
+    "anchor": "src/data/catalog.json:14977-15114",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:9306-9357|0": {
-    "anchor": "src/data/curated-lists.json:9306-9357",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:10764-10815|0": {
+    "anchor": "src/data/curated-lists.json:10764-10815",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },

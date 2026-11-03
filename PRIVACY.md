@@ -44,9 +44,13 @@ except that it also backs up at once when you leave the page. These are attempts
 a lost connection, a full OneDrive or a closing app can stop one. Check the time of the last
 successful backup before you rely on it.
 
-The app aims to keep the two most recent backups for each device. Restoring one replaces your saved data
-after you confirm. The app never merges backups. It downloads another device's backup only if you
-choose to restore it.
+The app aims to keep the two most recent backups for each device. The app never merges backups. To
+show the backup list, it downloads the recent backups in your cloud account, including other
+devices' backups, and checks that each is complete and readable. It keeps only a short summary of
+each, and only while the app is open: the file's identifier, which device made it, when, its size,
+how many lists and completion history records it holds, and whether it includes an import draft.
+The list shows the device, the time and the number of lists. Only a restore you confirm replaces
+your saved data.
 
 The app keeps your Microsoft sign-in on your device so backups can continue. It also keeps your
 account name or email there to show which account is connected. Neither is part of a backup. On
