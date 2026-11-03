@@ -55,6 +55,7 @@ import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -5391,7 +5392,7 @@ const SCENARIOS = [
         && timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
         && timeline.doom.meta.startsWith('85 issues')
         && timeline.doom.meta.includes(
           '10 issues have owner-confirmed identities but no provider details or covers',
@@ -5408,7 +5409,7 @@ const SCENARIOS = [
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows'),
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025'),
         JSON.stringify(timeline.doom));
       t.check('the chapter years are derived exactly and only 1999 remains empty before 2004',
         timeline.spine[0]?.year === 1998
@@ -5558,7 +5559,9 @@ const SCENARIOS = [
         openName === 'Open: Setup to Modern Timeline', openName);
 
       await page.$eval('#catalog-q', (input) => {
-        input.value = 'Avengers Disassembled';
+        // MCU Prep: The Avengers (2012) names Disassembled in its revised description, so the
+        // query adds a word only the event's own record carries to keep one result.
+        input.value = 'Avengers Disassembled Finale';
         input.dispatchEvent(new Event('input', { bubbles: true }));
       });
       await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
@@ -5654,20 +5657,17 @@ const SCENARIOS = [
           count: 25,
           first: 'New X-Men (2001) #146',
         },
-      ];
+      ].map((chapter) => descriptionRevisions.redoEntry(chapter));
       const representativeResults = [];
       for (const representative of representatives) {
         await page.$eval('#catalog-q', (input, name) => {
           input.value = name;
           input.dispatchEvent(new Event('input', { bubbles: true }));
         }, representative.name);
-        await page.waitForFunction(
-          (name) => document.querySelectorAll('#catalog-results .catalog-card').length === 1
-              && document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() === name,
-          { timeout: 15000 },
-          representative.name,
-        );
-        const preview = '#catalog-results .catalog-card [data-act="preview"]';
+        // A chapter's name can also appear in a neighbor's revised description, as Storm: The Arena
+        // names the Planet X crossover cluster, so the result is found by identity, not by count.
+        const preview = `#catalog-results [data-story="list:${representative.id}"] [data-act="preview"]`;
+        await page.waitForSelector(preview, { timeout: 15000 });
         await page.focus(preview);
         await page.keyboard.press('Enter');
         await page.waitForFunction(
