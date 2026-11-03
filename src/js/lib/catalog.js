@@ -593,6 +593,9 @@ function fold(v) {
 // unrelated run of letters.
 const squeeze = (folded) => folded.replace(/ /g, '');
 
+// Search shares this exact folding so a list found on a browse screen is found on Search too.
+export { fold as foldSearchText, squeeze as squeezeSearchText };
+
 function haystack(list) {
   return fold([
     list.name,

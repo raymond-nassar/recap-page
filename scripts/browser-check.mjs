@@ -10259,6 +10259,173 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'search-reading-lists',
+    title: 'the Search tab finds bundled Reading Lists on the device, offline, beside the comic search (#1083)',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => {
+        window.__mrtComicSearch = true;
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtListSearchFetches = [];
+        const stubbed = window.fetch;
+        window.fetch = function (input, init) {
+          window.__mrtListSearchFetches.push(typeof input === 'string' ? input : input?.url ?? String(input));
+          return stubbed.call(this, input, init);
+        };
+      });
+      await page.setViewport({ width: 1280, height: 900 });
+      await open(page, '/#/add');
+      const rows = () => page.$$eval('#search-lists-results .catalog-row', (nodes) => nodes.map((row) => ({
+        name: row.querySelector('.catalog-card-preview').textContent.trim(),
+        act: row.querySelector('[data-act="import"], [data-act="open"]')?.dataset.act,
+      })));
+      const type = async (text) => {
+        for (let i = 1; i <= text.length; i += 1) {
+          await page.$eval('#search-q', (input, value) => {
+            input.value = value;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+          }, text.slice(0, i));
+        }
+      };
+      const snapshot = () => page.evaluate(() => ({
+        local: JSON.stringify(Object.entries(localStorage).sort()),
+        session: JSON.stringify(Object.entries(sessionStorage).sort()),
+        history: history.length,
+        hash: location.hash,
+        api: window.__mrtListSearchFetches.filter((url) => new URL(url, location.href).origin !== location.origin),
+        fetches: window.__mrtListSearchFetches.length,
+      }));
+      // Wait for the catalog the hub already asked for, so what typing does is measured alone.
+      await page.waitForFunction(() => document.querySelector('#view-add:not([hidden]) #search-q'));
+      await type('F');
+      await page.waitForFunction(() => !document.querySelector('#search-lists').hidden);
+      const before = await snapshot();
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent.includes('14 Reading Lists match'));
+      const typed = await snapshot();
+      const first = await rows();
+      const group = await page.evaluate(() => ({
+        count: document.querySelector('#search-lists-count').textContent,
+        more: document.querySelector('#search-lists-more').checkVisibility()
+          && document.querySelector('#search-lists-more').textContent,
+        home: document.querySelector('#search-lists').closest('.view')?.id,
+        listsFirst: document.querySelector('#search-lists').compareDocumentPosition(document.querySelector('#search-results'))
+          === Node.DOCUMENT_POSITION_FOLLOWING,
+        heading: document.querySelector('#search-lists-results .catalog-row h3') !== null,
+      }));
+      t.check('typing on the Search tab ranks the nine name matches first and shows six of 14, lists first, with a count and Show all',
+        group.home === 'view-add' && group.listsFirst && group.heading
+          && group.count === '14 Reading Lists match' && group.more === 'Show all 14 Reading Lists'
+          && first.map((row) => row.name).join('|') === Array.from({ length: 6 }, (_, i) => `Fixture Event ${i + 1}`).join('|')
+          && first.every((row) => row.act === 'import'),
+        JSON.stringify({ group, first }));
+      t.check('typing a list search sends nothing off the device and writes no storage or history',
+        typed.api.join('|') === before.api.join('|') && typed.fetches === before.fetches && typed.local === before.local
+          && typed.session === before.session && typed.history === before.history && typed.hash === before.hash,
+        JSON.stringify({ before, typed }));
+
+      await click(page, '#search-lists-more');
+      const all = await page.evaluate(() => ({
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        more: document.querySelector('#search-lists-more').hidden,
+        focus: document.activeElement?.closest('.catalog-row')?.querySelector('.catalog-card-preview')?.textContent.trim(),
+        button: document.activeElement?.classList.contains('catalog-card-preview'),
+      }));
+      t.check('Show all reveals every match and moves focus to the first newly shown title',
+        all.rows === 14 && all.more && all.button && all.focus === 'Fixture Event 7', JSON.stringify(all));
+
+      await click(page, '[data-view="add-search"]');
+      await page.waitForSelector('#view-add-search:not([hidden]) #search-lists:not([hidden])');
+      const moved = await page.evaluate(() => ({
+        value: document.querySelector('#search-q').value,
+        home: document.querySelector('#search-q').closest('.view')?.id,
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+      }));
+      t.check('Search issues keeps the same field, query and list results',
+        moved.value === 'Fixture Event' && moved.home === 'view-add-search' && moved.rows === 14, JSON.stringify(moved));
+
+      await page.evaluate(() => { window.__mrtListSearchOffline = true; });
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForFunction(() => {
+        const text = document.querySelector('#search-results').textContent.trim();
+        return text && !text.includes('Searching') && !text.includes('Loading');
+      });
+      const offline = await page.evaluate(() => ({
+        section: !document.querySelector('#search-lists').hidden,
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        count: document.querySelector('#search-lists-count').textContent,
+        more: !document.querySelector('#search-lists-more').hidden && document.querySelector('#search-lists-more').textContent,
+        comics: document.querySelector('#search-results').textContent.trim(),
+        api: window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues')).length,
+      }));
+      t.check('a failed comic search keeps the matching lists one press away',
+        offline.section && offline.rows === 0 && offline.count === '14 Reading Lists match'
+          && offline.more === 'Show 14 Reading Lists' && offline.comics.length > 0 && offline.api === 1,
+        JSON.stringify(offline));
+      await click(page, '#search-lists-more');
+      const shown = await page.evaluate(() => ({
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        focus: document.activeElement?.textContent.trim(),
+      }));
+      t.check('Show after a comic search returns every list and focuses the first',
+        shown.rows === 14 && shown.focus === 'Fixture Event 1', JSON.stringify(shown));
+
+      await page.evaluate(() => { window.__mrtListSearchOffline = false; });
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForSelector('#search-results .comic-choice');
+      const comics = await page.evaluate(() => ({
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        top: document.querySelector('#search-results .comic-choice').getBoundingClientRect().top,
+        bottom: document.querySelector('#search-results .comic-choice').getBoundingClientRect().bottom,
+      }));
+      t.check('a comic search folds the list rows so the first comic is in view',
+        comics.rows === 0 && comics.top >= 0 && comics.bottom <= 900, JSON.stringify(comics));
+
+      await type('Fixture Even');
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.focus('#search-lists-results .catalog-row [data-act="preview"]');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] #preview-add [data-act="main"]');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview').open);
+      await page.waitForFunction(() => document.querySelector('#search-lists-results .catalog-row [data-act="open"]'));
+      const added = await page.evaluate(() => ({
+        rows: [...document.querySelectorAll('#search-lists-results .catalog-row')]
+          .map((row) => row.querySelector('[data-act="import"], [data-act="open"]').dataset.act),
+        focus: document.activeElement === document.querySelector('#search-lists-results .catalog-row .catalog-card-preview'),
+        saved: Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+          .filter((list) => list.catalogId === 'browser-check-extra-1').length,
+      }));
+      t.check('adding a list from its Preview turns its row into Open and keeps focus',
+        added.rows[0] === 'open' && added.rows.slice(1).every((act) => act === 'import')
+          && added.focus && added.saved === 1, JSON.stringify(added));
+
+      const layout = async (width, height) => {
+        await page.setViewport({ width, height });
+        return page.evaluate(() => {
+          const more = document.querySelector('#search-lists-more').getBoundingClientRect();
+          const box = document.querySelector('#search-lists').getBoundingClientRect();
+          const row = document.querySelector('#search-lists-results .catalog-row');
+          const action = row.querySelector('.btn').getBoundingClientRect();
+          return {
+            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+            full: Math.abs(more.width - box.width) < 1,
+            action: action.right <= row.getBoundingClientRect().right + 0.5 && action.height >= 24,
+          };
+        });
+      };
+      const phone = await layout(412, 915);
+      const narrow = await layout(700, 900);
+      const wide = await layout(701, 900);
+      t.check('at 412 and 700px the rows fit and Show all spans the group; at 701px it sizes to its words',
+        !phone.overflow && phone.full && phone.action && !narrow.overflow && narrow.full && narrow.action
+          && !wide.overflow && !wide.full && wide.action, JSON.stringify({ phone, narrow, wide }));
+    },
+  },
+  {
     id: 'comic-search-builder',
     title: 'search previews build one explicit selection without changing unrelated Reading Lists',
     async run(page, t) {
@@ -17713,6 +17880,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
           }));
         }
         if (comicSearch && requestUrl.pathname.endsWith('/search/issues')) {
+          if (window.__mrtListSearchOffline) return Promise.reject(new TypeError('Failed to fetch'));
           if (window.__mrtComicSearchFlow && requestUrl.searchParams.get('q') === 'UX06 none') {
             return Promise.resolve(json({ items: [] }));
           }

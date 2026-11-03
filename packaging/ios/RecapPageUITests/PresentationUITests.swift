@@ -2334,7 +2334,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.searchFields["Search issue titles"].firstMatch
+        let searchField = app.searchFields["Search Reading Lists and issue titles"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")

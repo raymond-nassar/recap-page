@@ -65,6 +65,8 @@ import { createCatalogPresentation } from './views/shared/catalog-presentation.j
 import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createPreviewView } from './views/preview.js';
+import { createSearchListsView } from './views/search-lists.js';
+import { parseMcuPrep } from './lib/mcuPrep.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
@@ -1560,6 +1562,7 @@ function showView(next, { focus = true, push = false, at = null } = {}) {
   homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
   addView.enter(next);
+  if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
     if (panel) panel.hidden = name !== next;
@@ -2991,6 +2994,9 @@ export function boot() {
   readerLinkView.wire();
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
+  $('#search-q').addEventListener('input', (event) => void searchListsView.update(event.target.value));
+  $('#search-lists-more').addEventListener('click', () => void searchListsView.showAll());
+  $('#form-search').addEventListener('submit', () => searchListsView.fold());
   dataView.wire();
   completeBackupView.wire();
   cloudBackupView.wire();
@@ -3648,6 +3654,37 @@ const mcuPrepView = createMcuPrepView({
   }),
 });
 
+let mcuGuides = null;
+// Release titles let a film's name find its screen companion from Search. The file is the one the
+// screen companions page reads; a failed read is forgotten so the next keystroke can try again,
+// and list search carries on without release titles meanwhile (#1083).
+function loadMcuGuides() {
+  mcuGuides ??= fetch('./data/mcu-prep.json')
+    .then((response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    })
+    .then((raw) => parseMcuPrep(raw).guides)
+    .catch((error) => {
+      mcuGuides = null;
+      throw error;
+    });
+  return mcuGuides;
+}
+
+const searchListsView = createSearchListsView({
+  elements: () => ({
+    section: $('#search-lists'),
+    count: $('#search-lists-count'),
+    grid: $('#search-lists-results'),
+    more: $('#search-lists-more'),
+  }),
+  loadCatalog,
+  loadGuides: loadMcuGuides,
+  presentation: catalogPresentation,
+  announce,
+});
+
 const catalogView = createCatalogView({
   announce,
   clearLoadNotice: () => clearNotice(CATALOG_LOAD),
@@ -3722,6 +3759,12 @@ const previewView = createPreviewView({
   onClose: async (closedList, { changed, isCurrent }) => {
     if (!isCurrent()) return;
     placeNotices();
+    if (closedList && changed && (view === 'add' || view === 'add-search')) {
+      const held = captureFocus($(`#view-${view}`));
+      await searchListsView.refresh();
+      if (document.activeElement === document.body) restoreFocus(held, { primary: 'main' });
+      return;
+    }
     if (!closedList || !changed || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
       && !generatedCategoryByRoute.has(view))) return;
     const sourceView = view;

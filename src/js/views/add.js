@@ -1160,7 +1160,18 @@ export function createAddView({
     });
   }
 
+  // The Search tab carries the search card itself, so a reader types on the tab rather than after a
+  // second choice (#1083). Moving the one card rather than copying it keeps one field, one set of
+  // selected comics and one selection bar behind both the tab and the older issue search address.
+  function placeSearchCard(name) {
+    if (name !== 'add' && name !== 'add-search') return;
+    const card = $('#search-results')?.closest('.add-page');
+    const head = $(`#view-${name} > .head`);
+    if (card && head && head.nextElementSibling !== card) head.after(card);
+  }
+
   function enter(name) {
+    placeSearchCard(name);
     const kind = name === 'add-series' ? 'series' : name === 'add-creator' ? 'creators' : null;
     if (kind) void warmNameIndex(kind);
     if (name === 'add-import' && importDraft && !importDraft.uncertain) {

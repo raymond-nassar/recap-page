@@ -779,12 +779,26 @@
             <section class="card card-static addpri add-page">
               <p id="search-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
               <form id="form-search" class="stack">
-                <label for="search-q">Search issue titles</label>
+                <label for="search-q">Search Reading Lists and issue titles</label>
                 <div class="field-row">
-                  <input type="search" id="search-q" name="issue-query" placeholder="e.g. Secret Wars…" autocomplete="off" aria-describedby="search-help" />
+                  <input type="search" id="search-q" name="issue-query" placeholder="e.g. Secret Wars…" autocomplete="off" aria-describedby="search-hint search-help" />
                   <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Search issue titles" aria-describedby="search-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                 </div>
+                <p id="search-hint" class="rail-hint">Reading Lists appear as you type. Press Enter or the search button to look up comics online.</p>
               </form>
+              <!--
+                Reading Lists are matched on this device as the reader types, so they stay
+                available offline and above whatever the online comic search returns. The
+                count is announced through #announcer once typing pauses, for the same reason
+                the result panes below are not live regions.
+              -->
+              <section id="search-lists" class="search-lists" aria-labelledby="search-lists-h" hidden>
+                <h2 id="search-lists-h">Reading Lists</h2>
+                <p id="search-lists-count" class="rail-hint"></p>
+                <div id="search-lists-report"></div>
+                <div id="search-lists-results" class="results"></div>
+                <button type="button" id="search-lists-more" class="btn btn-g search-lists-more" hidden>Show all Reading Lists</button>
+              </section>
               <!--
                 These report panes are deliberately not live regions. Each one receives a
                 whole result list at once, so announcing the container meant reading every
