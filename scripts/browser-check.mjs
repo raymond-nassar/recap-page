@@ -19821,11 +19821,12 @@ function cloudFixtureHost(provider = 'onedrive') {
   return {
     host, handle,
     signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test', reason: null }); },
+    reconnected() { Object.assign(host, { connection: 'd'.repeat(32), reason: null }); },
     // The person deleted the Recap Page folder, and another browser's backup found it gone: the host forgot
     // the folder, started a new connection and says why, as host/cloudHost.mjs does.
     folderDeleted() {
       host.items.clear();
-      Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
+      Object.assign(host, { connection: 'e'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
     },
   };
 }
@@ -19841,6 +19842,33 @@ async function installCloudFixture(page, fixture) {
       return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
     };
   }, CLOUD_PREFIX_PATH);
+}
+
+async function keepNewestCloudCopy(page, fixture) {
+  const items = [...fixture.host.items.values()].map(({ id, name }) => ({ id, name }));
+  return page.evaluate(async (listed) => {
+    const { CloudBackupProtocol, parseCloudBackupName } = await import('/js/lib/cloudProtocol.js');
+    const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+    const transport = createCloudHostTransport();
+    await transport.status();
+    const protocol = new CloudBackupProtocol({ transport });
+    const record = await protocol.record();
+    const newest = record.validated[0];
+    const source = listed.find((item) => {
+      const parsed = parseCloudBackupName(item.name);
+      return parsed?.stream === record.stream && parsed.generation === newest.generation;
+    });
+    if (!source) throw new Error('The verified cloud backup is missing from the fixture.');
+    const connection = record.consent.connection;
+    const checked = await protocol.fetchBackup({
+      id: source.id, stream: record.stream, generation: newest.generation,
+    }, { connection });
+    return protocol.keepBackup({
+      connection, stream: record.stream, consentId: record.consent.id,
+      generation: newest.generation, personalDigest: newest.personalDigest,
+      contentDigest: JSON.parse(checked.text).digest,
+    });
+  }, items);
 }
 
 async function cloudCard(page) {
@@ -20082,7 +20110,7 @@ SCENARIOS.push({
     let release = () => {};
     fixture.host.gate = new Promise((resolve) => { release = resolve; });
     await click(page, '#opt-cloud-auto');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backing up now.'), { timeout: 20000 });
     const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
     // The moving half is pinned rather than inherited. A host whose own setting is reduced motion, as
     // Edge launched with --force-prefers-reduced-motion is, hid the bar before the first sample and
@@ -20104,6 +20132,11 @@ SCENARIOS.push({
       fixture.host.items.size === 1 && [...fixture.host.items.values()][0].name.startsWith('recap-page-backup-v1-')
         && (await cloudCard(page)).report.includes('Automatic backup is on for this browser.'),
       JSON.stringify(fixture.host.calls));
+
+    const kept = await keepNewestCloudCopy(page, fixture);
+    t.check('a verified kept copy is a separate file rather than an ordinary backup',
+      fixture.host.items.has(kept.id) && kept.name.startsWith('recap-page-kept-v1-')
+        && fixture.host.items.size === 2, JSON.stringify(kept));
 
     await click(page, '#cloud-discovery-list button[data-cloud-action="check"]');
     await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]');
@@ -20211,19 +20244,41 @@ SCENARIOS.push({
       (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
 
     const stored = fixture.host.items.size;
+    const keptFile = { ...fixture.host.items.get(kept.id) };
+    const changed = Buffer.from('Changed outside Recap Page');
+    fixture.host.items.set(kept.id, { ...keptFile, bytes: changed.toString('base64'), size: changed.length });
     const remove = await ask('#btn-cloud-delete');
-    t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
+    t.check('deleting asks about the account and the recycle bin, and adds no saved-copy notice while none is needed',
       remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
-        && remove.body.includes('every backup this browser made in the OneDrive account reader@example.test.')
+        && remove.body.includes('deletes every backup this browser made in the OneDrive account reader@example.test.')
+        && !/kept cop|saved cop|cloud folders/i.test(remove.body)
         && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days'),
       JSON.stringify(remove));
     await click(page, '#ask-ok');
-    await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
-    t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
-      stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
-        && (await cloudCard(page)).report.includes('from the OneDrive account reader@example.test, where')
-        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied'),
-      `${stored}: ${(await cloudCard(page)).report}`);
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('could not be deleted'), { timeout: 15000 });
+    const partial = await cloudCard(page);
+    t.check('a changed kept copy is left alone and the partial deletion is reported without saying it was deleted',
+      stored >= 2 && fixture.host.items.size === 1 && fixture.host.items.has(kept.id) && !partial.checked
+        && partial.report.includes(`Deleted ${stored - 1} of ${stored} backups`)
+        && partial.report.includes('a kept copy changed outside the app or could not be checked'),
+      `${stored}: ${partial.report}`);
+    t.check('the card reports the recorded copy that still needs attention',
+      partial.status.includes('One saved or attempted cloud copy could not be confirmed or removed.')
+        && partial.status.includes('delete any unwanted copies by hand'),
+      partial.status);
+    fixture.host.items.set(kept.id, keptFile);
+    const retryQuestion = await ask('#btn-cloud-delete');
+    t.check('the next delete question includes the recorded attention before confirmation',
+      retryQuestion.body.includes('One saved or attempted cloud copy could not be confirmed or removed.'),
+      retryQuestion.body);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Deleted 1 backup'), { timeout: 15000 });
+    await page.waitForFunction(() => !document.querySelector('#cloud-backup-status').textContent.includes('saved or attempted cloud copy'), { timeout: 15000 });
+    t.check('a verified kept copy can be deleted on retry, with the recycle-bin outcome stated',
+      fixture.host.items.size === 0 && !(await cloudCard(page)).checked
+        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied')
+        && !(await cloudCard(page)).status.includes('saved or attempted cloud copy'),
+      (await cloudCard(page)).report);
 
     await page.focus('#btn-cloud-disconnect');
     await click(page, '#btn-cloud-disconnect');
@@ -20256,8 +20311,29 @@ SCENARIOS.push({
     // folder was deleted rather than that anyone signed in again (P02-T07 decision 2).
     fixture.signedIn();
     await open(page, '/#/data');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to OneDrive as reader@example.test.'
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive as reader@example.test.')
       && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    const earlier = await keepNewestCloudCopy(page, fixture);
+    fixture.reconnected();
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('One recorded kept copy from an earlier connection may remain.'),
+      { timeout: 15000 });
+    const reconnected = await cloudCard(page);
+    t.check('after reconnecting the card reports the recorded earlier copy and leaves automatic backup off until consent',
+      !reconnected.checked && reconnected.status.includes('delete them by hand in their cloud folders.'), JSON.stringify(reconnected));
+    const earlierQuestion = await ask('#btn-cloud-delete');
+    t.check('the delete question gives the recorded earlier-copy count without promising to delete it',
+      earlierQuestion.body.includes('One recorded kept copy from an earlier connection may remain.')
+        && earlierQuestion.body.includes('deletes every backup this browser made in'), earlierQuestion.body);
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('One recorded kept copy from an earlier connection may remain.'),
+      { timeout: 15000 });
+    t.check('deleting under the new connection leaves the earlier copy and reports it',
+      fixture.host.items.size === 1 && fixture.host.items.has(earlier.id) && !(await cloudCard(page)).checked,
+      JSON.stringify(await cloudCard(page)));
     await click(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
     // Every announcement from here on, as the page's announcer receives it (stage 3 review, S3b-2).
@@ -20271,11 +20347,11 @@ SCENARIOS.push({
     await open(page, '/#/about');
     await open(page, '/#/data');
     const deleted = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
-    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.endsWith(reason),
+    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.includes(reason),
       { timeout: 15000 }, deleted).then(() => true, () => false);
     const asked = await cloudCard(page);
     t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
-      told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
+      told && asked.status.startsWith(`Connected to OneDrive as reader@example.test. ${deleted}`) && asked.auto && !asked.checked, JSON.stringify(asked));
     t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
     await page.waitForFunction((reason) => window.__cloudSpoken.some((text) => text.includes(reason)), { timeout: 3000 }, deleted).catch(() => {});
     await new Promise((resolve) => { setTimeout(resolve, 300); });
