@@ -3,7 +3,7 @@
     {
       "id": "x-men-age-of-x",
       "name": "X-Men: Age of X",
-      "description": "Eleven chapters combining Alpha, X-Men Legacy, New Mutants, Universe, and the two aftermath issues.",
+      "description": "Mutants shelter behind Fortress X's defenses as attacks threaten their last refuge. Mike Carey's Age of X: Alpha opens the crossover, followed by alternating chapters of X-Men Legacy and New Mutants, the Age of X: Universe series and the aftermath in X-Men Legacy.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -35,7 +35,7 @@
     {
       "id": "x-men-schism",
       "name": "X-Men: Schism",
-      "description": "Seven chapters interleaving the five-part Schism event with the two Generation Hope tie-ins.",
+      "description": "Cyclops, Wolverine and the X-Men head into the split this 2011 event is named for, in Jason Aaron's X-Men: Schism. The main story pauses for Kieron Gillen's Generation Hope tie-ins before returning to Schism.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -66,7 +66,7 @@
     {
       "id": "spider-island",
       "name": "Spider-Island",
-      "description": "Thirteen story issues combining Amazing Spider-Man, Venom, and the Deadly Foes one-shot.",
+      "description": "As New Yorkers develop spider powers, Spider-Man must find his place in a suddenly transformed city. Dan Slott's Amazing Spider-Man stories come first, followed by Rick Remender's Venom and the Spider-Island: Deadly Foes special.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -96,7 +96,7 @@
     {
       "id": "x-men-regenesis",
       "name": "X-Men: Regenesis",
-      "description": "Forty-three distinct chapters following the post-Schism teams across the X-Men family of titles.",
+      "description": "Regenesis picks up the X-Men after Schism and follows each of the separate teams across the X-Men titles of late 2011 and early 2012. Kieron Gillen's X-Men: Regenesis opens the journey, which then moves through Jason Aaron's Wolverine & the X-Men, Gillen's new Uncanny X-Men, X-23, Generation Hope and more.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -206,7 +206,7 @@
     {
       "id": "minimum-carnage",
       "name": "Minimum Carnage",
-      "description": "Six chapters alternating Scarlet Spider and Venom between the Alpha and Omega one-shots.",
+      "description": "Carnage's rampage puts Venom and Scarlet Spider on his trail as he threatens more victims. Christopher Yost and Cullen Bunn write the Alpha and Omega specials, with Scarlet Spider and Venom alternating between them.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -237,7 +237,7 @@
     {
       "id": "x-termination",
       "name": "X-Men: X-Termination",
-      "description": "Eight chapters crossing Age of Apocalypse, X-Treme X-Men, Astonishing X-Men, and X-Termination.",
+      "description": "Nightcrawler's attempt to return home sets off a crisis that threatens more than one reality. Age of Apocalypse and X-Treme X-Men lead in, then X-Termination opens and closes the main story, with Astonishing X-Men and those two books between.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -296,7 +296,7 @@
     {
       "id": "x-men-battle-of-the-atom",
       "name": "X-Men: Battle of the Atom",
-      "description": "Ten interleaved chapters across the two event issues and four ongoing X-Men series.",
+      "description": "Young X-Men brought forward in time face pressure to return home as other teams disagree over their future. Brian Michael Bendis opens the event and Jason Aaron closes it, with All-New X-Men, X-Men, Uncanny X-Men and Wolverine & the X-Men alternating between.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -327,7 +327,7 @@
     {
       "id": "revolutionary-war",
       "name": "Revolutionary War",
-      "description": "Eight one-shots following Alpha through the linked Marvel UK heroes and the event conclusion.",
+      "description": "When Mys-Tech resurfaces, Captain Britain and other heroes are drawn into a new mystery. Alpha opens the event, followed by individual hero stories and Omega, with Supersoldiers and Warheads placed after it.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -358,7 +358,7 @@
     {
       "id": "x-men-trial-of-jean-grey",
       "name": "X-Men: The Trial of Jean Grey",
-      "description": "Six alternating chapters joining All-New X-Men with the Guardians of the Galaxy.",
+      "description": "Jean Grey is put on trial in Brian Michael Bendis's 2014 crossover, and the X-Men and the Guardians of the Galaxy are both drawn in. The story alternates between All-New X-Men and Guardians of the Galaxy.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -388,7 +388,7 @@
     {
       "id": "monsters-unleashed",
       "name": "Monsters Unleashed",
-      "description": "Thirteen chapters combining the five-part event with all eight 1.MU battleground issues.",
+      "description": "Monsters break loose in 2017, and the Avengers, X-Men, Doctor Strange and the Guardians of the Galaxy are among the heroes in their way. Cullen Bunn's Monsters Unleashed anchors the crossover, with battleground stories from Avengers, Spider-Man/Deadpool, Champions and more.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -418,7 +418,7 @@
     {
       "id": "venomverse",
       "name": "Venomverse",
-      "description": "Eleven core chapters from Edge of Venomverse through War Stories and the five-part event.",
+      "description": "Venom joins allies from other realities to resist a threat hunting symbiote hosts. Edge of Venomverse leads in, followed by Venomverse: War Stories and Cullen Bunn's Venomverse.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -447,7 +447,7 @@
     {
       "id": "generations",
       "name": "Marvel Generations",
-      "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
+      "description": "Legacy heroes meet the predecessors who inspired them in Marvel's 2017 Generations specials. The encounters include the Hulks, Phoenix and Jean Grey, the Hawkeyes, Iron Man and Ironheart, Miles Morales and Peter Parker, and Captain Marvel and Captain Mar-Vell.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -483,7 +483,7 @@
     {
       "id": "infinity-countdown-wars",
       "name": "Infinity Countdown and Infinity Wars",
-      "description": "Forty-six chapters covering the explicit Countdown and Wars issue-by-issue flow and its tie-ins.",
+      "description": "Adam Warlock, Gamora, Loki and the Guardians of the Galaxy are drawn into Gerry Duggan's 2018 Infinity Stones saga. All-New Guardians of the Galaxy leads into Infinity Countdown, Infinity Wars and tie-ins such as Infinity Warps, Sleepwalker and Soldier Supreme.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -514,7 +514,7 @@
     {
       "id": "donny-cates-marvel-universe-reading-order-2017",
       "name": "Donny Cates' Marvel Universe",
-      "description": "Comic Book Herald's selected Donny Cates Marvel sequence, from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. Includes the source's guest-written connections; linked event guides stay separate.",
+      "description": "Donny Cates writes Doctor Strange, Thanos, Venom, the Guardians of the Galaxy and Thor in turn, from late 2017 into 2020. Doctor Strange opens the journey with Damnation, then Thanos Wins, Cosmic Ghost Rider and his Inhumans story lead into Venom, Marvel Knights, Silver Surfer: Black, Venom Island and Thor. Connecting stories by other writers stay in place; linked events are separate.",
       "type": "creator-run",
       "depth": "selected",
       "beginner": false,
@@ -552,7 +552,7 @@
     {
       "id": "damnation",
       "name": "Marvel Damnation",
-      "description": "Fifteen chapters combining the four-part event with Doctor Strange, Iron Fist, Scarlet Spider, and Ghost Rider.",
+      "description": "Doctor Strange and Mephisto are at the center of a Las Vegas crisis that draws in Iron Fist and Ghost Rider. Donny Cates and Nick Spencer's Doctor Strange: Damnation alternates with Doctor Strange, Iron Fist, Ben Reilly: Scarlet Spider and a Ghost Rider special.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -644,7 +644,7 @@
     {
       "id": "x-men-extermination",
       "name": "X-Men: Extermination",
-      "description": "Nine chapters closing the original five X-Men time-travel story and carrying its immediate epilogue forward.",
+      "description": "The original X-Men, displaced in time, become targets of a new threat in Extermination. X-Men: Blue leads into Ed Brisson's Extermination, followed by X-Men: The Exterminated, an Uncanny X-Men annual and X-Force.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -1383,7 +1383,7 @@
     {
       "id": "one-world-under-doom",
       "name": "One World Under Doom",
-      "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
+      "description": "Doctor Doom brings one world under his rule in 2025, and the Fantastic Four, the Avengers, Storm and Captain America have to live in it. Ryan North's Fantastic Four leads into the main series and a selection of tie-ins. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together.",
       "type": "event",
       "depth": "selected",
       "beginner": false,
@@ -1415,7 +1415,7 @@
     {
       "id": "marvel-zombies-reading-order",
       "name": "Marvel Zombies",
-      "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
+      "description": "Marvel's heroes become zombies in a dark horror saga, and Deadpool gets a zombie universe of his own. The Fantastic Four and Black Panther are caught up early: Ultimate Fantastic Four leads to Robert Kirkman's Marvel Zombies, the sequels, Battleworld and Resurrection, with alternate additions such as Red Band later. Some Marvel Zombies entries are placeholders to find elsewhere.",
       "type": "era",
       "depth": "partial",
       "storyTypes": [
@@ -1456,7 +1456,7 @@
       "id": "house-of-m",
       "storylines": true,
       "name": "House of M: Main Series and Branded Tie-Ins",
-      "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event, in publication order: the eight-issue main series, its branded tie-in mini-series, and the Decimation epilogue. Assembled from Marvel series metadata, so it covers the series Marvel branded with the event name and not the House of M chapters published in unbranded ongoing titles such as Wolverine #33-35.",
+      "description": "Wanda Maximoff rewrites the world in House of M, Marvel's 2005 event written by Brian Michael Bendis. The main series runs in publication order with its branded tie-in series. Chapters in unbranded titles such as Wolverine are not included.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -1496,7 +1496,7 @@
       "id": "house-of-m-essential",
       "storylines": true,
       "name": "House of M: Main Series Only",
-      "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event: the eight-issue main series on its own, without the branded tie-in mini-series or the Decimation epilogue. Derived from the complete order by keeping only the main series, which is where that order already begins.",
+      "description": "Scarlet Witch Wanda Maximoff remakes the world in House of M, Brian Michael Bendis's 2005 event. This shorter version keeps the main series and leaves the branded tie-ins to the complete version.",
       "type": "event",
       "depth": "essential",
       "beginner": false,
@@ -1536,7 +1536,7 @@
       "id": "planet-hulk",
       "storylines": true,
       "name": "Planet Hulk",
-      "description": "Fifteen chapters taking Hulk from his arrival on Sakaar through the complete Planet Hulk storyline.",
+      "description": "Hulk arrives on Sakaar in Greg Pak's Planet Hulk, an epic of science fiction and war with Caiera, Korg and Miek in the cast. Hulk begins the journey, with Giant-Size Hulk placed among its chapters before the story returns to Hulk.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -1573,7 +1573,7 @@
     {
       "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
       "name": "Greg Pak's Hulk: Planet Hulk to Totally Awesome Hulk",
-      "description": "Follow Comic Book Herald's selected Hulk route through Planet Hulk, World War Hulk, Skaar and Amadeus Cho, with the source's directed issue order.",
+      "description": "Bruce Banner's Hulk goes from Planet Hulk to World War Hulk under Greg Pak, with Skaar, Hercules, the Warbound and Amadeus Cho close behind. Pak's credits run through Hulk, World War Hulk, Warbound, Skaar: Son of Hulk, Incredible Hercules and Incredible Hulks, and the journey closes with selected stories from The Totally Awesome Hulk. Lead-ins such as Fantastic Four appear in their chosen positions.",
       "type": "creator-run",
       "depth": "selected",
       "beginner": false,
@@ -1611,7 +1611,7 @@
       "id": "civil-war",
       "storylines": true,
       "name": "Civil War: Main Series and Branded Tie-Ins",
-      "description": "Marvel's 2006 superhuman registration war in publication order: the seven-issue main series plus every mini-series and one-shot Marvel branded with the Civil War name, from Front Line through The Confession. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Amazing Spider-Man #529-538.",
+      "description": "Superhuman registration draws Iron Man, Captain America, Spider-Man and Marvel's other heroes into a civil war in 2006. Mark Millar's main series runs in publication order with branded tie-ins from Front Line onward. Chapters in unbranded titles such as Amazing Spider-Man are not included.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -1658,7 +1658,7 @@
       "id": "civil-war-essential",
       "storylines": true,
       "name": "Civil War: Main Series Only",
-      "description": "Marvel's 2006 superhuman registration war: the seven-issue main series on its own, without the mini-series and one-shots branded with the Civil War name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
+      "description": "Iron Man and Captain America lead Mark Millar's Civil War, Marvel's 2006 conflict over superhuman registration. This shorter version keeps the main series and leaves the branded tie-ins to the complete version.",
       "type": "event",
       "depth": "essential",
       "beginner": true,
@@ -1698,7 +1698,7 @@
       "id": "annihilation",
       "storylines": true,
       "name": "Annihilation",
-      "description": "The 2006 cosmic war that rebuilt Marvel's space corner, in publication order: the Prologue, the four lead-in mini-series, the six-issue main series, and the Heralds of Galactus epilogue. Assembled from Marvel series metadata. Annihilation: Conquest is a separate 2007 sequel event and is not included here.",
+      "description": "Annihilus brings war out of the Negative Zone, and cosmic heroes fight to protect their worlds. Keith Giffen's Prologue and the lead-in series come first, followed by his main event and an epilogue. Its sequel is not included.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -1742,7 +1742,7 @@
     {
       "id": "x-men-divided-we-stand",
       "name": "X-Men: Divided We Stand",
-      "description": "Forty-eight aftermath issues following the X-Men, X-Factor, X-Force, Wolverine, Cable, and the Young X-Men after Messiah Complex.",
+      "description": "After Messiah Complex, the X-Men line divides, and Cable, X-Force, Cyclops and Wolverine each go their own way in 2008. Ed Brubaker's Uncanny X-Men opens the journey, followed by X-Men Legacy, X-Factor, X-Force, Wolverine, Cable and Young X-Men.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -1776,7 +1776,7 @@
       "id": "secret-invasion",
       "storylines": true,
       "name": "Secret Invasion: Main Series and Branded Tie-Ins",
-      "description": "The Skrull infiltration of 2008 in publication order: the eight-issue main series plus every mini-series and one-shot Marvel branded with the Secret Invasion name, ending with Dark Reign. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as New Avengers and Mighty Avengers.",
+      "description": "Nick Fury, Iron Man and the Avengers are left asking who to trust once the Skrull infiltration begins in Secret Invasion. Brian Michael Bendis's main series runs in publication order with the branded tie-ins. Chapters in unbranded titles such as New Avengers are not included.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -1819,7 +1819,7 @@
       "id": "secret-invasion-essential",
       "storylines": true,
       "name": "Secret Invasion: Main Series Only",
-      "description": "The Skrull infiltration of 2008: the eight-issue main series on its own, without the mini-series and one-shots branded with the Secret Invasion name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
+      "description": "The Skrull infiltration leaves Nick Fury, Iron Man and the Avengers questioning who they can trust in Secret Invasion. This shorter version keeps Brian Michael Bendis's main series without the branded tie-ins.",
       "type": "event",
       "depth": "essential",
       "beginner": false,
@@ -1892,7 +1892,7 @@
       "id": "king-in-black",
       "storylines": true,
       "name": "King in Black",
-      "description": "Knull brings the symbiote god-war to Earth in 2020-2021, in publication order: the five-issue main series plus its branded tie-in mini-series and one-shots. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Venom #30-35.",
+      "description": "Knull brings the symbiote god-war to Earth in King in Black, Donny Cates's event from 2020 to 2021. The main series runs in publication order with branded tie-ins for Namor, Thunderbolts, Black Panther, Captain America, Ghost Rider and more. Chapters in unbranded titles such as Venom are not included.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -1931,7 +1931,7 @@
     {
       "id": "the-vision-reading-order",
       "name": "Vision",
-      "description": "Follow Vision through his Avengers origins, Scarlet Witch, West Coast Avengers and later solo and team stories in Comic Book Herald guide order. Four unresolved originals remain marked as gaps.",
+      "description": "Vision stands with the Avengers from 1968 on, and his story keeps returning to the Scarlet Witch. Roy Thomas's Avengers opens the journey, followed by Vision and the Scarlet Witch and the West Coast Avengers, then Avengers No Road Home and Al Ewing's Avengers Inc. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -1967,7 +1967,7 @@
     {
       "id": "emma-frost-reading-order",
       "name": "Emma Frost",
-      "description": "Follow Emma Frost from the White Queen and Generation X to the X-Men and Krakoa, using Comic Book Herald's Emma Frost cuts and collection contents where no cut is given. Unresolved originals remain marked as gaps.",
+      "description": "Emma Frost first appears as the White Queen, and her story carries her to Generation X, the X-Men and Krakoa. Chris Claremont's Uncanny X-Men and New Mutants come first, then Generation X, Grant Morrison's New X-Men, Karl Bollers's Emma Frost and Joss Whedon's Astonishing X-Men. Immortal X-Men, Invincible Iron Man and Gerry Duggan's X-Men close it. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -2003,7 +2003,7 @@
     {
       "id": "doctor-octopus-otto-octavius-reading-order",
       "name": "Doctor Octopus / Otto Octavius",
-      "description": "Follow Doctor Octopus from his early Spider-Man battles through Superior Spider-Man and Superior Octopus, using Comic Book Herald's explicit collection contents and standalone issues. Unresolved originals remain marked as gaps.",
+      "description": "Otto Octavius, better known as Doctor Octopus, has been one of Spider-Man's oldest enemies since the early 1960s. Amazing Fantasy opens the selection before Stan Lee's Amazing Spider-Man, followed by Spectacular Spider-Man and Web of Spider-Man. Superior Octopus and Christos Gage's Superior Spider-Man come late. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -2040,7 +2040,7 @@
     {
       "id": "shang-chi-master-of-kung-fu-reading-order",
       "name": "Shang-Chi / Master of Kung Fu",
-      "description": "Follow Shang-Chi's original martial-arts comics, team appearances and later Ten Rings stories in Comic Book Herald's selected reading order.",
+      "description": "Shang-Chi, the Master of Kung Fu, comes out of 1970s martial-arts and spy comics and later headlines stories of the Ten Rings. Master of Kung Fu, mostly credited to Doug Moench, and Deadly Hands of Kung Fu come first. Heroes for Hire, Secret Avengers, Avengers World and Greg Pak's Agents of Atlas follow before Gene Yang's Shang-Chi series. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "depth": "partial",
       "storyTypes": [
@@ -2079,7 +2079,7 @@
     {
       "id": "thunderbolts-reading-order",
       "name": "Thunderbolts",
-      "description": "Follow the Thunderbolts across their changing teams, from the original series through King in Black, in Comic Book Herald's guide order.",
+      "description": "The Thunderbolts keep changing shape, and Songbird, Hawkeye, Luke Cage and Red Hulk all turn up across their lineups. Kurt Busiek's Thunderbolts opens the journey, with later stories credited to Fabian Nicieza, Warren Ellis, Christos Gage, Jeff Parker, Charles Soule and Jim Zub. Matthew Rosenberg's King in Black: Thunderbolts closes it.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -2119,7 +2119,7 @@
     {
       "id": "namor-sub-mariner-reading-order",
       "name": "Namor (Sub-Mariner)",
-      "description": "Follow Namor from Golden Age originals through Atlantis, the Defenders, the Invaders and later stories in Comic Book Herald's selected reading order.",
+      "description": "Namor, the Sub-Mariner and prince of Atlantis, appears here from 1941 on, standing with the Invaders and the Defenders along the way. It begins in Sub-Mariner Comics, meets the 1960s Fantastic Four and Avengers, and runs through Roy Thomas's Sub-Mariner and Invaders. Chip Zdarsky's Invaders and Christopher Cantwell's Namor: Conquered Shores come late. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -2157,7 +2157,7 @@
     {
       "id": "nebula-reading-order",
       "name": "Nebula",
-      "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
+      "description": "Nebula enters this story in the Avengers of 1985, and from there she is never far from Thanos, Gamora or the Silver Surfer. Roger Stern's Avengers opens it, followed by Jim Starlin's Silver Surfer and Infinity Gauntlet and Ron Marz's Silver Surfer. Jeff Lemire's Thanos, Cullen Bunn's Asgardians of the Galaxy and Vita Ayala's Nebula come later.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -2193,7 +2193,7 @@
     {
       "id": "hawkeye-reading-order",
       "name": "Hawkeye (Clint Barton and Kate Bishop)",
-      "description": "Follow Clint Barton and Kate Bishop through their solo and team stories in Comic Book Herald's selected Hawkeye reading order.",
+      "description": "Clint Barton and Kate Bishop both answer to Hawkeye, on teams from the Avengers to the West Coast Avengers and in books of their own. It starts in Tales of Suspense and the 1960s Avengers, spends years in the West Coast Avengers, and later takes in Kelly Thompson's West Coast Avengers (2018). Matthew Rosenberg's Hawkeye: Freefall (2020) comes near the end, and Thunderbolts (2023) closes it.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -2684,7 +2684,7 @@
     {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
-      "description": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",
+      "description": "Doctor Strange's magical New York gives way to the Illuminati, Marvel's biggest egos meeting in secret to keep the world under control. Jason Aaron's Doctor Strange comes first, then the earlier Illuminati special, the miniseries Bendis wrote with Brian Reed, and New Avengers. Heavy themes, big magic, and secrets that never stay buried for long.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2746,7 +2746,7 @@
     {
       "id": "marvel-what-if",
       "name": "Marvel What If?",
-      "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+      "description": "Alternate realities send Doctor Doom, Thor, Daredevil, Spider-Man and Magik down different roads, one story at a time. Stories from the original What If? come first, with Frank Miller among their credited writers, followed by later What If?, Age of Ultron and Magik selections.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2779,7 +2779,7 @@
     {
       "id": "wandavision",
       "name": "WandaVision",
-      "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
+      "description": "The Scarlet Witch and the Vision share the spotlight across almost fifty years of comics, the history behind WandaVision. The journey runs from 1970s Avengers and Giant-Size Avengers through Vision and the Scarlet Witch, the West Coast Avengers and the Scarlet Witch's solo series, then to later Avengers and No Road Home, and closes with House of X and Empyre: X-Men.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2812,7 +2812,7 @@
     {
       "id": "spider-man-far-from-home",
       "name": "Spider-Man: Far From Home",
-      "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+      "description": "Mysterio, the Gauntlet and Peter Parker's neighborhood stakes tie these Spider-Man stories to Far From Home. The selection moves from Stan Lee's Amazing Spider-Man to Roger Stern's Spectacular Spider-Man, Dan Slott's Amazing Spider-Man and Tom Taylor's Friendly Neighborhood Spider-Man.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -3293,7 +3293,7 @@
     {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
-      "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
+      "description": "Ava Ayala, the White Tiger, comes up through Avengers Academy and goes on to stand with the Mighty Avengers and the New Avengers. Christos Gage's Avengers Academy opens it, then Al Ewing's Mighty Avengers, Captain America & the Mighty Avengers and New Avengers. Captain America and Marvel's Voices: Community follow. Only issues featuring Ava are kept from larger collections.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3329,7 +3329,7 @@
     {
       "id": "nova-reading-order",
       "name": "Nova",
-      "description": "Follow Richard Rider and Sam Alexander through Nova's origins, New Warriors, cosmic stories and later teams in Comic Book Herald's selected reading order.",
+      "description": "Richard Rider and Sam Alexander both carry the Nova name, at home with the New Warriors and far out in Marvel's cosmic stories. Marv Wolfman's Nova (1976) and Fabian Nicieza's New Warriors (1990) come first. Dan Abnett and Andy Lanning write Annihilation: Nova, Nova (2007) and The Thanos Imperative, and later stops include Nova (2013), Champions (2016) and Guardians of the Galaxy (2019 and 2020).",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -3366,7 +3366,7 @@
     {
       "id": "phalanx-reading-order",
       "name": "Phalanx",
-      "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+      "description": "The Phalanx have roots in the Technarchy of the New Mutants era, and the Phalanx Covenant sweeps across the X-Men books. Chris Claremont's New Mutants comes first, followed by Scott Lobdell's Uncanny X-Men and chapters in X-Factor, X-Force, Excalibur, Wolverine and Cable. Later Uncanny X-Men stories and Si Spurrier's Legion of X close the journey.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3401,7 +3401,7 @@
     {
       "id": "marvels-best-phoenix-comics",
       "name": "Phoenix",
-      "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
+      "description": "The Phoenix Force burns through Marvel Comics by way of its hosts, chief among them Jean Grey and Rachel Summers. Chris Claremont's Excalibur leads into Grant Morrison's New X-Men, Jason Aaron's Marvel Legacy and Tom Taylor's X-Men: Red. Jonathan Hickman's X-Men and Louise Simonson's Jean Grey come later. Only picks that identify exact issues are included.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "complete",
@@ -3434,7 +3434,7 @@
     {
       "id": "agatha-harkness-reading-order",
       "name": "Agatha Harkness",
-      "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+      "description": "Agatha Harkness enters through the Fantastic Four in 1970, and before long her story is tied to the Scarlet Witch and the Vision. Steve Englehart's Avengers and Giant-Size Avengers issues lead to his Vision and the Scarlet Witch (1985), then the West Coast Avengers and Infinity War. Tom King's Vision (2015), James Robinson's Scarlet Witch (2015) and Steve Orlando's Scarlet Witch Annual (2023) come later.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3467,7 +3467,7 @@
     {
       "id": "punisher-reading-order",
       "name": "Punisher",
-      "description": "A complete Punisher reading path that follows the source page from the earliest Punisher material through the latest additions.",
+      "description": "Frank Castle, the Punisher, works the dark, street-level end of Marvel in crime stories that begin in 1974. The Amazing Spider-Man opens the journey, then Steven Grant's The Punisher, Mike Baron's The Punisher and Carl Potts's Punisher War Journal. Later series include Jason Aaron's Punisher, David Pepose's Punisher and Torunn Gronbekk's War Journal specials. Unmatched originals remain as gaps.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3537,7 +3537,7 @@
     {
       "id": "best-ultron-reading-order",
       "name": "Ultron",
-      "description": "Read Comic Book Herald's selected Ultron stories, including animated-continuity Ultron Revolution. Runs from the original Avengers through The Ultron Agenda and includes the standalone Rage of Ultron graphic novel.",
+      "description": "Ultron's stories pull in the Avengers, Hank Pym, the Vision and Iron Man across fifty years of comics. It moves from the original Avengers to Busiek and Perez's Avengers, Mighty Avengers, Annihilation: Conquest and Rick Remender's Rage of Ultron. The Ultron Agenda in Tony Stark: Iron Man closes it. Avengers #212 to 230 sits after Rage of Ultron, and the animated-continuity Ultron Revolution is included.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "selected",
@@ -3573,7 +3573,7 @@
     {
       "id": "mephisto-reading-order",
       "name": "Mephisto",
-      "description": "Follow Mephisto through Silver Surfer, Thor, Ghost Rider, Doctor Strange and Marvel crossovers, in Comic Book Herald guide order. Five unresolved original comics remain marked as gaps.",
+      "description": "Mephisto, a Hell Lord, works his way into the stories of the Silver Surfer, Thor, Ghost Rider and Doctor Strange. Jason Aaron's Wolverine opens it before the order goes back to Silver Surfer, Thor, Ghost Rider, the Defenders, Al Milgrom's Mephisto Vs. and the graphic novel Triumph and Torment. One More Day and Damnation follow, and Aaron's Avengers ends it. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -3609,7 +3609,7 @@
     {
       "id": "spider-man-2099-reading-order",
       "name": "Spider-Man 2099",
-      "description": "Follow Miguel O'Hara from the original 2099 comics through Exiles, Spider-Verse and his later adventures in Comic Book Herald guide order. 15 unresolved original comics remain marked as gaps.",
+      "description": "Miguel O'Hara is the Spider-Man of 2099, and his story runs through the 2099 line and out into Exiles, Spider-Verse and beyond. Peter David writes Spider-Man 2099 and returns for later series and Secret Wars 2099, with Exiles and Timestorm 2009/2099 in between. Steve Orlando's Exodus, Dark Genesis and Miguel O'Hara: Spider-Man 2099 close it. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -3644,7 +3644,7 @@
     {
       "id": "silver-surfer-reading-order",
       "name": "Silver Surfer",
-      "description": "A source-ordered Silver Surfer reading path from Galactus through the latest additions.",
+      "description": "Norrin Radd, the Silver Surfer, arrives with Galactus in 1966, and from there his stories range across Marvel's cosmos. Fantastic Four leads to the Defenders, Steve Englehart's Silver Surfer, Jim Starlin's Infinity Gauntlet and J. Michael Straczynski's Requiem. Dan Slott's Silver Surfer, Donny Cates's Black and Ron Marz's Rebirth books come later.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3679,7 +3679,7 @@
     {
       "id": "abomination-reading-order",
       "name": "Abomination",
-      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "description": "The Abomination belongs to the Hulk's corner of Marvel, and nearly every stop on this journey is a Hulk story. It opens in Tales to Astonish, and most of it sits in Incredible Hulk, with writers from Roy Thomas and Bill Mantlo to Peter David. There are stops in Thor, Avengers, Amazing Spider-Man and X-Men too. Later appearances named only in passing are left out.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3708,7 +3708,7 @@
     {
       "id": "the-defenders-reading-order",
       "name": "The Defenders",
-      "description": "A complete Defenders reading path from the non-team origins through the latest source additions.",
+      "description": "Doctor Strange, the Hulk, Namor and the Silver Surfer come together as the Defenders, a team that starts out as no team at all. Roy Thomas's Sub-Mariner and Marvel Feature lead into Defenders, where Steve Englehart, Steve Gerber and J. M. DeMatteis write long stretches. Later lineups follow in Secret Defenders, The Last Defenders, Fearless Defenders and Al Ewing's Defenders.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3742,7 +3742,7 @@
     {
       "id": "runaways-reading-order",
       "name": "Runaways",
-      "description": "A complete Runaways reading path from the original 2003 series through the latest listed additions.",
+      "description": "The Runaways grow up on the page in a coming-of-age story that later crosses paths with the Young Avengers. Brian K. Vaughan's Runaways opens the journey, and Vaughan and Joss Whedon continue in the later series. Young Avengers crossovers lead to Runaways stories by Terry Moore, Noelle Stevenson and Rainbow Rowell.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3775,7 +3775,7 @@
     {
       "id": "adam-warlock-reading-order",
       "name": "Adam Warlock",
-      "description": "A complete Adam Warlock reading path from his origins as Him through the Infinity stories, cosmic returns, and The Thanos Imperative.",
+      "description": "Adam Warlock begins as Him and becomes a cosmic figure bound up with Thanos, Gamora and the Infinity Gauntlet. Fantastic Four and Thor come first, then Roy Thomas's Marvel Premiere and Jim Starlin's Strange Tales and Warlock. Starlin returns for Thanos Quest, Infinity Gauntlet, the Infinity Watch and Infinity War, and The Thanos Imperative and Thanos Annual come late.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3806,7 +3806,7 @@
     {
       "id": "black-panther-reading-order",
       "name": "Black Panther",
-      "description": "A complete Black Panther reading path that follows the source page from T Challa debut through the latest additions.",
+      "description": "T'Challa is the Black Panther of Wakanda, first met in the Fantastic Four and then the lead of series after series of his own. Fantastic Four opens the journey, followed by Don McGregor's Jungle Action and the 1977 Black Panther series. Christopher Priest, Reginald Hudlin, Ta-Nehisi Coates, John Ridley and Eve Ewing each write later series, with Nnedi Okorafor's Shuri along the way.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3868,7 +3868,7 @@
     {
       "id": "silk-cindy-moon-reading-order",
       "name": "Silk / Cindy Moon",
-      "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+      "description": "Cindy Moon becomes Silk, a hero from Spider-Man's corner of Marvel who also finds a place with the Agents of Atlas. Dan Slott's Amazing Spider-Man opens the journey, followed by Robbie Thompson's Silk and the Spider-Women crossover. Greg Pak's Totally Awesome Hulk and Agents of Atlas and Maurene Goo's Silk are also here. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -3904,7 +3904,7 @@
     {
       "id": "spider-gwen-reading-order",
       "name": "Spider-Gwen / Ghost-Spider",
-      "description": "Follow Gwen Stacy from Edge of Spider-Verse through Spider-Gwen, Ghost-Spider, Gwenverse and Shadow Clones in Comic Book Herald guide order. Includes the source-defined crossover comics; the unnumbered Gwenom vs Carnage collection is not expanded.",
+      "description": "Gwen Stacy goes by Spider-Gwen and later Ghost-Spider, and her story is full of crossovers with other spider-heroes. Edge of Spider-Verse and Spider-Verse open the journey, then Jason Latour's Spider-Gwen, with the Spider-Women crossover and Spider-Geddon to follow. Seanan McGuire's Ghost-Spider books, Tim Seeley's Gwenverse and Emily Kim's Shadow Clones come later. The unnumbered Gwenom vs Carnage collection is not expanded.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3975,7 +3975,7 @@
     {
       "id": "iron-man-reading-order",
       "name": "Iron Man",
-      "description": "Tony Stark's Iron Man path from Tales of Suspense through the modern Invincible Iron Man, Tony Stark: Iron Man, and Iron Man (2020) runs, following the source's character-only cuts through broader collections.",
+      "description": "Tony Stark is Iron Man, and his story makes room over the years for War Machine and Ironheart as well. It begins in Tales of Suspense in 1963 and runs to the modern Invincible Iron Man, Tony Stark: Iron Man and Iron Man (2020), with Armor Wars and Extremis among the stories along the way. Where a larger collection only touches Iron Man, just his issues are kept.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4011,7 +4011,7 @@
     {
       "id": "modern-x-men-fast-track",
       "name": "Modern X-Men Fast Track",
-      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
+      "description": "Cyclops, Wolverine, Jean Grey and the rest of the X-Men carry this modern stretch, from Grant Morrison to Brian Michael Bendis. New X-Men (2001) opens it, then Peter Milligan's X-Force and X-Statix, Astonishing X-Men from Joss Whedon and Warren Ellis, Mike Carey's X-Men Legacy and Matt Fraction's Uncanny X-Men. Bendis's All-New X-Men comes at the end. Linked events and collection-only references are left out.",
       "type": "character-run",
       "depth": "selected",
       "spotlightKind": "other",
@@ -4046,7 +4046,7 @@
     {
       "id": "thanos-reading-order",
       "name": "Thanos",
-      "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
+      "description": "Thanos starts with the Cosmic Cube campaigns of the 1970s, and his stories keep running into those of Adam Warlock and the Silver Surfer. Iron Man and Captain Marvel come first, then Jim Starlin's Strange Tales, Warlock, Silver Surfer, Thanos Quest, Infinity War and Infinity Crusade. Donny Cates's Cosmic Ghost Rider and Tini Howard's Thanos come later, and Thor closes it. Entries without provider details are retained.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "partial",
@@ -4114,7 +4114,7 @@
     {
       "id": "winter-soldier-bucky-barnes-reading-order",
       "name": "Bucky Barnes / Winter Soldier",
-      "description": "Follow Bucky Barnes from his Golden Age beginnings through Captain America, the Winter Soldier and Thunderbolts, in Comic Book Herald guide order. Unresolved original comics remain marked as gaps.",
+      "description": "Bucky Barnes first stands beside Captain America in 1941, and later his story turns to dark espionage thrillers as the Winter Soldier. Captain America Comics and All-Winners Comics lead to Roy Thomas's Invaders, then Ed Brubaker's Captain America. Later stops include Invaders, Falcon & Winter Soldier, Thunderbolts and Kyle Higgins's Winter Soldier. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -4159,7 +4159,7 @@
     {
       "id": "wolverine-reading-order",
       "name": "Wolverine",
-      "description": "Wolverine from Giant-Size X-Men through Old Man Logan, preserving exact issue links and unresolved source provenance.",
+      "description": "Wolverine's story runs on two tracks at once, with the X-Men and in solo books of his own, and later in Old Man Logan. Giant-Size X-Men and Uncanny X-Men begin the journey, followed by Chris Claremont's Wolverine and Kitty Pryde and Wolverine. Old Man Logan and Dead Man Logan close it. Unmatched originals remain as gaps.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4190,7 +4190,7 @@
     {
       "id": "hope-summers-reading-order",
       "name": "Hope Summers",
-      "description": "Follow Hope Summers from Messiah Complex through Immortal X-Men, using Comic Book Herald's character cuts and reading order.",
+      "description": "Called the Mutant Messiah, Hope Summers is at the heart of Messiah Complex and Second Coming, and later of Generation Hope and Krakoa. Messiah Complex runs through books by Ed Brubaker, Peter David, Christopher Yost and Mike Carey, and Duane Swierczynski's Cable follows. After Second Coming the journey reaches Kieron Gillen's Immortal X-Men. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -4231,7 +4231,7 @@
     {
       "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
       "name": "Hulk (and She-Hulk, Red Hulk)",
-      "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
+      "description": "The Hulk's world keeps growing, until She-Hulk, Red Hulk and Skaar each carry stories of their own beside his. The original Incredible Hulk opens the journey, then Tales to Astonish, The Savage She-Hulk and long Incredible Hulk stretches credited to Roy Thomas, Steve Englehart, Bill Mantlo and Peter David. It reaches Incredible Hulk, Imperial and its Imperial War specials.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -4264,7 +4264,7 @@
     {
       "id": "black-widow-reading-order",
       "name": "Black Widow",
-      "description": "The complete Black Widow reading guide from Natasha Romanoff's earliest Marvel appearances through her modern solo series and team appearances.",
+      "description": "As the Black Widow, Natasha Romanoff turns up among the Avengers and in long stretches of Daredevil before leading series of her own. It begins in Tales of Suspense and takes in Amazing Adventures, Daredevil from Gerry Conway to Frank Miller, the Champions and the West Coast Avengers. Late stops include Jen and Sylvia Soska's Black Widow, Jody Houser's The Web of Black Widow and Kelly Thompson's Black Widow.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4339,7 +4339,7 @@
     {
       "id": "iron-fist-reading-order",
       "name": "Iron Fist",
-      "description": "Follow Comic Book Herald's Iron Fist route from the early originals through Heroes for Hire, Immortal Iron Fist and the later selected stories.",
+      "description": "Danny Rand fights as the Iron Fist, sharing his story with Luke Cage, Colleen Wing and Misty Knight along the way. Marvel Premiere and Chris Claremont's Iron Fist open the journey, followed by Power Man and Iron Fist and John Ostrander's Heroes for Hire. Immortal Iron Fist comes later, and Larry Hama's Heart of the Dragon and Alyssa Wong's Iron Fist close it. Unresolved originals remain marked as gaps.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -4376,7 +4376,7 @@
     {
       "id": "ultimate-spider-man-reading-order",
       "name": "Ultimate Spider-Man",
-      "description": "Read Comic Book Herald's selected Peter Parker and Miles Morales stories across the original Ultimate universe, later Miles adventures and the separate new Ultimate universe.",
+      "description": "Peter Parker and Miles Morales are Spider-Man in Marvel's Ultimate universes, the original one and a separate new one. Brian Michael Bendis's Ultimate Spider-Man opens the journey alongside Ultimate Marvel Team-Up, Ultimate Six and Ultimatum. Ultimate Comics Spider-Man and Spider-Men follow, and Jonathan Hickman's Ultimate Spider-Man leads into Ultimate Endgame.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -4412,7 +4412,7 @@
     {
       "id": "venom-reading-order",
       "name": "Venom",
-      "description": "Venom from the symbiote's origin in Secret Wars and Spider-Man's black costume saga through Eddie Brock's Lethal Protector era, Mac Gargan, Flash Thompson's Agent Venom, Dylan Brock, and the modern Donny Cates and Al Ewing epic.",
+      "description": "Out of the 1984 Secret Wars comes a black costume that goes on to bond with host after host for decades. Secret Wars and Spider-Man's black costume saga lead to Eddie Brock in David Michelinie's Lethal Protector, followed by the Donny Cates and Al Ewing years. Most of the closing 2025 and 2026 entries, Queen in Black among them, have no details, covers or Unlimited links.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4446,7 +4446,7 @@
     {
       "id": "loki-reading-order",
       "name": "Loki",
-      "description": "A complete Loki reading path from the character origins through the latest source additions.",
+      "description": "Before Loki ever carries a series of his own, his story runs for years through Thor's world in Journey Into Mystery and Thor. Later comes Rob Rodi's Loki, Walt Simonson's Thor, Kieron Gillen's Thor stories, War of the Realms, Daniel Kibblesmith's Loki and Mariko Tamaki's Thor & Loki: Double Trouble, ending with Dan Watters' Loki.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4515,7 +4515,7 @@
     {
       "id": "guardians-of-the-galaxy-reading-order",
       "name": "Guardians of the Galaxy",
-      "description": "A complete Guardians of the Galaxy team reading path from the original 1960s team through the modern cosmic era.",
+      "description": "For over fifty years the Guardians of the Galaxy name passes from revival to revival, each one rebuilt for a new space epic. Marvel Super-Heroes begins the journey, followed by Jim Valentino and Michael Gallagher's 1990 series and the 2008 relaunch by Abnett and Lanning. Bendis, Donny Cates, Al Ewing, and Kelly and Lanzing carry it to 2023, with Black Vortex along the way.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4557,7 +4557,7 @@
     {
       "id": "doctor-strange-reading-order",
       "name": "Doctor Strange",
-      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "description": "Mystic battles fill six decades, starting with Strange Tales and reaching the Sorcerer Supreme's 2023 series. Along the way come the Defenders, the 1970s Doctor Strange series and Strange Academy by Skottie Young. It closes with Jed MacKay's Doctor Strange.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4594,7 +4594,7 @@
     {
       "id": "inhumans-reading-order",
       "name": "Inhumans",
-      "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
+      "description": "When the Fantastic Four first meet them in 1965, the Inhumans and their royal family are drawn into decades of war and cosmic politics. Fantastic Four and Paul Jenkins's Inhumans lead to Son of M, Silent War, War of Kings and Realm of Kings. Infinity, Inhumanity, Charles Soule's Inhuman titles, Al Ewing's Royals and Saladin Ahmed's Black Bolt carry the journey to 2018.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4627,7 +4627,7 @@
     {
       "id": "young-avengers-reading-order",
       "name": "Young Avengers",
-      "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
+      "description": "In 2005 young heroes take up the Avengers name, and their story spreads through team books and solo series for nearly two decades. Allan Heinberg's Children's Crusade and Kieron Gillen's Young Avengers follow the original series. Kate Bishop appears in Kelly Thompson's Hawkeye, while West Coast Avengers, Hulkling & Wiccan and Gabby Rivera's America add more stories. Death's Head: Clone Drive is a placeholder.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4658,7 +4658,7 @@
     {
       "id": "magneto-reading-order",
       "name": "Magneto",
-      "description": "A source-ordered Magneto reading guide from early X-Men appearances through modern stories, with unresolved source identities retained as plain-text provenance.",
+      "description": "Magneto is there from the earliest Uncanny X-Men issues, and the decades that follow bring event series and solo books of his own. It runs through the Claremont-era Uncanny X-Men, Leah Williams' X-Men: The Trial of Magneto, Al Ewing's X-Men Red and J.M. DeMatteis' Magneto, closing with an Al Ewing series. Unresolved entries stay as plain-text provenance, and a placeholder remains.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4691,7 +4691,7 @@
     {
       "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
       "name": "Apocalypse / X-Men: Age of Apocalypse",
-      "description": "Follow Comic Book Herald's Age of Apocalypse reading order and separately grouped Apocalypse history, later returns and older-edition companion.",
+      "description": "In 1995 the X-books give way to replacement titles set in the Age of Apocalypse, and later series keep returning to that world. Legion Quest leads to X-Men: Alpha and titles such as Generation Next, Gambit and the X-Ternals, Weapon X, X-Man and Amazing X-Men. Blink and Remender's Uncanny Avengers follow, then X-Men: Heir of Apocalypse. Later entries are placeholders.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -4731,7 +4731,7 @@
     {
       "id": "xmen-claremont",
       "name": "X-Men Core Reading Order: Silver Age to Claremont",
-      "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
+      "description": "Before Fall of the Mutants and Inferno, the X-Men grow from the first class into Chris Claremont's sprawling cast. Giant-Size X-Men, the Claremont years, Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants and Louise Simonson's X-Factor follow. X-Men #67 to 93 are skipped as reprints, and the Mutant Massacre is read interleaved.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
@@ -4821,7 +4821,7 @@
     {
       "id": "shadow-king-reading-order",
       "name": "Shadow King",
-      "description": "A complete Shadow King reading guide from Professor X's first clashes with Amahl Farouk through New Mutants (2019) #24, preserving the source article order and the Muir Island interleave.",
+      "description": "Professor X's clashes with Amahl Farouk, the Shadow King, keep resurfacing across decades of X-books. Chris Claremont's Uncanny X-Men begins the journey, and later chapters come in New Excalibur, Rick Remender's Uncanny X-Force, Charles Soule's Astonishing X-Men and Vita Ayala's Age of X-Man: Prisoner X. The Muir Island stories are interleaved, and Ayala's New Mutants closes it.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -4860,7 +4860,7 @@
     {
       "id": "professor-x-reading-order",
       "name": "Professor X (Charles Xavier)",
-      "description": "Professor X's essential comics as Comic Book Herald's guide selects them, from Uncanny X-Men #12 through X-Men: Legacy #225. It keeps the guide's crucial issues from the Silver Age, the Claremont years and New X-Men, then Deadly Genesis, the Rise and Fall of the Shi'ar Empire, New Avengers: Illuminati and X-Men: Legacy, in the guide's order. Onslaught, Jonathan Hickman's Krakoa era and its 2024 finale continue on the Professor X and the X-Men path in Modern Timeline. In memory of Sir Patrick Stewart (1940 to 2026), who brought Professor X to life on screen.",
+      "description": "Long before Krakoa, Charles Xavier's story runs from the Silver Age through the Claremont years and Morrison and Quitely's New X-Men. Deadly Genesis, the Rise and Fall of the Shi'ar Empire, New Avengers: Illuminati and X-Men: Legacy run to 2009. Onslaught, Krakoa and the 2024 finale continue on the Professor X and the X-Men path in Modern Timeline. In memory of Sir Patrick Stewart (1940 to 2026), who brought Professor X to life on screen.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "selected",
@@ -4925,7 +4925,7 @@
     {
       "id": "ms-marvel-kamala-khan-reading-order",
       "name": "Ms. Marvel (Kamala Khan)",
-      "description": "Follow Kamala Khan through her solo stories, Avengers and Champions teams, and later adventures in Comic Book Herald's selected reading order.",
+      "description": "In her first decade as a hero, Kamala Khan carries her own series while joining the Avengers, the Champions and other teams. G. Willow Wilson's Ms. Marvel leads to Saladin Ahmed's Magnificent Ms. Marvel, with All-New, All-Different Avengers, Champions, Marvel Rising and Dark Web alongside. Some entries are placeholders.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -4961,7 +4961,7 @@
     {
       "id": "captain-america-best-of",
       "name": "The Best of Captain America",
-      "description": "A best-of path through Captain America on Marvel Unlimited, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. Ed Brubaker's run comes first and whole, from the Winter Soldier's return through the death of Steve Rogers, Reborn, Rebirth and the restored numbering, followed by Man Out of Time and the Life of Bucky Barnes. It then goes back for the Silver and Bronze Age chapters the guide picks out: the Red Skull and the Cosmic Cube in Tales of Suspense, the Life and Times of the Red Skull, Mark Gruenwald's The Captain, and issue #250 as a bonus. The sections are the guide's and are kept in its order rather than sorted by publication date.",
+      "description": "Deliberately out of publication order, this opens in Ed Brubaker's spy-thriller years and later doubles back to the Red Skull's classics. Brubaker's Captain America leads through Reborn and Rebirth to Man Out of Time by Mark Waid. Captain America and Bucky follows, then Tales of Suspense, The Life and Times of the Red Skull and Gruenwald's The Captain.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
@@ -5008,7 +5008,7 @@
     {
       "id": "captain-america-reading-order-modern-marvel-era",
       "name": "Captain America: Modern Marvel Era",
-      "description": "The one atomic issue in Comic Book Herald's modern Captain America checklist, with all non-atomic source rows preserved as explicit provenance.",
+      "description": "This modern-era stretch with Steve Rogers, Sam Wilson, Bucky Barnes, Sharon Carter and the Red Skull is mostly kept as provenance. Captain America (2004) #25 is the resolved issue; the collection and range entries around it are retained rather than guessed at, including the run toward Secret Empire.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -5048,7 +5048,7 @@
     {
       "id": "doctor-doom-primer",
       "name": "There is Only Doom",
-      "description": "A primer on Doctor Doom, compiled by hand from a reader's outline of Comic Book Herald's guide to the best Doom comics. It opens with the origin, in Fantastic Four #5, the second Fantastic Four annual and the Ultimate retelling, then Books of Doom and the story of Werner von Doom. From there it follows Doom as monarch, rival and thief of power: the long Fantastic Four sieges, Doomquest in Iron Man, the Silver Surfer and the Power Cosmic, Secret Wars in 1984 and again in 2015, the Infinity Gauntlet, and his turn as a hero in Infamous Iron Man. The sections are the guide's and are kept in its order.",
+      "description": "Doom's legend is built here in layers: his origin and its retellings, his sieges of the Fantastic Four, and his bids for cosmic power. It moves from Fantastic Four to the Ultimate retelling, Books of Doom and Werner von Doom. Doomquest in Iron Man, the Silver Surfer and the Power Cosmic, Secret Wars, Infinity Gauntlet and Infamous Iron Man follow.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
@@ -5084,7 +5084,7 @@
     {
       "id": "spider-man-best-of",
       "name": "10 Best Spider-Man (Peter Parker) Comics Reading List",
-      "description": "Ten Peter Parker selections, from the Lee-Ditko origins to Life Story. Includes the Lee-Romita opening chapters, Hobgoblin, Jean DeWolff, Kraven's Last Hunt, Harry Osborn, Coming Home, the Gauntlet and Superior Spider-Man. Optional preludes: Amazing Spider-Man #600, #606 and #611 before the Gauntlet, and Big Time #648-652 before Dying Wish. Compiled from the owner's exact outline of Comic Book Herald's guide.",
+      "description": "Across half a century of Peter Parker's life, these selections pick out standout stories, beginning with the Lee and Ditko origins. The Hobgoblin, the Jean DeWolff story, Kraven's Last Hunt, Harry Osborn, Straczynski's Coming Home, the Gauntlet and Slott's Superior Spider-Man lead to Life Story. Amazing Spider-Man #600, #606 and #611 and the Big Time issues #648 to 652 are optional preludes.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
@@ -5123,7 +5123,7 @@
     {
       "id": "thor-best-of",
       "name": "The Best of Thor",
-      "description": "A best-of path through Thor, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It starts in Journey into Mystery with the Absorbing Man and the issue where the title becomes Thor, then Kirby's cosmic run with Ego, the High Evolutionary and Mangog, Firelord, the Celestial Saga, and Walt Simonson's Surtur Saga with Beta Ray Bill and Skurge's last stand. It then covers the final Ragnarok, Asgard over Nebraska, Jason Aaron's God Butcher and Malekith stories, Jane Foster's run as Thor, and the War of the Realms. The sections are the guide's and are kept in its order.",
+      "description": "As Journey into Mystery turns into Thor, Asgard's stories go cosmic, and these selections carry them to the War of the Realms. Kirby's cosmic run brings Ego, the High Evolutionary and Mangog, then Firelord and Simonson's Surtur Saga with Beta Ray Bill. Ragnarok, Asgard over Oklahoma, Jason Aaron's God Butcher and Malekith stories and a new Thor's run lead to the finale.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
@@ -5163,7 +5163,7 @@
     {
       "id": "deadpool-best-of",
       "name": "The Best Deadpool Comics To Start With!",
-      "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+      "description": "Across two decades of Deadpool, these starter groups gather solo runs, a Cable partnership and Cullen Bunn miniseries. Circle Chase by Nicieza and Madureira and Joe Kelly's Deadpool (1997) lead to Nicieza's Cable & Deadpool, Daniel Way's 2008 run, Gischler's Merc with a Mouth, Remender's Uncanny X-Force and Posehn and Duggan's 2012 series. Bunn's Killustrated, Kills Deadpool, Kills the Marvel Universe and Night of the Living Deadpool close it.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
@@ -5199,7 +5199,7 @@
     {
       "id": "scarlet-witch-best-of",
       "name": "The Best of the Scarlet Witch",
-      "description": "A best-of path through Wanda Maximoff, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It opens with her origin one-shot and the issue where she meets Agatha Harkness, then the Chthon possession on Wundagore Mountain, both Vision and the Scarlet Witch limited series, and her inner world in Avengers. It carries on through the Children's Crusade, Wanda under the Apocalypse Twins in Ragnarok Now, her 2015 solo series, her break with Wonder Man, Quicksilver's side of their bond, and No Road Home. The sections are the guide's and are kept in its order.",
+      "description": "After an origin story and a first meeting with Agatha Harkness, the Scarlet Witch's power is tested by Chthon and by her own inner world. Vision and the Scarlet Witch leads to Children's Crusade and Remender's Ragnarok Now. James Robinson's solo series and Ahmed's Quicksilver: No Surrender lead to No Road Home.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
@@ -5236,7 +5236,7 @@
     {
       "id": "essential-avengers",
       "name": "Essential Avengers",
-      "description": "Ten runs out of the first 285 issues of Avengers, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It takes the team from its assembly and the return of Captain America through the arrival of the Vision, the Kree and Skrull War, the Bride of Ultron, the Korvac Saga, the nights of Wundagore, Heart of Stone, the legacy of Thanos, Under Siege and the assault on Olympus. The gaps between sections are the outline's own: this is a selection rather than a continuous read.",
+      "description": "In their first quarter-century the Avengers assemble, bring back Captain America, gain the Vision and fight the Kree and Skrull War. Bride of Ultron, the Korvac Saga, Wundagore, Under Siege and the assault on Olympus follow, from Stan Lee and Jack Kirby's earliest stories to Roger Stern and John Buscema's later ones. Gaps are deliberate.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
@@ -5302,7 +5302,7 @@
     {
       "id": "x-23-reading-order",
       "name": "X-23 (Laura Kinney)",
-      "description": "Follow Laura Kinney from her X-23 origins through All-New Wolverine and later team stories, in Comic Book Herald's selected reading order.",
+      "description": "Through nearly two decades of solo series and team books, X-23 moves from NYX and New X-Men to Avengers Arena and X-Force. Yost and Kyle's X-23 and Target X lead to X-Force, Marjorie Liu's X-23, Tom Taylor's All-New Wolverine and Mariko Tamaki's X-23. Benjamin Percy's X-Force closes the journey.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -5338,7 +5338,7 @@
     {
       "id": "muir-island-saga",
       "name": "Muir Island Saga",
-      "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",
+      "description": "A psychic threat on Muir Island draws the X-Men and X-Factor toward a dangerous confrontation. Uncanny X-Men and X-Factor interleave in this 1991 crossover, with Chris Claremont, Fabian Nicieza and Peter David among the credited writers.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5369,7 +5369,7 @@
     {
       "id": "midnight-massacre",
       "name": "Midnight Massacre",
-      "description": "Five supernatural chapters linking Nightstalkers, Ghost Rider, Darkhold, Morbius, and the Spirits of Vengeance.",
+      "description": "An ominous Darkhold page puts Ghost Rider and his supernatural allies in danger. Midnight Massacre moves through Nightstalkers, Ghost Rider, Darkhold, Morbius and Spirits of Vengeance in their reading order.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5401,7 +5401,7 @@
     {
       "id": "bloodties",
       "name": "Bloodties",
-      "description": "Five chapters bringing the Avengers and X-Men together during the Genosha crisis.",
+      "description": "Genosha is in crisis, and the Avengers and X-Men come together over it in Bloodties, a 1993 crossover with Quicksilver and Magneto. Bob Harras's Avengers stories frame chapters from X-Men, West Coast Avengers and Uncanny X-Men.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5433,7 +5433,7 @@
     {
       "id": "childs-play",
       "name": "Child's Play",
-      "description": "Four chapters crossing X-Force and the New Warriors during the Upstarts confrontation.",
+      "description": "X-Force and the New Warriors meet in the middle of the Upstarts confrontation in Child's Play, Fabian Nicieza's 1994 crossover. The story alternates between X-Force and New Warriors.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5463,7 +5463,7 @@
     {
       "id": "eighth-day",
       "name": "Eighth Day",
-      "description": "Four chapters uniting Iron Man, Spider-Man, and Juggernaut against the Exemplars.",
+      "description": "Iron Man, Spider-Man and Juggernaut are united against the Exemplars in Eighth Day, a short crossover from late 1999. Kurt Busiek's Iron Man stories lead into Peter Parker: Spider-Man and Joe Casey's Juggernaut special.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5494,7 +5494,7 @@
     {
       "id": "reed-richards-and-sue-storms-wedding",
       "name": "Reed Richards and Sue Storm's Wedding",
-      "description": "One annual issue bringing Marvel's heroes together for Reed Richards and Sue Storm's wedding.",
+      "description": "Reed Richards and Sue Storm get married, and Marvel's heroes gather for the wedding in a 1965 Fantastic Four annual. Stan Lee and Jack Kirby's story brings Doctor Doom into the celebration too.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5526,7 +5526,7 @@
     {
       "id": "kree-skrull-war",
       "name": "Kree-Skrull War",
-      "description": "Nine Avengers chapters following the interstellar conflict between the Kree and Skrull empires.",
+      "description": "Kree and Skrull empires go to war across the stars, drawing in the Avengers and Captain Marvel, in Roy Thomas's space opera. The journey runs through Avengers from 1971 into 1972.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -5565,7 +5565,7 @@
     {
       "id": "thanos-war",
       "name": "Thanos War",
-      "description": "Twelve chapters across Iron Man, Captain Marvel, Marvel Feature, and Avengers tracing Thanos's first major campaign.",
+      "description": "Thanos launches his first major campaign in 1973, and Captain Marvel, Iron Man and the Avengers all have a part in the story. Iron Man opens the journey, with Captain Marvel and Marvel Feature chapters leading on to Avengers and the final Captain Marvel story.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5597,7 +5597,7 @@
     {
       "id": "the-night-gwen-stacy-died",
       "name": "The Night Gwen Stacy Died",
-      "description": "Two landmark Amazing Spider-Man issues centered on Gwen Stacy and the Green Goblin.",
+      "description": "Gwen Stacy, Spider-Man and the Green Goblin are at the center of Gerry Conway's landmark 1973 story. The Amazing Spider-Man chapters are read consecutively.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5627,7 +5627,7 @@
     {
       "id": "avengers-defenders-war",
       "name": "Avengers/Defenders War",
-      "description": "Eight chapters alternating between the Avengers and Defenders as both teams enter the same conflict.",
+      "description": "Avengers and Defenders go to war with each other in Steve Englehart's 1973 crossover, with Dormammu and Loki also in the cast. Avengers and Defenders alternate through the conflict.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5658,7 +5658,7 @@
     {
       "id": "original-clone-saga",
       "name": "Original Clone Saga",
-      "description": "Thirteen chapters following Spider-Man through the original Clone Saga.",
+      "description": "Clones enter Spider-Man's life in the original Clone Saga, with Harry Osborn among the cast. The Amazing Spider-Man carries the story through 1974 and 1975, with Gerry Conway, Archie Goodwin and Len Wein among the credited writers.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5688,7 +5688,7 @@
     {
       "id": "phoenix-saga",
       "name": "Phoenix Saga",
-      "description": "Eight X-Men chapters introducing the Phoenix era.",
+      "description": "Jean Grey and the X-Men enter the Phoenix era in a story that begins in late 1976 and runs through 1977. The Uncanny X-Men chapters form a continuous run, with Chris Claremont and Bill Mantlo among the credited writers.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5719,7 +5719,7 @@
       "id": "dark-phoenix-saga",
       "storylines": true,
       "name": "Dark Phoenix Saga",
-      "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
+      "description": "Jean Grey's Phoenix power turns dark, and her fellow X-Men are caught in what follows. Chris Claremont and John Byrne tell the story in a continuous Uncanny X-Men run from 1980.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -5757,7 +5757,7 @@
       "id": "days-of-future-past",
       "storylines": true,
       "name": "Days of Future Past",
-      "description": "Two X-Men chapters presenting Days of Future Past.",
+      "description": "Kitty Pryde reaches back from a dark future, hoping the X-Men can prevent it from coming to pass. Chris Claremont and John Byrne's Uncanny X-Men chapters run consecutively in early 1981.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5787,7 +5787,7 @@
     {
       "id": "contest-of-champions",
       "name": "Contest of Champions",
-      "description": "Three chapters from Marvel's first Contest of Champions.",
+      "description": "Avengers, X-Men and Fantastic Four heroes are drawn into Marvel's first Contest of Champions. The 1982 Marvel Super Hero Contest of Champions is written by Bill Mantlo, Mark Gruenwald and Steven Grant.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5818,7 +5818,7 @@
       "id": "marvel-super-heroes-secret-wars",
       "storylines": true,
       "name": "Marvel Super Heroes Secret Wars",
-      "description": "Twelve chapters carrying Marvel's original Secret Wars from Battleworld's opening to its conclusion.",
+      "description": "Doctor Doom, Spider-Man, the Avengers, the X-Men and the Fantastic Four share Battleworld in Marvel's original Secret Wars. The main series runs in order from 1984 into 1985.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5851,7 +5851,7 @@
     {
       "id": "wraith-war",
       "name": "Wraith War",
-      "description": "Seven essential Wraith War chapters from Hulk, Avengers, and Uncanny X-Men, selected from the full source order.",
+      "description": "Dire Wraiths are the threat behind the 1984 Wraith War, which runs through Hulk, the Avengers and the X-Men. This selection moves from Bill Mantlo's Incredible Hulk to Roger Stern's Avengers and Chris Claremont's Uncanny X-Men.",
       "type": "event",
       "depth": "essential",
       "beginner": false,
@@ -5883,7 +5883,7 @@
       "id": "secret-wars-ii",
       "storylines": true,
       "name": "Secret Wars II",
-      "description": "Forty selected Secret Wars II chapters, omitting two nonessential tie-ins that are not discoverable through Marvel Unlimited.",
+      "description": "The Beyonder takes the lead in Secret Wars II, an event that reaches the Avengers, Spider-Man, Fantastic Four and X-Men books. Jim Shooter's main series is the spine, with tie-ins threaded between its chapters. Some minor tie-ins are left out.",
       "type": "event",
       "depth": "selected",
       "beginner": false,
@@ -5916,7 +5916,7 @@
       "id": "mutant-massacre",
       "storylines": true,
       "name": "Mutant Massacre",
-      "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
+      "description": "The X-Men and their allies race to help the Morlocks when killers attack their underground home. Chris Claremont's Uncanny X-Men interleaves with Louise Simonson's X-Factor, Walt Simonson's Thor, New Mutants and Daredevil. A minor tie-in is left out.",
       "type": "event",
       "depth": "selected",
       "beginner": false,
@@ -5949,7 +5949,7 @@
     {
       "id": "fall-of-the-mutants",
       "name": "Fall of the Mutants",
-      "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",
+      "description": "The X-Men's search for Storm leads to danger in Dallas, while other mutant teams face crises of their own. The journey runs mostly title by title through Louise Simonson's X-Factor, Chris Claremont's Uncanny X-Men and Simonson's New Mutants, with related stories in between.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -5981,7 +5981,7 @@
       "id": "kravens-last-hunt",
       "storylines": true,
       "name": "Kraven's Last Hunt",
-      "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
+      "description": "A last hunt by Kraven the Hunter pulls Spider-Man and Mary Jane Watson into a dark, street-level thriller. J.M. DeMatteis and Mike Zeck tell it across Web of Spider-Man, The Amazing Spider-Man and Peter Parker, the Spectacular Spider-Man, before returning for Soul of the Hunter.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -6018,7 +6018,7 @@
     {
       "id": "evolutionary-war",
       "name": "The Evolutionary War",
-      "description": "Eleven annual chapters carrying the Evolutionary War across Marvel heroes and teams.",
+      "description": "The High Evolutionary's campaign to reshape humanity draws heroes across Earth into his path. The journey begins in X-Factor Annual and passes through the Punisher, Silver Surfer, New Mutants and West Coast Avengers annuals before Avengers Annual.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6051,7 +6051,7 @@
       "id": "inferno",
       "storylines": true,
       "name": "Inferno",
-      "description": "Thirty-nine chapters interleaving X-Men, X-Factor, New Mutants, Spider-Man, and related Inferno stories.",
+      "description": "A demonic invasion turns New York into a battleground for the X-Men and heroes across the city. Chris Claremont's Uncanny X-Men and Louise Simonson's X-Factor, New Mutants and X-Terminators run through it, with Excalibur, Power Pack and Spider-Man titles woven in.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6083,7 +6083,7 @@
     {
       "id": "atlantis-attacks",
       "name": "Atlantis Attacks",
-      "description": "Seventeen chapters carrying Atlantis Attacks across annuals and related Marvel stories.",
+      "description": "An attack from beneath the sea draws heroes across Earth into a fight to protect the surface. Marvel Comics Presents, New Mutants and West Coast Avengers join the annuals before Fantastic Four Annual closes the selection.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6115,7 +6115,7 @@
     {
       "id": "days-of-future-present",
       "name": "Days of Future Present",
-      "description": "Four annual chapters connecting Fantastic Four, X-Factor, New Mutants, and X-Men.",
+      "description": "A visitor from the future unsettles the Fantastic Four and draws mutant teams into a mystery. Fantastic Four Annual begins the crossover, followed by New Mutants, X-Factor and X-Men annuals.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6147,7 +6147,7 @@
     {
       "id": "x-tinction-agenda",
       "name": "X-Tinction Agenda",
-      "description": "Nine chapters interleaving X-Men, X-Factor, and New Mutants through X-Tinction Agenda.",
+      "description": "A raid on Xavier's school sends the X-Men and their allies to Genosha in search of captured friends. The crossover rotates through Chris Claremont's Uncanny X-Men and Louise Simonson's New Mutants and X-Factor.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6178,7 +6178,7 @@
     {
       "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
       "name": "Infinity Trilogy (Gauntlet, War, Crusade)",
-      "description": "Read the original Infinity trilogy with Comic Book Herald's issue order, selected preludes, aftermath and alternate continuations.",
+      "description": "Thanos, Adam Warlock and the Silver Surfer carry the original Infinity trilogy: Infinity Gauntlet, Infinity War and Infinity Crusade. Silver Surfer and Thanos Quest lead in, with Doctor Strange, Quasar, Warlock and the Infinity Watch between the event chapters. Aftermath and alternate continuations follow. Some entries are placeholders to find elsewhere.",
       "type": "era",
       "depth": "partial",
       "beginner": false,
@@ -6214,7 +6214,7 @@
     {
       "id": "operation-galactic-storm",
       "name": "Operation: Galactic Storm",
-      "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",
+      "description": "A war between the Kree and Shi'ar threatens Earth and draws the Avengers into an interstellar conflict. It cycles through Captain America, West Coast Avengers, Quasar, Wonder Man, Avengers, Iron Man and Thor, before returning to Quasar.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6246,7 +6246,7 @@
     {
       "id": "dead-mans-hand",
       "name": "Dead Man's Hand",
-      "description": "Nine chapters connecting Daredevil, Nomad, and the Punisher through Dead Man's Hand.",
+      "description": "Daredevil, Nomad and the Punisher share one conflict across their own books in Dead Man's Hand. D.G. Chichester's Daredevil, Fabian Nicieza's Nomad and Chuck Dixon's Punisher War Journal take turns through the story.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6277,7 +6277,7 @@
     {
       "id": "rise-of-the-midnight-sons",
       "name": "Rise of the Midnight Sons",
-      "description": "Six chapters assembling Ghost Rider, Morbius, and the Midnight Sons against Lilith.",
+      "description": "A threat from Lilith brings Ghost Rider, Morbius, Blade and the rest of the Midnight Sons together in 1992. Howard Mackie's Ghost Rider opens and closes the crossover, with Spirits of Vengeance, Morbius, Darkhold and Nightstalkers between.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6308,7 +6308,7 @@
     {
       "id": "x-cutioners-song",
       "name": "X-Cutioner's Song",
-      "description": "Thirteen chapters interleaving X-Men, X-Factor, and X-Force through X-Cutioner's Song.",
+      "description": "An attack on Professor Xavier sends the X-Men and other mutant teams searching for answers. Uncanny X-Men, X-Factor, X-Men and X-Force take turns through the crossover before a final Uncanny X-Men chapter.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6339,7 +6339,7 @@
     {
       "id": "mys-tech-wars",
       "name": "Mys-Tech Wars",
-      "description": "Four issues forming the complete Mys-Tech Wars event.",
+      "description": "Mys-Tech's plans put the world in danger as heroes from Britain and beyond are pulled into a battle. Dan Abnett's miniseries contains the central story, presented here in its original order.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6366,7 +6366,7 @@
     {
       "id": "fatal-attractions",
       "name": "Fatal Attractions",
-      "description": "Six chapters carrying Fatal Attractions across the X-Men family.",
+      "description": "The promise of a mutant refuge and the Acolytes' actions bring the X-Men into a widening conflict. The crossover passes through X-Factor, X-Force, Uncanny X-Men, X-Men, Wolverine and Excalibur.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6397,7 +6397,7 @@
     {
       "id": "time-and-time-again",
       "name": "Time and Time Again",
-      "description": "Eight chapters carrying the New Warriors through a time-spanning conflict.",
+      "description": "A conflict that spans time catches up the New Warriors, and Nova and Night Thrasher carry it into their own books. Fabian Nicieza writes the crossover, rotating New Warriors, Night Thrasher and Nova before returning to New Warriors.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6429,7 +6429,7 @@
       "id": "phalanx-covenant",
       "storylines": true,
       "name": "Phalanx Covenant",
-      "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
+      "description": "Young mutants are targeted by the Phalanx, bringing together unlikely allies to protect them. Uncanny X-Men and X-Men open the crossover, followed by X-Factor, X-Force, Excalibur, Wolverine and Cable.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -6463,7 +6463,7 @@
       "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
       "storylines": true,
       "name": "X-Men: Onslaught",
-      "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+      "description": "The road to Onslaught runs through X-Men comics before the story spills into the Avengers, the Fantastic Four and the Hulk. It begins with X-Men Prime and carries the conflict through its epilogue. Reference companions are marked separately, and a placeholder must be found elsewhere.",
       "type": "event",
       "depth": "partial",
       "beginner": false,
@@ -6497,7 +6497,7 @@
     {
       "id": "operation-zero-tolerance",
       "name": "Operation: Zero Tolerance",
-      "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",
+      "description": "Bastion's government-backed operation hunts mutants, putting the X-Men and their allies in its path. Generation X, X-Force, Cable, X-Men and Wolverine carry the 1997 crossover, with Scott Lobdell, James Robinson and Larry Hama among the credited writers.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7322,7 +7322,7 @@
     {
       "id": "spider-man-identity-crisis",
       "name": "Spider-Man: Identity Crisis",
-      "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
+      "description": "During the 1998 Identity Crisis, Spider-Man takes on other identities, including Ricochet, Dusk, Hornet and Prodigy. The Amazing Spider-Man, Sensational Spider-Man, Spider-Man and Spectacular Spider-Man are read title by title rather than by month.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7353,7 +7353,7 @@
     {
       "id": "hunt-for-xavier",
       "name": "The Hunt for Xavier",
-      "description": "Six chapters following the X-Men through The Hunt for Xavier.",
+      "description": "The hunt for Professor X runs through Uncanny X-Men and X-Men over the winter of 1998 and 1999. Steve Seagle's Uncanny X-Men alternates with Joe Kelly's X-Men, and an X-Men chapter closes the story.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7382,7 +7382,7 @@
     {
       "id": "magneto-war",
       "name": "Magneto War",
-      "description": "Eight chapters following the X-Men through Magneto War.",
+      "description": "Acolytes strike at the X-Men's home, and a global crisis involving Magneto soon follows. The Magneto War special opens the story, followed by alternating Uncanny X-Men and X-Men chapters and Joe Pruett's Magneto Rex.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7411,7 +7411,7 @@
     {
       "id": "ultimate-marvel-intro",
       "name": "Ultimate Marvel: Intro to the Ultimate U",
-      "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
+      "description": "Earth-1610 gives Spider-Man, the X-Men, the Ultimates and the Fantastic Four fresh starts, building toward Ultimate War. Brian Michael Bendis's Ultimate Spider-Man runs alongside Mark Millar's Ultimate X-Men and Ultimates, with Ultimate Marvel Team-Up, Daredevil and Elektra, and Ultimate Iron Man along the way. The selection is not in publication order and omits an entry marked out of continuity.",
       "type": "era",
       "depth": "complete",
       "beginner": true,
@@ -7447,7 +7447,7 @@
     {
       "id": "marvel-2099",
       "name": "Marvel 2099",
-      "description": "A selected 172-issue tour through Marvel 2099, preserving the exact available chapters from the full alternate-universe source order.",
+      "description": "An alternate universe set in the year 2099 has its own Spider-Man, Doom, X-Men and Ghost Rider, launched in the early 1990s. This selection runs from Peter David's Spider-Man 2099 to Doom 2099, weaving in Punisher 2099, Fantastic Four 2099 and X-Nation 2099. It is a selection rather than the complete order.",
       "type": "event",
       "depth": "selected",
       "beginner": false,
@@ -7478,7 +7478,7 @@
     {
       "id": "maximum-security",
       "name": "Maximum Security",
-      "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",
+      "description": "When alien powers send prisoners to Earth, its heroes must protect the people caught in the chaos. Kurt Busiek's Dangerous Planet opens the journey, and his Maximum Security is spread through tie-ins from Spider-Man, Captain Marvel, Thunderbolts and the X-books.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7510,7 +7510,7 @@
     {
       "id": "falcon-sam-wilson-captain-america-reading-order",
       "name": "Falcon / Sam Wilson / Captain America",
-      "description": "Follow Sam Wilson from the Falcon's beginnings to Captain America and Symbol of Truth, in Comic Book Herald guide order. Repeated collection references appear once.",
+      "description": "Sam Wilson joins Captain America in 1969, and the decades that follow give the Falcon solo series and partnerships of his own. Tales of Suspense and Captain America lead to Priest's Falcon and Captain America & the Falcon. Falcon, Falcon & Winter Soldier and Captain America: Symbol of Truth follow; repeated collection references appear once.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -7547,7 +7547,7 @@
     {
       "id": "fantastic-four-reading-order",
       "name": "Fantastic Four",
-      "description": "A complete Fantastic Four character reading order.",
+      "description": "Since November 1961 Reed Richards, Sue and Johnny Storm and Ben Grimm have carried the Fantastic Four, and their adventures run into 2025. Alongside the main series come side books such as The Thing, Fantastic Four vs. X-Men and the Lost Adventure by Lee and Kirby. Empyre, Fantastic Four: Life Story and Fantastic Four bring it to the modern day.",
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
@@ -7577,7 +7577,7 @@
     {
       "id": "nick-fury-reading-order",
       "name": "Nick Fury and S.H.I.E.L.D.",
-      "description": "A source-ordered guide to Nick Fury and S.H.I.E.L.D. stories, from wartime missions through modern espionage.",
+      "description": "Before he runs a spy agency, Nick Fury leads the Howling Commandos into battle, and later decades turn his war stories into espionage. The selection includes Sgt. Fury, written by Stan Lee and then Roy Thomas, with Gary Friedrich also credited, alongside Marvel Spotlight and Jonathan Hickman's S.H.I.E.L.D. Many entries, including two later Fury series, are placeholders.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -7613,7 +7613,7 @@
     {
       "id": "avengers-disassembled",
       "name": "Avengers Disassembled",
-      "description": "The 2004 story that pulls the Avengers apart, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It is four issues of Brian Michael Bendis at the end of the 1998 series plus the one-shot that closes it out, and it is the shortest order in this catalog on purpose. It ends the Busiek, Perez and Johns era and sets up everything the modern Avengers books do next.",
+      "description": "The Avengers are pulled apart in a crisis that tests the team in 2004. Brian Michael Bendis writes the Avengers stories and Avengers Finale. This is a deliberately short selection.",
       "type": "event",
       "depth": "essential",
       "beginner": true,
@@ -7645,7 +7645,7 @@
       "id": "civil-war-avengers",
       "storylines": true,
       "name": "Civil War: Avengers and Aftermath Reading Order",
-      "description": "The Avengers path through Civil War and out the other side, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It pairs the seven-issue event with the New Avengers issues that run alongside it, the Young Avengers and Runaways tie-in, and Warren Ellis and Mike Deodato's Thunderbolts, which is not an Avengers title but is what makes Dark Avengers make sense later. It then follows the split into Mighty Avengers, the Initiative, Avengers/Invaders and the Illuminati.",
+      "description": "The Avengers grapple with superhuman registration as Civil War reaches their teammates and allies. Mark Millar's Civil War is paired with New Avengers, Young Avengers and Runaways, Warren Ellis's Thunderbolts, Mighty Avengers, the Initiative and the Illuminati.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7683,7 +7683,7 @@
     {
       "id": "mcu-prep-visionquest",
       "name": "VisionQuest",
-      "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
+      "description": "Vision's search for identity and family drives Marvel Studios' Disney+ series VisionQuest. West Coast Avengers' Vision Quest and Tom King's Vision underpin it, following the family Vision makes, loses and builds again across three decades of comics, while Young Avengers and The Children's Crusade carry the story to a new generation. Some Vision Quest issues have owner-confirmed identities but no provider details or covers.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -7719,7 +7719,7 @@
     {
       "id": "avengers-doomsday-secret-wars",
       "name": "Avengers: Doomsday & Avengers: Secret Wars",
-      "description": "Doctor Doom at his most brilliant and ruthless, building toward the moment he becomes a literal god ruling over the wreckage of a shattered multiverse. This is the deep end of Marvel cosmic stakes, with Doom finally taking center stage.",
+      "description": "Doctor Doom, at his most brilliant and ruthless, steps to center stage as the multiverse shatters around the Avengers and the Illuminati. This fast-track, trade-based order opens with the 1984 Secret Wars, then Jonathan Hickman's New Avengers and Avengers, including Time Runs Out, with Brian Michael Bendis's Ultimate Comics Enemy, Mystery and Doom and Hickman's Ultimate Comics Ultimates set in between. Hickman's Secret Wars (2015) closes it.",
       "type": "screen-companion",
       "depth": "essential",
       "beginner": false,
@@ -7760,7 +7760,7 @@
     {
       "id": "x-men-manifest-destiny",
       "name": "X-Men: Manifest Destiny",
-      "description": "Nineteen issues following the X-Men move to San Francisco through Uncanny X-Men, Wolverine, the anthology, and Eternals.",
+      "description": "In 2008, the X-Men move to San Francisco, and Manifest Destiny follows them there through several books. Ed Brubaker and Matt Fraction's Uncanny X-Men lead into Manifest Destiny, Jason Aaron's Wolverine: Manifest Destiny, Nightcrawler and Eternals.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7793,7 +7793,7 @@
     {
       "id": "dark-reign-avengers",
       "name": "Dark Reign: An Avengers Reading List",
-      "description": "The Avengers path through Dark Reign, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. Norman Osborn runs his own Avengers, the Initiative and the real team go underground, and the Utopia crossover interrupts Dark Avengers partway through, which is why the run is read with a gap and picked up again later. It closes with Dark Reign: Young Avengers and the Children's Crusade.",
+      "description": "Norman Osborn runs his own Avengers, while the real team and the Initiative go underground. Dark Avengers, Mighty Avengers, Avengers: The Initiative and New Avengers are read in turn. Dark Avengers #7 and 8 are picked up later with the Utopia crossover. Dark Reign: Young Avengers and the Children's Crusade close the journey.",
       "type": "era",
       "depth": "complete",
       "beginner": false,
@@ -7828,7 +7828,7 @@
       "id": "war-of-kings",
       "storylines": true,
       "name": "War of Kings",
-      "description": "Thirty-two chapters interleaving the six-part Kree and Shi'ar war with Nova, Guardians of the Galaxy, Darkhawk, and Ascension.",
+      "description": "War between the Kree and the Shi'ar draws in Black Bolt, Vulcan, Nova, Darkhawk and the Guardians of the Galaxy. Dan Abnett and Andy Lanning's War of Kings runs with Nova, Guardians and Ascension. The Warriors miniseries is placed first, though it went on sale during the crossover.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7860,7 +7860,7 @@
     {
       "id": "messiah-war",
       "name": "X-Men: Messiah War",
-      "description": "Ten chapters following Cable, Hope, and X-Force through the future-set Messiah War crossover.",
+      "description": "Set in the future, the Messiah War follows Cable, Hope and X-Force, and Bishop's own story leads into it. Duane Swierczynski's The Times and Life of Lucas Bishop and Christopher Yost's X-Force/Cable: Messiah War come first, then Cable alternates with X-Force.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7891,7 +7891,7 @@
     {
       "id": "x-men-utopia",
       "name": "Avengers and X-Men: Utopia",
-      "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+      "description": "During Dark Reign, the X-Men and the Dark Avengers meet in the Utopia crossover, with Cyclops and Emma Frost among its leads. Matt Fraction's Uncanny X-Men leads into Utopia and Exodus, Brian Michael Bendis's Dark Avengers and a Dark Reign: The List special. The Cabal closes the selection.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7923,7 +7923,7 @@
     {
       "id": "x-men-nation-x",
       "name": "X-Men: Nation X",
-      "description": "Twenty chapters interleaving Uncanny X-Men, X-Men Legacy, Deadpool, Nation X, and the X-Factor one-shot.",
+      "description": "The X-Men try to build a home for mutants on Utopia as old rivals and new challenges gather around them. Matt Fraction's Uncanny X-Men alternates with Mike Carey's X-Men Legacy and Daniel Way's Deadpool, with Nation X and Peter David's X-Factor special in between.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -7955,7 +7955,7 @@
     {
       "id": "necrosha",
       "name": "X-Men: Necrosha",
-      "description": "Fourteen alternating chapters from The Gathering through X-Force, New Mutants, and X-Men Legacy.",
+      "description": "Selene raises the dead as her forces threaten the X-Men's home on Utopia. The Gathering leads into X Necrosha, followed by alternating chapters of Christopher Yost's X-Force, Zeb Wells's New Mutants and Mike Carey's X-Men Legacy.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8017,7 +8017,7 @@
     {
       "id": "second-coming",
       "name": "X-Men: Second Coming",
-      "description": "Twenty-three chapters combining the main event with X-Force, X-Factor, New Mutants, Legacy, and Revelations.",
+      "description": "Cable and Hope return as enemies close in, putting the X-Men on a desperate mission to protect them. X-Men: Hope and Second Coming: Prepare lead in, then Uncanny X-Men, New Mutants, X-Men Legacy, X-Force and X-Factor rotate through the main event, with Hellbound alongside.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8080,7 +8080,7 @@
     {
       "id": "heroic-age-avengers",
       "name": "The Heroic Age: An Avengers Reading List",
-      "description": "The Avengers titles of 2010 to 2012 read together, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. Avengers, New Avengers and Secret Avengers alternate volume by volume from the Heroic Age launch through Fear Itself and on to the edge of Avengers vs X-Men, with Avengers Prime as the prologue. Where two of the outline's volumes share an issue at the boundary, it is read once, in the earlier one.",
+      "description": "The Heroic Age relaunches the Avengers, and Steve Rogers, Iron Man, Thor and Luke Cage carry them into Fear Itself. Avengers Prime is the prologue, then Brian Michael Bendis's Avengers and New Avengers alternate volume by volume with Secret Avengers, launched by Ed Brubaker, to the edge of Avengers vs X-Men. An issue shared at a volume boundary is read once, in the earlier volume.",
       "type": "era",
       "depth": "complete",
       "beginner": false,
@@ -8113,7 +8113,7 @@
     {
       "id": "all-new-all-different-avengers",
       "name": "All-New, All-Different Avengers",
-      "description": "The Avengers line after Secret Wars, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. Rage of Ultron opens it, then the All-New, All-Different team, Uncanny Avengers, the A.I.M. New Avengers and A-Force, through the Standoff and Civil War II eras and into Secret Empire. It also carries the smaller books of the period, Great Lakes Avengers, Occupy Avengers and U.S.Avengers, in the order the outline gives them.",
+      "description": "After Secret Wars the Avengers branch into a crowded line of teams, with Kamala Khan, Nova, the Vision and Squirrel Girl among them. Rage of Ultron opens the journey, then Mark Waid's All-New, All-Different Avengers and Al Ewing's A.I.M. New Avengers run beside Uncanny Avengers and A-Force, through Standoff and Civil War II into Secret Empire. Great Lakes Avengers, Occupy Avengers and U.S.Avengers also appear.",
       "type": "era",
       "depth": "complete",
       "beginner": false,
@@ -8149,7 +8149,7 @@
     {
       "id": "marvel-fresh-start-avengers",
       "name": "Marvel Fresh Start Avengers",
-      "description": "Jason Aaron's Avengers and the books around it, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. The Final Host assembles the team, Wakanda Forever runs across three one-shots and an annual, and the West Coast Avengers and Savage Avengers run alongside the main title through the World Tour, the War of the Vampires and No Road Home. The gaps in the main series are the outline's own.",
+      "description": "The Final Host gathers Thor, Captain America, Iron Man and Black Panther into a new Avengers team for Marvel's Fresh Start. Jason Aaron's main title is read with Wakanda Forever, Kelly Thompson's West Coast Avengers and Gerry Duggan's Savage Avengers, through the World Tour, the War of the Vampires and No Road Home. Gaps in the main series are deliberate.",
       "type": "era",
       "depth": "complete",
       "beginner": false,
@@ -8185,7 +8185,7 @@
     {
       "id": "secret-war",
       "name": "Secret War",
-      "description": "The five-issue 2004 Secret War miniseries in the exact sequence given by Comic Book Herald.",
+      "description": "A secret war tied to Latveria draws Nick Fury, Spider-Man, Captain America, Wolverine and Daredevil into an espionage thriller. Brian Michael Bendis's Secret War is read in its original sequence.",
       "type": "event",
       "depth": "complete",
       "storyTypes": [
@@ -8250,7 +8250,7 @@
     {
       "id": "miles-morales-best-of",
       "name": "Best Miles Morales Comics Reading List",
-      "description": "A selected Miles Morales path from his Ultimate Comics Spider-Man origin through Spider-Men, Spider-Verse, Secret Wars, Sitting in a Tree, Gwenpool and Venom.",
+      "description": "In 2011 a new Spider-Man emerges in the Ultimate Universe, and these highlights carry Miles Morales through his first years. Bendis's Ultimate Comics Spider-Man and Spider-Men lead to Spider-Verse, Hickman's Secret Wars and Sitting in a Tree across Spider-Man and Spider-Gwen. Gwenpool and Venom close the selection.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "selected",
@@ -8282,7 +8282,7 @@
     {
       "id": "miles-morales-spider-man-reading-order",
       "name": "Spider-Man: Miles Morales",
-      "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order.",
+      "description": "Between the Ultimate Universe and Earth-616, Miles Morales grows up as Spider-Man over a dozen years of solo books and team-ups. Cataclysm, Ultimate End and Secret Wars come before Champions and Bendis's Spider-Man. Saladin Ahmed's Miles Morales: Spider-Man follows, and Cody Ziglar's Trial By Spider carries the journey to 2023.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -8317,7 +8317,7 @@
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
       "name": "Amazing Spider-Man",
-      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "description": "In 1962 Peter Parker's flagship adventures begin, and Spectacular, Web of Spider-Man and Marvel Team-Up join them on the way to 2025. Lee and Ditko, then Lee and John Romita Sr., give way to Conway and Stern, then Zeb Wells' run, Venom War and Joe Kelly's 2025 series. Some Spectacular Spider-Man entries are placeholders.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -8377,7 +8377,7 @@
       "id": "annihilation-conquest",
       "storylines": true,
       "name": "Annihilation: Conquest",
-      "description": "Twenty-nine chapters combining the prologue, lead-in mini-series, Nova, and the six-part cosmic event.",
+      "description": "As the Phalanx move against the Kree, cosmic heroes must answer another threat to their worlds. After the prologue, the Starlord, Quasar and Wraith series run beside Nova, then Dan Abnett and Andy Lanning's main event alternates with more Nova.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8409,7 +8409,7 @@
     {
       "id": "messiah-complex",
       "name": "X-Men: Messiah Complex",
-      "description": "Thirteen alternating chapters following the race to find the first mutant born after M-Day.",
+      "description": "The first mutant born since M-Day sets off a race to find the child, with Cyclops, Cable and the X-Men in the hunt. Ed Brubaker's opening special leads into chapters rotating through Uncanny X-Men, X-Factor, New X-Men and X-Men.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8440,7 +8440,7 @@
     {
       "id": "world-war-hulk-aftersmash",
       "name": "World War Hulk: Aftersmash",
-      "description": "Twenty-six aftermath issues spanning Damage Control, Incredible Hercules, Warbound, Red Hulk, Skaar, and the next Hulk stories.",
+      "description": "After World War Hulk, its aftermath spreads to Damage Control, Hercules, the Warbound, Red Hulk and Skaar. The Aftersmash special opens it, followed by Damage Control, Incredible Hercules, Warbound, Hulk and Skaar. What If? Planet Hulk comes last.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8471,7 +8471,7 @@
     {
       "id": "x-men-curse-of-the-mutants",
       "name": "X-Men: Curse of the Mutants",
-      "description": "Eighteen chapters following the vampire conflict through X-Men, Namor, Deadpool, and four one-shots.",
+      "description": "A vampire conflict engulfs the X-Men in 2010, pulling in Blade, Namor and Deadpool, with Dracula among the cast. Victor Gischler's X-Men stories alternate with Namor: The First Mutant, Curse of the Mutants specials and Deadpool.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8504,7 +8504,7 @@
     {
       "id": "shadowland",
       "name": "Shadowland",
-      "description": "Twenty-nine issues following the core Shadowland series through Daredevil and its street-level tie-ins.",
+      "description": "In Shadowland, Daredevil's story spills into street-level tie-ins that draw in Elektra, Moon Knight, Spider-Man and Ghost Rider. Andy Diggle's Shadowland runs beside Daredevil, Blood on the Streets, Power Man, Moon Knight, Daughters of the Shadow and Thunderbolts.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8535,7 +8535,7 @@
     {
       "id": "wolverine-goes-to-hell",
       "name": "Wolverine Goes to Hell",
-      "description": "Fifteen chapters alternating Wolverine, Daken, and X-23 through the opening Goes to Hell storyline.",
+      "description": "Hell is where Wolverine's 2010 series begins, and Daken and X-23 launch their own books alongside it. Jason Aaron's Wolverine, Daniel Way and Marjorie Liu's Daken: Dark Wolverine and Liu's X-23 alternate before the story returns to Wolverine.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8565,7 +8565,7 @@
     {
       "id": "chaos-war",
       "name": "Chaos War",
-      "description": "Nineteen issues combining the five-part event with Hercules, Thor, Alpha Flight, X-Men, and Incredible Hulks tie-ins.",
+      "description": "The Chaos War spreads across the worlds of Hercules, Thor, the Hulk, Alpha Flight and the X-Men. The main event anchors the journey, with stories from Thor, Chaos King, Dead Avengers, God Squad, Ares, Alpha Flight, X-Men and Greg Pak's Incredible Hulks.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8597,7 +8597,7 @@
     {
       "id": "axis",
       "name": "Avengers & X-Men: Axis",
-      "description": "Fifty-five issues from the March to Axis prelude through the nine-part event and its immediate tie-ins.",
+      "description": "The Avengers and X-Men join forces when the Red Skull's plans threaten people around the world. The March to Axis leads through Magneto, Uncanny Avengers, Captain America and Loki, then Rick Remender's Axis runs with Revolutions, Hobgoblin, Carnage, Superior Iron Man and more.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8630,7 +8630,7 @@
     {
       "id": "spider-verse",
       "name": "Spider-Verse",
-      "description": "Thirty-five issues from Edge of Spider-Verse through the main Amazing Spider-Man event and its team books.",
+      "description": "A deadly force hunts spider heroes across realities, bringing many versions of Spider-Man together. Dan Slott's The Amazing Spider-Man anchors the event, with Superior Spider-Man, Edge of Spider-Verse, Team-Up, Scarlet Spiders and other spider-hero stories alongside.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8661,7 +8661,7 @@
     {
       "id": "apocalypse-wars",
       "name": "X-Men: Apocalypse Wars",
-      "description": "Thirteen alternating chapters from Extraordinary X-Men, Uncanny X-Men, and All-New X-Men.",
+      "description": "A mission sends X-Men into the future, where their teammates must find them in a dangerous world. Jeff Lemire's Extraordinary X-Men rotates with Cullen Bunn's Uncanny X-Men and Dennis Hopeless's All-New X-Men.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8689,7 +8689,7 @@
     {
       "id": "clone-conspiracy",
       "name": "Spider-Man: The Clone Conspiracy",
-      "description": "Twenty-four issues combining the five-part event with Amazing Spider-Man, Silk, Prowler, and the Omega conclusion.",
+      "description": "A conspiracy involving clones pulls Spider-Man, Silk and the Prowler into one story, with the Jackal in the mix. Dan Slott and Christos Gage's Amazing Spider-Man leads into Slott's The Clone Conspiracy, alternating with more Amazing Spider-Man, Silk and Prowler.",
       "type": "event",
       "depth": "complete",
       "beginner": false,
@@ -8720,7 +8720,7 @@
     {
       "id": "franklin-richards-one-shots",
       "name": "Franklin Richards One-Shots",
-      "description": "Fifteen short, gag-filled one-shots about Reed and Sue Richards' young son Franklin and his robot babysitter H.E.R.B.I.E., published from 2005 to 2009. Each stands alone, so any of them makes an easy first comic.",
+      "description": "When Reed and Sue's young son Franklin gets into trouble, his robot babysitter is never far behind in these gag-filled specials. The stories from 2005 to 2009 stand alone, written mostly by Marc Sumerak with Chris Eliopoulos among the creators. They suit young readers, with H.E.R.B.I.E. along for every mishap.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -8755,7 +8755,7 @@
     {
       "id": "marvel-adventures-the-avengers",
       "name": "Marvel Adventures: The Avengers",
-      "description": "A self-contained Avengers series from 2006 to 2009 whose lineup includes Spider-Man, Wolverine, Storm and the Hulk, in mostly single-issue adventures that assume no knowledge of the wider Marvel line.",
+      "description": "Spider-Man, Wolverine, Storm and the Hulk join Captain America and Iron Man in an all-ages Avengers lineup of self-contained adventures. The series ran from 2006 to 2009, with Jeff Parker, Ty Templeton, Marc Sumerak and Paul Tobin among its writers. Young readers need no wider knowledge to start anywhere.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -8793,7 +8793,7 @@
     {
       "id": "spidey",
       "name": "Spidey",
-      "description": "Peter Parker's first year as Spider-Man, retold for new readers in a 2015 series with guest appearances from Iron Man and Black Panther, followed by its six-issue sequel, Spidey: School's Out.",
+      "description": "Back in Peter Parker's first year as Spider-Man, these all-ages retellings bring in Iron Man and Black Panther as guests. Robbie Thompson's Spidey is followed by Spidey: School's Out, whose entries are placeholders for now.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -8827,7 +8827,7 @@
     {
       "id": "moon-girl-and-devil-dinosaur",
       "name": "Moon Girl and Devil Dinosaur",
-      "description": "Lunella Lafayette, a nine-year-old genius, and the giant red dinosaur who becomes her partner, across the whole 47-issue series from 2015 to 2019.",
+      "description": "When a nine-year-old genius partners with a giant red dinosaur, Lunella Lafayette's lighthearted adventures begin. Moon Girl and Devil Dinosaur runs from 2015 to 2019, with Brandon Montclare, Amy Reeder and Robbie Thompson among the writers.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -8900,7 +8900,7 @@
     {
       "id": "the-unbeatable-squirrel-girl",
       "name": "The Unbeatable Squirrel Girl",
-      "description": "Doreen Green balances computer science classes with super heroics across both 2015 volumes: an eight-issue first run, then the fifty issues that followed through 2019.",
+      "description": "Between computer science classes, Doreen Green keeps saving the day as Squirrel Girl, with Tippy-Toe at her side. The 2015 Squirrel Girl volumes carry her adventures through 2019, with Ryan North and Robbie Thompson among the writers.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -8940,7 +8940,7 @@
     {
       "id": "power-pack-pack-attack-and-team-ups",
       "name": "Power Pack: Pack Attack! and Team-Ups",
-      "description": "Four young siblings with alien-given powers in their all-ages line from 2005 to 2010: the Pack Attack! reboot, a Day One origin, a Skrull invasion, and team-ups with the X-Men, Avengers, Spider-Man, Hulk, Fantastic Four, Iron Man, Wolverine and Thor.",
+      "description": "With alien-given powers, the young Power siblings spend years teaming up with one Marvel hero after another. Marc Sumerak's Pack Attack! reboot leads to team-ups with the X-Men, Avengers, Spider-Man, Hulk, Fantastic Four and Iron Man, then Fred Van Lente's Day One origin and Skrulls Vs. Power Pack. Wolverine and Power Pack and Thor and the Warriors Four close the journey.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -9175,7 +9175,7 @@
     {
       "id": "marvel-super-hero-adventures",
       "name": "Marvel Super Hero Adventures",
-      "description": "Five standalone all-ages specials from 2018 and 2019, starring Captain Marvel twice, then Spider-Man, Ms. Marvel, and a shared team-up.",
+      "description": "On a first day of school and a Halloween night, Captain Marvel leads these standalone all-ages specials, joined by Spider-Man and friends. Spider-Man crosses the Spider-Verse, Ms. Marvel meets a teleporting dog, and Spider-Man, Hawkeye and Ant-Man share Webs and Arrows and Ants, Oh My! Sholly Fisch, Jeff Loveness, Daniel Kibblesmith and Jim McCann are among the writers.",
       "type": "character-run",
       "spotlightKind": "other",
       "audience": "young-readers",
@@ -9275,7 +9275,7 @@
     {
       "id": "inhumans-vs-x-men",
       "name": "Inhumans vs. X-Men",
-      "description": "Twenty chapters alternating the seven-part event with X-Men, Inhumans, and Mercs for Money tie-ins.",
+      "description": "A Terrigen conflict brings Inhumans and X-Men into opposition, with Medusa and Black Bolt among the cast. Charles Soule and Jeff Lemire's IvX alternates with Uncanny X-Men, Extraordinary X-Men, All-New X-Men, Uncanny Inhumans and Deadpool and the Mercs for Money.",
       "type": "event",
       "depth": "complete",
       "beginner": false,

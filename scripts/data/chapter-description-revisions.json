@@ -1,8 +1,483 @@
 {
   "schemaVersion": 1,
   "issue": 1075,
-  "previous": null,
-  "current": null,
-  "entries": [],
-  "sha256": "cf6f04212f24aa3d814201ce2aef50e8e35069ee11f265b77d7581d15088cbc9"
+  "previous": {
+    "ownerAttachmentSha256": "f24a85f558c3c0d9b2856edcf5af753b6fdbb72fad9a0a27494bb9d1891db6ce",
+    "entriesSha256": "dc1e9b712f7782407ac8598cdf97720899b2a912c80dc564aee18e1a77af1bed"
+  },
+  "current": {
+    "ownerAttachmentSha256": "95296c6a3ea1edb3e0c775159ee669b39b63080a3cc02ac49c48b58445dd5582",
+    "entriesSha256": "165f5ddd4547425a08c7e181506e5ec33c0466e5d7816b596650f721a2996146"
+  },
+  "entries": [
+    {
+      "id": "marvel-knights-to-planet-x-01",
+      "sourceHeading": "Daredevil & Black Widow Opening Sequence",
+      "before": "This chapter resets Daredevil with sharper emotional stakes and a grounded tone. Black Widow’s stories expand the street-level world and set up the character-driven focus of the era.",
+      "after": "Daredevil gets a reset with sharper emotional stakes, while Black Widow widens the street-level world around him. Kevin Smith's Daredevil opens the journey, followed by Black Widow stories and a return to Daredevil."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-02",
+      "sourceHeading": "Punisher: Welcome Back Frank",
+      "before": "Frank Castle returns with a brutal, darkly comedic take that redefines the character. The story strips him down to essentials and rebuilds his mission with clarity.",
+      "after": "Frank Castle is back, stripped down to essentials in a brutal, darkly comic story that rebuilds his mission. The 2000 Punisher series tells Welcome Back Frank, with a later Punisher series continuing his story."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-03",
+      "sourceHeading": "Marvel Boy to Early X-Men Setup",
+      "before": "Marvel Boy introduces a sharp, rebellious energy that signals Marvel’s shift toward modern storytelling. Uncanny X-Men picks up that momentum with a fresh thematic direction.",
+      "after": "Marvel Boy arrives with a sharp, rebellious energy that signals Marvel's shift toward modern storytelling. Grant Morrison's Marvel Boy leads to Joe Casey's Uncanny X-Men, carrying that momentum into a fresh direction for the X-Men."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-04",
+      "sourceHeading": "X-Treme X-Men Launch",
+      "before": "This launch pushes the X-Men into globe-spanning missions with a focus on independence and identity. It sets up a parallel spine to the main mutant titles.",
+      "after": "Globe-spanning missions take the X-Men in a new direction, with independence and identity at the center. Chris Claremont's X-Treme X-Men begins a parallel strand beside the main mutant titles and returns throughout the journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-05",
+      "sourceHeading": "New X-Men Begins",
+      "before": "The X-Men enter a new era with bold ideas and a modern tone. The story reframes mutants as cultural icons and raises the stakes for the entire line.",
+      "after": "A new era opens for the X-Men that recasts mutants as cultural icons and raises the stakes for the whole line. Grant Morrison's New X-Men begins here and returns in later chapters through Planet X."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-06",
+      "sourceHeading": "Daredevil Companion",
+      "before": "These issues deepen Matt’s emotional world and explore the cost of heroism. The tone stays grounded and personal.",
+      "after": "Grounded and personal, these stories deepen Matt Murdock's emotional world and weigh what heroism costs him. Brian Michael Bendis's Daredevil is followed by Jeph Loeb's Daredevil: Yellow."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-07",
+      "sourceHeading": "Spider-Man: JMS Era Begins",
+      "before": "Spider-Man shifts into a more introspective and mythic style. The story blends street-level challenges with larger mysteries.",
+      "after": "Spider-Man's stories turn introspective and mythic, mixing street-level trouble with larger mysteries. Paul Jenkins's Peter Parker: Spider-Man leads into Amazing Spider-Man as the newer direction takes shape."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-08",
+      "sourceHeading": "Uncanny X-Men: Poptopia",
+      "before": "The X-Men confront fame, culture, and the pressure of being public figures. The arc mixes action with social commentary.",
+      "after": "Fame, pop culture and life as public figures press on the X-Men, in action laced with social commentary. Joe Casey's Uncanny X-Men tells the Poptopia story in 2001."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-09",
+      "sourceHeading": "Exiles Launch",
+      "before": "A new team jumps across realities to fix broken timelines. The concept opens the door to constant reinvention.",
+      "after": "Leaping from reality to reality, a new team works to repair broken timelines, a concept built for constant reinvention. The Exiles launch includes art by Mike McKone, and the team returns in later chapters."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-10",
+      "sourceHeading": "Wolverine: Origin",
+      "before": "Logan’s past is revealed with a quiet, character-focused story. It adds emotional weight to his mythology.",
+      "after": "Logan's origin comes to light in a quiet, character-focused story that gives his mythology new emotional weight. Paul Jenkins writes Wolverine: The Origin, published from 2001 into 2002."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-11",
+      "sourceHeading": "X-Treme X-Men: Savage Land",
+      "before": "The team faces survival challenges in a hostile environment. The story highlights leadership and trust.",
+      "after": "Survival in a hostile land tests the X-Treme X-Men's leadership and the trust between them. Chris Claremont's X-Treme X-Men: Savage Land is read here ahead of X-Treme X-Men #5, which went on sale first."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-12",
+      "sourceHeading": "New X-Men: Germ-Free Generation",
+      "before": "The X-Men confront biological threats and ethical dilemmas. The arc pushes the mutant metaphor into new territory.",
+      "after": "Biological threats and hard ethical choices drag the X-Men, and the mutant metaphor, into new territory. Grant Morrison's New X-Men Annual and New X-Men continue the series after its opening chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-13",
+      "sourceHeading": "Punisher: No Limits",
+      "before": "Frank takes on street-level corruption with relentless focus. The story keeps the tone sharp and unforgiving.",
+      "after": "Corruption on the streets meets Frank Castle's relentless focus, and the tone stays sharp and unforgiving. A new Punisher series begins in 2001 and continues in later chapters of this order."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-14",
+      "sourceHeading": "X-Treme X-Men: Paradise Lost + Annual",
+      "before": "The team faces political tension and moral conflict. The annual expands the stakes with a supernatural twist.",
+      "after": "The X-Treme X-Men are caught between political tension and moral conflict, and an annual raises the stakes with a supernatural turn. Chris Claremont writes the X-Treme X-Men stories and the annual."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-15",
+      "sourceHeading": "New X-Men: Imperial",
+      "before": "The X-Men deal with cosmic politics and power struggles. The arc raises the scale without losing emotional focus.",
+      "after": "Cosmic politics and a struggle for power raise the scale for the X-Men without losing sight of the people in it. Grant Morrison's New X-Men carries the Imperial story in 2002."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-16",
+      "sourceHeading": "Uncanny X-Men: X-Corps (Prelude)",
+      "before": "The team faces internal fractures and shifting alliances. The setup builds toward a larger conflict.",
+      "after": "Cracks open inside the X-Men as alliances start to shift, building toward a larger conflict. Joe Casey's Uncanny X-Men and its 2001 annual set up the X-Corps story that follows in a later chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-17",
+      "sourceHeading": "Hulk: Return of the Monster",
+      "before": "Bruce confronts the monster within through a tense, psychological story. The tone is quiet, eerie, and character-driven.",
+      "after": "Bruce Banner wrestles with the monster inside him, in a quiet, eerie psychological story. Bruce Jones's Hulk begins here and continues across later chapters of the journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-18",
+      "sourceHeading": "Exiles: A World Apart",
+      "before": "The team faces a reality that challenges their core values. The arc tests loyalty and purpose.",
+      "after": "A reality that challenges their core values tests the Exiles' loyalty and their sense of purpose. Exiles continues into 2002, with art by Mike McKone and James Calafiore."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-19",
+      "sourceHeading": "Punisher: Do Not Fall in New York City",
+      "before": "Frank deals with the fallout of urban decay. The story keeps the focus tight and personal.",
+      "after": "Urban decay in New York leaves fallout for Frank Castle to handle, and the focus stays tight and personal. Punisher's Do Not Fall in New York City sits between No Limits and You Talkin' To Me?"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-20",
+      "sourceHeading": "Daredevil: Underboss",
+      "before": "Matt faces a power shift in the criminal underworld. The arc sets up long-term consequences.",
+      "after": "A power shift in the criminal underworld drags Matt Murdock into a dark, street-level crime story. Daredevil: Underboss starts a sequence that continues later with Out, Lowlife, Hardcore and Echo."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-21",
+      "sourceHeading": "Spider-Man: Revelations",
+      "before": "Peter confronts hidden truths that reshape his relationships. The tone is emotional and reflective.",
+      "after": "Hidden truths come out and reshape Peter Parker's relationships, in an arc that is emotional and reflective. J. Michael Straczynski writes this Amazing Spider-Man story in 2002."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-22",
+      "sourceHeading": "Uncanny X-Men: X-Corps (Main Arc)",
+      "before": "The X-Men face a dangerous new mutant organization. The story blends political tension with action.",
+      "after": "A dangerous new mutant organization puts the X-Men at the center of political tension and action. Joe Casey's Uncanny X-Men continues the X-Corps story after its earlier prelude."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-23",
+      "sourceHeading": "X-Treme X-Men: Invasion",
+      "before": "The team responds to a global threat with high stakes. The arc emphasizes teamwork and resilience.",
+      "after": "A global threat calls on the X-Treme X-Men's teamwork and resilience, and the stakes run high. Chris Claremont writes the Invasion story in X-Treme X-Men."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-24",
+      "sourceHeading": "Spider-Man: Until the Stars Turn Cold",
+      "before": "Peter faces moral dilemmas and personal loss. The story keeps the focus on responsibility.",
+      "after": "Moral dilemmas and personal loss weigh on Peter Parker, with responsibility at the heart of it. J. Michael Straczynski's Amazing Spider-Man continues with Until the Stars Turn Cold."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-25",
+      "sourceHeading": "Hulk: Boiling Point",
+      "before": "Bruce deals with rising pressure and unstable alliances. The arc pushes him toward a breaking point.",
+      "after": "Pressure builds around Bruce Banner and his alliances turn unstable, driving him toward a breaking point. Bruce Jones writes the Boiling Point story in Hulk."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-26",
+      "sourceHeading": "Daredevil: Out",
+      "before": "Matt’s identity crisis becomes public. The story explores consequences and control.",
+      "after": "Public scrutiny puts Matt Murdock's private life under pressure and tests his sense of control. Daredevil continues from Underboss into the arc called Out."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-27",
+      "sourceHeading": "Exiles: Out of Time",
+      "before": "The team confronts a mission that challenges their future. The arc raises emotional stakes.",
+      "after": "A mission that puts their own future in question raises the emotional stakes for the Exiles. Exiles continues with Out of Time, including artwork by Mike McKone and James Calafiore."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-28",
+      "sourceHeading": "Spider-Man: Return of the Goblin",
+      "before": "Peter faces a familiar enemy with new complications. The story blends nostalgia with danger.",
+      "after": "The Goblin returns to Peter Parker's life with new complications, blending nostalgia and danger. Paul Jenkins writes Peter Parker: Spider-Man, and the story continues the series in 2002."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-29",
+      "sourceHeading": "New X-Men: New Worlds (Part 1)",
+      "before": "The X-Men expand their mission and confront cultural change. The tone is ambitious and forward-looking.",
+      "after": "Cultural change pushes the X-Men to widen their mission, in an ambitious, forward-looking chapter. Grant Morrison's New X-Men begins New Worlds, which resumes after chapters of Uncanny X-Men and Hulk."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-30",
+      "sourceHeading": "Uncanny X-Men: Identity Crisis",
+      "before": "The team faces personal conflict and shifting loyalties. The arc explores trust and identity.",
+      "after": "Trust and identity are on the line as personal conflict and shifting loyalties strain the X-Men. Joe Casey's Uncanny X-Men carries the Identity Crisis story in 2002."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-31",
+      "sourceHeading": "Hulk: Transfer of Power",
+      "before": "Bruce faces political manipulation and moral pressure. The story tests his control.",
+      "after": "Political manipulation and moral pressure test how long Bruce Banner can hold on to control. Bruce Jones writes Hulk: Transfer of Power, published from 2002 into 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-32",
+      "sourceHeading": "New X-Men: New Worlds (Part 2)",
+      "before": "The X-Men push deeper into global influence. The arc builds momentum toward larger themes.",
+      "after": "The X-Men reach further into the world, and their growing global influence builds toward larger themes. Grant Morrison's New X-Men continues the New Worlds story begun in an earlier chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-33",
+      "sourceHeading": "Uncanny X-Men: Hope",
+      "before": "The team deals with loss and renewal. The story focuses on emotional recovery.",
+      "after": "Loss and renewal shape this X-Men story, which centers on emotional recovery. Uncanny X-Men: Hope follows the team's story from 2002 through early 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-34",
+      "sourceHeading": "Fantastic Four: Imaginauts",
+      "before": "The team embraces exploration and optimism. The arc highlights creativity and family.",
+      "after": "Exploration and optimism drive the Fantastic Four, in a lighter story about creativity and family. Fantastic Four: Imaginauts begins here, and the series continues in later chapters."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-35",
+      "sourceHeading": "Punisher: You Talkin’ To Me?",
+      "before": "Frank confronts street-level chaos with brutal efficiency. The tone stays sharp and direct.",
+      "after": "Chaos on the street meets Frank Castle's brutal efficiency, and the tone stays sharp and direct. The 2001 Punisher series continues in You Talkin' To Me?, mixing crime noir with comedy."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-36",
+      "sourceHeading": "Spider-Man: Life and Death of Spiders",
+      "before": "Peter faces moral choices that test his limits. The story blends action with introspection.",
+      "after": "Peter Parker is pushed to his limits by moral choices, in a story that pairs action with introspection. J. Michael Straczynski's Amazing Spider-Man continues through Life and Death of Spiders."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-37",
+      "sourceHeading": "X-Treme X-Men: X-Posé + Schism",
+      "before": "The team deals with media pressure and internal conflict. The arc explores perception and division.",
+      "after": "Media pressure from outside and conflict from within test the X-Treme X-Men, in a story about perception and division. Chris Claremont's X-Treme X-Men is read with the X-Pose miniseries before the main series resumes."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-38",
+      "sourceHeading": "Captain America: Enemy",
+      "before": "Steve faces threats that challenge his ideals. The story keeps the focus on leadership.",
+      "after": "Threats aimed at his ideals put Steve Rogers to the test, with the focus kept on leadership. John Ney Rieber's Captain America launches in 2002, with interior art by John Cassaday."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-39",
+      "sourceHeading": "Truth: Red, White and Black",
+      "before": "The series confronts the hidden history of the super-soldier program. The tone is serious and reflective.",
+      "after": "The hidden history of the super-soldier program comes into the light in a serious, reflective series. Robert Morales writes Truth: Red, White and Black, illustrated by Kyle Baker."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-40",
+      "sourceHeading": "Uncanny X-Men: Dominant Species",
+      "before": "The team faces biological and ideological threats. The arc pushes the mutant metaphor forward.",
+      "after": "Ideological and biological threats close in on the X-Men, pushing the mutant metaphor further forward. Uncanny X-Men continues with the Dominant Species story in 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-41",
+      "sourceHeading": "Exiles: Legacy",
+      "before": "The team confronts the consequences of their missions. The story explores responsibility.",
+      "after": "The consequences of their missions catch up with the Exiles, in a story about responsibility. Exiles: Legacy continues the series, which returns again in later chapters."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-42",
+      "sourceHeading": "New X-Men: Riot at Xavier’s",
+      "before": "The school faces rebellion and cultural tension. The arc is sharp, loud, and emotional.",
+      "after": "Xavier's school erupts in rebellion and cultural tension, in an arc that is sharp, loud and emotional. Grant Morrison's New X-Men continues with Riot at Xavier's."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-43",
+      "sourceHeading": "Hulk: Dark Minds, Dark Hearts",
+      "before": "Bruce faces psychological manipulation. The tone stays tense and atmospheric.",
+      "after": "Psychological manipulation closes around Bruce Banner in a tense, atmospheric chapter. Bruce Jones writes the Hulk story Dark Minds, Dark Hearts, published in 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-44",
+      "sourceHeading": "Punisher: Brotherhood",
+      "before": "Frank confronts organized crime with precision. The story keeps the stakes personal.",
+      "after": "Organized crime is in Frank Castle's sights, taken on with precision and with stakes that stay personal. Punisher: Brotherhood continues the series after You Talkin' To Me?"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-45",
+      "sourceHeading": "Daredevil: Lowlife",
+      "before": "Matt faces corruption and moral decay. The arc digs into the cost of heroism.",
+      "after": "Corruption and moral decay close in on Matt Murdock, and the arc counts what heroism costs him. Daredevil: Lowlife carries on from Out, with Hardcore following in a later chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-46",
+      "sourceHeading": "Spider-Man: Unintended Consequences",
+      "before": "Peter deals with fallout from past choices. The story focuses on accountability.",
+      "after": "Past choices come due for Peter Parker, and the story holds him to account. John Romita Jr. draws this Amazing Spider-Man arc, Unintended Consequences, as the series continues in 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-47",
+      "sourceHeading": "Spider-Man: Blue",
+      "before": "Peter reflects on love and loss. The tone is nostalgic and heartfelt.",
+      "after": "Peter Parker looks back on love and loss in a nostalgic, heartfelt story. Jeph Loeb and Tim Sale's Spider-Man: Blue follows their Daredevil: Yellow earlier in the journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-48",
+      "sourceHeading": "Uncanny X-Men: Holy War",
+      "before": "The team faces ideological conflict and spiritual tension. The arc blends action with belief.",
+      "after": "Belief and ideology collide around the X-Men, bringing spiritual tension into the action. Chuck Austen writes the Holy War story in Uncanny X-Men in 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-49",
+      "sourceHeading": "Fantastic Four: Unthinkable",
+      "before": "The team confronts a powerful enemy with emotional ties. The story pushes them to their limits.",
+      "after": "A powerful enemy with emotional ties pushes the Fantastic Four to their limits. The Fantastic Four numbering jumps from #70 to #500 within this chapter, which carries the Unthinkable story in 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-50",
+      "sourceHeading": "Avengers: Red Zone + Search for She-Hulk",
+      "before": "The team faces political threats and personal fallout. The arcs highlight teamwork and recovery.",
+      "after": "Political threats and personal fallout test the Avengers in Red Zone and the Search for She-Hulk, arcs about teamwork and recovery. Geoff Johns writes both stories in Avengers."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-51",
+      "sourceHeading": "X-Treme X-Men: God Loves, Man Kills II",
+      "before": "The team confronts ideological extremism. The story expands on classic themes.",
+      "after": "Ideological extremism stands against the X-Treme X-Men in a sequel that expands on classic themes. Chris Claremont's X-Treme X-Men continues with God Loves, Man Kills II."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-52",
+      "sourceHeading": "Punisher: Hidden",
+      "before": "Frank uncovers secrets that reshape his mission. The tone stays tight and focused.",
+      "after": "Secrets that Frank Castle uncovers reshape his mission, in a story kept tight and focused. Punisher continues with Hidden, before Streets of Laredo later in the journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-53",
+      "sourceHeading": "Daredevil: Hardcore",
+      "before": "Matt faces escalating violence and political pressure. The arc tests his resolve.",
+      "after": "Violence escalates and political pressure mounts, testing Matt Murdock's resolve. Daredevil: Hardcore follows Lowlife, with Echo as the next Daredevil chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-54",
+      "sourceHeading": "Hulk: Hide in Plain Sight",
+      "before": "Bruce tries to disappear but cannot escape conflict. The story blends tension with introspection.",
+      "after": "Hiding in plain sight is Bruce Banner's plan, but there is no escaping conflict in this tense, inward-looking story. Bruce Jones writes Hulk: Hide in Plain Sight."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-55",
+      "sourceHeading": "Punisher: Streets of Laredo",
+      "before": "Frank confronts violence in a new environment. The arc explores justice outside the city.",
+      "after": "Frank Castle leaves the city behind and meets violence in a new setting, in an arc about justice outside it. Punisher: Streets of Laredo closes the Punisher chapters in this journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-56",
+      "sourceHeading": "Elektra: Introspect",
+      "before": "Elektra faces internal conflict and personal growth. The tone is quiet and sharp.",
+      "after": "Elektra turns inward, working through internal conflict toward personal growth in a quiet, sharp story. Greg Rucka writes Elektra: Introspect, and the series returns in a later chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-57",
+      "sourceHeading": "Wolverine: The Brotherhood",
+      "before": "Logan confronts a violent conspiracy. The story keeps the pace fast and direct.",
+      "after": "Logan runs up against a violent conspiracy, and the pace stays fast and direct. Wolverine: The Brotherhood starts a new series, with Coyote Crossing continuing it later."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-58",
+      "sourceHeading": "Elektra: Everything Old Is New Again",
+      "before": "Elektra faces ghosts from her past. The arc blends action with reflection.",
+      "after": "Ghosts from her past return to Elektra, in an arc that weighs action against reflection. Greg Rucka writes Elektra: Everything Old Is New Again after the earlier Introspect chapter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-59",
+      "sourceHeading": "Exiles: Unnatural Instincts",
+      "before": "The team faces primal threats and moral tests. The story pushes them into unfamiliar territory.",
+      "after": "Primal threats and moral tests carry the Exiles into unfamiliar territory. Chuck Austen writes Exiles: Unnatural Instincts, followed later by Fantastic Voyage."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-60",
+      "sourceHeading": "New Mutants: Back to School",
+      "before": "A new class of mutants learns to work together. The tone is youthful and energetic.",
+      "after": "A new class of young mutants learns to work together in a youthful, energetic school story. Christina Weir and Nunzio DeFilippis write New Mutants: Back to School, and the class returns in The Ties That Bind."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-61",
+      "sourceHeading": "Runaways: Pride and Joy",
+      "before": "A group of teens discovers their parents’ secrets. The story blends adventure with identity.",
+      "after": "A group of teenagers uncovers their parents' secrets, in an adventure about who they really are. Brian K. Vaughan writes Runaways: Pride and Joy, with Teenage Wasteland continuing the series later."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-62",
+      "sourceHeading": "Fantastic Four: Authoritative Action + Hereafter",
+      "before": "The team takes bold action and faces cosmic consequences. The arcs explore leadership and legacy.",
+      "after": "Bold action by the Fantastic Four brings cosmic consequences, in back-to-back arcs about leadership and legacy. Mark Waid writes Fantastic Four: Authoritative Action and Hereafter."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-63",
+      "sourceHeading": "Spider-Man: Happy Birthday",
+      "before": "Peter confronts time, memory, and responsibility. The story mixes celebration with danger.",
+      "after": "Time, memory and responsibility catch up with Peter Parker, in a story that mixes celebration with danger. Amazing Spider-Man moves from #57 and 58 into #500, where its numbering changes, as Happy Birthday continues."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-64",
+      "sourceHeading": "Spectacular Spider-Man: The Hunger",
+      "before": "Peter faces a predatory threat that tests his limits. The tone is tense and focused.",
+      "after": "A predatory threat tests Spider-Man's limits, and the tone stays tense and focused. Spectacular Spider-Man begins its 2003 series with The Hunger, written by Paul Jenkins."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-65",
+      "sourceHeading": "Hulk: Split Decisions",
+      "before": "Bruce faces choices that reshape his future. The arc blends action with psychology.",
+      "after": "Hard choices reshape Bruce Banner's future, in an arc that mixes action and psychology. Hulk: Split Decisions is the last Hulk chapter in this journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-66",
+      "sourceHeading": "Uncanny X-Men: The Draco",
+      "before": "The team confronts a mythic threat with personal ties. The story pushes characters into crisis.",
+      "after": "A mythic threat with personal ties drives the X-Men into crisis. Chuck Austen writes The Draco, continuing the team's Uncanny X-Men story through 2003."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-67",
+      "sourceHeading": "Exiles: Fantastic Voyage",
+      "before": "The team explores new realities with high stakes. The arc emphasizes discovery.",
+      "after": "New realities open up for the Exiles, with discovery at the center and high stakes along the way. Exiles: Fantastic Voyage follows Unnatural Instincts and closes the team's chapters in this journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-68",
+      "sourceHeading": "Iron Man: The Best Defense",
+      "before": "Tony faces political and technological pressure. The story focuses on responsibility and innovation.",
+      "after": "Tony Stark is squeezed by political and technological pressure, in a story about responsibility and innovation. John Jackson Miller writes Iron Man: The Best Defense."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-69",
+      "sourceHeading": "Daredevil: Echo",
+      "before": "Echo confronts her past and identity. The arc blends action with emotional depth.",
+      "after": "Echo comes face to face with her past and her identity, in an arc of action and emotional depth. Daredevil: Echo follows Hardcore and is the final Daredevil chapter in this journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-70",
+      "sourceHeading": "Wolverine: Coyote Crossing",
+      "before": "Logan faces a brutal chase across the border. The tone is gritty and fast.",
+      "after": "A brutal chase across the border drives Logan through a gritty, fast-moving story. Wolverine: Coyote Crossing continues the series after The Brotherhood."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-71",
+      "sourceHeading": "New Mutants: The Ties That Bind",
+      "before": "The team faces emotional and social challenges. The arc deepens their relationships.",
+      "after": "Emotional and social pressures test the young New Mutants and draw them closer together. Christina Weir and Nunzio DeFilippis write New Mutants: The Ties That Bind."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-72",
+      "sourceHeading": "Uncanny X-Men: She Lies With Angels",
+      "before": "The team deals with tragedy in a small town. The story blends romance with conflict.",
+      "after": "In a small town, the X-Men are caught up in tragedy, with romance and conflict tangled together. Uncanny X-Men continues with She Lies With Angels, published from 2003 into 2004."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-73",
+      "sourceHeading": "New X-Men: Assault on Weapon Plus",
+      "before": "The X-Men confront the roots of mutant experimentation. The arc is intense and revealing.",
+      "after": "The X-Men go after the roots of mutant experimentation in an intense, revealing arc. Grant Morrison's New X-Men continues with Assault on Weapon Plus."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-74",
+      "sourceHeading": "X-Treme X-Men: Intifada",
+      "before": "The team faces political unrest and moral conflict. The story pushes them into difficult choices.",
+      "after": "Political unrest and moral conflict push the X-Treme X-Men toward difficult choices. X-Treme X-Men continues with Intifada, published from 2003 into 2004."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-75",
+      "sourceHeading": "Runaways: Teenage Wasteland",
+      "before": "The teens grow into their roles and face new threats. The tone stays sharp and character-driven.",
+      "after": "The Runaways grow into their roles as new threats arrive, in a sharp, character-driven story. Runaways: Teenage Wasteland follows Pride and Joy earlier in this journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-76",
+      "sourceHeading": "Spider-Man: The Book of Ezekiel",
+      "before": "Peter confronts mystical forces tied to his origin. The arc blends mythology with action.",
+      "after": "Mystical forces tied to his origin close in on Peter Parker, blending mythology with action. Amazing Spider-Man: The Book of Ezekiel closes the Spider-Man chapters in this journey."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-77",
+      "sourceHeading": "X-Treme X-Men: Storm - The Arena",
+      "before": "Storm faces a brutal test of strength and leadership. The story is focused and intense.",
+      "after": "Storm is put through a brutal test of strength and leadership, and the story stays focused and intense. Storm's Arena story in X-Treme X-Men leads into the Planet X crossover cluster."
+    },
+    {
+      "id": "marvel-knights-to-planet-x-78",
+      "sourceHeading": "Planet X Crossover Cluster",
+      "before": "The mutant line converges in a major turning point. The arc reshapes relationships, leadership, and the future of the X-Men.",
+      "after": "The whole X-Men line converges on a dark, epic turning point that reshapes its relationships and leadership. Grant Morrison's New X-Men opens the cluster, which weaves in X-Treme X-Men, more New X-Men, Uncanny X-Men, New Mutants and Excalibur."
+    }
+  ],
+  "sha256": "a4911899c987695f852d38b81e0da8a701cf2a2bbfac4f2ed9c99185ce18ce0b"
 }
