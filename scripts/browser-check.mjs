@@ -10494,6 +10494,61 @@ const SCENARIOS = [
       t.check('at 412 and 700px the rows fit and Show all spans the group; at 701px it sizes to its words',
         !phone.overflow && phone.full && phone.action && !narrow.overflow && narrow.full && narrow.action
           && !wide.overflow && !wide.full && wide.action, JSON.stringify({ phone, narrow, wide }));
+
+      // Exercise the shipping native adaptation, not a duplicate of its DOM transformations.
+      // Apple's hit-region audit still has to verify the resulting WebKit native targets in CI.
+      const controller = readFileSync(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
+      const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)?.[1];
+      if (!adapter) throw new Error('Missing iOS accessible target adaptation');
+      await page.evaluate((styles) => {
+        for (const css of styles) {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(css);
+          document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+        }
+      }, [
+        readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+        readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'),
+      ]);
+      await page.evaluate(adapter);
+      for (const [width, scale] of [[1280, 1], [412, 2]]) {
+        await page.setViewport({ width, height: 915 });
+        await page.evaluate((value) => document.documentElement.style.setProperty('--ios-text-scale', value), String(scale));
+        await page.$eval('#form-search label[for="search-q"]', (label) => label.click());
+        const labelTarget = await page.$eval('#form-search label[for="search-q"]', (label) => ({
+          focused: document.activeElement?.id === 'search-q',
+          role: label.getAttribute('role'), name: label.getAttribute('aria-label'),
+          height: label.getBoundingClientRect().height,
+        }));
+        let keyboardFocus = false;
+        if (labelTarget.role === 'button') {
+          keyboardFocus = true;
+          for (const key of ['Enter', 'Space']) {
+            await page.focus('#form-search label[for="search-q"]');
+            await page.keyboard.press(key);
+            keyboardFocus = keyboardFocus && await page.evaluate(() => document.activeElement?.id === 'search-q');
+          }
+        }
+        const label = await page.$('#form-search label[for="search-q"]');
+        const labelAX = await page.accessibility.snapshot({ root: label });
+        await label.dispose();
+        const input = await page.$('#search-q');
+        const fieldAX = await page.accessibility.snapshot({ root: input, interestingOnly: false });
+        await input.dispose();
+        const hint = await page.$eval('#search-hint', (node) => ({
+          text: node.textContent, hiddenAX: node.getAttribute('aria-hidden') === 'true',
+          visible: node.checkVisibility() && node.getBoundingClientRect().height > 0,
+          described: document.querySelector('#search-q').getAttribute('aria-describedby').split(/\s+/).includes(node.id),
+        }));
+        t.check(`the iOS Search label is one full-sized active target at ${width}px and ${scale}x text`,
+          labelTarget.focused && keyboardFocus && labelTarget.height >= 44 && labelTarget.role === 'button'
+            && labelTarget.name === 'Search Reading Lists and issue titles'
+            && labelAX?.role === 'button' && labelAX.name === labelTarget.name && !labelAX.children?.length,
+          JSON.stringify({ labelTarget, labelAX }));
+        t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,
+          hint.visible && hint.hiddenAX && hint.described && fieldAX?.description?.includes(hint.text),
+          JSON.stringify({ hint, fieldAX }));
+      }
     },
   },
   {
