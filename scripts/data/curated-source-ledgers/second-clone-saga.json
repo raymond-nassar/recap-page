@@ -1,0 +1,5187 @@
+{
+  "schemaVersion": 1,
+  "id": "second-clone-saga",
+  "guideIssue": "https://github.com/raymond-nassar/recap-page/issues/1086",
+  "source": {
+    "provider": "comic-book-reading-orders",
+    "url": "https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/",
+    "retrievedAt": "2026-11-03",
+    "contentSha256": "29fb7b0e98e205e9c77ed6df7eeff50e0d8703b3a2434a48dc4a55e0589cf2c4",
+    "boundary": "The active Single Issues panel, in displayed order.",
+    "originalByteCount": 123122,
+    "publishedSourceIdentitySha256": "08fabe6c13b1b24d58aa84db0cefaed4ce2f6b08e3e2bb9f8406853b8338d467",
+    "historicalLedger": "scripts/data/cbro-blockers/second-clone-saga.json",
+    "historicalLedgerSha256": "63cdf711b68d643b44a75b35408116b9f789a3197342a645d1dde14698d3206a",
+    "historicalLedgerHashFormat": "JSON.stringify",
+    "permission": "Credited and linked factual orders permitted by CBRO reply dated 2026-08-20, recorded in docs/DATA_PROVENANCE.md. Rechecked 2026-11-03: this public event page is neither a Master order nor a Patreon-exclusive order. No source prose copied.",
+    "sourceReconciliation": "All published source positions and issue numbers match the preserved ledger. Current display labels omit some articles and revise punctuation; source keys and series volume labels retain identity. What If...? #105 is the preserved What If? (1989) #105, not the first volume."
+  },
+  "counts": {
+    "sourcePositions": 161,
+    "resolved": 141,
+    "gaps": 20,
+    "repeats": 0
+  },
+  "sourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceKey": "spider-man-the-lost-years-0",
+      "sourceTitle": "Spider-Man: The Lost Years #0",
+      "sourceIssueReference": "Spider-Man: The Lost Years #0 (1996)",
+      "sourceSeriesTitle": "Spider-Man: The Lost Years",
+      "seriesYear": null,
+      "issueNumber": "0",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20The%20Lost%20Years&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.660Z",
+          "responseSha256": "04f7fda56409b55986d0888c003a2bce88b9e658d90243fe5eb3c021f761c436",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceKey": "amazing-spider-man-149",
+      "sourceTitle": "Amazing Spider-Man #149",
+      "sourceIssueReference": "Amazing Spider-Man #149",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "149",
+      "seriesId": 1987,
+      "selectedIssueId": 6537,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #149",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6537/the_amazing_spider-man_1963_149",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6537"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceKey": "amazing-spider-man-151",
+      "sourceTitle": "Amazing Spider-Man #151",
+      "sourceIssueReference": "Amazing Spider-Man #151",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "151",
+      "seriesId": 1987,
+      "selectedIssueId": 6540,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #151",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6540/the_amazing_spider-man_1963_151",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6540"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceKey": "spider-man-the-lost-years-1",
+      "sourceTitle": "Spider-Man: The Lost Years #1",
+      "sourceIssueReference": "Spider-Man: The Lost Years #1",
+      "sourceSeriesTitle": "Spider-Man: The Lost Years",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20The%20Lost%20Years&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.660Z",
+          "responseSha256": "04f7fda56409b55986d0888c003a2bce88b9e658d90243fe5eb3c021f761c436",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceKey": "spider-man-the-lost-years-2",
+      "sourceTitle": "Spider-Man: The Lost Years #2",
+      "sourceIssueReference": "Spider-Man: The Lost Years #2",
+      "sourceSeriesTitle": "Spider-Man: The Lost Years",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20The%20Lost%20Years&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.660Z",
+          "responseSha256": "04f7fda56409b55986d0888c003a2bce88b9e658d90243fe5eb3c021f761c436",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceKey": "spider-man-the-lost-years-3",
+      "sourceTitle": "Spider-Man: The Lost Years #3",
+      "sourceIssueReference": "Spider-Man: The Lost Years #3",
+      "sourceSeriesTitle": "Spider-Man: The Lost Years",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20The%20Lost%20Years&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.660Z",
+          "responseSha256": "04f7fda56409b55986d0888c003a2bce88b9e658d90243fe5eb3c021f761c436",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceKey": "web-of-spider-man-114",
+      "sourceTitle": "Web of Spider-Man #114",
+      "sourceIssueReference": "Web of Spider-Man #114",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "114",
+      "seriesId": 2092,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2092/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:35.989Z",
+          "responseSha256": "9fcbd5c386fd90195be43019b5b6bb8945ea88f77241f4427ffb9fab8c424074",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceKey": "spider-man-48",
+      "sourceTitle": "Spider-Man #48",
+      "sourceIssueReference": "Spider-Man #48",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "48",
+      "seriesId": 2069,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2069/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:38.403Z",
+          "responseSha256": "22d06575d39b01a281cef779773ef691f452999b9993dcf0ab1234bb5540e355",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceKey": "web-of-spider-man-115",
+      "sourceTitle": "Web of Spider-Man #115",
+      "sourceIssueReference": "Web of Spider-Man #115",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "115",
+      "seriesId": 2092,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2092/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:35.989Z",
+          "responseSha256": "9fcbd5c386fd90195be43019b5b6bb8945ea88f77241f4427ffb9fab8c424074",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceKey": "spider-man-49",
+      "sourceTitle": "Spider-Man #49",
+      "sourceIssueReference": "Spider-Man #49",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "49",
+      "seriesId": 2069,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2069/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:38.403Z",
+          "responseSha256": "22d06575d39b01a281cef779773ef691f452999b9993dcf0ab1234bb5540e355",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceKey": "spectacular-spider-man-215",
+      "sourceTitle": "Spectacular Spider-Man #215",
+      "sourceIssueReference": "Spectacular Spider-Man #215",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "215",
+      "seriesId": 2271,
+      "selectedIssueId": 14671,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #215",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14671/peter_parker_the_spectacular_spider-man_1976_215",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14671"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceKey": "web-of-spider-man-116",
+      "sourceTitle": "Web of Spider-Man #116",
+      "sourceIssueReference": "Web of Spider-Man #116",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "116",
+      "seriesId": 2092,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2092/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:35.989Z",
+          "responseSha256": "9fcbd5c386fd90195be43019b5b6bb8945ea88f77241f4427ffb9fab8c424074",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceKey": "amazing-spider-man-393",
+      "sourceTitle": "Amazing Spider-Man #393",
+      "sourceIssueReference": "Amazing Spider-Man #393",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "393",
+      "seriesId": 1987,
+      "selectedIssueId": 6808,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #393",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6808/the_amazing_spider-man_1963_393",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6808"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceKey": "spider-man-50",
+      "sourceTitle": "Spider-Man #50",
+      "sourceIssueReference": "Spider-Man #50",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "50",
+      "seriesId": 2069,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2069/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:38.403Z",
+          "responseSha256": "22d06575d39b01a281cef779773ef691f452999b9993dcf0ab1234bb5540e355",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceKey": "spectacular-spider-man-216",
+      "sourceTitle": "Spectacular Spider-Man #216",
+      "sourceIssueReference": "Spectacular Spider-Man #216",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "216",
+      "seriesId": 2271,
+      "selectedIssueId": 14672,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #216",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14672/peter_parker_the_spectacular_spider-man_1976_216",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14672"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceKey": "web-of-spider-man-117",
+      "sourceTitle": "Web of Spider-Man #117",
+      "sourceIssueReference": "Web of Spider-Man #117",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "117",
+      "seriesId": 2092,
+      "selectedIssueId": 11993,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #117",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11993/web_of_spider-man_1985_117",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11993"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceKey": "amazing-spider-man-394",
+      "sourceTitle": "Amazing Spider-Man #394",
+      "sourceIssueReference": "Amazing Spider-Man #394",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "394",
+      "seriesId": 1987,
+      "selectedIssueId": 6809,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #394",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6809/the_amazing_spider-man_1963_394",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6809"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceKey": "spider-man-51",
+      "sourceTitle": "Spider-Man #51",
+      "sourceIssueReference": "Spider-Man #51",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "51",
+      "seriesId": 2069,
+      "selectedIssueId": 10813,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #51",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10813/spider-man_1990_51",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10813"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceKey": "spectacular-spider-man-217",
+      "sourceTitle": "Spectacular Spider-Man #217",
+      "sourceIssueReference": "Spectacular Spider-Man #217",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "217",
+      "seriesId": 2271,
+      "selectedIssueId": 14673,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #217",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14673/peter_parker_the_spectacular_spider-man_1976_217",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14673"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceKey": "web-of-spider-man-118",
+      "sourceTitle": "Web of Spider-Man #118",
+      "sourceIssueReference": "Web of Spider-Man #118",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "118",
+      "seriesId": 2092,
+      "selectedIssueId": 11994,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #118",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11994/web_of_spider-man_1985_118",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11994"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceKey": "spider-man-52",
+      "sourceTitle": "Spider-Man #52",
+      "sourceIssueReference": "Spider-Man #52",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "52",
+      "seriesId": 2069,
+      "selectedIssueId": 10814,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #52",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10814/spider-man_1990_52",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10814"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceKey": "spider-man-unlimited-7",
+      "sourceTitle": "Spider-Man Unlimited #7",
+      "sourceIssueReference": "Spider-Man Unlimited #7",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "7",
+      "seriesId": 13695,
+      "selectedIssueId": 38357,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/38357/spider-man_unlimited_1993_7",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/38357"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceKey": "web-of-spider-man-119",
+      "sourceTitle": "Web of Spider-Man #119",
+      "sourceIssueReference": "Web of Spider-Man #119",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "119",
+      "seriesId": 2092,
+      "selectedIssueId": 11995,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #119",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11995/web_of_spider-man_1985_119",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11995"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceKey": "spider-man-53",
+      "sourceTitle": "Spider-Man #53",
+      "sourceIssueReference": "Spider-Man #53",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "53",
+      "seriesId": 2069,
+      "selectedIssueId": 10815,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #53",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10815/spider-man_1990_53",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10815"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceKey": "web-of-spider-man-120",
+      "sourceTitle": "Web of Spider-Man #120",
+      "sourceIssueReference": "Web of Spider-Man #120",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": null,
+      "issueNumber": "120",
+      "seriesId": 2092,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2092/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:35.989Z",
+          "responseSha256": "9fcbd5c386fd90195be43019b5b6bb8945ea88f77241f4427ffb9fab8c424074",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceKey": "spider-man-54",
+      "sourceTitle": "Spider-Man #54",
+      "sourceIssueReference": "Spider-Man #54",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "54",
+      "seriesId": 2069,
+      "selectedIssueId": 10816,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #54",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10816/spider-man_1990_54",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10816"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceKey": "web-of-spider-man-121",
+      "sourceTitle": "Web of Spider-Man #121",
+      "sourceIssueReference": "Web of Spider-Man #121",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "121",
+      "seriesId": 2092,
+      "selectedIssueId": 11998,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #121",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11998/web_of_spider-man_1985_121",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11998"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceKey": "spider-man-55",
+      "sourceTitle": "Spider-Man #55",
+      "sourceIssueReference": "Spider-Man #55",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "55",
+      "seriesId": 2069,
+      "selectedIssueId": 10817,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #55",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10817/spider-man_1990_55",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10817"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceKey": "spider-man-unlimited-8",
+      "sourceTitle": "Spider-Man Unlimited #8",
+      "sourceIssueReference": "Spider-Man Unlimited #8",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "8",
+      "seriesId": 13695,
+      "selectedIssueId": 38834,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/38834/spider-man_unlimited_1993_8",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/38834"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceKey": "spider-man-funeral-for-an-octopus-1",
+      "sourceTitle": "Spider-Man: Funeral for an Octopus #1",
+      "sourceIssueReference": "Spider-Man: Funeral For An Octopus #1 (1995)",
+      "sourceSeriesTitle": "Spider-Man: Funeral For An Octopus",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20Funeral%20For%20An%20Octopus&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.979Z",
+          "responseSha256": "e25d71af75e0dac35db40ea3e2b6f17d4baa982555d2be43ee4f2028ad924f8f",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceKey": "spider-man-funeral-for-an-octopus-2",
+      "sourceTitle": "Spider-Man: Funeral for an Octopus #2",
+      "sourceIssueReference": "Spider-Man: Funeral For An Octopus #2",
+      "sourceSeriesTitle": "Spider-Man: Funeral For An Octopus",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20Funeral%20For%20An%20Octopus&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.979Z",
+          "responseSha256": "e25d71af75e0dac35db40ea3e2b6f17d4baa982555d2be43ee4f2028ad924f8f",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceKey": "spider-man-funeral-for-an-octopus-3",
+      "sourceTitle": "Spider-Man: Funeral for an Octopus #3",
+      "sourceIssueReference": "Spider-Man: Funeral For An Octopus #3",
+      "sourceSeriesTitle": "Spider-Man: Funeral For An Octopus",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20Funeral%20For%20An%20Octopus&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:33.979Z",
+          "responseSha256": "e25d71af75e0dac35db40ea3e2b6f17d4baa982555d2be43ee4f2028ad924f8f",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceKey": "web-of-spider-man-122",
+      "sourceTitle": "Web of Spider-Man #122",
+      "sourceIssueReference": "Web of Spider-Man #122",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "122",
+      "seriesId": 2092,
+      "selectedIssueId": 11999,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #122",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11999/web_of_spider-man_1985_122",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11999"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceKey": "amazing-spider-man-399",
+      "sourceTitle": "Amazing Spider-Man #399",
+      "sourceIssueReference": "Amazing Spider-Man #399",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "399",
+      "seriesId": 1987,
+      "selectedIssueId": 6814,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #399",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6814/the_amazing_spider-man_1963_399",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6814"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceKey": "spider-man-56",
+      "sourceTitle": "Spider-Man #56",
+      "sourceIssueReference": "Spider-Man #56",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "56",
+      "seriesId": 2069,
+      "selectedIssueId": 10818,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #56",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10818/spider-man_1990_56",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10818"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceKey": "spectacular-spider-man-222",
+      "sourceTitle": "Spectacular Spider-Man #222",
+      "sourceIssueReference": "Spectacular Spider-Man #222",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "222",
+      "seriesId": 2271,
+      "selectedIssueId": 14679,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #222",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14679/peter_parker_the_spectacular_spider-man_1976_222",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14679"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceKey": "web-of-spider-man-123",
+      "sourceTitle": "Web of Spider-Man #123",
+      "sourceIssueReference": "Web of Spider-Man #123",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "123",
+      "seriesId": 2092,
+      "selectedIssueId": 12000,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #123",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12000/web_of_spider-man_1985_123",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12000"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceKey": "amazing-spider-man-400",
+      "sourceTitle": "Amazing Spider-Man #400",
+      "sourceIssueReference": "Amazing Spider-Man #400",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "400",
+      "seriesId": 1987,
+      "selectedIssueId": 6817,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #400",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6817/the_amazing_spider-man_1963_400",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6817"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceKey": "spider-man-57",
+      "sourceTitle": "Spider-Man #57",
+      "sourceIssueReference": "Spider-Man #57",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "57",
+      "seriesId": 2069,
+      "selectedIssueId": 10819,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #57",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10819/spider-man_1990_57",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10819"
+    },
+    {
+      "sourcePosition": 40,
+      "sourceKey": "spectacular-spider-man-223",
+      "sourceTitle": "Spectacular Spider-Man #223",
+      "sourceIssueReference": "Spectacular Spider-Man #223",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "223",
+      "seriesId": 2271,
+      "selectedIssueId": 14680,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #223",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14680/peter_parker_the_spectacular_spider-man_1976_223",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14680"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceKey": "web-of-spider-man-124",
+      "sourceTitle": "Web of Spider-Man #124",
+      "sourceIssueReference": "Web of Spider-Man #124",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "124",
+      "seriesId": 2092,
+      "selectedIssueId": 12001,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #124",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12001/web_of_spider-man_1985_124",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12001"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceKey": "amazing-spider-man-401",
+      "sourceTitle": "Amazing Spider-Man #401",
+      "sourceIssueReference": "Amazing Spider-Man #401",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "401",
+      "seriesId": 1987,
+      "selectedIssueId": 6818,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #401",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6818/the_amazing_spider-man_1963_401",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6818"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceKey": "spider-man-58",
+      "sourceTitle": "Spider-Man #58",
+      "sourceIssueReference": "Spider-Man #58",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "58",
+      "seriesId": 2069,
+      "selectedIssueId": 10820,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #58",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10820/spider-man_1990_58",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10820"
+    },
+    {
+      "sourcePosition": 44,
+      "sourceKey": "spectacular-spider-man-224",
+      "sourceTitle": "Spectacular Spider-Man #224",
+      "sourceIssueReference": "Spectacular Spider-Man #224",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "224",
+      "seriesId": 2271,
+      "selectedIssueId": 14681,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #224",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14681/peter_parker_the_spectacular_spider-man_1976_224",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14681"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceKey": "new-warriors-59",
+      "sourceTitle": "New Warriors #59",
+      "sourceIssueReference": "New Warriors #59",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "59",
+      "seriesId": 16341,
+      "selectedIssueId": 69188,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #59",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69188/new_warriors_1990_59",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/69188"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceKey": "new-warriors-60",
+      "sourceTitle": "New Warriors #60",
+      "sourceIssueReference": "New Warriors #60",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "60",
+      "seriesId": 16341,
+      "selectedIssueId": 69189,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #60",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69189/new_warriors_1990_60",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/69189"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceKey": "spider-man-unlimited-9",
+      "sourceTitle": "Spider-Man Unlimited #9",
+      "sourceIssueReference": "Spider-Man Unlimited #9",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": null,
+      "issueNumber": "9",
+      "seriesId": 13695,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series/13695/issues?limit=100&offset=0",
+          "status": 200,
+          "retrievedAt": "2026-11-03T03:56:45.866Z",
+          "responseSha256": "5085c46865e5a7973dae149da742b067baf299839668bf8a267c72f820b32356",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceKey": "web-of-spider-man-125",
+      "sourceTitle": "Web of Spider-Man #125",
+      "sourceIssueReference": "Web of Spider-Man #125",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "125",
+      "seriesId": 2092,
+      "selectedIssueId": 12002,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #125",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12002/web_of_spider-man_1985_125",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12002"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceKey": "web-of-spider-man-126",
+      "sourceTitle": "Web of Spider-Man #126",
+      "sourceIssueReference": "Web of Spider-Man #126",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "126",
+      "seriesId": 2092,
+      "selectedIssueId": 12003,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #126",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12003/web_of_spider-man_1985_126",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12003"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceKey": "amazing-spider-man-403",
+      "sourceTitle": "Amazing Spider-Man #403",
+      "sourceIssueReference": "Amazing Spider-Man #403",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "403",
+      "seriesId": 1987,
+      "selectedIssueId": 6820,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #403",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6820/the_amazing_spider-man_1963_403",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6820"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceKey": "spider-man-60",
+      "sourceTitle": "Spider-Man #60",
+      "sourceIssueReference": "Spider-Man #60",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "60",
+      "seriesId": 2069,
+      "selectedIssueId": 10823,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #60",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10823/spider-man_1990_60",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10823"
+    },
+    {
+      "sourcePosition": 52,
+      "sourceKey": "amazing-spider-man-super-special-1",
+      "sourceTitle": "Amazing Spider-Man Super Special #1",
+      "sourceIssueReference": "Amazing Spider-Man Super Special #1 (1995)",
+      "sourceSeriesTitle": "Amazing Spider-Man Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 21739,
+      "selectedIssueId": 59710,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "AMAZING SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59710/amazing_spider-man_super_special_1_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59710"
+    },
+    {
+      "sourcePosition": 53,
+      "sourceKey": "spider-man-super-special-1",
+      "sourceTitle": "Spider-Man Super Special #1",
+      "sourceIssueReference": "Spider-Man Super Special #1 (1995)",
+      "sourceSeriesTitle": "Spider-Man Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 21741,
+      "selectedIssueId": 59712,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59712/spider-man_super_special_1_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59712"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceKey": "venom-super-special-1",
+      "sourceTitle": "Venom Super Special #1",
+      "sourceIssueReference": "Venom Super Special #1 (1995)",
+      "sourceSeriesTitle": "Venom Super Special",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:34.327Z",
+          "responseSha256": "569d6d44f5045865e6cebdad068c12b67ccde3c8fe1534a0c77acf0b32346f36",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceKey": "spectacular-spider-man-super-special-1",
+      "sourceTitle": "Spectacular Spider-Man Super Special #1",
+      "sourceIssueReference": "Spectacular Spider-Man Super Special #1 (1995)",
+      "sourceSeriesTitle": "Spectacular Spider-Man Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 21740,
+      "selectedIssueId": 59711,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "THE SPECTACULAR SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59711/the_spectacular_spider-man_super_special_1_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59711"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceKey": "web-of-spider-man-super-special-1",
+      "sourceTitle": "Web of Spider-Man Super Special #1",
+      "sourceIssueReference": "Web of Spider-Man Super Special #1 (1995)",
+      "sourceSeriesTitle": "Web of Spider-Man Super Special",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Web%20of%20Spider%20Man%20Super%20Special&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:34.789Z",
+          "responseSha256": "d6e3fbc314b73d5227af2aa2a88cf85679303c428981fdd606236845974ae5ab",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceKey": "spectacular-spider-man-226",
+      "sourceTitle": "Spectacular Spider-Man #226",
+      "sourceIssueReference": "Spectacular Spider-Man #226",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "226",
+      "seriesId": 2271,
+      "selectedIssueId": 14683,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #226",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14683/peter_parker_the_spectacular_spider-man_1976_226",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14683"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceKey": "new-warriors-61",
+      "sourceTitle": "New Warriors #61",
+      "sourceIssueReference": "New Warriors #61",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "61",
+      "seriesId": 16341,
+      "selectedIssueId": 59812,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #61",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59812/new_warriors_1990_61",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59812"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceKey": "maximum-clonage-alpha-1",
+      "sourceTitle": "Maximum Clonage Alpha #1",
+      "sourceIssueReference": "Maximum Clonage Alpha #1 (1995)",
+      "sourceSeriesTitle": "Maximum Clonage Alpha",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Maximum%20Clonage%20Alpha&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:35.127Z",
+          "responseSha256": "e4ccb0ab5d5423982832d833f48af603169824c2fb509cce0a7cf75f70e9cd53",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceKey": "web-of-spider-man-127",
+      "sourceTitle": "Web of Spider-Man #127",
+      "sourceIssueReference": "Web of Spider-Man #127",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "127",
+      "seriesId": 2092,
+      "selectedIssueId": 12004,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #127",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12004/web_of_spider-man_1985_127",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12004"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceKey": "amazing-spider-man-404",
+      "sourceTitle": "Amazing Spider-Man #404",
+      "sourceIssueReference": "Amazing Spider-Man #404",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "404",
+      "seriesId": 1987,
+      "selectedIssueId": 6821,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #404",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6821/the_amazing_spider-man_1963_404",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6821"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceKey": "spider-man-61",
+      "sourceTitle": "Spider-Man #61",
+      "sourceIssueReference": "Spider-Man #61",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "61",
+      "seriesId": 2069,
+      "selectedIssueId": 10824,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #61",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10824/spider-man_1990_61",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10824"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceKey": "spectacular-spider-man-227",
+      "sourceTitle": "Spectacular Spider-Man #227",
+      "sourceIssueReference": "Spectacular Spider-Man #227",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "227",
+      "seriesId": 2271,
+      "selectedIssueId": 14684,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #227",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14684/peter_parker_the_spectacular_spider-man_1976_227",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14684"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceKey": "maximum-clonage-omega-1",
+      "sourceTitle": "Maximum Clonage Omega #1",
+      "sourceIssueReference": "Maximum Clonage Omega #1 (1995)",
+      "sourceSeriesTitle": "Maximum Clonage Omega",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Maximum%20Clonage%20Omega&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:43.489Z",
+          "responseSha256": "7f1e39a23c9d13d6af8e8de8fb078114f67b10eed6faaae2090720e9fa310a15",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceKey": "new-warriors-62",
+      "sourceTitle": "New Warriors #62",
+      "sourceIssueReference": "New Warriors #62",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "62",
+      "seriesId": 16341,
+      "selectedIssueId": 59368,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #62",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59368/new_warriors_1990_62",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59368"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceKey": "web-of-spider-man-128",
+      "sourceTitle": "Web of Spider-Man #128",
+      "sourceIssueReference": "Web of Spider-Man #128",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "128",
+      "seriesId": 2092,
+      "selectedIssueId": 12005,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #128",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12005/web_of_spider-man_1985_128",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12005"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceKey": "amazing-spider-man-405",
+      "sourceTitle": "Amazing Spider-Man #405",
+      "sourceIssueReference": "Amazing Spider-Man #405",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "405",
+      "seriesId": 1987,
+      "selectedIssueId": 6822,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #405",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6822/the_amazing_spider-man_1963_405",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6822"
+    },
+    {
+      "sourcePosition": 68,
+      "sourceKey": "spider-man-62",
+      "sourceTitle": "Spider-Man #62",
+      "sourceIssueReference": "Spider-Man #62",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "62",
+      "seriesId": 2069,
+      "selectedIssueId": 10825,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #62",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10825/spider-man_1990_62",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10825"
+    },
+    {
+      "sourcePosition": 69,
+      "sourceKey": "spider-man-unlimited-10",
+      "sourceTitle": "Spider-Man Unlimited #10",
+      "sourceIssueReference": "Spider-Man Unlimited #10",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "10",
+      "seriesId": 13695,
+      "selectedIssueId": 59859,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59859/spider-man_unlimited_1993_10",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59859"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceKey": "new-warriors-63",
+      "sourceTitle": "New Warriors #63",
+      "sourceIssueReference": "New Warriors #63",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "63",
+      "seriesId": 16341,
+      "selectedIssueId": 59369,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #63",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59369/new_warriors_1990_63",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59369"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceKey": "spectacular-spider-man-228",
+      "sourceTitle": "Spectacular Spider-Man #228",
+      "sourceIssueReference": "Spectacular Spider-Man #228",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "228",
+      "seriesId": 2271,
+      "selectedIssueId": 14685,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #228",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14685/peter_parker_the_spectacular_spider-man_1976_228",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14685"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceKey": "web-of-spider-man-129",
+      "sourceTitle": "Web of Spider-Man #129",
+      "sourceIssueReference": "Web of Spider-Man #129",
+      "sourceSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "129",
+      "seriesId": 2092,
+      "selectedIssueId": 12006,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Spider-Man (1985) #129",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12006/web_of_spider-man_1985_129",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12006"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceKey": "amazing-spider-man-406",
+      "sourceTitle": "Amazing Spider-Man #406",
+      "sourceIssueReference": "Amazing Spider-Man #406",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "406",
+      "seriesId": 1987,
+      "selectedIssueId": 6823,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #406",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6823/the_amazing_spider-man_1963_406",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6823"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceKey": "spider-man-63",
+      "sourceTitle": "Spider-Man #63",
+      "sourceIssueReference": "Spider-Man #63",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "63",
+      "seriesId": 2069,
+      "selectedIssueId": 10826,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #63",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10826/spider-man_1990_63",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10826"
+    },
+    {
+      "sourcePosition": 75,
+      "sourceKey": "spectacular-spider-man-229",
+      "sourceTitle": "Spectacular Spider-Man #229",
+      "sourceIssueReference": "Spectacular Spider-Man #229",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "229",
+      "seriesId": 2271,
+      "selectedIssueId": 14686,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #229",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14686/peter_parker_the_spectacular_spider-man_1976_229",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14686"
+    },
+    {
+      "sourcePosition": 76,
+      "sourceKey": "new-warriors-64",
+      "sourceTitle": "New Warriors #64",
+      "sourceIssueReference": "New Warriors #64",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "64",
+      "seriesId": 16341,
+      "selectedIssueId": 59370,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #64",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59370/new_warriors_1990_64",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/59370"
+    },
+    {
+      "sourcePosition": 77,
+      "sourceKey": "web-of-scarlet-spider-1",
+      "sourceTitle": "Web of Scarlet Spider #1",
+      "sourceIssueReference": "Web of Scarlet Spider #1 (1995)",
+      "sourceSeriesTitle": "Web of Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 22529,
+      "selectedIssueId": 61255,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Scarlet Spider (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61255/web_of_scarlet_spider_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61255"
+    },
+    {
+      "sourcePosition": 78,
+      "sourceKey": "amazing-scarlet-spider-1",
+      "sourceTitle": "Amazing Scarlet Spider #1",
+      "sourceIssueReference": "Amazing Scarlet Spider #1 (1995)",
+      "sourceSeriesTitle": "Amazing Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 22523,
+      "selectedIssueId": 61238,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Scarlet Spider (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61238/amazing_scarlet_spider_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61238"
+    },
+    {
+      "sourcePosition": 79,
+      "sourceKey": "scarlet-spider-1",
+      "sourceTitle": "Scarlet Spider #1",
+      "sourceIssueReference": "Scarlet Spider #1 (1995)",
+      "sourceSeriesTitle": "Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 22524,
+      "selectedIssueId": 61245,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Scarlet Spider (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61245/scarlet_spider_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61245"
+    },
+    {
+      "sourcePosition": 80,
+      "sourceKey": "spectacular-scarlet-spider-1",
+      "sourceTitle": "Spectacular Scarlet Spider #1",
+      "sourceIssueReference": "Spectacular Scarlet Spider #1 (1995)",
+      "sourceSeriesTitle": "Spectacular Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 22526,
+      "selectedIssueId": 61250,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spectacular Scarlet Spider (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61250/spectacular_scarlet_spider_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61250"
+    },
+    {
+      "sourcePosition": 81,
+      "sourceKey": "scarlet-spider-unlimited-1",
+      "sourceTitle": "Scarlet Spider Unlimited #1",
+      "sourceIssueReference": "Scarlet Spider Unlimited #1 (1995)",
+      "sourceSeriesTitle": "Scarlet Spider Unlimited",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 22525,
+      "selectedIssueId": 61249,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "SCARLET SPIDER UNLIMITED 1 (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61249/scarlet_spider_unlimited_1_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61249"
+    },
+    {
+      "sourcePosition": 82,
+      "sourceKey": "web-of-scarlet-spider-2",
+      "sourceTitle": "Web of Scarlet Spider #2",
+      "sourceIssueReference": "Web of Scarlet Spider #2",
+      "sourceSeriesTitle": "Web of Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "2",
+      "seriesId": 22529,
+      "selectedIssueId": 61256,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Scarlet Spider (1995) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61256/web_of_scarlet_spider_1995_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61256"
+    },
+    {
+      "sourcePosition": 83,
+      "sourceKey": "amazing-scarlet-spider-2",
+      "sourceTitle": "Amazing Scarlet Spider #2",
+      "sourceIssueReference": "Amazing Scarlet Spider #2",
+      "sourceSeriesTitle": "Amazing Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "2",
+      "seriesId": 22523,
+      "selectedIssueId": 61239,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Amazing Scarlet Spider (1995) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61239/amazing_scarlet_spider_1995_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61239"
+    },
+    {
+      "sourcePosition": 84,
+      "sourceKey": "green-goblin-1",
+      "sourceTitle": "Green Goblin #1",
+      "sourceIssueReference": "Green Goblin #1",
+      "sourceSeriesTitle": "Green Goblin",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 7077,
+      "selectedIssueId": 68445,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Green Goblin (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68445/green_goblin_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/68445"
+    },
+    {
+      "sourcePosition": 85,
+      "sourceKey": "green-goblin-2",
+      "sourceTitle": "Green Goblin #2",
+      "sourceIssueReference": "Green Goblin #2",
+      "sourceSeriesTitle": "Green Goblin",
+      "seriesYear": 1995,
+      "issueNumber": "2",
+      "seriesId": 7077,
+      "selectedIssueId": 68446,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Green Goblin (1995) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68446/green_goblin_1995_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/68446"
+    },
+    {
+      "sourcePosition": 86,
+      "sourceKey": "green-goblin-3",
+      "sourceTitle": "Green Goblin #3",
+      "sourceIssueReference": "Green Goblin #3",
+      "sourceSeriesTitle": "Green Goblin",
+      "seriesYear": 1995,
+      "issueNumber": "3",
+      "seriesId": 7077,
+      "selectedIssueId": 61240,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Green Goblin (1995) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61240/green_goblin_1995_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61240"
+    },
+    {
+      "sourcePosition": 87,
+      "sourceKey": "scarlet-spider-2",
+      "sourceTitle": "Scarlet Spider #2",
+      "sourceIssueReference": "Scarlet Spider #2",
+      "sourceSeriesTitle": "Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "2",
+      "seriesId": 22524,
+      "selectedIssueId": 61246,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Scarlet Spider (1995) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61246/scarlet_spider_1995_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61246"
+    },
+    {
+      "sourcePosition": 88,
+      "sourceKey": "spectacular-scarlet-spider-2",
+      "sourceTitle": "Spectacular Scarlet Spider #2",
+      "sourceIssueReference": "Spectacular Scarlet Spider #2",
+      "sourceSeriesTitle": "Spectacular Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "2",
+      "seriesId": 22526,
+      "selectedIssueId": 61251,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spectacular Scarlet Spider (1995) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61251/spectacular_scarlet_spider_1995_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61251"
+    },
+    {
+      "sourcePosition": 89,
+      "sourceKey": "new-warriors-66",
+      "sourceTitle": "New Warriors #66",
+      "sourceIssueReference": "New Warriors #66",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "66",
+      "seriesId": 16341,
+      "selectedIssueId": 61243,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #66",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61243/new_warriors_1990_66",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61243"
+    },
+    {
+      "sourcePosition": 90,
+      "sourceKey": "web-of-scarlet-spider-3",
+      "sourceTitle": "Web of Scarlet Spider #3",
+      "sourceIssueReference": "Web of Scarlet Spider #3",
+      "sourceSeriesTitle": "Web of Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "3",
+      "seriesId": 22529,
+      "selectedIssueId": 61257,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Scarlet Spider (1995) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61257/web_of_scarlet_spider_1995_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61257"
+    },
+    {
+      "sourcePosition": 91,
+      "sourceKey": "sensational-spider-man-0",
+      "sourceTitle": "Sensational Spider-Man #0",
+      "sourceIssueReference": "Sensational Spider-Man #0 (1996)",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "0",
+      "seriesId": 19135,
+      "selectedIssueId": 61247,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61247/sensational_spider-man_1996",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61247"
+    },
+    {
+      "sourcePosition": 92,
+      "sourceKey": "spider-man-punisher-family-plot-1",
+      "sourceTitle": "Spider-Man/Punisher: Family Plot #1",
+      "sourceIssueReference": "Spider-Man/Punisher: Family Plot #1 (1996)",
+      "sourceSeriesTitle": "Spider-Man/Punisher: Family Plot",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 22527,
+      "selectedIssueId": 61252,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man/Punisher: Family Plot (1996) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61252/spider-manpunisher_family_plot_1996_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61252"
+    },
+    {
+      "sourcePosition": 93,
+      "sourceKey": "spider-man-punisher-family-plot-2",
+      "sourceTitle": "Spider-Man/Punisher: Family Plot #2",
+      "sourceIssueReference": "Spider-Man/Punisher: Family Plot #2",
+      "sourceSeriesTitle": "Spider-Man/Punisher: Family Plot",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "seriesId": 22527,
+      "selectedIssueId": 61253,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man/Punisher: Family Plot (1996) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61253/spider-manpunisher_family_plot_1996_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61253"
+    },
+    {
+      "sourcePosition": 94,
+      "sourceKey": "spider-man-the-final-adventure-1",
+      "sourceTitle": "Spider-Man: The Final Adventure #1",
+      "sourceIssueReference": "Spider-Man: The Final Adventure #1 (1995)",
+      "sourceSeriesTitle": "Spider-Man: The Final Adventure",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 22888,
+      "selectedIssueId": 62268,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: The Final Adventure (1995) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62268/spider-man_the_final_adventure_1995_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62268"
+    },
+    {
+      "sourcePosition": 95,
+      "sourceKey": "spider-man-the-final-adventure-2",
+      "sourceTitle": "Spider-Man: The Final Adventure #2",
+      "sourceIssueReference": "Spider-Man: The Final Adventure #2",
+      "sourceSeriesTitle": "Spider-Man: The Final Adventure",
+      "seriesYear": 1995,
+      "issueNumber": "2",
+      "seriesId": 22888,
+      "selectedIssueId": 62269,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: The Final Adventure (1995) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62269/spider-man_the_final_adventure_1995_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62269"
+    },
+    {
+      "sourcePosition": 96,
+      "sourceKey": "spider-man-the-final-adventure-3",
+      "sourceTitle": "Spider-Man: The Final Adventure #3",
+      "sourceIssueReference": "Spider-Man: The Final Adventure #3",
+      "sourceSeriesTitle": "Spider-Man: The Final Adventure",
+      "seriesYear": 1995,
+      "issueNumber": "3",
+      "seriesId": 22888,
+      "selectedIssueId": 62270,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: The Final Adventure (1995) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62270/spider-man_the_final_adventure_1995_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62270"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceKey": "spider-man-the-final-adventure-4",
+      "sourceTitle": "Spider-Man: The Final Adventure #4",
+      "sourceIssueReference": "Spider-Man: The Final Adventure #4",
+      "sourceSeriesTitle": "Spider-Man: The Final Adventure",
+      "seriesYear": 1995,
+      "issueNumber": "4",
+      "seriesId": 22888,
+      "selectedIssueId": 62271,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: The Final Adventure (1995) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62271/spider-man_the_final_adventure_1995_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62271"
+    },
+    {
+      "sourcePosition": 98,
+      "sourceKey": "amazing-spider-man-407",
+      "sourceTitle": "Amazing Spider-Man #407",
+      "sourceIssueReference": "Amazing Spider-Man #407",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "407",
+      "seriesId": 1987,
+      "selectedIssueId": 6824,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #407",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6824/the_amazing_spider-man_1963_407",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6824"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceKey": "spider-man-64",
+      "sourceTitle": "Spider-Man #64",
+      "sourceIssueReference": "Spider-Man #64",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "64",
+      "seriesId": 2069,
+      "selectedIssueId": 10827,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #64",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10827/spider-man_1990_64",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10827"
+    },
+    {
+      "sourcePosition": 100,
+      "sourceKey": "spectacular-spider-man-230",
+      "sourceTitle": "Spectacular Spider-Man #230",
+      "sourceIssueReference": "Spectacular Spider-Man #230",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "230",
+      "seriesId": 2271,
+      "selectedIssueId": 14688,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #230",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14688/peter_parker_the_spectacular_spider-man_1976_230",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14688"
+    },
+    {
+      "sourcePosition": 101,
+      "sourceKey": "spider-man-unlimited-11",
+      "sourceTitle": "Spider-Man Unlimited #11",
+      "sourceIssueReference": "Spider-Man Unlimited #11",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "11",
+      "seriesId": 13695,
+      "selectedIssueId": 62267,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62267/spider-man_unlimited_1993_11",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62267"
+    },
+    {
+      "sourcePosition": 102,
+      "sourceKey": "new-warriors-67",
+      "sourceTitle": "New Warriors #67",
+      "sourceIssueReference": "New Warriors #67",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "67",
+      "seriesId": 16341,
+      "selectedIssueId": 61244,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #67",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61244/new_warriors_1990_67",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61244"
+    },
+    {
+      "sourcePosition": 103,
+      "sourceKey": "web-of-scarlet-spider-4",
+      "sourceTitle": "Web of Scarlet Spider #4",
+      "sourceIssueReference": "Web of Scarlet Spider #4",
+      "sourceSeriesTitle": "Web of Scarlet Spider",
+      "seriesYear": 1995,
+      "issueNumber": "4",
+      "seriesId": 22529,
+      "selectedIssueId": 61258,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Web of Scarlet Spider (1995) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61258/web_of_scarlet_spider_1995_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61258"
+    },
+    {
+      "sourcePosition": 104,
+      "sourceKey": "new-warriors-68",
+      "sourceTitle": "New Warriors #68",
+      "sourceIssueReference": "New Warriors #68",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "68",
+      "seriesId": 16341,
+      "selectedIssueId": 69190,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #68",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69190/new_warriors_1990_68",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/69190"
+    },
+    {
+      "sourcePosition": 105,
+      "sourceKey": "new-warriors-69",
+      "sourceTitle": "New Warriors #69",
+      "sourceIssueReference": "New Warriors #69",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "69",
+      "seriesId": 16341,
+      "selectedIssueId": 69191,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #69",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69191/new_warriors_1990_69",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/69191"
+    },
+    {
+      "sourcePosition": 106,
+      "sourceKey": "sensational-spider-man-1",
+      "sourceTitle": "Sensational Spider-Man #1",
+      "sourceIssueReference": "Sensational Spider-Man #1",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 19135,
+      "selectedIssueId": 61248,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61248/sensational_spider-man_1996_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/61248"
+    },
+    {
+      "sourcePosition": 107,
+      "sourceKey": "amazing-spider-man-408",
+      "sourceTitle": "Amazing Spider-Man #408",
+      "sourceIssueReference": "Amazing Spider-Man #408",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "408",
+      "seriesId": 1987,
+      "selectedIssueId": 6825,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #408",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6825/the_amazing_spider-man_1963_408",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6825"
+    },
+    {
+      "sourcePosition": 108,
+      "sourceKey": "spider-man-65",
+      "sourceTitle": "Spider-Man #65",
+      "sourceIssueReference": "Spider-Man #65",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "65",
+      "seriesId": 2069,
+      "selectedIssueId": 10828,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #65",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10828/spider-man_1990_65",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10828"
+    },
+    {
+      "sourcePosition": 109,
+      "sourceKey": "spectacular-spider-man-231",
+      "sourceTitle": "Spectacular Spider-Man #231",
+      "sourceIssueReference": "Spectacular Spider-Man #231",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "231",
+      "seriesId": 2271,
+      "selectedIssueId": 14689,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #231",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14689/peter_parker_the_spectacular_spider-man_1976_231",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14689"
+    },
+    {
+      "sourcePosition": 110,
+      "sourceKey": "sensational-spider-man-2",
+      "sourceTitle": "Sensational Spider-Man #2",
+      "sourceIssueReference": "Sensational Spider-Man #2",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "seriesId": 19135,
+      "selectedIssueId": 62265,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62265/sensational_spider-man_1996_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62265"
+    },
+    {
+      "sourcePosition": 111,
+      "sourceKey": "amazing-spider-man-409",
+      "sourceTitle": "Amazing Spider-Man #409",
+      "sourceIssueReference": "Amazing Spider-Man #409",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "409",
+      "seriesId": 1987,
+      "selectedIssueId": 6826,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #409",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6826/the_amazing_spider-man_1963_409",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6826"
+    },
+    {
+      "sourcePosition": 112,
+      "sourceKey": "spider-man-66",
+      "sourceTitle": "Spider-Man #66",
+      "sourceIssueReference": "Spider-Man #66",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "66",
+      "seriesId": 2069,
+      "selectedIssueId": 10829,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #66",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10829/spider-man_1990_66",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10829"
+    },
+    {
+      "sourcePosition": 113,
+      "sourceKey": "spectacular-spider-man-232",
+      "sourceTitle": "Spectacular Spider-Man #232",
+      "sourceIssueReference": "Spectacular Spider-Man #232",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "232",
+      "seriesId": 2271,
+      "selectedIssueId": 14690,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #232",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14690/peter_parker_the_spectacular_spider-man_1976_232",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14690"
+    },
+    {
+      "sourcePosition": 114,
+      "sourceKey": "sensational-spider-man-3",
+      "sourceTitle": "Sensational Spider-Man #3",
+      "sourceIssueReference": "Sensational Spider-Man #3",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "3",
+      "seriesId": 19135,
+      "selectedIssueId": 60908,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60908/sensational_spider-man_1996_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/60908"
+    },
+    {
+      "sourcePosition": 115,
+      "sourceKey": "amazing-spider-man-410",
+      "sourceTitle": "Amazing Spider-Man #410",
+      "sourceIssueReference": "Amazing Spider-Man #410",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "410",
+      "seriesId": 1987,
+      "selectedIssueId": 6828,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #410",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6828/the_amazing_spider-man_1963_410",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6828"
+    },
+    {
+      "sourcePosition": 116,
+      "sourceKey": "spider-man-67",
+      "sourceTitle": "Spider-Man #67",
+      "sourceIssueReference": "Spider-Man #67",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "67",
+      "seriesId": 2069,
+      "selectedIssueId": 10830,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #67",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10830/spider-man_1990_67",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10830"
+    },
+    {
+      "sourcePosition": 117,
+      "sourceKey": "spectacular-spider-man-233",
+      "sourceTitle": "Spectacular Spider-Man #233",
+      "sourceIssueReference": "Spectacular Spider-Man #233",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "233",
+      "seriesId": 2271,
+      "selectedIssueId": 14691,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #233",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14691/peter_parker_the_spectacular_spider-man_1976_233",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14691"
+    },
+    {
+      "sourcePosition": 118,
+      "sourceKey": "new-warriors-70",
+      "sourceTitle": "New Warriors #70",
+      "sourceIssueReference": "New Warriors #70",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "70",
+      "seriesId": 16341,
+      "selectedIssueId": 69192,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #70",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69192/new_warriors_1990_70",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/69192"
+    },
+    {
+      "sourcePosition": 119,
+      "sourceKey": "sensational-spider-man-4",
+      "sourceTitle": "Sensational Spider-Man #4",
+      "sourceIssueReference": "Sensational Spider-Man #4",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "4",
+      "seriesId": 19135,
+      "selectedIssueId": 62272,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62272/sensational_spider-man_1996_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62272"
+    },
+    {
+      "sourcePosition": 120,
+      "sourceKey": "amazing-spider-man-411",
+      "sourceTitle": "Amazing Spider-Man #411",
+      "sourceIssueReference": "Amazing Spider-Man #411",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "411",
+      "seriesId": 1987,
+      "selectedIssueId": 6829,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #411",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6829/the_amazing_spider-man_1963_411",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6829"
+    },
+    {
+      "sourcePosition": 121,
+      "sourceKey": "spider-man-68",
+      "sourceTitle": "Spider-Man #68",
+      "sourceIssueReference": "Spider-Man #68",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "68",
+      "seriesId": 2069,
+      "selectedIssueId": 10831,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #68",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10831/spider-man_1990_68",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10831"
+    },
+    {
+      "sourcePosition": 122,
+      "sourceKey": "spectacular-spider-man-234",
+      "sourceTitle": "Spectacular Spider-Man #234",
+      "sourceIssueReference": "Spectacular Spider-Man #234",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "234",
+      "seriesId": 2271,
+      "selectedIssueId": 14692,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #234",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14692/peter_parker_the_spectacular_spider-man_1976_234",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14692"
+    },
+    {
+      "sourcePosition": 123,
+      "sourceKey": "spider-man-unlimited-12",
+      "sourceTitle": "Spider-Man Unlimited #12",
+      "sourceIssueReference": "Spider-Man Unlimited #12",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "12",
+      "seriesId": 13695,
+      "selectedIssueId": 62276,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62276/spider-man_unlimited_1993_12",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62276"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceKey": "new-warriors-71",
+      "sourceTitle": "New Warriors #71",
+      "sourceIssueReference": "New Warriors #71",
+      "sourceSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "71",
+      "seriesId": 16341,
+      "selectedIssueId": 69193,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "New Warriors (1990) #71",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69193/new_warriors_1990_71",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/69193"
+    },
+    {
+      "sourcePosition": 125,
+      "sourceKey": "venom-the-hunted-1",
+      "sourceTitle": "Venom: The Hunted #1",
+      "sourceIssueReference": "Venom: The Hunted #1 (1996)",
+      "sourceSeriesTitle": "Venom: The Hunted",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 26243,
+      "selectedIssueId": 71997,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Venom: The Hunted (1996) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71997/venom_the_hunted_1996_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/71997"
+    },
+    {
+      "sourcePosition": 126,
+      "sourceKey": "sensational-spider-man-5",
+      "sourceTitle": "Sensational Spider-Man #5",
+      "sourceIssueReference": "Sensational Spider-Man #5",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "5",
+      "seriesId": 19135,
+      "selectedIssueId": 62273,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62273/sensational_spider-man_1996_5",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62273"
+    },
+    {
+      "sourcePosition": 127,
+      "sourceKey": "amazing-spider-man-412",
+      "sourceTitle": "Amazing Spider-Man #412",
+      "sourceIssueReference": "Amazing Spider-Man #412",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "412",
+      "seriesId": 1987,
+      "selectedIssueId": 6830,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #412",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6830/the_amazing_spider-man_1963_412",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6830"
+    },
+    {
+      "sourcePosition": 128,
+      "sourceKey": "spider-man-69",
+      "sourceTitle": "Spider-Man #69",
+      "sourceIssueReference": "Spider-Man #69",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "69",
+      "seriesId": 2069,
+      "selectedIssueId": 10832,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #69",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10832/spider-man_1990_69",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10832"
+    },
+    {
+      "sourcePosition": 129,
+      "sourceKey": "spectacular-spider-man-235",
+      "sourceTitle": "Spectacular Spider-Man #235",
+      "sourceIssueReference": "Spectacular Spider-Man #235",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "235",
+      "seriesId": 2271,
+      "selectedIssueId": 14693,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #235",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14693/peter_parker_the_spectacular_spider-man_1976_235",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14693"
+    },
+    {
+      "sourcePosition": 130,
+      "sourceKey": "daredevil-354",
+      "sourceTitle": "Daredevil #354",
+      "sourceIssueReference": "Daredevil #354",
+      "sourceSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "354",
+      "seriesId": 2002,
+      "selectedIssueId": 8356,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Daredevil (1964) #354",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8356/daredevil_1964_354",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8356"
+    },
+    {
+      "sourcePosition": 131,
+      "sourceKey": "sensational-spider-man-6",
+      "sourceTitle": "Sensational Spider-Man #6",
+      "sourceIssueReference": "Sensational Spider-Man #6",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "6",
+      "seriesId": 19135,
+      "selectedIssueId": 62274,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62274/sensational_spider-man_1996_6",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62274"
+    },
+    {
+      "sourcePosition": 132,
+      "sourceKey": "amazing-spider-man-413",
+      "sourceTitle": "Amazing Spider-Man #413",
+      "sourceIssueReference": "Amazing Spider-Man #413",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "413",
+      "seriesId": 1987,
+      "selectedIssueId": 6831,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #413",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6831/the_amazing_spider-man_1963_413",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6831"
+    },
+    {
+      "sourcePosition": 133,
+      "sourceKey": "spider-man-70",
+      "sourceTitle": "Spider-Man #70",
+      "sourceIssueReference": "Spider-Man #70",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "70",
+      "seriesId": 2069,
+      "selectedIssueId": 10834,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #70",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10834/spider-man_1990_70",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10834"
+    },
+    {
+      "sourcePosition": 134,
+      "sourceKey": "spectacular-spider-man-236",
+      "sourceTitle": "Spectacular Spider-Man #236",
+      "sourceIssueReference": "Spectacular Spider-Man #236",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "236",
+      "seriesId": 2271,
+      "selectedIssueId": 14694,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #236",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14694/peter_parker_the_spectacular_spider-man_1976_236",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14694"
+    },
+    {
+      "sourcePosition": 135,
+      "sourceKey": "sensational-spider-man-7",
+      "sourceTitle": "Sensational Spider-Man #7",
+      "sourceIssueReference": "Sensational Spider-Man #7",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "7",
+      "seriesId": 19135,
+      "selectedIssueId": 62296,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62296/sensational_spider-man_1996_7",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62296"
+    },
+    {
+      "sourcePosition": 136,
+      "sourceKey": "amazing-spider-man-414",
+      "sourceTitle": "Amazing Spider-Man #414",
+      "sourceIssueReference": "Amazing Spider-Man #414",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "414",
+      "seriesId": 1987,
+      "selectedIssueId": 6832,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #414",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6832/the_amazing_spider-man_1963_414",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6832"
+    },
+    {
+      "sourcePosition": 137,
+      "sourceKey": "spider-man-71",
+      "sourceTitle": "Spider-Man #71",
+      "sourceIssueReference": "Spider-Man #71",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "71",
+      "seriesId": 2069,
+      "selectedIssueId": 10835,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #71",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10835/spider-man_1990_71",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10835"
+    },
+    {
+      "sourcePosition": 138,
+      "sourceKey": "spectacular-spider-man-237",
+      "sourceTitle": "Spectacular Spider-Man #237",
+      "sourceIssueReference": "Spectacular Spider-Man #237",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "237",
+      "seriesId": 2271,
+      "selectedIssueId": 14695,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #237",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14695/peter_parker_the_spectacular_spider-man_1976_237",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14695"
+    },
+    {
+      "sourcePosition": 139,
+      "sourceKey": "spider-man-unlimited-13",
+      "sourceTitle": "Spider-Man Unlimited #13",
+      "sourceIssueReference": "Spider-Man Unlimited #13",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "13",
+      "seriesId": 13695,
+      "selectedIssueId": 62301,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62301/spider-man_unlimited_1993_13",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62301"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceKey": "sensational-spider-man-8",
+      "sourceTitle": "Sensational Spider-Man #8",
+      "sourceIssueReference": "Sensational Spider-Man #8",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "8",
+      "seriesId": 19135,
+      "selectedIssueId": 51043,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51043/sensational_spider-man_1996_8",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51043"
+    },
+    {
+      "sourcePosition": 141,
+      "sourceKey": "amazing-spider-man-415",
+      "sourceTitle": "Amazing Spider-Man #415",
+      "sourceIssueReference": "Amazing Spider-Man #415",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "415",
+      "seriesId": 1987,
+      "selectedIssueId": 6833,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #415",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6833/the_amazing_spider-man_1963_415",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6833"
+    },
+    {
+      "sourcePosition": 142,
+      "sourceKey": "spider-man-72",
+      "sourceTitle": "Spider-Man #72",
+      "sourceIssueReference": "Spider-Man #72",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "72",
+      "seriesId": 2069,
+      "selectedIssueId": 10836,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #72",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10836/spider-man_1990_72",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10836"
+    },
+    {
+      "sourcePosition": 143,
+      "sourceKey": "spectacular-spider-man-238",
+      "sourceTitle": "Spectacular Spider-Man #238",
+      "sourceIssueReference": "Spectacular Spider-Man #238",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "238",
+      "seriesId": 2271,
+      "selectedIssueId": 14696,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #238",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14696/peter_parker_the_spectacular_spider-man_1976_238",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14696"
+    },
+    {
+      "sourcePosition": 144,
+      "sourceKey": "sensational-spider-man-9",
+      "sourceTitle": "Sensational Spider-Man #9",
+      "sourceIssueReference": "Sensational Spider-Man #9",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "9",
+      "seriesId": 19135,
+      "selectedIssueId": 62297,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62297/sensational_spider-man_1996_9",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62297"
+    },
+    {
+      "sourcePosition": 145,
+      "sourceKey": "amazing-spider-man-416",
+      "sourceTitle": "Amazing Spider-Man #416",
+      "sourceIssueReference": "Amazing Spider-Man #416",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "416",
+      "seriesId": 1987,
+      "selectedIssueId": 6834,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #416",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6834/the_amazing_spider-man_1963_416",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6834"
+    },
+    {
+      "sourcePosition": 146,
+      "sourceKey": "spider-man-73",
+      "sourceTitle": "Spider-Man #73",
+      "sourceIssueReference": "Spider-Man #73",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "73",
+      "seriesId": 2069,
+      "selectedIssueId": 10837,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #73",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10837/spider-man_1990_73",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10837"
+    },
+    {
+      "sourcePosition": 147,
+      "sourceKey": "spectacular-spider-man-239",
+      "sourceTitle": "Spectacular Spider-Man #239",
+      "sourceIssueReference": "Spectacular Spider-Man #239",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "239",
+      "seriesId": 2271,
+      "selectedIssueId": 14697,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #239",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14697/peter_parker_the_spectacular_spider-man_1976_239",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14697"
+    },
+    {
+      "sourcePosition": 148,
+      "sourceKey": "sensational-spider-man-10",
+      "sourceTitle": "Sensational Spider-Man #10",
+      "sourceIssueReference": "Sensational Spider-Man #10",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "10",
+      "seriesId": 19135,
+      "selectedIssueId": 62298,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62298/sensational_spider-man_1996_10",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62298"
+    },
+    {
+      "sourcePosition": 149,
+      "sourceKey": "amazing-spider-man-417",
+      "sourceTitle": "Amazing Spider-Man #417",
+      "sourceIssueReference": "Amazing Spider-Man #417",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "417",
+      "seriesId": 1987,
+      "selectedIssueId": 6835,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #417",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6835/the_amazing_spider-man_1963_417",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6835"
+    },
+    {
+      "sourcePosition": 150,
+      "sourceKey": "spider-man-74",
+      "sourceTitle": "Spider-Man #74",
+      "sourceIssueReference": "Spider-Man #74",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "74",
+      "seriesId": 2069,
+      "selectedIssueId": 10838,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #74",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10838/spider-man_1990_74",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10838"
+    },
+    {
+      "sourcePosition": 151,
+      "sourceKey": "green-goblin-13",
+      "sourceTitle": "Green Goblin #13",
+      "sourceIssueReference": "Green Goblin #13",
+      "sourceSeriesTitle": "Green Goblin",
+      "seriesYear": 1995,
+      "issueNumber": "13",
+      "seriesId": 7077,
+      "selectedIssueId": 68455,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Green Goblin (1995) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68455/green_goblin_1995_13",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/68455"
+    },
+    {
+      "sourcePosition": 152,
+      "sourceKey": "spider-man-redemption-1",
+      "sourceTitle": "Spider-Man: Redemption #1",
+      "sourceIssueReference": "Spider-Man: Redemption #1 (1996)",
+      "sourceSeriesTitle": "Spider-Man: Redemption",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 22889,
+      "selectedIssueId": 62277,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: Redemption (1996) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62277/spider-man_redemption_1996_1",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62277"
+    },
+    {
+      "sourcePosition": 153,
+      "sourceKey": "spider-man-redemption-2",
+      "sourceTitle": "Spider-Man: Redemption #2",
+      "sourceIssueReference": "Spider-Man: Redemption #2",
+      "sourceSeriesTitle": "Spider-Man: Redemption",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "seriesId": 22889,
+      "selectedIssueId": 62278,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: Redemption (1996) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62278/spider-man_redemption_1996_2",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62278"
+    },
+    {
+      "sourcePosition": 154,
+      "sourceKey": "spider-man-redemption-3",
+      "sourceTitle": "Spider-Man: Redemption #3",
+      "sourceIssueReference": "Spider-Man: Redemption #3",
+      "sourceSeriesTitle": "Spider-Man: Redemption",
+      "seriesYear": 1996,
+      "issueNumber": "3",
+      "seriesId": 22889,
+      "selectedIssueId": 62279,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: Redemption (1996) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62279/spider-man_redemption_1996_3",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62279"
+    },
+    {
+      "sourcePosition": 155,
+      "sourceKey": "spider-man-redemption-4",
+      "sourceTitle": "Spider-Man: Redemption #4",
+      "sourceIssueReference": "Spider-Man: Redemption #4",
+      "sourceSeriesTitle": "Spider-Man: Redemption",
+      "seriesYear": 1996,
+      "issueNumber": "4",
+      "seriesId": 22889,
+      "selectedIssueId": 62280,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man: Redemption (1996) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62280/spider-man_redemption_1996_4",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62280"
+    },
+    {
+      "sourcePosition": 156,
+      "sourceKey": "spectacular-spider-man-240",
+      "sourceTitle": "Spectacular Spider-Man #240",
+      "sourceIssueReference": "Spectacular Spider-Man #240",
+      "sourceSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "240",
+      "seriesId": 2271,
+      "selectedIssueId": 14699,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #240",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14699/peter_parker_the_spectacular_spider-man_1976_240",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/14699"
+    },
+    {
+      "sourcePosition": 157,
+      "sourceKey": "spider-man-unlimited-14",
+      "sourceTitle": "Spider-Man Unlimited #14",
+      "sourceIssueReference": "Spider-Man Unlimited #14",
+      "sourceSeriesTitle": "Spider-Man Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "14",
+      "seriesId": 13695,
+      "selectedIssueId": 62318,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man Unlimited (1993) #14",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62318/spider-man_unlimited_1993_14",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62318"
+    },
+    {
+      "sourcePosition": 158,
+      "sourceKey": "sensational-spider-man-11",
+      "sourceTitle": "Sensational Spider-Man #11",
+      "sourceIssueReference": "Sensational Spider-Man #11",
+      "sourceSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "11",
+      "seriesId": 19135,
+      "selectedIssueId": 62316,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62316/sensational_spider-man_1996_11",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/62316"
+    },
+    {
+      "sourcePosition": 159,
+      "sourceKey": "amazing-spider-man-418",
+      "sourceTitle": "Amazing Spider-Man #418",
+      "sourceIssueReference": "Amazing Spider-Man #418",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "418",
+      "seriesId": 1987,
+      "selectedIssueId": 6836,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #418",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6836/the_amazing_spider-man_1963_418",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/6836"
+    },
+    {
+      "sourcePosition": 160,
+      "sourceKey": "spider-man-75",
+      "sourceTitle": "Spider-Man #75",
+      "sourceIssueReference": "Spider-Man #75",
+      "sourceSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "75",
+      "seriesId": 2069,
+      "selectedIssueId": 10839,
+      "resolutionStatus": "exact",
+      "resolvedIssueTitle": "Spider-Man (1990) #75",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10839/spider-man_1990_75",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/10839"
+    },
+    {
+      "sourcePosition": 161,
+      "sourceKey": "spider-man-the-osborn-journals-1",
+      "sourceTitle": "Spider-Man: The Osborn Journals #1",
+      "sourceIssueReference": "Spider-Man: The Osborn Journals #1 (1997)",
+      "sourceSeriesTitle": "Spider-Man: The Osborn Journals",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "seriesId": null,
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider%20Man%20The%20Osborn%20Journals&limit=100",
+          "status": 200,
+          "retrievedAt": "2026-11-03T04:03:44.077Z",
+          "responseSha256": "18a4d0edb901e0e3efaa5b17d23165e25be9934ad258ffb82bb016eab3c74e83",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1090"
+    }
+  ],
+  "resolvedVector": [
+    6537,
+    6540,
+    14671,
+    6808,
+    14672,
+    11993,
+    6809,
+    10813,
+    14673,
+    11994,
+    10814,
+    38357,
+    11995,
+    10815,
+    10816,
+    11998,
+    10817,
+    38834,
+    11999,
+    6814,
+    10818,
+    14679,
+    12000,
+    6817,
+    10819,
+    14680,
+    12001,
+    6818,
+    10820,
+    14681,
+    69188,
+    69189,
+    12002,
+    12003,
+    6820,
+    10823,
+    59710,
+    59712,
+    59711,
+    14683,
+    59812,
+    12004,
+    6821,
+    10824,
+    14684,
+    59368,
+    12005,
+    6822,
+    10825,
+    59859,
+    59369,
+    14685,
+    12006,
+    6823,
+    10826,
+    14686,
+    59370,
+    61255,
+    61238,
+    61245,
+    61250,
+    61249,
+    61256,
+    61239,
+    68445,
+    68446,
+    61240,
+    61246,
+    61251,
+    61243,
+    61257,
+    61247,
+    61252,
+    61253,
+    62268,
+    62269,
+    62270,
+    62271,
+    6824,
+    10827,
+    14688,
+    62267,
+    61244,
+    61258,
+    69190,
+    69191,
+    61248,
+    6825,
+    10828,
+    14689,
+    62265,
+    6826,
+    10829,
+    14690,
+    60908,
+    6828,
+    10830,
+    14691,
+    69192,
+    62272,
+    6829,
+    10831,
+    14692,
+    62276,
+    69193,
+    71997,
+    62273,
+    6830,
+    10832,
+    14693,
+    8356,
+    62274,
+    6831,
+    10834,
+    14694,
+    62296,
+    6832,
+    10835,
+    14695,
+    62301,
+    51043,
+    6833,
+    10836,
+    14696,
+    62297,
+    6834,
+    10837,
+    14697,
+    62298,
+    6835,
+    10838,
+    68455,
+    62277,
+    62278,
+    62279,
+    62280,
+    14699,
+    62318,
+    62316,
+    6836,
+    10839
+  ],
+  "resolvedVectorSha256": "12d4dcb3ba9a18951397710ab6b12d827161bdda1ee2bdc40c0f9367f6efa4b1",
+  "repeats": [],
+  "placement": {
+    "type": "event",
+    "timeline": 1994,
+    "browse": "Storylines",
+    "insertionAnchor": {
+      "beforeId": "mcu-prep-daredevil-born-again"
+    },
+    "groupDecision": "separate-story",
+    "rationale": "A separate 1990s sequel event, not an alternative selection of the 1970s Original Clone Saga. Its recalled Amazing Spider-Man #149 is shared background, not the same story. Clone Conspiracy is another later event and has no shared originals. Science fiction covers cloning, thriller covers the identity mystery, and street level describes the personal Spider-Man focus.",
+    "yearBasis": "The principal saga begins in 1994; earlier recalled origin issues do not move the story to 1975."
+  },
+  "editorial": {
+    "description": "Ben Reilly's return forces Peter Parker to question which of them is the original Spider-Man. The struggle follows both men across the Spider-Man titles as clones and the Jackal upend their lives. Unresolved comics remain recorded in the source notes.",
+    "storyTypes": [
+      "science-fiction",
+      "thriller"
+    ],
+    "tones": [
+      "street-level"
+    ],
+    "evidenceSources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Clone_Saga",
+        "retrievedAt": "2026-11-03"
+      },
+      {
+        "url": "https://www.comicbooktreasury.com/spider-man-clone-saga-reading-order/",
+        "retrievedAt": "2026-11-03"
+      }
+    ],
+    "evidenceBasis": "A separate 1990s sequel event, not an alternative selection of the 1970s Original Clone Saga. Its recalled Amazing Spider-Man #149 is shared background, not the same story. Clone Conspiracy is another later event and has no shared originals. Science fiction covers cloning, thriller covers the identity mystery, and street level describes the personal Spider-Man focus."
+  },
+  "relationshipReview": {
+    "reviewer": "Copilot Reading Lists lane",
+    "authorityType": "agent-content-review",
+    "reviewedAt": "2026-11-03T04:11:40.707Z",
+    "report": {
+      "candidateId": "second-clone-saga",
+      "ledgerDigest": "9bc29a177ff93eb2d6e635e0b228843fa44013796e3f8ed63c29069b863d689a",
+      "candidateCount": 141,
+      "comparisonCount": 334,
+      "comparisons": [
+        {
+          "orderId": "abomination-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "absolute-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "adam-warlock-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agatha-harkness-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "age-of-x-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agents-of-atlas-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "all-new-all-different-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+          "sharedCount": 126,
+          "sharedIds": [
+            "6537",
+            "6540",
+            "14671",
+            "6808",
+            "14672",
+            "11993",
+            "6809",
+            "10813",
+            "14673",
+            "11994",
+            "10814",
+            "38357",
+            "11995",
+            "10815",
+            "10816",
+            "11998",
+            "10817",
+            "38834",
+            "11999",
+            "6814",
+            "10818",
+            "14679",
+            "12000",
+            "6817",
+            "10819",
+            "14680",
+            "12001",
+            "6818",
+            "10820",
+            "14681",
+            "12002",
+            "12003",
+            "6820",
+            "10823",
+            "59710",
+            "59712",
+            "59711",
+            "14683",
+            "59812",
+            "12004",
+            "6821",
+            "10824",
+            "14684",
+            "6822",
+            "10825",
+            "59859",
+            "14685",
+            "6823",
+            "10826",
+            "14686",
+            "61255",
+            "61238",
+            "61245",
+            "61250",
+            "61249",
+            "61256",
+            "61239",
+            "61240",
+            "61246",
+            "61251",
+            "61243",
+            "61257",
+            "61247",
+            "61252",
+            "61253",
+            "62268",
+            "62269",
+            "62270",
+            "62271",
+            "6824",
+            "10827",
+            "14688",
+            "62267",
+            "61244",
+            "61258",
+            "61248",
+            "6825",
+            "10828",
+            "14689",
+            "62265",
+            "6826",
+            "10829",
+            "14690",
+            "60908",
+            "6828",
+            "10830",
+            "14691",
+            "62272",
+            "6829",
+            "10831",
+            "14692",
+            "62276",
+            "62273",
+            "6830",
+            "10832",
+            "14693",
+            "8356",
+            "62274",
+            "6831",
+            "10834",
+            "14694",
+            "62296",
+            "6832",
+            "10835",
+            "14695",
+            "62301",
+            "51043",
+            "6833",
+            "10836",
+            "14696",
+            "62297",
+            "6834",
+            "10837",
+            "14697",
+            "62298",
+            "6835",
+            "10838",
+            "62277",
+            "62278",
+            "62279",
+            "62280",
+            "14699",
+            "62318",
+            "62316",
+            "6836",
+            "10839"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "annihilation-conquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ant-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "apocalypse-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "atlantis-attacks",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-defenders-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-disassembled",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-doomsday-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-enemy-within",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "axis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "best-ultron-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-panther-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-widow-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "bloodties",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-reading-order-modern-marvel-era",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-marvel-ms-marvel-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "chaos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "childs-play",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "clone-conspiracy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-champions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-chaos",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "damnation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "daredevil-reading-order",
+          "sharedCount": 1,
+          "sharedIds": [
+            "8356"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "dark-phoenix-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-reign-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-web",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-past",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-present",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dead-mans-hand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "deadpool-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "death-of-doctor-strange",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "devils-reign",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-doom-primer",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-octopus-otto-octavius-reading-order",
+          "sharedCount": 9,
+          "sharedIds": [
+            "6537",
+            "6540",
+            "10816",
+            "11998",
+            "10817",
+            "38834",
+            "11999",
+            "6814",
+            "10818"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "doctor-strange-multiverse-of-madness",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "donny-cates-marvel-universe-reading-order-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doomwar",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "eighth-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "emma-frost-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "essential-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "evolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "falcon-sam-wilson-captain-america-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-house-x-rise-powers-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-and-power-pack",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fatal-attractions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "franklin-richards-one-shots",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "gang-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "generations",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "groot-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "guardians-of-the-galaxy-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hawkeye-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroes-reborn-2021",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroic-age-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-full",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-minimal",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hope-summers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-xavier",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinite-destinies",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinity-countdown-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-vs-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-fist-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-2020",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "judgment-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "king-in-black",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kravens-last-hunt",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kree-skrull-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "last-annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "loki-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-2099",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-black-panther",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-captain-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-spider-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-adventures-the-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-fresh-start-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-01",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-02",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-03",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-04",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-05",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-06",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-07",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-08",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-09",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-10",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-11",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-12",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-13",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-14",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-15",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-16",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-17",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-18",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-19",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-20",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-21",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-22",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-23",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-24",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-25",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-26",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-27",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-28",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-29",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-30",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-31",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-32",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-33",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-34",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-35",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-36",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-37",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-38",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-39",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-40",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-41",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-42",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-43",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-44",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-45",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-46",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-47",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-48",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-49",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-50",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-51",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-52",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-53",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-54",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-55",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-56",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-57",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-58",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-59",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-60",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-61",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-62",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-63",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-64",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-65",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-66",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-67",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-68",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-69",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-70",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-71",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-72",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-73",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-74",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-75",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-76",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-77",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-78",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-rising",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-hero-adventures",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-heroes-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-what-if",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-zombies-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-best-phoenix-comics",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "maximum-security",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mc2",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-agatha-all-along",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ant-man-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-infinity-war-endgame",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-black-panther-2018",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-brave-new-world",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-civil-war-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-marvel-2019",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-daredevil-born-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-deadpool-and-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-doctor-strange-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-eternals",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-fantastic-four-first-steps",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-guardians-of-the-galaxy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2-2010",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-3-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-moon-knight",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-she-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-spider-man-brand-new-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-avengers-2012",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-incredible-hulk-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-ragnarok-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-the-dark-world-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thunderbolts",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-visionquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mephisto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-complex",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "midnight-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "minimum-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "modern-x-men-fast-track",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "monsters-unleashed",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-girl-and-devil-dinosaur",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-knight-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ms-marvel-kamala-khan-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "muir-island-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mutant-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mys-tech-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "namor-sub-mariner-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nebula-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "necrosha",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe-trades",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nick-fury-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nova-reading-order",
+          "sharedCount": 12,
+          "sharedIds": [
+            "69188",
+            "69189",
+            "59812",
+            "59368",
+            "59369",
+            "59370",
+            "61243",
+            "61244",
+            "69190",
+            "69191",
+            "69192",
+            "69193"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "one-world-under-doom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-galactic-storm",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-zero-tolerance",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "original-clone-saga",
+          "sharedCount": 2,
+          "sharedIds": [
+            "6537",
+            "6540"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "phalanx-covenant",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phoenix-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "power-pack-pack-attack-and-team-ups",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "professor-x-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "punisher-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reckoning-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reed-richards-and-sue-storms-wedding",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "revolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rise-of-the-midnight-sons",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rocket-raccoon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "runaways-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "scarlet-witch-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-coming",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-wars-ii",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "setup-to-modern-timeline",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadow-king-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadowland",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shang-chi-master-of-kung-fu-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silent-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silk-cindy-moon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silver-surfer-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "sins-of-sinister",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-geddon",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-gwen-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-island",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-2099-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-far-from-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-identity-crisis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-no-way-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-the-other",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-verse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spidey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "star-lord-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-imperative",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+          "sharedCount": 3,
+          "sharedIds": [
+            "51043",
+            "6833",
+            "10836"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "the-death-of-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-defenders-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-night-gwen-stacy-died",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-unbeatable-squirrel-girl",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-vision-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-the-mighty-avenger",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thunderbolts-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "time-and-time-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-marvel-intro",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venom-reading-order",
+          "sharedCount": 5,
+          "sharedIds": [
+            "11994",
+            "10814",
+            "11995",
+            "10815",
+            "71997"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "venomverse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wandavision",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-kings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-the-realms",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "white-tiger-ava-ayala",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "winter-soldier-bucky-barnes-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-goes-to-hell",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "world-war-hulk-aftersmash",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wraith-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-23-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-cutioners-song",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-force-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-age-of-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-battle-of-the-atom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-curse-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-divided-we-stand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-extermination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-manifest-destiny",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-nation-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-regenesis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-schism",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-trial-of-jean-grey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-utopia",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-of-swords",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-termination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-tinction-agenda",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "young-avengers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ],
+      "reportDigest": "60d5a9ac5c0b8e365fc5cd8b8b3d6ef20ef24d6d6521bc994bec4f8b83d05b5b"
+    },
+    "inventorySha256": "d800f4600937adbdca76a809fef188784709e1b6f95ec378092c0c11fd16519b",
+    "decisions": [
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "sharedCount": 126,
+        "sharedIds": [
+          "6537",
+          "6540",
+          "14671",
+          "6808",
+          "14672",
+          "11993",
+          "6809",
+          "10813",
+          "14673",
+          "11994",
+          "10814",
+          "38357",
+          "11995",
+          "10815",
+          "10816",
+          "11998",
+          "10817",
+          "38834",
+          "11999",
+          "6814",
+          "10818",
+          "14679",
+          "12000",
+          "6817",
+          "10819",
+          "14680",
+          "12001",
+          "6818",
+          "10820",
+          "14681",
+          "12002",
+          "12003",
+          "6820",
+          "10823",
+          "59710",
+          "59712",
+          "59711",
+          "14683",
+          "59812",
+          "12004",
+          "6821",
+          "10824",
+          "14684",
+          "6822",
+          "10825",
+          "59859",
+          "14685",
+          "6823",
+          "10826",
+          "14686",
+          "61255",
+          "61238",
+          "61245",
+          "61250",
+          "61249",
+          "61256",
+          "61239",
+          "61240",
+          "61246",
+          "61251",
+          "61243",
+          "61257",
+          "61247",
+          "61252",
+          "61253",
+          "62268",
+          "62269",
+          "62270",
+          "62271",
+          "6824",
+          "10827",
+          "14688",
+          "62267",
+          "61244",
+          "61258",
+          "61248",
+          "6825",
+          "10828",
+          "14689",
+          "62265",
+          "6826",
+          "10829",
+          "14690",
+          "60908",
+          "6828",
+          "10830",
+          "14691",
+          "62272",
+          "6829",
+          "10831",
+          "14692",
+          "62276",
+          "62273",
+          "6830",
+          "10832",
+          "14693",
+          "8356",
+          "62274",
+          "6831",
+          "10834",
+          "14694",
+          "62296",
+          "6832",
+          "10835",
+          "14695",
+          "62301",
+          "51043",
+          "6833",
+          "10836",
+          "14696",
+          "62297",
+          "6834",
+          "10837",
+          "14697",
+          "62298",
+          "6835",
+          "10838",
+          "62277",
+          "62278",
+          "62279",
+          "62280",
+          "14699",
+          "62318",
+          "62316",
+          "6836",
+          "10839"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This source-order 1990s sequel retains the exact Spider-Man originals; the peer selects related character appearances or a broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8356"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This source-order 1990s sequel retains the exact Spider-Man originals; the peer selects related character appearances or a broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "sharedCount": 9,
+        "sharedIds": [
+          "6537",
+          "6540",
+          "10816",
+          "11998",
+          "10817",
+          "38834",
+          "11999",
+          "6814",
+          "10818"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This source-order 1990s sequel retains the exact Spider-Man originals; the peer selects related character appearances or a broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "nova-reading-order",
+        "sharedCount": 12,
+        "sharedIds": [
+          "69188",
+          "69189",
+          "59812",
+          "59368",
+          "59369",
+          "59370",
+          "61243",
+          "61244",
+          "69190",
+          "69191",
+          "69192",
+          "69193"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This source-order 1990s sequel retains the exact Spider-Man originals; the peer selects related character appearances or a broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "original-clone-saga",
+        "sharedCount": 2,
+        "sharedIds": [
+          "6537",
+          "6540"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "The 1970s origin comics, Amazing Spider-Man #149 and #151, are recalled in the 1990s sequel. These are distinct stories, not alternative depths of one story, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "sharedCount": 3,
+        "sharedIds": [
+          "51043",
+          "6833",
+          "10836"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This source-order 1990s sequel retains the exact Spider-Man originals; the peer selects related character appearances or a broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "venom-reading-order",
+        "sharedCount": 5,
+        "sharedIds": [
+          "11994",
+          "10814",
+          "11995",
+          "10815",
+          "71997"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This source-order 1990s sequel retains the exact Spider-Man originals; the peer selects related character appearances or a broader chronology. Preserve shared originals in both."
+      }
+    ],
+    "status": "approved",
+    "dispositions": [
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authority": "Claude Opus 5.5 coordinator reciprocal overlap review, 2026-11-02",
+        "relationship": "partial",
+        "sharedCount": 3,
+        "sharedIds": [
+          "51043",
+          "6833",
+          "10836"
+        ],
+        "ledgerDigest": "9bc29a177ff93eb2d6e635e0b228843fa44013796e3f8ed63c29069b863d689a",
+        "reportDigest": "60d5a9ac5c0b8e365fc5cd8b8b3d6ef20ef24d6d6521bc994bec4f8b83d05b5b",
+        "rationale": "Independently verified against main 4bdcfab0 and the candidate files. The three shared originals are Sensational Spider-Man (1996) #8 (issueId 51043, digitalId 35502), The Amazing Spider-Man (1963) #415 (6833, 10900) and Spider-Man (1990) #72 (10836, 11526). They carry identical issueId and digitalId values in both lists, at Onslaught positions 50, 51 and 53 and Second Clone Saga positions 121, 122 and 123. An independent intersection of the two payloads is exactly these three, and neither list contains the other, so partial is correct. Both digests were recomputed with the unchanged canonical JSON function from scripts/lib/cbh-inventory.mjs and match. Onslaught's identities, positions and placeholders are unchanged; both lists keep the shared originals as one shared read identity."
+      }
+    ],
+    "approvalDigest": "2cdd5cb440ba12eff47f0de0f6be69933f1ae7d29a79fab8cb5981d10e94c256"
+  },
+  "ledgerDigest": "9bc29a177ff93eb2d6e635e0b228843fa44013796e3f8ed63c29069b863d689a"
+}

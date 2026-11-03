@@ -293,10 +293,10 @@ test('every bundled Reading List remains reachable without the retired Storyline
   assert.deepEqual(missing, [], `lists on no active browse screen: ${missing.join(', ')}`);
   assert.deepEqual(companions.filter((id) => genres.has(id)), [], 'MCU Prep stays on its own screen');
   const events = storylinesLists(catalog.lists).filter(({ type }) => type === 'event');
-  assert.equal(events.length, 31);
+  assert.equal(events.length, 34);
   for (const list of events) {
     assert.ok(genres.has(list.id), `${list.id} is missing from Genres`);
-    if (list.timeline < 1998) assert.ok(ages.has(list.id), `${list.id} is missing from Marvel Ages`);
+    if (list.timeline < 2004) assert.ok(ages.has(list.id), `${list.id} is missing from Marvel Ages`);
     else assert.ok(timeline.has(list.id), `${list.id} is missing from Modern Timeline`);
   }
 });

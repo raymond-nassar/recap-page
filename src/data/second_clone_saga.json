@@ -1,0 +1,4791 @@
+{
+  "id": "second-clone-saga",
+  "name": "Second Clone Saga",
+  "description": "Ben Reilly's return forces Peter Parker to question which of them is the original Spider-Man. The struggle follows both men across the Spider-Man titles as clones and the Jackal upend their lives. 20 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+  "source": "https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-03T04:39:27.832Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 141,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6537,
+      "title": "The Amazing Spider-Man (1963) #149",
+      "number": "149",
+      "url": "https://www.marvel.com/comics/issue/6537/the_amazing_spider-man_1963_149",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-10-01T00:00:00+0000",
+      "mu": "1975-10-01T00:00:00+0000",
+      "digitalId": 29133,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/57bb551e3146d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6540,
+      "title": "The Amazing Spider-Man (1963) #151",
+      "number": "151",
+      "url": "https://www.marvel.com/comics/issue/6540/the_amazing_spider-man_1963_151",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-12-01T00:00:00+0000",
+      "mu": "1975-12-01T00:00:00+0000",
+      "digitalId": 29135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/57bc4ac6c80e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14671,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #215",
+      "number": "215",
+      "url": "https://www.marvel.com/comics/issue/14671/peter_parker_the_spectacular_spider-man_1976_215",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "1994-08-01T00:00:00+0000",
+      "digitalId": 75368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/689cb0ce9c64d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Lackey",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6808,
+      "title": "The Amazing Spider-Man (1963) #393",
+      "number": "393",
+      "url": "https://www.marvel.com/comics/issue/6808/the_amazing_spider-man_1963_393",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 30731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/51eece2b87597",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14672,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #216",
+      "number": "216",
+      "url": "https://www.marvel.com/comics/issue/14672/peter_parker_the_spectacular_spider-man_1976_216",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 75369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/689cb0e6708e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11993,
+      "title": "Web of Spider-Man (1985) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/11993/web_of_spider-man_1985_117",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1994-10-10T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 18270,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/5762e2067661b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Randall Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "J. M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6809,
+      "title": "The Amazing Spider-Man (1963) #394",
+      "number": "394",
+      "url": "https://www.marvel.com/comics/issue/6809/the_amazing_spider-man_1963_394",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 18265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/57d84ae3b2c39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10813,
+      "title": "Spider-Man (1990) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/10813/spider-man_1990_51",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 18267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/575b3355453cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14673,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #217",
+      "number": "217",
+      "url": "https://www.marvel.com/comics/issue/14673/peter_parker_the_spectacular_spider-man_1976_217",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 18274,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/575b30398d79b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11994,
+      "title": "Web of Spider-Man (1985) #118",
+      "number": "118",
+      "url": "https://www.marvel.com/comics/issue/11994/web_of_spider-man_1985_118",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1994-11-10T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 18272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5762e1ea5c85d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10814,
+      "title": "Spider-Man (1990) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/10814/spider-man_1990_52",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "1994-11-01T00:00:00+0000",
+      "digitalId": 18268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/575b339a8b399",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 38357,
+      "title": "Spider-Man Unlimited (1993) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/38357/spider-man_unlimited_1993_7",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "1994-11-01T00:00:00+0000",
+      "digitalId": 18287,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/575b31dc15198",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Mcleod",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Gosier",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Kanterovich",
+          "role": "writer"
+        },
+        {
+          "name": "Stephen Vrattos",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Brevoort",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11995,
+      "title": "Web of Spider-Man (1985) #119",
+      "number": "119",
+      "url": "https://www.marvel.com/comics/issue/11995/web_of_spider-man_1985_119",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1994-12-10T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 18273,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5762e2a408d4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10815,
+      "title": "Spider-Man (1990) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/10815/spider-man_1990_53",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "1994-12-01T00:00:00+0000",
+      "digitalId": 18269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/575b3100a7f15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10816,
+      "title": "Spider-Man (1990) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/10816/spider-man_1990_54",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "1995-01-01T00:00:00+0000",
+      "digitalId": 18760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5bc7657a813bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11998,
+      "title": "Web of Spider-Man (1985) #121",
+      "number": "121",
+      "url": "https://www.marvel.com/comics/issue/11998/web_of_spider-man_1985_121",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "1995-02-01T00:00:00+0000",
+      "digitalId": 23510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5cc0c8f9e625d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Gosier",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10817,
+      "title": "Spider-Man (1990) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/10817/spider-man_1990_55",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "1995-02-01T00:00:00+0000",
+      "digitalId": 18761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5bc7666d10acb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Manley",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 38834,
+      "title": "Spider-Man Unlimited (1993) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/38834/spider-man_unlimited_1993_8",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "1995-02-01T00:00:00+0000",
+      "digitalId": 18768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/575b33d896765",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11999,
+      "title": "Web of Spider-Man (1985) #122",
+      "number": "122",
+      "url": "https://www.marvel.com/comics/issue/11999/web_of_spider-man_1985_122",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "1995-03-01T00:00:00+0000",
+      "digitalId": 23511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5cc1b695c113e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6814,
+      "title": "The Amazing Spider-Man (1963) #399",
+      "number": "399",
+      "url": "https://www.marvel.com/comics/issue/6814/the_amazing_spider-man_1963_399",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "1995-03-01T00:00:00+0000",
+      "digitalId": 18755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/57d8543ea90a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10818,
+      "title": "Spider-Man (1990) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/10818/spider-man_1990_56",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "1995-03-01T00:00:00+0000",
+      "digitalId": 18762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/5bc7674897fe9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14679,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #222",
+      "number": "222",
+      "url": "https://www.marvel.com/comics/issue/14679/peter_parker_the_spectacular_spider-man_1976_222",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "1995-03-01T00:00:00+0000",
+      "digitalId": 23174,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/581cee6d9ed33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12000,
+      "title": "Web of Spider-Man (1985) #123",
+      "number": "123",
+      "url": "https://www.marvel.com/comics/issue/12000/web_of_spider-man_1985_123",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 23232,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5cc1c2183717b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6817,
+      "title": "The Amazing Spider-Man (1963) #400",
+      "number": "400",
+      "url": "https://www.marvel.com/comics/issue/6817/the_amazing_spider-man_1963_400",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 22175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/57e0016b50fc8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10819,
+      "title": "Spider-Man (1990) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/10819/spider-man_1990_57",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 23227,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/5bc7681146958",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14680,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #223",
+      "number": "223",
+      "url": "https://www.marvel.com/comics/issue/14680/peter_parker_the_spectacular_spider-man_1976_223",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 23180,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5820e5192ed1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12001,
+      "title": "Web of Spider-Man (1985) #124",
+      "number": "124",
+      "url": "https://www.marvel.com/comics/issue/12001/web_of_spider-man_1985_124",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "1995-05-01T00:00:00+0000",
+      "digitalId": 23233,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5cc1cb5c192fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6818,
+      "title": "The Amazing Spider-Man (1963) #401",
+      "number": "401",
+      "url": "https://www.marvel.com/comics/issue/6818/the_amazing_spider-man_1963_401",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "1995-05-01T00:00:00+0000",
+      "digitalId": 23397,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/57e168f9ab1ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10820,
+      "title": "Spider-Man (1990) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/10820/spider-man_1990_58",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "1995-05-01T00:00:00+0000",
+      "digitalId": 23228,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5bc768e339cee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14681,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #224",
+      "number": "224",
+      "url": "https://www.marvel.com/comics/issue/14681/peter_parker_the_spectacular_spider-man_1976_224",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "1995-05-01T00:00:00+0000",
+      "digitalId": 23183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/58208693cdbd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69188,
+      "title": "New Warriors (1990) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/69188/new_warriors_1990_59",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "2024-06-20T00:00:00+0000",
+      "digitalId": 67401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/6660707f460b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam De La Rosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69189,
+      "title": "New Warriors (1990) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/69189/new_warriors_1990_60",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "2024-06-20T00:00:00+0000",
+      "digitalId": 67402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/10/6660708199c09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12002,
+      "title": "Web of Spider-Man (1985) #125",
+      "number": "125",
+      "url": "https://www.marvel.com/comics/issue/12002/web_of_spider-man_1985_125",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "1995-06-01T00:00:00+0000",
+      "digitalId": 23512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5cc1d7cd706b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tod Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Lackey",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12003,
+      "title": "Web of Spider-Man (1985) #126",
+      "number": "126",
+      "url": "https://www.marvel.com/comics/issue/12003/web_of_spider-man_1985_126",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 23513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5cc1ea5681e01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Burdine",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6820,
+      "title": "The Amazing Spider-Man (1963) #403",
+      "number": "403",
+      "url": "https://www.marvel.com/comics/issue/6820/the_amazing_spider-man_1963_403",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 23492,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/57e004a3c577f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sam De La Rosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10823,
+      "title": "Spider-Man (1990) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/10823/spider-man_1990_60",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 23505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5bc76aed7d07b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59710,
+      "title": "AMAZING SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59710/amazing_spider-man_super_special_1_1995_1",
+      "seriesId": 21739,
+      "seriesName": "AMAZING SPIDER-MAN SUPER SPECIAL 1 (1995)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 41429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/57588282d49ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Hoover",
+          "role": "penciler"
+        },
+        {
+          "name": "John Calimee",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Gosier",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Eric Fein",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Lackey",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59712,
+      "title": "SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59712/spider-man_super_special_1_1995_1",
+      "seriesId": 21741,
+      "seriesName": "SPIDER-MAN SUPER SPECIAL 1 (1995)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 41431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/575b336ab3aa1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Tod Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59711,
+      "title": "THE SPECTACULAR SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59711/the_spectacular_spider-man_super_special_1_1995_1",
+      "seriesId": 21740,
+      "seriesName": "THE SPECTACULAR SPIDER-MAN SUPER SPECIAL 1 (1995)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 41430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/575b313842bf3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Arne Starr",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Claude St. Aubin",
+          "role": "penciler"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14683,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #226",
+      "number": "226",
+      "url": "https://www.marvel.com/comics/issue/14683/peter_parker_the_spectacular_spider-man_1976_226",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 41467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/575b30a3ce6de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59812,
+      "title": "New Warriors (1990) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/59812/new_warriors_1990_61",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 41465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/575b2f4a651b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12004,
+      "title": "Web of Spider-Man (1985) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/12004/web_of_spider-man_1985_127",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 23514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5cc1ff1a480e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6821,
+      "title": "The Amazing Spider-Man (1963) #404",
+      "number": "404",
+      "url": "https://www.marvel.com/comics/issue/6821/the_amazing_spider-man_1963_404",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 23494,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/57e0060226df4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10824,
+      "title": "Spider-Man (1990) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/10824/spider-man_1990_61",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 23506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5bc76bfddb4b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14684,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #227",
+      "number": "227",
+      "url": "https://www.marvel.com/comics/issue/14684/peter_parker_the_spectacular_spider-man_1976_227",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 41468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/575b30a4333ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59368,
+      "title": "New Warriors (1990) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/59368/new_warriors_1990_62",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 41167,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/575b2f33dcee6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12005,
+      "title": "Web of Spider-Man (1985) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/12005/web_of_spider-man_1985_128",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 23515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/5cc204fe016d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6822,
+      "title": "The Amazing Spider-Man (1963) #405",
+      "number": "405",
+      "url": "https://www.marvel.com/comics/issue/6822/the_amazing_spider-man_1963_405",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 23497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/57e16a886901c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10825,
+      "title": "Spider-Man (1990) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/10825/spider-man_1990_62",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 23517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5bc76cc7c400d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59859,
+      "title": "Spider-Man Unlimited (1993) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/59859/spider-man_unlimited_1993_10",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 41626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/575b33a10b63a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shawn Mcmanus",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Burdine",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Lackey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59369,
+      "title": "New Warriors (1990) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/59369/new_warriors_1990_63",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 41168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/575b2fac07dcf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14685,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #228",
+      "number": "228",
+      "url": "https://www.marvel.com/comics/issue/14685/peter_parker_the_spectacular_spider-man_1976_228",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 41170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/575b3403226e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12006,
+      "title": "Web of Spider-Man (1985) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/12006/web_of_spider-man_1985_129",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 23516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5cc353bc84a21",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6823,
+      "title": "The Amazing Spider-Man (1963) #406",
+      "number": "406",
+      "url": "https://www.marvel.com/comics/issue/6823/the_amazing_spider-man_1963_406",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 23498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/57e007562092e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10826,
+      "title": "Spider-Man (1990) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/10826/spider-man_1990_63",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 23520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5bc76dba3b745",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14686,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #229",
+      "number": "229",
+      "url": "https://www.marvel.com/comics/issue/14686/peter_parker_the_spectacular_spider-man_1976_229",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 41171,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/575b318f08f34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59370,
+      "title": "New Warriors (1990) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/59370/new_warriors_1990_64",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 41169,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/575b2f807049e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61255,
+      "title": "Web of Scarlet Spider (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61255/web_of_scarlet_spider_1995_1",
+      "seriesId": 22529,
+      "seriesName": "Web of Scarlet Spider (1995 - 1996)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 42527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5cd0730d98450",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paris Karounos",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61238,
+      "title": "Amazing Scarlet Spider (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61238/amazing_scarlet_spider_1995_1",
+      "seriesId": 22523,
+      "seriesName": "Amazing Scarlet Spider (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5d4dd14274c98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Lackey",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61245,
+      "title": "Scarlet Spider (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61245/scarlet_spider_1995_1",
+      "seriesId": 22524,
+      "seriesName": "Scarlet Spider (1995 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5cbf2b283c804",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61250,
+      "title": "Spectacular Scarlet Spider (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61250/spectacular_scarlet_spider_1995_1",
+      "seriesId": 22526,
+      "seriesName": "Spectacular Scarlet Spider (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5a21dcfe284dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61249,
+      "title": "SCARLET SPIDER UNLIMITED 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61249/scarlet_spider_unlimited_1_1995_1",
+      "seriesId": 22525,
+      "seriesName": "SCARLET SPIDER UNLIMITED 1 (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5cbf2aef1fe55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tod Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Glenn Herdling",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61256,
+      "title": "Web of Scarlet Spider (1995) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61256/web_of_scarlet_spider_1995_2",
+      "seriesId": 22529,
+      "seriesName": "Web of Scarlet Spider (1995 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5cd348853be39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Hector Collazo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Morgan",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61239,
+      "title": "Amazing Scarlet Spider (1995) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61239/amazing_scarlet_spider_1995_2",
+      "seriesId": 22523,
+      "seriesName": "Amazing Scarlet Spider (1995)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5d4dd16612be7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68445,
+      "title": "Green Goblin (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/68445/green_goblin_1995_1",
+      "seriesId": 7077,
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 48385,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b4e4f49616a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Mcdaniel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68446,
+      "title": "Green Goblin (1995) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68446/green_goblin_1995_2",
+      "seriesId": 7077,
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 48386,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5b4e4eeb45ab0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Mcdaniel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61240,
+      "title": "Green Goblin (1995) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61240/green_goblin_1995_3",
+      "seriesId": 7077,
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5b4e4f0ca081a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Mcdaniel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61246,
+      "title": "Scarlet Spider (1995) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61246/scarlet_spider_1995_2",
+      "seriesId": 22524,
+      "seriesName": "Scarlet Spider (1995 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5cbf2b04bf381",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61251,
+      "title": "Spectacular Scarlet Spider (1995) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61251/spectacular_scarlet_spider_1995_2",
+      "seriesId": 22526,
+      "seriesName": "Spectacular Scarlet Spider (1995)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5a21ba36b8914",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61243,
+      "title": "New Warriors (1990) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/61243/new_warriors_1990_66",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5ae32ec63810b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61257,
+      "title": "Web of Scarlet Spider (1995) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61257/web_of_scarlet_spider_1995_3",
+      "seriesId": 22529,
+      "seriesName": "Web of Scarlet Spider (1995 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42529,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5cd0750f2bb19",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paris Karounos",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61247,
+      "title": "Sensational Spider-Man (1996)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/61247/sensational_spider-man_1996",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 42506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5d2499602cc52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 61252,
+      "title": "Spider-Man/Punisher: Family Plot (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61252/spider-manpunisher_family_plot_1996_1",
+      "seriesId": 22527,
+      "seriesName": "Spider-Man/Punisher: Family Plot (1996)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 42514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5a0ca87e03d8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arne Starr",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Manley",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Giordano",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Harris",
+          "role": "penciler"
+        },
+        {
+          "name": "Shawn Mcmanus",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61253,
+      "title": "Spider-Man/Punisher: Family Plot (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61253/spider-manpunisher_family_plot_1996_2",
+      "seriesId": 22527,
+      "seriesName": "Spider-Man/Punisher: Family Plot (1996)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 42515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5a0ca7fbcf539",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Witherby",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Wegrzyn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62268,
+      "title": "Spider-Man: The Final Adventure (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62268/spider-man_the_final_adventure_1995_1",
+      "seriesId": 22888,
+      "seriesName": "Spider-Man: The Final Adventure (1995 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42982,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5a6a1d80defa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jeff Albrecht",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62269,
+      "title": "Spider-Man: The Final Adventure (1995) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/62269/spider-man_the_final_adventure_1995_2",
+      "seriesId": 22888,
+      "seriesName": "Spider-Man: The Final Adventure (1995 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42983,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a6a1d92157fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jeff Albrecht",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62270,
+      "title": "Spider-Man: The Final Adventure (1995) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/62270/spider-man_the_final_adventure_1995_3",
+      "seriesId": 22888,
+      "seriesName": "Spider-Man: The Final Adventure (1995 - 1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 42984,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5a6a1f0a9f64f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Arne Starr",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Albrecht",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62271,
+      "title": "Spider-Man: The Final Adventure (1995) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/62271/spider-man_the_final_adventure_1995_4",
+      "seriesId": 22888,
+      "seriesName": "Spider-Man: The Final Adventure (1995 - 1996)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 42985,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5a6a1f2f95bd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Albrecht",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6824,
+      "title": "The Amazing Spider-Man (1963) #407",
+      "number": "407",
+      "url": "https://www.marvel.com/comics/issue/6824/the_amazing_spider-man_1963_407",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 29626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/57e0096c06042",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10827,
+      "title": "Spider-Man (1990) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/10827/spider-man_1990_64",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 42512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5d2f468853585",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Giordano",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14688,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #230",
+      "number": "230",
+      "url": "https://www.marvel.com/comics/issue/14688/peter_parker_the_spectacular_spider-man_1976_230",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 42509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5ad8f58c4dbae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62267,
+      "title": "Spider-Man Unlimited (1993) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/62267/spider-man_unlimited_1993_11",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 42981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/5cbf2c31df5cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Hoover",
+          "role": "penciler"
+        },
+        {
+          "name": "Adam Santangelo",
+          "role": "writer"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61244,
+      "title": "New Warriors (1990) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/61244/new_warriors_1990_67",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 42503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5ae33065d1f95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61258,
+      "title": "Web of Scarlet Spider (1995) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61258/web_of_scarlet_spider_1995_4",
+      "seriesId": 22529,
+      "seriesName": "Web of Scarlet Spider (1995 - 1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 42530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5cd074edaf4db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paris Karounos",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69190,
+      "title": "New Warriors (1990) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/69190/new_warriors_1990_68",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "2024-06-20T00:00:00+0000",
+      "digitalId": 67403,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/66607081ab659",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sam De La Rosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69191,
+      "title": "New Warriors (1990) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/69191/new_warriors_1990_69",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2024-06-20T00:00:00+0000",
+      "digitalId": 67404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/66607081a9782",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61248,
+      "title": "Sensational Spider-Man (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61248/sensational_spider-man_1996_1",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 42507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5d2499680f49b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6825,
+      "title": "The Amazing Spider-Man (1963) #408",
+      "number": "408",
+      "url": "https://www.marvel.com/comics/issue/6825/the_amazing_spider-man_1963_408",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 29628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/57e00b18598cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10828,
+      "title": "Spider-Man (1990) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/10828/spider-man_1990_65",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 42513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5d2f46ccd8e58",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Giordano",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Morgan",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14689,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #231",
+      "number": "231",
+      "url": "https://www.marvel.com/comics/issue/14689/peter_parker_the_spectacular_spider-man_1976_231",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 42977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5ad8f4517541f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62265,
+      "title": "Sensational Spider-Man (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/62265/sensational_spider-man_1996_2",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 42976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/5d249971b4133",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6826,
+      "title": "The Amazing Spider-Man (1963) #409",
+      "number": "409",
+      "url": "https://www.marvel.com/comics/issue/6826/the_amazing_spider-man_1963_409",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 29629,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/57e00c1d5eeb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10829,
+      "title": "Spider-Man (1990) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/10829/spider-man_1990_66",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 42979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5d2f46ba2b2dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Giordano",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14690,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #232",
+      "number": "232",
+      "url": "https://www.marvel.com/comics/issue/14690/peter_parker_the_spectacular_spider-man_1976_232",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 42978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5ad8f60ab15bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60908,
+      "title": "Sensational Spider-Man (1996) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/60908/sensational_spider-man_1996_3",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 42357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5d24998112aad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6828,
+      "title": "The Amazing Spider-Man (1963) #410",
+      "number": "410",
+      "url": "https://www.marvel.com/comics/issue/6828/the_amazing_spider-man_1963_410",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 29630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/57e3f03690f55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10830,
+      "title": "Spider-Man (1990) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/10830/spider-man_1990_67",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 42360,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d2f4674f1bd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14691,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #233",
+      "number": "233",
+      "url": "https://www.marvel.com/comics/issue/14691/peter_parker_the_spectacular_spider-man_1976_233",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 42358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5ad8f5e58bb29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69192,
+      "title": "New Warriors (1990) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/69192/new_warriors_1990_70",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "2024-06-20T00:00:00+0000",
+      "digitalId": 67405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/6660708207b73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62272,
+      "title": "Sensational Spider-Man (1996) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/62272/sensational_spider-man_1996_4",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 42986,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/5d2499897957a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6829,
+      "title": "The Amazing Spider-Man (1963) #411",
+      "number": "411",
+      "url": "https://www.marvel.com/comics/issue/6829/the_amazing_spider-man_1963_411",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 29633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/57e00eb818238",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10831,
+      "title": "Spider-Man (1990) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/10831/spider-man_1990_68",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 42990,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5d2f46d638540",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14692,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #234",
+      "number": "234",
+      "url": "https://www.marvel.com/comics/issue/14692/peter_parker_the_spectacular_spider-man_1976_234",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 42989,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5ad8f5eb60bae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62276,
+      "title": "Spider-Man Unlimited (1993) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/62276/spider-man_unlimited_1993_12",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 42994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5cbf2c47258ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Derek Fisher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paris Karounos",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Geiger",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69193,
+      "title": "New Warriors (1990) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/69193/new_warriors_1990_71",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "2024-06-20T00:00:00+0000",
+      "digitalId": 50303,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/666070826f12b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71997,
+      "title": "Venom: The Hunted (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71997/venom_the_hunted_1996_1",
+      "seriesId": 26243,
+      "seriesName": "Venom: The Hunted (1996)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 49438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5b80741f460e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Duncan Rouleau",
+          "role": "penciler"
+        },
+        {
+          "name": "James Calafiore",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62273,
+      "title": "Sensational Spider-Man (1996) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/62273/sensational_spider-man_1996_5",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 42987,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5d24999caee53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6830,
+      "title": "The Amazing Spider-Man (1963) #412",
+      "number": "412",
+      "url": "https://www.marvel.com/comics/issue/6830/the_amazing_spider-man_1963_412",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 29636,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/57e0156533859",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10832,
+      "title": "Spider-Man (1990) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/10832/spider-man_1990_69",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 42991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5d2f466b25d04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14693,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #235",
+      "number": "235",
+      "url": "https://www.marvel.com/comics/issue/14693/peter_parker_the_spectacular_spider-man_1976_235",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 43041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/5ad8f63cc47f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8356,
+      "title": "Daredevil (1964) #354",
+      "number": "354",
+      "url": "https://www.marvel.com/comics/issue/8356/daredevil_1964_354",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 39282,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b57469d3aed5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cary Nord",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62274,
+      "title": "Sensational Spider-Man (1996) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/62274/sensational_spider-man_1996_6",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 42988,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5d2499b73e26b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6831,
+      "title": "The Amazing Spider-Man (1963) #413",
+      "number": "413",
+      "url": "https://www.marvel.com/comics/issue/6831/the_amazing_spider-man_1963_413",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 29637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/57e016080d4de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10834,
+      "title": "Spider-Man (1990) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/10834/spider-man_1990_70",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 42992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5d2f469c338ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14694,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #236",
+      "number": "236",
+      "url": "https://www.marvel.com/comics/issue/14694/peter_parker_the_spectacular_spider-man_1976_236",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 43042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5ad8f70f566f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62296,
+      "title": "Sensational Spider-Man (1996) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/62296/sensational_spider-man_1996_7",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 43038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5d2499d7bfaa0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6832,
+      "title": "The Amazing Spider-Man (1963) #414",
+      "number": "414",
+      "url": "https://www.marvel.com/comics/issue/6832/the_amazing_spider-man_1963_414",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 29646,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/57e017b6ac21d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10835,
+      "title": "Spider-Man (1990) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/10835/spider-man_1990_71",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 43046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5d2f4691d74eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14695,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #237",
+      "number": "237",
+      "url": "https://www.marvel.com/comics/issue/14695/peter_parker_the_spectacular_spider-man_1976_237",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 43043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5ad8f6225b876",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62301,
+      "title": "Spider-Man Unlimited (1993) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/62301/spider-man_unlimited_1993_13",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 43048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5cbf2c5f0bc44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Montano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "James Felder",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51043,
+      "title": "Sensational Spider-Man (1996) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/51043/sensational_spider-man_1996_8",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-09-08T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 35502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/587fb963aa122",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6833,
+      "title": "The Amazing Spider-Man (1963) #415",
+      "number": "415",
+      "url": "https://www.marvel.com/comics/issue/6833/the_amazing_spider-man_1963_415",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 10900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/57e0197a2a360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10836,
+      "title": "Spider-Man (1990) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/10836/spider-man_1990_72",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5bc76ef6710fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14696,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #238",
+      "number": "238",
+      "url": "https://www.marvel.com/comics/issue/14696/peter_parker_the_spectacular_spider-man_1976_238",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 43044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5ad8f74a0b93c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62297,
+      "title": "Sensational Spider-Man (1996) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/62297/sensational_spider-man_1996_9",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 43039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5d2499ade24e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Richard Case",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6834,
+      "title": "The Amazing Spider-Man (1963) #416",
+      "number": "416",
+      "url": "https://www.marvel.com/comics/issue/6834/the_amazing_spider-man_1963_416",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 29649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/57e3f1959e76e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10837,
+      "title": "Spider-Man (1990) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/10837/spider-man_1990_73",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 43093,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5d2f467ec4b4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14697,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #239",
+      "number": "239",
+      "url": "https://www.marvel.com/comics/issue/14697/peter_parker_the_spectacular_spider-man_1976_239",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 43045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5ad8f793ede82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62298,
+      "title": "Sensational Spider-Man (1996) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/62298/sensational_spider-man_1996_10",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 43040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5d2499a5bfc3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Richard Case",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6835,
+      "title": "The Amazing Spider-Man (1963) #417",
+      "number": "417",
+      "url": "https://www.marvel.com/comics/issue/6835/the_amazing_spider-man_1963_417",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 29650,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/57e01b095eece",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10838,
+      "title": "Spider-Man (1990) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/10838/spider-man_1990_74",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 43094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d2f4661e1bc8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68455,
+      "title": "Green Goblin (1995) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/68455/green_goblin_1995_13",
+      "seriesId": 7077,
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 48384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5b4e5177ccd27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Derek Fisher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Hood",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62277,
+      "title": "Spider-Man: Redemption (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62277/spider-man_redemption_1996_1",
+      "seriesId": 22889,
+      "seriesName": "Spider-Man: Redemption (1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 42995,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/70/5a21bacaae952",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62278,
+      "title": "Spider-Man: Redemption (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/62278/spider-man_redemption_1996_2",
+      "seriesId": 22889,
+      "seriesName": "Spider-Man: Redemption (1996)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 42996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5a21ba7fa454e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62279,
+      "title": "Spider-Man: Redemption (1996) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/62279/spider-man_redemption_1996_3",
+      "seriesId": 22889,
+      "seriesName": "Spider-Man: Redemption (1996)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 42997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5a21ba9179e3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62280,
+      "title": "Spider-Man: Redemption (1996) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/62280/spider-man_redemption_1996_4",
+      "seriesId": 22889,
+      "seriesName": "Spider-Man: Redemption (1996)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "1996-12-01T00:00:00+0000",
+      "digitalId": 42998,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a21ba94894dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14699,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #240",
+      "number": "240",
+      "url": "https://www.marvel.com/comics/issue/14699/peter_parker_the_spectacular_spider-man_1976_240",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 43091,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5ad8f7bd545ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62318,
+      "title": "Spider-Man Unlimited (1993) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/62318/spider-man_unlimited_1993_14",
+      "seriesId": 13695,
+      "seriesName": "Spider-Man Unlimited (1993)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 43097,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/5cbf2bea54e6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Glenn Herdling",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62316,
+      "title": "Sensational Spider-Man (1996) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/62316/sensational_spider-man_1996_11",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "1996-12-01T00:00:00+0000",
+      "digitalId": 43090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/5d2499c71f089",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Richard Case",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6836,
+      "title": "The Amazing Spider-Man (1963) #418",
+      "number": "418",
+      "url": "https://www.marvel.com/comics/issue/6836/the_amazing_spider-man_1963_418",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "1996-12-01T00:00:00+0000",
+      "digitalId": 29651,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/57e01c63d537c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Skroce",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10839,
+      "title": "Spider-Man (1990) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/10839/spider-man_1990_75",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "1996-12-01T00:00:00+0000",
+      "digitalId": 43095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5d2f4658b6d37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

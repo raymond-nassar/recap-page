@@ -169,6 +169,17 @@ guide that shares issues with one of them needs no owner registration: the ident
 updater accepts that guide's own approved review as the reciprocal authority, but only
 while its digests hold and its approved relationship is the exact inverse of the one observed.
 
+The same bar applies to a later local curated-source ledger. The identity updater reads its
+factual ledger and complete relationship report as publication inputs. Both canonical digests
+must hold, the review must be approved, and exactly one disposition must name the earlier guide
+with `human` or `stronger-model` authority. The inverse relationship, shared count and shared IDs
+must match the current comparison exactly. An agent content review alone is rejected.
+The ledger digest covers every factual field except `ledgerDigest` and `relationshipReview`,
+so approval does not sign itself. The report digest covers every report field except
+`reportDigest` and binds the ledger digest; the separately signed approval and disposition bind
+both. Record the actual reviewer's decision verbatim, and obtain a new review if either digest
+changes. This does not convert the guide to an owner authoring contract or re-sign an earlier one.
+
 The maintained capture is [the baseline registration tool](../scripts/register-cbh-owner-baselines.mjs);
 its [eligibility checks](../test/older-owner-guides.test.js) bind the proposed
 payload and checklist bytes without applying any synthetic proposal.
