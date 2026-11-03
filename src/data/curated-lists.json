@@ -10366,6 +10366,153 @@
       "coverIssueId": 1889
     },
     {
+      "id": "mc2",
+      "name": "MC2",
+      "description": "Spider-Man's daughter May Parker grows into her own hero in a future shared with a new generation of Avengers. Her adventures connect with J2, A-Next, the Fantastic Five and later MC2 crossovers. 17 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+      "type": "era",
+      "depth": "partial",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mc2.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/mc2-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "mc2.json",
+      "characters": [
+        "Spider-Girl",
+        "May Parker",
+        "A-Next",
+        "J2",
+        "Fantastic Five",
+        "American Dream"
+      ],
+      "keywords": [
+        "MC2"
+      ],
+      "expect": 207,
+      "timeline": null,
+      "coverIssueId": 18301
+    },
+    {
+      "id": "second-clone-saga",
+      "name": "Second Clone Saga",
+      "description": "Ben Reilly's return forces Peter Parker to question which of them is the original Spider-Man. The struggle follows both men across the Spider-Man titles as clones and the Jackal upend their lives. 20 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+      "type": "event",
+      "depth": "partial",
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "street-level"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "second-clone-saga.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "second_clone_saga.json",
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Ben Reilly",
+        "Scarlet Spider",
+        "Kaine",
+        "Jackal"
+      ],
+      "keywords": [
+        "Second Clone Saga"
+      ],
+      "expect": 141,
+      "timeline": 1994,
+      "coverIssueId": 6537,
+      "storylines": true
+    },
+    {
+      "id": "marvel-1602",
+      "name": "Marvel 1602",
+      "description": "Elizabethan versions of Marvel's heroes confront strange storms that threaten their world. Their adventures continue through New World, Fantastick Four and Spider-Man 1602.",
+      "type": "event",
+      "depth": "complete",
+      "storyTypes": [
+        "magic-supernatural",
+        "espionage"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-1602.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/marvel-1602-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "marvel_1602.json",
+      "characters": [
+        "Doctor Strange",
+        "Nick Fury",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Marvel 1602"
+      ],
+      "expect": 23,
+      "timeline": 2003,
+      "coverIssueId": 20630,
+      "storylines": true
+    },
+    {
+      "id": "blood-and-thunder",
+      "name": "Blood and Thunder",
+      "description": "Thor turns against his allies, drawing the Silver Surfer and the Infinity Watch into a struggle to stop him. The conflict moves between Thor, Silver Surfer, Warlock Chronicles and Warlock and the Infinity Watch. 1 comic from the source order isn't in the app's comic data yet, so it doesn't appear among this order's issues.",
+      "type": "event",
+      "depth": "partial",
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "blood-and-thunder.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/blood-and-thunder-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "blood_and_thunder.json",
+      "characters": [
+        "Thor",
+        "Silver Surfer",
+        "Adam Warlock",
+        "Infinity Watch",
+        "Thanos",
+        "Beta Ray Bill"
+      ],
+      "keywords": [
+        "Blood and Thunder"
+      ],
+      "expect": 12,
+      "timeline": 1993,
+      "coverIssueId": 11796,
+      "storylines": true
+    },
+    {
       "id": "mcu-prep-daredevil-born-again",
       "name": "MCU Prep: Daredevil: Born Again",
       "description": "Read Born Again to understand Kingpin's assault on Matt Murdock's life and the Daredevil story behind the show's title. The Man Without Fear introduces Matt's beginnings, then later runs test his exposed identity, conscience and place in Hell's Kitchen. The reading offers character background rather than a scene-by-scene guide to the series.",

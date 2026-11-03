@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T23:07:39.400Z",
+  "generatedAt": "2026-11-03T05:52:26.040Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -5679,6 +5679,9 @@
       "writers": [
         "Jim Starlin"
       ],
+      "contains": [
+        "blood-and-thunder"
+      ],
       "count": 225,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -6092,7 +6095,8 @@
         "dark"
       ],
       "contains": [
-        "thanos-war"
+        "thanos-war",
+        "blood-and-thunder"
       ],
       "count": 272,
       "placeholderCount": 0,
@@ -15637,6 +15641,191 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "mc2",
+      "file": "mc2.json",
+      "name": "MC2",
+      "description": "Spider-Man's daughter May Parker grows into her own hero in a future shared with a new generation of Avengers. Her adventures connect with J2, A-Next, the Fantastic Five and later MC2 crossovers. 17 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+      "type": "era",
+      "depth": "partial",
+      "storyTypes": [
+        "coming-of-age",
+        "science-fiction"
+      ],
+      "writers": [
+        "Tom Defalco"
+      ],
+      "count": 207,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Girl",
+        "May Parker",
+        "A-Next",
+        "J2",
+        "Fantastic Five",
+        "American Dream"
+      ],
+      "keywords": [
+        "MC2"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 18301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5f46ce6981d33",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/mc2-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-03T04:25:24.964Z"
+    },
+    {
+      "id": "second-clone-saga",
+      "file": "second_clone_saga.json",
+      "name": "Second Clone Saga",
+      "description": "Ben Reilly's return forces Peter Parker to question which of them is the original Spider-Man. The struggle follows both men across the Spider-Man titles as clones and the Jackal upend their lives. 20 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+      "type": "event",
+      "depth": "partial",
+      "storylines": true,
+      "storyTypes": [
+        "science-fiction",
+        "thriller"
+      ],
+      "tones": [
+        "street-level"
+      ],
+      "count": 141,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Ben Reilly",
+        "Scarlet Spider",
+        "Kaine",
+        "Jackal"
+      ],
+      "keywords": [
+        "Second Clone Saga"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1994,
+      "coverIssueId": 6537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/57bb551e3146d",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-03T04:39:27.832Z"
+    },
+    {
+      "id": "marvel-1602",
+      "file": "marvel_1602.json",
+      "name": "Marvel 1602",
+      "description": "Elizabethan versions of Marvel's heroes confront strange storms that threaten their world. Their adventures continue through New World, Fantastick Four and Spider-Man 1602.",
+      "type": "event",
+      "depth": "complete",
+      "storylines": true,
+      "storyTypes": [
+        "magic-supernatural",
+        "espionage"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Neil Gaiman"
+      ],
+      "count": 23,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Doctor Strange",
+        "Nick Fury",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Marvel 1602"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 20630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/20/5aa0527ab02c4",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/marvel-1602-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-03T05:52:25.043Z"
+    },
+    {
+      "id": "blood-and-thunder",
+      "file": "blood_and_thunder.json",
+      "name": "Blood and Thunder",
+      "description": "Thor turns against his allies, drawing the Silver Surfer and the Infinity Watch into a struggle to stop him. The conflict moves between Thor, Silver Surfer, Warlock Chronicles and Warlock and the Infinity Watch. 1 comic from the source order isn't in the app's comic data yet, so it doesn't appear among this order's issues.",
+      "type": "event",
+      "depth": "partial",
+      "storylines": true,
+      "storyTypes": [
+        "space-opera",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Ron Marz",
+        "Jim Starlin"
+      ],
+      "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Thor",
+        "Silver Surfer",
+        "Adam Warlock",
+        "Infinity Watch",
+        "Thanos",
+        "Beta Ray Bill"
+      ],
+      "keywords": [
+        "Blood and Thunder"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1993,
+      "coverIssueId": 11796,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5180268bbce32",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/blood-and-thunder-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-03T05:52:26.040Z"
     },
     {
       "id": "mcu-prep-daredevil-born-again",

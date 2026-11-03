@@ -1,0 +1,400 @@
+{
+  "id": "blood-and-thunder",
+  "name": "Blood and Thunder",
+  "description": "Thor turns against his allies, drawing the Silver Surfer and the Infinity Watch into a struggle to stop him. The conflict moves between Thor, Silver Surfer, Warlock Chronicles and Warlock and the Infinity Watch. 1 comic from the source order isn't in the app's comic data yet, so it doesn't appear among this order's issues.",
+  "source": "https://comicbookreadingorders.com/marvel/events/blood-and-thunder-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-03T05:52:26.040Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 11796,
+      "title": "Thor (1966) #468",
+      "number": "468",
+      "url": "https://www.marvel.com/comics/issue/11796/thor_1966_468",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 29505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5180268bbce32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Zick",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15226,
+      "title": "Silver Surfer (1987) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/15226/silver_surfer_1987_86",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 48963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5b33ec424892c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Anderson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23488,
+      "title": "Warlock Chronicles (1993) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/23488/warlock_chronicles_1993_6",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1993-12-10T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 42198,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/5769976dd11f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Redding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Renkewitz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18428,
+      "title": "Warlock and the Infinity Watch (1992) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/18428/warlock_and_the_infinity_watch_1992_23",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 48966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/10/5b3baf41a2c11",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11797,
+      "title": "Thor (1966) #469",
+      "number": "469",
+      "url": "https://www.marvel.com/comics/issue/11797/thor_1966_469",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 29552,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/5151bba723b13",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15227,
+      "title": "Silver Surfer (1987) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/15227/silver_surfer_1987_87",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 48964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5b33ec2d9ff6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23489,
+      "title": "Warlock Chronicles (1993) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/23489/warlock_chronicles_1993_7",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1994-01-10T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 42553,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5769973cbf1f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18429,
+      "title": "Warlock and the Infinity Watch (1992) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/18429/warlock_and_the_infinity_watch_1992_24",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 48967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5b3baf5620c63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11798,
+      "title": "Thor (1966) #470",
+      "number": "470",
+      "url": "https://www.marvel.com/comics/issue/11798/thor_1966_470",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 29554,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/51812985a46e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15228,
+      "title": "Silver Surfer (1987) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/15228/silver_surfer_1987_88",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 48965,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5b33ec1d2f1ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18430,
+      "title": "Warlock and the Infinity Watch (1992) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/18430/warlock_and_the_infinity_watch_1992_25",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "1994-02-01T00:00:00+0000",
+      "digitalId": 48968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5b3baf69b9c8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11799,
+      "title": "Thor (1966) #471",
+      "number": "471",
+      "url": "https://www.marvel.com/comics/issue/11799/thor_1966_471",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "1994-02-01T00:00:00+0000",
+      "digitalId": 29555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5151c9c9514c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

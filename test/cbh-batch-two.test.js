@@ -109,6 +109,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
     [
       'ultimate-marvel-intro',
       'maximum-security',
+      'marvel-1602',
       'avengers-disassembled',
       'secret-war',
       'house-of-m',
