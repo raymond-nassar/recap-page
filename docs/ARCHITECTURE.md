@@ -326,7 +326,7 @@ comics in memory, rejects invalid issue identities, and reports incomplete loads
 total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:627-651`.
+receives focus, at `src/js/views/add.js:629-653`.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
@@ -334,7 +334,7 @@ and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/v
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
 starts hydration, at `src/js/views/add.js:337-380`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1144-1148`. Manual entry keeps its existing path.
+selection, at `src/js/views/add.js:1146-1150`. Manual entry keeps its existing path.
 
 **Pasted imports have a separate durable source journal.** The storage-owned import draft keeps
 verbatim source (including original full-paste line endings), recognized physical positions,

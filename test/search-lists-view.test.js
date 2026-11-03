@@ -143,12 +143,14 @@ test('a slower earlier load cannot overwrite a later query', async () => {
   let release;
   const gate = new Promise((resolve) => { release = resolve; });
   let calls = 0;
-  const h = harness({ loadCatalog: () => (calls++ === 0 ? gate.then(() => catalog) : Promise.resolve(catalog)) });
+  const h = harness({ loadCatalog: () => (calls++ === 0 ? gate.then(() => ({ lists: [] })) : Promise.resolve(catalog)) });
   const earlier = h.view.update('mcu prep');
   await h.view.update('House of M');
+  const latest = h.cards();
+  assert.equal(latest[0].id, 'house-of-m');
   release();
   await earlier;
-  assert.equal(h.cards()[0].id, 'house-of-m');
+  assert.deepEqual(h.cards(), latest);
 });
 
 test('a catalog failure shows a notice in the group only, and a guide failure keeps lists findable', async () => {

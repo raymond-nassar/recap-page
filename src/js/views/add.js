@@ -618,6 +618,8 @@ export function createAddView({
   function revealResults(config, status, heading, target) {
     if (!config.revealResults || status.phase === 'cancelled') return;
     config.revealResults = false;
+    if ($(config.input).value.trim() !== status.item.name) return;
+    if (document.activeElement !== document.body && !$(config.form).contains(document.activeElement)) return;
     const first = target.getBoundingClientRect();
     if (heading.getBoundingClientRect().top < 0 || first.bottom > window.innerHeight) {
       heading.scrollIntoView({ block: 'start' });

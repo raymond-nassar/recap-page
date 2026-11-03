@@ -10117,6 +10117,7 @@ const SCENARIOS = [
       }, value, event);
       const query = async (prefix, value, result = 'input[data-comic-id]') => {
         await field(`#${prefix}-q`, value);
+        await page.focus(`#${prefix}-q`);
         await click(page, `#form-${prefix} button[type="submit"]`);
         await page.waitForSelector(`#${prefix}-results ${result}`, { timeout: 15000 });
       };
@@ -10268,7 +10269,14 @@ const SCENARIOS = [
         window.__mrtListSearchFetches = [];
         const stubbed = window.fetch;
         window.fetch = function (input, init) {
-          window.__mrtListSearchFetches.push(typeof input === 'string' ? input : input?.url ?? String(input));
+          const url = typeof input === 'string' ? input : input?.url ?? String(input);
+          window.__mrtListSearchFetches.push(url);
+          if (window.__mrtListImportOffline) return Promise.reject(new TypeError('Failed to fetch'));
+          if (window.__mrtHoldListComicSearch && url.includes('/search/issues')) {
+            return new Promise((resolve, reject) => {
+              window.__mrtReleaseListComicSearch = () => stubbed.call(this, input, init).then(resolve, reject);
+            });
+          }
           return stubbed.call(this, input, init);
         };
       });
@@ -10388,10 +10396,82 @@ const SCENARIOS = [
         comics.inView && comics.focus === 'search-q', JSON.stringify(comics));
       await page.evaluate(() => window.scrollTo(0, 0));
 
+      for (const [index, action] of ['typing', 'row focus', 'Preview'].entries()) {
+        await type(`Fixture Event${'!'.repeat(index + 1)}`);
+        await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+        await page.evaluate(() => {
+          window.scrollTo(0, 0);
+          window.__mrtHoldListComicSearch = true;
+          window.__mrtReleaseListComicSearch = null;
+        });
+        await page.focus('#search-q');
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => typeof window.__mrtReleaseListComicSearch === 'function');
+        if (action === 'typing') {
+          await page.keyboard.type('!');
+        } else if (action === 'row focus') {
+          await page.focus('#search-lists-results .catalog-row [data-act="import"]');
+        } else {
+          await page.focus('#search-lists-results .catalog-row .catalog-card-preview');
+          await page.keyboard.press('Enter');
+          await page.waitForSelector('#preview[open]');
+        }
+        const scrollBefore = await page.evaluate(() => window.scrollY);
+        await page.evaluate(() => {
+          window.__mrtHoldListComicSearch = false;
+          window.__mrtReleaseListComicSearch();
+        });
+        await page.waitForSelector('#search-results .comic-choice');
+        const scrollAfter = await page.evaluate(() => window.scrollY);
+        if (action === 'Preview') {
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => !document.querySelector('#preview').open);
+        }
+        const focus = await page.evaluate(() => {
+          const rect = document.activeElement.getBoundingClientRect();
+          return { top: rect.top, bottom: rect.bottom, id: document.activeElement.id,
+            preview: document.activeElement.classList.contains('catalog-card-preview'),
+            import: document.activeElement.dataset.act === 'import' };
+        });
+        t.check(`a pending comic search does not scroll after ${action}`,
+          scrollAfter === scrollBefore && focus.top >= 0 && focus.bottom <= 900
+            && (action === 'typing' ? focus.id === 'search-q' : action === 'Preview' ? focus.preview : focus.import),
+          JSON.stringify({ scrollBefore, scrollAfter, focus }));
+      }
+
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.evaluate(() => { window.scrollTo(0, 0); window.__mrtListImportOffline = true; });
+      await click(page, '#search-lists-results .catalog-row [data-act="import"]');
+      await page.waitForFunction(() => document.querySelector('#search-lists-report').textContent.trim());
+      await page.waitForFunction(() => document.querySelector('#search-lists-report button')?.textContent === 'Try again');
+      await page.evaluate(() => { window.__mrtListImportOffline = false; });
+      await click(page, '#search-lists-report button');
+      await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+        .some((list) => list.catalogId === 'browser-check-extra-1'));
+      await click(page, '.brand[data-view="home"]');
+      await click(page, '[data-view="add"]');
+      await page.waitForSelector('#view-add:not([hidden])');
+      await page.waitForFunction(() => document.querySelector('#search-lists-results .catalog-row [data-act="open"]'));
+      const retry = await page.evaluate(() => {
+        const report = document.querySelector('#search-lists-report');
+        const stale = [...report.querySelectorAll('button')].find((button) => button.textContent === 'Try again');
+        stale?.click();
+        return { registered: report.classList.contains('report'), stale: Boolean(stale), text: report.textContent.trim() };
+      });
+      if (retry.stale) {
+        await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+          .filter((list) => list.catalogId === 'browser-check-extra-1').length === 2);
+      }
+      const copies = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+        .filter((list) => list.catalogId === 'browser-check-extra-1').length);
+      t.check('a failed list-row Add retires its retry after success and saves exactly one copy',
+        retry.registered && !retry.stale && !retry.text && copies === 1, JSON.stringify({ retry, copies }));
+
       await type('Fixture Even');
       await type('Fixture Event');
       await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
-      await page.focus('#search-lists-results .catalog-row [data-act="preview"]');
+      await page.focus('#search-lists-results .catalog-row:nth-child(2) [data-act="preview"]');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#preview[open] #preview-add [data-act="main"]');
       await click(page, '#preview-add [data-act="main"]');
@@ -10402,12 +10482,12 @@ const SCENARIOS = [
       const added = await page.evaluate(() => ({
         rows: [...document.querySelectorAll('#search-lists-results .catalog-row')]
           .map((row) => row.querySelector('[data-act="import"], [data-act="open"]').dataset.act),
-        focus: document.activeElement === document.querySelector('#search-lists-results .catalog-row .catalog-card-preview'),
+        focus: document.activeElement === document.querySelector('#search-lists-results .catalog-row:nth-child(2) .catalog-card-preview'),
         saved: Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
-          .filter((list) => list.catalogId === 'browser-check-extra-1').length,
+          .filter((list) => list.catalogId === 'browser-check-extra-2').length,
       }));
       t.check('adding a list from its Preview turns its row into Open and keeps focus',
-        added.rows[0] === 'open' && added.rows.slice(1).every((act) => act === 'import')
+        added.rows[0] === 'open' && added.rows[1] === 'open' && added.rows.slice(2).every((act) => act === 'import')
           && added.focus && added.saved === 1, JSON.stringify(added));
 
       const layout = async (width, height) => {

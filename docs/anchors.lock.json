@@ -1664,8 +1664,8 @@
     "fp": "eda54b5863c96712",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1144-1148|0": {
-    "anchor": "src/js/views/add.js:1144-1148",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1146-1150|0": {
+    "anchor": "src/js/views/add.js:1146-1150",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
@@ -1679,8 +1679,8 @@
     "fp": "db2a727c16a4b4f7",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:627-651|0": {
-    "anchor": "src/js/views/add.js:627-651",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:629-653|0": {
+    "anchor": "src/js/views/add.js:629-653",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
