@@ -150,7 +150,8 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
         + '#btn-chero-open, .app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
-        + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label';
+        + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label, '
+        + '#form-search label[for="search-q"]';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {
@@ -165,14 +166,15 @@ final class WebViewController: UIViewController, WKUIDelegate {
             if (target.getAttribute('aria-label') !== label) target.setAttribute('aria-label', label);
             continue;
           }
-          if (target.matches('.backup-restore-label')) {
+          if (target.matches('.backup-restore-label') || target.matches('#form-search label[for="search-q"]')) {
             target.setAttribute('role', 'button');
             target.setAttribute('tabindex', '0');
             const input = document.getElementById(target.htmlFor);
             const describedBy = input?.getAttribute('aria-describedby');
             if (describedBy) {
               target.setAttribute('aria-describedby', describedBy);
-              for (const id of ['restore-complete-hint', 'restore-file-hint', 'restore-history-hint']) {
+              // Keep descriptions on their controls without a second, tiny standalone native target.
+              for (const id of ['restore-complete-hint', 'restore-file-hint', 'restore-history-hint', 'search-hint']) {
                 const hint = document.getElementById(id);
                 if (hint && describedBy.split(/\s+/).includes(id)) hint.setAttribute('aria-hidden', 'true');
               }
