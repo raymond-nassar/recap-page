@@ -3,9 +3,11 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
   createDescriptionRevisions, describeDescriptionRevision, descriptionRevisions, planDescriptionRevisions,
-  sealDescriptionRevisions, validateDescriptionRevisions,
+  sealChapterDescriptionRevisions, sealDescriptionRevisions, validateChapterDescriptionRevisions,
+  validateDescriptionRevisions,
 } from '../scripts/lib/description-revisions.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import { digestJson } from '../scripts/lib/chapter-orders.mjs';
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
@@ -124,4 +126,71 @@ test('the record rejects copy that breaks the card rules or the evidence trail',
   assert.throws(() => sealDescriptionRevisions({ issue: 1075, entries: [valid.entries[0], valid.entries[0]] }),
     /duplicate/);
   assert.throws(() => validateDescriptionRevisions({ ...valid, issue: 1076 }), /digest changed/);
+});
+
+const CHAPTER = 'marvel-knights-to-planet-x-07';
+const CHAPTER_FILE = 'marvel_knights_to_planet_x_07.json';
+const CHAPTER_AFTER = 'Spider-Man turns inward while a stranger asks what his powers really are. Fixture copy follows.';
+
+async function chapterFixture() {
+  const { descriptionCopy } = await json('scripts/data/marvel-knights-to-planet-x-lists.json');
+  const entries = descriptionCopy.entries.map(({ id, sourceHeading, description }) => ({
+    id, sourceHeading, before: description, after: id === CHAPTER ? CHAPTER_AFTER : description,
+  }));
+  const copy = (side) => entries.map(({ id, sourceHeading, ...rest }) => ({ id, sourceHeading, description: rest[side] }));
+  return sealChapterDescriptionRevisions({
+    issue: 1075,
+    previous: { ownerAttachmentSha256: descriptionCopy.ownerAttachmentSha256, entriesSha256: descriptionCopy.entriesSha256 },
+    current: { ownerAttachmentSha256: 'a'.repeat(64), entriesSha256: digestJson(copy('after')) },
+    entries,
+  });
+}
+
+test('the committed chapter record supersedes the ledger copy it replaced and names the current one', async () => {
+  const { descriptionCopy } = await json('scripts/data/marvel-knights-to-planet-x-lists.json');
+  const { chapters } = descriptionRevisions;
+  if (chapters.entries.length === 0) return;
+  assert.deepEqual(chapters.current, {
+    ownerAttachmentSha256: descriptionCopy.ownerAttachmentSha256, entriesSha256: descriptionCopy.entriesSha256,
+  });
+  assert.notEqual(chapters.previous.entriesSha256, chapters.current.entriesSha256);
+  assert.deepEqual(chapters.entries.map(({ id, sourceHeading, after }) => ({ id, sourceHeading, description: after })),
+    descriptionCopy.entries);
+});
+
+test('chapter history undoes only the exact superseded attachment copy', async () => {
+  const revisions = createDescriptionRevisions(await fixture(), await chapterFixture());
+  const catalog = await json('src/data/catalog.json');
+  const card = catalog.lists.find(({ id }) => id === CHAPTER);
+  const revised = { ...card, description: CHAPTER_AFTER };
+  assert.deepEqual(revisions.undoEntry(revised), card);
+  assert.equal(revisions.undoEntry(card), card);
+  assert.deepEqual(revisions.redoEntry(card), revised);
+  const older = { ...card, description: 'Copy an older inverse still has to judge.' };
+  assert.equal(revisions.undoEntry(older), older);
+  assert.throws(() => revisions.undoEntry({ ...revised, file: 'other.json' }), /chapter file changed/);
+  const other = catalog.lists.find(({ id }) => id === 'marvel-knights-to-planet-x-08');
+  assert.equal(revisions.undoEntry(other), other, 'An unchanged chapter is left alone.');
+  const source = await text(`src/data/${CHAPTER_FILE}`);
+  const payload = JSON.parse(source);
+  const header = `  "description": ${JSON.stringify(payload.description)},`;
+  const applied = source.replace(header, () => `  "description": ${JSON.stringify(CHAPTER_AFTER)},`);
+  assert.notEqual(applied, source);
+  assert.equal(revisions.undoPayloadText(CHAPTER_FILE, applied), source);
+  assert.equal(revisions.undoPayloadText(CHAPTER_FILE, source), source);
+});
+
+test('the chapter record rejects copy that is not bound to both attachments', async () => {
+  const valid = await chapterFixture();
+  const record = { ...valid };
+  delete record.sha256;
+  const reseal = (change) => sealChapterDescriptionRevisions({ ...record, ...change });
+  assert.throws(() => reseal({ previous: { ...record.previous, entriesSha256: 'b'.repeat(64) } }), /Superseded/);
+  assert.throws(() => reseal({ current: { ...record.current, entriesSha256: 'b'.repeat(64) } }), /Current chapter copy/);
+  assert.throws(() => reseal({ entries: record.entries.map((entry, index) =>
+    index === 0 ? { ...entry, id: 'house-of-m' } : entry) }), /not a chapter/);
+  assert.throws(() => reseal({ previous: null }), /previous digests/);
+  assert.throws(() => sealChapterDescriptionRevisions({ issue: 1075, previous: record.previous, current: null, entries: [] }),
+    /supersedes no attachment/);
+  assert.throws(() => validateChapterDescriptionRevisions({ ...valid, sha256: 'c'.repeat(64) }), /digest changed/);
 });
