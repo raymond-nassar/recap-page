@@ -325,6 +325,17 @@ inventory. Unexpected native libraries stop qualification pending a separate ABI
 Release shrinking stays off. The owner approved Google Play services auth and its transitive runtime
 libraries for Android Google Drive sign-in (#810); the library ships even when Google Drive is off.
 
+The derived base APK's asset inventory also mirrors Play's baseline-profile packaging.
+Only `assets/dexopt/baseline.prof` and `assets/dexopt/baseline.profm` may accompany the generated
+app assets, and each must match the corresponding bytes in the same selected AAB's
+`BUNDLE-METADATA/com.android.tools.build.profiles/` directory. Missing profiles, changed bytes,
+unbound profile names and every other extra asset still fail. The publishing AAB's app-asset
+inventory is unchanged. AndroidX Activity 1.5.1, Fragment 1.5.7 and Lifecycle 2.5.1 supply the
+library profile inputs; the AGP 9.4.1 bundle already carried both compiled profiles. Retaining
+and validating them preserves existing delivery rather than silently removing optimization data.
+See Google's [Baseline Profiles packaging documentation](https://developer.android.com/topic/performance/baselineprofiles/overview),
+read on 2026-11-03, which documents library profile consumption and bundle-to-APK packaging since AGP 7.4.
+
 APK splits come from those exact signed AAB bytes, with an explicitly disposable local signer
 and a matching release instrumentation APK. The existing six methods and restart pair run on
 that payload. Four selected startup invocations then seed distinct official/prototype state,
