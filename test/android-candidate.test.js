@@ -519,6 +519,58 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
   }
 });
 
+test('derived ART profiles must exactly match the same selected AAB metadata', async () => {
+  const scratch = await mkdtemp(join(tmpdir(), 'recap-candidate-profiles-'));
+  try {
+    const generated = join(scratch, 'generated');
+    const assets = join(scratch, 'apk', 'assets');
+    const extracted = join(assets, 'recap');
+    const bundle = join(scratch, 'selected-bundle');
+    const metadata = join(bundle, 'BUNDLE-METADATA', 'com.android.tools.build.profiles');
+    await mkdir(generated);
+    await mkdir(extracted, { recursive: true });
+    await mkdir(metadata, { recursive: true });
+    await mkdir(join(assets, 'dexopt'));
+    const files = [];
+    for (const [path, content] of [
+      ['build-info.json', JSON.stringify(identity())],
+      ['android-config.json', '{"origin":"http://127.0.0.1:8787","version":"3.1.0"}'],
+    ]) {
+      files.push({ path, sha256: digest(content) });
+      await writeFile(join(generated, path), content);
+      await writeFile(join(extracted, path), content);
+    }
+    const manifest = JSON.stringify({ build: identity(), files });
+    await writeFile(join(generated, 'android-assets.json'), manifest);
+    await writeFile(join(extracted, 'android-assets.json'), manifest);
+    for (const name of ['baseline.prof', 'baseline.profm']) {
+      await writeFile(join(metadata, name), `selected AAB ${name}`);
+      await cp(join(metadata, name), join(assets, 'dexopt', name));
+    }
+    const verify = () => checkAssets(extracted, generated, scratch, identity(), 'base-APK', bundle);
+    assert.equal((await verify()).files, 3);
+    for (const name of ['baseline.prof', 'baseline.profm']) {
+      await writeFile(join(assets, 'dexopt', name), 'different profile');
+      await assert.rejects(verify(), /baseline profile differs from selected AAB/);
+      await rm(join(assets, 'dexopt', name));
+      await assert.rejects(verify(), /missing=1/);
+      await cp(join(metadata, name), join(assets, 'dexopt', name));
+      await rm(join(metadata, name));
+      await assert.rejects(verify(), /extra=1/);
+      await cp(join(assets, 'dexopt', name), join(metadata, name));
+    }
+    await assert.rejects(checkAssets(extracted, generated, scratch, identity(), 'base-APK'), /extra=2/);
+    await assert.rejects(checkAssets(extracted, generated, scratch, identity(), 'AAB', bundle), /extra=2/);
+    await writeFile(join(assets, 'dexopt', 'other.prof'), 'unapproved');
+    await assert.rejects(verify(), /extra=1 \[dexopt\/other\.prof\]/);
+    const verifier = await readFile(new URL('../scripts/android-candidate.mjs', import.meta.url), 'utf8');
+    assert.match(verifier, /'base-APK',\s*join\(work, 'bundle'\)\)/,
+      'The production caller must bind the profiles to the selected AAB extraction');
+  } finally {
+    await rm(scratch, { recursive: true, force: true });
+  }
+});
+
 test('the D8 nest-access marker class is accepted only in its exact empty, owned shape', () => {
   const owner = `${PROTOTYPE_ID}.CloudAuthorization`;
   const marker = `${owner}-IA`;
