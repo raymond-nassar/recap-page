@@ -726,7 +726,16 @@ globalThis.fetch = () => {
     assert.deepEqual(payload.items.map((item) => item.issueId), issueIds);
     assert.ok(payload.items.every((item) => item.digitalId === 101));
     const catalog = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8'));
-    assert.deepEqual(catalog.lists.slice(0, -1), oldCatalog.lists);
+    // Adding a list may only add itself to the lists that wholly contain it; nothing else moves.
+    const withoutContains = ({ contains: _contains, ...entry }) => entry;
+    assert.deepEqual(catalog.lists.slice(0, -1).map(withoutContains), oldCatalog.lists.map(withoutContains));
+    const overlaps = label === 'overlapping';
+    assert.deepEqual(catalog.lists.map((entry) => [entry.id, entry.contains ?? []]), [
+      ['atomic-parent-01', overlaps ? ['new-peer'] : []],
+      ['atomic-parent-02', []],
+      ['peer', ['atomic-parent-02']],
+      ['new-peer', overlaps ? ['atomic-parent-01'] : []],
+    ]);
     assert.deepEqual(catalog.lists.map((entry) => [entry.id, entry.count]), [
       ['atomic-parent-01', 2], ['atomic-parent-02', 1], ['peer', 2], ['new-peer', issueIds.length],
     ]);

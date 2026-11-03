@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1485`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1490`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
@@ -203,7 +203,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:619-673`. Runtime loads and parses that same-origin catalog once at
+at `scripts/vendor-orders.mjs:662-724`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:1966-1977`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
@@ -278,7 +278,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1147-1165` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1149-1167` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:704-706`. The write, result, and notification are handled together at
 `src/js/storage.js:724-751`.
@@ -294,7 +294,7 @@ The UI restores the row and shows a notice rather than making an unsaved change 
 offered only after the mark is saved. The next Done, a change of view, and ten seconds
 (`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
 offer records the view it was made in, the list's membership and deferral arrays by reference, the
-comic's read timestamp and the list's queue, at `src/js/views/reading.js:1485-1499`. The first
+comic's read timestamp and the list's queue, at `src/js/views/reading.js:1487-1501`. The first
 repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
 or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
 transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
@@ -309,7 +309,7 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:807`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:809`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:38-46`.
 
@@ -935,12 +935,12 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1619-1672`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1621-1674`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:406-416`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:755-773`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:757-775`.
 The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
 paths remains a separate stop in each sequence.
 
