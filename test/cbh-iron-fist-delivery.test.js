@@ -10,7 +10,7 @@ import {
   digestCanonicalJson,
   validateFrozenPacket,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { beforeIdentityCatalog, beforeIdentityChecklist, beforeIdentityPayload } from './helpers/owner-identity-history.mjs';
@@ -21,6 +21,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'iron-fist-reading-order';
 const readJson = async (path) => {
@@ -158,7 +159,7 @@ test('Iron Fist retains its publication-time relationship review and unchanged n
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.ok(position >= 0);
   assert.equal(manifest.lists[position + 1].id, 'ultimate-spider-man-reading-order');
-  assert.deepEqual(manifest.lists[position], packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists[position])), packet.proposedManifest);
 });
 
 test('Iron Fist pinned payload and catalog retain all 414 original slots, cover and one detail refusal', async () => {

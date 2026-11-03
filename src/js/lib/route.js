@@ -7,7 +7,9 @@
 
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
-import { CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catalog.js';
+import {
+  CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES, STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE,
+} from './catalog.js';
 import { MAX_NAME } from './model.js';
 import { RATING_SORTS, DEFAULT_RATING_SORT, RATING_THRESHOLDS } from './ratedComics.js';
 
@@ -21,7 +23,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'issue', 'library', 'add', 'catalog', 'lines', 'young-readers', 'spotlights', 'progress',
+  'home', 'read', 'issue', 'library', 'add', 'catalog', 'young-readers', 'spotlights', 'progress',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -30,7 +32,10 @@ export const VIEWS = [
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
 // renderable views, so every member of VIEWS still names a real panel.
-export const LEGACY_VIEW_ALIASES = {};
+export const LEGACY_VIEW_ALIASES = Object.freeze({
+  lines: STORY_TYPES_ROUTE,
+  storylines: STORY_TYPES_ROUTE,
+});
 
 // Browse was a screen of its own until #831, and it showed exactly Home's category cards. Its
 // address now names that place on Home, so a bookmark, a Back entry or a link written for Browse
@@ -115,7 +120,8 @@ export function breadcrumbHierarchy({
       ];
     }
     if (context?.kind === 'order' && typeof context.id === 'string' && context.id) {
-      const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === context.shelf);
+      const browseRoute = canonicalView(context.shelf);
+      const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === browseRoute);
       if (shelf) {
         return [
           cards,
@@ -126,7 +132,7 @@ export function breadcrumbHierarchy({
       // A Home category with no shelf of its own, such as MCU Prep, is still the screen its list
       // was opened from. Marvel Ages is an index of other screens rather than one, so it is not.
       const category = HOME_CATEGORIES.find((candidate) => !candidate.shelf && !candidate.kind
-        && candidate.route === context.shelf);
+        && candidate.route === browseRoute);
       if (category && VIEWS.includes(category.route)) {
         return [
           cards,
@@ -178,7 +184,7 @@ export function breadcrumbHierarchy({
 }
 
 function canonicalView(view) {
-  return LEGACY_VIEW_ALIASES[view] ?? view;
+  return Object.hasOwn(LEGACY_VIEW_ALIASES, view) ? LEGACY_VIEW_ALIASES[view] : view;
 }
 
 const PREFIX = '#/';
@@ -199,6 +205,10 @@ const SPOTLIGHT_POPULARITY_SORT = 'popularity';
 // filter change returns the previous one.
 const FILTER_KEY = 'filter';
 const FULL_KEY = 'full'; const PATH_KEY = 'path'; const PATH_TOKEN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+// Story types carries its choice in the address so a story type can be bookmarked and Back returns
+// to the previous one (#1060). Only words from the closed vocabulary are written or read.
+const STORY_TYPE_KEY = 'type';
+const STORY_TONE_KEY = 'tone';
 const ISSUE_CONTEXT_KEYS = new Set(['list', 'order']);
 
 function issueId(value) {
@@ -261,7 +271,7 @@ function parseRatedRoute(search) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -287,6 +297,8 @@ export function formatRoute({
   // The path the Modern Timeline is following, so a followed path can be bookmarked and Back
   // returns to the previous choice (#897).
   if (canonical === 'catalog' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
+  if (canonical === STORY_TYPES_ROUTE && Object.hasOwn(STORY_TYPES, storyType ?? '')) query.set(STORY_TYPE_KEY, storyType);
+  if (canonical === STORY_TYPES_ROUTE && Object.hasOwn(STORY_TONES, tone ?? '')) query.set(STORY_TONE_KEY, tone);
   const search = query.toString();
   const suffix = search ? `?${search}` : '';
   const segment = canonical === 'home' && at === HOME_CARDS ? HOME_CARDS_SEGMENT : canonical;
@@ -366,6 +378,14 @@ export function parseRoute(hash) {
   const sort = view === 'spotlights' && rawSort === SPOTLIGHT_POPULARITY_SORT
     ? rawSort
     : null;
+  // A repeated key is ambiguous, so it is dropped like an unknown word and the trailing sync
+  // corrects the address.
+  const single = (key, vocabulary) => {
+    const values = view === STORY_TYPES_ROUTE ? params.getAll(key) : [];
+    return values.length === 1 && Object.hasOwn(vocabulary, values[0]) ? values[0] : null;
+  };
+  const storyType = single(STORY_TYPE_KEY, STORY_TYPES);
+  const tone = single(STORY_TONE_KEY, STORY_TONES);
 
   return sort
     ? {
@@ -374,5 +394,7 @@ export function parseRoute(hash) {
     : {
       view, listId: listId || null, filter, full, ...(atCards ? { at: HOME_CARDS } : {}),
       ...(view === 'catalog' && pathId ? { pathId } : {}),
+      ...(storyType ? { storyType } : {}),
+      ...(tone ? { tone } : {}),
     };
 }

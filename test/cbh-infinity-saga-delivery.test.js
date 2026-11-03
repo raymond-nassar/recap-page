@@ -9,7 +9,7 @@ import {
   sourceCountsForPacket,
   validateFrozenPacket,
   validateMappingDigest,
-  validateReportDigest,
+  validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
@@ -20,6 +20,7 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order';
 const mappingPath = `scripts/data/cbh-mappings/${id}.json`;
@@ -173,9 +174,9 @@ test('Infinity Saga admission and relationship review stay current under Across 
   const entry = manifest.lists.find((row) => row.id === id);
   const index = manifest.lists.indexOf(entry);
   const inventoryEntry = inventory.find((row) => row.position === 51);
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), packet.proposedManifest);
   assert.equal(mapping.reviewStatus, 'approved');
-  assert.deepEqual(entry, mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(entry)), mapping.approvedManifest);
   assert.equal(manifest.lists[index + 1].id, 'operation-galactic-storm');
   assert.equal(entry.type, 'era');
   assert.equal(entry.depth, 'partial');
@@ -234,7 +235,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
   }), /not approved/);
 });
 
-test('Infinity Saga pinned payload and catalog preserve Storylines discovery and gap provenance', async () => {
+test('Infinity Saga pinned payload and catalog preserve historical Storylines metadata and gap provenance', async () => {
   const [payload, catalog] = await Promise.all([
     readJson(`src/data/${packet.proposedManifest.out}`),
     readJson('src/data/catalog.json'),

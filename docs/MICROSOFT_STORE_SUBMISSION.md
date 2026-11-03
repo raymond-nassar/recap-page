@@ -323,6 +323,9 @@ state. The remaining views use one synthetic House of M import with the first fi
 marked read at fixed January 2026 timestamps and no notes. No private browser profile, progress,
 path, email, or account data entered the captures.
 
+These recorded images predate Genres and still show Storylines. The next capture uses Genres for
+the second image and refreshes Home; the existing measurements below remain evidence for these files.
+
 | File | Caption for Partner Center |
 |---|---|
 | `01-home-discovery.png` | Home offers a first step on Modern Timeline and category cards for Storylines, Character spotlights, Young readers, and more. |

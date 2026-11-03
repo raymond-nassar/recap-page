@@ -8,7 +8,7 @@ import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson,
-  sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest,
+  sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
@@ -216,7 +216,7 @@ test('She-Hulk publishes thirteen originals without changing reader or history d
     expectedIds.slice(0, 7));
   assert.deepEqual(payload.items.filter((row) => row.mu && Number(row.mu.slice(0, 4)) < 2007)
     .map((row) => row.issueId), expectedIds.slice(1, 7));
-  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id))), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   const card = catalog.lists.find((row) => row.id === id);

@@ -14,6 +14,8 @@ import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
+import path from 'node:path';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'doctor-octopus-otto-octavius-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/doctor-octopus-otto-octavius-reading-order/';
@@ -246,7 +248,7 @@ test('Doctor Octopus hydration preserves required identities and optional metada
     const text = await readFile(file, 'utf8');
     const lf = text.replace(/\r\n/g, '\n');
     assert.equal(hashText(lf), hashText(lf.replace(/\n/g, '\r\n')));
-    return [file, { hash: hashText(text), data: JSON.parse(text) }];
+    return [file, { hash: hashText(descriptionRevisions.undoPayloadText(path.basename(file), text)), data: JSON.parse(text) }];
   })));
   for (const record of reused) {
     const source = sources.get(record.file);
@@ -316,7 +318,7 @@ test('Doctor Octopus hydration preserves required identities and optional metada
 test('Doctor Octopus JSON evidence excludes synopsis prose recursively, including nested candidates', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const payload = await readJson(`src/data/${packet.proposedManifest.out}`);
-  assert.equal(payload.description, packet.proposedManifest.description);
+  assert.equal(descriptionRevisions.undoEntry(payload).description, packet.proposedManifest.description);
   const editorial = new Set([packet.proposedManifest, mapping.proposedManifest, mapping.approvedManifest, payload]);
   const pending = [packet, mapping, ledger, report, payload];
   while (pending.length) {

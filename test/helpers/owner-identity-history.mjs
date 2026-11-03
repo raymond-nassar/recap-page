@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
 
 export const identityRevisions = JSON.parse(readFileSync(
   new URL('../../scripts/data/owner-identity-revisions.json', import.meta.url), 'utf8',
@@ -80,6 +81,7 @@ export function beforeIdentityChecklist(id, markdown) {
 }
 
 export function beforeIdentityCatalogEntry(entry) {
+  entry = descriptionRevisions.undoEntry(entry);
   const revised = identityRevisions.guides.filter((entry) => entry.placeholderReplacement);
   const revision = revised.find(({ id }) => id === entry.id);
   if (!revision) return entry;

@@ -24,7 +24,7 @@ in the rail.
 
 - Home selects the brand with `aria-current="page"` and the same visible selected treatment
   as other destination links. Other routes clear it.
-- Timeline, Storylines, Character spotlights and future category pages select Home, whose cards
+- Timeline, Genres, Character spotlights and other category pages select Home, whose cards
   open them.
 - Search issues, Find a series, Browse a creator, Paste a Reading List and Add by hand select Search.
 - Everything read, Progress by series and Added by hand select Library.

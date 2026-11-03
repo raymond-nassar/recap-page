@@ -7,7 +7,7 @@ import test from 'node:test';
 
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, validateFrozenPacket,
-  validateInventoryState, validateMappingDigest, validateReportDigest,
+  validateInventoryState, validateMappingDigest, validateReportDigest, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
@@ -21,6 +21,7 @@ import {
   historicalReadingChoiceManifest,
   historicalReadingChoiceIssueIds,
 } from './helpers/reading-choice-history.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 const id = 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/';
@@ -244,9 +245,9 @@ test('Onslaught authoring preserves all 74 positions ahead of Operation: Zero To
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'operation-zero-tolerance');
-  const { storylines, ...originalFields } = manifest.lists[position];
+  const { storylines, ...originalFields } = descriptionRevisions.undoEntry(manifest.lists[position]);
   assert.equal(storylines, true);
-  assert.deepEqual(originalFields, packet.proposedManifest);
+  assert.deepEqual(withoutDiscoveryTags(originalFields), packet.proposedManifest);
   assert.deepEqual(mapping.proposedManifest, packet.proposedManifest);
   assert.equal(manifest.lists[position].spotlightKind, undefined);
   assert.equal(manifest.lists[position].coverIssueId, 20767);

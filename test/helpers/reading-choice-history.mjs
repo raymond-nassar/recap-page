@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
 import { registeredOwnerAdditionIds } from '../../scripts/lib/owner-guide-registry.mjs';
-import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
+import { libraryDigestFor, withoutDiscoveryTags } from '../../scripts/lib/cbh-inventory.mjs';
 import {
   beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
 } from '../../scripts/lib/mcu-editorial.mjs';
@@ -79,7 +79,7 @@ function requireCurrentDescription(entry, revision) {
 
 // A copy revision is not a new source approval. Replay only its exact, checked inverse.
 export function historicalMcuDescriptionEntry(entry) {
-  entry = beforeMcuEditorialEntry(entry);
+  entry = withoutDiscoveryTags(beforeMcuEditorialEntry(entry));
   const file = entry.out ?? entry.file;
   const revision = descriptions.get(entry.id) ?? descriptionFiles.get(file);
   if (!revision) return entry;
@@ -130,8 +130,10 @@ export function historicalReadingChoiceManifest(manifest) {
       && !registeredOwnerAdditionIds.includes(id) && !registeredCuratedGuideIds.has(id))
     .map((entry) => {
       if (entry.id === spiderRevision.manifestEntry.id) {
-        if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
-          && JSON.stringify(entry) !== JSON.stringify(spiderRevision.manifestEntry)) {
+        // Discovery tags arrived after both captured contracts and are not part of either selection.
+        const untagged = withoutDiscoveryTags(entry);
+        if (JSON.stringify(untagged) !== JSON.stringify(spiderRevision.currentManifestEntry)
+          && JSON.stringify(untagged) !== JSON.stringify(spiderRevision.manifestEntry)) {
           throw new Error('Spider-Man manifest differs from both captured selection contracts.');
         }
         return structuredClone(spiderRevision.manifestEntry);
@@ -181,8 +183,8 @@ export function historicalSpiderManSelectionLibraryDigest(manifest, orders, { pr
     ...manifest,
     lists: manifest.lists.map((entry) => {
       if (entry.id !== spiderRevision.manifestEntry.id) return entry;
-      if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
-        && JSON.stringify(entry) !== JSON.stringify(spiderRevision.manifestEntry)) {
+      if (JSON.stringify(withoutDiscoveryTags(entry)) !== JSON.stringify(spiderRevision.currentManifestEntry)
+        && JSON.stringify(withoutDiscoveryTags(entry)) !== JSON.stringify(spiderRevision.manifestEntry)) {
         throw new Error('Spider-Man manifest differs from both captured selection contracts.');
       }
       return structuredClone(spiderRevision.manifestEntry);

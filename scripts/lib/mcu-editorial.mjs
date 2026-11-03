@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { digestCanonicalJson } from './cbh-inventory.mjs';
+import { descriptionRevisions } from './description-revisions.mjs';
 
 export const mcuEditorial = JSON.parse(readFileSync(
   new URL('../data/mcu-prep-description-revision.json', import.meta.url), 'utf8',
@@ -17,8 +18,11 @@ const identityRevisions = JSON.parse(readFileSync(
   new URL('../data/owner-identity-revisions.json', import.meta.url), 'utf8',
 )).guides;
 
-// Source approvals describe their original copy, not later editorial recommendations.
+// Source approvals describe their original copy, not later editorial recommendations. The later
+// description revision record is undone first, so every approval check that already replays this
+// record replays that one too, for every list, without each check learning about it.
 export function beforeMcuEditorialEntry(entry) {
+  entry = descriptionRevisions.undoEntry(entry);
   const revision = byId.get(entry.id) ?? byFile.get(entry.out ?? entry.file);
   if (!revision) return entry;
   assert.equal(entry.id, revision.id, 'MCU editorial identity changed.');
@@ -39,7 +43,7 @@ export function afterMcuEditorialEntry(entry) {
     || (identity?.publishedDescription && entry.description === identity.publishedDescription)) return entry;
   const original = beforeMcuEditorialEntry(entry);
   const revision = byId.get(original.id);
-  return revision ? { ...original, description: revision.after } : original;
+  return descriptionRevisions.redoEntry(revision ? { ...original, description: revision.after } : original);
 }
 
 export function beforeMcuEditorialManifest(manifest, { restoreWithdrawal = false } = {}) {
@@ -53,6 +57,7 @@ export function beforeMcuEditorialManifest(manifest, { restoreWithdrawal = false
 }
 
 export function beforeMcuEditorialPayloadText(file, text) {
+  text = descriptionRevisions.undoPayloadText(file, text);
   const revision = byFile.get(file);
   if (!revision) return text;
   const payload = JSON.parse(text);

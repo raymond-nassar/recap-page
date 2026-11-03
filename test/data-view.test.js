@@ -657,6 +657,20 @@ test('after Try again now and after Disconnect, focus lands on what the card say
     'the control and the status line are gone, so the report of the disconnect has focus');
 });
 
+test('disconnect focuses its outcome even when the earlier-copy warning remains visible', async () => {
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, earlierKept: 0, discovery: FOUND };
+  const card = cloudCard(on, {
+    onDisconnect: async () => {
+      card.state.model = { ...CLOUD, host: 'not-connected', account: null, hasStream: true, earlierKept: 1 };
+    },
+  });
+  card.state.answers.push({ choice: false });
+  await card.nodes.disconnect._fire();
+  await settled();
+  assert.equal(card.nodes.status.hidden, false);
+  assert.equal(card.nodes.report.focused, true, 'the completed action, not the unrelated warning, receives focus');
+});
+
 // Said once each, as it happens, through the page's announcer: signing in, a sign-in that failed, a sign-in
 // to make again, and backups that stopped. The line itself is not live, or it would also speak every
 // "Backing up now". Stopped and failed states wear the warning notice, whose mark is not color alone
@@ -703,6 +717,49 @@ test('a record that fails its checks is said in the status line, as a warning he
   card.show(unreadable);
   card.show(unreadable);
   assert.deepEqual([spoken, card.nodes.status.classList.contains('notice-warn')], [[cloudCardStatus(unreadable)], true]);
+});
+
+test('a saved-copy record failure is announced even while another backup warning remains', () => {
+  const spoken = [];
+  const failed = { ...CLOUD, on: true, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: null } };
+  const card = cloudCard(failed, { announce: (text) => spoken.push(text) });
+  const unchecked = { ...failed, keptProblem: true };
+  card.show(unchecked);
+  card.show(unchecked);
+  assert.deepEqual(spoken, [cloudCardStatus(unchecked)]);
+  card.show(failed);
+  card.show(unchecked);
+  assert.deepEqual(spoken, [cloudCardStatus(unchecked), cloudCardStatus(unchecked)]);
+});
+
+test('a continuing saved-copy warning is not announced again when another warning clears', () => {
+  const spoken = [];
+  const failed = { ...CLOUD, on: true, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: null } };
+  const card = cloudCard(failed, { announce: (text) => spoken.push(text) });
+  const unchecked = { ...failed, keptProblem: true };
+  card.show(unchecked);
+  card.show({ ...unchecked, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: null } });
+  assert.deepEqual(spoken, [cloudCardStatus(unchecked)]);
+});
+
+test('recorded copies needing attention are visible, counted, and announced once', () => {
+  const spoken = [];
+  const normal = { ...CLOUD, hasStream: true, earlierKept: 0, keptAttention: 0 };
+  const card = cloudCard(normal, { announce: (text) => spoken.push(text) });
+  const one = { ...normal, keptAttention: 1 };
+  assert.match(cloudCardStatus(one), /One saved or attempted cloud copy could not be confirmed or removed/);
+  assert.match(cloudCardStatus(one), /delete any unwanted copies by hand/i);
+  card.show(one);
+  card.show(one);
+  assert.equal(card.nodes.status.classList.contains('notice-warn'), true);
+  assert.deepEqual(spoken, [cloudCardStatus(one)]);
+
+  const two = { ...normal, keptAttention: 2 };
+  card.show(two);
+  assert.match(cloudCardStatus(two), /2 saved or attempted cloud copies could not be confirmed or removed/);
+  assert.deepEqual(spoken, [cloudCardStatus(one), cloudCardStatus(two)]);
+  card.show(normal);
+  assert.equal(card.nodes.status.classList.contains('notice-warn'), false);
 });
 
 test('what backups are doing is said in words for every state the coordinator reports', () => {
@@ -792,8 +849,8 @@ test('deleting this device\'s backups asks first, names the account, says the re
     + 'reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.', 'ok']);
   assert.deepEqual(await deleting({ deleted: 1, failed: [] }), ['#cloud-backup-report', 'Deleted 1 backup of this browser from the OneDrive account '
     + 'reader@example.test, where it stays in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.', 'ok']);
-  assert.deepEqual(await deleting({ deleted: 0, failed: [] }), ['#cloud-backup-report', 'No backups of this browser were in the OneDrive account '
-    + 'reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 0, failed: [] }),   ['#cloud-backup-report', 'No backups of this browser were in the OneDrive account '
+      + 'reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.', 'ok']);
   assert.deepEqual(await deleting({ deleted: 1, failed: [{ id: 'item-2', name: 'b', code: 'timeout' }] }), ['#cloud-backup-report',
     'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). '
     + 'Automatic backup is off for this browser; delete again to finish.', 'warn']);

@@ -58,8 +58,9 @@ approved as a partial overlap with the existing Spider-Man best-of path. Neither
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
-Since #1066, MCU Prep lists appear and can be searched on the MCU Prep screen, not Storylines.
-This supersedes the earlier delivery records below that place a companion on the Storylines shelf.
+Since #1066, MCU Prep lists appear and can be searched on the MCU Prep screen, not Genres.
+Genres has replaced the Storylines screen. This supersedes the earlier delivery records below that
+place a companion on the Storylines shelf.
 The Doomsday & Secret Wars list keeps its manifest group with the Hickman readings, preserving
 their shared Reading Path progress and preventing duplicate recommendations. The MCU Prep screen
 still shows the companion as its own card.
@@ -929,7 +930,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1221-1225`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1199-1203`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1100,10 +1101,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:9306-9357`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:10764-10815`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:13519-13656`.
+`src/data/catalog.json:14977-15114`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves

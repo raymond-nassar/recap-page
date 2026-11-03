@@ -64,6 +64,7 @@ import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
+import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
 import { createSearchListsView } from './views/search-lists.js';
 import { parseMcuPrep } from './lib/mcuPrep.js';
@@ -1422,6 +1423,7 @@ function syncHash({ push = false } = {}) {
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
         sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+        ...(view === 'genres' ? storyTypesView.selection() : {}),
       });
   if (!next || next === location.hash) return;
 
@@ -1497,6 +1499,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
+    if (route.view === 'genres') storyTypesView.set(route);
     if (route.view === 'catalog') {
       catalogView.setFollowedPath(route.pathId ?? null, {
         orFirst: route.orFirstPath === true,
@@ -2722,6 +2725,7 @@ function ensurePublishingViews() {
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
       ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
+      ...(category.route === 'genres' ? [storyTypesView.controls()] : []),
       ...(category.kind === 'publishing-index' ? [] : [el('section', {
         id: `${category.route}-categories`,
         class: 'publishing-periods',
@@ -2831,6 +2835,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   if (!current()) return;
   if (route === 'marvel-on-screen') {
     await mcuPrepView.render(catalog, { isCurrent: current });
+    return;
+  }
+  if (route === 'genres') {
+    storyTypesView.render(catalog, { isCurrent: current });
     return;
   }
   const allStories = catalogEntries(catalog.lists);
@@ -3003,7 +3011,9 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
-  for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
+  for (const shelf of CATALOG_SHELVES) {
+    if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
+  }
   homeView.wire();
   const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
   const closureNotice = $('#reader-closure-notice');
@@ -3489,6 +3499,7 @@ const homeView = createHomeView({
     isCurrent,
   }),
   onNavigateCategory: (category) => {
+    if (category.route === 'genres') storyTypesView.set();
     showView(category.route, { push: true });
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
@@ -3682,6 +3693,17 @@ const searchListsView = createSearchListsView({
   loadGuides: loadMcuGuides,
   presentation: catalogPresentation,
   announce,
+});
+
+const storyTypesView = createStoryTypesView({
+  el,
+  elements: () => ({
+    count: $('#genres-count'),
+    results: $('#genres-results'),
+  }),
+  isCurrent: () => view === 'genres',
+  presentation: catalogPresentation,
+  onNavigate: ({ push }) => syncHash({ push }),
 });
 
 const catalogView = createCatalogView({
