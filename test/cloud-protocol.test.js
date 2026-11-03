@@ -457,6 +457,111 @@ for (const latency of [400, 600]) {
   });
 }
 
+for (const code of ['unavailable', 'timeout', 'invalid']) {
+  test(`review: a cleanup listing that fails as ${code} cannot fail the verified kept copy`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const home = device();
+    const copies = [];
+    for (let change = 1; change <= 3; change += 1) {
+      copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    }
+    const prune = protocol.pruneKept;
+    protocol.pruneKept = (context) => {
+      env.transport.faults.list.push(code);
+      return prune.call(protocol, context);
+    };
+    const kept = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    protocol.pruneKept = prune;
+    assert.equal((await protocol.syncState(ON)).kept.id, kept.id);
+    assert.ok(copies.every((copy) => env.transport.files.has(copy.id)), 'nothing is deleted without a listing');
+    assert.equal((await protocol.keptCopySummary(ON)).problem, true, 'the unfinished cleanup is reported');
+    const fifth = await protocol.keepBackup(await uploadForKept(protocol, home, 5));
+    assert.deepEqual([...copies, kept, fifth].filter((copy) => env.transport.files.has(copy.id)),
+      [copies[2], kept, fifth]);
+    assert.equal((await protocol.keptCopySummary(ON)).problem, false);
+  });
+}
+
+test('review: kept copies listed without a size are checked by their bytes before they count', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const evicted = new Set();
+  const list = env.transport.list;
+  env.transport.list = async (options) => (await list(options))
+    .map((item) => (evicted.has(item.id) ? { ...item, size: null } : item));
+  const copies = [];
+  for (let change = 1; change <= 6; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    if (change >= 3) for (const copy of copies) evicted.add(copy.id);
+    assert.equal(copies.filter((copy) => env.transport.files.has(copy.id)).length, Math.min(change, 3));
+    assert.deepEqual(await protocol.keptCopySummary(ON), { earlier: 0, attention: 0, problem: false });
+  }
+  assert.deepEqual(copies.filter((copy) => env.transport.files.has(copy.id)), copies.slice(-3));
+  env.transport.files.get(copies[3].id).bytes = new Uint8Array([9, 8, 7]);
+  copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, 7)));
+  assert.ok(env.transport.files.has(copies[3].id), 'a sizeless copy that fails its check is kept and reported');
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+});
+
+test('review: an interrupted reconcile cannot let a second kept copy be created', async () => {
+  const env = harness();
+  const { protocol } = await consented(env, { setTimer: quickCleanupTimer });
+  const request = await uploadForKept(protocol, device(), 1);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(request), { code: 'timeout' });
+  const original = (await protocol.keptLedger()).entries[0];
+  assert.ok(original.id && !original.verified);
+  const change = protocol.changeKeptLedger;
+  let slow = true;
+  protocol.changeKeptLedger = async (...args) => {
+    if (slow) {
+      slow = false;
+      await new Promise((resolve) => { setTimeout(resolve, 100); });
+    }
+    return change.apply(protocol, args);
+  };
+  await assert.rejects(protocol.keepBackup(request), { code: 'verify' });
+  assert.equal(keptCreates(env.transport).length, 1, 'no second copy while the recorded one is unchecked');
+  await new Promise((resolve) => { setTimeout(resolve, 150); });
+  protocol.changeKeptLedger = change;
+  assert.equal((await protocol.keepBackup(request)).id, original.id, 'a later pass adopts the recorded copy');
+  assert.equal(keptCreates(env.transport).length, 1);
+});
+
+test('review: a kept copy listed at another size is reported, not counted or deleted', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const list = env.transport.list;
+  env.transport.list = async (options) => (await list(options))
+    .map((item) => (item.id === copies[0].id ? { ...item, size: item.size + 1 } : item));
+  await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  assert.ok(env.transport.files.has(copies[0].id), 'a copy whose listed size changed is not deleted');
+  assert.equal((await protocol.keptCopySummary(ON)).attention, 1);
+});
+
+test('review: an unverified recorded copy never counts toward the newest three', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const copies = [];
+  for (let change = 1; change <= 3; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const fourth = await uploadForKept(protocol, home, 4);
+  env.transport.faults.read.push(null, 'timeout');
+  await assert.rejects(protocol.keepBackup(fourth), { code: 'timeout' });
+  assert.ok((await protocol.keptLedger()).entries.some((entry) => entry.id !== null && !entry.verified));
+  await protocol.pruneKept(await syncContext(protocol));
+  assert.ok(copies.every((copy) => env.transport.files.has(copy.id)), 'an unchecked copy cannot evict a verified one');
+});
+
 test('review: an unreadable kept ledger does not block regular backup deletion', async () => {
   const env = harness();
   const { protocol, stream } = await consented(env);

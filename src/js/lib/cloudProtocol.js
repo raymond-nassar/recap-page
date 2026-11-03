@@ -985,15 +985,34 @@ export class CloudBackupProtocol {
         const state = syncPresent ? checkSyncState(sync) : null;
         return sameSyncContext(state, record) && state.kept?.id === entry.id && state.kept.name === entry.name;
       };
-      const listed = await wait(this.listed(context.connection), true);
+      let listed;
+      try { listed = await wait(this.listed(context.connection), true); }
+      catch (error) {
+        // The verified replacement is already the go-back copy, so only a stop on deletion itself may fail it.
+        if (STOPS_DELETION.has(error?.code)) throw error;
+        this.keptCleanupProblems.add(context.connection);
+        return;
+      }
       const checkedEntries = [];
       for (const entry of own.filter((candidate) => !candidate.deleting && !candidate.changedOutside)) {
         activeEntry = entry;
         const matches = listed.retained.filter((item) => item.name === entry.name);
-        if (entry.verified && listed.nameCounts.get(entry.name) === 1 && matches.length === 1
-          && matches[0].id === entry.id && !listed.duplicateIds.has(entry.id) && matches[0].size === entry.size) {
+        const unique = entry.verified && listed.nameCounts.get(entry.name) === 1 && matches.length === 1
+          && matches[0].id === entry.id && !listed.duplicateIds.has(entry.id);
+        if (unique && matches[0].size === entry.size) {
           checkedEntries.push(entry);
-        } else await wait(this.markKeptForAttention(entry));
+          continue;
+        }
+        if (!unique || matches[0].size !== null) {
+          await wait(this.markKeptForAttention(entry));
+          continue;
+        }
+        // iCloud lists a copy that is not downloaded without a size, so its bytes are the only check.
+        try {
+          if (await this.checkKeptBeforeDeletion(entry, context.connection, cleanup)) checkedEntries.push(entry);
+        } catch (error) {
+          if (!error?.changedOutside || (STOPS_DELETION.has(error.code) && error.code !== 'storage')) throw error;
+        }
       }
       for (const entry of checkedEntries.slice(KEPT_LIMIT)) {
         activeEntry = entry;
@@ -1090,7 +1109,11 @@ export class CloudBackupProtocol {
         ledger = await this.keptLedger();
         const pending = (ledger?.entries ?? []).filter((entry) => entry.connection === context.connection
           && entry.id === null && !entry.staleAbsent);
-        if (pending.length >= KEPT_LIMIT || pending.some((entry) => entry.id === null
+        // A recorded copy that no pass has yet verified or flagged could still be this very copy, however
+        // the pass that should have settled it ended.
+        const unsettled = (ledger?.entries ?? []).some((entry) => entry.connection === context.connection
+          && entry.id !== null && !entry.verified && !entry.changedOutside && !entry.deleting);
+        if (unsettled || pending.length >= KEPT_LIMIT || pending.some((entry) => entry.id === null
           && (this.now() < entry.reservedAt || this.now() - entry.reservedAt < KEPT_RETRY_WAIT_MS))) {
           refuse(KEPT_UNCONFIRMED, 'verify');
         }
