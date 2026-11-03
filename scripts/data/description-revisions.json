@@ -851,6 +851,24 @@
       "nonDescriptionSha256": "601721011de89cbbf87ac8b0e36ddd814f108e7142197b39d1e46b641718632c"
     },
     {
+      "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "file": "mcu_prep_captain_america_the_winter_soldier_2014.json",
+      "before": "Discover Bucky Barnes' return in Winter Soldier, the comics storyline behind the film's mysterious assassin. Man Out of Time first explores Steve Rogers' adjustment to the present, then the Winter Soldier arc turns his wartime past into a personal crisis. Expect a different conspiracy from the film's.",
+      "after": "A mysterious assassin called the Winter Soldier emerges in the comics storyline behind the film. Man Out of Time first explores Steve Rogers' adjustment to the present, then the Winter Soldier arc turns that assassin into a personal crisis for Steve. Expect a different conspiracy from the film's.",
+      "support": "Captain America: Man Out of Time (2010) #1 to 5, then Captain America (2004) #1 to 9 and 11 to 14; premise only, the assassin's identity is left to the reading (owner choice on #1075).",
+      "sources": [],
+      "nonDescriptionSha256": "09a28e7ce1d5b9e96399f5879cf709211509d2968ad5e56722a409cc9272076e"
+    },
+    {
+      "id": "mcu-prep-thunderbolts",
+      "file": "mcu_prep_thunderbolts.json",
+      "before": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
+      "after": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts arrive as a new team in 1997, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
+      "support": "Thunderbolts (1997) #1 to 5 and Hulk #449 introduce the team; Thunderbolts (2016) #1 to 6, Black Widow (2020) and Taskmaster (2020) are the later selections; the team's secret is left to the reading (owner choice on #1075).",
+      "sources": [],
+      "nonDescriptionSha256": "2f3ed18e373d0de1238f73dd00115ab8b5b481f0570e9a18846da73018fb4ac4"
+    },
+    {
       "id": "mcu-prep-visionquest",
       "file": "mcu_prep_visionquest.json",
       "before": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
@@ -1963,5 +1981,5 @@
       "nonDescriptionSha256": "c587be2f71739bc15d0b9e5c201299efd0b8dd3c6bbbba9751ee2196c244861f"
     }
   ],
-  "sha256": "2605f8d6edf9980fbfafdd6df4991ad178f5a682e15893b5526c3325ad1f5e2e"
+  "sha256": "c781c6566c4ce7d83b3e833c1005921ea23d1fa8fa8ce12132e518cab805dd95"
 }

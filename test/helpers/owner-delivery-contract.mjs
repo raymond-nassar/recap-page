@@ -61,7 +61,7 @@ export async function assertOwnerDeliveryContract(contract, {
     json('src/data/curated-lists.json'), json('src/data/catalog.json'), text(`src/data/orders/${id}.md`),
   ]);
   const source = JSON.parse(sourceText);
-  const payload = await json(`src/data/${packet.proposedManifest.out}`);
+  const payload = descriptionRevisions.undoEntry(await json(`src/data/${packet.proposedManifest.out}`));
   const expectedIds = contract.rows.map((row) => row[1]);
   const expectedPositions = contract.rows.map((row) => row[0]);
   const expectedGroups = contract.rows.map((row) => row[3] == null ? null : contract.groups[row[3]]);
@@ -131,7 +131,7 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(payload.sourceSection, contract.sourceSection);
     assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
   }
-  const currentEntry = withoutDiscoveryTags(manifest.lists.find((row) => row.id === id));
+  const currentEntry = withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((row) => row.id === id)));
   assert.deepEqual(currentEntry.description === packet.proposedManifest.description
     ? currentEntry : beforeMcuEditorialEntry(currentEntry), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
