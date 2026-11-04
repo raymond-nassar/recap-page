@@ -40,7 +40,7 @@ function node(props = {}, children = []) {
 
 const element = (_tag, props, children) => node(props, children);
 
-function fixture({ isIos = false } = {}) {
+function fixture({ isIos = false, catalog: given = null } = {}) {
   let state = createList(createEmptyState(), { id: 'a', name: 'Private list name', catalogId: 'source' });
   state = addIssuesToList(state, 'a', [{ issueId: 1, title: 'One' }, { issueId: 2, title: 'Two' }, { issueId: 3, title: 'Three' }]).state;
   state = markRead(state, 1, true, 1000);
@@ -52,7 +52,7 @@ function fixture({ isIos = false } = {}) {
     'collectionOpen', 'ratings', 'up', 'down', 'icons', 'downIcons', 'feedbackGuide',
     'feedbackDialog', 'feedbackClose', 'feedbackLink', 'privateFeedbackLink',
     'recommendations', 'suggestions', 'recommendationStatus', 'recommendationRetry',
-    'recommendationBrowse', 'collectionCount', 'collectionStatus', 'collectionSection',
+    'recommendationBrowse', 'similar', 'similarSuggestions', 'similarHint', 'collectionCount', 'collectionStatus', 'collectionSection',
     'collectionResults', 'home', 'homeYours', 'library', 'libraryYours', 'dataSafety',
     'historyControls', 'historyStatus', 'historyExport', 'historyCopy', 'historyRetry', 'historyRestore',
     'backupHistory', 'historyTroubleshooting',
@@ -95,7 +95,7 @@ function fixture({ isIos = false } = {}) {
   h.history = history;
   h.records = records;
   h.resolves = async () => ({ suggestions: [], failures: [], cancelled: false });
-  const catalog = { lists: [{ id: 'next', name: 'Next list' }] };
+  const catalog = given ?? { lists: [{ id: 'next', name: 'Next list' }] };
   const view = createCompletionView({
     el: element, elements: () => nodes, getState: () => h.state, getView: () => h.current,
     getListId: () => h.state.active, history,
@@ -458,6 +458,99 @@ test('suggestions open saved candidates or preview unsaved ones and expose failu
   await h.view.render();
   suggestions[0].children[2].onclick();
   assert.deepEqual(h.calls.opened, ['b'], 'retained old DOM actions are refused after reopening');
+});
+
+const similarCatalog = {
+  lists: [
+    { id: 'source', name: 'Source story', storyTypes: ['espionage'], tones: ['dark'] },
+    { id: 'next', name: 'Path next stop', storyTypes: ['espionage'], tones: ['dark'] },
+    { id: 'alike', name: 'Alike story', storyTypes: ['espionage'], tones: ['dark'] },
+    { id: 'plain', name: 'Plain story', storyTypes: ['espionage'] },
+    { id: 'apart', name: 'Apart story', storyTypes: ['comedy'], tones: ['dark'] },
+  ],
+};
+const settle = () => new Promise((resolve) => setImmediate(resolve));
+const cardNames = (h) => h.nodes.similarSuggestions.children.map((card) => card.children[0].text);
+
+test('#1060: similar stories follow the next stop without repeating it, and wait for it to settle', async () => {
+  const h = fixture({ catalog: similarCatalog });
+  h.state = markRead(markRead(h.state, 2, true, 1001), 3, true, 1002);
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similar.hidden, false, 'every comic read shows the section before Mark as Completed');
+  assert.deepEqual(cardNames(h), ['Alike story', 'Path next stop', 'Plain story']);
+  assert.equal(h.nodes.similarHint.hidden, true);
+
+  await h.history.complete('a');
+  let release;
+  h.resolves = () => new Promise((resolve) => { release = resolve; });
+  const loading = h.view.render();
+  await settle();
+  assert.equal(h.nodes.similar.hidden, true, 'hidden while What to read next is still resolving');
+  release({ suggestions: [{ catalogId: 'next', name: 'Path next stop', reasons: [] }], failures: [], cancelled: false });
+  await loading;
+  assert.equal(h.nodes.similar.hidden, false);
+  assert.deepEqual(cardNames(h), ['Alike story', 'Plain story'], 'the next stop appears once, under What to read next');
+  const card = h.nodes.similarSuggestions.children[0];
+  assert.deepEqual(card.children[1].children.map((reason) => reason.text), ['Same genre: Espionage', 'Same tone: Dark']);
+  card.children[2].onclick();
+  assert.equal(h.calls.previewed.at(-1)[0].id, 'alike');
+});
+
+test('#1060: one quiet similar story appears only near the end of a list', async () => {
+  const h = fixture({ catalog: similarCatalog });
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similarHint.hidden, true, 'two unread of three is not near the end');
+  h.state = markRead(h.state, 2, true, 1001);
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similarHint.hidden, false);
+  assert.equal(h.nodes.similar.hidden, true);
+  const button = h.nodes.similarHint.children[1];
+  assert.equal(button.text, 'Alike story');
+  button.onclick();
+  assert.equal(h.calls.previewed.at(-1)[0].id, 'alike');
+  h.state = markRead(h.state, 3, true, 1002);
+  await h.view.render();
+  assert.equal(h.nodes.similarHint.hidden, true, 'the line gives way to the section once every comic is read');
+  h.current = 'library';
+  await h.view.render();
+  assert.equal(h.nodes.similar.hidden, true);
+});
+
+test('#1060: on a 20-issue list the line waits for the last tenth, not the last three', async () => {
+  const h = fixture({ catalog: similarCatalog });
+  h.state = setDeferred(h.state, 'a', 3, false);
+  h.state = addIssuesToList(h.state, 'a', Array.from({ length: 17 }, (_, index) => (
+    { issueId: index + 4, title: `Issue ${index + 4}` }
+  ))).state;
+  assert.equal(h.state.lists.a.itemIds.length, 20);
+  for (let id = 2; id <= 17; id += 1) h.state = markRead(h.state, id, true, 1000 + id);
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similarHint.hidden, true, 'three unread of twenty is not yet near the end');
+  h.state = markRead(h.state, 18, true, 1018);
+  await h.view.render();
+  await settle();
+  assert.equal(h.nodes.similarHint.hidden, false, 'two unread of twenty is near the end');
+  assert.equal(h.nodes.similarHint.children[1].text, 'Alike story');
+});
+
+test('#1060: More like this still appears when What to read next fails or has nothing', async () => {
+  for (const [label, resolves] of [
+    ['failed', async () => { throw new Error('offline'); }],
+    ['empty', async () => ({ suggestions: [], failures: [], cancelled: false })],
+  ]) {
+    const h = fixture({ catalog: similarCatalog });
+    h.state = markRead(markRead(h.state, 2, true, 1001), 3, true, 1002);
+    await h.history.complete('a');
+    h.resolves = resolves;
+    await h.view.render();
+    await settle();
+    assert.equal(h.nodes.similar.hidden, false, `${label}: the section still appears`);
+    assert.deepEqual(cardNames(h), ['Alike story', 'Path next stop', 'Plain story'], label);
+  }
 });
 
 test('history controls separate backups, bound file reads and confirm only valid history replacement', async () => {

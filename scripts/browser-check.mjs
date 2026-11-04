@@ -43,7 +43,7 @@ import {
 } from '../src/js/lib/localServer.js';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
-  availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
+  availablePublishingCategories, catalogEntries, eraSections, parseCatalog, publishingAgeGroups,
   shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
   publishingCategoryStories, resolveReadingPaths, storyYear,
 } from '../src/js/lib/catalog.js';
@@ -55,6 +55,7 @@ import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -280,6 +281,7 @@ const shelfEntry = (id, name, extra = {}) => ({
   collections: 0,
   characters: [],
   keywords: [],
+  storyTypes: ['science-fiction'],
   group: null,
   groupName: null,
   variant: null,
@@ -482,7 +484,6 @@ const FIXTURE_SHELVES = new Map(
   shelfSections(catalogEntries(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
-const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines').filter((story) => story.lists.every((list) => list.type !== 'screen-companion')));
 const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_MODERN_PERIODS = availablePublishingCategories(
@@ -501,12 +502,12 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
-    id: 'storylines-canonical-only',
-    breaks: 'storylines-discovery-actual-data',
-    why: 'secondary Storylines projection wrongly excludes eligible canonical Timeline groups',
+    id: 'genres-missing-variant',
+    breaks: 'genres-discovery-actual-data',
+    why: 'genre browsing loses one of the eligible Civil War readings',
     rewriteCatalog: (source) => source.replace(
-      /export function storylinesStories\(stories\) \{[\s\S]*?\n\}/,
-      "export function storylinesStories(stories) {\n  return shelfStories(stories, 'lines');\n}",
+      'return discoverableList(list)',
+      "return discoverableList(list) && list.id !== 'civil-war-essential'",
     ),
   },
   {
@@ -1877,12 +1878,9 @@ async function checkOfflineSelectedList(browser, origin, t) {
       if (!list?.file) throw new Error('House of M is missing from the actual catalog.');
       return { id: list.id, name: list.name, file: list.file };
     });
-    await openBrowseCategory(page, 'storylines');
-    await page.$eval('#lines-q', (input, name) => {
-      input.value = name;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }, selected.name);
-    const card = `#lines-results [data-story="list:${selected.id}"]`;
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'magic-supernatural');
+    const card = `#genres-results [data-story="list:${selected.id}"]`;
     await page.waitForSelector(card, { timeout: 15000 });
     await click(page, `${card} [data-act="preview"]`);
     await page.waitForSelector('#preview[open] #preview-offline [data-act="offline"]');
@@ -1992,11 +1990,8 @@ async function checkOfflineSelectedList(browser, origin, t) {
       && responses.get('/') === true && responses.get('/js/main.js') === true,
       JSON.stringify({ fresh, priorDocument, responses: [...responses] }));
 
-    await openBrowseCategory(page, 'storylines');
-    await page.$eval('#lines-q', (input, name) => {
-      input.value = name;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }, selected.name);
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'magic-supernatural');
     await page.waitForSelector(card, { timeout: 15000 });
     await click(page, `${card} [data-act="preview"]`);
     await page.waitForSelector('#preview[open] .preview-issue-link', { timeout: 15000 });
@@ -2748,19 +2743,15 @@ const SCENARIOS = [
         JSON.stringify(narrowTimeline));
       await page.setViewport({ width: 1280, height: 900 });
 
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
-      const lines = await readShelf('#lines-results');
-      const expectedStorylineHeadings = FIXTURE_STORYLINE_SECTIONS.map(({ heading }) => heading);
-      const expectedStorylineTitles = FIXTURE_STORYLINE_SECTIONS.flatMap(
-        ({ stories }) => stories.map((story) => story.name ?? story.lists[0].name),
-      );
-      t.check('Storylines holds every whole-line reading under its derived decade',
-        JSON.stringify(lines.filter((x) => x.kind === 'head').map((x) => x.heading))
-          === JSON.stringify(expectedStorylineHeadings)
-        && JSON.stringify(lines.filter((x) => x.kind === 'row').map((x) => x.title))
-          === JSON.stringify(expectedStorylineTitles),
-        JSON.stringify(lines));
+      await openBrowseCategory(page, 'genres');
+      await chooseGenre(page, 'science-fiction');
+      const genres = await readShelf('#genres-results');
+      const expectedGenres = parseCatalog(CATALOG).lists
+        .filter((list) => list.type !== 'screen-companion').map((list) => list.name);
+      t.check('Genres lists every matching reading without pulling in MCU Prep companions',
+        JSON.stringify(genres.filter((x) => x.kind === 'row').map((x) => x.title))
+          === JSON.stringify(expectedGenres),
+        JSON.stringify(genres));
 
       await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
@@ -2971,8 +2962,8 @@ const SCENARIOS = [
         !restored.active && restored.borderWidth === '1px',
         JSON.stringify(restored));
 
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
+      await openBrowseCategory(page, 'genres');
+      await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
       await click(page, '[data-view="spotlights"]');
       await page.waitForFunction(() => (
         document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'complete-guide'
@@ -3116,7 +3107,7 @@ const SCENARIOS = [
         ['library-read', ['Home', 'Library', 'Everything read']],
         ['library-manual', ['Home', 'Library', 'Added by hand']],
         ['catalog', ['Home', 'Modern Timeline']],
-        ['lines', ['Home', 'Storylines']],
+        ['genres', ['Home', 'Genres']],
         ['spotlights', ['Home', 'Character spotlights']],
         ['marvel-on-screen', ['Home', 'MCU Prep']],
         ['marvel-ages', ['Home', 'Marvel Ages']],
@@ -3412,7 +3403,7 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '3 Reading Lists' },
+          { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
@@ -3606,7 +3597,7 @@ const SCENARIOS = [
 
       for (const [category, view] of [
         ['timeline', 'catalog'],
-        ['storylines', 'lines'],
+        ['genres', 'genres'],
         ['character-spotlights', 'spotlights'],
       ]) {
         await click(page, `[data-category="${category}"]`);
@@ -4699,12 +4690,9 @@ const SCENARIOS = [
       });
 
       await open(page, '/?catalog=actual#/home');
-      await openBrowseCategory(page, 'storylines');
-      await page.$eval('#lines-q', (input) => {
-        input.value = 'Marvel Zombies';
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      const cardSelector = '#lines-results [data-story="list:marvel-zombies-reading-order"]';
+      await openBrowseCategory(page, 'genres');
+      await chooseGenre(page, 'horror');
+      const cardSelector = '#genres-results [data-story="list:marvel-zombies-reading-order"]';
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -4712,11 +4700,10 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-        era: node.closest('.catalog-grid')?.previousElementSibling
-          ?.querySelector('.shelf-section-title')?.textContent.trim(),
+        genre: node.closest('.story-type-results')?.querySelector('h2')?.textContent.trim(),
       }));
-      t.check('Storylines Across eras discovers one credited partial guide with three disclosed gaps',
-        card.name === 'Marvel Zombies' && card.era === 'Across eras'
+      t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
+        card.name === 'Marvel Zombies' && card.genre === 'Horror'
         && card.meta === '94 issues · 3 issues have no Marvel Unlimited links yet and cannot be opened'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
@@ -5405,7 +5392,7 @@ const SCENARIOS = [
         && timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
         && timeline.doom.meta.startsWith('85 issues')
         && timeline.doom.meta.includes(
           '10 issues have owner-confirmed identities but no provider details or covers',
@@ -5422,7 +5409,7 @@ const SCENARIOS = [
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
-        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows'),
+        && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025'),
         JSON.stringify(timeline.doom));
       t.check('the chapter years are derived exactly and only 1999 remains empty before 2004',
         timeline.spine[0]?.year === 1998
@@ -5668,20 +5655,17 @@ const SCENARIOS = [
           count: 25,
           first: 'New X-Men (2001) #146',
         },
-      ];
+      ].map((chapter) => descriptionRevisions.redoEntry(chapter));
       const representativeResults = [];
       for (const representative of representatives) {
         await page.$eval('#catalog-q', (input, name) => {
           input.value = name;
           input.dispatchEvent(new Event('input', { bubbles: true }));
         }, representative.name);
-        await page.waitForFunction(
-          (name) => document.querySelectorAll('#catalog-results .catalog-card').length === 1
-              && document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() === name,
-          { timeout: 15000 },
-          representative.name,
-        );
-        const preview = '#catalog-results .catalog-card [data-act="preview"]';
+        // A chapter's name can also appear in a neighbor's revised description, as Storm: The Arena
+        // names the Planet X crossover cluster, so the result is found by identity, not by count.
+        const preview = `#catalog-results [data-story="list:${representative.id}"] [data-act="preview"]`;
+        await page.waitForSelector(preview, { timeout: 15000 });
         await page.focus(preview);
         await page.keyboard.press('Enter');
         await page.waitForFunction(
@@ -7199,7 +7183,7 @@ const SCENARIOS = [
       const browse = [];
       for (const [view, category] of [
         ['catalog', 'timeline'],
-        ['lines', 'storylines'],
+        ['genres', 'genres'],
         ['spotlights', 'character-spotlights'],
       ]) {
         await openBrowseCategory(page, category);
@@ -7213,7 +7197,7 @@ const SCENARIOS = [
       }
       t.check('browse headings carry no sentence that repeats the screen structure',
         browse.every((screen) => screen.subtitle === null), JSON.stringify(browse));
-      t.check('Timeline keeps era context while Storylines drops decade explanations',
+      t.check('Timeline keeps era context while Genres avoids decade explanations',
         browse[0].blurbs.length > 0 && browse[0].blurbs.every((text) => text.length > 40)
         && browse[1].blurbs.length === 0,
         JSON.stringify(browse));
@@ -7563,15 +7547,15 @@ const SCENARIOS = [
         && gateway.hash === '#/browse' && gateway.home === 'page' && gateway.current === 0,
         JSON.stringify(gateway));
 
-      await click(page, '#view-home [data-category="storylines"]');
-      await page.waitForFunction(() => document.querySelector('#view-lines')?.hidden === false);
+      await click(page, '#view-home [data-category="genres"]');
+      await page.waitForFunction(() => document.querySelector('#view-genres')?.hidden === false);
       const browseChild = await page.evaluate(() => ({
         hash: location.hash,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
         home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
       }));
       t.check('a category page shows Home as its current section',
-        browseChild.hash === '#/lines' && browseChild.current === null && browseChild.home === 'page',
+        browseChild.hash === '#/genres' && browseChild.current === null && browseChild.home === 'page',
         JSON.stringify(browseChild));
 
       await click(page, '.ri[data-view="add"]');
@@ -7934,7 +7918,6 @@ const SCENARIOS = [
       const seen = [];
       for (const [route, form, query] of [
         ['catalog', '#form-catalog-search', 'Avengers'],
-        ['lines', '#form-lines-search', 'X-Men'],
         ['spotlights', '#form-spotlights-search', 'Spider'],
         ['young-readers', '#form-young-readers-search', 'Spidey'],
         ['marvel-on-screen', '.mcu-prep-search', 'Thor'],
@@ -7970,7 +7953,7 @@ const SCENARIOS = [
           && document.activeElement === document.querySelector(selector), {}, field);
       }
       t.check('every search Clear is unfilled and borderless at rest, never the primary fill',
-        seen.length === 5 && seen.every((entry) => entry.text === 'Clear'
+        seen.length === 4 && seen.every((entry) => entry.text === 'Clear'
           && entry.background === 'rgba(0, 0, 0, 0)' && entry.border === 'rgba(0, 0, 0, 0)'
           && entry.primaryFill !== entry.background && entry.height >= 24),
         JSON.stringify(seen));
@@ -10117,6 +10100,7 @@ const SCENARIOS = [
       }, value, event);
       const query = async (prefix, value, result = 'input[data-comic-id]') => {
         await field(`#${prefix}-q`, value);
+        await page.focus(`#${prefix}-q`);
         await click(page, `#form-${prefix} button[type="submit"]`);
         await page.waitForSelector(`#${prefix}-results ${result}`, { timeout: 15000 });
       };
@@ -10256,6 +10240,315 @@ const SCENARIOS = [
             && !form.checkVisibility()
             && form.querySelector('.comic-save-toggle').getAttribute('aria-expanded') === 'false';
         }));
+    },
+  },
+  {
+    id: 'search-reading-lists',
+    title: 'the Search tab finds bundled Reading Lists on the device, offline, beside the comic search (#1083)',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => {
+        window.__mrtComicSearch = true;
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtListSearchFetches = [];
+        const stubbed = window.fetch;
+        window.fetch = function (input, init) {
+          const url = typeof input === 'string' ? input : input?.url ?? String(input);
+          window.__mrtListSearchFetches.push(url);
+          if (window.__mrtListImportOffline) return Promise.reject(new TypeError('Failed to fetch'));
+          if (window.__mrtHoldListComicSearch && url.includes('/search/issues')) {
+            return new Promise((resolve, reject) => {
+              window.__mrtReleaseListComicSearch = () => stubbed.call(this, input, init).then(resolve, reject);
+            });
+          }
+          return stubbed.call(this, input, init);
+        };
+      });
+      await page.setViewport({ width: 1280, height: 900 });
+      await open(page, '/#/add');
+      const rows = () => page.$$eval('#search-lists-results .catalog-row', (nodes) => nodes.map((row) => ({
+        name: row.querySelector('.catalog-card-preview').textContent.trim(),
+        act: row.querySelector('[data-act="import"], [data-act="open"]')?.dataset.act,
+      })));
+      const type = async (text) => {
+        for (let i = 1; i <= text.length; i += 1) {
+          await page.$eval('#search-q', (input, value) => {
+            input.value = value;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+          }, text.slice(0, i));
+        }
+      };
+      const snapshot = () => page.evaluate(() => ({
+        local: JSON.stringify(Object.entries(localStorage).sort()),
+        session: JSON.stringify(Object.entries(sessionStorage).sort()),
+        history: history.length,
+        hash: location.hash,
+        api: window.__mrtListSearchFetches.filter((url) => new URL(url, location.href).origin !== location.origin),
+        fetches: window.__mrtListSearchFetches.length,
+      }));
+      // Wait for the catalog the hub already asked for, so what typing does is measured alone.
+      await page.waitForFunction(() => document.querySelector('#view-add:not([hidden]) #search-q'));
+      await type('F');
+      await page.waitForFunction(() => !document.querySelector('#search-lists').hidden);
+      const before = await snapshot();
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent.includes('14 Reading Lists match'));
+      const typed = await snapshot();
+      const first = await rows();
+      const group = await page.evaluate(() => ({
+        count: document.querySelector('#search-lists-count').textContent,
+        more: document.querySelector('#search-lists-more').checkVisibility()
+          && document.querySelector('#search-lists-more').textContent,
+        home: document.querySelector('#search-lists').closest('.view')?.id,
+        listsFirst: document.querySelector('#search-lists').compareDocumentPosition(document.querySelector('#search-results'))
+          === Node.DOCUMENT_POSITION_FOLLOWING,
+        heading: document.querySelector('#search-lists-results .catalog-row h3') !== null,
+      }));
+      t.check('typing on the Search tab ranks the nine name matches first and shows six of 14, lists first, with a count and Show all',
+        group.home === 'view-add' && group.listsFirst && group.heading
+          && group.count === '14 Reading Lists match' && group.more === 'Show all 14 Reading Lists'
+          && first.map((row) => row.name).join('|') === Array.from({ length: 6 }, (_, i) => `Fixture Event ${i + 1}`).join('|')
+          && first.every((row) => row.act === 'import'),
+        JSON.stringify({ group, first }));
+      t.check('typing a list search sends nothing off the device and writes no storage or history',
+        typed.api.join('|') === before.api.join('|') && typed.fetches === before.fetches && typed.local === before.local
+          && typed.session === before.session && typed.history === before.history && typed.hash === before.hash,
+        JSON.stringify({ before, typed }));
+
+      await click(page, '#search-lists-more');
+      const all = await page.evaluate(() => ({
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        more: document.querySelector('#search-lists-more').hidden,
+        focus: document.activeElement?.closest('.catalog-row')?.querySelector('.catalog-card-preview')?.textContent.trim(),
+        button: document.activeElement?.classList.contains('catalog-card-preview'),
+      }));
+      t.check('Show all reveals every match and moves focus to the first newly shown title',
+        all.rows === 14 && all.more && all.button && all.focus === 'Fixture Event 7', JSON.stringify(all));
+
+      await click(page, '[data-view="add-search"]');
+      await page.waitForSelector('#view-add-search:not([hidden]) #search-lists:not([hidden])');
+      const moved = await page.evaluate(() => ({
+        value: document.querySelector('#search-q').value,
+        home: document.querySelector('#search-q').closest('.view')?.id,
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+      }));
+      t.check('Search issues keeps the same field, query and list results',
+        moved.value === 'Fixture Event' && moved.home === 'view-add-search' && moved.rows === 14, JSON.stringify(moved));
+
+      await page.evaluate(() => { window.__mrtListSearchOffline = true; });
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForFunction(() => {
+        const text = document.querySelector('#search-results').textContent.trim();
+        return text && !text.includes('Searching') && !text.includes('Loading');
+      });
+      const offline = await page.evaluate(() => ({
+        section: !document.querySelector('#search-lists').hidden,
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        count: document.querySelector('#search-lists-count').textContent,
+        more: !document.querySelector('#search-lists-more').hidden && document.querySelector('#search-lists-more').textContent,
+        comics: document.querySelector('#search-results').textContent.trim(),
+        api: window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues')).length,
+      }));
+      t.check('a failed comic search leaves every matching list in place',
+        offline.section && offline.rows === 14 && offline.count === '14 Reading Lists match'
+          && offline.more === false && offline.comics.length > 0 && offline.api === 1,
+        JSON.stringify(offline));
+
+      await page.evaluate(() => { window.__mrtListSearchOffline = false; });
+      await type('Fixture Even');
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.focus('#search-q');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#search-results .comic-choice');
+      const comics = await page.evaluate(() => {
+        const first = document.querySelector('#search-results .comic-choice').getBoundingClientRect();
+        return {
+          rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+          more: document.querySelector('#search-lists-more').checkVisibility()
+            && document.querySelector('#search-lists-more').textContent,
+          below: document.querySelector('#search-lists').compareDocumentPosition(document.querySelector('#search-results .comic-choice'))
+            === Node.DOCUMENT_POSITION_FOLLOWING,
+          inView: first.top >= 0 && first.bottom <= window.innerHeight,
+          focus: document.activeElement?.id,
+        };
+      });
+      t.check('a comic search keeps six list rows and Show all, with the comics below them',
+        comics.rows === 6 && comics.more === 'Show all 14 Reading Lists' && comics.below, JSON.stringify(comics));
+      t.check('Enter brings the first comic into view and leaves focus in the field',
+        comics.inView && comics.focus === 'search-q', JSON.stringify(comics));
+      await page.evaluate(() => window.scrollTo(0, 0));
+
+      for (const [index, action] of ['typing', 'row focus', 'Preview'].entries()) {
+        await type(`Fixture Event${'!'.repeat(index + 1)}`);
+        await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+        await page.evaluate(() => {
+          window.scrollTo(0, 0);
+          window.__mrtHoldListComicSearch = true;
+          window.__mrtReleaseListComicSearch = null;
+        });
+        await page.focus('#search-q');
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => typeof window.__mrtReleaseListComicSearch === 'function');
+        if (action === 'typing') {
+          await page.keyboard.type('!');
+        } else if (action === 'row focus') {
+          await page.focus('#search-lists-results .catalog-row [data-act="import"]');
+        } else {
+          await page.focus('#search-lists-results .catalog-row .catalog-card-preview');
+          await page.keyboard.press('Enter');
+          await page.waitForSelector('#preview[open]');
+        }
+        const scrollBefore = await page.evaluate(() => window.scrollY);
+        await page.evaluate(() => {
+          window.__mrtHoldListComicSearch = false;
+          window.__mrtReleaseListComicSearch();
+        });
+        await page.waitForSelector('#search-results .comic-choice');
+        const scrollAfter = await page.evaluate(() => window.scrollY);
+        if (action === 'Preview') {
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => !document.querySelector('#preview').open);
+        }
+        const focus = await page.evaluate(() => {
+          const rect = document.activeElement.getBoundingClientRect();
+          return { top: rect.top, bottom: rect.bottom, id: document.activeElement.id,
+            preview: document.activeElement.classList.contains('catalog-card-preview'),
+            import: document.activeElement.dataset.act === 'import' };
+        });
+        t.check(`a pending comic search does not scroll after ${action}`,
+          scrollAfter === scrollBefore && focus.top >= 0 && focus.bottom <= 900
+            && (action === 'typing' ? focus.id === 'search-q' : action === 'Preview' ? focus.preview : focus.import),
+          JSON.stringify({ scrollBefore, scrollAfter, focus }));
+      }
+
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.evaluate(() => { window.scrollTo(0, 0); window.__mrtListImportOffline = true; });
+      await click(page, '#search-lists-results .catalog-row [data-act="import"]');
+      await page.waitForFunction(() => document.querySelector('#search-lists-report').textContent.trim());
+      await page.waitForFunction(() => document.querySelector('#search-lists-report button')?.textContent === 'Try again');
+      await page.evaluate(() => { window.__mrtListImportOffline = false; });
+      await click(page, '#search-lists-report button');
+      await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+        .some((list) => list.catalogId === 'browser-check-extra-1'));
+      await click(page, '.brand[data-view="home"]');
+      await click(page, '[data-view="add"]');
+      await page.waitForSelector('#view-add:not([hidden])');
+      await page.waitForFunction(() => document.querySelector('#search-lists-results .catalog-row [data-act="open"]'));
+      const retry = await page.evaluate(() => {
+        const report = document.querySelector('#search-lists-report');
+        const stale = [...report.querySelectorAll('button')].find((button) => button.textContent === 'Try again');
+        stale?.click();
+        return { registered: report.classList.contains('report'), stale: Boolean(stale), text: report.textContent.trim() };
+      });
+      if (retry.stale) {
+        await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+          .filter((list) => list.catalogId === 'browser-check-extra-1').length === 2);
+      }
+      const copies = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+        .filter((list) => list.catalogId === 'browser-check-extra-1').length);
+      t.check('a failed list-row Add retires its retry after success and saves exactly one copy',
+        retry.registered && !retry.stale && !retry.text && copies === 1, JSON.stringify({ retry, copies }));
+
+      await type('Fixture Even');
+      await type('Fixture Event');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.focus('#search-lists-results .catalog-row:nth-child(2) [data-act="preview"]');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] #preview-add [data-act="main"]');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview').open);
+      await page.waitForFunction(() => document.querySelector('#search-lists-results .catalog-row:nth-child(2) [data-act="open"]'),
+        { timeout: 5000 }).catch(() => {});
+      const added = await page.evaluate(() => ({
+        rows: [...document.querySelectorAll('#search-lists-results .catalog-row')]
+          .map((row) => row.querySelector('[data-act="import"], [data-act="open"]').dataset.act),
+        focus: document.activeElement === document.querySelector('#search-lists-results .catalog-row:nth-child(2) .catalog-card-preview'),
+        saved: Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+          .filter((list) => list.catalogId === 'browser-check-extra-2').length,
+      }));
+      t.check('adding a list from its Preview turns its row into Open and keeps focus',
+        added.rows[0] === 'open' && added.rows[1] === 'open' && added.rows.slice(2).every((act) => act === 'import')
+          && added.focus && added.saved === 1, JSON.stringify(added));
+
+      const layout = async (width, height) => {
+        await page.setViewport({ width, height });
+        return page.evaluate(() => {
+          const more = document.querySelector('#search-lists-more').getBoundingClientRect();
+          const box = document.querySelector('#search-lists').getBoundingClientRect();
+          const row = document.querySelector('#search-lists-results .catalog-row');
+          const action = row.querySelector('.btn').getBoundingClientRect();
+          return {
+            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+            full: Math.abs(more.width - box.width) < 1,
+            action: action.right <= row.getBoundingClientRect().right + 0.5 && action.height >= 24,
+          };
+        });
+      };
+      const phone = await layout(412, 915);
+      const narrow = await layout(700, 900);
+      const wide = await layout(701, 900);
+      t.check('at 412 and 700px the rows fit and Show all spans the group; at 701px it sizes to its words',
+        !phone.overflow && phone.full && phone.action && !narrow.overflow && narrow.full && narrow.action
+          && !wide.overflow && !wide.full && wide.action, JSON.stringify({ phone, narrow, wide }));
+
+      // Exercise the shipping native adaptation, not a duplicate of its DOM transformations.
+      // Apple's hit-region audit still has to verify the resulting WebKit native targets in CI.
+      const controller = readFileSync(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
+      const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)?.[1];
+      if (!adapter) throw new Error('Missing iOS accessible target adaptation');
+      await page.evaluate((styles) => {
+        for (const css of styles) {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(css);
+          document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+        }
+      }, [
+        readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+        readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'),
+      ]);
+      await page.evaluate(adapter);
+      for (const [width, scale] of [[1280, 1], [412, 2]]) {
+        await page.setViewport({ width, height: 915 });
+        await page.evaluate((value) => document.documentElement.style.setProperty('--ios-text-scale', value), String(scale));
+        await page.$eval('#form-search label[for="search-q"]', (label) => label.click());
+        const labelTarget = await page.$eval('#form-search label[for="search-q"]', (label) => ({
+          focused: document.activeElement?.id === 'search-q',
+          role: label.getAttribute('role'), name: label.getAttribute('aria-label'),
+          height: label.getBoundingClientRect().height,
+        }));
+        let keyboardFocus = false;
+        if (labelTarget.role === 'button') {
+          keyboardFocus = true;
+          for (const key of ['Enter', 'Space']) {
+            await page.focus('#form-search label[for="search-q"]');
+            await page.keyboard.press(key);
+            keyboardFocus = keyboardFocus && await page.evaluate(() => document.activeElement?.id === 'search-q');
+          }
+        }
+        const label = await page.$('#form-search label[for="search-q"]');
+        const labelAX = await page.accessibility.snapshot({ root: label });
+        await label.dispose();
+        const input = await page.$('#search-q');
+        const fieldAX = await page.accessibility.snapshot({ root: input, interestingOnly: false });
+        await input.dispose();
+        const hint = await page.$eval('#search-hint', (node) => ({
+          text: node.textContent, hiddenAX: node.getAttribute('aria-hidden') === 'true',
+          visible: node.checkVisibility() && node.getBoundingClientRect().height > 0,
+          described: document.querySelector('#search-q').getAttribute('aria-describedby').split(/\s+/).includes(node.id),
+        }));
+        t.check(`the iOS Search label is one full-sized active target at ${width}px and ${scale}x text`,
+          labelTarget.focused && keyboardFocus && labelTarget.height >= 44 && labelTarget.role === 'button'
+            && labelTarget.name === 'Search Reading Lists and issue titles'
+            && labelAX?.role === 'button' && labelAX.name === labelTarget.name && !labelAX.children?.length,
+          JSON.stringify({ labelTarget, labelAX }));
+        t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,
+          hint.visible && hint.hiddenAX && hint.described && fieldAX?.description?.includes(hint.text),
+          JSON.stringify({ hint, fieldAX }));
+      }
     },
   },
   {
@@ -17249,6 +17542,12 @@ async function openBrowseCategory(page, category) {
   await click(page, selector);
 }
 
+async function chooseGenre(page, type) {
+  await page.waitForSelector(`#genres-type option[value="${type}"]`, { timeout: 15000 });
+  await page.select('#genres-type', type);
+  await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
+}
+
 async function visibleView(page) {
   return page.evaluate(() => document.querySelector('.view:not([hidden])')?.id ?? null);
 }
@@ -17713,6 +18012,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
           }));
         }
         if (comicSearch && requestUrl.pathname.endsWith('/search/issues')) {
+          if (window.__mrtListSearchOffline) return Promise.reject(new TypeError('Failed to fetch'));
           if (window.__mrtComicSearchFlow && requestUrl.searchParams.get('q') === 'UX06 none') {
             return Promise.resolve(json({ items: [] }));
           }
@@ -17990,39 +18290,66 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
 
 SCENARIOS.push(
   {
-    id: 'storylines-discovery-actual-data',
-    title: 'one curated Storylines pool includes real event variants without moving canonical identity',
+    id: 'genres-discovery-actual-data',
+    title: 'Genres and legacy addresses preserve real event variants and canonical identity',
     async run(page, t) {
       try {
         const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
-        await open(page, '/?catalog=actual#/lines');
-        await page.waitForFunction(() => document.querySelector('#lines-results .catalog-card'));
-        const initial = await page.evaluate(() => [...document.querySelectorAll(
-          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        await open(page, '/?catalog=actual');
+        await page.evaluate((saved) => {
+          localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        }, fixtureReadingState());
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
+        await page.waitForSelector('#view-home [data-category="genres"] .home-path-count', { timeout: 15000 });
+        const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+        const census = await page.$$eval('#view-home .home-path-count', (nodes) => nodes.map((node) => node.textContent.trim()));
+        const initialHistory = await page.evaluate(() => history.length);
+        await page.goto(`${page.__origin}/?catalog=actual#/lines?query=Civil+War`, { waitUntil: 'load' });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const legacy = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('a bookmarked Storylines address with a query opens Genres without a second history entry',
+          legacy.length === initialHistory + 1, JSON.stringify({ initialHistory, legacy }));
+
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const reloaded = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('reloading the old address opens Genres without changing history',
+          reloaded.length === legacy.length, JSON.stringify({ legacy, reloaded }));
+        await page.evaluate(() => { location.hash = '#/about'; });
+        await page.waitForSelector('#view-about:not([hidden])', { timeout: 15000 });
+        const beforeBack = await page.evaluate(() => history.length);
+        await page.goBack();
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const returned = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('one Back returns to the old address in Genres without adding an entry',
+          returned.length === beforeBack && returned.hash === reloaded.hash,
+          JSON.stringify({ beforeBack, returned, reloaded }));
+        await page.evaluate(() => { location.hash = '#/about'; });
+        await page.waitForSelector('#view-about:not([hidden])', { timeout: 15000 });
+        const beforeAlias = await page.evaluate(() => history.length);
+        await page.evaluate(() => { location.hash = '#/storylines?legacy=anything'; });
+        await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
+        const alias = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+        t.check('the alternate Storylines address also opens Genres with one history entry',
+          alias.length === beforeAlias + 1, JSON.stringify({ beforeAlias, alias }));
+        t.check('opening old addresses leaves saved reading data unchanged',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
+        t.check('the bundled catalog reports the current Timeline and Genres lists',
+          census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
+            && census.includes('299 Reading Lists'), JSON.stringify(census));
+
+        await chooseGenre(page, 'political');
+        const searched = await page.evaluate(() => [...document.querySelectorAll(
+          '#genres-results [data-act="import"], #genres-results [data-act="open"]',
         )].map((node) => node.dataset.key));
         const civilWar = ['civil-war-essential', 'civil-war', 'civil-war-avengers'];
-        t.check('normal Storylines browsing includes all three original Civil War readings',
-          civilWar.every((id) => initial.includes(id)), JSON.stringify(initial));
-        t.check('the secondary pool includes the current readings without duplicates or scaffold chapters',
-          initial.length === currentReadingCensus.storylines && new Set(initial).size === currentReadingCensus.storylines
-            && initial.includes('marvel-knights-to-planet-x-02')
-            && initial.includes('marvel-knights-to-planet-x-78')
-            && !initial.includes('marvel-knights-to-planet-x-01'), JSON.stringify(initial));
-        await page.evaluate(() => {
-          const query = document.querySelector('#lines-q');
-          query.value = 'Civil War';
-          query.dispatchEvent(new Event('input', { bubbles: true }));
-        });
-        await page.waitForFunction(() => !document.querySelector('#lines-results')?.textContent.includes('Loading the catalog'));
-        const searched = await page.evaluate(() => [...document.querySelectorAll(
-          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
-        )].map((node) => node.dataset.key));
-        t.check('scoped Storylines search retains every genuine Civil War variant',
+        t.check('the Political genre retains every genuine Civil War variant without duplicates',
           civilWar.every((id) => searched.includes(id)) && new Set(searched).size === searched.length,
           JSON.stringify(searched));
         if (!civilWar.every((id) => searched.includes(id))) return;
         const actual = ACTUAL_CATALOG.lists.find((list) => list.id === 'civil-war-essential');
-        await click(page, '#lines-results [data-story="list:civil-war-essential"] [data-act="preview"]');
+        await click(page, '#genres-results [data-story="list:civil-war-essential"] [data-act="preview"]');
         await page.waitForFunction(() => document.querySelector('#preview')?.open === true);
         await click(page, '#preview-add [data-act="main"]');
         await page.waitForFunction(() => {
@@ -18045,7 +18372,7 @@ SCENARIOS.push(
           await click(page, '#preview-close');
           await page.waitForFunction((expected) => window.__ux08Close?.delivered
             && !document.querySelector('#preview')?.open
-            && document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
+            && document.querySelector('#genres-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
           {}, href);
         } finally {
           await page.evaluate(() => {
@@ -18058,19 +18385,20 @@ SCENARIOS.push(
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           const saved = state.lists[id];
           return { catalogId: saved.catalogId, count: saved.itemIds.length,
-            href: document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
+            href: document.querySelector('#genres-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
         }, savedId);
         t.check('Preview save preserves the original catalog ID/count and the actual saved native destination',
           identity.catalogId === actual.id && identity.count === actual.count && identity.href === href,
           JSON.stringify(identity));
-        await click(page, '#lines-results a[data-key="civil-war-essential"]');
+        await click(page, '#genres-results a[data-key="civil-war-essential"]');
         await page.waitForFunction((expected) => location.hash === expected, {}, href);
         t.check('saved Open names the actual reading subject',
           (await page.title()).includes(actual.name), await page.title());
         await page.goBack();
-        await page.waitForFunction(() => location.hash.startsWith('#/lines'));
-        t.check('Back returns to the independent Storylines document',
-          await page.$eval('#view-lines', (node) => !node.hidden));
+        await page.waitForFunction(() => location.hash.startsWith('#/genres'));
+        t.check('Back restores the Political genre',
+          await page.$eval('#view-genres', (node) => !node.hidden)
+            && await page.$eval('#genres-type', (node) => node.value) === 'political');
         const beforeTimeline = await page.evaluate((id) => {
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return { itemIds: state.lists[id].itemIds, read: state.read,
@@ -18096,7 +18424,7 @@ SCENARIOS.push(
             && JSON.stringify(reused.listOrder) === JSON.stringify(beforeTimeline.listOrder),
           JSON.stringify(reused));
       } catch (error) {
-        console.error('storylines-discovery-actual-data original failure:', error.message, error.stack);
+        console.error('genres-discovery-actual-data original failure:', error.message, error.stack);
         throw error;
       }
     },
@@ -21049,7 +21377,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = !process.argv.includes('--ephemeral') && ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = !process.argv.includes('--ephemeral') && ['genres-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -22243,7 +22571,7 @@ SCENARIOS.push({
     const knownRefusedIds = order.items
       .filter(({ issueId, detailsRefused }) => issueId > 0 && detailsRefused)
       .map(({ issueId }) => issueId);
-    const cardSelector = `#lines-results [data-story="list:${id}"]`;
+    const cardSelector = `#genres-results [data-story="list:${id}"]`;
     const errors = [];
     const externalRequests = [];
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -22298,17 +22626,18 @@ SCENARIOS.push({
       title: node.querySelector('.rt')?.textContent.trim(),
     })));
     await open(page, '/?catalog=actual#/catalog');
-    await openBrowseCategory(page, 'storylines');
+    await openBrowseCategory(page, 'genres');
+    await chooseGenre(page, 'space-opera');
     await page.waitForSelector(cardSelector, { timeout: 15000 });
     const card = await page.$eval(cardSelector, (node) => ({
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
       source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-      section: node.parentElement?.previousElementSibling?.textContent,
+      section: node.closest('.story-type-results')?.querySelector('h2')?.textContent,
     }));
-    t.check('undated storyline is discoverable in Across eras with the exact credited guide',
+    t.check('the undated storyline is discoverable in Space opera with the exact credited guide',
       card.name === 'Infinity Trilogy (Gauntlet, War, Crusade)'
       && card.source === order.source
-      && (card.section ?? '').includes('Across eras'),
+      && card.section === 'Space opera',
       JSON.stringify(card));
     await click(page, `${cardSelector} [data-act="preview"]`);
     await page.waitForFunction(() =>
@@ -22700,12 +23029,13 @@ async function runLongCollectionNavigation(page, t) {
     const ageExpected = ux10AgeCards('marvel-knights-heroes-return');
     const ageIds = await ageVector('marvel-knights-heroes-return');
     const ageOptions = await page.$$eval('#age-marvel-knights-heroes-return-navigation option', (nodes) => nodes.filter((node) => node.value).map((node) => node.value.slice(6)));
-    receipt('LC02', '81 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
-      cards81: ageIds.length === 81, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
-      guides6: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 6,
+    receipt('LC02', '82 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
+      cards82: ageIds.length === 82, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
+      guides7: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 7,
       cardOrder: isDeepStrictEqual(ageIds, ageExpected.map(({ id }) => id)), optionOrder: isDeepStrictEqual(ageIds, ageOptions),
     });
-    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${ageIds[80]}`, 'list:marvel-knights-to-planet-x-78', true);
+    const lastAgeId = ageExpected.at(-1).id;
+    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${lastAgeId}`, lastAgeId, true);
     receipt('LC02', 'original heading and whole collection', { tag: 'H4', tabindex: '-1' }, lastAge.focus, {
       headingPreserved: lastAge.focus.tag === 'H4' && lastAge.focus.tabindex === '-1',
       fullVectorRetained: isDeepStrictEqual(await ageVector('marvel-knights-heroes-return'), ageIds),
@@ -22732,7 +23062,7 @@ async function runLongCollectionNavigation(page, t) {
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
       ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
-      ['early-modern', 16, 'operation-zero-tolerance'],
+      ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);
       const ids = await ageVector(key);
@@ -23569,9 +23899,11 @@ SCENARIOS.push({
               const geometry = await page.$eval('#add-other-methods > summary', (summary) => {
                 const rect = summary.getBoundingClientRect();
                 const style = getComputedStyle(summary, '::after');
+                // CDP's quad is viewport-relative. At 375px the taller Search form scrolls 119px
+                // on focus, so adding scrollY only to the summary falsely puts its chevron outside.
                 return {
-                  summary: { left: rect.left, right: rect.right, top: rect.top + scrollY, bottom: rect.bottom + scrollY },
-                  document: document.documentElement.scrollWidth, viewport: innerWidth,
+                  summary: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom },
+                  document: document.documentElement.scrollWidth, viewport: innerWidth, scrollY,
                   box: { width: style.width, height: style.height, lineHeight: style.lineHeight, marginRight: style.marginRight },
                   content: style.content, transform: style.transform, transition: style.transitionDuration,
                   focused: document.activeElement === summary,

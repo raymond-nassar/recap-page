@@ -235,7 +235,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
   }), /not approved/);
 });
 
-test('Infinity Saga pinned payload and catalog preserve Storylines discovery and gap provenance', async () => {
+test('Infinity Saga pinned payload and catalog preserve historical Storylines metadata and gap provenance', async () => {
   const [payload, catalog] = await Promise.all([
     readJson(`src/data/${packet.proposedManifest.out}`),
     readJson('src/data/catalog.json'),
@@ -264,8 +264,8 @@ test('Infinity Saga pinned payload and catalog preserve Storylines discovery and
   assert.equal(entry.emptyRecordCount, 11);
   assert.ok(!Object.hasOwn(entry, 'spotlightKind'));
   assert.equal(entry.source, ledger.sourceUrl);
-  assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 193);
-  assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 10);
+  assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 196);
+  assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 11);
   assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 87);
   const normalized = parseCatalog(catalog);
   const storylines = shelfStories(groupCatalog(normalized.lists), 'lines');

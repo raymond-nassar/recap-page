@@ -64,7 +64,10 @@ import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
+import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
+import { createSearchListsView } from './views/search-lists.js';
+import { parseMcuPrep } from './lib/mcuPrep.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
@@ -1420,6 +1423,7 @@ function syncHash({ push = false } = {}) {
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
         sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+        ...(view === 'genres' ? storyTypesView.selection() : {}),
       });
   if (!next || next === location.hash) return;
 
@@ -1495,6 +1499,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
+    if (route.view === 'genres') storyTypesView.set(route);
     if (route.view === 'catalog') {
       catalogView.setFollowedPath(route.pathId ?? null, {
         orFirst: route.orFirstPath === true,
@@ -1560,6 +1565,7 @@ function showView(next, { focus = true, push = false, at = null } = {}) {
   homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
   addView.enter(next);
+  if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
     if (panel) panel.hidden = name !== next;
@@ -2719,6 +2725,7 @@ function ensurePublishingViews() {
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
       ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
+      ...(category.route === 'genres' ? [storyTypesView.controls()] : []),
       ...(category.kind === 'publishing-index' ? [] : [el('section', {
         id: `${category.route}-categories`,
         class: 'publishing-periods',
@@ -2828,6 +2835,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   if (!current()) return;
   if (route === 'marvel-on-screen') {
     await mcuPrepView.render(catalog, { isCurrent: current });
+    return;
+  }
+  if (route === 'genres') {
+    storyTypesView.render(catalog, { isCurrent: current });
     return;
   }
   const allStories = catalogEntries(catalog.lists);
@@ -2991,6 +3002,8 @@ export function boot() {
   readerLinkView.wire();
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
+  $('#search-q').addEventListener('input', (event) => void searchListsView.update(event.target.value));
+  $('#search-lists-more').addEventListener('click', () => void searchListsView.showAll());
   dataView.wire();
   completeBackupView.wire();
   cloudBackupView.wire();
@@ -2998,7 +3011,9 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
-  for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
+  for (const shelf of CATALOG_SHELVES) {
+    if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
+  }
   homeView.wire();
   const closureDismissal = createNoticeDismissal({ storage: globalThis.localStorage });
   const closureNotice = $('#reader-closure-notice');
@@ -3484,6 +3499,7 @@ const homeView = createHomeView({
     isCurrent,
   }),
   onNavigateCategory: (category) => {
+    if (category.route === 'genres') storyTypesView.set();
     showView(category.route, { push: true });
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
@@ -3648,6 +3664,48 @@ const mcuPrepView = createMcuPrepView({
   }),
 });
 
+let mcuGuides = null;
+// Release titles let a film's name find its screen companion from Search. The file is the one the
+// screen companions page reads; a failed read is forgotten so the next keystroke can try again,
+// and list search carries on without release titles meanwhile (#1083).
+function loadMcuGuides() {
+  mcuGuides ??= fetch('./data/mcu-prep.json')
+    .then((response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    })
+    .then((raw) => parseMcuPrep(raw).guides)
+    .catch((error) => {
+      mcuGuides = null;
+      throw error;
+    });
+  return mcuGuides;
+}
+
+const searchListsView = createSearchListsView({
+  elements: () => ({
+    section: $('#search-lists'),
+    count: $('#search-lists-count'),
+    grid: $('#search-lists-results'),
+    more: $('#search-lists-more'),
+  }),
+  loadCatalog,
+  loadGuides: loadMcuGuides,
+  presentation: catalogPresentation,
+  announce,
+});
+
+const storyTypesView = createStoryTypesView({
+  el,
+  elements: () => ({
+    count: $('#genres-count'),
+    results: $('#genres-results'),
+  }),
+  isCurrent: () => view === 'genres',
+  presentation: catalogPresentation,
+  onNavigate: ({ push }) => syncHash({ push }),
+});
+
 const catalogView = createCatalogView({
   announce,
   clearLoadNotice: () => clearNotice(CATALOG_LOAD),
@@ -3722,6 +3780,12 @@ const previewView = createPreviewView({
   onClose: async (closedList, { changed, isCurrent }) => {
     if (!isCurrent()) return;
     placeNotices();
+    if (closedList && changed && (view === 'add' || view === 'add-search')) {
+      const held = captureFocus($(`#view-${view}`));
+      await searchListsView.refresh();
+      if (document.activeElement === document.body) restoreFocus(held, { primary: 'main' });
+      return;
+    }
     if (!closedList || !changed || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
       && !generatedCategoryByRoute.has(view))) return;
     const sourceView = view;
@@ -3785,6 +3849,9 @@ const completionView = createCompletionView({
     recommendationStatus: $('#list-recommendation-status'),
     recommendationRetry: $('#btn-retry-recommendations'),
     recommendationBrowse: $('#btn-recommendation-browse'),
+    similar: $('#list-similar'),
+    similarSuggestions: $('#list-similar-suggestions'),
+    similarHint: $('#list-similar-hint'),
     collectionCount: $('#completed-count'),
     collectionStatus: $('#completed-status'),
     collectionSection: $('#completed-section'),

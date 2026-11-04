@@ -558,6 +558,10 @@ the app's normal description setting. It does not save the synopsis in reading d
 health check uses the Play preview's fictional response; other requests outside the app bundle are
 blocked.
 
+The checked-in images below predate Genres and still show the retired Storylines screen. The next
+capture replaces that screen with Genres and updates the Home image; its fourth caption is
+"Browse reading lists by genre and tone, or start with popular picks."
+
 The capture clears the test Simulator app's local storage before each screen. Use a disposable
 Simulator, not one with reading data you want to keep. A reader's installed app is not affected.
 

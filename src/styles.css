@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:811-818`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:814-821`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1082,6 +1082,25 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
   float: left; align-self: center; margin: 0; padding: 0;
   color: var(--muted); font-size: var(--t-caption); font-weight: 600;
 }
+/* Native dropdowns keep the complete vocabulary from taking over the screen (#1060). */
+.story-type-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  max-width: 42rem;
+  margin: var(--space-6) 0 var(--space-5);
+}
+.story-type-group {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.story-type-label { margin: 0; color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+/* The starting lists' hint reads as a subtitle, so it shares the heading's left edge. */
+.story-type-results > .rail-hint { margin: var(--space-2) 0 var(--space-3); }
+@media (max-width: 700px) {
+  .story-type-choices { grid-template-columns: minmax(0, 1fr); }
+}
 
 @media (max-width: 620px) {
   .spotlight-controls { width: 100%; justify-content: flex-start; }
@@ -1398,18 +1417,19 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    a file input are drawn by the platform in a style that belongs to no part of this app, and the
    file input in particular announces itself as "Choose File / No file chosen" in the middle of a
    surface where every other control is a labelled button. */
-#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select {
+#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select {
   appearance: none;
+  background-color: var(--card-2);
   background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%),
     linear-gradient(135deg, currentcolor 50%, transparent 50%);
   background-repeat: no-repeat;
   background-size: 5px 5px, 5px 5px;
   background-position: right 1rem top 55%, right .75rem top 55%;
-  color: var(--muted); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
+  color: var(--text); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
-#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
@@ -1469,6 +1489,13 @@ input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 
 .checkbox { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--t-body); color: var(--dim); min-height: var(--target-min); }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-compact); padding: var(--space-1) var(--space-2); font-size: .85em; }
 .add-page { max-width: 48rem; }
+.search-lists { margin: var(--space-6) 0; }
+.search-lists h2 { font-size: var(--t-body); margin: 0 0 var(--space-2); }
+.search-lists > .rail-hint { margin: 0 0 var(--space-5); }
+.search-lists-more { margin-top: var(--space-5); }
+@media (max-width: 700px) {
+  .search-lists-more { width: 100%; }
+}
 .add-destination {
   display: inline-flex; margin: 0 0 var(--space-5); padding: var(--space-2) var(--space-4);
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-pill);
@@ -1975,7 +2002,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   background: rgb(var(--home-path-line));
 }
 .home-path[data-category="timeline"] { --home-path-ink: var(--accent-text); }
-.home-path[data-category="storylines"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
+.home-path[data-category="genres"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
 .home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); --home-path-ink: var(--teal); }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
@@ -2284,6 +2311,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .timeline-position-label { border-color: Highlight; color: CanvasText; }
   .timeline-position-status { border-color: Highlight; background: Canvas; color: CanvasText; }
   .fp input:checked + span { border: var(--stroke-2) solid Highlight; }
+  .story-type-choices select:focus-visible { outline-color: Highlight; }
 }
 
 /* Unreadable-data recovery. Deliberately loud: saving is paused and the user must choose. */
@@ -2382,9 +2410,9 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #view-data .setting-more > summary { min-height: var(--target-touch); box-sizing: border-box; }
   #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: var(--target-touch); min-height: var(--target-touch); }
   /* Without a shrinkable column a search form grows to its field's intrinsic width: at 200 per cent
-     text the Storylines and MCU Prep fields stayed 393px wide on 320 and 360px phones. */
-  #form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
-  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-lines-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
+     text the MCU Prep field stayed 393px wide on 320 and 360px phones. */
+  #form-search, #form-series, #form-creator, #form-catalog-search, #form-young-readers-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
+  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-young-readers-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
   #catalog-filters { min-width: 0; max-width: 100%; }
 }
 /* On a short phone the title is compact and the lower list context leaves more height for the cover. */

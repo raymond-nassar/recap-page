@@ -499,6 +499,7 @@ export function createAddView({
       }
       refreshBuilders();
       if (config.focusResults) resultHeading.focus();
+      else revealResults(config, status, box, box);
       config.focusResults = false;
       return;
     }
@@ -607,7 +608,22 @@ export function createAddView({
     });
     renderRows();
     if (config.focusResults) resultHeading.focus();
+    else revealResults(config, status, resultHeading, box.querySelector('.comic-choice') ?? resultHeading);
     config.focusResults = false;
+  }
+
+  // Reading Lists sit above the comics on Search and stay put through an issue search, so six of
+  // them pushed the first comic below a 900px window. Scrolling, rather than focusing, brings the
+  // comics the reader asked for into view while focus stays in the field they typed in.
+  function revealResults(config, status, heading, target) {
+    if (!config.revealResults || status.phase === 'cancelled') return;
+    config.revealResults = false;
+    if ($(config.input).value.trim() !== status.item.name) return;
+    if (document.activeElement !== document.body && !$(config.form).contains(document.activeElement)) return;
+    const first = target.getBoundingClientRect();
+    if (heading.getBoundingClientRect().top < 0 || first.bottom > window.innerHeight) {
+      heading.scrollIntoView({ block: 'start' });
+    }
   }
 
   for (const config of searches) {
@@ -1095,6 +1111,7 @@ export function createAddView({
           const query = $(config.input).value.trim();
           if (!query) return;
           beginSearch(config);
+          config.revealResults = true;
           void config.runner.start({ name: query });
         });
       } else {
@@ -1160,7 +1177,18 @@ export function createAddView({
     });
   }
 
+  // The Search tab carries the search card itself, so a reader types on the tab rather than after a
+  // second choice (#1083). Moving the one card rather than copying it keeps one field, one set of
+  // selected comics and one selection bar behind both the tab and the older issue search address.
+  function placeSearchCard(name) {
+    if (name !== 'add' && name !== 'add-search') return;
+    const card = $('#search-results')?.closest('.add-page');
+    const head = $(`#view-${name} > .head`);
+    if (card && head && head.nextElementSibling !== card) head.after(card);
+  }
+
   function enter(name) {
+    placeSearchCard(name);
     const kind = name === 'add-series' ? 'series' : name === 'add-creator' ? 'creators' : null;
     if (kind) void warmNameIndex(kind);
     if (name === 'add-import' && importDraft && !importDraft.uncertain) {

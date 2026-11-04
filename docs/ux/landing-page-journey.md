@@ -16,9 +16,9 @@ large category choices establish the reading modes without a wall of individual 
 Home has no Setup recommendation or Preview action.
 
 ## Stage 2: Orientation
-**Doing**: Chooses Modern Timeline, Storylines or Character spotlights.
+**Doing**: Chooses Modern Timeline, Genres or Character spotlights.
 
-**Thinking**: "I know whether I want chronology, a complete arc or a character."
+**Thinking**: "I know whether I want chronology, a genre or a character."
 
 **Target experience**: Compact labels distinguish the paths. Choosing Modern Timeline reveals its
 existing optional Setup guide rather than recommending an item before a direction is chosen.
@@ -31,7 +31,7 @@ existing optional Setup guide rather than recommending an item before a directio
 **Target experience**: The dedicated screen says that 1998 is this app's chosen boundary, features
 the same Setup Reading List through Preview, and keeps that feature outside its normal cards and
 count. Search, filters, cover-led cards, scope and preview details remain off Home. Earlier events
-remain reachable through Marvel Ages and direct addresses.
+remain reachable through Genres and Marvel Ages.
 
 ## Stage 4: Commitment
 **Doing**: Adds a Reading List from its preview on the chosen browse page.

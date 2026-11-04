@@ -54,13 +54,13 @@ async function navigationFixture({ entries = [], getNext } = {}) {
   };
 }
 
-test('UX10 U06: shared native navigation preserves 81-card order and independent variant and reserved identities', async () => {
+test('UX10 U06: shared native navigation preserves age-card order and independent variant and reserved identities', async () => {
   const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
   const stories = catalogEntries(catalog.lists);
   const entries = publishingCategoryStories(stories, 'marvel-knights-heroes-return')
     .flatMap((story) => story.lists.map((list) => ({ id: `list:${list.id}`, name: list.name })));
   const h = await navigationFixture({ entries });
-  assert.equal(entries.length, 81);
+  assert.equal(entries.length, 82);
   assert.deepEqual(h.select.children.filter((option) => option.value).map((option) => option.value),
     entries.map(({ id }) => `entry:${id}`));
   assert.equal(h.select.children.some((option) => option.value === 'next-unfinished'), false);

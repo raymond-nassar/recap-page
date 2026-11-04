@@ -122,15 +122,15 @@ Marvel's service.
 
 ## Build and install
 
-The Java-only Android module uses `enableKotlin = false` to disable AGP 9.4.1's built-in Kotlin
+The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.0's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
 application DEX checks admit the exact approved Play services runtime class inventory and reject
 other foreign classes. The one generated app-class shape they accept is D8's empty `<Owner>-IA`
 access marker, only for an owner class in the app's own package. See the official
 [Java-only module guidance](https://developer.android.com/build/migrate-to-built-in-kotlin)
-and [AGP 9.4 API](https://developer.android.com/reference/tools/gradle-api/9.4/com/android/build/api/dsl/CommonExtension),
-read on 2026-09-30. This setting does not by itself prove a rebuilt artifact or test harness passes.
+and [AGP 9.5 API](https://developer.android.com/reference/tools/gradle-api/9.5/com/android/build/api/dsl/CommonExtension),
+read on 2026-11-03. This setting does not by itself prove a rebuilt artifact or test harness passes.
 
 **Feature-first release gate:** new releases may start only after the accepted mobile features
 are finished and verified. Preparing source does not authorize a build. Before bumping a version,
@@ -325,6 +325,17 @@ inventory. Unexpected native libraries stop qualification pending a separate ABI
 Release shrinking stays off. The owner approved Google Play services auth and its transitive runtime
 libraries for Android Google Drive sign-in (#810); the library ships even when Google Drive is off.
 
+The derived base APK's asset inventory also mirrors Play's baseline-profile packaging.
+Only `assets/dexopt/baseline.prof` and `assets/dexopt/baseline.profm` may accompany the generated
+app assets, and each must match the corresponding bytes in the same selected AAB's
+`BUNDLE-METADATA/com.android.tools.build.profiles/` directory. Missing profiles, changed bytes,
+unbound profile names and every other extra asset still fail. The publishing AAB's app-asset
+inventory is unchanged. AndroidX Activity 1.5.1, Fragment 1.5.7 and Lifecycle 2.5.1 supply the
+library profile inputs; the AGP 9.4.1 bundle already carried both compiled profiles. Retaining
+and validating them preserves existing delivery rather than silently removing optimization data.
+See Google's [Baseline Profiles packaging documentation](https://developer.android.com/topic/performance/baselineprofiles/overview),
+read on 2026-11-03, which documents library profile consumption and bundle-to-APK packaging since AGP 7.4.
+
 APK splits come from those exact signed AAB bytes, with an explicitly disposable local signer
 and a matching release instrumentation APK. The existing six methods and restart pair run on
 that payload. Four selected startup invocations then seed distinct official/prototype state,
@@ -512,7 +523,8 @@ Android assets and the shared desktop entry. Its fixed 16-case matrix covers 320
 both themes, 150/200% text-token stress, landscape and desktop, plus 700/701px boundary
 measurements. It measures full-width prose, timeline markers, complete credits and gap text,
 meaningful accessibility order, Preview/Add and filter/sort compatibility. Its 320px 200% case
-also checks that the Storylines and MCU Prep search fields fit at 320 and 360px. Its 360px 150%
+also checks that the Genres dropdowns and MCU Prep and Young readers search fields fit at 320 and
+360px. Its 360px 150%
 case also checks that Preview offers no offline copy and says nothing about one, because the
 Android app runs no service worker (#928). Cover geometry
 uses an original local test image, never publisher artwork. Use `--case=M02` for one case;
