@@ -318,14 +318,14 @@ copied into the bracketed line above.
 ## Listing assets
 
 **Saved assets, not the live listing.** Part of #1015.
-By owner decision, the automated 4.4.0 Microsoft Store app submission keeps the current screenshots.
-Once 4.4.0 is live, a separate listing-only Partner Center submission through Playwright uploads
-this refreshed Windows set with the approved captions. Google Play and the App Store refresh their
-screenshots with 4.4.0. The final captures wait for the release record and the iPad breadcrumb fixes.
-Google Play shows the set the owner uploaded on 2026-10-31, which predates Genres and
-still shows Storylines.
+By owner decision, the 4.4.0 Microsoft Store submission changes only the app package and the
+"What's new" text, and the listing keeps its current screenshots. This refreshed Windows set, with
+Genres in place of Storylines, is saved for a later listing update. Its captions are not approved.
+Google Play and the App Store refresh their screenshots with 4.4.0. The final captures come from
+the 4.4.0 release source, which includes the iPad breadcrumb fix (#1070, #1042). Google Play shows
+the set the owner uploaded on 2026-10-31, which predates Genres and still shows Storylines.
 No upload, submission or certification step is part of this work.
-#1015 stays open until the stores show the refreshed sets, and #810 stays open.
+#1015 stays open until the stores show the refreshed sets.
 
 The six screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
 profile and a fresh disposable context for each image. Cover art was off. Home, Genres and
@@ -423,7 +423,8 @@ replacement images contain no claim that progress or notes are never sent anywhe
 About and settings images explicitly show optional OneDrive transfer and private Android storage.
 The same audit applies to the desktop images planned for Play. The obsolete About image is not
 in either saved packet. These are prepared assets, not approval to publish or a new certification
-request. Saving is authorized; any further caption changes need owner approval before listing use.
+request. No further owner decision is needed to save them. Any change to these captions needs the
+owner's approval before a listing uses it.
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
 300 x 300 tile is the only new Store logo. A Super hero image is optional promotional artwork with

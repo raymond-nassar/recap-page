@@ -7,9 +7,8 @@ Android SDK, emulator, signing key or live service. The app, its identity and sa
 stay unchanged.
 
 By owner decision, Google Play and the App Store refresh their screenshots with **4.4.0**, as part
-of #1015. Microsoft Store keeps its current screenshots during the automated 4.4.0 app submission;
-once 4.4.0 is live, a separate listing-only Partner Center submission through Playwright uploads
-the refreshed Windows set with the approved captions. The live Play listing shows the set uploaded on 2026-10-31,
+of #1015. The Microsoft Store keeps its current screenshots for 4.4.0, and the refreshed Windows set
+is saved for a later listing update. The live Play listing shows the set uploaded on 2026-10-31,
 which predates Genres and still shows Storylines. No upload step is part of this work. Captions, measurements,
 the desktop set planned for Play and the cloud fixture are recorded in
 [the Store submission document](MICROSOFT_STORE_SUBMISSION.md#listing-assets).
