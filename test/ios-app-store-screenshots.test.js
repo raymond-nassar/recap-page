@@ -75,6 +75,9 @@ test('the capture matches the three App Store slots and their screens in order',
       assert.doesNotMatch(screen.probe, /paddingBottom/);
       assert.doesNotMatch(screen.seed + screen.probe, /[\u2013\u2014]/);
     }
+    const reading = screens.find(({ name }) => name === '03-reading-list');
+    assert.match(reading.probe, /view\.querySelector\(':scope > \.head'\)/);
+    assert.doesNotMatch(reading.probe, /android-list-options/);
   }
   assert.throws(() => fixtures('unknown'), /unknown set/);
   assert.throws(() => fixtures('ipad-13', 'automatic'), /unknown appearance/);

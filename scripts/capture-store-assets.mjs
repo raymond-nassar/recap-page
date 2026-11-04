@@ -47,7 +47,7 @@ export const SCREENSHOTS = [
     route: '#/catalog?path=modern-avengers',
     view: 'view-catalog',
     wait: '#catalog-results .path-stops .catalog-card',
-    text: ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'House of M'],
+    text: ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'Essential Avengers'],
     state: 'demo',
   },
   {

@@ -3,8 +3,8 @@
   "status": "preview-unapproved",
   "releaseAcceptance": false,
   "source": {
-    "sourceRevision": "422b80a58e381f8bf246c7b1c44abe1368ac53fd",
-    "sourceTree": "ed57b2978b7bf5c626c47a31f502719e89b3dd04",
+    "sourceRevision": "9a962b519aaf083f4bd5360c42e2c6092469b0bb",
+    "sourceTree": "161eef18623d151c08716bc608510e7689deadf5",
     "sourceDirty": true,
     "files": [
       {
@@ -49,7 +49,7 @@
       },
       {
         "path": "scripts/listing-fixtures.mjs",
-        "sha256": "d8e4bd036ef976a92c390475226687e23a5793dab4167fc9f3c4ec560c6e9339"
+        "sha256": "2c62269b91d8bd525e85537b1d8d6f9f223c703e4cd2c6cc13a942c3c5478e71"
       },
       {
         "path": "scripts/play-assets.mjs",
@@ -473,7 +473,7 @@
       }
     ]
   },
-  "androidManifestSha256": "1a6dcf1bd038ee5abc37a70bd1ae29be9a3cc6570f62ef2b9841ebc03b296edc",
+  "androidManifestSha256": "02392bb90e36cc3302eb24b375b04ed52ee78c535500b843fc4e29fa1cc80d61",
   "renderer": {
     "name": "Microsoft Edge",
     "version": "Edg/156.0.4314.58",

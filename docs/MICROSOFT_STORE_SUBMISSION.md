@@ -319,8 +319,9 @@ copied into the bracketed line above.
 
 **Saved assets, not the live listing.** Part of #1015.
 By owner decision, the 4.4.0 Microsoft Store submission changes only the app package and the
-"What's new" text, and the listing keeps its current screenshots. This refreshed Windows set, with
-Genres in place of Storylines, is saved for a later listing update with the approved captions
+"What's new" text, and the listing keeps its current screenshots during that submission.
+Once 4.4.0 is live, a separate listing-only Partner Center submission through Playwright uploads
+this refreshed Windows set with the approved captions
 ([owner approval](https://github.com/raymond-nassar/recap-page/issues/1015#issuecomment-6624904685)).
 Google Play and the App Store refresh their screenshots with 4.4.0. The final captures come from
 the 4.4.0 release source, which includes the iPad breadcrumb fix (#1070, #1042). Google Play shows
@@ -363,8 +364,8 @@ checks unchanged synthetic saved data, the generated Android shell and settled, 
 navigation.
 
 Desktop `01-home-discovery.png` and phone `dark-01-home.png` show Home's What's new control with
-its New badge, and desktop `05-about-onedrive.png` shows the app version. Recapture both sets from
-the 4.4.0 release record before upload. The About capture requires the version in `package.json`.
+its New badge, and desktop `05-about-onedrive.png` shows the app version. Both sets were recaptured
+from the 4.4.0 release source. The About capture requires the version in `package.json`.
 
 ### Desktop captions for the next listing update
 
@@ -395,8 +396,8 @@ Prepared desktop asset measurements:
 | `02-browse-reading-lists.png` | 1920 x 1080 | 217092 | `500EAE3B1E6366D030F699F7370A0AEEA52B1E7653B28E387BCE730375025ACF` |
 | `03-reading-paths.png` | 1920 x 1080 | 98991 | `6C61DC15774969C0EEF7FC99E2D98B0614503FED23CB10D820C6E5C2B44E6FD5` |
 | `04-reading-progress.png` | 1920 x 1080 | 203562 | `3A87C8A10ABCA09033DAB44809DC715AB2622FDA9826FCBFC9CD97E3D60D42BA` |
-| `05-about-onedrive.png` | 1920 x 1080 | 122087 | `88F9729A8B6486358CF20EF9BD1EC590553D9CB10118983DA7E727714E848C43` |
-| `06-backup-settings.png` | 1920 x 1080 | 95262 | `4B6E6A316F53FAEA0D7264F6A790F50D676B3E7560E817673D0C51CCDC2C71E8` |
+| `05-about-onedrive.png` | 1920 x 1080 | 122000 | `70F033C9DBF494D3513EFA4C5E8646190F3F67823471B2B10A275A3F0E92D6C4` |
+| `06-backup-settings.png` | 1920 x 1080 | 95267 | `5A87543953CC23D129945CAFE271C52B48CEBD3163291725132836618705FA6A` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 ### Google Play phone captions and measurements
@@ -415,7 +416,7 @@ manual set. The light Library and reading images replace `android-library-previe
 | `dark-03-modern-timeline.png` | 104646 | Dark Modern Timeline offers the Modern Avengers path and controls for choosing a stop. |
 | `dark-04-reading-progress.png` | 322686 | Dark reading view shows a fictional list three of eight read, with the next issues coming up. |
 | `01-library-preview.png` | 133329 | Library separates a fictional list in progress from one not yet started. |
-| `02-reading-preview.png` | 175228 | Light reading view puts the next fictional issue and its Done button first, with cover art off. |
+| `02-reading-preview.png` | 175285 | Light reading view puts the next fictional issue and its Done button first, with cover art off. |
 | `03-about-onedrive.png` | 254595 | About explains Android app storage and optional uploads only to your own OneDrive. |
 | `04-backup-settings.png` | 213205 | Cloud backup offers Microsoft sign-in and explains optional OneDrive backups before connecting an account. |
 

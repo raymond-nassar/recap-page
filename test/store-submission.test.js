@@ -57,7 +57,7 @@ test('the next listing set replaces the false About image with cloud-enabled Abo
   assert.doesNotMatch(assets, /05-about-privacy\.png/);
   assert.match(assets, /six screenshots were captured/i);
   assert.match(assets, /listing keeps its current screenshots/i);
-  assert.match(assets, /saved for a later listing update with the approved captions/i);
+  assert.match(assets, /Once 4\.4\.0 is live, a separate listing-only Partner Center submission through Playwright uploads\s+this refreshed Windows set with the approved captions/i);
   assert.doesNotMatch(assets, /captions are not approved/i);
   assert.match(assets, /predates Genres and\s+still shows Storylines/i);
   assert.match(assets, /next listing update/i);

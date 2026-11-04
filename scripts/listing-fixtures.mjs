@@ -63,20 +63,28 @@ export function framedText() {
     if (!node.textContent.trim() || !parent || parent.closest('[hidden], script, style, template')) continue;
     const style = getComputedStyle(parent);
     if (style.visibility !== 'visible' || Number(style.opacity) === 0) continue;
+    let transparent = false;
+    for (let ancestor = parent.parentElement; ancestor; ancestor = ancestor.parentElement) {
+      if (Number(getComputedStyle(ancestor).opacity) === 0) { transparent = true; break; }
+    }
+    if (transparent) continue;
     const closed = parent.closest('details:not([open])');
     if (closed && !closed.querySelector(':scope > summary')?.contains(parent)) continue;
-    range.selectNodeContents(node);
-    const seen = [...range.getClientRects()].some((rect) => {
-      const left = Math.max(rect.left, 0);
-      const right = Math.min(rect.right, width);
-      const top = Math.max(rect.top, 0);
-      const bottom = Math.min(rect.bottom, height);
-      if (right - left < 1 || bottom - top < 1) return false;
-      const hit = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
-      return Boolean(hit && (parent.contains(hit) || hit.contains(parent)));
-    });
-    if (!seen) continue;
-    const text = style.textTransform === 'uppercase' ? node.textContent.toUpperCase() : node.textContent;
+    let text = '', offset = 0;
+    // A paragraph can cross the viewport edge. One visible line must not approve its hidden lines.
+    for (const character of node.textContent) {
+      range.setStart(node, offset);
+      offset += character.length;
+      range.setEnd(node, offset);
+      const rectangles = [...range.getClientRects()];
+      const seen = rectangles.length > 0 && rectangles.every((rect) => {
+        if (rect.left < 0 || rect.right > width || rect.top < 0 || rect.bottom > height) return false;
+        const hit = document.elementFromPoint((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
+        return Boolean(hit && (parent.contains(hit) || hit.contains(parent)));
+      });
+      text += seen || /\s/.test(character) ? character : '\uFFFC';
+    }
+    if (style.textTransform === 'uppercase') text = text.toUpperCase();
     parts.push(text);
   }
   return parts.join(' ').replace(/\s+/g, ' ').trim();

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import { drawIcon, encodePng } from '../scripts/build-icons.mjs';
 import {
   ASSETS, ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, playIcon, featureGraphic, decodePng,
@@ -8,11 +9,49 @@ import {
 } from '../scripts/play-assets.mjs';
 import { migrate } from '../src/js/lib/model.js';
 import { LOCAL_SERVER_HEALTH_PATH } from '../src/js/lib/localServer.js';
-import { dismissListingNotice } from '../scripts/listing-fixtures.mjs';
+import { dismissListingNotice, framedText } from '../scripts/listing-fixtures.mjs';
 import { SCREENSHOTS } from '../scripts/capture-store-assets.mjs';
 
 const icon = playIcon();
 const feature = featureGraphic();
+
+test('framed text never includes offscreen lines of a partly visible text node', () => {
+  const text = 'Visible title\nonly to your own OneDrive';
+  const parent = {
+    closest: () => null,
+    contains: (element) => element === parent,
+    parentElement: null,
+  };
+  const node = { textContent: text, parentElement: parent };
+  const firstLineEnd = text.indexOf('\n');
+  let start = 0, end = text.length, visited = false;
+  const rectangle = (visible) => ({
+    left: 10, right: 20, top: visible ? 10 : 740, bottom: visible ? 30 : 760,
+  });
+  const document = {
+    documentElement: { clientWidth: 360 },
+    body: {},
+    createTreeWalker: () => ({ nextNode: () => visited ? null : (visited = true, node) }),
+    createRange: () => ({
+      selectNodeContents() { start = 0; end = text.length; },
+      setStart(_node, offset) { start = offset; },
+      setEnd(_node, offset) { end = offset; },
+      getClientRects: () => [
+        ...(start < firstLineEnd ? [rectangle(true)] : []),
+        ...(end > firstLineEnd ? [rectangle(false)] : []),
+      ],
+    }),
+    elementFromPoint: () => parent,
+  };
+  const result = runInNewContext(`(${framedText.toString()})()`, {
+    document, innerHeight: 640, NodeFilter: { SHOW_TEXT: 4 },
+    getComputedStyle: () => ({ visibility: 'visible', opacity: '1', textTransform: 'none' }),
+  });
+  assert.equal(result.includes('Visible title'), true);
+  assert.equal(result.includes('only to your own OneDrive'), false);
+  assert.deepEqual(SCREENSHOTS.find(({ file }) => file === '03-reading-paths.png').text,
+    ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'Essential Avengers']);
+});
 
 test('only the desktop and Play Home captures dismiss the December 7 notice before framing', async () => {
   assert.equal(ASSETS.find(({ file }) => file === 'dark-01-home.png').alt,

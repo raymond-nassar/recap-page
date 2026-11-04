@@ -203,7 +203,7 @@ if (target) {
   target.scrollIntoView({ block: 'start' });
   await nextFrame();
   if (screen.synopsis) {
-    const previous = await waitFor(() => document.getElementById('android-list-options'), 'the list controls');
+    const previous = await waitFor(() => view.querySelector(':scope > .head'), 'the list heading');
     const room = Math.max(0, -previous.getBoundingClientRect().bottom - 1);
     window.scrollBy(0, -Math.min(8, room));
     await nextFrame();
@@ -232,9 +232,9 @@ if (screen.synopsis) {
     if (window.scrollY !== 0 || !breadcrumb || breadcrumb.top < 0) throw new Error('The iPad page top is clipped');
   } else {
     const card = target.getBoundingClientRect();
-    const previous = document.getElementById('android-list-options').getBoundingClientRect();
+    const previous = view.querySelector(':scope > .head').getBoundingClientRect();
     if (card.top < -1 || card.top > 9 || previous.bottom > 0) {
-      throw new Error('The reading card or the previous control is clipped at the top of the frame');
+      throw new Error('The reading card or the list heading is clipped at the top of the frame');
     }
   }
 }

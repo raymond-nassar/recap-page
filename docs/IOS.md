@@ -559,14 +559,12 @@ health check uses the Play preview's fictional response; other requests outside 
 blocked.
 
 By owner decision, the App Store and Google Play refresh their screenshots with 4.4.0;
-the Microsoft Store keeps its current screenshots for 4.4.0.
+the Microsoft Store updates its listing separately after the automated 4.4.0 app submission is live.
 The final captures come from the 4.4.0 release source, which includes the iPad breadcrumb fix
 (#1070, #1042).
 
-The checked-in images below predate Genres and still show the retired Storylines screen. The next
-capture replaces that screen with Genres and updates the Home image; its fourth caption is
-"Browse reading lists by genre and tone, or start with popular picks." It also moves image 7 to the
-Cloud backup card. That screen alone launches the app signed in to the Debug build's fake iCloud
+The checked-in images show Genres in place of the retired Storylines screen and the updated Home
+screen. Image 7 shows the Cloud backup card. That screen alone launches the app signed in to the Debug build's fake iCloud
 account, which holds no backup, so the card offers only Connect iCloud. Its caption is in the table.
 
 The capture clears the test Simulator app's local storage before each screen. Use a disposable
@@ -574,10 +572,10 @@ Simulator, not one with reading data you want to keep. A reader's installed app 
 
 | Order | Caption | iPad | iPhone |
 |---|---|---|---|
-| 1 | Start from Home: guided reading paths, storylines and character spotlights. | Expanded sidebar | Yes |
+| 1 | Start from Home: guided reading paths, genres and character spotlights. | Expanded sidebar | Yes |
 | 2 | Follow the Modern Timeline one reading path at a time, starting with The Modern Avengers. | Collapsed sidebar | Yes |
 | 3 | See where you are in a reading list and what to read next. | Collapsed sidebar | Yes |
-| 4 | Browse storylines by era, with beginner-friendly picks marked. | Collapsed sidebar | Yes |
+| 4 | Browse reading lists by genre and tone, or start with popular picks. | Collapsed sidebar | Yes |
 | 5 | Preview a character spotlight, such as Professor X, before adding it. | Expanded sidebar | Yes |
 | 6 | Keep every reading list in your library, with progress saved on your device. | Expanded sidebar | Yes |
 | 7 | Back up your lists and progress to your own iCloud, automatically as you read. | Collapsed sidebar | Yes |
