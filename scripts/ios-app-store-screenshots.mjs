@@ -73,8 +73,9 @@ export const SCREENS = Object.freeze([
   },
   {
     name: '07-backup-settings', route: '#/data', view: 'view-data', theme: 'light',
-    text: ['Backup & settings', 'Complete backup'],
-    caption: 'Download a complete backup of your lists and progress.',
+    iCloudFake: '1', scroll: '#cloud-backup', control: '#btn-cloud-connect-icloud',
+    text: ['Backup & settings', 'Connect iCloud'], framed: ['Cloud backup', 'Connect iCloud'],
+    caption: 'Back up your lists and progress to your own iCloud, automatically as you read.',
   },
 ]);
 
@@ -127,7 +128,7 @@ export function probeScript(screen) {
     scroll: screen.ipadPageTop && screen.sidebar ? null : screen.scroll ?? null,
     ipadPageTop: !!screen.ipadPageTop && !!screen.sidebar,
     synopsis: screen.synopsis ?? null, preview: screen.preview ?? null, dismissNotice: !!screen.dismissNotice,
-    sidebar: screen.sidebar ?? null,
+    sidebar: screen.sidebar ?? null, control: screen.control ?? null, framed: screen.framed ?? [],
   });
   return `
 const BANNED = ${BANNED.toString()};
@@ -188,6 +189,10 @@ if (screen.preview) {
 for (const phrase of screen.text) {
   await waitFor(() => view.textContent.includes(phrase), phrase);
 }
+// textContent includes hidden markup, and the cloud backup card and its button are in the page,
+// hidden, before the app answers that it has iCloud backup. Waiting for the control itself to show
+// is what makes the card's phrases mean anything here.
+if (screen.control) await waitFor(() => shown(document.querySelector(screen.control)), screen.control);
 await waitFor(() => document.getElementById('api-status')?.textContent.startsWith('API OK'), 'fixture metadata health');
 if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
 await document.fonts.ready;
@@ -246,6 +251,17 @@ const offenders = [];
 const framed = visibleText();
 const banned = framed.match(BANNED);
 if (banned) throw new Error('The frame shows "' + banned[0] + '" in ' + offenders.join(' | '));
+for (const phrase of screen.framed) {
+  if (!framed.includes(phrase)) throw new Error('The frame does not show "' + phrase + '"');
+}
+if (screen.control) {
+  const control = document.querySelector(screen.control);
+  const box = control.getBoundingClientRect();
+  const hit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
+  if (box.top < 0 || box.bottom > innerHeight || !hit || !control.contains(hit)) {
+    throw new Error('The ' + screen.control + ' control is outside the frame or covered');
+  }
+}
 return scope ? 'ready' : 'missing scope';
 function visibleText() {
   const parts = [];
@@ -285,6 +301,7 @@ export function fixtures(folder, appearance) {
     appearance: screen.theme === 'dark' ? 'Dark' : 'Light',
     seed: seedScript(screen),
     probe: probeScript(screen),
+    ...(screen.iCloudFake ? { iCloudFake: screen.iCloudFake } : {}),
   }));
 }
 
