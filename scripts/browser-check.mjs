@@ -24252,6 +24252,119 @@ SCENARIOS.push({
   },
 });
 
+// #1070 and #1042: a "/" separator stretched to the 48px touch height gave its item a baseline at
+// the top, so on a 13-inch iPad the Library crumb dropped 15px and the trail read "Home / / list".
+// Measured before the fix, iPad tails sat 15px below Home and Android at 1280x800 13px below.
+SCENARIOS.push({
+  id: 'tablet-breadcrumb-one-line',
+  title: 'packaged iPad and Android tablet breadcrumbs stay on one line with full touch targets',
+  async run(page, t) {
+    const { mkdtemp, readFile, rm } = await import('node:fs/promises');
+    const { tmpdir } = await import('node:os');
+    const { extname } = await import('node:path');
+    const { prepareIos } = await import('./prepare-ios.mjs');
+    const { prepareAndroid } = await import('./prepare-android.mjs');
+    const scratch = await mkdtemp(join(tmpdir(), 'recap-tablet-breadcrumb-'));
+    const servers = [];
+    const types = { '.js': 'text/javascript', '.html': 'text/html', '.css': 'text/css',
+      '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
+      '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
+    const serve = async (dir) => {
+      const server = createStaticServer(async (req, res) => {
+        const path = decodeURIComponent(new URL(req.url, `http://${HOST}`).pathname.slice(1)) || 'index.html';
+        try {
+          const bytes = await readFile(join(dir, path));
+          res.writeHead(200, { 'content-type': types[extname(path)] ?? 'application/octet-stream' });
+          res.end(bytes);
+        } catch {
+          res.writeHead(404);
+          res.end();
+        }
+      });
+      await new Promise((resolve, reject) => {
+        server.once('error', reject);
+        server.listen(0, HOST, () => {
+          server.off('error', reject);
+          resolve();
+        });
+      });
+      servers.push(server);
+      return `http://${HOST}:${server.address().port}`;
+    };
+    try {
+      await prepareIos(join(scratch, 'ios'));
+      await prepareAndroid(join(scratch, 'android'));
+      const origins = { ios: await serve(join(scratch, 'ios')), android: await serve(join(scratch, 'android')) };
+      let state = createList(createEmptyState(), { id: 'crumb', name: 'Fictional: Lantern Harbor' });
+      state = addIssuesToList(state, 'crumb', [{ issueId: -1, title: 'Fictional comic', number: '1' }]).state;
+      const measure = async (kind, width, height, collapsed, hash) => {
+        const actual = await page.browserContext().newPage();
+        try {
+          await actual.setViewport({ width, height });
+          await actual.setRequestInterception(true);
+          actual.on('request', (request) => {
+            if (new URL(request.url()).origin === origins[kind]) void request.continue();
+            else void request.abort();
+          });
+          await actual.evaluateOnNewDocument((saved, folded) => {
+            localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+            localStorage.setItem('sidebar.collapsed', String(folded));
+          }, state, collapsed);
+          await actual.goto(`${origins[kind]}/${hash}`, { waitUntil: 'load' });
+          const view = hash.slice(2).split('/')[0];
+          await actual.waitForSelector(`#view-${view} > .head`, { visible: true, timeout: 15000 });
+          await actual.evaluate(() => document.fonts.ready);
+          return await actual.evaluate((name) => {
+            const section = document.querySelector(`#view-${name}`);
+            const nav = section.querySelector(':scope > .breadcrumb');
+            const items = [...nav.querySelectorAll('li')].filter((li) => li.getClientRects().length).map((li) => {
+              const target = li.querySelector('a, span');
+              const range = document.createRange();
+              range.selectNodeContents(target);
+              const box = target.getBoundingClientRect();
+              return { label: target.textContent, link: target.tagName === 'A', width: box.width, height: box.height,
+                top: Math.round(range.getClientRects()[0].top) };
+            });
+            return { items, nav: nav.getBoundingClientRect().height,
+              offset: section.querySelector(':scope > .head').getBoundingClientRect().top - nav.getBoundingClientRect().top };
+          }, view);
+        } finally {
+          await actual.close();
+        }
+      };
+      const sizes = [['ios', 1024, 1366], ['ios', 1366, 1024], ['ios', 1194, 834], ['android', 1280, 800]];
+      for (const [kind, width, height] of sizes) {
+        for (const collapsed of [false, true]) {
+          const label = `${kind} ${width}x${height} sidebar ${collapsed ? 'collapsed' : 'expanded'}`;
+          const read = await measure(kind, width, height, collapsed, '#/read/crumb');
+          const plain = await measure(kind, width, height, collapsed, '#/catalog');
+          const tops = new Set(read.items.map((item) => item.top));
+          const links = read.items.filter((item) => item.link);
+          const tallest = Math.max(...read.items.map((item) => item.height));
+          t.check(`${label}: Home, Library and the list name share one line`,
+            read.items.map((item) => item.label).join('|') === 'Home|Library|Fictional: Lantern Harbor'
+              && tops.size === 1 && read.nav <= tallest + 1,
+            JSON.stringify(read));
+          t.check(`${label}: every crumb link keeps its touch target`,
+            links.length === 2 && links.every((item) => item.height >= 48 && (kind !== 'ios' || item.width >= 44)),
+            JSON.stringify(links));
+          t.check(`${label}: the heading sits where it does under a trail that never wrapped`,
+            Math.abs(read.offset - plain.offset) <= 0.5, JSON.stringify({ read: read.offset, catalog: plain.offset }));
+        }
+      }
+    } finally {
+      try {
+        for (const server of servers) {
+          server.closeAllConnections();
+          await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+        }
+      } finally {
+        await rm(scratch, { recursive: true, force: true });
+      }
+    }
+  },
+});
+
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.
