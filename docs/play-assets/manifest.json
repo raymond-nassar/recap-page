@@ -3,13 +3,13 @@
   "status": "preview-unapproved",
   "releaseAcceptance": false,
   "source": {
-    "sourceRevision": "910c7e72318ff8927fd7a7d6ef18a4137264251a",
-    "sourceTree": "eb4c12ab0408fec11446699ec47bad5b90ee73d8",
+    "sourceRevision": "422b80a58e381f8bf246c7b1c44abe1368ac53fd",
+    "sourceTree": "ed57b2978b7bf5c626c47a31f502719e89b3dd04",
     "sourceDirty": true,
     "files": [
       {
         "path": "package.json",
-        "sha256": "a206a1547906c5accc9570ed4f889379cce3df5a811a6a303adc172e8d34c6bf"
+        "sha256": "c64045b7c1b3781321692e0a93b479586cae5e434d4a20d07770f80223508db6"
       },
       {
         "path": "packaging/android/web/app.js",
@@ -33,7 +33,7 @@
       },
       {
         "path": "packaging/android/web/mobile.css",
-        "sha256": "381e8725ac649bf6c73a0d04b0f32aa4cd28c8e1337c8c0619f2a816cb251f88"
+        "sha256": "d0d8aa93e60e29d3d6c326246c9eeb6e9cd2033b0322b28aa6c8a0cd746692b8"
       },
       {
         "path": "scripts/build-icons.mjs",
@@ -185,7 +185,7 @@
       },
       {
         "path": "src/js/lib/homeUpdatesContent.js",
-        "sha256": "953e76b73035f807b88982b19fb082a5a9262f79fda49bb8e5ac03341e375fe8"
+        "sha256": "0bcddf00152f6ec1c51e8c78483637b55e44fa9a6a906a93657c685ba5ae5ec9"
       },
       {
         "path": "src/js/lib/homeUpdatesSeen.js",
@@ -333,7 +333,7 @@
       },
       {
         "path": "src/js/lib/version.js",
-        "sha256": "018ea80fc3159589d7a14fed53abf9d2005a293ae4c4e0bac544e0734905b5a1"
+        "sha256": "a46374d8a1d3016b8112fff5fb88329dddfc121c7da875e6dd69fd6dcc9a29ef"
       },
       {
         "path": "src/js/lib/wiki.js",
@@ -385,7 +385,7 @@
       },
       {
         "path": "src/js/views/home-updates.js",
-        "sha256": "cfdd4b2111a3e1be8830bd3df935fb209b8b77c809cdc90e2f3b101b620a4000"
+        "sha256": "17cd38ba3515323c153bd3c0be44a7533b64d39ce72c0e2eb9bc82f8fb29d78e"
       },
       {
         "path": "src/js/views/home.js",
@@ -473,7 +473,7 @@
       }
     ]
   },
-  "androidManifestSha256": "4ece5fac262b56bcce23b2240aa96d6c3e257c6f9366e0ee8163014703ab0f63",
+  "androidManifestSha256": "1a6dcf1bd038ee5abc37a70bd1ae29be9a3cc6570f62ef2b9841ebc03b296edc",
   "renderer": {
     "name": "Microsoft Edge",
     "version": "Edg/156.0.4314.58",
@@ -634,8 +634,8 @@
       "height": 1920,
       "channels": 3,
       "alt": "Android next-issue layout with a fictional issue and original cover-off placeholder.",
-      "bytes": 175228,
-      "sha256": "6026d694513b4f31fbcadca0f6444db9b6c77e43937099a62ee45cd4680a11c8"
+      "bytes": 175285,
+      "sha256": "1d8b61f289f93632e8720156df4417329a983b80cd105ba84e116ac8c5724376"
     },
     {
       "file": "03-about-onedrive.png",
