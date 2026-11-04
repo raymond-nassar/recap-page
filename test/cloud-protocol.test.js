@@ -21,6 +21,8 @@ import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRes
 import { canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
 import { CLOUD_BACKUP_DATABASE, CLOUD_BACKUP_LOCK, KEY, SETTINGS_KEY, SIDEBAR_KEY } from '../src/js/storage.js';
+import { createCloudHostTransport } from '../src/js/lib/cloudHostTransport.js';
+import { createICloudTransport } from '../packaging/ios/icloud-web/icloudTransport.js';
 
 const MIB = 1024 * 1024;
 const API_BASE = 'https://metadata.example.test/v1';
@@ -422,6 +424,36 @@ async function uploadForKept(protocol, home, change) {
 }
 
 const keptCreates = (transport) => transport.created.filter((name) => name.startsWith('recap-page-kept-v1-'));
+function purposeTransport() {
+  const transport = fakeTransport();
+  const reads = [];
+  const read = transport.read.bind(transport);
+  transport.read = (id, options) => {
+    reads.push({ id, purpose: options?.purpose });
+    return read(id, options);
+  };
+  return { transport, reads };
+}
+
+test('read purpose: a kept copy is read back with verify', async () => {
+  const { transport, reads } = purposeTransport();
+  const { protocol } = await consented(harness({ transport }));
+  const request = await uploadForKept(protocol, device(), 1);
+  reads.length = 0;
+  const kept = await protocol.keepBackup(request);
+  assert.deepEqual(reads.filter(({ id }) => id === kept.id), [{ id: kept.id, purpose: 'verify' }]);
+});
+
+test('read purpose: fetching a backup reads it with restore', async () => {
+  const { transport, reads } = purposeTransport();
+  const { protocol } = await consented(harness({ transport }));
+  await protocol.upload(await device().snapshot());
+  const [entry] = (await protocol.discover(ON)).devices;
+  reads.length = 0;
+  await protocol.fetchBackup(entry.current, ON);
+  assert.deepEqual(reads, [{ id: entry.current.id, purpose: 'restore' }]);
+});
+
 const quickCleanupTimer = (callback, ms) => setTimeout(callback,
   ms === 1000 || ms === CLOUD_TRANSPORT_DEADLINES_MS.read + CLOUD_DEADLINE_GRACE_MS ? 20 : ms);
 
@@ -4134,4 +4166,187 @@ test('sync pin safety lets unlocked workers prune ordinary backups without delet
   }
   assert.deepEqual(second.transport.generations(keptStream), [3, 4], 'ordinary pruning keeps only the newest two');
   assert.equal((await unlocked.fetchKeptBackup({ ...context, kept })).text, first.text);
+});
+
+// ------------------------------------------------------------------ iCloud: why each file is read (#949)
+
+// The iOS app's handler as the engine meets it, through the real iOS adapter and host transport. A file is
+// on the device at once and waits for iCloud until the test uploads it, and a read of a waiting file is
+// refused at once, with the 15 seconds the handler names, unless it may wait for the upload. Which read
+// may wait is what these tests are about, so each read is answered as the handler of its shape answers
+// it. A read that states its purpose is answered as the app's handler now answers it: only 'verify', of
+// the name the last create made, waits, and lists leave that alone. A read that states none is answered
+// as the handler on 65bcbe56 answered it, which took the read-back to be the read after the first list
+// after a create, so the race these tests are about is reproduced against an engine that states no
+// purpose. The 150-second window and the create deadline are the native tests' to prove.
+function icloudNative(connection) {
+  const files = new Map();
+  const gates = new Map();
+  const waiting = [];
+  const reads = [];
+  let candidate = null;
+  let generation = 0;
+  let legacy = null;
+  let epoch = 0;
+  const answer = (body) => ({ v: 1, kind: 'cloud-result', status: 200, body: JSON.stringify(body) });
+  const refused = (code, message, retryAfterMs) => answer({ ok: false, error: { code, message, ...(retryAfterMs ? { retryAfterMs } : {}) } });
+  const item = (name) => ({ id: name, name, size: Buffer.from(files.get(name).bytes, 'base64').byteLength, created: null });
+  async function pause(point) {
+    const gate = gates.get(point);
+    if (!gate) return;
+    gates.delete(point);
+    gate.reached = true;
+    await gate.opened;
+  }
+  const native = {
+    reads,
+    autoUpload: false,
+    // The next request to arrive at this point waits there until the test lets it go.
+    hold(point) {
+      let release;
+      const gate = { reached: false, opened: new Promise((resolve) => { release = resolve; }) };
+      gate.release = release;
+      gates.set(point, gate);
+      return gate;
+    },
+    uploadAll() {
+      for (const file of files.values()) file.uploaded = true;
+      for (const resolve of waiting.splice(0)) resolve();
+    },
+    async postMessage({ op, body }) {
+      const input = JSON.parse(body || '{}');
+      if (op === 'status') {
+        return answer({ ok: true, status: { provider: 'icloud', providers: ['icloud'], state: 'connected', connection, account: null, message: null, reason: null, signInExpiresAt: null } });
+      }
+      if (input.connection !== connection) return refused('needs-consent', 'Cloud backup asks again first.');
+      if (op === 'list') {
+        const saved = legacy;
+        legacy = null;
+        epoch += 1;
+        const at = epoch;
+        await pause('list');
+        if (saved && !saved.listed && epoch === at) legacy = { ...saved, listed: true };
+        return answer({ ok: true, items: [...files.keys()].map(item) });
+      }
+      if (op === 'read') {
+        let mayWait;
+        if (input.purpose === undefined) {
+          mayWait = legacy?.name === input.id;
+          legacy = null;
+          epoch += 1;
+        } else {
+          mayWait = input.purpose === 'verify' && candidate === input.id;
+          if (input.purpose === 'verify') candidate = null;
+        }
+        const file = files.get(input.id);
+        const read = { name: input.id, purpose: input.purpose, waited: Boolean(file && !file.uploaded && mayWait) };
+        reads.push(read);
+        if (!file) return refused('not-found', 'That backup is not in iCloud.');
+        if (!file.uploaded && !mayWait) return refused('unavailable', 'iCloud has not uploaded this backup yet.', 15_000);
+        if (!file.uploaded) await new Promise((resolve) => { waiting.push(resolve); });
+        return answer({ ok: true, bytes: file.bytes });
+      }
+      if (op === 'create') {
+        legacy = null;
+        epoch += 1;
+        const at = epoch;
+        candidate = null;
+        generation += 1;
+        const made = generation;
+        await pause('create');
+        files.set(input.name, { bytes: input.bytes, uploaded: native.autoUpload });
+        if (epoch === at) legacy = { name: input.name, listed: false };
+        if (generation === made) candidate = input.name;
+        await pause('create-reply');
+        return answer({ ok: true, item: item(input.name) });
+      }
+      if (op === 'delete') {
+        legacy = null;
+        epoch += 1;
+        candidate = null;
+        generation += 1;
+        files.delete(input.id);
+        return answer({ ok: true });
+      }
+      return { v: 1, kind: 'cloud-result', status: 404, body: 'null' };
+    },
+  };
+  return native;
+}
+
+// One backup already made and uploaded, and the next one to make, on a device whose iCloud keeps the
+// next file waiting until the test uploads it.
+async function icloudBackups() {
+  const connection = 'c'.repeat(32);
+  const native = icloudNative(connection);
+  const transport = createICloudTransport({ native, nav: { userAgent: 'iPhone' }, createTransport: createCloudHostTransport });
+  assert.equal((await transport.status()).state, 'connected');
+  assert.equal(transport.duplicateNames, true, 'iCloud lists again after a create, as the race needs');
+  const env = harness({ transport });
+  const protocol = env.make();
+  await protocol.recordConsent({ connection, provider: 'icloud', device: transport.device });
+  const home = device();
+  native.autoUpload = true;
+  await protocol.upload(await home.snapshot());
+  native.autoUpload = false;
+  native.reads.length = 0;
+  home.mark(2);
+  return { connection, native, protocol, next: await home.snapshot() };
+}
+
+const outcome = (promise) => promise.then(() => 'done', (error) => error?.code ?? 'failed');
+
+test('iCloud: discovery that lists first after a create is refused at once, and the backup still verifies', async () => {
+  const { connection, native, protocol, next } = await icloudBackups();
+  const reply = native.hold('create-reply');
+  const uploading = outcome(protocol.upload(next));
+  try {
+    await until(() => reply.reached, 'the create reached the app');
+    const discovering = outcome(protocol.discover({ connection }));
+    await until(() => native.reads.length === 1, 'discovery read the new file');
+    assert.equal(native.reads[0].waited, false, 'a discovery read never waits for an upload');
+    assert.equal(await discovering, 'unavailable');
+    reply.release();
+    await until(() => native.reads.length === 2, 'the backup read its file back');
+    assert.equal(native.reads[1].waited, true, "the backup's read-back waits for the upload");
+    native.uploadAll();
+    assert.equal(await uploading, 'done');
+    assert.equal((await protocol.record()).validated[0].generation, 2);
+  } finally {
+    reply.release();
+    native.uploadAll();
+    await uploading;
+  }
+});
+
+test('iCloud: discovery listing while a create completes is refused at once, and the backup still verifies', async () => {
+  const { connection, native, protocol, next } = await icloudBackups();
+  const creating = native.hold('create');
+  const reply = native.hold('create-reply');
+  const uploading = outcome(protocol.upload(next));
+  let listing = null;
+  try {
+    await until(() => creating.reached, 'the create reached the app');
+    listing = native.hold('list');
+    const discovering = outcome(protocol.discover({ connection }));
+    await until(() => listing.reached, 'discovery started its list');
+    creating.release();
+    await until(() => reply.reached, 'the create completed while the list was in flight');
+    listing.release();
+    await until(() => native.reads.length === 1, 'discovery read the new file');
+    assert.equal(native.reads[0].waited, false, 'a discovery read never waits for an upload');
+    assert.equal(await discovering, 'unavailable');
+    reply.release();
+    await until(() => native.reads.length === 2, 'the backup read its file back');
+    assert.equal(native.reads[1].waited, true, "the backup's read-back waits for the upload");
+    native.uploadAll();
+    assert.equal(await uploading, 'done');
+    assert.equal((await protocol.record()).validated[0].generation, 2);
+  } finally {
+    creating.release();
+    listing?.release();
+    reply.release();
+    native.uploadAll();
+    await uploading;
+  }
 });

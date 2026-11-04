@@ -592,8 +592,12 @@ export class CloudBackupProtocol {
   // listed, read, created or deleted in an account this browser has not agreed to (stage 1 review, M1).
   //   list({ connection }) resolves to every item, as { id, name, size, created }; an area not made yet
   //   lists as empty.
-  //   read(id, { connection }) resolves to the item's bytes, refusing with 'too-large' an item whose stored
-  //   bytes exceed 32 MiB, without returning them, and with 'not-found' one that is gone.
+  //   read(id, { connection, purpose }) resolves to the item's bytes, refusing with 'too-large' an item whose
+  //   stored bytes exceed 32 MiB, without returning them, and with 'not-found' one that is gone. The purpose
+  //   says why it is read: 'verify' for the read-back of an item this engine has just created, 'discover',
+  //   'restore', 'keep' for a backup copied to a kept copy, and 'check' for a kept copy checked again. A
+  //   transport may ignore it. One whose provider can hold a new item before it is stored, as iCloud can,
+  //   may wait for that only for 'verify', and refuses every other read of such an item at once.
   //   create(name, bytes, { connection }) makes a new item and resolves to it. It never knowingly replaces
   //   one, and refuses with 'exists' a name it can tell is taken. A lost host reply can be reported as
   //   unavailable rather than timeout, so a kept-copy reservation survives either kind of failure.
@@ -749,7 +753,8 @@ export class CloudBackupProtocol {
   }
 
   // An exact reserved name is only an intent. It becomes an identity after unique listing and byte checks.
-  async checkKeptEntry(entry, connection, cleanup = null) {
+  // The read of its bytes is a read-back only straight after this engine created it.
+  async checkKeptEntry(entry, connection, cleanup = null, purpose = 'check') {
     const signal = cleanup?.signal;
     const wait = cleanup?.wait ?? ((operation) => operation);
     const listed = await wait(this.listed(connection), true);
@@ -758,7 +763,7 @@ export class CloudBackupProtocol {
     const count = listed.nameCounts.get(entry.name) ?? 0;
     if (count === 0 && entry.id === null) return null;
     if (count === 0 && entry.id !== null) {
-      try { await wait(this.call('read', entry.id, { connection }), true); }
+      try { await wait(this.call('read', entry.id, { connection, purpose: 'check' }), true); }
       catch (error) {
         cleanupStopped(signal);
         if (error?.code === 'not-found') return null;
@@ -772,7 +777,7 @@ export class CloudBackupProtocol {
       || (matches[0].size !== null && matches[0].size > this.maxBytes)) refuse(KEPT_UNCONFIRMED, 'verify');
     const item = matches[0];
     let bytes;
-    try { bytes = bytesOf(await wait(this.call('read', item.id, { connection }), true)); }
+    try { bytes = bytesOf(await wait(this.call('read', item.id, { connection, purpose }), true)); }
     catch (error) {
       cleanupStopped(signal);
       if (error?.code === 'not-found') return null;
@@ -881,7 +886,7 @@ export class CloudBackupProtocol {
     const signal = cleanup?.signal;
     const wait = cleanup?.wait ?? ((operation) => operation);
     let bytes;
-    try { bytes = bytesOf(await wait(this.call('read', entry.id, { connection }), true)); }
+    try { bytes = bytesOf(await wait(this.call('read', entry.id, { connection, purpose: 'check' }), true)); }
     catch (error) {
       cleanupStopped(signal);
       if (error?.code === 'not-found') {
@@ -1125,7 +1130,7 @@ export class CloudBackupProtocol {
           refuse('That backup has an ambiguous cloud identity, so none was selected.', 'invalid');
         }
         let bytes;
-        try { bytes = bytesOf(await this.call('read', source[0].id, { connection: context.connection })); }
+        try { bytes = bytesOf(await this.call('read', source[0].id, { connection: context.connection, purpose: 'keep' })); }
         catch (error) {
           if (error?.code === 'not-found') refuse('That backup is no longer in the cloud account. Nothing was changed.', 'gone');
           if (error?.code === 'too-large') refuse('That backup cannot be checked, so it was not kept.', 'invalid');
@@ -1170,7 +1175,7 @@ export class CloudBackupProtocol {
           };
         });
         const recorded = ledger.entries.find((entry) => entry.name === name);
-        kept = await this.checkKeptEntry(recorded, context.connection);
+        kept = await this.checkKeptEntry(recorded, context.connection, null, 'verify');
         if (!kept) refuse(KEPT_UNCONFIRMED, 'verify');
       }
       const reference = await this.rememberKept(context, kept);
@@ -1563,7 +1568,7 @@ export class CloudBackupProtocol {
         refuse(TAKEN, 'exists');
       }
     }
-    const returned = bytesOf(await this.call('read', created.id, { connection }));
+    const returned = bytesOf(await this.call('read', created.id, { connection, purpose: 'verify' }));
     if (!returned || await this.digest(returned) !== sent) {
       await this.discard(created.id, connection);
       refuse('The cloud copy did not read back as it was sent, so it was removed and will be made again.', 'verify');
@@ -1694,9 +1699,9 @@ export class CloudBackupProtocol {
 
   // The checked file, null when it fails a check, or undefined when it was gone by the time it was read. A
   // read refused as too large is a file that fails a check, since its stored bytes pass the cap.
-  async inspect(item, connection, { expectedByteDigest, includeByteDigest = false } = {}) {
+  async inspect(item, connection, { expectedByteDigest, includeByteDigest = false, purpose = 'discover' } = {}) {
     let bytes;
-    try { bytes = bytesOf(await this.call('read', item.id, { connection })); }
+    try { bytes = bytesOf(await this.call('read', item.id, { connection, purpose })); }
     catch (error) {
       if (error?.code === 'not-found') return undefined;
       if (error?.code === 'too-large') return null;
@@ -1717,7 +1722,7 @@ export class CloudBackupProtocol {
     if (typeof id !== 'string' || id.length === 0 || typeof stream !== 'string' || !STREAM.test(stream)
       || !Number.isSafeInteger(generation) || generation < 1
       || (expectedByteDigest !== undefined && !validDigest(expectedByteDigest))) refuse('That backup cannot be found.', 'invalid');
-    const checked = await this.inspect({ id, stream, generation }, named, { expectedByteDigest });
+    const checked = await this.inspect({ id, stream, generation }, named, { expectedByteDigest, purpose: 'restore' });
     if (checked === undefined) refuse('That backup is no longer in the cloud account. Nothing was changed.', 'gone');
     if (checked === null) refuse('That backup was changed or cannot be read, so it was not restored. Nothing was changed.', 'invalid');
     return checked;

@@ -353,11 +353,12 @@ shared backup engine, its schedule and its restore are unchanged.
 - **Signing proof.** Both app configurations carry the iCloud Documents entitlements, the public
   `NSUbiquitousContainers` folder and `RECAP_ICLOUD`; the test target does not. The owner chose on
   3 November 2026 to include iCloud in the next version. The first signed export is the proof that
-  signing accepts the entitlements, and before it the owner confirms the App ID's iCloud container in
-  Apple's developer portal. Only the read-back after a create waits for an upload (#1100).
+  signing accepts the entitlements. The owner registered and assigned the App ID's iCloud container
+  in Apple's developer portal on 3 November 2026 (#949). Only read-back after a create waits (#1100).
 - **What iOS decides.** iOS uploads on its schedule. Read-back waits up to nine minutes for confirmation,
-  and a pending local backup blocks another create before it writes. Retention runs only after a newer
-  backup is confirmed. Restoring another device's backup may first need a download and a retry.
+  and only that read waits: any other read of a file still waiting to upload is refused at once and tried
+  again later. A pending local backup blocks another create before it writes. Retention runs only after
+  a newer backup is confirmed. Restoring another device's backup may first need a download and a retry.
 - **Account changes.** A connection is recorded against the iCloud account the device was signed in
   to. Signing out makes backup unavailable, and a different account needs connecting again, so one
   account's backups are never written into another's folder.
