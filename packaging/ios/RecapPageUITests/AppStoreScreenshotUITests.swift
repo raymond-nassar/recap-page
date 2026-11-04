@@ -10,6 +10,8 @@ final class AppStoreScreenshotUITests: XCTestCase {
         let appearance: String
         let seed: String
         let probe: String
+        /// The Debug-only fake iCloud account, "1" for signed in, for the screen that shows cloud backup.
+        let iCloudFake: String?
     }
 
     override func setUpWithError() throws {
@@ -45,6 +47,8 @@ final class AppStoreScreenshotUITests: XCTestCase {
         }
         XCTAssertEqual(screens.map(\.name), expected, "screens for \(set) in \(appearance)")
         XCTAssertEqual(screens.map(\.appearance), Array(repeating: appearance.capitalized, count: expected.count))
+        XCTAssertEqual(screens.filter { $0.iCloudFake != nil }.map(\.name),
+                       appearance == "light" ? ["07-backup-settings"] : [], "screens with the fake iCloud account")
         XCUIDevice.shared.orientation = .portrait
         for screen in screens {
             let app = XCUIApplication()
@@ -56,6 +60,7 @@ final class AppStoreScreenshotUITests: XCTestCase {
             app.launchEnvironment["RECAP_IOS_DATA_LOSS_RESET"] = "1"
             app.launchEnvironment["RECAP_IOS_SCREENSHOT_SEED"] = screen.seed
             app.launchEnvironment["RECAP_PROBE_SCRIPT"] = screen.probe
+            if let fake = screen.iCloudFake { app.launchEnvironment["RECAP_IOS_ICLOUD_FAKE"] = fake }
             app.launch()
             let result = app.staticTexts["recap-probe-result"]
             XCTAssertTrue(result.waitForExistence(timeout: 240), "\(screen.name): the probe appeared")

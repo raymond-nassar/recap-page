@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import { drawIcon, encodePng } from '../scripts/build-icons.mjs';
 import {
   ASSETS, ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, playIcon, featureGraphic, decodePng,
@@ -7,9 +9,87 @@ import {
 } from '../scripts/play-assets.mjs';
 import { migrate } from '../src/js/lib/model.js';
 import { LOCAL_SERVER_HEALTH_PATH } from '../src/js/lib/localServer.js';
+import { dismissListingNotice, framedText } from '../scripts/listing-fixtures.mjs';
+import { SCREENSHOTS } from '../scripts/capture-store-assets.mjs';
 
 const icon = playIcon();
 const feature = featureGraphic();
+
+test('framed text never includes offscreen lines of a partly visible text node', () => {
+  const text = 'Visible title\nonly to your own OneDrive';
+  const parent = {
+    closest: () => null,
+    contains: (element) => element === parent,
+    parentElement: null,
+  };
+  const node = { textContent: text, parentElement: parent };
+  const firstLineEnd = text.indexOf('\n');
+  let start = 0, end = text.length, visited = false;
+  const rectangle = (visible) => ({
+    left: 10, right: 20, top: visible ? 10 : 740, bottom: visible ? 30 : 760,
+  });
+  const document = {
+    documentElement: { clientWidth: 360 },
+    body: {},
+    createTreeWalker: () => ({ nextNode: () => visited ? null : (visited = true, node) }),
+    createRange: () => ({
+      selectNodeContents() { start = 0; end = text.length; },
+      setStart(_node, offset) { start = offset; },
+      setEnd(_node, offset) { end = offset; },
+      getClientRects: () => [
+        ...(start < firstLineEnd ? [rectangle(true)] : []),
+        ...(end > firstLineEnd ? [rectangle(false)] : []),
+      ],
+    }),
+    elementFromPoint: () => parent,
+  };
+  const result = runInNewContext(`(${framedText.toString()})()`, {
+    document, innerHeight: 640, NodeFilter: { SHOW_TEXT: 4 },
+    getComputedStyle: () => ({ visibility: 'visible', opacity: '1', textTransform: 'none' }),
+  });
+  assert.equal(result.includes('Visible title'), true);
+  assert.equal(result.includes('only to your own OneDrive'), false);
+  assert.deepEqual(SCREENSHOTS.find(({ file }) => file === '03-reading-paths.png').text,
+    ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'Essential Avengers']);
+});
+
+test('only the desktop and Play Home captures dismiss the December 7 notice before framing', async () => {
+  assert.equal(ASSETS.find(({ file }) => file === 'dark-01-home.png').alt,
+    'Dark Android Home with a Modern Timeline starting action, Search and a Modern Timeline discovery card.',
+    'owner-approved notice-free Home alt text, November 3, 2026');
+  assert.ok(readFileSync(new URL('../docs/MICROSOFT_STORE_SUBMISSION.md', import.meta.url), 'utf8')
+    .includes('Dark Home offers a first reading step on Modern Timeline, with Search and a Modern Timeline discovery card.'),
+  'owner-approved notice-free Home description, November 3, 2026');
+  assert.deepEqual(SCREENSHOTS.filter(({ dismissNotice }) => dismissNotice).map(({ file }) => file), ['01-home-discovery.png']);
+  assert.deepEqual(SCREENS.filter(({ dismissNotice }) => dismissNotice).map(({ file }) => file), ['dark-01-home.png']);
+  for (const script of ['capture-store-assets.mjs', 'capture-play-assets.mjs']) {
+    const source = readFileSync(new URL(`../scripts/${script}`, import.meta.url), 'utf8');
+    assert.match(source, /await dismissListingNotice\(page, (?:screen|screenshot)\.dismissNotice\);/);
+    assert.ok(source.indexOf('await dismissListingNotice(') < source.indexOf('await document.fonts.ready'));
+  }
+  const calls = [];
+  const page = {
+    async waitForSelector(selector, options) { calls.push([selector, options]); },
+    async $eval(selector, action) {
+      assert.equal(selector, '#reader-closure-dismiss');
+      action({ click() { calls.push('click'); } });
+    },
+  };
+  await dismissListingNotice(page, false);
+  assert.deepEqual(calls, []);
+  await dismissListingNotice(page, true);
+  assert.deepEqual(calls, [
+    ['#reader-closure-dismiss', { visible: true, timeout: 15000 }],
+    'click',
+    ['#reader-closure-notice', { hidden: true, timeout: 15000 }],
+  ]);
+  await assert.rejects(dismissListingNotice({
+    ...page,
+    async waitForSelector(selector) {
+      if (selector === '#reader-closure-notice') throw new Error('notice remains visible');
+    },
+  }, true), /notice remains visible/);
+});
 
 test('Play icon preserves the authored mark with opaque full-bleed square corners', () => {
   const image = decodePng(icon);
@@ -53,8 +133,10 @@ test('PNG inspection rejects corrupt, truncated, wrong-size, alpha and blank out
   assert.throws(() => encodePng(1024, Buffer.alloc(3), { height: 500, alpha: false }), /do not agree/);
 });
 
-test('phone previews satisfy the current minimum count, dimensions and aspect ratio', () => {
-  assert.equal(SCREENS.length, 2);
+test('phone previews replace all six existing images and add OneDrive About and settings within the eight-image limit', () => {
+  assert.equal(SCREENS.length, 8);
+  assert.deepEqual(SCREENS.slice(0, 4).map(({ theme }) => theme), ['dark', 'dark', 'dark', 'dark']);
+  assert.deepEqual(SCREENS.slice(-2).map(({ view }) => view), ['view-about', 'view-data']);
   for (const spec of ASSETS.slice(2)) {
     assert.equal(spec.width, VIEWPORT.width * VIEWPORT.deviceScaleFactor);
     assert.equal(spec.height, VIEWPORT.height * VIEWPORT.deviceScaleFactor);
@@ -91,9 +173,14 @@ test('capture allowlist serves only the generated shell and named local fixtures
     ['index.html', Buffer.from('<html></html>')], ['android/app.js', Buffer.from('boot();')],
     ['data/house_of_m.json', Buffer.from('real metadata must not escape')],
     ['open.html', Buffer.from('reader must not open')],
+    ['data/catalog.json', Buffer.from('{"lists":[],"paths":[]}')],
+    ['android/cloud.js', Buffer.from('fixture port import')],
+    ['android/cloudPort.js', Buffer.from('fixture port')],
   ]);
   assert.equal(previewResponse(`${ORIGIN}/`, 'GET', assets).body, assets.get('index.html'));
   assert.equal(previewResponse(`${ORIGIN}/android/app.js`, 'GET', assets).body, assets.get('android/app.js'));
+  assert.equal(previewResponse(`${ORIGIN}/android/cloud.js`, 'GET', assets).body, assets.get('android/cloud.js'));
+  assert.equal(previewResponse(`${ORIGIN}/android/cloudPort.js`, 'GET', assets).body, assets.get('android/cloudPort.js'));
   assert.deepEqual(JSON.parse(previewResponse(`${ORIGIN}/data/catalog.json`, 'GET', assets).body), { lists: [], paths: [] });
   assert.equal(previewResponse(`${FIXTURE_API}/health`, 'GET', assets).fixture, 'metadata-health');
   assert.equal(previewResponse(`${ORIGIN}${LOCAL_SERVER_HEALTH_PATH}`, 'GET', assets).status, 204);
@@ -107,6 +194,21 @@ test('capture allowlist serves only the generated shell and named local fixtures
   assert.throws(() => previewResponse(`${ORIGIN}/`, 'POST', assets), /Blocked/);
 });
 
+test('cloud fixture enables OneDrive copy without an account, sign-in or writable transport', () => {
+  const url = `${ORIGIN}/__recap_cloud__/v1/status`;
+  const body = JSON.parse(previewResponse(url, 'POST', new Map()).body);
+  assert.equal(body.ok, true);
+  assert.equal(body.status.provider, 'onedrive');
+  assert.equal(body.status.state, 'not-connected');
+  assert.equal(body.status.account, null);
+  assert.equal(body.status.connection, null);
+  for (const operation of ['connect', 'disconnect', 'list', 'read', 'create', 'delete']) {
+    assert.throws(() => previewResponse(`${ORIGIN}/__recap_cloud__/v1/${operation}`, 'POST', new Map()), /status only/);
+  }
+  assert.throws(() => previewResponse(url, 'GET', new Map()), /status only/);
+  assert.throws(() => previewResponse('https://example.test/__recap_cloud__/v1/status', 'POST', new Map()), /Blocked/);
+});
+
 test('manifest labels the renderer and unset approvals without embedding profiles or demonstration state', () => {
   const files = ASSETS.map((spec) => ({ ...spec, bytes: 123, sha256: 'a'.repeat(64) }));
   const args = {
@@ -118,11 +220,27 @@ test('manifest labels the renderer and unset approvals without embedding profile
   assert.equal(result.releaseAcceptance, false);
   assert.equal(result.renderer.nativeDevice, null);
   assert.equal(result.renderer.nativeBridge, false);
+  assert.equal(result.cloud.configuration.providers.onedrive.clientId, 'screenshot-fixture.recap-page');
+  assert.equal(result.cloud.account, null);
+  assert.equal(result.cloud.automaticBackup, false);
   assert.match(result.renderer.method, /Desktop Edge/);
   assert.ok(Object.values(result.approvals).every((value) => value === false));
   assert.doesNotMatch(JSON.stringify(result), /Users[\\/]|userDataDir|mrt\.state|notes":\{/);
   assert.throws(() => previewManifest({ ...args, files: files.slice(1) }), /inventory/);
   assert.throws(() => previewManifest({ ...args, files: [files[0], files[0], ...files.slice(2)] }), /inventory/);
+});
+
+test('saved next-update Play packet matches its measured manifest and has no publication approval', () => {
+  const root = new URL('../docs/play-assets/', import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL('manifest.json', root), 'utf8'));
+  assert.equal(manifest.status, 'preview-unapproved');
+  assert.equal(manifest.releaseAcceptance, false);
+  assert.equal(manifest.cloud.simulated, true);
+  assert.ok(Object.values(manifest.approvals).every((value) => value === false));
+  assert.deepEqual(manifest.files.map(({ file }) => file), ASSETS.map(({ file }) => file));
+  for (const record of manifest.files) {
+    assert.deepEqual(inspectAsset(record.file, readFileSync(new URL(record.file, root))), record);
+  }
 });
 
 test('only the fulfilled identity-checked bodyless local health response tolerates Chromium abort reporting', () => {

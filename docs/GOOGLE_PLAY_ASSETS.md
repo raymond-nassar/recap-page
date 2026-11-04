@@ -6,6 +6,14 @@ assets, not a submission packet or permission to publish. It needs no Play Conso
 Android SDK, emulator, signing key or live service. The app, its identity and saved reading data
 stay unchanged.
 
+By owner decision, Google Play and the App Store refresh their screenshots with **4.4.0**, as part
+of #1015. The Microsoft Store keeps its current screenshots during the automated 4.4.0 app submission;
+once 4.4.0 is live, a separate listing-only Partner Center submission through Playwright uploads
+the refreshed Windows set with the approved captions. The live Play listing shows the set uploaded on 2026-10-31,
+which predates Genres and still shows Storylines. No upload step is part of this work. Captions, measurements,
+the desktop set planned for Play and the cloud fixture are recorded in
+[the Store submission document](MICROSOFT_STORE_SUBMISSION.md#listing-assets).
+
 ## Generate an unapproved preview packet
 
 Use Node.js 20 or newer, installed Microsoft Edge and externally installed `puppeteer-core`.
@@ -28,7 +36,8 @@ npm run play:assets
 ```
 
 The command prints a new `dist\play-assets-preview-*` directory and never overwrites an earlier
-packet. Keep generated files ignored. Never commit or automatically upload them:
+packet. Keep working packets ignored and never automatically upload them. The prepared packet
+for #1015 is intentionally committed under `docs\play-assets` for later use, not as live assets:
 
 | File | Measured output contract |
 |---|---|
@@ -36,6 +45,12 @@ packet. Keep generated files ignored. Never commit or automatically upload them:
 | `feature-preview.png` | 1024 x 500, 24-bit RGB PNG without alpha |
 | `01-library-preview.png` | 1080 x 1920, 24-bit RGB PNG of the Android library layout |
 | `02-reading-preview.png` | 1080 x 1920, 24-bit RGB PNG of the Android reading layout |
+| `dark-01-home.png` | 1080 x 1920, dark Android Home |
+| `dark-02-genres.png` | 1080 x 1920, dark Android Genres |
+| `dark-03-modern-timeline.png` | 1080 x 1920, dark Android Modern Timeline |
+| `dark-04-reading-progress.png` | 1080 x 1920, dark Android reading progress |
+| `03-about-onedrive.png` | 1080 x 1920, Android cloud-on privacy text |
+| `04-backup-settings.png` | 1080 x 1920, Android OneDrive settings before sign-in |
 | `manifest.json` | Source identity and hashes, image dimensions/bytes/checksums, alt text, actual renderer and unapproved status |
 
 The icon uses the [authored page mark](../scripts/build-icons.mjs) on a flat purple background.
@@ -50,23 +65,31 @@ The [capture command](../scripts/capture-play-assets.mjs) prepares the
 real entry module and mobile stylesheet in **desktop Edge** at a 360 x 640 CSS-pixel touch/mobile
 viewport, scale 3. No native Android device or bridge is used. These are not physical-device
 captures, release acceptance or approved final Play screenshots. Filenames and the manifest state
-that distinction; keep the manifest with the images. The library is captured from the top; the
-reading view is scrolled to its next-issue card without changing layout or hiding controls.
+that distinction; keep the manifest with the images. The library is captured from the top. The light
+reading view is scrolled to its next-issue card, and the dark one to the progress and Coming up
+rows that a phone shows below that card, without changing layout or hiding controls.
 Scrolling down hides the phone's bottom navigation, so the capture then scrolls just past the card
 and returns, as a reader does to bring the bar back, and waits for every animation to finish.
 Original CSS cover-off placeholders stay visible.
 
-Each screen uses an isolated, disposable browser context. The
+Each screen uses an isolated, disposable browser context. Home uses empty saved state and dismisses
+the December 7 notice through the app's Dismiss button before framing. The
 [tooling-only fixture](../scripts/play-assets.mjs) supplies two explicitly fictional lists with
 12 made-up negative-ID issues and three read markers. It has no notes, availability overrides,
-cover URLs, digital reader IDs, publisher URLs or real reader data. An empty fixture replaces
-the memoized catalog before first navigation. No fixture ships in the app.
+cover URLs, digital reader IDs, publisher URLs or real reader data. Discovery uses the bundled
+public catalog, which supplies titles and descriptions but no downloaded comic art.
+No fixture ships in the app.
 
-Request interception is set before navigation. Only inspected generated shell assets and three
-named local fixtures (catalog, metadata health and local health) can load. No request reaches the
+Request interception is set before navigation. Only inspected generated shell assets, the bundled
+catalog and named local health fixtures can load. A tooling-only status response enables cloud
+copy without an account. Android's real message-port transport receives a simulated MainActivity
+status: OneDrive enabled, not connected, no account details, automatic backup off. Every operation
+except status is forbidden. The fixture cannot sign in or read or write OneDrive. About and Backup &
+settings are captured only after every cloud-on copy variant is active.
+No request reaches the
 network; Edge's page network is also offline. The command keeps `http://127.0.0.1:8787/` fixed without
 opening a listening socket or reusing another session's server or browser profile. Reader pages,
-popups, real catalog files, covers and external requests are refused. An unexpected attempt fails the
+popups, reading-list data files, covers and external requests are refused. An unexpected attempt fails the
 packet; it never gets a generic successful mock response. No Bifrost, Marvel or metadata endpoint
 is probed. These capture rules do not change production network policy.
 
@@ -86,7 +109,8 @@ and change the narrow contract only after review.
 ## Current technical requirements
 
 Google's [preview asset guidance](https://support.google.com/googleplay/android-developer/answer/9866151?hl=en)
-and [icon specifications](https://developer.android.com/distribute/google-play/resources/icon-design-specifications)
+was rechecked on **2026-10-31 UTC**; the
+[icon specifications](https://developer.android.com/distribute/google-play/resources/icon-design-specifications)
 were retrieved on **2026-09-29 UTC**:
 
 | Asset | Requirement used by this tooling |
@@ -94,7 +118,8 @@ were retrieved on **2026-09-29 UTC**:
 | App icon | 512 x 512, 32-bit PNG, sRGB, maximum 1024 KB, full square without an outer shadow |
 | Feature graphic | 1024 x 500, JPEG or 24-bit PNG, no alpha |
 | Phone screenshots | JPEG or 24-bit PNG, no alpha; each dimension 320 to 3840; longest dimension at most twice the shortest |
-| Screenshot count | At least two screenshots across supported device types for a listing; this preview provides two phone layouts |
+| Screenshot count | At least two screenshots across supported device types for a listing; this packet provides eight phone layouts, the per-device maximum |
+| Chromebook screenshots | At least four, 1080 to 7680 pixels, landscape 16:9 or portrait 9:16; the planned desktop set has four at 1920 x 1080 |
 
 Output is portrait 9:16, without stretching or added device chrome. Manifest alt text stays within
 Google's recommended 140 characters. Meeting technical requirements does not approve content,

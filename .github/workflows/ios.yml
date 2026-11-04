@@ -740,7 +740,7 @@ jobs:
         run: |
           node scripts/ios-app-store-screenshots.mjs finish \
             --input "$RUNNER_TEMP/attachments" --output docs/ios-app-store-assets \
-            --source "$GITHUB_SHA" --run "$GITHUB_RUN_ID" --xcode "$(xcodebuild -version | head -n 1)"
+            --source "$GITHUB_SHA" --run "$GITHUB_RUN_ID" --xcode "$(xcodebuild -version | sed -n '1p')"
 
       - name: Keep the screenshots
         if: ${{ !cancelled() }}

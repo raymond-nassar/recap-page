@@ -56,7 +56,7 @@ test('the capture matches the three App Store slots and their screens in order',
     ['01-home', 'dark'], ['02-modern-timeline', 'dark'], ['03-reading-list', 'dark'], ['04-genres', 'dark'],
     ['05-professor-x', 'light'], ['06-library', 'light'], ['07-backup-settings', 'light'],
   ]);
-  assert.equal(SCREENS[6].caption, 'Download a complete backup of your lists and progress.');
+  assert.equal(SCREENS[6].caption, 'Back up your lists and progress to your own iCloud, automatically as you read.');
   for (const { folder } of SETS) {
     const screens = fixtures(folder);
     assert.deepEqual(screens.map(({ name }) => name), SCREENS.map(({ name }) => name), folder);
@@ -75,9 +75,34 @@ test('the capture matches the three App Store slots and their screens in order',
       assert.doesNotMatch(screen.probe, /paddingBottom/);
       assert.doesNotMatch(screen.seed + screen.probe, /[\u2013\u2014]/);
     }
+    const reading = screens.find(({ name }) => name === '03-reading-list');
+    assert.match(reading.probe, /view\.querySelector\(':scope > \.head'\)/);
+    assert.doesNotMatch(reading.probe, /android-list-options/);
   }
   assert.throws(() => fixtures('unknown'), /unknown set/);
   assert.throws(() => fixtures('ipad-13', 'automatic'), /unknown appearance/);
+});
+
+test('only the backup screen signs in the fake iCloud account and frames its Connect iCloud action', async () => {
+  for (const { folder } of SETS) {
+    assert.deepEqual(fixtures(folder, 'dark').filter((screen) => 'iCloudFake' in screen), [], folder);
+    const light = fixtures(folder, 'light');
+    assert.deepEqual(light.map(({ name, iCloudFake }) => [name, iCloudFake ?? null]),
+      [['05-professor-x', null], ['06-library', null], ['07-backup-settings', '1']], folder);
+    const probe = light.at(-1).probe;
+    for (const pin of ['"text":["Backup & settings","Connect iCloud"]', '"scroll":"#cloud-backup"',
+      '"control":"#btn-cloud-connect-icloud"', '"framed":["Cloud backup","Connect iCloud"]']) {
+      assert.ok(probe.includes(pin), `${folder}: ${pin}`);
+    }
+    assert.match(probe, /waitFor\(\(\) => shown\(document\.querySelector\(screen\.control\)\), screen\.control\)/);
+    assert.match(probe, /if \(!framed\.includes\(phrase\)\) throw/);
+    assert.match(probe, /!control\.contains\(hit\)/);
+  }
+  const swift = await readFile(new URL('../packaging/ios/RecapPageUITests/AppStoreScreenshotUITests.swift', import.meta.url), 'utf8');
+  assert.match(swift, /let iCloudFake: String\?/);
+  assert.match(swift, /if let fake = screen\.iCloudFake \{ app\.launchEnvironment\["RECAP_IOS_ICLOUD_FAKE"\] = fake \}/);
+  const debug = await readFile(new URL('../packaging/ios/RecapPage/DebugSupport.swift', import.meta.url), 'utf8');
+  assert.match(debug, /iCloudFakeKey = "RECAP_IOS_ICLOUD_FAKE"/);
 });
 
 test('the seed is the fictional Play listing state with covers off and no notes', () => {
