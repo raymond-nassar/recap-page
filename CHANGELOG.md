@@ -76,8 +76,8 @@ Reading-list screens' search boxes now match their own tagged lists by story typ
 espionage, space opera or lighthearted. The Marvel Knights to Planet X chapters can now be found on
 their reading-list screens by their story type or tone.
 
-MCU Prep guides no longer appear under Storylines. Find them on the MCU Prep screen, which has its
-own search. Issues opened from those guides now show MCU Prep in their breadcrumbs.
+Find MCU Prep guides on the MCU Prep screen, which has its own search. Issues opened from those
+guides now show MCU Prep in their breadcrumbs.
 
 ### Backups, restore and privacy
 
