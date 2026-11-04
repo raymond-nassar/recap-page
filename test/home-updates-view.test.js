@@ -73,10 +73,17 @@ test('iOS projects platform-specific highlights without changing the generated s
   const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
   assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length,
     'every real feature needs reviewed iOS copy, not omission');
-  assert.match(text, /Move your reading data with one complete backup file/);
-  assert.match(text, /Use clearer phone layouts and screen reader labels/);
+  assert.match(text, /Genres replaces Storylines on Home/);
+  assert.match(text, /Search now finds Reading Lists as you type/);
+  assert.match(text, /You can now back up your reading progress to your own iCloud Drive/);
+  assert.doesNotMatch(text, /iPhone and iPad:/, 'iOS readers see iCloud backup as their own feature');
   assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
+  const web = harness({ content: homeUpdatesContent });
+  web.view.wire();
+  const webText = walk(web.nodes.content).map((item) => item.textContent).join(' ');
+  assert.match(webText, /iPhone and iPad: you can now back up your reading progress to your own iCloud Drive/,
+    'other platforms see iCloud backup named as the iPhone and iPad feature it is');
 });
 
 test('iOS wiring omits unreviewed proper names but retains ordinary edge and windows prose', () => {
