@@ -43,7 +43,7 @@ export const SCREENS = Object.freeze([
   {
     name: '01-home', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty',
     text: ['RECAP PAGE!'], dismissNotice: true,
-    caption: 'Start from Home: guided reading paths, storylines and character spotlights.',
+    caption: 'Start from Home: guided reading paths, genres and character spotlights.',
   },
   {
     name: '02-modern-timeline', route: '#/catalog?path=modern-avengers', view: 'view-catalog', theme: 'dark',
@@ -57,9 +57,9 @@ export const SCREENS = Object.freeze([
     caption: 'See where you are in a reading list and what to read next.',
   },
   {
-    name: '04-storylines', route: '#/lines', view: 'view-lines', theme: 'dark',
-    text: ['Storylines', 'Beginner-friendly'],
-    caption: 'Browse storylines by era, with beginner-friendly picks marked.',
+    name: '04-genres', route: '#/genres', view: 'view-genres', theme: 'dark',
+    text: ['Browse Genres', 'Popular places to start'],
+    caption: 'Browse reading lists by genre and tone, or start with popular picks.',
   },
   {
     name: '05-professor-x', route: '#/spotlights', view: 'view-spotlights', theme: 'light',
@@ -79,7 +79,7 @@ export const SCREENS = Object.freeze([
 ]);
 
 const COLLAPSED_IPAD_SCREENS = new Set([
-  '02-modern-timeline', '03-reading-list', '04-storylines', '07-backup-settings',
+  '02-modern-timeline', '03-reading-list', '04-genres', '07-backup-settings',
 ]);
 
 export function pageState(screen) {

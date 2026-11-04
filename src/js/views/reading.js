@@ -199,7 +199,8 @@ export function createReadingView({
     const progress = $('#hero-progress');
     const description = $('#order-desc');
     const note = $('#list-note');
-    const moved = [sub, ring, progress, description, note];
+    const similarHint = $('#list-similar-hint');
+    const moved = [sub, ring, progress, description, note, similarHint];
     const focused = moved.some((entry) => entry.contains(document.activeElement)) ? document.activeElement : null;
     if (phoneOverview.matches) {
       overview.append(...moved);
@@ -208,6 +209,7 @@ export function createReadingView({
       $('#view-read > .head > .headright').append(ring);
       $('#hero-reader-temporary').after(progress);
       $('#reading-body > .list-work').after(note);
+      note.after(similarHint);
     }
     if ($('#hero').hidden) placeListOptions(phoneOverview.matches ? overview : note);
     syncReadingProgress();

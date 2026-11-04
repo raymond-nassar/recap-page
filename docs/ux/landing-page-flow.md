@@ -13,13 +13,14 @@ App launch, or selecting the brand lockup in the sidebar.
 4. Setup recommendation cards stay on the dedicated browsing pages rather than Home.
 5. Three large path tiles appear when their shelves contain published Reading Lists:
    - **Modern Timeline** with the compact label **Browse by year**
-   - **Storylines** with the compact label **Browse complete arcs**
+   - **Genres** with the compact label **Browse by genre and tone**
    - **Character spotlights** with the compact label **Browse heroes and teams**
 6. Each tile shows its Reading List count and opens the matching browse screen.
 7. Additional populated categories appear under **Discover More**. The whole group remains
    hidden while no additional category has content:
    - **MCU Prep** opens preparation lists for Marvel Cinematic Universe titles.
    - **Marvel Ages** opens one chronological gateway for populated publishing periods.
+   - **Young readers** opens lists selected for younger readers.
 8. Marvel attribution remains at the end of the surface.
 
 ## State B: Library Has Lists
@@ -73,7 +74,7 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
-  in 2004. Its 148 Reading Lists appear as 148 independently named cards representing 144 logical
+  in 2004. Its 152 Reading Lists appear as 152 independently named cards representing 148 logical
   timeline stops. Alternate versions do not become additional required stops.
 - Setup to Modern Timeline is featured above the unfiltered Modern Timeline cards through the same
   Preview flow. Search and filters hide it so results or no-results lead; clearing restores it.
@@ -87,8 +88,7 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
   marking an alternative through the same story.
 - Completing every timeline story puts the position after the final card. If a catalog entry cannot
   be shown, the position is reported as unavailable because the missing entry's place is unknown.
-- Events outside that guided sequence remain available through Marvel Ages and existing direct
-  addresses.
+- Events outside that guided sequence remain available through Genres and Marvel Ages.
 - Preview's existing Add control can complete the first add on the chosen browse page. Failures
   target that page, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
@@ -101,9 +101,10 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
   are shared with the fast track, while each saved list keeps its own name and list note.
 - Catalog title and source updates do not rewrite existing saved copies. Their names, issue order,
   collected-edition maps and notes remain unchanged.
-- Storylines browsing, search, facets and counts share one curated pool of existing original
-  readings, including selected named events and arcs with every genuine variant. Their canonical
-  Timeline, Storylines or Spotlight placement and saved identities remain unchanged.
+- Genres starts with ten editorial picks and filters tagged Reading Lists by genre and tone.
+  MCU Prep companions remain on their own screen. Old Storylines addresses open Genres without a
+  new history entry; the retired Storylines search box has no replacement. Saved identities remain
+  unchanged.
 - Filters appear only when they narrow to a nonempty proper subset. Informational publishing
   highlights are not styled as interactive filters.
 - Publishing periods describe where Reading Lists begin, not where every issue falls. Empty

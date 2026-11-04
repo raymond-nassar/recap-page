@@ -48,6 +48,16 @@ test('native fields and path selects share the scoped Field typography and targe
   assert.equal(rootTokens(css).get('--target'), '44px');
 });
 
+test('shared styled selects supply their own token surface and readable text in every theme', () => {
+  const rule = css.match(/#view-data select, \.setting select,[^{]+\{([^}]+)\}/)[1];
+  assert.match(rule, /background-color: var\(--card-2\)/);
+  assert.match(rule, /color: var\(--text\)/);
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    assert.ok(ratio(parseHex(tokens.get('--text')), parseHex(tokens.get('--card-2'))) >= BODY);
+  }
+});
+
 test('the native ask dialog authors viewport bounds and vertical scroll without replacing its controls', () => {
   // #830: the bounds and the scroll are the dialog shell's, which every question shares with Preview.
   assert.match(css, /\.ask, \.preview \{[^}]*max-height: calc\(100dvh - 2rem\); overflow-y: auto/);
@@ -453,8 +463,8 @@ test('every declared surface is one a pair actually renders on', () => {
 
 test('the six category cards on Home take six different hues in every theme', () => {
   // #872: MCU Prep, Marvel Ages and Reading paths all wore the brand purple of Modern Timeline. Hues
-  // are compared as OKLCH angles, so two purples a few units apart cannot pass as two colours. Six
-  // hues spread round the wheel would sit 60 degrees apart, and 30 is half of that.
+  // are compared as OKLCH angles, so two purples a few units apart cannot pass as two colours. Every
+  // category remains at least 30 degrees from every other category, including Genres.
   const channel = new Map([...css.matchAll(/\.home-path\[data-category="([\w-]+)"\] \{([^}]*)\}/g)]
     .map(([, key, body]) => [key, body.match(/--home-path-line: var\((--[\w-]+)\)/)?.[1]])
     .filter(([, token]) => token));

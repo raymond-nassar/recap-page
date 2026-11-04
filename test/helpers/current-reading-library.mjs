@@ -80,8 +80,8 @@ export const currentReadingCensus = Object.freeze({
   allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
-  // The qualified UX pool retains 46 non-MCU readings; MCU Prep lists are not Storylines (#1066).
-  storylines: 46,
+  // Retained internal classification, not a browse screen; includes the four CBRO additions.
+  storylines: 50,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta - 2

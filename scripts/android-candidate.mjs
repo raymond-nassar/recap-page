@@ -491,7 +491,7 @@ async function assertIntegration(root) {
   'INTEGRATION_HELD: release testBuildType, derived runner interface v1 and non-reseeding installation phases must land before execution');
 }
 
-export async function checkAssets(extracted, generated, root, identity, stage) {
+export async function checkAssets(extracted, generated, root, identity, stage, selectedBundle) {
   requireValue(['AAB', 'base-APK'].includes(stage), 'unknown asset verification stage');
   const assetRoot = resolve(extracted, '..');
   requireValue(basename(extracted) === 'recap' && basename(assetRoot) === 'assets',
@@ -518,6 +518,21 @@ export async function checkAssets(extracted, generated, root, identity, stage) {
     return output.sort();
   }
   const completeExpected = new Set([...expected].map((name) => `recap/${name}`));
+  const profiles = new Map();
+  if (stage === 'base-APK' && selectedBundle) {
+    for (const name of ['baseline.prof', 'baseline.profm']) {
+      const source = join(selectedBundle, 'BUNDLE-METADATA', 'com.android.tools.build.profiles', name);
+      const stat = await lstat(source).catch((error) => {
+        if (error.code === 'ENOENT') return null;
+        throw error;
+      });
+      if (stat === null) continue;
+      requireValue(stat.isFile(), 'selected AAB baseline profile must be a regular file');
+      const path = `dexopt/${name}`;
+      profiles.set(path, await readFile(source));
+      completeExpected.add(path);
+    }
+  }
   const actualPaths = await list(assetRoot);
   const actualSet = new Set(actualPaths);
   const missing = [...completeExpected].filter((name) => !actualSet.has(name)).sort();
@@ -528,6 +543,10 @@ export async function checkAssets(extracted, generated, root, identity, stage) {
     ? name : '[unreportable-name]').join(', ');
   requireValue(missing.length === 0 && extra.length === 0,
     `${stage} missing or extra bundled assets: missing=${missing.length} [${describe(missing)}]; extra=${extra.length} [${describe(extra)}]`);
+  for (const [path, content] of profiles) {
+    requireValue((await readFile(join(assetRoot, path))).equals(content),
+      `${stage} baseline profile differs from selected AAB: ${path}`);
+  }
   for (const file of manifest.files) {
     const actual = await readFile(join(extracted, file.path));
     requireValue(digest(actual) === file.sha256 && actual.equals(await readFile(join(generated, file.path))),
@@ -973,7 +992,8 @@ async function inspectPackages(work, root) {
     if (contents.files.some((file) => file.name === 'assets/recap/build-info.json')) {
       baseCount += 1;
       baseManifestPath = xmlPath;
-      await checkAssets(join(extracted, 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'base-APK');
+      await checkAssets(join(extracted, 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'base-APK',
+        join(work, 'bundle'));
       console.log('Android candidate: base-APK public asset checks passed.');
       const badging = execute(sdkTool('aapt2'), ['dump', 'badging', path], { env: cleanEnv() }, 'BASE_APK_BADGING');
       requireValue(/^application-label:'Recap Page'$/m.test(badging), 'resolved application label mismatch');
@@ -1361,7 +1381,7 @@ async function main() {
     // (#934). test/android-packaging.test.js now ties these pins to the files the record is read
     // from, so a bump fails its own pull request instead.
     requireValue(/^openjdk 17[.\s]/.test(tools.jdk) && tools.gradle === '9.8.2'
-      && tools.agp === '9.4.1' && tools.sdkBuildTools === '35.0.0', 'unexpected toolchain record');
+      && tools.agp === '9.5.0' && tools.sdkBuildTools === '35.0.0', 'unexpected toolchain record');
     const attestation = {
       schemaVersion: 2, kind: receipt.input.mode === 'Candidate' ? 'qualified-candidate' : 'rehearsal-only',
       source: identity, workflow: { sha: receipt.context.workflowSha, path: receipt.invocation.path,

@@ -1651,6 +1651,18 @@ test('iOS backup controls keep file label activation and full-sized native summa
   assert.doesNotMatch(webController, /label.*setAttribute\('aria-hidden'/);
 });
 
+test('iOS Search reuses the named label target and retains its visible field description', () => {
+  const controller = appSource('WebViewController');
+  const css = read('packaging/ios/web/ios.css');
+  const html = read('src/index.html');
+  assert.ok(controller.includes('#form-search label[for="search-q"]'));
+  assert.match(controller, /target\.matches\('#form-search label\[for="search-q"\]'\)[\s\S]*?setAttribute\('role', 'button'\)[\s\S]*?setAttribute\('tabindex', '0'\)/);
+  assert.match(controller, /for \(const id of \[[^\]]*'search-hint'[^\]]*\]\)[\s\S]*?describedBy\.split\(\/\\s\+\/\)\.includes\(id\)\) hint\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(css, /:root #form-search label\[for="search-q"\]\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
+  assert.match(html, /id="search-q"[^>]*aria-describedby="search-hint search-help"/);
+  assert.match(html, /<p id="search-hint" class="rail-hint">Reading Lists appear as you type\./);
+});
+
 test('native expanded More disclosure records actual open and closed geometry at both text sizes', () => {
   assert.match(presentationTests, /func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes/);
   assert.match(presentationTests, /moreMethods: \(\(\) =>/);

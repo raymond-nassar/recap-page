@@ -26,7 +26,7 @@ import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dial
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
-  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel,
+  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel, storyTypeFacets, storyTypeStarters, storyTypeStories,
 } from '../src/js/lib/catalog.js';
 
 const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith('--only='));
@@ -36,6 +36,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
+  'story-types',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -58,6 +59,7 @@ const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
+const storyTypesOnly = process.argv.includes('--only=story-types');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
@@ -106,8 +108,10 @@ const spotlightGeometry = [];
 const readingCaseArg = process.argv.find((arg) => arg.startsWith('--reading-composition-case='));
 const readingCase = readingCaseArg?.slice('--reading-composition-case='.length);
 if (readingCaseArg !== undefined) {
-  assert.ok(readingComposition && !readingFactsAx && readingCase === 'M01' && process.argv.includes('--viewport=360x800'),
-    'Reading case selection must be M01 with --only=reading-composition --viewport=360x800');
+  assert.ok(readingComposition && !readingFactsAx
+    && ((readingCase === 'M01' && process.argv.includes('--viewport=360x800'))
+      || (readingCase === 'near-end' && !process.argv.some((arg) => arg.startsWith('--viewport=')))),
+  'Reading case selection requires M01 at 360x800 or near-end at its two phone profiles');
 }
 if (readingFactsAx) {
   assert.ok(process.env.MRT_READING_AX_EVIDENCE && !process.env.MRT_ANDROID_SCREENSHOTS
@@ -1300,6 +1304,166 @@ async function categoryFixtures(page) {
   });
 }
 
+async function storyTypesDropdowns(page, profile, label) {
+  const stories = catalogEntries(parseCatalog(catalog).lists);
+  const all = storyTypeStories(stories);
+  const starters = storyTypeStarters(stories);
+  assert.equal(starters.length, 10, 'All ten starting lists are in the bundled catalog');
+  const starterTitles = starters.map((story) => story.lists[0].name);
+  const sameStarters = (shown) => JSON.stringify(shown.cards) === JSON.stringify(starters.map((story) => story.key))
+    && JSON.stringify(shown.titles) === JSON.stringify(starterTitles);
+  await route(page, 'genres');
+  await page.waitForSelector('#genres-type option[value="espionage"]');
+  const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  const snapshot = () => page.evaluate(() => {
+    const type = document.querySelector('#genres-type');
+    const tone = document.querySelector('#genres-tone');
+    const box = (node) => {
+      const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+      return { left, right, top, bottom, width, height };
+    };
+    return {
+      type: type.value, tone: tone.value,
+      options: [type, tone].map((node) => [...node.options].map((option) => option.textContent)),
+      labels: [type, tone].map((node) => [...node.labels].map((entry) => entry.textContent).join('')),
+      boxes: [type, tone].map(box),
+      count: document.querySelector('#genres-count').textContent,
+      prompt: document.querySelector('#genres-results').textContent,
+      cards: [...document.querySelectorAll('#genres-results .catalog-card')].map((node) => node.dataset.story),
+      titles: [...document.querySelectorAll('#genres-results .catalog-card-title')].map((node) => node.textContent),
+      heading: document.querySelector('#genres-results h2')?.textContent ?? '',
+      hash: location.hash, focused: document.activeElement?.id,
+      overflow: document.documentElement.scrollWidth > innerWidth,
+    };
+  });
+  const initial = await snapshot();
+  const historyBefore = await page.evaluate(() => history.length);
+  await page.focus('#genres-type');
+  for (let step = 0; step < 5; step++) await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Tab');
+  const historyAfter = await page.evaluate(() => history.length);
+  console.log(`SELECT-HISTORY ${JSON.stringify({ label, before: historyBefore, after: historyAfter })}`);
+  check(historyAfter === historyBefore + 1,
+    `${label}: one keyboard run adds one history entry (${historyBefore} to ${historyAfter})`);
+  await page.goBack();
+  const restored = await snapshot();
+  check(restored.hash === initial.hash && restored.type === '' && restored.tone === '' && sameStarters(restored),
+    `${label}: one Back after a keyboard run restores the arrival address`);
+  await route(page, 'genres');
+  check(initial.type === '' && initial.tone === '' && initial.labels.join('|') === 'Genre|Tone',
+    `${label}: two native dropdowns have visible associated labels and Any defaults`);
+  const facets = storyTypeFacets(stories);
+  check(JSON.stringify(initial.options) === JSON.stringify([
+    ['Any genre', ...facets.types.map(({ label: name, count }) => `${name} (${count})`)],
+    ['Any tone', ...facets.tones.map(({ label: name, count }) => `${name} (${count})`)],
+  ]), `${label}: dropdown options retain every facet and its count`);
+  check(initial.count === `${all.length} Reading Lists`
+    && initial.heading === 'Popular places to start' && sameStarters(initial),
+  `${label}: default view shows the ten starting lists in the owner's order ${JSON.stringify({ titles: initial.titles, expected: starterTitles })}`);
+  check(!initial.overflow && initial.boxes.every((box) => box.width >= 24 && box.height >= 24),
+    `${label}: dropdowns retain target size without page overflow`);
+  check(profile.desktop ? initial.boxes[0].top === initial.boxes[1].top
+    : initial.boxes[1].top >= initial.boxes[0].bottom,
+  `${label}: dropdowns are ${profile.desktop ? 'side by side' : 'stacked'}`);
+  for (const theme of ['dark', 'light']) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+    check(await page.$$eval('#genres-choices select', (nodes) => nodes.every((node) =>
+      node.checkVisibility() && node.getBoundingClientRect().right <= innerWidth)),
+    `${label}: ${theme} theme retains both dropdowns without clipping`);
+  }
+  await screenshot(page, label, 'story-types-dropdowns');
+  const choose = async (selector, value) => {
+    await page.focus(selector);
+    await page.select(selector, value);
+    check(await page.$eval(selector, (node) => node === document.activeElement),
+      `${label}: change leaves focus on ${selector}`);
+  };
+  await choose('#genres-type', 'espionage');
+  let state = await snapshot();
+  check(parseRoute(state.hash).storyType === 'espionage' && !parseRoute(state.hash).tone
+    && JSON.stringify(state.cards) === JSON.stringify(storyTypeStories(stories, { type: 'espionage' }).map((story) => story.key)),
+  `${label}: genre change updates its URL and exact results without MCU Prep ${JSON.stringify({
+    hash: state.hash, cards: state.cards, expected: storyTypeStories(stories, { type: 'espionage' }).map((story) => story.key),
+  })}`);
+  await choose('#genres-tone', 'dark');
+  state = await snapshot();
+  check(parseRoute(state.hash).tone === 'dark'
+    && JSON.stringify(state.cards) === JSON.stringify(storyTypeStories(stories, { type: 'espionage', tone: 'dark' }).map((story) => story.key)),
+  `${label}: tone narrows the existing genre with the same filtering ${JSON.stringify({
+    hash: state.hash, cards: state.cards, expected: storyTypeStories(stories, { type: 'espionage', tone: 'dark' }).map((story) => story.key),
+  })}`);
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('#genres-tone').value === '');
+  check((await snapshot()).type === 'espionage', `${label}: Back restores the type-only dropdown state`);
+  await page.goForward();
+  await page.waitForFunction(() => document.querySelector('#genres-tone').value === 'dark');
+  check((await snapshot()).type === 'espionage', `${label}: Forward restores both dropdown choices`);
+  await choose('#genres-tone', '');
+  await choose('#genres-type', '');
+  state = await snapshot();
+  check(state.heading === 'Popular places to start' && sameStarters(state),
+    `${label}: clearing both choices brings the ten starting lists back`);
+  const empty = facets.types.flatMap(({ key: type }) => facets.tones.map(({ key: tone }) => ({ type, tone })))
+    .find((choice) => storyTypeStories(stories, choice).length === 0);
+  assert.ok(empty, 'The bundled vocabulary includes an empty intersection to exercise');
+  await page.evaluate(({ type, tone }) => { location.hash = `#/genres?type=${type}&tone=${tone}`; }, empty);
+  await page.waitForFunction(({ type, tone }) => document.querySelector('#genres-type').value === type
+    && document.querySelector('#genres-tone').value === tone, {}, empty);
+  await page.reload({ waitUntil: 'networkidle0' });
+  await page.waitForSelector('#genres-type');
+  state = await snapshot();
+  check(state.type === empty.type && state.tone === empty.tone && state.cards.length === 0
+    && state.prompt.includes('No Reading Lists are tagged'),
+  `${label}: reloading a bookmarked empty intersection restores both choices and its empty message`);
+  check(state.options[0].some((option) => option.endsWith('(0)'))
+    && state.options[1].some((option) => option.endsWith('(0)')),
+  `${label}: zero-count current choices remain available to change`);
+  check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
+    `${label}: choosing, restoring and clearing filters preserve saved progress`);
+  await route(page, 'catalog');
+  await page.waitForSelector('#catalog-path option[value]:not([value=""])');
+  const path = await page.$eval('#catalog-path', (node) => [...node.options].find((option) => option.value).value);
+  await page.select('#catalog-path', path);
+  await page.waitForSelector('#catalog-path-jump');
+  const selects = '#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select';
+  const readColors = () => page.$$eval(selects, (nodes) => nodes.map((node) => {
+    const style = getComputedStyle(node);
+    return { id: node.id, color: style.color, background: style.backgroundColor,
+      adjustment: style.forcedColorAdjust };
+  }));
+  for (const theme of ['dark', 'light']) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+    const colors = await readColors();
+    check(JSON.stringify(colors.map(({ id }) => id).sort()) === JSON.stringify([
+      'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+      'opt-theme', 'rated-character', 'rated-min', 'rated-sort',
+    ]), `${label}: every shared styled select is measured in ${theme}`);
+    for (const entry of colors) {
+      const channels = (color) => color.match(/[\d.]+/g).map(Number);
+      const measured = ratio(channels(entry.color), channels(entry.background));
+      check(measured >= 4.5, `${label}: ${entry.id} ${theme} text contrast ${measured.toFixed(2)}:1`);
+      console.log(`SELECT-CONTRAST ${JSON.stringify({ label, theme, ...entry, ratio: measured })}`);
+    }
+  }
+  const cdp = await page.createCDPSession();
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+  const system = await page.evaluate(() => {
+    const probe = document.createElement('span');
+    probe.style.cssText = 'color: FieldText; background-color: Field';
+    document.body.append(probe);
+    const style = getComputedStyle(probe);
+    const colors = { color: style.color, background: style.backgroundColor };
+    probe.remove();
+    return colors;
+  });
+  const forced = await readColors();
+  check(forced.length === 8 && forced.every((entry) => entry.adjustment === 'auto'
+    && entry.color === system.color && entry.background === system.background),
+  `${label}: all shared selects retain system FieldText/Field in forced colors ${JSON.stringify({ forced, system })}`);
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
+  await cdp.detach();
+}
+
 async function marvelAgesTouchTarget(page, label, viewport) {
   await route(page, 'marvel-ages');
   const selector = '#marvel-ages-modern-all';
@@ -1734,8 +1898,19 @@ const readingProfiles = [
   { id: 'M06', width: 360, height: 800, textScale: 2, long: true },
   { id: 'D01', width: 1280, height: 900, desktop: true },
 ];
+const nearEndProfiles = [
+  { id: 'near-end-375x667', width: 375, height: 667, nearEnd: true },
+  { id: 'near-end-412x915', width: 412, height: 915, nearEnd: true },
+];
 let readingOrder;
 let readingIssue;
+let nearEndOrder;
+if (readingComposition && !readingFactsAx) {
+  const entry = catalog.lists.find((list) => list.id === 'house-of-m');
+  assert.ok(entry, 'Near-end reading composition requires House of M');
+  nearEndOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
+  assert.equal(nearEndOrder.items.length, 20);
+}
 if (readingComposition || alignment || saveNotice || homeContinue || progressGlance) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
@@ -1749,12 +1924,15 @@ if (readingComposition || alignment || saveNotice || homeContinue || progressGla
 }
 
 function readingState(profile = {}) {
+  const order = profile.nearEnd ? nearEndOrder : readingOrder;
   let state = createList(createEmptyState(), {
-    id: READING_LIST, name: readingOrder.name, description: readingOrder.description,
-    catalogId: readingOrder.id,
+    id: READING_LIST, name: order.name, description: order.description,
+    catalogId: order.id,
   });
-  state = addIssuesToList(state, READING_LIST, readingOrder.items).state;
-  for (const item of readingOrder.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
+  state = addIssuesToList(state, READING_LIST, order.items).state;
+  for (const item of order.items.slice(0, profile.nearEnd ? 18 : 3)) {
+    state = markRead(state, item.issueId, true, 1767225600000);
+  }
   if (profile.long) {
     state.lists[READING_LIST].name = 'Hickman to Secret Wars: a deliberately long Reading List title with every word retained';
     state.issues[readingIssue.issueId].title = `${readingIssue.title}: a long issue title with each word kept and room to read at a larger text size`;
@@ -2132,8 +2310,53 @@ async function readingSemantics(page) {
 async function readingCompositionCheck(page, profile) {
   await route(page, 'read');
   await page.waitForFunction((expected) => document.querySelector('#hero-title')?.textContent === expected,
-    {}, readingState(profile).issues[readingIssue.issueId].title);
+    {}, readingState(profile).issues[profile.nearEnd ? nearEndOrder.items[18].issueId : readingIssue.issueId].title);
   const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  if (profile.nearEnd) {
+    await page.waitForFunction(() => !document.querySelector('#list-similar-hint').hidden
+      && document.querySelector('#list-similar-hint button'));
+    const inspect = () => page.evaluate(() => {
+      const hint = document.querySelector('#list-similar-hint');
+      const hero = document.querySelector('#hero');
+      const navigation = document.querySelector('.rail-header');
+      const ceiling = navigation?.getBoundingClientRect().top ?? innerHeight;
+      return {
+        belowCard: hint.getBoundingClientRect().top >= hero.getBoundingClientRect().bottom,
+        moved: hint.parentElement.id === 'reading-overview',
+        aboveCard: hint.getBoundingClientRect().bottom <= hero.getBoundingClientRect().top,
+        count: document.querySelectorAll('#list-similar-hint').length,
+        controls: ['#btn-hero-read', '#btn-hero-done'].map((selector) => {
+          const node = document.querySelector(selector);
+          const rect = node.getBoundingClientRect();
+          const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+          return { selector, top: rect.top, bottom: rect.bottom, ceiling,
+            visible: node.checkVisibility() && rect.top >= 0 && rect.bottom <= ceiling
+              && rect.left >= 0 && rect.right <= innerWidth && (hit === node || node.contains(hit)) };
+        }),
+      };
+    });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    const opened = await inspect();
+    check(opened.moved && opened.belowCard, `${profile.id}: near-end hint follows the comic in the phone overview`);
+    for (const control of opened.controls) {
+      check(control.visible, `${profile.id}: ${control.selector} fully visible on opening ${JSON.stringify(control)}`);
+    }
+    await screenshot(page, profile.id, 'near-end-opening');
+    if (!opened.moved) return;
+    for (const width of [701, 700, profile.width]) {
+      await page.setViewport({ width, height: profile.height });
+      await page.waitForFunction((phone) => (document.querySelector('#list-similar-hint').parentElement.id
+        === 'reading-overview') === phone, {}, width <= 700);
+      const resized = await inspect();
+      check(width <= 700 ? resized.moved && resized.belowCard : resized.aboveCard,
+        `${profile.id}: near-end hint follows the 700px placement boundary at ${width}px`);
+      check(resized.count === 1, `${profile.id}: resizing retains exactly one near-end hint`);
+    }
+    check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
+      `${profile.id}: near-end placement preserves saved progress`);
+    console.log(`NEAR END ${profile.id}: ${JSON.stringify(opened)}`);
+    return;
+  }
   if (profile.id === 'M05') {
     await page.focus('#btn-hero-inspect');
     await click(page, '#btn-hero-inspect');
@@ -2910,7 +3133,12 @@ async function mobileLayout(page, label, narrow) {
   `${label}: touch after typing returns to Home's category cards without a heading rectangle`);
   await route(page, 'catalog');
   await click(page, '#catalog-clear');
-  await route(page, 'lines');
+  // Genres replaced Storylines (#1060). The Hickman fast track is not among its starting lists, so
+  // reach it through a genre it carries.
+  await route(page, 'genres');
+  await page.waitForSelector('#genres-type option[value="science-fiction"]');
+  await page.select('#genres-type', 'science-fiction');
+  await page.waitForSelector('button[data-act="import"][data-key="hickman-minimal"]');
   await click(page, 'button[data-act="import"][data-key="hickman-minimal"]');
   await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2'))?.listOrder.length === 1, { timeout: 5000 })
     .catch(async (error) => {
@@ -5017,7 +5245,12 @@ try {
   if (catalogReadability) viewports = placeholderAx
     ? catalogCardProfiles.filter((profile) => ['M11', 'M16'].includes(profile.id))
     : catalogCardProfiles;
-  if (readingComposition) viewports = readingFactsAx ? readingProfiles.filter((profile) => !profile.desktop) : readingProfiles;
+  if (storyTypesOnly) viewports = [
+    { width: 1280, height: 900, desktop: true }, { width: 412, height: 915 },
+  ];
+  if (readingComposition) viewports = readingFactsAx
+    ? readingProfiles.filter((profile) => !profile.desktop) : [...readingProfiles, ...nearEndProfiles];
+  if (readingCase === 'near-end') viewports = nearEndProfiles;
   if (issuePoster) viewports = issuePosterProfiles;
   if (spotlightControls) viewports = [
     { width: 320, height: 740 },
@@ -5153,7 +5386,7 @@ try {
     if (readingComposition) await readingFixtures(page, viewport);
     if (issuePoster) await issuePosterFixtures(page, viewport);
     if (alignment) await alignmentFixtures(page, viewport);
-    if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
+    if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || storyTypesOnly) await categoryFixtures(page);
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
     if (milestoneMode) await milestoneFixtures(page, viewport.theme);
@@ -5162,7 +5395,7 @@ try {
     if (longListName) await longListNameFixtures(page);
     if (confirmations) await confirmationFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
-    if (spotlightControls || phoneHeader || homeUpdates) {
+    if (spotlightControls || phoneHeader || homeUpdates || storyTypesOnly) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
       }, viewport.theme || 'light');
@@ -5186,13 +5419,15 @@ try {
         imageRequests.push(request.url());
         return request.respond({ status: 200, contentType: 'image/svg+xml', body: POSTER_COVER_SVG });
       }
-      if ((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+      if (((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance)
+        && (request.resourceType() === 'image' || viewport.nearEnd)
+        || storyTypesOnly) && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -5214,7 +5449,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || storyTypesOnly || viewport.nearEnd ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -5224,8 +5459,8 @@ try {
         body: JSON.stringify({ status: 'ok', ...order.items[0], items: [], data: [] }),
       });
     });
-    await page.evaluateOnNewDocument((reading, spotlight) => {
-      if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: false, theme: 'light' } : { covers: false }));
+    await page.evaluateOnNewDocument((reading, spotlight, nearEnd) => {
+      if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: nearEnd, theme: 'light' } : { covers: false }));
       window.addEventListener('load', () => {
         const channel = new MessageChannel();
         const harness = { requests: [], replies: [], autoSave: true };
@@ -5250,7 +5485,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly, viewport.nearEnd === true);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -5522,6 +5757,12 @@ try {
     }
     if (categoryReadability) {
       await categoryLabelReadability(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (storyTypesOnly) {
+      await storyTypesDropdowns(page, viewport, label);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

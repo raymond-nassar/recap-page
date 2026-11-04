@@ -58,8 +58,9 @@ approved as a partial overlap with the existing Spider-Man best-of path. Neither
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
-Since #1066, MCU Prep lists appear and can be searched on the MCU Prep screen, not Storylines.
-This supersedes the earlier delivery records below that place a companion on the Storylines shelf.
+Since #1066, MCU Prep lists appear and can be searched on the MCU Prep screen, not Genres.
+Genres has replaced the Storylines screen. This supersedes the earlier delivery records below that
+place a companion on the Storylines shelf.
 The Doomsday & Secret Wars list keeps its manifest group with the Hickman readings, preserving
 their shared Reading Path progress and preventing duplicate recommendations. The MCU Prep screen
 still shows the companion as its own card.
@@ -343,9 +344,9 @@ gaps across 49 source rows. Eighth Day's 4 rows were already shipped and were no
 again. Position 58 exhausts the maintained pre-Maximum Security sequence; at that point, Marvel 2099
 and Second Clone Saga remained deferred for separate review.
 
-Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161-row source order.
-Its blocker record preserves every source occurrence and exact configured result without publishing a
-partial reading list.
+The preserved historical record says Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161-row source order.
+Its blocker record still preserves every source occurrence and exact configured result. The later
+owner-requested gap-tolerant delivery is recorded separately below.
 
 Marvel 2099 publishes a selected alternate-universe guide from its complete 271-position source
 order. The packet preserves 172 distinct exact issues, one later source occurrence of the same
@@ -508,7 +509,7 @@ incidental property of the schema.
 | Compiled for this project | 10 | The whole sequence, by hand. This includes the noncatalog Marvel Knights to Planet X partition parent and the separately attributed Thunderbolts*, Eternals, Deadpool & Wolverine and Fantastic Four: First Steps owner selections. The retired No Way Home checklist remains archived but is not an active source order. See the trail at the top of each file in [`src/data/orders/`](../src/data/orders) |
 | Compiled for this project from Comic Book Herald's guide | 150 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from the owner's selected Comic Book Herald excerpt | 1 | The owner's seven-block Shang-Chi selection, expanded to original issues. The card links to the exact owner input record; its authored source and factual ledger separately credit the verified CBH page and section |
-| Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
+| Compiled for this project from Comic Book Reading Orders | 41 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
 | Selected by raymond-nassar for MCU Prep | 7 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals; Agatha retains one introduction, six Orlando originals and five explicit House of Harkness gaps |
@@ -632,7 +633,8 @@ above is listed separately because it is third-party material outside the usual 
 | `audience` | Optional and closed. `young-readers` marks a list its sources recommend for younger readers, so a Home category can gather those lists across shelves. Authored here, never inferred, and absent on every other list |
 | `storyTypes` | Optional and closed, at most three. The kinds of story a list tells, such as espionage or space opera, so a reader can find lists by the kind of story they want. A judgment this project makes, informed by the guide the list already credits and by general references; no text is copied from any of them, and no tag is inferred from a field |
 | `tones` | Optional and closed, at most two. How a list reads, such as epic or street level. Authored on the same terms as `storyTypes`, and absent where no tone stands out |
-
+| `writers` | Catalog only, at most three. The writers credited on at least a quarter of a list's issues, most credited first, so a finished list can suggest others by the same writer. Derived when the catalog is built from the writer credits already in the list's own bundled issues; never authored, and absent where no writer reaches that share |
+| `contains` | Catalog only. The other bundled lists whose every issue is also in this list, so finishing this list never suggests one the reader has just read inside it. Derived when the catalog is built from the issue ids already in the bundled orders; never authored, and absent where a list wholly contains no other |
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
@@ -876,7 +878,7 @@ conditions and two exclusions:
 - Build nothing from the Marvel Master Reading Order.
 - Build nothing from any reading order that site keeps behind its Patreon.
 
-Thirty-nine lists in this repository now come from that site. Each credits Comic Book Reading Orders
+Forty-three lists in this repository now come from that site. Each credits Comic Book Reading Orders
 and links to the exact source page and section followed, which is the pattern the reply permitted.
 The site publishes no terms of use, which makes the reply the only statement of its position that
 exists.
@@ -929,7 +931,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1207-1211`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1200-1204`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -974,7 +976,7 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:684` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:686` and the issue-details view at
 `src/js/views/issue.js:102`. The function behind both already answers for the absence at
 `src/js/views/reading.js:82-94`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
@@ -1100,10 +1102,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:10764-10815`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:10911-10962`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:14977-15114`.
+`src/data/catalog.json:16334-16471`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2980,7 +2982,7 @@ response.
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:424-428`, `scripts/vendor-orders.mjs:491-492`, `scripts/vendor-orders.mjs:535-536`).
+(`scripts/vendor-orders.mjs:467-471`, `scripts/vendor-orders.mjs:534-535`, `scripts/vendor-orders.mjs:578-579`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
 provider details and covers remain empty. No comic image bytes are stored and no Unlimited
 availability is inferred.
@@ -3273,3 +3275,135 @@ Request-bound responses from the configured metadata provider supply issue ident
 cover addresses. No comic image, provider description or source prose is stored, and no marvel.com
 or read.marvel.com page was requested. `sourceLicense` stays null. No name or description says a
 comic is on Marvel Unlimited. Saved reading data, backups and existing lists are unchanged.
+
+## Owner-requested MC2 and Second Clone Saga
+
+The owner requested [MC2 in Issue 1085](https://github.com/raymond-nassar/recap-page/issues/1085)
+and [Second Clone Saga in Issue 1086](https://github.com/raymond-nassar/recap-page/issues/1086)
+on 2026-11-02, then combined them as one batch. The public CBRO pages were retrieved on
+2026-11-03. Both are event pages with visible single-issue orders, not Master or Patreon-exclusive
+orders. The site's credited-and-linked permission recorded above was rechecked; it applies to
+the factual selection and arrangement, not to source commentary or Marvel's material.
+
+| Guide | Exact source | Source positions | Published exact issues | Metadata gaps | Repeats |
+| --- | --- | --- | --- | --- | --- |
+| MC2 | [CBRO MC2](https://comicbookreadingorders.com/marvel/events/mc2-reading-order/) | 224 | 207 | 17 | 0 |
+| Second Clone Saga | [CBRO Second Clone Saga](https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/) | 161 | 141 | 20 | 0 |
+
+These are local curated-checklist additions under the owner's gap-tolerant publication policy,
+not new releases of the frozen historical CBRO program. Its inventory and blocker records remain
+unchanged. The factual source ledgers in `scripts/data/curated-source-ledgers/` preserve every
+source position, current display label, historical identity, exact resolved vector, and successful
+lookup without a matching original. Their request URLs, retrieval times and response hashes
+remain reproducible without requiring a private page copy or metadata cache.
+
+All source positions and issue numbers match the preserved historical ledgers. The current pages
+omit some leading articles and revise punctuation. MC2's displayed What If...? #105 is What If?
+(1989) #105, as in the existing ledger, not the first volume. No issue identity is changed.
+The [MC2 gap bundle](https://github.com/raymond-nassar/recap-page/issues/1089) and
+[Second Clone Saga gap bundle](https://github.com/raymond-nassar/recap-page/issues/1090)
+name every unresolved comic and failed exact lookup. Each is assigned to the owner and linked
+from its guide Issue. Gaps are not fabricated payload items or silently omitted source positions;
+the published checklists explicitly show the unresolved references outside the resolved selection.
+Both cards say partial reading.
+
+MC2 is an alternate-future imprint spanning several leads, so its tags make it reachable through
+Genres without claiming a place on the main-continuity Modern Timeline. Its Coming of age
+and Science fiction tags describe teenage successors in an alternative future; no single tone
+is assigned across the imprint. Second Clone Saga is a separate `event`, with 1994 as the
+principal story's start rather than the publication year of recalled origin issues. Genres and
+Early Modern in Marvel Ages keep it browsable without changing the Modern Timeline cutoff. Its tags
+are Science fiction and Thriller, with Street level as its tone.
+
+The Second Clone Saga is a sequel, not a different depth of the Original Clone Saga. Their
+shared Amazing Spider-Man #149 and #151 are recalled background. The later Clone Conspiracy
+has no shared originals with this selection. All three remain separate stories, and the existing
+two lists are unchanged. Agent content review, not human approval, compared both additions with
+every visible guide and retained hidden source parent. MC2 has two partial relationships;
+Second Clone Saga has seven. The exact shared IDs and bounded decisions are in each source ledger.
+Neither new list duplicates another list, and they share no originals with each other.
+
+The Second Clone Saga's three shared Onslaught originals also enter the earlier guide's
+owner-confirmation compatibility check. A local curated ledger now meets the same reciprocal
+bar as a later CBH mapping: valid factual-ledger and report digests, an approved review, a named
+human or stronger-model disposition, and the exact inverse relationship, count and shared IDs.
+Agent content review alone does not satisfy that bar. The factual ledger digest excludes its
+digest field and relationship review to avoid self-signing; the report, approval and disposition
+separately bind it. A changed ledger or report requires a new disposition. The source ledger
+retains the actual reciprocal authority separately from its original agent content review.
+
+The descriptions are this project's own premise-first wording, not copied source prose. MC2's
+premise is supported independently by [Wikipedia's MC2 overview](https://en.wikipedia.org/wiki/Marvel_Comics_2)
+and [Comic Book Treasury's Mayday Parker guide](https://www.comicbooktreasury.com/mayday-parker-reading-order/).
+Second Clone Saga's premise and sequel distinction are supported independently by
+[Wikipedia's Clone Saga overview](https://en.wikipedia.org/wiki/Clone_Saga) and
+[Comic Book Treasury's Clone Saga guide](https://www.comicbooktreasury.com/spider-man-clone-saga-reading-order/).
+All four were retrieved on 2026-11-03. The payload supports the preview's named series and interleaving.
+
+The configured metadata API supplies the exact identities and digital IDs through request-bound
+responses and the ordinary vendor. Only cover addresses are stored. No source commentary,
+provider description, comic image bytes or Marvel page is copied or fetched. The pages'
+share.marvel.com Read links are never requested. No statement promises Marvel Unlimited access,
+and the metadata gaps are not claims that a comic does not exist. Existing saved reading data,
+backups and issue vectors remain unchanged.
+
+## Owner-requested Marvel 1602 and Blood and Thunder
+
+The owner requested [Marvel 1602 in Issue 1087](https://github.com/raymond-nassar/recap-page/issues/1087)
+and [Blood and Thunder in Issue 1088](https://github.com/raymond-nassar/recap-page/issues/1088),
+then reopened the earlier delivery with the direction "please deliver all of the new reading
+lists in the same PR". The combined delivery includes these two guides, MC2 and Second Clone Saga.
+Both additional CBRO pages were retrieved on 2026-11-03 and checked against the credited-and-linked
+grant: public event pages, not Master or Patreon-exclusive orders. No source prose is copied.
+
+| Guide | Exact source | Source positions | Published exact issues | Metadata gaps | Repeats |
+| --- | --- | --- | --- | --- | --- |
+| Marvel 1602 | [CBRO Marvel 1602](https://comicbookreadingorders.com/marvel/events/marvel-1602-reading-order/) | 23 | 23 | 0 | 0 |
+| Blood and Thunder | [CBRO Blood and Thunder](https://comicbookreadingorders.com/marvel/events/blood-and-thunder-reading-order/) | 13 | 12 | 1 | 0 |
+
+The source ledgers preserve every displayed source position and exact original; local checklists
+and ordinary vendoring publish only resolved issues. Marvel 1602 includes all selected originals.
+Blood and Thunder retains Warlock Chronicles (1993) #8 at source position 11 as an explicit gap,
+not a placeholder or substituted issue. Its [assigned gap Issue](https://github.com/raymond-nassar/recap-page/issues/1092)
+records the complete successful series lookup with no exact match. Its historical CBRO blocker
+capture stays unchanged.
+
+These remain separate events. Blood and Thunder (1993) precedes Modern Timeline's 1998 opening.
+Marvel 1602 (2003) falls within the 1998 to 2003 span where that view includes only Marvel
+Knights to Planet X chapters, so it is excluded by the same rule as that span's other events.
+Marvel 1602 begins with the 2003 alternate-world story and continues through New World, Fantastick Four and Spider-Man
+1602. Its Magic and supernatural and Espionage tags describe the supernatural investigation and
+Elizabethan intelligence work, with Epic as its tone. Blood and Thunder begins in 1993 and
+interleaves Thor, Silver Surfer, Warlock Chronicles and Warlock and the Infinity Watch. Space opera
+and Myth and fantasy describe the cosmic and Asgardian conflict, with Epic as its tone. Both are
+dated selections in Marvel Ages: Marvel 1602 belongs to Marvel Knights / Heroes Return
+(1998 to 2003), and Blood and Thunder to Early Modern (1991 to 1997). Their genre tags also
+make both reachable through Genres; Storylines is no longer a browse screen.
+Neither is relabeled merely to enter Modern Timeline.
+
+The project-written Marvel 1602 premise is independently supported by
+[Wikipedia](https://en.wikipedia.org/wiki/Marvel_1602) and
+[TV Tropes](https://tvtropes.org/pmwiki/pmwiki.php/Comicbook/Marvel1602).
+The Blood and Thunder premise is independently supported by
+[Omniverse Comics Guide](https://omniversecomics.guide/2025/03/24/blood-and-thunder-1993-1994-reading-order/)
+and [Comic Vine](https://comicvine.gamespot.com/thor-blood-and-thunder/4045-55698/).
+All four sources were retrieved on 2026-11-03; the exact payload series support the previews.
+
+The four-guide supplemental content review in
+`scripts/data/cbro-owner-november-2026-batch-review.json` compares each candidate against all
+336 visible or retained-hidden peers. It is explicitly agent content review, not human authority.
+Marvel 1602 shares no originals with another bundled guide. Blood and Thunder is a source-selected
+event subset of the broader Adam Warlock and Thanos guides, not a duplicate of either complete
+selection. Neither additional guide shares originals with a registered owner guide.
+
+The earlier Second Clone Saga ledger and its digest-bound stronger-model Onslaught approval
+remain unchanged. The supplemental review accounts for the expanded library without rewriting
+that approved snapshot. Only the catalog and payload descriptions' gap notices change: About this
+order renders description text, not the checklist's unresolved-position table, so the notices say
+that unresolved comics do not appear among the order's issues. They do not invent an in-app notes
+panel. The original card premises remain unchanged.
+
+All four guides preserve credited source addresses and store cover addresses only. No provider
+description, source commentary, comic image or Marvel page is stored or fetched, including the
+pages' share.marvel.com Read links. No availability is promised and no existing saved data,
+backups or original issue vector is changed.

@@ -266,7 +266,7 @@ test('Marvel Zombies renewed relationship receipt covers every current library p
   }
 });
 
-test('Marvel Zombies appears once on the across-eras Storylines shelf with its approved cover', async () => {
+test('Marvel Zombies retains its historical across-eras classification and approved cover', async () => {
   const [manifest, rawCatalog, payload, inventory, report, packet] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),

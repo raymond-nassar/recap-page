@@ -1,0 +1,5635 @@
+{
+  "id": "mc2",
+  "name": "MC2",
+  "description": "Spider-Man's daughter May Parker grows into her own hero in a future shared with a new generation of Avengers. Her adventures connect with J2, A-Next, the Fantastic Five and later MC2 crossovers. 17 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+  "source": "https://comicbookreadingorders.com/marvel/events/mc2-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-03T04:25:24.964Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 207,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 18301,
+      "title": "What If? (1989) #105",
+      "number": "105",
+      "url": "https://www.marvel.com/comics/issue/18301/what_if_1989_105",
+      "seriesId": 3648,
+      "seriesName": "What If? (1989 - 1998)",
+      "onSale": "1998-02-01T00:00:00+0000",
+      "mu": "2020-08-27T00:00:00+0000",
+      "digitalId": 52280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5f46ce6981d33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13326,
+      "title": "Spider-Girl (1998) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/13326/spider-girl_1998_1",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1998-10-01T00:00:00+0000",
+      "mu": "1998-10-01T00:00:00+0000",
+      "digitalId": 2454,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/670d962a0613d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 9660,
+      "title": "J2 (1998) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9660/j2_1998_1",
+      "seriesId": 2031,
+      "seriesName": "J2 (1998 - 1999)",
+      "onSale": "1998-10-01T00:00:00+0000",
+      "mu": "1998-10-01T00:00:00+0000",
+      "digitalId": 2046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/6047ac3f99b2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17739,
+      "title": "A-Next (1998) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17739/a-next_1998_1",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1998-10-01T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 5060,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/56d4b558ac730",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 9664,
+      "title": "J2 (1998) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/9664/j2_1998_2",
+      "seriesId": 2031,
+      "seriesName": "J2 (1998 - 1999)",
+      "onSale": "1998-11-01T00:00:00+0000",
+      "mu": "1998-11-01T00:00:00+0000",
+      "digitalId": 3371,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/6047ac3f97275",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17743,
+      "title": "A-Next (1998) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/17743/a-next_1998_2",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1998-11-01T00:00:00+0000",
+      "mu": "1998-11-01T00:00:00+0000",
+      "digitalId": 5061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/4bb6f9a01fcbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13337,
+      "title": "Spider-Girl (1998) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/13337/spider-girl_1998_2",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1998-11-01T00:00:00+0000",
+      "mu": "1998-11-01T00:00:00+0000",
+      "digitalId": 2465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/670d962a061f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13348,
+      "title": "Spider-Girl (1998) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/13348/spider-girl_1998_3",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1998-12-01T00:00:00+0000",
+      "mu": "1998-12-01T00:00:00+0000",
+      "digitalId": 2475,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/670d962a0ae1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13359,
+      "title": "Spider-Girl (1998) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/13359/spider-girl_1998_4",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-01-01T00:00:00+0000",
+      "mu": "1999-01-01T00:00:00+0000",
+      "digitalId": 2486,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/670d962a11d70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17744,
+      "title": "A-Next (1998) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/17744/a-next_1998_3",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1998-12-01T00:00:00+0000",
+      "mu": "1998-12-01T00:00:00+0000",
+      "digitalId": 5062,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5f04833c25e80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 9665,
+      "title": "J2 (1998) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9665/j2_1998_3",
+      "seriesId": 2031,
+      "seriesName": "J2 (1998 - 1999)",
+      "onSale": "1998-12-01T00:00:00+0000",
+      "mu": "1998-12-01T00:00:00+0000",
+      "digitalId": 3372,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/6047ac40153b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17745,
+      "title": "A-Next (1998) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/17745/a-next_1998_4",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-01-01T00:00:00+0000",
+      "mu": "1999-01-01T00:00:00+0000",
+      "digitalId": 5063,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/4bb6f99b094ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 9666,
+      "title": "J2 (1998) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9666/j2_1998_4",
+      "seriesId": 2031,
+      "seriesName": "J2 (1998 - 1999)",
+      "onSale": "1999-01-01T00:00:00+0000",
+      "mu": "1999-01-01T00:00:00+0000",
+      "digitalId": 3373,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/6047ac3f98690",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13370,
+      "title": "Spider-Girl (1998) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/13370/spider-girl_1998_5",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-02-01T00:00:00+0000",
+      "mu": "1999-02-01T00:00:00+0000",
+      "digitalId": 2497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/670d962a10571",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17746,
+      "title": "A-Next (1998) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/17746/a-next_1998_5",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-02-01T00:00:00+0000",
+      "mu": "1999-02-01T00:00:00+0000",
+      "digitalId": 5064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/4c7d24cbd84f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13381,
+      "title": "Spider-Girl (1998) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/13381/spider-girl_1998_6",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "1999-03-01T00:00:00+0000",
+      "digitalId": 2499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/670d96416875b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9667,
+      "title": "J2 (1998) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/9667/j2_1998_5",
+      "seriesId": 2031,
+      "seriesName": "J2 (1998 - 1999)",
+      "onSale": "1999-02-01T00:00:00+0000",
+      "mu": "1999-02-01T00:00:00+0000",
+      "digitalId": 3374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/6047ac3f9ae1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17747,
+      "title": "A-Next (1998) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/17747/a-next_1998_6",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "1999-03-01T00:00:00+0000",
+      "digitalId": 5065,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4bb6f99082cb1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 9668,
+      "title": "J2 (1998) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9668/j2_1998_6",
+      "seriesId": 2031,
+      "seriesName": "J2 (1998 - 1999)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "1999-03-01T00:00:00+0000",
+      "digitalId": 3375,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/6047ac578d474",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13387,
+      "title": "Spider-Girl (1998) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/13387/spider-girl_1998_7",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-04-01T00:00:00+0000",
+      "mu": "1999-04-01T00:00:00+0000",
+      "digitalId": 2500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/670d9642615a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17748,
+      "title": "A-Next (1998) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/17748/a-next_1998_7",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-04-01T00:00:00+0000",
+      "mu": "1999-04-01T00:00:00+0000",
+      "digitalId": 12546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/55c106b0200f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17749,
+      "title": "A-Next (1998) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/17749/a-next_1998_8",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-05-01T00:00:00+0000",
+      "mu": "1999-05-01T00:00:00+0000",
+      "digitalId": 39830,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/56afcb0bcda25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13388,
+      "title": "Spider-Girl (1998) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/13388/spider-girl_1998_8",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-05-01T00:00:00+0000",
+      "mu": "1999-05-01T00:00:00+0000",
+      "digitalId": 2501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/670d95c1923e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13389,
+      "title": "Spider-Girl (1998) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/13389/spider-girl_1998_9",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-06-01T00:00:00+0000",
+      "mu": "1999-06-01T00:00:00+0000",
+      "digitalId": 2510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/670d95c192f1f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13327,
+      "title": "Spider-Girl (1998) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/13327/spider-girl_1998_10",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-07-01T00:00:00+0000",
+      "mu": "1999-07-01T00:00:00+0000",
+      "digitalId": 2455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/670d95c192f20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13328,
+      "title": "Spider-Girl (1998) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/13328/spider-girl_1998_11",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-08-01T00:00:00+0000",
+      "mu": "1999-08-01T00:00:00+0000",
+      "digitalId": 2456,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/670d95c193996",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17750,
+      "title": "A-Next (1998) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/17750/a-next_1998_9",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-06-01T00:00:00+0000",
+      "mu": "1999-06-01T00:00:00+0000",
+      "digitalId": 39831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/56afcc80b12e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17740,
+      "title": "A-Next (1998) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/17740/a-next_1998_10",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-07-01T00:00:00+0000",
+      "mu": "1999-07-01T00:00:00+0000",
+      "digitalId": 39832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/56afcdb507f95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17741,
+      "title": "A-Next (1998) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/17741/a-next_1998_11",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-08-01T00:00:00+0000",
+      "mu": "1999-08-01T00:00:00+0000",
+      "digitalId": 39833,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/56afd21ee292e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17742,
+      "title": "A-Next (1998) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/17742/a-next_1998_12",
+      "seriesId": 3620,
+      "seriesName": "A-Next (1998 - 1999)",
+      "onSale": "1999-09-01T00:00:00+0000",
+      "mu": "1999-09-01T00:00:00+0000",
+      "digitalId": 39834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5f0c60f91f491",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13329,
+      "title": "Spider-Girl (1998) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/13329/spider-girl_1998_12",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-09-01T00:00:00+0000",
+      "mu": "1999-09-01T00:00:00+0000",
+      "digitalId": 2457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/670d957a61056",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18831,
+      "title": "SPIDER-GIRL ANNUAL 1 (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18831/spider-girl_annual_1_1999_1",
+      "seriesId": 3689,
+      "seriesName": "SPIDER-GIRL ANNUAL 1 (1999)",
+      "onSale": "1999-09-01T00:00:00+0000",
+      "mu": "1999-09-01T00:00:00+0000",
+      "digitalId": 6941,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb6f5f437a1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13330,
+      "title": "Spider-Girl (1998) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/13330/spider-girl_1998_13",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-10-01T00:00:00+0000",
+      "mu": "1999-10-01T00:00:00+0000",
+      "digitalId": 2458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/670d954ed5e42",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 20814,
+      "title": "Wild Thing (1999)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/20814/wild_thing_1999",
+      "seriesId": 3901,
+      "seriesName": "Wild Thing (1999)",
+      "onSale": "1999-01-01T00:00:00+0000",
+      "mu": "1999-01-01T00:00:00+0000",
+      "digitalId": 8757,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bb858dab5601",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 12849,
+      "title": "Fantastic Five (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12849/fantastic_five_1999_1",
+      "seriesId": 2119,
+      "seriesName": "Fantastic Five (1999 - 2000)",
+      "onSale": "1999-10-01T00:00:00+0000",
+      "mu": "1999-10-01T00:00:00+0000",
+      "digitalId": 2999,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/4bc46ca7ed30e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20768,
+      "title": "Wild Thing (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20768/wild_thing_1999_1",
+      "seriesId": 3901,
+      "seriesName": "Wild Thing (1999)",
+      "onSale": "1999-10-01T00:00:00+0000",
+      "mu": "1999-10-01T00:00:00+0000",
+      "digitalId": 8758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/4bb88ce95f2e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13331,
+      "title": "Spider-Girl (1998) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/13331/spider-girl_1998_14",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-11-01T00:00:00+0000",
+      "mu": "1999-11-01T00:00:00+0000",
+      "digitalId": 2459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/670d952470178",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13332,
+      "title": "Spider-Girl (1998) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/13332/spider-girl_1998_15",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "1999-12-01T00:00:00+0000",
+      "mu": "1999-12-01T00:00:00+0000",
+      "digitalId": 2460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/670d94edb02e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20769,
+      "title": "Wild Thing (1999) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/20769/wild_thing_1999_2",
+      "seriesId": 3901,
+      "seriesName": "Wild Thing (1999)",
+      "onSale": "1999-11-01T00:00:00+0000",
+      "mu": "1999-11-01T00:00:00+0000",
+      "digitalId": 8759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/4bb858d599805",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 12850,
+      "title": "Fantastic Five (1999) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/12850/fantastic_five_1999_2",
+      "seriesId": 2119,
+      "seriesName": "Fantastic Five (1999 - 2000)",
+      "onSale": "1999-11-01T00:00:00+0000",
+      "mu": "1999-11-01T00:00:00+0000",
+      "digitalId": 3348,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bc35f5dad3f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13333,
+      "title": "Spider-Girl (1998) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/13333/spider-girl_1998_16",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-01-01T00:00:00+0000",
+      "mu": "2000-01-01T00:00:00+0000",
+      "digitalId": 2461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4bc47225e1235",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20770,
+      "title": "Wild Thing (1999) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/20770/wild_thing_1999_3",
+      "seriesId": 3901,
+      "seriesName": "Wild Thing (1999)",
+      "onSale": "1999-12-01T00:00:00+0000",
+      "mu": "1999-12-01T00:00:00+0000",
+      "digitalId": 8760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bb858d0a588d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 12851,
+      "title": "Fantastic Five (1999) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/12851/fantastic_five_1999_3",
+      "seriesId": 2119,
+      "seriesName": "Fantastic Five (1999 - 2000)",
+      "onSale": "1999-12-01T00:00:00+0000",
+      "mu": "1999-12-01T00:00:00+0000",
+      "digitalId": 3349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5adf3194d2b97",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12852,
+      "title": "Fantastic Five (1999) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/12852/fantastic_five_1999_4",
+      "seriesId": 2119,
+      "seriesName": "Fantastic Five (1999 - 2000)",
+      "onSale": "2000-01-01T00:00:00+0000",
+      "mu": "2000-01-01T00:00:00+0000",
+      "digitalId": 3350,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5adf3df86d83a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20771,
+      "title": "Wild Thing (1999) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20771/wild_thing_1999_4",
+      "seriesId": 3901,
+      "seriesName": "Wild Thing (1999)",
+      "onSale": "2000-01-01T00:00:00+0000",
+      "mu": "2000-01-01T00:00:00+0000",
+      "digitalId": 8761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/4bb858c0572a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13334,
+      "title": "Spider-Girl (1998) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/13334/spider-girl_1998_17",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-02-01T00:00:00+0000",
+      "mu": "2000-02-01T00:00:00+0000",
+      "digitalId": 2462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/4bc47220b90e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12853,
+      "title": "Fantastic Five (1999) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/12853/fantastic_five_1999_5",
+      "seriesId": 2119,
+      "seriesName": "Fantastic Five (1999 - 2000)",
+      "onSale": "2000-02-01T00:00:00+0000",
+      "mu": "2000-02-01T00:00:00+0000",
+      "digitalId": 3351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5adf48bdae791",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20772,
+      "title": "Wild Thing (1999) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/20772/wild_thing_1999_5",
+      "seriesId": 3901,
+      "seriesName": "Wild Thing (1999)",
+      "onSale": "2000-02-01T00:00:00+0000",
+      "mu": "2000-02-01T00:00:00+0000",
+      "digitalId": 8762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/4bb858afae302",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18776,
+      "title": "Spider-Girl Presents: The Buzz (2000) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18776/spider-girl_presents_the_buzz_2000_1",
+      "seriesId": 3673,
+      "seriesName": "Spider-Girl Presents: The Buzz (2000)",
+      "onSale": "2000-07-01T00:00:00+0000",
+      "mu": "2000-07-01T00:00:00+0000",
+      "digitalId": 7115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/4bb6b79e54d68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13335,
+      "title": "Spider-Girl (1998) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/13335/spider-girl_1998_18",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-03-01T00:00:00+0000",
+      "mu": "2000-03-01T00:00:00+0000",
+      "digitalId": 2463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bc4721b6e4e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13336,
+      "title": "Spider-Girl (1998) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/13336/spider-girl_1998_19",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-04-01T00:00:00+0000",
+      "mu": "2000-04-01T00:00:00+0000",
+      "digitalId": 2464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/4bc472161bbe5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13338,
+      "title": "Spider-Girl (1998) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/13338/spider-girl_1998_20",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-05-01T00:00:00+0000",
+      "mu": "2000-05-01T00:00:00+0000",
+      "digitalId": 2466,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/4bc4720b901d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13339,
+      "title": "Spider-Girl (1998) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/13339/spider-girl_1998_21",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-06-01T00:00:00+0000",
+      "mu": "2000-06-01T00:00:00+0000",
+      "digitalId": 2467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/4bc472057c885",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13340,
+      "title": "Spider-Girl (1998) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/13340/spider-girl_1998_22",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-07-01T00:00:00+0000",
+      "mu": "2000-07-01T00:00:00+0000",
+      "digitalId": 4689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/670d9468cbd25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18777,
+      "title": "Spider-Girl Presents: The Buzz (2000) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/18777/spider-girl_presents_the_buzz_2000_2",
+      "seriesId": 3673,
+      "seriesName": "Spider-Girl Presents: The Buzz (2000)",
+      "onSale": "2000-08-01T00:00:00+0000",
+      "mu": "2000-08-01T00:00:00+0000",
+      "digitalId": 7116,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/4bb6b78170307",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18778,
+      "title": "Spider-Girl Presents: The Buzz (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18778/spider-girl_presents_the_buzz_2000_3",
+      "seriesId": 3673,
+      "seriesName": "Spider-Girl Presents: The Buzz (2000)",
+      "onSale": "2000-09-01T00:00:00+0000",
+      "mu": "2000-09-01T00:00:00+0000",
+      "digitalId": 7117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb6b76b6cb53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13341,
+      "title": "Spider-Girl (1998) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/13341/spider-girl_1998_23",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-08-01T00:00:00+0000",
+      "mu": "2000-08-01T00:00:00+0000",
+      "digitalId": 2468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4bc471ffe53da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13342,
+      "title": "Spider-Girl (1998) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/13342/spider-girl_1998_24",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-09-01T00:00:00+0000",
+      "mu": "2000-09-01T00:00:00+0000",
+      "digitalId": 2469,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/670e7607bc1c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13343,
+      "title": "Spider-Girl (1998) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/13343/spider-girl_1998_25",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-10-01T00:00:00+0000",
+      "mu": "2000-10-01T00:00:00+0000",
+      "digitalId": 2470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/670e80ae9650e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13344,
+      "title": "Spider-Girl (1998) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/13344/spider-girl_1998_26",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 2471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/670e7607bbec2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13345,
+      "title": "Spider-Girl (1998) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/13345/spider-girl_1998_27",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 2472,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bc471eae9729",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20460,
+      "title": "Darkdevil (2000) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20460/darkdevil_2000_1",
+      "seriesId": 3746,
+      "seriesName": "Darkdevil (2000)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 5671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/4bb6a88b3fe99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20461,
+      "title": "Darkdevil (2000) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/20461/darkdevil_2000_2",
+      "seriesId": 3746,
+      "seriesName": "Darkdevil (2000)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 5672,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/4bb6a87b321c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20462,
+      "title": "Darkdevil (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/20462/darkdevil_2000_3",
+      "seriesId": 3746,
+      "seriesName": "Darkdevil (2000)",
+      "onSale": "2001-01-01T00:00:00+0000",
+      "mu": "2001-01-01T00:00:00+0000",
+      "digitalId": 5673,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/4bb6a807338e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13346,
+      "title": "Spider-Girl (1998) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/13346/spider-girl_1998_28",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-01-01T00:00:00+0000",
+      "mu": "2001-01-01T00:00:00+0000",
+      "digitalId": 2473,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/670d9429f233d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13347,
+      "title": "Spider-Girl (1998) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/13347/spider-girl_1998_29",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-02-01T00:00:00+0000",
+      "mu": "2001-02-01T00:00:00+0000",
+      "digitalId": 2474,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/670d93eee2939",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13349,
+      "title": "Spider-Girl (1998) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/13349/spider-girl_1998_30",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-03-01T00:00:00+0000",
+      "mu": "2001-03-01T00:00:00+0000",
+      "digitalId": 2476,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4bc471d5702df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13350,
+      "title": "Spider-Girl (1998) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/13350/spider-girl_1998_31",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-04-01T00:00:00+0000",
+      "mu": "2001-04-01T00:00:00+0000",
+      "digitalId": 2477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/4bc471cfde3fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13351,
+      "title": "Spider-Girl (1998) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/13351/spider-girl_1998_32",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-05-01T00:00:00+0000",
+      "mu": "2001-05-01T00:00:00+0000",
+      "digitalId": 2478,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4bc471ca70d29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13352,
+      "title": "Spider-Girl (1998) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/13352/spider-girl_1998_33",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-06-01T00:00:00+0000",
+      "mu": "2001-06-01T00:00:00+0000",
+      "digitalId": 2479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/4bc471c52bee8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13353,
+      "title": "Spider-Girl (1998) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/13353/spider-girl_1998_34",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-07-01T00:00:00+0000",
+      "mu": "2001-07-01T00:00:00+0000",
+      "digitalId": 2480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/670d8bb5af538",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13354,
+      "title": "Spider-Girl (1998) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/13354/spider-girl_1998_35",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-08-01T00:00:00+0000",
+      "mu": "2001-08-01T00:00:00+0000",
+      "digitalId": 2481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/670d8bb5af4ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13355,
+      "title": "Spider-Girl (1998) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/13355/spider-girl_1998_36",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-09-01T00:00:00+0000",
+      "mu": "2001-09-01T00:00:00+0000",
+      "digitalId": 2482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/670d8bb5bae64",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13356,
+      "title": "Spider-Girl (1998) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/13356/spider-girl_1998_37",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-10-01T00:00:00+0000",
+      "mu": "2001-10-01T00:00:00+0000",
+      "digitalId": 2483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/670d8bb5bba2c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13357,
+      "title": "Spider-Girl (1998) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/13357/spider-girl_1998_38",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2001-11-01T00:00:00+0000",
+      "digitalId": 2484,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/670d8bb5b30ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13358,
+      "title": "Spider-Girl (1998) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/13358/spider-girl_1998_39",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2001-12-01T00:00:00+0000",
+      "mu": "2001-12-01T00:00:00+0000",
+      "digitalId": 2485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/670d8bce97144",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13360,
+      "title": "Spider-Girl (1998) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/13360/spider-girl_1998_40",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-01-01T00:00:00+0000",
+      "mu": "2002-01-01T00:00:00+0000",
+      "digitalId": 2487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/670d8b6285486",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13361,
+      "title": "Spider-Girl (1998) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/13361/spider-girl_1998_41",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-02-01T00:00:00+0000",
+      "mu": "2002-02-01T00:00:00+0000",
+      "digitalId": 2488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/670d8b1a6b9f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13362,
+      "title": "Spider-Girl (1998) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/13362/spider-girl_1998_42",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2002-03-01T00:00:00+0000",
+      "digitalId": 2489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/670d8b1a6d4da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13363,
+      "title": "Spider-Girl (1998) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/13363/spider-girl_1998_43",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2002-03-01T00:00:00+0000",
+      "digitalId": 2490,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/670d8b1a76e53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13364,
+      "title": "Spider-Girl (1998) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/13364/spider-girl_1998_44",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-04-01T00:00:00+0000",
+      "mu": "2002-04-01T00:00:00+0000",
+      "digitalId": 2491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/670d8b1a77f45",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13365,
+      "title": "Spider-Girl (1998) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/13365/spider-girl_1998_45",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2002-05-01T00:00:00+0000",
+      "digitalId": 2492,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/670d8b307d22e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13366,
+      "title": "Spider-Girl (1998) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/13366/spider-girl_1998_46",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-06-01T00:00:00+0000",
+      "mu": "2002-06-01T00:00:00+0000",
+      "digitalId": 2493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/670d8ad6a4ea9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13367,
+      "title": "Spider-Girl (1998) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/13367/spider-girl_1998_47",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-07-01T00:00:00+0000",
+      "mu": "2002-07-01T00:00:00+0000",
+      "digitalId": 2494,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/670d8ad6a5161",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13368,
+      "title": "Spider-Girl (1998) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/13368/spider-girl_1998_48",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2002-08-01T00:00:00+0000",
+      "digitalId": 2495,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/670d8ad6a909f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13369,
+      "title": "Spider-Girl (1998) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/13369/spider-girl_1998_49",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-09-01T00:00:00+0000",
+      "mu": "2002-09-01T00:00:00+0000",
+      "digitalId": 2496,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/670d8ad6afbe9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 13371,
+      "title": "Spider-Girl (1998) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/13371/spider-girl_1998_50",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2002-10-01T00:00:00+0000",
+      "digitalId": 2498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/670d8ad6b013c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13372,
+      "title": "Spider-Girl (1998) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/13372/spider-girl_1998_51",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2002-11-01T00:00:00+0000",
+      "digitalId": 3460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/670d852971033",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Casey Jones",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13373,
+      "title": "Spider-Girl (1998) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/13373/spider-girl_1998_52",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-12-01T00:00:00+0000",
+      "digitalId": 3461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/670d852969964",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13374,
+      "title": "Spider-Girl (1998) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/13374/spider-girl_1998_53",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 3462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/670d85296f96f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13375,
+      "title": "Spider-Girl (1998) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/13375/spider-girl_1998_54",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 3463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/670d8529738ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13376,
+      "title": "Spider-Girl (1998) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/13376/spider-girl_1998_55",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2003-03-01T00:00:00+0000",
+      "digitalId": 3464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/670d852975b12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13377,
+      "title": "Spider-Girl (1998) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/13377/spider-girl_1998_56",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2003-03-01T00:00:00+0000",
+      "digitalId": 3465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/670d84eb0bfb1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13378,
+      "title": "Spider-Girl (1998) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/13378/spider-girl_1998_57",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-04-01T00:00:00+0000",
+      "mu": "2003-04-01T00:00:00+0000",
+      "digitalId": 3666,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/670d84eb0bfd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13379,
+      "title": "Spider-Girl (1998) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/13379/spider-girl_1998_58",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-05-01T00:00:00+0000",
+      "mu": "2003-05-01T00:00:00+0000",
+      "digitalId": 3667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/670d84eb10017",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13380,
+      "title": "Spider-Girl (1998) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/13380/spider-girl_1998_59",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-06-01T00:00:00+0000",
+      "mu": "2003-06-01T00:00:00+0000",
+      "digitalId": 3668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/670d84eb18175",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13382,
+      "title": "Spider-Girl (1998) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/13382/spider-girl_1998_60",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 3669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/670d84eb19472",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13383,
+      "title": "Spider-Girl (1998) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/13383/spider-girl_1998_61",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-08-01T00:00:00+0000",
+      "mu": "2003-08-01T00:00:00+0000",
+      "digitalId": 3670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/4bc34599b0b03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13384,
+      "title": "Spider-Girl (1998) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/13384/spider-girl_1998_62",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2003-09-01T00:00:00+0000",
+      "digitalId": 3671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/4bc345914726c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Barry Kitson",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 13385,
+      "title": "Spider-Girl (1998) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/13385/spider-girl_1998_63",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 3672,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/4bc365965b677",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13386,
+      "title": "Spider-Girl (1998) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/13386/spider-girl_1998_64",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2003-11-01T00:00:00+0000",
+      "digitalId": 3673,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4bc3659b6f3e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 193,
+      "title": "Spider-Girl (1998) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/193/spider-girl_1998_65",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2003-12-01T00:00:00+0000",
+      "mu": "2003-12-01T00:00:00+0000",
+      "digitalId": 3674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/670d801c94ae2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 192,
+      "title": "Spider-Girl (1998) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/192/spider-girl_1998_66",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-01-01T00:00:00+0000",
+      "mu": "2004-01-01T00:00:00+0000",
+      "digitalId": 3675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/670d801c94a3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 191,
+      "title": "Spider-Girl (1998) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/191/spider-girl_1998_67",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-02-01T00:00:00+0000",
+      "mu": "2004-02-01T00:00:00+0000",
+      "digitalId": 3676,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/670d801c987bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 189,
+      "title": "Spider-Girl (1998) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/189/spider-girl_1998_68",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-03-01T00:00:00+0000",
+      "mu": "2004-03-01T00:00:00+0000",
+      "digitalId": 3677,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/670d801ca103b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 247,
+      "title": "Spider-Girl (1998) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/247/spider-girl_1998_69",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-03-01T00:00:00+0000",
+      "mu": "2004-03-01T00:00:00+0000",
+      "digitalId": 3678,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/670d801c9eeaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 188,
+      "title": "Spider-Girl (1998) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/188/spider-girl_1998_70",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-04-01T00:00:00+0000",
+      "mu": "2004-04-01T00:00:00+0000",
+      "digitalId": 3679,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/670d8032e346e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 396,
+      "title": "Spider-Girl (1998) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/396/spider-girl_1998_71",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-05-01T00:00:00+0000",
+      "mu": "2004-05-01T00:00:00+0000",
+      "digitalId": 3680,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/670d80d793e0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 458,
+      "title": "Spider-Girl (1998) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/458/spider-girl_1998_72",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-06-01T00:00:00+0000",
+      "mu": "2004-06-01T00:00:00+0000",
+      "digitalId": 3681,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/670d80d794662",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 623,
+      "title": "Spider-Girl (1998) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/623/spider-girl_1998_73",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-07-01T00:00:00+0000",
+      "mu": "2004-07-01T00:00:00+0000",
+      "digitalId": 3682,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/670d80d79284a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 656,
+      "title": "Spider-Girl (1998) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/656/spider-girl_1998_74",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-07-01T00:00:00+0000",
+      "mu": "2004-07-01T00:00:00+0000",
+      "digitalId": 3683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/670d829a65016",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 683,
+      "title": "Spider-Girl (1998) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/683/spider-girl_1998_75",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-08-01T00:00:00+0000",
+      "mu": "2004-08-01T00:00:00+0000",
+      "digitalId": 3684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/670d80d79e792",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 603,
+      "title": "Spider-Girl (1998) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/603/spider-girl_1998_76",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-09-01T00:00:00+0000",
+      "mu": "2004-09-01T00:00:00+0000",
+      "digitalId": 3466,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/b0/670d82c8879ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 566,
+      "title": "Spider-Girl (1998) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/566/spider-girl_1998_77",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-10-01T00:00:00+0000",
+      "mu": "2004-10-01T00:00:00+0000",
+      "digitalId": 3467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/670d82c88863a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 794,
+      "title": "Spider-Girl (1998) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/794/spider-girl_1998_78",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-11-01T00:00:00+0000",
+      "mu": "2004-11-01T00:00:00+0000",
+      "digitalId": 3468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/670d82c889b4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 873,
+      "title": "Spider-Girl (1998) #79",
+      "number": "79",
+      "url": "https://www.marvel.com/comics/issue/873/spider-girl_1998_79",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2004-12-01T00:00:00+0000",
+      "mu": "2004-12-01T00:00:00+0000",
+      "digitalId": 3469,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/670d82c8932b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 36,
+      "title": "Spider-Girl (1998) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/36/spider-girl_1998_80",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-01-01T00:00:00+0000",
+      "mu": "2005-01-01T00:00:00+0000",
+      "digitalId": 3470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/670d82c892c14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 1434,
+      "title": "Spider-Girl (1998) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/1434/spider-girl_1998_81",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-02-01T00:00:00+0000",
+      "mu": "2005-02-01T00:00:00+0000",
+      "digitalId": 3471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/670d834ae30b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 1578,
+      "title": "Spider-Girl (1998) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/1578/spider-girl_1998_82",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-03-01T00:00:00+0000",
+      "mu": "2005-03-01T00:00:00+0000",
+      "digitalId": 2502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/670d830c1c938",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 1667,
+      "title": "Spider-Girl (1998) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/1667/spider-girl_1998_83",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-04-01T00:00:00+0000",
+      "mu": "2005-04-01T00:00:00+0000",
+      "digitalId": 2503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/670d830c1bfba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 1763,
+      "title": "Spider-Girl (1998) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/1763/spider-girl_1998_84",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-05-01T00:00:00+0000",
+      "mu": "2005-05-01T00:00:00+0000",
+      "digitalId": 2504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/670d830c242cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 1869,
+      "title": "Spider-Girl (1998) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/1869/spider-girl_1998_85",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-06-01T00:00:00+0000",
+      "mu": "2005-06-01T00:00:00+0000",
+      "digitalId": 2505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/670d830c241f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 1968,
+      "title": "Spider-Girl (1998) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/1968/spider-girl_1998_86",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-07-01T00:00:00+0000",
+      "mu": "2005-07-01T00:00:00+0000",
+      "digitalId": 2506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/670d8394e61fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 2070,
+      "title": "Spider-Girl (1998) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/2070/spider-girl_1998_87",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-08-01T00:00:00+0000",
+      "mu": "2005-08-01T00:00:00+0000",
+      "digitalId": 2507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/670d8394dd03b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 2223,
+      "title": "Spider-Girl (1998) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/2223/spider-girl_1998_88",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-09-01T00:00:00+0000",
+      "mu": "2005-09-01T00:00:00+0000",
+      "digitalId": 2508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/670d83f83f317",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 2133,
+      "title": "Last Hero Standing (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/2133/last_hero_standing_2005_1",
+      "seriesId": 43498,
+      "seriesName": "Last Hero Standing (2005 - Present)",
+      "onSale": "2005-08-01T00:00:00+0000",
+      "mu": "2005-08-01T00:00:00+0000",
+      "digitalId": 535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/4bc468ae79918",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2134,
+      "title": "Last Hero Standing (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/2134/last_hero_standing_2005_2",
+      "seriesId": 43498,
+      "seriesName": "Last Hero Standing (2005 - Present)",
+      "onSale": "2005-08-01T00:00:00+0000",
+      "mu": "2005-08-01T00:00:00+0000",
+      "digitalId": 540,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5d6577436e13a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2135,
+      "title": "Last Hero Standing (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/2135/last_hero_standing_2005_3",
+      "seriesId": 43498,
+      "seriesName": "Last Hero Standing (2005 - Present)",
+      "onSale": "2005-08-01T00:00:00+0000",
+      "mu": "2005-08-01T00:00:00+0000",
+      "digitalId": 542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5d65774d09bb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2136,
+      "title": "Last Hero Standing (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/2136/last_hero_standing_2005_4",
+      "seriesId": 43498,
+      "seriesName": "Last Hero Standing (2005 - Present)",
+      "onSale": "2005-08-01T00:00:00+0000",
+      "mu": "2005-08-01T00:00:00+0000",
+      "digitalId": 624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5d6577343913f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2137,
+      "title": "Last Hero Standing (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/2137/last_hero_standing_2005_5",
+      "seriesId": 43498,
+      "seriesName": "Last Hero Standing (2005 - Present)",
+      "onSale": "2005-08-01T00:00:00+0000",
+      "mu": "2005-08-01T00:00:00+0000",
+      "digitalId": 731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/4bc48142a49b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2336,
+      "title": "Spider-Girl (1998) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/2336/spider-girl_1998_89",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-10-01T00:00:00+0000",
+      "mu": "2005-10-01T00:00:00+0000",
+      "digitalId": 2509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/670d8394dd1ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 2824,
+      "title": "Spider-Girl (1998) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/2824/spider-girl_1998_90",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-11-01T00:00:00+0000",
+      "mu": "2005-11-01T00:00:00+0000",
+      "digitalId": 2511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/670d8394dfac1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 2468,
+      "title": "Spider-Girl (1998) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/2468/spider-girl_1998_91",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2005-12-01T00:00:00+0000",
+      "mu": "2005-12-01T00:00:00+0000",
+      "digitalId": 2512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/670d8394e522c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3031,
+      "title": "Spider-Girl (1998) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/3031/spider-girl_1998_92",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-01-01T00:00:00+0000",
+      "mu": "2006-01-01T00:00:00+0000",
+      "digitalId": 2513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/670d8464b1a5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3139,
+      "title": "Spider-Girl (1998) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/3139/spider-girl_1998_93",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-02-01T00:00:00+0000",
+      "mu": "2006-02-01T00:00:00+0000",
+      "digitalId": 2514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/670d8464b0d76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3366,
+      "title": "Spider-Girl (1998) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/3366/spider-girl_1998_94",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-02-15T00:00:00+0000",
+      "mu": "2006-03-01T00:00:00+0000",
+      "digitalId": 6935,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/670d8464c04eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3477,
+      "title": "Spider-Girl (1998) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/3477/spider-girl_1998_95",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-03-01T00:00:00+0000",
+      "mu": "2006-02-01T00:00:00+0000",
+      "digitalId": 6936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/670d8464c3e6c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 3890,
+      "title": "Spider-Girl (1998) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/3890/spider-girl_1998_96",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-03-15T00:00:00+0000",
+      "mu": "2006-03-01T00:00:00+0000",
+      "digitalId": 6937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/670d8464c1b35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 4024,
+      "title": "Spider-Girl (1998) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/4024/spider-girl_1998_97",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-04-05T00:00:00+0000",
+      "mu": "2006-04-05T00:00:00+0000",
+      "digitalId": 6938,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/670d847b71386",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 4144,
+      "title": "Spider-Girl (1998) #98",
+      "number": "98",
+      "url": "https://www.marvel.com/comics/issue/4144/spider-girl_1998_98",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-05-10T00:00:00+0000",
+      "mu": "2006-05-10T00:00:00+0000",
+      "digitalId": 6939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/670d847c6fc71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 4256,
+      "title": "Spider-Girl (1998) #99",
+      "number": "99",
+      "url": "https://www.marvel.com/comics/issue/4256/spider-girl_1998_99",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-06-14T00:00:00+0000",
+      "mu": "2006-06-14T00:00:00+0000",
+      "digitalId": 6940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/670d847c5fce9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 4415,
+      "title": "Spider-Girl (1998) #100",
+      "number": "100",
+      "url": "https://www.marvel.com/comics/issue/4415/spider-girl_1998_100",
+      "seriesId": 417,
+      "seriesName": "Spider-Girl (1998 - 2006)",
+      "onSale": "2006-07-12T00:00:00+0000",
+      "mu": "2006-07-12T00:00:00+0000",
+      "digitalId": 6927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/670d847c62f83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 104,
+      "creators": []
+    },
+    {
+      "issueId": 4190,
+      "title": "Last Planet Standing (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4190/last_planet_standing_2006_1",
+      "seriesId": 991,
+      "seriesName": "Last Planet Standing (2006)",
+      "onSale": "2006-05-10T00:00:00+0000",
+      "mu": "2006-05-10T00:00:00+0000",
+      "digitalId": 1132,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5ddc2bf052422",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4191,
+      "title": "Last Planet Standing (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/4191/last_planet_standing_2006_2",
+      "seriesId": 991,
+      "seriesName": "Last Planet Standing (2006)",
+      "onSale": "2006-05-24T00:00:00+0000",
+      "mu": "2006-05-24T00:00:00+0000",
+      "digitalId": 6291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/4c364e93b57a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4288,
+      "title": "Last Planet Standing (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/4288/last_planet_standing_2006_3",
+      "seriesId": 991,
+      "seriesName": "Last Planet Standing (2006)",
+      "onSale": "2006-06-07T00:00:00+0000",
+      "mu": "2006-06-07T00:00:00+0000",
+      "digitalId": 6292,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/4c7d51ceb7cf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4289,
+      "title": "Last Planet Standing (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/4289/last_planet_standing_2006_4",
+      "seriesId": 991,
+      "seriesName": "Last Planet Standing (2006)",
+      "onSale": "2006-06-21T00:00:00+0000",
+      "mu": "2006-06-21T00:00:00+0000",
+      "digitalId": 6293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5ddc474ab045f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4444,
+      "title": "Last Planet Standing (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/4444/last_planet_standing_2006_5",
+      "seriesId": 991,
+      "seriesName": "Last Planet Standing (2006)",
+      "onSale": "2006-07-05T00:00:00+0000",
+      "mu": "2006-07-05T00:00:00+0000",
+      "digitalId": 6294,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5ddd364fa4953",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5286,
+      "title": "Amazing Spider-Girl (2006)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/5286/amazing_spider-girl_2006",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2006-10-04T00:00:00+0000",
+      "mu": "2006-10-04T00:00:00+0000",
+      "digitalId": 1354,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5ab00b9b65645",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5281,
+      "title": "Amazing Spider-Girl (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5281/amazing_spider-girl_2006_1",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2006-10-18T00:00:00+0000",
+      "mu": "2006-10-18T00:00:00+0000",
+      "digitalId": 1355,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/56d7050698f72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5475,
+      "title": "Avengers Next (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5475/avengers_next_2006_1",
+      "seriesId": 1143,
+      "seriesName": "Avengers Next (2006 - 2007)",
+      "onSale": "2006-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5c2e5eddcf9ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5476,
+      "title": "Avengers Next (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/5476/avengers_next_2006_2",
+      "seriesId": 1143,
+      "seriesName": "Avengers Next (2006 - 2007)",
+      "onSale": "2006-11-29T00:00:00+0000",
+      "mu": "2007-12-11T00:00:00+0000",
+      "digitalId": 5255,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5c2e6d45cba28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5591,
+      "title": "Amazing Spider-Girl (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/5591/amazing_spider-girl_2006_2",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2006-11-08T00:00:00+0000",
+      "mu": "2006-11-08T00:00:00+0000",
+      "digitalId": 4960,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56d7056da8c93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": []
+    },
+    {
+      "issueId": 5701,
+      "title": "Amazing Spider-Girl (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5701/amazing_spider-girl_2006_3",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2006-12-13T00:00:00+0000",
+      "mu": "2006-12-13T00:00:00+0000",
+      "digitalId": 4961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5ab00b64de83c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5843,
+      "title": "Amazing Spider-Girl (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5843/amazing_spider-girl_2006_4",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-01-10T00:00:00+0000",
+      "mu": "2007-01-10T00:00:00+0000",
+      "digitalId": 7974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/56d705dadac0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 5997,
+      "title": "Amazing Spider-Girl (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5997/amazing_spider-girl_2006_5",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-02-14T00:00:00+0000",
+      "mu": "2007-02-14T00:00:00+0000",
+      "digitalId": 7975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/56d7064ea9df4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 5728,
+      "title": "Avengers Next (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5728/avengers_next_2006_3",
+      "seriesId": 1143,
+      "seriesName": "Avengers Next (2006 - 2007)",
+      "onSale": "2006-12-13T00:00:00+0000",
+      "mu": "2007-12-18T00:00:00+0000",
+      "digitalId": 5256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5c2e76cfcaf6c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5729,
+      "title": "Avengers Next (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5729/avengers_next_2006_4",
+      "seriesId": 1143,
+      "seriesName": "Avengers Next (2006 - 2007)",
+      "onSale": "2006-12-27T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 5257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5c2f63fc5111c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5875,
+      "title": "Avengers Next (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5875/avengers_next_2006_5",
+      "seriesId": 1143,
+      "seriesName": "Avengers Next (2006 - 2007)",
+      "onSale": "2007-01-24T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 5258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/5c2f702e21540",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6130,
+      "title": "Amazing Spider-Girl (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/6130/amazing_spider-girl_2006_6",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-03-14T00:00:00+0000",
+      "mu": "2007-03-14T00:00:00+0000",
+      "digitalId": 7976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/56d706ec2dab9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6270,
+      "title": "Amazing Spider-Girl (2006) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/6270/amazing_spider-girl_2006_7",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-04-11T00:00:00+0000",
+      "mu": "2007-12-03T00:00:00+0000",
+      "digitalId": 7977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/56d70754b284f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 16003,
+      "title": "Fantastic Five (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/16003/fantastic_five_2007_1",
+      "seriesId": 2535,
+      "seriesName": "Fantastic Five (2007)",
+      "onSale": "2007-07-11T00:00:00+0000",
+      "mu": "2007-07-11T00:00:00+0000",
+      "digitalId": 9859,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5adf564386ae7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Henry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16004,
+      "title": "Fantastic Five (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/16004/fantastic_five_2007_2",
+      "seriesId": 2535,
+      "seriesName": "Fantastic Five (2007)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 40219,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/e0/5adf5f85998d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Henry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16186,
+      "title": "Fantastic Five (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16186/fantastic_five_2007_3",
+      "seriesId": 2535,
+      "seriesName": "Fantastic Five (2007)",
+      "onSale": "2007-08-08T00:00:00+0000",
+      "mu": "2007-08-08T00:00:00+0000",
+      "digitalId": 40220,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5adf7581dc542",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Henry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16187,
+      "title": "Fantastic Five (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16187/fantastic_five_2007_4",
+      "seriesId": 2535,
+      "seriesName": "Fantastic Five (2007)",
+      "onSale": "2007-08-22T00:00:00+0000",
+      "mu": "2007-08-22T00:00:00+0000",
+      "digitalId": 40223,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5adf80e2b2eb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Henry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16592,
+      "title": "Fantastic Five (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/16592/fantastic_five_2007_5",
+      "seriesId": 2535,
+      "seriesName": "Fantastic Five (2007)",
+      "onSale": "2007-09-12T00:00:00+0000",
+      "mu": "2007-09-12T00:00:00+0000",
+      "digitalId": 40224,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5adf898178fa0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Henry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13478,
+      "title": "Amazing Spider-Girl (2006) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/13478/amazing_spider-girl_2006_8",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-05-09T00:00:00+0000",
+      "mu": "2007-05-09T00:00:00+0000",
+      "digitalId": 7978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/56d707c92624e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 15856,
+      "title": "Amazing Spider-Girl (2006) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/15856/amazing_spider-girl_2006_9",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-06-13T00:00:00+0000",
+      "mu": "2007-06-13T00:00:00+0000",
+      "digitalId": 7979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/56d708312e80b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 15966,
+      "title": "Amazing Spider-Girl (2006) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/15966/amazing_spider-girl_2006_10",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-07-11T00:00:00+0000",
+      "mu": "2007-07-11T00:00:00+0000",
+      "digitalId": 7980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/56d708a64e2bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 16151,
+      "title": "Amazing Spider-Girl (2006) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/16151/amazing_spider-girl_2006_11",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-08-08T00:00:00+0000",
+      "mu": "2007-08-08T00:00:00+0000",
+      "digitalId": 7981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5f281d0d4bebd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 16522,
+      "title": "Amazing Spider-Girl (2006) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/16522/amazing_spider-girl_2006_12",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-09-12T00:00:00+0000",
+      "mu": "2007-09-12T00:00:00+0000",
+      "digitalId": 7982,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56d70974b0d4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 16523,
+      "title": "Amazing Spider-Girl (2006) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/16523/amazing_spider-girl_2006_13",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-10-10T00:00:00+0000",
+      "mu": "2008-05-12T00:00:00+0000",
+      "digitalId": 7983,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56d709d1d03f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17249,
+      "title": "Amazing Spider-Girl (2006) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/17249/amazing_spider-girl_2006_14",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-11-14T00:00:00+0000",
+      "mu": "2007-11-14T00:00:00+0000",
+      "digitalId": 7984,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/56d70a4fb3744",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17385,
+      "title": "Amazing Spider-Girl (2006) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/17385/amazing_spider-girl_2006_15",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2007-12-12T00:00:00+0000",
+      "mu": "2007-12-12T00:00:00+0000",
+      "digitalId": 7985,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/56d70aa59ea9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17629,
+      "title": "Amazing Spider-Girl (2006) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/17629/amazing_spider-girl_2006_16",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-01-16T00:00:00+0000",
+      "mu": "2008-01-16T00:00:00+0000",
+      "digitalId": 10450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/56d70b16bc983",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70668,
+      "title": "Amazing Spider-Girl (2006) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/70668/amazing_spider-girl_2006_17",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-02-01T00:00:00+0000",
+      "mu": "2017-03-21T11:45:00+0000",
+      "digitalId": 48344,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5ab10f946ad85",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Mounts",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20868,
+      "title": "Amazing Spider-Girl (2006) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/20868/amazing_spider-girl_2006_18",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-03-12T00:00:00+0000",
+      "mu": "2008-03-12T00:00:00+0000",
+      "digitalId": 10461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5f2add5e95618",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21003,
+      "title": "Amazing Spider-Girl (2006) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/21003/amazing_spider-girl_2006_19",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-04-09T00:00:00+0000",
+      "mu": "2008-04-09T00:00:00+0000",
+      "digitalId": 10462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5f2adec14b78d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21259,
+      "title": "American Dream (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21259/american_dream_2008_1",
+      "seriesId": 4876,
+      "seriesName": "American Dream (2008)",
+      "onSale": "2008-05-07T00:00:00+0000",
+      "mu": "2008-05-07T00:00:00+0000",
+      "digitalId": 10316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5ef255da82728",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21260,
+      "title": "American Dream (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21260/american_dream_2008_2",
+      "seriesId": 4876,
+      "seriesName": "American Dream (2008)",
+      "onSale": "2008-05-21T00:00:00+0000",
+      "mu": "2008-05-21T00:00:00+0000",
+      "digitalId": 10599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/56dd8d195d342",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21404,
+      "title": "American Dream (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/21404/american_dream_2008_3",
+      "seriesId": 4876,
+      "seriesName": "American Dream (2008)",
+      "onSale": "2008-06-04T00:00:00+0000",
+      "mu": "2008-06-04T00:00:00+0000",
+      "digitalId": 10609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/56dd8da25b7c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21405,
+      "title": "American Dream (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/21405/american_dream_2008_4",
+      "seriesId": 4876,
+      "seriesName": "American Dream (2008)",
+      "onSale": "2008-06-18T00:00:00+0000",
+      "mu": "2008-06-18T00:00:00+0000",
+      "digitalId": 10611,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/56dd8e2374d2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21577,
+      "title": "American Dream (2008) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/21577/american_dream_2008_5",
+      "seriesId": 4876,
+      "seriesName": "American Dream (2008)",
+      "onSale": "2008-07-02T00:00:00+0000",
+      "mu": "2008-07-02T00:00:00+0000",
+      "digitalId": 10614,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/56dd8edb97703",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21214,
+      "title": "Amazing Spider-Girl (2006) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/21214/amazing_spider-girl_2006_20",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-05-14T00:00:00+0000",
+      "mu": "2008-05-14T00:00:00+0000",
+      "digitalId": 10463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/56d70ceae0516",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21357,
+      "title": "Amazing Spider-Girl (2006) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/21357/amazing_spider-girl_2006_21",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-06-11T00:00:00+0000",
+      "mu": "2008-06-11T00:00:00+0000",
+      "digitalId": 10464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/00/5ab00b6ec1150",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21539,
+      "title": "Amazing Spider-Girl (2006) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/21539/amazing_spider-girl_2006_22",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-07-09T00:00:00+0000",
+      "mu": "2008-07-09T00:00:00+0000",
+      "digitalId": 10474,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5ab00b483b8dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21737,
+      "title": "Amazing Spider-Girl (2006) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/21737/amazing_spider-girl_2006_23",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-08-13T00:00:00+0000",
+      "mu": "2008-08-13T00:00:00+0000",
+      "digitalId": 10475,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5ab00b3154394",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21970,
+      "title": "Amazing Spider-Girl (2006) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/21970/amazing_spider-girl_2006_24",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-09-10T00:00:00+0000",
+      "mu": "2008-09-10T00:00:00+0000",
+      "digitalId": 10487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5f2c21dc4f5bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22294,
+      "title": "Amazing Spider-Girl (2006) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/22294/amazing_spider-girl_2006_25",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-10-08T00:00:00+0000",
+      "mu": "2008-10-08T00:00:00+0000",
+      "digitalId": 10894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/5ab00b1840c0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22501,
+      "title": "Amazing Spider-Girl (2006) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/22501/amazing_spider-girl_2006_26",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-11-12T00:00:00+0000",
+      "mu": "2008-11-12T00:00:00+0000",
+      "digitalId": 10895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5f2c236721e2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22903,
+      "title": "Amazing Spider-Girl (2006) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/22903/amazing_spider-girl_2006_27",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2008-12-10T00:00:00+0000",
+      "mu": "2008-12-10T00:00:00+0000",
+      "digitalId": 10896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/56d70d5d4eca7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23107,
+      "title": "Amazing Spider-Girl (2006) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/23107/amazing_spider-girl_2006_28",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2009-01-14T00:00:00+0000",
+      "mu": "2009-01-14T00:00:00+0000",
+      "digitalId": 12407,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5f2c3684d0a83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23604,
+      "title": "Amazing Spider-Girl (2006) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/23604/amazing_spider-girl_2006_29",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2009-02-11T00:00:00+0000",
+      "mu": "2009-02-11T00:00:00+0000",
+      "digitalId": 12408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/56d70e876b6b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23763,
+      "title": "Amazing Spider-Girl (2006) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/23763/amazing_spider-girl_2006_30",
+      "seriesId": 1126,
+      "seriesName": "Amazing Spider-Girl (2006 - 2009)",
+      "onSale": "2009-03-18T00:00:00+0000",
+      "mu": "2009-03-18T00:00:00+0000",
+      "digitalId": 12417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/56d70ef2a4606",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21798,
+      "title": "Amazing Spider-Man Family (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21798/amazing_spider-man_family_2008_1",
+      "seriesId": 5376,
+      "seriesName": "Amazing Spider-Man Family (2008 - 2009)",
+      "onSale": "2008-08-06T00:00:00+0000",
+      "mu": "2008-08-06T00:00:00+0000",
+      "digitalId": 10589,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/581ca52c10207",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Cal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Champagne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ramon Bachs",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Shawn Moll",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22372,
+      "title": "Amazing Spider-Man Family (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/22372/amazing_spider-man_family_2008_2",
+      "seriesId": 5376,
+      "seriesName": "Amazing Spider-Man Family (2008 - 2009)",
+      "onSale": "2008-10-08T00:00:00+0000",
+      "mu": "2008-10-08T00:00:00+0000",
+      "digitalId": 10912,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/56d7160ad4723",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 22979,
+      "title": "Amazing Spider-Man Family (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/22979/amazing_spider-man_family_2008_3",
+      "seriesId": 5376,
+      "seriesName": "Amazing Spider-Man Family (2008 - 2009)",
+      "onSale": "2008-12-17T00:00:00+0000",
+      "mu": "2008-12-17T00:00:00+0000",
+      "digitalId": 10913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/56d7169314e16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 23642,
+      "title": "Amazing Spider-Man Family (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/23642/amazing_spider-man_family_2008_4",
+      "seriesId": 5376,
+      "seriesName": "Amazing Spider-Man Family (2008 - 2009)",
+      "onSale": "2009-02-18T00:00:00+0000",
+      "mu": "2009-02-18T00:00:00+0000",
+      "digitalId": 19915,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5820d1b8cc97d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 27834,
+      "title": "Spectacular Spider-Girl Digital Comic (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27834/spectacular_spider-girl_digital_comic_2009_1",
+      "seriesId": 8891,
+      "seriesName": "Spectacular Spider-Girl Digital Comic (2009 - 2010)",
+      "onSale": "2009-04-15T00:00:00-0400",
+      "mu": "2009-04-15T00:00:00-0400",
+      "digitalId": 12439,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/621e804eda593",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": []
+    },
+    {
+      "issueId": 27837,
+      "title": "Spectacular Spider-Girl Digital Comic (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/27837/spectacular_spider-girl_digital_comic_2009_4",
+      "seriesId": 8891,
+      "seriesName": "Spectacular Spider-Girl Digital Comic (2009 - 2010)",
+      "onSale": "2009-07-15T00:00:00-0400",
+      "mu": "2009-07-15T00:00:00-0400",
+      "digitalId": 13045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/568c0a9815bcb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": []
+    },
+    {
+      "issueId": 33568,
+      "title": "Spectacular Spider-Girl Digital Comic (2009) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/33568/spectacular_spider-girl_digital_comic_2009_11",
+      "seriesId": 8891,
+      "seriesName": "Spectacular Spider-Girl Digital Comic (2009 - 2010)",
+      "onSale": "2010-03-17T00:00:00-0400",
+      "mu": "2010-03-17T00:00:00-0400",
+      "digitalId": 14217,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/621e805bb8290",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": []
+    },
+    {
+      "issueId": 33392,
+      "title": "Spectacular Spider-Girl (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/33392/spectacular_spider-girl_2010_3",
+      "seriesId": 9801,
+      "seriesName": "Spectacular Spider-Girl (2010)",
+      "onSale": "2010-07-14T00:00:00+0000",
+      "mu": "2010-06-30T16:16:58+0000",
+      "digitalId": 15227,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/568c092f634d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 35559,
+      "title": "Spider-Girl: The End! (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/35559/spider-girl_the_end_2010_1",
+      "seriesId": 12595,
+      "seriesName": "Spider-Girl: The End! (2010)",
+      "onSale": "2010-08-25T00:00:00+0000",
+      "mu": "2010-08-25T00:00:00+0000",
+      "digitalId": 15806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/673d1df10f78a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 36952,
+      "title": "Captain America Corps (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/36952/captain_america_corps_2011_1",
+      "seriesId": 13199,
+      "seriesName": "Captain America Corps (2011)",
+      "onSale": "2011-06-15T00:00:00+0000",
+      "mu": "2012-01-10T00:00:00+0000",
+      "digitalId": 21675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/5ccafac4dd0ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 36951,
+      "title": "Captain America Corps (2011) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/36951/captain_america_corps_2011_2",
+      "seriesId": 13199,
+      "seriesName": "Captain America Corps (2011)",
+      "onSale": "2011-07-20T00:00:00+0000",
+      "mu": "2012-05-11T00:00:00+0000",
+      "digitalId": 22671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/f0/5ccafb750edda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 36950,
+      "title": "Captain America Corps (2011) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/36950/captain_america_corps_2011_3",
+      "seriesId": 13199,
+      "seriesName": "Captain America Corps (2011)",
+      "onSale": "2011-08-17T00:00:00+0000",
+      "mu": "2012-05-11T00:00:00+0000",
+      "digitalId": 23452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5ccafbd987334",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 36955,
+      "title": "Captain America Corps (2011) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/36955/captain_america_corps_2011_4",
+      "seriesId": 13199,
+      "seriesName": "Captain America Corps (2011)",
+      "onSale": "2011-09-21T00:00:00+0000",
+      "mu": "2012-05-11T00:00:00+0000",
+      "digitalId": 23892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/4e78c69fdf7f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 36949,
+      "title": "Captain America Corps (2011) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/36949/captain_america_corps_2011_5",
+      "seriesId": 13199,
+      "seriesName": "Captain America Corps (2011)",
+      "onSale": "2011-10-19T00:00:00+0000",
+      "mu": "2012-05-11T00:00:00+0000",
+      "digitalId": 24368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/56b3850f1a3c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Philippe Briones",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
