@@ -1,14 +1,21 @@
 #!/usr/bin/env node
-import { copyFile, mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { homedir, tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { createStaticServer, HOST } from '../server.mjs';
 import { drawIcon, encodePng } from './build-icons.mjs';
+import { ORIGIN, FIXTURE_API, demonstrationState, previewResponse, shellPath, completedHealthProbe, sha256 } from './play-assets.mjs';
+import { installCloudFixture, prepareCloudView, CLOUD_FIXTURE } from './listing-fixtures.mjs';
+import { CSP } from '../server.mjs';
+import { KEY } from '../src/js/storage.js';
+import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+// About shows the application version, so the check follows the release record rather than a
+// number that went stale the moment a release bumped it.
+const VERSION = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8')).version;
 const OUTPUT = join(ROOT, 'docs', 'store-assets');
 const EDGE = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
 const DRIVER_SUFFIXES = [
@@ -44,11 +51,21 @@ const SCREENSHOTS = [
   },
   {
     file: '04-reading-progress.png',
-    route: '#/read/store-demo',
+    route: '#/read/play-lantern',
     view: 'view-read',
     wait: '#view-read:not([hidden]) #reading-body:not([hidden])',
-    text: ['House of M', '5 of 20 read'],
+    text: ['Fictional: Lantern Harbor', '3 of 8 read'],
     state: 'demo',
+  },
+  {
+    file: '05-about-onedrive.png', route: '#/about', view: 'view-about',
+    wait: '#about-version', text: ['Your data', 'only to your own OneDrive', VERSION], state: 'empty',
+    scroll: '#view-about h3:nth-of-type(5)', heading: 'h3:nth-of-type(5)',
+  },
+  {
+    file: '06-backup-settings.png', route: '#/data', view: 'view-data',
+    wait: '#cloud-backup:not([hidden])', text: ['Cloud backup', 'Sign in with Microsoft', 'OneDrive'], state: 'demo',
+    scroll: '#cloud-backup', heading: '#cloud-backup h3',
   },
 ];
 
@@ -73,93 +90,64 @@ function resolveDriver() {
   return driverCandidates().find((candidate) => existsSync(candidate)) ?? null;
 }
 
-async function demoState() {
-  const order = JSON.parse(await readFile(join(ROOT, 'src', 'data', 'house_of_m.json'), 'utf8'));
-  const issues = Object.fromEntries(order.items.map((item) => [
-    item.issueId,
-    { ...item, source: 'curated' },
-  ]));
-  const read = Object.fromEntries(order.items.slice(0, 5).map((item, index) => [
-    item.issueId,
-    Date.UTC(2026, 0, index + 1),
-  ]));
-  const collectedIn = Object.fromEntries(
-    order.items.filter((item) => item.collectedIn).map((item) => [item.issueId, item.collectedIn]),
-  );
-  return {
-    schemaVersion: 2,
-    issues,
-    read,
-    overrides: {},
-    notes: {},
-    lists: {
-      'store-demo': {
-        id: 'store-demo',
-        name: `Store demonstration: ${order.name}`,
-        description: order.description,
-        note: '',
-        created: Date.UTC(2026, 0, 1),
-        catalogId: order.id,
-        itemIds: order.items.map((item) => item.issueId),
-        collectedIn,
-      },
-    },
-    listOrder: ['store-demo'],
-    active: 'store-demo',
-  };
-}
-
 async function installDeterministicBrowserState(page, state) {
-  await page.evaluateOnNewDocument((demo) => {
-    const realFetch = window.fetch.bind(window);
-    const json = (body, status = 200) => new Response(JSON.stringify(body), {
-      status,
-      headers: { 'content-type': 'application/json' },
-    });
-    window.fetch = (input, init) => {
-      const url = typeof input === 'string' ? input : input?.url ?? '';
-      const requestUrl = new URL(url, location.href);
-      if (requestUrl.origin === location.origin) return realFetch(input, init);
-      // Fixed to the public health response observed on 2026-08-29 so the captures are deterministic
-      // without advertising the one-item test stub used by the ordinary browser suite.
-      if (url.endsWith('/health')) return Promise.resolve(json({ issue_count: 37526 }));
-      return Promise.resolve(json({ items: [], total: 0, has_next: false }));
-    };
+  await installCloudFixture(page);
+  await page.evaluateOnNewDocument((demo, key, apiBase) => {
+    localStorage.clear();
+    // Worker script fetches bypass page interception. Exercise the app's unsupported-worker path
+    // rather than allowing a worker to reach another process listening on the fixed origin.
+    Object.defineProperty(navigator, 'serviceWorker', { value: undefined });
+    window.__playPreviewViolations = [];
+    window.open = () => { throw new Error('Reader popups are forbidden during screenshots'); };
     localStorage.setItem('mrt.settings', JSON.stringify({
-      covers: false,
-      filter: 'all',
+      covers: false, filter: 'all', theme: 'light', apiBase,
     }));
-    if (demo) localStorage.setItem('mrt.state.v2', JSON.stringify(demo));
-    else localStorage.removeItem('mrt.state.v2');
-  }, state);
+    if (demo) localStorage.setItem(key, JSON.stringify(demo));
+  }, state, KEY, FIXTURE_API);
 }
 
 async function auditAndCapture(page, origin, screenshot, output) {
-  const state = screenshot.state === 'demo' ? await demoState() : null;
+  const state = screenshot.state === 'demo' ? demonstrationState() : null;
   await installDeterministicBrowserState(page, state);
   await page.goto(`${origin}/${screenshot.route}`, { waitUntil: 'networkidle0' });
   await page.waitForSelector(`#${screenshot.view}:not([hidden])`, { timeout: 15000 });
   await page.waitForSelector(screenshot.wait, { timeout: 15000 });
-  await page.evaluate(() => scrollTo(0, 0));
+  await prepareCloudView(page, screenshot.view);
+  await page.evaluate(async (scroll) => {
+    await document.fonts.ready;
+    if (scroll) document.querySelector(scroll).scrollIntoView({ block: 'start' });
+    else scrollTo(0, 0);
+    document.activeElement?.blur();
+  }, screenshot.scroll);
 
-  const audit = await page.evaluate((expectedView, requiredText) => {
+  const audit = await page.evaluate((expectedView, requiredText, headingSelector) => {
     const visible = document.querySelector('.view:not([hidden])');
     const text = document.body.innerText.replace(/\s+/g, ' ').trim();
     const box = visible?.getBoundingClientRect();
     return {
       view: visible?.id ?? null,
       required: requiredText.map((value) => ({ value, present: text.includes(value) })),
-      privateText: /\braymo\b|[A-Za-z]:\\Users\\|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(text),
+      privateText: /\braymo\b|[A-Za-z]:\\Users\\|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(text),
+      falsePrivacy: /Your progress and your notes are never sent anywhere|and is never sent anywhere/.test(text),
+      coversOff: JSON.parse(localStorage.getItem('mrt.settings')).covers === false,
+      safeImages: [...document.images].every((image) => !image.getAttribute('src') || (
+        new URL(image.src).origin === location.origin
+          && ['/icons/icon.svg', '/brands/ms-symbollockup_mssymbol_19.svg', '/brands/g-logo.png'].includes(new URL(image.src).pathname)
+      )),
       horizontalOverflow: document.documentElement.scrollWidth > innerWidth,
-      headingVisible: Boolean(visible?.querySelector('h1')?.getBoundingClientRect().bottom <= innerHeight),
+      headingVisible: Boolean(visible?.querySelector(headingSelector ?? 'h1')?.getBoundingClientRect().top >= 0
+        && visible?.querySelector(headingSelector ?? 'h1')?.getBoundingClientRect().bottom <= innerHeight),
       viewIntersectsViewport: Boolean(box && box.top < innerHeight && box.right <= innerWidth),
       expectedView,
     };
-  }, screenshot.view, screenshot.text);
+  }, screenshot.view, screenshot.text, screenshot.heading);
 
   if (audit.view !== audit.expectedView
       || audit.required.some((entry) => !entry.present)
       || audit.privateText
+      || audit.falsePrivacy
+      || !audit.coversOff
+      || !audit.safeImages
       || audit.horizontalOverflow
       || !audit.headingVisible
       || !audit.viewIntersectsViewport) {
@@ -171,6 +159,18 @@ async function auditAndCapture(page, origin, screenshot, output) {
     fullPage: false,
   });
   console.log(`captured ${screenshot.file}: ${screenshot.text.join(' | ')}`);
+  return audit;
+}
+
+async function captureShell(directory, prefix = '') {
+  const shell = new Map();
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      for (const [key, bytes] of await captureShell(join(directory, entry.name), path)) shell.set(key, bytes);
+    } else if (entry.isFile() && shellPath(path)) shell.set(path, await readFile(join(directory, entry.name)));
+  }
+  return shell;
 }
 
 async function main() {
@@ -179,18 +179,16 @@ async function main() {
     throw new Error('puppeteer-core is missing; set MRT_PUPPETEER to an existing scratch install');
   }
   if (!existsSync(EDGE)) throw new Error(`Microsoft Edge is missing at ${EDGE}`);
+  if (resolve(driver).startsWith(`${resolve(ROOT)}\\`)) throw new Error('Use an external puppeteer-core install');
 
   const profile = await mkdtemp(join(tmpdir(), 'recap-page-store-assets-'));
   const assetStaging = await mkdtemp(join(tmpdir(), 'recap-page-store-images-'));
   await writeFile(join(assetStaging, 'store-tile-300.png'), encodePng(300, drawIcon(300)));
-  const server = createStaticServer();
   let browser;
   try {
-    await new Promise((resolveListen, reject) => {
-      server.once('error', reject);
-      server.listen(0, HOST, resolveListen);
-    });
-    const origin = `http://${HOST}:${server.address().port}`;
+    const shell = await captureShell(join(ROOT, 'src'));
+    const source = sourceIdentity();
+    const audits = [];
     const puppeteer = await import(pathToFileURL(driver).href);
     browser = await puppeteer.launch({
       executablePath: EDGE,
@@ -199,24 +197,63 @@ async function main() {
       args: ['--no-first-run', '--disable-sync', '--disable-background-networking'],
     });
     for (const screenshot of SCREENSHOTS) {
-      const page = await browser.newPage();
-      await page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 });
-      await page.setCacheEnabled(false);
-      await page.setBypassServiceWorker(true);
+      const context = await browser.createBrowserContext();
       try {
-        await auditAndCapture(page, origin, screenshot, assetStaging);
+        const page = await context.newPage();
+        await page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 });
+        await page.setCacheEnabled(false);
+        await page.setBypassServiceWorker(true);
+        await page.setOfflineMode(true);
+        await page.setRequestInterception(true);
+        const failures = [];
+        page.on('pageerror', (error) => failures.push(error.message));
+        page.on('console', (message) => {
+          if (message.type() === 'error') failures.push(`Browser error: ${message.text()}`);
+        });
+        page.on('requestfailed', (request) => {
+          const response = request.response();
+          if (!completedHealthProbe(request.url(), request.failure()?.errorText, response?.status(), response?.headers())) {
+            failures.push(`Request failed: ${request.url()}`);
+          }
+        });
+        page.on('request', async (request) => {
+          try {
+            const response = previewResponse(request.url(), request.method(), shell);
+            delete response.fixture;
+            await request.respond({ ...response, headers: {
+              ...response.headers, 'content-security-policy': CSP, 'cache-control': 'no-store',
+            } });
+          } catch (error) {
+            failures.push(error.message);
+            await request.abort('blockedbyclient');
+          }
+        });
+        const audit = await auditAndCapture(page, ORIGIN, screenshot, assetStaging);
+        if (failures.length) throw new Error(`${screenshot.file}: ${failures.join('; ')}`);
+        audits.push({ file: screenshot.file, audit });
       } finally {
-        await page.close();
+        await context.close();
       }
     }
+    await writeFile(join(assetStaging, 'capture-audit.json'), `${JSON.stringify({
+      status: 'preview-unapproved', origin: ORIGIN, renderer: await browser.version(),
+      source,
+      inputs: [...shell].map(([path, bytes]) => ({ path: `src/${path}`, sha256: sha256(bytes) })),
+      cloud: { configuration: CLOUD_FIXTURE, account: null, state: 'not-connected', simulated: true },
+      network: 'All page requests fulfilled locally or refused; no listening server.',
+      serviceWorker: 'Unavailable in this capture; the app reports its normal unsupported-worker outcome.',
+      audits,
+    }, null, 2)}\n`);
+    assertSourceUnchanged(source);
+    for (const [path, bytes] of shell) {
+      if (sha256(await readFile(join(ROOT, 'src', path))) !== sha256(bytes)) throw new Error(`Capture source changed: ${path}`);
+    }
     await mkdir(OUTPUT, { recursive: true });
-    for (const file of [...SCREENSHOTS.map((screenshot) => screenshot.file), 'store-tile-300.png']) {
+    for (const file of [...SCREENSHOTS.map((screenshot) => screenshot.file), 'store-tile-300.png', 'capture-audit.json']) {
       await copyFile(join(assetStaging, file), join(OUTPUT, file));
     }
   } finally {
     if (browser) await browser.close();
-    server.closeAllConnections();
-    await new Promise((resolveClose) => server.close(resolveClose));
     await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
     await rm(assetStaging, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
   }

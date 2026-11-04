@@ -6,20 +6,21 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { prepareAndroid } from './prepare-android.mjs';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
 import { KEY } from '../src/js/storage.js';
+import { installCloudFixture, prepareCloudView } from './listing-fixtures.mjs';
 import {
   ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, sha256, shellPath, previewResponse, completedHealthProbe,
-  demonstrationState, playIcon, featureGraphic, inspectAsset, previewManifest,
+  screenState, playIcon, featureGraphic, inspectAsset, previewManifest,
 } from './play-assets.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const TOOLING = ['scripts/build-icons.mjs', 'scripts/play-assets.mjs', 'scripts/capture-play-assets.mjs',
-  'scripts/prepare-android.mjs', 'scripts/lib/release-identity.mjs', 'package.json', 'server.mjs'];
+  'scripts/prepare-android.mjs', 'scripts/lib/release-identity.mjs', 'scripts/listing-fixtures.mjs', 'package.json', 'server.mjs'];
 
 function assertCleanAudit(failures) {
   if (failures.length) throw new Error(`Play preview failed: ${failures.join('; ')}`);
 }
 
-async function installPreview(page, shell, headers, failures, fixtureResponses, usedPaths) {
+async function installPreview(page, shell, headers, failures, fixtureResponses, usedPaths, screen) {
   await page.setViewport(VIEWPORT);
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
@@ -50,11 +51,12 @@ async function installPreview(page, shell, headers, failures, fixtureResponses, 
   page.on('console', (message) => {
     if (message.type() === 'error') failures.push(`browser error: ${message.text()}`);
   });
-  await page.evaluateOnNewDocument((key, state, apiBase) => {
+  await installCloudFixture(page);
+  await page.evaluateOnNewDocument((key, state, apiBase, theme) => {
     localStorage.clear();
     localStorage.setItem(key, JSON.stringify(state));
     localStorage.setItem('mrt.settings', JSON.stringify({
-      covers: false, theme: 'light', filter: 'all', apiBase,
+      covers: false, theme, filter: 'all', apiBase,
     }));
     window.__playPreviewViolations = [];
     window.open = () => {
@@ -62,13 +64,14 @@ async function installPreview(page, shell, headers, failures, fixtureResponses, 
       throw new Error('Readers and popups are disabled during Play previews');
     };
     window.addEventListener('securitypolicyviolation', () => window.__playPreviewViolations.push('blocked CSP request'));
-  }, KEY, demonstrationState(), FIXTURE_API);
+  }, KEY, screenState(screen), FIXTURE_API, screen.theme ?? 'light');
 }
 
 async function captureScreen(page, screen, output) {
   await page.goto(`${ORIGIN}/${screen.route}`, { waitUntil: 'networkidle0', timeout: 15000 });
   await page.waitForSelector(`#${screen.view}:not([hidden])`, { timeout: 10000 });
   await page.waitForFunction((texts) => texts.every((text) => document.body.innerText.includes(text)), { timeout: 10000 }, screen.text);
+  await prepareCloudView(page, screen.view);
   await page.evaluate(async (scroll) => {
     const frames = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
     await document.fonts.ready;
@@ -84,6 +87,7 @@ async function captureScreen(page, screen, output) {
       await frames();
     } else scrollTo(0, 0);
     await Promise.allSettled(document.getAnimations().map((animation) => animation.finished));
+    document.activeElement?.blur();
   }, screen.scroll);
   const audit = await page.evaluate((view, requiredText, key, expectedState, headingSelector) => {
     const visible = document.querySelector('.view:not([hidden])');
@@ -113,12 +117,13 @@ async function captureScreen(page, screen, output) {
       coversOff: settings.covers === false,
       sameData,
       safeImages: [...document.images].every((image) => !image.getAttribute('src') || (
-        new URL(image.src).origin === location.origin && new URL(image.src).pathname === '/icons/icon.svg'
+        new URL(image.src).origin === location.origin && ['/icons/icon.svg', '/brands/ms-symbollockup_mssymbol_19.svg', '/brands/g-logo.png'].includes(new URL(image.src).pathname)
       )),
       privateTextAbsent: !/[A-Za-z]:[\\/]+Users[\\/]+|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b/i.test(text),
       noBlockedRequests: window.__playPreviewViolations.length === 0,
+      truthfulCloudCopy: !/Your progress and your notes are never sent anywhere|and is never sent anywhere/.test(text),
     };
-  }, screen.view, screen.text, KEY, demonstrationState(), screen.heading);
+  }, screen.view, screen.text, KEY, screenState(screen), screen.heading);
   if (Object.values(audit).some((value) => value !== true)) {
     throw new Error(`${screen.file} pre-capture audit failed: ${JSON.stringify(audit)}`);
   }
@@ -178,12 +183,12 @@ export async function capturePlayAssets() {
       try {
         const page = await context.newPage();
         const failures = [];
-        await installPreview(page, shell, prepared.config.securityHeaders, failures, fixtureResponses, usedPaths);
+        await installPreview(page, shell, prepared.config.securityHeaders, failures, fixtureResponses, usedPaths, screen);
         try {
           files.push(await captureScreen(page, screen, output));
         } catch (error) {
           assertCleanAudit(failures);
-          throw new Error(`${screen.file}: ${error.message}`, { cause: error });
+          throw new Error(`${screen.file}: ${error.message}; visible text: ${await page.evaluate(() => document.body.innerText.slice(0, 2400))}`, { cause: error });
         }
         assertCleanAudit(failures);
       } finally {
