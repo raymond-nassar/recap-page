@@ -51,8 +51,9 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 
 // The owner approved this privacy policy paragraph on #1079:
 // https://github.com/raymond-nassar/recap-page/issues/1079#issuecomment-6591655469
+// and its iCloud backup wording on #1101.
 test('the privacy policy is the owner-approved text', () => {
-  assert.equal(digest(read('PRIVACY.md')), 'a35dee4f2097949a38984bdbaedbc125d35182b8716be6178444ec1f870197b1');
+  assert.equal(digest(read('PRIVACY.md')), '14e2afaa2a519cd7166f26f74ee8c836c272e2fbfc861ebf3868520df20dba48');
 });
 
 test('the 4.3.0 Microsoft Store fields are the approved text', () => {
