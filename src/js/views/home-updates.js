@@ -4,6 +4,8 @@ const IOS_FEATURE_COPY = new Map([
     'Move your reading data with one complete backup file.'],
   ['Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.',
     'Use clearer phone layouts and screen reader labels.'],
+  ['iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.',
+    'You can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.'],
 ]);
 const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/;
 const VIEWING_FAILURES = {

@@ -34,6 +34,11 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
   Reading List options appears after Read and Done on every platform.
 - Reading list descriptions have been rewritten to describe the story each list follows, in plainer
   and more varied wording, and two film guides no longer give away their twists.
+- iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the
+  backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page
+  folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never
+  receives your backups. If iCloud has not finished uploading a backup, checking for or restoring
+  that backup says so and asks you to try again once iCloud has uploaded it.
 
 ### Saved data and upgrading
 
@@ -61,9 +66,14 @@ Saved data and the backup file format are unchanged. Older builds and existing b
 provider read and restore as before. The new read purpose is an optional field that older transports
 ignore. No migration or backup step is needed.
 
-Google Drive backup for Windows and Android and iCloud Drive backup for iPhone and iPad are built
-but switched off in this version, and none of them is offered. Existing OneDrive connections and
-backups are not migrated or replaced, and stored OneDrive state is unchanged.
+Saved data and backup format are unchanged. iCloud uses the shared backup format and restore
+engine. Installing the update uploads nothing by itself. A later build switching iCloud off again
+requires the iOS-specific guidance in
+[#949 comment 6574578226](https://github.com/raymond-nassar/recap-page/issues/949#issuecomment-6574578226).
+
+iCloud Drive backup is switched on for iPhone and iPad in this version. Google Drive backup for
+Windows and Android is built but switched off, and is not offered. Existing OneDrive connections
+and backups are not migrated or replaced, and stored OneDrive state is unchanged.
 
 Builds older than 4.0.0 still cannot edit schema-4 reading data or restore its backups. Before
 upgrading from one of them, keep an independent backup and follow the
@@ -108,10 +118,6 @@ backup.
 
 Backup, reading history, and recovery messages now describe where your data is saved in the iPhone
 and iPad app. What's new describes the app's features without referring to other platforms.
-
-iPhone and iPad: when iCloud has not finished uploading a backup, checking for or restoring that
-backup now says so at once and asks you to try again once iCloud has uploaded it, instead of
-waiting. (Takes effect with iCloud backup itself; no effect while it is switched off.)
 
 ### Project home and store listing
 

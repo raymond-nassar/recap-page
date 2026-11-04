@@ -23,6 +23,10 @@ export const PLATFORM_LABELS = new Map([
     'Every platform.',
   ],
   [
+    'iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.',
+    'iCloud backup: iPhone and iPad only.',
+  ],
+  [
     'Back up automatically to your own OneDrive on Windows and Android, or move your reading data with one complete backup file.',
     'OneDrive backup: Windows and Android only.',
   ],
