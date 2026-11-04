@@ -11,7 +11,8 @@ sync: each installation saves separately, and restoring a backup replaces its sa
 - **OneDrive:** automatic backup shipped in 4.3.0 on Windows and Android.
 - **Google Drive:** work for Windows and Android is deferred while the owner hears from users.
   It has not shipped. See [the cloud backup request](https://github.com/raymond-nassar/recap-page/issues/810).
-- **iCloud:** automatic backup is part of version 4.4.0 on iPhone and iPad, not Windows or Android.
+- **iCloud:** automatic backup is part of version 4.4.0 on iPhone and iPad. Windows and Android
+  back up automatically to OneDrive.
   See [the iOS and iCloud request](https://github.com/raymond-nassar/recap-page/issues/949).
 
 See [the release notes](https://github.com/raymond-nassar/recap-page/blob/main/CHANGELOG.md)
