@@ -1,10 +1,11 @@
 # Recap Page privacy policy
 
-Last updated: 2026-10-30
+Last updated: 2026-11-03
 
-Your reading lists, progress, notes and settings stay on your device. Only the requests described
-below leave it, plus a backup to your own OneDrive if you turn that on. You can delete OneDrive
-backups from the app or in OneDrive, and erase the app's data on your device at any time.
+Recap Page keeps your reading lists, progress, notes and settings on your device. It sends only the
+requests described below, plus a backup to your own OneDrive, or on iPhone and iPad to your own iCloud, if you
+turn that on. You can delete cloud backups from the app or in OneDrive or iCloud Drive, and erase the
+app's data on your device at any time.
 
 ## What stays on your device
 
@@ -19,6 +20,9 @@ The app also keeps a cache of comic details, which can include your search text.
 On Windows, this data lives in the storage of the browser that opens the app. Each browser and
 browser profile keeps its own copy. On Android, it lives in the app's private storage. Android's
 own backup and device transfer are turned off for the app.
+
+On iPhone and iPad, it lives in the app's private web storage. Your device's own iCloud or computer
+backups may include it, even if automatic backup in Recap Page is off.
 
 You can export a backup file from **Backup & settings**. Wherever you save it receives its
 contents. Restoring a backup replaces your saved data after you confirm.
@@ -57,6 +61,26 @@ account name or email there to show which account is connected. Neither is part 
 Windows, all browser profiles for the same Windows user share the sign-in. On Android, it is kept
 in the app's protected private storage.
 
+## Optional iCloud backup
+
+iCloud backup is only in the iPhone and iPad app, and is off until you turn it on in **Backup &
+settings**. There is no sign-in in the app: it uses the iCloud account your device is signed in to,
+with iCloud Drive turned on. Connecting alone uploads nothing, and the app asks you before it backs
+up.
+
+Backups go to the Recap Page folder in your iCloud Drive, which you can see in the Files app. A
+backup holds the same things as a OneDrive backup, described above, and backups are made, listed and
+checked the same way, except that older backups are deleted only after a newer backup has uploaded.
+If iCloud has not yet uploaded the latest backup, the app says so.
+
+Recap Page does not encrypt backups itself, so treat them like your other files in iCloud Drive. The
+developer never receives a copy. Apple's [privacy policy](https://www.apple.com/legal/privacy/)
+covers what Apple receives.
+
+To notice when your device signs in to a different iCloud account, the app keeps an identifier Apple
+provides for the account on your device. The app never learns your Apple Account name or email, and
+the identifier is not part of a backup.
+
 ## Requests the app makes to other services
 
 Some features use the internet. None of these requests carries your saved lists, notes, ratings,
@@ -93,17 +117,21 @@ privacy statement. Questions posted there are public.
 ## Deleting your data
 
 - To stop future backups, turn automatic backup off.
-- To delete this device's backups from OneDrive, choose **Delete this device's cloud backups** in
+- To delete this device's backups from OneDrive or iCloud, choose **Delete this device's cloud backups** in
   **Backup & settings**. When you disconnect, you can also choose **Also delete this device's
   cloud backups**. If deletion fails, the app tells you that files remain.
 - You can also delete the files in OneDrive itself. OneDrive keeps deleted files in its recycle
   bin for up to 30 days; empty it to remove them sooner.
+- On iPhone and iPad, you can also delete the files in the Recap Page folder of iCloud Drive in the
+  Files app. iCloud Drive keeps deleted files in Recently Deleted for up to 30 days; delete them
+  there to remove them sooner.
 - To end the app's access, remove it from your Microsoft account's app permissions.
 - Erasing local data, uninstalling, or disconnecting without deleting does not remove backups
-  already in OneDrive. Microsoft's own logs and copies are covered by its privacy statement.
+  already in OneDrive or iCloud. Microsoft's own logs and copies are covered by its privacy
+  statement, and Apple's by its privacy policy.
 
 **Erase all local data** in **Backup & settings** removes your lists, progress, notes, ratings,
-completion history, custom entries and any unfinished import from this device, and turns OneDrive
+completion history, custom entries and any unfinished import from this device, and turns cloud
 backup off for it. Settings remain, and so do any copies kept after a failed read until you remove
 them. The app tells you if anything could not be removed.
 

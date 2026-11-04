@@ -110,6 +110,10 @@ test('public privacy policy names the Android, cloud, request and deletion bound
   assert.match(text, /each service sees the request and your network address/i);
   assert.match(text, /how long it keeps them is up to that service/i);
   assert.match(text, /OneDrive keeps deleted files in its recycle bin for up to 30 days/i);
+  assert.match(text, /iCloud backup is only in the iPhone and iPad app, and is off until you turn it on/i);
+  assert.match(text, /There is no sign-in in the app/i);
+  assert.match(text, /Recap Page does not encrypt backups itself, so treat them like your other files in iCloud Drive/i);
+  assert.match(text, /iCloud Drive keeps deleted files in Recently Deleted for up to 30 days/i);
   assert.match(text, /settings remain, and so do any copies kept after a failed read/i);
   assert.match(text, /neither removes exported files/i);
   const android = prose(await readFile(new URL('../docs/ANDROID.md', import.meta.url), 'utf8'));
