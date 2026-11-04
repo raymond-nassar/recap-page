@@ -337,12 +337,12 @@ pending until the presentation checks pass.
 
 ## iCloud backup
 
-The local switch-on candidate (#949, P04) sends backups to a visible **Recap Page** folder in
+Switched on for the next iOS version (#949, P04). Backups go to a visible **Recap Page** folder in
 iCloud Drive: the Documents folder of the permanent container above, which the Files app shows. The
 app answers the same cloud backup contract the Windows host and the Android app answer, so the
 shared backup engine, its schedule and its restore are unchanged.
 
-- **Two switches, both on in this candidate.** The native store, handler and bridge's `cloud` case compile
+- **Two switches, both on.** The native store, handler and bridge's `cloud` case compile
   only under the `RECAP_ICLOUD` compilation condition or in Debug, and a packaging test fails if
   any of it can reach a Release build without that condition. The page half lives in
   `packaging/ios/icloud-web`, outside the folder the build copies whole, so a build without it never
@@ -350,11 +350,11 @@ shared backup engine, its schedule and its restore are unchanged.
   now sets `iCloudBackup` true. Tests pin the explicit off preview, the default iCloud-only page,
   the app-only signing settings and the native conditional boundary, including the Debug-only fake.
   A preview can use an alternate features file; a reserved release refuses that override.
-- **Not release approval.** This candidate wires iCloud Documents entitlements, the public
-  `NSUbiquitousContainers` folder and `RECAP_ICLOUD` in both app configurations. The owner must
-  choose whether build 6 stays off or includes these signed-export changes before any release action.
-  Signing needs its own protected export proof. The read-purpose signal recorded on #949 remains
-  required before enabling for readers; this packaging change does not implement that signal.
+- **Signing proof.** Both app configurations carry the iCloud Documents entitlements, the public
+  `NSUbiquitousContainers` folder and `RECAP_ICLOUD`; the test target does not. The owner chose on
+  3 November 2026 to include iCloud in the next version. The first signed export is the proof that
+  signing accepts the entitlements, and before it the owner confirms the App ID's iCloud container in
+  Apple's developer portal. Only the read-back after a create waits for an upload (#1100).
 - **What iOS decides.** iOS uploads on its schedule. Read-back waits up to nine minutes for confirmation,
   and a pending local backup blocks another create before it writes. Retention runs only after a newer
   backup is confirmed. Restoring another device's backup may first need a download and a retry.
