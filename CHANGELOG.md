@@ -57,6 +57,10 @@ Existing backups and recovery journals remain readable. New versioned cloud reco
 references are local foundation metadata. Existing complete-backup files and ordinary provider
 backup generations retain their format.
 
+Saved data and the backup file format are unchanged. Older builds and existing backups on every
+provider read and restore as before. The new read purpose is an optional field that older transports
+ignore. No migration or backup step is needed.
+
 Google Drive backup for Windows and Android and iCloud Drive backup for iPhone and iPad are built
 but switched off in this version, and none of them is offered. Existing OneDrive connections and
 backups are not migrated or replaced, and stored OneDrive state is unchanged.
@@ -104,6 +108,10 @@ backup.
 
 Backup, reading history, and recovery messages now describe where your data is saved in the iPhone
 and iPad app. What's new describes the app's features without referring to other platforms.
+
+iPhone and iPad: when iCloud has not finished uploading a backup, checking for or restoring that
+backup now says so at once and asks you to try again once iCloud has uploaded it, instead of
+waiting. (Takes effect with iCloud backup itself; no effect while it is switched off.)
 
 ### Project home and store listing
 
