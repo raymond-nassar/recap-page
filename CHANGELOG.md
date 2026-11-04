@@ -75,9 +75,6 @@ iCloud Drive backup is switched on for iPhone and iPad in this version. Google D
 Windows and Android is built but switched off, and is not offered. Existing OneDrive connections
 and backups are not migrated or replaced, and stored OneDrive state is unchanged.
 
-Saved-data compatibility: unchanged. This is a styling-only change. No storage key, schema or saved
-value is read or written differently.
-
 Builds older than 4.0.0 still cannot edit schema-4 reading data or restore its backups. Before
 upgrading from one of them, keep an independent backup and follow the
 [4.0.0 compatibility guidance](#400).
@@ -128,8 +125,10 @@ and iPad app. What's new describes the app's features without referring to other
 ### Project home and store listing
 
 The project home now has dedicated Support, Privacy and Data sources pages instead of sending
-readers to repository file views. It also shows the status of the major feature being built and
-makes it easier to suggest an improvement, request a reading list, correct a list, or report a bug.
+readers to repository file views.
+
+The project home now shows the status of the major feature being built and makes it easier to
+suggest an improvement, request a reading list, correct a list, or report a bug.
 
 Added dedicated App Store header and search artwork showing the app icon and real reading-list
 screens.
