@@ -19,6 +19,10 @@ export const RECENT_RELEASES = 5;
 // new release note cannot publish without someone deciding what its label should say.
 export const PLATFORM_LABELS = new Map([
   [
+    'Search now finds Reading Lists as you type, including MCU Prep lists, genres, characters and descriptive matches. Preview or add a list directly from the results. Reading List matching works offline and stays on your device; submit the same field to keep searching for individual comics.',
+    'Every platform.',
+  ],
+  [
     'Back up automatically to your own OneDrive on Windows and Android, or move your reading data with one complete backup file.',
     'OneDrive backup: Windows and Android only.',
   ],

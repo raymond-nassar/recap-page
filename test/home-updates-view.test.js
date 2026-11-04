@@ -73,8 +73,8 @@ test('iOS projects platform-specific highlights without changing the generated s
   const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
   assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length,
     'every real feature needs reviewed iOS copy, not omission');
-  assert.match(text, /Move your reading data with one complete backup file/);
-  assert.match(text, /Use clearer phone layouts and screen reader labels/);
+  assert.match(text, /Genres replaces Storylines on Home/);
+  assert.match(text, /Search now finds Reading Lists as you type/);
   assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
 });
