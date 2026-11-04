@@ -56,7 +56,8 @@ test('the next listing set replaces the false About image with cloud-enabled Abo
   const assets = packet.slice(packet.indexOf('## Listing assets'), packet.indexOf('## Final upload handoff'));
   assert.doesNotMatch(assets, /05-about-privacy\.png/);
   assert.match(assets, /six screenshots were captured/i);
-  assert.match(assets, /live Microsoft Store listing still shows the older\s+screenshots/i);
+  assert.match(assets, /automated 4\.4\.0 Microsoft Store app submission keeps the current screenshots/i);
+  assert.match(assets, /Once 4\.4\.0 is live, a separate listing-only Partner Center submission through Playwright uploads\s+this refreshed Windows set with the approved captions/i);
   assert.match(assets, /predates Genres and\s+still shows Storylines/i);
   assert.match(assets, /next listing update/i);
   assert.match(packet, /In Partner Center, remove the existing About screenshot before submitting 4\.3\.0/);

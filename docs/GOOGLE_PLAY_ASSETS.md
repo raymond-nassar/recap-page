@@ -6,9 +6,11 @@ assets, not a submission packet or permission to publish. It needs no Play Conso
 Android SDK, emulator, signing key or live service. The app, its identity and saved reading data
 stay unchanged.
 
-The refreshed screenshots are saved for the **4.4.0 listing update**, under Part of #1015. The owner
-chose to save them for later rather than process certification again. The live Play listing shows
-the set uploaded on 2026-10-31, which predates Genres and still shows Storylines. No upload step is part of this work. Captions, measurements,
+By owner decision, Google Play and the App Store refresh their screenshots with **4.4.0**, as part
+of #1015. Microsoft Store keeps its current screenshots during the automated 4.4.0 app submission;
+once 4.4.0 is live, a separate listing-only Partner Center submission through Playwright uploads
+the refreshed Windows set with the approved captions. The live Play listing shows the set uploaded on 2026-10-31,
+which predates Genres and still shows Storylines. No upload step is part of this work. Captions, measurements,
 the desktop set planned for Play and the cloud fixture are recorded in
 [the Store submission document](MICROSOFT_STORE_SUBMISSION.md#listing-assets).
 
@@ -70,7 +72,8 @@ Scrolling down hides the phone's bottom navigation, so the capture then scrolls 
 and returns, as a reader does to bring the bar back, and waits for every animation to finish.
 Original CSS cover-off placeholders stay visible.
 
-Each screen uses an isolated, disposable browser context. Home uses empty saved state. The
+Each screen uses an isolated, disposable browser context. Home uses empty saved state and dismisses
+the December 7 notice through the app's Dismiss button before framing. The
 [tooling-only fixture](../scripts/play-assets.mjs) supplies two explicitly fictional lists with
 12 made-up negative-ID issues and three read markers. It has no notes, availability overrides,
 cover URLs, digital reader IDs, publisher URLs or real reader data. Discovery uses the bundled

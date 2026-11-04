@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { prepareAndroid } from './prepare-android.mjs';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
 import { KEY } from '../src/js/storage.js';
-import { framedText, installCloudFixture, prepareCloudView } from './listing-fixtures.mjs';
+import { framedText, installCloudFixture, prepareCloudView, dismissListingNotice } from './listing-fixtures.mjs';
 import {
   ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, sha256, shellPath, previewResponse, completedHealthProbe,
   screenState, playIcon, featureGraphic, inspectAsset, previewManifest,
@@ -72,6 +72,7 @@ async function captureScreen(page, screen, output) {
   await page.waitForSelector(`#${screen.view}:not([hidden])`, { timeout: 10000 });
   await page.waitForFunction((texts) => texts.every((text) => document.body.innerText.includes(text)), { timeout: 10000 }, screen.text);
   await prepareCloudView(page, screen.view);
+  await dismissListingNotice(page, screen.dismissNotice);
   await page.evaluate(async (scroll) => {
     const frames = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
     await document.fonts.ready;

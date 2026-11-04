@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { drawIcon, encodePng } from './build-icons.mjs';
 import { ORIGIN, FIXTURE_API, demonstrationState, previewResponse, shellPath, completedHealthProbe, sha256 } from './play-assets.mjs';
-import { framedText, installCloudFixture, prepareCloudView, CLOUD_FIXTURE } from './listing-fixtures.mjs';
+import { framedText, installCloudFixture, prepareCloudView, dismissListingNotice, CLOUD_FIXTURE } from './listing-fixtures.mjs';
 import { CSP } from '../server.mjs';
 import { KEY } from '../src/js/storage.js';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
@@ -22,7 +22,7 @@ const DRIVER_SUFFIXES = [
   join('lib', 'puppeteer', 'puppeteer-core.js'),
   join('lib', 'esm', 'puppeteer', 'puppeteer-core.js'),
 ];
-const SCREENSHOTS = [
+export const SCREENSHOTS = [
   {
     file: '01-home-discovery.png',
     route: '#/home',
@@ -30,6 +30,7 @@ const SCREENSHOTS = [
     wait: '#home-primary-paths .home-path',
     text: ['RECAP PAGE!', 'Browse. Choose. Read.', 'Start with Modern Timeline', 'Young readers'],
     state: 'empty',
+    dismissNotice: true,
   },
   {
     // The second image shows the current category rather than repeating Home (#1060).
@@ -113,6 +114,7 @@ async function auditAndCapture(page, origin, screenshot, output) {
   await page.waitForSelector(`#${screenshot.view}:not([hidden])`, { timeout: 15000 });
   await page.waitForSelector(screenshot.wait, { timeout: 15000 });
   await prepareCloudView(page, screenshot.view);
+  await dismissListingNotice(page, screenshot.dismissNotice);
   await page.evaluate(async (scroll) => {
     await document.fonts.ready;
     if (scroll) document.querySelector(scroll).scrollIntoView({ block: 'start' });

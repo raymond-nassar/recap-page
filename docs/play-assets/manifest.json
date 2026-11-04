@@ -3,8 +3,8 @@
   "status": "preview-unapproved",
   "releaseAcceptance": false,
   "source": {
-    "sourceRevision": "1ce39cdec4a53c2e88d3e9a469093406ab64cf02",
-    "sourceTree": "00b1e6121e4cf6d01a091ac35e46d0659958d0cd",
+    "sourceRevision": "910c7e72318ff8927fd7a7d6ef18a4137264251a",
+    "sourceTree": "eb4c12ab0408fec11446699ec47bad5b90ee73d8",
     "sourceDirty": true,
     "files": [
       {
@@ -41,7 +41,7 @@
       },
       {
         "path": "scripts/capture-play-assets.mjs",
-        "sha256": "868896b1744d378371d4f23983fc58f3fdb5e7f1c5e8eb4c2f4fcb0bc1275f39"
+        "sha256": "4526fc10bdc079ac7055d6a054fe6c6e7d538aa481c561b387dbb99bc9448de1"
       },
       {
         "path": "scripts/lib/release-identity.mjs",
@@ -49,11 +49,11 @@
       },
       {
         "path": "scripts/listing-fixtures.mjs",
-        "sha256": "fcd0db1c407bf0e15d468d3db58d7e139fa2e78cdba8c2df049f44374f847b32"
+        "sha256": "d8e4bd036ef976a92c390475226687e23a5793dab4167fc9f3c4ec560c6e9339"
       },
       {
         "path": "scripts/play-assets.mjs",
-        "sha256": "8600ae11e98406bd3f578de8095d8c21036de0899779bf393bf61c69c5982975"
+        "sha256": "2b0c9903d081d147eeda924a214ed1c75d3b8cebe5a383d3e71fb59ed8911a4d"
       },
       {
         "path": "scripts/prepare-android.mjs",
@@ -473,7 +473,7 @@
       }
     ]
   },
-  "androidManifestSha256": "974cb3d4415f153a2cb332487fe37891f12ffb226d073d56b34930343dc891b5",
+  "androidManifestSha256": "4ece5fac262b56bcce23b2240aa96d6c3e257c6f9366e0ee8163014703ab0f63",
   "renderer": {
     "name": "Microsoft Edge",
     "version": "Edg/156.0.4314.58",
@@ -588,9 +588,9 @@
       "width": 1080,
       "height": 1920,
       "channels": 3,
-      "alt": "Dark Android Home with discovery categories and Modern Timeline.",
-      "bytes": 176463,
-      "sha256": "b96368fe881aa72ad2b0fe578433cc4643ca53df7f406640fdf7aeb5691f98b2"
+      "alt": "Dark Android Home with a Modern Timeline starting action, Search and a Modern Timeline discovery card.",
+      "bytes": 209356,
+      "sha256": "842402461278d5e3e329451c75539e51c38362245cc7b7ce8ebc79d9ae83f27e"
     },
     {
       "file": "dark-02-genres.png",
@@ -616,8 +616,8 @@
       "height": 1920,
       "channels": 3,
       "alt": "Dark Android reading progress for a fictional list, three of eight read, with the next issues coming up.",
-      "bytes": 322687,
-      "sha256": "8cef9d74f01715aca7b1a17ca2eecd45e5b35f0e41409d161929e5f2ec7d6ab7"
+      "bytes": 322686,
+      "sha256": "49e28ce12b689aff0f865aa79f21e4b759c08cc6b5b7040a9ff9523671da43b8"
     },
     {
       "file": "01-library-preview.png",

@@ -94,3 +94,10 @@ export async function prepareCloudView(page, view) {
     await page.evaluate(() => { document.querySelector('#cloud-backup details.setting-more:last-child').open = true; });
   }
 }
+
+export async function dismissListingNotice(page, enabled) {
+  if (!enabled) return;
+  await page.waitForSelector('#reader-closure-dismiss', { visible: true, timeout: 15000 });
+  await page.$eval('#reader-closure-dismiss', (button) => button.click());
+  await page.waitForSelector('#reader-closure-notice', { hidden: true, timeout: 15000 });
+}

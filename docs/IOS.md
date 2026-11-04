@@ -558,6 +558,11 @@ the app's normal description setting. It does not save the synopsis in reading d
 health check uses the Play preview's fictional response; other requests outside the app bundle are
 blocked.
 
+By owner decision, the App Store and Google Play refresh their screenshots with 4.4.0;
+Microsoft Store updates its listing separately after the automated 4.4.0 app submission is live.
+The iPad capture waits for the breadcrumb fixes in #1070 and #1042 and the 4.4.0 release record;
+the Home notice remains dismissed.
+
 The checked-in images below predate Genres and still show the retired Storylines screen. The next
 capture replaces that screen with Genres and updates the Home image; its fourth caption is
 "Browse reading lists by genre and tone, or start with popular picks."

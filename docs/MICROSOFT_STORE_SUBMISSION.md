@@ -317,13 +317,15 @@ copied into the bracketed line above.
 
 ## Listing assets
 
-**Prepared for the next listing update, not the live listing.** Part of #1015.
-The owner chose on 2026-10-31: "Actually, just save the screenshots for later use. I don't want to
-process certification once again." The live Microsoft Store listing still shows the older
-screenshots. Google Play shows the set the owner uploaded on 2026-10-31, which predates Genres and
-still shows Storylines. This refreshed set, with Genres in place of Storylines, is saved for the
-4.4.0 submission. No upload, submission or certification step is part of this work.
-#1015 stays open until both stores are updated, and #810 stays open.
+**Saved assets, not the live listing.** Part of #1015.
+By owner decision, the automated 4.4.0 Microsoft Store app submission keeps the current screenshots.
+Once 4.4.0 is live, a separate listing-only Partner Center submission through Playwright uploads
+this refreshed Windows set with the approved captions. Google Play and the App Store refresh their
+screenshots with 4.4.0. The final captures wait for the release record and the iPad breadcrumb fixes.
+Google Play shows the set the owner uploaded on 2026-10-31, which predates Genres and
+still shows Storylines.
+No upload, submission or certification step is part of this work.
+#1015 stays open until the stores show the refreshed sets, and #810 stays open.
 
 The six screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
 profile and a fresh disposable context for each image. Cover art was off. Home, Genres and
@@ -351,6 +353,7 @@ off. Desktop uses the HTTP seam; Android uses its real message-port transport wi
 MainActivity answer. Sign-in, account reads and uploads are forbidden. About and Backup & settings
 must expose every cloud-on text variant and hide every cloud-off variant before capture.
 
+Home's December 7 notice is dismissed through the app's Dismiss button before framing.
 About is naturally scrolled toward Your data and the version. Backup & settings is scrolled to
 Cloud backup with About cloud backup expanded. No production copy or layout is rewritten for
 the images. The commands audit cover-off state, image sources, private text, old privacy promises,
@@ -387,12 +390,12 @@ Prepared desktop asset measurements:
 
 | File | Dimensions | Bytes | SHA-256 |
 |---|---:|---:|---|
-| `01-home-discovery.png` | 1920 x 1080 | 186483 | `B6199517B616693411057F69049116CB4C65DD8AE1D140F2C1148A11B61A3221` |
+| `01-home-discovery.png` | 1920 x 1080 | 176408 | `786AFD820B69780EDCD686213257FA2C20CFCA1FA3B63513107CCB0922CE79E3` |
 | `02-browse-reading-lists.png` | 1920 x 1080 | 217092 | `500EAE3B1E6366D030F699F7370A0AEEA52B1E7653B28E387BCE730375025ACF` |
 | `03-reading-paths.png` | 1920 x 1080 | 98991 | `6C61DC15774969C0EEF7FC99E2D98B0614503FED23CB10D820C6E5C2B44E6FD5` |
 | `04-reading-progress.png` | 1920 x 1080 | 203562 | `3A87C8A10ABCA09033DAB44809DC715AB2622FDA9826FCBFC9CD97E3D60D42BA` |
 | `05-about-onedrive.png` | 1920 x 1080 | 122087 | `88F9729A8B6486358CF20EF9BD1EC590553D9CB10118983DA7E727714E848C43` |
-| `06-backup-settings.png` | 1920 x 1080 | 95261 | `E9E2D03279D627D7B1B81F08C2EFF25698E8D8A033F8457DDF3A8EE2C6F6C606` |
+| `06-backup-settings.png` | 1920 x 1080 | 95262 | `4B6E6A316F53FAEA0D7264F6A790F50D676B3E7560E817673D0C51CCDC2C71E8` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 ### Google Play phone captions and measurements
@@ -406,10 +409,10 @@ manual set. The light Library and reading images replace `android-library-previe
 
 | File | Bytes | Caption for the next listing update |
 |---|---:|---|
-| `dark-01-home.png` | 176463 | Dark Home offers a first reading step and explains the December 7 change to Marvel Comics links. |
+| `dark-01-home.png` | 209356 | Dark Home offers a first reading step on Modern Timeline, with Search and a Modern Timeline discovery card. |
 | `dark-02-genres.png` | 173408 | Dark Genres sorts Reading Lists by genre and tone and suggests popular places to start. |
 | `dark-03-modern-timeline.png` | 104646 | Dark Modern Timeline offers the Modern Avengers path and controls for choosing a stop. |
-| `dark-04-reading-progress.png` | 322687 | Dark reading view shows a fictional list three of eight read, with the next issues coming up. |
+| `dark-04-reading-progress.png` | 322686 | Dark reading view shows a fictional list three of eight read, with the next issues coming up. |
 | `01-library-preview.png` | 133329 | Library separates a fictional list in progress from one not yet started. |
 | `02-reading-preview.png` | 175228 | Light reading view puts the next fictional issue and its Done button first, with cover art off. |
 | `03-about-onedrive.png` | 254595 | About explains Android app storage and optional uploads only to your own OneDrive. |
@@ -420,7 +423,7 @@ replacement images contain no claim that progress or notes are never sent anywhe
 About and settings images explicitly show optional OneDrive transfer and private Android storage.
 The same audit applies to the desktop images planned for Play. The obsolete About image is not
 in either saved packet. These are prepared assets, not approval to publish or a new certification
-request. No further owner decision is needed to save them; future listing use is separate work.
+request. Saving is authorized; any further caption changes need owner approval before listing use.
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
 300 x 300 tile is the only new Store logo. A Super hero image is optional promotional artwork with

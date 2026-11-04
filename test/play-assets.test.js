@@ -8,9 +8,49 @@ import {
 } from '../scripts/play-assets.mjs';
 import { migrate } from '../src/js/lib/model.js';
 import { LOCAL_SERVER_HEALTH_PATH } from '../src/js/lib/localServer.js';
+import { dismissListingNotice } from '../scripts/listing-fixtures.mjs';
+import { SCREENSHOTS } from '../scripts/capture-store-assets.mjs';
 
 const icon = playIcon();
 const feature = featureGraphic();
+
+test('only the desktop and Play Home captures dismiss the December 7 notice before framing', async () => {
+  assert.equal(ASSETS.find(({ file }) => file === 'dark-01-home.png').alt,
+    'Dark Android Home with a Modern Timeline starting action, Search and a Modern Timeline discovery card.',
+    'owner-approved notice-free Home alt text, November 3, 2026');
+  assert.ok(readFileSync(new URL('../docs/MICROSOFT_STORE_SUBMISSION.md', import.meta.url), 'utf8')
+    .includes('Dark Home offers a first reading step on Modern Timeline, with Search and a Modern Timeline discovery card.'),
+  'owner-approved notice-free Home description, November 3, 2026');
+  assert.deepEqual(SCREENSHOTS.filter(({ dismissNotice }) => dismissNotice).map(({ file }) => file), ['01-home-discovery.png']);
+  assert.deepEqual(SCREENS.filter(({ dismissNotice }) => dismissNotice).map(({ file }) => file), ['dark-01-home.png']);
+  for (const script of ['capture-store-assets.mjs', 'capture-play-assets.mjs']) {
+    const source = readFileSync(new URL(`../scripts/${script}`, import.meta.url), 'utf8');
+    assert.match(source, /await dismissListingNotice\(page, (?:screen|screenshot)\.dismissNotice\);/);
+    assert.ok(source.indexOf('await dismissListingNotice(') < source.indexOf('await document.fonts.ready'));
+  }
+  const calls = [];
+  const page = {
+    async waitForSelector(selector, options) { calls.push([selector, options]); },
+    async $eval(selector, action) {
+      assert.equal(selector, '#reader-closure-dismiss');
+      action({ click() { calls.push('click'); } });
+    },
+  };
+  await dismissListingNotice(page, false);
+  assert.deepEqual(calls, []);
+  await dismissListingNotice(page, true);
+  assert.deepEqual(calls, [
+    ['#reader-closure-dismiss', { visible: true, timeout: 15000 }],
+    'click',
+    ['#reader-closure-notice', { hidden: true, timeout: 15000 }],
+  ]);
+  await assert.rejects(dismissListingNotice({
+    ...page,
+    async waitForSelector(selector) {
+      if (selector === '#reader-closure-notice') throw new Error('notice remains visible');
+    },
+  }, true), /notice remains visible/);
+});
 
 test('Play icon preserves the authored mark with opaque full-bleed square corners', () => {
   const image = decodePng(icon);
