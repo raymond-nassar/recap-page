@@ -30,6 +30,11 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .row-focus-title { min-height: var(--target-touch); display: flex; align-items: center; }
 .row .cb { width: var(--target-touch); height: var(--target-touch); }
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--target-touch); }
+/* An item after the first leads with its "/", and stretched to the 48px link that "/" put the item's
+   baseline at its top, so the trail's baseline row dropped Library 15px below Home on a 13-inch iPad
+   and 13px on a 1280 by 800 Android tablet (#1070, #1042). Aligning on baselines inside the item too
+   puts the separator on the link's text line, so every item meets the row at its text. */
+.breadcrumb li { align-items: baseline; }
 .setting-ctl, .headright, .hero-body, .chero-body { min-width: 0; }
 .setting-ctl.checkbox { max-width: 100%; white-space: normal; }
 .notice { overflow-wrap: anywhere; }
@@ -389,6 +394,11 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
 @media (max-width: 700px) and (min-height: 600px) and (max-height: 820px) {
   #hero .hero-in > .art { --hero-reserve: max(27.75rem, 27.75em); }
 }
+/* Its own compositing layer. Layout is unchanged; at large text sizes its letters can land up to one
+   device pixel apart, which the owner accepted. Without it the emulator host's SwiftShader
+   rasterizer segfaulted painting this gradient in the centered hero at font scale 1.3 (#1099):
+   looped 8 times on CI, unmodified runs segfaulted before finishing, and with it all 8 passed. */
+#hero .art .fallback { will-change: transform; }
 /* Where the commands share one row they center under the title. On a phone Read spans the width and
    the rest wrap under it, which reads as a list, so they keep to the start there. */
 @media (min-width: 481px) and (max-width: 880px) and (min-height: 600px) {

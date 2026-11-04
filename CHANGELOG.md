@@ -13,6 +13,131 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.4.0
+
+### Genres, Reading List search and four new Reading Lists
+
+- Genres replaces Storylines on Home. Choose a genre or tone to explore matching reading lists, or
+  start with ten popular picks. Older Storylines links open Genres.
+- Every reading list now has a genre, and many a tone, so searching for a genre such as Espionage or
+  Horror finds the lists that tell that kind of story.
+- Search now finds Reading Lists as you type, including MCU Prep lists, genres, characters and
+  descriptive matches. Preview or add a list directly from the results. Reading List matching works
+  offline and stays on your device; submit the same field to keep searching for individual comics.
+- When you finish a reading list, the app now suggests up to three similar lists by genre, tone or
+  writer, and points to one as you near the end of a longer list.
+- Adds MC2, the Second Clone Saga, Marvel 1602, and Blood and Thunder to Reading Lists, with
+  credited sources and clear notices for comics not yet present in the app's data.
+- Loaded story summaries now appear in full without a separate reveal step. The reading screen puts
+  a larger, centered cover and the reading actions first, shows story creators by role when known,
+  and moves less-used details out of the way. On phones, list progress and notes follow the comic;
+  Reading List options appears after Read and Done on every platform.
+- Reading list descriptions have been rewritten to describe the story each list follows, in plainer
+  and more varied wording, and two film guides no longer give away their twists.
+- iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the
+  backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page
+  folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never
+  receives your backups. If iCloud has not finished uploading a backup, checking for or restoring
+  that backup says so and asks you to try again once iCloud has uploaded it.
+
+### Saved data and upgrading
+
+Reading-data schema 4 and the existing backup formats are unchanged. No storage key, schema, list
+identity, saved library, reading progress, notes or backup change comes with Genres, tags, More
+like this, Reading List search, the rewritten descriptions or the four new Reading Lists. Tags and
+the new catalog fields are never written into saved data, and navigation routes are not stored in
+saved reading data. Searching and Preview do not change saved lists; explicit Add uses the existing
+import flow.
+
+The setting that hid loaded story summaries is retired without a schema migration. Older settings
+and file or cloud backups remain readable, and restore and journal replay are unchanged. Restoring
+an older backup can keep its stored hiding choice; this version ignores it, and the next settings
+save writes false. New portable backups also record false so older versions show the same loaded
+summaries. If an installation's last uploaded backup recorded true, its next eligible capture
+differs and enabled, connected cloud backup uploads one additional copy; a previous backup already
+recording false need not upload solely for this change.
+
+The restore fix and the cloud recovery safeguards need no reading-progress schema migration.
+Existing backups and recovery journals remain readable. New versioned cloud records and recovery
+references are local foundation metadata. Existing complete-backup files and ordinary provider
+backup generations retain their format.
+
+Saved data and the backup file format are unchanged. Older builds and existing backups on every
+provider read and restore as before. The new read purpose is an optional field that older transports
+ignore. No migration or backup step is needed.
+
+Saved data and backup format are unchanged. iCloud uses the shared backup format and restore
+engine. Installing the update uploads nothing by itself. A later build switching iCloud off again
+requires the iOS-specific guidance in
+[#949 comment 6574578226](https://github.com/raymond-nassar/recap-page/issues/949#issuecomment-6574578226).
+
+iCloud Drive backup is switched on for iPhone and iPad in this version. Google Drive backup for
+Windows and Android is built but switched off, and is not offered. Existing OneDrive connections
+and backups are not migrated or replaced, and stored OneDrive state is unchanged.
+
+Builds older than 4.0.0 still cannot edit schema-4 reading data or restore its backups. Before
+upgrading from one of them, keep an independent backup and follow the
+[4.0.0 compatibility guidance](#400).
+
+This record prepares Windows, Android and iOS release source, including derived Windows Store
+version 4.4.0.0. It does not announce availability or approve any store publication. Android code
+and iOS build reservation, exact-artifact qualification, physical-device acceptance and platform
+approvals remain separate.
+
+### Find your way
+
+Reading-list screens' search boxes now match their own tagged lists by story type and tone, such as
+espionage, space opera or lighthearted. The Marvel Knights to Planet X chapters can now be found on
+their reading-list screens by their story type or tone.
+
+Find MCU Prep guides on the MCU Prep screen, which has its own search. Issues opened from those
+guides now show MCU Prep in their breadcrumbs.
+
+On iPad and Android tablets, a Reading List's breadcrumb now shows Home, Library and the list name on
+one line.
+
+### Backups, restore and privacy
+
+A rare storage failure during restore now keeps the recovery copy and reloads before allowing more
+edits, so a later recovery cannot undo an edit made after the failure.
+
+Prepared the recovery safeguards for a future choice between device and cloud saves. Launch-time
+synchronization is not enabled by this update. The backup card can report retained copies that need
+attention without blocking ordinary backup deletion.
+
+Privacy policy links in the app now open the published privacy page on the project site. Your saved
+reading progress, notes, and settings are unaffected.
+
+The privacy policy now explains that, to show your backup list, the app downloads the recent backups
+in your cloud account, including other devices' backups, checks them, and keeps only a short summary
+of each while it is open.
+
+### iPhone and iPad
+
+On iPhone and iPad, save backups through Files and open reader and other links outside Recap Page.
+Text follows the system text size, and a notice explains the restore options if saved reading data
+is missing. For large restores, export your current data, erase it in the app, then restore your
+backup.
+
+Backup, reading history, and recovery messages now describe where your data is saved in the iPhone
+and iPad app. What's new describes the app's features without referring to other platforms.
+
+### Project home and store listing
+
+The project home now has dedicated Support, Privacy and Data sources pages instead of sending
+readers to repository file views.
+
+The project home now shows the status of the major feature being built and makes it easier to
+suggest an improvement, request a reading list, correct a list, or report a bug.
+
+Added dedicated App Store header and search artwork showing the app icon and real reading-list
+screens.
+
+### Release and maintenance
+
+Reserved the next private iOS test build against the merged iOS changes, then sealed it to its
+exact signed bytes before upload. This bookkeeping does not change the app or saved data.
+
 ## 4.3.0
 
 ### Backups, reading progress and Professor X

@@ -919,7 +919,8 @@ test('the curated source publishes only cloud backup with the approved provider 
   const copy = plain(page);
   assert.match(copy, /OneDrive: automatic backup shipped in 4\.3\.0 on Windows and Android/);
   assert.match(copy, /Google Drive: work for Windows and Android is deferred while the owner hears from users\. It has not shipped/);
-  assert.match(copy, /iCloud: planned only for iPhone and iPad, not Windows or Android\. The iOS app currently has no cloud backup/);
+  assert.match(copy, /iCloud: automatic backup is part of version 4\.4\.0 on iPhone and iPad\. Windows and Android back up automatically to OneDrive\./);
+  assert.doesNotMatch(copy, /iCloud:[^.]*not Windows or Android/);
   assert.match(copy, /not automatic device sync/);
   assert.match(copy, /There are no promised release dates/);
   assert.ok(page.includes(`href="${REPOSITORY}/issues/810"`));
@@ -991,6 +992,7 @@ test('published headings keep the anchors the repository files gave them', () =>
       'recap-page-privacy-policy',
       'what-stays-on-your-device',
       'optional-onedrive-backup',
+      'optional-icloud-backup',
       'requests-the-app-makes-to-other-services',
       'deleting-your-data',
       'the-windows-package',

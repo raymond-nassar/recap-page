@@ -1161,7 +1161,7 @@ only the files its manifest lists, with the Windows server's security headers an
 under that origin in WebKit's storage, which allows each origin 5 MiB;
 [Storage capacity](IOS.md#storage-capacity) records what that holds.
 
-### iCloud Drive backup, switched off
+### iCloud Drive backup
 
 The iOS transport answers the shared cloud backup contract through the app's existing script-message
 handler. The provider is `icloud`, the only entry in its `providers`, and `connect({provider:'icloud'})`
@@ -1199,6 +1199,6 @@ browser label, including the Android app's label. No new transport scope or back
 The card offers **Connect iCloud** and does not promise a recovery bin for programmatic deletion.
 
 The native code compiles only with `RECAP_ICLOUD` or Debug; the page adapter is outside the folder
-copied into every iOS build. No project configuration or entitlement enables it yet, so the signed
-Release build and its cloud card remain unchanged. [iCloud backup](IOS.md#icloud-backup) records the
-switch-on work and the signed-device acceptance still required.
+copied into every iOS build. The app's Debug and Release configurations set `RECAP_ICLOUD` and sign
+with the iCloud Documents entitlements, and `iCloudBackup` bundles the adapter and card.
+[iCloud backup](IOS.md#icloud-backup) records the signed-device acceptance still required.

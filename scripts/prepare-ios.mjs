@@ -24,8 +24,8 @@ export const IDENTITY_PATH = join(ROOT, 'packaging', 'ios', 'identity.json');
 const MARKER = '.recap-ios-assets';
 const MARKER_CONTENT = 'Recap Page generated iOS assets v1\n';
 // The Android exclusions omit the development fault harness and offline-shell registration, while
-// the bundled app already has its own offline shell. iOS also removes the cloud backup card, so its
-// sign-in logos have no remaining callers.
+// the bundled app already has its own offline shell. iOS uses its own cloud connection action, so
+// the other providers' sign-in logos have no remaining callers.
 export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js', 'brands/ms-symbollockup_mssymbol_19.svg', 'brands/g-logo.png']);
 export const IOS_ASSET_DIR = join(ROOT, 'packaging', 'ios', 'build', 'generated', 'web');
 export const IOS_ICON_PATH = join(ROOT, 'packaging', 'ios', 'RecapPage', 'Assets.xcassets', 'AppIcon.appiconset', 'AppIcon.png');
@@ -182,8 +182,8 @@ function iosStaticCopy(html, iCloudBackup) {
   const cloudCopies = [...index.matchAll(cloudCopy)].length;
   if (cloudCopies !== 4) throw new Error(`iOS cloud copy changed: expected 4 spans, found ${cloudCopies}`);
   const enabledCopy = [
-    'This is app storage. Your saved data is uploaded only if you turn on cloud backup, and then only to your own iCloud.',
-    'Your reading progress is saved privately in this app and is sent only to your own iCloud, if you turn on cloud backup below.',
+    'This is app storage. Recap Page uploads your saved data only if you turn on cloud backup, and then only to your own iCloud.',
+    'Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below.',
     'This choice is saved in this app and included in a backup to your own iCloud, if you turn cloud backup on.',
     'Cloud backup is the one exception, and only once you turn it on. Recap Page sends a complete backup of what you save to your own iCloud after you make changes. It also lists and reads the backups there, and deletes older backups only after a newer backup has uploaded. Apple processes these files as part of your iCloud storage.',
   ];
@@ -241,7 +241,7 @@ export function iosIndex(html, build, { iCloudBackup = false } = {}) {
               <p class="rail-hint">
                 Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.
                 There is no account to create and no analytics or tracking. ${iCloudBackup
-                  ? 'Your saved lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own iCloud.'
+                  ? 'Recap Page uploads your saved lists, progress and notes only if you turn on cloud backup in Backup & settings, and then only to your own iCloud.'
                   : 'The automatic service requests do not upload your saved lists, progress or notes.'}
                 Backups of this device to iCloud or to a computer include this app's saved data.
                 Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.
