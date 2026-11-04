@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { prepareAndroid } from './prepare-android.mjs';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
 import { KEY } from '../src/js/storage.js';
-import { installCloudFixture, prepareCloudView } from './listing-fixtures.mjs';
+import { framedText, installCloudFixture, prepareCloudView } from './listing-fixtures.mjs';
 import {
   ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, sha256, shellPath, previewResponse, completedHealthProbe,
   screenState, playIcon, featureGraphic, inspectAsset, previewManifest,
@@ -89,7 +89,9 @@ async function captureScreen(page, screen, output) {
     await Promise.allSettled(document.getAnimations().map((animation) => animation.finished));
     document.activeElement?.blur();
   }, screen.scroll);
-  const audit = await page.evaluate((view, requiredText, key, expectedState, headingSelector) => {
+  const framed = await page.evaluate(framedText);
+  const missing = screen.text.filter((part) => !framed.includes(part));
+  const audit = await page.evaluate((view, key, expectedState, headingSelector) => {
     const visible = document.querySelector('.view:not([hidden])');
     const heading = visible?.querySelector(headingSelector ?? 'h1');
     const bar = document.querySelector('.rail-header')?.getBoundingClientRect();
@@ -101,7 +103,6 @@ async function captureScreen(page, screen, output) {
     return {
       view: visible?.id === view,
       heading: Boolean(heading && heading.getBoundingClientRect().top >= 0 && heading.getBoundingClientRect().bottom <= innerHeight),
-      text: requiredText.every((part) => text.includes(part)),
       // The capture emulates a phone, and there Edge widens innerWidth to fit an overflowing page:
       // at the capture viewport a 1,360px page reported an innerWidth of 1,360, so comparing with it
       // passed. The root's client width stays the 360px screen width.
@@ -123,9 +124,10 @@ async function captureScreen(page, screen, output) {
       noBlockedRequests: window.__playPreviewViolations.length === 0,
       truthfulCloudCopy: !/Your progress and your notes are never sent anywhere|and is never sent anywhere/.test(text),
     };
-  }, screen.view, screen.text, KEY, screenState(screen), screen.heading);
+  }, screen.view, KEY, screenState(screen), screen.heading);
+  audit.text = missing.length === 0;
   if (Object.values(audit).some((value) => value !== true)) {
-    throw new Error(`${screen.file} pre-capture audit failed: ${JSON.stringify(audit)}`);
+    throw new Error(`${screen.file} pre-capture audit failed: ${JSON.stringify(audit)}; not in the frame: ${JSON.stringify(missing)}`);
   }
   const bytes = Buffer.from(await page.screenshot({ type: 'png', fullPage: false, omitBackground: false }));
   const record = inspectAsset(screen.file, bytes);
@@ -188,7 +190,7 @@ export async function capturePlayAssets() {
           files.push(await captureScreen(page, screen, output));
         } catch (error) {
           assertCleanAudit(failures);
-          throw new Error(`${screen.file}: ${error.message}; visible text: ${await page.evaluate(() => document.body.innerText.slice(0, 2400))}`, { cause: error });
+          throw new Error(`${screen.file}: ${error.message}; framed text: ${(await page.evaluate(framedText)).slice(0, 2400)}`, { cause: error });
         }
         assertCleanAudit(failures);
       } finally {

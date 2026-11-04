@@ -3,8 +3,8 @@
   "status": "preview-unapproved",
   "releaseAcceptance": false,
   "source": {
-    "sourceRevision": "ac56065da90d3989e4fe62205b660eb7e5f1c5d2",
-    "sourceTree": "e0a9727d833825b213cc6e155ade735976152135",
+    "sourceRevision": "1ce39cdec4a53c2e88d3e9a469093406ab64cf02",
+    "sourceTree": "00b1e6121e4cf6d01a091ac35e46d0659958d0cd",
     "sourceDirty": true,
     "files": [
       {
@@ -41,7 +41,7 @@
       },
       {
         "path": "scripts/capture-play-assets.mjs",
-        "sha256": "a1872ac07f98102a4e74d0d20eacd7c38e0d457218d9b600791ff8a18445744f"
+        "sha256": "868896b1744d378371d4f23983fc58f3fdb5e7f1c5e8eb4c2f4fcb0bc1275f39"
       },
       {
         "path": "scripts/lib/release-identity.mjs",
@@ -49,11 +49,11 @@
       },
       {
         "path": "scripts/listing-fixtures.mjs",
-        "sha256": "df89c5a8167b289c6cd917f4fca409b7cc9bedccc2371dcca2a31ad15fbb7060"
+        "sha256": "fcd0db1c407bf0e15d468d3db58d7e139fa2e78cdba8c2df049f44374f847b32"
       },
       {
         "path": "scripts/play-assets.mjs",
-        "sha256": "f7a8310a7e784d7c98a6092af1e95bc943f44296ed6aa4db32fbb3fc08162ef9"
+        "sha256": "8600ae11e98406bd3f578de8095d8c21036de0899779bf393bf61c69c5982975"
       },
       {
         "path": "scripts/prepare-android.mjs",
@@ -473,7 +473,7 @@
       }
     ]
   },
-  "androidManifestSha256": "15e595d93c66e512ead694d98ddd8f929e82a94e25d1e659b8df2322f93335ae",
+  "androidManifestSha256": "974cb3d4415f153a2cb332487fe37891f12ffb226d073d56b34930343dc891b5",
   "renderer": {
     "name": "Microsoft Edge",
     "version": "Edg/156.0.4314.58",

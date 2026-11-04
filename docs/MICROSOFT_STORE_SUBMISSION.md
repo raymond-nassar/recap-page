@@ -354,8 +354,9 @@ must expose every cloud-on text variant and hide every cloud-off variant before 
 About is naturally scrolled toward Your data and the version. Backup & settings is scrolled to
 Cloud backup with About cloud backup expanded. No production copy or layout is rewritten for
 the images. The commands audit cover-off state, image sources, private text, old privacy promises,
-viewport overflow and visible headings. Play also checks unchanged synthetic saved data, the
-generated Android shell and settled visible bottom navigation.
+viewport overflow, visible headings and expected text shown inside the captured frame. Play also
+checks unchanged synthetic saved data, the generated Android shell and settled, visible bottom
+navigation.
 
 Desktop `01-home-discovery.png` and phone `dark-01-home.png` show Home's What's new control with
 its New badge, and desktop `05-about-onedrive.png` shows the app version. Recapture both sets from

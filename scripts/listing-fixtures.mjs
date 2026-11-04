@@ -47,6 +47,41 @@ export async function installCloudFixture(page) {
   }, CLOUD_STATUS);
 }
 
+// The text a capture's frame shows, for the audits' expected phrases. Both audits once read the whole
+// page's text, so a frame that missed its subject still passed: the phone reading image framed the
+// card while its progress sat below it, and only looking at the image showed it. Runs in the page, so
+// it is self-contained. Text counts when it is rendered, not inside a closed disclosure's body,
+// inside the viewport and not covered there, such as by the phone's bottom navigation.
+export function framedText() {
+  const width = document.documentElement.clientWidth;
+  const height = innerHeight;
+  const parts = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    const parent = node.parentElement;
+    if (!node.textContent.trim() || !parent || parent.closest('[hidden], script, style, template')) continue;
+    const style = getComputedStyle(parent);
+    if (style.visibility !== 'visible' || Number(style.opacity) === 0) continue;
+    const closed = parent.closest('details:not([open])');
+    if (closed && !closed.querySelector(':scope > summary')?.contains(parent)) continue;
+    range.selectNodeContents(node);
+    const seen = [...range.getClientRects()].some((rect) => {
+      const left = Math.max(rect.left, 0);
+      const right = Math.min(rect.right, width);
+      const top = Math.max(rect.top, 0);
+      const bottom = Math.min(rect.bottom, height);
+      if (right - left < 1 || bottom - top < 1) return false;
+      const hit = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
+      return Boolean(hit && (parent.contains(hit) || hit.contains(parent)));
+    });
+    if (!seen) continue;
+    const text = style.textTransform === 'uppercase' ? node.textContent.toUpperCase() : node.textContent;
+    parts.push(text);
+  }
+  return parts.join(' ').replace(/\s+/g, ' ').trim();
+}
+
 export async function prepareCloudView(page, view) {
   if (view !== 'view-about' && view !== 'view-data') return;
   await page.waitForFunction((id) => {

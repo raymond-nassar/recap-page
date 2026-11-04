@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { drawIcon, encodePng } from './build-icons.mjs';
 import { ORIGIN, FIXTURE_API, demonstrationState, previewResponse, shellPath, completedHealthProbe, sha256 } from './play-assets.mjs';
-import { installCloudFixture, prepareCloudView, CLOUD_FIXTURE } from './listing-fixtures.mjs';
+import { framedText, installCloudFixture, prepareCloudView, CLOUD_FIXTURE } from './listing-fixtures.mjs';
 import { CSP } from '../server.mjs';
 import { KEY } from '../src/js/storage.js';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
@@ -120,13 +120,13 @@ async function auditAndCapture(page, origin, screenshot, output) {
     document.activeElement?.blur();
   }, screenshot.scroll);
 
-  const audit = await page.evaluate((expectedView, requiredText, headingSelector) => {
+  const audit = await page.evaluate((expectedView, requiredText, frame, headingSelector) => {
     const visible = document.querySelector('.view:not([hidden])');
     const text = document.body.innerText.replace(/\s+/g, ' ').trim();
     const box = visible?.getBoundingClientRect();
     return {
       view: visible?.id ?? null,
-      required: requiredText.map((value) => ({ value, present: text.includes(value) })),
+      required: requiredText.map((value) => ({ value, present: frame.includes(value) })),
       privateText: /\braymo\b|[A-Za-z]:\\Users\\|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(text),
       falsePrivacy: /Your progress and your notes are never sent anywhere|and is never sent anywhere/.test(text),
       coversOff: JSON.parse(localStorage.getItem('mrt.settings')).covers === false,
@@ -140,7 +140,7 @@ async function auditAndCapture(page, origin, screenshot, output) {
       viewIntersectsViewport: Boolean(box && box.top < innerHeight && box.right <= innerWidth),
       expectedView,
     };
-  }, screenshot.view, screenshot.text, screenshot.heading);
+  }, screenshot.view, screenshot.text, await page.evaluate(framedText), screenshot.heading);
 
   if (audit.view !== audit.expectedView
       || audit.required.some((entry) => !entry.present)
