@@ -82,7 +82,7 @@ final class ICloudFakeStore: ICloudDocumentStore {
                 }
             )
         } else if notUploaded.contains(name) {
-            throw ICloudStoreError.stillUploading
+            throw ICloudStoreError.uploadNotReady
         }
         return data
     }
