@@ -75,6 +75,9 @@ iCloud Drive backup is switched on for iPhone and iPad in this version. Google D
 Windows and Android is built but switched off, and is not offered. Existing OneDrive connections
 and backups are not migrated or replaced, and stored OneDrive state is unchanged.
 
+Saved-data compatibility: unchanged. This is a styling-only change. No storage key, schema or saved
+value is read or written differently.
+
 Builds older than 4.0.0 still cannot edit schema-4 reading data or restore its backups. Before
 upgrading from one of them, keep an independent backup and follow the
 [4.0.0 compatibility guidance](#400).
@@ -92,6 +95,9 @@ their reading-list screens by their story type or tone.
 
 Find MCU Prep guides on the MCU Prep screen, which has its own search. Issues opened from those
 guides now show MCU Prep in their breadcrumbs.
+
+On iPad and Android tablets, a Reading List's breadcrumb now shows Home, Library and the list name on
+one line.
 
 ### Backups, restore and privacy
 
