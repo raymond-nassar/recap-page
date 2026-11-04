@@ -1489,3 +1489,12 @@ test('the structural counts claimed above the corpus are the counts it has', () 
     `the comment above ACCEPTED_SENTENCES says twenty-four of them are repaired forms of refusals, and ${heldAsTrue.length} are`,
   );
 });
+
+test('the proposed iOS device-storage policy wording stays exact pending owner approval on #1102', () => {
+  const policy = read('PRIVACY.md').replace(/\r\n/g, '\n');
+  const deviceSection = policy.split('## What stays on your device\n')[1]?.split('\n## ')[0];
+  assert.ok(deviceSection, 'The policy has its device-storage section');
+  assert.ok(deviceSection.replace(/\s+/g, ' ').includes(
+    'On iPhone and iPad, it lives in the app\'s private web storage. Your device\'s own iCloud or computer backups may include it, even if automatic backup in Recap Page is off.',
+  ));
+});

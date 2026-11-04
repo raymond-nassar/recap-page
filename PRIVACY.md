@@ -1,6 +1,6 @@
 # Recap Page privacy policy
 
-Last updated: 2026-10-30
+Last updated: 2026-11-03
 
 Your reading lists, progress, notes and settings stay on your device. Only the requests described
 below leave it, plus a backup to your own OneDrive if you turn that on. You can delete OneDrive
@@ -19,6 +19,9 @@ The app also keeps a cache of comic details, which can include your search text.
 On Windows, this data lives in the storage of the browser that opens the app. Each browser and
 browser profile keeps its own copy. On Android, it lives in the app's private storage. Android's
 own backup and device transfer are turned off for the app.
+
+On iPhone and iPad, it lives in the app's private web storage. Your device's own iCloud or computer
+backups may include it, even if automatic backup in Recap Page is off.
 
 You can export a backup file from **Backup & settings**. Wherever you save it receives its
 contents. Restoring a backup replaces your saved data after you confirm.
