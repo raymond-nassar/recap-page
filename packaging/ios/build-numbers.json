@@ -44,6 +44,13 @@
       "sourceRevision": "27fa1cfef8578821555a46aeac81954cc01e8d9e",
       "sourceTree": "f9c538d7fc59e4729a69f685fab14f556b3e6ce3",
       "artifact": null
+    },
+    {
+      "buildNumber": 7,
+      "productVersion": "4.4.0",
+      "sourceRevision": "27fa1cfef8578821555a46aeac81954cc01e8d9e",
+      "sourceTree": "f9c538d7fc59e4729a69f685fab14f556b3e6ce3",
+      "artifact": null
     }
   ]
 }
