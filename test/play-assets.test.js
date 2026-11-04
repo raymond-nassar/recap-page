@@ -17,10 +17,10 @@ const feature = featureGraphic();
 test('only the desktop and Play Home captures dismiss the December 7 notice before framing', async () => {
   assert.equal(ASSETS.find(({ file }) => file === 'dark-01-home.png').alt,
     'Dark Android Home with a Modern Timeline starting action, Search and a Modern Timeline discovery card.',
-    'notice-free Home alt text, pending owner approval');
+    'owner-approved notice-free Home alt text, November 3, 2026');
   assert.ok(readFileSync(new URL('../docs/MICROSOFT_STORE_SUBMISSION.md', import.meta.url), 'utf8')
     .includes('Dark Home offers a first reading step on Modern Timeline, with Search and a Modern Timeline discovery card.'),
-  'notice-free Home description, pending owner approval');
+  'owner-approved notice-free Home description, November 3, 2026');
   assert.deepEqual(SCREENSHOTS.filter(({ dismissNotice }) => dismissNotice).map(({ file }) => file), ['01-home-discovery.png']);
   assert.deepEqual(SCREENS.filter(({ dismissNotice }) => dismissNotice).map(({ file }) => file), ['dark-01-home.png']);
   for (const script of ['capture-store-assets.mjs', 'capture-play-assets.mjs']) {

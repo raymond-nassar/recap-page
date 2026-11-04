@@ -320,7 +320,8 @@ copied into the bracketed line above.
 **Saved assets, not the live listing.** Part of #1015.
 By owner decision, the 4.4.0 Microsoft Store submission changes only the app package and the
 "What's new" text, and the listing keeps its current screenshots. This refreshed Windows set, with
-Genres in place of Storylines, is saved for a later listing update. Its captions are not approved.
+Genres in place of Storylines, is saved for a later listing update with the approved captions
+([owner approval](https://github.com/raymond-nassar/recap-page/issues/1015#issuecomment-6624904685)).
 Google Play and the App Store refresh their screenshots with 4.4.0. The final captures come from
 the 4.4.0 release source, which includes the iPad breadcrumb fix (#1070, #1042). Google Play shows
 the set the owner uploaded on 2026-10-31, which predates Genres and still shows Storylines.
