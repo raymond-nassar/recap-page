@@ -689,13 +689,13 @@ lost reply or a request that lands late can only add an older generation. The co
 IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
 backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
 committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:1320-1331`, because a browser that is killed can roll localStorage back,
+`src/js/lib/cloudProtocol.js:1325-1336`, because a browser that is killed can roll localStorage back,
 as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
 naming its stream, generation, device label and time, compressed with gzip, and its name declares the
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup can delete up to two of this stream's ordinary
-backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:1592-1594`:
+backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:1597-1599`:
 one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
@@ -757,7 +757,7 @@ consent it was made under.
 restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
 or Android profile restored the same way. Such a record holds a counter behind the files its stream
 already has, and nothing on any platform says so. So every backup lists before it creates, at
-`src/js/lib/cloudProtocol.js:1532-1533`: a file of this stream at or above the number just taken, or a
+`src/js/lib/cloudProtocol.js:1537-1538`: a file of this stream at or above the number just taken, or a
 create refused because its name is taken, means another copy of the record is in use, and the browser
 starts a new stream, committed with strict durability and read back, rather than use that number. The
 old stream's files are left alone, because the other copy may still be making them, and discovery
@@ -867,7 +867,7 @@ read at all is not reported that way, because it may still be intact, and a late
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:1418`, so a small file that expands without end costs no more than the
+`src/js/lib/cloudProtocol.js:1423`, so a small file that expands without end costs no more than the
 cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
 there is read and checked again, then restored through the complete restore engine above.
 
@@ -1161,7 +1161,7 @@ only the files its manifest lists, with the Windows server's security headers an
 under that origin in WebKit's storage, which allows each origin 5 MiB;
 [Storage capacity](IOS.md#storage-capacity) records what that holds.
 
-### iCloud Drive backup, switched off
+### iCloud Drive backup
 
 The iOS transport answers the shared cloud backup contract through the app's existing script-message
 handler. The provider is `icloud`, the only entry in its `providers`, and `connect({provider:'icloud'})`
@@ -1174,7 +1174,10 @@ while lookup is suspended refuses the operation instead of using the other accou
 
 The native store coordinates file reads and writes and refuses a create whose name already exists.
 A read requests a download if needed and returns a retryable refusal if it is still downloading.
-A locally published file cannot pass read-back until iOS confirms its upload. Status carries
+A locally published file cannot pass read-back until iOS confirms its upload. The engine states why it
+reads each file, and only its read-back of a file it has just created may wait for that confirmation;
+any other read of a waiting file, discovery and restore included, is refused at once as retryable.
+Status carries
 optional `waitingForUpload: true` until iOS confirms, and the card appends the upload wait to its
 connected feedback. A failed upload inspection is unavailable, not an uploaded result. iCloud uses
 the transport's second list after create as an additional concurrent-write check, but live
@@ -1196,6 +1199,6 @@ browser label, including the Android app's label. No new transport scope or back
 The card offers **Connect iCloud** and does not promise a recovery bin for programmatic deletion.
 
 The native code compiles only with `RECAP_ICLOUD` or Debug; the page adapter is outside the folder
-copied into every iOS build. No project configuration or entitlement enables it yet, so the signed
-Release build and its cloud card remain unchanged. [iCloud backup](IOS.md#icloud-backup) records the
-switch-on work and the signed-device acceptance still required.
+copied into every iOS build. The app's Debug and Release configurations set `RECAP_ICLOUD` and sign
+with the iCloud Documents entitlements, and `iCloudBackup` bundles the adapter and card.
+[iCloud backup](IOS.md#icloud-backup) records the signed-device acceptance still required.

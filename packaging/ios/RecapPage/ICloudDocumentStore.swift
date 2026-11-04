@@ -45,6 +45,11 @@ struct ICloudStoreError: Error, Equatable {
         message: "iCloud has not confirmed this backup uploaded yet. It is tried again shortly.",
         retryAfterMs: 15_000
     )
+    static let uploadNotReady = ICloudStoreError(
+        code: "unavailable",
+        message: "iCloud has not confirmed this backup uploaded yet. Try again once iCloud has uploaded it.",
+        retryAfterMs: 15_000
+    )
 }
 
 /// One backup file in the folder. Its name is its id: iCloud Drive keeps one file per name in a folder.
@@ -261,7 +266,7 @@ final class ICloudDriveStore: ICloudDocumentStore {
                     try await self.isUploaded(name: name, expectedIdentity: expectedIdentity)
                 }
             } else if !(try await isUploaded(name: name, expectedIdentity: expectedIdentity)) {
-                throw ICloudStoreError.stillUploading
+                throw ICloudStoreError.uploadNotReady
             }
         }
         return try await offMain {

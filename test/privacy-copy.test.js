@@ -800,6 +800,40 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
   );
 });
 
+// The iPhone and iPad app with iCloud backup never shows the OneDrive words above: its preparation replaces
+// each "on" variant, the "Your data" introduction and the card's copy with iCloud's. Those replacements are
+// written in the build script rather than the markup, so they are read here from the page the build makes.
+// They await the owner's approval on #1101; once approved, changing any needs the owner's approval again.
+const IOS_CLOUD_COPY = [
+  'This is app storage. Recap Page uploads your saved data only if you turn on cloud backup, and then only to your own iCloud.',
+  'Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below.',
+  'This choice is saved in this app and included in a backup to your own iCloud, if you turn cloud backup on.',
+  'Cloud backup is the one exception, and only once you turn it on. Recap Page sends a complete backup of what you save to your own iCloud after you make changes. It also lists and reads the backups there, and deletes older backups only after a newer backup has uploaded. Apple processes these files as part of your iCloud storage.',
+];
+
+test('the iPhone and iPad app with iCloud backup says iCloud, in the approved words, and never OneDrive', async () => {
+  const { iosIndex } = await import('../scripts/prepare-ios.mjs');
+  const build = {
+    schemaVersion: 1, productVersion: '0.0.0', platform: 'ios', packageVersion: 1, channel: 'development',
+    sourceRevision: 'a'.repeat(40), sourceTree: 'b'.repeat(40), sourceDirty: false,
+  };
+  const html = iosIndex(read('src/index.html'), build, { iCloudBackup: true });
+  const found = [...html.replace(/<!--[\s\S]*?-->/g, ' ').matchAll(/<(\w+)\b([^>]*\bdata-cloud-copy="on"[^>]*)>([\s\S]*?)<\/\1>/g)]
+    .map(([, , , inner]) => prose(inner));
+  assert.deepEqual(found, IOS_CLOUD_COPY);
+  const shown = prose(variant(html, 'on'));
+  assert.ok(shown.includes('There is no account to create and no analytics or tracking. Recap Page uploads your saved lists, progress and notes only if you turn on cloud backup in Backup & settings, and then only to your own iCloud.'));
+  assert.equal(
+    section(html, '<p class="rail-hint" id="cloud-backup-privacy">', '</p>', 'on'),
+    'Backups go to the Recap Page folder in your iCloud Drive. Recap Page does not encrypt them, so treat them like other files in your iCloud Drive. Disconnecting stops backups on this device without signing out of iCloud; backups already in iCloud stay until you delete them.',
+  );
+  for (const sentence of [
+    'Keep a complete backup in your own iCloud, made automatically as you read.',
+    'A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this device are kept, and older backups are deleted only after a newer backup has uploaded. Restoring one replaces everything it holds.',
+  ]) assert.ok(shown.includes(sentence), sentence);
+  assert.doesNotMatch(shown, /OneDrive|sign in on Microsoft/);
+});
+
 // The card's and the erase's own sentences that stage 3's review changed, A to G, which the owner approved
 // word for word on 2026-10-28, so changing any needs the owner's approval again. Each is read from what the
 // app says, not from a copy of it.
@@ -1488,4 +1522,13 @@ test('the structural counts claimed above the corpus are the counts it has', () 
     24,
     `the comment above ACCEPTED_SENTENCES says twenty-four of them are repaired forms of refusals, and ${heldAsTrue.length} are`,
   );
+});
+
+test('the proposed iOS device-storage policy wording stays exact pending owner approval on #1101', () => {
+  const policy = read('PRIVACY.md').replace(/\r\n/g, '\n');
+  const deviceSection = policy.split('## What stays on your device\n')[1]?.split('\n## ')[0];
+  assert.ok(deviceSection, 'The policy has its device-storage section');
+  assert.ok(deviceSection.replace(/\s+/g, ' ').includes(
+    'On iPhone and iPad, it lives in the app\'s private web storage. Your device\'s own iCloud or computer backups may include it, even if automatic backup in Recap Page is off.',
+  ));
 });
