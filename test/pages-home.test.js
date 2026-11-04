@@ -991,6 +991,7 @@ test('published headings keep the anchors the repository files gave them', () =>
       'recap-page-privacy-policy',
       'what-stays-on-your-device',
       'optional-onedrive-backup',
+      'optional-icloud-backup',
       'requests-the-app-makes-to-other-services',
       'deleting-your-data',
       'the-windows-package',
