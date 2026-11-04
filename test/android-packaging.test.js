@@ -36,6 +36,11 @@ function fixture() {
 
 const file = { filename: 'recap-page-backup.json', type: 'application/json', text: '{"notes":"Caf\u00e9"}' };
 
+test('#1099: Android fallback hero art keeps its layer to avoid the SwiftShader crash', async () => {
+  const css = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+  assert.match(css, /#hero \.art \.fallback \{\s*will-change:\s*transform;\s*\}/);
+});
+
 test('Android More retains its 48px target over shared bottom-navigation styles', async () => {
   const [css, shared] = await Promise.all([
     readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
