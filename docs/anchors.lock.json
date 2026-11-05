@@ -6389,8 +6389,8 @@
     "fp": "95da3e6147977222",
     "head": "permissions:"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:419-421|0": {
-    "anchor": ".github/workflows/ci.yml:419-421",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:442-444|0": {
+    "anchor": ".github/workflows/ci.yml:442-444",
     "fp": "d7904643223f00ed",
     "head": "permissions:"
   },
