@@ -2464,6 +2464,91 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
+  "docs/UX_FEEDBACK.md|colleague-ux-feedback|docs/UX_STUDY.md:953-954|0": {
+    "anchor": "docs/UX_STUDY.md:953-954",
+    "fp": "db046a4ee4a55494",
+    "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
+  },
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:384|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:384",
+    "fp": "2f830e12ad5ec513",
+    "head": "restartNoticePending = true"
+  },
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:398|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:398",
+    "fp": "55a4cabc45fcfd0d",
+    "head": "webView.reload()"
+  },
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1339|0": {
+    "anchor": "src/js/lib/catalog.js:1339",
+    "fp": "93b977ad490359f7",
+    "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
+  },
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:2724-2725|0": {
+    "anchor": "src/js/main.js:2724-2725",
+    "fp": "1fa4d3bc15041525",
+    "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
+  },
+  "docs/UX_FEEDBACK.md|owner-wording-preserved|src/index.html:57|0": {
+    "anchor": "src/index.html:57",
+    "fp": "0509eefdf02b5100",
+    "head": "<span>Search</span>"
+  },
+  "docs/UX_FEEDBACK.md|owner-wording-preserved|src/js/views/home.js:111|0": {
+    "anchor": "src/js/views/home.js:111",
+    "fp": "30b11eeb2302f6ea",
+    "head": "}, 'Search'),"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|1-navigation-and-back|src/js/main.js:1280-1281|0": {
+    "anchor": "src/js/main.js:1280-1281",
+    "fp": "62b3210aee845e93",
+    "head": "// history entry for Back to come back to."
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|2-home-discovery-and-search|src/index.html:57|0": {
+    "anchor": "src/index.html:57",
+    "fp": "0509eefdf02b5100",
+    "head": "<span>Search</span>"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|2-home-discovery-and-search|src/js/views/home.js:101|0": {
+    "anchor": "src/js/views/home.js:101",
+    "fp": "deef237b6469fa75",
+    "head": "}, 'Start with Modern Timeline'),"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|2-home-discovery-and-search|src/js/views/home.js:111|0": {
+    "anchor": "src/js/views/home.js:111",
+    "fp": "30b11eeb2302f6ea",
+    "head": "}, 'Search'),"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|2-home-discovery-and-search|src/js/views/home.js:88|0": {
+    "anchor": "src/js/views/home.js:88",
+    "fp": "b8b03392adcf2f64",
+    "head": "text: 'Browse curated Reading Lists. Add individual issues or your own list.',"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|4-ios-native-interaction-and-architecture-compar|docs/IOS.md:7|0": {
+    "anchor": "docs/IOS.md:7",
+    "fp": "244f4f24bf6d281b",
+    "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:384|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:384",
+    "fp": "2f830e12ad5ec513",
+    "head": "restartNoticePending = true"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:398|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:398",
+    "fp": "55a4cabc45fcfd0d",
+    "head": "webView.reload()"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1339|0": {
+    "anchor": "src/js/lib/catalog.js:1339",
+    "fp": "93b977ad490359f7",
+    "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
+  },
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:2724-2725|0": {
+    "anchor": "src/js/main.js:2724-2725",
+    "fp": "1fa4d3bc15041525",
+    "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
+  },
   "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:561-564|0": {
     "anchor": "src/index.html:561-564",
     "fp": "304cd20dbf0268d7",
@@ -6499,8 +6584,8 @@
     "fp": "95da3e6147977222",
     "head": "permissions:"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:419-421|0": {
-    "anchor": ".github/workflows/ci.yml:419-421",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:442-444|0": {
+    "anchor": ".github/workflows/ci.yml:442-444",
     "fp": "d7904643223f00ed",
     "head": "permissions:"
   },
