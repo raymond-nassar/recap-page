@@ -44,6 +44,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  docs_check:
+    name: Classify documentation-only changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    outputs:
+      docs_only: ${{ steps.classify.outputs.docs_only }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Classify the pull request
+        id: classify
+        timeout-minutes: 1
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.sha }}
+        run: node scripts/docs-only.mjs
+
   test:
     name: Tests on Node ${{ matrix.node }}
     runs-on: ubuntu-latest
@@ -258,6 +279,8 @@ jobs:
   # it is installed outside the checkout, so package.json gains nothing.
   ui-owners:
     name: UI owners in Edge on Windows
+    needs: docs_check
+    if: ${{ github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true' }}
     runs-on: windows-2022
     # The steps below declare 57 minutes between them, so this is the backstop for time outside any
     # step, in the same order the other jobs keep. Measured locally, no owner took over 35 seconds;

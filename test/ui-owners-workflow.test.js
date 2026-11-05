@@ -14,10 +14,11 @@ const steps = job.split(/\n(?= {6}- )/).slice(1);
 const step = (pattern) => steps.filter((text) => pattern.test(text));
 const literal = (text) => text.replace(/[\\^$.*+?()[\]{}|/-]/g, '\\$&');
 
-test('the UI owners job runs on Windows for every trigger, so a pull request cannot skip it', () => {
+test('the UI owners job skips only documentation-only pull requests', () => {
   assert.ok(job, 'ci.yml has a ui-owners job');
   assert.match(job, /^ {4}runs-on: windows-2022$/m);
-  assert.doesNotMatch(job, /^ {4}if:/m, 'the job itself has no condition');
+  assert.match(job, /^ {4}needs: docs_check$/m);
+  assert.match(job, /^ {4}if: \$\{\{ github\.event_name != 'pull_request' \|\| needs\.docs_check\.outputs\.docs_only != 'true' \}\}$/m);
   assert.doesNotMatch(job, /^ {4}continue-on-error:/m, 'the job can fail');
 });
 

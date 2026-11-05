@@ -42,10 +42,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  docs_check:
+    name: Classify documentation-only changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    outputs:
+      docs_only: ${{ steps.classify.outputs.docs_only }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Classify the pull request
+        id: classify
+        timeout-minutes: 1
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.sha }}
+        run: node scripts/docs-only.mjs
+
   newest:
     name: iOS app on the newest runtime
+    needs: docs_check
     # A screenshot capture is a separate errand; it does not need the test jobs' macOS runners.
-    if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only }}
+    if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
     # The backstop for time outside any step. The steps below declare 137 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
@@ -253,7 +275,8 @@ jobs:
 
   ipad:
     name: iPad presentation on the newest runtime
-    if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only }}
+    needs: docs_check
+    if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
     # These steps declare 93 minutes; leave the deadline to the individual step that overruns.
     timeout-minutes: 96
@@ -371,10 +394,11 @@ jobs:
 
   minimum:
     name: iOS app on the lowest iOS 18 runtime
+    needs: docs_check
     # The app supports iOS and iPadOS 18.0 and later. No image carries the 18.0 runtime, and this one
     # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
     # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
-    if: ${{ !inputs.app_store_screenshots }}
+    if: ${{ !inputs.app_store_screenshots && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-15
     # Separate launch/presentation groups declare 222 step minutes; one additional minute keeps
     # the job backstop outside every step deadline.

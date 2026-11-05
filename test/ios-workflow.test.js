@@ -95,6 +95,24 @@ test('the iOS workflow runs on every pull request with no path filter, on pushes
   assert.doesNotMatch(triggers.join('\n'), /paths|paths-ignore|branches-ignore|types:/);
 });
 
+test('iOS simulator jobs skip only documentation-only pull requests', () => {
+  const classifier = jobSource('docs_check');
+  assert.match(classifier, /runs-on: ubuntu-latest/);
+  assert.match(classifier, /fetch-depth: 0/);
+  assert.match(classifier, /BASE_SHA: \$\{\{ github\.event\.pull_request\.base\.sha \}\}/);
+  assert.match(classifier, /HEAD_SHA: \$\{\{ github\.sha \}\}/);
+  assert.match(classifier, /run: node scripts\/docs-only\.mjs/);
+  for (const [name, selection] of [
+    ['newest', "!inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true')"],
+    ['ipad', "!inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true')"],
+    ['minimum', "!inputs.app_store_screenshots && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true')"],
+  ]) {
+    const source = jobSource(name);
+    assert.match(source, /^ {4}needs: docs_check$/m, `${name} waits for classification`);
+    assert.ok(source.includes(`if: \${{ ${selection} }}`), `${name} retains its manual mode gate and skips only docs PRs`);
+  }
+});
+
 test('the iOS workflow reads the repository and nothing more: no secret, no environment and no signing', () => {
   assert.equal(block('permissions').trim(), 'contents: read');
   assert.doesNotMatch(workflow, /secrets\.|\benvironment:|id-token|allowProvisioningUpdates|exportArchive|\barchive\b|authenticationKey/);
@@ -126,9 +144,9 @@ test('live metadata CORS is off by default and runs only from an opted-in manual
 test('minimum-only dispatch runs just the lowest-runtime job', () => {
   assert.match(workflow,
     /minimum_only:\n {8}description: Run only the lowest iOS 18 runtime job\n {8}required: false\n {8}type: boolean\n {8}default: false/);
-  assert.match(jobSource('newest'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
-  assert.match(jobSource('ipad'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}/);
-  assert.match(jobSource('minimum'), /if: \$\{\{ !inputs\.app_store_screenshots \}\}/);
+  assert.match(jobSource('newest'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only &&/);
+  assert.match(jobSource('ipad'), /if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only &&/);
+  assert.match(jobSource('minimum'), /if: \$\{\{ !inputs\.app_store_screenshots &&/);
   // With both inputs set the capture wins, matching its concurrency group, so the run is never empty.
   assert.match(jobSource('screenshots'),
     /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots \}\}\n/);
@@ -179,10 +197,10 @@ test('the fault-disabled restore mutation is opt-in and requires the done-row fa
 });
 
 test('newest, oldest, iPad and screenshot jobs use the intended Xcode runtimes', () => {
-  assert.deepEqual(jobs.map(({ name, runsOn }) => [name, runsOn]),
+  assert.deepEqual(jobs.filter(({ name }) => name !== 'docs_check').map(({ name, runsOn }) => [name, runsOn]),
     [['newest', 'macos-26'], ['ipad', 'macos-26'], ['minimum', 'macos-15'], ['screenshots', 'macos-26']]);
   const major = identity.minimumOS.split('.')[0];
-  for (const job of jobs) {
+  for (const job of jobs.filter(({ name }) => name !== 'docs_check')) {
     assert.match(job.env.DEVELOPER_DIR, /^\/Applications\/Xcode_26\.[\d.]+\.app\/Contents\/Developer$/, job.name);
     assert.ok(job.steps.some(({ label }) => label === 'Show the toolchain'), `${job.name} prints its Xcode version`);
   }
@@ -197,10 +215,10 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
   assert.match(workflow,
     /app_store_screenshots:\n {8}description: Capture the App Store screenshots instead of running the tests\n {8}required: false\n {8}type: boolean\n {8}default: false/);
   assert.match(jobSource('newest'),
-    /\n {4}if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}\n {4}runs-on:/);
+    /\n {4}if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only &&[\s\S]+?\n {4}runs-on:/);
   assert.match(jobSource('ipad'),
-    /\n {4}if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only \}\}\n {4}runs-on:/);
-  assert.match(jobSource('minimum'), /\n {4}if: \$\{\{ !inputs\.app_store_screenshots \}\}\n {4}runs-on:/);
+    /\n {4}if: \$\{\{ !inputs\.app_store_screenshots && !inputs\.minimum_only &&[\s\S]+?\n {4}runs-on:/);
+  assert.match(jobSource('minimum'), /\n {4}if: \$\{\{ !inputs\.app_store_screenshots &&[\s\S]+?\n {4}runs-on:/);
   const source = jobSource('screenshots');
   assert.match(source,
     /\n {4}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.app_store_screenshots \}\}\n {4}runs-on: macos-26/);
@@ -855,7 +873,7 @@ test('unit failures stop each iOS job without entering the UI retry gate', async
 test('every job and every step in the iOS workflow declares its own deadline', () => {
   for (const job of jobs) {
     assert.ok(Number.isInteger(job.timeout) && job.timeout > 0, `job ${job.name} has a deadline`);
-    assert.ok(job.steps.length >= 6, `the parser found only ${job.steps.length} steps in ${job.name}`);
+    assert.ok(job.steps.length >= (job.name === 'docs_check' ? 2 : 6), `the parser found only ${job.steps.length} steps in ${job.name}`);
     for (const step of job.steps) {
       assert.ok(Number.isInteger(step.timeout) && step.timeout > 0,
         `step ${JSON.stringify(step.label)} in job ${job.name} has no plain deadline, so an overrun reports cancelled rather than failure`);
