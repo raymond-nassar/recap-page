@@ -471,7 +471,9 @@ Never rerun either mode or dispatch it twice for the same number. Even failed or
 attempts block another attempt in that mode. Investigate Apple processing before deciding what
 happened; a failed export consumes its number, and a failed or uncertain upload is not retried
 automatically. Use a fresh reservation for a new build. Upload in allocation order and check
-App Store Connect before approving, especially after an uncertain result.
+App Store Connect before approving, especially after an uncertain result. An export whose deliver
+job GitHub canceled before any runner started consumes its number too: build 6 was never signed,
+so build 7 was reserved (#1114).
 
 After Apple finishes processing, resolve any compliance questions yourself, add the build to
 your internal group, and install it through TestFlight on the iPad. A successful upload is not
@@ -513,6 +515,14 @@ published pages rather than repository file views:
 
 - Privacy policy: https://raymond-nassar.github.io/recap-page/privacy.html
 - Support: https://raymond-nassar.github.io/recap-page/support.html
+
+For later builds, the Beta App Description and the Beta App Review notes belong to the app and
+carry over from build to build, so rewrite them whenever a build changes what they say. Build 5's
+texts said the iOS app had no cloud backup; build 7's approved texts are
+[recorded on #949](https://github.com/raymond-nassar/recap-page/issues/949#issuecomment-6639938402).
+What to Test is entered for each build. A new version needs Beta App Review again before external
+testers get it, as 4.4.0 does. The app's Info.plist declares `ITSAppUsesNonExemptEncryption` false,
+so App Store Connect should ask no export compliance question.
 
 ### Renewal and fallbacks
 
@@ -621,3 +631,23 @@ To regenerate them:
 3. Inspect every image for the intended screen, theme, clean status bar and framing. Copy the
    artifact's `docs/ios-app-store-assets` output into this directory, preserving the manifest.
    The manifest identifies the exact source revision and Simulator runtime used for that run.
+
+## App Store submission
+
+The owner approves the submission and every text readers see. These steps come from 4.4.0, the
+first App Store release
+([recorded on #949](https://github.com/raymond-nassar/recap-page/issues/949#issuecomment-6640861707)):
+
+1. After the owner withdrew 4.3.0 from review, the version page read **Developer Rejected**, already
+   named 4.4.0 with build 5 attached, and it still accepted edits. Swap the build by removing the
+   attached build and adding the new one.
+2. A first release has no What's New field. Check the description and review notes against the
+   build's own labels: 4.3.0's notes named Storylines, Read this next and List actions, which 4.4.0
+   removed or renamed.
+3. **Remove All** asks for confirmation and keeps the removed screenshots in the Asset Library.
+   Apple's notice says the 13-inch iPad set serves every iPad size. The search results image
+   accepted 3840 x 2560. Check each upload against its manifest SHA-256 and size first.
+4. Keep the release option the owner chose; 4.4.0 used **Automatically release this version**.
+   Save, reload and read every changed field back.
+5. **Add for Review** opens a draft submission listing the version and build; 4.4.0 raised no new
+   questions. **Submit for Review** moves the version to **Waiting for Review**.

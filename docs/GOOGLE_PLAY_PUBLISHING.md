@@ -48,6 +48,10 @@ and distribution remain owner-controlled; collection or non-collection has not b
 If the review finds analytics or telemetry, stop distribution for an owner decision about the existing
 privacy promise. A Data safety disclosure alone does not approve data collection that promise declines.
 See [the recorded release gate](https://github.com/raymond-nassar/recap-page/issues/810#issuecomment-6570886568).
+On 3 November 2026 the owner accepted that review for builds with Google Drive off, where the
+component ships but never starts, so the Data safety answers stay as approved for 4.3.0. Turning
+Google Drive on needs a new review
+([recorded on #810](https://github.com/raymond-nassar/recap-page/issues/810#issuecomment-6622053492)).
 
 ## Keyless authentication and protection
 
@@ -280,6 +284,15 @@ its artifact record and distribution approval are separate from this uploader.
 Production also requires app-specific eligibility, the applicable testing/access process,
 owner product/privacy/device acceptance and a separately reviewed production-permission path.
 Neither testing access nor a successful GitHub workflow grants those.
+
+### Production release in Play Console
+
+Managed publishing is off, so every change Google approves publishes on its own. Reconcile
+**Publishing overview** before changing anything. Play cannot promote a release that was never
+sent for review, so 4.3.0's production release was created from the same bundle with **Add from
+library** and sent for review together with the closed-testing release; 4.2.0 used a full
+production rollout. The overview should list only the intended changes; send them once. This is the
+manual Console fallback described in [Normal release operations](#normal-release-operations).
 
 ## Approved 4.3.0 listing draft
 
