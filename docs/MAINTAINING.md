@@ -947,6 +947,20 @@ stage/code, status, independent proof results and notes hash.
 Microsoft publishes automatically after certification, which can take up to three business days.
 There is no second manual publishing hold. A pending observation is not a claim of delivery.
 
+When the last published submission was made in the Partner Center website, the next automated
+Submit can end `verification-pending` with `POSTCOMMIT_INTENT`. For 4.4.0 the package and notes
+verified and the only difference was a dropped `false` entry for
+`allowTargetFutureDeviceFamilies`; the read-only diagnosis
+([recorded on #1106](https://github.com/raymond-nassar/recap-page/issues/1106#issuecomment-6639283091))
+found the submission Published, and the public catalog showed 4.4.0.0 about 23 minutes after the
+commit. Do not rerun Submit. Diagnose read-only, then confirm in the
+[public catalog](https://displaycatalog.mp.microsoft.com/v7.0/products/9PDJ7XR9Q40Q?market=US&languages=en-US)
+that a package's `Version` packs the four-part version as four 16-bit parts and `ReleaseNotes`
+equals the approved notes. If a diagnosis shows any other difference after a website-made
+submission, or the flag recurs after an automated one, file an Issue with both runs and decide
+whether to keep the check, read an absent entry as `false`, or seed the intent from the live
+submission.
+
 #### Catch up an already published release
 
 Do not rerun an old release workflow after correcting the publisher: that run uses its old source.
@@ -1102,6 +1116,8 @@ Do not commit `dist`.
 For hosted preparation, manually dispatch **Windows App Certification Kit** at the clean,
 committed candidate with `release_preparation=true`, `native_only=false` and
 `diagnostic_only=false`. The option defaults off and never runs on a pull request.
+It has no source input and builds the tip of `main`, so dispatch it right after the release
+merge, while `main` is still that commit; 4.4.0's preparation started one minute after its merge.
 The separate Windows preparation job runs the eight gates, live contract, full ordinary
 browser suite, actual historical upgrade, Store packet check and existing portable packer.
 Browser tooling uses the external locked driver and a temporary profile.

@@ -63,3 +63,7 @@ packaging/ios/**/xcuserdata/
 # committed (#810, OD-06). The packagers refuse one inside this repository anyway; this keeps a copy left
 # here by hand out of every commit.
 cloud-client.json
+
+# Browser automation captures can hold account emails and contact details. Delete them after each
+# session; this rule only keeps them out of commits.
+.playwright-mcp/

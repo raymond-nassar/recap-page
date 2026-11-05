@@ -432,6 +432,28 @@ Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holo
 300 x 300 tile is the only new Store logo. A Super hero image is optional promotional artwork with
 different safe-area rules, not a stretched version of the purple app icon.
 
+### Listing-only update in Partner Center
+
+The owner approves the submission and the captions. These steps come from the 4.4.0 screenshot
+update ([recorded on #1015](https://github.com/raymond-nassar/recap-page/issues/1015#issuecomment-6641636473)):
+
+1. **Start update** on the overview creates a new draft submission. Open **Store listings**, then
+   **English (United States)**.
+2. Remove each old screenshot with the icon-only bin on its tile, one at a time, checking after
+   each that only that screenshot went and the feature entries remain.
+3. The file picker takes one file, so upload the new images one at a time in order and caption
+   each right after its upload.
+4. **Save** returns to the overview, where only Store listings should read **Updated**: Pricing and
+   availability, Properties and Packages read **Unchanged**, and Age ratings **Complete**.
+5. Check the publishing hold; 4.4.0 kept "Publish this submission as soon as it passes
+   certification". Then choose **Submit for certification**, after which the overview reads
+   **Update in certification**.
+
+The next automated Submit starts from a copy of the last published submission, so a submission
+made in the website becomes its baseline. See
+[Operate a Store update](MAINTAINING.md#operate-a-store-update) for what that does to the next
+Submit.
+
 ## Final upload handoff
 
 ### 4.3.0 owner gate

@@ -416,6 +416,25 @@ to that branch fires the `pull_request` trigger. This looks exactly like a broke
 not one. Do not "fix" it by widening the `push` trigger to all branches, which would double every
 run once a pull request exists. Use `workflow_dispatch` if you need a result before opening one.
 
+Read a job's log with `gh api repos/raymond-nassar/recap-page/actions/jobs/<id>/logs
+--allow-escape-sequences`, run from a Node script that writes it to a UTF-8 file. Some logs arrive
+as UTF-16 with a byte order mark, so check the first bytes before searching one.
+
+When GitHub is short of macOS runners, a queued job is canceled after about 15 to 22 minutes with
+the annotation "The job was not acquired by Runner of type hosted even after multiple attempts", and
+the run reports `failure`. For ordinary CI on pull requests and main, confirm that annotation on
+every job that did not succeed, wait for the run to finish, then rerun once with
+`gh run rerun <run> --failed`. **Never do this to a protected release or publication workflow.**
+The iOS export and upload, the Android Candidate, the Google Play and Microsoft Store releases, the
+Store diagnosis and commit-only workflows and the Windows release preparation accept only a first
+attempt or forbid reruns, so follow their own runbook and get a fresh decision. An iOS export
+canceled this way, before any runner started, still consumed its build number.
+
+After merging a pull request whose head tree equals the merge commit's tree and whose iOS jobs all
+passed on that head, cancel main's duplicate iOS push run: the pull request already proved that
+tree, and this account runs at most five macOS jobs at once. When the head's iOS jobs did not all
+pass, cancel only with that reason recorded.
+
 ## Comment and prose style
 
 Comments explain **why**, with measured evidence, not what the line does. "Measured in Edge on a
@@ -477,6 +496,25 @@ later. Refusals are a backstop, not a design.
   and linked pull request, as `GOVERNANCE.md` defines.
 - Agent and contributor instructions change how work is done, not the product. They need neither a
   Project update nor release notes unless they alter release-relevant maintainer behavior.
+- **GitHub reads a closing keyword even when the sentence negates it.** "Does not close `#N`"
+  still closes `#N` on merge. Write "Part of" or "stays open", and before merging compare
+  `gh pr view <n> --json closingIssuesReferences` with what the body intends.
+- Merge at the reviewed head with `gh pr merge <n> --merge --match-head-commit <sha>`, only when
+  every check on that head passed, not just the three branch protection requires, and main is
+  still the commit the review checked against. Merge past a failing or pending check only under a
+  recorded owner rule or the owner's decision for that pull request. Then confirm main is the
+  merge commit before dispatching anything on top of it.
+- Post an Issue or pull request comment from a file, for example
+  `gh api repos/raymond-nassar/recap-page/issues/<n>/comments -F body=@<file>`. Scan the file first
+  for em and en dashes, backslashes (usually a local Windows path) and closing keywords. Afterwards
+  fetch the live body from a Node script with `child_process.execFileSync` and compare it with the
+  file; a PowerShell pipe makes that comparison untrustworthy.
+- Run `Get-Date` immediately before writing a time into a record, comment or log. Correct a wrong
+  time with an appended note rather than rewriting the entry.
+- **After a timeout, a 5xx or any unclear answer to a request that changes something**, such as a
+  merge, comment, upload or Store commit, read the state of what it acted on before anything else,
+  and never repeat it on a guess. During 4.4.0 a merge returned 502 and the retry answered "Merge
+  already in progress".
 
 Plain English means a specific thing here, not a shortened copy of the technical summary:
 
@@ -540,7 +578,15 @@ This is the shell in use. It is not bash and not PowerShell 7.
   `[IO.File]::WriteAllText($p, $msg, (New-Object Text.UTF8Encoding $false))`.
 - **Avoid `node -e "..."` with backticks or escaped quotes.** PowerShell escaping destroys it. Put
   the script in a `.mjs` file and run that. This wasted time twice in one session.
-- `gh ... --jq` fails here. Pipe raw `--json` output into `node -e`.
+- `gh ... --jq` fails here. Pipe raw `--json` output into `node -e`. That is safe only for ASCII:
+  the pipe re-encodes anything outside the console code page, so a bullet or a dash arrives as `?`.
+  To scan or compare such text, run `gh` from a Node script with `child_process.execFileSync`.
+- **`gh api` prints a 404 error body on stdout**, so a check that looks for output reports that a
+  missing release exists. Gate on `$LASTEXITCODE`.
+- `@('[]' | ConvertFrom-Json)` has a `Count` of 1, because PowerShell 5.1 passes the empty array
+  through as one object. Unroll it: `@('[]' | ConvertFrom-Json | ForEach-Object { $_ })`.
+- In a double-quoted string, `"$name:"` is read as a scope or drive qualifier and breaks the line;
+  write `"${name}:"`.
 - `grep` is not a command. Use the editor's search tool, or `Select-String`.
 - Kill processes with `Stop-Process -Id <pid>`, never by name.
 - **`Measure-Object -Line` cannot see an empty line, so it undercounts a file by exactly the number
@@ -612,6 +658,32 @@ full suite after every correction.
 
 Read-only research, inspection, and validation can run in parallel. Feature implementation that
 touches a shared file, integration of parallel work, and merges into a shared branch stay serial.
+Heavy local suites are the exception on a shared machine: run the full browser suite and the full
+`npm test` one at a time. Run in parallel during the 4.4.0 work, they held the CPU at 95 to 100
+percent and lanes reported timeouts.
+
+## Store consoles and protected workflows
+
+These hold for every store console session and every protected deployment approval.
+
+- The owner signs in to Partner Center, Play Console and App Store Connect in the Playwright
+  browser; never type a credential. Stay read-only until the owner approves the specific action,
+  and ask again for the next one.
+- Fill a console field by its element id where it has one. Read every field back from the page and
+  compare it byte for byte with the approved text before saving, then reload and read it again. In
+  App Store Connect a role-and-name locator for the description resolved to the review notes
+  field, which ended up holding both texts; only the read-back before saving caught it.
+- Playwright uploads only files inside the worktree, so stage them under `.playwright-mcp/` and
+  check each against its manifest's SHA-256 and size first. Delete every capture in that folder
+  when the session ends: page snapshots hold the account email, the team ID and contact names.
+  Ignoring the folder stops a commit, not a leak.
+- Confirm a reported external action from the console's own state before recording it. "I
+  submitted for certification" once left the submission in draft; reading the overview caught it.
+- Approve a protected deployment only when the owner's current direction covers that exact
+  workflow, mode and release; one environment can gate both a delegated and an owner-only
+  workflow. During GitHub incidents a pending deployment can appear while the job it waits on has
+  no conclusion yet. Approve only once that job's conclusion is `success`, or every step it lists,
+  Complete job included, completed with `success`.
 
 ## Standing product constraints
 
