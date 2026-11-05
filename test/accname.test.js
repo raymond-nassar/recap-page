@@ -33,7 +33,7 @@ const HISTORICAL_FAILURES = [
   ['Issue page ↗', 'Open the marvel.com page for House of M (2005) #1'],
   ['Info', 'marvel.com page for House of M (2005) #1'],
   ['House of M #1 2005', 'Open House of M (2005) #1 in Marvel Unlimited'],
-  ['House of M 3 / 20', 'Open House of M, 3 of 20 issues read'],
+  ['House of M 3 / 20', 'Open House of M, 3 of 20 comics read'],
 ];
 
 test('the containment check rejects every name this change replaced', () => {
@@ -92,8 +92,8 @@ test('non-ASCII letters and digits survive', () => {
 const PIECEWISE_FAILURES = [
   [['Browse by year', 'Modern Timeline', '152 Reading Lists'], 'Modern Timeline. Browse by year. 152 Reading Lists.'],
   [['House of M: Main Series and Branded Tie-Ins', '3 / 20', 'Reading'],
-    'House of M Main Series and Branded Tie Ins 3 20: issues read, Reading. Open this list'],
-  [['Rate this issue'], 'Rate House of M (2005) #1'],
+    'House of M Main Series and Branded Tie Ins 3 20: comics read, Reading. Open this list'],
+  [['Rate this comic'], 'Rate House of M (2005) #1'],
 ];
 
 test('the containment check rejects the names #905 replaced', () => {

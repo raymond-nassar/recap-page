@@ -84,13 +84,14 @@ test('the rail groups Reading and App while Library and Search own their child p
   assert.match(main, /LIBRARY_VIEWS\.some\(\(\{ value \}\) => value === next\)/);
 });
 
-test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {
+test('one shared renderer integrates Back with breadcrumbs without adding it to dialogs', () => {
   assert.match(main, /function renderBreadcrumbs\(\)/);
   assert.match(main, /const trail = breadcrumbHierarchy\(\{/);
   assert.match(main, /el\('nav', \{ class: 'breadcrumb', 'aria-label': 'Breadcrumb' \}\)/);
   assert.match(main, /if \(existing\?\.dataset\.trail === trailKey\) return;/);
-  assert.match(main, /if \(!existing\) head\.before\(breadcrumb\);/);
-  assert.match(main, /if \(next === 'issue'\) void issueView\.render\(issueRoute\);\s*renderBreadcrumbs\(\);/);
+  assert.match(main, /if \(!existing\) \{ if \(view === 'home'\) head\.append\(breadcrumb\); else head\.before\(breadcrumb\); \}/);
+  assert.match(main, /syncHash\(\{ push \}\);\s*renderBreadcrumbs\(\);/);
+  assert.match(main, /if \(!trail\.length && !backAvailable\)/);
   assert.match(main, /const issueView = createIssueView\(\{[\s\S]*?\n\s*renderBreadcrumbs,[\s\S]*?\n\}\);/);
   assert.doesNotMatch(html, /<dialog[^>]*>[\s\S]*?class="breadcrumb"/);
   assert.doesNotMatch(main, /#preview[\s\S]{0,120}renderBreadcrumbs|#ask[\s\S]{0,120}renderBreadcrumbs/);
@@ -133,7 +134,7 @@ test('product labels use Reading List while authored guide titles retain their o
   assert.match(add, /ensureList\(DEFAULT_LIST_NAME\)/);
 });
 
-test('Search issues groups the destinations the app can actually open', () => {
+test('Search comics groups the destinations the app can actually open', () => {
   const page = between(html, 'id="view-add-search"', 'id="view-add-series"');
   assert.match(page, /<h2 id="search-browse-h">Browse by<\/h2>/);
   assert.match(page, /<h2 id="search-other-h">Other ways to add<\/h2>/);
@@ -280,7 +281,7 @@ test('standing explanations move behind disclosures or become compact labels', (
     /api\.github\.com\/repos\/raymond-nassar\/recap-page\/releases|marvel-reading-tracker-windows\.zip|delete the old folder|Unzip it anywhere/,
   );
   assert.match(libraryView, /class: 'library-sort', text: view\.sort/);
-  assert.match(reading, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
+  assert.match(reading, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'comic' : 'comics'\}`/);
 });
 
 // UX-42 (#836): the names were only ever a hover tooltip, which a touch screen cannot show, so the
@@ -355,7 +356,7 @@ test('completion destinations are links that leave modifier clicks to the browse
   // UX-18: they were buttons, so a middle click or Open in new tab did nothing.
   const markup = html;
   assert.match(markup, /<a href="#\/completed" id="btn-completed-lists" class="btn btn-g">Completed lists<\/a>/);
-  assert.match(markup, /<a href="#\/browse" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists<\/a>/);
+  assert.match(markup, /<a href="#\/browse" id="btn-recommendation-browse" class="quiet">Browse Reading Lists<\/a>/);
   const source = read('src/js/views/completion.js');
   for (const owner of ['collectionOpen', 'recommendationBrowse']) {
     assert.match(source, new RegExp(`nodes\\.${owner}\\.addEventListener\\('click', \\(event\\) => \\{\\s*if \\(!isPlainNavigation\\(event\\)\\) return;`),

@@ -29,7 +29,7 @@ test('all 29 owner-confirmed originals launch their unchanged exact issue-page U
     assert.equal(launch.searchParams.get('u'), item.url, item.title);
     assert.equal(launch.searchParams.get('p'), '1');
     assert.equal(launch.searchParams.has('d'), false);
-    assert.match(originalReaderDescription(item), /opens the Marvel issue page/);
+    assert.match(originalReaderDescription(item), /opens the Marvel comic page/);
     assert.match(readerLinkReport(item), new RegExp(`Comic page: ${item.url.replaceAll('.', '\\.')}`));
   }
 });
@@ -189,7 +189,7 @@ test('desktop launcher revalidates and opens exact known-refused URL without loo
   assert.equal(f.nodes.fallback.href, page);
   assert.equal(f.requests.length, 0);
   assert.equal(f.timers.length, 0);
-  assert.match(f.nodes.p.textContent, /issue page/);
+  assert.match(f.nodes.p.textContent, /comic page/);
 
   const direct = await desktopLauncher(`?d=38811&i=129224&u=${encodeURIComponent(page)}&p=1`,
     () => assert.fail('Known book ID must not fetch'));

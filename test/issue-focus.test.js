@@ -208,7 +208,7 @@ test('presentation derives shared facts without up-next or progress actions', ()
   assert.equal('done' in shown, false);
   assert.equal('upNext' in shown, false);
   assert.deepEqual(shown.facts.filter((fact) => fact.detailsOnly).map(({ key }) => key),
-    ['Marvel Unlimited record'], '#1061: the reading card leaves the record to Issue details');
+    ['Marvel Unlimited record'], '#1061: the reading card leaves the record to Comic details');
   assert.equal(issuePresentation(issue(45), { position: 2, total: 5 }).facts.some(({ key }) => key === 'Position'), false,
     'an older caller passing a position still gets no Position fact');
 });
@@ -253,7 +253,7 @@ test('the dedicated view has one heading and distinct Read, synopsis, and Info a
   const html = read('src/index.html');
   const view = html.slice(html.indexOf('<section id="view-issue"'), html.indexOf('<!-- ---------------------------------------- library hub'));
   assert.match(view, /aria-labelledby="issue-focus-h"/);
-  assert.match(view, /<h1 id="issue-focus-h">Issue details<\/h1>/);
+  assert.match(view, /<h1 id="issue-focus-h">Comic details<\/h1>/);
   assert.match(view, /id="btn-issue-read"/);
   assert.match(view, /id="btn-issue-synopsis"/);
   assert.match(view, /id="btn-issue-info"[^>]*target="_blank"/);
@@ -349,7 +349,7 @@ test('same-tab focus navigation stores an ephemeral opener and pushes exactly on
   const main = read('src/js/main.js');
   const navigate = main.slice(main.indexOf('function openIssueFocus'), main.indexOf('function issueFocusAnchor'));
   assert.match(navigate, /history\.replaceState\(\{ \.\.\.current, issueFocusOpener: opener \}/);
-  assert.match(navigate, /history\.pushState\(null, '', href\)/);
+  assert.match(navigate, /navigationPosition\.push\(href\)/);
   assert.doesNotMatch(navigate, /localStorage|store\.update/);
   const restore = main.slice(main.indexOf('async function restoreIssueFocusOpener'), main.indexOf('function loadBundledOrder'));
   assert.match(restore, /target\.focus\(\)/);

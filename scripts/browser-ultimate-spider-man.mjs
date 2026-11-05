@@ -150,7 +150,7 @@ export const ultimateSpiderManActualData = {
       addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
     t.check('the credited 352-issue character guide is discoverable without selecting a different Ultimate list',
-      card.name === name && card.text.includes('352 issues')
+      card.name === name && card.text.includes('352 comics')
       && card.sourceHref === mapping.sourceUrl
       && card.addName === `Add to library: ${name}`,
       JSON.stringify(card));
@@ -183,7 +183,7 @@ export const ultimateSpiderManActualData = {
       JSON.stringify(imported.matches));
     checkVector(t, 'import persists all 352 exact positions, titles, groups, gap and refusal flags',
       imported.rows, expected);
-    t.check('eight positive originals remain identified despite refused optional issue details',
+    t.check('eight positive originals remain identified despite refused optional comic details',
       JSON.stringify(imported.refused) === JSON.stringify(refusedIds)
       && imported.missingDetails.every((fields) => fields.every((field) => field === null)),
       JSON.stringify({ refused: imported.refused, missingDetails: imported.missingDetails }));

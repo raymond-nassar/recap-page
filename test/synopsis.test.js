@@ -232,7 +232,7 @@ test('hydration still asks for what you are about to read first', () => {
 
 // ---------------------------------------------------------------- the synopsis queue
 
-test('the queue is bounded by the list, and puts the next unread issues first', () => {
+test('the queue is bounded by the list, and puts the next unread comics first', () => {
   const { state, listId } = stateWith([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], { read: [1, 2] });
   const queue = synopsisOrder(state, listId, () => true, 8);
   assert.deepEqual(queue.slice(0, 9), [3, 4, 5, 6, 7, 8, 9, 10, 11]);
@@ -1212,7 +1212,7 @@ test('a synopsis inside the cap is kept whole', () => {
 // the tail by filtering the list keeps list order, so issues already read sit ahead of unread ones
 // further along. A reader a hundred issues into an order would spend the first minutes of the run on
 // prose for issues they had already finished, and none of it survives the tab to make that back.
-test('the tail puts unread issues ahead of ones already read', () => {
+test('the tail puts unread comics ahead of ones already read', () => {
   const ids = Array.from({ length: 30 }, (_, i) => i + 1);
   const { state, listId } = stateWith(ids, { read: [1, 2, 3, 4, 5] });
   const order = synopsisOrder(state, listId, () => true, 8);
@@ -1280,7 +1280,7 @@ test('synopsis consent stays within two short sentences for list and issue fetch
 test('a run that could not reach some issues is announced as such, not as finished', () => {
   const said = synopsisAnnouncement({ phase: 'partial', done: 4, total: 4, failed: 1 });
   assert.equal(said.state, 'partial');
-  assert.match(said.msg, /1 issue could not be reached/);
+  assert.match(said.msg, /1 comic could not be reached/);
   assert.doesNotMatch(said.msg, /All synopses fetched/);
 });
 
@@ -1304,7 +1304,7 @@ test('a stopped run that lost nothing is still counted plainly', () => {
 test('the spoken form of a stopped run says how many it could not reach', () => {
   const said = synopsisAnnouncement({ phase: 'cancelled', done: 3, total: 5, failed: 2 });
   assert.equal(said.state, 'cancelled');
-  assert.match(said.msg, /2 issues could not be reached/);
+  assert.match(said.msg, /2 comics could not be reached/);
   assert.match(said.msg, /What arrived is held for this tab only/);
 });
 

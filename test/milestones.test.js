@@ -32,9 +32,9 @@ test('a mark that leaves its section with nothing unread reaches that section, b
     'a section with another comic unread is not finished');
 });
 
-test('an unnamed run after a named section is the heading "Individual issues"; a list without sections has none', () => {
+test('an unnamed run after a named section is the heading "Individual comics"; a list without sections has none', () => {
   const start = journey();
-  assert.deepEqual(readMilestones(start, mark(start, 4), 'j', 4).section, { index: 2, name: 'Individual issues' });
+  assert.deepEqual(readMilestones(start, mark(start, 4), 'j', 4).section, { index: 2, name: 'Individual comics' });
   const leading = journey([null, 'One']);
   assert.equal(readMilestones(leading, mark(leading, 1), 'j', 1).section, null,
     'a leading unnamed run shows no heading in the full list, so it has no milestone to report');
@@ -45,7 +45,7 @@ test('an unnamed run after a named section is the heading "Individual issues"; a
     'a list with no sections still reaches the whole-list milestone');
   assert.equal(sectionHeading({ name: 'Named' }, 0), 'Named');
   assert.equal(sectionHeading({ name: null }, 0), null);
-  assert.equal(sectionHeading({ name: null }, 3), 'Individual issues');
+  assert.equal(sectionHeading({ name: null }, 3), 'Individual comics');
   assert.equal(sectionHeading(undefined, 0), null);
 });
 

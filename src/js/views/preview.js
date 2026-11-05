@@ -106,7 +106,7 @@ export function createPreviewView({
     // from the accessibility tree while Preview is open, so the import's own announcement is not heard.
     const count = saved.itemIds?.length ?? 0;
     return [addButton(list), justAdded.has(list.id)
-      ? el('span', { class: 'rail-hint preview-added', role: 'status', text: `Added to your Library: ${count} issue${count === 1 ? '' : 's'}.` })
+      ? el('span', { class: 'rail-hint preview-added', role: 'status', text: `Added to your Library: ${count} comic${count === 1 ? '' : 's'}.` })
       : el('span', { class: 'rail-hint', role: 'status', text: 'In library' })];
   }
 
@@ -286,7 +286,7 @@ export function createPreviewView({
     previewList = list;
     nodes.heading.textContent = list.name;
     nodes.meta.textContent = [
-      `${list.count} issue${list.count === 1 ? '' : 's'}`,
+      `${list.count} comic${list.count === 1 ? '' : 's'}`,
       ...catalogGapLabels(list),
       collectionsLabel(list),
       readingTimeLabel(list.count),
@@ -306,7 +306,7 @@ export function createPreviewView({
 
   async function loadIssues(list) {
     const nodes = elements();
-    nodes.body.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the issue list…' }));
+    nodes.body.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the comic list…' }));
     const token = {};
     loadToken = token;
     try {
@@ -318,7 +318,7 @@ export function createPreviewView({
         const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
         if (edition !== shown) {
           shown = edition;
-          rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual issues' })]));
+          rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual comics' })]));
         }
         rows.push(el('li', {}, [
           el('span', { class: 'pn', text: String(index + 1) }),
@@ -326,7 +326,7 @@ export function createPreviewView({
             context: { kind: 'order', id: list.id },
             surface: 'preview',
             className: 'preview-issue-link',
-            children: item.title || 'Untitled issue',
+            children: item.title || 'Untitled comic',
           }),
         ]));
       });

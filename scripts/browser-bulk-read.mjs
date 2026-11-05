@@ -116,7 +116,7 @@ export const bulkRead = {
     await question(page);
     t.check('both actions use Mark All Read and confirmation uses the concise shared-progress message',
       await page.$eval('#ask-body', (node) => node.textContent
-        === 'This marks 2 unread issues as read. Read progress is shared with every list containing those comics.')
+        === 'This marks 2 unread comics as read. Read progress is shared with every list containing those comics.')
       && await page.$eval('#ask-ok', (node) => node.textContent === 'Mark All Read')
       && await page.$eval('#btn-mark-all-read', (node) => node.textContent === 'Mark All Read'));
     await page.keyboard.press('Escape');

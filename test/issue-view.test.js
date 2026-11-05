@@ -219,7 +219,7 @@ test('UX05 unsaved-only Issue actions remain absent and a captured action expire
   assert.equal(isCurrent(), false);
 });
 
-test('510 issue details report only saved-list deferral and refresh retained intent without restricting Read', async () => {
+test('510 comic details report only saved-list deferral and refresh retained intent without restricting Read', async () => {
   const state = {
     issues: { 42: issue() }, read: {}, overrides: {}, notes: {},
     lists: { saved: { name: 'Saved order', itemIds: [42], deferredIssueIds: [42] } },
@@ -281,7 +281,7 @@ test('Issue view owns loading, resolved paint, current result, and local control
   });
   h.view.wire();
   const rendering = h.view.render(route);
-  assert.equal(h.nodes.heading.textContent, 'Loading issue details');
+  assert.equal(h.nodes.heading.textContent, 'Loading comic details');
   assert.equal(h.nodes.card.hidden, true);
   await rendering;
 
@@ -462,7 +462,7 @@ test('Issue view validates stale context before decoration and delegates route c
   assert.equal(h.view.result().contextStatus, 'stale');
   assert.equal(h.view.result().breadcrumbShelf, 'validated-shelf');
   assert.deepEqual(h.calls.stale, [route]);
-  assert.match(h.nodes.status.textContent, /no longer contains this issue/);
+  assert.match(h.nodes.status.textContent, /no longer contains this comic/);
 });
 
 test('Issue view offers in-place Retry for a transient positive lookup failure', async () => {
@@ -470,7 +470,7 @@ test('Issue view offers in-place Retry for a transient positive lookup failure',
   await h.view.render({ view: 'issue', issueId: 42, context: null });
 
   assert.equal(h.view.result().source, 'unavailable');
-  assert.equal(h.nodes.heading.textContent, 'Issue unavailable');
+  assert.equal(h.nodes.heading.textContent, 'Comic unavailable');
   assert.equal(h.nodes.card.hidden, true);
   assert.match(h.nodes.status.textContent, /could not be loaded/);
   assert.equal(h.calls.breadcrumbs, 1);
@@ -539,7 +539,7 @@ test('Only recoverable API failures offer Retry; local-only identities never req
     [42, new ApiError('Forbidden', 403, false), false, /could not be loaded/],
     [42, new SyntaxError('Malformed JSON'), false, /could not be loaded/],
     [42, null, false, /could not be loaded/],
-    [-42, new TypeError('offline'), false, /local issue is no longer/],
+    [-42, new TypeError('offline'), false, /local comic is no longer/],
   ]) {
     let requests = 0;
     const h = harness({ apiIssue: async () => {
@@ -631,7 +631,7 @@ test('Issue view cancellation suppresses a pending result and synopsis repaint s
   await rendering;
   assert.equal(aborted, true);
   assert.equal(h.view.result(), null);
-  assert.equal(h.nodes.heading.textContent, 'Loading issue details');
+  assert.equal(h.nodes.heading.textContent, 'Loading comic details');
 
   const painted = harness({
     state: {
@@ -665,7 +665,7 @@ test('main constructs Issue Details once and delegates without moving shared pol
   assert.match(route, /showView\('issue'/);
   const navigation = main.slice(main.indexOf('function openIssueFocus'), main.indexOf('function issueFocusAnchor'));
   assert.match(navigation, /history\.replaceState/);
-  assert.match(navigation, /history\.pushState/);
+  assert.match(navigation, /navigationPosition\.push/);
   assert.match(main, /const store = new Store\(\{/);
   assert.match(main, /const synopsisRunner = new SynopsisRunner\(\{/);
 });

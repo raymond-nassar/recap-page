@@ -221,7 +221,7 @@ test('the short path keeps the order it was given, so publication order survives
 
 // essentialOrder refuses for three reasons and only one of them is about starting in the middle,
 // so the printed refusal has to say which. Reported as one reason it contradicts itself: a lead of
-// 0 reads as "0 issues come before the main series, so reading it alone would start in the middle".
+// 0 reads as "0 comics come before the main series, so reading it alone would start in the middle".
 // Only the middle case is reachable from the five events that ship today, which is exactly why the
 // other three are asserted here rather than left to a build that cannot produce them. Raised in
 // review of this change.

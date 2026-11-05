@@ -140,7 +140,7 @@ export const onslaughtActualData = {
       importLabel: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
     t.check('the credited 74-position event is discoverable as one Onslaught guide',
-      card.name === name && card.text.includes('74 issues')
+      card.name === name && card.text.includes('74 comics')
         && card.source === packet.sourceUrl && card.importLabel === `Add to library: ${name}`,
       JSON.stringify(card));
 

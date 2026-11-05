@@ -60,11 +60,11 @@ export function detailsState(item) {
 export const DETAILS_BADGE = {
   'owner-confirmed': {
     text: 'identity confirmed',
-    hint: 'The owner confirmed this issue identity. The metadata snapshot has no provider details or cover.',
+    hint: 'The owner confirmed this comic identity. The metadata snapshot has no provider details or cover.',
   },
   norecord: {
     text: 'no details held',
-    hint: 'The metadata snapshot has no record of this issue, so there are no details to fetch.',
+    hint: 'The metadata snapshot has no record of this comic, so there are no details to fetch.',
   },
   pending: { text: 'details pending', hint: 'Details have not been fetched yet.' },
 };
@@ -83,7 +83,7 @@ export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = 
   if (typeof sessionEntry === 'string' && sessionEntry.trim()) return sessionEntry;
   if ((noSynopsisMarker !== undefined && sessionEntry === noSynopsisMarker)
     || (sessionEntry != null && (typeof sessionEntry === 'string' || noSynopsisMarker === undefined))) {
-    return 'No synopsis is recorded for this issue.';
+    return 'No synopsis is recorded for this comic.';
   }
   if (!issue?.hydrated && issue?.detailsRefused) {
     if (issue.identityEvidenceKind === 'owner-confirmed-identity') {
@@ -249,7 +249,7 @@ export function createReadingView({
       review.issueId = null;
       review.position = -1;
       review.withdrawn = true;
-      announce('The Reading List changed. Choose Review earlier issues again to start from its current order.');
+      announce('The Reading List changed. Choose Review earlier comics again to start from its current order.');
     }
     const item = review.issueId == null ? null : getState().issues[review.issueId]
       ?? { issueId: review.issueId, title: `Issue ${review.issueId}` };
@@ -257,7 +257,7 @@ export function createReadingView({
     $('#review-position').textContent = item
       ? `Position ${review.position + 1} of ${list.itemIds.length}. ${isRead(getState(), item.issueId) ? 'Marked read' : 'Not marked read'}.`
       : review.withdrawn ? 'This selection is no longer valid. Open the picker again to choose from the current order.'
-        : list?.itemIds.length ? 'There are no comics before the next unread issue in this order.'
+        : list?.itemIds.length ? 'There are no comics before the next unread comic in this order.'
           : 'There are no comics in this Reading List yet.';
     preservingFocus($('#review-candidate'), () => {
       const candidate = item ? issueFocusAnchor(item, {
@@ -592,7 +592,7 @@ export function createReadingView({
     const milestone = readMilestones(before, getState(), activeListId(), issue.issueId);
     const section = milestone.section && !milestone.list ? ` ${sectionSentence(milestone.section.name)}` : '';
     const said = next ? `${issue.title} marked read.${section} Next up: ${next.title}.`
-      : deferred ? `${issue.title} marked read.${section} Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
+      : deferred ? `${issue.title} marked read.${section} Nothing queued. ${deferred} unread comic${deferred === 1 ? ' is' : 's are'} deferred.`
         : `${issue.title} marked read. That is the whole order finished.`;
     announce(withSaveEducation([said, offerDoneUndo(issue, surface, listId, surfaceWasCurrent, scrollContext, section)].filter(Boolean).join(' '), transition));
     celebrate(milestone);
@@ -629,7 +629,7 @@ export function createReadingView({
 
     $('#order-name').textContent = list.name;
     $('#order-sub').textContent = [
-      `${total} issue${total === 1 ? '' : 's'}`,
+      `${total} comic${total === 1 ? '' : 's'}`,
       seriesCount ? `${seriesCount} series` : null,
     ].filter(Boolean).join(' · ');
     const desc = $('#order-desc');
@@ -659,7 +659,7 @@ export function createReadingView({
     const completed = isCompleted(getState(), id);
     const issue = completed ? null : upNext(getState(), id);
     const empty = getState().lists[id]?.itemIds.length === 0;
-    const { read, total, deferred } = listReadingProgress(getState(), id);
+    const { deferred } = listReadingProgress(getState(), id);
 
     const hero = $('#hero');
     const options = $('#reading-list-options');
@@ -670,9 +670,9 @@ export function createReadingView({
     hero.hidden = !issue;
     syncReadingProgress();
     $('#reading-empty').hidden = !empty;
-    $('#all-read').hidden = completed || total === 0 || read !== total;
+    $('#all-read').hidden = true;
     $('#all-deferred').hidden = completed || !!issue || deferred === 0;
-    $('#all-deferred-count').textContent = `${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred in this Reading List.`;
+    $('#all-deferred-count').textContent = `${deferred} unread comic${deferred === 1 ? ' is' : 's are'} deferred in this Reading List.`;
     $('#shelf-sec').hidden = !issue;
     if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
@@ -749,7 +749,7 @@ export function createReadingView({
     const queued = new Set(isCompleted(getState(), id) ? [] : queuedIssueIds(getState(), id).slice(1, SHELF_SIZE + 1));
     const upcoming = listItems(getState(), id).filter((item) => queued.has(item.issueId));
     $('#shelf-sec').hidden = upcoming.length === 0;
-    $('#shelf-note').textContent = `${upcoming.length} ${upcoming.length === 1 ? 'issue' : 'issues'}`;
+    $('#shelf-note').textContent = `${upcoming.length} ${upcoming.length === 1 ? 'comic' : 'comics'}`;
 
     preservingFocus(shelf, () => {
       shelf.replaceChildren();
@@ -976,9 +976,9 @@ export function createReadingView({
     const total = all.length;
     $('#full-action').textContent = $('#full').open
       ? 'Hide full Reading List'
-      : `View all ${total} issue${total === 1 ? '' : 's'}`;
+      : `View all ${total} comic${total === 1 ? '' : 's'}`;
     const deferred = all.filter((item) => item.deferred && !item.read).length;
-    $('#full-count').textContent = !total ? 'No issues yet' : unread ? `${unread} unread${deferred ? `. ${deferred} deferred` : ''}` : 'All read';
+    $('#full-count').textContent = !total ? 'No comics yet' : unread ? `${unread} unread${deferred ? `. ${deferred} deferred` : ''}` : 'All read';
   }
 
   function writeOrderStrip(details, all, activeFilter) {
@@ -996,7 +996,7 @@ export function createReadingView({
     ];
     if (activeFilter !== DEFAULT_FILTER) {
       const shown = all.filter((item) => matchesReadingFilter(activeFilter, item)).length;
-      children.push(el('span', { class: 'order-shown', text: `Showing ${shown} of ${total} issues.` }));
+      children.push(el('span', { class: 'order-shown', text: `Showing ${shown} of ${total} comics.` }));
     }
     strip.replaceChildren(...children);
   }
@@ -1040,7 +1040,7 @@ export function createReadingView({
             target: '_blank',
             rel: 'noopener noreferrer',
             'aria-label': labelledName('Info', `${item.title} on marvel.com`),
-            dataset: { key: item.issueId, act: 'info', tooltip: 'Open issue page on marvel.com' },
+            dataset: { key: item.issueId, act: 'info', tooltip: 'Open comic page on marvel.com' },
           }, 'Info')
           : null,
       ], { hidden: !reader.launchable && !detailUrl(item) }),
@@ -1184,7 +1184,7 @@ export function createReadingView({
     const note = await askNote({
       title: `Note on "${held.title}"`,
       body: 'Only you see this. It is saved on this device and travels in your backup file.',
-      label: 'Your note about this issue',
+      label: 'Your note about this comic',
       value: getState().notes[held.issueId] || '',
     });
     if (note === null) return;
@@ -1220,7 +1220,7 @@ export function createReadingView({
   function renderHydrateButton() {
     const pending = pendingIssueIds(getState()).length;
     $('#btn-hydrate').hidden = pending === 0 || isHydrationActive();
-    $('#btn-hydrate').textContent = `Fetch details for ${pending} issue${pending === 1 ? '' : 's'}`;
+    $('#btn-hydrate').textContent = `Fetch details for ${pending} comic${pending === 1 ? '' : 's'}`;
     $('#btn-cancel-hydrate').hidden = !isHydrationActive();
   }
 
@@ -1351,8 +1351,8 @@ export function createReadingView({
       return next;
     });
     if (!ok || !removed || !removalContextMatches(removed, state)) {
-      announce(ok ? 'That issue is no longer in this list. Nothing was removed.'
-        : 'That issue could not be removed: the change was not saved.');
+      announce(ok ? 'That comic is no longer in this list. Nothing was removed.'
+        : 'That comic could not be removed: the change was not saved.');
       focusRemovalTarget(document.activeElement);
       return;
     }
@@ -1416,7 +1416,7 @@ export function createReadingView({
       return next;
     });
     if (!ok || !changed) {
-      announce(ok ? 'That issue or its deferral changed. No new change was saved.'
+      announce(ok ? 'That comic or its deferral changed. No new change was saved.'
         : 'That deferral change could not be saved.');
       return;
     }
@@ -1425,7 +1425,7 @@ export function createReadingView({
       : `${title}: deferral cleared in this Reading List. Its position and read status were kept.`);
     if (hero) {
       const target = upNext(state, listId) ? '#btn-hero-defer'
-        : listReadingProgress(state, listId).deferred ? '#all-deferred-h' : '#all-read-h';
+        : listReadingProgress(state, listId).deferred ? '#all-deferred-h' : '#list-wrap-up-h';
       $(target).focus({ preventScroll: true });
     } else if (document.activeElement === document.body || !document.activeElement?.getClientRects().length) {
       // Rebuilt narrow rows close their actions panel, so its matching control cannot take focus.
@@ -1513,9 +1513,9 @@ export function createReadingView({
     hero: {
       button: '#btn-hero-done',
       current: () => isCurrent(),
-      anchor: () => [['#hero', '#hero-primary-actions'], ['#all-deferred', '#all-deferred-h'], ['#all-read', '#all-read-h']]
+      anchor: () => [['#hero', '#hero-primary-actions'], ['#all-deferred', '#all-deferred-h'], ['#list-wrap-up', '#list-wrap-up-h']]
         .find(([section]) => !$(section).hidden)?.[1],
-      landing: () => [['#hero', '#btn-hero-done'], ['#all-deferred', '#all-deferred-h'], ['#all-read', '#all-read-h']]
+      landing: () => [['#hero', '#btn-hero-done'], ['#all-deferred', '#all-deferred-h'], ['#list-wrap-up', '#list-wrap-up-h']]
         .find(([section]) => !$(section).hidden)?.[1],
     },
     home: {

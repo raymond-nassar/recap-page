@@ -153,7 +153,7 @@ export const braveNewWorldActualData = {
       }));
       t.check(`Browse finds one nineteen-original owner-linked card at ${width}px`,
         await page.$$eval(card, (nodes) => nodes.length) === 1
-        && facts.name === name && facts.text.includes('19 issues') && facts.source === sourceUrl
+        && facts.name === name && facts.text.includes('19 comics') && facts.source === sourceUrl
         && facts.text.includes('Source: Recap Page')
         && facts.sourceName === `Source of ${name}: Recap Page`, JSON.stringify(facts));
       const beforePreview = await saved(page);

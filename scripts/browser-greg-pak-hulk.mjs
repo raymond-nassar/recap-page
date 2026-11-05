@@ -120,7 +120,7 @@ export const gregPakHulkActualData = {
       importLabel: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
     t.check('the separate credited creator route is discoverable in Genres',
-      card.name === name && card.text.includes('107 issues')
+      card.name === name && card.text.includes('107 comics')
       && card.source === mapping.sourceUrl && card.importLabel === `Add to library: ${name}`,
       JSON.stringify(card));
 

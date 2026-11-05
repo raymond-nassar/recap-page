@@ -36,7 +36,7 @@ test('Library owns empty, grouped, paged, focused issue presentation', () => {
     emptyAction: { label: 'Browse Reading Lists', view: 'catalog' },
     markHandAdded: true,
     select: () => rows,
-    summarise: (all) => [{ figure: all.length, label: 'issues read' }],
+    summarise: (all) => [{ figure: all.length, label: 'comics read' }],
     group: (slice) => [{ key: 'today', label: 'Today', rows: slice }],
   };
   const listUi = {
@@ -149,7 +149,7 @@ test('manual rows open the existing Issue surface and resolve duplicate membersh
   assert.equal('context' in focused[0].options, false);
 });
 
-test('orphan manual rows retain Issue details without fabricating a saved list or provider identity', () => {
+test('orphan manual rows retain Comic details without fabricating a saved list or provider identity', () => {
   const { results, focused } = manualRows({ listOrder: ['other'], lists: {
     other: { name: 'Same name', itemIds: [77] },
   } });

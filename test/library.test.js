@@ -138,7 +138,7 @@ test('Everything read is the read map, newest first', () => {
   assert.deepEqual(readIssues(s).map((r) => r.readAt), [3000, 1000]);
 });
 
-test('issues read in the same moment are ordered by id rather than by key order', () => {
+test('comics read in the same moment are ordered by id rather than by key order', () => {
   // markManyRead calls markRead in a loop, each with its own Date.now(), so a bulk mark produces
   // runs of equal timestamps. Without the explicit tie break these fall back to key enumeration,
   // which puts positive ids in ascending order and every negative id after them.
@@ -147,7 +147,7 @@ test('issues read in the same moment are ordered by id rather than by key order'
   assert.deepEqual(readIssues(s).map((r) => r.issueId), [-99, 10, 20]);
 });
 
-test('an unread issue is not in Everything read, and unmarking removes it', () => {
+test('an unread comic is not in Everything read, and unmarking removes it', () => {
   let s = markRead(seeded(), 10, true, 1000);
   assert.deepEqual(readIssues(s).map((r) => r.issueId), [10]);
   s = markRead(s, 10, false);
@@ -345,8 +345,8 @@ test('the unread count is written before the closed-order return, not after it',
 test('the full Reading List summary keeps action and state copy separate', () => {
   const body = reading.slice(reading.indexOf('function writeFullSummary'), reading.indexOf('function writeOrderStrip'));
   assert.match(body, /Hide full Reading List/);
-  assert.match(body, /View all \$\{total\} issue/);
-  assert.match(body, /No issues yet/);
+  assert.match(body, /View all \$\{total\} comic/);
+  assert.match(body, /No comics yet/);
   assert.match(body, /\$\{unread\} unread/);
   assert.match(body, /All read/);
 });

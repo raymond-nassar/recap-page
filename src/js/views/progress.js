@@ -30,7 +30,7 @@ export function createProgressView({
     return el('div', { class: 'result' }, [
       el('div', { class: 'result-main' }, [
         el('div', { class: 'result-title' }, [el('span', { text: row.seriesName }), ...chip]),
-        el('div', { class: 'result-meta', text: `${row.read} of ${row.tracked} tracked issues read (${pct}%)` }),
+        el('div', { class: 'result-meta', text: `${row.read} of ${row.tracked} tracked comics read (${pct}%)` }),
       ]),
       el('progress', { max: String(Math.max(1, row.tracked)), value: String(row.read), 'aria-hidden': 'true' }),
     ]);
@@ -67,8 +67,8 @@ export function createProgressView({
     scopeControl.hidden = !list;
     for (const radio of radios) radio.checked = radio.value === (scoped ? 'list' : 'all');
     methodText.textContent = scoped
-      ? `This list counts the issues in “${list.name}”. Tracked means issues you added, not the size of each complete series.`
-      : 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.';
+      ? `This list counts the comics in “${list.name}”. Tracked means comics you added, not the size of each complete series.`
+      : 'All lists counts each comic once, even when it appears in more than one list. Tracked means comics you added, not the size of each complete series.';
 
     const rows = scoped ? seriesProgress(state, activeId) : seriesProgress(state);
     method.hidden = rows.length === 0;
@@ -93,7 +93,7 @@ export function createProgressView({
       const sum = progressSummary(rows);
       results.append(listUi.summaryBand([
         { figure: sum.series, label: 'series' },
-        { figure: `${sum.read.toLocaleString()} of ${sum.tracked.toLocaleString()}`, label: 'tracked issues read' },
+        { figure: `${sum.read.toLocaleString()} of ${sum.tracked.toLocaleString()}`, label: 'tracked comics read' },
         { figure: sum.done, label: 'series fully read' },
       ]));
       if (rows.length > listUi.cap) {

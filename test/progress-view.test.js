@@ -125,13 +125,13 @@ test('the Progress controller owns scope changes and renders list and all-list c
   ]);
   assert.equal(
     harness.nodes.methodText.textContent,
-    'This list counts the issues in “First list”. Tracked means issues you added, not the size of each complete series.',
+    'This list counts the comics in “First list”. Tracked means comics you added, not the size of each complete series.',
   );
   assert.deepEqual(harness.nodes.results.children[0], {
     kind: 'summary',
     cells: [
       { figure: 1, label: 'series' },
-      { figure: '1 of 2', label: 'tracked issues read' },
+      { figure: '1 of 2', label: 'tracked comics read' },
       { figure: 0, label: 'series fully read' },
     ],
   });
@@ -142,7 +142,7 @@ test('the Progress controller owns scope changes and renders list and all-list c
 
   assert.equal(
     harness.nodes.methodText.textContent,
-    'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.',
+    'All lists counts each comic once, even when it appears in more than one list. Tracked means comics you added, not the size of each complete series.',
   );
   assert.equal(harness.nodes.results.children[0].cells[0].figure, 2);
   assert.equal(harness.focusCalls.length, 2);
@@ -196,17 +196,17 @@ test('series bars are decorative while zero, partial and fully read tracked coun
     })), [
       {
         name: 'Beta',
-        count: `1 of ${tracked} tracked issues read (${scope === 'list' ? 50 : 33}%)`,
+        count: `1 of ${tracked} tracked comics read (${scope === 'list' ? 50 : 33}%)`,
         bar: element('progress', { max: String(tracked), value: '1', 'aria-hidden': 'true' }),
       },
       {
         name: 'Alpha',
-        count: `0 of ${tracked} tracked issues read (0%)`,
+        count: `0 of ${tracked} tracked comics read (0%)`,
         bar: element('progress', { max: String(tracked), value: '0', 'aria-hidden': 'true' }),
       },
       {
         name: 'Gamma',
-        count: `${tracked} of ${tracked} tracked issues read (100%)`,
+        count: `${tracked} of ${tracked} tracked comics read (100%)`,
         bar: element('progress', { max: String(tracked), value: String(tracked), 'aria-hidden': 'true' }),
       },
     ], scope);

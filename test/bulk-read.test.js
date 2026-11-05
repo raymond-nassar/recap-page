@@ -101,7 +101,7 @@ test('bulk read saves every unread comic once, preserving existing dates and unr
   assert.equal(h.store.state.lists.shared.itemIds[0], 2);
   assert.equal(h.data.get('mrt.list-history.v1'), 'history witness');
   assert.equal(h.calls.asks[0].body,
-    'This marks 2 unread issues as read. Read progress is shared with every list containing those comics.');
+    'This marks 2 unread comics as read. Read progress is shared with every list containing those comics.');
   assert.equal(h.calls.asks[0].confirmLabel, 'Mark All Read');
   assert.equal(h.control['aria-disabled'], 'true');
   const reloaded = new Store({ storage: h.storage });
@@ -129,7 +129,7 @@ test('cancel is write-free, and confirmation blocks duplicate activation', async
   await h.view.markAllRead();
   assert.equal(h.calls.asks.length, 1);
   assert.equal(h.calls.asks[0].body,
-    'This marks 1 unread issue as read. Read progress is shared with every list containing those comics.');
+    'This marks 1 unread comic as read. Read progress is shared with every list containing those comics.');
   resolve(false);
   await pending;
   assert.equal(h.storage.writes, 0);

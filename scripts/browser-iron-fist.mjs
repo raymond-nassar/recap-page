@@ -170,7 +170,7 @@ export const ironFistActualData = {
       addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
     t.check('the credited 414-original Iron Fist guide is discoverable once',
-      card.name === name && card.text.includes('414 issues')
+      card.name === name && card.text.includes('414 comics')
         && card.source === packet.sourceUrl && card.addName === `Add to library: ${name}`,
       JSON.stringify(card));
 

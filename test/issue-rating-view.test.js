@@ -66,9 +66,9 @@ function harness({ source = 'saved', score = null } = {}) {
 
 test('Issue rating summary stays compact and opens an initially unselected editor', () => {
   const h = harness();
-  assert.equal(h.nodes.label.textContent, 'Rate this issue');
+  assert.equal(h.nodes.label.textContent, 'Rate this comic');
   // #905: the button's words first, then the comic it rates.
-  assert.equal(h.nodes.trigger.attributes['aria-label'], 'Rate this issue: Comic');
+  assert.equal(h.nodes.trigger.attributes['aria-label'], 'Rate this comic: Comic');
   h.click('trigger');
   assert.equal(h.nodes.dialog.open, true);
   assert.equal(h.nodes.comic.textContent, 'Comic');
@@ -120,7 +120,7 @@ test('Remove clears to unrated rather than zero and remains separate from cancel
   assert.equal(h.nodes.decrease.disabled, true);
   assert.equal(h.nodes.remove.hidden, false);
   h.click('remove');
-  assert.equal(h.nodes.label.textContent, 'Rate this issue');
+  assert.equal(h.nodes.label.textContent, 'Rate this comic');
   assert.equal(issueRating(h.state, 42), null);
   assert.deepEqual(h.saves, [[42, null]]);
 });

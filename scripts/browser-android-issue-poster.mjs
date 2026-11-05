@@ -391,13 +391,13 @@ async function staleContent(page, check, label) {
   const byline = await page.$eval('#issue-focus-by', (node) => node.textContent);
   const quiet = (state) => state.cardHidden && state.cardDisplay === 'none' && !state.rendered.length && !state.stale;
   await page.evaluate((id) => { location.hash = `#/issue/${id}`; }, HELD);
-  await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Loading issue details', { polling: 50 });
+  await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Loading comic details', { polling: 50 });
   const loading = await measure(byline);
   check(quiet(loading) && loading.viewDisplay !== 'none',
     `${label}: a loading comic shows nothing of the last one ${JSON.stringify(loading)}`);
   await page.waitForFunction(() => window.__posterTest.held.length > 0, { polling: 50 });
   await page.evaluate(() => window.__posterTest.held.splice(0).forEach((release) => release()));
-  await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Issue unavailable', { polling: 50 });
+  await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Comic unavailable', { polling: 50 });
   const unavailable = await measure(byline);
   check(quiet(unavailable), `${label}: an unavailable comic shows nothing of the last one ${JSON.stringify(unavailable)}`);
   await openIssue(page);

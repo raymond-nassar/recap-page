@@ -117,26 +117,26 @@ test('gap counts are required nonnegative integers', () => {
 test('catalog gap labels omit zero and preserve singular and plural meanings', () => {
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 0 }), []);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 0 }), [
-    '1 issue has no Marvel Unlimited link yet and cannot be opened',
+    '1 comic has no Marvel Unlimited link yet and cannot be opened',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 2, emptyRecordCount: 0 }), [
-    '2 issues have no Marvel Unlimited links yet and cannot be opened',
+    '2 comics have no Marvel Unlimited links yet and cannot be opened',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 1 }), [
-    '1 issue has no details, cover, or Unlimited link',
+    '1 comic has no details, cover, or Unlimited link',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 2 }), [
-    '2 issues have no details, covers, or Unlimited links',
+    '2 comics have no details, covers, or Unlimited links',
   ]);
   assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 1 }), [
-    '1 issue has an owner-confirmed identity but no provider details or cover',
+    '1 comic has an owner-confirmed identity but no provider details or cover',
   ]);
   assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 2 }), [
-    '2 issues have owner-confirmed identities but no provider details or covers',
+    '2 comics have owner-confirmed identities but no provider details or covers',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 2 }), [
-    '1 issue has no Marvel Unlimited link yet and cannot be opened',
-    '2 issues have no details, covers, or Unlimited links',
+    '1 comic has no Marvel Unlimited link yet and cannot be opened',
+    '2 comics have no details, covers, or Unlimited links',
   ]);
 });
 
@@ -181,8 +181,8 @@ test('unknown type and depth values become null instead of being displayed', () 
   assert.equal(typeLabel('event'), 'Event');
   assert.equal(depthLabel('essential'), 'Essential reading');
   assert.equal(typeLabel('screen-companion'), 'Screen companion');
-  assert.equal(depthLabel('selected'), 'Selected issues');
-  assert.equal(depthHint('selected'), 'Issue-specific recommendations chosen from a broader guide.');
+  assert.equal(depthLabel('selected'), 'Selected comics');
+  assert.equal(depthHint('selected'), 'Comic-specific recommendations chosen from a broader guide.');
 });
 
 test('a missing or malformed catalog yields an empty list, not a crash', () => {

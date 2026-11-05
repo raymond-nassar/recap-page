@@ -56,7 +56,7 @@ export function createSavedListsPresenter({
         // The tile's own text first, as shown, so the bare count it prints is followed rather than
         // interrupted by what it counts (#905).
         'aria-label': shownName([list.name, count, badge, detail],
-          `${read} of ${total} issue${total === 1 ? '' : 's'} read. Open this list`),
+          `${read} of ${total} comic${total === 1 ? '' : 's'} read. Open this list`),
         onclick: (event) => {
           if (!isPlainNavigation(event)) return;
           event?.preventDefault();

@@ -51,7 +51,7 @@ export const LIBRARY_VIEWS = [
     summarise: (rows) => {
       const { issues, series, orphans } = readSummary(rows);
       return [
-        { figure: issues, label: 'issues read' },
+        { figure: issues, label: 'comics read' },
         { figure: series, label: 'series' },
         { figure: orphans, label: 'in no list' },
       ];
@@ -68,7 +68,7 @@ export const LIBRARY_VIEWS = [
     empty: 'Nothing has been added by hand yet.',
     // Named the rail button in prose before, which asked the reader to find a control by its
     // label rather than handing it to them.
-    emptyAction: { label: 'Add an issue by hand', view: 'add-manual' },
+    emptyAction: { label: 'Add a comic by hand', view: 'add-manual' },
     // Every row here is hand-added, so the badge would mark nothing out and would repeat itself
     // down the whole page.
     markHandAdded: false,

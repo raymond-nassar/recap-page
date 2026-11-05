@@ -71,7 +71,7 @@ export function createBulkReadView({
   function offer(record, failed = false, error = null) {
     report(failed
       ? (error ?? 'Undo could not be saved. You can try again while your reading data is unchanged.')
-      : `Marked ${record.ids.length} issue${record.ids.length === 1 ? '' : 's'} read in ${record.name}. Undo is available until your next saved reading-data change.`,
+      : `Marked ${record.ids.length} comic${record.ids.length === 1 ? '' : 's'} read in ${record.name}. Undo is available until your next saved reading-data change.`,
     failed ? 'error' : 'ok', {
       label: failed ? 'Try Undo again' : 'Undo mark all read',
       onClick: () => undoRead(record),
@@ -129,8 +129,8 @@ export function createBulkReadView({
     render();
     try {
       const yes = await askConfirm({
-        title: `Mark all issues in "${list.name}" as read?`,
-        body: `This marks ${ids.length} unread issue${ids.length === 1 ? '' : 's'} as read. Read progress is shared with every list containing those comics.`,
+        title: `Mark all comics in "${list.name}" as read?`,
+        body: `This marks ${ids.length} unread comic${ids.length === 1 ? '' : 's'} as read. Read progress is shared with every list containing those comics.`,
         confirmLabel: 'Mark All Read',
       });
       if (!yes) return;

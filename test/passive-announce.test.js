@@ -45,8 +45,8 @@ test('a twenty issue run is announced twice, not twenty-two times', () => {
   const h = hydrationHarness();
   runHydration(h.announce, { total: 20 });
   assert.deepEqual(h.said, [
-    'Fetching details for 20 issues.',
-    'All issue details fetched.',
+    'Fetching details for 20 comics.',
+    'All comic details fetched.',
   ]);
 });
 
@@ -54,7 +54,7 @@ test('a stopped run says it stopped once, however far it got', () => {
   const h = hydrationHarness();
   runHydration(h.announce, { total: 20, stopAfter: 7 });
   assert.deepEqual(h.said, [
-    'Fetching details for 20 issues.',
+    'Fetching details for 20 comics.',
     'Detail fetching stopped. Progress was kept.',
   ]);
 });
@@ -64,10 +64,10 @@ test('a second run over the same list announces its own start', () => {
   runHydration(h.announce, { total: 20 });
   runHydration(h.announce, { total: 3 });
   assert.deepEqual(h.said, [
-    'Fetching details for 20 issues.',
-    'All issue details fetched.',
-    'Fetching details for 3 issues.',
-    'All issue details fetched.',
+    'Fetching details for 20 comics.',
+    'All comic details fetched.',
+    'Fetching details for 3 comics.',
+    'All comic details fetched.',
   ]);
 });
 
@@ -86,17 +86,17 @@ test('an idle report mid-session is silent and does not suppress the run after i
   h.announce(hydrationAnnouncement(null));
   runHydration(h.announce, { total: 4 });
   assert.deepEqual(h.said, [
-    'Fetching details for 4 issues.',
-    'All issue details fetched.',
-    'Fetching details for 4 issues.',
-    'All issue details fetched.',
+    'Fetching details for 4 comics.',
+    'All comic details fetched.',
+    'Fetching details for 4 comics.',
+    'All comic details fetched.',
   ]);
 });
 
 test('one issue is announced in the singular', () => {
   const h = hydrationHarness();
   runHydration(h.announce, { total: 1 });
-  assert.equal(h.said[0], 'Fetching details for 1 issue.');
+  assert.equal(h.said[0], 'Fetching details for 1 comic.');
 });
 
 // The guard silences a repeated state, so two phases sharing a state would silence whichever of

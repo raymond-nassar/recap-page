@@ -41,6 +41,8 @@ import { DEFAULT_THEME, themeAttribute, normaliseTheme, applyThemeMeta } from '.
 import {
   ADD_VIEWS, VIEWS, HOME_CARDS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from './lib/route.js';
+import { createNavigationPosition } from './lib/navigationPosition.js';
+import { uiIcon } from './lib/uiIcon.js';
 import { labelledName } from './lib/accname.js';
 import { askConfirm, askConfirmChoice, askText, askNote, wireAsk } from './ask.js';
 import {
@@ -779,13 +781,18 @@ function selectSavedList(id, report = '#save-report') {
     return false;
   }
   if (activeListId() === id) return true;
-  store.update((state) => setActive(state, id));
+  const wasApplying = applyingRoute;
+  applyingRoute = true;
+  try { store.update((state) => setActive(state, id)); }
+  finally { applyingRoute = wasApplying; }
   return store.lastUpdateOk;
 }
 
 function openSavedList(id) {
+  navigationPosition.cancel();
+  navigationPosition.capture();
   if (!selectSavedList(id)) return false;
-  showView('read', { push: true });
+  showView('read', { push: true, capturePosition: false });
   return true;
 }
 
@@ -872,6 +879,7 @@ function setCovers(on) {
   readingView.render();
   homeView.render();
   libraryView.render();
+  void completionView.refreshRecommendations({ force: true });
   ratedView.renderShelf();
   if (view === 'library-rated') ratedView.renderBrowser();
   announce(settings.covers ? 'Cover art on.' : 'Cover art off. Covers are shown as text tiles.');
@@ -924,7 +932,7 @@ function applyReadingShortcutSetting() {
   }
   $('#reading-shortcut-description').textContent = enabled
     ? 'Mark as read and continue. Turn off in Backup & settings.'
-    : 'Disabled. Turn on in Backup & settings to mark the current issue as read and continue.';
+    : 'Disabled. Turn on in Backup & settings to mark the current comic as read and continue.';
 }
 
 function setReadingShortcut(on) {
@@ -1289,10 +1297,12 @@ function openIssueFocus(issueId, context, opener) {
   const route = { view: 'issue', issueId: Number(issueId), context };
   const href = formatRoute(route);
   if (!href) return;
+  navigationPosition.cancel();
+  navigationPosition.capture();
   const current = history.state && typeof history.state === 'object' ? history.state : {};
   history.replaceState({ ...current, issueFocusOpener: opener }, '', location.href);
   issueRoute = route;
-  history.pushState(null, '', href);
+  navigationPosition.push(href);
   acknowledgedHash = location.hash;
   if ($('#preview').open) $('#preview').close();
   showView('issue', { focus: true });
@@ -1385,6 +1395,7 @@ async function newEmptyList() {
 let routeReady = false;
 let applyingRoute = false;
 let acknowledgedHash = null;
+let navigationPosition;
 
 // `push` separates a deliberate navigation from a passive correction, and the distinction is what
 // keeps Back usable. A reader who marks twenty issues read must not have to press Back twenty times
@@ -1439,9 +1450,9 @@ function syncHash({ push = false } = {}) {
       delete current.issueFocusOpener;
       history.replaceState(Object.keys(current).length ? current : null, '', location.href);
     }
-    history.pushState(null, '', next);
+    navigationPosition.push(next);
   }
-  else history.replaceState(null, '', next);
+  else navigationPosition.replace(next);
   acknowledgedHash = location.hash;
 }
 
@@ -1536,7 +1547,11 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
-function showView(next, { focus = true, push = false, at = null } = {}) {
+function showView(next, { focus = true, push = false, at = null, capturePosition = true } = {}) {
+  if (push) {
+    navigationPosition.cancel();
+    if (capturePosition) navigationPosition.capture();
+  }
   retireReaderHelp(); readingView.retireDoneResult();
   previewView.invalidate();
   tooltips?.dismiss();
@@ -1589,7 +1604,6 @@ function showView(next, { focus = true, push = false, at = null } = {}) {
   completionView.render();
   readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
-  renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
@@ -1610,6 +1624,7 @@ function showView(next, { focus = true, push = false, at = null } = {}) {
   // Above the focus-free early return, or every call that passes focus:false would leave the
   // address bar behind. Boot is one such call.
   syncHash({ push });
+  renderBreadcrumbs();
 
   if (!focus) return;
   focusViewHeading(next, arrivalHeading()?.id);
@@ -1644,12 +1659,13 @@ function renderBreadcrumbs() {
     issueTitle: issueResult?.issue?.title ?? null,
     context: resolvedContext,
   });
-  const existing = section.querySelector(':scope > .breadcrumb');
-  if (!trail.length) {
+  const existing = section.querySelector('.breadcrumb');
+  const backAvailable = navigationPosition.canGoBack;
+  if (!trail.length && !backAvailable) {
     existing?.remove();
     return;
   }
-  const trailKey = JSON.stringify(trail);
+  const trailKey = JSON.stringify({ trail, backAvailable });
   if (existing?.dataset.trail === trailKey) return;
 
   const list = el('ol', {}, trail.map((item) => el('li', {}, item.href
@@ -1657,8 +1673,17 @@ function renderBreadcrumbs() {
     : el('span', { 'aria-current': item.current ? 'page' : null }, item.label))));
   const breadcrumb = existing || el('nav', { class: 'breadcrumb', 'aria-label': 'Breadcrumb' });
   breadcrumb.dataset.trail = trailKey;
-  breadcrumb.replaceChildren(list);
-  if (!existing) head.before(breadcrumb);
+  const back = el('button', {
+    type: 'button', class: 'quiet app-back',
+    onclick: () => {
+      if (!navigationPosition.canGoBack) return;
+      navigationPosition.cancel();
+      navigationPosition.capture();
+      history.back();
+    },
+  }, [uiIcon('arrow-left', 'gi'), 'Back']);
+  breadcrumb.replaceChildren(...(backAvailable ? [back] : []), ...(trail.length ? [list] : []));
+  if (!existing) { if (view === 'home') head.append(breadcrumb); else head.before(breadcrumb); }
 }
 
 function railParentView(next) {
@@ -1802,10 +1827,10 @@ export function hydrationAnnouncement(status) {
   if (phase === 'idle') return { state: 'idle', msg: null };
   if (phase === 'running') {
     const n = Number(status.total ?? 0);
-    return { state: 'running', msg: `Fetching details for ${n} issue${n === 1 ? '' : 's'}.` };
+    return { state: 'running', msg: `Fetching details for ${n} comic${n === 1 ? '' : 's'}.` };
   }
   if (phase === 'cancelled') return { state: 'cancelled', msg: 'Detail fetching stopped. Progress was kept.' };
-  return { state: 'complete', msg: 'All issue details fetched.' };
+  return { state: 'complete', msg: 'All comic details fetched.' };
 }
 
 // ------------------------------------------------------------------ reader deep links
@@ -1862,15 +1887,15 @@ function openInReader(issue, event, source, control = event?.currentTarget) {
       ? res.target === 'reader'
         ? `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`
         : res.target === 'page'
-          ? `Opening the Marvel issue page for ${issue.title}.`
+          ? `Opening the Marvel comic page for ${issue.title}.`
           : `Opening ${issue.title} and looking up its Unlimited link.`
       : res.target === 'reader'
         ? `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`
         : res.target === 'page'
-          ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
+          ? `Opening the Marvel comic page for ${issue.title} in a new tab.`
           : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
   showHelp(iosApp
-    ? 'If the issue does not open, choose Read again. Opening a comic does not mark it read.'
+    ? 'If the comic does not open, choose Read again. Opening a comic does not mark it read.'
     : "If no new tab appears, check your browser's popup controls for this site, "
       + 'then choose Read again. Opening a comic does not mark it read.');
 }
@@ -1894,18 +1919,18 @@ export function synopsisAnnouncement(status, isIos = iosApp) {
   if (phase === 'idle') return { state: 'idle', msg: null };
   if (phase === 'running') {
     const n = Number(status.total ?? 0);
-    return { state: 'running', msg: `Fetching synopses for ${n} issue${n === 1 ? '' : 's'}.` };
+    return { state: 'running', msg: `Fetching synopses for ${n} comic${n === 1 ? '' : 's'}.` };
   }
   if (phase === 'cancelled') {
     const failed = Number(status.failed ?? 0);
-    const unreached = failed ? ` ${failed} issue${failed === 1 ? '' : 's'} could not be reached.` : '';
+    const unreached = failed ? ` ${failed} comic${failed === 1 ? '' : 's'} could not be reached.` : '';
     return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is held for ${isIos ? 'this app' : 'this tab'} only.` };
   }
   if (phase === 'partial') {
     const failed = Number(status.failed ?? 0);
     return {
       state: 'partial',
-      msg: `Synopsis fetching finished. ${failed} issue${failed === 1 ? '' : 's'} could not be reached. What arrived is held for ${isIos ? 'this app' : 'this tab'} only.`,
+      msg: `Synopsis fetching finished. ${failed} comic${failed === 1 ? '' : 's'} could not be reached. What arrived is held for ${isIos ? 'this app' : 'this tab'} only.`,
     };
   }
   return { state: 'complete', msg: `All synopses fetched. They are held for ${isIos ? 'this app' : 'this tab'} only.` };
@@ -2043,7 +2068,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
       store.update((s) => deleteList(s, listId));
       notify(report, store.lastUpdateOk
         ? `${order.name} could not be saved, so nothing was imported.`
-        : `${order.name} was created but its issues could not be saved.`, 'error', importKey);
+        : `${order.name} was created but its comics could not be saved.`, 'error', importKey);
       return null;
     }
     if (navigate) {
@@ -2069,9 +2094,9 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     // that looks wrong for no reason. The counts come from the items rather than from the
     // order's own `placeholders` field, which records raw flags but not whether an item later
     // gained launch metadata, and carries no count for records that arrived empty.
-    const parts = [`${navigate ? 'Imported' : 'Added'} ${order.name}: ${added} issues.`];
+    const parts = [`${navigate ? 'Imported' : 'Added'} ${order.name}: ${added} comics.`];
     parts.push(...orderGapSentences(order));
-    parts.push('Any issues you had already read stay read.');
+    parts.push('Any comics you had already read stay read.');
     if (!navigate) parts.push('It is now in your Library.');
     const withdrawn = readingView.forgetDeletedFor(catalogId, order.name);
     if (withdrawn) parts.push(withdrawn);
@@ -2621,7 +2646,7 @@ async function checkHealth() {
   try {
     const h = await api.health();
     pill.className = 'pill pill-ok';
-    pill.textContent = `API OK · ${Number(h.issue_count ?? 0).toLocaleString()} issues`;
+    pill.textContent = `API OK · ${Number(h.issue_count ?? 0).toLocaleString()} comics`;
     announceState('api', 'ok', 'The metadata service is reachable again.');
   } catch {
     pill.className = 'pill pill-warn';
@@ -2977,6 +3002,7 @@ function renderAll() {
 // boot call is a ReferenceError rather than an undefined, because the temporal dead zone does
 // not hoist the way function declarations do.
 export function boot() {
+  navigationPosition = createNavigationPosition({ window, document, history });
   // The marker alone decides, synchronously, whether saving starts paused; the tab lock is requested
   // here and answered a few milliseconds after this function returns. Nothing waits for it to draw,
   // but nothing can be operated before it either, because no change could be saved yet.
@@ -3084,8 +3110,21 @@ export function boot() {
   window.addEventListener('hashchange', () => {
     acknowledgedHash = location.hash;
     const route = parseRoute(location.hash);
-    if (route) applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER });
+    if (route) {
+      navigationPosition.beginRestore();
+      applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER });
+      if (history.state?.readingPosition && !history.state?.issueFocusOpener && !history.state?.pathStopOpener) navigationPosition.restore();
+      else navigationPosition.cancel();
+    } else navigationPosition.cancel();
   });
+  window.addEventListener('popstate', () => navigationPosition.beginRestore());
+  let scrollCapture = null;
+  window.addEventListener('scroll', () => {
+    window.clearTimeout(scrollCapture);
+    scrollCapture = window.setTimeout(() => {
+      if (routeReady && location.hash === acknowledgedHash && parseRoute(location.hash)) navigationPosition.capture();
+    }, 500);
+  }, { passive: true });
   checkHealth();
   void refreshLocalConnection();
   refreshCacheUsage();
@@ -3603,16 +3642,16 @@ const ratedView = createRatedComicsView({
 });
 
 function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {
+  navigationPosition.cancel();
+  navigationPosition.capture();
   if (!selectSavedList(saved.id, report)) {
     notify(report, `${list.name} could not be opened because that selection could not be saved.`,
       'error', `open:${list.id}`);
     return;
   }
-  // After the selection, because it changes the active list the address names, and the correction
-  // that follows replaces the entry with nothing marked on it.
   if (fromCard) rememberPathStop(list, 'open');
   if ($('#preview').open) $('#preview').close();
-  showView('read', { push: true });
+  showView('read', { push: true, capturePosition: false });
 }
 
 // Recorded in the current history entry rather than stored, so it lasts only as long as the entry.
@@ -3803,7 +3842,7 @@ const previewView = createPreviewView({
     if (!isCurrent()) return;
     if (result.current && result.status !== LOCAL_SERVER_STATUS.READY) {
       $('#preview-body').replaceChildren(noticeEl({
-        msg: `The local app connection is not available, so the issue list could not be loaded. ${LOCAL_CONNECTION_STEPS} You can still add the Reading List.`,
+        msg: `The local app connection is not available, so the comic list could not be loaded. ${LOCAL_CONNECTION_STEPS} You can still add the Reading List.`,
         kind: 'warn',
         action: { label: 'Try again', onClick: () => { void retry(); } },
       }));
@@ -3811,7 +3850,7 @@ const previewView = createPreviewView({
     }
     $('#preview-body').replaceChildren(el('p', {
       class: 'rail-hint',
-      text: `The issue list could not be loaded: ${error.message}. You can still add the order.`,
+      text: `The comic list could not be loaded: ${error.message}. You can still add the order.`,
     }));
   },
   onOpen: (list, saved) => openSavedCatalogList(list, saved, '#preview-report'),
@@ -3845,6 +3884,7 @@ const completionView = createCompletionView({
     feedbackLink: $('#list-feedback-link'),
     privateFeedbackLink: $('#list-private-feedback-link'),
     recommendations: $('#list-recommendations'),
+    recommendationHeading: $('#list-recommendations-h'),
     suggestions: $('#list-suggestions'),
     recommendationStatus: $('#list-recommendation-status'),
     recommendationRetry: $('#btn-retry-recommendations'),
@@ -3889,6 +3929,7 @@ const completionView = createCompletionView({
   notify,
   announce,
   focusCurrentView: () => focusViewHeading(view),
+  paintCoverUrl,
 });
 
 export function fallbackInitials(value) {
@@ -3918,7 +3959,7 @@ async function exportReadingOrder() {
     const md = serializeReadingOrder({ name: list.name, items: listItems(store.state, id), source });
     const yes = await askConfirm({
       title: `Export only the order for "${list.name}"?`,
-      body: 'This local Markdown file includes the list name, ordered issue titles, official links and section labels. '
+      body: 'This local Markdown file includes the list name, ordered comic titles, official links and section labels. '
         + 'It excludes notes, descriptions, read marks, timestamps and availability overrides; every checkbox starts unread. '
         + (source ? 'Available source credit is included. ' : 'Source attribution is unavailable in the loaded catalog. ')
         + 'Nothing is uploaded or changed. Personal Markdown keeps notes and read checkboxes, but notes do not re-import. '

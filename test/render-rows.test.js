@@ -187,7 +187,7 @@ test('an owner-confirmed identity remains distinct from an ordinary provider ref
   assert.equal(detailsState({ ...confirmed, hydrated: true }), null);
   assert.equal(detailsState({ ...confirmed, identityEvidenceKind: undefined }), 'norecord');
   assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'identity confirmed');
-  assert.match(DETAILS_BADGE['owner-confirmed'].hint, /owner confirmed this issue identity/);
+  assert.match(DETAILS_BADGE['owner-confirmed'].hint, /owner confirmed this comic identity/);
   assert.match(DETAILS_BADGE['owner-confirmed'].hint, /no provider details or cover/);
   assert.equal(synopsisFallback(confirmed), DETAILS_BADGE['owner-confirmed'].hint);
 });
@@ -197,7 +197,7 @@ test('an owner-confirmed identity remains distinct from an ordinary provider ref
 // badge beside it. Both halves are checked here because the wording is the whole of the feature.
 test('each details badge carries its reason in the half a screen reader gets', () => {
   assert.equal(DETAILS_BADGE.norecord.text, 'no details held');
-  assert.match(DETAILS_BADGE.norecord.hint, /no record of this issue/);
+  assert.match(DETAILS_BADGE.norecord.hint, /no record of this comic/);
   assert.match(DETAILS_BADGE.norecord.hint, /nothing to fetch|no details to fetch/);
   assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'identity confirmed');
   assert.equal(DETAILS_BADGE.pending.text, 'details pending');
@@ -222,8 +222,8 @@ test('the issue page tells the same three states apart', () => {
 // A run that asked and was answered with nothing is the same answer as a snapshot holding nothing,
 // so an empty or blank session value falls through rather than blanking the sentence.
 test('a session synopsis that came back empty says what the snapshot would have said', () => {
-  assert.equal(synopsisFallback({ hydrated: true }, ''), 'No synopsis is recorded for this issue.');
-  assert.equal(synopsisFallback({ hydrated: true }, '   '), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback({ hydrated: true }, ''), 'No synopsis is recorded for this comic.');
+  assert.equal(synopsisFallback({ hydrated: true }, '   '), 'No synopsis is recorded for this comic.');
   assert.equal(synopsisFallback({ hydrated: true }, null), 'Story summary has not been loaded.');
 });
 
@@ -259,6 +259,6 @@ test('and a genuine refusal, which is never hydrated, still says so on both surf
 // rewritten to stop doing. The session holds a known negative distinct from "not asked", and it has
 // to reach here for that distinction to be worth keeping.
 test('an issue the run asked about and found nothing for stops promising a fetch', () => {
-  assert.equal(synopsisFallback({ hydrated: false }, NO_SYNOPSIS), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback({ hydrated: false }, NO_SYNOPSIS), 'No synopsis is recorded for this comic.');
   assert.equal(synopsisFallback({ hydrated: false }), 'Story summary has not been loaded.');
 });

@@ -81,15 +81,15 @@ export function createIssueView({
     if (!issue) {
       nodes.savedActions.hidden = true;
       nodes.card.hidden = true;
-      nodes.heading.textContent = 'Issue unavailable';
+      nodes.heading.textContent = 'Comic unavailable';
       nodes.context.textContent = '';
       nodes.status.textContent = activeRoute?.issueId < 0
-        ? 'This local issue is no longer in saved data or the bundled order named by the link.'
+        ? 'This local comic is no longer in saved data or the bundled order named by the link.'
         : result?.failure === 'not-found'
-          ? 'The metadata service has no details for this issue. Your saved lists and progress are unchanged.'
+          ? 'The metadata service has no details for this comic. Your saved lists and progress are unchanged.'
           : retryable
-            ? 'Issue details could not be loaded. Check your connection or try again shortly. Your saved lists and progress are unchanged.'
-            : 'Issue details could not be loaded. Your saved lists and progress are unchanged.';
+            ? 'Comic details could not be loaded. Check your connection or try again shortly. Your saved lists and progress are unchanged.'
+            : 'Comic details could not be loaded. Your saved lists and progress are unchanged.';
       renderBreadcrumbs();
       restoreRetryFocus();
       return;
@@ -104,7 +104,7 @@ export function createIssueView({
     nodes.heading.textContent = presentation.title;
     nodes.context.textContent = issueContextText(context, issue.issueId);
     nodes.status.textContent = result.contextStatus === 'stale'
-      ? 'The list or bundled order in this link no longer contains this issue. Showing issue details without that context.'
+      ? 'The list or bundled order in this link no longer contains this comic. Showing comic details without that context.'
       : '';
     nodes.card.hidden = false;
     const variant = issueCoverVariant(nodes.image);
@@ -158,9 +158,9 @@ export function createIssueView({
     const nodes = elements();
     nodes.savedActions.hidden = true;
     nodes.card.hidden = true;
-    nodes.heading.textContent = 'Loading issue details';
+    nodes.heading.textContent = 'Loading comic details';
     nodes.context.textContent = '';
-    nodes.status.textContent = 'Loading issue details…';
+    nodes.status.textContent = 'Loading comic details…';
     nodes.retry.hidden = !retry;
     nodes.retry.textContent = retry ? 'Retrying…' : 'Retry';
     nodes.retry.setAttribute('aria-disabled', 'true');

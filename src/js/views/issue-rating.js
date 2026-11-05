@@ -32,7 +32,7 @@ export function createIssueRatingView({ elements, getState, isBlocked, saveRatin
     const score = issueRating(state, current.issueId);
     nodes.trigger.disabled = unavailable || replaced;
     const label = unavailable || replaced ? 'Rating unavailable'
-      : score === null ? 'Rate this issue' : `Your rating: ${score}/5`;
+      : score === null ? 'Rate this comic' : `Your rating: ${score}/5`;
     nodes.label.textContent = label;
     // The button's words lead its name, then the comic it rates (#905).
     nodes.trigger.setAttribute('aria-label', unavailable || replaced ? label

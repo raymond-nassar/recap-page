@@ -202,8 +202,8 @@ try {
         localStorage.setItem(key, newValue);
         dispatchEvent(new StorageEvent('storage', { key, oldValue, newValue }));
       }, fixture, KEY);
-      await page.waitForSelector('#all-read:not([hidden])');
-      await click(page, '#all-read a[href="#/browse"]');
+      await page.waitForSelector('#list-wrap-up:not([hidden])');
+      await click(page, '#btn-recommendation-browse');
       await page.waitForSelector('#view-home:not([hidden])');
       check(await page.evaluate(() => location.hash.startsWith('#/browse') && document.activeElement?.id === 'home-cat-h'),
         prefix('finished-list Browse opens Home at its category cards'));
@@ -250,7 +250,7 @@ try {
       await page.$eval('#search-q', (node) => { node.value = 'Reader-first no-match fixture'; });
       await click(page, '#form-search button');
       await page.waitForFunction(() => [...document.querySelectorAll('#search-results .notice-act button')]
-        .some((node) => node.textContent === 'Add an issue by hand'));
+        .some((node) => node.textContent === 'Add a comic by hand'));
       await click(page, '#search-results .notice-act button');
       await page.waitForSelector('#view-add-manual:not([hidden])');
       check(await page.$eval('#view-add-manual .add-target', (node) => node.textContent.includes('House of M')),

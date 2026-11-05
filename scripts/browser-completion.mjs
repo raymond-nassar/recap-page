@@ -51,6 +51,10 @@ const orders = {
 const entry = (id, file, timeline, type = 'event') => ({
   id, file, name: id, description: 'Compiled fixture.', type, depth: 'essential',
   count: orders[file].items.length, timeline, keywords: ['Fixture Writer', 'Fixture series'],
+  storyTypes: ['space-opera'], tones: ['epic'],
+  ...(id === 'completion-retry' ? {} : {
+    cover: { path: `https://i.annihil.us/u/prod/marvel/i/mg/fixture/${id}`, ext: 'jpg' },
+  }),
   placeholderCount: 0, emptyRecordCount: 0,
 });
 const catalog = {
@@ -79,12 +83,15 @@ function fixture() {
   return markRead(state, 640001, true, 444);
 }
 
-async function setup(page) {
+async function setup(page, { longSource = false } = {}) {
   await page.setViewport({ width: 1280, height: 900 });
   const failures = [];
   page.on('pageerror', (error) => failures.push(error.message));
   page.__completionErrors = failures;
-  const initial = { writeToken: 'completion-fixture', ...exportBackup(fixture()) };
+  let state = fixture();
+  if (longSource) state = addIssuesToList(state, SOURCE,
+    Array.from({ length: 40 }, (_, index) => item(660001 + index))).state;
+  const initial = { writeToken: 'completion-fixture', ...exportBackup(state) };
   await page.evaluateOnNewDocument((value, key, suppliedCatalog, suppliedOrders) => {
     if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(value));
     localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
@@ -285,7 +292,7 @@ export const completionLifecycle = {
       && await page.$eval('#list-nav', (node) => node.textContent.includes('Saved next fixture')
         && !node.textContent.includes('Private completion fixture'))
       && await page.$eval('#home-yours-list', (node) => node.querySelectorAll('a[href^="#/read/"]').length === 1)
-      && await page.$eval('#home-first-run', (node) => node.hidden));
+      && await page.evaluate(() => !document.querySelector('#home-first-run')));
     await go(page, 'read');
     await click(page, '#btn-reopen-list');
     await page.waitForSelector('#btn-complete-list:not([hidden])');
@@ -298,7 +305,7 @@ export const completionLifecycle = {
     await complete(page, NEXT);
     const allCompletedReader = await raw(page);
     await go(page, 'home');
-    const returningHome = await page.evaluate(() => document.querySelector('#home-first-run').hidden
+    const returningHome = await page.evaluate(() => !document.querySelector('#home-first-run')
       && document.querySelector('#home-yours').hidden
       && document.querySelector('#home-completed').textContent.includes('All your saved lists are completed'));
     await go(page, 'library');
@@ -385,7 +392,7 @@ export const completionRecommendations = {
   id: 'completion-recommendations',
   title: 'Wrap-up offers bounded evidenced next reading and drops stale asynchronous suggestions',
   async run(page, t) {
-    await setup(page);
+    await setup(page, { longSource: true });
     await page.evaluate(() => { window.__completionMissing = true; });
     await complete(page);
     await page.waitForFunction(() => document.querySelector('#list-suggestions [data-recommendation]')
@@ -393,21 +400,36 @@ export const completionRecommendations = {
     const suggested = await page.$$eval('#list-suggestions [data-recommendation]', (nodes) => nodes.map((node) => node.dataset.recommendation));
     const reasons = await page.$eval('#list-suggestions', (node) => node.textContent);
     const loads = await page.evaluate(() => window.__completionLoads);
-    t.check('exact path/timeline and verified writer reasons are shown without source or known-read orders',
-      suggested.includes('completion-next') && suggested.includes('completion-writer')
+    t.check('one Timeline continuation leads, with genre and tone suggestions below it',
+      suggested.length === 1 && suggested[0] === 'completion-next'
       && !suggested.includes('completion-source') && !suggested.includes('completion-seen')
-      && reasons.includes('Fixture reading path') && reasons.includes('Fixture Writer'));
+      && reasons.includes('Fixture reading path')
+      && await page.$eval('#list-recommendations-h', (node) => node.textContent === 'Next on the Modern Timeline')
+      && await page.$eval('#list-similar-suggestions', (node) => node.textContent.includes('Same genre:')
+        && node.textContent.includes('Same tone:')));
     t.check('cards and candidate file loads stay bounded, with an explicit optional failure and retry',
       suggested.length <= 6 && new Set(loads.filter((file) => file !== 'completion_source.json')).size <= 6
       && loads.filter((file) => file === 'completion_source.json').length <= 1
       && await page.$eval('#list-recommendation-status', (node) => !node.hidden && node.textContent.includes('could not')));
+    await full(page);
+    await page.waitForFunction(() => location.hash.includes('full=1'));
+    const departure = await page.evaluate(() => {
+      scrollTo({ top: 700, behavior: 'instant' });
+      return scrollY;
+    });
+    t.check('the saved-list departure is genuinely longer than a short destination',
+      departure >= 600, String(departure));
     await click(page, '#list-suggestions [data-recommendation="completion-next"]');
     await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).active === 'completion-next-list');
     t.check('a saved suggestion opens the existing list without importing another copy',
       (await reader(page)).listOrder.length === 2);
-    await go(page, 'read', SOURCE);
-    await page.waitForSelector('#list-suggestions [data-recommendation="completion-writer"]');
-    await click(page, '#list-suggestions [data-recommendation="completion-writer"]');
+    await click(page, '#view-read .app-back');
+    await page.waitForFunction((y, id) => location.hash.includes(id)
+      && Math.abs(scrollY - y) <= 1, {}, departure, SOURCE);
+    t.check('a shorter saved-list destination preserves the departure route, disclosure and scroll for Back',
+      await page.$eval('#full', (node) => node.open));
+    await page.waitForSelector('#list-similar-suggestions [data-recommendation="completion-writer"]');
+    await click(page, '#list-similar-suggestions [data-recommendation="completion-writer"]');
     await page.waitForSelector('#preview[open]');
     t.check('unsaved suggestions preview without automatic library writes', (await reader(page)).listOrder.length === 2);
     await click(page, '#preview-close');
@@ -419,6 +441,69 @@ export const completionRecommendations = {
     t.check('a late retry cannot reshow suggestions after reopening',
       await page.$eval('#list-recommendations', (node) => node.hidden)
       && (await history(page)).records.length === 0);
+    await page.evaluate((key, id) => {
+      const state = JSON.parse(localStorage.getItem(key));
+      for (const issueId of state.lists[id].itemIds) state.read[issueId] = 123;
+      state.lists[id].deferredIssueIds = [];
+      delete state.writeToken;
+      localStorage.setItem(key, JSON.stringify(state));
+      dispatchEvent(new StorageEvent('storage', { key }));
+    }, KEY, SOURCE);
+    await page.waitForSelector('#list-suggestions [data-recommendation="completion-next"]');
+    const allRead = await raw(page);
+    t.check('all-read shows the same next-reading panel without implicitly saving completion',
+      !(await history(page)).records.length
+      && await page.$eval('#all-read', (node) => node.hidden));
+    for (const [width, height] of [[1280, 900], [820, 1180], [390, 900]]) {
+      await page.setViewport({ width, height });
+      t.check(`${width}px all-read puts one primary continuation before secondary genre/tone picks and administration`,
+        await page.evaluate(() => {
+          const next = document.querySelector('#list-recommendations');
+          const similar = document.querySelector('#list-similar');
+          const actions = document.querySelector('#list-wrap-up .completion-actions');
+          const cards = [...document.querySelectorAll('#list-recommendations .recommendation-card, #list-similar .recommendation-card')];
+          return next.getBoundingClientRect().top < similar.getBoundingClientRect().top
+            && similar.getBoundingClientRect().top < actions.getBoundingClientRect().top
+            && cards.length >= 2 && cards.every((card) => card.querySelector('.recommendation-cover .cover-fallback.show'))
+            && next.querySelectorAll('.btn:not(.btn-g)').length === 1
+            && !similar.querySelector('.btn:not(.btn-g)')
+            && document.documentElement.scrollWidth <= innerWidth;
+        }));
+    }
+    await go(page, 'data');
+    await click(page, '#opt-covers');
+    await go(page, 'read', SOURCE);
+    await page.waitForSelector('#list-suggestions img[src]');
+    await page.waitForFunction(() => [...document.querySelectorAll('#list-suggestions img[src], #list-similar-suggestions img[src]')]
+      .every((image) => image.complete && image.naturalWidth > 0));
+    t.check('suggestions use their corresponding cover URL or the honest missing-cover fallback',
+      await page.evaluate(() => [...document.querySelectorAll('#list-suggestions .recommendation-card, #list-similar-suggestions .recommendation-card')]
+        .every((card) => {
+          const id = card.querySelector('[data-recommendation]').dataset.recommendation;
+          return id === 'completion-retry'
+            ? !card.querySelector('img').hasAttribute('src') && card.querySelector('.cover-fallback.show')
+            : card.querySelector('img').src.includes(`/fixture/${id}/portrait_incredible.jpg`);
+        })));
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' },
+      { name: 'forced-colors', value: 'active' }]);
+    await page.focus('#list-suggestions [data-recommendation="completion-next"]');
+    let secondaryReached = false;
+    for (let step = 0; step < 4 && !secondaryReached; step += 1) {
+      await page.keyboard.press('Tab');
+      secondaryReached = await page.evaluate(() => !!document.activeElement?.closest('#list-similar-suggestions'));
+    }
+    t.check('forced colors and reduced motion retain keyboard-reachable suggestions and full action targets',
+      secondaryReached && await page.evaluate(() =>
+        [...document.querySelectorAll('.recommendation-card .btn')].every((button) => {
+          const box = button.getBoundingClientRect();
+          return box.width >= 24 && box.height >= 44;
+        })));
+    await page.emulateMediaFeatures([]);
+    await page.$eval('#list-suggestions img', (image) => image.dispatchEvent(new Event('error')));
+    t.check('a failed cover uses the existing typographic fallback without changing reading data',
+      await page.$eval('#list-suggestions .recommendation-cover', (node) => node.querySelector('img').hidden
+        && node.querySelector('.cover-fallback').classList.contains('show'))
+      && await raw(page) === allRead && !(await history(page)).records.length);
     t.check('recommendations have no uncaught browser errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
   },
 };

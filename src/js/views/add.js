@@ -491,7 +491,7 @@ export function createAddView({
     if (!items.length) {
       if (status.phase === 'complete') {
         notify(config.results, 'Nothing matched that search. You can add the comic by hand.', 'warn', config.results, {
-          label: 'Add an issue by hand',
+          label: 'Add a comic by hand',
           onClick: () => showView('add-manual', { push: true }),
         });
       } else {
@@ -510,12 +510,12 @@ export function createAddView({
     if (config.kind === 'issue' && items.length === ISSUE_SEARCH_LIMIT) {
       box.append(el('p', {
         class: 'rail-hint',
-        text: `Issue search shows up to ${ISSUE_SEARCH_LIMIT} matches. Narrow your search if you need a different comic.`,
+        text: `Comic search shows up to ${ISSUE_SEARCH_LIMIT} matches. Narrow your search if you need a different comic.`,
       }));
     }
     const filter = el('input', {
       type: 'search', id: `${config.prefix}-comic-filter`, name: 'comic-filter',
-      placeholder: 'Series or issue title…', autocomplete: 'off',
+      placeholder: 'Series or comic title…', autocomplete: 'off',
     });
     box.append(el('div', { class: 'stack' }, [
       el('label', { for: `${config.prefix}-comic-filter`, text: 'Filter these comics' }),
@@ -775,7 +775,7 @@ export function createAddView({
           announce(`No candidates found for ${entry.title}.`);
           return;
         }
-        choices.append(el('p', { class: 'rail-hint', text: `Pick the right issue for “${entry.title}”:` }));
+        choices.append(el('p', { class: 'rail-hint', text: `Pick the right comic for “${entry.title}”:` }));
         for (const candidate of matches) {
           choices.append(el('div', { class: 'result' }, [
             el('div', { class: 'result-main' }, [
@@ -814,7 +814,7 @@ export function createAddView({
     const resolved = importDraft.draft?.occurrences.filter((entry) => entry.applied).length ?? 0;
     const added = result.added ?? 0;
     importMessage = result.ok
-      ? `Imported ${added} issue${added === 1 ? '' : 's'}, ${Math.max(0, resolved - added)} already present. Import source is saved. Resolved comics are in their source positions; gaps and duplicate occurrences remain in this draft.`
+      ? `Imported ${added} comic${added === 1 ? '' : 's'}, ${Math.max(0, resolved - added)} already present. Import source is saved. Resolved comics are in their source positions; gaps and duplicate occurrences remain in this draft.`
       : result.error;
     if (result.ok && result.readerSaved && result.added > 0) {
       const transition = onNonEmptyListSave(result);
@@ -946,8 +946,8 @@ export function createAddView({
     notify(
       '#manual-candidates',
       summary
-        ? `Selected “${candidate.title}” from the wiki: ${summary}. It is not saved. Press Add issue to keep it.`
-        : `Selected “${candidate.title}” from the wiki. Only the title was filled. It is not saved. Press Add issue to keep it.`,
+        ? `Selected “${candidate.title}” from the wiki: ${summary}. It is not saved. Press Add comic to keep it.`
+        : `Selected “${candidate.title}” from the wiki. Only the title was filled. It is not saved. Press Add comic to keep it.`,
       summary ? 'ok' : 'warn',
       '#manual-candidates',
       { label: 'Discard', onClick: () => { clearManualMatch(); announce('Details from the wiki discarded.'); } },
@@ -970,13 +970,13 @@ export function createAddView({
       if (!found.length) {
         notify(
           '#manual-candidates',
-          `Nothing on the wiki matched “${phrase}”. Its pages are named like “X-Men Vol 7 26”, so the series and the issue number usually find it. You can still add the issue without any details.`,
+          `Nothing on the wiki matched “${phrase}”. Its pages are named like “X-Men Vol 7 26”, so the series and the comic number usually find it. You can still add the comic without any details.`,
           'warn',
         );
         return;
       }
       const choices = el('div', { class: 'results' }, [
-        el('p', { class: 'rail-hint', text: 'Pick the issue you meant. Nothing is added until you press Add issue.' }),
+        el('p', { class: 'rail-hint', text: 'Pick the comic you meant. Nothing is added until you press Add comic.' }),
       ]);
       for (const candidate of found) {
         choices.append(el('div', { class: 'result' }, [
@@ -996,7 +996,7 @@ export function createAddView({
         ]));
       }
       $('#manual-candidates').replaceChildren(choices);
-      announce(`${found.length} match${found.length === 1 ? '' : 'es'} from the wiki. Pick the issue you meant.`);
+      announce(`${found.length} match${found.length === 1 ? '' : 'es'} from the wiki. Pick the comic you meant.`);
     } catch (error) {
       notify(
         '#manual-candidates',
@@ -1031,8 +1031,8 @@ export function createAddView({
       notify(
         '#manual-report',
         holders.length
-          ? `That is the issue you already have in ${holders.join(', ')}, so nothing was added and nothing was changed.`
-          : 'The tracker already holds that issue, so nothing was added and nothing was changed.',
+          ? `That is the comic you already have in ${holders.join(', ')}, so nothing was added and nothing was changed.`
+          : 'The tracker already holds that comic, so nothing was added and nothing was changed.',
         'warn',
       );
       return;

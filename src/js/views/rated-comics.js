@@ -116,7 +116,7 @@ export function createRatedComicsView({
     const rows = ratedComics(getState());
     const top = topRatedComics(rows);
     if (!rows.length) {
-      shelfStatus.textContent = 'Comics you rate from their Issue details will appear here.';
+      shelfStatus.textContent = 'Comics you rate from their Comic details will appear here.';
     } else if (!top.length) {
       shelfStatus.textContent = `None of your ${plural(rows.length, 'rated comic is', 'rated comics are')} at 4 stars or higher yet.`;
     } else {
@@ -274,7 +274,7 @@ export function createRatedComicsView({
       if (!all.length) {
         els.results.append(el('div', { class: 'empty-state' }, [
           el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '\u2606' }),
-          el('p', { text: 'You have not rated any comics yet. Open a comic\u2019s Issue details to give it a score.' }),
+          el('p', { text: 'You have not rated any comics yet. Open a comic\u2019s Comic details to give it a score.' }),
           // Home's reading-list categories, which the label promises (UX-15, #830).
           emptyAction({ label: 'Browse Reading Lists', view: 'home', at: HOME_CARDS }),
         ]));
