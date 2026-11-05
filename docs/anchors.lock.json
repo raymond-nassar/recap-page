@@ -1514,6 +1514,201 @@
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-herald-source|docs/MAINTAINING.md:555|0": {
+    "anchor": "docs/MAINTAINING.md:555",
+    "fp": "e68c1d5b4a58f20e",
+    "head": "## Build a Comic Book Herald packet"
+  },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:718|0": {
+    "anchor": "docs/MAINTAINING.md:718",
+    "fp": "d8181dc2cde63c63",
+    "head": "## Build a Comic Book Reading Orders historical event packet"
+  },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#local-curated-source-or-another-factual-compilat|docs/MAINTAINING.md:446|0": {
+    "anchor": "docs/MAINTAINING.md:446",
+    "fp": "b704f0aa07ec6e5f",
+    "head": "## Add a curated reading order"
+  },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#multiple-supplied-lists-in-one-agreed-delivery|docs/BATCH_READING_LIST_DELIVERY.md:1-3|0": {
+    "anchor": "docs/BATCH_READING_LIST_DELIVERY.md:1-3",
+    "fp": "205b0471dc57e251",
+    "head": "# Deliver a batch of Markdown reading lists"
+  },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#owner-authored-markdown-for-an-mcu-prep-guide-or|docs/READING_LIST_DELIVERY.md:5-8|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:5-8",
+    "fp": "f8bf631360c15213",
+    "head": "Use this path for a new owner-selected MCU Prep guide, or for an owner's young readers' pick with"
+  },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring|docs/BATCH_READING_LIST_DELIVERY.md:105-114|0": {
+    "anchor": "docs/BATCH_READING_LIST_DELIVERY.md:105-114",
+    "fp": "185df4b4b5b7d7c7",
+    "head": "## Choose a source route, not a convenient author"
+  },
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring|docs/BATCH_READING_LIST_DELIVERY.md:105-114|1": {
+    "anchor": "docs/BATCH_READING_LIST_DELIVERY.md:105-114",
+    "fp": "185df4b4b5b7d7c7",
+    "head": "## Choose a source route, not a convenient author"
+  },
+  ".github/skills/new-reading-list/SKILL.md|completion|docs/READING_LIST_DELIVERY.md:154-161|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:154-161",
+    "fp": "1769bf3bd76e3659",
+    "head": "Run the proposed-public-file preflight below, then stage exactly the intended public files."
+  },
+  ".github/skills/new-reading-list/SKILL.md|completion|docs/READING_LIST_DELIVERY.md:188-190|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:188-190",
+    "fp": "6fde7f377cd6f228",
+    "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
+  },
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/READING_LIST_DELIVERY.md:102-112|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:102-112",
+    "fp": "4dcf24ca14db4746",
+    "head": "An unresolved trade or conflicting identity produces `needs-resolution`, preserving the input and"
+  },
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/READING_LIST_DELIVERY.md:102-112|1": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:102-112",
+    "fp": "4dcf24ca14db4746",
+    "head": "An unresolved trade or conflicting identity produces `needs-resolution`, preserving the input and"
+  },
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/READING_LIST_DELIVERY.md:102-136|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:102-136",
+    "fp": "1eadfdf3dff7a410",
+    "head": "An unresolved trade or conflicting identity produces `needs-resolution`, preserving the input and"
+  },
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/READING_LIST_DELIVERY.md:121-136|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:121-136",
+    "fp": "8b5011a22dd77b59",
+    "head": "Give the reviewer the exact proposal digest, source facts, original vector, gaps, proposed insertion"
+  },
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/READING_LIST_DELIVERY.md:154-161|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:154-161",
+    "fp": "1769bf3bd76e3659",
+    "head": "Run the proposed-public-file preflight below, then stage exactly the intended public files."
+  },
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/READING_LIST_DELIVERY.md:188-190|0": {
+    "anchor": "docs/READING_LIST_DELIVERY.md:188-190",
+    "fp": "6fde7f377cd6f228",
+    "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
+  },
+  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1033-1039|0": {
+    "anchor": "docs/MAINTAINING.md:1033-1039",
+    "fp": "69038f7c150c0982",
+    "head": "## Cutting a release"
+  },
+  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/RELEASING.md:7-31|0": {
+    "anchor": "docs/RELEASING.md:7-31",
+    "fp": "584ec6b521007920",
+    "head": "## Choose the product version and platforms"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/GOOGLE_PLAY_PUBLISHING.md:250|0": {
+    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:250",
+    "fp": "a61496c78a00502b",
+    "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:450-482|0": {
+    "anchor": "docs/IOS.md:450-482",
+    "fp": "3d8eb59b07214148",
+    "head": "### Each build: reserve, export, seal, upload"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:470-474|0": {
+    "anchor": "docs/IOS.md:470-474",
+    "fp": "09cad2e2a247e2db",
+    "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:548-550|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:548-550",
+    "fp": "b0a4750ea6767f95",
+    "head": "If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:192-198|0": {
+    "anchor": "docs/RELEASING.md:192-198",
+    "fp": "32d6e59ef7c50726",
+    "head": "**Microsoft Store release is manual-only from the default branch.** GitHub releases, Android tags,"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:205-215|0": {
+    "anchor": "docs/RELEASING.md:205-215",
+    "fp": "0209fd221c84d800",
+    "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:308-314|0": {
+    "anchor": "docs/RELEASING.md:308-314",
+    "fp": "0ac7b7fd79909700",
+    "head": "Upload mode downloads the packet from the selected successful export run of this workflow on"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:99-102|0": {
+    "anchor": "docs/RELEASING.md:99-102",
+    "fp": "0b24286fc02a7373",
+    "head": "Upload and track promotion need separate owner approval. First recheck the latest sealed ledger,"
+  },
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:99-102|1": {
+    "anchor": "docs/RELEASING.md:99-102",
+    "fp": "0b24286fc02a7373",
+    "head": "Upload and track promotion need separate owner approval. First recheck the latest sealed ledger,"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#android-build-allocation-or-candidate|docs/ANDROID.md:239-246|0": {
+    "anchor": "docs/ANDROID.md:239-246",
+    "fp": "d0f6e1e0e12e6c93",
+    "head": "## Protected App Bundle candidates"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#android-build-allocation-or-candidate|docs/RELEASING.md:35-60|0": {
+    "anchor": "docs/RELEASING.md:35-60",
+    "fp": "f5f6622be72db352",
+    "head": "## Android allocation and exact-artifact contract"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/GOOGLE_PLAY_PUBLISHING.md:1-20|0": {
+    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:1-20",
+    "fp": "06bff25642e95726",
+    "head": "# Protected Google Play testing publication"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/GOOGLE_PLAY_PUBLISHING.md:256-295|0": {
+    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:256-295",
+    "fp": "ce0481b546ab544e",
+    "head": "## Normal release operations"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/RELEASING.md:205-215|0": {
+    "anchor": "docs/RELEASING.md:205-215",
+    "fp": "0209fd221c84d800",
+    "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:409-418|0": {
+    "anchor": "docs/IOS.md:409-418",
+    "fp": "fa779b8e01b8f8c9",
+    "head": "## Signing and internal TestFlight"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:450-482|0": {
+    "anchor": "docs/IOS.md:450-482",
+    "fp": "3d8eb59b07214148",
+    "head": "### Each build: reserve, export, seal, upload"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/RELEASING.md:257-284|0": {
+    "anchor": "docs/RELEASING.md:257-284",
+    "fp": "db1889f906600a13",
+    "head": "## iOS allocation and exact-artifact contract"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:457-491|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:457-491",
+    "fp": "40fbeae438b9cd1d",
+    "head": "## Final upload handoff"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:493-515|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:493-515",
+    "fp": "69ee19f753078b7e",
+    "head": "## Live-review stop points"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/RELEASING.md:190-198|0": {
+    "anchor": "docs/RELEASING.md:190-198",
+    "fp": "8a62df7c6c617d75",
+    "head": "## Independent publication gates"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#windows-portable-or-msix-proof|docs/MICROSOFT_STORE.md:245-304|0": {
+    "anchor": "docs/MICROSOFT_STORE.md:245-304",
+    "fp": "ef88d42bea1c0f8d",
+    "head": "## Build controlled proof packages"
+  },
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work|docs/RELEASING.md:225-238|0": {
+    "anchor": "docs/RELEASING.md:225-238",
+    "fp": "f608e6624cff2139",
+    "head": "## Delivered release matrix"
+  },
   "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:322-343|0": {
     "anchor": "server.mjs:322-343",
     "fp": "4875091a9f41cacf",
