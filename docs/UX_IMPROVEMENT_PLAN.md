@@ -58,6 +58,14 @@ This is a planning document linked to the separate [colleague feedback record](U
 
 **Evidence before implementation:** Observe the current flow and test the label wording with the owner before changing navigation, filtering, or category selection behavior.
 
+## 8. Reading-list completion and next reads
+
+**Outcome:** After a reader completes a Modern Timeline list, present one clearly identified "Next on the Modern Timeline" list first in both observed presentations, including iPad. Place genre- and tone-based suggestions below it, and show a preview comic book cover on every suggested list. Do not leave iPad readers with only the generic all-read message and "Browse Reading Lists" action shown in the supplied screenshot.
+
+**Dependencies:** Reconcile the different completion presentations for the same list, and confirm how the next Modern Timeline list is selected. Verify that each suggested list has an approved cover URL. Do not copy or store comic image bytes or invent or substitute artwork when a cover source is missing.
+
+**Evidence before implementation:** Reproduce both supplied completion screens and determine why the same list presents different content, including the iPad presentation. Test the redesigned hierarchy in both observed presentations and across supported layout sizes. Confirm the next Modern Timeline list is the clear first action, suggestions remain visibly secondary and are based on genre or tone, and every suggestion displays its corresponding cover. Check completion actions and browsing remain understandable alongside the new sections.
+
 ## Delivery boundary
 
 This PR contains the feedback record and these plans only. It does not change application code, styling, saved data, release metadata, or behavior. Before implementing any accepted workstream, create or reuse a scoped Issue and rank it in the planning Project. Keep each product implementation within its own approved scope.
