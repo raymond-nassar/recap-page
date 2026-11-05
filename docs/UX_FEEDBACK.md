@@ -12,6 +12,7 @@ The colleague's identity, the tested build, and the exact screen or steps for ev
 | Back navigation | Owner-confirmed priority and desired outcome, not a verbatim quote | This is the first improvement to plan. Back should return to the immediately previous screen and restore that screen's position. The reported presentation should be checked on the tested build before prescribing a control redesign. |
 | Reader-facing terminology | Owner-confirmed direction | Use "comics" instead of "issues" in reader-facing copy only. Internal identifiers and saved-data structures are out of scope. |
 | Home recommendation and Search | Owner direction, including the exact Search clarification below | Modern Timeline should be identified as "Recommended start here" and redundant introductory copy removed. Global Search belongs only in the bottom bar; task-specific search fields stay within their screens. |
+| Reading-list completion and next reads | Owner-provided screenshots and design direction | The owner supplied screenshots from completing the same Modern Timeline reading list. One completion screen shows multiple cards under "What to read next" with the Modern Timeline continuation mixed among suggestions, a separate "More like this" section, and several other actions. The owner found it busy and unclear where to go next. The iPad screenshot shows a different completion screen with a generic all-read message and "Browse Reading Lists," but no next Modern Timeline list or tailored suggestions. The owner wants one clear "Next on the Modern Timeline" list first, followed by suggested lists based on genres and tones, with a preview comic book cover on every suggested list. The screenshots establish different presentations for the same list, not why they differ. This is owner feedback, not colleague feedback. |
 | MCU Prep labels | Open question | The label reported as "Multiverse Packs" does not match the current code label, "Multiverse picks" (`src/js/lib/catalog.js:1339`). The current page renders highlights as a list, not as controls (`src/js/main.js:2724-2725`). Confirm the tested screen and intended behavior before deciding whether labels should filter. |
 | iOS restart reassurance | Owner-confirmed desired behavior | After iOS ends and reloads the page, reassure the reader that saved progress remains, then slide the message away after about five seconds. The current native lifecycle sets a one-load restart flag (`packaging/ios/RecapPage/WebViewController.swift:384`) and reloads the app page (`packaging/ios/RecapPage/WebViewController.swift:398`); these references do not establish that the requested timing or dismissal behavior exists. |
 | App title and launch splash | Unresolved report | The app title was described as staying at the top and a launch splash was proposed. The exact surface, build, and reproduction are unknown. Do not decide placement or scope until a screenshot or reproducible steps identify what was seen. |
@@ -23,6 +24,14 @@ The following is the owner's direction, not a quotation attributed to the collea
 > sorry, i think search should only be accessible from the bottom bar
 
 The bottom bar currently includes the Search destination (`src/index.html:57`), while Home also creates a first-run Search action (`src/js/views/home.js:111`). The plan removes only that Home-level global shortcut; in-screen search fields remain.
+
+The owner also supplied the following direction about the Modern Timeline completion screen:
+
+> There should be a clear "Next on the Modern Timeline" reading list, then below that we can bring up suggested reading lists based on genres/tones. Each of the suggested reading lists should also have a preview comic book cover for visual appeal.
+
+The owner clarified the iPad result:
+
+> On iPad, completing the same reading list only brought up this screen
 
 ## Evidence boundary
 
