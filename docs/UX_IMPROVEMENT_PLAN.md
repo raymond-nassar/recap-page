@@ -60,11 +60,11 @@ This is a planning document linked to the separate [colleague feedback record](U
 
 ## 8. Reading-list completion and next reads
 
-**Outcome:** After a reader completes a Modern Timeline list, present one clearly identified "Next on the Modern Timeline" list first on both desktop and iPad. Place genre- and tone-based suggestions below it, and show a preview comic book cover on every suggested list. Do not leave iPad readers with only the generic all-read message and "Browse Reading Lists" action shown in the supplied screenshot.
+**Outcome:** After a reader completes a Modern Timeline list, present one clearly identified "Next on the Modern Timeline" list first in both observed presentations, including iPad. Place genre- and tone-based suggestions below it, and show a preview comic book cover on every suggested list. Do not leave iPad readers with only the generic all-read message and "Browse Reading Lists" action shown in the supplied screenshot.
 
-**Dependencies:** Reconcile the different desktop and iPad completion presentations for the same list, and confirm how the next Modern Timeline list is selected. Verify that each suggested list has an approved cover URL. Do not copy or store comic image bytes or invent or substitute artwork when a cover source is missing.
+**Dependencies:** Reconcile the different completion presentations for the same list, and confirm how the next Modern Timeline list is selected. Verify that each suggested list has an approved cover URL. Do not copy or store comic image bytes or invent or substitute artwork when a cover source is missing.
 
-**Evidence before implementation:** Reproduce both supplied completion screens and determine why the same list presents different content on desktop and iPad. Test the redesigned hierarchy on both form factors and at narrow and wide sizes. Confirm the next Modern Timeline list is the clear first action, suggestions remain visibly secondary and are based on genre or tone, and every suggestion displays its corresponding cover. Check completion actions and browsing remain understandable alongside the new sections.
+**Evidence before implementation:** Reproduce both supplied completion screens and determine why the same list presents different content, including the iPad presentation. Test the redesigned hierarchy in both observed presentations and across supported layout sizes. Confirm the next Modern Timeline list is the clear first action, suggestions remain visibly secondary and are based on genre or tone, and every suggestion displays its corresponding cover. Check completion actions and browsing remain understandable alongside the new sections.
 
 ## Delivery boundary
 
