@@ -16,8 +16,10 @@ an implementation skill.
    runbooks. Name the affected states, transitions, and direct compatibility contracts first.
 2. Use the external scratch browser driver. Do not install browser tooling or other dependencies
    inside the repository.
-3. Run the full browser suite and full `npm test` one at a time. Serialize Android checks and
-   asset invocations that regenerate the shared Android asset directory.
+3. Run only the selected owners' targeted checks while iterating. Run the full browser suite or
+   full `npm test` only when the change's reach or the governing runbook requires it, once on the
+   stable candidate, and one at a time. Serialize Android checks and asset invocations that
+   regenerate the shared Android asset directory.
 4. When mutation proof is appropriate, use no more than three mutations by default, with each
    mutation aimed only at its matching scenario.
 5. Separate automated, real-browser, manual, and native evidence. Record missing manual or native
