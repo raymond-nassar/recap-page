@@ -890,19 +890,19 @@ final class PresentationUITests: XCTestCase {
           evidence('home-read-count', '#home-continue #chero-count > b.glance-n',
             '#home-continue', document.getElementById('chero-h').textContent.trim(), '0'),
           evidence('home-count-total', '#home-continue #chero-count',
-            '#home-continue', document.getElementById('chero-h').textContent.trim(), 'of 0 issues', true),
+            '#home-continue', document.getElementById('chero-h').textContent.trim(), 'of 0 comics', true),
           evidence('home-count-word', '#home-continue #chero-count > .glance-end',
             '#home-continue', document.getElementById('chero-h').textContent.trim(), 'read'),
           evidence('home-next-caption', '#home-continue #chero-next',
             '#home-continue', document.getElementById('chero-h').textContent.trim(),
-            'No issues in this Reading List yet. Open it to add comics.'),
+            'No comics in this Reading List yet. Open it to add comics.'),
           evidence('home-lists-summary', '#home-yours > .sec-h > .sec-note',
             '#home-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
           evidence('library-lists-summary', '#library-yours > .sec-h > .sec-note',
             '#library-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
           evidence('library-ratings-caption', '#library-rated-shelf-status',
             '#library-rated-shelf', 'Top-rated comics',
-            'Comics you rate from their Issue details will appear here.'),
+            'Comics you rate from their Comic details will appear here.'),
           ...(breadcrumbLabel ? [
             evidence('current-breadcrumb', '.view:not([hidden]) > .breadcrumb [aria-current="page"]',
               '.breadcrumb', 'Breadcrumb', breadcrumbLabel),
@@ -968,6 +968,18 @@ final class PresentationUITests: XCTestCase {
         _ app: XCUIApplication, linkName: String, headingLabel: String, view: String, route: String
     ) throws {
         let link = app.links.matching(identifier: linkName).firstMatch
+        revealNavigationLink(link, named: linkName, in: app)
+        XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
+        link.tap()
+        try waitForActiveView(app, view: view, route: route)
+        let heading = app.webViews.firstMatch.staticTexts.matching(
+            NSPredicate(format: "label == %@", headingLabel)).firstMatch
+        XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
+    }
+
+    // Narrow layouts keep some destinations in the More sheet, so a link that is not hittable in the
+    // bar is reached the way a reader would reach it, with More's own target checked on the way.
+    private func revealNavigationLink(_ link: XCUIElement, named linkName: String, in app: XCUIApplication) {
         if !link.isHittable {
             let toggle = moreToggle(of: app)
             let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
@@ -985,12 +997,6 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(closeVisible, "the More sheet is presented")
             XCTAssertTrue(link.waitForExistence(timeout: 30), "\(linkName) is shown in More")
         }
-        XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
-        link.tap()
-        try waitForActiveView(app, view: view, route: route)
-        let heading = app.webViews.firstMatch.staticTexts.matching(
-            NSPredicate(format: "label == %@", headingLabel)).firstMatch
-        XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
     }
 
     private func passiveState(of app: XCUIApplication) throws -> [String: Any] {
@@ -1627,30 +1633,50 @@ final class PresentationUITests: XCTestCase {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category, emptyHomeTest: true)
             _ = try probeResult(of: app)
+            // First-run Home no longer has its own introduction or Search shortcut: the owner moved
+            // the first step onto the Modern Timeline category tile, marked "Recommended start here",
+            // and left global Search to the bottom bar (docs/UX_IMPROVEMENT_PLAN.md). These are the
+            // two targets a first-time reader is offered, so both are checked as one native target.
             let firstRun = app.webViews.firstMatch.otherElements.matching(
-                NSPredicate(format: "label == %@ OR label == %@",
-                            "Where do you want to start?", "Where do you want to start?, region")).firstMatch
-            for (label, destination) in [
-                ("Start with Modern Timeline", "Modern Timeline"),
-                ("Search", "Search"),
-            ] {
-                XCTAssertTrue(firstRun.waitForExistence(timeout: 30), "the empty-Home section is visible")
-                let link = firstRun.links.matching(NSPredicate(format: "label == %@", label)).firstMatch
-                XCTAssertTrue(link.waitForExistence(timeout: 30), "\(label) is one native link target")
-                XCTAssertFalse(firstRun.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch.exists,
-                               "\(label) has no separate undersized text target")
-                XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(label) retains its native target width")
-                XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(label) retains its native target height")
-                revealNativeTarget(link, in: app)
-                try record("t03-first-run-\(category.rawValue)-\(label)", [
+                NSPredicate(format: "label == %@ OR label == %@", "Explore", "Explore, region")).firstMatch
+            for (key, destination) in [("modern-timeline", "Modern Timeline"), ("search", "Search")] {
+                XCTAssertTrue(firstRun.waitForExistence(timeout: 30), "the empty-Home Explore section is visible")
+                let link: XCUIElement
+                if key == "search" {
+                    XCTAssertFalse(firstRun.links.matching(NSPredicate(format: "label == %@", "Search")).firstMatch.exists,
+                                   "first-run Home carries no Search shortcut of its own")
+                    link = app.links.matching(identifier: "Search").firstMatch
+                    XCTAssertTrue(link.waitForExistence(timeout: 30), "Search is one native navigation link")
+                    revealNavigationLink(link, named: "Search", in: app)
+                } else {
+                    link = firstRun.links.matching(NSPredicate(
+                        format: "label BEGINSWITH %@", "Recommended start here. Modern Timeline. ")).firstMatch
+                    XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
+                    revealNativeTarget(link, in: app)
+                    for piece in ["Recommended start here", "Modern Timeline"] {
+                        for text in firstRun.staticTexts.matching(NSPredicate(format: "label == %@", piece))
+                            .allElementsBoundByIndex where text.exists {
+                            XCTAssertTrue(link.frame.insetBy(dx: -1, dy: -1).contains(text.frame),
+                                          "\(piece) has no separate undersized text target outside its tile")
+                        }
+                    }
+                }
+                XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(key) retains its native target width")
+                XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(key) retains its native target height")
+                XCTAssertTrue(link.isHittable, "\(key) is reachable")
+                try record("t03-first-run-\(category.rawValue)-\(key)", [
                     "label": link.label, "frame": NSCoder.string(for: link.frame),
                 ])
-                capture(app, named: "t03-first-run-\(category.rawValue)-\(label)-before-tap")
+                capture(app, named: "t03-first-run-\(category.rawValue)-\(key)-before-tap")
                 link.tap()
+                let leftHome = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "exists == false"), object: firstRun)
+                XCTAssertEqual(XCTWaiter.wait(for: [leftHome], timeout: 30), .completed,
+                               "\(key) leaves first-run Home rather than matching its own text")
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", destination)).firstMatch
-                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(label) opens \(destination)")
-                if label == "Start with Modern Timeline" {
+                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(key) opens \(destination)")
+                if key == "modern-timeline" {
                     let home = app.links.matching(
                         NSPredicate(format: "label CONTAINS[c] %@ OR label == %@", "Recap Page", "Home")).firstMatch
                     XCTAssertTrue(home.waitForExistence(timeout: 30), "Home remains reachable")
@@ -2334,7 +2360,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.searchFields["Search Reading Lists and issue titles"].firstMatch
+        let searchField = app.searchFields["Search Reading Lists and comic titles"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")
