@@ -1649,7 +1649,7 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "Search is one native navigation link")
                     revealNavigationLink(link, named: "Search", in: app)
                     XCTAssertEqual(link.label, "Search", "Search keeps its full native label")
-                    assertNoSeparateTextTarget(["Search"], in: app.webViews.firstMatch, for: key)
+                    assertNoSeparateTextTarget(["Search"], in: app.webViews.firstMatch, within: link, for: key)
                 } else {
                     let prefix = "Recommended start here. Modern Timeline. "
                     link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
@@ -1662,8 +1662,9 @@ final class PresentationUITests: XCTestCase {
                                   "the tile's full native label is its three drawn pieces")
                     XCTAssertNotNil(count.range(of: #"^[1-9][0-9]* Reading Lists?$"#, options: .regularExpression),
                                     "the tile's native label ends in its Reading List count, not \(count)")
-                    assertNoSeparateTextTarget(["Recommended start here", "Modern Timeline", count], in: firstRun, for: key)
-                    assertNoSeparateTextTarget([link.label], in: app.webViews.firstMatch, for: key)
+                    assertNoSeparateTextTarget(["Recommended start here", "Modern Timeline", count],
+                                               in: firstRun, within: link, for: key)
+                    assertNoSeparateTextTarget([link.label], in: app.webViews.firstMatch, within: link, for: key)
                 }
                 XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(key) retains its native target width")
                 XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(key) retains its native target height")
@@ -1695,11 +1696,17 @@ final class PresentationUITests: XCTestCase {
     // Each piece a link draws must be read only as part of that link. A static text with the same
     // words is a second, smaller native target, whatever its frame, so absence is asserted rather
     // than containment. The trailing-space form is matched too because the tile's pieces end in one.
-    private func assertNoSeparateTextTarget(_ pieces: [String], in scope: XCUIElement, for key: String) {
+    // The link's own subtree is searched for every element type as well, because a separate target
+    // nested inside the link is the case a frame check passes and a static-text query could miss.
+    private func assertNoSeparateTextTarget(
+        _ pieces: [String], in scope: XCUIElement, within link: XCUIElement, for key: String
+    ) {
         for piece in pieces {
-            let separate = scope.staticTexts.matching(
-                NSPredicate(format: "label == %@ OR label == %@", piece, piece + " ")).firstMatch
-            XCTAssertFalse(separate.exists, "\(key): \"\(piece)\" has no separate undersized text target")
+            let named = NSPredicate(format: "label == %@ OR label == %@", piece, piece + " ")
+            XCTAssertFalse(scope.staticTexts.matching(named).firstMatch.exists,
+                           "\(key): \"\(piece)\" has no separate undersized text target")
+            XCTAssertFalse(link.descendants(matching: .any).matching(named).firstMatch.exists,
+                           "\(key): \"\(piece)\" is not a separate native element inside its link")
         }
     }
 

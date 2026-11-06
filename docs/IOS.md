@@ -78,9 +78,9 @@ marked Recommended start here, and the Search link in the navigation. The tile's
 the app's own label rather than from this native naming, whose list still names the two removed
 Home links and does not include category tiles. The empty-Home native scenario checks, at the
 default and largest text sizes, that each of the two targets has its full name, is at least 44
-points in each direction, carries no separate text element for its name or drawn words, and opens
-its destination, independently of the populated audit fixture. Whether WebKit exposes those drawn
-words separately can only be settled on a Simulator. At the largest accessibility text size, the Backup &
+points in each direction, has no separate native element, inside or outside the link, for its name
+or drawn words, and opens its destination, independently of the populated audit fixture.
+Whether WebKit exposes those drawn words separately can only be settled on a Simulator. At the largest accessibility text size, the Backup &
 settings section headings can wrap within their existing column rather than widening the page.
 At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
 iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
