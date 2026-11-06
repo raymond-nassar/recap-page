@@ -1648,18 +1648,22 @@ final class PresentationUITests: XCTestCase {
                     link = app.links.matching(identifier: "Search").firstMatch
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "Search is one native navigation link")
                     revealNavigationLink(link, named: "Search", in: app)
+                    XCTAssertEqual(link.label, "Search", "Search keeps its full native label")
+                    assertNoSeparateTextTarget(["Search"], in: app.webViews.firstMatch, for: key)
                 } else {
-                    link = firstRun.links.matching(NSPredicate(
-                        format: "label BEGINSWITH %@", "Recommended start here. Modern Timeline. ")).firstMatch
+                    let prefix = "Recommended start here. Modern Timeline. "
+                    link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
                     revealNativeTarget(link, in: app)
-                    for piece in ["Recommended start here", "Modern Timeline"] {
-                        for text in firstRun.staticTexts.matching(NSPredicate(format: "label == %@", piece))
-                            .allElementsBoundByIndex where text.exists {
-                            XCTAssertTrue(link.frame.insetBy(dx: -1, dy: -1).contains(text.frame),
-                                          "\(piece) has no separate undersized text target outside its tile")
-                        }
-                    }
+                    // The count is catalog data, so it is read back from the label and held to its
+                    // shape; the drawn count piece is then rejected as a target like the others.
+                    let count = String(link.label.dropFirst(prefix.count).dropLast())
+                    XCTAssertTrue(link.label.hasPrefix(prefix) && link.label.hasSuffix("."),
+                                  "the tile's full native label is its three drawn pieces")
+                    XCTAssertNotNil(count.range(of: #"^[1-9][0-9]* Reading Lists?$"#, options: .regularExpression),
+                                    "the tile's native label ends in its Reading List count, not \(count)")
+                    assertNoSeparateTextTarget(["Recommended start here", "Modern Timeline", count], in: firstRun, for: key)
+                    assertNoSeparateTextTarget([link.label], in: app.webViews.firstMatch, for: key)
                 }
                 XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(key) retains its native target width")
                 XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(key) retains its native target height")
@@ -1685,6 +1689,17 @@ final class PresentationUITests: XCTestCase {
             }
             capture(app, named: "t03-first-run-\(category.rawValue)")
             app.terminate()
+        }
+    }
+
+    // Each piece a link draws must be read only as part of that link. A static text with the same
+    // words is a second, smaller native target, whatever its frame, so absence is asserted rather
+    // than containment. The trailing-space form is matched too because the tile's pieces end in one.
+    private func assertNoSeparateTextTarget(_ pieces: [String], in scope: XCUIElement, for key: String) {
+        for piece in pieces {
+            let separate = scope.staticTexts.matching(
+                NSPredicate(format: "label == %@ OR label == %@", piece, piece + " ")).firstMatch
+            XCTAssertFalse(separate.exists, "\(key): \"\(piece)\" has no separate undersized text target")
         }
     }
 
