@@ -145,36 +145,17 @@ release.
 
 ## The evidence anchors gate, and how to not corrupt it
 
-Every `path:line` citation in every tracked file, this one included, is fingerprinted by
-the **content** of the lines it names, not by the numbers. Editing code moves lines and breaks
-fingerprints. That is the gate working.
+The gate covers every tracked file. Do not narrow it to a filename list:
+`scripts/check-anchors.mjs:518-523` explains why an enumeration is a list someone has to keep
+complete.
 
-Do not narrow that to a list of filenames. `scripts/check-anchors.mjs:518-523` explains why in the
-script itself: an enumeration is a list someone has to keep complete, and every anchor defect the
-gate exists to catch was caused by exactly that.
+Follow the [maintained citation workflow](../docs/MAINTAINING.md#relocate-citations-and-resolve-renumber-only-conflicts)
+for the exact check, blessing and recheck sequence. Read every printed claim-line pairing before
+blessing; never bless a mismatch just to clear a failure.
 
-The workflow is:
-
-1. Re-aim each broken citation at whatever now says what the claim says.
-2. `npm run anchors` until nothing is left that you did not intend: 0 drifted, and every
-   addition and loss paired as a re-aim you made on purpose. The gate exits 1 on drift, additions
-   and losses alike, not just on drift, so watching the drift count alone will report a pass while
-   CI fails. That happened on the first commit of this very file.
-3. `npm run anchors:bless`. Before it writes the lock it prints **one line per citation whose
-   blessed line is changing**, carrying the prose that cites the line beside the line itself.
-   **Read every line it prints, each against the claim printed on that same line.**
-4. Re-run `npm run anchors` and expect **0 drifted, 0 new and 0 removed**, and exit 0.
-
-**Step 3 is not optional.** `anchors:bless` accepts the current state wholesale, which is correct
-only once you have done the reading. Blessing to clear a red build locks the wrong lines in
-permanently and silently, which is the exact failure the gate exists to end. The print is produced
-for you now; reading it is still yours, and the lock is written in the same run, so a pairing that
-reads wrong means fix the citation and bless again rather than move on.
-
-This is not hypothetical. A citation of `workflow_dispatch` in the backlog was written as line 12
-of the workflow file, which is a comment; the real line is `.github/workflows/ci.yml:15`. Printing
-the line caught it before it was blessed. Trusting the green would have preserved the error
-forever.
+A citation of `workflow_dispatch` once pointed to a comment on line 12; the actual trigger is
+`.github/workflows/ci.yml:15`. The pairing print caught the wrong target before blessing. Do not
+treat a green check as a substitute for reading the claim beside its target.
 
 Four traps in the gate itself. The first two were hit while writing this file; the fourth was found
 by a review on 2026-08-17, after it had already survived a full anchors cycle:
@@ -297,34 +278,12 @@ grep the diff for any citation that is not a path, a colon, digits, and optional
 digits, and treat the total citation count as a figure to re-derive rather than one to assume is
 preserved.
 
-**Immutable historical entries are separate from ordinary blessing.** The required
-`docs/anchors.history.json` registry binds an existing occurrence key and full normalized claim to
-one token shaped as `git:<40-lowercase-hex>:<repo-relative-path>#L<start>[-L<end>]`, plus the exact
-content and claim SHA-256 values. The source document and its ordinary citation text stay unchanged.
-Normal `npm run anchors:bless` cannot create, remove or update these declarations.
+**Immutable historical entries use a separate flow.** Ordinary blessing cannot create or change
+history declarations. Follow the [maintained historical evidence workflow](../CONTRIBUTING.md#historical-evidence-anchors)
+for source requirements, candidate preparation, review and application.
 
-Prepare a sealed target only after every checker, test, instruction and changelog edit is final:
-
-```
-npm run anchors -- --prepare-history <target-path> --output <absolute-path-outside-worktree>
-npm run anchors -- --apply-history <candidate-path> --approved-sha256 <candidate-sha256>
-```
-
-The candidate path must stay outside the worktree. Generate it twice without changing the tree and
-require byte-identical output. Read every printed occurrence, even when several share one immutable
-target, then approve the exact candidate-file digest. The apply command recomputes the current HEAD,
-tracked-file corpus, occurrence sites, claims, source commits, paths, ranges and hashes before it
-atomically replaces the registry. The corpus digest frames each tracked entry's Git mode, path and
-raw working-tree bytes, so a file-type or executable-mode change invalidates approval too. Any
-digest-covered change after review discards the candidate.
-
-Check and bless fail when the registry is missing or noncanonical. They also fail before lock
-comparison for a shallow clone, unavailable or noncommit source, nonancestor commit, missing or
-binary path, invalid or blank-edged range, hash mismatch, changed claim, duplicate or orphan site,
-or incomplete sealed target. They never fetch, follow rename history, search by head text, use the
-lock as provenance or fall back to the working tree. Under `--ref`, only an exact site-plus-claim
-intersection uses a current declaration; unrelated later entries leave the old revision on its
-legacy behavior.
+Under `--ref`, only an exact site-plus-claim intersection uses a current declaration; unrelated
+later entries leave the old revision on its legacy behavior.
 
 The registry's corpus digest protects migration approval, not every future check. Enforcing that
 snapshot forever would reject the later source movement the registry exists to permit. Before any
