@@ -188,6 +188,7 @@ owners for the changed contract; extend missing coverage with observable behavio
 | Decorative icons | `uiIcon` in `src/js/lib/uiIcon.js` and the local SVG symbols | `test/portable-icons.test.js` |
 | Action hierarchy and disclosures | Native `details`/`summary` and the existing Add view action groups | `test/add-view.test.js`; `copy-density` |
 | Theme and reflow | Tokens and native controls in `src/styles.css` | `test/theme.test.js`, `scripts/check-palette.mjs`; `responsive-reflow`, `responsive-controls` |
+| Held-input feedback | `wirePressFeedback` in `src/js/lib/pressFeedback.js` observes touch/pen without taking over actions or scrolling; shared CSS retains native tap highlights | `touch-feedback` in the desktop and Android browser runners |
 | Spacing | `--space-*` and classified geometry in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
 | Design tokens | `--radius-*`, `--stroke-*`, `--elev-*`, `--text-shadow-*`, `--motion-*`, `--ease-*`, `--focus-*` and `--target*` in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
 
@@ -353,3 +354,22 @@ For other questions and problems, see [the support guide](SUPPORT.md).
 
 The sole maintainer makes roadmap, release, and moderation decisions.
 [The governance guide](GOVERNANCE.md) explains the process and where decisions are recorded.
+
+## On-demand workflow skills
+
+Use these focused skills when their task matches. They guide a bounded workflow; repository gates,
+permissions, and approval rules remain authoritative.
+
+- [Diagnose CI](.github/skills/diagnose-ci/SKILL.md): "Use diagnose-ci to explain why this pull
+  request run was cancelled."
+- [Verify UI change](.github/skills/verify-ui-change/SKILL.md): "Use verify-ui-change to check the
+  affected desktop and Android owners for this dialog change."
+- [Deliver pull request](.github/skills/deliver-pr/SKILL.md): "Use deliver-pr to prepare this
+  completed change for review without merging it."
+- [Refresh store assets](.github/skills/refresh-store-assets/SKILL.md): "Use refresh-store-assets
+  to prepare the Windows listing screenshots for review."
+- [Update dependencies](.github/skills/update-dependencies/SKILL.md): "Use update-dependencies to
+  update this requested action pin with its release evidence."
+
+For reading-list delivery, use [New reading list](.github/skills/new-reading-list/SKILL.md). For
+release preparation, use [Prepare release](.github/skills/prepare-release/SKILL.md).
