@@ -79,7 +79,7 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
-  in 2004. Its 152 Reading Lists appear as 152 independently named cards representing 148 logical
+  in 2004. Its 155 Reading Lists appear as 155 independently named cards representing 151 logical
   timeline stops. Alternate versions do not become additional required stops.
 - Setup to Modern Timeline is featured above the unfiltered Modern Timeline cards through the same
   Preview flow. Search and filters hide it so results or no-results lead; clearing restores it.

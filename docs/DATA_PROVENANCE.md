@@ -1122,10 +1122,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:10911-10962`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11021-11072`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16335-16472`.
+`src/data/catalog.json:16466-16603`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2998,6 +2998,14 @@ labels are recorded separately in the identity evidence. The owner's
 supplies the confirming actor, decision date, exact issue IDs, labels and URLs. Each record retains
 its original source position and provider 404 rather than turning owner evidence into a provider
 response.
+
+The three Captain America (2025) Modern Timeline lists use the same evidence kind for twelve
+owner-confirmed identities: issue #5 in Our Secret Wars, issues #6-11 in Doom's Shadow and issues
+#12-16 in Hell's Angel. Issues #1-4 resolve through the provider. The recorded
+[Captain America (2025) confirmation](https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832)
+supplies the confirming actor, exact issue IDs, labels and URLs, and the separate
+[gap Issue](https://github.com/raymond-nassar/recap-page/issues/1145) records each provider 404.
+Issue #6 is the same identity One World Under Doom already confirms, so the two lists share it.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).

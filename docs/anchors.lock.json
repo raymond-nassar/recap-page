@@ -2309,13 +2309,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16335-16472|0": {
-    "anchor": "src/data/catalog.json:16335-16472",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16466-16603|0": {
+    "anchor": "src/data/catalog.json:16466-16603",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:10911-10962|0": {
-    "anchor": "src/data/curated-lists.json:10911-10962",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11021-11072|0": {
+    "anchor": "src/data/curated-lists.json:11021-11072",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },

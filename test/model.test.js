@@ -1,4 +1,4 @@
-﻿import test from 'node:test';
+import test from 'node:test';
 import { sourceOccurrences, occurrenceIssue } from '../src/js/lib/importDraft.js';
 import { publishImportOccurrences } from '../src/js/lib/model.js';
 
@@ -1467,7 +1467,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Issue 62446 was already counted, so the distinct refused total rises by eleven.
   // Hulk: Season One and five House of Harkness chapters add six distinct identity-only refusals.
   // Spidey adds six distinct source-position placeholders for the School's Out chapters.
-  assert.equal(refused.length, 1402);
+  // The three Captain America (2025) lists add twelve owner-confirmed identities without provider
+  // details. Issue 123361 was already counted, so the distinct refused total rises by eleven.
+  assert.equal(refused.length, 1413);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

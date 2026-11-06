@@ -5400,7 +5400,7 @@ const SCENARIOS = [
         && timeline.doom.meta.includes(
           '10 comics have owner-confirmed identities but no provider details or covers',
         )
-        && timeline.cardYears.at(-1) === 2025
+        && timeline.cardYears.at(-1) === 2026
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
           { title: 'Daredevil & Black Widow Opening Sequence', year: 1998 },
@@ -5408,7 +5408,7 @@ const SCENARIOS = [
           { title: 'Marvel Boy to Early X-Men Setup', year: 2000 },
         ]),
         JSON.stringify({ cards: timeline.cards, firstCards: timeline.firstCards }));
-      t.check('the 2025 Doom event follows the 2024 timeline entry without joining another surface',
+      t.check('the 2025 Doom event keeps its year among its Captain America peers without joining another surface',
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
@@ -23196,7 +23196,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
+      ['fresh-start', 13, 'king-in-black'], ['current', 20, 'captain-america-2025-hells-angel'],
       ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);

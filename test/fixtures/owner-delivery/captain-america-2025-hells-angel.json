@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "captain-america-2025-hells-angel",
+  "name": "Captain America (2025) Vol. 3: Hell's Angel",
+  "surface": "modern-timeline",
+  "proposalStatus": "approved",
+  "sourceCandidateSha256": "25871f338cc0f97b410f1443f89bf373ac34223950975c01afb495d4388cf028",
+  "packetDigest": "55c7df78fc2da84d51e8801362b2b78299b93368b6d7ae718f24fe6d379f3128",
+  "sourceIssueBearingBlocksSha256": "fdc187352a824634cf65456d2fdd290535234529e4bd27058ede80e53ccdf2a7",
+  "mappingDigest": "17334884c37c6fe4503006f6945aadc88ff3c4cbcbcb0cbe77a1f27a3c752598",
+  "reportDigest": "3079bae7859c267f063377de8fb736e966ed550e8f1fbebb63917571dbde2850",
+  "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
+  "sourceOccurrenceCount": 5,
+  "sourceIdentityCount": 5,
+  "exactCanonicalIssueIds": [],
+  "gapSourcePositions": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "repeatedSourceReferences": [],
+  "optionalSourcePositions": [],
+  "sourcePositionVector": [
+    {
+      "sourcePosition": 1,
+      "sourceBullet": 12,
+      "section": null,
+      "sourceReference": "#12 https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
+      "sourceIdentity": "Captain America (2025) #12",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBullet": 13,
+      "section": null,
+      "sourceReference": "#13 https://www.marvel.com/comics/issue/130147/",
+      "sourceIdentity": "Captain America (2025) #13",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBullet": 14,
+      "section": null,
+      "sourceReference": "#14 https://www.marvel.com/comics/issue/130148/",
+      "sourceIdentity": "Captain America (2025) #14",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBullet": 15,
+      "section": null,
+      "sourceReference": "#15 https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
+      "sourceIdentity": "Captain America (2025) #15",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBullet": 16,
+      "section": null,
+      "sourceReference": "#16 https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
+      "sourceIdentity": "Captain America (2025) #16",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    }
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 5,
+    "sourceIdentityCount": 5,
+    "includedIssueCount": 5,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
+  },
+  "sourceSha256": "25871f338cc0f97b410f1443f89bf373ac34223950975c01afb495d4388cf028",
+  "proposalDigest": "d1e2fdd244f7f01a553cc7c8d2a6d8c410decc91a2ddd6a6110f623b0f9d55bf",
+  "approvalDigest": "0dd2a72002a91348b6f41503b7718714ca3ba35e1fc7df80c9cc5bfea96b5caa",
+  "insertionAnchor": {
+    "beforeId": "marvel-zombies-reading-order"
+  },
+  "timeline": 2026,
+  "sameYearOrder": [
+    "captain-america-2025-hells-angel"
+  ],
+  "peerIds": [
+    "captain-america-2025-our-secret-wars",
+    "captain-america-2025-dooms-shadow"
+  ],
+  "description": "Steve is in a coma and trapped in Hell with Doctor Doom, searching for a sword that can destroy Mephisto, as the Marvel Universe heads toward Armageddon.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/1146",
+  "sourceSection": "Vol. 3: Hell's Angel (collects #12-16)",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      130146,
+      "Captain America (2025) #12",
+      null
+    ],
+    [
+      2,
+      130147,
+      "Captain America (2025) #13",
+      null
+    ],
+    [
+      3,
+      130148,
+      "Captain America (2025) #14",
+      null
+    ],
+    [
+      4,
+      130149,
+      "Captain America (2025) #15",
+      null
+    ],
+    [
+      5,
+      135945,
+      "Captain America (2025) #16",
+      null
+    ]
+  ],
+  "annotations": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/captain-america-2025-hells-angel.json",
+    "scripts/data/owner-packets/captain-america-2025-hells-angel.json",
+    "scripts/data/owner-mappings/captain-america-2025-hells-angel.json",
+    "scripts/data/owner-overlaps/captain-america-2025-hells-angel.json",
+    "src/data/orders/captain-america-2025-hells-angel.md"
+  ],
+  "vectorSha256": "584283bf3a388a742108bc2951d9e13df2a3a0c4eba0b72a59f52d07f533c05f"
+}
