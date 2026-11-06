@@ -52,11 +52,12 @@ final class NativeTabSpikeUITests: XCTestCase {
 
     func testNativeTabsOpenTheirSections() {
         let app = launch()
+        waitForView("view-read", in: app)
         let bar = app.tabBars["ios-native-spike-tabs"]
         XCTAssertTrue(bar.waitForExistence(timeout: 60), "the native tab bar appeared")
         for (title, view) in [
-            ("Home", "view-home"),
             ("Library", "view-library"),
+            ("Home", "view-home"),
             ("Search", "view-add"),
             ("Settings", "view-data"),
         ] {
