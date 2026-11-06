@@ -1,5 +1,10 @@
 # Flow Specification: Home
 
+**Historical design record, not current requirements.** The first-run question, Home Search
+action and button checklist below predate later Home direction. Use the
+[historical-documents index](../HISTORICAL_DOCUMENTS.md) and current contribution interface
+contract; do not restore an old screen to satisfy this checklist.
+
 ## Entry Point
 App launch, or selecting the brand lockup in the sidebar.
 
