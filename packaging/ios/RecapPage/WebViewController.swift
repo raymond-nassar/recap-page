@@ -49,6 +49,9 @@ final class WebViewController: UIViewController, WKUIDelegate {
         }
         #endif
         let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
+        #if DEBUG
+        nativeTabBar.registerMessageHandler(in: configuration.userContentController)
+        #endif
         installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)
         WebViewFactory.configure(webView)
@@ -99,6 +102,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
 
     private func installPageScripts(in controller: WKUserContentController) {
         #if DEBUG
+        nativeTabBar.installScripts(in: controller)
         if DebugSupport.clearsReadingData {
             controller.addUserScript(WKUserScript(
                 source: "localStorage.removeItem('mrt.state.v2');",

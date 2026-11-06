@@ -20,11 +20,17 @@ final class NativeTabSpikeUITests: XCTestCase {
     monitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden';
     document.body.append(monitor);
     const update = () => {
+      const dialogs = [...document.querySelectorAll('dialog[open]')];
+      const parent = dialogs.at(-1) || document.body;
+      if (monitor.parentElement !== parent) parent.append(monitor);
       monitor.textContent = 'native-spike ' + JSON.stringify({
         view: document.querySelector('.view:not([hidden])')?.id,
         hash: location.hash,
         historyLength: history.length,
-        dialogs: [...document.querySelectorAll('dialog[open]')].map(dialog => dialog.id),
+        dialogs: dialogs.map(dialog => dialog.id),
+        narrow: matchMedia('(max-width: 880px)').matches,
+        webBarHidden: getComputedStyle(document.querySelector('.rail-header')).display === 'none',
+        navHeight: getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height').trim(),
       });
     };
     update();
@@ -56,6 +62,14 @@ final class NativeTabSpikeUITests: XCTestCase {
             XCTWaiter.wait(for: [expectation], timeout: 30),
             .completed,
             "the \(id) view opened; monitor: \(monitor.label)")
+    }
+
+    private func waitForSelectedTab(_ title: String, in app: XCUIApplication) {
+        let tab = app.tabBars["ios-native-spike-tabs"].buttons[title]
+        XCTAssertTrue(tab.waitForExistence(timeout: 30), "\(title) tab appeared")
+        let selected = XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in tab.isSelected }, object: tab)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 30), .completed, "\(title) tab is selected")
     }
 
     private func capture(_ app: XCUIApplication, named name: String) {
@@ -94,6 +108,17 @@ final class NativeTabSpikeUITests: XCTestCase {
         waitForView("view-read", in: app)
         let bar = app.tabBars["ios-native-spike-tabs"]
         XCTAssertTrue(bar.waitForExistence(timeout: 60), "the native tab bar appeared")
+        let state = monitor(in: app).label
+        if state.contains("\"narrow\":true") {
+            XCTAssertTrue(state.contains("\"webBarHidden\":true"), "the narrow web bar is hidden")
+            XCTAssertTrue(state.contains("\"navHeight\":\"0px\""), "the removed web bar reserves no height")
+        } else {
+            XCTAssertTrue(state.contains("\"webBarHidden\":false"), "the wide web rail remains visible")
+        }
+        if bar.buttons["Library"].isSelected {
+            bar.buttons["Home"].tap()
+            waitForView("view-home", in: app)
+        }
         for (title, view) in [
             ("Library", "view-library"),
             ("Home", "view-home"),
@@ -120,6 +145,42 @@ final class NativeTabSpikeUITests: XCTestCase {
         capture(app, named: "native-tab-library-return")
     }
 
+    func testWebNavigationUpdatesNativeSelection() {
+        let app = launch()
+        waitForView("view-read", in: app)
+        waitForSelectedTab("Library", in: app)
+
+        let footer = app.webViews.firstMatch.links.matching(
+            NSPredicate(format: "label BEGINSWITH %@", "Unofficial fan project")).firstMatch
+        XCTAssertTrue(footer.waitForExistence(timeout: 30), "the About footer appeared")
+        footer.tap()
+        waitForView("view-about", in: app)
+        waitForSelectedTab("Library", in: app)
+
+        openSeededList(in: app)
+        let search = app.webViews.firstMatch.links.matching(
+            NSPredicate(format: "label == %@ AND hittable == YES", "Search")).firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 30), "the reading-list Search link appeared")
+        search.tap()
+        waitForView("view-add", in: app)
+        waitForSelectedTab("Search", in: app)
+
+        let searchComics = app.webViews.firstMatch.links["Search comics"].firstMatch
+        XCTAssertTrue(searchComics.waitForExistence(timeout: 30), "Search comics appeared")
+        searchComics.tap()
+        waitForView("view-add-search", in: app)
+        waitForSelectedTab("Search", in: app)
+        XCTAssertTrue(monitor(in: app).label.contains("\"hash\":\"#/add-search\""),
+                      "native selection does not replace the child route")
+
+        let home = app.webViews.firstMatch.links["Home"].firstMatch
+        XCTAssertTrue(home.waitForExistence(timeout: 30), "the Home breadcrumb appeared")
+        home.tap()
+        waitForView("view-home", in: app)
+        waitForSelectedTab("Home", in: app)
+        capture(app, named: "native-tab-link-navigation")
+    }
+
     func testBackGestureOnInitialPage() {
         let app = launch()
         waitForView("view-read", in: app)
@@ -138,20 +199,26 @@ final class NativeTabSpikeUITests: XCTestCase {
         openSeededList(in: app)
         let before = monitor(in: app).label
         swipeBack(in: app)
-        waitForView("view-library", in: app)
+        Thread.sleep(forTimeInterval: 2)
         let afterSwipe = monitor(in: app).label
+        print("NATIVE_SPIKE_GESTURE reading before=\(before) swipe=\(afterSwipe)")
         capture(app, named: "native-gesture-reading-list")
-
-        let list = app.webViews.firstMatch.links.matching(
-            NSPredicate(format: "label BEGINSWITH %@", "iOS presentation fixture")).firstMatch
-        XCTAssertTrue(list.waitForExistence(timeout: 30), "the seeded list remains available")
-        list.tap()
-        waitForView("view-read", in: app)
+        let swipeReturnedToLibrary = afterSwipe.contains("\"view\":\"view-library\"")
+        if swipeReturnedToLibrary {
+            let list = app.webViews.firstMatch.links.matching(
+                NSPredicate(format: "label BEGINSWITH %@", "iOS presentation fixture")).firstMatch
+            XCTAssertTrue(list.waitForExistence(timeout: 30), "the seeded list remains available")
+            list.tap()
+            waitForView("view-read", in: app)
+        } else {
+            XCTAssertTrue(afterSwipe.contains("\"view\":\"view-read\""), "the drag stayed on the reading list")
+        }
         let breadcrumb = app.webViews.firstMatch.links.matching(identifier: "Library").firstMatch
         XCTAssertTrue(breadcrumb.waitForExistence(timeout: 30), "the existing Library breadcrumb appeared")
         breadcrumb.tap()
         waitForView("view-library", in: app)
-        print("NATIVE_SPIKE_GESTURE reading before=\(before) swipe=\(afterSwipe) breadcrumb=\(monitor(in: app).label)")
+        print("NATIVE_SPIKE_GESTURE breadcrumb=\(monitor(in: app).label)")
+        XCTAssertTrue(swipeReturnedToLibrary, "the synthetic drag returned to the breadcrumb's Library destination")
     }
 
     func testBackGestureWithDialogOpen() {
