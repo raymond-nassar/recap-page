@@ -217,6 +217,11 @@ final class NativeTabSpikeUITests: XCTestCase {
         XCTAssertTrue(childRoutePreserved, "native selection does not replace the child route: \(childState)")
         print("NATIVE_SPIKE_ROUTE child=\(childState)")
 
+        let back = app.webViews.firstMatch.buttons["Back"].firstMatch
+        XCTAssertTrue(back.waitForExistence(timeout: 30), "the existing Back action appeared")
+        back.tap()
+        waitForView("view-add", in: app)
+        waitForSelectedTab("Search", in: app)
         let home = app.webViews.firstMatch.links["Home"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30), "the Home breadcrumb appeared")
         home.tap()
@@ -285,7 +290,7 @@ final class NativeTabSpikeUITests: XCTestCase {
         } else {
             let home = app.webViews.firstMatch.links["Home"].firstMatch
             XCTAssertTrue(home.waitForExistence(timeout: 30), "the Home breadcrumb appeared")
-            revealNativeTarget(home, in: app)
+            XCTAssertTrue(home.isHittable, "the baseline Home navigation is hittable")
             home.tap()
         }
         waitForView("view-home", in: app)

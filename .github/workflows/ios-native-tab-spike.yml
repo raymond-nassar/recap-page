@@ -71,8 +71,18 @@ jobs:
 
       - name: Exercise the native tabs and gesture
         timeout-minutes: 20
+        env:
+          SPIKE_TARGETED: ${{ contains(github.event.head_commit.message, '[spike-targeted]') }}
         run: |
           set -o pipefail
+          if [ "$SPIKE_TARGETED" = true ]; then
+            test_selection=(-only-testing:RecapPageUITests/NativeTabSpikeUITests/testWebNavigationUpdatesNativeSelection)
+          else
+            test_selection=(
+              -only-testing:RecapPageUITests/NativeTabSpikeUITests
+              -skip-testing:RecapPageUITests/NativeTabSpikeUITests/testMatchedLibrarySearchBackJourney
+            )
+          fi
           xcrun simctl io "$SPIKE_UDID" recordVideo --codec=h264 "$RUNNER_TEMP/native-tab-focused.mov" \
             > "$RUNNER_TEMP/native-tab-focused-video.log" 2>&1 &
           recorder=$!
@@ -87,8 +97,7 @@ jobs:
             -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
             -parallel-testing-enabled NO \
-            -only-testing:RecapPageUITests/NativeTabSpikeUITests \
-            -skip-testing:RecapPageUITests/NativeTabSpikeUITests/testMatchedLibrarySearchBackJourney \
+            "${test_selection[@]}" \
             -resultBundlePath "$RUNNER_TEMP/native-tab-spike.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-spike.log"
           statuses=("${PIPESTATUS[@]}")
@@ -121,7 +130,7 @@ jobs:
           exit "${statuses[0]}"
 
       - name: Measure existing presentation-test impact
-        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' }}
+        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' && !contains(github.event.head_commit.message, '[spike-targeted]') }}
         timeout-minutes: 20
         run: |
           set -o pipefail
@@ -262,6 +271,7 @@ jobs:
 
   ipad:
     name: Native tab bar spike on iPad
+    if: ${{ !contains(github.event.head_commit.message, '[spike-targeted]') }}
     runs-on: macos-26
     timeout-minutes: 70
     env:
