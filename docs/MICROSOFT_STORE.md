@@ -1,9 +1,9 @@
 # Microsoft Store package and certification proof
 
-Windows packaging and certification evidence for Recap Page. These results describe the recorded
-package candidates, not a published Store release.
+Windows packaging procedures with historical certification evidence, not live Store status.
+Use the [submission packet](MICROSOFT_STORE_SUBMISSION.md) and release policy for current actions.
 
-## Current status
+## Historical certification status
 
 The first x64/ARM64 version `2.0.0.0` bundle was submitted on 2026-08-29 and failed certification
 under technical requirement 10.1.2.10 Functionality. The tester could launch the browser shell, but
@@ -23,7 +23,7 @@ app checked GitHub by default, offered a direct standalone ZIP, and told readers
 folder. The next candidate removes that path from the one shared app and adds exact package-content
 inspection.
 
-The current release candidate builds signed x64 and ARM64 version `2.1.0.0` proof packages,
+The recorded release candidate built signed x64 and ARM64 version `2.1.0.0` proof packages,
 one x64/ARM64 bundle, and an isolated x64 `2.1.0.1` update package. Store submission and publication remain
 separate actions.
 Those versions record this package candidate. Later builds derive Store revision `.0` and the

@@ -2339,6 +2339,16 @@
     "fp": "fcca1b9ce2478dad",
     "head": "Comic, series, and creator metadata comes from the community"
   },
+  "docs/MAINTAINING.md|relocate-live-citations|scripts/relocate-anchors.mjs:24-30|0": {
+    "anchor": "scripts/relocate-anchors.mjs:24-30",
+    "fp": "442a466ae36970bc",
+    "head": "const USAGE = ["
+  },
+  "docs/MAINTAINING.md|resolve-selected-merge-conflicts|scripts/resolve-anchor-conflicts.mjs:42-48|0": {
+    "anchor": "scripts/resolve-anchor-conflicts.mjs:42-48",
+    "fp": "7625360f880d9c5c",
+    "head": "const USAGE = ["
+  },
   "docs/PUBLICATION_RUNBOOK.md|before-anything-is-flipped|docs/DATA_PROVENANCE.md:8-9|0": {
     "anchor": "docs/DATA_PROVENANCE.md:8-9",
     "fp": "c591f8eb9ec4e139",

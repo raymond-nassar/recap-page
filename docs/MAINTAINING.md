@@ -765,8 +765,8 @@ guides and 14 exact rows, which is why release validation names a complete known
 assuming every release contains five guides. MC2 and Apocalypse: The Twelve retain complete blocker
 records for 273 source rows and 21 exact gaps. MC2 keeps `universeScope: "alternate"` in the
 inventory; blocker records remain on schema version 1 and do not duplicate universe scope. All
-earlier blocker records remain unchanged. Second Clone Saga is blocked with 20 metadata gaps across
-its complete 161-row source order. Marvel 2099 now publishes 172 distinct exact issues from all 271
+earlier blocker records remain historical; [later MC2 and Second Clone Saga delivery](DATA_PROVENANCE.md#owner-requested-mc2-and-second-clone-saga)
+publishes exact rows with gaps preserved, not blocked lists. Marvel 2099 publishes 172 distinct exact issues from all 271
 source positions while preserving one repeated occurrence and 98 owner-approved metadata
 exclusions. It keeps `universeScope: "alternate"` in the inventory. Position 58 is the final
 maintained pre-Maximum Security entry, so the sequential source is exhausted and there
@@ -1684,3 +1684,72 @@ read-back, remove the exact temporary local copies and Actions artifact. Deletio
 upload, changes to a draft, certification and publication are separate owner actions,
 not permissions implied by this implementation. The bundle is locally proof-signed,
 not Store-signed; do not install it on the personal Store installation.
+
+## Relocate citations and resolve renumber-only conflicts
+
+Use these opt-in helpers during an active delivery, not for standalone citation housekeeping.
+They assist citation-number changes; the strict anchors checker remains the acceptance authority.
+For document status and current authorities, use the [historical-documents index](HISTORICAL_DOCUMENTS.md).
+Historical status is not an anchors exemption or permission to rewrite a frozen record.
+
+### Relocate live citations
+
+Run from the repository root after target lines move. Choose the exact commit whose target content
+matches the currently blessed lock, not simply the latest main commit. The command interface is
+defined at `scripts/relocate-anchors.mjs:24-30`.
+
+```text
+node scripts/relocate-anchors.mjs --base <blessed-target-commit>
+node scripts/relocate-anchors.mjs --base <blessed-target-commit> --apply --approved-sha256 <preview-digest>
+```
+
+The first command is read-only. Review every proposed old/new range against the claim and target
+text before using its exact digest in the second command. The helper requires content search and
+diff arithmetic to agree, with unchanged cited content apart from whitespace. A repeated head,
+edited range boundary, changed content or any other refusal blocks the whole apply. Pinned,
+historical and local-only citations are outside its scope; new claims still need human review.
+
+Apply rewrites citing documents, never the lock or history registry. A changed tree requires a
+fresh preview and review, not reuse of a digest or a second application of the old mapping.
+Resolve refusals by inspecting the claim and evidence; do not weaken the gate or change the lock
+to make the helper accept an uncertain target.
+
+### Resolve selected merge conflicts
+
+Use only during an in-progress Git merge with full local history and selected unmerged files.
+The helper reads the merge base, HEAD, MERGE_HEAD and index stages; it does not start or finish
+the merge. Keep the conflicted files unmerged in the index until after applying the reviewed plan.
+The command interface is defined at `scripts/resolve-anchor-conflicts.mjs:42-48`.
+
+```text
+node scripts/resolve-anchor-conflicts.mjs --file docs/ARCHITECTURE.md
+node scripts/resolve-anchor-conflicts.mjs --file docs/ARCHITECTURE.md --apply --approved-sha256 <preview-digest>
+```
+
+Repeat `--file` for each explicitly selected file, using repository-relative paths with `/`
+separators even in PowerShell. Review the default read-only preview against all conflict sides,
+their claims and final target text. Only citation-renumbering conflicts belong here; changed prose,
+changed citation identity or uncertain evidence needs manual resolution. Any refusal blocks all
+selected writes. Apply requires the exact preview digest and unchanged merge evidence.
+
+Stage the resolved files after apply. Resolve any lock conflict separately; neither helper edits
+the lock or registry. Recheck the final integrated tree, because selecting a conflict side or
+editing after a re-aim can invalidate earlier evidence.
+
+### Accept the final evidence
+
+Stage any new documents, then run:
+
+```text
+npm run anchors
+npm run anchors:bless
+npm run anchors
+```
+
+Before blessing, reconcile every drift, addition and removal with an intended citation change.
+Read every claim-and-line pairing printed by bless, including collision notices; if a pairing is
+wrong, correct the citation and inspect again. Never bless merely to clear a failure.
+The final check must exit zero with zero drifted, zero new and zero removed.
+Ordinary blessing cannot create or repair immutable history declarations; use the separately
+approved [historical evidence flow](../CONTRIBUTING.md#historical-evidence-anchors) when that is
+actually required, not as an archive marker.

@@ -1,5 +1,10 @@
 # Jobs-to-be-Done: Home
 
+**Historical design rationale, not current requirements.** "Approved Solution" below records
+an earlier first-run design, not renewed approval. Use the
+[historical-documents index](../HISTORICAL_DOCUMENTS.md) and current Home direction before
+planning a change.
+
 ## Primary Job
 When I open Recap Page with an empty library, I want to choose how I want to explore Marvel
 reading, so I can reach a useful set of Reading Lists without scanning the entire catalogue first.

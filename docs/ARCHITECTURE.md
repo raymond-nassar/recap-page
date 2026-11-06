@@ -1088,9 +1088,9 @@ sits beside Marvel Unlimited rather than replacing it. [Data provenance](DATA_PR
 continues the build-time side of the content flow, and [Maintaining Recap Page](MAINTAINING.md)
 owns the procedures that generate and release it.
 
-The [UX study](UX_STUDY.md) and the documents under `docs/ux` are dated design evidence. They explain
-decisions made during earlier interface passes, but the current README, running guide and tested
-route registries own the behavior a reader should expect now.
+The [historical-documents index](HISTORICAL_DOCUMENTS.md) distinguishes the original UX study and
+dated design records from current guidance. Earlier recommendations are evidence, not requirements;
+the current contribution contract, running guide and tested routes own the behavior expected now.
 
 ## The Windows package is a launch envelope
 
