@@ -68,11 +68,11 @@ jobs:
   test:
     name: Tests on Node ${{ matrix.node }}
     runs-on: ubuntu-latest
-    # The outer backstop, not the mechanism. Every step below carries its own deadline
-    # and they sum to 20 minutes, so this can only fire on time spent outside a step:
-    # runner setup, post-run and cleanup, measured at 8 seconds at their worst. That
-    # ordering is deliberate and a test pins it. See the note above the step deadlines.
-    timeout-minutes: 22
+    # The step deadlines sum to 22 minutes. Node 20 tests took 241 seconds on
+    # 2026-11-06, exhausting the former four-minute test deadline.
+    # The outer backstop fires only outside a step: setup and cleanup took at most
+    # eight seconds in the prior sample. A test pins this ordering.
+    timeout-minutes: 24
     strategy:
       fail-fast: false
       matrix:
@@ -148,7 +148,7 @@ jobs:
       # would put this repository's traffic on a third party's rate limit on every
       # push. It stays a manual pre-release check.
       - name: Run tests
-        timeout-minutes: 4
+        timeout-minutes: 6
         run: npm test
 
   lint:
