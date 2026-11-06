@@ -20,9 +20,12 @@ import {
 import { historicalSpiderManSelectionLibraryDigest, pathsWithinLists } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
-import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
+import { recordedEditorialDigest, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
+import {
+  beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
+} from './amazing-spider-man-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -159,15 +162,21 @@ export async function assertOwnerDeliveryContract(contract, {
     }
     return peer;
   }));
-  const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
+  const liveRecordedOrders = withRetiredOrders(library.orders.filter((row) =>
     recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
-  // Every recorded review predates the description revision record, so each digest below hashes
-  // the copy that review saw.
-  const recordedManifest = descriptionRevisions.undoManifest(
-    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds }));
+  const liveRecordedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds });
+  const vectorsFor = (orders) => orders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
+  const liveRecordedDigest = libraryDigestFor(liveRecordedManifest, vectorsFor(liveRecordedOrders));
+  const descriptionRecordedManifest = descriptionRevisions.undoManifest(liveRecordedManifest);
+  const descriptionRecordedDigest = libraryDigestFor(descriptionRecordedManifest, vectorsFor(liveRecordedOrders));
+  const expandedReview = [liveRecordedDigest, descriptionRecordedDigest].includes(report.libraryDigest);
+  const recordedOrders = expandedReview ? liveRecordedOrders : beforeAmazingSpiderManSupplementOrders(liveRecordedOrders);
+  const recordedManifest = expandedReview
+    ? (report.libraryDigest === liveRecordedDigest ? liveRecordedManifest : descriptionRecordedManifest)
+    : descriptionRevisions.undoManifest(beforeAmazingSpiderManSupplementManifest(liveRecordedManifest));
   const digestLibrary = contract.libraryDigest == null
     ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
-  const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
+  const recordedVectors = vectorsFor(recordedOrders);
   const identityUpdate = identityRevisions.guides.some((entry) => entry.id === id);
   const cutoff = identityUpdate ? mapping.relationshipReview.reviewedAt : '';
   const recordedCurrentDigest = libraryDigestFor({
@@ -177,15 +186,18 @@ export async function assertOwnerDeliveryContract(contract, {
   // stood, so its recorded subset needs no historical reconstruction. Only its own stated digest can
   // select this, and the digest must still match.
   const plainRecordedDigest = libraryDigestFor(recordedManifest, recordedVectors);
-  const currentLibraryDigest = registeredOwnerBaselineRows.has(id)
+  const currentLibraryDigest = expandedReview ? report.libraryDigest : registeredOwnerBaselineRows.has(id)
     ? report.libraryDigest
     : (contract.libraryDigest === recordedCurrentDigest
       ? recordedCurrentDigest
       : (contract.libraryDigest != null && contract.libraryDigest === plainRecordedDigest
         ? plainRecordedDigest : digestLibrary(recordedManifest, recordedVectors, { presentIds: [id, ...peerIds] })));
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
-  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
-    recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
+  const comparisonOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
+  assert.deepEqual(buildComparisonReport({
+    candidateIds: expectedIds,
+    orders: expandedReview ? comparisonOrders : beforeAmazingSpiderManSupplementOrders(comparisonOrders),
+  }).comparisons, report.comparisons);
   assert.equal(current.comparisonCount, peerCount);
   assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest,
@@ -277,9 +289,17 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   // The recorded report covers the library this guide was reviewed against. Anything published
   // since is held to the same registered-later-peer rule as an ordinary owner guide.
   const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
-  const orders = allOrders.filter((entry) => recordedIds.has(entry.orderId));
-  const recordedManifest = descriptionRevisions.undoManifest(
-    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id }));
+  const liveRecordedOrders = allOrders.filter((entry) => recordedIds.has(entry.orderId));
+  const liveRecordedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id });
+  const liveVectors = liveRecordedOrders.map((entry) => ({ id: entry.orderId, issueIds: entry.issueIds.map(String) }));
+  const liveDigest = libraryDigestFor(liveRecordedManifest, liveVectors);
+  const descriptionRecordedManifest = descriptionRevisions.undoManifest(liveRecordedManifest);
+  const descriptionDigest = libraryDigestFor(descriptionRecordedManifest, liveVectors);
+  const expandedReview = [liveDigest, descriptionDigest].includes(report.libraryDigest);
+  const orders = expandedReview ? liveRecordedOrders : beforeAmazingSpiderManSupplementOrders(liveRecordedOrders);
+  const recordedManifest = expandedReview
+    ? (report.libraryDigest === liveDigest ? liveRecordedManifest : descriptionRecordedManifest)
+    : descriptionRevisions.undoManifest(beforeAmazingSpiderManSupplementManifest(liveRecordedManifest));
   const current = {
     candidateId: id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest,
     libraryDigest: libraryDigestFor(recordedManifest,

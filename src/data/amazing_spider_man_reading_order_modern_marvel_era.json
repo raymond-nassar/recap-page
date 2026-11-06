@@ -3,11 +3,11 @@
   "name": "Amazing Spider-Man",
   "description": "In 1962 Peter Parker's flagship adventures begin, and Spectacular, Web of Spider-Man and Marvel Team-Up join them on the way to 2025. Lee and Ditko, then Lee and John Romita Sr., give way to Conway and Stern, then Zeb Wells' run, Venom War and Joe Kelly's 2025 series. Some Spectacular Spider-Man entries are placeholders.",
   "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
-  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide, with owner-selected additions",
   "sourceLicense": null,
-  "generatedAt": "2026-09-07T07:16:05.457Z",
+  "generatedAt": "2026-11-06T07:42:04.187Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 2041,
+  "count": 2144,
   "collections": 0,
   "placeholders": 7,
   "unresolved": [
@@ -15,49 +15,49 @@
       "title": "Peter Parker, The Spectacular Spider-Man #112",
       "url": null,
       "read": false,
-      "index": 305,
+      "index": 408,
       "section": null
     },
     {
       "title": "Peter Parker, The Spectacular Spider-Man #114",
       "url": null,
       "read": false,
-      "index": 307,
+      "index": 410,
       "section": null
     },
     {
       "title": "Peter Parker, The Spectacular Spider-Man Annual #5",
       "url": null,
       "read": false,
-      "index": 308,
+      "index": 411,
       "section": null
     },
     {
       "title": "Marvel Graphic Novel: Amazing Spider-Man - Parallel Lives",
       "url": null,
       "read": false,
-      "index": 389,
+      "index": 492,
       "section": null
     },
     {
       "title": "Avengers #329",
       "url": null,
       "read": false,
-      "index": 434,
+      "index": 537,
       "section": null
     },
     {
       "title": "Mighty Avengers #4.1",
       "url": null,
       "read": false,
-      "index": 1444,
+      "index": 1547,
       "section": null
     },
     {
       "title": "Mighty Avengers #5.1",
       "url": null,
       "read": false,
-      "index": 1445,
+      "index": 1548,
       "section": null
     }
   ],
@@ -3431,6 +3431,41 @@
       ]
     },
     {
+      "issueId": 19575,
+      "title": "Marvel Team-Up (1972) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/19575/marvel_team-up_1972_1",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1972-03-01T00:00:00+0000",
+      "mu": "1972-03-01T00:00:00+0000",
+      "digitalId": 8391,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/4bb87f701091e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6491,
       "title": "The Amazing Spider-Man (1963) #107",
       "number": "107",
@@ -3484,6 +3519,37 @@
         },
         {
           "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19637,
+      "title": "Marvel Team-Up (1972) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/19637/marvel_team-up_1972_2",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1972-05-01T00:00:00+0000",
+      "mu": "1972-05-01T00:00:00+0000",
+      "digitalId": 47463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5d1cce1f879a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
           "role": "writer"
         }
       ]
@@ -3543,6 +3609,37 @@
       ]
     },
     {
+      "issueId": 19648,
+      "title": "Marvel Team-Up (1972) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/19648/marvel_team-up_1972_3",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1972-07-01T00:00:00+0000",
+      "mu": "1972-07-01T00:00:00+0000",
+      "digitalId": 47464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5d1cd6ceb4b39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6496,
       "title": "The Amazing Spider-Man (1963) #111",
       "number": "111",
@@ -3589,6 +3686,37 @@
         {
           "name": "John Romita Sr.",
           "role": "cover artist"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19659,
+      "title": "Marvel Team-Up (1972) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/19659/marvel_team-up_1972_4",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1972-09-01T00:00:00+0000",
+      "mu": "1972-09-01T00:00:00+0000",
+      "digitalId": 12306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/4bb50ec2bbbef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
         },
         {
           "name": "Gerry Conway",
@@ -3659,6 +3787,37 @@
       ]
     },
     {
+      "issueId": 19670,
+      "title": "Marvel Team-Up (1972) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/19670/marvel_team-up_1972_5",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1972-11-01T00:00:00+0000",
+      "mu": "1972-11-01T00:00:00+0000",
+      "digitalId": 47465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5d1f470fbc1ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6500,
       "title": "The Amazing Spider-Man (1963) #115",
       "number": "115",
@@ -3716,6 +3875,37 @@
         },
         {
           "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19681,
+      "title": "Marvel Team-Up (1972) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/19681/marvel_team-up_1972_6",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-01-01T00:00:00+0000",
+      "mu": "1973-01-01T00:00:00+0000",
+      "digitalId": 47466,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5d1f51f4ed8c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
           "role": "writer"
         }
       ]
@@ -3791,6 +3981,37 @@
       ]
     },
     {
+      "issueId": 19692,
+      "title": "Marvel Team-Up (1972) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/19692/marvel_team-up_1972_7",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-03-01T00:00:00+0000",
+      "mu": "1973-03-01T00:00:00+0000",
+      "digitalId": 47467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5d1f6232214ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6504,
       "title": "The Amazing Spider-Man (1963) #119",
       "number": "119",
@@ -3810,6 +4031,37 @@
         {
           "name": "John Romita Sr.",
           "role": "cover artist"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19703,
+      "title": "Marvel Team-Up (1972) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/19703/marvel_team-up_1972_8",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-04-01T00:00:00+0000",
+      "mu": "1973-04-01T00:00:00+0000",
+      "digitalId": 47468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5d1f6b2c41a9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
         },
         {
           "name": "Gerry Conway",
@@ -3853,6 +4105,33 @@
       ]
     },
     {
+      "issueId": 19714,
+      "title": "Marvel Team-Up (1972) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/19714/marvel_team-up_1972_9",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-05-01T00:00:00+0000",
+      "mu": "1973-05-01T00:00:00+0000",
+      "digitalId": 23065,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/50add29e6859f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6507,
       "title": "The Amazing Spider-Man (1963) #121",
       "number": "121",
@@ -3875,6 +4154,37 @@
         },
         {
           "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19576,
+      "title": "Marvel Team-Up (1972) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/19576/marvel_team-up_1972_10",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-06-01T00:00:00+0000",
+      "mu": "1973-06-01T00:00:00+0000",
+      "digitalId": 47469,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5d1f745de0929",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
           "role": "penciler"
         },
         {
@@ -3915,6 +4225,41 @@
       ]
     },
     {
+      "issueId": 19587,
+      "title": "Marvel Team-Up (1972) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/19587/marvel_team-up_1972_11",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-07-01T00:00:00+0000",
+      "mu": "1973-07-01T00:00:00+0000",
+      "digitalId": 47470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5d1f7c22b5054",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6509,
       "title": "The Amazing Spider-Man (1963) #123",
       "number": "123",
@@ -3941,6 +4286,41 @@
         },
         {
           "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19598,
+      "title": "Marvel Team-Up (1972) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/19598/marvel_team-up_1972_12",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-08-01T00:00:00+0000",
+      "mu": "1973-08-01T00:00:00+0000",
+      "digitalId": 46483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/59d7c9065267c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Don Perlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
           "role": "writer"
         }
       ]
@@ -3981,6 +4361,37 @@
       ]
     },
     {
+      "issueId": 19609,
+      "title": "Marvel Team-Up (1972) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/19609/marvel_team-up_1972_13",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-09-01T00:00:00+0000",
+      "mu": "1973-09-01T00:00:00+0000",
+      "digitalId": 47616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5d1f924324e16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6511,
       "title": "The Amazing Spider-Man (1963) #125",
       "number": "125",
@@ -4011,6 +4422,33 @@
         },
         {
           "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19620,
+      "title": "Marvel Team-Up (1972) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/19620/marvel_team-up_1972_14",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1973-10-01T00:00:00+0000",
+      "mu": "1973-10-01T00:00:00+0000",
+      "digitalId": 47617,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5d1f9f21710f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
           "role": "writer"
         }
       ]
@@ -5313,6 +5751,37 @@
       ]
     },
     {
+      "issueId": 14542,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/14542/peter_parker_the_spectacular_spider-man_1976_1",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1976-12-01T00:00:00+0000",
+      "mu": "1976-12-01T00:00:00+0000",
+      "digitalId": 45620,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5a06251af2eae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6554,
       "title": "The Amazing Spider-Man (1963) #164",
       "number": "164",
@@ -5339,6 +5808,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14653,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/14653/peter_parker_the_spectacular_spider-man_1976_2",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-01-01T00:00:00+0000",
+      "mu": "1977-01-01T00:00:00+0000",
+      "digitalId": 45621,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5a0624ea6a7ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
           "role": "writer"
         }
       ]
@@ -5414,6 +5914,41 @@
       ]
     },
     {
+      "issueId": 14728,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/14728/peter_parker_the_spectacular_spider-man_1976_3",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-02-01T00:00:00+0000",
+      "mu": "1977-02-01T00:00:00+0000",
+      "digitalId": 45622,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5a0625677494e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6556,
       "title": "The Amazing Spider-Man (1963) #166",
       "number": "166",
@@ -5440,6 +5975,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14739,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/14739/peter_parker_the_spectacular_spider-man_1976_4",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-03-01T00:00:00+0000",
+      "mu": "1977-03-01T00:00:00+0000",
+      "digitalId": 45623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/5a062564ee206",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
           "role": "writer"
         }
       ]
@@ -5476,6 +6042,37 @@
       ]
     },
     {
+      "issueId": 14750,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/14750/peter_parker_the_spectacular_spider-man_1976_5",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-04-01T00:00:00+0000",
+      "mu": "1977-04-01T00:00:00+0000",
+      "digitalId": 45624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5a06254724bb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6558,
       "title": "The Amazing Spider-Man (1963) #168",
       "number": "168",
@@ -5507,6 +6104,37 @@
       ]
     },
     {
+      "issueId": 14761,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/14761/peter_parker_the_spectacular_spider-man_1976_6",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-05-01T00:00:00+0000",
+      "mu": "1977-05-01T00:00:00+0000",
+      "digitalId": 45625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5a0624f89ac32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6559,
       "title": "The Amazing Spider-Man (1963) #169",
       "number": "169",
@@ -5533,6 +6161,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14772,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/14772/peter_parker_the_spectacular_spider-man_1976_7",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-06-01T00:00:00+0000",
+      "mu": "1977-06-01T00:00:00+0000",
+      "digitalId": 45626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5a06264592d5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
           "role": "writer"
         }
       ]
@@ -5573,6 +6232,37 @@
       ]
     },
     {
+      "issueId": 14783,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/14783/peter_parker_the_spectacular_spider-man_1976_8",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-07-01T00:00:00+0000",
+      "mu": "1977-07-01T00:00:00+0000",
+      "digitalId": 45627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5a0626551a786",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6562,
       "title": "The Amazing Spider-Man (1963) #171",
       "number": "171",
@@ -5599,6 +6289,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14794,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/14794/peter_parker_the_spectacular_spider-man_1976_9",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-08-01T00:00:00+0000",
+      "mu": "1977-08-01T00:00:00+0000",
+      "digitalId": 45628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5a0625ca1b6b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -5635,6 +6356,41 @@
       ]
     },
     {
+      "issueId": 14543,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/14543/peter_parker_the_spectacular_spider-man_1976_10",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-09-01T00:00:00+0000",
+      "mu": "1977-09-01T00:00:00+0000",
+      "digitalId": 45629,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5a06258ec0909",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6564,
       "title": "The Amazing Spider-Man (1963) #173",
       "number": "173",
@@ -5661,6 +6417,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14554,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/14554/peter_parker_the_spectacular_spider-man_1976_11",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-10-01T00:00:00+0000",
+      "mu": "1977-10-01T00:00:00+0000",
+      "digitalId": 45630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5a06258c29ad2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
           "role": "writer"
         }
       ]
@@ -5701,6 +6488,41 @@
       ]
     },
     {
+      "issueId": 14565,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/14565/peter_parker_the_spectacular_spider-man_1976_12",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-11-01T00:00:00+0000",
+      "mu": "1977-11-01T00:00:00+0000",
+      "digitalId": 45631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/5a0625ae3b0b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6566,
       "title": "The Amazing Spider-Man (1963) #175",
       "number": "175",
@@ -5727,6 +6549,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14576,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/14576/peter_parker_the_spectacular_spider-man_1976_13",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1977-12-01T00:00:00+0000",
+      "mu": "1977-12-01T00:00:00+0000",
+      "digitalId": 45632,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5a0626b74657e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -5763,6 +6616,41 @@
       ]
     },
     {
+      "issueId": 14587,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/14587/peter_parker_the_spectacular_spider-man_1976_14",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-01-01T00:00:00+0000",
+      "mu": "1978-01-01T00:00:00+0000",
+      "digitalId": 45633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a0626cfd27b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6568,
       "title": "The Amazing Spider-Man (1963) #177",
       "number": "177",
@@ -5789,6 +6677,41 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14598,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/14598/peter_parker_the_spectacular_spider-man_1976_15",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-02-01T00:00:00+0000",
+      "mu": "1978-02-01T00:00:00+0000",
+      "digitalId": 45634,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5a0626a42ab89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ernie Chan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -5825,6 +6748,37 @@
       ]
     },
     {
+      "issueId": 14609,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/14609/peter_parker_the_spectacular_spider-man_1976_16",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-03-01T00:00:00+0000",
+      "mu": "1978-03-01T00:00:00+0000",
+      "digitalId": 47214,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5cffc73994075",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eliot S. Maggin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6570,
       "title": "The Amazing Spider-Man (1963) #179",
       "number": "179",
@@ -5851,6 +6805,37 @@
         },
         {
           "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14620,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/14620/peter_parker_the_spectacular_spider-man_1976_17",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-04-01T00:00:00+0000",
+      "mu": "1978-04-01T00:00:00+0000",
+      "digitalId": 3055,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5a06267b712ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -5887,6 +6872,37 @@
       ]
     },
     {
+      "issueId": 14631,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/14631/peter_parker_the_spectacular_spider-man_1976_18",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-05-01T00:00:00+0000",
+      "mu": "1978-05-01T00:00:00+0000",
+      "digitalId": 6676,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a06269b2e9cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6573,
       "title": "The Amazing Spider-Man (1963) #181",
       "number": "181",
@@ -5898,6 +6914,37 @@
       "digitalId": 32137,
       "cover": {
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5261757d6c8be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14642,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/14642/peter_parker_the_spectacular_spider-man_1976_19",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-06-01T00:00:00+0000",
+      "mu": "1978-06-01T00:00:00+0000",
+      "digitalId": 51791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5cffc76075dd5",
         "ext": "jpg"
       },
       "description": null,
@@ -5949,6 +6996,37 @@
       ]
     },
     {
+      "issueId": 14654,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/14654/peter_parker_the_spectacular_spider-man_1976_20",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-07-01T00:00:00+0000",
+      "mu": "1978-07-01T00:00:00+0000",
+      "digitalId": 51792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5cffc755c74e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6575,
       "title": "The Amazing Spider-Man (1963) #183",
       "number": "183",
@@ -5975,6 +7053,37 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14665,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/14665/peter_parker_the_spectacular_spider-man_1976_21",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-08-01T00:00:00+0000",
+      "mu": "1978-08-01T00:00:00+0000",
+      "digitalId": 51793,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5cffc7285db23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6011,6 +7120,24 @@
       ]
     },
     {
+      "issueId": 14676,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/14676/peter_parker_the_spectacular_spider-man_1976_22",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-09-10T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 35102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/58334d84ca8fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
       "issueId": 6577,
       "title": "The Amazing Spider-Man (1963) #185",
       "number": "185",
@@ -6040,6 +7167,24 @@
           "role": "writer"
         }
       ]
+    },
+    {
+      "issueId": 14687,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/14687/peter_parker_the_spectacular_spider-man_1976_23",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-10-10T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 35103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/58334e2c1b748",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
     },
     {
       "issueId": 16885,
@@ -6173,6 +7318,33 @@
       ]
     },
     {
+      "issueId": 14698,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/14698/peter_parker_the_spectacular_spider-man_1976_24",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-11-01T00:00:00+0000",
+      "mu": "1978-11-01T00:00:00+0000",
+      "digitalId": 51794,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/04/5cffc7437ebe9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6579,
       "title": "The Amazing Spider-Man (1963) #187",
       "number": "187",
@@ -6199,6 +7371,37 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14709,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/14709/peter_parker_the_spectacular_spider-man_1976_25",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1978-12-01T00:00:00+0000",
+      "mu": "1978-12-01T00:00:00+0000",
+      "digitalId": 46619,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5a0626826bfeb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6235,6 +7438,37 @@
       ]
     },
     {
+      "issueId": 14720,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/14720/peter_parker_the_spectacular_spider-man_1976_26",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-01-01T00:00:00+0000",
+      "mu": "1979-01-01T00:00:00+0000",
+      "digitalId": 46620,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5a06276d92c85",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6581,
       "title": "The Amazing Spider-Man (1963) #189",
       "number": "189",
@@ -6261,6 +7495,37 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14725,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/14725/peter_parker_the_spectacular_spider-man_1976_27",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-02-01T00:00:00+0000",
+      "mu": "1979-02-01T00:00:00+0000",
+      "digitalId": 8601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5a06275253216",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6297,6 +7562,37 @@
       ]
     },
     {
+      "issueId": 14726,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/14726/peter_parker_the_spectacular_spider-man_1976_28",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-03-01T00:00:00+0000",
+      "mu": "1979-03-01T00:00:00+0000",
+      "digitalId": 8602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5a06273e782b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6584,
       "title": "The Amazing Spider-Man (1963) #191",
       "number": "191",
@@ -6323,6 +7619,37 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14727,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/14727/peter_parker_the_spectacular_spider-man_1976_29",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-04-01T00:00:00+0000",
+      "mu": "1979-04-01T00:00:00+0000",
+      "digitalId": 46621,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5a0626f8556bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6359,6 +7686,37 @@
       ]
     },
     {
+      "issueId": 14729,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/14729/peter_parker_the_spectacular_spider-man_1976_30",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-05-01T00:00:00+0000",
+      "mu": "1979-05-01T00:00:00+0000",
+      "digitalId": 46622,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5a0626dc9ccd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6586,
       "title": "The Amazing Spider-Man (1963) #193",
       "number": "193",
@@ -6385,6 +7743,37 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14730,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/14730/peter_parker_the_spectacular_spider-man_1976_31",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-06-01T00:00:00+0000",
+      "mu": "1979-06-01T00:00:00+0000",
+      "digitalId": 46623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5a14b9c613999",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6425,6 +7814,41 @@
       ]
     },
     {
+      "issueId": 14731,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/14731/peter_parker_the_spectacular_spider-man_1976_32",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-07-01T00:00:00+0000",
+      "mu": "1979-07-01T00:00:00+0000",
+      "digitalId": 54833,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4f60e5fcc4297",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6588,
       "title": "The Amazing Spider-Man (1963) #195",
       "number": "195",
@@ -6447,6 +7871,41 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14732,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/14732/peter_parker_the_spectacular_spider-man_1976_33",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-08-01T00:00:00+0000",
+      "mu": "1979-08-01T00:00:00+0000",
+      "digitalId": 54834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/a0/5e85e8f73e9be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6487,6 +7946,41 @@
       ]
     },
     {
+      "issueId": 14733,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/14733/peter_parker_the_spectacular_spider-man_1976_34",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-09-01T00:00:00+0000",
+      "mu": "1979-09-01T00:00:00+0000",
+      "digitalId": 54835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5e85e8e60954f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6590,
       "title": "The Amazing Spider-Man (1963) #197",
       "number": "197",
@@ -6513,6 +8007,41 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14734,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/14734/peter_parker_the_spectacular_spider-man_1976_35",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-10-01T00:00:00+0000",
+      "mu": "1979-10-01T00:00:00+0000",
+      "digitalId": 54836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/04/5e85e8eeaa8b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carmine Infantino",
+          "role": "penciler"
+        },
+        {
+          "name": "Lee Elias",
+          "role": "penciler"
+        },
+        {
+          "name": "Tony Isabella",
           "role": "writer"
         }
       ]
@@ -6549,6 +8078,41 @@
       ]
     },
     {
+      "issueId": 14735,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/14735/peter_parker_the_spectacular_spider-man_1976_36",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-11-01T00:00:00+0000",
+      "mu": "1979-11-01T00:00:00+0000",
+      "digitalId": 54837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5e85e8ffdb409",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6592,
       "title": "The Amazing Spider-Man (1963) #199",
       "number": "199",
@@ -6575,6 +8139,41 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14736,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/14736/peter_parker_the_spectacular_spider-man_1976_37",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1979-12-01T00:00:00+0000",
+      "mu": "1979-12-01T00:00:00+0000",
+      "digitalId": 54838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5e8f51bf37921",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6615,6 +8214,41 @@
       ]
     },
     {
+      "issueId": 14737,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/14737/peter_parker_the_spectacular_spider-man_1976_38",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-01-01T00:00:00+0000",
+      "mu": "1980-01-01T00:00:00+0000",
+      "digitalId": 54839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5e8f51c7761dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6596,
       "title": "The Amazing Spider-Man (1963) #201",
       "number": "201",
@@ -6641,6 +8275,41 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14738,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/14738/peter_parker_the_spectacular_spider-man_1976_39",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-02-01T00:00:00+0000",
+      "mu": "1980-02-01T00:00:00+0000",
+      "digitalId": 54840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5e8f51e018c17",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerry Bingham",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -6677,6 +8346,41 @@
       ]
     },
     {
+      "issueId": 14740,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/14740/peter_parker_the_spectacular_spider-man_1976_40",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-03-01T00:00:00+0000",
+      "mu": "1980-03-01T00:00:00+0000",
+      "digitalId": 54841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5e8f51cf4effa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ricardo Villamonte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6598,
       "title": "The Amazing Spider-Man (1963) #203",
       "number": "203",
@@ -6703,6 +8407,37 @@
         },
         {
           "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14741,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/14741/peter_parker_the_spectacular_spider-man_1976_41",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-04-01T00:00:00+0000",
+      "mu": "1980-04-01T00:00:00+0000",
+      "digitalId": 54819,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5e8f51d7ac0d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
           "role": "writer"
         }
       ]
@@ -6739,6 +8474,37 @@
       ]
     },
     {
+      "issueId": 14742,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/14742/peter_parker_the_spectacular_spider-man_1976_42",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-05-01T00:00:00+0000",
+      "mu": "1980-05-01T00:00:00+0000",
+      "digitalId": 6680,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5ceed9c72a15a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6600,
       "title": "The Amazing Spider-Man (1963) #205",
       "number": "205",
@@ -6770,6 +8536,37 @@
       ]
     },
     {
+      "issueId": 14743,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/14743/peter_parker_the_spectacular_spider-man_1976_43",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-06-01T00:00:00+0000",
+      "mu": "1980-06-01T00:00:00+0000",
+      "digitalId": 6681,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/5ceedc64d7949",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6601,
       "title": "The Amazing Spider-Man (1963) #206",
       "number": "206",
@@ -6796,6 +8593,37 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14744,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/14744/peter_parker_the_spectacular_spider-man_1976_44",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-07-01T00:00:00+0000",
+      "mu": "1980-07-01T00:00:00+0000",
+      "digitalId": 6682,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5ceee5b912b19",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Gordon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Leialoha",
           "role": "writer"
         }
       ]
@@ -6863,6 +8691,29 @@
       ]
     },
     {
+      "issueId": 14745,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/14745/peter_parker_the_spectacular_spider-man_1976_45",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-08-10T00:00:00+0000",
+      "mu": "2009-10-12T00:00:00+0000",
+      "digitalId": 6683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5ceeeece169dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Alan Weiss",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
       "issueId": 6603,
       "title": "The Amazing Spider-Man (1963) #208",
       "number": "208",
@@ -6901,6 +8752,37 @@
         },
         {
           "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14746,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/14746/peter_parker_the_spectacular_spider-man_1976_46",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-09-01T00:00:00+0000",
+      "mu": "1980-09-01T00:00:00+0000",
+      "digitalId": 6684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5cefdb4714e27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -6949,6 +8831,33 @@
       ]
     },
     {
+      "issueId": 14747,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/14747/peter_parker_the_spectacular_spider-man_1976_47",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-10-01T00:00:00+0000",
+      "mu": "1980-10-01T00:00:00+0000",
+      "digitalId": 6685,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5cefec5287ad4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6606,
       "title": "The Amazing Spider-Man (1963) #210",
       "number": "210",
@@ -6975,6 +8884,37 @@
         },
         {
           "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14748,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/14748/peter_parker_the_spectacular_spider-man_1976_48",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-11-01T00:00:00+0000",
+      "mu": "1980-11-01T00:00:00+0000",
+      "digitalId": 6686,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5ceff8914530f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7011,6 +8951,41 @@
       ]
     },
     {
+      "issueId": 14749,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/14749/peter_parker_the_spectacular_spider-man_1976_49",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-12-01T00:00:00+0000",
+      "mu": "1980-12-01T00:00:00+0000",
+      "digitalId": 6687,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5cf007b6bcb8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6608,
       "title": "The Amazing Spider-Man (1963) #212",
       "number": "212",
@@ -7037,6 +9012,45 @@
         },
         {
           "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14751,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-01-01T00:00:00+0000",
+      "mu": "1981-01-01T00:00:00+0000",
+      "digitalId": 6688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5cf0286e8546f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7073,6 +9087,41 @@
       ]
     },
     {
+      "issueId": 14752,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-02-01T00:00:00+0000",
+      "mu": "1981-02-01T00:00:00+0000",
+      "digitalId": 6689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5cf036efc0ca4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6610,
       "title": "The Amazing Spider-Man (1963) #214",
       "number": "214",
@@ -7099,6 +9148,37 @@
         },
         {
           "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14753,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/14753/peter_parker_the_spectacular_spider-man_1976_52",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-03-01T00:00:00+0000",
+      "mu": "1981-03-01T00:00:00+0000",
+      "digitalId": 6690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5cf123e72f5dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7135,6 +9215,37 @@
       ]
     },
     {
+      "issueId": 14754,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/14754/peter_parker_the_spectacular_spider-man_1976_53",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-04-01T00:00:00+0000",
+      "mu": "1981-04-01T00:00:00+0000",
+      "digitalId": 52464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5cf141d617b0c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6612,
       "title": "The Amazing Spider-Man (1963) #216",
       "number": "216",
@@ -7166,6 +9277,33 @@
       ]
     },
     {
+      "issueId": 14755,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/14755/peter_parker_the_spectacular_spider-man_1976_54",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-05-01T00:00:00+0000",
+      "mu": "2010-01-18T00:00:00+0000",
+      "digitalId": 6691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4c35fb82e71a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6613,
       "title": "The Amazing Spider-Man (1963) #217",
       "number": "217",
@@ -7192,6 +9330,37 @@
         },
         {
           "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14756,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/14756/peter_parker_the_spectacular_spider-man_1976_55",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-06-01T00:00:00+0000",
+      "mu": "1981-06-01T00:00:00+0000",
+      "digitalId": 46624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5a14b9d97ac4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Mcdonnell",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7232,6 +9401,37 @@
       ]
     },
     {
+      "issueId": 14757,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/14757/peter_parker_the_spectacular_spider-man_1976_56",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-07-01T00:00:00+0000",
+      "mu": "1981-07-01T00:00:00+0000",
+      "digitalId": 46625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5a14bb4be189c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6615,
       "title": "The Amazing Spider-Man (1963) #219",
       "number": "219",
@@ -7258,6 +9458,37 @@
         },
         {
           "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14758,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/14758/peter_parker_the_spectacular_spider-man_1976_57",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-08-01T00:00:00+0000",
+      "mu": "1981-08-01T00:00:00+0000",
+      "digitalId": 46626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5a14ba0e14604",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7294,6 +9525,37 @@
       ]
     },
     {
+      "issueId": 14759,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/14759/peter_parker_the_spectacular_spider-man_1976_58",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-09-01T00:00:00+0000",
+      "mu": "1981-09-01T00:00:00+0000",
+      "digitalId": 46627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/5a14ba41c18da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6618,
       "title": "The Amazing Spider-Man (1963) #221",
       "number": "221",
@@ -7320,6 +9582,37 @@
         },
         {
           "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14760,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/14760/peter_parker_the_spectacular_spider-man_1976_59",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-10-01T00:00:00+0000",
+      "mu": "1981-10-01T00:00:00+0000",
+      "digitalId": 46628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/5a14ba2eba621",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7356,6 +9649,45 @@
       ]
     },
     {
+      "issueId": 14762,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/14762/peter_parker_the_spectacular_spider-man_1976_60",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-11-01T00:00:00+0000",
+      "mu": "1981-11-01T00:00:00+0000",
+      "digitalId": 46629,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5a14baa5b7299",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6620,
       "title": "The Amazing Spider-Man (1963) #223",
       "number": "223",
@@ -7386,6 +9718,41 @@
         },
         {
           "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14763,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/14763/peter_parker_the_spectacular_spider-man_1976_61",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-12-01T00:00:00+0000",
+      "mu": "1981-12-01T00:00:00+0000",
+      "digitalId": 46630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5a14ba171e319",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
           "role": "writer"
         }
       ]
@@ -7496,6 +9863,37 @@
       ]
     },
     {
+      "issueId": 14764,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/14764/peter_parker_the_spectacular_spider-man_1976_62",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-01-01T00:00:00+0000",
+      "mu": "2022-06-16T00:00:00+0000",
+      "digitalId": 59753,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/62a8b3708a452",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6622,
       "title": "The Amazing Spider-Man (1963) #225",
       "number": "225",
@@ -7522,6 +9920,41 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14765,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/14765/peter_parker_the_spectacular_spider-man_1976_63",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-02-01T00:00:00+0000",
+      "mu": "2022-06-16T00:00:00+0000",
+      "digitalId": 59754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/62a8b3708b760",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -7558,6 +9991,37 @@
       ]
     },
     {
+      "issueId": 14766,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/14766/peter_parker_the_spectacular_spider-man_1976_64",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-03-01T00:00:00+0000",
+      "mu": "1982-03-01T00:00:00+0000",
+      "digitalId": 42576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/59d294cda2fd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6624,
       "title": "The Amazing Spider-Man (1963) #227",
       "number": "227",
@@ -7584,6 +10048,41 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14767,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/14767/peter_parker_the_spectacular_spider-man_1976_65",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-04-01T00:00:00+0000",
+      "mu": "2022-06-16T00:00:00+0000",
+      "digitalId": 59755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/62a8b3708a9b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -7620,6 +10119,37 @@
       ]
     },
     {
+      "issueId": 14768,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/14768/peter_parker_the_spectacular_spider-man_1976_66",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-05-01T00:00:00+0000",
+      "mu": "2022-06-16T00:00:00+0000",
+      "digitalId": 59756,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/62a8b3708755e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6626,
       "title": "The Amazing Spider-Man (1963) #229",
       "number": "229",
@@ -7646,6 +10176,37 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14769,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/14769/peter_parker_the_spectacular_spider-man_1976_67",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-06-01T00:00:00+0000",
+      "mu": "1982-06-01T00:00:00+0000",
+      "digitalId": 63542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/64d3e0d7a7472",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -7682,6 +10243,37 @@
       ]
     },
     {
+      "issueId": 14770,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/14770/peter_parker_the_spectacular_spider-man_1976_68",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-07-01T00:00:00+0000",
+      "mu": "1982-07-01T00:00:00+0000",
+      "digitalId": 63543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/64d3e0bbc4bbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Mcdonnell",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6629,
       "title": "The Amazing Spider-Man (1963) #231",
       "number": "231",
@@ -7708,6 +10300,37 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14771,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/14771/peter_parker_the_spectacular_spider-man_1976_69",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-08-01T00:00:00+0000",
+      "mu": "1982-08-01T00:00:00+0000",
+      "digitalId": 42404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5ab3f7eb1f65f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -7744,6 +10367,37 @@
       ]
     },
     {
+      "issueId": 14773,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/14773/peter_parker_the_spectacular_spider-man_1976_70",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-09-01T00:00:00+0000",
+      "mu": "1982-09-01T00:00:00+0000",
+      "digitalId": 42405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5ab3f83b506ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6631,
       "title": "The Amazing Spider-Man (1963) #233",
       "number": "233",
@@ -7770,6 +10424,41 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14774,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/14774/peter_parker_the_spectacular_spider-man_1976_71",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-10-01T00:00:00+0000",
+      "mu": "1982-10-01T00:00:00+0000",
+      "digitalId": 63544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/64d3e0bb84472",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
           "role": "writer"
         }
       ]
@@ -7806,6 +10495,41 @@
       ]
     },
     {
+      "issueId": 14775,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/14775/peter_parker_the_spectacular_spider-man_1976_72",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-11-01T00:00:00+0000",
+      "mu": "1982-11-01T00:00:00+0000",
+      "digitalId": 63545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/64d3e0bb4d0c6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6633,
       "title": "The Amazing Spider-Man (1963) #235",
       "number": "235",
@@ -7837,6 +10561,37 @@
       ]
     },
     {
+      "issueId": 14776,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/14776/peter_parker_the_spectacular_spider-man_1976_73",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1982-12-01T00:00:00+0000",
+      "mu": "1982-12-01T00:00:00+0000",
+      "digitalId": 63546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/64d3e0bb0e36a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6634,
       "title": "The Amazing Spider-Man (1963) #236",
       "number": "236",
@@ -7863,6 +10618,37 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14777,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/14777/peter_parker_the_spectacular_spider-man_1976_74",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-01-01T00:00:00+0000",
+      "mu": "1983-01-01T00:00:00+0000",
+      "digitalId": 63547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/64d3e0bb02e5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -7903,6 +10689,37 @@
       ]
     },
     {
+      "issueId": 14778,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/14778/peter_parker_the_spectacular_spider-man_1976_75",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-02-01T00:00:00+0000",
+      "mu": "1983-02-01T00:00:00+0000",
+      "digitalId": 63548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/64d3e0b87b45a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6636,
       "title": "The Amazing Spider-Man (1963) #238",
       "number": "238",
@@ -7929,6 +10746,37 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14779,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/14779/peter_parker_the_spectacular_spider-man_1976_76",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-03-01T00:00:00+0000",
+      "mu": "1983-03-01T00:00:00+0000",
+      "digitalId": 63549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/64d3e09eb743f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -7965,6 +10813,37 @@
       ]
     },
     {
+      "issueId": 14780,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/14780/peter_parker_the_spectacular_spider-man_1976_77",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-04-01T00:00:00+0000",
+      "mu": "1983-04-01T00:00:00+0000",
+      "digitalId": 63550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/64d3e09e99a3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 6639,
       "title": "The Amazing Spider-Man (1963) #240",
       "number": "240",
@@ -7991,6 +10870,37 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14781,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/14781/peter_parker_the_spectacular_spider-man_1976_78",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-05-01T00:00:00+0000",
+      "mu": "1983-05-01T00:00:00+0000",
+      "digitalId": 63465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/64d3e09e959c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]
@@ -8027,6 +10937,37 @@
       ]
     },
     {
+      "issueId": 14782,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #79",
+      "number": "79",
+      "url": "https://www.marvel.com/comics/issue/14782/peter_parker_the_spectacular_spider-man_1976_79",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-06-01T00:00:00+0000",
+      "mu": "1983-06-01T00:00:00+0000",
+      "digitalId": 63466,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/64d3e09e963e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 16890,
       "title": "Amazing Spider-Man Annual (1964) #16",
       "number": "16",
@@ -8053,6 +10994,320 @@
         },
         {
           "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14784,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/14784/peter_parker_the_spectacular_spider-man_1976_80",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-07-01T00:00:00+0000",
+      "mu": "2024-06-13T00:00:00+0000",
+      "digitalId": 67391,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/664fbbf47d6fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Dzuban",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14785,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/14785/peter_parker_the_spectacular_spider-man_1976_81",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-08-01T00:00:00+0000",
+      "mu": "1983-08-01T00:00:00+0000",
+      "digitalId": 26040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5825f1b13581d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14786,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/14786/peter_parker_the_spectacular_spider-man_1976_82",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-09-01T00:00:00+0000",
+      "mu": "1983-09-01T00:00:00+0000",
+      "digitalId": 26044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/5825f28e78ed7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14787,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/14787/peter_parker_the_spectacular_spider-man_1976_83",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-10-01T00:00:00+0000",
+      "mu": "1983-10-01T00:00:00+0000",
+      "digitalId": 48663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b5b7750c97b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14788,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/14788/peter_parker_the_spectacular_spider-man_1976_84",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-11-01T00:00:00+0000",
+      "mu": "2024-06-13T00:00:00+0000",
+      "digitalId": 67392,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/664fbbf4868fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Simons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14789,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/14789/peter_parker_the_spectacular_spider-man_1976_85",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1983-12-01T00:00:00+0000",
+      "mu": "1983-12-01T00:00:00+0000",
+      "digitalId": 26048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/582f0b7e311fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14790,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/14790/peter_parker_the_spectacular_spider-man_1976_86",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1984-01-01T00:00:00+0000",
+      "mu": "1984-01-01T00:00:00+0000",
+      "digitalId": 55913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/66575af55db0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Hembeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14791,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/14791/peter_parker_the_spectacular_spider-man_1976_87",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1984-02-01T00:00:00+0000",
+      "mu": "2024-06-13T00:00:00+0000",
+      "digitalId": 67393,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/664fbbf47c931",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14792,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/14792/peter_parker_the_spectacular_spider-man_1976_88",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1984-03-01T00:00:00+0000",
+      "mu": "2024-06-13T00:00:00+0000",
+      "digitalId": 67394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/664fbbf4826b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14793,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/14793/peter_parker_the_spectacular_spider-man_1976_89",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1984-04-01T00:00:00+0000",
+      "mu": "2024-06-13T00:00:00+0000",
+      "digitalId": 67395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/664fbbf4841c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
           "role": "writer"
         }
       ]

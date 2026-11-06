@@ -13233,9 +13233,9 @@ const SCENARIOS = [
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
         stops: document.querySelectorAll('#catalog-results .path-stop').length,
       }));
-      t.check('choosing the whole timeline restores it, with its start sentence, issue count and gap disclosure',
+      t.check('choosing the whole timeline restores its start sentence, issue counts and gap disclosure',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened',
+        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened · Saved copy: 1 comic',
         JSON.stringify(shelf));
     },
   },
@@ -22843,6 +22843,9 @@ SCENARIOS.push({
   },
 });
 SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
+const { amazingSpiderManActualData, amazingSpiderManMissingIssueMutation } = await import('./browser-amazing-spider-man.mjs');
+SCENARIOS.push(amazingSpiderManActualData);
+MUTATIONS.push(amazingSpiderManMissingIssueMutation);
 SCENARIOS.push((await import('./browser-greg-pak-hulk.mjs')).gregPakHulkActualData);
 SCENARIOS.push((await import('./browser-shang-chi.mjs')).shangChiActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-shang-chi.mjs')).mcuPrepShangChiActualData);

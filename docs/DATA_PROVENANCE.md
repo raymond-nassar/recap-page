@@ -29,8 +29,8 @@ Countdown and Infinity Wars at the 46 explicit issue-by-issue rows, and Damnatio
 identity is the page and section together without inventing a fragment or DOM id.
 `sourceLicense` stays `null` for every published order, and the full attribution remains recorded
 in `sourceOrigin` as `Compiled for this project from Comic Book Herald's guide`. Cards show the
-linked website name without a disclosure; Preview shows the full attribution, the snapshot date
-and `sourceSection`, with the exact source URL unchanged. About credits
+linked website name, with owner-selected additions noted separately when applicable; Preview shows
+the full attribution, the snapshot date and `sourceSection`, with the exact source URL unchanged. About credits
 Comic Book Herald, Comic Book Reading Orders, and the upstream emreparker/marvel-comics repository.
 
 ## MCU Prep companion intake
@@ -660,18 +660,38 @@ their first canonical issue, and two Deadpool MAX identities remain explicit met
 stops before the source page's exhaustive chronology. The two gaps are tracked in Issue 275 rather
 than being guessed or dropped.
 
-The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
-shares a story with, rather than carried through the frozen-packet pipeline used by the other
-mapped complete guides: it is not derived from Marvel metadata and cannot be checked against it,
-only the issue ids and titles come from Marvel, by resolving each issue the source guide names. The
-settled guide publishes 2,041 checklist entries: 2,034 exact Marvel issues and seven explicit
+The original Amazing Spider-Man complete guide was compiled by hand, like the Best of Spider-Man
+reading it shares a story with, rather than carried through the frozen-packet pipeline used by the
+other mapped complete guides. Its settled source contained 2,041 checklist entries: 2,034 exact
+Marvel issues and seven explicit
 plain-text placeholders. Its former 103-row gap ledger resolves 88 source rows to 90 atomic
 identities, records three repeats and five source-semantic exclusions outside the reading sequence,
 and retains six provider-unavailability rows plus the original 1989 Parallel Lives identity without
 invented ids, nonexistence claims, adjacent or base-number substitutions, or a later-edition
-replacement. It overlaps 32 other catalog entries, the largest being 209 shared issues with the
+replacement. At settlement it overlapped 32 other catalog entries, the largest being 209 shared issues with the
 Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
 Spider-Verse orders.
+
+The owner later selected Spectacular Spider-Man (1976) #1-89 and Marvel Team-Up (1972) #1-14,
+which were not part of Comic Book Herald's source. The
+[supplement ledger](../scripts/data/owner-selections/amazing-spider-man-early-supplement.json)
+retains all 103 supplied issue URLs and identities, the metadata evidence and the independent
+publication-index references. The additions follow publication months beside the existing Amazing
+Spider-Man issues, with Amazing first in a shared month. Spectacular #80-89 precede Amazing #252
+because the original guide skips Amazing #242-251. The existing guide's relative order is unchanged,
+and it now contains all eight Far From Home companion issues. This is not exact story chronology.
+
+The 103 identities and publication months were checked against the configured metadata provider
+and SpiderFan's yearly publication indexes on 2026-11-06 UTC. Sixty-seven issue details came from
+provider responses and 36 reused pinned metadata; Spectacular #42 was refreshed because its older
+snapshot lacked a reader ID. All 103 retained records have reader IDs, which do not by themselves
+prove subscription access. The expanded guide contains 2,144 entries and keeps the seven original
+placeholders. An already saved Reading List retains its existing membership and history. Preview
+identifies missing comics and offers a separate updated copy, keeping the original in place. The
+new copy retains existing shared comic details, read progress, comic notes, ratings and availability
+choices but does not inherit the original's custom order, list note, deferred comics, customized
+editions, completion date or enjoyment choice. Its list and comics are saved together, so a refused
+save cannot leave an empty copy behind.
 
 Some source guides name one comic in more than one collected range. The frozen packet preserves that
 fact without turning it into a second reading step. Its canonical rows contain each distinct comic
@@ -1105,7 +1125,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:10911-10962`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16334-16471`.
+`src/data/catalog.json:16335-16472`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves

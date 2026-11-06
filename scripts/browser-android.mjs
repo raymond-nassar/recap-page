@@ -4691,6 +4691,8 @@ async function confirmationFixtures(page) {
     issueId: 849100 + n, title: `Question fixture (2026) #${n}`, number: String(n), seriesName: 'Question fixture (2026)', seriesId: 849,
     digitalId: 849200 + n, url: `https://www.marvel.com/comics/issue/${849100 + n}/fixture`, source: 'manual',
   }))).state;
+  state = createList(state, { id: 'older-guide', name: orderEntry.name, catalogId: orderEntry.id });
+  state = addIssuesToList(state, 'older-guide', [order.items[0]]).state;
   await page.evaluateOnNewDocument((saved, key) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
     window.open = () => null;
@@ -4878,6 +4880,36 @@ async function shellDialogs(page, label, viewport) {
           : !offline.elements.length && !offline.actions && !offline.words,
         `${label}: ${viewport.desktop ? 'the desktop entry keeps Preview\'s offline action and its status line'
           : 'the Android app\'s Preview offers no offline copy and says nothing about one'} ${JSON.stringify(offline)}`);
+        const difference = await page.evaluate(() => ({
+          text: document.querySelector('.preview-saved-difference')?.textContent,
+          action: document.querySelector('#preview-add [data-act="add-copy"]')?.textContent,
+        }));
+        check(difference.text?.includes('missing 19 comics') && difference.action === 'Add updated copy',
+          `${label}: Preview explains the older guide and offers an updated copy ${JSON.stringify(difference)}`);
+      },
+      async afterMeasure() {
+        const target = await page.$eval('#preview-add [data-act="add-copy"]', (node) => {
+          const box = node.getBoundingClientRect();
+          const x = box.left + box.width / 2;
+          const y = box.top + box.height / 2;
+          const hit = document.elementFromPoint(x, y);
+          return { x, y, width: box.width, height: box.height, reachable: hit === node || node.contains(hit) };
+        });
+        check(target.reachable && target.width >= 24 && target.height >= 24,
+          `${label}: updated-copy action remains reachable and has a 24px minimum target ${JSON.stringify(target)}`);
+        if (!target.reachable) return;
+        if (viewport.desktop) await click(page, '#preview-add [data-act="add-copy"]');
+        else await page.touchscreen.tap(target.x, target.y);
+        await page.waitForSelector('#preview-add [data-act="open-copy"]');
+        const result = await page.evaluate((key, name) => {
+          const state = JSON.parse(localStorage.getItem(key));
+          const copy = Object.values(state.lists).find((list) => list.name === `${name} (copy)`);
+          return { old: state.lists['older-guide'].itemIds, copy: copy?.itemIds, catalogId: copy?.catalogId };
+        }, KEY, orderEntry.name);
+        check(JSON.stringify(result.old) === JSON.stringify([order.items[0].issueId])
+          && JSON.stringify(result.copy) === JSON.stringify(order.items.map((item) => item.issueId))
+          && result.catalogId === null,
+        `${label}: the action saves a separate complete copy without changing the original ${JSON.stringify(result)}`);
       },
     },
   ];
@@ -4896,6 +4928,7 @@ async function shellDialogs(page, label, viewport) {
       check(measured.state.overflows, `${label}: at 200% text the personal checklist overflows its dialog`);
     }
     await screenshot(page, label, `shell-${dialog.name.replace(/\s+/g, '-').toLowerCase()}`);
+    await dialog.afterMeasure?.();
     // The desktop entry is the desktop build, which has no Android Back, so it closes as Windows does.
     // Either way the next dialog waits for this one's close event, not just its open attribute.
     if (viewport.desktop) await escapeShellDialog(page, dialog.selector);

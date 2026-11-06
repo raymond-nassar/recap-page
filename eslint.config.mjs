@@ -154,6 +154,7 @@ export default [
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
       'scripts/browser-ultimate-spider-man.mjs',
+      'scripts/browser-amazing-spider-man.mjs',
       'scripts/browser-greg-pak-hulk.mjs',
       'scripts/browser-shang-chi.mjs',
       'scripts/browser-mcu-prep-shang-chi.mjs',
