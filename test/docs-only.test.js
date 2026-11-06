@@ -24,6 +24,28 @@ test('application, data, workflow, and documentation asset changes keep expensiv
   }
 });
 
+test('project skill playbooks are documentation-only but executable skill resources are not', () => {
+  assert.equal(isDocumentationOnly([
+    '.github/skills/diagnose-ci/SKILL.md',
+    '.github/skills/verify-ui-change/SKILL.md',
+    'CONTRIBUTING.md',
+    'docs/anchors.lock.json',
+  ]), true);
+
+  for (const path of [
+    '.github/skills/diagnose-ci/run.mjs',
+    '.github/skills/diagnose-ci/references/check.sh',
+    '.github/skills/diagnose-ci/manifest.json',
+    '.github/skills/diagnose-ci/nested/SKILL.md',
+    '.github/skills/diagnose-ci/skill.md',
+    '.github/skills/../workflows/SKILL.md',
+    'scripts/docs-only.mjs',
+    'test/docs-only.test.js',
+  ]) {
+    assert.equal(isDocumentationOnly(['.github/skills/diagnose-ci/SKILL.md', path]), false, path);
+  }
+});
+
 test('an empty change list is never classified as documentation-only', () => {
   assert.equal(isDocumentationOnly([]), false);
 });

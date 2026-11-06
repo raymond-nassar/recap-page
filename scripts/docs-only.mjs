@@ -3,7 +3,8 @@ import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const isDocumentationPath = (path) => /^(?:docs\/.*\.md|[^/]+\.md|docs\/anchors\.lock\.json)$/i.test(path);
+const isDocumentationPath = (path) => /^(?:docs\/.*\.md|[^/]+\.md|docs\/anchors\.lock\.json)$/i.test(path)
+  || /^\.github\/skills\/[a-z0-9]+(?:-[a-z0-9]+)*\/SKILL\.md$/.test(path);
 
 export function isDocumentationOnly(paths) {
   return paths.length > 0 && paths.every(isDocumentationPath);
