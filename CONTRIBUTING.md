@@ -188,6 +188,7 @@ owners for the changed contract; extend missing coverage with observable behavio
 | Decorative icons | `uiIcon` in `src/js/lib/uiIcon.js` and the local SVG symbols | `test/portable-icons.test.js` |
 | Action hierarchy and disclosures | Native `details`/`summary` and the existing Add view action groups | `test/add-view.test.js`; `copy-density` |
 | Theme and reflow | Tokens and native controls in `src/styles.css` | `test/theme.test.js`, `scripts/check-palette.mjs`; `responsive-reflow`, `responsive-controls` |
+| Held-input feedback | `wirePressFeedback` in `src/js/lib/pressFeedback.js` observes touch/pen without taking over actions or scrolling; shared CSS retains native tap highlights | `touch-feedback` in the desktop and Android browser runners |
 | Spacing | `--space-*` and classified geometry in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
 | Design tokens | `--radius-*`, `--stroke-*`, `--elev-*`, `--text-shadow-*`, `--motion-*`, `--ease-*`, `--focus-*` and `--target*` in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
 

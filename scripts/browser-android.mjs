@@ -23,6 +23,7 @@ import { POSTER_COVER_SVG, issuePosterCheck, issuePosterFixtures, issuePosterPro
 import { ERA_TILES, ratio } from './check-palette.mjs';
 import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
+import { touchFeedbackCheck } from './lib/touch-feedback.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
@@ -36,7 +37,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
-  'story-types',
+  'story-types', 'touch-feedback',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -55,6 +56,7 @@ const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css
 const noStyle = process.argv.includes('--without-mobile-style');
 const mobileUi = process.argv.includes('--only=mobile-ui');
 const phoneHeader = process.argv.includes('--only=phone-header');
+const touchFeedback = process.argv.includes('--only=touch-feedback');
 const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
@@ -5488,6 +5490,12 @@ try {
       });
     }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly, viewport.nearEnd === true);
     await page.goto(origin, { waitUntil: 'networkidle0' });
+    if (touchFeedback) {
+      await touchFeedbackCheck(page, check, `${viewport.width}x${viewport.height} Android assets`);
+      check(errors.length === 0, `touch feedback has no page errors: ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
     if (viewport.textScale) {
