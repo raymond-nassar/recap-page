@@ -1,9 +1,9 @@
 # UX Study: Marvel Reading Tracker
 
-A single-rater study of the shipped application, run as the UX half of a product backlog and UX
-study pass. Every claim below carries an evidence anchor. Anchors take the form `path:START-END`
-for a claim about specific lines, `path` alone for a claim that a file exists, and
-`absent: pattern, method` for a claim that something is missing.
+**Historical record, not current guidance.** This single-rater audit records an earlier interface.
+Its recommendations are not an active backlog or a requirement for new work. See the
+[historical-documents index](HISTORICAL_DOCUMENTS.md) for current authorities and archive policy.
+Existing citations remain checked; historical status does not freeze or exempt them.
 
 Raw tool output and screenshots live in `docs/ux-artifacts/` and are left uncommitted.
 

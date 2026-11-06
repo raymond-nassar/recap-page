@@ -1,5 +1,10 @@
 # Recap Page Android beta: what to try
 
+**Historical sideloaded-beta checklist, not current release guidance.** The Marvel-app handoff
+and first-run Home checks below describe the earlier prototype, not the Google Play app.
+Use [Android](ANDROID.md) and the [historical-documents index](HISTORICAL_DOCUMENTS.md) for current
+guidance. Retain the old observations without treating this checklist as new acceptance criteria.
+
 Recap Page follows reading lists and keeps your place. It does not include comics or replace
 Marvel Unlimited. This early sideloaded prototype is not a Google Play release.
 Most checks do not need a Marvel subscription.
