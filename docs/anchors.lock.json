@@ -1604,13 +1604,13 @@
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:450-482|0": {
-    "anchor": "docs/IOS.md:450-482",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:457-489|0": {
+    "anchor": "docs/IOS.md:457-489",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:470-474|0": {
-    "anchor": "docs/IOS.md:470-474",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:477-481|0": {
+    "anchor": "docs/IOS.md:477-481",
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
@@ -1669,13 +1669,13 @@
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:409-418|0": {
-    "anchor": "docs/IOS.md:409-418",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:416-425|0": {
+    "anchor": "docs/IOS.md:416-425",
     "fp": "fa779b8e01b8f8c9",
     "head": "## Signing and internal TestFlight"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:450-482|0": {
-    "anchor": "docs/IOS.md:450-482",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:457-489|0": {
+    "anchor": "docs/IOS.md:457-489",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },

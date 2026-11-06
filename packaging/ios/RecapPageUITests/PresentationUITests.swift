@@ -876,6 +876,53 @@ final class PresentationUITests: XCTestCase {
           inventory: window.__recapPassiveGuard.inventory(),
           candidates: window.__recapPassiveGuard.candidates(),
           navigationOcclusions: window.__recapPassiveGuard.navigationOcclusions(),
+          scrollX, scrollY,
+          viewport: {
+            width: innerWidth, height: innerHeight, devicePixelRatio,
+            visual: visualViewport && {
+              width: visualViewport.width, height: visualViewport.height,
+              offsetLeft: visualViewport.offsetLeft, offsetTop: visualViewport.offsetTop,
+              scale: visualViewport.scale,
+            },
+          },
+          navigationState: (() => {
+            const element = document.querySelector('#sidebar .rail-header');
+            if (!element) return null;
+            const style = getComputedStyle(element);
+            return { rect: element.getBoundingClientRect().toJSON(), position: style.position,
+              display: style.display, visibility: style.visibility, opacity: style.opacity,
+              transform: style.transform };
+          })(),
+          dragProbes: [0.25, 0.60].map(fraction => {
+            const x = innerWidth * 0.035, y = innerHeight * fraction;
+            const hit = document.elementFromPoint(x, y);
+            return { x, y, hit: hit ? describe(hit) : null,
+              interactive: Boolean(hit?.closest(interactiveSelector)),
+              navigation: Boolean(hit && document.getElementById('sidebar')?.contains(hit)) };
+          }),
+          privacyOwners: currentView === 'view-data'
+            ? [...document.querySelectorAll('#view-data .sub [data-cloud-copy="on"]')].map(element => {
+              const explanation = window.__recapPassiveGuard.explain(element);
+              const sidebar = document.getElementById('sidebar');
+              return {
+                ...explanation,
+                samples: explanation.textGeometry.flatMap((text, textIndex) =>
+                  text.fragments.map((fragment, fragmentIndex) => ({
+                    textIndex, fragmentIndex, rect: fragment.rect,
+                    points: fragment.points.map(point => {
+                      const hit = document.elementFromPoint(point.x, point.y);
+                      return {
+                        x: point.x, y: point.y,
+                        inViewport: point.x >= 0 && point.x < innerWidth && point.y >= 0 && point.y < innerHeight,
+                        guardHit: point.hit,
+                        hit: hit ? describe(hit) : null,
+                        ownerContains: Boolean(hit && element.contains(hit)),
+                        navigationContains: Boolean(hit && sidebar?.contains(hit)),
+                      };
+                    }),
+                  }))),
+              };
+            }) : [],
           diagnostics: currentView === 'view-data'
             ? [...document.querySelectorAll('#view-data h3, #restore-copy-summary')]
               .map(element => window.__recapPassiveGuard.explain(element)) : [],
@@ -890,19 +937,19 @@ final class PresentationUITests: XCTestCase {
           evidence('home-read-count', '#home-continue #chero-count > b.glance-n',
             '#home-continue', document.getElementById('chero-h').textContent.trim(), '0'),
           evidence('home-count-total', '#home-continue #chero-count',
-            '#home-continue', document.getElementById('chero-h').textContent.trim(), 'of 0 issues', true),
+            '#home-continue', document.getElementById('chero-h').textContent.trim(), 'of 0 comics', true),
           evidence('home-count-word', '#home-continue #chero-count > .glance-end',
             '#home-continue', document.getElementById('chero-h').textContent.trim(), 'read'),
           evidence('home-next-caption', '#home-continue #chero-next',
             '#home-continue', document.getElementById('chero-h').textContent.trim(),
-            'No issues in this Reading List yet. Open it to add comics.'),
+            'No comics in this Reading List yet. Open it to add comics.'),
           evidence('home-lists-summary', '#home-yours > .sec-h > .sec-note',
             '#home-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
           evidence('library-lists-summary', '#library-yours > .sec-h > .sec-note',
             '#library-yours', 'Your Reading Lists', '1 Reading List · 1 not started'),
           evidence('library-ratings-caption', '#library-rated-shelf-status',
             '#library-rated-shelf', 'Top-rated comics',
-            'Comics you rate from their Issue details will appear here.'),
+            'Comics you rate from their Comic details will appear here.'),
           ...(breadcrumbLabel ? [
             evidence('current-breadcrumb', '.view:not([hidden]) > .breadcrumb [aria-current="page"]',
               '.breadcrumb', 'Breadcrumb', breadcrumbLabel),
@@ -968,6 +1015,18 @@ final class PresentationUITests: XCTestCase {
         _ app: XCUIApplication, linkName: String, headingLabel: String, view: String, route: String
     ) throws {
         let link = app.links.matching(identifier: linkName).firstMatch
+        revealNavigationLink(link, named: linkName, in: app)
+        XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
+        link.tap()
+        try waitForActiveView(app, view: view, route: route)
+        let heading = app.webViews.firstMatch.staticTexts.matching(
+            NSPredicate(format: "label == %@", headingLabel)).firstMatch
+        XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
+    }
+
+    // Narrow layouts keep some destinations in the More sheet, so a link that is not hittable in the
+    // bar is reached the way a reader would reach it, with More's own target checked on the way.
+    private func revealNavigationLink(_ link: XCUIElement, named linkName: String, in app: XCUIApplication) {
         if !link.isHittable {
             let toggle = moreToggle(of: app)
             let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
@@ -985,12 +1044,6 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(closeVisible, "the More sheet is presented")
             XCTAssertTrue(link.waitForExistence(timeout: 30), "\(linkName) is shown in More")
         }
-        XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
-        link.tap()
-        try waitForActiveView(app, view: view, route: route)
-        let heading = app.webViews.firstMatch.staticTexts.matching(
-            NSPredicate(format: "label == %@", headingLabel)).firstMatch
-        XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
     }
 
     private func passiveState(of app: XCUIApplication) throws -> [String: Any] {
@@ -1627,30 +1680,55 @@ final class PresentationUITests: XCTestCase {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category, emptyHomeTest: true)
             _ = try probeResult(of: app)
+            // First-run Home no longer has its own introduction or Search shortcut: the owner moved
+            // the first step onto the Modern Timeline category tile, marked "Recommended start here",
+            // and left global Search to the bottom bar (docs/UX_IMPROVEMENT_PLAN.md). These are the
+            // two targets a first-time reader is offered, so both are checked as one native target.
             let firstRun = app.webViews.firstMatch.otherElements.matching(
-                NSPredicate(format: "label == %@ OR label == %@",
-                            "Where do you want to start?", "Where do you want to start?, region")).firstMatch
-            for (label, destination) in [
-                ("Start with Modern Timeline", "Modern Timeline"),
-                ("Search", "Search"),
-            ] {
-                XCTAssertTrue(firstRun.waitForExistence(timeout: 30), "the empty-Home section is visible")
-                let link = firstRun.links.matching(NSPredicate(format: "label == %@", label)).firstMatch
-                XCTAssertTrue(link.waitForExistence(timeout: 30), "\(label) is one native link target")
-                XCTAssertFalse(firstRun.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch.exists,
-                               "\(label) has no separate undersized text target")
-                XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(label) retains its native target width")
-                XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(label) retains its native target height")
-                revealNativeTarget(link, in: app)
-                try record("t03-first-run-\(category.rawValue)-\(label)", [
+                NSPredicate(format: "label == %@ OR label == %@", "Explore", "Explore, region")).firstMatch
+            for (key, destination) in [("modern-timeline", "Modern Timeline"), ("search", "Search")] {
+                XCTAssertTrue(firstRun.waitForExistence(timeout: 30), "the empty-Home Explore section is visible")
+                let link: XCUIElement
+                if key == "search" {
+                    XCTAssertFalse(firstRun.links.matching(NSPredicate(format: "label == %@", "Search")).firstMatch.exists,
+                                   "first-run Home carries no Search shortcut of its own")
+                    link = app.links.matching(identifier: "Search").firstMatch
+                    XCTAssertTrue(link.waitForExistence(timeout: 30), "Search is one native navigation link")
+                    revealNavigationLink(link, named: "Search", in: app)
+                    XCTAssertEqual(link.label, "Search", "Search keeps its full native label")
+                    assertNoSeparateTextTarget(["Search"], in: app.webViews.firstMatch, within: link, for: key)
+                } else {
+                    let prefix = "Recommended start here. Modern Timeline. "
+                    link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
+                    XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
+                    revealNativeTarget(link, in: app)
+                    // The count is catalog data, so it is read back from the label and held to its
+                    // shape; the drawn count piece is then rejected as a target like the others.
+                    let count = String(link.label.dropFirst(prefix.count).dropLast())
+                    XCTAssertTrue(link.label.hasPrefix(prefix) && link.label.hasSuffix("."),
+                                  "the tile's full native label is its three drawn pieces")
+                    XCTAssertNotNil(count.range(of: #"^[1-9][0-9]* Reading Lists?$"#, options: .regularExpression),
+                                    "the tile's native label ends in its Reading List count, not \(count)")
+                    assertNoSeparateTextTarget(["Recommended start here", "Modern Timeline", count],
+                                               in: firstRun, within: link, for: key)
+                    assertNoSeparateTextTarget([link.label], in: app.webViews.firstMatch, within: link, for: key)
+                }
+                XCTAssertGreaterThanOrEqual(link.frame.width, 44, "\(key) retains its native target width")
+                XCTAssertGreaterThanOrEqual(link.frame.height, 44, "\(key) retains its native target height")
+                XCTAssertTrue(link.isHittable, "\(key) is reachable")
+                try record("t03-first-run-\(category.rawValue)-\(key)", [
                     "label": link.label, "frame": NSCoder.string(for: link.frame),
                 ])
-                capture(app, named: "t03-first-run-\(category.rawValue)-\(label)-before-tap")
+                capture(app, named: "t03-first-run-\(category.rawValue)-\(key)-before-tap")
                 link.tap()
+                let leftHome = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "exists == false"), object: firstRun)
+                XCTAssertEqual(XCTWaiter.wait(for: [leftHome], timeout: 30), .completed,
+                               "\(key) leaves first-run Home rather than matching its own text")
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", destination)).firstMatch
-                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(label) opens \(destination)")
-                if label == "Start with Modern Timeline" {
+                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(key) opens \(destination)")
+                if key == "modern-timeline" {
                     let home = app.links.matching(
                         NSPredicate(format: "label CONTAINS[c] %@ OR label == %@", "Recap Page", "Home")).firstMatch
                     XCTAssertTrue(home.waitForExistence(timeout: 30), "Home remains reachable")
@@ -1659,6 +1737,23 @@ final class PresentationUITests: XCTestCase {
             }
             capture(app, named: "t03-first-run-\(category.rawValue)")
             app.terminate()
+        }
+    }
+
+    // Each piece a link draws must be read only as part of that link. A static text with the same
+    // words is a second, smaller native target, whatever its frame, so absence is asserted rather
+    // than containment. The trailing-space form is matched too because the tile's pieces end in one.
+    // The link's own subtree is searched for every element type as well, because a separate target
+    // nested inside the link is the case a frame check passes and a static-text query could miss.
+    private func assertNoSeparateTextTarget(
+        _ pieces: [String], in scope: XCUIElement, within link: XCUIElement, for key: String
+    ) {
+        for piece in pieces {
+            let named = NSPredicate(format: "label == %@ OR label == %@", piece, piece + " ")
+            XCTAssertFalse(scope.staticTexts.matching(named).firstMatch.exists,
+                           "\(key): \"\(piece)\" has no separate undersized text target")
+            XCTAssertFalse(link.descendants(matching: .any).matching(named).firstMatch.exists,
+                           "\(key): \"\(piece)\" is not a separate native element inside its link")
         }
     }
 
@@ -2334,7 +2429,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.searchFields["Search Reading Lists and issue titles"].firstMatch
+        let searchField = app.searchFields["Search Reading Lists and comic titles"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")
@@ -2442,5 +2537,240 @@ final class PresentationUITests: XCTestCase {
         capture(app, named: "t03-final-orientation")
         XCUIDevice.shared.orientation = .portrait
         app.terminate()
+    }
+
+    func testSEPrivacyScrollDiagnostic() throws {
+        let expected = "Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below."
+        let app = launch(category: .accessibilityExtraExtraExtraLarge, route: "all")
+
+        func stage(_ name: String, _ details: [String: Any]) throws {
+            capture(app, named: "se-scroll-\(name)")
+            let tree = XCTAttachment(string: app.debugDescription)
+            tree.name = "se-scroll-\(name)-hierarchy.txt"
+            tree.lifetime = .keepAlways
+            add(tree)
+            try record("se-scroll-\(name)", details)
+        }
+
+        func stop(_ reason: String) throws {
+            try stage("inconclusive", ["reason": reason])
+            XCTFail("SE scroll diagnostic is inconclusive: \(reason)")
+        }
+
+        let probe = app.staticTexts["recap-probe-result"]
+        let appeared = probe.waitForExistence(timeout: 240)
+        var probeFinished = false
+        if appeared {
+            let ready = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "label != %@", "pending"), object: probe)
+            probeFinished = XCTWaiter.wait(for: [ready], timeout: 240) == .completed
+        }
+        try stage("launch", ["probeAppeared": appeared, "probeFinished": probeFinished,
+                             "probeLabel": appeared ? probe.label : "unavailable"])
+        guard appeared, probeFinished, !probe.label.hasPrefix("error:") else {
+            try stop("seeded layout probe did not finish")
+            return
+        }
+
+        let link = app.links.matching(identifier: "Backup & settings").firstMatch
+        if !link.isHittable {
+            let toggle = moreToggle(of: app)
+            let available = toggle.waitForExistence(timeout: 30) && toggle.isHittable
+            try stage("navigation", ["moreAvailable": available])
+            guard available else {
+                try stop("More navigation is unavailable")
+                return
+            }
+            toggle.tap()
+        }
+        let linkAvailable = link.waitForExistence(timeout: 30) && link.isHittable
+        try stage("data-link", ["available": linkAvailable])
+        guard linkAvailable else {
+            try stop("Backup & settings navigation is unavailable")
+            return
+        }
+        link.tap()
+
+        let monitor = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label BEGINSWITH %@", "recap-passive-probe ")).firstMatch
+        let monitorAvailable = monitor.waitForExistence(timeout: 30)
+        try stage("monitor", ["available": monitorAvailable,
+                              "label": monitorAvailable ? monitor.label : "unavailable"])
+        guard monitorAvailable else {
+            try stop("passive monitor is unavailable")
+            return
+        }
+
+        func signature(_ state: [String: Any]) -> Data? {
+            guard state["view"] as? String == "view-data",
+                  let href = state["href"] as? String,
+                  let url = URL(string: href),
+                  url.fragment?.split(separator: "/").first == "data",
+                  let guardState = state["guard"] as? [String: Any],
+                  guardState["valid"] as? Bool == true,
+                  let x = guardState["scrollX"], let y = guardState["scrollY"],
+                  let viewport = guardState["viewport"] as? [String: Any],
+                  let navigation = guardState["navigationState"] as? [String: Any],
+                  let dragProbes = guardState["dragProbes"] as? [[String: Any]],
+                  let owners = guardState["privacyOwners"] as? [[String: Any]],
+                  owners.count == 1, owners[0]["label"] as? String == expected,
+                  let rect = owners[0]["rect"],
+                  let samples = owners[0]["samples"] as? [[String: Any]], !samples.isEmpty else { return nil }
+            return try? JSONSerialization.data(withJSONObject: [
+                "href": href, "x": x, "y": y, "viewport": viewport,
+                "navigation": navigation, "owner": rect, "dragProbes": dragProbes,
+            ], options: [.sortedKeys])
+        }
+
+        func settled(after minimumTick: Int) -> ([String: Any]?, Bool) {
+            var previous: Data?
+            var lastTick = minimumTick
+            var matching = 0
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+                guard let element = object as? XCUIElement,
+                      let state = layoutMetrics(from: element.label, prefix: "recap-passive-probe "),
+                      let tick = state["tick"] as? Int, tick > lastTick,
+                      let current = signature(state) else { return false }
+                lastTick = tick
+                matching = current == previous ? matching + 1 : 0
+                previous = current
+                return matching >= 1
+            }, object: monitor)
+            let completed = XCTWaiter.wait(for: [ready], timeout: 30) == .completed
+            return (layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "), completed)
+        }
+
+        let web = app.webViews.firstMatch
+        let native = web.staticTexts.matching(NSPredicate(format: "label == %@", expected))
+        var lastTick = -1
+
+        func observation(_ name: String, gesture: [String: Any]) throws -> [String: Any]? {
+            let (before, beforeSettled) = settled(after: lastTick)
+            let count = native.count
+            var nativeInfo: [String: Any] = ["count": count, "tree": web.debugDescription,
+                                              "webFrame": NSCoder.string(for: web.frame)]
+            if count > 0 {
+                let element = native.firstMatch
+                nativeInfo["label"] = element.label
+                nativeInfo["frame"] = NSCoder.string(for: element.frame)
+                nativeInfo["hittable"] = element.isHittable
+                nativeInfo["description"] = element.debugDescription
+            }
+            capture(app, named: "se-scroll-\(name)")
+            let beforeTick = before?["tick"] as? Int ?? lastTick
+            let (after, afterSettled) = settled(after: beforeTick)
+            let matched = beforeSettled && afterSettled && before.flatMap(signature) != nil
+                && before.flatMap(signature) == after.flatMap(signature)
+            lastTick = after?["tick"] as? Int ?? beforeTick
+            let payload: [String: Any] = [
+                "gesture": gesture, "before": before.map { $0 as Any } ?? NSNull(),
+                "after": after.map { $0 as Any } ?? NSNull(),
+                "beforeSettled": beforeSettled, "afterSettled": afterSettled,
+                "matched": matched, "native": nativeInfo,
+                "category": UIContentSizeCategory.accessibilityExtraExtraExtraLarge.rawValue,
+                "seed": "all",
+            ]
+            let afterGuard = after?["guard"] as? [String: Any] ?? [:]
+            try record("se-scroll-\(name)", payload, summary: [
+                "gesture": gesture, "matched": matched, "nativeCount": count,
+                "nativeFrame": nativeInfo["frame"] ?? NSNull(),
+                "nativeHittable": nativeInfo["hittable"] ?? NSNull(),
+                "webFrame": nativeInfo["webFrame"] ?? NSNull(),
+                "view": after?["view"] ?? NSNull(), "href": after?["href"] ?? NSNull(),
+                "guardValid": afterGuard["valid"] ?? NSNull(),
+                "beforeTick": beforeTick, "afterTick": lastTick,
+                "scrollY": afterGuard["scrollY"] ?? NSNull(),
+                "viewport": afterGuard["viewport"] ?? NSNull(),
+                "navigation": afterGuard["navigationState"] ?? NSNull(),
+                "dragProbes": afterGuard["dragProbes"] ?? NSNull(),
+                "privacyOwners": afterGuard["privacyOwners"] ?? NSNull(),
+            ])
+            return matched ? payload : nil
+        }
+
+        guard let initial = try observation("initial", gesture: ["direction": "none"]) else {
+            try stop("initial Data state or native/WebKit handshake is unavailable")
+            return
+        }
+        var observations = [initial]
+        for (index, direction) in ["down", "down", "down", "up", "up", "up"].enumerated() {
+            guard let priorState = observations.last?["after"] as? [String: Any],
+                  let priorGuard = priorState["guard"] as? [String: Any],
+                  let dragProbes = priorGuard["dragProbes"] as? [[String: Any]],
+                  dragProbes.count == 2,
+                  dragProbes.allSatisfy({ $0["hit"] is [String: Any]
+                      && $0["interactive"] as? Bool == false && $0["navigation"] as? Bool == false }) else {
+                try stop("the intended drag endpoints are not confirmed noninteractive")
+                return
+            }
+            let startY = direction == "down" ? 0.60 : 0.25
+            let endY = direction == "down" ? 0.25 : 0.60
+            let start = web.coordinate(withNormalizedOffset: CGVector(dx: 0.035, dy: CGFloat(startY)))
+            let end = web.coordinate(withNormalizedOffset: CGVector(dx: 0.035, dy: CGFloat(endY)))
+            start.press(forDuration: 0.1, thenDragTo: end)
+            guard let sample = try observation("gesture-\(index + 1)", gesture: [
+                "direction": direction, "startX": 0.035, "startY": startY, "endX": 0.035, "endY": endY,
+            ]) else {
+                try stop("gesture \(index + 1) did not yield matched stable observations")
+                return
+            }
+            observations.append(sample)
+        }
+
+        var positions: [Double] = []
+        var fragmentIDs = Set<String>()
+        var coveredIDs = Set<String>()
+        var sawNative = false
+        var duplicateNative = false
+        for sample in observations {
+            guard let state = sample["after"] as? [String: Any],
+                  let guardState = state["guard"] as? [String: Any],
+                  let scroll = (guardState["scrollY"] as? NSNumber)?.doubleValue,
+                  let owners = guardState["privacyOwners"] as? [[String: Any]], owners.count == 1,
+                  let fragments = owners[0]["samples"] as? [[String: Any]],
+                  let nativeInfo = sample["native"] as? [String: Any],
+                  let count = nativeInfo["count"] as? Int else {
+                try stop("a required observation is malformed")
+                return
+            }
+            positions.append(scroll)
+            sawNative = sawNative || count == 1
+            duplicateNative = duplicateNative || count > 1
+            var currentIDs = Set<String>()
+            for fragment in fragments {
+                guard let textIndex = fragment["textIndex"] as? Int,
+                      let fragmentIndex = fragment["fragmentIndex"] as? Int,
+                      let points = fragment["points"] as? [[String: Any]], !points.isEmpty else {
+                    try stop("a fragment sample is malformed")
+                    return
+                }
+                let id = "\(textIndex):\(fragmentIndex)"
+                currentIDs.insert(id)
+                if points.contains(where: { $0["inViewport"] as? Bool == true }) { coveredIDs.insert(id) }
+            }
+            if fragmentIDs.isEmpty { fragmentIDs = currentIDs }
+            guard !currentIDs.isEmpty, currentIDs == fragmentIDs else {
+                try stop("the target fragment identity changed")
+                return
+            }
+        }
+        let downward = (positions[1...3].max() ?? positions[0]) - positions[0]
+        let upward = (positions[1...3].max() ?? positions[0]) - (positions[4...6].min() ?? positions[3])
+        let complete = downward > 1 && upward > 1 && coveredIDs == fragmentIDs && sawNative && !duplicateNative
+        guard complete else {
+            try stage("coverage-inconclusive", [
+                "positions": positions, "downward": downward, "upward": upward,
+                "fragments": fragmentIDs.sorted(), "covered": coveredIDs.sorted(),
+                "sawNative": sawNative, "duplicateNative": duplicateNative,
+            ])
+            try stop("bidirectional movement, fragment coverage or native identity was incomplete")
+            return
+        }
+        try record("se-scroll-complete", [
+            "positions": positions, "downward": downward, "upward": upward,
+            "fragments": fragmentIDs.sorted(), "covered": coveredIDs.sorted(),
+            "observationCount": observations.count, "sawNative": sawNative,
+            "duplicateNative": duplicateNative,
+        ])
     }
 }

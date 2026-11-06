@@ -72,10 +72,15 @@ to the iOS bundle; the shared Windows and Android styles do not change. The iOS 
 shared `--target` token for a 44-point hit region, and the standalone Read links use the shared
 `--target-touch` token for 48-point regions. The native shell gives each link its accessible name
 and hides its presentation-only text wrapper from assistive technology, so the link target is not
-represented by a smaller nested text element. This also covers the two first-run Home links,
-Start with Modern Timeline and Search, including when Home inserts them after the page loads. The empty-Home
-native scenario checks both links' names, target sizes and destinations independently of the
-populated audit fixture. At the largest accessibility text size, the Backup &
+represented by a smaller nested text element. First-run Home no longer has its own Start with
+Modern Timeline and Search links. A first-time reader is offered the Modern Timeline category tile,
+marked Recommended start here, and the Search link in the navigation. The tile's name comes from
+the app's own label rather than from this native naming, whose list still names the two removed
+Home links and does not include category tiles. The empty-Home native scenario checks, at the
+default and largest text sizes, that each of the two targets has its full name, is at least 44
+points in each direction, has no separate native element, inside or outside the link, for its name
+or drawn words, and opens its destination, independently of the populated audit fixture.
+Whether WebKit exposes those drawn words separately can only be settled on a Simulator. At the largest accessibility text size, the Backup &
 settings section headings can wrap within their existing column rather than widening the page.
 At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
 iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
@@ -86,7 +91,7 @@ The presentation audit uses a fail-closed passive-text guard, approved in #1005,
 exemption for text. Ten previously reviewed cases remain positive fixtures: the iPad sidebar's
 `h2#rail-reading` ("READING") inside the Main navigation,
 its App heading (`#sidebar-nav > .nav-foot > h2.rail-h`), Home's `#chero-count > b.glance-n` read count,
-the direct "of 0 issues" text and `.glance-end` "read" suffix in that count, the empty-list
+the direct "of 0 comics" text and `.glance-end` "read" suffix in that count, the empty-list
 `#chero-next` caption inside the named Continue region, and the `#home-yours > .sec-h > .sec-note`
 summary inside Your Reading Lists. That summary is beside the list, not inside a tile link.
 The three further cases are Library's `#library-yours .sec-note` summary in Your Reading Lists,
@@ -143,13 +148,15 @@ This exception applies only to `aria-describedby` and `aria-labelledby`. A neste
 `for` association always rejects text, even when its checkbox or input is hidden. The mandatory
 native no-op tap and every other guard condition remain unchanged.
 
-Document and window are checked separately against an exact reviewed inventory of thirteen handlers,
+Document and window are checked separately against an exact reviewed inventory of eighteen handlers,
 all on document and none on window. The inventory pins event type, target, capture, passive and once
 options, script URL and enclosing registering function, not line or column. It contains rated-comics'
 capture pointerdown, keydown and touchmove handlers; mobile-ui's capture pointerdown and keydown;
 home-updates' capture keydown and bubbling pointerdown; tooltips' capture keydown and bubbling
-pointerover, pointerout and pointermove; and the sidebar and reading shortcuts' bubbling keydown
-handlers. No global activation delegation is permitted. An unreviewed global registration or changed
+pointerover, pointerout and pointermove; press feedback's passive capture pointerdown, pointermove,
+pointerup, pointercancel and contextmenu; and the sidebar and reading shortcuts' bubbling keydown
+handlers. Press feedback only marks a held touch or pen control and clears the mark on release, so a
+tap on passive text leaves the DOM unchanged. No global activation delegation is permitted. An unreviewed global registration or changed
 inventory rejects every candidate until reviewed. The keyboard handlers do not make a non-focusable
 text node a key target. The pointer and tooltip handlers still have to survive the native tap proof.
 Interaction on-properties on document and window are tracked from document start too. Assigning

@@ -29,7 +29,7 @@ Do not turn these routes into one universal command sequence:
 |---|---|
 | Android build allocation or candidate | [Android release contract](../../../docs/RELEASING.md#android-allocation-and-exact-artifact-contract) and [Android candidate procedure](../../../docs/ANDROID.md#protected-app-bundle-candidates). `docs/RELEASING.md:35-60`; `docs/ANDROID.md:239-246` |
 | Google Play testing or promotion | [Protected Google Play publication](../../../docs/GOOGLE_PLAY_PUBLISHING.md). `docs/RELEASING.md:205-215`; `docs/GOOGLE_PLAY_PUBLISHING.md:1-20` `docs/GOOGLE_PLAY_PUBLISHING.md:256-295` |
-| iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:257-284`; `docs/IOS.md:409-418` `docs/IOS.md:450-482` |
+| iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:257-284`; `docs/IOS.md:416-425` `docs/IOS.md:457-489` |
 | Windows portable or MSIX proof | [Windows package proof](../../../docs/MICROSOFT_STORE.md#build-controlled-proof-packages). `docs/MICROSOFT_STORE.md:245-304` |
 | Microsoft Store handoff, submission, or live review | [Store submission handoff](../../../docs/MICROSOFT_STORE_SUBMISSION.md#final-upload-handoff) and [live-review stop points](../../../docs/MICROSOFT_STORE_SUBMISSION.md#live-review-stop-points). `docs/MICROSOFT_STORE_SUBMISSION.md:457-491` `docs/MICROSOFT_STORE_SUBMISSION.md:493-515`; `docs/RELEASING.md:190-198` |
 
@@ -44,12 +44,12 @@ secrets or independently dispatch workflows, approve protected environments, upl
 publish, merge, or make another externally visible or owner-gated change. Stop and obtain explicit,
 action-specific authorization before any such action. `docs/RELEASING.md:99-102`
 `docs/RELEASING.md:192-198` `docs/RELEASING.md:205-215`;
-`docs/IOS.md:450-482`
+`docs/IOS.md:457-489`
 
 After an uncertain release, upload, submission, or other mutation, inspect the authoritative
 external state before taking another action. Never retry by guess.
 `docs/RELEASING.md:99-102` `docs/RELEASING.md:308-314`
-`docs/IOS.md:470-474` `docs/GOOGLE_PLAY_PUBLISHING.md:250`
+`docs/IOS.md:477-481` `docs/GOOGLE_PLAY_PUBLISHING.md:250`
 `docs/MICROSOFT_STORE_SUBMISSION.md:548-550`
 
 ## Completion

@@ -1,0 +1,426 @@
+name: iOS SE scroll diagnostic
+
+on:
+  push:
+    branches:
+      - raymond-nassar-ios-se-scroll-diagnostic
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostic:
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+      SIMULATOR_RUNTIME: iOS-18-5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Select the exact simulator
+        timeout-minutes: 3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/se-diagnostic"
+          { xcodebuild -version; node --version; xcrun simctl list runtimes; } \
+            2>&1 | tee "$RUNNER_TEMP/se-diagnostic/toolchain.log"
+          xcrun simctl list devices available --json > "$RUNNER_TEMP/se-diagnostic/devices.json"
+          selected=$(node - "$RUNNER_TEMP/se-diagnostic/devices.json" <<'NODE'
+          const fs = require('node:fs');
+          const { devices } = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          const runtime = 'com.apple.CoreSimulator.SimRuntime.iOS-18-5';
+          const matches = (devices[runtime] || []).filter(device =>
+            device.name === 'iPhone SE (3rd generation)' && device.isAvailable);
+          if (matches.length !== 1) throw new Error('Exactly one available SE on iOS 18.5 is required');
+          process.stdout.write(`${matches[0].udid}|${matches[0].state}`);
+          NODE
+          )
+          IFS='|' read -r udid state <<< "$selected"
+          printf 'device=iPhone SE (3rd generation)\nruntime=com.apple.CoreSimulator.SimRuntime.iOS-18-5\nudid=%s\nstate=%s\nsha=%s\n' \
+            "$udid" "$state" "$GITHUB_SHA" | tee "$RUNNER_TEMP/se-diagnostic/selection.log"
+          echo "SE_UDID=$udid" >> "$GITHUB_ENV"
+          echo "SE_STATE=$state" >> "$GITHUB_ENV"
+          echo "DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
+      - name: Boot the selected simulator
+        timeout-minutes: 6
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$SE_STATE" != "Booted" ]; then
+            xcrun simctl boot "$SE_UDID" 2>&1 | tee "$RUNNER_TEMP/se-diagnostic/boot.log"
+          fi
+          xcrun simctl bootstatus "$SE_UDID" -b 2>&1 | tee -a "$RUNNER_TEMP/se-diagnostic/boot.log"
+
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/prepare-ios.mjs 2>&1 | tee "$RUNNER_TEMP/se-diagnostic/prepare.log"
+
+      - name: Build for testing
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild build-for-testing \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/se-diagnostic/build.log"
+          shopt -s nullglob
+          runs=("$RUNNER_TEMP"/DerivedData/Build/Products/*.xctestrun)
+          if [ "${#runs[@]}" -ne 1 ] || [ ! -s "${runs[0]}" ]; then
+            echo "::error::Expected exactly one nonempty test run."
+            exit 1
+          fi
+          echo "XCTESTRUN=${runs[0]}" >> "$GITHUB_ENV"
+
+      - name: Run the one SE scroll diagnostic
+        timeout-minutes: 30
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild test-without-building \
+            -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
+            -parallel-testing-enabled NO \
+            -only-testing:RecapPageUITests/PresentationUITests/testSEPrivacyScrollDiagnostic \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-se-scroll.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/se-diagnostic/test.log"
+
+      - name: Verify the retained diagnostic result
+        if: ${{ !cancelled() }}
+        timeout-minutes: 5
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/se-diagnostic"
+          cat > "$RUNNER_TEMP/se-diagnostic/verify.mjs" <<'NODE'
+          import fs from 'node:fs';
+
+          const expected = 'Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below.';
+          const method = 'testSEPrivacyScrollDiagnostic';
+          const fail = message => { throw new Error(message); };
+          const requireValue = (condition, message) => { if (!condition) fail(message); };
+          const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+          const hasNumbers = (value, keys) => isRecord(value) && keys.every(key => Number.isFinite(value[key]));
+          const positive = value => Number.isFinite(value) && value > 0;
+          const close = (actual, expected) => Number.isFinite(expected)
+            && Math.abs(actual - expected) <= 1e-7 * Math.max(1, Math.abs(actual), Math.abs(expected));
+          function validRect(rect) {
+            return hasNumbers(rect, ['x', 'y', 'width', 'height', 'left', 'top', 'right', 'bottom'])
+              && rect.width >= 0 && rect.height >= 0
+              && close(rect.x, rect.left) && close(rect.y, rect.top)
+              && close(rect.width, rect.right - rect.left) && close(rect.height, rect.bottom - rect.top);
+          }
+          function validViewport(viewport) {
+            if (!hasNumbers(viewport, ['width', 'height', 'devicePixelRatio'])
+              || !positive(viewport.width) || !positive(viewport.height) || !positive(viewport.devicePixelRatio)
+              || !hasNumbers(viewport.visual, ['width', 'height', 'offsetLeft', 'offsetTop', 'scale'])) return false;
+            return positive(viewport.visual.width) && positive(viewport.visual.height)
+              && positive(viewport.visual.scale);
+          }
+          function validNavigation(navigation) {
+            if (!isRecord(navigation) || !validRect(navigation.rect)
+              || !['position', 'display', 'visibility', 'opacity', 'transform']
+                .every(key => typeof navigation[key] === 'string' && navigation[key].trim().length > 0)) return false;
+            const opacity = Number(navigation.opacity);
+            return Number.isFinite(opacity) && opacity >= 0 && opacity <= 1;
+          }
+          const frameNumber = String.raw`[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?`;
+          const framePattern = new RegExp(String.raw`^\s*\{\s*\{\s*(${frameNumber})\s*,\s*(${frameNumber})\s*\}\s*,\s*\{\s*(${frameNumber})\s*,\s*(${frameNumber})\s*\}\s*\}\s*$`);
+          function validFrame(frame, requireArea) {
+            if (typeof frame !== 'string') return false;
+            const match = framePattern.exec(frame);
+            if (!match) return false;
+            const values = match.slice(1).map(Number);
+            return values.every(Number.isFinite) && (requireArea
+              ? values[2] > 0 && values[3] > 0 : values[2] >= 0 && values[3] >= 0);
+          }
+          function nodes(value) {
+            if (Array.isArray(value)) return value.flatMap(nodes);
+            if (!value || typeof value !== 'object') return [];
+            return [value, ...nodes(value.children || [])];
+          }
+          function verify(summary, tree, log, device) {
+            requireValue(summary.result === 'Passed' && summary.totalTestCount === 1
+              && summary.passedTests === 1 && summary.failedTests === 0 && summary.skippedTests === 0
+              && (summary.expectedFailures === undefined || summary.expectedFailures === 0),
+            'The result bundle must contain one passing, unskipped test');
+            requireValue(Array.isArray(summary.devicesAndConfigurations)
+              && summary.devicesAndConfigurations.length === 1
+              && summary.devicesAndConfigurations[0].device?.deviceId === device,
+            'The result bundle must identify the selected simulator');
+            const all = nodes(tree.testNodes);
+            const cases = all.filter(item => item.nodeType === 'Test Case');
+            requireValue(cases.length === 1 && cases[0].result === 'Passed'
+              && [`PresentationUITests/${method}()`, `RecapPageUITests/PresentationUITests/${method}()`]
+                .includes(cases[0].nodeIdentifier)
+              && all.some(item => item.name === 'RecapPageUITests' && /bundle/i.test(item.nodeType || '')),
+            'The result bundle must identify the exact diagnostic test');
+            const prefix = `Test Case '-[RecapPageUITests.PresentationUITests ${method}]'`;
+            const lines = log.split(/\r?\n/);
+            requireValue(lines.filter(line => line.includes(`${prefix} started.`)).length === 1
+              && lines.filter(line => line.includes(`${prefix} passed (`)).length === 1,
+            'The exact test must start and pass once');
+            const records = new Map();
+            for (const line of lines) {
+              const found = line.match(/RECAP_PROBE_RESULT (se-scroll-(?:initial|gesture-[1-6]|complete)) (\{.*\})$/);
+              if (!found) continue;
+              requireValue(!records.has(found[1]), `Duplicate diagnostic record ${found[1]}`);
+              records.set(found[1], JSON.parse(found[2]));
+            }
+            const names = ['se-scroll-initial', ...Array.from({ length: 6 }, (_, index) => `se-scroll-gesture-${index + 1}`)];
+            const rows = names.map((name, index) => {
+              const row = records.get(name);
+              requireValue(row && row.matched === true && row.view === 'view-data' && row.guardValid === true
+                && typeof row.href === 'string' && /#\/data(?:[/?]|$)/.test(row.href)
+                && Number.isFinite(row.scrollY) && Number.isInteger(row.beforeTick)
+                && Number.isInteger(row.afterTick) && row.afterTick > row.beforeTick
+                && Number.isInteger(row.nativeCount) && row.nativeCount >= 0 && row.nativeCount <= 1
+                && validViewport(row.viewport) && validNavigation(row.navigation)
+                && validFrame(row.webFrame, true)
+                && (row.nativeCount === 0 ? row.nativeFrame === null : validFrame(row.nativeFrame, false))
+                && Array.isArray(row.dragProbes) && row.dragProbes.length === 2
+                && row.dragProbes.every(probe => probe.hit && probe.interactive === false && probe.navigation === false)
+                && row.gesture?.direction === (index === 0 ? 'none' : index <= 3 ? 'down' : 'up')
+                && Array.isArray(row.privacyOwners)
+                && row.privacyOwners.length === 1 && row.privacyOwners[0].label === expected
+                && validRect(row.privacyOwners[0].rect),
+              `Incomplete matched observation ${name}`);
+              return row;
+            });
+            requireValue(rows.some(row => row.nativeCount === 1), 'No native exact-label match was observed');
+            const fragmentIDs = new Set();
+            const covered = new Set();
+            rows.forEach((row, index) => {
+              const fragments = row.privacyOwners[0].samples;
+              requireValue(Array.isArray(fragments) && fragments.length > 0, 'Missing fragment samples');
+              const ids = new Set();
+              for (const fragment of fragments) {
+                requireValue(Number.isInteger(fragment.textIndex) && Number.isInteger(fragment.fragmentIndex)
+                  && validRect(fragment.rect) && Array.isArray(fragment.points) && fragment.points.length === 3,
+                'Malformed fragment');
+                const id = `${fragment.textIndex}:${fragment.fragmentIndex}`;
+                requireValue(!ids.has(id), 'Duplicate fragment');
+                ids.add(id);
+                for (const point of fragment.points) {
+                  requireValue(Number.isFinite(point.x) && Number.isFinite(point.y)
+                    && typeof point.inViewport === 'boolean' && 'hit' in point && 'guardHit' in point
+                    && typeof point.ownerContains === 'boolean' && typeof point.navigationContains === 'boolean',
+                  'Malformed fragment hit');
+                  if (point.inViewport) covered.add(id);
+                }
+              }
+              if (index === 0) ids.forEach(id => fragmentIDs.add(id));
+              requireValue(ids.size === fragmentIDs.size && [...ids].every(id => fragmentIDs.has(id)),
+                'Fragment identity changed');
+            });
+            const positions = rows.map(row => row.scrollY);
+            const down = Math.max(...positions.slice(1, 4)) - positions[0];
+            const up = Math.max(...positions.slice(1, 4)) - Math.min(...positions.slice(4, 7));
+            const complete = records.get('se-scroll-complete');
+            requireValue(down > 1 && up > 1 && covered.size === fragmentIDs.size
+              && complete && complete.observationCount === 7 && complete.sawNative === true
+              && complete.duplicateNative === false
+              && JSON.stringify(complete.positions) === JSON.stringify(positions)
+              && complete.downward === down && complete.upward === up,
+            'Missing or incomplete completion marker, movement or fragment coverage');
+            return { positions, down, up, fragments: fragmentIDs.size };
+          }
+          function selfTest() {
+            const summary = { result: 'Passed', totalTestCount: 1, passedTests: 1, failedTests: 0,
+              skippedTests: 0, devicesAndConfigurations: [{ device: { deviceId: 'device' } }] };
+            const tree = { testNodes: [{ name: 'RecapPageUITests', nodeType: 'UI test bundle', children: [
+              { nodeType: 'Test Case', nodeIdentifier: `PresentationUITests/${method}()`, result: 'Passed' },
+            ] }] };
+            const positions = [0, 100, 200, 300, 200, 100, 0];
+            const point = { x: 1, y: 1, inViewport: true, hit: null, guardHit: null,
+              ownerContains: false, navigationContains: false };
+            const rect = { x: 16, y: 565, width: 333, height: 53,
+              left: 16, top: 565, right: 349, bottom: 618 };
+            const zeroRect = { x: 0, y: 0, width: 0, height: 0, left: 0, top: 0, right: 0, bottom: 0 };
+            const viewport = { width: 375, height: 647, devicePixelRatio: 2,
+              visual: { width: 375, height: 647, offsetLeft: 0, offsetTop: 0, scale: 1 } };
+            const navigation = { rect: { x: 0, y: 522, width: 375, height: 125,
+              left: 0, top: 522, right: 375, bottom: 647 },
+            position: 'fixed', display: 'grid', visibility: 'visible', opacity: '1', transform: 'none' };
+            const rows = positions.map((scrollY, index) => ({ matched: true, view: 'view-data',
+              href: 'recap://app/#/data', guardValid: true, scrollY, beforeTick: index * 2,
+              afterTick: index * 2 + 1, nativeCount: 1, nativeFrame: '{{16, 565}, {333, 10}}',
+              webFrame: '{{0, 20}, {375, 647}}', viewport: structuredClone(viewport),
+              navigation: structuredClone(navigation),
+              gesture: { direction: index === 0 ? 'none' : index <= 3 ? 'down' : 'up' },
+              dragProbes: [{ hit: {}, interactive: false, navigation: false },
+                { hit: {}, interactive: false, navigation: false }],
+              privacyOwners: [{ label: expected, rect: { ...rect }, samples: [{ textIndex: 0, fragmentIndex: 0,
+                rect: { ...rect }, points: [point, point, point] }] }] }));
+            const complete = { positions, downward: 300, upward: 300, observationCount: 7,
+              sawNative: true, duplicateNative: false };
+            const prefix = `Test Case '-[RecapPageUITests.PresentationUITests ${method}]'`;
+            const logFor = observations => [`${prefix} started.`, `${prefix} passed (1 seconds).`,
+              ...observations.map((row, index) => `RECAP_PROBE_RESULT ${index ? `se-scroll-gesture-${index}` : 'se-scroll-initial'} ${JSON.stringify(row)}`),
+              `RECAP_PROBE_RESULT se-scroll-complete ${JSON.stringify(complete)}`].join('\n');
+            const log = logFor(rows);
+            verify(summary, tree, log, 'device');
+            const hidden = structuredClone(rows);
+            hidden[0].navigation = { ...navigation, display: 'none', rect: zeroRect };
+            hidden[0].nativeCount = 0;
+            hidden[0].nativeFrame = null;
+            hidden[1].navigation.visibility = 'hidden';
+            hidden[2].navigation.opacity = '0';
+            hidden[3].nativeFrame = '{{16.5, -59}, {334, 0}}';
+            verify(summary, tree, logFor(hidden), 'device');
+            const geometryCases = [
+              ['empty viewport', row => { row.viewport = {}; }],
+              ['viewport array', row => { row.viewport = []; }],
+              ['missing viewport width', row => { delete row.viewport.width; }],
+              ['non-finite viewport width', row => { row.viewport.width = Infinity; }],
+              ['zero viewport height', row => { row.viewport.height = 0; }],
+              ['invalid device scale', row => { row.viewport.devicePixelRatio = 0; }],
+              ['missing visual viewport', row => { row.viewport.visual = null; }],
+              ['empty visual viewport', row => { row.viewport.visual = {}; }],
+              ['invalid visual width', row => { row.viewport.visual.width = -1; }],
+              ['invalid visual height', row => { row.viewport.visual.height = 0; }],
+              ['invalid visual offset', row => { row.viewport.visual.offsetLeft = '0'; }],
+              ['invalid visual scale', row => { row.viewport.visual.scale = 0; }],
+              ['missing navigation', row => { row.navigation = null; }],
+              ['empty navigation', row => { row.navigation = {}; }],
+              ['missing navigation rectangle', row => { delete row.navigation.rect; }],
+              ['empty navigation rectangle', row => { row.navigation.rect = {}; }],
+              ['navigation rectangle array', row => { row.navigation.rect = []; }],
+              ['invalid navigation coordinate', row => { row.navigation.rect.x = '0'; }],
+              ['negative navigation size', row => { row.navigation.rect.height = -1; }],
+              ['inconsistent navigation edges', row => { row.navigation.rect.right -= 1; }],
+              ['missing navigation visibility', row => { delete row.navigation.visibility; }],
+              ['invalid navigation opacity', row => { row.navigation.opacity = 'invalid'; }],
+              ['missing owner rectangle', row => { delete row.privacyOwners[0].rect; }],
+              ['empty owner rectangle', row => { row.privacyOwners[0].rect = {}; }],
+              ['invalid owner coordinate', row => { row.privacyOwners[0].rect.bottom = null; }],
+              ['inconsistent owner origin', row => { row.privacyOwners[0].rect.x += 1; }],
+              ['empty fragment rectangle', row => { row.privacyOwners[0].samples[0].rect = {}; }],
+              ['invalid fragment coordinate', row => { row.privacyOwners[0].samples[0].rect.y = '565'; }],
+              ['negative fragment size', row => { row.privacyOwners[0].samples[0].rect.width = -1; }],
+              ['inconsistent fragment edges', row => { row.privacyOwners[0].samples[0].rect.bottom -= 1; }],
+              ['missing native frame', row => { row.nativeFrame = null; }],
+              ['malformed native frame', row => { row.nativeFrame = 'frame'; }],
+              ['non-finite native frame', row => { row.nativeFrame = '{{Infinity, 0}, {333, 10}}'; }],
+              ['overflowing native frame', row => { row.nativeFrame = '{{1e309, 0}, {333, 10}}'; }],
+              ['negative native size', row => { row.nativeFrame = '{{16, 565}, {-333, 10}}'; }],
+              ['native absence not recorded', row => { row.nativeCount = 0; delete row.nativeFrame; }],
+              ['native frame without a match', row => { row.nativeCount = 0; }],
+              ['missing web frame', row => { row.webFrame = null; }],
+              ['malformed web frame', row => { row.webFrame = '{}'; }],
+              ['zero web frame size', row => { row.webFrame = '{{0, 20}, {0, 647}}'; }],
+              ['missing web frame without a native match', row => {
+                row.nativeCount = 0; row.nativeFrame = null; row.webFrame = null;
+              }],
+            ];
+            for (const [name, getRect] of [
+              ['navigation', row => row.navigation.rect],
+              ['owner', row => row.privacyOwners[0].rect],
+              ['fragment', row => row.privacyOwners[0].samples[0].rect],
+            ]) {
+              for (const key of ['x', 'y', 'width', 'height', 'left', 'top', 'right', 'bottom']) {
+                geometryCases.push([`missing ${name} ${key}`, row => { delete getRect(row)[key]; }]);
+              }
+            }
+            for (const key of ['width', 'height', 'offsetLeft', 'offsetTop', 'scale']) {
+              geometryCases.push([`missing visual ${key}`, row => { delete row.viewport.visual[key]; }]);
+            }
+            for (const key of ['position', 'display', 'visibility', 'opacity', 'transform']) {
+              geometryCases.push([`missing navigation ${key}`, row => { delete row.navigation[key]; }]);
+            }
+            const geometryBad = geometryCases.map(([name, mutate]) => {
+              const invalid = structuredClone(rows);
+              mutate(invalid[0]);
+              const reason = name.includes('fragment') ? 'Malformed fragment' : 'Incomplete matched observation';
+              return [name, reason, summary, tree, logFor(invalid)];
+            });
+            const bad = [
+              ['wrong test count', 'one passing, unskipped test', { ...summary, totalTestCount: 0 }, tree, log],
+              ['skipped test', 'one passing, unskipped test', { ...summary, skippedTests: 1 }, tree, log],
+              ['missing test', 'exact diagnostic test', summary, { testNodes: [] }, log],
+              ['wrong test', 'start and pass once', summary, tree, log.replace(method, 'wrongTest')],
+              ['missing completion', 'incomplete completion marker', summary, tree,
+                log.replace('se-scroll-complete', 'se-scroll-missing')],
+              ['unmatched observation', 'Incomplete matched observation', summary, tree,
+                log.replace('"matched":true', '"matched":false')],
+              ['invalid scroll', 'Incomplete matched observation', summary, tree,
+                log.replace('"scrollY":100', '"scrollY":"bad"')],
+              ['interactive drag', 'Incomplete matched observation', summary, tree,
+                log.replace('"interactive":false', '"interactive":true')],
+              ['overflowing viewport', 'Incomplete matched observation', summary, tree,
+                log.replace('"width":375', '"width":1e309')],
+              ['zero movement', 'incomplete completion marker', summary, tree, log.replaceAll('"scrollY":100', '"scrollY":0')
+                .replaceAll('"scrollY":200', '"scrollY":0').replaceAll('"scrollY":300', '"scrollY":0')],
+              ...geometryBad,
+            ];
+            const accepted = [];
+            for (const [name, reason, ...args] of bad) {
+              let rejected = false;
+              try {
+                verify(...args, 'device');
+              } catch (error) {
+                requireValue(error instanceof Error && error.message.includes(reason),
+                  `Negative validator fixture ${name} failed unexpectedly: ${error}`);
+                rejected = true;
+              }
+              if (!rejected) accepted.push(name);
+            }
+            requireValue(accepted.length === 0, `Negative validator fixtures accepted: ${accepted.join(', ')}`);
+            console.log(`Diagnostic validator accepted complete and hidden-navigation fixtures and rejected ${bad.length} negative fixtures.`);
+          }
+          if (process.argv[2] === '--self-test') selfTest();
+          else {
+            const [summaryPath, treePath, logPath, device] = process.argv.slice(2);
+            const result = verify(JSON.parse(fs.readFileSync(summaryPath, 'utf8')),
+              JSON.parse(fs.readFileSync(treePath, 'utf8')), fs.readFileSync(logPath, 'utf8'), device);
+            console.log(`Verified complete SE diagnostic: ${JSON.stringify(result)}`);
+          }
+          NODE
+          node "$RUNNER_TEMP/se-diagnostic/verify.mjs" --self-test
+          bundle="$RUNNER_TEMP/RecapPage-se-scroll.xcresult"
+          if [ ! -d "$bundle" ]; then
+            echo "::error::The diagnostic result bundle was not created."
+            exit 1
+          fi
+          xcrun xcresulttool get test-results summary --path "$bundle" > "$RUNNER_TEMP/se-diagnostic/summary.json"
+          xcrun xcresulttool get test-results tests --path "$bundle" > "$RUNNER_TEMP/se-diagnostic/tests.json"
+          node "$RUNNER_TEMP/se-diagnostic/verify.mjs" "$RUNNER_TEMP/se-diagnostic/summary.json" \
+            "$RUNNER_TEMP/se-diagnostic/tests.json" "$RUNNER_TEMP/se-diagnostic/test.log" "$SE_UDID"
+
+      - name: Export available test attachments
+        if: ${{ !cancelled() }}
+        timeout-minutes: 5
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle="$RUNNER_TEMP/RecapPage-se-scroll.xcresult"
+          if [ ! -d "$bundle" ]; then
+            echo "::warning::No result bundle exists to export."
+            exit 0
+          fi
+          xcrun xcresulttool export attachments --path "$bundle" \
+            --output-path "$RUNNER_TEMP/se-diagnostic/attachments"
+
+      - name: Keep available diagnostic evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-se-scroll-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/se-diagnostic
+            ${{ runner.temp }}/RecapPage-se-scroll.xcresult
+          if-no-files-found: warn

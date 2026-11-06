@@ -172,6 +172,11 @@ enum DebugSupport {
         ['pointerover', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
         ['pointerout', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
         ['pointermove', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
+        ['pointerdown', true, true, '/js/lib/pressFeedback.js', 'wirePressFeedback'],
+        ['pointermove', true, true, '/js/lib/pressFeedback.js', 'wirePressFeedback'],
+        ['pointerup', true, true, '/js/lib/pressFeedback.js', 'wirePressFeedback'],
+        ['pointercancel', true, true, '/js/lib/pressFeedback.js', 'wirePressFeedback'],
+        ['contextmenu', true, true, '/js/lib/pressFeedback.js', 'wirePressFeedback'],
         ['keydown', false, null, '/js/main.js', 'wireSidebar'],
         ['keydown', false, null, '/js/views/reading.js', 'wireShortcuts'],
       ].map(([type, capture, passive, script, enclosingFunction]) =>

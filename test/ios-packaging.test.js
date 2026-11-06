@@ -1640,6 +1640,39 @@ test('passive audit guard tracks events only from document start in Debug presen
   assert.doesNotMatch(withoutDebug, /passiveAuditTrackingScript|__recapPassiveGuard/);
 });
 
+test('passive audit guard reviews every observed global listener that press feedback registers', async () => {
+  const { wirePressFeedback } = await import('../src/js/lib/pressFeedback.js');
+  const observedType = new RegExp(debugSupport.match(/const observedType = \/(.+)\/;/)[1]);
+  const approved = [...debugSupport.match(/const approved = \[([\s\S]*?)\]\.map/)[1]
+    .matchAll(/\['(\w+)', (true|false), (true|false|null), '([^']+)', '(\w+)'\]/g)]
+    .map(([, type, capture, passive, script, fn]) => [type, 'document', capture, passive, 'false', script, fn].join(' '));
+  assert.equal(new Set(approved).size, approved.length, 'the reviewed inventory has no duplicate rows');
+  const registered = [];
+  const target = (name) => ({
+    hidden: false,
+    addEventListener(type, _listener, options) {
+      const frame = new Error().stack.split('\n').find((line) => !line.includes('addEventListener')
+        && /\(file:\/\/.+:\d+:\d+\)$/.test(line));
+      const [, fn, url] = frame.match(/at (?:Object\.)?(\S+) \((file:\/\/.+):\d+:\d+\)$/);
+      const script = fileURLToPath(url).split(sep).join('/').replace(/^.*\/src(?=\/js\/)/, '');
+      registered.push({ type, target: name, capture: Boolean(options?.capture),
+        passive: options?.passive == null ? null : Boolean(options.passive), once: Boolean(options?.once), script, fn });
+    },
+  });
+  wirePressFeedback({ document: target('document'), window: target('window') });
+  const observed = registered.filter(({ type }) => observedType.test(type))
+    .map((r) => [r.type, r.target, r.capture, r.passive, r.once, r.script, r.fn].join(' '));
+  assert.deepEqual(observed.sort(), [
+    'contextmenu document true true false /js/lib/pressFeedback.js wirePressFeedback',
+    'pointercancel document true true false /js/lib/pressFeedback.js wirePressFeedback',
+    'pointerdown document true true false /js/lib/pressFeedback.js wirePressFeedback',
+    'pointermove document true true false /js/lib/pressFeedback.js wirePressFeedback',
+    'pointerup document true true false /js/lib/pressFeedback.js wirePressFeedback',
+  ]);
+  for (const identity of observed) assert.ok(approved.includes(identity), `reviewed: ${identity}`);
+  assert.equal(approved.length, 18, 'docs/IOS.md describes eighteen reviewed handlers');
+});
+
 test('iOS backup controls keep file label activation and full-sized native summary targets', () => {
   const webController = read('packaging/ios/RecapPage/WebViewController.swift');
   const iosCss = read('packaging/ios/web/ios.css');
