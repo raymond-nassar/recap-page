@@ -29,8 +29,8 @@ Countdown and Infinity Wars at the 46 explicit issue-by-issue rows, and Damnatio
 identity is the page and section together without inventing a fragment or DOM id.
 `sourceLicense` stays `null` for every published order, and the full attribution remains recorded
 in `sourceOrigin` as `Compiled for this project from Comic Book Herald's guide`. Cards show the
-linked website name without a disclosure; Preview shows the full attribution, the snapshot date
-and `sourceSection`, with the exact source URL unchanged. About credits
+linked website name, with owner-selected additions noted separately when applicable; Preview shows
+the full attribution, the snapshot date and `sourceSection`, with the exact source URL unchanged. About credits
 Comic Book Herald, Comic Book Reading Orders, and the upstream emreparker/marvel-comics repository.
 
 ## MCU Prep companion intake
@@ -686,8 +686,12 @@ and SpiderFan's yearly publication indexes on 2026-11-06 UTC. Sixty-seven issue 
 provider responses and 36 reused pinned metadata; Spectacular #42 was refreshed because its older
 snapshot lacked a reader ID. All 103 retained records have reader IDs, which do not by themselves
 prove subscription access. The expanded guide contains 2,144 entries and keeps the seven original
-placeholders. An already saved Reading List retains its existing membership and progress; a fresh
-import uses the expanded guide.
+placeholders. An already saved Reading List retains its existing membership and history. Preview
+identifies missing comics and offers a separate updated copy, keeping the original in place. The
+new copy retains existing shared comic details, read progress, comic notes, ratings and availability
+choices but does not inherit the original's custom order, list note, deferred comics, customized
+editions, completion date or enjoyment choice. Its list and comics are saved together, so a refused
+save cannot leave an empty copy behind.
 
 Some source guides name one comic in more than one collected range. The frozen packet preserves that
 fact without turning it into a second reading step. Its canonical rows contain each distinct comic

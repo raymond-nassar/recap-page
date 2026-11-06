@@ -27,7 +27,7 @@ function node(props = {}, children = []) {
   };
 }
 
-function harness(t, { loadOrder = async () => order, onAdd, onClose } = {}) {
+function harness(t, { loadOrder = async () => order, onAdd, onAddCopy, onClose } = {}) {
   const prior = globalThis.document;
   const document = { body: {}, activeElement: null };
   globalThis.document = document;
@@ -39,7 +39,7 @@ function harness(t, { loadOrder = async () => order, onAdd, onClose } = {}) {
   const timers = [];
   t.mock.method(globalThis, 'setTimeout', (fn) => { timers.push(fn); return timers.length; });
   let state = { lists: {}, listOrder: [] };
-  const calls = { added: 0, closed: [], failures: [], focusedIssues: [], opened: [], restored: [] };
+  const calls = { added: 0, copied: 0, closed: [], failures: [], focusedIssues: [], opened: [], restored: [] };
   const view = createPreviewView({
     captureFocus: (container) => ({ container }),
     el: (_tag, props, children) => node(props, children),
@@ -53,6 +53,15 @@ function harness(t, { loadOrder = async () => order, onAdd, onClose } = {}) {
       if (onAdd) return onAdd(...args);
       state = { lists: { saved: { id: 'saved', catalogId: list.id, itemIds: [1] } }, listOrder: ['saved'] };
       return 'saved';
+    },
+    onAddCopy: async (...args) => {
+      calls.copied += 1;
+      if (onAddCopy) return onAddCopy(...args);
+      state = {
+        lists: { ...state.lists, copy: { id: 'copy', catalogId: null, itemIds: [1, 2] } },
+        listOrder: [...state.listOrder, 'copy'],
+      };
+      return 'copy';
     },
     onClose: async (closedList, options) => {
       calls.closed.push({ list: closedList, options });
@@ -145,6 +154,82 @@ test('an existing Preview Open keeps its exact list identity and does not Add', 
   assert.deepEqual(h.calls.opened, [[list, saved]]);
   await h.close();
   assert.equal(h.calls.closed[0].options.changed, false);
+});
+
+test('Preview offers a separate updated copy without changing an older snapshot', async (t) => {
+  const items = [{ issueId: 1, title: 'One' }, { issueId: 2, title: 'Two' }];
+  const h = harness(t, { loadOrder: async () => ({ items }) });
+  const saved = { id: 'existing', catalogId: list.id, itemIds: [1, 3] };
+  h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
+  await h.view.open({ ...list, count: 2 });
+  const notice = h.nodes.body.children[0];
+  assert.equal(notice.role, 'status');
+  assert.match(notice.text, /saved list is missing 1 comic shown here/i);
+  assert.match(notice.text, /add an updated copy to keep both lists/i);
+  assert.match(notice.text, /completion date or enjoyment choice/i);
+  assert.match(notice.text, /deferred comics, customized editions/i);
+  assert.match(notice.text, /saved comic details, read progress, comic notes, ratings and availability choices/i);
+  assert.equal(h.nodes.add.children[0].href, '#/read/existing');
+  assert.deepEqual(saved.itemIds, [1, 3]);
+  const copy = h.nodes.add.children.find((child) => child.dataset?.act === 'add-copy');
+  assert.ok(copy);
+  await copy.onclick({ currentTarget: copy });
+  assert.equal(h.calls.copied, 1);
+  assert.deepEqual(saved.itemIds, [1, 3]);
+  const open = h.nodes.add.children.find((child) => child.dataset?.act === 'open-copy');
+  assert.equal(open.href, '#/read/copy');
+  assert.match(h.nodes.add.children.find((child) => child.role === 'status').text, /added updated copy/i);
+
+  h.setState({ lists: { existing: { ...saved, itemIds: [2, 1] } }, listOrder: ['existing'] });
+  await h.view.open({ ...list, count: 2 });
+  assert.equal(h.nodes.body.children[0].class, 'preview-list', 'reordered but complete copies need no notice');
+  assert.ok(!h.nodes.add.children.some((child) => child.dataset?.act === 'add-copy'));
+  h.setState({ lists: {}, listOrder: [] });
+  await h.view.open({ ...list, count: 2 });
+  assert.equal(h.nodes.body.children[0].class, 'preview-list', 'new imports need no notice');
+  assert.ok(!h.nodes.add.children.some((child) => child.dataset?.act === 'add-copy'));
+});
+
+test('an updated-copy save blocks repeat clicks and reports failure without claiming success', async (t) => {
+  const pending = deferred();
+  const h = harness(t, {
+    loadOrder: async () => ({ items: [{ issueId: 1 }, { issueId: 2 }] }),
+    onAddCopy: () => pending.promise,
+  });
+  const saved = { id: 'existing', catalogId: list.id, itemIds: [1] };
+  h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
+  await h.view.open({ ...list, count: 2 });
+  const button = h.nodes.add.children.find((child) => child.dataset?.act === 'add-copy');
+  const saving = button.onclick({ currentTarget: button });
+  assert.equal(button.disabled, true);
+  await button.onclick({ currentTarget: button });
+  assert.equal(h.calls.copied, 1);
+  pending.resolve(null);
+  await saving;
+  assert.deepEqual(saved.itemIds, [1]);
+  assert.ok(h.nodes.add.children.some((child) => child.dataset?.act === 'add-copy'));
+  assert.ok(!h.nodes.add.children.some((child) => child.dataset?.act === 'open-copy'));
+});
+
+test('an updated copy completing after dismissal refreshes the source once', async (t) => {
+  const pending = deferred();
+  const h = harness(t, {
+    loadOrder: async () => ({ items: [{ issueId: 1 }, { issueId: 2 }] }),
+    onAddCopy: () => pending.promise,
+  });
+  const saved = { id: 'existing', catalogId: list.id, itemIds: [1] };
+  h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
+  await h.view.open({ ...list, count: 2 });
+  const button = h.nodes.add.children.find((child) => child.dataset?.act === 'add-copy');
+  const saving = button.onclick({ currentTarget: button });
+  await h.close();
+  h.setState({
+    lists: { existing: saved, copy: { id: 'copy', catalogId: null, itemIds: [1, 2] } },
+    listOrder: ['existing', 'copy'],
+  });
+  pending.resolve('copy');
+  await saving;
+  assert.deepEqual(h.calls.closed.map(({ options }) => options.changed), [false, true]);
 });
 
 test('a real Add completing after dismissal requests its source refresh once', async (t) => {

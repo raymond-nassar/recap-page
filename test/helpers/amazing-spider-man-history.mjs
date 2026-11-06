@@ -18,7 +18,7 @@ const { sha256, ...supplement } = JSON.parse(readFileSync(
 assert.equal(baseline.sourceCommit, '95f02a62e64bd072ab103cca5a0e4716c7478dec');
 assert.equal(captureSha256, '0dd8649e375b1c6a59ff21ad99cd663869a4390df2700f011a533f778ced9f6a');
 assert.equal(hash(JSON.stringify(baseline)), captureSha256);
-assert.equal(sha256, 'f3126307a66389013f7ffc5c9c661a95f37bb92909dce6ac67d03515d9a64749');
+assert.equal(sha256, '01ffbe4cc1b997204ff07c97db44da5198afed49c2688e2fe95f8e7bdc049316');
 assert.equal(hash(JSON.stringify(supplement)), sha256);
 assert.equal(supplement.originalGuide.baselineCommit, baseline.sourceCommit);
 assert.equal(supplement.originalGuide.payloadSha256, baseline.payloadSha256);

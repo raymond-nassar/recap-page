@@ -186,6 +186,31 @@ test('adding the same issue twice is skipped, not duplicated', () => {
   assert.deepEqual(res.state.lists[id].itemIds, [1, 2, 3]);
 });
 
+test('preserving existing issue records retains manual details while adding new guide metadata', () => {
+  let state = createList(createEmptyState(), { id: 'old', name: 'Old' });
+  state = addIssuesToList(state, 'old', [{
+    issueId: 1, title: 'My title', source: 'manual', hydrated: true, pageCount: 19,
+  }]).state;
+  state = createList(state, { id: 'copy', name: 'Updated copy' });
+  const inputs = [
+    issue(1, { title: 'Guide title', collectedIn: 'Volume one' }),
+    issue(2, { title: 'New comic', collectedIn: 'Volume two' }),
+    issue(2, { title: 'New comic with more details', pageCount: 32 }),
+  ];
+  const result = addIssuesToList(state, 'copy', inputs, { preserveExisting: true });
+  assert.equal(result.added, 2);
+  assert.equal(result.skipped, 1);
+  assert.deepEqual(result.state.lists.copy.itemIds, [1, 2]);
+  assert.deepEqual(result.state.lists.copy.collectedIn, { 1: 'Volume one', 2: 'Volume two' });
+  assert.deepEqual(result.state.issues[1], state.issues[1]);
+  assert.equal(result.state.issues[2].title, 'New comic with more details');
+  assert.equal(result.state.issues[2].pageCount, 32);
+  assert.deepEqual(result.state.lists.old.itemIds, [1]);
+
+  const normalImport = addIssuesToList(state, 'copy', inputs);
+  assert.equal(normalImport.state.issues[1].title, 'Guide title');
+});
+
 test('a batch containing internal duplicates only adds one', () => {
   const { state, id } = withList([]);
   const res = addIssuesToList(state, id, [issue(9), issue(9)]);

@@ -6,7 +6,7 @@
 // replaced by a typographic tile.
 
 import {
-  createList, deleteList, setActive, addIssuesToList, isRead, upNext, listProgress, listItems, exportBackup, migrate,
+  createList, copyName, deleteList, setActive, addIssuesToList, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   coverUrl, listForCatalogId, SCHEMA_VERSION, MAX_BACKUP_BYTES, orderGapSentences,
 } from './lib/model.js';
 import { chooseMarkdownExport } from './views/markdown-export.js';
@@ -2019,15 +2019,17 @@ let importing = null;
 // `report` is where a failure is written. This used to be alert(), which was the only path in
 // the app that stopped the page to report a failure, and the one place a reader could not read
 // the reason and the catalog at the same time.
-async function importCurated(list, btn, { navigate = true, report = '#catalog-report' } = {}) {
+async function importCurated(list, btn, {
+  navigate = true, report = '#catalog-report', asCopy = false, isCurrent = () => true,
+} = {}) {
   if (importing) return null;
   const file = list.file;
-  const catalogId = list.id;
+  const catalogId = asCopy ? null : list.id;
   // Keyed by the order rather than by the pane, for the reason CATALOG_LOAD is. The same order can
   // be added from the landing page and from the catalog row, so a failure written into one pane is
   // the same failure the other entry point would report. Keying by pane left the reader looking at
   // the list open in front of them under a banner saying it could not be loaded.
-  const importKey = `import:${catalogId}`;
+  const importKey = `${asCopy ? 'import-copy' : 'import'}:${list.id}`;
   clearNotice(importKey);
   importing = file;
   const label = btn?.textContent;
@@ -2041,25 +2043,33 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const order = await res.json();
 
-    const created = store.update((s) => createList(s, { name: order.name, description: order.description, catalogId }));
-    if (!store.lastUpdateOk) {
-      notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);
-      return null;
-    }
-    const listId = created.listOrder[created.listOrder.length - 1];
     let added = 0;
-    store.update((s) => {
+    const addCuratedIssues = (s, id) => {
       // No `hydrated: true` here. It was asserted over the whole file, which is right for the 688
       // items that carry metadata and a false statement about the 63 that carry none. normalizeIssue
       // infers it from the item instead, and marks the empty ones as refused rather than pending.
       // Those 63 now say so on themselves: the vendoring run records which lookups upstream refused
       // and aborts rather than writing an item for one it never got an answer about, so this is
       // reading what the run was told rather than reading emptiness and calling it an answer.
-      const r = addIssuesToList(s, listId, order.items.map((i) => ({ ...i, source: 'curated' })), {});
+      const r = addIssuesToList(s, id, order.items.map((i) => ({ ...i, source: 'curated' })), {
+        preserveExisting: asCopy,
+      });
       added = r.added;
       return r.state;
+    };
+    const created = store.update((s) => {
+      const next = createList(s, {
+        name: asCopy ? copyName(s, order.name) : order.name, description: order.description, catalogId,
+      });
+      return asCopy ? addCuratedIssues(next, next.listOrder[next.listOrder.length - 1]) : next;
     });
     if (!store.lastUpdateOk) {
+      notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);
+      return null;
+    }
+    const listId = created.listOrder[created.listOrder.length - 1];
+    if (!asCopy) store.update((s) => addCuratedIssues(s, listId));
+    if (!asCopy && !store.lastUpdateOk) {
       // The list record is written before its issues, so a failure here leaves a shell claiming
       // the catalog entry with nothing in it. That is not merely untidy: it blocks the undo offer
       // for a deleted copy of the same order, and `undoDelete` would then discard the reader's
@@ -2095,7 +2105,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     // that looks wrong for no reason. The counts come from the items rather than from the
     // order's own `placeholders` field, which records raw flags but not whether an item later
     // gained launch metadata, and carries no count for records that arrived empty.
-    const parts = [`${navigate ? 'Imported' : 'Added'} ${order.name}: ${added} comics.`];
+    const parts = [`${navigate ? 'Imported' : 'Added'} ${created.lists[listId].name}: ${added} comics.`];
     parts.push(...orderGapSentences(order));
     parts.push('Any comics you had already read stay read.');
     if (!navigate) parts.push('It is now in your Library.');
@@ -2108,21 +2118,35 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     announce(withSaveEducation(parts.join(' '), transition));
     return listId;
   } catch (err) {
+    const failure = `Could not load ${list.name}: ${err.message}. Your lists are unchanged.`;
+    if (asCopy && !isCurrent()) {
+      notify('#app-report', failure, 'error', importKey);
+      return null;
+    }
     const failureReport = report === '#preview-report' && !$('#preview').open
       ? '#home-cat-report'
       : report;
     await reportBundledLoadFailure({
       report: failureReport,
-      failure: `Could not load ${list.name}: ${err.message}. Your lists are unchanged.`,
+      failure,
       key: importKey,
       subject: list.name,
-      retry: () => (navigate
-        ? importCurated(list, btn, { navigate, report })
-        : importCurated(list, $('#preview-add [data-act="main"]'), {
-          navigate: false,
-          report: '#preview-report',
-        })),
+      isCurrent,
+      retry: () => {
+        if (asCopy) {
+          const copyButton = isCurrent() && $('#preview').open ? $('#preview-add [data-act="add-copy"]') : null;
+          if (copyButton?.dataset.key === list.id) {
+            if (document.activeElement === document.body) copyButton.focus({ preventScroll: true });
+            copyButton.click();
+          }
+          return;
+        }
+        return importCurated(list, navigate ? btn : $('#preview-add [data-act="main"]'), {
+          navigate, report: navigate ? report : '#preview-report',
+        });
+      },
     });
+    if (asCopy && !isCurrent()) notify('#app-report', failure, 'error', importKey);
     return null;
   } finally {
     importing = null;
@@ -3814,9 +3838,19 @@ const previewView = createPreviewView({
   issueFocusAnchor,
   loadOrder: loadBundledOrder,
   offlineContent,
+  onAbandonCopy: (list) => {
+    const key = `import-copy:${list.id}`;
+    if (notices.has(key)) clearNotice(key);
+  },
   onAdd: (list, button) => importCurated(list, button, {
     navigate: false,
     report: '#preview-report',
+  }),
+  onAddCopy: (list, button, { isCurrent }) => importCurated(list, button, {
+    navigate: false,
+    report: '#preview-report',
+    asCopy: true,
+    isCurrent,
   }),
   onClose: async (closedList, { changed, isCurrent }) => {
     if (!isCurrent()) return;

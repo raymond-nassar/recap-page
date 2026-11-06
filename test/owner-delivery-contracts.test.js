@@ -1,8 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
+import { assertOwnerDeliveryContract, recordedOwnerManifest } from './helpers/owner-delivery-contract.mjs';
 import { readOwnerGuideRegistry } from '../scripts/lib/owner-guide-registry.mjs';
+import { approvalDigestFor, libraryDigestFor, reportDigestFor } from '../scripts/lib/cbh-inventory.mjs';
+import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
+import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
+import { withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
+import { beforeIdentityOrders, identityRevisions } from './helpers/owner-identity-history.mjs';
 import {
   assertCurrentReadingRoster, currentReadingCensus, registeredCatalogAdditionIds, registeredOwnerContracts,
 } from './helpers/current-reading-library.mjs';
@@ -64,6 +69,71 @@ test('a Comic Book Herald baseline contract still refuses a later list nobody re
     contracts: registeredOwnerContracts.filter(({ id }) => id !== 'marvel-rising'),
   }), /marvel-rising: unregistered later peers require a new bounded relationship review/);
 });
+
+async function expandedReviewFixture(id) {
+  const original = registeredOwnerContracts.find((entry) => entry.id === id);
+  const contract = structuredClone(original);
+  const mappingPath = `scripts/data/owner-mappings/${contract.id}.json`;
+  const reportPath = `scripts/data/owner-overlaps/${contract.id}.json`;
+  const [mapping, report, library] = await Promise.all([
+    json(mappingPath), json(reportPath), loadCurrentOwnerLibrary(contract.id),
+  ]);
+  const recordedIds = new Set(report.comparisons.map(({ orderId }) => orderId));
+  const cbh = contract.sourceProvider === 'comic-book-herald';
+  const publication = identityRevisions.guides.filter((revision) =>
+    revision.id === id && revision.placeholderReplacement).at(-1);
+  const allOrders = cbh ? beforeIdentityOrders(library.orders, '',
+    identityRevisions.guides.filter((revision) => revision.placeholderReplacement
+      && revision.publicationOrder > (publication?.publicationOrder ?? 0))) : library.orders;
+  const selected = allOrders.filter(({ orderId }) => recordedIds.has(orderId));
+  const orders = cbh ? selected : withRetiredOrders(selected, recordedIds);
+  const manifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: contract.id });
+  report.libraryDigest = libraryDigestFor(manifest, orders.map(({ orderId, issueIds }) => ({
+    id: orderId, issueIds: issueIds.map(String),
+  })));
+  const candidateIds = cbh ? mapping.rows.map((row) => row.selectedIssueId) : contract.rows.map((row) => row[1]);
+  Object.assign(report, buildComparisonReport({ candidateIds, orders }));
+  report.reportDigest = reportDigestFor(report);
+  const previous = new Map(mapping.relationshipReview.dispositions.map((entry) => [entry.orderId, entry]));
+  mapping.relationshipReview.dispositions = report.comparisons.map((comparison) => ({
+    ...previous.get(comparison.orderId), ...comparison,
+    ...(comparison.relationship === 'none' ? {} : {
+      authorityType: 'stronger-model', authorityIdentity: 'Synthetic test reviewer',
+    }),
+  }));
+  mapping.relationshipReview.reportDigest = report.reportDigest;
+  mapping.relationshipReview.libraryDigest = report.libraryDigest;
+  mapping.relationshipReview.approvalDigest = approvalDigestFor(mapping.relationshipReview);
+  contract.libraryDigest = report.libraryDigest;
+  contract.approvalDigest = mapping.relationshipReview.approvalDigest;
+  const readJson = async (name) => {
+    if (name === mappingPath) return mapping;
+    if (name === reportPath) return report;
+    return json(name);
+  };
+  return { contract, mapping, report, readJson };
+}
+
+for (const id of ['mcu-prep-visionquest', 'shang-chi-master-of-kung-fu-reading-order']) {
+  test(`${id}: an approval against the expanded Spider-Man guide keeps that exact library`, async () => {
+    const { contract, mapping, report, readJson } = await expandedReviewFixture(id);
+    await assertOwnerDeliveryContract(contract, { readJson });
+    report.libraryDigest = 'f'.repeat(64);
+    report.reportDigest = reportDigestFor(report);
+    mapping.relationshipReview.libraryDigest = report.libraryDigest;
+    mapping.relationshipReview.reportDigest = report.reportDigest;
+    mapping.relationshipReview.approvalDigest = approvalDigestFor(mapping.relationshipReview);
+    contract.libraryDigest = report.libraryDigest;
+    contract.approvalDigest = mapping.relationshipReview.approvalDigest;
+    await assert.rejects(assertOwnerDeliveryContract(contract, { readJson }), (error) => {
+      const actual = typeof error.actual === 'object' ? error.actual.libraryDigest : error.actual;
+      const expected = typeof error.expected === 'object' ? error.expected.libraryDigest : error.expected;
+      assert.equal(expected, report.libraryDigest);
+      assert.notEqual(actual, expected);
+      return true;
+    });
+  });
+}
 
 for (const contract of registeredOwnerContracts) {
   test(`${contract.id}: accepted input, public source, authority and generated surfaces agree`,

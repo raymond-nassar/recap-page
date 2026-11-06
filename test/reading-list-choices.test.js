@@ -270,7 +270,10 @@ test('each card binds Add or Open and Preview to its own exact list', () => {
   assert.deepEqual(previewed, ['fast', 'full']);
 });
 
-test('Preview inspects one named list even when supplied a logical sibling group', async () => {
+test('Preview inspects one named list even when supplied a logical sibling group', async (t) => {
+  const prior = globalThis.document;
+  globalThis.document = { body: {}, activeElement: null };
+  t.after(() => { if (prior === undefined) delete globalThis.document; else globalThis.document = prior; });
   const nodes = Object.fromEntries(
     ['add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source'].map((key) => [key, node()]),
   );

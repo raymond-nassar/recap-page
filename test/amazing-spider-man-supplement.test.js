@@ -5,10 +5,11 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import { cleanText } from '../scripts/vendor-orders.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { parseCatalog, catalogListShelf } from '../src/js/lib/catalog.js';
 import {
-  addIssuesToList, createEmptyState, createList, listItems, markRead, setIssueNote,
+  addIssuesToList, createEmptyState, createList, listItems, markRead, normalizeCover, setIssueNote,
 } from '../src/js/lib/model.js';
 import {
   beforeAmazingSpiderManSupplementCatalogEntry, beforeAmazingSpiderManSupplementEntry,
@@ -151,6 +152,33 @@ test('the supplement retains the supplied URLs, publication evidence and exact i
   }
   assert.equal(ledger.rows.find((row) => row.issueId === 14742).metadata.kind, 'provider-response');
   assert.equal(payload.items.find((item) => item.issueId === 14742).digitalId, 6680);
+});
+
+test('provider-backed additions retain the recorded factual metadata and reader IDs', () => {
+  const rows = ledger.rows.filter((row) => row.metadata.kind === 'provider-response');
+  assert.equal(rows.length, 67);
+  for (const row of rows) {
+    const projection = row.metadata.providerProjection;
+    assert.ok(projection, `Missing provider projection for ${row.issueId}.`);
+    assert.deepEqual(Object.keys(projection).sort(), [
+      'cover', 'creators', 'detailUrl', 'digitalId', 'id', 'issueNumber', 'onSaleDate',
+      'pageCount', 'seriesId', 'seriesName', 'title', 'unlimitedDate',
+    ]);
+    const item = payload.items[row.guidePosition - 1];
+    assert.deepEqual({
+      issueId: item.issueId, title: item.title, number: item.number, url: item.url,
+      seriesId: item.seriesId, seriesName: item.seriesName, onSale: item.onSale, mu: item.mu,
+      digitalId: item.digitalId, cover: item.cover, pageCount: item.pageCount, creators: item.creators,
+    }, {
+      issueId: projection.id, title: cleanText(projection.title), number: String(projection.issueNumber),
+      url: projection.detailUrl, seriesId: projection.seriesId,
+      seriesName: projection.seriesName == null ? null : cleanText(projection.seriesName),
+      onSale: projection.onSaleDate, mu: projection.unlimitedDate, digitalId: projection.digitalId,
+      cover: normalizeCover(projection.cover), pageCount: projection.pageCount,
+      creators: projection.creators.filter(({ role }) => /writer|penciler|artist/i.test(role ?? ''))
+        .map(({ name, role }) => ({ name, role })),
+    }, `Published metadata for ${row.issueId} must match its recorded provider response.`);
+  }
 });
 
 test('reused issue facts and the historical review baseline come from the recorded commit', () => {

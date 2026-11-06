@@ -52,7 +52,7 @@ Evaluated against all ten of Nielsen's usability heuristics, named by their stan
 | 2 | Match between the system and the real world | 1 | Strong. Labels are written in reader language, and availability wording hedges rather than promises. `src/js/views/reading.js:943-945` |
 | 3 | User control and freedom | 3 | Restoring a backup could be undone, deleting a list could not. Closed by BL-035. UX-H-003 |
 | 4 | Consistency and standards | 3 | Two different error and prompt systems run side by side. UX-H-002 |
-| 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:123-145`, `src/js/lib/model.js:955-1034` |
+| 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:123-145`, `src/js/lib/model.js:957-1036` |
 | 6 | Recognition rather than recall | 2 | The one keyboard shortcut the interface advertises is documented only at the point of use. UX-H-004 |
 | 7 | Flexibility and efficiency of use | 2 | Only two shortcuts exist and one silently stops working. UX-D-003 |
 | 8 | Aesthetic and minimalist design | 1 | Restrained by design, though each row carries six controls that are hidden until hover. UX-A-005 |
@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:2966-2992`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:2990-3016`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2046`, `src/js/views/reading.js:432-440`, `src/js/views/reading.js:457-471`, against
+Evidence: `src/js/main.js:2067`, `src/js/views/reading.js:432-440`, `src/js/views/reading.js:457-471`, against
 `src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -839,14 +839,14 @@ sentence frames rather than quotations. Nobody said these words.
   `src/index.html:271-347` and `src/index.html:294-295`.
 * When I open a crossover I have never read, I want to know how much reading I am committing to
   before I import it, so I can pick the essential path or the complete path deliberately. Traced to
-  `src/js/views/preview.js:284-305`.
+  `src/js/views/preview.js:333-354`.
 * When an issue has no metadata yet, I want the app to say so plainly, so I can tell a pending
   lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:946-947`.
 * When I have read half of a long order across several sittings, I want to come back and see where
   I stopped, so I can resume without scrolling to find the boundary. Traced to
   `src/js/views/progress.js:49-109`.
 * When my browser storage is cleared or I move machines, I want my progress back from a file I
-  control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1131-1162`.
+  control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1133-1164`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how
   far through this story I am rather than a total across everything I have ever imported.
   Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:561-564`.
