@@ -23,6 +23,9 @@ import { descriptionRevisions } from '../../scripts/lib/description-revisions.mj
 import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
+import {
+  beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
+} from './amazing-spider-man-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -159,12 +162,12 @@ export async function assertOwnerDeliveryContract(contract, {
     }
     return peer;
   }));
-  const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
-    recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
+  const recordedOrders = beforeAmazingSpiderManSupplementOrders(withRetiredOrders(library.orders.filter((row) =>
+    recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds));
   // Every recorded review predates the description revision record, so each digest below hashes
   // the copy that review saw.
   const recordedManifest = descriptionRevisions.undoManifest(
-    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds }));
+    beforeAmazingSpiderManSupplementManifest(recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds })));
   const digestLibrary = contract.libraryDigest == null
     ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
   const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
@@ -277,9 +280,9 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   // The recorded report covers the library this guide was reviewed against. Anything published
   // since is held to the same registered-later-peer rule as an ordinary owner guide.
   const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
-  const orders = allOrders.filter((entry) => recordedIds.has(entry.orderId));
+  const orders = beforeAmazingSpiderManSupplementOrders(allOrders.filter((entry) => recordedIds.has(entry.orderId)));
   const recordedManifest = descriptionRevisions.undoManifest(
-    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id }));
+    beforeAmazingSpiderManSupplementManifest(recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id })));
   const current = {
     candidateId: id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest,
     libraryDigest: libraryDigestFor(recordedManifest,

@@ -22736,6 +22736,9 @@ SCENARIOS.push({
   },
 });
 SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
+const { amazingSpiderManActualData, amazingSpiderManMissingIssueMutation } = await import('./browser-amazing-spider-man.mjs');
+SCENARIOS.push(amazingSpiderManActualData);
+MUTATIONS.push(amazingSpiderManMissingIssueMutation);
 SCENARIOS.push((await import('./browser-greg-pak-hulk.mjs')).gregPakHulkActualData);
 SCENARIOS.push((await import('./browser-shang-chi.mjs')).shangChiActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-shang-chi.mjs')).mcuPrepShangChiActualData);

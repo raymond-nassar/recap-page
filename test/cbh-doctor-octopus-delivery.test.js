@@ -16,6 +16,7 @@ import {
 } from './helpers/reading-choice-history.mjs';
 import path from 'node:path';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
+import { beforeAmazingSpiderManSupplementPayloadFileText } from './helpers/amazing-spider-man-history.mjs';
 
 const id = 'doctor-octopus-otto-octavius-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/doctor-octopus-otto-octavius-reading-order/';
@@ -248,7 +249,8 @@ test('Doctor Octopus hydration preserves required identities and optional metada
     const text = await readFile(file, 'utf8');
     const lf = text.replace(/\r\n/g, '\n');
     assert.equal(hashText(lf), hashText(lf.replace(/\n/g, '\r\n')));
-    return [file, { hash: hashText(descriptionRevisions.undoPayloadText(path.basename(file), text)), data: JSON.parse(text) }];
+    const historical = beforeAmazingSpiderManSupplementPayloadFileText(file, text);
+    return [file, { hash: hashText(descriptionRevisions.undoPayloadText(path.basename(file), historical)), data: JSON.parse(text) }];
   })));
   for (const record of reused) {
     const source = sources.get(record.file);

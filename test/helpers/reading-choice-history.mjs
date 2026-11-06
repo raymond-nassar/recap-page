@@ -16,6 +16,11 @@ import {
 import {
   beforeIdentityCatalogEntry, beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload, identityRevisions,
 } from './owner-identity-history.mjs';
+import {
+  amazingSpiderManGuideId, beforeAmazingSpiderManSupplementCatalogEntry,
+  beforeAmazingSpiderManSupplementEntry, beforeAmazingSpiderManSupplementIssueIds,
+  beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementPayloadText,
+} from './amazing-spider-man-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -125,7 +130,10 @@ export function pathsWithinLists(paths, lists, presentIds = []) {
 
 // Source approvals bind the original names and vectors, not the later catalog's renamed choices.
 export function historicalReadingChoiceManifest(manifest) {
-  const lists = historicalMcuDescriptionManifest(manifest).lists
+  const beforeSupplement = {
+    ...manifest, lists: manifest.lists.map(beforeAmazingSpiderManSupplementEntry),
+  };
+  const lists = historicalMcuDescriptionManifest(beforeSupplement).lists
     .filter(({ id }) => id !== 'avengers-doomsday-secret-wars'
       && !registeredOwnerAdditionIds.includes(id) && !registeredCuratedGuideIds.has(id))
     .map((entry) => {
@@ -148,6 +156,7 @@ export function historicalReadingChoiceManifest(manifest) {
 }
 
 export function historicalReadingChoiceIssueIds(id, currentIds) {
+  if (id === amazingSpiderManGuideId) return beforeAmazingSpiderManSupplementIssueIds(currentIds);
   if (id === spiderRevision.manifestEntry.id) {
     const ids = currentIds.map(String);
     if (JSON.stringify(ids) !== JSON.stringify(spiderRevision.currentIssueIds)
@@ -162,7 +171,10 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
 }
 
 export function historicalSpiderManSelectionLibraryDigest(manifest, orders, { presentIds = [] } = {}) {
-  manifest = { ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)) };
+  manifest = {
+    ...manifest,
+    lists: manifest.lists.map((entry) => beforeIdentityEntry(beforeAmazingSpiderManSupplementEntry(entry))),
+  };
   orders = beforeIdentityOrders(orders);
   const earlier = new Map(manifest.lists.filter((entry) =>
     entry.description === descriptions.get(entry.id)?.before).map((entry) => [entry.id, entry.description]));
@@ -192,7 +204,7 @@ export function historicalSpiderManSelectionLibraryDigest(manifest, orders, { pr
   };
   const recordedOrders = orders.map((entry) => ({
     ...entry,
-    issueIds: entry.id === spiderRevision.manifestEntry.id
+    issueIds: [spiderRevision.manifestEntry.id, amazingSpiderManGuideId].includes(entry.id)
       ? historicalReadingChoiceIssueIds(entry.id, entry.issueIds) : entry.issueIds,
   }));
   if (Object.hasOwn(recordedManifest, 'paths')) {
@@ -256,7 +268,7 @@ export function capturedReviewLibraryDigest(orders, expectedDigest) {
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {
-  entry = beforeIdentityCatalogEntry(entry);
+  entry = beforeIdentityCatalogEntry(beforeAmazingSpiderManSupplementCatalogEntry(entry));
   if (entry.id === spiderRevision.manifestEntry.id) {
     if (entry.name !== spiderRevision.currentManifestEntry.name
       || entry.description !== spiderRevision.currentManifestEntry.description
@@ -288,7 +300,11 @@ export async function historicalReadingChoicePayloadText(file) {
   if (payloadFile === 'hickman_minimal.json') {
     throw new Error('The rewritten fast-track payload requires its original metadata, not only its historical vector.');
   }
-  let text = historicalMcuDescriptionPayloadText(payloadFile, await readFile(sourcePath, 'utf8'));
+  let text = await readFile(sourcePath, 'utf8');
+  if (payloadFile === 'amazing_spider_man_reading_order_modern_marvel_era.json') {
+    text = beforeAmazingSpiderManSupplementPayloadText(text);
+  }
+  text = historicalMcuDescriptionPayloadText(payloadFile, text);
   const editorial = evidence.payloadEditorial[payloadFile];
   if (!editorial) return text;
   for (const [field, value] of Object.entries(editorial)) {
@@ -322,6 +338,23 @@ export async function loadHistoricalReadingChoiceLibrary(options = {}) {
     })();
   }
   return snapshotPromise;
+}
+
+export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifest) {
+  const manifest = beforeAmazingSpiderManSupplementManifest(currentManifest);
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'amazing-spider-man-history-'));
+  tempDirs.add(dir);
+  const payloadDir = path.join(dir, 'payloads');
+  await mkdir(payloadDir);
+  await Promise.all(manifest.lists.map(async (entry) => {
+    const file = entry.out || `${entry.id}.json`;
+    if (path.basename(file) !== file) throw new Error(`Unsafe historical payload filename: ${file}`);
+    const payload = JSON.parse(await readFile(path.join(root, 'src', 'data', file), 'utf8'));
+    const ids = issueIdsFromValue(payload);
+    const issueIds = entry.id === amazingSpiderManGuideId ? beforeAmazingSpiderManSupplementIssueIds(ids) : ids;
+    await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
+  }));
+  return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };
 }
 
 export async function buildHistoricalReadingChoiceReport(mappingPath, peerPaths = [], options = {}) {

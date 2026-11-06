@@ -12,11 +12,12 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 import { firstSentence, parseCatalog, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { registeredOwnerIds } from './helpers/current-reading-library.mjs';
 import { recordedOwnerManifest } from './helpers/owner-delivery-contract.mjs';
+import { loadBeforeAmazingSpiderManSupplementLibrary } from './helpers/reading-choice-history.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 
 // #981. The owner's Professor X selection from Comic Book Herald's guide, verified against the page,
@@ -41,9 +42,9 @@ const issueAt = (position) => mapping.rows.find((row) => row.sourcePosition === 
 // since then are named by what the reviewed roster lacks, so a later addition needs no edit here.
 async function reviewedLibrary() {
   // The review also predates the description revision record, so it hashed the earlier copy.
-  const library = await loadLibrarySnapshot({
-    manifest: descriptionRevisions.undoManifest(await readJson('src/data/curated-lists.json')),
-  });
+  const library = await loadBeforeAmazingSpiderManSupplementLibrary(
+    descriptionRevisions.undoManifest(await readJson('src/data/curated-lists.json')),
+  );
   const reviewed = new Set(report.comparisons.map((row) => row.orderId));
   const later = library.manifest.lists.map((entry) => entry.id).filter((listId) => !reviewed.has(listId));
   const laterPaths = (library.manifest.paths ?? []).map((entry) => entry.id)
@@ -79,7 +80,7 @@ test('Professor X keeps the frozen packet, mapping, full report and approval ali
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: excluded, manifest: library.manifest,
+    excludedOrderIds: excluded, manifest: library.manifest, payloadDir: library.payloadDir,
   });
 
   assert.deepEqual(regenerated, report);

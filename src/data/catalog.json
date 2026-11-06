@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T05:52:26.040Z",
+  "generatedAt": "2026-11-06T07:42:04.187Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -14657,6 +14657,7 @@
       "contains": [
         "the-death-of-ms-marvel",
         "civil-war-essential",
+        "spider-man-far-from-home",
         "the-night-gwen-stacy-died",
         "original-clone-saga",
         "kravens-last-hunt",
@@ -14673,7 +14674,7 @@
         "spider-man-identity-crisis",
         "secret-war"
       ],
-      "count": 2041,
+      "count": 2144,
       "placeholderCount": 7,
       "emptyRecordCount": 25,
       "collections": 0,
@@ -14697,9 +14698,9 @@
         "ext": "jpg"
       },
       "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide, with owner-selected additions",
       "sourceLicense": null,
-      "updatedAt": "2026-09-07T07:16:05.457Z"
+      "updatedAt": "2026-11-06T07:42:04.187Z"
     },
     {
       "id": "silent-war",
