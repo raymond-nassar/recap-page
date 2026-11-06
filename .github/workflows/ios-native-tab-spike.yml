@@ -67,14 +67,14 @@ jobs:
           -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData"
           CODE_SIGNING_ALLOWED=NO
 
-      - name: Exercise the native tabs
+      - name: Exercise the native tabs and gesture
         timeout-minutes: 20
         run: |
           set -o pipefail
           xcodebuild test-without-building \
             -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
-            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testNativeTabsOpenTheirSections \
+            -only-testing:RecapPageUITests/NativeTabSpikeUITests \
             -resultBundlePath "$RUNNER_TEMP/native-tab-spike.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-spike.log"
 
