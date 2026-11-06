@@ -1561,7 +1561,9 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
+  const shouldAnimateArrival = focus && next !== view;
   if (next !== view) {
+    $(`#view-${view}`)?.classList.remove('view-entering');
     retireRoutineNotices(notices);
     const panes = new Set([...fixedNotices.values()].map((note) => note.sel));
     retireRoutineNotices(fixedNotices);
@@ -1584,7 +1586,10 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
-    if (panel) panel.hidden = name !== next;
+    if (panel) {
+      panel.hidden = name !== next;
+      panel.classList.toggle('view-entering', name === next && shouldAnimateArrival);
+    }
   }
   const parent = railParentView(next);
   for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {
