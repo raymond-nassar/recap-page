@@ -43,8 +43,8 @@ Describe your proposal in an issue first and check the
 [planning Project](https://github.com/users/raymond-nassar/projects/1) for existing work and priorities.
 
 Read the README, [architecture guide](docs/ARCHITECTURE.md), and
-[maintainer guide](docs/MAINTAINING.md) before changing code. The maintainer guide covers checks,
-pinned actions, curated lists, and releases.
+[maintainer guide](docs/MAINTAINING.md) before changing code. Use the
+[historical-documents index](docs/HISTORICAL_DOCUMENTS.md) to distinguish old records from current guidance.
 
 Follow [release bookkeeping](GOVERNANCE.md#release-bookkeeping) when preparing a feature PR or
 a final version release PR.
@@ -63,7 +63,7 @@ URL and retrieval date. Use evidence you checked, not recollection.
 
 The anchors check fingerprints cited content, not just line numbers. After an edit, re-aim each
 affected citation and read every claim-and-line pairing before blessing it. Never bless a mismatch
-just to clear a failed check.
+just to clear a failed check. The [citation helpers](docs/MAINTAINING.md#relocate-citations-and-resolve-renumber-only-conflicts) assist active deliveries without replacing that check.
 
 **Recompute counts.** Verify counts in the part of a document you change. An old number is not
 evidence, and the automated gates do not check every count.

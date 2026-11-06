@@ -1,9 +1,9 @@
 # UX Study: Marvel Reading Tracker
 
-A single-rater study of the shipped application, run as the UX half of a product backlog and UX
-study pass. Every claim below carries an evidence anchor. Anchors take the form `path:START-END`
-for a claim about specific lines, `path` alone for a claim that a file exists, and
-`absent: pattern, method` for a claim that something is missing.
+**Historical record, not current guidance.** This single-rater audit records an earlier interface.
+Its recommendations are not an active backlog or a requirement for new work. See the
+[historical-documents index](HISTORICAL_DOCUMENTS.md) for current authorities and archive policy.
+Existing citations remain checked; historical status does not freeze or exempt them.
 
 Raw tool output and screenshots live in `docs/ux-artifacts/` and are left uncommitted.
 
@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:2990-3016`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:2995-3021`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2067`, `src/js/views/reading.js:432-440`, `src/js/views/reading.js:457-471`, against
+Evidence: `src/js/main.js:2072`, `src/js/views/reading.js:432-440`, `src/js/views/reading.js:457-471`, against
 `src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:835`,
-  `src/styles.css:2287-2289`.
+  `src/styles.css:2296-2298`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1176-1179` and `src/styles.css:2742-2743`, sizing both from `src/styles.css:82-83`.
+`src/styles.css:1176-1179` and `src/styles.css:2751-2752`, sizing both from `src/styles.css:82-83`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2287-2289`.
+`src/styles.css:2296-2298`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -501,7 +501,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. Those earlier captures
 selected a rail item first because Home did not select one at the time. Current rail and mobile
-selection is applied by `showView` at `src/js/main.js:1590-1592`, with Home brand selection immediately
+selection is applied by `showView` at `src/js/main.js:1596-1598`, with Home brand selection immediately
 afterward. These captures measure the earlier interface,
 not current navigation selection.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:835`, `src/styles.css:2287-2289`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:835`, `src/styles.css:2296-2298`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -746,7 +746,7 @@ Evidence: `src/index.html:62-97`, `src/js/lib/route.js:24-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:94-184`,
-`src/js/main.js:1634-1688`, `test/ux-completion.test.js:87-99`.
+`src/js/main.js:1640-1693`, `test/ux-completion.test.js:87-99`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -761,7 +761,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1551-1631`,
+src/ returning no matches`, `src/js/main.js:1584-1591`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No
