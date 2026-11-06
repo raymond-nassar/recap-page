@@ -1,5 +1,10 @@
 # User Journey: First Reading List
 
+**Historical target journey, not current acceptance evidence.** The first-run question below
+predates later Home direction and is not a reader observation. Use the
+[historical-documents index](../HISTORICAL_DOCUMENTS.md), current running guide and the
+implementation Issue's observed journeys.
+
 ## Persona
 - **Who**: New user with an empty library
 - **Goal**: Start reading Marvel comics in a useful order

@@ -1,5 +1,10 @@
 # Flow Specification: Hub-based Sidebar
 
+**Historical navigation design record, not an independent current contract.** Preserve this
+rationale without treating every detail as a new-work requirement. Use the
+[historical-documents index](../HISTORICAL_DOCUMENTS.md), current contribution interface
+contract, architecture and navigation tests.
+
 ## Goal
 
 Keep the navigation pane short as Reading Lists, browse categories and ways to add grow. The rail
