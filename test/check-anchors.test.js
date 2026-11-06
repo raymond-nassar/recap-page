@@ -2385,6 +2385,7 @@ test('conflict helper resolves a citation against the merged target and leaves t
     baseText: 'See ' + cite('target.js:2') + ' and ' + cite('target.js:4') + '.\n',
     oursText: 'See ' + cite('target.js:3') + ' and ' + cite('target.js:5') + '.\n',
     theirsText: 'See ' + cite('target.js:4') + ' and ' + cite('target.js:6') + '.\n',
+    theirsTarget: '// header one\n// header two\n' + LIB,
     oursTarget: insertAfterFirst(LIB, 'const added = 0;'),
   });
   try {
@@ -2404,7 +2405,7 @@ test('conflict helper resolves a citation against the merged target and leaves t
 
     const applied = repo.resolveConflict('--file', 'GUIDE.md', '--apply', '--approved-sha256', digest);
     assert.equal(applied.status, 0, said(applied));
-    assert.equal(repo.bytes('GUIDE.md').toString('utf8'), 'See ' + cite('target.js:3') + ' and ' + cite('target.js:5') + '.\n');
+    assert.equal(repo.bytes('GUIDE.md').toString('utf8'), 'See ' + cite('target.js:5') + ' and ' + cite('target.js:7') + '.\n');
     assert.deepEqual(repo.bytes('docs/anchors.lock.json'), lock);
     repo.git(['add', 'GUIDE.md']);
     const blessed = repo.checker('--bless');
@@ -2472,4 +2473,42 @@ test('conflict helper arguments require an explicit file and bind apply to a dig
   assert.throws(() => parseConflictArgs(['--file', '../outside.md']), /repository-relative path/);
   assert.throws(() => parseConflictArgs(['--file', 'GUIDE.md', '--apply']), /go together/);
   assert.throws(() => parseConflictArgs(['--file', 'GUIDE.md', '--apply', '--approved-sha256', '0'.repeat(63)]), /64 lowercase hex/);
+});
+
+test('conflict helper refuses a side whose numbers do not follow its own target', () => {
+  const stale = conflictRepo({
+    baseText: 'See ' + cite('target.js:2') + '.\n',
+    oursText: 'See ' + cite('target.js:3') + '.\n',
+    theirsText: 'See ' + cite('target.js:4') + '.\n',
+    oursTarget: insertAfterFirst(LIB, 'const added = 0;'),
+  });
+  try {
+    const before = stale.bytes('GUIDE.md');
+    const preview = stale.resolveConflict('--file', 'GUIDE.md');
+    assert.equal(preview.status, 1, said(preview));
+    assert.match(preview.stdout, /differently from the HEAD side's own target/);
+    assert.deepEqual(stale.bytes('GUIDE.md'), before);
+  } finally {
+    disposeAnchorRepo(stale);
+  }
+
+  // The MERGE_HEAD side appends a line after the cited range and widens its citation over it.
+  // Its own target leaves the range where it was, so the widening is a re-aim of its own that the
+  // merged-target answer would otherwise erase without a word.
+  const widened = conflictRepo({
+    baseText: 'See ' + cite('target.js:2-3') + '.\n',
+    oursText: 'See ' + cite('target.js:2-4') + '.\n',
+    theirsText: 'See ' + cite('target.js:4-5') + '.\n',
+    oursTarget: LIB.replace('const beta = 2;\n', 'const beta = 2;\nconst extra = 0;\n'),
+    theirsTarget: '// header one\n// header two\n' + LIB,
+  });
+  try {
+    const before = widened.bytes('GUIDE.md');
+    const preview = widened.resolveConflict('--file', 'GUIDE.md');
+    assert.equal(preview.status, 1, said(preview));
+    assert.match(preview.stdout, /differently from the MERGE_HEAD side's own target/);
+    assert.deepEqual(widened.bytes('GUIDE.md'), before);
+  } finally {
+    disposeAnchorRepo(widened);
+  }
 });

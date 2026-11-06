@@ -52,11 +52,23 @@ export function createCatalogPresentation({
     }, CATALOG_ADD);
   }
 
-  // The card keeps the credit the sources' permissions rest on, the linked site name, and leaves the
-  // snapshot date and section to Preview, which shows the full attribution (UX-11, #830).
+  function catalogMeta(list) {
+    const saved = isInLibrary(list.id);
+    const savedCount = Array.isArray(saved?.itemIds) ? saved.itemIds.length : null;
+    return [
+      `${list.count} comic${list.count === 1 ? '' : 's'}`,
+      ...catalogGapLabels(list),
+      ...(savedCount != null && savedCount !== list.count
+        ? [`Saved copy: ${savedCount} comic${savedCount === 1 ? '' : 's'}`] : []),
+    ].join(' · ');
+  }
+
+  // The linked source stays compact on cards; additions selected elsewhere need separate credit.
   function attributionLine(list, { compact = false } = {}) {
     const href = sourceLink(list);
     const label = compact && href ? sourceSiteName(href) : sourceLabel(list);
+    const ownerAdditions = compact && href && typeof list.sourceOrigin === 'string'
+      && list.sourceOrigin.includes('with owner-selected additions');
     const section = !compact && typeof list.sourceSection === 'string' && list.sourceSection.trim()
       ? list.sourceSection.trim()
       : null;
@@ -74,6 +86,7 @@ export function createCatalogPresentation({
           'aria-label': `Source of ${list.name}: ${label}${section ? `, section ${section}` : ''}`,
         }, label)
         : el('span', { text: label }));
+      if (ownerAdditions) parts.push(el('span', { text: ', with owner-selected additions' }));
     }
     if (section) parts.push(el('span', { text: `${label ? ' · ' : ''}Section: ${section}` }));
     if (updated) parts.push(el('span', { text: `${label || section ? ' · ' : ''}Snapshot taken ${updated}` }));
@@ -119,7 +132,7 @@ export function createCatalogPresentation({
           desc ? el('p', { class: 'catalog-card-desc', text: desc }) : el('p', { class: 'catalog-card-desc', hidden: true }),
           el('p', {
             class: 'catalog-card-meta',
-            text: [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
+            text: catalogMeta(list),
           }),
           el('div', { class: 'result-source' }, source ? [source] : []),
         ]),
@@ -143,7 +156,7 @@ export function createCatalogPresentation({
         }, el('span', { text: list.name }))),
         el('p', {
           class: 'result-meta',
-          text: [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
+          text: catalogMeta(list),
         }),
         el('div', { class: 'result-source' }, [attributionLine(list, { compact: true })].filter(Boolean)),
       ]),

@@ -21,7 +21,9 @@ export function createPreviewView({
   issueFocusAnchor,
   loadOrder,
   offlineContent,
+  onAbandonCopy,
   onAdd,
+  onAddCopy,
   onClose,
   onIssueLoadFailure,
   onOpen,
@@ -40,6 +42,7 @@ export function createPreviewView({
   const isCurrent = (session) => session?.token === lifecycleToken;
 
   function invalidate() {
+    if (previewSession) onAbandonCopy?.(previewSession.list);
     offlineController?.abort();
     offlineController = null;
     offlineState = null;
@@ -100,14 +103,41 @@ export function createPreviewView({
   function addControls(list) {
     const saved = isInLibrary(list.id);
     if (!saved) return [addButton(list)];
+    const session = previewSession;
+    const copy = session?.copyId ? getState().lists[session.copyId] : null;
+    const copyAction = session?.missing && onAddCopy
+      ? copy
+        ? el('a', {
+          href: formatRoute({ view: 'read', listId: copy.id }),
+          class: 'btn btn-g',
+          'aria-label': labelledName('Open updated copy', list.name),
+          dataset: { key: list.id, act: 'open-copy' },
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            if (isCurrent(session)) return onOpen(list, copy);
+          },
+        }, 'Open updated copy')
+        : el('button', {
+          type: 'button',
+          class: 'btn btn-g',
+          disabled: Boolean(session.copyPending),
+          'aria-label': labelledName('Add updated copy', list.name),
+          dataset: { key: list.id, act: 'add-copy' },
+          onclick: (event) => addCopy(list, event.currentTarget),
+        }, 'Add updated copy')
+      : null;
     // UX-12 (#830): a reader who has just added the list sees that it was added, and how many comics it
     // holds, until Preview closes rather than for a second and a half. It is a status inside the dialog
     // because the page's announcer is behind the modal: measured in Edge 156, the announcer is absent
     // from the accessibility tree while Preview is open, so the import's own announcement is not heard.
     const count = saved.itemIds?.length ?? 0;
-    return [addButton(list), justAdded.has(list.id)
-      ? el('span', { class: 'rail-hint preview-added', role: 'status', text: `Added to your Library: ${count} comic${count === 1 ? '' : 's'}.` })
-      : el('span', { class: 'rail-hint', role: 'status', text: 'In library' })];
+    const copyCount = copy?.itemIds?.length ?? 0;
+    return [addButton(list), copyAction, copy
+      ? el('span', { class: 'rail-hint preview-added', role: 'status', text: `Added updated copy: ${copyCount} comic${copyCount === 1 ? '' : 's'}.` })
+      : justAdded.has(list.id)
+        ? el('span', { class: 'rail-hint preview-added', role: 'status', text: `Added to your Library: ${count} comic${count === 1 ? '' : 's'}.` })
+        : el('span', { class: 'rail-hint', role: 'status', text: 'In library' })].filter(Boolean);
   }
 
   function offlineActionLabel(state) {
@@ -251,9 +281,9 @@ export function createPreviewView({
     nodes.add.replaceChildren(...addControls(previewList));
   }
 
-  function returnFocus(held) {
+  function returnFocus(held, fallback) {
     if (document.activeElement !== document.body) return;
-    restoreFocus(held, { primary: 'main' });
+    restoreFocus(held, { primary: 'main', fallback });
   }
 
   async function add(list, button) {
@@ -279,6 +309,25 @@ export function createPreviewView({
     }
     syncAdd();
     returnFocus(held);
+  }
+
+  async function addCopy(list, button) {
+    const session = previewSession;
+    if (!isCurrent(session) || session.closed || session.copyPending || !session.missing
+      || !isInLibrary(list.id)) return;
+    const held = captureFocus(elements().add);
+    session.copyPending = true;
+    button.disabled = true;
+    const listId = await onAddCopy(list, button, { isCurrent: () => isCurrent(session) && !session.closed });
+    session.copyPending = false;
+    if (!isCurrent(session)) return;
+    if (session.closed) {
+      if (listId) await notifyClose(session);
+      return;
+    }
+    if (listId) session.copyId = listId;
+    syncAdd();
+    returnFocus(held, () => elements().add.querySelector(`[data-act="${listId ? 'open-copy' : 'add-copy'}"]`));
   }
 
   function paint(list) {
@@ -312,6 +361,21 @@ export function createPreviewView({
     try {
       const order = await loadOrder(list.file);
       if (loadToken !== token) return;
+      const saved = isInLibrary(list.id);
+      const savedIds = Array.isArray(saved?.itemIds) ? new Set(saved.itemIds.map(String)) : null;
+      const missing = savedIds ? order.items.filter((item) => !savedIds.has(String(item.issueId))).length : 0;
+      previewSession.missing = missing;
+      const held = captureFocus(nodes.add);
+      syncAdd();
+      returnFocus(held);
+      const notice = missing ? [el('p', {
+        class: 'rail-hint preview-saved-difference',
+        role: 'status',
+        text: `Your saved list is missing ${missing} comic${missing === 1 ? '' : 's'} shown here. `
+          + 'Add an updated copy to keep both lists. The copy shares saved comic details, read progress, comic notes, '
+          + 'ratings and availability choices, '
+          + "but not the saved list's order, list note, deferred comics, customized editions, completion date or enjoyment choice.",
+      })] : [];
       let shown = null;
       const rows = [];
       order.items.forEach((item, index) => {
@@ -330,7 +394,7 @@ export function createPreviewView({
           }),
         ]));
       });
-      nodes.body.replaceChildren(el('ol', { class: 'preview-list' }, rows));
+      nodes.body.replaceChildren(...notice, el('ol', { class: 'preview-list' }, rows));
     } catch (error) {
       if (loadToken !== token) return;
       await onIssueLoadFailure({
@@ -385,7 +449,10 @@ export function createPreviewView({
       offlineState = null;
       offlineControls = null;
       justAdded.clear();
-      if (session) session.closed = true;
+      if (session) {
+        session.closed = true;
+        onAbandonCopy?.(session.list);
+      }
       await notifyClose(session);
     });
   }

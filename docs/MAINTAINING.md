@@ -1719,7 +1719,7 @@ to make the helper accept an uncertain target.
 Use only during an in-progress Git merge with full local history and selected unmerged files.
 The helper reads the merge base, HEAD, MERGE_HEAD and index stages; it does not start or finish
 the merge. Keep the conflicted files unmerged in the index until after applying the reviewed plan.
-The command interface is defined at `scripts/resolve-anchor-conflicts.mjs:42-48`.
+The command interface is defined at `scripts/resolve-anchor-conflicts.mjs:44-50`.
 
 ```text
 node scripts/resolve-anchor-conflicts.mjs --file docs/ARCHITECTURE.md
