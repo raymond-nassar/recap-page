@@ -115,14 +115,40 @@ final class NativeTabBarSpike: NSObject, UITabBarDelegate, WKScriptMessageHandle
 
     private static let narrowBarStyleScript = #"""
     (() => {
-      const style = document.createElement('style');
-      style.textContent = `
-        @media (max-width: 880px) {
-          .rail-header { display: none !important; }
-          :root { --mobile-nav-height: 0px !important; }
+      const header = document.querySelector('.rail-header');
+      if (!header) {
+        console.error('The native tab bar could not find the web navigation.');
+        return;
+      }
+      const root = document.documentElement;
+      const narrow = matchMedia('(max-width: 880px)');
+      let previousDisplay = null;
+      let previousHeight = null;
+      const save = (style, name) => ({
+        value: style.getPropertyValue(name),
+        priority: style.getPropertyPriority(name),
+      });
+      const restore = (style, name, previous) => {
+        if (previous.value) style.setProperty(name, previous.value, previous.priority);
+        else style.removeProperty(name);
+      };
+      const update = () => {
+        if (narrow.matches) {
+          if (previousDisplay === null) {
+            previousDisplay = save(header.style, 'display');
+            previousHeight = save(root.style, '--mobile-nav-height');
+          }
+          header.style.setProperty('display', 'none', 'important');
+          root.style.setProperty('--mobile-nav-height', '0px');
+        } else if (previousDisplay !== null) {
+          restore(header.style, 'display', previousDisplay);
+          restore(root.style, '--mobile-nav-height', previousHeight);
+          previousDisplay = null;
+          previousHeight = null;
         }
-      `;
-      document.head.append(style);
+      };
+      narrow.addEventListener('change', update);
+      update();
     })();
     """#
 

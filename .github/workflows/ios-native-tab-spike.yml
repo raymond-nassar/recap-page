@@ -15,7 +15,7 @@ jobs:
   native_tab_spike:
     name: Native tab bar spike
     runs-on: macos-26
-    timeout-minutes: 70
+    timeout-minutes: 150
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       SIMULATOR_NAME: iPhone 17 Pro Max
@@ -57,9 +57,11 @@ jobs:
           ')
           xcrun simctl boot "$udid"
           xcrun simctl bootstatus "$udid" -b
+          echo "SPIKE_UDID=$udid" >> "$GITHUB_ENV"
           echo "SPIKE_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
 
       - name: Build the spike for testing
+        id: spike_build
         timeout-minutes: 20
         run: >-
           xcodebuild build-for-testing
@@ -71,21 +73,174 @@ jobs:
         timeout-minutes: 20
         run: |
           set -o pipefail
+          xcrun simctl io "$SPIKE_UDID" recordVideo --codec=h264 "$RUNNER_TEMP/native-tab-focused.mov" \
+            > "$RUNNER_TEMP/native-tab-focused-video.log" 2>&1 &
+          recorder=$!
+          sleep 2
+          if ! kill -0 "$recorder" 2>/dev/null; then
+            echo "The focused simulator recorder did not start."
+            cat "$RUNNER_TEMP/native-tab-focused-video.log"
+            exit 1
+          fi
+          set +e
           xcodebuild test-without-building \
             -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
+            -parallel-testing-enabled NO \
             -only-testing:RecapPageUITests/NativeTabSpikeUITests \
+            -skip-testing:RecapPageUITests/NativeTabSpikeUITests/testMatchedLibrarySearchBackJourney \
             -resultBundlePath "$RUNNER_TEMP/native-tab-spike.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-spike.log"
+          statuses=("${PIPESTATUS[@]}")
+          set -e
+          kill -INT "$recorder"
+          for attempt in {1..20}; do
+            if ! kill -0 "$recorder" 2>/dev/null; then break; fi
+            sleep 1
+          done
+          if kill -0 "$recorder" 2>/dev/null; then
+            echo "The focused simulator recorder did not stop after SIGINT."
+            kill -TERM "$recorder"
+            if wait "$recorder"; then echo "Recorder terminated."; else echo "Recorder was terminated."; fi
+            exit 1
+          fi
+          if wait "$recorder"; then
+            recorder_status=0
+          else
+            recorder_status=$?
+          fi
+          if [ "$recorder_status" -ne 0 ] && [ "$recorder_status" -ne 130 ]; then
+            echo "The focused simulator recorder failed with $recorder_status."
+            cat "$RUNNER_TEMP/native-tab-focused-video.log"
+            exit 1
+          fi
+          if [ "${statuses[1]}" -ne 0 ] || [ ! -s "$RUNNER_TEMP/native-tab-focused.mov" ]; then
+            echo "The focused simulator log or recording is missing."
+            exit 1
+          fi
+          exit "${statuses[0]}"
+
+      - name: Measure existing presentation-test impact
+        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' }}
+        timeout-minutes: 20
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
+            -parallel-testing-enabled NO \
+            -only-testing:RecapPageUITests/PresentationUITests/testDynamicTypeReflowsCoreScreensAtBothAppearances \
+            -only-testing:RecapPageUITests/PresentationUITests/testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes \
+            -resultBundlePath "$RUNNER_TEMP/native-tab-impact.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-impact.log"
+
+      - name: Check out the exact baseline
+        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          ref: 4244b3e31d0131e005d68f8fe1b54d114def0afd
+          path: spike-baseline
+          persist-credentials: false
+
+      - name: Prepare the baseline and the shared journey test
+        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' }}
+        timeout-minutes: 3
+        run: |
+          test "$(git -C spike-baseline rev-parse HEAD)" = 4244b3e31d0131e005d68f8fe1b54d114def0afd
+          cp packaging/ios/RecapPageUITests/NativeTabSpikeUITests.swift \
+            spike-baseline/packaging/ios/RecapPageUITests/NativeTabSpikeUITests.swift
+          cmp packaging/ios/RecapPageUITests/NativeTabSpikeUITests.swift \
+            spike-baseline/packaging/ios/RecapPageUITests/NativeTabSpikeUITests.swift
+          (cd spike-baseline && node scripts/prepare-ios.mjs)
+
+      - name: Build the baseline for testing
+        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' }}
+        id: baseline_build
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project spike-baseline/packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/BaselineDerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Record matched baseline and spike journeys
+        if: ${{ !cancelled() && steps.spike_build.outcome == 'success' && steps.baseline_build.outcome == 'success' }}
+        timeout-minutes: 30
+        run: |
+          set -o pipefail
+          failed=0
+          for variant in baseline spike; do
+            if [ "$variant" = baseline ]; then
+              project=spike-baseline/packaging/ios/RecapPage.xcodeproj
+              derived="$RUNNER_TEMP/BaselineDerivedData"
+            else
+              project=packaging/ios/RecapPage.xcodeproj
+              derived="$RUNNER_TEMP/SpikeDerivedData"
+            fi
+            video="$RUNNER_TEMP/$variant-journey.mov"
+            xcrun simctl io "$SPIKE_UDID" recordVideo --codec=h264 "$video" \
+              > "$RUNNER_TEMP/$variant-video.log" 2>&1 &
+            recorder=$!
+            sleep 2
+            if ! kill -0 "$recorder" 2>/dev/null; then
+              echo "The $variant simulator recorder did not start."
+              cat "$RUNNER_TEMP/$variant-video.log"
+              failed=1
+              continue
+            fi
+            set +e
+            xcodebuild test-without-building \
+              -project "$project" -scheme RecapPage \
+              -destination "$SPIKE_DESTINATION" -derivedDataPath "$derived" \
+              -parallel-testing-enabled NO \
+              -only-testing:RecapPageUITests/NativeTabSpikeUITests/testMatchedLibrarySearchBackJourney \
+              -resultBundlePath "$RUNNER_TEMP/$variant-journey.xcresult" \
+              CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/$variant-journey.log"
+            statuses=("${PIPESTATUS[@]}")
+            set -e
+            if ! kill -INT "$recorder"; then
+              echo "The $variant simulator recorder stopped unexpectedly."
+              failed=1
+            fi
+            for attempt in {1..20}; do
+              if ! kill -0 "$recorder" 2>/dev/null; then break; fi
+              sleep 1
+            done
+            if kill -0 "$recorder" 2>/dev/null; then
+              echo "The $variant simulator recorder did not stop after SIGINT."
+              kill -TERM "$recorder"
+              if wait "$recorder"; then echo "Recorder terminated."; else echo "Recorder was terminated."; fi
+              failed=1
+              continue
+            fi
+            if wait "$recorder"; then
+              recorder_status=0
+            else
+              recorder_status=$?
+            fi
+            if [ "$recorder_status" -ne 0 ] && [ "$recorder_status" -ne 130 ]; then
+              echo "The $variant simulator recorder failed with $recorder_status."
+              cat "$RUNNER_TEMP/$variant-video.log"
+              failed=1
+            fi
+            if [ "${statuses[0]}" -ne 0 ] || [ "${statuses[1]}" -ne 0 ] || [ ! -s "$video" ]; then
+              echo "The $variant journey or its recording failed."
+              failed=1
+            fi
+          done
+          exit "$failed"
 
       - name: Export simulator screenshots
         if: ${{ !cancelled() }}
-        timeout-minutes: 3
+        timeout-minutes: 5
         run: |
-          if [ -d "$RUNNER_TEMP/native-tab-spike.xcresult" ]; then
-            xcrun xcresulttool export attachments \
-              --path "$RUNNER_TEMP/native-tab-spike.xcresult" --output-path "$RUNNER_TEMP/native-tab-spike-attachments"
-          fi
+          for result in native-tab-spike native-tab-impact baseline-journey spike-journey; do
+            if [ -d "$RUNNER_TEMP/$result.xcresult" ]; then
+              xcrun xcresulttool export attachments \
+                --path "$RUNNER_TEMP/$result.xcresult" --output-path "$RUNNER_TEMP/$result-attachments"
+            fi
+          done
 
       - name: Keep the spike evidence
         if: ${{ !cancelled() }}
@@ -94,7 +249,101 @@ jobs:
         with:
           name: ios-native-tab-spike-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            ${{ runner.temp }}/native-tab-spike.log
-            ${{ runner.temp }}/native-tab-spike.xcresult
-            ${{ runner.temp }}/native-tab-spike-attachments
+            ${{ runner.temp }}/native-tab-*.log
+            ${{ runner.temp }}/native-tab-*.xcresult
+            ${{ runner.temp }}/native-tab-*-attachments
+            ${{ runner.temp }}/native-tab-focused.mov
+            ${{ runner.temp }}/*-journey.log
+            ${{ runner.temp }}/*-video.log
+            ${{ runner.temp }}/*-journey.mov
+            ${{ runner.temp }}/*-journey.xcresult
+            ${{ runner.temp }}/*-journey-attachments
+          if-no-files-found: warn
+
+  ipad:
+    name: Native tab bar spike on iPad
+    runs-on: macos-26
+    timeout-minutes: 70
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Record the toolchain
+        timeout-minutes: 3
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+          node --version
+
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
+      - name: Boot the iPad Simulator
+        timeout-minutes: 5
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices)
+              .filter((runtime) => runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-"))
+              .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name.startsWith("iPad Pro 13-inch"));
+            if (!device) throw new Error("Requested iPad Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+          echo "SPIKE_IPAD_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
+      - name: Build the spike for testing
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "$SPIKE_IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Exercise iPad tabs and layout
+        timeout-minutes: 20
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$SPIKE_IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
+            -parallel-testing-enabled NO \
+            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testNativeTabsOpenTheirSections \
+            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testWebNavigationUpdatesNativeSelection \
+            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testLargestTextAndRotation \
+            -resultBundlePath "$RUNNER_TEMP/native-tab-ipad.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-ipad.log"
+
+      - name: Export iPad screenshots
+        if: ${{ !cancelled() }}
+        timeout-minutes: 3
+        run: |
+          if [ -d "$RUNNER_TEMP/native-tab-ipad.xcresult" ]; then
+            xcrun xcresulttool export attachments \
+              --path "$RUNNER_TEMP/native-tab-ipad.xcresult" --output-path "$RUNNER_TEMP/native-tab-ipad-attachments"
+          fi
+
+      - name: Keep the iPad evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-native-tab-spike-ipad-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/native-tab-ipad.log
+            ${{ runner.temp }}/native-tab-ipad.xcresult
+            ${{ runner.temp }}/native-tab-ipad-attachments
           if-no-files-found: warn

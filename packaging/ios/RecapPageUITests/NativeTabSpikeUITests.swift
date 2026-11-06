@@ -15,6 +15,9 @@ final class NativeTabSpikeUITests: XCTestCase {
     if (!document.body || !document.querySelector('.view:not([hidden])')) {
       throw new Error('The initial app view did not appear');
     }
+    const savedBefore = localStorage.getItem('mrt.state.v2');
+    if (savedBefore === null) throw new Error('The synthetic saved state is missing');
+    const readCount = Object.keys(JSON.parse(savedBefore).read).length;
     const monitor = document.createElement('div');
     monitor.setAttribute('role', 'status');
     monitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden';
@@ -31,6 +34,8 @@ final class NativeTabSpikeUITests: XCTestCase {
         narrow: matchMedia('(max-width: 880px)').matches,
         webBarHidden: getComputedStyle(document.querySelector('.rail-header')).display === 'none',
         navHeight: getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height').trim(),
+        savedUnchanged: localStorage.getItem('mrt.state.v2') === savedBefore,
+        readCount,
       });
     };
     update();
@@ -38,10 +43,32 @@ final class NativeTabSpikeUITests: XCTestCase {
     return JSON.stringify({ ready: true });
     """
 
-    private func launch() -> XCUIApplication {
+    private static let progressSeed = """
+    localStorage.setItem('mrt.state.v2', JSON.stringify({
+      schemaVersion: 4, issues: { 2092: { issueId: 2092, title: 'Synthetic comic' } },
+      read: { 2092: 123456 }, overrides: {}, notes: {}, ratings: {},
+      lists: {
+        'ios-presentation': {
+          id: 'ios-presentation', name: 'iOS presentation fixture', description: '', note: '',
+          created: 1, catalogId: null, itemIds: [2092], collectedIn: {}, deferredIssueIds: []
+        }
+      },
+      listOrder: ['ios-presentation'], active: 'ios-presentation'
+    }));
+    """
+
+    private func launch(
+        progressSeed: Bool = false,
+        category: UIContentSizeCategory = .large
+    ) -> XCUIApplication {
         let app = XCUIApplication()
+        app.launchArguments = ["-UIPreferredContentSizeCategoryName", category.rawValue]
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
-        app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
+        if progressSeed {
+            app.launchEnvironment["RECAP_IOS_SCREENSHOT_SEED"] = Self.progressSeed
+        } else {
+            app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
+        }
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.monitorScript
         app.launch()
         return app
@@ -70,6 +97,19 @@ final class NativeTabSpikeUITests: XCTestCase {
         let selected = XCTNSPredicateExpectation(
             predicate: NSPredicate { _, _ in tab.isSelected }, object: tab)
         XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 30), .completed, "\(title) tab is selected")
+    }
+
+    private func tapVisibleLink(_ label: String, in app: XCUIApplication) {
+        let links = app.webViews.firstMatch.links.matching(NSPredicate(format: "label == %@", label))
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            links.allElementsBoundByIndex.contains { $0.isHittable }
+        }, object: app)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 30), .completed, "\(label) link is visible")
+        guard let link = links.allElementsBoundByIndex.first(where: { $0.isHittable }) else {
+            XCTFail("The visible \(label) link disappeared")
+            return
+        }
+        link.tap()
     }
 
     private func capture(_ app: XCUIApplication, named name: String) {
@@ -159,8 +199,9 @@ final class NativeTabSpikeUITests: XCTestCase {
 
         openSeededList(in: app)
         let search = app.webViews.firstMatch.links.matching(
-            NSPredicate(format: "label == %@ AND hittable == YES", "Search")).firstMatch
+            NSPredicate(format: "label == %@", "Search")).firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 30), "the reading-list Search link appeared")
+        revealNativeTarget(search, in: app)
         search.tap()
         waitForView("view-add", in: app)
         waitForSelectedTab("Search", in: app)
@@ -179,6 +220,109 @@ final class NativeTabSpikeUITests: XCTestCase {
         waitForView("view-home", in: app)
         waitForSelectedTab("Home", in: app)
         capture(app, named: "native-tab-link-navigation")
+    }
+
+    func testSavedProgressRemainsIdenticalAcrossTabs() {
+        let app = launch(progressSeed: true)
+        waitForView("view-read", in: app)
+        let monitor = monitor(in: app)
+        XCTAssertTrue(monitor.label.contains("\"readCount\":1"), "the synthetic fixture has read progress")
+        let bar = app.tabBars["ios-native-spike-tabs"]
+        bar.buttons["Home"].tap()
+        waitForView("view-home", in: app)
+        for (title, view) in [
+            ("Library", "view-library"),
+            ("Search", "view-add"),
+            ("Settings", "view-data"),
+            ("Home", "view-home"),
+        ] {
+            bar.buttons[title].tap()
+            waitForView(view, in: app)
+        }
+        Thread.sleep(forTimeInterval: 0.5)
+        XCTAssertTrue(monitor.label.contains("\"savedUnchanged\":true"),
+                      "the exact synthetic stored value remains unchanged")
+        print("NATIVE_SPIKE_PROGRESS nonempty=true exactStringUnchanged=true")
+    }
+
+    func testLargestTextAndRotation() {
+        XCUIDevice.shared.orientation = .portrait
+        defer { XCUIDevice.shared.orientation = .portrait }
+        let app = launch(category: .accessibilityExtraExtraExtraLarge)
+        waitForView("view-read", in: app)
+        let bar = app.tabBars["ios-native-spike-tabs"]
+        XCTAssertTrue(bar.waitForExistence(timeout: 30), "the native tab bar appeared")
+        let portrait = app.webViews.firstMatch.frame
+        for title in ["Home", "Library", "Search", "Settings"] {
+            let tab = bar.buttons[title]
+            XCTAssertTrue(tab.exists && tab.isHittable, "\(title) is reachable at the largest text size")
+        }
+        print("NATIVE_SPIKE_LAYOUT portrait web=\(portrait) bar=\(bar.frame) monitor=\(monitor(in: app).label)")
+        capture(app, named: "native-tabs-largest-text-portrait")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        let rotated = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let frame = app.webViews.firstMatch.frame
+            return frame.width != portrait.width && frame.height != portrait.height
+        }, object: app)
+        XCTAssertEqual(XCTWaiter.wait(for: [rotated], timeout: 30), .completed, "the web view rotated")
+        for title in ["Home", "Library", "Search", "Settings"] {
+            XCTAssertTrue(bar.buttons[title].isHittable, "\(title) is reachable after rotation")
+        }
+        print("NATIVE_SPIKE_LAYOUT landscape web=\(app.webViews.firstMatch.frame) bar=\(bar.frame) monitor=\(monitor(in: app).label)")
+        capture(app, named: "native-tabs-largest-text-landscape")
+    }
+
+    func testMatchedLibrarySearchBackJourney() {
+        let app = launch()
+        waitForView("view-read", in: app)
+        let bar = app.tabBars["ios-native-spike-tabs"]
+        let nativeTabs = bar.exists
+        if nativeTabs {
+            bar.buttons["Home"].tap()
+        } else {
+            let home = app.webViews.firstMatch.links["Home"].firstMatch
+            XCTAssertTrue(home.waitForExistence(timeout: 30), "the Home breadcrumb appeared")
+            revealNativeTarget(home, in: app)
+            home.tap()
+        }
+        waitForView("view-home", in: app)
+        if nativeTabs {
+            bar.buttons["Library"].tap()
+        } else {
+            tapVisibleLink("Library", in: app)
+        }
+        waitForView("view-library", in: app)
+        capture(app, named: nativeTabs ? "journey-spike-library" : "journey-baseline-library")
+        let list = app.webViews.firstMatch.links.matching(
+            NSPredicate(format: "label BEGINSWITH %@", "iOS presentation fixture")).firstMatch
+        XCTAssertTrue(list.waitForExistence(timeout: 30), "the seeded reading list appeared")
+        list.tap()
+        waitForView("view-read", in: app)
+        capture(app, named: nativeTabs ? "journey-spike-reading" : "journey-baseline-reading")
+        if nativeTabs {
+            bar.buttons["Search"].tap()
+        } else {
+            tapVisibleLink("Search", in: app)
+        }
+        waitForView("view-add", in: app)
+        if nativeTabs { waitForSelectedTab("Search", in: app) }
+        capture(app, named: nativeTabs ? "journey-spike-search" : "journey-baseline-search")
+        let searchComics = app.webViews.firstMatch.links["Search comics"].firstMatch
+        XCTAssertTrue(searchComics.waitForExistence(timeout: 30), "Search comics appeared")
+        searchComics.tap()
+        waitForView("view-add-search", in: app)
+        let back = app.webViews.firstMatch.buttons["Back"].firstMatch
+        XCTAssertTrue(back.waitForExistence(timeout: 30), "the existing Back action appeared")
+        back.tap()
+        waitForView("view-add", in: app)
+        capture(app, named: nativeTabs ? "journey-spike-back" : "journey-baseline-back")
+        let home = app.webViews.firstMatch.links["Home"].firstMatch
+        XCTAssertTrue(home.waitForExistence(timeout: 30), "the Home breadcrumb appeared")
+        home.tap()
+        waitForView("view-home", in: app)
+        if nativeTabs { waitForSelectedTab("Home", in: app) }
+        capture(app, named: nativeTabs ? "journey-spike-link" : "journey-baseline-link")
+        print("NATIVE_SPIKE_JOURNEY nativeTabs=\(nativeTabs) library=pass reading=pass search=pass back=pass")
     }
 
     func testBackGestureOnInitialPage() {
@@ -213,12 +357,12 @@ final class NativeTabSpikeUITests: XCTestCase {
         } else {
             XCTAssertTrue(afterSwipe.contains("\"view\":\"view-read\""), "the drag stayed on the reading list")
         }
-        let breadcrumb = app.webViews.firstMatch.links.matching(identifier: "Library").firstMatch
-        XCTAssertTrue(breadcrumb.waitForExistence(timeout: 30), "the existing Library breadcrumb appeared")
-        breadcrumb.tap()
+        let back = app.webViews.firstMatch.buttons["Back"].firstMatch
+        XCTAssertTrue(back.waitForExistence(timeout: 30), "the existing Back action appeared")
+        back.tap()
         waitForView("view-library", in: app)
-        print("NATIVE_SPIKE_GESTURE breadcrumb=\(monitor(in: app).label)")
-        XCTAssertTrue(swipeReturnedToLibrary, "the synthetic drag returned to the breadcrumb's Library destination")
+        print("NATIVE_SPIKE_GESTURE back=\(monitor(in: app).label)")
+        XCTAssertTrue(swipeReturnedToLibrary, "the synthetic drag returned to the existing Back destination")
     }
 
     func testBackGestureWithDialogOpen() {
