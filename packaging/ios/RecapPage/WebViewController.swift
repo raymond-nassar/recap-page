@@ -10,6 +10,9 @@ final class WebViewController: UIViewController, WKUIDelegate {
     private var appPage: URL?
     private var pendingReadSheets: [ReadSheetController] = []
     private var presentedReadSheet: ReadSheetController?
+    #if DEBUG
+    private let nativeTabBar = NativeTabBarSpike()
+    #endif
     private let dataLossState = IOSDataLossState()
     /// Set when iOS ended the page's content process, until the reloaded page has been told.
     private(set) var restartNoticePending = false
@@ -58,11 +61,17 @@ final class WebViewController: UIViewController, WKUIDelegate {
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
         let guide = view.safeAreaLayoutGuide
+        #if DEBUG
+        nativeTabBar.attach(to: view, webView: webView)
+        let bottom = nativeTabBar.tabBar.topAnchor
+        #else
+        let bottom = view.bottomAnchor
+        #endif
         NSLayoutConstraint.activate([
             webView.topAnchor.constraint(equalTo: guide.topAnchor),
             webView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.bottomAnchor.constraint(equalTo: bottom),
         ])
         let coordinator = NavigationCoordinator(policy: policy, controller: self)
         webView.navigationDelegate = coordinator
@@ -77,6 +86,13 @@ final class WebViewController: UIViewController, WKUIDelegate {
         #endif
         startLoading()
     }
+
+    #if DEBUG
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        nativeTabBar.updateBottomInset(view.safeAreaInsets.bottom)
+    }
+    #endif
 
     private func installPageScripts(in controller: WKUserContentController) {
         #if DEBUG

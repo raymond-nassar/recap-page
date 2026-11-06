@@ -1,0 +1,100 @@
+name: iOS native tab bar spike
+
+on:
+  push:
+    branches: [raymond-nassar-native-ios-interaction-research]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-tab-spike-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native_tab_spike:
+    name: Native tab bar spike
+    runs-on: macos-26
+    timeout-minutes: 70
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      SIMULATOR_NAME: iPhone 17 Pro Max
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Record the toolchain
+        timeout-minutes: 3
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+          node --version
+
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
+      - name: Boot the iPhone Simulator
+        timeout-minutes: 5
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices)
+              .filter((runtime) => runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-"))
+              .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name === process.env.SIMULATOR_NAME);
+            if (!device) throw new Error("Requested iPhone Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+          echo "SPIKE_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
+      - name: Build the spike for testing
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Exercise the native tabs
+        timeout-minutes: 20
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$SPIKE_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
+            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testNativeTabsOpenTheirSections \
+            -resultBundlePath "$RUNNER_TEMP/native-tab-spike.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-spike.log"
+
+      - name: Export simulator screenshots
+        if: ${{ !cancelled() }}
+        timeout-minutes: 3
+        run: |
+          if [ -d "$RUNNER_TEMP/native-tab-spike.xcresult" ]; then
+            xcrun xcresulttool export attachments \
+              --path "$RUNNER_TEMP/native-tab-spike.xcresult" --output-path "$RUNNER_TEMP/native-tab-spike-attachments"
+          fi
+
+      - name: Keep the spike evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-native-tab-spike-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/native-tab-spike.log
+            ${{ runner.temp }}/native-tab-spike.xcresult
+            ${{ runner.temp }}/native-tab-spike-attachments
+          if-no-files-found: warn
