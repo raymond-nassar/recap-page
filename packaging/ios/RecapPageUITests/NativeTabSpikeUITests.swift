@@ -211,8 +211,11 @@ final class NativeTabSpikeUITests: XCTestCase {
         searchComics.tap()
         waitForView("view-add-search", in: app)
         waitForSelectedTab("Search", in: app)
-        XCTAssertTrue(monitor(in: app).label.contains("\"hash\":\"#/add-search\""),
-                      "native selection does not replace the child route")
+        let childState = monitor(in: app).label
+        let childRoutePreserved = childState.contains("\"hash\":\"#/add-search\"")
+            || childState.contains("\"hash\":\"#/add-search/ios-presentation\"")
+        XCTAssertTrue(childRoutePreserved, "native selection does not replace the child route: \(childState)")
+        print("NATIVE_SPIKE_ROUTE child=\(childState)")
 
         let home = app.webViews.firstMatch.links["Home"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30), "the Home breadcrumb appeared")

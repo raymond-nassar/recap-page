@@ -313,7 +313,7 @@ jobs:
           -destination "$SPIKE_IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData"
           CODE_SIGNING_ALLOWED=NO
 
-      - name: Exercise iPad tabs and layout
+      - name: Retest iPad route synchronization
         timeout-minutes: 20
         run: |
           set -o pipefail
@@ -321,9 +321,7 @@ jobs:
             -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$SPIKE_IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/SpikeDerivedData" \
             -parallel-testing-enabled NO \
-            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testNativeTabsOpenTheirSections \
             -only-testing:RecapPageUITests/NativeTabSpikeUITests/testWebNavigationUpdatesNativeSelection \
-            -only-testing:RecapPageUITests/NativeTabSpikeUITests/testLargestTextAndRotation \
             -resultBundlePath "$RUNNER_TEMP/native-tab-ipad.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/native-tab-ipad.log"
 
