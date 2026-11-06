@@ -2344,8 +2344,8 @@
     "fp": "442a466ae36970bc",
     "head": "const USAGE = ["
   },
-  "docs/MAINTAINING.md|resolve-selected-merge-conflicts|scripts/resolve-anchor-conflicts.mjs:42-48|0": {
-    "anchor": "scripts/resolve-anchor-conflicts.mjs:42-48",
+  "docs/MAINTAINING.md|resolve-selected-merge-conflicts|scripts/resolve-anchor-conflicts.mjs:44-50|0": {
+    "anchor": "scripts/resolve-anchor-conflicts.mjs:44-50",
     "fp": "7625360f880d9c5c",
     "head": "const USAGE = ["
   },
