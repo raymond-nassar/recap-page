@@ -1,6 +1,8 @@
 // Resolve only an in-progress merge conflict whose base, ours and theirs differ
 // solely in checked citation numbers. The selected files and their index stages
 // are read as evidence; the helper never runs a repository merge or edits the lock.
+// Each side's numbers must follow that side's own version of the cited file, or the
+// block is refused.
 //
 //   node scripts/resolve-anchor-conflicts.mjs --file <path>
 //   node scripts/resolve-anchor-conflicts.mjs --file <path> --apply --approved-sha256 <digest>
@@ -268,19 +270,23 @@ function lockEvidence(lock, document, citation, base) {
   return want;
 }
 
-function mapTarget(document, citation, want, base) {
-  if (lstatSync(citation.file).isSymbolicLink()) {
-    throw new Error(`${document} cites symbolic-link target ${citation.file}`);
+function worktreeLines(document, file) {
+  if (lstatSync(file).isSymbolicLink()) {
+    throw new Error(`${document} cites symbolic-link target ${file}`);
   }
-  const targetBytes = readFileSync(citation.file);
-  const targetText = textFrom(targetBytes, citation.file);
-  if (hasConflictMarker(targetText)) {
-    throw new Error(`${document} cites conflicted target ${citation.file}`);
+  const text = textFrom(readFileSync(file), file);
+  if (hasConflictMarker(text)) {
+    throw new Error(`${document} cites conflicted target ${file}`);
   }
+  return splitLines(text);
+}
+
+function mapTarget(document, citation, want, base, side = null) {
+  const currentLines = side === null ? worktreeLines(document, citation.file) : linesOf(citation.file, side.rev);
+  if (currentLines === null) throw new Error(`${document} target ${citation.file} is missing in the ${side.label} side`);
   const beforeLines = linesOf(citation.file, base);
-  const currentLines = splitLines(targetText);
   if (beforeLines === null) throw new Error(`${document} target ${citation.file} is missing at the merge base`);
-  const diff = git(['diff', '-U0', '--no-color', '--no-ext-diff', '--no-textconv', '--no-renames', base, '--', citation.file]);
+  const diff = git(['diff', '-U0', '--no-color', '--no-ext-diff', '--no-textconv', '--no-renames', base, ...(side === null ? [] : [side.rev]), '--', citation.file]);
   const hunks = parseHunks(diff);
   const heads = findHead(currentLines, want.head);
   if (heads.length !== 1) throw new Error(`${document} target ${citation.file} has ${heads.length} matching head lines`);
@@ -292,13 +298,13 @@ function mapTarget(document, citation, want, base) {
   if (end === null || mappedStart === null || mappedEnd === null || mappedStart !== start || mappedEnd !== end) {
     throw new Error(`${document} target ${citation.file} movement is ambiguous`);
   }
-  const after = fingerprint(citation.file, start, end, null);
+  const after = fingerprint(citation.file, start, end, side === null ? null : side.rev);
   if (after.fp !== want.fp || after.blankEdge) throw new Error(`${document} target ${citation.file} content does not match the lock`);
   if (!citation.dashed && start !== end) throw new Error(`${document} single-line citation would become a range`);
   return { start, end };
 }
 
-function resolveBlock(block, baseLines, oursLines, theirsLines, path, lock, base) {
+function resolveBlock(block, baseLines, oursLines, theirsLines, path, lock, merge) {
   if (baseLines.length !== oursLines.length || baseLines.length !== theirsLines.length) {
     throw new Error(`${path} conflict changes line structure`);
   }
@@ -327,8 +333,20 @@ function resolveBlock(block, baseLines, oursLines, theirsLines, path, lock, base
     }
     if (ours.start !== theirs.start || ours.end !== theirs.end
       || original.start !== ours.start || original.end !== ours.end) changed = true;
-    const want = lockEvidence(lock, path, original, base);
-    mapped.push({ citation: original, range: mapTarget(path, original, want, base) });
+    const want = lockEvidence(lock, path, original, merge.base);
+    const range = mapTarget(path, original, want, merge.base);
+    // The block is rewritten from the merged target, so each side's own numbers must
+    // already follow that side's own target; otherwise a differing renumbering is lost.
+    for (const side of [
+      { rev: merge.ours, label: 'HEAD', row: ours },
+      { rev: merge.theirs, label: 'MERGE_HEAD', row: theirs },
+    ]) {
+      const own = mapTarget(path, original, want, merge.base, side);
+      if (side.row.start !== own.start || side.row.end !== own.end) {
+        throw new Error(`${path} conflict renumbers ${original.file} differently from the ${side.label} side's own target`);
+      }
+    }
+    mapped.push({ citation: original, range });
   }
   if (!changed) throw new Error(`${path} conflict has no citation renumbering to resolve`);
 
@@ -415,7 +433,7 @@ function planFile(path, merge, lock) {
     if (block.base !== null && !sameLines(block.base, baseBlock)) {
       throw new Error(`${path} displayed base conflict text differs from stage 1`);
     }
-    const resolved = resolveBlock(block, baseBlock, block.ours, block.theirs, path, lock, merge.base);
+    const resolved = resolveBlock(block, baseBlock, block.ours, block.theirs, path, lock, merge);
     const start = block.start + lineShift;
     candidateLines.splice(start, block.end - block.start, ...resolved);
     lineShift += resolved.length - (block.end - block.start);
