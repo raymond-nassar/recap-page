@@ -56,6 +56,7 @@ import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import { descriptionRevisions } from './lib/description-revisions.mjs';
+import { touchFeedbackCheck } from './lib/touch-feedback.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -19115,6 +19116,15 @@ SCENARIOS.push(responsiveOwner({
       Object.values(scopePredicates).every(Boolean));
   },
 }));
+
+SCENARIOS.push({
+  id: 'touch-feedback',
+  title: 'held input adds shared feedback without losing focus, selection or disabled states',
+  async run(page, t) {
+    await open(page, '/');
+    await touchFeedbackCheck(page, (pass, message) => t.check(message, pass), 'desktop');
+  },
+});
 
 SCENARIOS.push(responsiveOwner({
   id: 'responsive-controls',

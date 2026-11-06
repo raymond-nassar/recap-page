@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:821-828`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:822-829`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2789,7 +2789,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 .completion-enjoyment { border: 0; margin: var(--space-6) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .completion-enjoyment[hidden] { display: none; }
 .completion-enjoyment legend { color: var(--dim); margin-bottom: var(--space-4); }
-.completion-enjoyment button[aria-pressed="true"] { border-color: var(--teal); box-shadow: inset 0 0 0 var(--stroke-1) var(--teal); }
+.completion-enjoyment button[aria-pressed="true"] { --control-rest-shadow: inset 0 0 0 var(--stroke-1) var(--teal); border-color: var(--teal); box-shadow: inset 0 0 0 var(--stroke-1) var(--teal); }
 .completion-enjoyment button span { display: inline-flex; align-items: center; gap: var(--space-4); }
 /* UX-42 (#836): a tooltip needs hover or focus, so on a narrow or touch screen each icon shows its
    words. The names were always those words; only what is drawn changes. */
@@ -2926,3 +2926,15 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-notice { position: relative; }
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
+
+/* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
+   Keep native tap highlights and selection. */
+:is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]) {
+  box-shadow: inset 0 0 0 var(--stroke-2) currentColor, var(--control-rest-shadow, 0 0 transparent);
+}
+@media (forced-colors: active) {
+  :is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]):not(:focus-visible) {
+    outline: var(--focus-width) solid currentColor;
+    outline-offset: calc(-1 * var(--focus-width));
+  }
+}

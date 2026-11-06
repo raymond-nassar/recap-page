@@ -90,6 +90,7 @@ import { cloudTransport } from './lib/cloudTransports.js';
 import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 import { isIosApp } from './lib/platform.js';
 import { shouldRevealMobileNavigation } from './lib/mobileNavigation.js';
+import { wirePressFeedback } from './lib/pressFeedback.js';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const iosApp = isIosApp();
 // Made before any owner of saved data, so the first write any of them attempts already passes its
@@ -3067,6 +3068,7 @@ export function boot() {
   homeUpdatesView.wire();
   previewView.wire();
   wireAsk();
+  wirePressFeedback({ document, window });
   for (const dialog of document.querySelectorAll('dialog.ask, dialog.preview')) holdDialogEdges(dialog);
   completionView.wire();
   listHistory.load();

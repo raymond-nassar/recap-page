@@ -132,6 +132,7 @@ export default [
     // The upgrade check is the same shape for the same reason.
     files: [
       'scripts/browser-check.mjs',
+      'scripts/lib/touch-feedback.mjs',
       'scripts/browser-android.mjs',
       'scripts/browser-android-catalog-cards.mjs',
       'scripts/browser-android-issue-poster.mjs',
