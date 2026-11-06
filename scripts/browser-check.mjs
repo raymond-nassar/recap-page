@@ -13233,9 +13233,9 @@ const SCENARIOS = [
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
         stops: document.querySelectorAll('#catalog-results .path-stop').length,
       }));
-      t.check('choosing the whole timeline restores it, with its start sentence, issue count and gap disclosure',
+      t.check('choosing the whole timeline restores its start sentence, issue counts and gap disclosure',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened',
+        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened · Saved copy: 1 comic',
         JSON.stringify(shelf));
     },
   },
@@ -19126,6 +19126,103 @@ SCENARIOS.push({
   },
 });
 
+SCENARIOS.push({
+  id: 'view-transition',
+  title: 'optional screen transitions preserve synchronous routing and the long reading list',
+  operations: [
+    'import-long-order', 'animated-navigation', 'animated-back',
+    'reduced-navigation', 'reduced-back', 'rapid-navigation',
+  ],
+  async run(page, t) {
+    await t.step('import-long-order', () => importLongOrder(page));
+    const seeded = await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2') || '{}');
+      return {
+        count: state.lists?.[state.active]?.itemIds?.length ?? 0,
+        hash: location.hash,
+        userAgent: navigator.userAgent,
+      };
+    });
+    t.check('the transition scenario starts with all 219 fixture issues',
+      seeded.count === 219, JSON.stringify(seeded));
+
+    const pageErrors = [];
+    page.on('pageerror', (error) => pageErrors.push(error.message));
+
+    const goAbout = async () => {
+      await click(page, '.ri[data-view="about"]');
+      await page.waitForFunction(() => location.hash.startsWith('#/about')
+        && !document.querySelector('#view-about')?.hidden
+        && document.activeElement?.id === 'about-h', { timeout: 15000 });
+    };
+    const goBackToReading = async () => {
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash.startsWith('#/read/')
+        && !document.querySelector('#view-read')?.hidden
+        && document.activeElement?.id === 'order-name', { timeout: 15000 });
+    };
+    await t.step('animated-navigation', goAbout);
+    const incoming = await page.evaluate(() => {
+      const panel = document.querySelector('#view-about');
+      const style = getComputedStyle(panel);
+      return {
+        entering: panel.classList.contains('view-entering'),
+        animation: style.animationName,
+        duration: style.animationDuration,
+        focused: document.activeElement?.id,
+      };
+    });
+    t.check('navigation applies the 150 ms opacity-only entrance and focuses About',
+      incoming.entering && incoming.animation === 'view-enter' && incoming.duration === '0.15s'
+        && incoming.focused === 'about-h', JSON.stringify(incoming));
+    await t.step('animated-back', goBackToReading);
+    t.check('Back restores the reading view and its focused heading',
+      await page.evaluate(() => location.hash.startsWith('#/read/')
+        && document.activeElement?.id === 'order-name'));
+
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await t.step('reduced-navigation', goAbout);
+    const reduced = await page.evaluate(() => ({
+      animation: getComputedStyle(document.querySelector('#view-about')).animationName,
+      hash: location.hash,
+      focused: document.activeElement?.id,
+    }));
+    t.check('reduced motion navigates immediately without starting a transition',
+      reduced.animation === 'none' && reduced.hash.startsWith('#/about') && reduced.focused === 'about-h',
+      JSON.stringify(reduced));
+    await t.step('reduced-back', goBackToReading);
+    t.check('reduced-motion Back returns to the reading view with focus',
+      await page.evaluate(() => location.hash.startsWith('#/read/')
+        && document.activeElement?.id === 'order-name'));
+
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);
+    await t.step('rapid-navigation', async () => {
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForFunction(() => location.hash.startsWith('#/home'),
+        { timeout: 15000 });
+      t.check('the first rapid navigation commits Home before the next destination',
+        await page.evaluate(() => !document.querySelector('#view-home')?.hidden));
+      await page.evaluate(() => {
+        const about = document.querySelector('.ri[data-view="about"]');
+        if (!about) throw new Error('Expected the About navigation control.');
+        about.click();
+        return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
+    });
+    const rapid = await page.evaluate(() => ({
+      hash: location.hash,
+      focused: document.activeElement?.id,
+      visible: !document.querySelector('#view-about')?.hidden,
+    }));
+    t.check('rapid navigation leaves the final route and its heading focused',
+      rapid.visible && rapid.hash.startsWith('#/about') && rapid.focused === 'about-h',
+      JSON.stringify(rapid));
+
+    t.check('navigation does not surface page errors',
+      pageErrors.length === 0, JSON.stringify(pageErrors));
+  },
+});
+
 SCENARIOS.push(responsiveOwner({
   id: 'responsive-controls',
   title: 'Real read boxes, native fields and dialogs preserve focus, state and checked contrast',
@@ -22746,6 +22843,9 @@ SCENARIOS.push({
   },
 });
 SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
+const { amazingSpiderManActualData, amazingSpiderManMissingIssueMutation } = await import('./browser-amazing-spider-man.mjs');
+SCENARIOS.push(amazingSpiderManActualData);
+MUTATIONS.push(amazingSpiderManMissingIssueMutation);
 SCENARIOS.push((await import('./browser-greg-pak-hulk.mjs')).gregPakHulkActualData);
 SCENARIOS.push((await import('./browser-shang-chi.mjs')).shangChiActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-shang-chi.mjs')).mcuPrepShangChiActualData);

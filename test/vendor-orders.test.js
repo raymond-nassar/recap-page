@@ -847,7 +847,7 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
       placeholders: payload.placeholders,
       unresolved: payload.unresolved.length,
     },
-    { count: 2041, items: 2041, placeholders: 7, unresolved: 7 },
+    { count: 2144, items: 2144, placeholders: 7, unresolved: 7 },
   );
 
   for (const [issueId, title, url] of [
@@ -883,7 +883,7 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
 
   const manifestEntry = manifest.lists.find((entry) => entry.id === orderId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === orderId);
-  assert.equal(manifestEntry.expect, 2041);
+  assert.equal(manifestEntry.expect, 2144);
   assert.deepEqual(
     {
       count: catalogEntry.count,
@@ -891,7 +891,7 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
       empty: catalogEntry.emptyRecordCount,
     },
     {
-      count: 2041,
+      count: 2144,
       placeholders: 7,
       empty: payload.items.filter((item) => item.detailsRefused === true).length,
     },

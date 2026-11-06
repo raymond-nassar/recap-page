@@ -22,6 +22,26 @@ const reading = read('src/js/views/reading.js');
 const has = (text, re, what) => assert.ok(re.test(text), `expected to find ${what}`);
 const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to find ${what}`);
 
+test('main.js preserves synchronous route updates and animates only an arriving focused view', () => {
+  const main = read('src/js/main.js');
+  lacks(main, /startViewTransition|runViewTransition|showViewNow/, 'the deferred View Transitions wrapper');
+  has(main, /function showView\(next, \{ focus = true, push = false, at = null, capturePosition = true \} = \{\}\)/,
+    'the original synchronous route update');
+  has(main, /const shouldAnimateArrival = focus && next !== view;/, 'the changed destination and focus gate');
+  has(main, /panel\.classList\.toggle\('view-entering', name === next && shouldAnimateArrival\)/,
+    'the incoming-view class applied within the synchronous update');
+});
+
+test('incoming-view CSS uses the fast opacity animation and reduced motion disables it', () => {
+  const css = read('src/styles.css');
+  has(css, /\.view\.view-entering\s*\{\s*animation:\s*view-enter var\(--motion-fast\) ease both;/,
+    'the fast incoming-view animation');
+  has(css, /@keyframes view-enter\s*\{\s*from\s*\{\s*opacity:\s*0;\s*\}\s*to\s*\{\s*opacity:\s*1;\s*\}/,
+    'the opacity-only keyframes');
+  has(css, /@media \(prefers-reduced-motion: reduce\) \{\s*\*, \*::before, \*::after \{ transition: none !important; animation: none !important;/,
+    'the existing reduced-motion animation override');
+});
+
 test('route titles identify the current view list and resolved issue without invented metadata', () => {
   assert.equal(routeTitle({ view: 'home' }), 'Home | Recap Page');
   assert.equal(routeTitle({ view: 'library-manual' }), 'Added by hand | Recap Page');

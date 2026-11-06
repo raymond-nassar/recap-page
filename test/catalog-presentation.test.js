@@ -92,6 +92,42 @@ test('cards keep the linked site credit and leave the snapshot and section to Pr
   assert.ok(link['aria-label'].includes(list.name));
 });
 
+test('mixed-source cards and search rows credit owner-selected additions separately', () => {
+  const mixed = { ...list, sourceOrigin: `${list.sourceOrigin}, with owner-selected additions` };
+  for (const surface of [
+    presentation.catalogCard({ key: 'spider-man', lists: [mixed] }),
+    presentation.catalogRow(mixed, { report: '#catalog-report' }),
+  ]) {
+    const line = descendants(surface).find((node) => node.tag === 'p' && node.class.includes('result-source'));
+    assert.equal(text(line), 'Source: Comic Book Herald, with owner-selected additions');
+    assert.equal(text(descendants(line).find((node) => node.tag === 'a')), 'Comic Book Herald');
+  }
+  const unlinked = presentation.attributionLine({ ...mixed, source: null }, { compact: true });
+  assert.equal(text(unlinked), `Source: ${mixed.sourceOrigin}`);
+  assert.equal(text(presentation.attributionLine(mixed)).includes(mixed.sourceOrigin), true);
+});
+
+test('cards and search rows distinguish a saved copy with a different comic count', () => {
+  const saved = { id: 'existing', itemIds: [1, 2] };
+  const shared = createCatalogPresentation({
+    el, hueOf: () => 0, isInLibrary: () => saved, paintCoverUrl: () => {}, shortTitle: (title) => title,
+  });
+  for (const surface of [
+    shared.catalogCard({ key: 'spider-man', lists: [list] }),
+    shared.catalogRow(list, { report: '#catalog-report' }),
+  ]) {
+    const meta = descendants(surface).find((node) =>
+      node.tag === 'p' && (node.class === 'catalog-card-meta' || node.class === 'result-meta'));
+    assert.match(text(meta), /3 comics/);
+    assert.match(text(meta), /Saved copy: 2 comics/);
+  }
+  const matching = createCatalogPresentation({
+    el, hueOf: () => 0, isInLibrary: () => ({ id: 'matching', itemIds: [1, 2, 3] }),
+    paintCoverUrl: () => {}, shortTitle: (title) => title,
+  });
+  assert.doesNotMatch(text(matching.catalogCard({ key: 'spider-man', lists: [list] })), /Saved copy:/);
+});
+
 test('a card has three keyboard stops with a linked source and two without one', () => {
   const linked = controls(presentation.catalogCard({ key: 'spider-man', lists: [list] }));
   assert.deepEqual(linked.map((node) => node.dataset?.act ?? 'source'), ['preview', 'source', 'import']);

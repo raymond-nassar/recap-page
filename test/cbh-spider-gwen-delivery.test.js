@@ -20,6 +20,7 @@ import {
 } from './helpers/reading-choice-history.mjs';
 import path from 'node:path';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
+import { beforeAmazingSpiderManSupplementPayloadFileText } from './helpers/amazing-spider-man-history.mjs';
 
 const id = 'spider-gwen-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -189,8 +190,9 @@ test('Spider-Gwen publishes the exact credited payload and auditable metadata re
   for (const record of ledger.metadataHydration.records) {
     if (record.kind !== 'reconstructed-from-pinned-payload') continue;
     if (!hashes.has(record.file)) {
+      const historical = beforeAmazingSpiderManSupplementPayloadFileText(record.file, await readFile(record.file, 'utf8'));
       hashes.set(record.file, createHash('sha256')
-        .update(descriptionRevisions.undoPayloadText(path.basename(record.file), await readFile(record.file, 'utf8')).replace(/\r\n/g, '\n')).digest('hex'));
+        .update(descriptionRevisions.undoPayloadText(path.basename(record.file), historical).replace(/\r\n/g, '\n')).digest('hex'));
     }
     assert.equal(record.hashBasis, 'UTF-8 source text with LF line endings');
     assert.equal(record.sha256, hashes.get(record.file));

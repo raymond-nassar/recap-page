@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { amazingSpiderManSupplementIds } from './helpers/amazing-spider-man-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const orderId = 'amazing-spider-man-reading-order-modern-marvel-era';
@@ -111,17 +112,19 @@ test('Amazing Spider-Man settlement conserves all 103 source rows and retained i
     assert.equal(placeholderId(orderId, title), issueId);
   }
 
+  assert.equal(payload.count, 2144);
+  assert.equal(payload.items.length, 2144);
+  const originalItems = payload.items.filter((item) => !amazingSpiderManSupplementIds.has(item.issueId));
+  const originalEntries = parsed.entries.filter((item) => !amazingSpiderManSupplementIds.has(item.issueId));
   assert.deepEqual(
     {
-      count: payload.count,
-      items: payload.items.length,
+      items: originalItems.length,
       placeholders: payload.placeholders,
       unresolved: payload.unresolved.length,
-      parsedEntries: parsed.entries.length,
+      parsedEntries: originalEntries.length,
       parsedUnresolved: parsed.unresolved.length,
     },
     {
-      count: 2041,
       items: 2041,
       placeholders: 7,
       unresolved: 7,
@@ -130,14 +133,14 @@ test('Amazing Spider-Man settlement conserves all 103 source rows and retained i
     },
   );
 
-  const parsedItems = [...parsed.entries, ...parsed.unresolved]
+  const parsedItems = [...originalEntries, ...parsed.unresolved]
     .sort((left, right) => left.index - right.index);
   let offset = 0;
   for (const row of settlement.rows) {
     const index = row.guideItem - 1 + offset;
     if (row.classification === 'exact') {
       assert.deepEqual(
-        payload.items.slice(index, index + row.selectedIssueIds.length).map((item) => item.issueId),
+        originalItems.slice(index, index + row.selectedIssueIds.length).map((item) => item.issueId),
         row.selectedIssueIds,
         row.sourceIssueReference,
       );
@@ -151,15 +154,15 @@ test('Amazing Spider-Man settlement conserves all 103 source rows and retained i
       offset -= 1;
     } else {
       const expectedId = placeholderId(orderId, row.sourceIssueReference);
-      assert.equal(payload.items[index].issueId, expectedId, row.sourceIssueReference);
-      assert.equal(payload.items[index].title, row.sourceIssueReference, row.sourceIssueReference);
-      assert.equal(payload.items[index].placeholder, true, row.sourceIssueReference);
+      assert.equal(originalItems[index].issueId, expectedId, row.sourceIssueReference);
+      assert.equal(originalItems[index].title, row.sourceIssueReference, row.sourceIssueReference);
+      assert.equal(originalItems[index].placeholder, true, row.sourceIssueReference);
     }
   }
   assert.equal(offset, -6);
   assert.deepEqual(
     parsedItems.map((entry) => entry.issueId ?? placeholderId(orderId, entry.title, entry.sourceKey)),
-    payload.items.map((item) => item.issueId),
+    originalItems.map((item) => item.issueId),
   );
 
   const catalogEntry = catalog.lists.find((entry) => entry.id === orderId);
@@ -167,7 +170,7 @@ test('Amazing Spider-Man settlement conserves all 103 source rows and retained i
   const inventoryEntry = inventory.find((entry) => entry.id === orderId);
   assert.deepEqual(
     [manifestEntry.expect, catalogEntry.count, catalogEntry.placeholderCount],
-    [2041, 2041, 7],
+    [2144, 2144, 7],
   );
   assert.match(
     inventoryEntry.reason,

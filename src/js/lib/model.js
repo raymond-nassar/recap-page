@@ -489,7 +489,7 @@ export function duplicateList(state, listId, { name } = {}) {
 // tellable apart in the rail. The base is trimmed to make room for the suffix: appending first
 // and slicing afterwards would cut the suffix off a maximally long name, producing a copy whose
 // name was identical to the original.
-function copyName(state, base) {
+export function copyName(state, base) {
   const taken = new Set(Object.values(state.lists).map((l) => l.name));
   const fit = (suffix) => base.slice(0, MAX_NAME - suffix.length).trimEnd() + suffix;
   let candidate = fit(' (copy)');
@@ -551,7 +551,7 @@ export function listForCatalogId(state, catalogId) {
 
 // ---------------------------------------------------------------- items
 
-export function addIssuesToList(state, listId, inputs, { at = null, sort = false } = {}) {
+export function addIssuesToList(state, listId, inputs, { at = null, sort = false, preserveExisting = false } = {}) {
   const list = state.lists[listId];
   if (!list) return { state, added: 0, skipped: 0 };
 
@@ -573,9 +573,11 @@ export function addIssuesToList(state, listId, inputs, { at = null, sort = false
     const issue = normalizeIssue(input);
     if (!issue) continue;
     const prev = issues[issue.issueId];
-    issues[issue.issueId] = prev
-      ? { ...prev, ...stripNulls(issue), hydrated: issue.hydrated || prev.hydrated }
-      : issue;
+    issues[issue.issueId] = preserveExisting && state.issues[issue.issueId]
+      ? state.issues[issue.issueId]
+      : prev
+        ? { ...prev, ...stripNulls(issue), hydrated: issue.hydrated || prev.hydrated }
+        : issue;
     incoming.push(issue.issueId);
     if (typeof input?.collectedIn === 'string' && input.collectedIn.trim()) {
       editions.set(issue.issueId, input.collectedIn.trim().slice(0, MAX_COLLECTION));

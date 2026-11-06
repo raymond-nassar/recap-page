@@ -9606,7 +9606,7 @@
       "variant": null,
       "sourceFile": "amazing-spider-man-reading-order-modern-marvel-era.md",
       "sourcePage": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide, with owner-selected additions",
       "sourceLicense": null,
       "out": "amazing_spider_man_reading_order_modern_marvel_era.json",
       "characters": [
@@ -9618,7 +9618,7 @@
         "Spider-Man",
         "Comic Book Herald"
       ],
-      "expect": 2041,
+      "expect": 2144,
       "timeline": 1962,
       "coverIssueId": 16926
     },

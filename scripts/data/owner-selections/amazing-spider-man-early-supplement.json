@@ -1,0 +1,4476 @@
+{
+  "schemaVersion": 1,
+  "guideId": "amazing-spider-man-reading-order-modern-marvel-era",
+  "kind": "owner-selected-supplement",
+  "originalGuide": {
+    "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+    "baselineCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+    "payloadFile": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+    "payloadSha256": "cb9b55206696eef5b9b20b64c06b0430cd0b4aecf474cce55d474dadcdbced82",
+    "itemVectorSha256": "a492af64a1063b79a2f63f50be0d070c22e2882c3fdbc3661634b7bf1fdadb2a"
+  },
+  "placement": "Publication month beside the existing Amazing Spider-Man issue; Amazing first in a shared month. Existing guide order is unchanged.",
+  "publicationIndexesVerifiedAt": "2026-11-06T07:37:45.702Z",
+  "publicationIndexes": [
+    "https://spiderfan.org/year/comics/1972.html",
+    "https://spiderfan.org/year/comics/1973.html",
+    "https://spiderfan.org/year/comics/1976.html",
+    "https://spiderfan.org/year/comics/1977.html",
+    "https://spiderfan.org/year/comics/1978.html",
+    "https://spiderfan.org/year/comics/1979.html",
+    "https://spiderfan.org/year/comics/1980.html",
+    "https://spiderfan.org/year/comics/1981.html",
+    "https://spiderfan.org/year/comics/1982.html",
+    "https://spiderfan.org/year/comics/1983.html",
+    "https://spiderfan.org/year/comics/1984.html"
+  ],
+  "providerSeriesLookups": [
+    {
+      "url": "https://marvel.emreparker.com/v1/series/2271/issues?limit=200&offset=0",
+      "retrievedAt": "2026-11-06T07:31:49.472Z"
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/2271/issues?limit=200&offset=200",
+      "retrievedAt": "2026-11-06T07:31:50.135Z"
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/3716/issues?limit=200&offset=0",
+      "retrievedAt": "2026-11-06T07:31:51.030Z"
+    }
+  ],
+  "rows": [
+    {
+      "requestPosition": 1,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "1",
+      "issueId": 14542,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14542/",
+      "publicationMonth": "1976-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1976.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14542",
+        "retrievedAt": "2026-11-06T07:31:51.406Z",
+        "bodySha256": "de81338a612613253732a90326be87f7b7942bef2f53e08a5287ae0bf7bfd9b7",
+        "providerProjection": {
+          "id": 14542,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/14542/peter_parker_the_spectacular_spider-man_1976_1",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45620,
+          "onSaleDate": "1976-12-01T00:00:00+0000",
+          "unlimitedDate": "1976-12-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/90/5a06251af2eae",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Dave Hunt",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6553,
+      "guidePosition": 187
+    },
+    {
+      "requestPosition": 2,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "2",
+      "issueId": 14653,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14653/",
+      "publicationMonth": "1977-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14653",
+        "retrievedAt": "2026-11-06T07:31:51.614Z",
+        "bodySha256": "b3b9f8600a1984d5b3ba41c7156238ffdb0c596ecaa93802d8e94f9370a3847b",
+        "providerProjection": {
+          "id": 14653,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/14653/peter_parker_the_spectacular_spider-man_1976_2",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45621,
+          "onSaleDate": "1977-01-01T00:00:00+0000",
+          "unlimitedDate": "1977-01-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/f0/5a0624ea6a7ec",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Don Warfield",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6554,
+      "guidePosition": 189
+    },
+    {
+      "requestPosition": 3,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "3",
+      "issueId": 14728,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14728/",
+      "publicationMonth": "1977-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14728",
+        "retrievedAt": "2026-11-06T07:31:58.464Z",
+        "bodySha256": "ac468af03b671ffdbcdbb53e2b512068614c4486b62184b87a75bf05520ce42e",
+        "providerProjection": {
+          "id": 14728,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #3",
+          "issueNumber": "3",
+          "detailUrl": "https://www.marvel.com/comics/issue/14728/peter_parker_the_spectacular_spider-man_1976_3",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45622,
+          "onSaleDate": "1977-02-01T00:00:00+0000",
+          "unlimitedDate": "1977-02-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/03/5a0625677494e",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            },
+            {
+              "name": "Jim Shooter",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6555,
+      "guidePosition": 192
+    },
+    {
+      "requestPosition": 4,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "4",
+      "issueId": 14739,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14739/",
+      "publicationMonth": "1977-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14739",
+        "retrievedAt": "2026-11-06T07:31:59.821Z",
+        "bodySha256": "99262c56f2751edaf8ee4350525de2091286a2776e09e03a47ba631c46e15b57",
+        "providerProjection": {
+          "id": 14739,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #4",
+          "issueNumber": "4",
+          "detailUrl": "https://www.marvel.com/comics/issue/14739/peter_parker_the_spectacular_spider-man_1976_4",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45623,
+          "onSaleDate": "1977-03-01T00:00:00+0000",
+          "unlimitedDate": "1977-03-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/00/5a062564ee206",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Janice Cohen",
+              "role": "colorist"
+            },
+            {
+              "name": "Marie Severin",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Archie Goodwin",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6556,
+      "guidePosition": 194
+    },
+    {
+      "requestPosition": 5,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "5",
+      "issueId": 14750,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14750/",
+      "publicationMonth": "1977-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14750",
+        "retrievedAt": "2026-11-06T07:32:00.377Z",
+        "bodySha256": "bec33a21c17c190152e26b173d854116c10e0e0e747f577c8e4156d1c349a750",
+        "providerProjection": {
+          "id": 14750,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #5",
+          "issueNumber": "5",
+          "detailUrl": "https://www.marvel.com/comics/issue/14750/peter_parker_the_spectacular_spider-man_1976_5",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45624,
+          "onSaleDate": "1977-04-01T00:00:00+0000",
+          "unlimitedDate": "1977-04-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/f0/5a06254724bb6",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Janice Cohen",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Denise Wohl",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Archie Goodwin",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6557,
+      "guidePosition": 196
+    },
+    {
+      "requestPosition": 6,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "6",
+      "issueId": 14761,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14761/",
+      "publicationMonth": "1977-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14761",
+        "retrievedAt": "2026-11-06T07:32:01.413Z",
+        "bodySha256": "52ff59d9a815dc39d207727b5845c864a309ac9039e367bb9712fba3ce7c404a",
+        "providerProjection": {
+          "id": 14761,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #6",
+          "issueNumber": "6",
+          "detailUrl": "https://www.marvel.com/comics/issue/14761/peter_parker_the_spectacular_spider-man_1976_6",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45625,
+          "onSaleDate": "1977-05-01T00:00:00+0000",
+          "unlimitedDate": "1977-05-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/30/5a0624f89ac32",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Stan Goldberg",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Giacoia",
+              "role": "cover artist"
+            },
+            {
+              "name": "Art Simek",
+              "role": "letterer"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6558,
+      "guidePosition": 198
+    },
+    {
+      "requestPosition": 7,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "7",
+      "issueId": 14772,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14772/",
+      "publicationMonth": "1977-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14772",
+        "retrievedAt": "2026-11-06T07:32:01.606Z",
+        "bodySha256": "534f369129315c2beda00ee8e51ede7cd171c5f9a2bec245e7c7c58dc2bc3eaf",
+        "providerProjection": {
+          "id": 14772,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #7",
+          "issueNumber": "7",
+          "detailUrl": "https://www.marvel.com/comics/issue/14772/peter_parker_the_spectacular_spider-man_1976_7",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45626,
+          "onSaleDate": "1977-06-01T00:00:00+0000",
+          "unlimitedDate": "1977-06-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5a06264592d5f",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Don Warfield",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Archie Goodwin",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6559,
+      "guidePosition": 200
+    },
+    {
+      "requestPosition": 8,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "8",
+      "issueId": 14783,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14783/",
+      "publicationMonth": "1977-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14783",
+        "retrievedAt": "2026-11-06T07:32:48.455Z",
+        "bodySha256": "45099c88a31c347e44cd0075a233d4af34df92807227613d9bf2bf63e802da33",
+        "providerProjection": {
+          "id": 14783,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #8",
+          "issueNumber": "8",
+          "detailUrl": "https://www.marvel.com/comics/issue/14783/peter_parker_the_spectacular_spider-man_1976_8",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45627,
+          "onSaleDate": "1977-07-01T00:00:00+0000",
+          "unlimitedDate": "1977-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/03/5a0626551a786",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Marie Severin",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Archie Goodwin",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6561,
+      "guidePosition": 202
+    },
+    {
+      "requestPosition": 9,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "9",
+      "issueId": 14794,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14794/",
+      "publicationMonth": "1977-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14794",
+        "retrievedAt": "2026-11-06T07:32:49.687Z",
+        "bodySha256": "00f79c2c73bb21e4d7c98be05155fea78d17f3b0792c7418823a58fcbc8099ca",
+        "providerProjection": {
+          "id": 14794,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #9",
+          "issueNumber": "9",
+          "detailUrl": "https://www.marvel.com/comics/issue/14794/peter_parker_the_spectacular_spider-man_1976_9",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45628,
+          "onSaleDate": "1977-08-01T00:00:00+0000",
+          "unlimitedDate": "1977-08-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/b0/5a0625ca1b6b8",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Phil Rachelson",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6562,
+      "guidePosition": 204
+    },
+    {
+      "requestPosition": 10,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "10",
+      "issueId": 14543,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14543/",
+      "publicationMonth": "1977-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14543",
+        "retrievedAt": "2026-11-06T07:32:50.332Z",
+        "bodySha256": "3df79958c843e7d43c4748839a569d2998057d80d6a902a41bdf3c1b18055be6",
+        "providerProjection": {
+          "id": 14543,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/14543/peter_parker_the_spectacular_spider-man_1976_10",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45629,
+          "onSaleDate": "1977-09-01T00:00:00+0000",
+          "unlimitedDate": "1977-09-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/60/5a06258ec0909",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Frank Giacoia",
+              "role": "cover artist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6563,
+      "guidePosition": 206
+    },
+    {
+      "requestPosition": 11,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "11",
+      "issueId": 14554,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14554/",
+      "publicationMonth": "1977-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14554",
+        "retrievedAt": "2026-11-06T07:32:51.391Z",
+        "bodySha256": "2946fe74c037967291a12b02ef9bbd1d9799110c2d79d176b3d08d634bae41f9",
+        "providerProjection": {
+          "id": 14554,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/14554/peter_parker_the_spectacular_spider-man_1976_11",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45630,
+          "onSaleDate": "1977-10-01T00:00:00+0000",
+          "unlimitedDate": "1977-10-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/10/5a06258c29ad2",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Bruce Patterson",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Chris Claremont",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6564,
+      "guidePosition": 208
+    },
+    {
+      "requestPosition": 12,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "12",
+      "issueId": 14565,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14565/",
+      "publicationMonth": "1977-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14565",
+        "retrievedAt": "2026-11-06T07:32:51.733Z",
+        "bodySha256": "a7369812b1f8a92eb907d034d22986bfc8a5001e6b8ede910c8ded750e16985f",
+        "providerProjection": {
+          "id": 14565,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #12",
+          "issueNumber": "12",
+          "detailUrl": "https://www.marvel.com/comics/issue/14565/peter_parker_the_spectacular_spider-man_1976_12",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45631,
+          "onSaleDate": "1977-11-01T00:00:00+0000",
+          "unlimitedDate": "1977-11-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/90/5a0625ae3b0b8",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Phil Rachelson",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Archie Goodwin",
+              "role": "writer"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6565,
+      "guidePosition": 210
+    },
+    {
+      "requestPosition": 13,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "13",
+      "issueId": 14576,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14576/",
+      "publicationMonth": "1977-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1977.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14576",
+        "retrievedAt": "2026-11-06T07:32:58.411Z",
+        "bodySha256": "876bdd3dc6ac2056920d3d499ec4162731d7e0aba752e2aa4a0243781d8ada89",
+        "providerProjection": {
+          "id": 14576,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #13",
+          "issueNumber": "13",
+          "detailUrl": "https://www.marvel.com/comics/issue/14576/peter_parker_the_spectacular_spider-man_1976_13",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45632,
+          "onSaleDate": "1977-12-01T00:00:00+0000",
+          "unlimitedDate": "1977-12-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/90/5a0626b74657e",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Janice Cohen",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6566,
+      "guidePosition": 212
+    },
+    {
+      "requestPosition": 14,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "14",
+      "issueId": 14587,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14587/",
+      "publicationMonth": "1978-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14587",
+        "retrievedAt": "2026-11-06T07:33:01.043Z",
+        "bodySha256": "b2c50c92389421b69779e5c07f69c0e02b48b5a0ca74d2d69ba826d81a6ca3e9",
+        "providerProjection": {
+          "id": 14587,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #14",
+          "issueNumber": "14",
+          "detailUrl": "https://www.marvel.com/comics/issue/14587/peter_parker_the_spectacular_spider-man_1976_14",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45633,
+          "onSaleDate": "1978-01-01T00:00:00+0000",
+          "unlimitedDate": "1978-01-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/60/5a0626cfd27b9",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "John Tartaglione",
+              "role": "cover artist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6567,
+      "guidePosition": 214
+    },
+    {
+      "requestPosition": 15,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "15",
+      "issueId": 14598,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14598/",
+      "publicationMonth": "1978-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14598",
+        "retrievedAt": "2026-11-06T07:33:02.069Z",
+        "bodySha256": "22af4ada112f4e0de4a0aa2cb5fbbd6d336f6e1b9ca725b0ba30c8877599e83c",
+        "providerProjection": {
+          "id": 14598,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #15",
+          "issueNumber": "15",
+          "detailUrl": "https://www.marvel.com/comics/issue/14598/peter_parker_the_spectacular_spider-man_1976_15",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 45634,
+          "onSaleDate": "1978-02-01T00:00:00+0000",
+          "unlimitedDate": "1978-02-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/00/5a0626a42ab89",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ernie Chan",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Archie Goodwin",
+              "role": "writer"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6568,
+      "guidePosition": 216
+    },
+    {
+      "requestPosition": 16,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "16",
+      "issueId": 14609,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14609/",
+      "publicationMonth": "1978-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14609",
+        "retrievedAt": "2026-11-06T07:33:02.253Z",
+        "bodySha256": "2dbc1a5fe17346772faca77f74aae54599d2438765812d4c1911c1aab80520b5",
+        "providerProjection": {
+          "id": 14609,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #16",
+          "issueNumber": "16",
+          "detailUrl": "https://www.marvel.com/comics/issue/14609/peter_parker_the_spectacular_spider-man_1976_16",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 47214,
+          "onSaleDate": "1978-03-01T00:00:00+0000",
+          "unlimitedDate": "1978-03-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/40/5cffc73994075",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Phil Rachelson",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Eliot S. Maggin",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6569,
+      "guidePosition": 218
+    },
+    {
+      "requestPosition": 17,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "17",
+      "issueId": 14620,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14620/",
+      "publicationMonth": "1978-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/black_widow_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "a2f04686504a0e3d72204b62deff6b1a0040b66700793e7b534719e5434e8727",
+        "generatedAt": "2026-09-04T05:21:12.713Z"
+      },
+      "placementAfterIssueId": 6570,
+      "guidePosition": 220
+    },
+    {
+      "requestPosition": 18,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "18",
+      "issueId": 14631,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14631/",
+      "publicationMonth": "1978-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/black_widow_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "a2f04686504a0e3d72204b62deff6b1a0040b66700793e7b534719e5434e8727",
+        "generatedAt": "2026-09-04T05:21:12.713Z"
+      },
+      "placementAfterIssueId": 6572,
+      "guidePosition": 222
+    },
+    {
+      "requestPosition": 19,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "19",
+      "issueId": 14642,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14642/",
+      "publicationMonth": "1978-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14642",
+        "retrievedAt": "2026-11-06T07:33:02.572Z",
+        "bodySha256": "117f9ac855ada93412f3de7020e2f3ab171399c56a94700c41ece9d0405848ad",
+        "providerProjection": {
+          "id": 14642,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #19",
+          "issueNumber": "19",
+          "detailUrl": "https://www.marvel.com/comics/issue/14642/peter_parker_the_spectacular_spider-man_1976_19",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 51791,
+          "onSaleDate": "1978-06-01T00:00:00+0000",
+          "unlimitedDate": "1978-06-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/5cffc76075dd5",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6573,
+      "guidePosition": 224
+    },
+    {
+      "requestPosition": 20,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "20",
+      "issueId": 14654,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14654/",
+      "publicationMonth": "1978-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14654",
+        "retrievedAt": "2026-11-06T07:33:48.504Z",
+        "bodySha256": "dae9d4d33fa13f3b142ef9b46a13895fb770b59e8834e2367c790e44a19de81e",
+        "providerProjection": {
+          "id": 14654,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #20",
+          "issueNumber": "20",
+          "detailUrl": "https://www.marvel.com/comics/issue/14654/peter_parker_the_spectacular_spider-man_1976_20",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 51792,
+          "onSaleDate": "1978-07-01T00:00:00+0000",
+          "unlimitedDate": "1978-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/f0/5cffc755c74e3",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Don Warfield",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6574,
+      "guidePosition": 226
+    },
+    {
+      "requestPosition": 21,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "21",
+      "issueId": 14665,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14665/",
+      "publicationMonth": "1978-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14665",
+        "retrievedAt": "2026-11-06T07:33:49.660Z",
+        "bodySha256": "772bb0ad4b33c02ea08a139100f6722df0568f89f4463f3f228434e9917e7a9d",
+        "providerProjection": {
+          "id": 14665,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #21",
+          "issueNumber": "21",
+          "detailUrl": "https://www.marvel.com/comics/issue/14665/peter_parker_the_spectacular_spider-man_1976_21",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 51793,
+          "onSaleDate": "1978-08-01T00:00:00+0000",
+          "unlimitedDate": "1978-08-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/90/5cffc7285db23",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Don Warfield",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6575,
+      "guidePosition": 228
+    },
+    {
+      "requestPosition": 22,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "22",
+      "issueId": 14676,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14676/",
+      "publicationMonth": "1978-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/moon_knight_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "f1309c90ef047474fac1f9d7ba212b3b831875b95eaf4f06ef7d4b003e2574db",
+        "generatedAt": "2026-09-04T07:14:21.222Z"
+      },
+      "placementAfterIssueId": 6576,
+      "guidePosition": 230
+    },
+    {
+      "requestPosition": 23,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "23",
+      "issueId": 14687,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14687/",
+      "publicationMonth": "1978-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/moon_knight_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "f1309c90ef047474fac1f9d7ba212b3b831875b95eaf4f06ef7d4b003e2574db",
+        "generatedAt": "2026-09-04T07:14:21.222Z"
+      },
+      "placementAfterIssueId": 6577,
+      "guidePosition": 232
+    },
+    {
+      "requestPosition": 24,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "24",
+      "issueId": 14698,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14698/",
+      "publicationMonth": "1978-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14698",
+        "retrievedAt": "2026-11-06T07:33:50.501Z",
+        "bodySha256": "74d80ae65451093db7911ef331faa09205f98de73233056aa36ed28578d19ea6",
+        "providerProjection": {
+          "id": 14698,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #24",
+          "issueNumber": "24",
+          "detailUrl": "https://www.marvel.com/comics/issue/14698/peter_parker_the_spectacular_spider-man_1976_24",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 51794,
+          "onSaleDate": "1978-11-01T00:00:00+0000",
+          "unlimitedDate": "1978-11-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/04/5cffc7437ebe9",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6578,
+      "guidePosition": 237
+    },
+    {
+      "requestPosition": 25,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "25",
+      "issueId": 14709,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14709/",
+      "publicationMonth": "1978-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1978.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14709",
+        "retrievedAt": "2026-11-06T07:33:51.360Z",
+        "bodySha256": "e911ffe1d5c06608fb1a22c12b5b625590fd0796a0372db88d18cb252d924d76",
+        "providerProjection": {
+          "id": 14709,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #25",
+          "issueNumber": "25",
+          "detailUrl": "https://www.marvel.com/comics/issue/14709/peter_parker_the_spectacular_spider-man_1976_25",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 46619,
+          "onSaleDate": "1978-12-01T00:00:00+0000",
+          "unlimitedDate": "1978-12-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/40/5a0626826bfeb",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Petra Goldberg",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Elaine Heinl",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6579,
+      "guidePosition": 239
+    },
+    {
+      "requestPosition": 26,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "26",
+      "issueId": 14720,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14720/",
+      "publicationMonth": "1979-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/daredevil_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "8a0595a08fd94f18a9b9002c055cedd69bf364bd3861ab003441a319ca3245cd",
+        "generatedAt": "2026-08-27T13:18:34.558Z"
+      },
+      "placementAfterIssueId": 6580,
+      "guidePosition": 241
+    },
+    {
+      "requestPosition": 27,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "27",
+      "issueId": 14725,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14725/",
+      "publicationMonth": "1979-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/black_widow_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "a2f04686504a0e3d72204b62deff6b1a0040b66700793e7b534719e5434e8727",
+        "generatedAt": "2026-09-04T05:21:12.713Z"
+      },
+      "placementAfterIssueId": 6581,
+      "guidePosition": 243
+    },
+    {
+      "requestPosition": 28,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "28",
+      "issueId": 14726,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14726/",
+      "publicationMonth": "1979-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/black_widow_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "a2f04686504a0e3d72204b62deff6b1a0040b66700793e7b534719e5434e8727",
+        "generatedAt": "2026-09-04T05:21:12.713Z"
+      },
+      "placementAfterIssueId": 6583,
+      "guidePosition": 245
+    },
+    {
+      "requestPosition": 29,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "29",
+      "issueId": 14727,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14727/",
+      "publicationMonth": "1979-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14727",
+        "retrievedAt": "2026-11-06T07:33:51.614Z",
+        "bodySha256": "cfc366e0ca726e3ec0d72e348f0ea726aeef22cd56084737d7b84ca18aa057af",
+        "providerProjection": {
+          "id": 14727,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #29",
+          "issueNumber": "29",
+          "detailUrl": "https://www.marvel.com/comics/issue/14727/peter_parker_the_spectacular_spider-man_1976_29",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 46621,
+          "onSaleDate": "1979-04-01T00:00:00+0000",
+          "unlimitedDate": "1979-04-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/70/5a0626f8556bb",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ben Sean",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6584,
+      "guidePosition": 247
+    },
+    {
+      "requestPosition": 30,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "30",
+      "issueId": 14729,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14729/",
+      "publicationMonth": "1979-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14729",
+        "retrievedAt": "2026-11-06T07:33:58.459Z",
+        "bodySha256": "0e922705540152b425883f62c311d8d842539cf88d552d3344932f08483ad391",
+        "providerProjection": {
+          "id": 14729,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #30",
+          "issueNumber": "30",
+          "detailUrl": "https://www.marvel.com/comics/issue/14729/peter_parker_the_spectacular_spider-man_1976_30",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 46622,
+          "onSaleDate": "1979-05-01T00:00:00+0000",
+          "unlimitedDate": "1979-05-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/60/5a0626dc9ccd7",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6585,
+      "guidePosition": 249
+    },
+    {
+      "requestPosition": 31,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "31",
+      "issueId": 14730,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14730/",
+      "publicationMonth": "1979-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14730",
+        "retrievedAt": "2026-11-06T07:33:59.663Z",
+        "bodySha256": "1c6fd4b5afc4cdbc512da1aa4d4d771ac36e01c6172d7fede5346f53f998ad65",
+        "providerProjection": {
+          "id": 14730,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #31",
+          "issueNumber": "31",
+          "detailUrl": "https://www.marvel.com/comics/issue/14730/peter_parker_the_spectacular_spider-man_1976_31",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 46623,
+          "onSaleDate": "1979-06-01T00:00:00+0000",
+          "unlimitedDate": "1979-06-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/f0/5a14b9c613999",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6586,
+      "guidePosition": 251
+    },
+    {
+      "requestPosition": 32,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "32",
+      "issueId": 14731,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14731/",
+      "publicationMonth": "1979-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14731",
+        "retrievedAt": "2026-11-06T07:34:01.257Z",
+        "bodySha256": "e6d1218a438683a6809776b5bbe8a6b5600b46328c9653321e9feea1688fcd24",
+        "providerProjection": {
+          "id": 14731,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #32",
+          "issueNumber": "32",
+          "detailUrl": "https://www.marvel.com/comics/issue/14731/peter_parker_the_spectacular_spider-man_1976_32",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54833,
+          "onSaleDate": "1979-07-01T00:00:00+0000",
+          "unlimitedDate": "1979-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/4f60e5fcc4297",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Bob Layton",
+              "role": "penciler"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6587,
+      "guidePosition": 253
+    },
+    {
+      "requestPosition": 33,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "33",
+      "issueId": 14732,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14732/",
+      "publicationMonth": "1979-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14732",
+        "retrievedAt": "2026-11-06T07:34:02.265Z",
+        "bodySha256": "97e506e0188028c6ab4f9e0079acb929d681f1253f37f5e4ecbee600337bfbb3",
+        "providerProjection": {
+          "id": 14732,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #33",
+          "issueNumber": "33",
+          "detailUrl": "https://www.marvel.com/comics/issue/14732/peter_parker_the_spectacular_spider-man_1976_33",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54834,
+          "onSaleDate": "1979-08-01T00:00:00+0000",
+          "unlimitedDate": "1979-08-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/a0/5e85e8f73e9be",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6588,
+      "guidePosition": 255
+    },
+    {
+      "requestPosition": 34,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "34",
+      "issueId": 14733,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14733/",
+      "publicationMonth": "1979-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14733",
+        "retrievedAt": "2026-11-06T07:34:02.443Z",
+        "bodySha256": "9baa0410d07e9873bbbb803e14a4c23d324c0c202b613900f48d3803df102bef",
+        "providerProjection": {
+          "id": 14733,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #34",
+          "issueNumber": "34",
+          "detailUrl": "https://www.marvel.com/comics/issue/14733/peter_parker_the_spectacular_spider-man_1976_34",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54835,
+          "onSaleDate": "1979-09-01T00:00:00+0000",
+          "unlimitedDate": "1979-09-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/80/5e85e8e60954f",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "George Roussos",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6589,
+      "guidePosition": 257
+    },
+    {
+      "requestPosition": 35,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "35",
+      "issueId": 14734,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14734/",
+      "publicationMonth": "1979-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14734",
+        "retrievedAt": "2026-11-06T07:34:48.749Z",
+        "bodySha256": "9706eb1027c1d1766df1ef473be4806fad797327778616f0dbda817c7117af25",
+        "providerProjection": {
+          "id": 14734,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #35",
+          "issueNumber": "35",
+          "detailUrl": "https://www.marvel.com/comics/issue/14734/peter_parker_the_spectacular_spider-man_1976_35",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54836,
+          "onSaleDate": "1979-10-01T00:00:00+0000",
+          "unlimitedDate": "1979-10-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/04/5e85e8eeaa8b9",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Clem Robins",
+              "role": "letterer"
+            },
+            {
+              "name": "Carmine Infantino",
+              "role": "penciler"
+            },
+            {
+              "name": "Lee Elias",
+              "role": "penciler"
+            },
+            {
+              "name": "Tony Isabella",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6590,
+      "guidePosition": 259
+    },
+    {
+      "requestPosition": 36,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "36",
+      "issueId": 14735,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14735/",
+      "publicationMonth": "1979-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14735",
+        "retrievedAt": "2026-11-06T07:34:49.887Z",
+        "bodySha256": "260aca3f1bceced0842a99d5f505ae4680edee378913d48b67bc2a90154e8fc3",
+        "providerProjection": {
+          "id": 14735,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #36",
+          "issueNumber": "36",
+          "detailUrl": "https://www.marvel.com/comics/issue/14735/peter_parker_the_spectacular_spider-man_1976_36",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54837,
+          "onSaleDate": "1979-11-01T00:00:00+0000",
+          "unlimitedDate": "1979-11-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/40/5e85e8ffdb409",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ben Sean",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6591,
+      "guidePosition": 261
+    },
+    {
+      "requestPosition": 37,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "37",
+      "issueId": 14736,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14736/",
+      "publicationMonth": "1979-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1979.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14736",
+        "retrievedAt": "2026-11-06T07:34:50.411Z",
+        "bodySha256": "7669ccc4743776191286ad8c5345f19e54c63dc426e862466a67810a362360dd",
+        "providerProjection": {
+          "id": 14736,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #37",
+          "issueNumber": "37",
+          "detailUrl": "https://www.marvel.com/comics/issue/14736/peter_parker_the_spectacular_spider-man_1976_37",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54838,
+          "onSaleDate": "1979-12-01T00:00:00+0000",
+          "unlimitedDate": "1979-12-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/5e8f51bf37921",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "George Roussos",
+              "role": "colorist"
+            },
+            {
+              "name": "Pablo Marcos",
+              "role": "cover artist"
+            },
+            {
+              "name": "Clem Robins",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6592,
+      "guidePosition": 263
+    },
+    {
+      "requestPosition": 38,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "38",
+      "issueId": 14737,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14737/",
+      "publicationMonth": "1980-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14737",
+        "retrievedAt": "2026-11-06T07:34:51.363Z",
+        "bodySha256": "eda70cde744da19f017477b75dfa11c4f407abc7b1d1372a28941deaf88f0a79",
+        "providerProjection": {
+          "id": 14737,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #38",
+          "issueNumber": "38",
+          "detailUrl": "https://www.marvel.com/comics/issue/14737/peter_parker_the_spectacular_spider-man_1976_38",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54839,
+          "onSaleDate": "1980-01-01T00:00:00+0000",
+          "unlimitedDate": "1980-01-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/f0/5e8f51c7761dd",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Chic Stone",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Sal Buscema",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6595,
+      "guidePosition": 265
+    },
+    {
+      "requestPosition": 39,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "39",
+      "issueId": 14738,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14738/",
+      "publicationMonth": "1980-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14738",
+        "retrievedAt": "2026-11-06T07:34:51.607Z",
+        "bodySha256": "e46e90fde7034f905cf8aeeb633d2fac89c3be179c2844423f5a099507e8c0ea",
+        "providerProjection": {
+          "id": 14738,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #39",
+          "issueNumber": "39",
+          "detailUrl": "https://www.marvel.com/comics/issue/14738/peter_parker_the_spectacular_spider-man_1976_39",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54840,
+          "onSaleDate": "1980-02-01T00:00:00+0000",
+          "unlimitedDate": "1980-02-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/80/5e8f51e018c17",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Jerry Bingham",
+              "role": "penciler"
+            },
+            {
+              "name": "John Romita Jr.",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6596,
+      "guidePosition": 267
+    },
+    {
+      "requestPosition": 40,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "40",
+      "issueId": 14740,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14740/",
+      "publicationMonth": "1980-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14740",
+        "retrievedAt": "2026-11-06T07:34:58.485Z",
+        "bodySha256": "a934ac3228a33557bc276301692be5e6c61ac8d39237b57ea428f4cdeadc87ee",
+        "providerProjection": {
+          "id": 14740,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #40",
+          "issueNumber": "40",
+          "detailUrl": "https://www.marvel.com/comics/issue/14740/peter_parker_the_spectacular_spider-man_1976_40",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54841,
+          "onSaleDate": "1980-03-01T00:00:00+0000",
+          "unlimitedDate": "1980-03-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/e0/5e8f51cf4effa",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ben Sean",
+              "role": "colorist"
+            },
+            {
+              "name": "Ricardo Villamonte",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6597,
+      "guidePosition": 269
+    },
+    {
+      "requestPosition": 41,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "41",
+      "issueId": 14741,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14741/",
+      "publicationMonth": "1980-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14741",
+        "retrievedAt": "2026-11-06T07:34:59.689Z",
+        "bodySha256": "9db5722e8062dafb5ab7aea72e00f347e8e4b36c4dc75870d481c3cef4376466",
+        "providerProjection": {
+          "id": 14741,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #41",
+          "issueNumber": "41",
+          "detailUrl": "https://www.marvel.com/comics/issue/14741/peter_parker_the_spectacular_spider-man_1976_41",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 54819,
+          "onSaleDate": "1980-04-01T00:00:00+0000",
+          "unlimitedDate": "1980-04-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e8f51d7ac0d6",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ben Sean",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Tom Defalco",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6598,
+      "guidePosition": 271
+    },
+    {
+      "requestPosition": 42,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "42",
+      "issueId": 14742,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14742/",
+      "publicationMonth": "1980-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14742",
+        "retrievedAt": "2026-11-06T07:39:25.297Z",
+        "bodySha256": "a1a11224002e132b0fc1d284c9933fd956cb6bd7f9f3963970a4ff279c1b6da6",
+        "providerProjection": {
+          "id": 14742,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #42",
+          "issueNumber": "42",
+          "detailUrl": "https://www.marvel.com/comics/issue/14742/peter_parker_the_spectacular_spider-man_1976_42",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 6680,
+          "onSaleDate": "1980-05-01T00:00:00+0000",
+          "unlimitedDate": "1980-05-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/40/5ceed9c72a15a",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Janice Cohen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Irving Watanabe",
+              "role": "letterer"
+            },
+            {
+              "name": "Mike Zeck",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6599,
+      "guidePosition": 273
+    },
+    {
+      "requestPosition": 43,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "43",
+      "issueId": 14743,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14743/",
+      "publicationMonth": "1980-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6600,
+      "guidePosition": 275
+    },
+    {
+      "requestPosition": 44,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "44",
+      "issueId": 14744,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14744/",
+      "publicationMonth": "1980-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14744",
+        "retrievedAt": "2026-11-06T07:35:01.228Z",
+        "bodySha256": "82e5ecb871b75766396d2120f81ceb1aa4d7c0866191adfda40dfebbfc27d222",
+        "providerProjection": {
+          "id": 14744,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #44",
+          "issueNumber": "44",
+          "detailUrl": "https://www.marvel.com/comics/issue/14744/peter_parker_the_spectacular_spider-man_1976_44",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 6682,
+          "onSaleDate": "1980-07-01T00:00:00+0000",
+          "unlimitedDate": "1980-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/70/5ceee5b912b19",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ben Sean",
+              "role": "colorist"
+            },
+            {
+              "name": "Al Gordon",
+              "role": "cover artist"
+            },
+            {
+              "name": "Michael Higgins",
+              "role": "letterer"
+            },
+            {
+              "name": "Marv Wolfman",
+              "role": "writer"
+            },
+            {
+              "name": "Steve Leialoha",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6601,
+      "guidePosition": 277
+    },
+    {
+      "requestPosition": 45,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "45",
+      "issueId": 14745,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14745/",
+      "publicationMonth": "1980-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6602,
+      "guidePosition": 280
+    },
+    {
+      "requestPosition": 46,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "46",
+      "issueId": 14746,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14746/",
+      "publicationMonth": "1980-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6603,
+      "guidePosition": 282
+    },
+    {
+      "requestPosition": 47,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "47",
+      "issueId": 14747,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14747/",
+      "publicationMonth": "1980-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6604,
+      "guidePosition": 284
+    },
+    {
+      "requestPosition": 48,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "48",
+      "issueId": 14748,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14748/",
+      "publicationMonth": "1980-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6606,
+      "guidePosition": 286
+    },
+    {
+      "requestPosition": 49,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "49",
+      "issueId": 14749,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14749/",
+      "publicationMonth": "1980-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1980.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6607,
+      "guidePosition": 288
+    },
+    {
+      "requestPosition": 50,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "50",
+      "issueId": 14751,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14751/",
+      "publicationMonth": "1981-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6608,
+      "guidePosition": 290
+    },
+    {
+      "requestPosition": 51,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "51",
+      "issueId": 14752,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14752/",
+      "publicationMonth": "1981-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6609,
+      "guidePosition": 292
+    },
+    {
+      "requestPosition": 52,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "52",
+      "issueId": 14753,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14753/",
+      "publicationMonth": "1981-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6610,
+      "guidePosition": 294
+    },
+    {
+      "requestPosition": 53,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "53",
+      "issueId": 14754,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14754/",
+      "publicationMonth": "1981-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14754",
+        "retrievedAt": "2026-11-06T07:35:02.269Z",
+        "bodySha256": "991d21c910343ab0192a7d17c0da76756ed262d519e53e108a51fb922aee2a71",
+        "providerProjection": {
+          "id": 14754,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #53",
+          "issueNumber": "53",
+          "detailUrl": "https://www.marvel.com/comics/issue/14754/peter_parker_the_spectacular_spider-man_1976_53",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 52464,
+          "onSaleDate": "1981-04-01T00:00:00+0000",
+          "unlimitedDate": "1981-04-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/c0/5cf141d617b0c",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Ben Sean",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Springer",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6611,
+      "guidePosition": 296
+    },
+    {
+      "requestPosition": 54,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "54",
+      "issueId": 14755,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14755/",
+      "publicationMonth": "1981-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6612,
+      "guidePosition": 298
+    },
+    {
+      "requestPosition": 55,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "55",
+      "issueId": 14756,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14756/",
+      "publicationMonth": "1981-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6613,
+      "guidePosition": 300
+    },
+    {
+      "requestPosition": 56,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "56",
+      "issueId": 14757,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14757/",
+      "publicationMonth": "1981-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6614,
+      "guidePosition": 302
+    },
+    {
+      "requestPosition": 57,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "57",
+      "issueId": 14758,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14758/",
+      "publicationMonth": "1981-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6615,
+      "guidePosition": 304
+    },
+    {
+      "requestPosition": 58,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "58",
+      "issueId": 14759,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14759/",
+      "publicationMonth": "1981-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6617,
+      "guidePosition": 306
+    },
+    {
+      "requestPosition": 59,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "59",
+      "issueId": 14760,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14760/",
+      "publicationMonth": "1981-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6618,
+      "guidePosition": 308
+    },
+    {
+      "requestPosition": 60,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "60",
+      "issueId": 14762,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14762/",
+      "publicationMonth": "1981-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6619,
+      "guidePosition": 310
+    },
+    {
+      "requestPosition": 61,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "61",
+      "issueId": 14763,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14763/",
+      "publicationMonth": "1981-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1981.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/spider_man_best_of.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "646bdf6d6918a0772328922d8dce07eef2199dc474d49eb147bd4ea51ba78662",
+        "generatedAt": "2026-10-09T22:39:52.068Z"
+      },
+      "placementAfterIssueId": 6620,
+      "guidePosition": 312
+    },
+    {
+      "requestPosition": 62,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "62",
+      "issueId": 14764,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14764/",
+      "publicationMonth": "1982-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14764",
+        "retrievedAt": "2026-11-06T07:35:02.437Z",
+        "bodySha256": "a119fb8a7e9e141df6afc71a88fa2d3d0990e83ac56d32d040724f7339899ffe",
+        "providerProjection": {
+          "id": 14764,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #62",
+          "issueNumber": "62",
+          "detailUrl": "https://www.marvel.com/comics/issue/14764/peter_parker_the_spectacular_spider-man_1976_62",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 59753,
+          "onSaleDate": "1982-01-01T00:00:00+0000",
+          "unlimitedDate": "2022-06-16T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/20/62a8b3708a452",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6621,
+      "guidePosition": 316
+    },
+    {
+      "requestPosition": 63,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "63",
+      "issueId": 14765,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14765/",
+      "publicationMonth": "1982-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14765",
+        "retrievedAt": "2026-11-06T07:35:48.460Z",
+        "bodySha256": "be6b750db6166107334a2341d69fae5a21e25a602c91fc574604c59168f51fca",
+        "providerProjection": {
+          "id": 14765,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #63",
+          "issueNumber": "63",
+          "detailUrl": "https://www.marvel.com/comics/issue/14765/peter_parker_the_spectacular_spider-man_1976_63",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 59754,
+          "onSaleDate": "1982-02-01T00:00:00+0000",
+          "unlimitedDate": "2022-06-16T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/50/62a8b3708b760",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Gregory Ben Larocque",
+              "role": "penciler"
+            },
+            {
+              "name": "John Romita Jr.",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6622,
+      "guidePosition": 318
+    },
+    {
+      "requestPosition": 64,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "64",
+      "issueId": 14766,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14766/",
+      "publicationMonth": "1982-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14766",
+        "retrievedAt": "2026-11-06T07:35:49.689Z",
+        "bodySha256": "60ad3b1b39c6a59b6c2ce584097579ce2065b310e3f4d138ec70b015d49d8237",
+        "providerProjection": {
+          "id": 14766,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #64",
+          "issueNumber": "64",
+          "detailUrl": "https://www.marvel.com/comics/issue/14766/peter_parker_the_spectacular_spider-man_1976_64",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 42576,
+          "onSaleDate": "1982-03-01T00:00:00+0000",
+          "unlimitedDate": "1982-03-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/f0/59d294cda2fd9",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6623,
+      "guidePosition": 320
+    },
+    {
+      "requestPosition": 65,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "65",
+      "issueId": 14767,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14767/",
+      "publicationMonth": "1982-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14767",
+        "retrievedAt": "2026-11-06T07:35:50.345Z",
+        "bodySha256": "9950e2735f08e852cbbad7747541638d962c1fa2051ffc7579705959d68cac9b",
+        "providerProjection": {
+          "id": 14767,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #65",
+          "issueNumber": "65",
+          "detailUrl": "https://www.marvel.com/comics/issue/14767/peter_parker_the_spectacular_spider-man_1976_65",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 59755,
+          "onSaleDate": "1982-04-01T00:00:00+0000",
+          "unlimitedDate": "2022-06-16T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/70/62a8b3708a9b5",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Bob Hall",
+              "role": "penciler"
+            },
+            {
+              "name": "Bob Layton",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6624,
+      "guidePosition": 322
+    },
+    {
+      "requestPosition": 66,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "66",
+      "issueId": 14768,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14768/",
+      "publicationMonth": "1982-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14768",
+        "retrievedAt": "2026-11-06T07:35:51.370Z",
+        "bodySha256": "6844276d20b2daec6c7f23bb0eb7cba18a85192e0237e84d3963c14cdf0e862b",
+        "providerProjection": {
+          "id": 14768,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #66",
+          "issueNumber": "66",
+          "detailUrl": "https://www.marvel.com/comics/issue/14768/peter_parker_the_spectacular_spider-man_1976_66",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 59756,
+          "onSaleDate": "1982-05-01T00:00:00+0000",
+          "unlimitedDate": "2022-06-16T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/62a8b3708755e",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6625,
+      "guidePosition": 324
+    },
+    {
+      "requestPosition": 67,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "67",
+      "issueId": 14769,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14769/",
+      "publicationMonth": "1982-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14769",
+        "retrievedAt": "2026-11-06T07:35:51.625Z",
+        "bodySha256": "235733cd3f31d7635195e8e71f2670c09ae8208155bc41d8e078b2cea150399b",
+        "providerProjection": {
+          "id": 14769,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #67",
+          "issueNumber": "67",
+          "detailUrl": "https://www.marvel.com/comics/issue/14769/peter_parker_the_spectacular_spider-man_1976_67",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 63542,
+          "onSaleDate": "1982-06-01T00:00:00+0000",
+          "unlimitedDate": "1982-06-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/70/64d3e0d7a7472",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Novak",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6626,
+      "guidePosition": 326
+    },
+    {
+      "requestPosition": 68,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "68",
+      "issueId": 14770,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14770/",
+      "publicationMonth": "1982-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14770",
+        "retrievedAt": "2026-11-06T07:35:58.506Z",
+        "bodySha256": "0d071862baaa567d3d43e4ba9ebc2704df223e749d74c24a2d71487cdb2bc1b1",
+        "providerProjection": {
+          "id": 14770,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #68",
+          "issueNumber": "68",
+          "detailUrl": "https://www.marvel.com/comics/issue/14770/peter_parker_the_spectacular_spider-man_1976_68",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 63543,
+          "onSaleDate": "1982-07-01T00:00:00+0000",
+          "unlimitedDate": "1982-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/80/64d3e0bbc4bbb",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Luke Mcdonnell",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6628,
+      "guidePosition": 328
+    },
+    {
+      "requestPosition": 69,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "69",
+      "issueId": 14771,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14771/",
+      "publicationMonth": "1982-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14771",
+        "retrievedAt": "2026-11-06T07:35:59.722Z",
+        "bodySha256": "6fba6902c6a412d36bbfa3d2910b532ac869b2845e1fffe734f106ad7f85ada9",
+        "providerProjection": {
+          "id": 14771,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #69",
+          "issueNumber": "69",
+          "detailUrl": "https://www.marvel.com/comics/issue/14771/peter_parker_the_spectacular_spider-man_1976_69",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 42404,
+          "onSaleDate": "1982-08-01T00:00:00+0000",
+          "unlimitedDate": "1982-08-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/80/5ab3f7eb1f65f",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6629,
+      "guidePosition": 330
+    },
+    {
+      "requestPosition": 70,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "70",
+      "issueId": 14773,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14773/",
+      "publicationMonth": "1982-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14773",
+        "retrievedAt": "2026-11-06T07:36:01.290Z",
+        "bodySha256": "97a3715c4c638223c6fbd0a9c505732880fb9f864338ab697602ce70e40b32b4",
+        "providerProjection": {
+          "id": 14773,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #70",
+          "issueNumber": "70",
+          "detailUrl": "https://www.marvel.com/comics/issue/14773/peter_parker_the_spectacular_spider-man_1976_70",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 42405,
+          "onSaleDate": "1982-09-01T00:00:00+0000",
+          "unlimitedDate": "1982-09-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/00/5ab3f83b506ea",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Ed Hannigan",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6630,
+      "guidePosition": 332
+    },
+    {
+      "requestPosition": 71,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "71",
+      "issueId": 14774,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14774/",
+      "publicationMonth": "1982-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14774",
+        "retrievedAt": "2026-11-06T07:36:02.375Z",
+        "bodySha256": "f18454dff6f1066a44fc3cc5042c2c64d727b644efdc2158b274f835632e8577",
+        "providerProjection": {
+          "id": 14774,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #71",
+          "issueNumber": "71",
+          "detailUrl": "https://www.marvel.com/comics/issue/14774/peter_parker_the_spectacular_spider-man_1976_71",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 63544,
+          "onSaleDate": "1982-10-01T00:00:00+0000",
+          "unlimitedDate": "1982-10-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/40/64d3e0bb84472",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Rick Leonardi",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            },
+            {
+              "name": "Tom Defalco",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6631,
+      "guidePosition": 334
+    },
+    {
+      "requestPosition": 72,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "72",
+      "issueId": 14775,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14775/",
+      "publicationMonth": "1982-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6632,
+      "guidePosition": 336
+    },
+    {
+      "requestPosition": 73,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "73",
+      "issueId": 14776,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14776/",
+      "publicationMonth": "1982-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1982.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6633,
+      "guidePosition": 338
+    },
+    {
+      "requestPosition": 74,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "74",
+      "issueId": 14777,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14777/",
+      "publicationMonth": "1983-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6634,
+      "guidePosition": 340
+    },
+    {
+      "requestPosition": 75,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "75",
+      "issueId": 14778,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14778/",
+      "publicationMonth": "1983-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6635,
+      "guidePosition": 342
+    },
+    {
+      "requestPosition": 76,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "76",
+      "issueId": 14779,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14779/",
+      "publicationMonth": "1983-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6636,
+      "guidePosition": 344
+    },
+    {
+      "requestPosition": 77,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "77",
+      "issueId": 14780,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14780/",
+      "publicationMonth": "1983-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6637,
+      "guidePosition": 346
+    },
+    {
+      "requestPosition": 78,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "78",
+      "issueId": 14781,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14781/",
+      "publicationMonth": "1983-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6639,
+      "guidePosition": 348
+    },
+    {
+      "requestPosition": 79,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "79",
+      "issueId": 14782,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14782/",
+      "publicationMonth": "1983-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/doctor_octopus_otto_octavius_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "7174405510ff3cc5ded2d294463165e528bc388da18b2ee0ef863b0bffd0f170",
+        "generatedAt": "2026-09-17T08:09:16.051Z"
+      },
+      "placementAfterIssueId": 6640,
+      "guidePosition": 350
+    },
+    {
+      "requestPosition": 80,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "80",
+      "issueId": 14784,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14784/",
+      "publicationMonth": "1983-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14784",
+        "retrievedAt": "2026-11-06T07:36:02.569Z",
+        "bodySha256": "19960dd55a0a8a5363d83f71bbf9d2b59936488be0098cdace75ad40fd2b0d85",
+        "providerProjection": {
+          "id": 14784,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #80",
+          "issueNumber": "80",
+          "detailUrl": "https://www.marvel.com/comics/issue/14784/peter_parker_the_spectacular_spider-man_1976_80",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 67391,
+          "onSaleDate": "1983-07-01T00:00:00+0000",
+          "unlimitedDate": "2024-06-13T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/e0/664fbbf47d6fb",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Kevin Dzuban",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Ron Frenz",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 16890,
+      "guidePosition": 352
+    },
+    {
+      "requestPosition": 81,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "81",
+      "issueId": 14785,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14785/",
+      "publicationMonth": "1983-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/punisher_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "4f922b9423cbf98df6128f409440c9ff123cadbed6eede3b36d009464c8b1eac",
+        "generatedAt": "2026-09-07T21:02:50.494Z"
+      },
+      "placementAfterIssueId": 14784,
+      "guidePosition": 353
+    },
+    {
+      "requestPosition": 82,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "82",
+      "issueId": 14786,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14786/",
+      "publicationMonth": "1983-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/punisher_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "4f922b9423cbf98df6128f409440c9ff123cadbed6eede3b36d009464c8b1eac",
+        "generatedAt": "2026-09-07T21:02:50.494Z"
+      },
+      "placementAfterIssueId": 14785,
+      "guidePosition": 354
+    },
+    {
+      "requestPosition": 83,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "83",
+      "issueId": 14787,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14787/",
+      "publicationMonth": "1983-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/punisher_reading_order.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "4f922b9423cbf98df6128f409440c9ff123cadbed6eede3b36d009464c8b1eac",
+        "generatedAt": "2026-09-07T21:02:50.494Z"
+      },
+      "placementAfterIssueId": 14786,
+      "guidePosition": 355
+    },
+    {
+      "requestPosition": 84,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "84",
+      "issueId": 14788,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14788/",
+      "publicationMonth": "1983-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14788",
+        "retrievedAt": "2026-11-06T07:36:48.462Z",
+        "bodySha256": "633e3f6e2215d91ae77e7ad715b81cc9873c34e27fe68f7fade28aedb8f45da0",
+        "providerProjection": {
+          "id": 14788,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #84",
+          "issueNumber": "84",
+          "detailUrl": "https://www.marvel.com/comics/issue/14788/peter_parker_the_spectacular_spider-man_1976_84",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 67392,
+          "onSaleDate": "1983-11-01T00:00:00+0000",
+          "unlimitedDate": "2024-06-13T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/60/664fbbf4868fe",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Dave Simons",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 14787,
+      "guidePosition": 356
+    },
+    {
+      "requestPosition": 85,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "85",
+      "issueId": 14789,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14789/",
+      "publicationMonth": "1983-12",
+      "publicationIndex": "https://spiderfan.org/year/comics/1983.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14789",
+        "retrievedAt": "2026-11-06T07:36:49.681Z",
+        "bodySha256": "91d16056fedc38e79751e5df677ef1881921b599932ce5893ef47990a62c8ec1",
+        "providerProjection": {
+          "id": 14789,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #85",
+          "issueNumber": "85",
+          "detailUrl": "https://www.marvel.com/comics/issue/14789/peter_parker_the_spectacular_spider-man_1976_85",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 26048,
+          "onSaleDate": "1983-12-01T00:00:00+0000",
+          "unlimitedDate": "1983-12-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/30/582f0b7e311fd",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            },
+            {
+              "name": "Roger Stern",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 14788,
+      "guidePosition": 357
+    },
+    {
+      "requestPosition": 86,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "86",
+      "issueId": 14790,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14790/",
+      "publicationMonth": "1984-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1984.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14790",
+        "retrievedAt": "2026-11-06T07:36:50.335Z",
+        "bodySha256": "76edededb8b5342071e50c71c867159c6644a1c9d5c088762ea7101f7839c8df",
+        "providerProjection": {
+          "id": 14790,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #86",
+          "issueNumber": "86",
+          "detailUrl": "https://www.marvel.com/comics/issue/14790/peter_parker_the_spectacular_spider-man_1976_86",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 55913,
+          "onSaleDate": "1984-01-01T00:00:00+0000",
+          "unlimitedDate": "1984-01-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/70/66575af55db0b",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Joe Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Fred Hembeck",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 14789,
+      "guidePosition": 358
+    },
+    {
+      "requestPosition": 87,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "87",
+      "issueId": 14791,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14791/",
+      "publicationMonth": "1984-02",
+      "publicationIndex": "https://spiderfan.org/year/comics/1984.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14791",
+        "retrievedAt": "2026-11-06T07:36:51.398Z",
+        "bodySha256": "1d3c6b9191dd0ce8304df03ef508b0bf3d29f05e123b27f3f10456233ac901be",
+        "providerProjection": {
+          "id": 14791,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #87",
+          "issueNumber": "87",
+          "detailUrl": "https://www.marvel.com/comics/issue/14791/peter_parker_the_spectacular_spider-man_1976_87",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 67393,
+          "onSaleDate": "1984-02-01T00:00:00+0000",
+          "unlimitedDate": "2024-06-13T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/664fbbf47c931",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Christie Scheele",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 14790,
+      "guidePosition": 359
+    },
+    {
+      "requestPosition": 88,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "88",
+      "issueId": 14792,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14792/",
+      "publicationMonth": "1984-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1984.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14792",
+        "retrievedAt": "2026-11-06T07:36:51.641Z",
+        "bodySha256": "6dd6d232691c765404b03a43c90c83b3aa21d3360bd3c7922f5dbc7f6aae9abf",
+        "providerProjection": {
+          "id": 14792,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #88",
+          "issueNumber": "88",
+          "detailUrl": "https://www.marvel.com/comics/issue/14792/peter_parker_the_spectacular_spider-man_1976_88",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 67394,
+          "onSaleDate": "1984-03-01T00:00:00+0000",
+          "unlimitedDate": "2024-06-13T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/b0/664fbbf4826b4",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Bob Sharen",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 14791,
+      "guidePosition": 360
+    },
+    {
+      "requestPosition": 89,
+      "series": "Spectacular Spider-Man (1976)",
+      "seriesId": 2271,
+      "issueNumber": "89",
+      "issueId": 14793,
+      "requestedUrl": "https://www.marvel.com/comics/issue/14793/",
+      "publicationMonth": "1984-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1984.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/14793",
+        "retrievedAt": "2026-11-06T07:36:58.474Z",
+        "bodySha256": "c8d72f91ea84e4fbf50ef53b42619fe07f4707513d11f596607f74762166cd81",
+        "providerProjection": {
+          "id": 14793,
+          "title": "Peter Parker, the Spectacular Spider-Man (1976) #89",
+          "issueNumber": "89",
+          "detailUrl": "https://www.marvel.com/comics/issue/14793/peter_parker_the_spectacular_spider-man_1976_89",
+          "seriesId": 2271,
+          "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "digitalId": 67395,
+          "onSaleDate": "1984-04-01T00:00:00+0000",
+          "unlimitedDate": "2024-06-13T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/90/664fbbf4841c4",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Diana Albers",
+              "role": "letterer"
+            },
+            {
+              "name": "Al Milgrom",
+              "role": "penciler"
+            },
+            {
+              "name": "Bill Mantlo",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 14792,
+      "guidePosition": 361
+    },
+    {
+      "requestPosition": 90,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "1",
+      "issueId": 19575,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19575/",
+      "publicationMonth": "1972-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1972.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19575",
+        "retrievedAt": "2026-11-06T07:36:59.721Z",
+        "bodySha256": "8b98cc950666fd2cf6f050467af2bd34fd48771c3534a0a777c3559173060395",
+        "providerProjection": {
+          "id": 19575,
+          "title": "Marvel Team-Up (1972) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/19575/marvel_team-up_1972_1",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 8391,
+          "onSaleDate": "1972-03-01T00:00:00+0000",
+          "unlimitedDate": "1972-03-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/50/4bb87f701091e",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Art Simek",
+              "role": "letterer"
+            },
+            {
+              "name": "Gil Kane",
+              "role": "penciler"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Roy Thomas",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6490,
+      "guidePosition": 115
+    },
+    {
+      "requestPosition": 91,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "2",
+      "issueId": 19637,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19637/",
+      "publicationMonth": "1972-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1972.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19637",
+        "retrievedAt": "2026-11-06T07:37:01.271Z",
+        "bodySha256": "b6a024747c61373340a682c395257c371f36c76b42ec90de48feec2369c3165c",
+        "providerProjection": {
+          "id": 19637,
+          "title": "Marvel Team-Up (1972) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/19637/marvel_team-up_1972_2",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47463,
+          "onSaleDate": "1972-05-01T00:00:00+0000",
+          "unlimitedDate": "1972-05-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/a0/5d1cce1f879a4",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Sam Rosen",
+              "role": "letterer"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6492,
+      "guidePosition": 118
+    },
+    {
+      "requestPosition": 92,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "3",
+      "issueId": 19648,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19648/",
+      "publicationMonth": "1972-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1972.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19648",
+        "retrievedAt": "2026-11-06T07:37:02.285Z",
+        "bodySha256": "1ef2e9dc871282a7cd3ecd3c94fd6835b4d20806129a2cf6b5d37bab7cbc6c45",
+        "providerProjection": {
+          "id": 19648,
+          "title": "Marvel Team-Up (1972) #3",
+          "issueNumber": "3",
+          "detailUrl": "https://www.marvel.com/comics/issue/19648/marvel_team-up_1972_3",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47464,
+          "onSaleDate": "1972-07-01T00:00:00+0000",
+          "unlimitedDate": "1972-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/40/5d1cd6ceb4b39",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Frank Giacoia",
+              "role": "cover artist"
+            },
+            {
+              "name": "Art Simek",
+              "role": "letterer"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6495,
+      "guidePosition": 121
+    },
+    {
+      "requestPosition": 93,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "4",
+      "issueId": 19659,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19659/",
+      "publicationMonth": "1972-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1972.html",
+      "metadata": {
+        "kind": "pinned-payload",
+        "file": "src/data/xmen_claremont_complete.json",
+        "sourceCommit": "95f02a62e64bd072ab103cca5a0e4716c7478dec",
+        "fileSha256": "5c305b9c9560c8c1040f9777d4e2cc9bb4f6b74cd08aa22fc7e0ca7ccbcfee1c",
+        "generatedAt": "2026-08-15T07:57:51.563Z"
+      },
+      "placementAfterIssueId": 6497,
+      "guidePosition": 124
+    },
+    {
+      "requestPosition": 94,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "5",
+      "issueId": 19670,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19670/",
+      "publicationMonth": "1972-11",
+      "publicationIndex": "https://spiderfan.org/year/comics/1972.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19670",
+        "retrievedAt": "2026-11-06T07:37:02.576Z",
+        "bodySha256": "3fadaaa289bceed155e1805b64db2e2c4eee35f23a355498bd902a24c794e50b",
+        "providerProjection": {
+          "id": 19670,
+          "title": "Marvel Team-Up (1972) #5",
+          "issueNumber": "5",
+          "detailUrl": "https://www.marvel.com/comics/issue/19670/marvel_team-up_1972_5",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47465,
+          "onSaleDate": "1972-11-01T00:00:00+0000",
+          "unlimitedDate": "1972-11-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/d0/5d1f470fbc1ad",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Gil Kane",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6499,
+      "guidePosition": 127
+    },
+    {
+      "requestPosition": 95,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "6",
+      "issueId": 19681,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19681/",
+      "publicationMonth": "1973-01",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19681",
+        "retrievedAt": "2026-11-06T07:37:48.478Z",
+        "bodySha256": "eaf3f3c7a9f7035b622efdef521a5392e11cf77096b7f479af117c752f970691",
+        "providerProjection": {
+          "id": 19681,
+          "title": "Marvel Team-Up (1972) #6",
+          "issueNumber": "6",
+          "detailUrl": "https://www.marvel.com/comics/issue/19681/marvel_team-up_1972_6",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47466,
+          "onSaleDate": "1973-01-01T00:00:00+0000",
+          "unlimitedDate": "1973-01-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/50/5d1f51f4ed8c0",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jean Simek",
+              "role": "letterer"
+            },
+            {
+              "name": "Gil Kane",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6501,
+      "guidePosition": 130
+    },
+    {
+      "requestPosition": 96,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "7",
+      "issueId": 19692,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19692/",
+      "publicationMonth": "1973-03",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19692",
+        "retrievedAt": "2026-11-06T07:37:49.917Z",
+        "bodySha256": "b8a459c4269de89dd6e2b8a865a527be3c6cb871ed3cbc76177e931de06a7d52",
+        "providerProjection": {
+          "id": 19692,
+          "title": "Marvel Team-Up (1972) #7",
+          "issueNumber": "7",
+          "detailUrl": "https://www.marvel.com/comics/issue/19692/marvel_team-up_1972_7",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47467,
+          "onSaleDate": "1973-03-01T00:00:00+0000",
+          "unlimitedDate": "1973-03-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/10/5d1f6232214ff",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Art Simek",
+              "role": "letterer"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6503,
+      "guidePosition": 133
+    },
+    {
+      "requestPosition": 97,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "8",
+      "issueId": 19703,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19703/",
+      "publicationMonth": "1973-04",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19703",
+        "retrievedAt": "2026-11-06T07:37:50.458Z",
+        "bodySha256": "35ddf84d285521444be2ccb49dd77915714e72e223d02cee4f0eede8c79d151b",
+        "providerProjection": {
+          "id": 19703,
+          "title": "Marvel Team-Up (1972) #8",
+          "issueNumber": "8",
+          "detailUrl": "https://www.marvel.com/comics/issue/19703/marvel_team-up_1972_8",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47468,
+          "onSaleDate": "1973-04-01T00:00:00+0000",
+          "unlimitedDate": "1973-04-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/20/5d1f6b2c41a9e",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Stan Goldberg",
+              "role": "colorist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "cover artist"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6504,
+      "guidePosition": 135
+    },
+    {
+      "requestPosition": 98,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "9",
+      "issueId": 19714,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19714/",
+      "publicationMonth": "1973-05",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19714",
+        "retrievedAt": "2026-11-06T07:37:51.607Z",
+        "bodySha256": "f976ca2836a93e764409ff1f49c700f2e1ec25fedf70048f79421b30fd21f19f",
+        "providerProjection": {
+          "id": 19714,
+          "title": "Marvel Team-Up (1972) #9",
+          "issueNumber": "9",
+          "detailUrl": "https://www.marvel.com/comics/issue/19714/marvel_team-up_1972_9",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 23065,
+          "onSaleDate": "1973-05-01T00:00:00+0000",
+          "unlimitedDate": "1973-05-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/10/50add29e6859f",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Stan Goldberg",
+              "role": "colorist"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6506,
+      "guidePosition": 137
+    },
+    {
+      "requestPosition": 99,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "10",
+      "issueId": 19576,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19576/",
+      "publicationMonth": "1973-06",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19576",
+        "retrievedAt": "2026-11-06T07:37:51.805Z",
+        "bodySha256": "2af5f17318ae793cc66292d4fcb37be72c364edb1e864258b6646c8473b9c520",
+        "providerProjection": {
+          "id": 19576,
+          "title": "Marvel Team-Up (1972) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/19576/marvel_team-up_1972_10",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47469,
+          "onSaleDate": "1973-06-01T00:00:00+0000",
+          "unlimitedDate": "1973-06-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/5d1f745de0929",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Stan Goldberg",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Giacoia",
+              "role": "cover artist"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6507,
+      "guidePosition": 139
+    },
+    {
+      "requestPosition": 100,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "11",
+      "issueId": 19587,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19587/",
+      "publicationMonth": "1973-07",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19587",
+        "retrievedAt": "2026-11-06T07:37:58.493Z",
+        "bodySha256": "dbb91807ce445081d22996b60ecc94699b25c935253bb0f16ef0d3d32bda6236",
+        "providerProjection": {
+          "id": 19587,
+          "title": "Marvel Team-Up (1972) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/19587/marvel_team-up_1972_11",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47470,
+          "onSaleDate": "1973-07-01T00:00:00+0000",
+          "unlimitedDate": "1973-07-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/f0/5d1f7c22b5054",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Mike Esposito",
+              "role": "cover artist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Jim Mooney",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            },
+            {
+              "name": "Len Wein",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6508,
+      "guidePosition": 141
+    },
+    {
+      "requestPosition": 101,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "12",
+      "issueId": 19598,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19598/",
+      "publicationMonth": "1973-08",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19598",
+        "retrievedAt": "2026-11-06T07:37:59.729Z",
+        "bodySha256": "24d8b8659b7dec1e582dd28ffe6ce0fae600707bd4290a694034f7708eebb808",
+        "providerProjection": {
+          "id": 19598,
+          "title": "Marvel Team-Up (1972) #12",
+          "issueNumber": "12",
+          "detailUrl": "https://www.marvel.com/comics/issue/19598/marvel_team-up_1972_12",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 46483,
+          "onSaleDate": "1973-08-01T00:00:00+0000",
+          "unlimitedDate": "1973-08-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/30/59d7c9065267c",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Don Perlin",
+              "role": "cover artist"
+            },
+            {
+              "name": "Ross Andru",
+              "role": "penciler"
+            },
+            {
+              "name": "Gerry Conway",
+              "role": "writer"
+            },
+            {
+              "name": "Len Wein",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6509,
+      "guidePosition": 143
+    },
+    {
+      "requestPosition": 102,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "13",
+      "issueId": 19609,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19609/",
+      "publicationMonth": "1973-09",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19609",
+        "retrievedAt": "2026-11-06T07:38:01.287Z",
+        "bodySha256": "fb2a75201a7889e6765ec170a5cf20e37d63ba1229b4551f2e38bbaa2c0ef87c",
+        "providerProjection": {
+          "id": 19609,
+          "title": "Marvel Team-Up (1972) #13",
+          "issueNumber": "13",
+          "detailUrl": "https://www.marvel.com/comics/issue/19609/marvel_team-up_1972_13",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47616,
+          "onSaleDate": "1973-09-01T00:00:00+0000",
+          "unlimitedDate": "1973-09-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/50/5d1f924324e16",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "Frank Giacoia",
+              "role": "cover artist"
+            },
+            {
+              "name": "Gil Kane",
+              "role": "penciler"
+            },
+            {
+              "name": "Len Wein",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6510,
+      "guidePosition": 145
+    },
+    {
+      "requestPosition": 103,
+      "series": "Marvel Team-Up (1972)",
+      "seriesId": 3716,
+      "issueNumber": "14",
+      "issueId": 19620,
+      "requestedUrl": "https://www.marvel.com/comics/issue/19620/",
+      "publicationMonth": "1973-10",
+      "publicationIndex": "https://spiderfan.org/year/comics/1973.html",
+      "metadata": {
+        "kind": "provider-response",
+        "url": "https://marvel.emreparker.com/v1/issues/19620",
+        "retrievedAt": "2026-11-06T07:38:02.279Z",
+        "bodySha256": "265c604bf2d9d8ca316a3537721077583ebb8cdcc13f1cc4e8923f9adde0117d",
+        "providerProjection": {
+          "id": 19620,
+          "title": "Marvel Team-Up (1972) #14",
+          "issueNumber": "14",
+          "detailUrl": "https://www.marvel.com/comics/issue/19620/marvel_team-up_1972_14",
+          "seriesId": 3716,
+          "seriesName": "Marvel Team-Up (1972 - 1985)",
+          "digitalId": 47617,
+          "onSaleDate": "1973-10-01T00:00:00+0000",
+          "unlimitedDate": "1973-10-01T00:00:00+0000",
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/20/5d1f9f21710f1",
+            "extension": "jpg"
+          },
+          "pageCount": 0,
+          "creators": [
+            {
+              "name": "Glynis Oliver",
+              "role": "colorist"
+            },
+            {
+              "name": "John Costanza",
+              "role": "letterer"
+            },
+            {
+              "name": "Gil Kane",
+              "role": "penciler"
+            },
+            {
+              "name": "Len Wein",
+              "role": "writer"
+            }
+          ]
+        }
+      },
+      "placementAfterIssueId": 6511,
+      "guidePosition": 147
+    }
+  ],
+  "sha256": "01ffbe4cc1b997204ff07c97db44da5198afed49c2688e2fe95f8e7bdc049316"
+}
