@@ -27,8 +27,8 @@ test('route titles identify the current view list and resolved issue without inv
   assert.equal(routeTitle({ view: 'library-manual' }), 'Added by hand | Recap Page');
   assert.equal(routeTitle({ view: 'read', list: { name: 'My reading list' } }), 'My reading list | Recap Page');
   assert.equal(routeTitle({ view: 'issue', issueTitle: 'Hand entered comic' }), 'Hand entered comic | Recap Page');
-  assert.equal(routeTitle({ view: 'issue' }), 'Issue details | Recap Page');
-  assert.equal(routeTitle({ view: 'issue', issueTitle: 'Issue unavailable' }), 'Issue unavailable | Recap Page');
+  assert.equal(routeTitle({ view: 'issue' }), 'Comic details | Recap Page');
+  assert.equal(routeTitle({ view: 'issue', issueTitle: 'Comic unavailable' }), 'Comic unavailable | Recap Page');
   assert.equal(routeTitle({ view: 'read' }), 'Reading List | Recap Page');
   assert.equal(routeTitle({ view: 'about' }), 'About this app | Recap Page');
 });
@@ -207,17 +207,17 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
     ['genres', ['Home', 'Genres']],
-    ['issue', ['Home', 'Issue details']],
+    ['issue', ['Home', 'Comic details']],
   ]);
   for (const shelf of CATALOG_SHELVES) {
     expected.set(shelf.key, ['Home', shelf.heading]);
   }
   for (const [view, label] of [
-    ['add-search', 'Search issues'],
+    ['add-search', 'Search comics'],
     ['add-series', 'Find a series'],
     ['add-creator', 'Browse a creator'],
     ['add-import', 'Paste a Reading List'],
-    ['add-manual', 'Add an issue by hand'],
+    ['add-manual', 'Add a comic by hand'],
   ]) {
     expected.set(view, ['Home', 'Search', label]);
   }
@@ -512,13 +512,13 @@ test('main.js listens for hashchange and acts on the route it reads', () => {
   const main = read('src/js/main.js');
   has(
     main,
-    /addEventListener\('hashchange',[^)]*\(\) => \{\s*acknowledgedHash = location\.hash;\s*const route = parseRoute\(location\.hash\);\s*if \(route\) applyRoute\(route, \{ focus: true,/,
+    /addEventListener\('hashchange',[^)]*\(\) => \{\s*acknowledgedHash = location\.hash;\s*const route = parseRoute\(location\.hash\);\s*if \(route\) \{\s*navigationPosition\.beginRestore\(\);\s*applyRoute\(route, \{ focus: true,/,
     'a hashchange handler that reads the route and applies it with focus',
   );
   has(main, /const bootRoute = parseRoute\(location\.hash\)/, 'the boot read of location.hash');
 });
 
-// The passive path must never push. A reader who marks twenty issues read and then presses Back
+// The passive path must never push. A reader who marks twenty comics read and then presses Back
 // once should leave the view they were on, not walk back through twenty identical entries.
 test('main.js writes the hash passively with replaceState, not by assignment', () => {
   const main = read('src/js/main.js');
@@ -648,7 +648,8 @@ test('a list id naming a prototype member cannot be adopted from an address', ()
 // Edge: pushState fires no hashchange, and Back over an entry it made still does.
 test('main.js pushes with pushState rather than by assigning the hash', () => {
   const main = read('src/js/main.js');
-  has(main, /history\.pushState\(null, '', next\)/, 'a pushState call for deliberate navigation');
+  has(main, /navigationPosition\.push\(next\)/, 'per-entry pushState navigation');
+  has(read('src/js/lib/navigationPosition.js'), /history\.pushState\(\{ readingPosition: \{ depth, x: 0, y: 0 \} \}, '', url\)/, 'a new position for deliberate navigation');
   lacks(main, /location\.hash = /, 'an assignment to location.hash');
 });
 

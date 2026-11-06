@@ -45,9 +45,9 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
    scaled font, so this minimum grows with the text: 20ch is 173px at normal size, where 14rem still
    decides and the row of three is unchanged, and 345px at 200%, where the cards take two columns of
    376px. Measured in Edge with Segoe UI standing in for Roboto. At 620px and below the shared
-   stylesheet stacks them in one column. */
+   stylesheet stacks them in one column. The same minimum keeps "Recommended" whole in the primary row. */
 @media (min-width: 621px) {
-  [data-category-gateway] .home-paths-secondary {
+  [data-category-gateway] :is(.home-paths-primary, .home-paths-secondary) {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, max(14rem, 20ch)), 1fr));
   }
 }

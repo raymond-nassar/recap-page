@@ -186,7 +186,7 @@ export const firstStepsActualData = {
       path: Boolean(node.querySelector('details')),
     }));
     t.check('Browse discovers the owner-attributed 28-original companion without a reading path',
-      card.name === payload.name && card.text.includes('28 issues') && card.source === sourceUrl
+      card.name === payload.name && card.text.includes('28 comics') && card.source === sourceUrl
       && !card.path, JSON.stringify(card));
     await page.$eval(`${cardSelector} [data-act="preview"]`, (node) => node.click());
     await page.waitForFunction(() =>

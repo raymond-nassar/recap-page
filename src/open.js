@@ -93,13 +93,13 @@ const readerUrl = (d) => `https://read.marvel.com/#/book/${d}`;
 const detailUrl = (i) => `https://www.marvel.com/comics/issue/${i}/`;
 
 const presentation = {
-  pending: ['Looking up reader link', 'Looking up the Marvel Unlimited link for this issue. Reading ends December 7, 2026.'],
+  pending: ['Looking up reader link', 'Looking up the Marvel Unlimited link for this comic. Reading ends December 7, 2026.'],
   resolved: ['Opening Marvel Unlimited web reader', 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.'],
-  page: ['Opening Marvel issue page', 'Opening the Marvel issue page. Reading progress has not changed.'],
-  'no-reader-link': ['No direct reader link', 'No direct reader link is recorded. Opening the Marvel issue page instead.'],
-  'lookup-error': ['Reader lookup failed', 'The metadata lookup failed. Opening the Marvel issue page instead.'],
-  timeout: ['Reader lookup timed out', 'The metadata lookup timed out. Opening the Marvel issue page instead.'],
-  'lookup-unavailable': ['Reader lookup unavailable', 'Saved lookup settings could not be used. Opening the Marvel issue page instead.'],
+  page: ['Opening Marvel comic page', 'Opening the Marvel comic page. Reading progress has not changed.'],
+  'no-reader-link': ['No direct reader link', 'No direct reader link is recorded. Opening the Marvel comic page instead.'],
+  'lookup-error': ['Reader lookup failed', 'The metadata lookup failed. Opening the Marvel comic page instead.'],
+  timeout: ['Reader lookup timed out', 'The metadata lookup timed out. Opening the Marvel comic page instead.'],
+  'lookup-unavailable': ['Reader lookup unavailable', 'Saved lookup settings could not be used. Opening the Marvel comic page instead.'],
   'missing-reference': ['Nothing to open', 'This link was missing an issue reference.'],
   comics: ['Opening Marvel Comics website', 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.'],
 };
@@ -108,7 +108,7 @@ function present(state) {
   document.documentElement.setAttribute('data-state', state);
   document.title = `${heading} - Recap Page`;
   h.textContent = title && ['pending', 'resolved', 'page'].includes(state) ? `Opening ${title}...`
-    : state === 'page' ? 'Opening the Marvel issue page' : heading;
+    : state === 'page' ? 'Opening the Marvel comic page' : heading;
   p.textContent = caption;
   fallback.hidden = state === 'missing-reference';
 }

@@ -154,7 +154,7 @@ export const eternalsActualData = {
       path: Boolean(node.querySelector('details')),
     }));
     t.check('the MCU Prep gateway discovers the owner-attributed 24-issue Eternals card without a reading path',
-      card.name === 'Eternals' && card.text.includes('24 issues')
+      card.name === 'Eternals' && card.text.includes('24 comics')
       && card.source === sourceUrl && !card.path, JSON.stringify(card));
     await page.$eval(`${cardSelector} [data-act="preview"]`, (node) => node.click());
     await page.waitForFunction(() =>

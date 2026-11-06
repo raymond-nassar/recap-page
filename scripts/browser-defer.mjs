@@ -99,7 +99,7 @@ export const deferNext = {
     await page.waitForFunction(() => !location.hash.includes('filter=deferred'));
     await click(page, '.brand[data-view="home"]');
     t.check('Home names actual read progress and separate deferred remainder',
-      await page.$eval('#chero-count', (e) => e.textContent.includes('1 of 3 issues read')
+      await page.$eval('#chero-count', (e) => e.textContent.includes('1 of 3 comics read')
         && e.textContent.includes('2 deferred'))
       && await page.$eval('#chero-next', (e) => e.textContent.includes('Nothing queued')));
     await deferredReview(page, t, '#btn-chero-deferred', 'Home');

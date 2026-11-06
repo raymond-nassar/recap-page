@@ -261,7 +261,7 @@ export const doneUndo = {
     await page.focus('#done-result button');
     await wait(DONE_RESULT_MS + 1000);
     const focused = !!await page.$('#done-result');
-    await page.focus('#all-read-h');
+    await page.focus('#list-wrap-up-h');
     await wait(DONE_RESULT_MS - 1500);
     const restarted = !!await page.$('#done-result');
     await wait(2500);
@@ -435,7 +435,7 @@ export const doneHome = {
     const offered = await observeHome(page);
     const doneSaid = await said(page, 1);
     t.check('Done on Home marks the comic the card named, updates Next and the count, and keeps focus on Done',
-      Object.keys((await saved(page)).read).join() === String(ids[0]) && offered.count === '1 of 4 issues read'
+      Object.keys((await saved(page)).read).join() === String(ids[0]) && offered.count === '1 of 4 comics read'
       && offered.focus === 'btn-chero-done' && offered.done?.top === start.done.top,
       JSON.stringify({ start: start.done, offered }));
     t.check('the same result sits in the card under its commands, and one announcement says Undo is available',
@@ -486,7 +486,7 @@ export const doneHome = {
 
     await nextIs(page, `Next: ${title(4)}`);
     await press(page, '#btn-chero-done');
-    await nextIs(page, 'You have read every issue in this Reading List.');
+    await nextIs(page, 'You have read every comic in this Reading List.');
     await wait(100);
     const end = await observeHome(page);
     t.check('Done on the last comic keeps the result under the card\'s commands, hides Done with Read and focuses the card heading',
@@ -508,7 +508,7 @@ export const doneHome = {
     await settle(page);
     const narrowStart = await observeHome(page);
     await press(page, '#btn-chero-done');
-    await nextIs(page, 'You have read every issue in this Reading List.');
+    await nextIs(page, 'You have read every comic in this Reading List.');
     const narrow = await observeHome(page);
     const inPage = (observed) => (observed.actions ? observed.actions.top + observed.scrollY : null);
     t.check('at 390px the result sits in the card under its commands, within the screen, without page overflow',

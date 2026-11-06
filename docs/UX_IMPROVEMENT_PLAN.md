@@ -1,18 +1,18 @@
 # UX improvement plans
 
-This is a planning document linked to the separate [colleague feedback record](UX_FEEDBACK.md) and tracking [#1121](https://github.com/raymond-nassar/recap-page/issues/1121). It does not authorize or implement product changes. Navigation is the highest priority. The remaining workstreams are not ranked or committed to ship.
+This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) and tracking [#1121](https://github.com/raymond-nassar/recap-page/issues/1121). The owner subsequently authorized completion, Back navigation, Home/Search and reader-facing terminology together in [#1126](https://github.com/raymond-nassar/recap-page/issues/1126), starting with completion. The other workstreams remain exploratory and are not committed to ship.
 
 ## 1. Navigation and Back
 
 **Outcome:** Back returns to the immediately previous screen and restores its position. Plan a clearly integrated iOS Back affordance instead of assuming the reported detached text treatment is the right design.
 
-**Dependencies:** Identify the colleague's tested build and reproduce the affected journey. Map the route and scroll state that must be restored before choosing a UI or architecture change. The shared app already creates a history entry for rail navigation (`src/js/main.js:1280-1281`), but that alone does not establish the reported iOS behavior.
+**Implementation boundary:** Preserve each browser-history entry's position and opener context, and provide Back within the shared breadcrumb navigation. An explicit return opener takes precedence over the old viewport so its focused control stays visible. This is a bounded shared-interface improvement, not evidence that the colleague's native-iOS concern has been reproduced or resolved.
 
-**Evidence before implementation:** Record the journey, starting and ending screens, scroll positions, and Back control in the same iOS build. Verify the proposed behavior with forward navigation, Back, repeated navigation, and a route reached from an in-screen task.
+**Acceptance evidence:** Verify forward navigation, Back, repeated navigation, asynchronous layout and a route reached from an in-screen task. Native iOS acceptance still requires the journey, starting and ending screens, scroll positions, and Back control in an identified iOS build.
 
 ## 2. Home discovery and Search
 
-**Outcome:** Mark Modern Timeline "Recommended start here," remove redundant first-run introduction, and remove Home's global Search shortcut. Keep global Search in the bottom bar and retain task-specific search fields. The current Home first-run block contains introductory copy (`src/js/views/home.js:88`), a Modern Timeline action (`src/js/views/home.js:101`), and a Search action (`src/js/views/home.js:111`). Search is also in the bottom bar (`src/index.html:57`).
+**Outcome:** Mark the existing Modern Timeline category "Recommended start here" for first-run and returning readers, remove redundant first-run introduction, and remove Home's global Search shortcut. Keep global Search in the bottom bar (`src/index.html:57`) and retain task-specific search fields. The implementation uses the existing category instead of adding another introduction or competing action group.
 
 **Dependencies:** Check the Home wording against the exact first-run and returning-reader states. Keep the existing Search destination and in-screen search journeys intact.
 
@@ -52,7 +52,7 @@ This is a planning document linked to the separate [colleague feedback record](U
 
 ## 7. MCU Prep labels
 
-**Outcome:** Keep the labels as labels unless evidence and an owner decision establish that they should filter. The received "Multiverse Packs" wording differs from the current "Multiverse picks" label (`src/js/lib/catalog.js:1339`), and the current page renders its highlights as a list rather than controls (`src/js/main.js:2724-2725`).
+**Outcome:** Keep the labels as labels unless evidence and an owner decision establish that they should filter. The received "Multiverse Packs" wording differs from the current "Multiverse picks" label (`src/js/lib/catalog.js:1339`), and the current page renders its highlights as a list rather than controls (`src/js/main.js:2749-2750`).
 
 **Dependencies:** Verify the exact text and screen in the tested build; ask whether the colleague expected labels to be selectable or only descriptive.
 
@@ -64,8 +64,10 @@ This is a planning document linked to the separate [colleague feedback record](U
 
 **Dependencies:** Reconcile the different completion presentations for the same list, and confirm how the next Modern Timeline list is selected. Verify that each suggested list has an approved cover URL. Do not copy or store comic image bytes or invent or substitute artwork when a cover source is missing.
 
-**Evidence before implementation:** Reproduce both supplied completion screens and determine why the same list presents different content, including the iPad presentation. Test the redesigned hierarchy in both observed presentations and across supported layout sizes. Confirm the next Modern Timeline list is the clear first action, suggestions remain visibly secondary and are based on genre or tone, and every suggestion displays its corresponding cover. Check completion actions and browsing remain understandable alongside the new sections.
+**Acceptance evidence:** Test all-read and explicitly completed states across supported layout sizes, with one primary continuation and secondary genre/tone suggestions. An all-read list must not be silently recorded as explicitly completed. Honor the existing cover setting and retain a truthful fallback when a cover is missing or fails; never substitute unrelated artwork. Check retry, completion, reopening and browsing remain usable. The supplied screenshots establish different presentations, but their exact build and cause remain unknown; Edge checks of both source states do not reproduce the reported iPad environment.
+
+**Owner visual review:** The owner approved the illustrative tablet mockup as aligned with the intended design. It establishes the hierarchy of one prominent Timeline continuation and quieter related suggestions, not the exact example ranking or placeholder artwork. Outside the Timeline, retain supported reading-path, writer and later-series suggestions under "What to read next"; show genre/tone suggestions only when a catalog identity supplies those attributes. Do not infer genres from custom list names.
 
 ## Delivery boundary
 
-This PR contains the feedback record and these plans only. It does not change application code, styling, saved data, release metadata, or behavior. Before implementing any accepted workstream, create or reuse a scoped Issue and rank it in the planning Project. Keep each product implementation within its own approved scope.
+The original documentation delivery contained only the feedback record and plans. The combined implementation is scoped and ranked in [#1126](https://github.com/raymond-nassar/recap-page/issues/1126); its pull request owns delivery evidence, proposed release notes and saved-data compatibility. No saved-data schema, provider identity, cover-storage policy or native architecture change is authorized by this scope. Native feel, restart reassurance, title/splash and MCU Prep labels remain separate evidence-dependent work.

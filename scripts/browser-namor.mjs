@@ -156,7 +156,7 @@ export const namorActualData = {
       source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
     }));
     t.check('the credited 700-issue Namor guide is discoverable',
-      card.name === name && card.label.includes('700 issues') && card.source === mapping.sourceUrl,
+      card.name === name && card.label.includes('700 comics') && card.source === mapping.sourceUrl,
       JSON.stringify(card));
     await page.$eval(`${cardSelector} [data-act="preview"]`, (node) => node.click());
     await page.waitForFunction(() =>

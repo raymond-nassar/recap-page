@@ -1159,7 +1159,7 @@ export function validateBackup(raw) {
   // pass over the keys, before coercion allocates for them. The three cheap maps take a ceiling of
   // their own because one number could not cover both: see the note above MAX_MARKERS.
   for (const [label, value, cap] of [
-    ['issues', raw.issues, MAX_ISSUES],
+    ['comics', raw.issues, MAX_ISSUES],
     ['read markers', raw.read, MAX_MARKERS],
     ['availability overrides', raw.overrides, MAX_MARKERS],
     ['notes', raw.notes, MAX_MARKERS],
@@ -1181,12 +1181,12 @@ export function validateBackup(raw) {
       const n = Array.isArray(v?.itemIds) ? v.itemIds.length : 0;
       if (Array.isArray(v?.items)) carried += v.items.length;
       if (n > MAX_ISSUES) {
-        errors.push(`One list declares ${n} issues, and this app holds at most ${MAX_ISSUES} in a list.`);
+        errors.push(`One list declares ${n} comics, and this app holds at most ${MAX_ISSUES} in a list.`);
         break;
       }
     }
     if (carried > MAX_ISSUES) {
-      errors.push(`Backup declares ${carried} issues inside its lists, and this app holds at most ${MAX_ISSUES}.`);
+      errors.push(`Backup declares ${carried} comics inside its lists, and this app holds at most ${MAX_ISSUES}.`);
     }
   }
   if (errors.length) return { ok: false, errors, state: null };

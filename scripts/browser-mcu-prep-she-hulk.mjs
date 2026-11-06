@@ -139,7 +139,7 @@ export const sheHulkActualData = {
       }));
       t.check(`Browse finds one thirteen-original owner-linked She-Hulk card at ${width}px`,
         await page.$$eval(card, (nodes) => nodes.length) === 1
-        && facts.name === name && facts.text.includes('13 issues')
+        && facts.name === name && facts.text.includes('13 comics')
         && facts.source === sourceUrl && facts.text.includes('Source: Recap Page')
         && facts.sourceName === `Source of ${name}: Recap Page`, JSON.stringify(facts));
       await click(page, `${card} [data-act="preview"]`);

@@ -70,7 +70,7 @@ export function ownerPresentation(expected) {
   const rows = expected.map((row) => {
     if (row.group !== storedGroup) {
       storedGroup = row.group;
-      displayedGroup = storedGroup ?? 'Individual issues';
+      displayedGroup = storedGroup ?? 'Individual comics';
       headings.push(displayedGroup);
     }
     return { ...row, group: displayedGroup };
@@ -360,7 +360,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         t.check('owner-confirmed identity remains explicit after import and reload',
           identityStatus.title === nextOriginal.title
           && identityStatus.badge === 'identity confirmed'
-          && /owner confirmed this issue identity/.test(identityStatus.hint ?? '')
+          && /owner confirmed this comic identity/.test(identityStatus.hint ?? '')
           && /no provider details or cover/.test(identityStatus.hint ?? ''), JSON.stringify(identityStatus));
       }
       await page.evaluate(() => {

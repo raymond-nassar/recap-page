@@ -99,7 +99,7 @@ export const issueRatings = {
     await click('#issue-rating-remove');
     t.check('Remove returns to unrated without recording zero', await page.evaluate(() =>
       !Object.hasOwn(JSON.parse(localStorage.getItem('mrt.state.v2')).ratings, 1001)
-      && document.querySelector('#issue-rating-label').textContent === 'Rate this issue'));
+      && document.querySelector('#issue-rating-label').textContent === 'Rate this comic'));
 
     await page.goto(`${page.__origin}/#/issue/-42?list=ratings`, { waitUntil: 'load' });
     await page.waitForSelector('#issue-rating-root:not([hidden])');

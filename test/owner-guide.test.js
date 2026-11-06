@@ -535,14 +535,14 @@ test('review regression: mixed collection presentation does not rewrite null sto
   const before = structuredClone(stored);
   assert.deepEqual(ownerPresentation(stored), {
     rows: [{ issueId: 101, group: null }, { issueId: 102, group: 'Volume One' },
-      { issueId: 103, group: 'Individual issues' }, { issueId: 104, group: 'Volume One' }],
-    headings: ['Volume One', 'Individual issues', 'Volume One'],
+      { issueId: 103, group: 'Individual comics' }, { issueId: 104, group: 'Volume One' }],
+    headings: ['Volume One', 'Individual comics', 'Volume One'],
   });
   assert.deepEqual(stored, before);
   assert.deepEqual(ownerPresentation([{ group: null }, { group: null }]),
     { rows: [{ group: null }, { group: null }], headings: [] });
   assert.deepEqual(ownerPresentation([{ group: 'Individual issues' }, { group: null }]).headings,
-    ['Individual issues', 'Individual issues']);
+    ['Individual issues', 'Individual comics']);
 });
 
 for (const replaceDescription of [false, true]) {

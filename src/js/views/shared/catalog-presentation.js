@@ -119,7 +119,7 @@ export function createCatalogPresentation({
           desc ? el('p', { class: 'catalog-card-desc', text: desc }) : el('p', { class: 'catalog-card-desc', hidden: true }),
           el('p', {
             class: 'catalog-card-meta',
-            text: [`${list.count} issue${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
+            text: [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
           }),
           el('div', { class: 'result-source' }, source ? [source] : []),
         ]),
@@ -143,7 +143,7 @@ export function createCatalogPresentation({
         }, el('span', { text: list.name }))),
         el('p', {
           class: 'result-meta',
-          text: [`${list.count} issue${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
+          text: [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
         }),
         el('div', { class: 'result-source' }, [attributionLine(list, { compact: true })].filter(Boolean)),
       ]),

@@ -143,7 +143,7 @@ export const brandNewDayActualData = {
       }));
       t.check(`Browse finds one twenty-original Brand card linked to the owner intake at ${width}px`,
         await page.$$eval(card, (nodes) => nodes.length) === 1
-        && facts.name === name && facts.text.includes('20 issues')
+        && facts.name === name && facts.text.includes('20 comics')
         && facts.source === sourceUrl && facts.text.includes('Source: Recap Page')
         && facts.sourceName === `Source of ${name}: Recap Page`, JSON.stringify(facts));
       await click(page, `${card} [data-act="preview"]`);

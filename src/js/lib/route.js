@@ -51,11 +51,11 @@ const HOME_CARDS_SEGMENT = 'browse';
 const RETIRED_PATHS_SEGMENT = 'reading-paths';
 
 const ADD_VIEW_LABELS = new Map([
-  ['add-search', 'Search issues'],
+  ['add-search', 'Search comics'],
   ['add-series', 'Find a series'],
   ['add-creator', 'Browse a creator'],
   ['add-import', 'Paste a Reading List'],
-  ['add-manual', 'Add an issue by hand'],
+  ['add-manual', 'Add a comic by hand'],
 ]);
 
 const STATIC_VIEW_LABELS = new Map([
@@ -86,7 +86,7 @@ export function isPlainNavigation(event) {
 export function routeTitle({ view, list = null, issueTitle = null } = {}) {
   const title = view === 'home' ? 'Home'
     : view === 'read' ? cleanLabel(list?.name, 'Reading List')
-      : view === 'issue' ? cleanLabel(issueTitle, 'Issue details')
+      : view === 'issue' ? cleanLabel(issueTitle, 'Comic details')
         : breadcrumbHierarchy({ view }).at(-1)?.label ?? 'Recap Page';
   return title === 'Recap Page' ? title : `${title} | Recap Page`;
 }
@@ -108,7 +108,7 @@ export function breadcrumbHierarchy({
   }
 
   if (view === 'issue') {
-    const title = cleanLabel(issueTitle, 'Issue details');
+    const title = cleanLabel(issueTitle, 'Comic details');
     if (context?.kind === 'list'
       && typeof context.id === 'string' && context.id
       && typeof context.name === 'string' && context.name.trim()) {

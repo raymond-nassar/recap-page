@@ -88,7 +88,7 @@ test('completed-list presentation overrides status and details without falsifyin
   assert.equal(pieces(button)[5].props.text, 'Enjoyed. Completed today');
   // #905: the tile's text in the order it is shown, then what the count means.
   assert.equal(button.props['aria-label'],
-    'First list. 1 / 2. 1 deferred. Completed. Enjoyed. Completed today. 1 of 2 issues read. Open this list.');
+    'First list. 1 / 2. 1 deferred. Completed. Enjoyed. Completed today. 1 of 2 comics read. Open this list.');
   assert.equal(target.head.note.textContent, '1 completed list');
 });
 
@@ -118,7 +118,7 @@ test('one saved-list presenter paints Home and Library and delegates opening', (
   );
   assert.equal(
     home.results.children[0].children[0].props['aria-label'],
-    'First list. 1 / 2. Reading. 1 of 2 issues read. Open this list.',
+    'First list. 1 / 2. Reading. 1 of 2 comics read. Open this list.',
   );
   // The visible text, read off the tile in order and stripped as speech input strips it, is one run
   // at the start of the name. A name with words spliced between its pieces fails this (#905).

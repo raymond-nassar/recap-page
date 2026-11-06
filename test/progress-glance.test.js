@@ -21,7 +21,7 @@ function node(tag) {
 }
 const el = (tag, props = {}) => Object.assign(node(tag), { props, children: props.text === undefined ? [] : [props.text] });
 
-function paint(read, total, words = ` of ${total} issues read`) {
+function paint(read, total, words = ` of ${total} comics read`) {
   const count = node('p');
   const fill = node('i');
   paintGlance(el, { count, fill }, { read, total }, words);
@@ -39,16 +39,16 @@ test('the bar is filled to the share Home has always written, at none, some and 
 });
 
 test('the read figure leads the count, and the words after it keep the count\'s exact text', () => {
-  const { count, figure } = paint(3, 69, ' of 69 issues read. 2 deferred');
+  const { count, figure } = paint(3, 69, ' of 69 comics read. 2 deferred');
   assert.equal(figure.tag, 'b');
   assert.equal(figure.props.class, 'glance-n');
   assert.equal(figure.textContent, '3');
   // The last word is its own span only so that the room held after it cannot wrap away from it.
   const [, lead, end] = count.children;
-  assert.equal(lead, ' of 69 issues read. 2 ');
+  assert.equal(lead, ' of 69 comics read. 2 ');
   assert.deepEqual([end.tag, end.props.class, end.textContent], ['span', 'glance-end', 'deferred']);
-  assert.equal(count.textContent, '3 of 69 issues read. 2 deferred');
-  assert.equal(paint(0, 0).count.textContent, '0 of 0 issues read');
+  assert.equal(count.textContent, '3 of 69 comics read. 2 deferred');
+  assert.equal(paint(0, 0).count.textContent, '0 of 0 comics read');
   assert.equal(paint(5, 12, ' of 12 read').count.children.at(-1).textContent, 'read');
 });
 

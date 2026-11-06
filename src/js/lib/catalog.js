@@ -81,17 +81,17 @@ const DEPTH_LABELS = {
   complete: 'Complete reading',
   partial: 'Partial reading',
   'tie-ins': 'Tie-ins',
-  selected: 'Selected issues',
+  selected: 'Selected comics',
 };
 
 // Plain English, because "essential" and "complete" only mean something to readers who
 // already know the convention. This is what tells someone how much reading they are choosing.
 const DEPTH_HINTS = {
-  essential: 'The core issues only, the shortest path through the story.',
-  complete: 'Every issue, including tie-ins and side stories.',
-  partial: 'Available issues from a broader guide, with known omissions recorded.',
-  'tie-ins': 'The tie-in issues that surround a main story.',
-  selected: 'Issue-specific recommendations chosen from a broader guide.',
+  essential: 'The core comics only, the shortest path through the story.',
+  complete: 'Every comic, including tie-ins and side stories.',
+  partial: 'Available comics from a broader guide, with known omissions recorded.',
+  'tie-ins': 'The tie-in comics that surround a main story.',
+  selected: 'Comic-specific recommendations chosen from a broader guide.',
 };
 
 export function typeLabel(type) {
@@ -320,19 +320,19 @@ export function catalogGapLabels(list) {
   if (list?.placeholderCount > 0) {
     const count = list.placeholderCount;
     out.push(
-      `${count} ${count === 1 ? 'issue has no Marvel Unlimited link' : 'issues have no Marvel Unlimited links'} yet and cannot be opened`,
+      `${count} ${count === 1 ? 'comic has no Marvel Unlimited link' : 'comics have no Marvel Unlimited links'} yet and cannot be opened`,
     );
   }
   if (list?.emptyRecordCount > 0) {
     const count = list.emptyRecordCount;
     out.push(
-      `${count} ${count === 1 ? 'issue has no details, cover, or Unlimited link' : 'issues have no details, covers, or Unlimited links'}`,
+      `${count} ${count === 1 ? 'comic has no details, cover, or Unlimited link' : 'comics have no details, covers, or Unlimited links'}`,
     );
   }
   if (list?.ownerConfirmedIdentityCount > 0) {
     const count = list.ownerConfirmedIdentityCount;
     out.push(
-      `${count} ${count === 1 ? 'issue has an owner-confirmed identity' : 'issues have owner-confirmed identities'} but no provider details or ${count === 1 ? 'cover' : 'covers'}`,
+      `${count} ${count === 1 ? 'comic has an owner-confirmed identity' : 'comics have owner-confirmed identities'} but no provider details or ${count === 1 ? 'cover' : 'covers'}`,
     );
   }
   return out;
@@ -399,7 +399,7 @@ export function catalogFacets(lists) {
   if (trade) facets.push({ key: 'trade', label: 'By collected edition', count: trade });
 
   const short = all.filter(isShortOrder).length;
-  if (short) facets.push({ key: 'short', label: `Short (under ${SHORT_ORDER_MAX} issues)`, count: short });
+  if (short) facets.push({ key: 'short', label: `Short (under ${SHORT_ORDER_MAX} comics)`, count: short });
 
   return facets.filter((facet) => facet.key === 'all' || facet.count < all.length);
 }

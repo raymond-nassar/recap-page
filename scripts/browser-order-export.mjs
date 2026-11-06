@@ -174,7 +174,7 @@ export const orderOnlyExport = {
       document.querySelector('#import-new-list').checked = true;
       document.querySelector('#form-import').requestSubmit();
     }, markdown);
-    await page.waitForFunction(() => /Imported 2 issues/.test(document.querySelector('#import-report').textContent));
+    await page.waitForFunction(() => /Imported 2 comics/.test(document.querySelector('#import-report').textContent));
     const imported = await page.evaluate(() => {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
       return {

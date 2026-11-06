@@ -60,6 +60,9 @@
   <symbol id="arrow-right" viewBox="0 0 24 24">
     <path d="M4 12h16m-7-7 7 7-7 7"/>
   </symbol>
+  <symbol id="arrow-left" viewBox="0 0 24 24">
+    <path d="M20 12H4m7-7-7 7 7 7"/>
+  </symbol>
   <symbol id="thumb-up" viewBox="0 0 24 24">
     <path d="M3 10h4v11H3zM7 10l5-7c2 0 3 2 2 5l-1 2h6c2 0 2 2 1 4l-2 7H7"/>
   </symbol>

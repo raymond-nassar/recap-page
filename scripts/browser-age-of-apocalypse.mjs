@@ -128,7 +128,7 @@ export async function checkAgeOfApocalypseActualData(page, t) {
     importLabel: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
   }));
   t.check('the 262-position credited AoA guide is discoverable as one character guide',
-    card.name === name && card.text.includes('262 issues')
+    card.name === name && card.text.includes('262 comics')
       && card.source === packet.sourceUrl && card.importLabel === `Add to library: ${name}`,
     JSON.stringify(card));
 

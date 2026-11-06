@@ -525,7 +525,7 @@ test('the Add hub groups five routes with five dedicated pages', () => {
 
 test('search uses selection while manual and curated Add labels stay intact', () => {
   assert.match(catalogPresentation, /const CATALOG_ADD = '\+ Add to library'/);
-  assert.match(allPages, />Add issue<\/button>/);
+  assert.match(allPages, />Add comic<\/button>/);
   assert.match(add, /\}, 'Browse comics'\)/);
   assert.match(add, /textContent = `Select all \$\{comics\(matches\.length\)\}`/);
 });

@@ -204,8 +204,8 @@ test('510 Home distinguishes deferred work from completion and exposes a separat
   h.state.lists.a.deferredIssueIds = [7, 8];
   h.view.wire();
   h.view.render();
-  assert.equal(h.nodes.continueCount.textContent, '1 of 2 issues read. 1 deferred');
-  assert.equal(h.nodes.continueNext.textContent, 'Nothing queued. 1 unread issue is deferred.');
+  assert.equal(h.nodes.continueCount.textContent, '1 of 2 comics read. 1 deferred');
+  assert.equal(h.nodes.continueNext.textContent, 'Nothing queued. 1 unread comic is deferred.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueDeferred.hidden, false);
   assert.equal(h.nodes.continueCount.children[0].textContent, '1');
@@ -241,9 +241,7 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   await new Promise((resolve) => setImmediate(resolve));
 
   const firstRun = findById(h.nodes.categoriesRoot, 'home-first-run');
-  assert.equal(firstRun.hidden, false);
-  assert.equal(firstRun.attributes['aria-labelledby'], 'home-first-run-h');
-  assert.equal(findById(firstRun, 'home-first-run-h').textContent, 'Where do you want to start?');
+  assert.equal(firstRun, null);
   assert.equal(h.nodes.continueSection.hidden, true);
   assert.equal(h.nodes.continueHeading.textContent, 'Continue reading');
   assert.equal(h.calls.saved.length, 1);
@@ -257,47 +255,33 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   }
   const tile = h.nodes.gateways[0].nodes.primary.children[0].children[0];
   // #905: the eyebrow, title and count in the order the card shows them.
-  assert.equal(tile.attributes['aria-label'], 'Browse by year. Modern Timeline. 2 Reading Lists.');
+  assert.equal(tile.attributes['aria-label'], 'Recommended start here. Modern Timeline. 2 Reading Lists.');
   // And the card's own text keeps them apart as words, which a reader of the text, the axe rules
   // pass among them, would otherwise run together as "Browse by yearModern Timeline2 Reading Lists".
   const text = (part) => (typeof part === 'string' ? part : part.textContent || part.children.map(text).join(''));
   const copy = tile.children.find((child) => child.classList?.contains('home-path-copy'));
-  assert.equal(text(copy), 'Browse by year Modern Timeline 2 Reading Lists');
+  assert.equal(text(copy), 'Recommended start here Modern Timeline 2 Reading Lists');
   tile.onclick();
   assert.deepEqual(h.calls.navigate, ['catalog']);
 
-  assert.equal(findById(firstRun, 'home-recommended'), null);
-  assert.equal(findById(firstRun, 'btn-home-recommended'), null);
-  findById(firstRun, 'btn-home-browse').onclick();
-  findById(firstRun, 'btn-home-add').onclick();
-  assert.deepEqual(h.calls.navigate, ['catalog', 'catalog', 'add']);
+  assert.equal(findById(h.nodes.categoriesRoot, 'btn-home-add'), null);
+  assert.deepEqual(h.calls.navigate, ['catalog']);
 });
 
-test('first-run Home offers Modern Timeline and Add without waiting for catalog load', () => {
+test('Home has no introductory or global Search shortcut before or after adding a list', () => {
   const h = harness({ catalogLoader: () => new Promise(() => {}) });
   const before = structuredClone(h.state);
   h.view.render();
   const firstRun = findById(h.nodes.categoriesRoot, 'home-first-run');
-  const browse = findById(firstRun, 'btn-home-browse');
-  const add = findById(firstRun, 'btn-home-add');
-  assert.equal(firstRun.hidden, false);
-  assert.equal(findById(firstRun, 'home-recommended'), null);
-  // Named for where it goes, with the same id and destination (UX-15, #830).
-  assert.equal(browse.children[0], 'Start with Modern Timeline');
-  assert.equal(browse.href, '#/catalog');
-  assert.equal(browse.class, 'btn');
-  assert.equal(add.children[0], 'Search');
-  // Named Search like the page it opens (#831, #924), so its name is its visible text.
-  assert.equal(add['aria-label'], undefined);
-  assert.equal(add.class, 'btn btn-g');
-  browse.onclick();
-  add.onclick();
-  assert.deepEqual(h.calls.navigate, ['catalog', 'add']);
+  assert.equal(firstRun, null);
+  assert.equal(findById(h.nodes.categoriesRoot, 'btn-home-add'), null);
+  assert.equal(findById(h.nodes.categoriesRoot, 'btn-home-browse'), null);
+  assert.deepEqual(h.calls.navigate, []);
   assert.deepEqual(h.state, before);
   h.state.listOrder.push('a');
   h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
   h.view.render();
-  assert.equal(firstRun.hidden, true);
+  assert.equal(findById(h.nodes.categoriesRoot, 'home-first-run'), null);
 });
 
 test('453 Home refresh uses effective launchability and saved provenance without repainting gateways', () => {
@@ -335,12 +319,12 @@ test('Home view paints populated Continue details and accessible actions', () =>
   h.view.render();
 
   assert.equal(h.nodes.categoriesHeading.classList.contains('visually-hidden'), false);
-  assert.equal(findById(h.nodes.categoriesRoot, 'home-first-run').hidden, true);
+  assert.equal(findById(h.nodes.categoriesRoot, 'home-first-run'), null);
   assert.equal(h.nodes.continueSection.hidden, false);
   assert.equal(h.nodes.continueHeading.textContent, 'Alpha order');
   // The count is the card's one reading of its progress (#876): the read figure leads it, and the bar
   // repeats it for the eye with no progress semantics of its own, which the markup hides.
-  assert.equal(h.nodes.continueCount.textContent, '1 of 2 issues read');
+  assert.equal(h.nodes.continueCount.textContent, '1 of 2 comics read');
   assert.equal(h.nodes.continueCount.children[0].textContent, '1');
   assert.equal(h.nodes.continueCount.children[0].classList.contains('glance-n'), true);
   assert.deepEqual(Object.keys(h.nodes.continueBar.attributes), []);
@@ -408,11 +392,11 @@ test('Home view completion state removes the read action without inventing a nex
   const h = harness({ populated: true, nextIssue: null, progress: { read: 2, total: 2 } });
   h.view.render();
 
-  assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this Reading List.');
+  assert.equal(h.nodes.continueNext.textContent, 'You have read every comic in this Reading List.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueSeries.textContent, 'Alpha order');
   assert.equal(h.nodes.continueNumber.textContent, '');
-  assert.equal(h.nodes.continueCount.textContent, '2 of 2 issues read');
+  assert.equal(h.nodes.continueCount.textContent, '2 of 2 comics read');
   assert.equal(h.nodes.continueFill.style['--glance-share'], '100.0%');
   assert.equal(h.calls.coverFallbacks.length, 1);
 });
@@ -442,10 +426,10 @@ test('441 Home describes an empty saved list without claiming completion or chan
   h.view.render();
 
   assert.equal(h.nodes.continueSection.hidden, false);
-  assert.equal(h.nodes.continueNext.textContent, 'No issues in this Reading List yet. Open it to add comics.');
+  assert.equal(h.nodes.continueNext.textContent, 'No comics in this Reading List yet. Open it to add comics.');
   assert.equal(h.nodes.continueSection.classList.contains('continue-empty'), true);
   assert.equal(h.nodes.continueRead.hidden, true);
-  assert.equal(h.nodes.continueCount.textContent, '0 of 0 issues read');
+  assert.equal(h.nodes.continueCount.textContent, '0 of 0 comics read');
   // An empty list has no progress to draw, so its bar goes, as it always has.
   assert.equal(h.nodes.continueFill.style['--glance-share'], '0%');
   assert.equal(h.nodes.continueBar.hidden, true);

@@ -9,7 +9,7 @@ import { isRead, listCollections, listProgress } from './model.js';
 // only ever reported for a heading the reader can see.
 export function sectionHeading(run, index) {
   if (!run) return null;
-  return run.name || (index > 0 ? 'Individual issues' : null);
+  return run.name || (index > 0 ? 'Individual comics' : null);
 }
 
 // A section's name in a sentence. Most names are short, but a few bundled lists carry a whole

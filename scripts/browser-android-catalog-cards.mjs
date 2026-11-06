@@ -796,7 +796,7 @@ export async function catalogCardReadability({
     check(item.android === !profile.desktop && item.body === (profile.desktop ? 14 : 16 * scale)
       && item.theme === profile.theme, `${name}: actual entry, theme and text-token scale`);
     check(item.title === title && desc.text === firstSentence(list.description)
-      && meta.text === [`${list.count} issue${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' \u00b7 '),
+      && meta.text === [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' \u00b7 '),
     `${name}: exact title, description, count and gap text retained`);
     check(item.source === sourceLink(list) && !source.text.includes('Snapshot taken'),
       `${name}: source destination retained, with the snapshot date left to Preview`);

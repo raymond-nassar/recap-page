@@ -143,7 +143,7 @@ export const msMarvelActualData = {
       }));
       t.check(`Browse finds one eighteen-original owner-linked Ms. Marvel card at ${width}px`,
         await page.$$eval(card, (nodes) => nodes.length) === 1
-        && facts.name === name && facts.text.includes('18 issues')
+        && facts.name === name && facts.text.includes('18 comics')
         && facts.source === sourceUrl && facts.text.includes('Source: Recap Page')
         && facts.sourceName === `Source of ${name}: Recap Page`, JSON.stringify(facts));
       await click(page, `${card} [data-act="preview"]`);

@@ -755,7 +755,7 @@ async function spotlightControlCheck(page, profile) {
     actions: [...node.querySelectorAll('.catalog-card-actions button')].map((button) => button.getAttribute('aria-label')),
   }));
   check(metadata.title === (first.name || first.lists[0].name)
-    && metadata.count?.startsWith(`${selected.count} issue`)
+    && metadata.count?.startsWith(`${selected.count} comic`)
     && metadata.actions.some((name) => name?.includes(selected.name)),
   `${label}: meaningful guide title, count and original actions retained`);
   check(sourceLink(selected) ? metadata.href === sourceLink(selected)
@@ -1674,8 +1674,9 @@ async function categoryLabelReadability(page, label, viewport) {
       const category = categories[index];
       const count = `${category.count} ${category.count === 1
         ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-      check(card.key === category.key && card.name === `${category.label}. ${category.heading}. ${count}.`
-        && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([category.label, category.heading, count]),
+      const categoryLabel = category.key === 'timeline' ? 'Recommended start here' : category.label;
+      check(card.key === category.key && card.name === `${categoryLabel}. ${category.heading}. ${count}.`
+        && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([categoryLabel, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
       const caption = (viewport.desktop ? 12 : 14) * scale;
       const title = category.tier === 'secondary' ? 28 * scale : viewport.desktop ? 28.8 : 20;
@@ -2267,7 +2268,7 @@ async function readingSemantics(page) {
       }]).state;
     }
     await readingReplaceState(page, state);
-    const selector = kind === 'completed' ? '#all-read' : kind === 'all-deferred' ? '#all-deferred'
+    const selector = kind === 'completed' ? '#list-wrap-up' : kind === 'all-deferred' ? '#all-deferred'
       : kind === 'empty' ? '#reading-empty' : '#hero';
     await page.waitForSelector(selector, { visible: true });
     check(await page.$eval('#btn-hero-read', (node) => node.getClientRects().length === 0),
@@ -2293,7 +2294,7 @@ async function readingSemantics(page) {
     state.issues[readingIssue.issueId].mu = mu;
     if (override) state = setOverride(state, readingIssue.issueId, override);
     await readingReplaceState(page, state);
-    // #1061: the record lives in Issue details, so each state is read there rather than on the card.
+    // #1061: the record lives in Comic details, so each state is read there rather than on the card.
     await page.evaluate((id) => { location.hash = `#/issue/${id}`; }, readingIssue.issueId);
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     await page.waitForFunction((expected) => document.querySelector('#issue-focus-facts dd')?.textContent === expected, {}, label);
@@ -2303,7 +2304,7 @@ async function readingSemantics(page) {
       && document.documentElement.scrollWidth <= innerWidth), `M01 ${label}: readable status, not a boolean`);
     await route(page, 'read');
     check(await page.$eval('#hero-facts', (node) => !node.textContent.includes('Unlimited')),
-      `M01 ${label}: #1061 the reading card leaves the record to Issue details`);
+      `M01 ${label}: #1061 the reading card leaves the record to Comic details`);
   }
 }
 
@@ -2378,10 +2379,11 @@ async function readingCompositionCheck(page, profile) {
   if (readingFactsAx) {
     const state = readingState(profile);
     const presentation = issuePresentation(state.issues[readingIssue.issueId]);
-    await readingAccessibility(page, { ...presentation, issue: state.issues[readingIssue.issueId].title }, profile.id);
+    const facts = presentation.facts.filter((fact) => !fact.detailsOnly);
+    await readingAccessibility(page, { ...presentation, facts, issue: state.issues[readingIssue.issueId].title }, profile.id);
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), KEY), before,
       `${profile.id}: factual AX confirmation preserves saved state`);
-    console.log(`FACTS AX ${profile.id}: four exact source/rendered/AX label-value pairs confirmed`);
+    console.log(`FACTS AX ${profile.id}: ${facts.length} exact source/rendered/AX label-value pairs confirmed`);
     return;
   }
   const result = await readingEvidence(page, profile);
@@ -2537,11 +2539,11 @@ async function alignmentCheck(page, profile) {
   await page.waitForFunction((populated) => document.querySelector('#home-continue').hidden === !populated, {}, !!profile.populated);
   check(await page.$eval('#view-home', (node) => !node.hidden), `${id}: actual Home route`);
   if (profile.populated) {
-    check(await page.$eval('#chero-count', (node, total) => node.textContent === `3 of ${total} issues read`,
+    check(await page.$eval('#chero-count', (node, total) => node.textContent === `3 of ${total} comics read`,
       readingOrder.items.length),
     `${id}: populated reading fixture on Home`);
   } else {
-    check(await page.$eval('#btn-home-add', (node) => !!node.getClientRects().length), `${id}: current fresh Home actions`);
+    check(await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => !!node.getClientRects().length), `${id}: current fresh Home recommendation`);
     // #985: phones move the closure notice below Continue reading, which a fresh Home does not show,
     // so here the notice stays Home's first content on every platform.
     check(await page.$eval('#view-home', (view) => [...view.children]
@@ -3066,15 +3068,14 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
 }
 
 async function mobileLayout(page, label, narrow) {
-  await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
-  // Home's start actions became native hash links on 2026-10-06, so links are collected; buttons still
-  // are, so an extra start action of either kind is reported, as the phone-header owner does.
-  const home = await page.$eval('#home-first-run', (region) => ({
-    recommended: !!region.querySelector('#home-recommended'),
-    actions: [...region.querySelectorAll(':is(a[href], button)')].map((action) => action.textContent.trim()),
+  await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+  const home = await page.$eval('#view-home', (region) => ({
+    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Recommended start here'),
+    intro: !!region.querySelector('#home-first-run'),
+    search: !!region.querySelector('[data-view="add"], #btn-home-add'),
   }));
-  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Start with Modern Timeline', 'Search']),
-    `${label}: Home contains only the Modern Timeline and Search starting choices ${JSON.stringify(home)}`);
+  check(home.recommended && !home.intro && !home.search,
+    `${label}: Home recommends Modern Timeline with Search left in navigation ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
   // UX-09 (#836): the bar's own destinations are not listed in the More sheet. Search took Browse's place
@@ -4507,11 +4508,11 @@ async function progressGlanceCheck(page, label, viewport) {
     check(home.scrollY === 0 && home.read.top >= 0 && home.read.bottom <= home.fold,
       `${name}: Home opens with Continue reading's Read fully above the bottom bar, as #857 placed it ${JSON.stringify(home)}`);
   }
-  check(home.text === `3 of ${total} issues read` && home.figure === '3' && home.sizes[0] >= home.sizes[1] * 1.25
+  check(home.text === `3 of ${total} comics read` && home.figure === '3' && home.sizes[0] >= home.sizes[1] * 1.25
     && Math.abs(home.share - 3 / total) * home.barWidth <= 0.5 && home.inside && !home.overflow,
-  `${name}: Home's count reads 3 of ${total} issues read, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify(home)}`);
+  `${name}: Home's count reads 3 of ${total} comics read, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify(home)}`);
   check(home.blank < home.line, `${name}: Home's bar follows the last line of words, with no blank line between ${JSON.stringify(home)}`);
-  const homeTree = await readings('home', `3 of ${total} issues read`);
+  const homeTree = await readings('home', `3 of ${total} comics read`);
   check(homeTree.times === 1 && homeTree.bars === 0,
     `${name}: Home reads its count once, and its bar is no progress bar of its own ${JSON.stringify(homeTree)}`);
   const homePaint = await painted('home');
@@ -5599,7 +5600,7 @@ try {
       const sharedCopy = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');
         return {
-          recommendation: !!document.querySelector('#home-recommended'),
+          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Recommended start here'),
           // Home's start actions and the footer About became native hash links so browser
           // navigation gestures work, so both are found as links; buttons are still collected
           // so an extra start action of either kind is reported.
@@ -5614,8 +5615,8 @@ try {
       // Each property is named on failure, as the navigation and mark checks above do, so a miss
       // says which measurement disagreed rather than only that the combined check did.
       const homeMisses = [
-        sharedCopy.recommendation && 'Setup recommendation present',
-        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Start with Modern Timeline', 'Search'])
+        !sharedCopy.recommendation && 'Modern Timeline recommendation missing',
+        sharedCopy.startActions.length !== 0
           && `start actions ${JSON.stringify(sharedCopy.startActions)}`,
       ].filter(Boolean);
       check(!homeMisses.length,

@@ -265,7 +265,7 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
 
   assert.match(reading, /class: 'cb has-tooltip'/);
   for (const tooltip of [
-    'Open issue page on marvel.com',
+    'Open comic page on marvel.com',
     'Move up',
     'Move down',
     'Remove from list',
@@ -362,7 +362,7 @@ test('the full Reading List summary is a wrapping full-width action', () => {
 
 test('the full Reading List action and state hooks receive the accepted copy', () => {
   assert.match(reading, /\$\('#full-action'\)\.textContent = \$\('#full'\)\.open/);
-  for (const copy of ['Hide full Reading List', 'View all ${total} issue', 'No issues yet', '${unread} unread', 'All read']) {
+  for (const copy of ['Hide full Reading List', 'View all ${total} comic', 'No comics yet', '${unread} unread', 'All read']) {
     assert.ok(reading.includes(copy), `the summary renderer is missing ${copy}`);
   }
 });

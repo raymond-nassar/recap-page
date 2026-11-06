@@ -160,7 +160,7 @@ export const moonKnightActualData = {
           overflow: document.documentElement.scrollWidth > innerWidth,
         }));
         t.check(`${label}: the owner-credited shortlist appears once without a reading path or horizontal overflow`,
-          actual.title === name && actual.text.includes('17 issues') && actual.count === 1
+          actual.title === name && actual.text.includes('17 comics') && actual.count === 1
             && actual.credit === 'https://github.com/raymond-nassar/recap-page/issues/685'
             && actual.action === `Add to library: ${name}` && !actual.path
             && actual.hash === `#/marvel-on-screen/${priorId}` && !actual.overflow

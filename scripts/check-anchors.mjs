@@ -462,7 +462,7 @@ const read = (path, source = ACTIVE_SOURCE) => {
 };
 
 const cache = new Map();
-const linesOf = (path, source = ACTIVE_SOURCE) => {
+export const linesOf = (path, source = ACTIVE_SOURCE) => {
   const key = `${sourceKey(source)}\0${path}`;
   if (!cache.has(key)) {
     const text = read(path, source);
@@ -496,7 +496,7 @@ export function blankEdgeOf(lines, start, end) {
 // `tail` and `blankEdge` are computed for printing and refusal only. Neither is written
 // to the lock: the lock already holds every field a comparison needs, and adding one
 // would rewrite all of it for a value nothing compares against.
-function fingerprint(file, start, end, source = ACTIVE_SOURCE) {
+export function fingerprint(file, start, end, source = ACTIVE_SOURCE) {
   const lines = linesOf(file, source);
   if (lines === null) return { fp: null, why: 'file missing' };
   if (end > lines.length) return { fp: null, why: `out of range, file has ${lines.length} lines` };
@@ -1184,7 +1184,7 @@ export function claimBefore(lines, i, at, syntax = PROSE) {
 // Structure decides only the *name*. It never decides membership: an anchor whose
 // shape the walker misreads still gets collected, it just gets an uglier key. That
 // inversion is what stops a new row shape from silently leaving anchors uncovered.
-function collect() {
+export function collect() {
   const found = [];
   const localOnly = [];
   const coverage = [];
@@ -1251,6 +1251,8 @@ function collect() {
           claim: claimBefore(lines, i, c.at, syntax),
           fullClaim: fullClaimBefore(lines, i, c.at, syntax),
           legacySource: source,
+          line: i + 1,
+          at: c.at,
           ...fingerprint(c.file, c.start, c.end, source),
         };
         (local ? localOnly : found).push(occurrence);

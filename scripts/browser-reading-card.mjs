@@ -321,7 +321,7 @@ export const readingCardPhoneOverview = {
 };
 
 // #1061, the owner's request on 2026-11-01: the cover is centered and takes more of the screen, Read
-// and Done stay visible without scrolling, and the Marvel Unlimited record moves to Issue details. Before
+// and Done stay visible without scrolling, and the Marvel Unlimited record moves to Comic details. Before
 // it, a phone showed the cover floated left at 96px. The owner's 2026-11-02 choices then put Read and
 // Done side by side on phones and made the list's heading compact on short screens, so at default text
 // both open above the bottom bar on every phone here, 375x667 and 360x800 included, where before #1061
@@ -335,7 +335,7 @@ const posterCoverBefore = {
 };
 export const readingCardPoster = {
   id: 'reading-card-poster',
-  title: 'the reading card centers a larger cover with Read and Done above the fold, and leaves the record to Issue details',
+  title: 'the reading card centers a larger cover with Read and Done above the fold, and leaves the record to Comic details',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -413,7 +413,7 @@ export const readingCardPoster = {
               seen.art >= before, JSON.stringify(seen));
           }
         }
-        t.check(`${name}: the card leaves the Unlimited record to Issue details and shows no position`,
+        t.check(`${name}: the card leaves the Unlimited record to Comic details and shows no position`,
           !/Unlimited|Position/.test(seen.facts), seen.facts);
         await undo();
       }
@@ -423,7 +423,7 @@ export const readingCardPoster = {
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     const details = await page.$eval('#issue-focus-facts', (node) => node.textContent);
     const context = await page.$eval('#issue-focus-context', (node) => node.textContent);
-    t.check('Issue details shows the Unlimited record and, by the owner\'s 2026-11-02 choice, no position',
+    t.check('Comic details shows the Unlimited record and, by the owner\'s 2026-11-02 choice, no position',
       /Marvel Unlimited record/.test(details) && !/Position|\d+ of \d+/.test(details) && !/\d+ of \d+/.test(context),
       JSON.stringify({ details, context }));
     await page.evaluate(() => localStorage.clear());

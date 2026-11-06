@@ -249,7 +249,7 @@ test('post-erase newer reader data and unconfirmed history or cache cleanup neve
 test('with nothing kept aside the dialog claims the lists and the progress, and not the settings', () => {
   const body = eraseDialogBody([]);
   assert.doesNotMatch(body, /everything this browser has stored/);
-  assert.match(body, /^This clears all lists, notes, issue ratings, reading progress/);
+  assert.match(body, /^This clears all lists, notes, comic ratings, reading progress/);
   assert.match(body, /settings are kept/);
   assert.match(body, /It cannot be undone\.$/);
   assert.doesNotMatch(body, /kept aside/, 'and it does not raise a subject the reader has no copies in');
@@ -260,7 +260,7 @@ test('with nothing kept aside the dialog claims the lists and the progress, and 
 test('the dialog stops claiming everything once a copy is being kept aside', () => {
   const body = eraseDialogBody(one);
   assert.doesNotMatch(body, /everything this browser has stored/);
-  assert.match(body, /^This clears all lists, notes, issue ratings, reading progress/);
+  assert.match(body, /^This clears all lists, notes, comic ratings, reading progress/);
   assert.match(body, /does not reach it/);
   assert.match(body, /It cannot be undone\.$/, 'the warning is narrowed, not dropped');
 });

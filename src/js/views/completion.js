@@ -5,6 +5,7 @@ import { labelledName } from '../lib/accname.js';
 import { wireFieldValidation } from './shared/field-validation.js';
 import { HOME_CARDS, formatRoute, isPlainNavigation } from '../lib/route.js';
 import { nearEnd as nearEndOf, similarLists } from '../lib/similarLists.js';
+import { catalogCoverUrl } from '../lib/catalog.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -32,6 +33,7 @@ export function createCompletionView({
   notify,
   announce,
   focusCurrentView,
+  paintCoverUrl,
   createIcon = uiIcon,
   isIos = false,
 }) {
@@ -133,20 +135,38 @@ export function createCompletionView({
     nextIds = new Set();
   }
 
-  function suggestionCard(suggestion, act) {
+  function finishedReading() {
+    const list = currentList();
+    if (getView() !== 'read' || !list) return false;
+    const { read, total } = listReadingProgress(getState(), list.id);
+    return history.isCompleted(getState(), list.id) || (total > 0 && read === total);
+  }
+
+  function suggestionCard(suggestion, act, catalog, primary = false) {
     const label = suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List';
+    const entry = catalog.lists.find((candidate) => candidate.id === suggestion.catalogId);
+    if (!entry) throw new Error('A suggested Reading List is missing from the catalog.');
+    const image = el('img', { class: 'rcov-i', alt: '', loading: 'lazy', decoding: 'async' });
+    const fallback = el('div', { class: 'rcov-f cover-fallback', 'aria-hidden': true });
+    paintCoverUrl(image, fallback, catalogCoverUrl(entry), 0, entry.name);
+    const href = suggestion.savedListId ? formatRoute({ view: 'read', listId: suggestion.savedListId }) : null;
     return el('li', { class: 'recommendation-card' }, [
       el('h3', { text: suggestion.name }),
       el('ul', { class: 'recommendation-reasons' }, suggestion.reasons.map((reason) => el('li', {
         text: reason.text,
       }))),
-      el('button', {
-        type: 'button', class: 'btn btn-g',
+      el(href ? 'a' : 'button', {
+        ...(href ? { href } : { type: 'button' }), class: primary ? 'btn' : 'btn btn-g',
         dataset: { recommendation: suggestion.catalogId },
         text: label,
         'aria-label': labelledName(label, suggestion.name),
-        onclick: act,
+        onclick: (event) => {
+          if (href && !isPlainNavigation(event)) return;
+          event?.preventDefault();
+          act();
+        },
       }),
+      el('div', { class: 'rcov recommendation-cover' }, [image, fallback]),
     ]);
   }
 
@@ -155,13 +175,13 @@ export function createCompletionView({
       && getView() === 'read' && getState() === held.state
       && listHistoryIdentity(currentList()) === held.identity
       && history.completionRevision === held.revision
-      && history.isCompleted(getState(), getListId());
+      && finishedReading();
   }
 
   async function refreshRecommendations({ force = false } = {}) {
     const nodes = elements();
     const list = currentList();
-    if (getView() !== 'read' || !list || !history.isCompleted(getState(), list.id)) {
+    if (!list || !finishedReading()) {
       cancelRecommendations();
       nodes.recommendations.hidden = true;
       return;
@@ -182,26 +202,34 @@ export function createCompletionView({
       try {
         const catalog = await loadCatalog();
         if (!recommendationCurrent(held)) return;
+        similarCatalog = catalog;
+        const source = catalog.lists.find((entry) => entry.id === list.catalogId);
+        const timeline = Number.isInteger(source?.timeline);
+        nodes.recommendationHeading.textContent = timeline ? 'Next on the Modern Timeline' : 'What to read next';
         const result = await resolveRecommendations({
           catalog, state: held.state, sourceListId: list.id,
           isCompleted: (state, id) => history.isCompleted(state, id),
           signal: held.abort.signal,
         });
         if (!recommendationCurrent(held) || result.cancelled) return;
-        nodes.suggestions.replaceChildren(...result.suggestions.map((suggestion) => {
+        const suggestions = timeline
+          ? result.suggestions.filter((suggestion) => suggestion.reasons.some((reason) => reason.type === 'modern-timeline')).slice(0, 1)
+          : result.suggestions;
+        nodes.suggestions.replaceChildren(...suggestions.map((suggestion) => {
           const entry = catalog.lists.find((candidate) => candidate.id === suggestion.catalogId);
           if (!entry) throw new Error('A suggested Reading List is missing from the catalog.');
           return suggestionCard(suggestion, () => {
             if (!recommendationCurrent(held)) return;
             if (suggestion.savedListId) openList(suggestion.savedListId);
             else previewRecommendation(entry, suggestion, catalog);
-          });
+          }, catalog, timeline);
         }));
-        nextIds = new Set(result.suggestions.map((suggestion) => suggestion.catalogId));
+        nextIds = new Set(suggestions.map((suggestion) => suggestion.catalogId));
         const failures = result.failures.map((failure) => failure.message);
         nodes.recommendationStatus.textContent = failures.length
-          ? `Some suggestions could not be checked. ${failures.join(' ')}` : '';
-        nodes.recommendationStatus.hidden = failures.length === 0;
+          ? `Some suggestions could not be checked. ${failures.join(' ')}`
+          : timeline && suggestions.length === 0 ? 'No unread Modern Timeline continuation was found. Browse Reading Lists for another story.' : '';
+        nodes.recommendationStatus.hidden = !nodes.recommendationStatus.textContent;
         nodes.recommendationRetry.hidden = failures.length === 0;
       } catch (error) {
         if (!recommendationCurrent(held)) return;
@@ -230,14 +258,14 @@ export function createCompletionView({
     const nearEnd = !finished && !!progress && nearEndOf(progress);
     // While "What to read next" is still resolving, its picks are unknown, so a similar card could
     // repeat one of them; the section waits for it to settle rather than reshuffle in front of the reader.
-    const waiting = completed && request && !request.settled;
+    const waiting = finished && request && !request.settled;
     let picks = [];
     if ((finished && !waiting) || nearEnd) {
       if (similarCatalog) {
         picks = similarLists({
           catalog: similarCatalog, state, sourceListId: list.id,
           isCompleted: (current, id) => history.isCompleted(current, id),
-          exclude: completed ? nextIds : new Set(),
+          exclude: nextIds,
           limit: nearEnd ? 1 : undefined,
         });
       } else {
@@ -255,7 +283,7 @@ export function createCompletionView({
       else if (entry) previewRecommendation(entry, suggestion, similarCatalog);
     };
     if (finished && !waiting) {
-      nodes.similarSuggestions.replaceChildren(...picks.map((suggestion) => suggestionCard(suggestion, act(suggestion))));
+      nodes.similarSuggestions.replaceChildren(...picks.map((suggestion) => suggestionCard(suggestion, act(suggestion), similarCatalog)));
     } else if (!finished) {
       nodes.similarSuggestions.replaceChildren();
     }
