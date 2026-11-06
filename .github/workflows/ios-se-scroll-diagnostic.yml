@@ -112,6 +112,41 @@ jobs:
           const method = 'testSEPrivacyScrollDiagnostic';
           const fail = message => { throw new Error(message); };
           const requireValue = (condition, message) => { if (!condition) fail(message); };
+          const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+          const hasNumbers = (value, keys) => isRecord(value) && keys.every(key => Number.isFinite(value[key]));
+          const positive = value => Number.isFinite(value) && value > 0;
+          const close = (actual, expected) => Number.isFinite(expected)
+            && Math.abs(actual - expected) <= 1e-7 * Math.max(1, Math.abs(actual), Math.abs(expected));
+          function validRect(rect) {
+            return hasNumbers(rect, ['x', 'y', 'width', 'height', 'left', 'top', 'right', 'bottom'])
+              && rect.width >= 0 && rect.height >= 0
+              && close(rect.x, rect.left) && close(rect.y, rect.top)
+              && close(rect.width, rect.right - rect.left) && close(rect.height, rect.bottom - rect.top);
+          }
+          function validViewport(viewport) {
+            if (!hasNumbers(viewport, ['width', 'height', 'devicePixelRatio'])
+              || !positive(viewport.width) || !positive(viewport.height) || !positive(viewport.devicePixelRatio)
+              || !hasNumbers(viewport.visual, ['width', 'height', 'offsetLeft', 'offsetTop', 'scale'])) return false;
+            return positive(viewport.visual.width) && positive(viewport.visual.height)
+              && positive(viewport.visual.scale);
+          }
+          function validNavigation(navigation) {
+            if (!isRecord(navigation) || !validRect(navigation.rect)
+              || !['position', 'display', 'visibility', 'opacity', 'transform']
+                .every(key => typeof navigation[key] === 'string' && navigation[key].trim().length > 0)) return false;
+            const opacity = Number(navigation.opacity);
+            return Number.isFinite(opacity) && opacity >= 0 && opacity <= 1;
+          }
+          const frameNumber = String.raw`[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?`;
+          const framePattern = new RegExp(String.raw`^\s*\{\s*\{\s*(${frameNumber})\s*,\s*(${frameNumber})\s*\}\s*,\s*\{\s*(${frameNumber})\s*,\s*(${frameNumber})\s*\}\s*\}\s*$`);
+          function validFrame(frame, requireArea) {
+            if (typeof frame !== 'string') return false;
+            const match = framePattern.exec(frame);
+            if (!match) return false;
+            const values = match.slice(1).map(Number);
+            return values.every(Number.isFinite) && (requireArea
+              ? values[2] > 0 && values[3] > 0 : values[2] >= 0 && values[3] >= 0);
+          }
           function nodes(value) {
             if (Array.isArray(value)) return value.flatMap(nodes);
             if (!value || typeof value !== 'object') return [];
@@ -153,11 +188,15 @@ jobs:
                 && Number.isFinite(row.scrollY) && Number.isInteger(row.beforeTick)
                 && Number.isInteger(row.afterTick) && row.afterTick > row.beforeTick
                 && Number.isInteger(row.nativeCount) && row.nativeCount >= 0 && row.nativeCount <= 1
-                && row.viewport && row.navigation && Array.isArray(row.dragProbes) && row.dragProbes.length === 2
+                && validViewport(row.viewport) && validNavigation(row.navigation)
+                && validFrame(row.webFrame, true)
+                && (row.nativeCount === 0 ? row.nativeFrame === null : validFrame(row.nativeFrame, false))
+                && Array.isArray(row.dragProbes) && row.dragProbes.length === 2
                 && row.dragProbes.every(probe => probe.hit && probe.interactive === false && probe.navigation === false)
                 && row.gesture?.direction === (index === 0 ? 'none' : index <= 3 ? 'down' : 'up')
                 && Array.isArray(row.privacyOwners)
-                && row.privacyOwners.length === 1 && row.privacyOwners[0].label === expected,
+                && row.privacyOwners.length === 1 && row.privacyOwners[0].label === expected
+                && validRect(row.privacyOwners[0].rect),
               `Incomplete matched observation ${name}`);
               return row;
             });
@@ -170,7 +209,7 @@ jobs:
               const ids = new Set();
               for (const fragment of fragments) {
                 requireValue(Number.isInteger(fragment.textIndex) && Number.isInteger(fragment.fragmentIndex)
-                  && fragment.rect && Array.isArray(fragment.points) && fragment.points.length === 3,
+                  && validRect(fragment.rect) && Array.isArray(fragment.points) && fragment.points.length === 3,
                 'Malformed fragment');
                 const id = `${fragment.textIndex}:${fragment.fragmentIndex}`;
                 requireValue(!ids.has(id), 'Duplicate fragment');
@@ -208,39 +247,139 @@ jobs:
             const positions = [0, 100, 200, 300, 200, 100, 0];
             const point = { x: 1, y: 1, inViewport: true, hit: null, guardHit: null,
               ownerContains: false, navigationContains: false };
+            const rect = { x: 16, y: 565, width: 333, height: 53,
+              left: 16, top: 565, right: 349, bottom: 618 };
+            const zeroRect = { x: 0, y: 0, width: 0, height: 0, left: 0, top: 0, right: 0, bottom: 0 };
+            const viewport = { width: 375, height: 647, devicePixelRatio: 2,
+              visual: { width: 375, height: 647, offsetLeft: 0, offsetTop: 0, scale: 1 } };
+            const navigation = { rect: { x: 0, y: 522, width: 375, height: 125,
+              left: 0, top: 522, right: 375, bottom: 647 },
+            position: 'fixed', display: 'grid', visibility: 'visible', opacity: '1', transform: 'none' };
             const rows = positions.map((scrollY, index) => ({ matched: true, view: 'view-data',
               href: 'recap://app/#/data', guardValid: true, scrollY, beforeTick: index * 2,
-              afterTick: index * 2 + 1, nativeCount: 1, viewport: {}, navigation: {},
+              afterTick: index * 2 + 1, nativeCount: 1, nativeFrame: '{{16, 565}, {333, 10}}',
+              webFrame: '{{0, 20}, {375, 647}}', viewport: structuredClone(viewport),
+              navigation: structuredClone(navigation),
               gesture: { direction: index === 0 ? 'none' : index <= 3 ? 'down' : 'up' },
               dragProbes: [{ hit: {}, interactive: false, navigation: false },
                 { hit: {}, interactive: false, navigation: false }],
-              privacyOwners: [{ label: expected, samples: [{ textIndex: 0, fragmentIndex: 0,
-                rect: {}, points: [point, point, point] }] }] }));
+              privacyOwners: [{ label: expected, rect: { ...rect }, samples: [{ textIndex: 0, fragmentIndex: 0,
+                rect: { ...rect }, points: [point, point, point] }] }] }));
             const complete = { positions, downward: 300, upward: 300, observationCount: 7,
               sawNative: true, duplicateNative: false };
             const prefix = `Test Case '-[RecapPageUITests.PresentationUITests ${method}]'`;
-            const log = [`${prefix} started.`, `${prefix} passed (1 seconds).`,
-              ...rows.map((row, index) => `RECAP_PROBE_RESULT ${index ? `se-scroll-gesture-${index}` : 'se-scroll-initial'} ${JSON.stringify(row)}`),
+            const logFor = observations => [`${prefix} started.`, `${prefix} passed (1 seconds).`,
+              ...observations.map((row, index) => `RECAP_PROBE_RESULT ${index ? `se-scroll-gesture-${index}` : 'se-scroll-initial'} ${JSON.stringify(row)}`),
               `RECAP_PROBE_RESULT se-scroll-complete ${JSON.stringify(complete)}`].join('\n');
+            const log = logFor(rows);
             verify(summary, tree, log, 'device');
-            const bad = [
-              [{ ...summary, totalTestCount: 0 }, tree, log],
-              [{ ...summary, skippedTests: 1 }, tree, log],
-              [summary, { testNodes: [] }, log],
-              [summary, tree, log.replace(method, 'wrongTest')],
-              [summary, tree, log.replace('se-scroll-complete', 'se-scroll-missing')],
-              [summary, tree, log.replace('"matched":true', '"matched":false')],
-              [summary, tree, log.replace('"scrollY":100', '"scrollY":"bad"')],
-              [summary, tree, log.replace('"interactive":false', '"interactive":true')],
-              [summary, tree, log.replaceAll('"scrollY":100', '"scrollY":0')
-                .replaceAll('"scrollY":200', '"scrollY":0').replaceAll('"scrollY":300', '"scrollY":0')],
+            const hidden = structuredClone(rows);
+            hidden[0].navigation = { ...navigation, display: 'none', rect: zeroRect };
+            hidden[0].nativeCount = 0;
+            hidden[0].nativeFrame = null;
+            hidden[1].navigation.visibility = 'hidden';
+            hidden[2].navigation.opacity = '0';
+            hidden[3].nativeFrame = '{{16.5, -59}, {334, 0}}';
+            verify(summary, tree, logFor(hidden), 'device');
+            const geometryCases = [
+              ['empty viewport', row => { row.viewport = {}; }],
+              ['viewport array', row => { row.viewport = []; }],
+              ['missing viewport width', row => { delete row.viewport.width; }],
+              ['non-finite viewport width', row => { row.viewport.width = Infinity; }],
+              ['zero viewport height', row => { row.viewport.height = 0; }],
+              ['invalid device scale', row => { row.viewport.devicePixelRatio = 0; }],
+              ['missing visual viewport', row => { row.viewport.visual = null; }],
+              ['empty visual viewport', row => { row.viewport.visual = {}; }],
+              ['invalid visual width', row => { row.viewport.visual.width = -1; }],
+              ['invalid visual height', row => { row.viewport.visual.height = 0; }],
+              ['invalid visual offset', row => { row.viewport.visual.offsetLeft = '0'; }],
+              ['invalid visual scale', row => { row.viewport.visual.scale = 0; }],
+              ['missing navigation', row => { row.navigation = null; }],
+              ['empty navigation', row => { row.navigation = {}; }],
+              ['missing navigation rectangle', row => { delete row.navigation.rect; }],
+              ['empty navigation rectangle', row => { row.navigation.rect = {}; }],
+              ['navigation rectangle array', row => { row.navigation.rect = []; }],
+              ['invalid navigation coordinate', row => { row.navigation.rect.x = '0'; }],
+              ['negative navigation size', row => { row.navigation.rect.height = -1; }],
+              ['inconsistent navigation edges', row => { row.navigation.rect.right -= 1; }],
+              ['missing navigation visibility', row => { delete row.navigation.visibility; }],
+              ['invalid navigation opacity', row => { row.navigation.opacity = 'invalid'; }],
+              ['missing owner rectangle', row => { delete row.privacyOwners[0].rect; }],
+              ['empty owner rectangle', row => { row.privacyOwners[0].rect = {}; }],
+              ['invalid owner coordinate', row => { row.privacyOwners[0].rect.bottom = null; }],
+              ['inconsistent owner origin', row => { row.privacyOwners[0].rect.x += 1; }],
+              ['empty fragment rectangle', row => { row.privacyOwners[0].samples[0].rect = {}; }],
+              ['invalid fragment coordinate', row => { row.privacyOwners[0].samples[0].rect.y = '565'; }],
+              ['negative fragment size', row => { row.privacyOwners[0].samples[0].rect.width = -1; }],
+              ['inconsistent fragment edges', row => { row.privacyOwners[0].samples[0].rect.bottom -= 1; }],
+              ['missing native frame', row => { row.nativeFrame = null; }],
+              ['malformed native frame', row => { row.nativeFrame = 'frame'; }],
+              ['non-finite native frame', row => { row.nativeFrame = '{{Infinity, 0}, {333, 10}}'; }],
+              ['overflowing native frame', row => { row.nativeFrame = '{{1e309, 0}, {333, 10}}'; }],
+              ['negative native size', row => { row.nativeFrame = '{{16, 565}, {-333, 10}}'; }],
+              ['native absence not recorded', row => { row.nativeCount = 0; delete row.nativeFrame; }],
+              ['native frame without a match', row => { row.nativeCount = 0; }],
+              ['missing web frame', row => { row.webFrame = null; }],
+              ['malformed web frame', row => { row.webFrame = '{}'; }],
+              ['zero web frame size', row => { row.webFrame = '{{0, 20}, {0, 647}}'; }],
+              ['missing web frame without a native match', row => {
+                row.nativeCount = 0; row.nativeFrame = null; row.webFrame = null;
+              }],
             ];
-            for (const args of bad) {
-              let rejected = false;
-              try { verify(...args, 'device'); } catch { rejected = true; }
-              requireValue(rejected, 'A negative validator fixture was accepted');
+            for (const [name, getRect] of [
+              ['navigation', row => row.navigation.rect],
+              ['owner', row => row.privacyOwners[0].rect],
+              ['fragment', row => row.privacyOwners[0].samples[0].rect],
+            ]) {
+              for (const key of ['x', 'y', 'width', 'height', 'left', 'top', 'right', 'bottom']) {
+                geometryCases.push([`missing ${name} ${key}`, row => { delete getRect(row)[key]; }]);
+              }
             }
-            console.log(`Diagnostic validator accepted the complete fixture and rejected ${bad.length} negative fixtures.`);
+            for (const key of ['width', 'height', 'offsetLeft', 'offsetTop', 'scale']) {
+              geometryCases.push([`missing visual ${key}`, row => { delete row.viewport.visual[key]; }]);
+            }
+            for (const key of ['position', 'display', 'visibility', 'opacity', 'transform']) {
+              geometryCases.push([`missing navigation ${key}`, row => { delete row.navigation[key]; }]);
+            }
+            const geometryBad = geometryCases.map(([name, mutate]) => {
+              const invalid = structuredClone(rows);
+              mutate(invalid[0]);
+              const reason = name.includes('fragment') ? 'Malformed fragment' : 'Incomplete matched observation';
+              return [name, reason, summary, tree, logFor(invalid)];
+            });
+            const bad = [
+              ['wrong test count', 'one passing, unskipped test', { ...summary, totalTestCount: 0 }, tree, log],
+              ['skipped test', 'one passing, unskipped test', { ...summary, skippedTests: 1 }, tree, log],
+              ['missing test', 'exact diagnostic test', summary, { testNodes: [] }, log],
+              ['wrong test', 'start and pass once', summary, tree, log.replace(method, 'wrongTest')],
+              ['missing completion', 'incomplete completion marker', summary, tree,
+                log.replace('se-scroll-complete', 'se-scroll-missing')],
+              ['unmatched observation', 'Incomplete matched observation', summary, tree,
+                log.replace('"matched":true', '"matched":false')],
+              ['invalid scroll', 'Incomplete matched observation', summary, tree,
+                log.replace('"scrollY":100', '"scrollY":"bad"')],
+              ['interactive drag', 'Incomplete matched observation', summary, tree,
+                log.replace('"interactive":false', '"interactive":true')],
+              ['overflowing viewport', 'Incomplete matched observation', summary, tree,
+                log.replace('"width":375', '"width":1e309')],
+              ['zero movement', 'incomplete completion marker', summary, tree, log.replaceAll('"scrollY":100', '"scrollY":0')
+                .replaceAll('"scrollY":200', '"scrollY":0').replaceAll('"scrollY":300', '"scrollY":0')],
+              ...geometryBad,
+            ];
+            const accepted = [];
+            for (const [name, reason, ...args] of bad) {
+              let rejected = false;
+              try {
+                verify(...args, 'device');
+              } catch (error) {
+                requireValue(error instanceof Error && error.message.includes(reason),
+                  `Negative validator fixture ${name} failed unexpectedly: ${error}`);
+                rejected = true;
+              }
+              if (!rejected) accepted.push(name);
+            }
+            requireValue(accepted.length === 0, `Negative validator fixtures accepted: ${accepted.join(', ')}`);
+            console.log(`Diagnostic validator accepted complete and hidden-navigation fixtures and rejected ${bad.length} negative fixtures.`);
           }
           if (process.argv[2] === '--self-test') selfTest();
           else {
