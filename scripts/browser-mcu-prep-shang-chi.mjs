@@ -11,7 +11,7 @@ const titles = fixture.series.flatMap((series) => Array.from(
 ));
 const sections = fixture.blockCounts.flatMap((count, index) =>
   Array(count).fill(fixture.collectedInByBlock[index]));
-const headings = fixture.collectedInByBlock.map((section) => section ?? 'Individual issues');
+const headings = fixture.collectedInByBlock.map((section) => section ?? 'Individual comics');
 const expected = fixture.issueIds.map((issueId, index) => ({
   position: index + 1, issueId, title: titles[index], section: sections[index],
 }));
@@ -26,7 +26,7 @@ async function renderedRows(page, mode) {
         const heading = node.querySelector(view === 'preview' ? '.preview-group h4' : '.row-group .rg-name');
         if (heading) {
           const label = heading.textContent.trim();
-          section = label === 'Individual issues' ? null : label;
+          section = label === 'Individual comics' ? null : label;
           headings.push(label);
           continue;
         }
@@ -91,8 +91,8 @@ export const mcuPrepShangChiActualData = {
       await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
       await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
       await page.reload({ waitUntil: 'load' });
-      await page.waitForSelector('#btn-home-browse');
-      await page.$eval('#btn-home-browse', (node) => node.click());
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.click());
       await page.waitForSelector('#view-home [data-category="marvel-on-screen"]');
       await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());
       const selector = `#marvel-on-screen-results [data-story="list:${id}"]`;
@@ -107,7 +107,7 @@ export const mcuPrepShangChiActualData = {
         fits: document.documentElement.scrollWidth <= window.innerWidth + 1,
       }));
       t.check(`${width}px Home Browse reaches the exact 37-issue MCU Prep card once`,
-        discovery.name === name && discovery.text.includes('37 issues')
+        discovery.name === name && discovery.text.includes('37 comics')
         && discovery.sources.includes(source) && discovery.importLabel === `Add to library: ${name}`
         && discovery.matches === 1 && discovery.hash === '#/marvel-on-screen' && discovery.fits,
         JSON.stringify(discovery));
@@ -162,8 +162,8 @@ export const mcuPrepShangChiActualData = {
       checkVector(t, `${width}px reload retains the full saved original vector`, persisted.rows);
 
       await page.$eval('.brand[data-view="home"]', (node) => node.click());
-      await page.waitForSelector('#btn-home-browse');
-      await page.$eval('#btn-home-browse', (node) => node.click());
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.click());
       await page.waitForSelector('#view-home [data-category="marvel-on-screen"]');
       await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());
       await page.waitForSelector(`${selector} [data-act="open"]`);

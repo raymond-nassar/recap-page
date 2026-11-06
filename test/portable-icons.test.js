@@ -39,10 +39,10 @@ test('the authored symbol set has exactly the used names and no remote or active
   const ids = [...sprite.matchAll(/<symbol id="([\w-]+)" viewBox="0 0 24 24">/g)]
     .map(([, id]) => id);
   assert.deepEqual(ids.sort(), [...new Set([
-    ...expected, 'storylines', 'screen', 'ages', 'reader', 'arrow-right', 'thumb-up', 'thumb-down', 'star',
+    ...expected, 'storylines', 'screen', 'ages', 'reader', 'arrow-left', 'arrow-right', 'thumb-up', 'thumb-down', 'star',
     'story-types',
   ])].sort());
-  assert.equal(ids.length, 23);
+  assert.equal(ids.length, 24);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);
   assert.doesNotMatch(sprite, /[\uE000-\uF8FF]/);
   assert.match(css, /\.gi \{\s*fill: none; stroke: currentColor;/);

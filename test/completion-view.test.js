@@ -51,7 +51,7 @@ function fixture({ isIos = false, catalog: given = null } = {}) {
     'readBody', 'listActions', 'wrapupActions', 'deferredActions', 'wrapup', 'wrapupHeading', 'status', 'complete', 'reopen',
     'collectionOpen', 'ratings', 'up', 'down', 'icons', 'downIcons', 'feedbackGuide',
     'feedbackDialog', 'feedbackClose', 'feedbackLink', 'privateFeedbackLink',
-    'recommendations', 'suggestions', 'recommendationStatus', 'recommendationRetry',
+    'recommendations', 'recommendationHeading', 'suggestions', 'recommendationStatus', 'recommendationRetry',
     'recommendationBrowse', 'similar', 'similarSuggestions', 'similarHint', 'collectionCount', 'collectionStatus', 'collectionSection',
     'collectionResults', 'home', 'homeYours', 'library', 'libraryYours', 'dataSafety',
     'historyControls', 'historyStatus', 'historyExport', 'historyCopy', 'historyRetry', 'historyRestore',
@@ -112,6 +112,7 @@ function fixture({ isIos = false, catalog: given = null } = {}) {
     announce: (message) => calls.announce.push(message),
     focusCurrentView: () => { calls.focus += 1; },
     createIcon: (name) => node({ icon: name }),
+    paintCoverUrl: (image, fallback, url) => { image.src = url; fallback.hidden = !!url; },
     isIos,
   });
   h.view = view;
@@ -471,6 +472,53 @@ const similarCatalog = {
 };
 const settle = () => new Promise((resolve) => setImmediate(resolve));
 const cardNames = (h) => h.nodes.similarSuggestions.children.map((card) => card.children[0].text);
+
+test('all-read and explicit completion put one Timeline continuation before genre and tone picks, with catalog covers', async () => {
+  for (const explicit of [false, true]) {
+    const catalog = {
+      lists: similarCatalog.lists.map((entry, index) => ({
+        ...entry,
+        ...(index < 2 ? { timeline: 2005 + index } : {}),
+        cover: { path: `https://i.annihil.us/u/prod/marvel/i/mg/${entry.id}`, ext: 'jpg' },
+      })),
+    };
+    const h = fixture({ catalog });
+    const before = JSON.stringify(h.state);
+    if (explicit) await h.history.complete('a');
+    else for (const id of h.state.lists.a.itemIds) h.state = markRead(h.state, id, true, 2000);
+    const reader = JSON.stringify(h.state);
+    h.resolves = async () => ({
+      suggestions: [
+        { catalogId: 'alike', name: 'Alike story', reasons: [{ type: 'same-writer', text: 'Same writer' }] },
+        { catalogId: 'next', name: 'Path next stop', reasons: [{ type: 'modern-timeline', text: 'Next in Modern Timeline' }] },
+      ],
+      failures: [], cancelled: false,
+    });
+    await h.view.render();
+    assert.equal(h.nodes.recommendations.hidden, false);
+    assert.equal(h.nodes.recommendationHeading.textContent, 'Next on the Modern Timeline');
+    assert.equal(h.nodes.suggestions.children.length, 1);
+    const [next] = h.nodes.suggestions.children;
+    assert.equal(next.children[0].text, 'Path next stop');
+    assert.equal(next.children[2].class, 'btn', 'only the Timeline continuation is primary');
+    assert.deepEqual(cardNames(h), ['Alike story', 'Plain story']);
+    for (const card of [next, ...h.nodes.similarSuggestions.children]) {
+      assert.match(card.children[3].children[0].src, /^https:\/\/i\.annihil\.us\/.*\/portrait_incredible\.jpg$/);
+    }
+    assert.equal(JSON.stringify(h.state), reader, 'discovery does not write reader progress');
+    assert.equal(h.history.isCompleted(h.state, 'a'), explicit, 'all-read does not silently complete the list');
+    if (explicit) assert.equal(reader, before);
+  }
+});
+
+test('a finished Timeline with no next unread stop explains the next step without inventing a list', async () => {
+  const h = fixture({ catalog: { lists: [{ id: 'source', timeline: 2005 }] } });
+  for (const id of h.state.lists.a.itemIds) h.state = markRead(h.state, id, true, 2000);
+  await h.view.render();
+  assert.equal(h.nodes.suggestions.children.length, 0);
+  assert.match(h.nodes.recommendationStatus.textContent, /No unread Modern Timeline continuation.*Browse Reading Lists/);
+  assert.equal(h.nodes.recommendationRetry.hidden, true);
+});
 
 test('#1060: similar stories follow the next stop without repeating it, and wait for it to settle', async () => {
   const h = fixture({ catalog: similarCatalog });

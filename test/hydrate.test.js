@@ -352,7 +352,7 @@ test('what the reader is about to read is asked for first', async () => {
   const h = new Hydrator({ api, store, onProgress: () => {} });
   await within(h.start(listId, { lookahead: 1 }), 'the lookahead run to finish');
 
-  assert.deepEqual(api.asked.slice(0, 2), [6, 7], 'the next unread issues were not asked for first');
+  assert.deepEqual(api.asked.slice(0, 2), [6, 7], 'the next unread comics were not asked for first');
   assert.equal(api.asked.length, 8);
 });
 

@@ -20,7 +20,7 @@ export function chooseMarkdownExport(list) {
         <label class="checkbox"><input type="checkbox" name="includeDescription"> List description</label>
         <label class="checkbox"><input type="checkbox" name="includeSections"> Collected-edition headings</label>
         <label class="checkbox"><input type="checkbox" name="includeLinks"> Official comic links</label>
-        <label class="checkbox"><input type="checkbox" name="includeNotes"> My list and issue notes</label>
+        <label class="checkbox"><input type="checkbox" name="includeNotes"> My list and comic notes</label>
       </fieldset>
       <p class="rail-hint">Personal notes are left out unless you select them.</p>
       <p><label for="markdown-export-preview">File preview</label>

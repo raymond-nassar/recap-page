@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:814-821`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:821-828`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -810,6 +810,10 @@ main { min-width: 0; }
 .headright { display: flex; align-items: center; gap: var(--space-6); }
 
 .breadcrumb { margin: 0 0 var(--space-5); min-width: 0; }
+.app-back { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--target); margin-bottom: var(--space-3); }
+#view-home > .head > .breadcrumb { grid-column: 1; grid-row: 1; margin: 0; align-self: center; }
+#view-home .app-back { margin-bottom: 0; }
+#view-home .home-lockup { order: -1; }
 .breadcrumb ol {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4);
   list-style: none; margin: 0; padding: 0; min-width: 0;
@@ -1906,13 +1910,17 @@ progress { accent-color: var(--accent); height: 6px; }
 .home-updates-list > span { min-width: 0; }
 .home-updates-list > button { flex-shrink: 0; }
 @media (max-width: 720px) {
-  #view-home > .head { grid-template-columns: minmax(0, 1fr); }
-  .home-lockup { grid-column: 1; }
-  #home-updates { grid-column: 1; }
+  #view-home > .head { grid-template-columns: minmax(0, 1fr) auto; }
+  .home-lockup { grid-column: 1 / -1; grid-row: 1; }
+  #view-home > .head > .breadcrumb { grid-row: 2; }
+  #home-updates { grid-column: 2; grid-row: 2; }
   #home-updates[open] { width: 100%; }
   #home-updates-panel { position: static; width: 100%; }
   #home-updates-toggle { width: max-content; max-width: 100%; margin-left: auto; }
   .home-updates-list { flex-wrap: wrap; }
+}
+@media (max-width: 880px) and (max-height: 500px) {
+  #view-home > .head > .breadcrumb, #view-home #home-updates { grid-row: 1; }
 }
 @media (forced-colors: active) {
   #view-home .home-brand { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }
@@ -2792,7 +2800,10 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 }
 .completion-recommendations { margin-top: var(--space-7); }
 .recommendation-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--space-6); }
-.recommendation-card { min-width: 0; padding: var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card); background: var(--panel); }
+.recommendation-card { min-width: 0; padding: var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card); background: var(--panel); display: grid; grid-template-columns: 4rem minmax(0, 1fr); column-gap: var(--space-5); align-items: start; }
+.recommendation-card > :not(.recommendation-cover) { grid-column: 2; }
+.recommendation-card .recommendation-cover { grid-column: 1; grid-row: 1 / span 3; width: 4rem; height: auto; aspect-ratio: 2 / 3; }
+.recommendation-cover > :is(img, .rcov-f) { width: 100%; }
 .recommendation-card h3 { margin-top: 0; overflow-wrap: anywhere; }
 .recommendation-reasons { padding-left: var(--space-7); color: var(--dim); }
 .recommendation-card .btn { white-space: normal; min-height: var(--target); }

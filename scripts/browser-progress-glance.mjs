@@ -24,7 +24,7 @@ const SCOPES = {
   home: { count: '#chero-count', bar: '#chero-bar', fill: '#chero-fill' },
   hero: { count: '#hero-progress-count', bar: '#hero-progress .glance-bar', fill: '#hero-progress-fill' },
 };
-const words = (scope, read) => (scope === 'home' ? `${read} of ${TOTAL} issues read` : `${read} of ${TOTAL} read`);
+const words = (scope, read) => (scope === 'home' ? `${read} of ${TOTAL} comics read` : `${read} of ${TOTAL} read`);
 
 function fixture(read, mode = 'queued') {
   let state = createList(createEmptyState(), { id: 'glance', name: 'Glance fixture' });
@@ -305,7 +305,7 @@ export const progressGlance = {
           read: document.querySelector('#btn-chero-read').hidden, next: document.querySelector('#chero-next').textContent,
         }));
         t.check(`${theme} all read: Home's bar is full beside the finished list's own words`,
-          !!all.bar && near(all.share * all.bar.width, all.bar.width) && finished.read && finished.next === 'You have read every issue in this Reading List.',
+          !!all.bar && near(all.share * all.bar.width, all.bar.width) && finished.read && finished.next === 'You have read every comic in this Reading List.',
           JSON.stringify({ all, finished }));
         await page.evaluate(() => { location.hash = '#/read/glance'; });
         await page.waitForFunction(() => document.querySelector('#ring-sub').textContent === 'All read');

@@ -158,7 +158,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
     ['row Read', dom.controls.plainRow, dom.controls.plainRow],
     ['Coming up tile below the shelf', dom.controls.tile, dom.groups.shelf],
     ['Continue reading', dom.controls.continue, dom.groups.continue],
-    ['issue details Read', dom.controls.issue, dom.groups.issue],
+    ['comic details Read', dom.controls.issue, dom.groups.issue],
   ]) {
     context.open(issue, click(control), 'saved');
     measure(`${name} hint placement`, [1, true, copy],
@@ -178,7 +178,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   events.length = 0;
   for (const [target, said] of [
     ['reader', `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`],
-    ['page', `Opening the Marvel issue page for ${issue.title} in a new tab.`],
+    ['page', `Opening the Marvel comic page for ${issue.title} in a new tab.`],
     ['lookup', `Opening ${issue.title} in a new tab and looking up its Unlimited link.`],
   ]) {
     opened = { ok: true, target, window: null };
@@ -189,7 +189,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   opened = { ok: true, target: 'reader', window: null };
   context.open(issue, click(dom.controls.hero), 'saved');
   measure('iOS reader sheet help avoids browser popup wording', [1,
-    'If the issue does not open, choose Read again. Opening a comic does not mark it read.'], shown());
+    'If the comic does not open, choose Read again. Opening a comic does not mark it read.'], shown());
   measure('iOS reader announcement avoids browser tab wording',
     ['open', `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`], events.splice(0));
   measure('saved bytes unchanged', before, JSON.stringify(state));
@@ -198,7 +198,9 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
 
 test('every navigation retires the reader hint and no page-top slot remains for it', () => {
   const source = read('../src/js/main.js');
-  assert.match(source, /function showView\(next, \{ focus = true, push = false, at = null \} = \{\}\) \{\n {2}retireReaderHelp\(\);[^\n]*\n/);
+  const navigation = source.slice(source.indexOf('function showView('), source.indexOf('function renderBreadcrumbs('));
+  assert.ok(navigation.indexOf('retireReaderHelp();') >= 0);
+  assert.ok(navigation.indexOf('retireReaderHelp();') < navigation.indexOf('previewView.invalidate();'));
   assert.doesNotMatch(html, /id="reader-handoff-help"/);
 });
 
@@ -322,7 +324,7 @@ test('an empty search offers deliberate manual entry through navigation without 
   assert.equal(target, '#search-results');
   assert.equal(kind, 'warn');
   assert.match(message, /Nothing matched.*by hand/);
-  assert.equal(action?.label, 'Add an issue by hand');
+  assert.equal(action?.label, 'Add a comic by hand');
   action.onClick();
   assert.equal(navigation.length, 1);
   assert.equal(navigation[0][0], 'add-manual');

@@ -125,7 +125,7 @@ test('Preview separates individual issues after an edition without changing orig
   const rows = nodes.body.children[0].children;
   assert.deepEqual(rows.filter((entry) => entry.class === 'preview-group')
     .map((entry) => entry.children[0].text),
-  ['Edition One', 'Individual issues', 'Edition One']);
+  ['Edition One', 'Individual comics', 'Edition One']);
   assert.deepEqual(focused, [1, 2, 3, 4]);
   assert.notEqual(rows[0].class, 'preview-group', 'leading individual issues keep their existing presentation');
   assert.deepEqual(items.map((entry) => entry.collectedIn ?? null),
@@ -180,10 +180,10 @@ test('Preview keeps interior padding open, and after an add makes Open list the 
     nodes.add.children[0].onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
     assert.equal(opened, 0);
     assert.match(nodes.add.children[0]['aria-label'], /^Open list: List one$/);
-    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 issues.');
+    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 comics.');
     assert.equal(nodes.add.children[1].role, 'status', 'the page announcer is behind the modal, so the dialog says it');
     view.syncAdd();
-    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 issues.', 'a repaint keeps the success line');
+    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 comics.', 'a repaint keeps the success line');
     nodes.add.children[0].onclick();
     assert.equal(opened, 1);
     nodes.dialog.listeners.click({ target: nodes.dialog, clientX: 9, clientY: 21 });

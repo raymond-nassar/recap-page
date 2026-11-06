@@ -639,20 +639,24 @@ const MUTATIONS = [
   {
     id: 'first-run-question-generic',
     breaks: 'home-first-run-wayfinding',
-    why: 'the first-run question no longer asks the reader where they want to start',
+    why: 'Modern Timeline no longer identifies the recommended start',
     script: () => {
       addEventListener('load', () => {
-        document.querySelector('#home-first-run-h').textContent = 'Choose something to read';
+        document.querySelector('#home-primary-paths [data-category="timeline"] .home-path-label').textContent = 'Browse';
       });
     },
   },
   {
     id: 'first-run-add-missing',
     breaks: 'home-first-run-wayfinding',
-    why: 'the first-run Search action no longer reaches the Search page',
+    why: 'Home reintroduces a global Search shortcut outside the bottom bar',
     script: () => {
       addEventListener('load', () => {
-        document.querySelector('#btn-home-add')?.remove();
+        const search = document.createElement('a');
+        search.id = 'btn-home-add';
+        search.href = '#/add';
+        search.textContent = 'Search';
+        document.querySelector('#view-home').append(search);
       });
     },
   },
@@ -663,9 +667,9 @@ const MUTATIONS = [
     script: () => {
       addEventListener('load', () => {
         const recommendation = document.createElement('div');
-        recommendation.id = 'home-recommended';
+        recommendation.id = 'home-first-run';
         recommendation.textContent = 'Setup to Modern Timeline';
-        document.querySelector('#home-first-run').append(recommendation);
+        document.querySelector('#view-home').append(recommendation);
       });
     },
   },
@@ -1187,7 +1191,7 @@ const MUTATIONS = [
     id: 'issue-focus-no-push',
     breaks: 'issue-focus',
     why: 'issue inspection stops creating its one history entry, so Back cannot return to the source',
-    rewriteMain: (source) => source.replace("  history.pushState(null, '', href);", ''),
+    rewriteMain: (source) => source.replace('  navigationPosition.push(href);', ''),
   },
   {
     id: 'issue-focus-forget-opener',
@@ -1210,7 +1214,7 @@ const MUTATIONS = [
   {
     id: 'issue-focus-writes-state',
     breaks: 'issue-focus',
-    why: 'opening issue details mutates saved progress, violating the URL-only selection contract',
+    why: 'opening comic details mutates saved progress, violating the URL-only selection contract',
     script: () => {
       const real = history.pushState.bind(history);
       history.pushState = (state, unused, url) => {
@@ -2044,7 +2048,7 @@ const SCENARIOS = [
       page.on('pageerror', (error) => errors.push(error.message));
       await page.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
       await open(page, '/?catalog=actual#/home');
-      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
       await page.waitForFunction(() => Number(localStorage.getItem('mrt.cache-purge.v1')) > 0);
       const initial = await page.evaluate((key) => ({
         open: document.querySelector('#home-updates').open,
@@ -2089,11 +2093,11 @@ const SCENARIOS = [
           const baseline = await homeUpdatesSnapshot(page);
           const label = `${populated ? 'populated' : 'first-visit'} ${width}px ${theme}`;
           t.check(`${label}: closed entry leaves the primary actions reachable`, await page.evaluate((hasLists) => {
-            const node = document.querySelector(hasLists ? '#home-continue' : '#home-first-run');
+            const node = document.querySelector(hasLists ? '#home-continue' : '#home-primary-paths');
             return !document.querySelector('#home-updates').open && !node.hidden
               && (hasLists
                 ? [...node.querySelectorAll('button')].some((button) => button.getClientRects().length)
-                : ['#btn-home-browse', '#btn-home-add'].every((selector) => {
+                : ['[data-category="timeline"]'].every((selector) => {
                   const target = node.querySelector(selector);
                   return target?.matches('a[href]') && target.getClientRects().length;
                 }));
@@ -2566,7 +2570,7 @@ const SCENARIOS = [
         localStorage.setItem('mrt.state.v2', newValue);
         dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
       });
-      await page.waitForSelector('#all-read:not([hidden])');
+      await page.waitForSelector('#list-wrap-up:not([hidden])');
       await click(page, '#btn-review-earlier');
       t.check('completed list starts at its final comic even without metadata', await candidate() === ids[2]
         && await page.$eval('#review-candidate', (node) => node.textContent.includes('Issue 900003')));
@@ -3127,10 +3131,10 @@ const SCENARIOS = [
         ['add-series', ['Home', 'Search', 'Find a series']],
         ['add-creator', ['Home', 'Search', 'Browse a creator']],
         ['add-import', ['Home', 'Search', 'Paste a Reading List']],
-        ['add-manual', ['Home', 'Search', 'Add an issue by hand']],
+        ['add-manual', ['Home', 'Search', 'Add a comic by hand']],
         ['data', ['Home', 'Backup & settings']],
         ['about', ['Home', 'About this app']],
-        ['add-search', ['Home', 'Search', 'Search issues']],
+        ['add-search', ['Home', 'Search', 'Search comics']],
       ];
       for (const [route, labels] of routes) await visit(route, labels);
 
@@ -3402,7 +3406,7 @@ const SCENARIOS = [
         JSON.stringify(context.sectionHeadings));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
-          { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
+          { key: 'timeline', label: 'Recommended start here', title: 'Modern Timeline', count: '14 Reading Lists' },
           { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
@@ -3872,7 +3876,7 @@ const SCENARIOS = [
       ));
       const card = await page.$eval(cardSelector, (node) => ({
         title: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        count: node.textContent.includes('225 issues'),
+        count: node.textContent.includes('225 comics'),
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
@@ -3969,8 +3973,8 @@ const SCENARIOS = [
       }));
       t.check('the Hope card exposes the exact count, gap disclosure, source, and add action',
         card.title === 'Hope Summers'
-        && card.text.includes('261 issues')
-        && card.text.includes('6 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.text.includes('261 comics')
+        && card.text.includes('6 comics have no Marvel Unlimited links yet and cannot be opened')
         && card.addName === 'Add to library: Hope Summers'
         && card.sourceName === 'Source of Hope Summers: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/hope-summers-reading-order/',
@@ -4132,8 +4136,8 @@ const SCENARIOS = [
       }));
       t.check('both Hawkeyes are discoverable with a 663-issue source credit and one visible gap',
         card.name === 'Hawkeye (Clint Barton and Kate Bishop)'
-        && card.text.includes('663 issues')
-        && card.text.includes('1 issue has no Marvel Unlimited link yet and cannot be opened')
+        && card.text.includes('663 comics')
+        && card.text.includes('1 comic has no Marvel Unlimited link yet and cannot be opened')
         && card.sourceHref === 'https://www.comicbookherald.com/hawkeye-reading-order/'
         && card.addName === 'Add to library: Hawkeye (Clint Barton and Kate Bishop)',
         JSON.stringify(card));
@@ -4286,8 +4290,8 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
       t.check('Kamala is discoverable with the exact count, five-gap disclosure and source credit',
-        card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 issues')
-        && card.text.includes('5 issues have no Marvel Unlimited links yet and cannot be opened')
+        card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 comics')
+        && card.text.includes('5 comics have no Marvel Unlimited links yet and cannot be opened')
         && card.sourceName === 'Source of Ms. Marvel (Kamala Khan): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/'
         && card.addName === 'Add to library: Ms. Marvel (Kamala Khan)', JSON.stringify(card));
@@ -4414,8 +4418,8 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
       t.check('Laura Kinney discovers the credited 291-issue X-23 guide without gap disclosure',
-        card.name === 'X-23 (Laura Kinney)' && card.text.includes('291 issues')
-        && !card.text.includes('issues have no Marvel Unlimited links yet')
+        card.name === 'X-23 (Laura Kinney)' && card.text.includes('291 comics')
+        && !card.text.includes('comics have no Marvel Unlimited links yet')
         && card.sourceName === 'Source of X-23 (Laura Kinney): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/x-23-reading-order/'
         && card.addName === 'Add to library: X-23 (Laura Kinney)', JSON.stringify(card));
@@ -4563,8 +4567,8 @@ const SCENARIOS = [
         source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       }));
       t.check('Nova card credits the exact source, 371 issues and two visible metadata gaps',
-        card.name === 'Nova' && card.text.includes('371 issues')
-        && card.text.includes('2 issues have no Marvel Unlimited links yet and cannot be opened')
+        card.name === 'Nova' && card.text.includes('371 comics')
+        && card.text.includes('2 comics have no Marvel Unlimited links yet and cannot be opened')
         && card.source === 'https://www.comicbookherald.com/nova-reading-order/',
         JSON.stringify(card));
       await click(page, `${cardSelector} [data-act="preview"]`);
@@ -4704,7 +4708,7 @@ const SCENARIOS = [
       }));
       t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
         card.name === 'Marvel Zombies' && card.genre === 'Horror'
-        && card.meta === '94 issues · 3 issues have no Marvel Unlimited links yet and cannot be opened'
+        && card.meta === '94 comics · 3 comics have no Marvel Unlimited links yet and cannot be opened'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/marvel-zombies-reading-order/',
@@ -4728,7 +4732,7 @@ const SCENARIOS = [
       t.check('Preview keeps five visible universe labels and the source and gap disclosure',
         sections.every((section) => preview.headings.some((heading) => heading.startsWith(section)))
         && preview.source.includes('Comic Book Herald')
-        && preview.meta.includes('3 issues have no Marvel Unlimited links yet'),
+        && preview.meta.includes('3 comics have no Marvel Unlimited links yet'),
         JSON.stringify({ headings: preview.headings, source: preview.source, meta: preview.meta }));
 
       await click(page, '#preview-add [data-act="main"]');
@@ -4860,8 +4864,8 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
       t.check('Silk is discoverable with 74 positions, seven gaps and Comic Book Herald credit',
-        card.name === 'Silk / Cindy Moon' && card.text.includes('74 issues')
-        && card.text.includes('7 issues have no Marvel Unlimited links yet and cannot be opened')
+        card.name === 'Silk / Cindy Moon' && card.text.includes('74 comics')
+        && card.text.includes('7 comics have no Marvel Unlimited links yet and cannot be opened')
         && card.sourceName === 'Source of Silk / Cindy Moon: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/'
         && card.addName === 'Add to library: Silk / Cindy Moon', JSON.stringify(card));
@@ -4964,7 +4968,7 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const cardText = await page.$eval(cardSelector, (node) => node.textContent);
       t.check('the actual Deadpool card reports 38 issues without a gap disclosure',
-        cardText.includes('38 issues') && !cardText.includes('gap'), cardText);
+        cardText.includes('38 comics') && !cardText.includes('gap'), cardText);
 
       await click(page, `${cardSelector} [data-act="preview"]`);
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
@@ -5007,7 +5011,7 @@ const SCENARIOS = [
     title: 'empty Home makes the first useful reading path obvious',
     async run(page, t) {
       await open(page, '/');
-      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse', { timeout: 15000 });
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
       // #825: boot renders the reading view's empty state before it has shown any view, and that
       // used to move focus to the Home heading and ring the logotype on every first launch.
       const arrival = await page.evaluate(() => ({
@@ -5017,37 +5021,33 @@ const SCENARIOS = [
       t.check('a fresh first run leaves focus on the document with no ring on the Home heading',
         arrival.focused === 'body' && arrival.ring === false, JSON.stringify(arrival));
       const initial = await page.evaluate(() => ({
-        question: document.querySelector('#home-first-run-h')?.textContent.trim() ?? null,
-        distinction: document.querySelector('.home-first-run-copy')?.textContent.trim() ?? null,
-        recommendation: !!document.querySelector('#home-recommended'),
-        startActions: [...document.querySelectorAll('#home-first-run a')]
-          .map((button) => button.textContent.trim()),
+        intro: !!document.querySelector('#home-first-run'),
+        search: !!document.querySelector('#view-home [data-view="add"], #btn-home-add'),
+        recommendation: document.querySelector('#home-primary-paths [data-category="timeline"] .home-path-label')?.textContent.trim(),
       }));
-      t.check('clean Home asks one visible question and distinguishes curated Browse from Add',
-        initial.question === 'Where do you want to start?'
-        && initial.distinction === 'Browse curated Reading Lists. Add individual issues or your own list.'
-        && !initial.recommendation
-        && JSON.stringify(initial.startActions) === JSON.stringify(['Start with Modern Timeline', 'Search']),
+      t.check('clean Home recommends Modern Timeline without redundant introduction or global Search',
+        !initial.intro && !initial.search && initial.recommendation === 'Recommended start here',
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
+      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.scrollIntoView({ block: 'center' }));
       const intermediate = await page.evaluate(() => {
-        const browse = document.querySelector('#btn-home-browse');
-        const add = document.querySelector('#btn-home-add');
+        const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
+        const add = document.querySelector('.mobile-link[data-view="add"]');
         const bounds = (node) => node?.getBoundingClientRect();
         return {
           browse: bounds(browse)?.toJSON() ?? null,
           add: bounds(add)?.toJSON() ?? null,
-          browseName: browse?.textContent.trim(),
+          browseName: browse?.getAttribute('aria-label'),
           addName: add?.textContent.trim(),
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
-          regionOverflow: document.querySelector('#home-first-run').scrollWidth
-            > document.querySelector('#home-first-run').clientWidth,
+          regionOverflow: document.querySelector('#home-primary-paths').scrollWidth
+            > document.querySelector('#home-primary-paths').clientWidth,
           homeCurrent: document.querySelector('.brand')?.getAttribute('aria-current'),
         };
       });
-      t.check('at 390 pixels both named Modern Timeline and Search choices are visible without opening Navigation',
-        intermediate.browseName === 'Start with Modern Timeline'
+      t.check('at 390 pixels Modern Timeline and bottom-bar Search are visible without opening Navigation',
+        intermediate.browseName.includes('Recommended start here. Modern Timeline.')
         && intermediate.addName === 'Search'
         && [intermediate.browse, intermediate.add].every((rect) => rect
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
@@ -5057,13 +5057,13 @@ const SCENARIOS = [
         !intermediate.pageOverflow && !intermediate.regionOverflow,
         JSON.stringify(intermediate));
 
-      await page.focus('#btn-home-browse');
+      await page.focus('.mobile-link[data-view="add"]');
       await page.keyboard.press('Tab');
-      await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden
-        && document.querySelector('#btn-rail-toggle').getAttribute('aria-label') === 'More',
-      { timeout: 3000 });
-      t.check('keyboard focus reaches the named Add action with a visible indicator',
-        await page.$eval('#btn-home-add', (button) => button === document.activeElement
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('Tab');
+      await page.keyboard.up('Shift');
+      t.check('keyboard focus reaches bottom-bar Search with a visible indicator',
+        await page.$eval('.mobile-link[data-view="add"]', (button) => button === document.activeElement
           && getComputedStyle(button).outlineStyle !== 'none'));
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash === '#/add' && document.activeElement?.id === 'add-h');
@@ -5076,14 +5076,14 @@ const SCENARIOS = [
         toggleLabel: document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label'),
         narrowMedia: matchMedia('(max-width: 880px)').matches,
       }));
-      t.check('first-run Add opens the existing five-choice hub and closes narrow Navigation',
+      t.check('bottom-bar Search opens the existing five-choice hub and closes narrow Navigation',
         JSON.stringify(addDestination.choices)
           === JSON.stringify(['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'])
         && addDestination.navigationExpanded === 'false', JSON.stringify(addDestination));
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
       t.check('Back from Add restores Home and heading focus', true);
-      await click(page, '#btn-home-browse');
+      await click(page, '#home-primary-paths [data-category="timeline"]');
       await page.waitForFunction(() => location.hash === '#/catalog' && document.activeElement?.id === 'catalog-h');
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
@@ -5091,13 +5091,13 @@ const SCENARIOS = [
 
       await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
       const enlarged = await page.evaluate(() => {
-        const region = document.querySelector('#home-first-run');
-        const controls = [...region.querySelectorAll('#btn-home-browse, #btn-home-add')];
+        const region = document.querySelector('#home-primary-paths');
+        const controls = [...region.querySelectorAll('[data-category="timeline"]')];
         return {
           rootFont: getComputedStyle(document.documentElement).fontSize,
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
           regionOverflow: region.scrollWidth > region.clientWidth,
-          controlsInViewport: controls.length === 2 && controls.every((node) => {
+          controlsInViewport: controls.length === 1 && controls.every((node) => {
             const rect = node.getBoundingClientRect();
             return rect.width > 0 && rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
           }),
@@ -5111,25 +5111,27 @@ const SCENARIOS = [
       for (const theme of ['dark', 'light']) {
         await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
         t.check(`${theme} first-run actions retain visible boundaries and names`,
-          await page.$eval('#btn-home-add', (button) => {
+          await page.$eval('#home-primary-paths [data-category="timeline"]', (button) => {
             const style = getComputedStyle(button);
-            return !button.hidden && button.textContent.trim() === 'Search'
+            return !button.hidden && button.textContent.includes('Recommended start here')
               && style.borderStyle !== 'none' && style.borderWidth !== '0px';
           }));
       }
       const client = await page.createCDPSession();
       await client.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
-      await page.focus('#btn-home-browse');
+      await page.focus('#home-primary-paths [data-category="timeline"]');
       await page.keyboard.press('Tab');
-      t.check('forced colors keeps both entry actions bounded and keyboard focus visible',
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('Tab');
+      await page.keyboard.up('Shift');
+      t.check('forced colors keeps the recommended entry bounded and keyboard focus visible',
         await page.evaluate(() => {
-          const browse = document.querySelector('#btn-home-browse');
-          const add = document.querySelector('#btn-home-add');
-          const style = getComputedStyle(add);
+          const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
+          const style = getComputedStyle(browse);
           const brand = document.querySelector('.brand');
           return matchMedia('(forced-colors: active)').matches
-            && [browse, add].every((button) => getComputedStyle(button).borderWidth !== '0px')
-            && add === document.activeElement && style.outlineStyle !== 'none'
+            && getComputedStyle(browse).borderWidth !== '0px'
+            && browse === document.activeElement && style.outlineStyle !== 'none'
             && brand.getAttribute('aria-current') === 'page'
             && getComputedStyle(brand).borderWidth === '2px';
         }));
@@ -5138,9 +5140,9 @@ const SCENARIOS = [
 
       await page.setViewport({ width: 320, height: 900 });
       const narrow = await page.evaluate(() => {
-        const region = document.querySelector('#home-first-run');
+        const region = document.querySelector('#home-primary-paths');
         const regionRect = region.getBoundingClientRect();
-        const controls = [...document.querySelectorAll('#home-first-run a')].map(
+        const controls = [...region.querySelectorAll('a')].map(
           (button) => button.getBoundingClientRect(),
         );
         return {
@@ -5160,8 +5162,8 @@ const SCENARIOS = [
       await page.setViewport({ width: 1280, height: 900 });
       t.check('first-run actions stay 44 pixels high and unclipped at desktop width',
         await page.evaluate(() => {
-          const controls = [...document.querySelectorAll('#home-first-run a')];
-          return controls.length === 2 && document.documentElement.scrollWidth <= innerWidth
+          const controls = [...document.querySelectorAll('#home-primary-paths [data-category="timeline"]')];
+          return controls.length === 1 && document.documentElement.scrollWidth <= innerWidth
             && controls.every((button) => {
               const rect = button.getBoundingClientRect();
               return rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
@@ -5169,10 +5171,9 @@ const SCENARIOS = [
         }));
       await page.evaluate(() => { location.hash = '#/browse'; });
       await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false);
-      t.check('first-run guidance exists only on Home, which the Browse address opens',
+      t.check('the Browse address opens Home without reintroducing first-run guidance',
         await page.evaluate(() => location.hash.startsWith('#/browse')
-          && document.querySelectorAll('#home-first-run').length === 1
-          && document.querySelector('#view-home').contains(document.querySelector('#home-first-run'))));
+          && document.querySelectorAll('#home-first-run').length === 0));
 
       await open(page, '/');
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
@@ -5188,7 +5189,7 @@ const SCENARIOS = [
         && document.activeElement?.id === 'home-h');
       t.check('a primary category uses real history and Back returns focus to Home', true);
 
-      await click(page, '#btn-home-browse');
+      await click(page, '#home-primary-paths [data-category="timeline"]');
       await page.waitForSelector('#view-catalog:not([hidden])');
       await page.waitForSelector('#catalog-results [data-act="preview"]');
       await click(page, '#catalog-results [data-act="preview"]');
@@ -5208,14 +5209,15 @@ const SCENARIOS = [
         const yours = document.querySelector('#home-yours');
         const categories = document.querySelector('#home-categories');
         return {
-          firstRunHidden: firstRun.hidden,
+          firstRunHidden: !firstRun,
+          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Recommended start here'),
           continueHidden: continued.hidden,
           yoursHidden: yours.hidden,
           order: [continued, yours, categories].map((node) => Math.round(node.getBoundingClientRect().top)),
         };
       });
       t.check('adding through Browse restores returning-reader priority on Home',
-        populated.firstRunHidden && !populated.continueHidden && !populated.yoursHidden
+        populated.firstRunHidden && populated.recommended && !populated.continueHidden && !populated.yoursHidden
         && populated.order[0] < populated.order[1] && populated.order[1] < populated.order[2],
         JSON.stringify(populated));
 
@@ -5368,7 +5370,7 @@ const SCENARIOS = [
         && timeline.featureIdentity === 'setup-to-modern-timeline'
         && timeline.featureStory === 'list:setup-to-modern-timeline'
         && timeline.featureDescription.includes('orientation path through Marvels and Sentry stories')
-        && timeline.featureMeta === '21 issues'
+        && timeline.featureMeta === '21 comics'
         && JSON.stringify(timeline.featureActions) === JSON.stringify([
           {
             text: 'Setup to Modern Timeline',
@@ -5393,9 +5395,9 @@ const SCENARIOS = [
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
         && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
-        && timeline.doom.meta.startsWith('85 issues')
+        && timeline.doom.meta.startsWith('85 comics')
         && timeline.doom.meta.includes(
-          '10 issues have owner-confirmed identities but no provider details or covers',
+          '10 comics have owner-confirmed identities but no provider details or covers',
         )
         && timeline.cardYears.at(-1) === 2025
         && timeline.chapterCards === 78
@@ -5449,9 +5451,9 @@ const SCENARIOS = [
         issues: document.querySelectorAll('#preview .preview-issue-link').length,
       }));
       t.check('Doom Preview shows all 85 issues, owner-confirmed identities and both reviewed source annotations',
-        doomPreview.meta.includes('85 issues')
+        doomPreview.meta.includes('85 comics')
         && doomPreview.meta.includes(
-          '10 issues have owner-confirmed identities but no provider details or covers',
+          '10 comics have owner-confirmed identities but no provider details or covers',
         )
         && doomPreview.description.includes(
           'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
@@ -5492,7 +5494,7 @@ const SCENARIOS = [
         issues: document.querySelectorAll('#preview .preview-issue-link').length,
       }));
       t.check('Setup preview retains its issue count, reading commitment, source and issue list',
-        setupPreview.meta.includes('21 issues') && setupPreview.meta.includes('about 7 hours')
+        setupPreview.meta.includes('21 comics') && setupPreview.meta.includes('about 7 hours')
         && setupPreview.source.includes('Compiled for this project')
         && setupPreview.issues === 21,
         JSON.stringify(setupPreview));
@@ -5786,7 +5788,7 @@ const SCENARIOS = [
         && ageFeature.context.startsWith('New to Marvel?')
         && ageFeature.context.includes('historical context on the characters and events ahead')
         && ageFeature.context.includes('Setup is optional; you can enter this age directly.')
-        && ageFeature.meta === '21 issues'
+        && ageFeature.meta === '21 comics'
         && JSON.stringify(ageFeature.actions) === JSON.stringify([
           {
             text: 'Setup to Modern Timeline',
@@ -7229,9 +7231,9 @@ const SCENARIOS = [
 
       await openBrowseCategory(page, 'timeline');
       await click(page, IMPORT_BUTTON);
-      await page.waitForFunction(() => document.querySelector('#shelf-note')?.textContent.trim() === '2 issues');
+      await page.waitForFunction(() => document.querySelector('#shelf-note')?.textContent.trim() === '2 comics');
       const shelfNote = await page.$eval('#shelf-note', (node) => node.textContent.trim());
-      t.check('the reading shelf reports only its issue count', shelfNote === '2 issues', shelfNote);
+      t.check('the reading shelf reports only its issue count', shelfNote === '2 comics', shelfNote);
 
       await click(page, '[data-view="progress"]');
       await page.waitForFunction(() => !document.querySelector('#progress-method')?.hidden);
@@ -7303,8 +7305,8 @@ const SCENARIOS = [
       t.check('Progress defaults to the active list and paints its existing count',
         initial.checked === 'list'
         && initial.scopeHidden === false
-        && initial.method === 'This list counts the issues in “Browser Check Order”. Tracked means issues you added, not the size of each complete series.'
-        && initial.row === '0 of 3 tracked issues read (0%)',
+        && initial.method === 'This list counts the comics in “Browser Check Order”. Tracked means comics you added, not the size of each complete series.'
+        && initial.row === '0 of 3 tracked comics read (0%)',
         JSON.stringify(initial));
       t.check('Progress keeps methodology in one collapsed disclosure',
         JSON.stringify(initial.directNotes) === JSON.stringify(['progress-subject'])
@@ -7332,7 +7334,7 @@ const SCENARIOS = [
         all.checked === 'all'
         && all.subject === 'All saved Reading Lists' && all.subjectVisible
         && all.subjectAssociation === 'progress-subject'
-        && all.method === 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.'
+        && all.method === 'All lists counts each comic once, even when it appears in more than one list. Tracked means comics you added, not the size of each complete series.'
         && all.row === initial.row,
         JSON.stringify(all));
     },
@@ -7377,9 +7379,9 @@ const SCENARIOS = [
         await click(page, `input[name="progress-scope"][value="${scope}"]`);
         const tracked = scope === 'list' ? 2 : 3;
         const expected = [
-          { name: 'Alpha', count: `0 of ${tracked} tracked issues read (0%)`, max: tracked, value: 0 },
-          { name: 'Beta', count: `1 of ${tracked} tracked issues read (${scope === 'list' ? 50 : 33}%)`, max: tracked, value: 1 },
-          { name: 'Gamma', count: `${tracked} of ${tracked} tracked issues read (100%)`, max: tracked, value: tracked },
+          { name: 'Alpha', count: `0 of ${tracked} tracked comics read (0%)`, max: tracked, value: 0 },
+          { name: 'Beta', count: `1 of ${tracked} tracked comics read (${scope === 'list' ? 50 : 33}%)`, max: tracked, value: 1 },
+          { name: 'Gamma', count: `${tracked} of ${tracked} tracked comics read (100%)`, max: tracked, value: tracked },
         ];
         const rows = await page.$$eval('#series-progress .result', (elements) => elements.map((row) => {
           const bar = row.querySelector('progress');
@@ -7413,7 +7415,7 @@ const SCENARIOS = [
           snapshot !== null && nodes.every((node) => node.role !== 'progressbar'),
           JSON.stringify(nodes.filter((node) => node.role === 'progressbar')));
         t.check(`${scope} keeps the tracked-only methodology accessible`,
-          text.some((value) => value.includes('Tracked means issues you added, not the size of each complete series.')),
+          text.some((value) => value.includes('Tracked means comics you added, not the size of each complete series.')),
           JSON.stringify(text));
       }
     },
@@ -7651,15 +7653,15 @@ const SCENARIOS = [
       const longBefore = await cardMeta('Third Stop: The Long Way');
       t.check(
         'cards omit zero and use truthful singular and plural gap labels',
-        zero === '3 issues'
-          && one === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened'
-          && many === '3 issues · 2 issues have no details, covers, or Unlimited links',
+        zero === '3 comics'
+          && one === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened'
+          && many === '3 comics · 2 comics have no details, covers, or Unlimited links',
         JSON.stringify({ zero, one, many }),
       );
       t.check(
         'each guide card shows its own essential or complete gap disclosure',
-        shortBefore === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened'
-          && longBefore === '3 issues · 2 issues have no details, covers, or Unlimited links',
+        shortBefore === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened'
+          && longBefore === '3 comics · 2 comics have no details, covers, or Unlimited links',
         JSON.stringify({ shortBefore, longBefore }),
       );
 
@@ -7671,14 +7673,14 @@ const SCENARIOS = [
       await click(page, '#catalog-results [data-story="list:browser-check-three-main"] [data-act="preview"]');
       await page.waitForFunction(() => (
         document.querySelector('#preview')?.open && document.querySelector('#preview-meta')?.textContent
-          .includes('2 issues have no details, covers, or Unlimited links')
+          .includes('2 comics have no details, covers, or Unlimited links')
       ));
       const previewAfter = await page.$eval('#preview-meta', (node) => node.textContent.trim());
       t.check(
         'each explicitly opened Preview shows its own singular or plural disclosure',
-        previewBefore.includes('1 issue has no Marvel Unlimited link yet and cannot be opened')
+        previewBefore.includes('1 comic has no Marvel Unlimited link yet and cannot be opened')
           && !previewBefore.includes('no details')
-          && previewAfter.includes('2 issues have no details, covers, or Unlimited links')
+          && previewAfter.includes('2 comics have no details, covers, or Unlimited links')
           && !previewAfter.includes('cannot be opened'),
         JSON.stringify({ previewBefore, previewAfter }),
       );
@@ -7712,7 +7714,7 @@ const SCENARIOS = [
       });
       t.check(
         'plural disclosure stays inside its card without horizontal overflow at narrow width',
-        narrow.text.includes('2 issues have no details, covers, or Unlimited links')
+        narrow.text.includes('2 comics have no details, covers, or Unlimited links')
           && narrow.inside && narrow.overflow <= 1,
         JSON.stringify(narrow),
       );
@@ -7875,7 +7877,7 @@ const SCENARIOS = [
         JSON.stringify(rows.filter((r) => r.disclosures || r.otherLinks)));
       t.check('the first stop credits its source website by name alone',
         first?.source === 'Source: example.com', JSON.stringify(first?.source));
-      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened', JSON.stringify(first?.meta));
+      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
       const offer = await page.evaluate(() => ({
@@ -8181,7 +8183,7 @@ const SCENARIOS = [
       await click(page, '#catalog-results [data-act="preview"]');
       await page.waitForFunction(
         () => document.querySelector('#preview[open] #preview-body')?.textContent
-          .includes('The issue list could not be loaded:'),
+          .includes('The comic list could not be loaded:'),
       );
       const passiveReady = await page.evaluate(() => ({
         status: document.querySelector('#local-connection-status')?.textContent.trim(),
@@ -8406,7 +8408,7 @@ const SCENARIOS = [
       await open(page, '/?race=back#/home');
       await page.waitForSelector('#view-home:not([hidden])');
       const initialLength = await page.evaluate(() => history.length);
-      await click(page, '#btn-home-browse');
+      await click(page, '#home-primary-paths [data-category="timeline"]');
       await page.waitForSelector('#view-catalog:not([hidden])');
       const back = await page.evaluate(async () => {
         let between;
@@ -8485,8 +8487,8 @@ const SCENARIOS = [
           .map((node) => node.textContent.trim()).find((text) => text.startsWith(lead));
         return hint?.endsWith('.') ? hint.slice(lead.length, -1) : '';
       });
-      t.check('the backup card names issue ratings and deferrals among what a backup holds',
-        backupContents.includes('issue ratings') && backupContents.includes('deferrals'), backupContents);
+      t.check('the backup card names comic ratings and deferrals among what a backup holds',
+        backupContents.includes('comic ratings') && backupContents.includes('deferrals'), backupContents);
       const restored = createList(createEmptyState(), { id: 'one', name: 'One restored list' });
       const pick = async () => {
         await page.evaluate((state) => {
@@ -9438,7 +9440,7 @@ const SCENARIOS = [
       await page.evaluate((hash) => { location.hash = hash; }, formatRoute({ view: 'issue', issueId: 900002 }));
       await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'Browser Check (2026) #2'
         && document.querySelector('#btn-issue-read')?.checkVisibility());
-      placed('issue details Read', await press('#btn-issue-read', '#view-issue .issue-reading-controls > .cta'));
+      placed('comic details Read', await press('#btn-issue-read', '#view-issue .issue-reading-controls > .cta'));
       await page.evaluate((hash) => { location.hash = hash; }, formatRoute({ view: 'issue', issueId: 900003 }));
       await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'Browser Check (2026) #3');
       t.check('moving to another comic\'s details retires the hint', await hintCount() === 0);
@@ -10332,7 +10334,7 @@ const SCENARIOS = [
         home: document.querySelector('#search-q').closest('.view')?.id,
         rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
       }));
-      t.check('Search issues keeps the same field, query and list results',
+      t.check('Search comics keeps the same field, query and list results',
         moved.value === 'Fixture Event' && moved.home === 'view-add-search' && moved.rows === 14, JSON.stringify(moved));
 
       await page.evaluate(() => { window.__mrtListSearchOffline = true; });
@@ -10542,7 +10544,7 @@ const SCENARIOS = [
         }));
         t.check(`the iOS Search label is one full-sized active target at ${width}px and ${scale}x text`,
           labelTarget.focused && keyboardFocus && labelTarget.height >= 44 && labelTarget.role === 'button'
-            && labelTarget.name === 'Search Reading Lists and issue titles'
+            && labelTarget.name === 'Search Reading Lists and comic titles'
             && labelAX?.role === 'button' && labelAX.name === labelTarget.name && !labelAX.children?.length,
           JSON.stringify({ labelTarget, labelAX }));
         t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,
@@ -10621,7 +10623,7 @@ const SCENARIOS = [
         preview.heading === 'Comics credited to Ed Brubaker' && preview.rows === 50
           && preview.all === 'Select all 239 comics',
         JSON.stringify(preview));
-      t.check('creator browsing leaves saved data byte-identical and fetches no issue details',
+      t.check('creator browsing leaves saved data byte-identical and fetches no comic details',
         preview.stored === before && preview.details === 0, JSON.stringify({ details: preview.details }));
       t.check('creating a named list is the default, not the unrelated active Doom list',
         preview.destination === '' && preview.name === 'Ed Brubaker' && preview.saveDisabled,
@@ -11378,7 +11380,7 @@ const SCENARIOS = [
   },
   {
     id: 'issue-details-retry-454',
-    title: 'issue details recover in place without changing saved reading or stealing focus',
+    title: 'comic details recover in place without changing saved reading or stealing focus',
     async run(page, t) {
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
@@ -11413,7 +11415,7 @@ const SCENARIOS = [
       };
       const failed = async () => {
         await page.waitForFunction(() => (
-          document.querySelector('#issue-focus-h').textContent === 'Issue unavailable'
+          document.querySelector('#issue-focus-h').textContent === 'Comic unavailable'
           && document.querySelector('#btn-issue-retry').getAttribute('aria-busy') !== 'true'
         ));
       };
@@ -11529,7 +11531,7 @@ const SCENARIOS = [
         await page.evaluate((count) => (
           (window.__mrtIssueRequests ?? 0) === count
           && document.querySelector('#btn-issue-retry').hidden
-          && document.querySelector('#issue-focus-status').textContent.includes('local issue is no longer')
+          && document.querySelector('#issue-focus-status').textContent.includes('local comic is no longer')
         ), requests));
       t.check('all recovery journeys leave saved lists, active choice, progress and notes byte-identical',
         await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
@@ -11542,7 +11544,7 @@ const SCENARIOS = [
   },
   {
     id: 'issue-focus',
-    title: 'issue details stay separate from reading progress and return focus to their source',
+    title: 'comic details stay separate from reading progress and return focus to their source',
     async run(page, t) {
       const browserErrors = [];
       page.on('console', (message) => {
@@ -11923,7 +11925,7 @@ const SCENARIOS = [
         && value.description === 'Mark as read and continue. Turn off in Backup & settings.';
       const disabled = (value) => !value.checked && value.aria === null
         && value.tooltip === null && !value.hook
-        && value.description === 'Disabled. Turn on in Backup & settings to mark the current issue as read and continue.';
+        && value.description === 'Disabled. Turn on in Backup & settings to mark the current comic as read and continue.';
       t.check('older preferences keep D enabled with accurate hints', enabled(await presentation()));
       await page.$eval('#btn-hero-done', (button) => { button.focus(); button.click(); });
       t.check('Done next keeps focus after the click',
@@ -12059,7 +12061,7 @@ const SCENARIOS = [
       const readingStatus = () => page.evaluate(() => ({
         empty: document.querySelector('#reading-empty')?.hidden === false,
         emptyHeading: document.querySelector('#reading-empty-h')?.textContent,
-        completed: document.querySelector('#all-read').hidden === false,
+        completed: document.querySelector('#list-wrap-up').hidden === false,
         hero: document.querySelector('#hero').hidden === false,
         ring: document.querySelector('#ring-sub').textContent,
         count: document.querySelector('#full-count').textContent,
@@ -12071,9 +12073,9 @@ const SCENARIOS = [
       }));
       const initial = await readingStatus();
       t.check('a fresh empty list has honest copy, no completion, and a focused Reading heading',
-        initial.empty && initial.emptyHeading === 'No issues yet'
+        initial.empty && initial.emptyHeading === 'No comics yet'
         && !initial.completed && !initial.hero
-        && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
+        && initial.ring === 'Nothing in this list' && initial.count === 'No comics yet'
         && initial.focused === 'order-name', JSON.stringify(initial));
       t.check('an empty list offers Search without review, filters or no-match controls',
         initial.reviewHidden && initial.fullHidden && initial.filtersHidden && !initial.noMatch
@@ -12090,8 +12092,8 @@ const SCENARIOS = [
       }));
       t.check('Home keeps the saved empty list visible without saying it is read',
         homeEmpty.visible
-        && homeEmpty.next === 'No issues in this Reading List yet. Open it to add comics.'
-        && homeEmpty.count === '0 of 0 issues read' && homeEmpty.readHidden
+        && homeEmpty.next === 'No comics in this Reading List yet. Open it to add comics.'
+        && homeEmpty.count === '0 of 0 comics read' && homeEmpty.readHidden
         && homeEmpty.reviewHidden, JSON.stringify(homeEmpty));
       await click(page, '#btn-chero-open');
       await page.reload({ waitUntil: 'load' });
@@ -12141,7 +12143,7 @@ const SCENARIOS = [
         JSON.stringify(partial));
       await click(page, '.brand[data-view="home"]');
       t.check('Home partial progress retains its next-issue action',
-        await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 issues read')
+        await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 comics read')
         && await page.$eval('#chero-next', (node) => node.textContent === 'Next: Second manual issue 441')
         && await page.$eval('#btn-chero-read', (node) => !node.hidden)
         && await page.$eval('#btn-chero-review', (node) => !node.hidden));
@@ -12151,15 +12153,15 @@ const SCENARIOS = [
       t.check('a nonempty completed list retains completion copy, counts and heading focus',
         completed.completed && !completed.empty && !completed.hero
         && completed.ring === 'All read' && completed.count === 'All read'
-        && completed.focused === 'all-read-h'
-        && await page.$eval('#all-read-h', (node) => node.textContent === 'Every issue marked read')
-        && await page.$eval('#all-read a[href="#/browse"]', (node) => node.checkVisibility()),
+        && completed.focused === 'list-wrap-up-h'
+        && await page.$eval('#list-wrap-up-h', (node) => node.textContent === 'Wrap up this Reading List')
+        && await page.$eval('#list-wrap-up a[href="#/browse"]', (node) => node.checkVisibility()),
         JSON.stringify(completed));
       const completedState = await readState(page);
       await click(page, '.brand[data-view="home"]');
       t.check('Home completion remains accurate for a nonempty list',
-        await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 issues read')
-        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this Reading List.')
+        await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 comics read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every comic in this Reading List.')
         && await page.$eval('#btn-chero-read', (node) => node.hidden)
         && await page.$eval('#btn-chero-review', (node) => !node.hidden));
       await click(page, '#btn-chero-open');
@@ -12172,12 +12174,12 @@ const SCENARIOS = [
       const removed = await readingStatus();
       t.check('removing the final issue restores the same empty state',
         removed.empty && !removed.completed && !removed.hero
-        && removed.count === 'No issues yet' && removed.ring === 'Nothing in this list',
+        && removed.count === 'No comics yet' && removed.ring === 'Nothing in this list',
         JSON.stringify(removed));
       await click(page, '.brand[data-view="home"]');
       t.check('Home also returns to empty wording after last removal',
-        await page.$eval('#chero-next', (node) => node.textContent === 'No issues in this Reading List yet. Open it to add comics.')
-        && await page.$eval('#chero-count', (node) => node.textContent === '0 of 0 issues read'));
+        await page.$eval('#chero-next', (node) => node.textContent === 'No comics in this Reading List yet. Open it to add comics.')
+        && await page.$eval('#chero-count', (node) => node.textContent === '0 of 0 comics read'));
       const final = await readState(page);
       t.check('removal and subsequent rendering preserve saved lists and global read history',
         final.active === listId && final.listOrder.length === 2 && final.lists[listId].itemIds.length === 0
@@ -12315,7 +12317,7 @@ const SCENARIOS = [
       // The row separator and the current row's accent outline compete for one top edge, and they
       // only meet when the current row directly follows another row. An untouched order puts the
       // current row first, and this order renders a list per series, so the current row starts a
-      // list every time it crosses into a new one. Mark issues read until it is mid-list, which is
+      // list every time it crosses into a new one. Mark comics read until it is mid-list, which is
       // the state a reader is in for most of an order, then read all four edges.
       const currentRowEdges = () => page.evaluate(() => {
         const el = document.querySelector('.rows .row.now');
@@ -12414,7 +12416,7 @@ const SCENARIOS = [
         starting.open === false && starting.rows === 0, JSON.stringify(starting));
       t.check('Coming up precedes the full Reading List and states total and unread counts',
         !!(starting.order & 2)
-          && starting.action === 'View all 219 issues'
+          && starting.action === 'View all 219 comics'
           && starting.state === '219 unread',
         JSON.stringify(starting));
       t.check('the native summary has a 44 pixel target without taking focus into the unopened rows',
@@ -12738,7 +12740,7 @@ const SCENARIOS = [
       }));
       t.check('an unowned single stop opens preview with its source and missing-link disclosure',
         single.title === 'Browser Check Order' && single.choices === 0
-        && single.meta.includes('1 issue has no Marvel Unlimited link')
+        && single.meta.includes('1 comic has no Marvel Unlimited link')
         && single.source.includes('Fixture section')
         && single.href === 'https://example.com/shared-page', JSON.stringify(single));
       await page.keyboard.press('Escape');
@@ -12757,7 +12759,7 @@ const SCENARIOS = [
       }));
       t.check('an unowned grouped stop directly previews its authored short guide and exact metadata',
         short.title === 'Third Stop: The Short Way'
-        && short.meta.includes('1 issue has no Marvel Unlimited link')
+        && short.meta.includes('1 comic has no Marvel Unlimited link')
         && short.source.includes('Essential fixture source')
         && short.choices === 0 && short.add === 'browser-check-three-short',
         JSON.stringify(short));
@@ -12776,10 +12778,10 @@ const SCENARIOS = [
         add: document.querySelector('#preview-add button')?.dataset.key,
         meta: document.querySelector('#preview-meta').textContent,
       }));
-      t.check('Back from preview issue details restores the followed path and exact authored guide without a chooser',
+      t.check('Back from preview comic details restores the followed path and exact authored guide without a chooser',
         returned.path === 'bc-path' && returned.choices === 0
         && returned.title === 'Third Stop: The Short Way' && returned.add === 'browser-check-three-short'
-        && returned.meta.includes('1 issue has no Marvel Unlimited link'), JSON.stringify(returned));
+        && returned.meta.includes('1 comic has no Marvel Unlimited link'), JSON.stringify(returned));
       await page.keyboard.press('Escape');
       await page.waitForFunction((selector) => !document.querySelector('#preview').open
         && document.activeElement === document.querySelector(selector), {}, last);
@@ -13232,7 +13234,7 @@ const SCENARIOS = [
       }));
       t.check('choosing the whole timeline restores it, with its start sentence, issue count and gap disclosure',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
+        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened',
         JSON.stringify(shelf));
     },
   },
@@ -15535,8 +15537,8 @@ SCENARIOS.push({
       await click(page, row(first.issueId, act));
       const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
       const hero = await page.$eval('#hero-facts', (node) => node.textContent);
-      // #1061: the record moved off the reading card into Issue details, which the next check reads.
-      t.check(`${act} is explicit in the row and the reading card leaves the record to Issue details`,
+      // #1061: the record moved off the reading card into Comic details, which the next check reads.
+      t.check(`${act} is explicit in the row and the reading card leaves the record to Comic details`,
         visible === text && !hero.includes('Unlimited'), `${visible} / ${hero}`);
     }
 
@@ -15751,7 +15753,7 @@ SCENARIOS.push({
       entry?.children?.forEach(collect);
     };
     collect(tree);
-    t.check('Issue details has no repeated same-name nested landmark',
+    t.check('Comic details has no repeated same-name nested landmark',
       regions.filter((value) => value === ORDER.items[1].title || value === ORDER.items[0].title).length <= 1,
       JSON.stringify(regions));
     for (const [kind, query, target] of [
@@ -15918,7 +15920,7 @@ SCENARIOS.push({
     t.check('after an add, Open list is the one primary action and names its list, beside a success line that stays',
       accessible?.name === 'Open list: Browser Check Order' && added.text === 'Open list'
         && JSON.stringify(added.primary) === JSON.stringify(['Open list'])
-        && added.count > 0 && added.success === `Added to your Library: ${added.count} issues.`
+        && added.count > 0 && added.success === `Added to your Library: ${added.count} comics.`
         && added.role === 'status' && spoken?.role === 'status' && JSON.stringify(later) === JSON.stringify(added),
       JSON.stringify({ name: accessible?.name, added, later, spoken: spoken?.role ?? null }));
     await click(page, '#preview-add a[data-act="main"]');
@@ -16434,7 +16436,7 @@ SCENARIOS.push({
 // which every boot does after the page paints and another tab's write does too.
 SCENARIOS.push({
   id: 'issue-action-row',
-  title: 'issue details lead the text column with one action row whose saved actions stay live after saved data is re-read',
+  title: 'comic details lead the text column with one action row whose saved actions stay live after saved data is re-read',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -16948,7 +16950,7 @@ SCENARIOS.push({
     await page.waitForSelector('#home-primary-paths .home-path');
     const links = await page.evaluate(() => {
       const selectors = ['.brand[data-view="home"]', '.ri[data-view="library"]',
-        '#all-read a[href="#/browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
+        '#list-wrap-up a[href="#/browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
         '.ri[data-view="about"]', '#home-primary-paths .home-path', '#home-yours-list li > *',
         '#btn-chero-open', '#view-add [data-view="add-search"]', 'footer [data-view="about"]'];
       return selectors.map((selector) => {
@@ -16999,6 +17001,11 @@ SCENARIOS.push({
     await click(page, '.brand[data-view="home"]');
     await click(page, '#view-home [data-category="timeline"]');
     await page.waitForSelector('#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
+    const catalogPosition = await page.evaluate(() => {
+      window.scrollTo({ top: 350, behavior: 'instant' });
+      return window.scrollY;
+    });
+    t.check('the departure catalog is genuinely scrolled', catalogPosition > 0, String(catalogPosition));
     await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
     await page.waitForSelector('#preview[open]');
     const preview = await page.$eval('#preview-add [data-act="main"]', (node) => ({
@@ -17024,6 +17031,24 @@ SCENARIOS.push({
     t.check('ordinary Preview Open still closes its modal and selects the exact saved list',
       await page.evaluate(() => !document.querySelector('#preview').open
         && location.hash.includes('manual%2Fa')));
+    const readingPosition = await page.evaluate(() => {
+      window.scrollTo({ top: 180, behavior: 'instant' });
+      return window.scrollY;
+    });
+    await click(page, '#view-read .app-back');
+    await page.waitForFunction((y) => location.hash.startsWith('#/catalog')
+      && Math.abs(scrollY - y) <= 1, {}, catalogPosition);
+    t.check('integrated Back returns to the immediately previous catalog at its exact scroll position',
+      await page.evaluate(() => document.activeElement?.id === 'catalog-h'));
+    await page.evaluate(() => history.forward());
+    await page.waitForFunction((y) => location.hash.includes('manual%2Fa')
+      && Math.abs(scrollY - y) <= 1, {}, readingPosition);
+    t.check('Forward restores the reading entry and its own position',
+      await page.evaluate(() => document.activeElement?.id === 'order-name'));
+    const routeLength = await page.evaluate(() => history.length);
+    await click(page, '#btn-chero-open');
+    t.check('reopening the current saved destination does not add a duplicate Back stop',
+      await page.evaluate(() => history.length) === routeLength);
     const settings = await page.$eval('#save-education-settings', (node) => ({
       tag: node.tagName, href: node.getAttribute('href'),
     }));
@@ -17117,17 +17142,18 @@ SCENARIOS.push({
       === JSON.stringify([
         'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app',
         'Enjoyed', 'Did not enjoy',
-        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Search issues', 'Find a series',
-        'Browse a creator', 'Paste a Reading List', 'Add an issue by hand', 'Search issue titles',
+        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Search comics', 'Find a series',
+        'Browse a creator', 'Paste a Reading List', 'Add a comic by hand', 'Search comic titles',
         'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
-        'Add an issue by hand', 'Find a series', 'Find a creator',
+        'Add a comic by hand', 'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
     t.check('all 37 static and generated SVGs are decorative and cannot become keyboard stops',
       inventory.length === 37 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('the one gateway preserves six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
-        .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
+        .filter((button) => button.getAttribute('aria-label')?.includes('Recommended start here')
+          || button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
           || button.getAttribute('aria-label')?.includes('Stories for kids'))
@@ -18434,15 +18460,14 @@ SCENARIOS.push(
     title: 'useful discovery leads first-run, scoped results and recoverable catalog failures',
     async run(page, t) {
       await open(page, '/');
-      await page.waitForSelector('#home-first-run:not([hidden])');
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
       const first = await page.evaluate(() => {
-        const browse = document.querySelector('#btn-home-browse');
-        const add = document.querySelector('#btn-home-add');
-        return { href: browse?.getAttribute('href'), primary: browse?.classList.contains('btn-g') === false,
-          secondary: add?.classList.contains('btn-g') === true };
+        const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
+        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Recommended start here'),
+          search: !!document.querySelector('#view-home [data-view="add"], #btn-home-add') };
       });
-      t.check('first-run Browse is primary and reaches actual Modern Timeline, with Add secondary',
-        first.href === '#/catalog' && first.primary && first.secondary, JSON.stringify(first));
+      t.check('first-run Home recommends the actual Timeline and leaves global Search to the bottom bar',
+        first.href === '#/catalog' && first.recommended && !first.search, JSON.stringify(first));
       await seedFixtureState(page);
       await open(page, '/?catalog=browser-check#/progress');
       await page.waitForFunction(() => document.querySelector('#series-progress')?.textContent.trim());
@@ -23592,19 +23617,19 @@ async function ux11Preload(page, fixture) {
 const UX11_TITLES = {
   pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited web reader',
   comics: 'Opening Marvel Comics website',
-  page: 'Opening Marvel issue page', 'no-reader-link': 'No direct reader link',
+  page: 'Opening Marvel comic page', 'no-reader-link': 'No direct reader link',
   'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
   'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
 };
 const UX11_CAPTIONS = {
-  pending: 'Looking up the Marvel Unlimited link for this issue. Reading ends December 7, 2026.',
+  pending: 'Looking up the Marvel Unlimited link for this comic. Reading ends December 7, 2026.',
   resolved: 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.',
   comics: 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.',
-  page: 'Opening the Marvel issue page. Reading progress has not changed.',
-  'no-reader-link': 'No direct reader link is recorded. Opening the Marvel issue page instead.',
-  'lookup-error': 'The metadata lookup failed. Opening the Marvel issue page instead.',
-  timeout: 'The metadata lookup timed out. Opening the Marvel issue page instead.',
-  'lookup-unavailable': 'Saved lookup settings could not be used. Opening the Marvel issue page instead.',
+  page: 'Opening the Marvel comic page. Reading progress has not changed.',
+  'no-reader-link': 'No direct reader link is recorded. Opening the Marvel comic page instead.',
+  'lookup-error': 'The metadata lookup failed. Opening the Marvel comic page instead.',
+  timeout: 'The metadata lookup timed out. Opening the Marvel comic page instead.',
+  'lookup-unavailable': 'Saved lookup settings could not be used. Opening the Marvel comic page instead.',
   'missing-reference': 'This link was missing an issue reference.',
 };
 

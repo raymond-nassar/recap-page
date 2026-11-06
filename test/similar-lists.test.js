@@ -98,7 +98,7 @@ test('near the end means the smaller of 5 issues or a tenth of the list, at leas
   const at = (total) => Array.from({ length: total + 1 }, (_, read) => read)
     .filter((read) => nearEnd({ read, total }))
     .map((read) => total - read);
-  assert.deepEqual(at(1), [], 'one unread issue of one is not past halfway');
+  assert.deepEqual(at(1), [], 'one unread comic of one is not past halfway');
   assert.deepEqual(at(3), [1]);
   assert.deepEqual(at(19), [1], 'a tenth rounds down, so 19 issues leave a window of 1');
   assert.deepEqual(at(20), [2, 1], 'House of M: the last 2 of 20');

@@ -19,7 +19,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 test('eraseDialogBody and eraseOutcome are importable from the data view module', () => {
   assert.equal(typeof eraseDialogBody, 'function');
   assert.equal(typeof eraseOutcome, 'function');
-  assert.match(eraseDialogBody([]), /^This clears all lists, notes, issue ratings, reading progress/);
+  assert.match(eraseDialogBody([]), /^This clears all lists, notes, comic ratings, reading progress/);
   assert.equal(eraseOutcome(false, []), 'All local data erased.');
 });
 
@@ -293,11 +293,11 @@ const REPLACED = {
   lists: ['lists', 'deferrals'],
   listOrder: ['lists'],
   active: ['lists'],
-  issues: ['issues added by hand'],
+  issues: ['comics added by hand'],
   read: ['reading progress'],
   overrides: ['availability overrides'],
   notes: ['notes'],
-  ratings: ['issue ratings'],
+  ratings: ['comic ratings'],
 };
 const REPLACED_WORDS = [...new Set(Object.values(REPLACED).flat())];
 

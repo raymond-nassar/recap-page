@@ -427,7 +427,7 @@ export const libraryRatingsFailures = {
     await panelShown(page);
     // Its label promises the reading-list categories, so that is where it goes (UX-15, #830).
     t.check('with no ratings both surfaces explain how to rate and offer a next step',
-      shelfEmpty === 'Comics you rate from their Issue details will appear here.'
+      shelfEmpty === 'Comics you rate from their Comic details will appear here.'
         && await page.$eval('#library-rated-results', (n) => n.textContent.includes('You have not rated any comics yet')
           && [...n.querySelectorAll('a.btn')].some((a) => a.textContent === 'Browse Reading Lists' && a.getAttribute('href') === '#/browse')),
       await page.$eval('#library-rated-results', (n) => `${n.textContent} ${n.querySelector('a')?.getAttribute('href')}`));

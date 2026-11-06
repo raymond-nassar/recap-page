@@ -32,7 +32,6 @@ export function createHomeView({
   onCatalogLoadFailure,
   onDone,
   onNavigateCategory,
-  onNavigateHub,
   onOpen,
   onRead,
   onReview,
@@ -70,51 +69,6 @@ export function createHomeView({
     nodes.continueDeferred.addEventListener('click', onReviewDeferred);
   }
 
-  function ensureFirstRun() {
-    const current = elements();
-    if (current.firstRun) return current.firstRun;
-    const section = el('section', {
-      id: 'home-first-run',
-      class: 'sec',
-      hidden: true,
-      'aria-labelledby': 'home-first-run-h',
-    }, [
-      el('div', { class: 'sec-h' }, el('h2', {
-        id: 'home-first-run-h',
-        text: 'Where do you want to start?',
-      })),
-      el('p', {
-        class: 'home-first-run-copy',
-        text: 'Browse curated Reading Lists. Add individual issues or your own list.',
-      }),
-      el('div', { class: 'cta home-start-actions' }, [
-        // Named for where it goes (UX-15, #830): the reading-list categories sit right below it.
-        el('a', {
-          href: formatRoute({ view: 'catalog' }),
-          class: 'btn',
-          id: 'btn-home-browse',
-          onclick: (event) => {
-            if (!isPlainNavigation(event)) return;
-            event?.preventDefault();
-            onNavigateHub('catalog');
-          },
-        }, 'Start with Modern Timeline'),
-        el('a', {
-          href: formatRoute({ view: 'add' }),
-          class: 'btn btn-g',
-          id: 'btn-home-add',
-          onclick: (event) => {
-            if (!isPlainNavigation(event)) return;
-            event?.preventDefault();
-            onNavigateHub('add');
-          },
-        }, 'Search'),
-      ]),
-    ]);
-    current.categoriesRoot.prepend(section);
-    return section;
-  }
-
   function renderContinue(populated) {
     const nodes = elements();
     const id = getActiveListId();
@@ -135,7 +89,7 @@ export function createHomeView({
     // numbers for the eye and is hidden from assistive technology in the markup, where it used to be a
     // named progress bar that a screen reader read straight before the identical count.
     paintGlance(el, { count: nodes.continueCount, fill: nodes.continueFill }, { read, total },
-      ` of ${total} issue${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`);
+      ` of ${total} comic${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`);
     nodes.continueBar.hidden = total === 0;
     nodes.continueDeferred.hidden = deferred === 0;
     nodes.continueReview.hidden = total === 0;
@@ -157,9 +111,9 @@ export function createHomeView({
       nodes.continueDone.hidden = false;
     } else {
       nodes.continueNext.textContent = total === 0
-        ? 'No issues in this Reading List yet. Open it to add comics.'
-        : deferred ? `Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
-          : 'You have read every issue in this Reading List.';
+        ? 'No comics in this Reading List yet. Open it to add comics.'
+        : deferred ? `Nothing queued. ${deferred} unread comic${deferred === 1 ? ' is' : 's are'} deferred.`
+          : 'You have read every comic in this Reading List.';
       nodes.continueRead.hidden = true;
       nodes.continueDone.hidden = true;
       paintCoverUrl(
@@ -182,22 +136,21 @@ export function createHomeView({
     const nodes = elements();
     if (nodes.home.hidden) return;
     const populated = getState().listOrder.length > 0;
-    const firstRun = ensureFirstRun();
     nodes.categoriesHeading.classList.toggle('visually-hidden', !populated);
-    firstRun.hidden = populated;
     renderContinue(populated);
     renderSavedLists(nodes.yoursSection, nodes.yoursList);
     void renderGateways();
   }
 
   function categoryTile(category) {
+    const label = category.key === 'timeline' ? 'Recommended start here' : category.label;
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;
     return el('li', {}, el('a', {
       href: formatRoute({ view: category.route }),
       class: `home-path home-path-${category.tier}`,
-      'aria-label': shownName([category.label, category.heading, count]),
+      'aria-label': shownName([label, category.heading, count]),
       dataset: { category: category.key },
       onclick: (event) => {
         if (!isPlainNavigation(event)) return;
@@ -213,7 +166,7 @@ export function createHomeView({
       // is inside each piece rather than between them because on Home the wrapper is laid out with
       // `display: contents`, and axe drops text whose parent draws no box of its own.
       el('span', { class: 'home-path-copy' }, [
-        el('span', { class: 'eyebrow home-path-label' }, [category.label, ' ']),
+        el('span', { class: 'eyebrow home-path-label' }, [label, ' ']),
         el('span', { class: 'home-path-title' }, [category.heading, ' ']),
         el('span', { class: 'home-path-count', text: count }),
       ]),

@@ -128,7 +128,7 @@ export const shangChiActualData = {
       importLabel: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
     t.check('the 298-position credited character guide is discoverable without substituting another list',
-      card.name === name && card.text.includes('298 issues')
+      card.name === name && card.text.includes('298 comics')
       && card.source === mapping.sourceUrl && card.importLabel === `Add to library: ${name}`,
       JSON.stringify(card));
 

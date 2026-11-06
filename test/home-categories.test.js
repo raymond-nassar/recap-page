@@ -193,23 +193,17 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
   assert.doesNotMatch(source, /How do you want to read\?/);
 });
 
-test('empty Home creates one labelled first-run region', () => {
-  const start = homeSource.indexOf('function ensureFirstRun');
-  const body = homeSource.slice(start, homeSource.indexOf('function renderContinue', start));
-  assert.notEqual(start, -1, 'the first-run region builder is missing');
-  assert.match(body, /id: 'home-first-run'[\s\S]*'aria-labelledby': 'home-first-run-h'/);
-  assert.match(body, /el\('h2', \{[\s\S]*id: 'home-first-run-h',[\s\S]*text: 'Where do you want to start\?'/);
-  assert.match(body, /Browse curated Reading Lists\. Add individual issues or your own list\./);
-  assert.doesNotMatch(body, /home-recommended|Preview this Reading List|Setup to Modern Timeline/);
-  assert.match(body, /current\.categoriesRoot\.prepend\(section\)/);
+test('Home recommends its existing Timeline destination without an introduction or Search shortcut', () => {
+  assert.match(homeSource, /category\.key === 'timeline' \? 'Recommended start here' : category\.label/);
+  assert.doesNotMatch(homeSource, /home-first-run|btn-home-add|Where do you want to start/);
 });
 
-test('first-run guidance follows the same local populated state as Home', () => {
+test('Home keeps returning-reader content first and renders shared discovery for both states', () => {
   const start = homeSource.indexOf('function render()');
   const body = homeSource.slice(start, homeSource.indexOf('function categoryTile', start));
   assert.match(body, /const populated = getState\(\)\.listOrder\.length > 0;/);
-  assert.match(body, /const firstRun = ensureFirstRun\(\);/);
-  assert.match(body, /firstRun\.hidden = populated;/);
+  assert.match(body, /renderContinue\(populated\)/);
+  assert.match(body, /void renderGateways\(\)/);
 });
 
 test('Home leaves Setup recommendations and Preview actions to the browse pages', () => {
@@ -311,7 +305,7 @@ test('Preview Open closes its modal before navigating to an existing Reading Lis
   assert.match(body, /isPlainNavigation\(event\)[\s\S]*if \(isCurrent\(previewSession\)\) return onOpen\(list, inLibrary\);/);
   assert.match(
     mainSource,
-    /if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\s*showView\('read',\s*\{\s*push:\s*true\s*\}\)/,
+    /if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\s*showView\('read',\s*\{\s*push:\s*true,\s*capturePosition:\s*false\s*\}\)/,
     'Preview remains open over the Reading List it navigates to',
   );
 });

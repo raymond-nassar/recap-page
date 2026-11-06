@@ -50,7 +50,7 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.match(text, /general Marvel Comics website without a reader-link lookup/);
   assert.doesNotMatch(text, /sends a known digital issue ID to Marvel's Bifrost/);
   assert.match(text, /Open in browser/);
-  assert.match(text, /Searching for issues sends what you typed/);
+  assert.match(text, /Searching for comics sends what you typed/);
   assert.match(text, /series or creators is answered from files already on this machine/);
   assert.match(text, /only when you press the lookup button/);
   const links = [...yourData(generated).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];

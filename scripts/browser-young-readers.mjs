@@ -106,8 +106,8 @@ export const youngReadersActualData = {
         source: [...node.querySelectorAll('a')].find((link) => link.href === url)?.getAttribute('aria-label'),
         add: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }), GUIDE);
-      t.check(`${guide.name} is found on Young readers with ${total} issues and Comic Book Herald credit`,
-        card.name === guide.name && card.text.includes(`${total} issues`)
+      t.check(`${guide.name} is found on Young readers with ${total} comics and Comic Book Herald credit`,
+        card.name === guide.name && card.text.includes(`${total} comics`)
         && card.source === `Source of ${guide.name}: Comic Book Herald` && card.add === `Add to library: ${guide.name}`
         && card.text.includes('no Marvel Unlimited links yet') === (guide.gaps > 0), JSON.stringify({ ...card, text: undefined }));
 

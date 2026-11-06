@@ -348,7 +348,8 @@ function harness(overrides = {}) {
     rows: node({ id: 'rows', tag: 'ul' }),
     hydrationStatus: node({ id: 'hydration-status' }),
     synopsisStatus: node({ id: 'synopsis-status' }),
-    allReadHeading: node({ id: 'all-read-h', tag: 'h2' }),
+    allReadHeading: node({ id: 'list-wrap-up-h', tag: 'h2' }),
+    wrapup: node({ id: 'list-wrap-up' }),
     viewHome: node({ id: 'view-home', hidden: true }),
     homeContinue: node({ id: 'home-continue' }),
     cheroHeading: node({ id: 'chero-h', tag: 'h2' }),
@@ -430,7 +431,8 @@ function harness(overrides = {}) {
     ['#rows', nodes.rows],
     ['#hydration-status', nodes.hydrationStatus],
     ['#synopsis-status', nodes.synopsisStatus],
-    ['#all-read-h', nodes.allReadHeading],
+    ['#list-wrap-up-h', nodes.allReadHeading],
+    ['#list-wrap-up', nodes.wrapup],
     ['#list-wrap-up-cheer', nodes.cheer],
     ['dialog[open]', null],
   ]);
@@ -457,7 +459,8 @@ function harness(overrides = {}) {
   nodes.readingOverview = node({ id: 'reading-overview' });
   nodes.readingBody.append(nodes.listWork, nodes.listNote, nodes.similarHint, nodes.hero, nodes.readingOverview);
   nodes.viewRead.append(nodes.heading, nodes.readingBody);
-  nodes.allRead.append(nodes.allReadHeading);
+  nodes.wrapup.append(nodes.allReadHeading);
+  nodes.viewRead.append(nodes.wrapup);
   nodes['all-deferred'].append(nodes['all-deferred-h']);
   selectorMap.set('#hero-primary-actions', nodes.heroPrimaryActions);
   selectorMap.set('#reading-overview', nodes.readingOverview);
@@ -928,7 +931,7 @@ test('UX05 synopsis copy distinguishes not loaded from a completed empty result 
   const empty = Symbol('empty');
   assert.equal(synopsisFallback({ hydrated: true }, null, empty), 'Story summary has not been loaded.');
   assert.equal(synopsisFallback({ hydrated: false }, undefined, empty), 'Story summary has not been loaded.');
-  assert.equal(synopsisFallback({ hydrated: true }, empty, empty), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback({ hydrated: true }, empty, empty), 'No synopsis is recorded for this comic.');
   assert.equal(synopsisFallback({ hydrated: true }, 'Held plot', empty), 'Held plot');
 });
 
@@ -1254,7 +1257,7 @@ test('441 Reading distinguishes empty, partial and completed lists without chang
     try {
       h.view.render();
       assert.equal(h.nodes.readingEmpty.hidden, phase !== 'empty', phase);
-      assert.equal(h.nodes.allRead.hidden, phase !== 'completed', phase);
+      assert.equal(h.nodes.allRead.hidden, true, 'the shared completion view owns all-read presentation');
       assert.equal(h.nodes.hero.hidden, phase !== 'partial', phase);
       assert.equal(h.nodes.heroTitle.textContent, phase === 'partial' ? 'Second' : 'Nothing up next');
       assert.equal(h.nodes.ringSub.textContent, {
@@ -1272,7 +1275,7 @@ test('441 Reading distinguishes empty, partial and completed lists without chang
         assert.equal(h.nodes.heroProgress.attributes['aria-hidden'], 'true');
       }
       assert.equal(h.nodes.fullCount.textContent, {
-        empty: 'No issues yet', partial: '1 unread', completed: 'All read',
+        empty: 'No comics yet', partial: '1 unread', completed: 'All read',
       }[phase]);
       assert.deepEqual(structuredClone(h.state()), before, 'render must not add or mark issues');
       assert.deepEqual(h.calls.launch, []);
@@ -1290,7 +1293,7 @@ test('441 removing the last issue restores the empty state without deleting the 
   const h = harness({ state });
   try {
     h.view.render();
-    assert.equal(h.nodes.allRead.hidden, false);
+    assert.equal(h.nodes.allRead.hidden, true);
     let remove;
     walk(h.nodes.rows, (entry) => {
       if (entry.dataset?.act === 'remove') remove = entry;
@@ -1302,7 +1305,7 @@ test('441 removing the last issue restores the empty state without deleting the 
     assert.equal(h.nodes.readingEmpty.hidden, false);
     assert.equal(h.nodes.allRead.hidden, true);
     assert.equal(h.nodes.hero.hidden, true);
-    assert.equal(h.nodes.fullCount.textContent, 'No issues yet');
+    assert.equal(h.nodes.fullCount.textContent, 'No comics yet');
     assert.deepEqual(h.state().lists['last-441'].itemIds, []);
     assert.deepEqual(h.state().read, state.read, 'removal does not discard global reading progress');
     assert.deepEqual(structuredClone(h.state()), afterRemoval, 'render is read-only after removal too');
@@ -1617,7 +1620,7 @@ test('main constructs Reading once and delegates reading-owned work through the 
     /readingView\.renderSynopsis\(status\)/,
     /readingView\.forgetDeleted\(\)/,
     /readingView\.forgetDeletedFor\(catalogId, order\.name\)/,
-    /function showView\([^)]*\) \{\s*retireReaderHelp\(\); readingView\.retireDoneResult\(\);/,
+    /function showView\([^)]*\) \{[\s\S]*?retireReaderHelp\(\); readingView\.retireDoneResult\(\);/,
   ]) {
     assert.match(main, pattern);
   }
@@ -1710,7 +1713,7 @@ test('510 Reading deferral, Done, shelf and review agree without false completio
     assert.equal(h.nodes.allRead.hidden, true);
     assert.equal(h.nodes['all-deferred'].hidden, false);
     assert.equal(globalThis.document.activeElement, h.nodes['all-deferred-h']);
-    assert.match(h.calls.announce.at(-1), /Nothing queued.*2 unread issues are deferred/);
+    assert.match(h.calls.announce.at(-1), /Nothing queued.*2 unread comics are deferred/);
     assert.deepEqual(listReadingProgress(h.state(), 'list-a'), { read: 1, total: 3, deferred: 2, queued: 0 });
     assert.deepEqual(h.state().lists['list-a'].itemIds, ids);
     h.nodes['btn-review-deferred'].fire('click');
@@ -2043,7 +2046,7 @@ test('renderRows separates individual issues after an edition without changing s
     const headings = () => h.nodes.rows.childNodes
       .filter((entry) => entry.classList.contains('row-group'));
     assert.deepEqual(headings().map((entry) => entry.childNodes[0].textContent),
-      ['Edition One', 'Individual issues', 'Edition One']);
+      ['Edition One', 'Individual comics', 'Edition One']);
     assert.equal(h.nodes.rows.childNodes[0].classList.contains('row'), true,
       'leading individual issues keep their existing presentation');
     const individual = headings()[1];
@@ -2077,7 +2080,7 @@ test('renderRows separates individual issues after an edition without changing s
 
 function doneResultNode(h) {
   const found = [];
-  for (const root of [h.nodes.hero, h.nodes.allRead, h.nodes['all-deferred'], h.nodes.homeContinue]) {
+  for (const root of [h.nodes.hero, h.nodes.wrapup, h.nodes['all-deferred'], h.nodes.homeContinue]) {
     walk(root, (entry) => { if (entry.id === 'done-result') found.push(entry); });
   }
   assert.ok(found.length <= 1, `at most one result is on the page, found ${found.length}`);

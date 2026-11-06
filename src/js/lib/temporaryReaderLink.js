@@ -76,7 +76,7 @@ export function originalReaderDescription(issue) {
   const direct = originalReaderLink(issue);
   if (direct) return direct;
   if (issue?.detailsRefused === true && issuePageUrl(issue.url ?? issue.detailUrl, issue.issueId)) {
-    return 'No direct reader link recorded; Read opens the Marvel issue page';
+    return 'No direct reader link recorded; Read opens the Marvel comic page';
   }
   return issue?.issueId > 0
     ? 'No direct reader link recorded; Read looks it up'
@@ -143,7 +143,7 @@ export function createTemporaryReaderLinks() {
 
   function use(state, issueId, value) {
     if (!known) return refusal('Saved comic references are uncertain. Resolve saved data before using a temporary link.');
-    if (!savedReaderIssue(state, issueId)) return refusal('That comic is no longer a matching saved issue.');
+    if (!savedReaderIssue(state, issueId)) return refusal('That comic is no longer a matching saved comic.');
     const parsed = parseTemporaryReaderLink(value);
     if (!parsed.ok) return parsed;
     const id = Number(issueId);
@@ -154,7 +154,7 @@ export function createTemporaryReaderLinks() {
 
   function remove(state, issueId) {
     if (!known) return refusal('Saved comic references are uncertain. Resolve saved data first.');
-    if (!savedReaderIssue(state, issueId)) return refusal('That comic is no longer a matching saved issue.');
+    if (!savedReaderIssue(state, issueId)) return refusal('That comic is no longer a matching saved comic.');
     return { ok: true, changed: links.delete(Number(issueId)) };
   }
 
@@ -174,7 +174,7 @@ export function createTemporaryReaderLinks() {
       const listed = Number.isSafeInteger(id) && id > 0 && !Object.hasOwn(state.issues, id)
         && Object.values(state.lists).some((list) => list.itemIds.includes(id));
       if (listed) return { ok: true, issue: { issueId: id, title: `Issue ${id}` }, temporary: false };
-      return refusal('That comic is no longer a matching saved issue.');
+      return refusal('That comic is no longer a matching saved comic.');
     }
     const base = saved ?? issue;
     return {

@@ -103,7 +103,7 @@ test('Preview refreshes a real Add and preserves its Open and focus behavior', a
   assert.equal(h.calls.restored.length, 1);
   // UX-12 (#830): the Add used to schedule a repaint 1.5s later that swapped its success line away.
   assert.equal(h.timers.length, 0);
-  assert.equal(h.nodes.add.children[1].text, 'Added to your Library: 1 issue.');
+  assert.equal(h.nodes.add.children[1].text, 'Added to your Library: 1 comic.');
   const open = h.nodes.add.children[0];
   assert.equal(open.children[0], 'Open list');
   open.onclick();

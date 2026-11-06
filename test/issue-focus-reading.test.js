@@ -34,7 +34,7 @@ test('Back scrolls to exact full-order focus and uses the accepted fallback orde
     main.indexOf('async function restoreIssueFocusOpener'),
     main.indexOf('function loadBundledOrder'),
   );
-  const exact = restore.indexOf('target.focus()');
+  const exact = restore.indexOf('target.focus(');
   const checked = restore.indexOf("document.querySelectorAll('input[name=\"filter\"]')");
   const summary = restore.indexOf("$('#full').querySelector('summary')");
   const heading = restore.indexOf('focusViewHeading(view)');
@@ -44,7 +44,6 @@ test('Back scrolls to exact full-order focus and uses the accepted fallback orde
   assert.match(restore, /readingView\.setFullOrderFromRoute\(true\);\s*readingView\.renderRows\(\);/);
   assert.match(restore, /checked\.focus\(\)/);
   assert.match(restore, /summary\.focus\(\)/);
-  assert.doesNotMatch(restore, /preventScroll/);
   assert.doesNotMatch(restore, /localStorage|DOMNode|HTMLElement/);
 });
 

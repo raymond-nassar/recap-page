@@ -21,7 +21,7 @@ import { isIosApp } from '../lib/platform.js';
 // restoring an older backup could lose ratings the question never mentioned. The card and all three
 // questions read this string now, as do the erase question and the line beside its button, and the
 // data view tests hold it to the keys a backup carries.
-const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, deferrals, availability overrides and issues added by hand';
+const READING_DATA_CONTENTS = 'lists, notes, comic ratings, reading progress, deferrals, availability overrides and comics added by hand';
 
 // ------------------------------------------------------------------ erase policy
 //

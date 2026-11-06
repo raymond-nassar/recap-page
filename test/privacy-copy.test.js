@@ -145,7 +145,7 @@ const REQUESTS = [
   ],
   [
     'opening a reader resolves a missing reader link',
-    /(?:otherwise the (?:new|launch)\s+tab|opening an issue)[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)|otherwise it looks up the missing link or opens the recorded comic details page/i,
+    /(?:otherwise the (?:new|launch)\s+tab|opening (?:an issue|a comic))[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)|otherwise it looks up the missing link or opens the recorded comic details page/i,
   ],
   [
     'reader launch distinguishes the retiring web reader and the general Marvel Comics website',
@@ -153,7 +153,7 @@ const REQUESTS = [
   ],
   [
     'the requests disclose which issues',
-    /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issue numbers|issue or search details)/i,
+    /(?:sees?|reveals?|discloses?)[^.]*(?:which (?:issues|comics)|(?:issues|comics) you are looking at|issue numbers|(?:issue|comic) or search details)/i,
   ],
   // Added with BL-150, which put the first request to a host that is not Marvel and not the
   // metadata service anywhere in the app. A surface that enumerates the requests and omits an
