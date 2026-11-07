@@ -46,6 +46,7 @@ import {
   availablePublishingCategories, catalogEntries, eraSections, parseCatalog, publishingAgeGroups,
   shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
   publishingCategoryStories, resolveReadingPaths, storyYear,
+  STORY_TYPES,
 } from '../src/js/lib/catalog.js';
 import { parseColour, ratio } from './check-palette.mjs';
 import { isDeepStrictEqual } from 'node:util';
@@ -19173,6 +19174,8 @@ SCENARIOS.push(
     async run(page, t) {
       try {
         const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
+        const expectedGenres = ACTUAL_CATALOG.lists.filter((list) => list.type !== 'screen-companion'
+          && Array.isArray(list.storyTypes) && list.storyTypes.some((tag) => Object.hasOwn(STORY_TYPES, tag))).length;
         await open(page, '/?catalog=actual');
         await page.evaluate((saved) => {
           localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
@@ -19181,7 +19184,9 @@ SCENARIOS.push(
         await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
         await page.waitForSelector('#view-home [data-category="genres"] .home-path-count', { timeout: 15000 });
         const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-        const census = await page.$$eval('#view-home .home-path-count', (nodes) => nodes.map((node) => node.textContent.trim()));
+        const census = await page.$$eval('#view-home [data-category]', (nodes) => Object.fromEntries(
+          nodes.map((node) => [node.dataset.category, node.querySelector('.home-path-count')?.textContent.trim()]),
+        ));
         const initialHistory = await page.evaluate(() => history.length);
         await page.goto(`${page.__origin}/?catalog=actual#/lines?query=Civil+War`, { waitUntil: 'load' });
         await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
@@ -19214,8 +19219,10 @@ SCENARIOS.push(
         t.check('opening old addresses leaves saved reading data unchanged',
           await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
         t.check('the bundled catalog reports the current Timeline and Genres lists',
-          census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
-            && census.includes('303 Reading Lists'), JSON.stringify(census));
+          census.timeline === `${currentReadingCensus.modernTimeline} Reading Lists`
+            && ACTUAL_CATALOG.lists.length === currentReadingCensus.visible
+            && census.genres === `${expectedGenres} Reading Lists`,
+          JSON.stringify(census));
 
         await chooseGenre(page, 'political');
         const searched = await page.evaluate(() => [...document.querySelectorAll(
@@ -25233,7 +25240,12 @@ SCENARIOS.push({
         '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
         '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
       server = createStaticServer(async (req, res) => {
-        const path = new URL(req.url, `http://${HOST}`).pathname.slice(1) || 'index.html';
+        const pathname = new URL(req.url, `http://${HOST}`).pathname;
+        if (req.method === 'GET' && pathname === LOCAL_SERVER_HEALTH_PATH) {
+          res.writeHead(204, { [LOCAL_SERVER_HEADER_NAME]: LOCAL_SERVER_HEADER_VALUE }).end();
+          return;
+        }
+        const path = pathname.slice(1) || 'index.html';
         if (req.method !== 'GET' || !allowed.has(path)) {
           res.writeHead(404);
           res.end();
@@ -25256,14 +25268,28 @@ SCENARIOS.push({
       actual = await page.browserContext().newPage();
       await actual.setViewport({ width: 1280, height: 900 });
       await actual.setRequestInterception(true);
+      const outsideRequests = [];
       actual.on('request', (request) => {
         if (new URL(request.url()).origin === origin) void request.continue();
-        else void request.abort();
+        else {
+          outsideRequests.push(request.url());
+          void request.abort();
+        }
       });
       const errors = [];
       actual.on('pageerror', (error) => errors.push(error.message));
       await actual.evaluateOnNewDocument(() => {
         let connected = false;
+        const originalFetch = window.fetch;
+        window.fetch = (input, options) => {
+          const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+          if (url.pathname === '/v1/health' && url.origin !== location.origin) {
+            return Promise.resolve(new Response('{"status":"ok"}', {
+              headers: { 'content-type': 'application/json' },
+            }));
+          }
+          return originalFetch(input, options);
+        };
         window.__iosCloudCalls = [];
         window.webkit = { messageHandlers: { recap: {
           async postMessage(message) {
@@ -25292,6 +25318,127 @@ SCENARIOS.push({
         JSON.stringify({ booted, buttons, errors }));
       t.check('the prepared page raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
       if (!booted) return;
+
+      const health = await actual.evaluate(async ({ path, header }) => {
+        const response = await fetch(path, { cache: 'no-store' });
+        return { status: response.status, header: response.headers.get(header) };
+      }, { path: LOCAL_SERVER_HEALTH_PATH, header: LOCAL_SERVER_HEADER_NAME });
+      t.check('the prepared page sees a healthy local server',
+        health.status === 204 && health.header === LOCAL_SERVER_HEADER_VALUE, JSON.stringify(health));
+      await actual.$eval('#sidebar-nav a[data-view="add"]', (link) => link.click());
+      await actual.waitForFunction(() => !document.getElementById('view-add').hidden);
+      await actual.$eval('#sidebar-nav a[data-view="data"]', (link) => link.click());
+      await actual.waitForFunction(() => !document.getElementById('view-data').hidden);
+      await actual.evaluate(() => document.fonts.ready.then(() => undefined));
+      const privacyText = 'Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below.';
+      const largestScale = 53 / 17;
+      const introduction = async (width, height, scale, largest) => {
+        await actual.setViewport({ width, height, deviceScaleFactor: 2 });
+        await actual.evaluate(({ scale, largest }) => {
+          document.documentElement.style.setProperty('--ios-text-scale', String(scale));
+          document.documentElement.dataset.iosLargestText = String(largest);
+          window.scrollTo(0, 0);
+        }, { scale, largest });
+        await actual.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        return actual.evaluate(() => {
+          const owner = document.querySelector('#view-data .sub [data-cloud-copy="on"]');
+          const title = document.getElementById('data-h');
+          const nav = document.querySelector('#sidebar .rail-header');
+          if (!owner || owner.hidden || !title || !nav || owner.childNodes.length !== 1
+            || owner.firstChild.nodeType !== Node.TEXT_NODE) throw new Error('The active privacy introduction changed');
+          const range = document.createRange();
+          range.selectNodeContents(owner.firstChild);
+          const first = [...range.getClientRects()].find((rect) => rect.width && rect.height);
+          if (!first) throw new Error('The privacy introduction has no rendered text');
+          const navRect = nav.getBoundingClientRect();
+          const fixed = getComputedStyle(nav).position === 'fixed';
+          const clearBottom = fixed && navRect.top < innerHeight ? navRect.top : innerHeight;
+          const x = first.left + first.width / 2;
+          const hits = [first.top + 1, (first.top + first.bottom) / 2, first.bottom - 1]
+            .map((y) => owner.contains(document.elementFromPoint(x, y)));
+          const style = getComputedStyle(title);
+          return {
+            text: owner.textContent.trim(), first: first.toJSON(), title: title.getBoundingClientRect().toJSON(),
+            scrollY, clearBottom, fixed, hits,
+            fontSize: Number.parseFloat(style.fontSize), lineHeight: Number.parseFloat(style.lineHeight),
+            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+            report: document.querySelector('#app-report').textContent.trim(),
+          };
+        });
+      };
+      for (const width of [375, 390]) {
+        const intro = await introduction(width, 647, largestScale, true);
+        t.check(`the largest-text iOS privacy introduction starts clear of navigation at ${width}px`,
+          intro.text === privacyText && intro.fixed && intro.first.top >= 0
+            && intro.first.bottom <= intro.clearBottom && intro.hits.every(Boolean)
+            && Math.abs(intro.fontSize - 28 * largestScale) < 0.1
+            && intro.lineHeight >= intro.fontSize && !intro.overflow && !intro.report,
+          JSON.stringify(intro));
+      }
+      const normal = await introduction(375, 647, 1, false);
+      const intermediate = await introduction(375, 647, 2, false);
+      const boundary = await introduction(421, 647, largestScale, true);
+      const wide = await introduction(1024, 900, largestScale, true);
+      t.check('other text sizes and wider iOS layouts retain their title size, line spacing and privacy copy',
+        [normal, intermediate, boundary, wide].every((item) =>
+          item.text === privacyText && Math.abs(item.lineHeight / item.fontSize - 1.5) < 0.01 && !item.overflow)
+          && Math.abs(normal.fontSize - 28) < 0.1 && Math.abs(intermediate.fontSize - 56) < 0.1
+          && [boundary, wide].every((item) => Math.abs(item.fontSize - 28 * largestScale) < 0.1),
+        JSON.stringify({ normal, intermediate, boundary, wide }));
+
+      const fragmentCoverage = async () => actual.evaluate(async () => {
+        const owner = document.querySelector('#view-data .sub [data-cloud-copy="on"]');
+        const nav = document.querySelector('#sidebar .rail-header');
+        const range = document.createRange();
+        range.selectNodeContents(owner.firstChild);
+        const fragments = () => [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+        const count = fragments().length;
+        const end = owner.getBoundingClientRect().bottom + scrollY + innerHeight;
+        const seen = new Set();
+        for (let y = 0; y <= end && seen.size < count; y += Math.floor(innerHeight / 4)) {
+          window.scrollTo(0, y);
+          await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+          const navRect = nav.getBoundingClientRect();
+          const clearBottom = getComputedStyle(nav).position === 'fixed' && navRect.top < innerHeight
+            ? Math.max(0, navRect.top) : innerHeight;
+          fragments().forEach((rect, index) => {
+            const x = rect.left + rect.width / 2;
+            if (rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= clearBottom
+              && [rect.top + 1, (rect.top + rect.bottom) / 2, rect.bottom - 1]
+                .every((point) => owner.contains(document.elementFromPoint(x, point)))) seen.add(index);
+          });
+        }
+        return { count, covered: seen.size, text: owner.textContent.trim(),
+          documentWidth: document.documentElement.scrollWidth };
+      });
+      await introduction(320, 647, largestScale, true);
+      const unchangedTitleWidth = await actual.$eval('#data-h', (title) => {
+        title.style.lineHeight = '1.5';
+        const width = document.documentElement.scrollWidth;
+        title.style.removeProperty('line-height');
+        return width;
+      });
+      const narrow = await fragmentCoverage();
+      await actual.evaluate(() => {
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync('#view-data > .head * { line-height: 1.5 !important; letter-spacing: .12em !important; word-spacing: .16em !important; }');
+        document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+        window.__privacySpacingSheet = sheet;
+      });
+      await introduction(320, 647, largestScale, true);
+      const spaced = await fragmentCoverage();
+      t.check('the narrow iOS privacy text remains scrollable with and without a text-spacing override',
+        [narrow, spaced].every((item) => item.count > 0 && item.covered === item.count
+          && item.text === privacyText) && narrow.documentWidth <= unchangedTitleWidth,
+        JSON.stringify({ narrow, spaced, unchangedTitleWidth }));
+      await actual.evaluate(() => {
+        document.adoptedStyleSheets = document.adoptedStyleSheets.filter((sheet) => sheet !== window.__privacySpacingSheet);
+        delete window.__privacySpacingSheet;
+        document.documentElement.style.removeProperty('--ios-text-scale');
+        delete document.documentElement.dataset.iosLargestText;
+        window.scrollTo(0, 0);
+      });
+      await actual.setViewport({ width: 1280, height: 900 });
       await actual.focus('#btn-cloud-connect-icloud');
       await actual.keyboard.press('Enter');
       const connected = await actual.waitForFunction(
@@ -25304,6 +25451,8 @@ SCENARIOS.push({
         connected && request && JSON.stringify(JSON.parse(request.body)) === JSON.stringify({ provider: 'icloud' }),
         JSON.stringify({ connected, request, errors }));
       t.check('connection raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
+      t.check('the prepared page makes no unexpected external requests', outsideRequests.length === 0,
+        JSON.stringify(outsideRequests));
     } finally {
       try {
         if (actual) await actual.close();
