@@ -39,6 +39,12 @@ into the section below only after the coordinator's final scope decision. Record
 note in Backup and sync. If excluded, remove this entire comment without changing other entries.
 -->
 
+<!-- SLOT #1166: new in-app logo and wordmark plus the website; app icons unchanged.
+Insert the merged PR's reader note into the summary above, its saved-data compatibility into the
+section below, and its full note under Look and feel, only after it merges. If it does not ship
+in 4.5.0, remove this entire comment without changing other entries.
+-->
+
 ### Saved data and upgrading
 
 Reading-data schema 4 and the existing backup formats are unchanged. OneDrive on iPhone and iPad
