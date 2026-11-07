@@ -1074,6 +1074,28 @@ test('iOS presentation checks retain comic-page WebKit accessibility under displ
   assert.match(presentationTests, /XCTAssertEqual\(comic\["cardDisplay"\] as\? String, "contents"/);
   assert.match(presentationTests, /app\.webViews\.firstMatch\.buttons\.matching\(NSPredicate\(format: "label == %@", actionName\)\)/);
   assert.match(presentationTests, /"nativeHierarchy": app\.debugDescription/);
+
+  const seed = presentationTests.match(/private static let savedComicSeed = #"""\s*\n([\s\S]*?)\n\s*"""#/);
+  assert.ok(seed, 'the saved-comic fixture is present');
+  const writes = [];
+  runInNewContext(seed[1], { localStorage: { setItem: (key, value) => writes.push([key, JSON.parse(value)]) } });
+  assert.equal(writes.length, 1);
+  assert.equal(writes[0][0], 'mrt.state.v2');
+  const state = writes[0][1];
+  assert.equal(state.issues['2092'].title, 'House of M (2005) #1');
+  assert.deepEqual(state.lists['ios-progress'].itemIds, [2092]);
+  assert.deepEqual(state.read, {});
+
+  const comic = presentationTests.slice(
+    presentationTests.indexOf('func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes()'),
+    presentationTests.indexOf('func testDynamicTypeReflowsCoreScreensAtBothAppearances()'));
+  assert.match(comic, /UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge/);
+  assert.match(comic, /route: "comic", emptyHomeTest: true/);
+  assert.match(comic, /XCTAssertFalse\(unsavedMarkRead\.exists/);
+  assert.match(comic, /app\.terminate\(\)\s*app\.launchEnvironment\.removeValue\(forKey: "RECAP_IOS_RESTORE_TEST_SEED"\)\s*app\.launchEnvironment\["RECAP_IOS_SCREENSHOT_SEED"\] = Self\.savedComicSeed\s*app\.launch\(\)/);
+  assert.match(comic, /revealNativeTarget\(markRead, in: app, precise: true\)/);
+  assert.match(comic, /markRead\.tap\(\)[\s\S]*?markUnread\.waitForExistence\(timeout: 30\)/);
+  assert.match(comic, /app\.terminate\(\)\s*app\.launchEnvironment\.removeValue\(forKey: "RECAP_IOS_SCREENSHOT_SEED"\)\s*app\.launch\(\)[\s\S]*?persistedMarkUnread\.waitForExistence\(timeout: 30\)/);
 });
 
 test('T03 retains ten reviewed positives and accepts only complete passive-text hit-region proofs', () => {
@@ -1254,6 +1276,20 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
   assert.doesNotMatch(guard, /revealNativeTarget|revealPassiveAuditTarget|thenDragTo|swipe/);
+});
+
+test('first-run tile uses a precise native reveal without changing shared helper defaults', () => {
+  const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
+    presentationTests.indexOf('final class PresentationUITests'));
+  assert.match(reveal, /precise: Bool = false/);
+  assert.match(reveal, /if precise && abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
+  assert.match(reveal, /element\.isHittable && element\.frame\.minY >= usableFrame\.minY\s*&& element\.frame\.maxY <= usableBottom/);
+  const firstRun = presentationTests.slice(
+    presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('private func assertNoSeparateTextTarget('));
+  assert.match(firstRun, /revealNativeTarget\(link, in: app, precise: true\)/);
+  assert.match(presentationTests, /revealNativeTarget\(summary, in: app\)/);
+  assert.match(launchTests, /revealNativeTarget\(finish, in: reader\)/);
 });
 
 test('T03 passive DOM digest stays strict about navigation visibility', () => {

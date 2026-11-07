@@ -13,7 +13,7 @@ private func layoutMetrics(from label: String, prefix: String = "recap-layout-pr
 }
 
 @MainActor
-func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication) {
+func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, precise: Bool = false) {
     let webView = app.webViews.firstMatch
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
@@ -48,7 +48,13 @@ func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication) {
         let origin = app.coordinate(withNormalizedOffset: .zero)
         let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
         let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
-        start.press(forDuration: 0.1, thenDragTo: end)
+        // SE run 42346141032 alternated past the largest-text tile at the default drag velocity.
+        if precise && abs(displacement) <= usableFrame.height / 2 {
+            start.press(forDuration: 0.1, thenDragTo: end,
+                        withVelocity: .slow, thenHoldForDuration: 0.2)
+        } else {
+            start.press(forDuration: 0.1, thenDragTo: end)
+        }
     }
     XCTAssertTrue(element.isHittable, "\(element.label) is hittable after native scrolling")
     XCTAssertGreaterThanOrEqual(element.frame.minY, usableFrame.minY)
@@ -65,6 +71,25 @@ final class PresentationUITests: XCTestCase {
         "--t-title": 28,
         "--t-title-lg": 40,
     ]
+
+    private static let savedComicSeed = #"""
+    localStorage.setItem('mrt.state.v2', JSON.stringify({
+      schemaVersion: 4, read: {}, overrides: {}, notes: {}, ratings: {},
+      issues: {
+        2092: {
+          issueId: 2092, title: 'House of M (2005) #1', number: '1',
+          seriesId: 855, seriesName: 'House of M (2005)', digitalId: 1947, source: 'curated'
+        }
+      },
+      lists: {
+        'ios-progress': {
+          id: 'ios-progress', name: 'iOS progress fixture', description: '', note: '',
+          created: 1, catalogId: null, itemIds: [2092], collectedIn: {}, deferredIssueIds: []
+        }
+      },
+      listOrder: ['ios-progress'], active: 'ios-progress'
+    }));
+    """#
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -1670,7 +1695,7 @@ final class PresentationUITests: XCTestCase {
 
     func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
-            let app = launch(category: category, route: "comic")
+            let app = launch(category: category, route: "comic", emptyHomeTest: true)
             let result = try probeResult(of: app)
             let screens = try XCTUnwrap(result["screens"] as? [[String: Any]])
             let screen = try XCTUnwrap(screens.first)
@@ -1700,6 +1725,36 @@ final class PresentationUITests: XCTestCase {
                 "heading": heading.label, "action": action.label, "details": details.label,
             ])
             capture(app, named: "t03-comic-tree-\(category.rawValue)")
+
+            let markReadName = "Mark as read: \(title)"
+            let markUnreadName = "Mark as unread: \(title)"
+            let unsavedMarkRead = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markReadName)).firstMatch
+            XCTAssertFalse(unsavedMarkRead.exists, "a bundled comic outside saved data has no saved progress action")
+
+            app.terminate()
+            app.launchEnvironment.removeValue(forKey: "RECAP_IOS_RESTORE_TEST_SEED")
+            app.launchEnvironment["RECAP_IOS_SCREENSHOT_SEED"] = Self.savedComicSeed
+            app.launch()
+            _ = try probeResult(of: app)
+            let markRead = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markReadName)).firstMatch
+            XCTAssertTrue(markRead.waitForExistence(timeout: 30), "the saved comic starts unread")
+            XCTAssertTrue(markRead.isEnabled)
+            revealNativeTarget(markRead, in: app, precise: true)
+            markRead.tap()
+            let markUnread = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markUnreadName)).firstMatch
+            XCTAssertTrue(markUnread.waitForExistence(timeout: 30), "marking the comic read updates its action")
+
+            app.terminate()
+            app.launchEnvironment.removeValue(forKey: "RECAP_IOS_SCREENSHOT_SEED")
+            app.launch()
+            _ = try probeResult(of: app)
+            let persistedMarkUnread = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markUnreadName)).firstMatch
+            XCTAssertTrue(persistedMarkUnread.waitForExistence(timeout: 30),
+                          "reading progress survives relaunch without reseeding")
             app.terminate()
         }
     }
@@ -1825,7 +1880,7 @@ final class PresentationUITests: XCTestCase {
                     let prefix = "Recommended start here. Modern Timeline. "
                     link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
-                    revealNativeTarget(link, in: app)
+                    revealNativeTarget(link, in: app, precise: true)
                     // The count is catalog data, so it is read back from the label and held to its
                     // shape; the drawn count piece is then rejected as a target like the others.
                     let count = String(link.label.dropFirst(prefix.count).dropLast())
