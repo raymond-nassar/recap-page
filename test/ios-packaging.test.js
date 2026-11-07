@@ -1176,7 +1176,8 @@ test('T03 fixtures settle inserted DOM before measuring passivity and legacy pos
 test('T03 reveals each enumerated native target before demanding its unchanged in-viewport no-op proof', () => {
   const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
     presentationTests.indexOf('private func freshPassiveState'));
-  assert.match(legacy, /revealNativeTarget\(element, in: app, bottomClearance: 44\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(legacy, /revealNativeTarget\(element, in: app\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.doesNotMatch(legacy, /bottomClearance/);
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
 
@@ -1233,10 +1234,10 @@ test('T03 pins the native label before any guard tap instead of dereferencing a 
   assert.match(guard, /"candidate": candidate, "nativeLabel": nativeLabel/);
 });
 
-test('T03 prepares positive fixtures away from native bottom navigation without scrolling audit findings', () => {
-  assert.match(presentationTests, /bottomClearance: CGFloat = 0/);
-  assert.match(presentationTests, /min\(webView\.frame\.maxY, toggle\.frame\.minY\) - bottomClearance/);
-  assert.match(presentationTests, /revealNativeTarget\(element, in: app, bottomClearance: 44\)/);
+test('T03 positions positive fixtures within the actual native navigation boundary', () => {
+  assert.match(presentationTests, /let usableBottom = toggle\.exists \? min\(webView\.frame\.maxY, toggle\.frame\.minY\) : webView\.frame\.maxY/);
+  assert.doesNotMatch(presentationTests, /bottomClearance/);
+  assert.match(presentationTests, /revealNativeTarget\(element, in: app\)/);
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
   assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);

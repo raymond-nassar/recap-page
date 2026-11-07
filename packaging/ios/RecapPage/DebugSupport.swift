@@ -452,6 +452,8 @@ enum DebugSupport {
       const domDigest = async () => {
         const clone = document.documentElement.cloneNode(true);
         for (const probe of clone.querySelectorAll('[id^="recap-"], [data-recap-passive-monitor]')) probe.remove();
+        // Navigation visibility changes during scrolling; keep every other DOM difference observable.
+        clone.querySelector('#sidebar .rail-header')?.classList.remove('mobile-nav-hidden');
         const controls = [...document.querySelectorAll('input, select, textarea, details')].map(element => ({
           path: path(element), value: element.value, checked: element.checked, open: element.open,
           selected: element instanceof HTMLSelectElement ? [...element.options].map(option => option.selected) : null,

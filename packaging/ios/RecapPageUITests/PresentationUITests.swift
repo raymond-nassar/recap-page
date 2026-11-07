@@ -13,12 +13,11 @@ private func layoutMetrics(from label: String, prefix: String = "recap-layout-pr
 }
 
 @MainActor
-func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, bottomClearance: CGFloat = 0) {
+func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication) {
     let webView = app.webViews.firstMatch
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
-    let usableBottom = toggle.exists
-        ? min(webView.frame.maxY, toggle.frame.minY) - bottomClearance : webView.frame.maxY
+    let usableBottom = toggle.exists ? min(webView.frame.maxY, toggle.frame.minY) : webView.frame.maxY
     let usableFrame = CGRect(
         x: webView.frame.minX, y: webView.frame.minY,
         width: webView.frame.width, height: usableBottom - webView.frame.minY)
@@ -893,13 +892,42 @@ final class PresentationUITests: XCTestCase {
               display: style.display, visibility: style.visibility, opacity: style.opacity,
               transform: style.transform };
           })(),
-          dragProbes: [0.25, 0.60].map(fraction => {
-            const x = innerWidth * 0.035, y = innerHeight * fraction;
-            const hit = document.elementFromPoint(x, y);
-            return { x, y, hit: hit ? describe(hit) : null,
-              interactive: Boolean(hit?.closest(interactiveSelector)),
-              navigation: Boolean(hit && document.getElementById('sidebar')?.contains(hit)) };
-          }),
+          dragProbes: (() => {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.querySelector('.view:not([hidden])');
+            if (!sidebar || !content) return [];
+            const isInteractive = element => {
+              for (let node = element; node; node = node.parentElement) {
+                if (node.matches(controlSelector)
+                  || (node.hasAttribute('tabindex') && node.getAttribute('tabindex') !== '-1')
+                  || ['onclick', 'onmousedown', 'onmouseup', 'onpointerdown', 'ontouchstart']
+                    .some(name => typeof node[name] === 'function')) return true;
+              }
+              return false;
+            };
+            const xFractions = [0.12, 0.20, 0.35, 0.50, 0.65, 0.80, 0.90];
+            const yFractions = [0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85];
+            for (const xFraction of xFractions) {
+              const safe = yFractions.map(yFraction => {
+                const x = innerWidth * xFraction, y = innerHeight * yFraction;
+                const hit = document.elementFromPoint(x, y);
+                return { xFraction, yFraction, x, y, hit,
+                  interactive: Boolean(hit && isInteractive(hit)),
+                  navigation: Boolean(hit && sidebar.contains(hit)),
+                  content: Boolean(hit && content.contains(hit)) };
+              }).filter(point => point.hit && point.content && !point.interactive && !point.navigation);
+              for (let upper = 0; upper < safe.length; upper++) {
+                for (let lower = upper + 1; lower < safe.length; lower++) {
+                  if (safe[lower].yFraction - safe[upper].yFraction < 0.3) continue;
+                  return [safe[upper], safe[lower]].map(({ xFraction, yFraction, x, y, hit }) => ({
+                    xFraction, yFraction, x, y, hit: describe(hit),
+                    interactive: false, navigation: false,
+                  }));
+                }
+              }
+            }
+            return [];
+          })(),
           privacyOwners: currentView === 'view-data'
             ? [...document.querySelectorAll('#view-data .sub [data-cloud-copy="on"]')].map(element => {
               const explanation = window.__recapPassiveGuard.explain(element);
@@ -1081,7 +1109,7 @@ final class PresentationUITests: XCTestCase {
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
-            revealNativeTarget(element, in: app, bottomClearance: 44)
+            revealNativeTarget(element, in: app)
             XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
             let proved = try acceptPassiveFinding(element, in: app, routeState: state)
             XCTAssertTrue(proved, "the reviewed positive requires the same exact native no-op proof: \(key)")
@@ -2699,17 +2727,27 @@ final class PresentationUITests: XCTestCase {
                   let dragProbes = priorGuard["dragProbes"] as? [[String: Any]],
                   dragProbes.count == 2,
                   dragProbes.allSatisfy({ $0["hit"] is [String: Any]
-                      && $0["interactive"] as? Bool == false && $0["navigation"] as? Bool == false }) else {
+                      && $0["interactive"] as? Bool == false && $0["navigation"] as? Bool == false
+                      && ($0["xFraction"] as? Double) != nil && ($0["yFraction"] as? Double) != nil }) else {
                 try stop("the intended drag endpoints are not confirmed noninteractive")
                 return
             }
-            let startY = direction == "down" ? 0.60 : 0.25
-            let endY = direction == "down" ? 0.25 : 0.60
-            let start = web.coordinate(withNormalizedOffset: CGVector(dx: 0.035, dy: CGFloat(startY)))
-            let end = web.coordinate(withNormalizedOffset: CGVector(dx: 0.035, dy: CGFloat(endY)))
+            let upper = dragProbes[0]
+            let lower = dragProbes[1]
+            let startProbe = direction == "down" ? lower : upper
+            let endProbe = direction == "down" ? upper : lower
+            guard let startX = startProbe["xFraction"] as? Double,
+                  let startY = startProbe["yFraction"] as? Double,
+                  let endX = endProbe["xFraction"] as? Double,
+                  let endY = endProbe["yFraction"] as? Double else {
+                try stop("the safe drag endpoint coordinates are malformed")
+                return
+            }
+            let start = web.coordinate(withNormalizedOffset: CGVector(dx: CGFloat(startX), dy: CGFloat(startY)))
+            let end = web.coordinate(withNormalizedOffset: CGVector(dx: CGFloat(endX), dy: CGFloat(endY)))
             start.press(forDuration: 0.1, thenDragTo: end)
             guard let sample = try observation("gesture-\(index + 1)", gesture: [
-                "direction": direction, "startX": 0.035, "startY": startY, "endX": 0.035, "endY": endY,
+                "direction": direction, "startX": startX, "startY": startY, "endX": endX, "endY": endY,
             ]) else {
                 try stop("gesture \(index + 1) did not yield matched stable observations")
                 return
