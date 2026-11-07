@@ -55,7 +55,10 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 // Its OneDrive backup on iPhone and iPad and launch-check, kept-copy and pending-marker wording
 // awaits the owner's approval on #1158.
 test('the privacy policy preserves approved text and wording pending on #1101 and #1158', () => {
-  assert.equal(digest(read('PRIVACY.md')), '05b1117a118a073d4bd84e19c823f64d193c4bf99e1eacd64df722546e927a1c');
+  const privacy = read('PRIVACY.md');
+  assert.match(privacy, /It normally backs up no more than once every five\s+minutes\./);
+  assert.match(privacy, /after a progress check confirms that\s+this device's data needs backing up\./);
+  assert.equal(digest(privacy), '632c9c6b03e3c00a0c3d0ad01f10010fe21e5c8f98d33f9d6b359b354063fa86');
 });
 
 test('the 4.3.0 Microsoft Store fields are the approved text', () => {

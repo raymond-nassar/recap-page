@@ -681,9 +681,9 @@ observer around it reports each accepted write of a key a complete backup holds,
 `src/js/main.js:104`. The coordinator in `src/js/lib/cloudCoordinator.js` decides whether a backup is
 due by content alone: the SHA-256 of the complete backup with the active list left out, compared with
 the newest backup this browser verified. Changes made offline, in another tab or by a complete restore
-are covered that way without special cases. It waits ten quiet seconds, runs at most once every five
-minutes and at most ten minutes after a change, at `src/js/lib/cloudCoordinator.js:28-34`. It also
-runs at once when the page is hidden.
+are covered that way without special cases. It waits ten quiet seconds, normally runs no more than
+once every five minutes and at most ten minutes after a change, at `src/js/lib/cloudCoordinator.js:28-34`.
+It can also run immediately after a progress check, as described below, or when the page is hidden.
 
 **How.** The protocol in `src/js/lib/cloudProtocol.js` never overwrites anything. Each browser has a
 random stream id and a generation counter, and every backup creates a new file named for both, so a
@@ -773,14 +773,14 @@ settings and no earlier kept reference skips the cloud safety copy and omits the
 An empty device with an earlier kept reference preserves the empty state so Go back remains accurate.
 The offered choice is withdrawn if that reference changes. Go back similarly protects the current
 data before consuming the exact verified kept reference. Once the loaded data passes its next check,
-an ordinary backup is due immediately rather than waiting for the normal spacing. A later check also backs up immediately
-when a kept recovery copy exists and this device differs from its last verified upload. This keeps
-Go back from leaving the replaced progress as the newest ordinary backup; it can also bypass the usual
-spacing for subsequent local changes when a check runs. Network and visibility events are queued
-while restore writes are underway; local invalidation can still stop them. If connectivity is lost
-after verification and the choice remains locally valid, the staged reference can still be
-activated, and cloud cleanup waits for a later kept-copy operation. The card exposes only the
-current kept reference, not a list of older retained files. The provider cannot atomically prevent
+an ordinary backup is due immediately rather than waiting for the normal spacing. A later check also
+backs up immediately when a kept recovery copy exists and this device differs from its last verified
+upload. This keeps Go back from leaving the replaced progress as the newest ordinary backup; it can
+also bypass the usual spacing for subsequent local changes when a check runs. Network and visibility
+events are queued while restore writes are underway; local invalidation can still stop them. If
+connectivity is lost after verification and the choice remains locally valid, the staged reference
+can still be activated, and cloud cleanup waits for a later kept-copy operation. The card exposes only
+the current kept reference, not a list of older retained files. The provider cannot atomically prevent
 a different device writing after the final check, so a later remote change is not globally serialized
 with restore. Ordinary discovery counts kept-looking files as other files without reading them.
 

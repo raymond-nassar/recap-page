@@ -44,10 +44,11 @@ connection, and your Microsoft account protects them. The developer never receiv
 [privacy statement](https://privacy.microsoft.com/privacystatement) covers what Microsoft receives.
 
 While backup is on and the app is open, it backs up about ten seconds after your changes stop, or
-within ten minutes if you keep making changes. It backs up no more than once every five minutes,
-except that it also backs up at once when you leave the page. These are attempts, not a guarantee:
-a lost connection, a full OneDrive or a closing app can stop one. Check the time of the last
-successful backup before you rely on it.
+within ten minutes if you keep making changes. It normally backs up no more than once every five
+minutes. It can also back up at once when you leave the page or after a progress check confirms that
+this device's data needs backing up. These are attempts, not a guarantee: a lost connection, a full
+OneDrive or a closing app can stop one. Check the time of the last successful backup before you rely
+on it.
 
 The app aims to keep the two most recent regular backups for each device. To show the backup list,
 it downloads the recent backups in your cloud account, including other devices' backups, and checks
