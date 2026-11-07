@@ -19,6 +19,8 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 - On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time,
   so your reading progress can follow you across your devices.
+- When OneDrive backup is on, Recap Page can offer progress from another device when it differs
+  from yours. Choose which progress to use; the app never merges backups.
 - New to Marvel comics? Open the new guide from Home or an empty Library for a quick introduction,
   starter picks, and two optional Reading Lists you can preview before saving.
 - Finishing a Reading List now gives you a clearer next step: one next Modern Timeline list,
@@ -33,12 +35,6 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation.
 
-<!-- SLOT #1068 phase 2 / #1162: not finalized or included in generated highlights.
-Insert the merged PR's reader note into the summary above and its saved-data compatibility
-into the section below only after the coordinator's final scope decision. Record the full
-note in Backup and sync. If excluded, remove this entire comment without changing other entries.
--->
-
 <!-- SLOT #1166: new in-app logo and wordmark plus the website; app icons unchanged.
 Insert the merged PR's reader note into the summary above, its saved-data compatibility into the
 section below, and its full note under Look and feel, only after it merges. If it does not ship
@@ -52,6 +48,13 @@ uses the shared engine and format already used by Windows and Android, so an iPh
 backup made on Windows or Android and vice versa. An existing iCloud connection is unaffected and
 stays the connected provider until the reader disconnects it. Installing the update uploads
 nothing by itself.
+
+The portable backup format and existing reading data stay unchanged. Sync state, per-stream
+decisions, the upload hold, kept-copy references, the pending recovery reference and the local
+pending-check marker are device-local and are not carried in a backup or restore. A successful
+Erase removes them. Older builds can read the existing saved data and backups, but ignore the new
+records and marker, do not enforce the new hold or the unconfirmed recovery withdrawal, and do not
+show the offer; they must not be relied on for safe participation.
 
 The guide, Search accessibility and presentation changes do not change storage keys or backup
 contents. Opening the guide or an unsaved preview does not create a Reading List; adding one
@@ -103,6 +106,16 @@ approvals remain separate.
 
 - On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time,
   so your reading progress can follow you between iPhone, Windows and Android. (#1160, for #1113)
+- When OneDrive backup is on, Recap Page can offer progress from another device when it differs
+  from yours. Choose which progress to use; the app never merges backups. Before loading the
+  other copy, the app keeps a local recovery copy and normally keeps this device's prior state in
+  OneDrive too. An empty device with no older kept copy skips the cloud copy. (#1162, part of #1068)
+
+The offer checks opted-in OneDrive at launch, after returning from at least one minute away, and
+after sign-in, including on iPhone and iPad. Google Drive and iCloud keep their existing backup and
+manual restore behaviour. Signed-in native acceptance remains phase 3 of #1068 and is not claimed
+by this release record. The owner's decision, "Defer it: fail safely now, add 'load anyway' later
+as a follow-up", routes the local-only fallback to #1163 rather than this release.
 
 ### Look and feel
 
