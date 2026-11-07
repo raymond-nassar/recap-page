@@ -1836,7 +1836,11 @@ test('passive audit guard reviews every observed global listener that press feed
     'pointerup document true true false /js/lib/pressFeedback.js wirePressFeedback',
   ]);
   for (const identity of observed) assert.ok(approved.includes(identity), `reviewed: ${identity}`);
-  assert.equal(approved.length, 18, 'docs/IOS.md describes eighteen reviewed handlers');
+  for (const identity of [
+    'pointerdown document true true false /js/main.js boot',
+    'keydown document true null false /js/main.js boot',
+  ]) assert.ok(approved.includes(identity), `reviewed cloud activity: ${identity}`);
+  assert.equal(approved.length, 20, 'docs/IOS.md describes twenty reviewed handlers');
 });
 
 test('iOS backup controls keep file label activation and full-sized native summary targets', () => {

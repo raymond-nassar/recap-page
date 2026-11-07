@@ -12,6 +12,7 @@
 const OK = 'ok';
 
 let pending = null;
+let pendingKind = null;
 let opener = null;
 let naming = false;
 // The answers of the question being asked with a choice, or null: the plain one, and the one its
@@ -36,6 +37,7 @@ function parts() {
     choice: document.getElementById('ask-choice'),
     ok: document.getElementById('ask-ok'),
     cancel: document.getElementById('ask-cancel'),
+    alternate: document.getElementById('ask-alternate'),
   };
 }
 
@@ -50,7 +52,7 @@ function showChoice() {
 // Called once at start-up. The close listener lives here rather than being added per question,
 // so a question that is answered twice, by submitting as Escape is pressed, cannot resolve twice.
 export function wireAsk() {
-  const { dlg, form, cancel, input, area, error, choice } = parts();
+  const { dlg, form, cancel, alternate, input, area, error, choice } = parts();
   if (!dlg) return;
   const clearError = () => {
     input.removeAttribute('aria-invalid');
@@ -66,15 +68,17 @@ export function wireAsk() {
     input.focus();
   });
   cancel.addEventListener('click', () => dlg.close(''));
+  alternate?.addEventListener('click', () => dlg.close('alternate'));
   dlg.addEventListener('close', () => {
     const settle = pending;
     pending = null;
+    pendingKind = null;
     // The typed value is read here, while the dialog is closing, rather than by the caller
     // after it has awaited: the field is shared, so the next question would otherwise be able
     // to overwrite an answer that had not been read yet.
     if (settle) {
       settle({
-        ok: dlg.returnValue === OK, value: input.value, area: area ? area.value : '',
+        ok: dlg.returnValue === OK, alternate: dlg.returnValue === 'alternate', value: input.value, area: area ? area.value : '',
         choice: Boolean(choosing && choice?.checked),
       });
     }
@@ -90,12 +94,15 @@ export function wireAsk() {
 // makes the destructive default "no".
 function open({
   title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, danger = false, choice = null,
+  alternateLabel = null, focusAlternate = false, disableConfirm = false,
 }) {
   const {
     dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, choiceField, choiceLabel,
-    choice: box, ok, cancel,
+    choice: box, ok, cancel, alternate,
   } = parts();
-  if (!dlg || pending) return Promise.resolve({ ok: false, value: '', area: '', choice: false });
+  if (!dlg || pending || (alternateLabel && !alternate)) {
+    return Promise.resolve({ ok: false, value: '', area: '', choice: false, unavailable: true });
+  }
   // A page whose dialog has no choice cannot ask a question that needs one.
   if (choice && !(choiceField && box && choiceLabel)) return Promise.resolve({ ok: false, value: '', area: '', choice: false });
 
@@ -103,15 +110,21 @@ function open({
   p.textContent = body;
   p.hidden = !body;
   ok.textContent = confirmLabel;
+  ok.disabled = disableConfirm;
   // UX-31 (#830): an answer that cannot be taken back wears the danger appearance Erase all local data
   // already has, so it does not look like every other confirmation. Set on every question, so the next
   // one cannot inherit it. Cancel still comes first and takes focus.
   ok.classList.toggle('btn-danger', danger);
+  ok.classList.toggle('btn-g', Boolean(alternateLabel && focusAlternate));
+  if (alternate) {
+    alternate.hidden = !alternateLabel;
+    alternate.textContent = alternateLabel ?? '';
+  }
 
   const asksForText = prefill !== null && !multiline;
   const asksForNote = prefill !== null && multiline;
   // #849: a confirmation keeps its answers in view, so it can open at its start (see styles.css).
-  dlg.setAttribute('data-question', asksForText ? 'text' : asksForNote ? 'note' : 'confirm');
+  dlg.setAttribute('data-question', asksForText ? 'text' : asksForNote ? 'note' : alternateLabel ? 'sync' : 'confirm');
   naming = asksForText;
   input.removeAttribute('aria-invalid');
   error.textContent = '';
@@ -144,6 +157,7 @@ function open({
   dlg.returnValue = '';
 
   const answered = new Promise((resolve) => { pending = resolve; });
+  pendingKind = alternateLabel ? 'sync' : null;
   const nextOpener = document.activeElement;
   try {
     dlg.showModal();
@@ -151,18 +165,33 @@ function open({
     // An already-open dialog throws. Leaving `pending` set would wedge every later question,
     // because open() refuses to run while one is outstanding.
     pending = null;
+    pendingKind = null;
     choosing = null;
-    return Promise.resolve({ ok: false, value: '', area: '', choice: false });
+    return Promise.resolve({ ok: false, value: '', area: '', choice: false, unavailable: true });
   }
   opener = nextOpener;
   if (asksForText) input.select();
   if (asksForNote) area.select();
   // A dialog focuses its first control, which a choice would be, so Cancel is given focus outright.
   if (choice) cancel.focus();
+  if (alternateLabel) (focusAlternate ? alternate : ok).focus();
   // #849: Cancel takes focus, as a destructive question needs, and focusing it scrolled a long question
   // past its own title: 454 to 802px down at 200% text on Android sizes.
   if (!asksForText && !asksForNote) dlg.scrollTop = 0;
   return answered;
+}
+
+export async function askSyncChoice({ title, body = '', keepLabel, loadLabel, focusKeep = false, loadDisabled = false }) {
+  const result = await open({
+    title, body, confirmLabel: loadLabel, alternateLabel: keepLabel,
+    focusAlternate: focusKeep || loadDisabled, disableConfirm: loadDisabled,
+  });
+  if (result.unavailable) return 'busy';
+  return result.alternate ? 'keep' : result.ok && !loadDisabled ? 'load' : null;
+}
+
+export function withdrawSyncChoice() {
+  if (pendingKind === 'sync') parts().dlg?.close('');
 }
 
 // `danger` is for an answer with no way back: no Undo, no kept copy, nothing else to recover from.

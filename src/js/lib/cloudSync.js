@@ -34,10 +34,14 @@ function newestFirst(left, right) {
 
 export function compareCloudBackups({
   ownStream = null, localDigest, matchedDigest = null, declinedDigest = null, keptDigest = null,
-  lastUploadedDigest = null, localEmpty, remotes,
+  declinedByStream = [], lastUploadedDigest = null, localEmpty, remotes,
 } = {}) {
   if ((ownStream !== null && (typeof ownStream !== 'string' || !STREAM.test(ownStream)))
     || !isDigest(localDigest) || ![matchedDigest, declinedDigest, keptDigest, lastUploadedDigest].every(optionalDigest)
+    || !Array.isArray(declinedByStream) || !declinedByStream.every((entry) => entry !== null && typeof entry === 'object'
+      && !Array.isArray(entry) && Object.keys(entry).sort().join(',') === 'digest,stream'
+      && typeof entry.stream === 'string' && STREAM.test(entry.stream) && isDigest(entry.digest))
+    || new Set(declinedByStream.map((entry) => entry.stream)).size !== declinedByStream.length
     || typeof localEmpty !== 'boolean' || !Array.isArray(remotes) || !remotes.every(validRemote)) {
     throw new TypeError('Cloud comparison needs valid saved-state digests and backup identities.');
   }
@@ -59,12 +63,14 @@ export function compareCloudBackups({
   const observedMatch = current.some((backup) => backup.digest === localDigest);
   const isEcho = (backup) => lastUploadedDigest !== null
     && backup.digest === lastUploadedDigest && backup.digest !== localDigest;
+  const declines = new Map(declinedByStream.map((entry) => [entry.stream, entry.digest]));
+  const isDeclined = (backup) => backup.digest === declinedDigest || declines.get(backup.stream) === backup.digest;
   const hasEcho = current.some(isEcho);
-  const hasKeptChoice = declinedDigest !== null && current.some((backup) =>
-    backup.digest === declinedDigest && backup.digest !== localDigest && !isEcho(backup));
-  const ignored = new Set([localDigest, matchedDigest, declinedDigest, keptDigest]);
+  const hasKeptChoice = current.some((backup) =>
+    isDeclined(backup) && backup.digest !== localDigest && !isEcho(backup));
+  const ignored = new Set([localDigest, matchedDigest, keptDigest]);
   // Time chooses which difference to show, not whether one side's content is ahead.
-  const different = current.filter((backup) => !ignored.has(backup.digest) && !isEcho(backup)).sort(newestFirst);
+  const different = current.filter((backup) => !ignored.has(backup.digest) && !isDeclined(backup) && !isEcho(backup)).sort(newestFirst);
   if (different.length) {
     const kind = matchedDigest === null
       ? (localEmpty ? 'remote-ahead' : 'first-match')

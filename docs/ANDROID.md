@@ -404,8 +404,17 @@ are disabled for this package. Uninstalling or clearing app data removes that pr
 Do not rely on an Android device backup to recover it.
 
 Use **Backup & settings** to export JSON, including progress and notes, and restore it on another
-device. Restore replaces the destination's reading data; it does not merge or sync.
-Settings stay device-specific, as on desktop.
+device. A reading-data restore replaces the destination's reading data rather than merging it;
+that individual backup does not include settings.
+
+With OneDrive backup turned on for the app, Recap Page checks for different progress at launch,
+after returning and after sign-in. You choose which device's progress to use; the app never merges
+copies. Before loading, it keeps a separate cloud copy when this device has data or settings to
+preserve or an earlier kept copy, as well as the existing local recovery copy.
+**Go back to what was on this device before** offers
+the latest kept cloud copy.
+The app aims to keep the newest three recorded copies for this device and connection; other unconfirmed
+or earlier copies may remain in their cloud folders.
 
 Export opens Android's file picker. Choose a folder **on the device**, such as Downloads, to
 keep the file local. Recap Page requests local storage, but document providers control which

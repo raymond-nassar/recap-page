@@ -148,17 +148,17 @@ This exception applies only to `aria-describedby` and `aria-labelledby`. A neste
 `for` association always rejects text, even when its checkbox or input is hidden. The mandatory
 native no-op tap and every other guard condition remain unchanged.
 
-Document and window are checked separately against an exact reviewed inventory of eighteen handlers,
+Document and window are checked separately against an exact reviewed inventory of twenty handlers,
 all on document and none on window. The inventory pins event type, target, capture, passive and once
 options, script URL and enclosing registering function, not line or column. It contains rated-comics'
-capture pointerdown, keydown and touchmove handlers; mobile-ui's capture pointerdown and keydown;
+capture pointerdown, keydown and touchmove; mobile-ui's and cloud activity's capture pointerdown and keydown;
 home-updates' capture keydown and bubbling pointerdown; tooltips' capture keydown and bubbling
 pointerover, pointerout and pointermove; press feedback's passive capture pointerdown, pointermove,
 pointerup, pointercancel and contextmenu; and the sidebar and reading shortcuts' bubbling keydown
-handlers. Press feedback only marks a held touch or pen control and clears the mark on release, so a
-tap on passive text leaves the DOM unchanged. No global activation delegation is permitted. An unreviewed global registration or changed
-inventory rejects every candidate until reviewed. The keyboard handlers do not make a non-focusable
-text node a key target. The pointer and tooltip handlers still have to survive the native tap proof.
+handlers. Press feedback only marks a held touch or pen control and clears it on release; a passive
+text tap leaves no mark. Cloud activity records interaction and may quiet a pending offer. No global
+activation delegation is permitted. An unreviewed registration or changed inventory rejects every candidate
+until reviewed. Keyboard handlers do not target passive text; pointer and tooltip handlers still need native tap proof.
 Interaction on-properties on document and window are tracked from document start too. Assigning
 a click, double-click, auxiliary-click, context-menu, mouse, pointer, touch or key handler makes
 the inventory invalid for the rest of that page, even after removal or restoration of its prior

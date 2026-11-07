@@ -95,6 +95,7 @@ export class CloudBackupCoordinator {
   constructor({
     capture, upload, lastUploaded,
     isBlocked = () => false,
+    syncUploadAllowed = () => true,
     isOnline = () => globalThis.navigator?.onLine !== false,
     isHidden = () => globalThis.document?.visibilityState === 'hidden',
     locks = globalThis.navigator?.locks, events = globalThis, clock = Date.now,
@@ -102,12 +103,12 @@ export class CloudBackupCoordinator {
     clearTimer = (timer) => globalThis.clearTimeout(timer),
     cryptoProvider = globalThis.crypto, cadence = CLOUD_BACKUP_CADENCE, onChange = () => {},
   } = {}) {
-    if ([capture, upload, lastUploaded, isBlocked, isOnline, isHidden, clock, setTimer, clearTimer, onChange]
+    if ([capture, upload, lastUploaded, isBlocked, syncUploadAllowed, isOnline, isHidden, clock, setTimer, clearTimer, onChange]
       .some((value) => typeof value !== 'function')) {
       throw new TypeError('Cloud backup needs a capture, an upload, its record and its schedule owners.');
     }
     Object.assign(this, {
-      capture, upload, lastUploaded, isBlocked, isOnline, isHidden, clock, setTimer, clearTimer, cryptoProvider, cadence, onChange,
+      capture, upload, lastUploaded, isBlocked, syncUploadAllowed, isOnline, isHidden, clock, setTimer, clearTimer, cryptoProvider, cadence, onChange,
     });
     this.locks = typeof locks?.request === 'function' ? locks : null;
     this.events = events;
@@ -116,6 +117,7 @@ export class CloudBackupCoordinator {
     this.epoch = 0;
     this.timer = null;
     this.running = null;
+    this.syncHold = null;
     this.idlePromise = Promise.resolve();
     this.resetSchedule();
     this.state = Object.freeze({ phase: 'off', code: null, retryAt: null, lastUploadAt: null });
@@ -165,8 +167,22 @@ export class CloudBackupCoordinator {
     this.cancelTimer();
     this.running?.controller.abort();
     this.running = null;
+    this.syncHold = null;
     this.resetSchedule();
     this.publish();
+  }
+
+  holdSync(code = 'checking') {
+    this.syncHold = code;
+    this.cancelTimer();
+    this.publish();
+  }
+
+  releaseSync() {
+    this.syncHold = null;
+    if (this.waiting === 'sync-held') this.waiting = null;
+    this.recheckAt = 0;
+    this.schedule();
   }
 
   // A saved change of anything a backup holds, from this tab's observer or another tab's storage event.
@@ -229,7 +245,7 @@ export class CloudBackupCoordinator {
 
   schedule() {
     this.cancelTimer();
-    if (this.active && this.dirty && !this.halted && !this.running && !(this.waiting && WAIT_FOR_CHANGE.has(this.waiting))) {
+    if (this.active && this.dirty && !this.halted && !this.syncHold && !this.running && !(this.waiting && WAIT_FOR_CHANGE.has(this.waiting))) {
       const delay = Math.min(MAX_TIMER_MS, Math.max(0, this.dueAt() - this.clock()));
       this.timer = this.setTimer(() => {
         this.timer = null;
@@ -247,7 +263,7 @@ export class CloudBackupCoordinator {
   }
 
   async work() {
-    if (!this.active || !this.dirty || this.halted || this.running) return;
+    if (!this.active || !this.dirty || this.halted || this.syncHold || this.running) return;
     const run = { epoch: this.epoch, controller: new AbortController() };
     this.running = run;
     this.waiting = null;
@@ -261,6 +277,14 @@ export class CloudBackupCoordinator {
       await this.withWorker(run, async () => {
         if (!this.current(run)) return;
         if (this.isBlocked()) { this.wait('paused'); return; }
+        const syncAllowed = async () => {
+          if (this.syncHold || await this.syncUploadAllowed() !== true || this.syncHold) {
+            this.wait('sync-held');
+            return false;
+          }
+          return this.current(run);
+        };
+        if (!await syncAllowed()) return;
         const seen = this.changes;
         const snapshot = await this.capture();
         if (!this.current(run)) return;
@@ -280,6 +304,7 @@ export class CloudBackupCoordinator {
           // Another tab of this installation may have uploaded meanwhile, so the interval is measured
           // from the shared record, not from this tab's memory.
           if (!this.flushing && this.clock() < this.lastUploadAt + this.cadence.minIntervalMs) return;
+          if (!await syncAllowed()) return;
           this.saving = true;
           this.publish();
           // Spacing counts backups that were made, never attempts: a retry follows its own backoff.
@@ -339,6 +364,7 @@ export class CloudBackupCoordinator {
     else if (this.halted === 'needs-sign-in') phase = 'needs-sign-in';
     else if (this.halted === 'needs-consent') { phase = 'needs-consent'; code = this.code; }
     else if (this.halted) { phase = 'failed'; code = this.code; }
+    else if (this.syncHold) { phase = 'waiting'; code = this.syncHold; }
     else if (this.saving) phase = 'saving';
     else if (this.waiting) { phase = 'waiting'; code = this.waiting; }
     else if (this.retryAt > this.clock()) { phase = 'retrying'; code = this.code; }

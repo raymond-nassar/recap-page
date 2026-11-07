@@ -404,6 +404,28 @@ export function prepareCompleteRestore({ backup, storage, isExclusive, draftReco
   return { format: PREPARED_FORMAT, version: 1, digest: backup.digest, before, owners };
 }
 
+export async function backupAfterCompleteRestore({ text, witness, cryptoProvider = globalThis.crypto } = {}) {
+  if (!object(witness) || CAPTURE_KEYS.some((key) => !Object.hasOwn(witness, key)
+    || (witness[key] !== null && typeof witness[key] !== 'string'))) {
+    refuse('The saved data could not be checked before the restore.', 'invalid');
+  }
+  const backup = await parseCompleteBackup(text, { cryptoProvider });
+  const values = new Map(CAPTURE_KEYS.map((key) => [key, witness[key]]));
+  const storage = {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, String(value)),
+    removeItem: (key) => values.delete(key),
+  };
+  const prepared = prepareCompleteRestore({ backup, storage, isExclusive: () => true });
+  for (const owner of prepared.owners) {
+    for (const effect of owner.effects) {
+      if (effect.value === null) storage.removeItem(effect.key);
+      else storage.setItem(effect.key, effect.value);
+    }
+  }
+  return (await captureCompleteBackup({ storage, cryptoProvider })).backup;
+}
+
 // ------------------------------------------------------------------ the restore plan
 
 function sameImage(a, b, keys) { return keys.every((key) => a[key] === b[key]); }
