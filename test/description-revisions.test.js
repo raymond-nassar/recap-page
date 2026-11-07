@@ -114,6 +114,24 @@ test('composed history inverses undo only their own revised copy and pass everyt
   assert.equal(library.manifest.lists.find(({ id }) => id === ID).description, current.description);
 });
 
+test('separately owned revision records compose without duplicate identities or files', async () => {
+  const first = await fixture();
+  const secondEntry = { ...first.entries[0], id: 'another-guide', file: 'another_guide.json' };
+  const second = sealDescriptionRevisions({ issue: 1156, entries: [secondEntry] });
+  const revisions = createDescriptionRevisions(first, undefined, [second]);
+  assert.deepEqual(revisions.records.map(({ issue }) => issue), [1075, 1156]);
+  assert.deepEqual(revisions.entries.map(({ id }) => id), [ID, 'another-guide']);
+  const original = { id: secondEntry.id, out: secondEntry.file, description: secondEntry.before };
+  const updated = { ...original, description: secondEntry.after };
+  assert.deepEqual(revisions.redoEntry(original), updated);
+  assert.deepEqual(revisions.undoEntry(updated), original);
+  assert.throws(() => createDescriptionRevisions(first, undefined, [first]), /duplicate revision/);
+  const sharedFile = sealDescriptionRevisions({
+    issue: 1156, entries: [{ ...secondEntry, file: first.entries[0].file }],
+  });
+  assert.throws(() => createDescriptionRevisions(first, undefined, [sharedFile]), /duplicate revision file/);
+});
+
 test('the record rejects copy that breaks the card rules or the evidence trail', async () => {
   const valid = await fixture();
   const reseal = (entry) => sealDescriptionRevisions({ issue: 1075, entries: [{ ...valid.entries[0], ...entry }] });

@@ -14325,7 +14325,7 @@
       "id": "fall-of-the-hulks",
       "file": "fall_of_the_hulks.json",
       "name": "Fall of the Hulks and World War Hulks",
-      "description": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots. The MODOK one-shot is not included because its metadata could not be resolved.",
+      "description": "The MODOK one-shot is not included because its metadata could not be resolved. Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots.",
       "type": "event",
       "depth": "partial",
       "writers": [

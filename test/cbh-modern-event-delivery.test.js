@@ -9,8 +9,9 @@ import {
   validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
+import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
-import { modernTimelineLists, parseCatalog } from '../src/js/lib/catalog.js';
+import { firstSentence, modernTimelineLists, parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const readJson = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
@@ -155,11 +156,15 @@ test('both event checklists, payloads and timeline cards preserve the approved s
     assert.equal(payload.placeholders, 0);
     assert.equal(payload.count, 28);
     assert.equal(entry.sourcePage, packet.sourceUrl);
+    assert.equal(card.description, entry.description);
+    assert.equal(payload.description, entry.description);
+    assert.equal(descriptionRevisions.undoEntry(entry).description, packet.proposedManifest.description);
     if (id === 'realm-of-kings') {
       assert.match(markdown, /numbered \[League of Comic Geeks Realm of Kings hardcover\]/);
       assert.match(markdown, /not verified as the physical order/);
     } else {
       assert.match(entry.description, /MODOK one-shot is not included/);
+      assert.match(firstSentence(card.description), /MODOK one-shot is not included/);
       assert.ok(!payload.items.some((row) => /Fall of the Hulks: MODOK/i.test(row.title)));
     }
   }

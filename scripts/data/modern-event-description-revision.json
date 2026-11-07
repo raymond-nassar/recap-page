@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "issue": 1156,
+  "entries": [
+    {
+      "id": "fall-of-the-hulks",
+      "file": "fall_of_the_hulks.json",
+      "before": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots. The MODOK one-shot is not included because its metadata could not be resolved.",
+      "after": "The MODOK one-shot is not included because its metadata could not be resolved. Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots.",
+      "support": "Reorders the two approved sentences so the catalog card discloses the position 3 MODOK metadata gap before import. The source packet, 28 issue identities, and gap remain unchanged.",
+      "sources": [],
+      "nonDescriptionSha256": "8ba9b0385a26f7374c58137774d3d2ca3f4ec44f68dd6e9504c39e795ac16a62"
+    }
+  ],
+  "sha256": "192e667d9fd0d06c86de62f2a0c081e28e293ae9dadc0c8a8a6d07194e200fc8"
+}

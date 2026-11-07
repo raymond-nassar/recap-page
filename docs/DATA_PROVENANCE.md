@@ -3526,7 +3526,7 @@ The [Fall of the Hulks and World War Hulks guide](https://www.comicbookherald.co
 prints 29 issue positions. Its separate trade summary is not part of that selection. The
 [packet](../scripts/data/cbh-packets/fall-of-the-hulks.json) preserves position 3, Fall of the Hulks:
 MODOK #1, as an open metadata gap linked to [Issue 1155](https://github.com/raymond-nassar/recap-page/issues/1155).
-The [local checklist](../src/data/orders/fall-of-the-hulks.md) publishes the other 28 exactly
+The card and Preview disclose the gap. The [local checklist](../src/data/orders/fall-of-the-hulks.md) publishes the other 28 exactly
 resolved issues without substituting an identity or presenting a placeholder as an issue.
 The source's Spider-Man & Thor and Wolverine & Captain America titles correspond to the provider's
 Spider-Man Vs. Thor and Wolverine Vs. Captain America titles; the source's trade summary and
