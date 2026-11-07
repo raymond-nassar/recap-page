@@ -21636,10 +21636,25 @@ SCENARIOS.push({
     }) : null;
     t.check('the newest backup\'s Restore button is shown, enabled and under the pointer where it is drawn',
       visible && press.enabled && press.under, JSON.stringify({ visible, press }));
-    if (press) await page.mouse.click(press.x, press.y);
-    await page.waitForSelector('#ask[open]');
-    await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
-    await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Backup restored from OneDrive.'), { timeout: 15000 });
+    let restoreStage = 'press';
+    try {
+      if (press) await page.mouse.click(press.x, press.y);
+      restoreStage = 'question';
+      await page.waitForSelector('#ask[open]');
+      restoreStage = 'navigation';
+      await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+      restoreStage = 'report';
+      await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Backup restored from OneDrive.'), { timeout: 15000 });
+    } catch (error) {
+      const state = await page.evaluate(() => ({
+        location: location.href,
+        question: document.querySelector('#ask')?.open,
+        status: document.querySelector('#cloud-backup-status')?.textContent,
+        report: document.querySelector('#complete-backup-report')?.textContent,
+      })).catch((diagnosticError) => ({ unavailable: diagnosticError.message }));
+      console.error(`cloud-backup restore failed ${JSON.stringify({ stage: restoreStage, message: error.message, state })}`);
+      throw error;
+    }
     const restored = await readState(page);
     t.check('confirming restores the backup through the complete restore engine, replacing the change made after it',
       restored?.lists?.fixture?.name === ORDER.name && JSON.stringify(restored.listOrder) === JSON.stringify(['fixture']),
@@ -21648,6 +21663,7 @@ SCENARIOS.push({
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'), { timeout: 15000 });
     t.check('after the restore this browser still backs up: its consent is not part of what a restore replaces',
       (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
 
     const stored = fixture.host.items.size;
     const keptFile = { ...fixture.host.items.get(kept.id) };
@@ -25648,6 +25664,14 @@ SCENARIOS.push({
         connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
       }))?.held;
     });
+    const waitForKeep = () => page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      const gate = await protocol.syncGate({ connection: record.consent.connection, stream: record.stream, consentId: record.consent.id });
+      return gate?.held === false;
+    }, { timeout: 20000 });
     const reviewFocused = () => page.evaluate(() => document.activeElement?.id === 'btn-cloud-sync-review');
     const headingFocused = () => page.waitForFunction(() => {
       const section = document.querySelector('.view:not([hidden])');
@@ -25709,14 +25733,7 @@ SCENARIOS.push({
     t.check('Android Back from the reopened question returns focus to Review progress', await reviewFocused());
     await openReview();
     await click(page, '#ask-alternate');
-    await page.waitForFunction(async () => {
-      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
-      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
-      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
-      const record = await protocol.record();
-      const gate = await protocol.syncGate({ connection: record.consent.connection, stream: record.stream, consentId: record.consent.id });
-      return gate?.held === false;
-    }, { timeout: 20000 });
+    await waitForKeep();
     t.check('Keep releases uploads without changing this device or removing the other device',
       await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === original && fixture.host.items.has('phone-1'));
     t.check('Keep from the reopened question moves focus to the visible view heading', await headingFocused());
@@ -25930,15 +25947,111 @@ SCENARIOS.push({
       Boolean(pendingBeforeNewOffer) && blockedLoad.disabled && blockedLoad.focus === 'ask-alternate'
         && blockedLoad.body.includes('earlier cloud recovery copy') && blockedLoad.body.includes('Load is unavailable'),
       JSON.stringify(blockedLoad));
-    await click(page, '#ask-alternate');
-    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    const heldBeforeKeep = await held();
+    let releaseSlowKeep;
+    fixture.host.listGate = new Promise((resolve) => { releaseSlowKeep = resolve; });
+    let immediate;
+    let duringKeep;
+    try {
+      immediate = await page.evaluate(() => {
+        const exit = document.querySelector('#btn-cloud-sync-discard');
+        document.querySelector('#ask-alternate').click();
+        const result = { dialogOpen: document.querySelector('#ask').open, exitDisabled: exit.disabled };
+        exit.click();
+        return result;
+      });
+      await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent
+        .includes('Your cloud choice is being completed.'), { timeout: 20000 });
+      duringKeep = await page.evaluate(() => {
+        const exit = document.querySelector('#btn-cloud-sync-discard');
+        return {
+          exitUnavailable: exit.disabled || Boolean(exit.closest('[hidden]')),
+          dialogOpen: document.querySelector('#ask').open,
+        };
+      });
+    } finally {
+      releaseSlowKeep();
+    }
+    t.check('a fast recovery-exit tap is blocked while Keep is closing and confirming',
+      !immediate.dialogOpen && immediate.exitDisabled && duringKeep.exitUnavailable && !duringKeep.dialogOpen,
+      JSON.stringify({ immediate, duringKeep }));
+    await waitForKeep();
     const pendingAfterKeep = await page.evaluate(async () => {
       const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
       const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
       return (await new CloudBackupProtocol({ transport: createCloudHostTransport() })
         .keptPending({ connection: 'c'.repeat(32) }))?.id ?? null;
     });
-    t.check('Keep leaves the unconfirmed recovery copy recorded', pendingAfterKeep === pendingBeforeNewOffer);
+    t.check('Keep releases the hold and leaves the unconfirmed recovery copy recorded',
+      heldBeforeKeep && !(await held()) && pendingAfterKeep === pendingBeforeNewOffer);
+    const canExit = await page.waitForFunction(() => {
+      const button = document.querySelector('#btn-cloud-sync-discard');
+      return button && !button.disabled && !button.closest('[hidden]');
+    }, { timeout: 5000 }).then(() => true).catch(() => false);
+    t.check('an unresolved recovery copy offers a data-safe exit in Backup & settings', canExit);
+    if (canExit) {
+      await page.$eval('#btn-cloud-sync-discard', (button) => button.focus());
+      await click(page, '#btn-cloud-sync-discard');
+      await page.waitForSelector('#ask[open]');
+      const question = await page.evaluate(() => ({
+        body: document.querySelector('#ask-body').textContent,
+        label: document.querySelector('#ask-ok').textContent,
+        focus: document.activeElement?.id,
+      }));
+      t.check('the exit question names the choice and keeps a safe cancel focused',
+        question.label === 'Continue without Go back' && question.focus === 'ask-cancel'
+          && question.body.includes('does not') && question.body.includes('cloud copies'), JSON.stringify(question));
+      await click(page, '#ask-cancel');
+      await page.waitForFunction(() => !document.querySelector('#ask').open);
+      try {
+        await page.waitForFunction(() => document.activeElement?.id === 'btn-cloud-sync-discard'
+          && !document.querySelector('#btn-cloud-sync-discard').disabled, { timeout: 5000 });
+      } catch (error) {
+        const detail = await page.evaluate(() => {
+          const button = document.querySelector('#btn-cloud-sync-discard');
+          const active = document.activeElement;
+          return {
+            active: active?.id, activeTag: active?.tagName, dialogOpen: document.querySelector('#ask').open,
+            exitDisabled: button.disabled, exitHidden: Boolean(button.closest('[hidden]')),
+            status: document.querySelector('#cloud-backup-status').textContent,
+          };
+        });
+        console.error(`CLOUD-EXIT-FOCUS ${JSON.stringify(detail)}`);
+        throw error;
+      }
+      const afterCancel = await page.evaluate(async () => {
+        const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        return (await new CloudBackupProtocol({ transport: createCloudHostTransport() })
+          .keptPending({ connection: 'c'.repeat(32) }))?.id ?? null;
+      });
+      t.check('cancel keeps the pending copy and returns focus to the exit',
+        afterCancel === pendingBeforeNewOffer && await page.evaluate(() => document.activeElement?.id === 'btn-cloud-sync-discard'));
+      await click(page, '#btn-cloud-sync-discard');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(async () => {
+        const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+        const [pending, state] = await Promise.all([
+          protocol.keptPending({ connection: 'c'.repeat(32) }), protocol.syncState({ connection: 'c'.repeat(32) }),
+        ]);
+        return pending === null && (state?.kept ?? null) === null;
+      }, { timeout: 20000 });
+      await page.waitForFunction(() => document.activeElement?.id === 'cloud-backup-status', { timeout: 20000 });
+      const afterExit = await page.evaluate(async () => {
+        const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+        const [pending, state] = await Promise.all([
+          protocol.keptPending({ connection: 'c'.repeat(32) }), protocol.syncState({ connection: 'c'.repeat(32) }),
+        ]);
+        return { pending, kept: state?.kept ?? null, focus: document.activeElement?.id };
+      });
+      t.check('the exit clears the unavailable reference and focuses cloud status',
+        afterExit.pending === null && afterExit.kept === null && afterExit.focus === 'cloud-backup-status', JSON.stringify(afterExit));
+    }
     t.check('the offer and recovery journey has no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });

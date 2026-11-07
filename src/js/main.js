@@ -2633,6 +2633,7 @@ const cloudSyncPrompt = createCloudSyncPrompt({
   onFinished: reloadWithNotice,
   report: (message) => notify('#app-report', `${message} Check Cloud backup in Backup & settings.`, 'warn', 'cloud-sync'),
   focusSuccessor: () => focusViewHeading(view, arrivalHeading()?.id),
+  onQuestionChange: (pending) => cloudBackupView.setSyncQuestionPending(pending),
   announce,
 });
 
@@ -2649,7 +2650,8 @@ const cloudBackupView = createCloudBackupView({
     discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
     remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),
     syncActions: $('#cloud-sync-actions'), syncCheck: $('#btn-cloud-sync-check'),
-    syncOverride: $('#btn-cloud-sync-override'), syncBack: $('#btn-cloud-sync-back'), syncAbout: $('#cloud-sync-about'),
+    syncOverride: $('#btn-cloud-sync-override'), syncBack: $('#btn-cloud-sync-back'),
+    syncDiscard: $('#btn-cloud-sync-discard'), syncAbout: $('#cloud-sync-about'),
   }),
   askConfirm,
   askConfirmChoice,
@@ -2667,6 +2669,7 @@ const cloudBackupView = createCloudBackupView({
   onSyncCheck: () => cloudBackup.recheckSync(),
   onSyncOverride: () => cloudBackup.overrideSync(),
   onSyncBack: () => cloudBackup.goBackSync(),
+  onSyncDiscard: () => cloudBackup.discardPendingSync(),
   onFinished: reloadWithNotice,
 });
 

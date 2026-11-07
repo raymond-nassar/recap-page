@@ -301,23 +301,51 @@ function checkKeptPending(value) {
   const legacy = value?.version === 1;
   const fields = legacy
     ? ['connection', 'kept', 'stream', 'version']
-    : ['connection', 'consentId', 'kept', 'previousKept', 'stream', 'targetDigest', 'version'];
-  if (!exactFields(value, fields) || ![1, 2].includes(value.version)
+    : value?.version === 3
+      ? ['connection', 'consentId', 'kept', 'operationId', 'previousKept', 'stream', 'targetDigest', 'targetPersonalDigest', 'version']
+      : ['connection', 'consentId', 'kept', 'previousKept', 'stream', 'targetDigest', 'version'];
+  if (!exactFields(value, fields) || ![1, 2, 3].includes(value.version)
     || !validConnection(value.connection) || typeof value.stream !== 'string' || !STREAM.test(value.stream)
     || !validKept(value.kept) || value.kept.connection !== value.connection || value.kept.stream !== value.stream
     || (!legacy && (!validDigest(value.targetDigest) || typeof value.consentId !== 'string' || !STREAM.test(value.consentId)
       || (value.previousKept !== null
-      && (!validKept(value.previousKept) || value.previousKept.connection !== value.connection))))) {
+      && (!validKept(value.previousKept) || value.previousKept.connection !== value.connection))))
+    || (value.version === 3 && (!validDigest(value.targetPersonalDigest)
+      || typeof value.operationId !== 'string' || !STREAM.test(value.operationId)))) {
     refuse('The pending cloud recovery copy could not be checked, so Go back is unavailable.', 'storage');
   }
   return value;
 }
 
+function keptPendingEntries(raw, present) {
+  if (!present) return [];
+  const entries = raw?.version === 4 && exactFields(raw, ['entries', 'version']) && Array.isArray(raw.entries)
+    ? raw.entries : [raw];
+  if (!entries.length || entries.some((entry) => !object(entry) || !validConnection(entry.connection))
+    || new Set(entries.map((entry) => entry.connection)).size !== entries.length) {
+    refuse('The pending cloud recovery copies could not be checked, so Go back is unavailable.', 'storage');
+  }
+  return entries;
+}
+
+function scopedKeptPending(raw, present, connection) {
+  const held = keptPendingEntries(raw, present).find((entry) => entry.connection === connection);
+  return held ? checkKeptPending(held) : null;
+}
+
+function replaceKeptPending(raw, present, connection, replacement) {
+  const entries = keptPendingEntries(raw, present).filter((entry) => entry.connection !== connection);
+  if (replacement !== null) entries.push(replacement);
+  if (!entries.length) return null;
+  return entries.length === 1 ? entries[0] : { version: 4, entries };
+}
+
 function keptPendingDetails(value) {
   return value === null ? null : {
-    kept: value.kept, targetDigest: value.version === 2 ? value.targetDigest : null,
-    previousKept: value.version === 2 ? value.previousKept : null,
-    consentId: value.version === 2 ? value.consentId : null,
+    kept: value.kept, targetDigest: value.version === 1 ? null : value.targetDigest,
+    previousKept: value.version === 1 ? null : value.previousKept,
+    consentId: value.version === 1 ? null : value.consentId,
+    ...(value.version === 3 ? { targetPersonalDigest: value.targetPersonalDigest, operationId: value.operationId } : {}),
   };
 }
 
@@ -697,8 +725,9 @@ export function createCloudRecordStore(factory = globalThis.indexedDB, { timeout
             after = change(pending.result ?? null, record, pendingKey.result !== undefined, sync.result ?? null, syncKey.result !== undefined);
           } catch (error) { stop(error); return; }
           try {
-            if (after !== undefined) store.put(after, SYNC_SLOT);
-            store.delete(KEPT_PENDING_SLOT);
+            if (after.sync !== undefined) store.put(after.sync, SYNC_SLOT);
+            if (after.pending === null) store.delete(KEPT_PENDING_SLOT);
+            else store.put(after.pending, KEPT_PENDING_SLOT);
             set(after);
           } catch (error) { stop(error); }
         };
@@ -969,26 +998,31 @@ export class CloudBackupProtocol {
     const { record: rawRecord, pending, present } = await this.records.readKeptPending();
     currentConsent(rawRecord, named);
     if (!present) return null;
-    const held = checkKeptPending(pending);
-    if (held.connection !== named) return details ? { foreign: true } : null;
-    return details ? keptPendingDetails(held) : held.kept;
+    const held = scopedKeptPending(pending, present, named);
+    return details ? keptPendingDetails(held) : held?.kept ?? null;
   }
 
-  async setKeptPending({ connection, stream, consentId, kept, targetDigest, previousKept, expected, authorize } = {}) {
+  async setKeptPending({
+    connection, stream, consentId, kept, targetDigest, targetPersonalDigest, operationId, previousKept, expected, authorize,
+  } = {}) {
     const context = syncContext({ connection, stream, consentId });
     const scopedKept = (value) => validKept(value) && value.connection === connection && value.stream === stream;
     const connectedKept = (value) => validKept(value) && value.connection === connection;
     const detailed = kept !== null && targetDigest !== undefined;
+    const identified = detailed && targetPersonalDigest !== undefined;
     const expectedDetails = expected !== null && object(expected) && Object.hasOwn(expected, 'kept');
     if (!this.locks || (kept !== null && (!validKept(kept) || kept.connection !== connection || kept.stream !== stream))
       || (detailed && (!validDigest(targetDigest) || (previousKept !== null && !connectedKept(previousKept))))
+      || (identified && (!validDigest(targetPersonalDigest) || typeof operationId !== 'string' || !STREAM.test(operationId)))
+      || (!identified && operationId !== undefined)
       || (expected !== null && !(expectedDetails ? scopedKept(expected.kept) : scopedKept(expected)))
       || typeof authorize !== 'function') {
       refuse('The pending cloud recovery copy could not be recorded.', 'invalid');
     }
-    const next = kept === null ? null : detailed
-      ? { version: 2, connection, stream, consentId, kept, targetDigest, previousKept }
-      : { version: 1, connection, stream, kept };
+    const next = kept === null ? null : identified
+      ? { version: 3, connection, stream, consentId, kept, targetDigest, targetPersonalDigest, operationId, previousKept }
+      : detailed ? { version: 2, connection, stream, consentId, kept, targetDigest, previousKept }
+        : { version: 1, connection, stream, kept };
     return this.exclusive(async () => {
       if (kept !== null) await this.fetchRecordedKept({ ...context, kept });
       await this.records.writeKeptPending((raw, rawRecord, present, rawSync, syncPresent) => {
@@ -999,14 +1033,10 @@ export class CloudBackupProtocol {
           if (canonical(active) !== canonical(previousKept)) refuse('The kept cloud copy changed. Check again.', 'raced');
         }
         if (!authorize()) refuse('The cloud choice changed. Check again.', 'raced');
-        const previous = present ? checkKeptPending(raw) : null;
-        if (previous && (previous.connection !== connection || previous.stream !== stream)) {
-          refuse('An earlier cloud recovery copy belongs to a different connection. Check it before loading other progress.', 'paused');
-        }
-        const held = previous?.connection === connection && previous.stream === stream ? previous : null;
+        const held = scopedKeptPending(raw, present, connection);
         const current = expectedDetails ? keptPendingDetails(held) : held?.kept ?? null;
         if (canonical(current) !== canonical(expected)) refuse('The pending cloud recovery copy changed. Check again.', 'raced');
-        return next;
+        return replaceKeptPending(raw, present, connection, next);
       });
       if (canonical(await this.keptPending({ connection, details: true })) !== canonical(keptPendingDetails(next)) || !authorize()) {
         throw recordLost();
@@ -1014,10 +1044,33 @@ export class CloudBackupProtocol {
     });
   }
 
-  async resolveKeptPending({ connection, stream, consentId, pending, outcome, authorize, prune = true } = {}) {
+  async undoKeptPending({ connection, stream, consentId, pending } = {}) {
     const context = syncContext({ connection, stream, consentId });
-    if (!this.locks || !object(pending) || !validKept(pending.kept) || !validDigest(pending.targetDigest)
-      || !['loaded', 'prior'].includes(outcome) || typeof authorize !== 'function' || typeof prune !== 'boolean') {
+    if (!object(pending) || !validKept(pending.kept) || typeof pending.operationId !== 'string'
+      || !STREAM.test(pending.operationId)) {
+      refuse('The unstarted cloud recovery copy could not be cleared.', 'invalid');
+    }
+    return this.exclusive(async () => {
+      await this.records.writeKeptPending((raw, rawRecord, present) => {
+        requireSyncContext(rawRecord, context);
+        const held = scopedKeptPending(raw, present, connection);
+        if (!held) return undefined;
+        if (canonical(keptPendingDetails(held)) !== canonical(pending)) {
+          refuse('The pending cloud recovery copy changed. Check again.', 'raced');
+        }
+        return replaceKeptPending(raw, present, connection, null);
+      });
+      if (await this.keptPending({ connection, details: true }) !== null) throw recordLost();
+    });
+  }
+
+  async resolveKeptPending({ connection, stream, consentId, pending, outcome, expectedKept, authorize, prune = true } = {}) {
+    const context = syncContext({ connection, stream, consentId });
+    if (!this.locks || !object(pending) || !validKept(pending.kept)
+      || (outcome !== 'discard' && !validDigest(pending.targetDigest))
+      || !['loaded', 'prior', 'discard'].includes(outcome)
+      || (outcome === 'discard' && expectedKept !== null && !validKept(expectedKept))
+      || typeof authorize !== 'function' || typeof prune !== 'boolean') {
       refuse('The pending cloud recovery copy cannot be confirmed.', 'invalid');
     }
     return this.exclusive(async () => {
@@ -1028,14 +1081,14 @@ export class CloudBackupProtocol {
           && candidate.verified && !candidate.deleting && !candidate.changedOutside);
         if (!entry) refuse('The pending cloud recovery copy cannot be confirmed.', 'verify');
         if (prune) await this.fetchRecordedKept({ ...context, kept: pending.kept });
-      } else if (pending.consentId !== consentId && pending.previousKept
+      } else if (outcome === 'prior' && pending.consentId !== consentId && pending.previousKept
         && !(await this.syncState({ connection }))?.kept) {
         await this.fetchRecordedKept({ ...context, kept: pending.previousKept });
       }
       await this.records.resolveKeptPending((rawPending, rawRecord, present, rawSync, syncPresent) => {
         const record = requireSyncContext(rawRecord, context);
         if (!authorize()) refuse('The cloud choice changed. Check again.', 'raced');
-        const held = present ? checkKeptPending(rawPending) : null;
+        const held = scopedKeptPending(rawPending, present, connection);
         if (canonical(keptPendingDetails(held)) !== canonical(pending)) {
           refuse('The pending cloud recovery copy changed. Check again.', 'raced');
         }
@@ -1043,21 +1096,22 @@ export class CloudBackupProtocol {
         const same = sameSyncContext(state, record);
         const active = same ? state.kept : null;
         const reattach = pending.consentId !== consentId && active === null && pending.previousKept !== null;
-        if (!reattach && canonical(active) !== canonical(pending.previousKept)) {
+        const expected = outcome === 'discard' ? expectedKept : pending.previousKept;
+        if (!(outcome !== 'discard' && reattach) && canonical(active) !== canonical(expected)) {
           refuse('The kept cloud copy changed. Check again.', 'raced');
         }
-        if (outcome === 'prior' && !reattach) return undefined;
-        return {
+        const sync = outcome === 'prior' && !reattach ? undefined : {
           version: 1, connection, stream, consentId,
           matchedDigest: same ? state.matchedDigest : null,
           declinedDigest: same ? state.declinedDigest : null,
-          kept: outcome === 'loaded' ? pending.kept : pending.previousKept,
+          kept: outcome === 'loaded' ? pending.kept : outcome === 'prior' ? pending.previousKept : null,
         };
+        return { sync, pending: replaceKeptPending(rawPending, present, connection, null) };
       });
       const [held, state] = await Promise.all([
         this.keptPending({ connection, details: true }), this.syncState({ connection }),
       ]);
-      const expected = outcome === 'loaded' ? pending.kept : pending.previousKept;
+      const expected = outcome === 'loaded' ? pending.kept : outcome === 'prior' ? pending.previousKept : null;
       if (held !== null || canonical(state?.kept ?? null) !== canonical(expected) || !authorize()) throw recordLost();
       if (outcome === 'loaded' && prune) await this.pruneKept(context);
       return expected;
@@ -1432,7 +1486,7 @@ export class CloudBackupProtocol {
         const record = requireSyncContext(rawRecord, context);
         const state = syncPresent ? checkSyncState(sync) : null;
         const { pending: rawPending, present } = await wait(this.records.readKeptPending());
-        const pending = present ? checkKeptPending(rawPending) : null;
+        const pending = scopedKeptPending(rawPending, present, context.connection);
         cleanupStopped(signal);
         return (sameSyncContext(state, record) && state.kept?.id === entry.id && state.kept.name === entry.name)
           || (pending?.connection === context.connection && (
@@ -2467,6 +2521,27 @@ export class CloudBackupProtocol {
             ...(error?.changedOutside ? { changedOutside: true } : {}),
           });
           if (STOPS_DELETION.has(code)) stopped = code;
+        }
+      }
+      if (failed.length === 0 && attention === 0) {
+        try {
+          const before = await this.records.readKeptPending();
+          const pending = scopedKeptPending(before.pending, before.present, named);
+          if (pending) {
+            await this.records.writeKeptPending((raw, rawRecord, present) => {
+              const current = rawRecord === null ? null : checkRecord(rawRecord);
+              if (!current || current.stream !== record.stream || current.consent !== null
+                || canonical(scopedKeptPending(raw, present, named)) !== canonical(pending)) {
+                refuse('The pending cloud recovery copy changed during deletion.', 'raced');
+              }
+              return replaceKeptPending(raw, present, named, null);
+            });
+            const after = await this.records.readKeptPending();
+            if (scopedKeptPending(after.pending, after.present, named) !== null) throw recordLost();
+          }
+        } catch (error) {
+          if (!(error instanceof CloudBackupError)) throw error;
+          failed.push({ id: null, name: null, code: error.code });
         }
       }
       return { deleted, failed, ...(earlier ? { earlier } : {}), ...(attention ? { attention } : {}) };

@@ -1,5 +1,5 @@
 import { CLOUD_SYNC_OFFER_LOCK, CLOUD_SYNC_PENDING_KEY } from '../storage.js';
-import { canonical, digestAfterCompleteRestore, settingsFromStorage } from './completeBackup.js';
+import { backupAfterCompleteRestore, canonical, settingsFromStorage } from './completeBackup.js';
 import { compareCloudBackups, personalDigest } from './cloudSync.js';
 import { createEmptyState, exportBackup } from './model.js';
 import { CLOUD_BACKUP_CADENCE } from './cloudCoordinator.js';
@@ -556,12 +556,20 @@ export class CloudLaunchSync {
           this.keptUnavailable = pendingKept !== null;
           if (pendingKept?.targetDigest) {
             const outcome = snapshot.backup.digest === pendingKept.targetDigest ? 'loaded'
-              : snapshot.backup.digest === pendingKept.kept.contentDigest ? 'prior' : null;
+              : snapshot.backup.digest === pendingKept.kept.contentDigest ? 'prior'
+                : pendingKept.targetPersonalDigest && digest === pendingKept.targetPersonalDigest
+                  && digest !== pendingKept.kept.personalDigest ? 'loaded'
+                  : digest === pendingKept.kept.personalDigest
+                    && pendingKept.targetPersonalDigest && digest !== pendingKept.targetPersonalDigest ? 'prior' : null;
             if (outcome) {
-              await this.protocol.resolveKeptPending({
-                ...this.context, pending: pendingKept, outcome,
-                authorize: () => current() && !this.isBlocked() && this.snapshotCurrent(snapshot.witness),
-              });
+              try {
+                await this.protocol.resolveKeptPending({
+                  ...this.context, pending: pendingKept, outcome,
+                  authorize: () => current() && !this.isBlocked() && this.snapshotCurrent(snapshot.witness),
+                });
+              } catch (error) {
+                if (!(error instanceof CloudBackupError) || !['gone', 'invalid', 'verify'].includes(error.code)) throw error;
+              }
               await this.current(sequence, attempt);
               assertCurrent();
               remembered = await this.protocol.syncState({ connection: this.context.connection });
@@ -988,45 +996,95 @@ export class CloudLaunchSync {
 
   async restoreWithPending(action, snapshot, replacement, text, failureMessage) {
     let pending = null;
+    const undoPending = async () => {
+      if (!pending) return;
+      try {
+        await this.protocol.undoKeptPending({ ...this.context, pending });
+        this.keptUnavailable = false;
+      } catch (error) {
+        throw new CloudBackupError(
+          `The unstarted cloud recovery copy could not be cleared, so Go back is unavailable. ${error.message}`,
+          error.code ?? 'storage',
+        );
+      }
+    };
     if (replacement) {
       const previous = await this.protocol.keptPending({ connection: this.context.connection, details: true });
       if (previous !== null) {
         throw new CloudBackupError('The earlier cloud recovery copy is still being checked. Check it before loading other progress.', 'paused');
       }
-      const targetDigest = await digestAfterCompleteRestore({ text, witness: snapshot.witness, cryptoProvider: this.cryptoProvider });
-      pending = { kept: replacement, targetDigest, previousKept: this.kept, consentId: this.context.consentId };
+      const target = await backupAfterCompleteRestore({ text, witness: snapshot.witness, cryptoProvider: this.cryptoProvider });
+      pending = {
+        kept: replacement, targetDigest: target.digest, targetPersonalDigest: await personalDigest(target, this.cryptoProvider),
+        operationId: this.protocol.randomId(), previousKept: this.kept, consentId: this.context.consentId,
+      };
       await this.assertAction(action);
       this.keptUnavailable = true;
-      await this.protocol.setKeptPending({
-        ...this.context, ...pending, expected: previous,
-        authorize: () => this.actionCurrent(action) && !this.isBlocked() && this.snapshotCurrent(snapshot.witness),
-      });
+      try {
+        await this.protocol.setKeptPending({
+          ...this.context, ...pending, expected: previous,
+          authorize: () => this.actionCurrent(action) && !this.isBlocked() && this.snapshotCurrent(snapshot.witness),
+        });
+      } catch (error) {
+        await undoPending();
+        throw error;
+      }
     }
-    const undoPending = async () => {
-      if (!replacement || action.restoring || !this.actionCurrent(action)
-        || this.isBlocked() || !this.snapshotCurrent(snapshot.witness)) return;
-      await this.protocol.setKeptPending({
-        ...this.context, kept: null, expected: pending, authorize: () => this.actionCurrent(action),
-      });
-      this.keptUnavailable = false;
-    };
-    let restored;
-    try {
-      restored = await this.restore(text, {
-        expectedPriorDigest: snapshot.backup.digest,
-        assertAuthorized: () => this.assertAction(action),
-        assertStillAuthorized: () => this.assertActionCurrent(action),
-        onApplyStart: () => { this.assertActionCurrent(action); action.restoring = true; },
-      });
-    } catch (error) {
-      await undoPending();
-      throw error;
-    }
+    const restored = await this.restore(text, {
+      expectedPriorDigest: snapshot.backup.digest,
+      assertAuthorized: () => this.assertAction(action),
+      assertStillAuthorized: () => this.assertActionCurrent(action),
+      onApplyStart: () => { this.assertActionCurrent(action); action.restoring = true; },
+    });
     if (!restored?.ok) {
-      await undoPending();
+      if (restored?.changed === false && !restored.recoveryPending) await undoPending();
       throw new CloudBackupError(restored?.error ?? failureMessage, 'restore');
     }
     return pending;
+  }
+
+  async discardPending() {
+    if (!this.active || !this.keptUnavailable || this.action || this.reserving) {
+      return { ok: false, error: 'That cloud recovery choice is no longer available. Check again.' };
+    }
+    this.reserving = true;
+    try {
+      await this.requestCheck();
+      if (!this.active || !this.leader || !['ready', 'offer', 'failed'].includes(this.state.phase) || !this.keptUnavailable) {
+        return { ok: false, error: 'The cloud recovery copy changed. Check again.' };
+      }
+      const action = { sequence: this.sequence, attempt: this.attempt, epoch: this.epoch, invalid: false };
+      this.action = action;
+      this.publish('working');
+      try {
+        if (this.isBlocked()) throw new CloudBackupError('Finish recovery before changing the cloud recovery choice.', 'paused');
+        const [pending, remembered, gate] = await Promise.all([
+          this.protocol.keptPending({ connection: this.context.connection, details: true }),
+          this.protocol.syncState({ connection: this.context.connection }),
+          this.protocol.syncGate(this.context),
+        ]);
+        if (!this.actionCurrent(action) || !pending || !gate?.held || gate.epoch !== action.epoch || this.isBlocked()) {
+          throw new CloudBackupError('The cloud recovery copy changed. Check again.', 'raced');
+        }
+        await this.protocol.resolveKeptPending({
+          ...this.context, pending, outcome: 'discard', expectedKept: remembered?.kept ?? null,
+          authorize: () => this.actionCurrent(action) && !this.isBlocked(), prune: false,
+        });
+        this.kept = null;
+        this.keptUnavailable = false;
+        this.queuedCheck = true;
+        this.publish('checking');
+        return { ok: true };
+      } catch (error) {
+        if (this.active && this.action === action && !action.invalid) this.fail(error, 'discard');
+        return { ok: false, error: error?.message ?? 'The cloud recovery choice could not be changed. Check again.' };
+      } finally {
+        this.finishAction(action);
+      }
+    } finally {
+      this.reserving = false;
+      this.flushQueuedCheck();
+    }
   }
 
   async activateRestoredKept(action, pending) {

@@ -713,10 +713,12 @@ export class CompleteRestore {
       } catch (error) {
         if (error?.copyKept) this.copyStuck = error.markerUnchecked ? 'marker' : error.offered ? 'offered' : true;
         if (error?.markerUnchecked) this.reloadNow();
+        // An unchecked marker may already name a journal that can finish after reload.
         return {
           ok: false, changed: error && 'changed' in error ? error.changed : false,
           error: error?.message || 'The complete restore could not continue.',
           ...(error?.copyKept ? { copyKept: true } : {}),
+          ...(error?.markerUnchecked ? { recoveryPending: true } : {}),
         };
       } finally {
         this.exclusiveHeld = false;

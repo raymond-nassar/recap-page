@@ -4923,10 +4923,21 @@ async function confirmationQuestions(page, label, viewport) {
   });
   await click(page, '#ask-cancel');
   await page.evaluate(() => window.__androidCloudQuestion);
+  await page.evaluate(async () => {
+    const [{ askConfirm }, { cloudSyncDiscardQuestion }] = await Promise.all([
+      import('/js/ask.js'), import('/js/views/cloud.js'),
+    ]);
+    window.__androidCloudDiscard = askConfirm(cloudSyncDiscardQuestion());
+  });
+  const recoveryExit = await question('cloud recovery');
+  if (viewport.desktop) await escapeShellDialog(page, '#ask');
+  else await backDialog(page);
+  check(await page.evaluate(() => window.__androidCloudDiscard) === false,
+    `${label}: ${viewport.desktop ? 'Escape' : 'Android Back'} cancels the cloud recovery exit`);
   const after = await names();
   check(JSON.stringify(after) === JSON.stringify(before),
     `${label}: restoring, undoing, and declining the saved copy and the erase leaves the reading data as it was ${JSON.stringify({ before, after })}`);
-  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved, erase, sync, newer })}`);
+  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved, erase, sync, newer, recoveryExit })}`);
 }
 
 // #830: the dialogs that now share the questions' shell, opened the way a reader on a phone reaches

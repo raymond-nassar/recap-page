@@ -701,6 +701,7 @@ async function checkMarkerReadFailure(persistent, optionsFor = async () => ({}))
   assert.equal(readMarker(env.storage).state, 'active');
   assert.ok(env.journal.record, 'an active marker must not outlive its recovery journal');
   assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.equal(result.recoveryPending, true, 'the marked journal can still finish after reload');
   assert.match(result.error, /recovery copy was kept/i);
   assertImage(env, before, 'a failed marker check does not replace data');
   assert.equal(tab.state.available, false);

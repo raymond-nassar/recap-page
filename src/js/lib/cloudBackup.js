@@ -436,6 +436,9 @@ export function createCloudBackup({
     goBackSync() {
       return launch?.goBack() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
     },
+    discardPendingSync() {
+      return launch?.discardPending() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
+    },
 
     // Signs in to the service the person chose, or the transport's own when there was no choice to make.
     async connect(provider) {

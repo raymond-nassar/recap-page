@@ -490,7 +490,8 @@ function buttonsIn(node) {
 
 function cloudNodes() {
   const nodes = Object.fromEntries(['card', ...CONTROLS, 'signInGoogle', 'autoInput', 'discoverySummary',
-    'syncActions', 'syncCheck', 'syncOverride', 'syncBack', 'syncAbout'].map((key) => [key, stubNode()]));
+    'syncActions', 'syncCheck', 'syncOverride', 'syncBack', 'syncDiscard', 'syncAbout'].map((key) => [key, stubNode()]));
+  nodes.syncDiscard.hidden = true;
   // The line under the card, which the page's notify writes into and the card withdraws from.
   nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
   nodes.found = stubNode({
@@ -520,7 +521,7 @@ function cloudCard(model, overrides = {}) {
     onFetch: record('fetch', (copy) => ({ ...copy, text: '{"backup":true}' })), onRestore: record('restore', { ok: true }),
     onDeleteOwn: record('delete', { deleted: 2, failed: [] }), onDisconnect: record('disconnect'), onRetry: () => state.calls.push(['retry']),
     onSyncCheck: record('sync-check'), onSyncOverride: record('sync-override', { ok: true }),
-    onSyncBack: record('sync-back', { ok: true }),
+    onSyncBack: record('sync-back', { ok: true }), onSyncDiscard: record('sync-discard', { ok: true }),
     onFinished: (message) => state.calls.push(['finished', message]),
     ...overrides,
   });
@@ -574,7 +575,137 @@ test('an unresolved cloud recovery copy explains why Load is unavailable', () =>
   assert.equal(question.loadDisabled, true);
   assert.equal(question.focusKeep, true);
   assert.match(question.body, /earlier cloud recovery copy.*Load is unavailable/);
+  assert.match(question.body, /Backup & settings.*Continue without Go back/);
   assert.doesNotMatch(question.body, /A copy of this device's progress is kept/);
+});
+
+test('staged recovery revision: the card offers a warned and cancelable exit', async () => {
+  const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting' } };
+  const card = cloudCard({ ...connected, sync: { phase: 'clear', kept: { id: 'older' }, keptUnavailable: true } });
+  assert.equal(card.nodes.syncBack.hidden, true);
+  assert.equal(card.nodes.syncDiscard.hidden, false);
+  assert.match(card.nodes.status.textContent, /Continue without Go back/);
+  card.state.answers.push(false);
+  card.nodes.syncDiscard._fire();
+  await settled();
+  assert.equal(card.state.calls.length, 0, 'cancel leaves both references alone');
+  card.state.answers.push(true);
+  card.nodes.syncDiscard._fire();
+  await settled();
+  assert.equal(card.state.asked[1].confirmLabel, 'Continue without Go back');
+  assert.match(card.state.asked[1].body, /does not.*delete.*cloud copies/i);
+  assert.match(card.state.asked[1].body, /does not.*change.*progress/i);
+  assert.deepEqual(card.state.calls.map(([name]) => name), ['sync-discard']);
+  card.show({ ...connected, sync: { phase: 'clear', kept: null, keptUnavailable: false } });
+  assert.equal(card.nodes.syncDiscard.hidden, true);
+});
+
+test('cancelling the recovery exit restores focus when the closed dialog still holds it', async () => {
+  const previous = globalThis.document;
+  const document = { body: {}, documentElement: {}, activeElement: null };
+  globalThis.document = document;
+  try {
+    const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting' } };
+    const card = cloudCard({ ...connected, sync: { phase: 'clear', keptUnavailable: true } }, {
+      askConfirm: async () => {
+        document.activeElement = {
+          isConnected: true,
+          closest: (selector) => selector.includes('dialog:not([open])') ? {} : null,
+        };
+        return false;
+      },
+    });
+    const exit = card.nodes.syncDiscard;
+    exit.focus = () => { document.activeElement = exit; };
+    document.activeElement = exit;
+    exit._fire();
+    await settled();
+    assert.equal(document.activeElement, exit, 'focus returns before the closed dialog releases it to the page');
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('the recovery exit stays disabled until the cloud question and its action settle', async () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: false, epoch: 'one', localContentDigest: 'local',
+    remote: { id: 'phone', digest: 'remote', device: 'Phone', createdAt: 123, readCount: 1, lastReadAt: null },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 0, priorPending: { kept: { id: 'pending' } },
+  };
+  const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting' } };
+  const card = cloudCard({ ...connected, sync: { phase: 'offer', offer, keptUnavailable: true } });
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode() };
+  const answers = [];
+  const reports = [];
+  let finishKeep;
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => card.state.model, when,
+    ask: () => new Promise((resolve) => answers.push(resolve)),
+    withdraw: () => {}, report: (message) => reports.push(message),
+    onKeep: () => new Promise((resolve) => { finishKeep = resolve; }),
+    onLoad: async () => { throw new Error('Load stopped'); },
+    onFinished: () => {}, onQuestionChange: (pending) => card.view.setSyncQuestionPending(pending),
+  });
+  prompt.wire();
+  assert.equal(card.nodes.syncDiscard.disabled, true, 'the question disables the exit before it opens');
+  card.nodes.syncDiscard._fire();
+  await settled();
+  assert.equal(card.state.asked.length, 0, 'a stale exit activation cannot open another question');
+  answers.shift()(null);
+  await settled();
+  assert.equal(card.nodes.syncDiscard.disabled, false, 'Cancel makes the exit usable again');
+
+  nodes.review._fire();
+  answers.shift()('keep');
+  await settled();
+  assert.equal(card.nodes.syncDiscard.disabled, true, 'a slow Keep keeps the exit disabled');
+  finishKeep({ ok: false, error: 'Keep stopped' });
+  await settled();
+  assert.equal(card.nodes.syncDiscard.disabled, false, 'a failed Keep does not leave the exit disabled');
+  assert.deepEqual(reports, ['Keep stopped']);
+
+  nodes.review._fire();
+  answers.shift()('load');
+  await settled();
+  assert.equal(card.nodes.syncDiscard.disabled, false, 'a thrown Load does not leave the exit disabled');
+  assert.deepEqual(reports, ['Keep stopped', 'Load stopped']);
+});
+
+test('overlapping cloud offers keep the recovery exit disabled until both settle', async () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: false, epoch: 'one', localContentDigest: 'local',
+    remote: { id: 'phone', digest: 'remote', device: 'Phone', createdAt: 123, readCount: 1, lastReadAt: null },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 1, priorPending: { kept: { id: 'pending' } },
+  };
+  const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting' } };
+  const card = cloudCard({ ...connected, sync: { phase: 'offer', offer, keptUnavailable: true } });
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode() };
+  const answers = [];
+  let finishKeep;
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => card.state.model, when,
+    ask: () => new Promise((resolve) => answers.push(resolve)),
+    withdraw: () => {}, report: () => {},
+    onKeep: () => {
+      const next = { ...offer, epoch: 'two', remote: { ...offer.remote, id: 'tablet', device: 'Tablet' } };
+      card.state.model = { ...connected, sync: { phase: 'offer', offer: next, keptUnavailable: true } };
+      prompt.render();
+      return new Promise((resolve) => { finishKeep = resolve; });
+    },
+    onLoad: async () => ({ ok: true }), onFinished: () => {},
+    onQuestionChange: (pending) => card.view.setSyncQuestionPending(pending),
+  });
+  prompt.wire();
+  answers.shift()('keep');
+  await settled();
+  assert.equal(answers.length, 1, 'a different device can open a replacement question');
+  finishKeep({ ok: true });
+  await settled();
+  assert.equal(card.nodes.syncDiscard.disabled, true, 'the first answer cannot reenable the exit under the second');
+  answers.shift()(null);
+  await settled();
+  assert.equal(card.nodes.syncDiscard.disabled, false, 'the exit is usable after both questions settle');
 });
 
 test('cloud prompt stays available after dismissal and withdraws when its offer changes', async () => {
@@ -584,20 +715,23 @@ test('cloud prompt stays available after dismissal and withdraws when its offer 
     local: { readCount: 0, lastReadAt: null }, othersDiffering: 0,
   };
   const nodes = { notice: stubNode(), message: stubNode(), review: stubNode() };
-  const state = { model: { sync: { phase: 'offer', offer } }, questions: [], withdrawn: 0, answers: [] };
+  const state = { model: { sync: { phase: 'offer', offer } }, questions: [], withdrawn: 0, answers: [], pending: false };
   const prompt = createCloudSyncPrompt({
     elements: () => nodes, getModel: () => state.model, when,
     ask: (question) => { state.questions.push(question); return new Promise((resolve) => state.answers.push(resolve)); },
     withdraw: () => { state.withdrawn += 1; }, announce: () => {}, report: () => {},
     onKeep: async () => ({ ok: true }), onLoad: async () => ({ ok: true }), onFinished: () => {},
+    onQuestionChange: (pending) => { state.pending = pending; },
   });
   prompt.wire();
   assert.equal(state.questions.length, 1, 'an early offer opens the question');
+  assert.equal(state.pending, true);
   state.model = { sync: { phase: 'offer', offer: { ...offer, quiet: true } } };
   prompt.render();
   assert.equal(state.withdrawn, 0, 'activity does not interrupt a question already being answered');
   state.answers.shift()(null);
   await settled();
+  assert.equal(state.pending, false);
   assert.equal(nodes.notice.hidden, false, 'Cancel keeps a quiet way back to the unresolved choice');
   nodes.review._fire();
   assert.equal(state.questions.length, 2);
@@ -605,11 +739,13 @@ test('cloud prompt stays available after dismissal and withdraws when its offer 
   state.model = { sync: { phase: 'checking', notice: 'The cloud backup changed, so the earlier choice was withdrawn.' } };
   prompt.render();
   assert.equal(state.withdrawn, 1, 'a stale question is closed immediately');
+  assert.equal(state.pending, true, 'the exit remains disabled while withdrawal settles');
   assert.equal(nodes.notice.hidden, false);
   assert.equal(nodes.review.hidden, true);
   assert.match(nodes.message.textContent, /withdrawn/);
   state.answers.shift()(null);
   await settled();
+  assert.equal(state.pending, false, 'withdrawal releases the exit');
   state.model = { sync: { phase: 'clear' } };
   prompt.render();
   assert.equal(nodes.notice.hidden, true);

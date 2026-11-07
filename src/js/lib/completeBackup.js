@@ -404,7 +404,7 @@ export function prepareCompleteRestore({ backup, storage, isExclusive, draftReco
   return { format: PREPARED_FORMAT, version: 1, digest: backup.digest, before, owners };
 }
 
-export async function digestAfterCompleteRestore({ text, witness, cryptoProvider = globalThis.crypto } = {}) {
+export async function backupAfterCompleteRestore({ text, witness, cryptoProvider = globalThis.crypto } = {}) {
   if (!object(witness) || CAPTURE_KEYS.some((key) => !Object.hasOwn(witness, key)
     || (witness[key] !== null && typeof witness[key] !== 'string'))) {
     refuse('The saved data could not be checked before the restore.', 'invalid');
@@ -423,7 +423,7 @@ export async function digestAfterCompleteRestore({ text, witness, cryptoProvider
       else storage.setItem(effect.key, effect.value);
     }
   }
-  return (await captureCompleteBackup({ storage, cryptoProvider })).backup.digest;
+  return (await captureCompleteBackup({ storage, cryptoProvider })).backup;
 }
 
 // ------------------------------------------------------------------ the restore plan
