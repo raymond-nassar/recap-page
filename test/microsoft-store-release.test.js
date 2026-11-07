@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 
 import {
@@ -342,6 +343,19 @@ test('the committed Store notes match the canonical application release', () => 
   ));
   validateReleaseNotes(current, `${pkg.version}.0`);
   assert.doesNotMatch(current.text, /[\u2013\u2014]/);
+});
+
+// The owner approved this exact text for all three stores on #1158:
+// https://github.com/raymond-nassar/recap-page/issues/1158#issuecomment-6714017165
+test('4.5.0 store notes preserve the copy approved for all three stores', () => {
+  const notes = JSON.parse(readFileSync(new URL('../docs/releases/4.5.0-store.json', import.meta.url), 'utf8'));
+  assert.equal(notes.version, '4.5.0');
+  assert.equal(notes.locale, 'en-us');
+  assert.equal(
+    createHash('sha256').update(notes.text, 'utf8').digest('hex'),
+    '5ee72a7d3bf55c66435ce73e773325bd42cd50e411e307dba713b466cb542d77',
+  );
+  assert.equal(notes.text.length, 453);
 });
 
 test('commit validation accepts only the expected asynchronous start', () => {
