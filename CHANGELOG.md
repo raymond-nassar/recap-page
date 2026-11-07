@@ -13,6 +13,111 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.5.0
+
+### What's new for readers
+
+- On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time,
+  so your reading progress can follow you across your devices.
+- New to Marvel comics? Open the new guide from Home or an empty Library for a quick introduction,
+  starter picks, and two optional Reading Lists you can preview before saving.
+- Finishing a Reading List now gives you a clearer next step: one next Modern Timeline list,
+  followed by related stories with cover previews. Back returns to the previous screen and
+  position, and Home recommends the Modern Timeline.
+- Added Siege, Realm of Kings and Fall of the Hulks and World War Hulks to the Modern Timeline,
+  three Captain America (2025) reading lists by Chip Zdarsky, and early Spectacular Spider-Man and
+  Marvel Team-Up issues in the Amazing Spider-Man guide.
+- Buttons, links and cards now show a pressed edge while you hold them, and screen changes fade in
+  gently while honoring reduced-motion settings.
+- Improved the iPhone Search navigation's accessibility by presenting its label as one named
+  control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
+  more room for the privacy explanation.
+
+<!-- SLOT #1068 phase 2 / #1162: not finalized or included in generated highlights.
+Insert the merged PR's reader note into the summary above and its saved-data compatibility
+into the section below only after the coordinator's final scope decision. Record the full
+note in Backup and sync. If excluded, remove this entire comment without changing other entries.
+-->
+
+### Saved data and upgrading
+
+Reading-data schema 4 and the existing backup formats are unchanged. OneDrive on iPhone and iPad
+uses the shared engine and format already used by Windows and Android, so an iPhone can restore a
+backup made on Windows or Android and vice versa. An existing iCloud connection is unaffected and
+stays the connected provider until the reader disconnects it. Installing the update uploads
+nothing by itself.
+
+The guide, Search accessibility and presentation changes do not change storage keys or backup
+contents. Opening the guide or an unsaved preview does not create a Reading List; adding one
+remains an explicit action. The original Marvels list has separate progress from the existing
+annotated edition because their issue identities differ. Older builds and backups remain readable;
+no migration or additional backup step is required.
+
+Scroll positions after finishing a Reading List live only in browser history, and reaching
+all-read progress creates no separate completion record. The new and expanded Reading Lists are
+catalog additions; comics shared with existing lists keep their identities, so progress already
+recorded on them carries over.
+
+If you already saved the Amazing Spider-Man guide, Preview can add an updated copy beside it. Your
+original list and its completion history stay as they are, and the copy uses the existing list
+format, so older versions read it too.
+
+For upgrades from versions before 4.0.0, schema-4 reading data and backups remain incompatible.
+Keep an independent backup before upgrading and consult the
+[4.0.0 compatibility guidance](#400).
+
+This record prepares Windows, Android and iOS release source, including derived Windows Store
+version 4.5.0.0. It does not announce availability or approve any store publication. Android code
+and iOS build reservation, exact-artifact qualification, physical-device acceptance and platform
+approvals remain separate.
+
+### Finishing a Reading List
+
+- Finishing a Reading List now gives you a clearer next step: one next Modern Timeline list,
+  followed by related stories with cover previews. Other lists keep recommendations supported by
+  their available metadata. Back returns to the previous screen and position. Home recommends the
+  Modern Timeline, with global Search available from bottom navigation. Reader-facing labels now
+  use comics consistently. (#1127)
+
+### Reading Lists
+
+- New to Marvel comics? Open the new guide from Home or an empty Library for a quick introduction,
+  starter picks, and two optional Reading Lists you can preview before saving. (#1159, for #1151)
+- Added Siege to the Modern Timeline with a labeled Dark Reign prelude, the Avengers and
+  Thunderbolts runs leading into the event, and essential tie-ins in a 107-comic reading order.
+  (#1153)
+- Added Realm of Kings and Fall of the Hulks and World War Hulks to the Modern Timeline. The Hulk
+  guide identifies the MODOK one-shot that is not included. (#1157; gap recorded in #1155)
+- Added three Captain America (2025) reading lists by Chip Zdarsky that tie into One World Under
+  Doom, with covers and credits for every issue. (#1149)
+- Expanded the Amazing Spider-Man reading guide with early Spectacular Spider-Man and Marvel
+  Team-Up issues, arranged alongside the existing order by publication month. (#1139)
+
+### Backup and sync
+
+- On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time,
+  so your reading progress can follow you between iPhone, Windows and Android. (#1160, for #1113)
+
+### Look and feel
+
+- Buttons, links and cards now show a pressed edge while you hold them, including on touch
+  screens, without changing their size, keyboard focus or what they do. (#1136)
+- Screen changes now fade in gently while keeping navigation immediate and honoring
+  reduced-motion settings. (#1142)
+- Improved the iPhone Search navigation's accessibility by presenting its label as one named
+  control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
+  more room for the privacy explanation. (#1152)
+
+### Release and maintenance
+
+- The maintainer and release guides now record the lessons from shipping 4.3.0 and 4.4.0 to the
+  App Store, Google Play and the Microsoft Store. (#1119)
+- The 4.4.0 ledgers record iOS build 6 as consumed after its runner was never acquired, iOS build
+  7 and Android code 3000015 as sealed. (#1109, #1110, #1114, #1115, #1116)
+- CI skips platform jobs for documentation-only changes; tooling, planning and test-support
+  changes need no reader note. (#1112, #1122, #1124, #1125, #1128, #1131, #1132, #1134, #1135,
+  #1137, #1141, #1143, #1148, and the iOS CI fixes in #1152)
+
 ## 4.4.0
 
 ### Genres, Reading List search and four new Reading Lists
