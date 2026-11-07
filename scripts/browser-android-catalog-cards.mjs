@@ -774,6 +774,7 @@ export async function catalogCardReadability({
   if (profile.id === 'M11') selectors.push(
     '#modern-timeline-feature .catalog-card',
     selectorFor('revolutionary-war'), selectorFor('marvel-knights-to-planet-x-62'),
+    selectorFor('realm-of-kings'), selectorFor('fall-of-the-hulks'),
   );
   if (profile.id === 'M12') selectors.push(selectorFor('ultimate-spider-man-reading-order'));
   const evidence = [];
@@ -798,6 +799,9 @@ export async function catalogCardReadability({
     check(item.title === title && desc.text === firstSentence(list.description)
       && meta.text === [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' \u00b7 '),
     `${name}: exact title, description, count and gap text retained`);
+    if (list.id === 'fall-of-the-hulks') {
+      check(desc.text.includes('MODOK one-shot is not included'), `${name}: omitted comic is disclosed before Add`);
+    }
     check(item.source === sourceLink(list) && !source.text.includes('Snapshot taken'),
       `${name}: source destination retained, with the snapshot date left to Preview`);
     check(!item.overflow, `${name}: no document overflow`);
