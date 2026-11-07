@@ -1359,6 +1359,7 @@ function wireNav() {
       // Every link to the ratings browser is labelled and addressed as the unfiltered list, so it
       // must not reopen whatever filters the reader last committed there.
       if (btn.dataset.view === 'library-rated') ratedView.setCommitted({});
+      if (btn.dataset.view === 'genres' && btn.closest('#view-new-to-comics')) storyTypesView.set();
       navigateTo(btn.dataset.view, btn.dataset.at ?? null);
     });
   }
@@ -1693,7 +1694,7 @@ function renderBreadcrumbs() {
 }
 
 function railParentView(next) {
-  if (next === 'home' || HOME_CATEGORIES.some(({ route }) => route === next)
+  if (next === 'home' || next === 'new-to-comics' || HOME_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'home';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';

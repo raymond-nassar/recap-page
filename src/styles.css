@@ -1310,6 +1310,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .card-static > * { padding: 0 !important; }
 .card-static h2 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
 .card-static h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
+.guide-copy p { margin: 0 0 var(--space-5); line-height: 1.5; }
+.guide-copy p:last-child { margin-bottom: 0; }
+.guide-copy ul { margin: 0; padding-inline-start: var(--space-7); }
+.guide-copy li + li { margin-top: var(--space-3); }
 #view-data .card-static h3 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
 /* Each backup group names its file field with a visible label, set where the group's restore
    sub-heading used to be, and the restore warning beneath it lines up with the label it qualifies. */
@@ -1983,6 +1987,12 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* ---------------------------------------------------------- reading paths */
 
 .home-categories { max-width: 72rem; }
+.home-guide-link {
+  display: inline-flex; align-items: center; justify-content: flex-end; max-width: 48%; min-width: 0;
+  min-height: var(--target); padding-inline: var(--space-2); color: var(--accent-text);
+  font-size: var(--t-body); font-weight: 600; text-align: right; overflow-wrap: anywhere;
+}
+.home-guide-link:hover { color: var(--text); }
 .home-paths {
   list-style: none; margin: var(--space-5) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);
@@ -2938,11 +2948,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 
 /* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
    Keep native tap highlights and selection. */
-:is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]) {
+:is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path, a.home-guide-link):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]) {
   box-shadow: inset 0 0 0 var(--stroke-2) currentColor, var(--control-rest-shadow, 0 0 transparent);
 }
 @media (forced-colors: active) {
-  :is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]):not(:focus-visible) {
+  :is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path, a.home-guide-link):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]):not(:focus-visible) {
     outline: var(--focus-width) solid currentColor;
     outline-offset: calc(-1 * var(--focus-width));
   }

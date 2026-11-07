@@ -27,7 +27,7 @@ export const VIEWS = [
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
-  'data', 'about', 'completed', ...LIBRARY_VIEWS.map((v) => v.value), 'library-rated',
+  'data', 'about', 'new-to-comics', 'completed', ...LIBRARY_VIEWS.map((v) => v.value), 'library-rated',
 ];
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
@@ -66,6 +66,7 @@ const STATIC_VIEW_LABELS = new Map([
   ['library-rated', 'Your ratings'],
   ['data', 'Backup & settings'],
   ['about', 'About this app'],
+  ['new-to-comics', 'New to comics?'],
 ]);
 
 const cleanLabel = (value, fallback) => (
@@ -98,6 +99,8 @@ export function breadcrumbHierarchy({
   const home = linked('home', 'Home');
   // A category's parent is the set of cards it was chosen from, so its Home crumb returns there.
   const cards = linked('home', 'Home', { at: HOME_CARDS });
+
+  if (view === 'new-to-comics') return [cards, current(STATIC_VIEW_LABELS.get(view))];
 
   if (view === 'read') {
     return [

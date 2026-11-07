@@ -1311,8 +1311,13 @@ async function storyTypesDropdowns(page, profile, label) {
   const all = storyTypeStories(stories);
   const starters = storyTypeStarters(stories);
   assert.equal(starters.length, 10, 'All ten starting lists are in the bundled catalog');
+  const expectedStarterIds = [
+    'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
+    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
+    'black-panther-reading-order', 'deadpool-best-of',
+  ].map((id) => `list:${id}`);
   const starterTitles = starters.map((story) => story.lists[0].name);
-  const sameStarters = (shown) => JSON.stringify(shown.cards) === JSON.stringify(starters.map((story) => story.key))
+  const sameStarters = (shown) => JSON.stringify(shown.cards) === JSON.stringify(expectedStarterIds)
     && JSON.stringify(shown.titles) === JSON.stringify(starterTitles);
   await route(page, 'genres');
   await page.waitForSelector('#genres-type option[value="espionage"]');
@@ -1400,6 +1405,34 @@ async function storyTypesDropdowns(page, profile, label) {
   await page.goForward();
   await page.waitForFunction(() => document.querySelector('#genres-tone').value === 'dark');
   check((await snapshot()).type === 'espionage', `${label}: Forward restores both dropdown choices`);
+  await page.evaluate(() => { location.hash = '#/new-to-comics'; });
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const guideReady = await page.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false
+    && Boolean(document.querySelector('#view-new-to-comics a[href="#/genres"]')));
+  check(guideReady, `${label}: filtered Genres reaches the guide and its starter link`);
+  if (guideReady) {
+    await click(page, '#view-new-to-comics a[href="#/genres"]');
+    await page.waitForSelector('#view-genres:not([hidden])');
+    const fromGuide = await snapshot();
+    check(fromGuide.type === '' && fromGuide.tone === '' && fromGuide.heading === 'Popular places to start'
+      && sameStarters(fromGuide), `${label}: guide clears both filters and opens the ten literal starters ${JSON.stringify(fromGuide)}`);
+    await page.goBack();
+    await page.waitForSelector('#view-new-to-comics:not([hidden])');
+    await page.goBack();
+    await page.waitForFunction(() => document.querySelector('#genres-type').value === 'espionage'
+      && document.querySelector('#genres-tone').value === 'dark');
+    check((await snapshot()).type === 'espionage', `${label}: Back restores the filtered Genres visit`);
+    await page.goForward();
+    await page.waitForSelector('#view-new-to-comics:not([hidden])');
+    await page.goForward();
+    await page.waitForFunction(() => document.querySelector('#genres-type').value === ''
+      && document.querySelector('#genres-tone').value === '');
+    check(sameStarters(await snapshot()), `${label}: Forward restores the guide's unfiltered starters`);
+  } else {
+    await page.goBack();
+    await page.waitForFunction(() => document.querySelector('#genres-type').value === 'espionage'
+      && document.querySelector('#genres-tone').value === 'dark');
+  }
   await choose('#genres-tone', '');
   await choose('#genres-type', '');
   state = await snapshot();
@@ -3071,6 +3104,43 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
 
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+  const guideEntry = await page.evaluate(() => {
+    const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+    if (!link) return null;
+    const box = link.getBoundingClientRect();
+    const row = link.closest('.sec-h');
+    const rowBox = row?.getBoundingClientRect();
+    const heading = row?.querySelector('#home-cat-h');
+    const headingBox = heading?.getBoundingClientRect();
+    return { text: link.textContent.trim(), visible: link.checkVisibility(),
+      width: box.width, height: box.height, rowWidth: rowBox?.width ?? 0,
+      heading: heading?.textContent.trim() ?? null,
+      headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
+        && headingBox && headingBox.width > 1 && headingBox.height > 1),
+      beside: Boolean(headingBox && headingBox.right <= box.left + 1
+        && headingBox.bottom > box.top && box.bottom > headingBox.top),
+      left: box.left, right: box.right,
+      viewportWidth: innerWidth,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
+  });
+  const guideUsable = guideEntry?.visible && guideEntry.text === 'New to Marvel Comics?'
+    && guideEntry.heading === 'Explore' && guideEntry.headingVisible && guideEntry.beside
+    && guideEntry.width > 0 && guideEntry.width < guideEntry.rowWidth / 2 && guideEntry.height >= 44
+    && guideEntry.left >= 0 && guideEntry.right <= guideEntry.viewportWidth && !guideEntry.overflow;
+  check(guideUsable, `${label}: compact inline guide link is present beside Explore and usable ${JSON.stringify(guideEntry)}`);
+  if (guideUsable) {
+    await click(page, '#home-categories a[href="#/new-to-comics"]');
+    await page.waitForSelector('#view-new-to-comics:not([hidden])');
+    const guide = await page.evaluate(() => ({
+      focus: document.activeElement?.id,
+      heading: document.querySelector('#new-to-comics-h')?.textContent.trim(),
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    check(guide.focus === 'new-to-comics-h' && guide.heading === 'New to comics?' && !guide.overflow,
+      `${label}: guide heading receives focus and the page does not overflow ${JSON.stringify(guide)}`);
+    await route(page, 'home');
+    await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+  }
   const home = await page.$eval('#view-home', (region) => ({
     recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Recommended start here'),
     intro: !!region.querySelector('#home-first-run'),

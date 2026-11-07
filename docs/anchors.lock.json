@@ -1754,8 +1754,8 @@
     "fp": "21d594471401e0e6",
     "head": "const localStorage = observeSavedWrites(completeRestore.storage ?? globalThis.localStorage, savedCha"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:2482|0": {
-    "anchor": "src/js/main.js:2482",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:2483|0": {
+    "anchor": "src/js/main.js:2483",
     "fp": "c915c782c5b37dad",
     "head": "transport: cloudTransport(),"
   },
@@ -1799,8 +1799,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:2001-2012|0": {
-    "anchor": "src/js/main.js:2001-2012",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:2002-2013|0": {
+    "anchor": "src/js/main.js:2002-2013",
     "fp": "a8a059a9229553f0",
     "head": "catalogLoad ??= (async () => {"
   },
@@ -1829,8 +1829,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2995-3021|0": {
-    "anchor": "src/js/main.js:2995-3021",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2996-3022|0": {
+    "anchor": "src/js/main.js:2996-3022",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1909,13 +1909,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2995-3021|0": {
-    "anchor": "src/js/main.js:2995-3021",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2996-3022|0": {
+    "anchor": "src/js/main.js:2996-3022",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3779-3821|0": {
-    "anchor": "src/js/main.js:3779-3821",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3780-3822|0": {
+    "anchor": "src/js/main.js:3780-3822",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1959,38 +1959,38 @@
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:297-299|0": {
-    "anchor": "src/js/lib/route.js:297-299",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:300-302|0": {
+    "anchor": "src/js/lib/route.js:300-302",
     "fp": "5e4308126a42e7e9",
     "head": "// The path the Modern Timeline is following, so a followed path can be bookmarked and Back"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:340-346|0": {
-    "anchor": "src/js/lib/route.js:340-346",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:343-349|0": {
+    "anchor": "src/js/lib/route.js:343-349",
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3004|0": {
-    "anchor": "src/js/main.js:3004",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3005|0": {
+    "anchor": "src/js/main.js:3005",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3675-3694|0": {
-    "anchor": "src/js/main.js:3675-3694",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3676-3695|0": {
+    "anchor": "src/js/main.js:3676-3695",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3696-3900|0": {
-    "anchor": "src/js/main.js:3696-3900",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3697-3901|0": {
+    "anchor": "src/js/main.js:3697-3901",
     "fp": "ccd270589be2ddb8",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3793-3799|0": {
-    "anchor": "src/js/main.js:3793-3799",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3794-3800|0": {
+    "anchor": "src/js/main.js:3794-3800",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3819-3820|0": {
-    "anchor": "src/js/main.js:3819-3820",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3820-3821|0": {
+    "anchor": "src/js/main.js:3820-3821",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2039,10 +2039,10 @@
     "fp": "78d8dabf5f7c8958",
     "head": "// The URL scheme. Kept out of main.js so it can be tested in Node: main.js reads `document` at"
   },
-  "docs/ARCHITECTURE.md|routes-and-generated-views|src/js/lib/route.js:16-31|0": {
-    "anchor": "src/js/lib/route.js:16-31",
-    "fp": "18d13404f9cac883",
-    "head": "const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));"
+  "docs/ARCHITECTURE.md|routes-and-generated-views|src/js/lib/route.js:24-31|0": {
+    "anchor": "src/js/lib/route.js:24-31",
+    "fp": "78a46033c6c32cbe",
+    "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
   "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/author-cbh-packet.mjs:6|0": {
     "anchor": "scripts/author-cbh-packet.mjs:6",
@@ -2069,8 +2069,8 @@
     "fp": "4e5a5d618134e15b",
     "head": "const settings = loadSettings();"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2327-2341|0": {
-    "anchor": "src/js/main.js:2327-2341",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2328-2342|0": {
+    "anchor": "src/js/main.js:2328-2342",
     "fp": "30ee71db5582943a",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -2084,8 +2084,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1504|0": {
-    "anchor": "src/index.html:1504",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1546|0": {
+    "anchor": "src/index.html:1546",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2349,8 +2349,8 @@
     "fp": "4fae061e31c80e37",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1200-1204|0": {
-    "anchor": "src/index.html:1200-1204",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1242-1246|0": {
+    "anchor": "src/index.html:1242-1246",
     "fp": "fcca1b9ce2478dad",
     "head": "Comic, series, and creator metadata comes from the community"
   },
@@ -2509,8 +2509,8 @@
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:2779-2780|0": {
-    "anchor": "src/js/main.js:2779-2780",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:2780-2781|0": {
+    "anchor": "src/js/main.js:2780-2781",
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
@@ -2544,19 +2544,19 @@
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:2779-2780|0": {
-    "anchor": "src/js/main.js:2779-2780",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:2780-2781|0": {
+    "anchor": "src/js/main.js:2780-2781",
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:561-564|0": {
-    "anchor": "src/index.html:561-564",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:603-606|0": {
+    "anchor": "src/index.html:603-606",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:512-557|0": {
-    "anchor": "src/index.html:512-557",
-    "fp": "52e2355cee9f16b3",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:553-599|0": {
+    "anchor": "src/index.html:553-599",
+    "fp": "31a99210662f2ef2",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:62-97|0": {
@@ -2569,18 +2569,18 @@
     "fp": "3377f80fe0c004ac",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:24-31|0": {
-    "anchor": "src/js/lib/route.js:24-31",
-    "fp": "533691777c309d98",
-    "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:23-31|0": {
+    "anchor": "src/js/lib/route.js:23-31",
+    "fp": "6a38bf477e8d61c2",
+    "head": "// routable but not showable, or showable but silently unreachable by URL."
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:94-184|0": {
-    "anchor": "src/js/lib/route.js:94-184",
-    "fp": "24b31335b7495f55",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:95-187|0": {
+    "anchor": "src/js/lib/route.js:95-187",
+    "fp": "d9e8a3aaf9a920f9",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1640-1693|0": {
-    "anchor": "src/js/main.js:1640-1693",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1641-1694|0": {
+    "anchor": "src/js/main.js:1641-1694",
     "fp": "b0f6763703d8622e",
     "head": "const section = $(`#view-${view}`);"
   },
@@ -2589,23 +2589,23 @@
     "fp": "d23956badf88861b",
     "head": "test('one shared renderer integrates Back with breadcrumbs without adding it to dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:271-347|0": {
-    "anchor": "src/index.html:271-347",
+  "docs/UX_STUDY.md|job-stories|src/index.html:312-388|0": {
+    "anchor": "src/index.html:312-388",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:294-295|0": {
-    "anchor": "src/index.html:294-295",
+  "docs/UX_STUDY.md|job-stories|src/index.html:335-336|0": {
+    "anchor": "src/index.html:335-336",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:561-564|0": {
-    "anchor": "src/index.html:561-564",
+  "docs/UX_STUDY.md|job-stories|src/index.html:603-606|0": {
+    "anchor": "src/index.html:603-606",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:563-567|0": {
-    "anchor": "src/index.html:563-567",
+  "docs/UX_STUDY.md|job-stories|src/index.html:605-609|0": {
+    "anchor": "src/index.html:605-609",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -2644,8 +2644,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:271-347|0": {
-    "anchor": "src/index.html:271-347",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:312-388|0": {
+    "anchor": "src/index.html:312-388",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2684,8 +2684,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:650-656|0": {
-    "anchor": "src/index.html:650-656",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:692-698|0": {
+    "anchor": "src/index.html:692-698",
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
@@ -2694,8 +2694,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2296-2298|0": {
-    "anchor": "src/styles.css:2296-2298",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2306-2308|0": {
+    "anchor": "src/styles.css:2306-2308",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2719,8 +2719,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2296-2298|0": {
-    "anchor": "src/styles.css:2296-2298",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2306-2308|0": {
+    "anchor": "src/styles.css:2306-2308",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2729,8 +2729,8 @@
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:291-293|0": {
-    "anchor": "src/index.html:291-293",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:332-334|0": {
+    "anchor": "src/index.html:332-334",
     "fp": "b22251e455876ddc",
     "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
@@ -2759,8 +2759,8 @@
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:271-347|0": {
-    "anchor": "src/index.html:271-347",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:312-388|0": {
+    "anchor": "src/index.html:312-388",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2774,8 +2774,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2751-2752|0": {
-    "anchor": "src/styles.css:2751-2752",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2761-2762|0": {
+    "anchor": "src/styles.css:2761-2762",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2804,8 +2804,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:787|0": {
-    "anchor": "src/index.html:787",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:829|0": {
+    "anchor": "src/index.html:829",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2824,8 +2824,8 @@
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:271-347|0": {
-    "anchor": "src/index.html:271-347",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:312-388|0": {
+    "anchor": "src/index.html:312-388",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2834,8 +2834,8 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1596-1598|0": {
-    "anchor": "src/js/main.js:1596-1598",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1597-1599|0": {
+    "anchor": "src/js/main.js:1597-1599",
     "fp": "a663c64fbb9d008e",
     "head": "if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');"
   },
@@ -2844,8 +2844,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2296-2298|0": {
-    "anchor": "src/styles.css:2296-2298",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2306-2308|0": {
+    "anchor": "src/styles.css:2306-2308",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2864,8 +2864,8 @@
     "fp": "ba4d0e152f725f15",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:294-295|0": {
-    "anchor": "src/index.html:294-295",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:335-336|0": {
+    "anchor": "src/index.html:335-336",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -2884,8 +2884,8 @@
     "fp": "30990219b3c5e62c",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2995-3021|0": {
-    "anchor": "src/js/main.js:2995-3021",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2996-3022|0": {
+    "anchor": "src/js/main.js:2996-3022",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -2894,8 +2894,8 @@
     "fp": "b7c965a3b4dc79b5",
     "head": "function open({"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2072|0": {
-    "anchor": "src/js/main.js:2072",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2073|0": {
+    "anchor": "src/js/main.js:2073",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2924,13 +2924,13 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1217-1228|0": {
-    "anchor": "src/index.html:1217-1228",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1259-1270|0": {
+    "anchor": "src/index.html:1259-1270",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:294-295|0": {
-    "anchor": "src/index.html:294-295",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:335-336|0": {
+    "anchor": "src/index.html:335-336",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -2939,8 +2939,8 @@
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1584-1591|0": {
-    "anchor": "src/js/main.js:1584-1591",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1585-1592|0": {
+    "anchor": "src/js/main.js:1585-1592",
     "fp": "00b2f3835eb6309c",
     "head": "view = next;"
   },
@@ -2959,9 +2959,9 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:512-557|0": {
-    "anchor": "src/index.html:512-557",
-    "fp": "52e2355cee9f16b3",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:553-599|0": {
+    "anchor": "src/index.html:553-599",
+    "fp": "31a99210662f2ef2",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:955|0": {
@@ -6524,8 +6524,8 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1805|0": {
-    "anchor": "src/js/main.js:1805",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1806|0": {
+    "anchor": "src/js/main.js:1806",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
@@ -6534,23 +6534,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2002-2004|0": {
-    "anchor": "src/styles.css:2002-2004",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2012-2014|0": {
+    "anchor": "src/styles.css:2012-2014",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2020-2022|0": {
-    "anchor": "src/styles.css:2020-2022",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2030-2032|0": {
+    "anchor": "src/styles.css:2030-2032",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2337|0": {
-    "anchor": "src/styles.css:2337",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2347|0": {
+    "anchor": "src/styles.css:2347",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2361|0": {
-    "anchor": "src/styles.css:2361",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2371|0": {
+    "anchor": "src/styles.css:2371",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

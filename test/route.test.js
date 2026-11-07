@@ -62,6 +62,55 @@ test('destination interception leaves modifiers middle click and prevented defau
   assert.equal(formatRoute({ view: 'read', listId: 'manual/a' }), '#/read/manual%2Fa');
 });
 
+test('new-to-comics keeps route context and returns its Home breadcrumb to Explore', () => {
+  assert.ok(VIEWS.includes('new-to-comics'), 'new-to-comics is a registered view');
+  const hash = formatRoute({ view: 'new-to-comics', listId: 'list/a', filter: 'unread' });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'new-to-comics', listId: 'list/a', filter: 'unread', full: false,
+  });
+  assert.deepEqual(breadcrumbHierarchy({ view: 'new-to-comics' }), [
+    { label: 'Home', href: '#/browse' },
+    { label: 'New to comics?', current: true },
+  ]);
+  assert.equal(routeTitle({ view: 'new-to-comics' }), 'New to comics? | Recap Page');
+});
+
+test('new-to-comics has a named static panel and a native Genres destination', () => {
+  const html = read('src/index.html');
+  const start = html.indexOf('<section id="view-new-to-comics"');
+  assert.notEqual(start, -1, 'new-to-comics panel exists');
+  const end = html.indexOf('<!-- ---------------------------------------- reading view -->', start);
+  assert.notEqual(end, -1, 'the guide is a distinct static panel');
+  const guide = html.slice(start, end);
+  has(guide, /aria-labelledby="new-to-comics-h"/, 'guide heading association');
+  has(guide, /<h1 id="new-to-comics-h">New to comics\?<\/h1>/, 'guide heading');
+  has(guide, /<a\b[^>]*href="#\/genres"[^>]*>[^<]+<\/a>/, 'native Genres starter destination');
+});
+
+test('new-to-comics credits its sources and gives every external link a safe separate target', () => {
+  const html = read('src/index.html');
+  const start = html.indexOf('<section id="view-new-to-comics"');
+  assert.notEqual(start, -1, 'guide exists before its external links are inspected');
+  const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
+  const links = [...guide.matchAll(/<a\b([^>]*)>([^<]+)<\/a>/g)].map(([, attrs, label]) => ({ attrs, label }));
+  const expected = [
+    'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics',
+    'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
+    'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
+    'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+    'https://www.marvel.com/comics/series/27019/history_of_the_marvel_universe_2019',
+    'https://marvel.com/comics/issue/10280/marvels_1994_1',
+  ];
+  for (const href of expected) {
+    const link = links.find(({ attrs }) => attrs.includes(`href="${href}"`));
+    assert.ok(link, `guide links to ${href}`);
+    assert.match(link.attrs, /target="_blank"/, `${link.label} opens separately`);
+    assert.match(link.attrs, /rel="noopener noreferrer"/, `${link.label} disowns its opener`);
+  }
+  assert.match(guide, /r\/Marvel wiki/, 'the guide credits the r/Marvel wiki');
+  assert.match(guide, /optional/i, 'the suggested books are optional');
+});
+
 test('completed lists have a real bookmarkable panel at the unchanged reading-data origin', () => {
   assert.ok(VIEWS.includes('completed'));
   const hash = formatRoute({ view: 'completed', listId: 'my/list' });
@@ -224,6 +273,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['add', ['Home', 'Search']],
     ['data', ['Home', 'Backup & settings']],
     ['about', ['Home', 'About this app']],
+    ['new-to-comics', ['Home', 'New to comics?']],
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
     ['genres', ['Home', 'Genres']],
