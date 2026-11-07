@@ -1098,6 +1098,85 @@ final class PresentationUITests: XCTestCase {
         return try XCTUnwrap(layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "))
     }
 
+    private func passiveRevealFrame(webFrame: CGRect, proof: [String: Any]) -> CGRect? {
+        guard !webFrame.isEmpty, !webFrame.isInfinite,
+              let viewport = (proof["viewportWidth"] as? NSNumber)?.doubleValue,
+              viewport.isFinite, viewport > 0,
+              let navigation = proof["navigationState"] as? [String: Any],
+              let display = navigation["display"] as? String,
+              let position = navigation["position"] as? String else { return nil }
+        if display == "none" || position != "fixed" { return webFrame }
+        guard let rect = navigation["rect"] as? [String: Any],
+              let height = (rect["height"] as? NSNumber)?.doubleValue,
+              height.isFinite, height > 0 else { return nil }
+        let reservedHeight = height * webFrame.width / viewport
+        guard reservedHeight.isFinite, reservedHeight < webFrame.height else { return nil }
+        // SE run 42333629714 exposed More at 615 but the complete bar at 610.
+        // Reserve its full height even while translated, since scrolling can reveal it.
+        return CGRect(x: webFrame.minX, y: webFrame.minY, width: webFrame.width,
+                      height: webFrame.height - reservedHeight)
+    }
+
+    private func revealPassiveAuditTarget(_ element: XCUIElement, in app: XCUIApplication) throws {
+        for attempt in 0...8 {
+            let state = try freshPassiveState(of: app)
+            let proof = try XCTUnwrap(state["guard"] as? [String: Any])
+            let webFrame = app.webViews.firstMatch.frame
+            let usableFrame = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame, proof: proof),
+                "the complete bottom bar has measured positioning geometry")
+            let targetFrame = element.frame
+            let clear = element.isHittable && usableFrame.contains(targetFrame)
+            try record("t03-passive-reveal", [
+                "attempt": attempt, "label": element.label,
+                "nativeFrame": NSCoder.string(for: targetFrame),
+                "usableFrame": NSCoder.string(for: usableFrame),
+                "navigationState": proof["navigationState"] ?? NSNull(),
+                "clear": clear,
+            ], summary: ["attempt": attempt, "nativeFrame": NSCoder.string(for: targetFrame),
+                         "usableFrame": NSCoder.string(for: usableFrame), "clear": clear])
+            if clear { return }
+            guard attempt < 8 else {
+                XCTFail("the passive text must clear the complete bottom bar before its no-op proof")
+                throw NSError(domain: "RecapPageUITests", code: 1,
+                              userInfo: [NSLocalizedDescriptionKey: "Passive text reveal did not converge"])
+            }
+            let displacement = targetFrame.midY - usableFrame.midY
+            let travel = min(abs(displacement), usableFrame.height / 2)
+            let startY = usableFrame.midY + (displacement > 0 ? travel / 2 : -travel / 2)
+            let endY = usableFrame.midY + (displacement > 0 ? -travel / 2 : travel / 2)
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
+            let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
+            start.press(forDuration: 0.1, thenDragTo: end)
+        }
+    }
+
+    func testPassiveRevealFrameReservesTheCompleteMeasuredBar() throws {
+        let webFrame = CGRect(x: 0, y: 20, width: 375, height: 647)
+        func proof(height: Double, transform: String = "matrix(1, 0, 0, 1, 0, 0)") -> [String: Any] {
+            ["viewportWidth": 375, "navigationState": [
+                "display": "grid", "position": "fixed", "transform": transform,
+                "rect": ["height": height],
+            ]]
+        }
+        let visible = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame, proof: proof(height: 57)))
+        XCTAssertEqual(visible.maxY, 610)
+        XCTAssertFalse(visible.contains(CGRect(x: 199, y: 599, width: 160, height: 15)),
+                       "the rejected SE text cannot be accepted above the native More child")
+        let translated = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame,
+            proof: proof(height: 57, transform: "matrix(1, 0, 0, 1, 0, 57)")))
+        XCTAssertEqual(translated, visible, "revealing the bar cannot reduce the reserved space")
+        let twoRows = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame, proof: proof(height: 114)))
+        XCTAssertEqual(twoRows.maxY, 553)
+        for height in [0, -1, Double.infinity, 647] {
+            XCTAssertNil(passiveRevealFrame(webFrame: webFrame, proof: proof(height: height)))
+        }
+        XCTAssertNil(passiveRevealFrame(webFrame: webFrame, proof: [:]))
+        XCTAssertEqual(passiveRevealFrame(webFrame: webFrame, proof: [
+            "viewportWidth": 375, "navigationState": ["display": "grid", "position": "static"],
+        ]), webFrame, "desktop rail headers do not occupy the viewport bottom")
+    }
+
     private func verifyPassiveAuditTexts(in app: XCUIApplication, homeVisible: Bool) throws -> [XCUIElement] {
         let state = try passiveState(of: app)
         let cases = try XCTUnwrap(state["cases"] as? [[String: Any]])
@@ -1126,7 +1205,7 @@ final class PresentationUITests: XCTestCase {
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
-            revealNativeTarget(element, in: app)
+            try revealPassiveAuditTarget(element, in: app)
             XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
             let proved = try acceptPassiveFinding(element, in: app, routeState: state)
             XCTAssertTrue(proved, "the reviewed positive requires the same exact native no-op proof: \(key)")

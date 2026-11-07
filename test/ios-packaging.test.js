@@ -1176,7 +1176,7 @@ test('T03 fixtures settle inserted DOM before measuring passivity and legacy pos
 test('T03 reveals each enumerated native target before demanding its unchanged in-viewport no-op proof', () => {
   const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
     presentationTests.indexOf('private func freshPassiveState'));
-  assert.match(legacy, /revealNativeTarget\(element, in: app\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(legacy, /try revealPassiveAuditTarget\(element, in: app\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
   assert.doesNotMatch(legacy, /bottomClearance/);
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
@@ -1241,10 +1241,19 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   assert.match(reveal, /\["Library", "Search"\], "Recap Page", "Home"/);
   assert.match(reveal, /frame\.minY >= barBand && frame\.minY < usableBottom \{\s*usableBottom = frame\.minY/);
   assert.doesNotMatch(presentationTests, /bottomClearance/);
-  assert.match(presentationTests, /revealNativeTarget\(element, in: app\)/);
+  const positiveReveal = presentationTests.slice(presentationTests.indexOf('private func passiveRevealFrame('),
+    presentationTests.indexOf('private func verifyPassiveAuditTexts('));
+  assert.match(positiveReveal, /let height = \(rect\["height"\] as\? NSNumber\)\?\.doubleValue/);
+  assert.match(positiveReveal, /let reservedHeight = height \* webFrame\.width \/ viewport/);
+  assert.match(positiveReveal, /height: webFrame\.height - reservedHeight/);
+  assert.doesNotMatch(positiveReveal, /toggle|barBand|mobile-nav-hidden/);
+  assert.match(positiveReveal, /for attempt in 0\.\.\.8 \{\s*let state = try freshPassiveState\(of: app\)/);
+  assert.match(positiveReveal, /usableFrame\.contains\(targetFrame\)/);
+  assert.match(positiveReveal, /guard attempt < 8 else \{\s*XCTFail/);
+  assert.match(presentationTests, /try revealPassiveAuditTarget\(element, in: app\)/);
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
-  assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
+  assert.doesNotMatch(guard, /revealNativeTarget|revealPassiveAuditTarget|thenDragTo|swipe/);
 });
 
 test('T03 passive DOM digest stays strict about navigation visibility', () => {
