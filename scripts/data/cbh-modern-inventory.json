@@ -310,11 +310,11 @@
     "guideType": "event",
     "window": "Q2",
     "disposition": "new-order",
-    "reason": "Blocked: Fall of the Hulks: MODOK #1 is absent from repository metadata, so exact resolution failed",
-    "sourceRetrievedAt": "2026-08-21",
+    "reason": "Awaiting source review: 28 of 29 positions resolve exactly; Fall of the Hulks: MODOK #1 is still absent from provider metadata on 2026-11-06 and is proposed as a recorded gap under the gap-tolerant publication policy",
+    "sourceRetrievedAt": "2026-11-06",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "blocked"
+    "deliveryStatus": "pending"
   },
   {
     "position": 21,
