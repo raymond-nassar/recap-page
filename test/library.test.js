@@ -5,7 +5,8 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { LIBRARY_VIEWS, libraryView, isLibraryView, libraryViewProblems } from '../src/js/lib/library.js';
-import { ADD_VIEWS, HOME_CARDS, formatRoute } from '../src/js/lib/route.js';
+import { ADD_VIEWS, HOME_CARDS, VIEWS, formatRoute } from '../src/js/lib/route.js';
+import { HOME_CATEGORIES, PUBLISHING_CATEGORIES } from '../src/js/lib/catalog.js';
 import {
   createEmptyState, createList, addIssuesToList, markRead, deleteList, removeFromList,
   readIssues, manualIssues, listsContaining, migrate, SCHEMA_VERSION,
@@ -280,12 +281,14 @@ test('every view main.js switches between has a section in the markup, and the r
   assert.deepEqual(sectionIds(read('src/index.html')), expected);
 });
 
-test('every rail button routes to a view that exists', () => {
+test('every markup navigation target has a static or generated view', () => {
   const html = read('src/index.html');
-  const sections = new Set(sectionIds(html));
+  const generated = [...PUBLISHING_CATEGORIES, ...HOME_CATEGORIES.filter((category) => !category.shelf)]
+    .map((category) => category.route);
+  const sections = new Set([...sectionIds(html), ...generated]);
   const routes = [...html.matchAll(/data-view="([a-z0-9-]+)"/g)].map((m) => m[1]);
   assert.ok(routes.length >= 8, `expected the rail to be found, got ${routes.length} routes`);
-  assert.deepEqual(routes.filter((r) => !sections.has(r)), []);
+  assert.deepEqual(routes.filter((r) => !sections.has(r) || !VIEWS.includes(r)), []);
 });
 
 test('each Library hub choice carries the label its view is rendered with', () => {

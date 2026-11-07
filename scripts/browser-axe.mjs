@@ -49,7 +49,7 @@ export function axeReadingState() {
 }
 
 // One route per screen a reader uses, with the element whose content shows that screen has finished
-// rendering. First-run Home is the only route without saved reading; the rest open with House of M
+// rendering. First-run Home and Library have no saved reading; the other routes open with House of M
 // saved and three of its comics read.
 export const AXE_ROUTES = [
   { id: 'home-first-run', label: 'Home, first run', view: 'home', hash: formatRoute({ view: 'home' }), seeded: false, ready: '#home-primary-paths:not([hidden])' },
@@ -61,6 +61,8 @@ export const AXE_ROUTES = [
   { id: 'young-readers', label: 'Young readers', view: 'young-readers', hash: formatRoute({ view: 'young-readers' }), seeded: true, ready: '#young-readers-results > *' },
   { id: 'progress', label: 'Progress by series', view: 'progress', hash: formatRoute({ view: 'progress' }), seeded: true, ready: '#series-progress > *' },
   { id: 'library', label: 'Library', view: 'library', hash: formatRoute({ view: 'library' }), seeded: true, ready: '#library-yours-list > li' },
+  { id: 'library-first-run', label: 'Library, first run', view: 'library', hash: formatRoute({ view: 'library' }), seeded: false, ready: '#library-empty:not([hidden]) a[href="#/new-to-comics"]' },
+  { id: 'new-to-comics', label: 'New to comics?', view: 'new-to-comics', hash: formatRoute({ view: 'new-to-comics' }), seeded: true, ready: '#new-to-comics-h' },
   { id: 'add', label: 'Search', view: 'add', hash: formatRoute({ view: 'add' }), seeded: true, ready: '#add-primary-methods' },
   { id: 'data', label: 'Backup & settings', view: 'data', hash: formatRoute({ view: 'data' }), seeded: true, ready: '#view-data .setgroup' },
   { id: 'about', label: 'About this app', view: 'about', hash: formatRoute({ view: 'about' }), seeded: true, ready: '#view-about .card' },

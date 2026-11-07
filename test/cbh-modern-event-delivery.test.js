@@ -84,6 +84,9 @@ test('the signed comparisons cover the complete reviewed library and both mapped
     id: order.orderId, issueIds: order.issueIds.map(String),
   }))), contract.libraryDigest);
   const manifestLibrary = await loadLibrarySnapshot();
+  const laterOrderIds = manifestLibrary.orders
+    .filter((order) => !reviewedIds.has(order.orderId) && !ids.includes(order.orderId))
+    .map((order) => order.orderId);
   for (const guide of contract.guides) {
     const { packet, mapping, report } = await guideEvidence(guide.id);
     const peer = (await guideEvidence(guide.peerId)).mapping;
@@ -98,7 +101,7 @@ test('the signed comparisons cover the complete reviewed library and both mapped
     const liveReport = await buildReportForMapping(
       `scripts/data/cbh-mappings/${guide.id}.json`,
       [`scripts/data/cbh-mappings/${peer.id}.json`],
-      { excludedOrderIds: [] },
+      { excludedOrderIds: laterOrderIds },
     );
     assert.deepEqual(liveReport, report);
     assert.equal(report.reportDigest, guide.manifestReportDigest);
@@ -107,7 +110,9 @@ test('the signed comparisons cover the complete reviewed library and both mapped
       packet, mapping, report, peerMappings: [peer],
       currentLibraryDigest: report.libraryDigest,
       expectedOrderIds: [
-        ...manifestLibrary.orders.filter((order) => !ids.includes(order.orderId)).map((order) => order.orderId),
+        ...manifestLibrary.orders
+          .filter((order) => !ids.includes(order.orderId) && !laterOrderIds.includes(order.orderId))
+          .map((order) => order.orderId),
         peer.id,
       ],
     });

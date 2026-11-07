@@ -1,7 +1,7 @@
 // Chromium can deliver trusted touch pointerdown without matching :active until release.
 // Observe the hold without taking over scrolling, selection or the control's own action.
 export function wirePressFeedback({ document, window }) {
-  const controls = 'button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path';
+  const controls = 'button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path, a.home-guide-link';
   let held = null;
   const clear = () => {
     held?.node.removeAttribute('data-pressing');

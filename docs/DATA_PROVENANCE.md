@@ -951,7 +951,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1210-1214`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1262-1266`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1122,10 +1122,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11133-11184`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11188-11239`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16623-16760`.
+`src/data/catalog.json:16699-16836`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3546,3 +3546,29 @@ every Siege issue.
 The guides credit their exact Comic Book Herald sources and the selected secondary index. Source
 commentary and image bytes are not copied; only issue facts, links and cover addresses are stored.
 Neither guide promises availability, and existing lists and saved progress remain unchanged.
+
+## Newcomer guide book selections
+
+The newcomer guide links to two optional project-curated Reading Lists. The owner approved the
+original issue vectors and their placement. [OverDrive's collection listing](https://www.overdrive.com/media/6092392/history-of-the-marvel-universe)
+identifies *History of the Marvel Universe* (2019) #1-6. The owner selected the original
+*Marvels* (1994) #1-4 and excluded the later #0; its [publication history](https://en.wikipedia.org/wiki/Marvels)
+distinguishes those editions. Both sources and the metadata provider were checked on 2026-11-07.
+The [History ledger](../scripts/data/curated-source-ledgers/history-of-the-marvel-universe-2019.json)
+and [Marvels ledger](../scripts/data/curated-source-ledgers/marvels-1994.json) retain the
+source positions, exact identities, lookup addresses and independent relationship reviews.
+All ten issues resolved without gaps. The search characters are corroborated by the
+[History issue review](https://comic-watch.com/comic-book-reviews/history-of-the-marvel-universe-1-of-6-genesis)
+and the Marvels publication history, both retrieved on 2026-11-07.
+
+Each list was compared with 343 existing visible or retained-hidden orders and the other selection.
+None shares a provider issue ID. The existing *Marvels Annotated* edition covers the same original
+story under different IDs, so its saved progress remains separate; its first issue also includes
+the later #0. The comparison is an agent content review, not human review. The reviewer rechecked
+the final ledger and checklist bytes on 2026-11-07 against preflight digest
+`937982ed519add902938a15a1a55366e4398a32554aff21a33893ee44b543324`.
+
+The lists retain `creator-run`, `complete` and no single timeline year, and are reached from the
+newcomer guide rather than assigned a genre or era. Source issue facts and provider metadata,
+including cover addresses, are stored; source commentary, comic image bytes and a license grant
+are not. No availability is promised, and existing saved data and backup formats are unchanged.

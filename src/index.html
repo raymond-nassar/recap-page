@@ -220,7 +220,8 @@
 
             <section class="sec home-categories" id="home-categories" data-category-gateway aria-labelledby="home-cat-h">
               <div class="sec-h">
-                <h2 id="home-cat-h" class="visually-hidden">Explore</h2>
+                <h2 id="home-cat-h">Explore</h2>
+                <a href="#/new-to-comics" class="home-guide-link" data-view="new-to-comics">New to Marvel Comics?</a>
               </div>
               <div id="home-cat-report" class="report"></div>
               <p class="rail-hint" id="home-paths-status" data-paths-status role="status">Loading ways to read…</p>
@@ -229,6 +230,56 @@
                 <div class="sec-h"><h3 id="home-more-h">Discover More</h3></div>
                 <ul class="home-paths home-paths-secondary" id="home-secondary-paths" data-secondary-paths></ul>
               </section>
+            </section>
+          </section>
+
+          <section id="view-new-to-comics" class="view" hidden aria-labelledby="new-to-comics-h">
+            <div class="head"><div class="head-left"><h1 id="new-to-comics-h">New to comics?</h1></div></div>
+            <section class="card card-static guide-copy guide-basics" aria-labelledby="guide-basics-h">
+              <h2 id="guide-basics-h">The basics</h2>
+              <div>
+                <p>You don't need decades of backstory to enjoy Marvel.</p>
+                <ul>
+                  <li><strong>A shared world.</strong> Marvel's main universe began in 1961 and continues today. Its long history is not perfectly consistent.</li>
+                  <li><strong>Start anywhere.</strong> Tens of thousands of issues tell many stories, not one required reading order.</li>
+                  <li><strong>Try a run.</strong> A run is a creative team's stretch of a series, often like a season of TV.</li>
+                  <li><strong>Follow your interests.</strong> Pick a character, creator, movie, or Reading List.</li>
+                  <li><strong>Events are optional.</strong> Crossovers connect series, but you can enjoy stories without them.</li>
+                </ul>
+              </div>
+            </section>
+            <section class="card card-static guide-copy" aria-labelledby="guide-start-h">
+              <h2 id="guide-start-h">Find a starting point</h2>
+              <p><a href="#/genres" class="btn primary" data-view="genres" data-guide-starters>Explore the ten starter picks</a></p>
+              <p>Optional: <a href="#/preview/history-of-the-marvel-universe-2019" data-preview-id="history-of-the-marvel-universe-2019">History of the Marvel Universe (2019)</a> surveys Marvel's history. <a href="#/preview/marvels-1994" data-preview-id="marvels-1994">Marvels (1994)</a> sees that world through a photographer's eyes.</p>
+              <p id="guide-preview-status" role="status" aria-live="polite" hidden>Loading the Reading List...</p>
+              <div id="guide-preview-report" class="report"></div>
+            </section>
+            <section class="card card-static guide-copy" aria-labelledby="guide-app-h">
+              <h2 id="guide-app-h">Getting around Recap Page</h2>
+              <div>
+                <ul>
+                  <li><a href="#/home" data-view="home">Home</a>: resume reading and explore.</li>
+                  <li><a href="#/catalog" data-view="catalog">Modern Timeline</a>: follow modern stories. <a href="#/genres" data-view="genres">Genres</a>: browse by genre or tone.</li>
+                  <li><a href="#/spotlights" data-view="spotlights">Character spotlights</a>: find people and teams. <a href="#/marvel-on-screen" data-view="marvel-on-screen">MCU Prep</a>: explore comics behind movies and shows.</li>
+                  <li><a href="#/marvel-ages" data-view="marvel-ages">Marvel Ages</a>: browse by publishing period. <a href="#/young-readers" data-view="young-readers">Young readers</a>: find stories for younger readers.</li>
+                  <li><a href="#/library" data-view="library">Library</a>: see saved lists and progress. <a href="#/add" data-view="add">Search</a>: find or add comics.</li>
+                  <li><a href="#/data" data-view="data">Backup &amp; settings</a>: manage your data and preferences. <a href="#/about" data-view="about">About</a>: see credits and privacy.</li>
+                  <li>Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.</li>
+                </ul>
+              </div>
+            </section>
+            <section class="card card-static guide-copy" aria-labelledby="guide-more-h">
+              <h2 id="guide-more-h">Learn more</h2>
+              <div>
+                <p>Basics adapted from the r/Marvel wiki.</p>
+                <ul>
+                  <li><a href="https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics" target="_blank" rel="noopener noreferrer">Introduction to comics</a></li>
+                  <li><a href="https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations" target="_blank" rel="noopener noreferrer">Starter recommendations</a></li>
+                  <li><a href="https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers" target="_blank" rel="noopener noreferrer">Events and crossovers</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=FYnkpCfKuDw" target="_blank" rel="noopener noreferrer">How to Get Into Comic Books</a>, a video by Patrick Willems</li>
+                </ul>
+              </div>
             </section>
           </section>
 
@@ -530,6 +581,7 @@
                 <a href="#/browse" class="btn primary" data-view="home" data-at="categories">Browse</a>
                 <a href="#/add" class="btn" data-view="add">Search</a>
               </div>
+              <p><a href="#/new-to-comics" data-view="new-to-comics">New to comics? Start here</a></p>
             </section>
 
             <section class="sec" id="library-rated-shelf" aria-labelledby="library-rated-shelf-h">

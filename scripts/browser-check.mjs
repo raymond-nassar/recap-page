@@ -54,7 +54,7 @@ import { readerIssueId } from '../src/js/lib/markdown.js';
 import { SCHEMA_VERSION, addIssuesToList, createEmptyState, createList, normalizeIssue, pendingIssueIds } from '../src/js/lib/model.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
-import { formatRoute } from '../src/js/lib/route.js';
+import { formatRoute, parseRoute } from '../src/js/lib/route.js';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { touchFeedbackCheck } from './lib/touch-feedback.mjs';
@@ -1845,10 +1845,58 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
     t.check('offline opening preserves reading, recovery, preferences and save feedback',
       JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(before));
     t.check('real-worker offline content has no script errors', errors.length === 0, JSON.stringify(errors));
+
+    const removedCatalog = await page.evaluate(async () => {
+      let removed = 0;
+      for (const name of (await caches.keys()).filter((value) => value.startsWith('mrt-offline-'))) {
+        const cache = await caches.open(name);
+        for (const request of await cache.keys()) {
+          if (new URL(request.url).pathname === '/data/catalog.json' && await cache.delete(request)) removed++;
+        }
+      }
+      return removed;
+    });
+    t.check('the isolated worker fixture removed its cached catalog', removedCatalog > 0, String(removedCatalog));
+    responses.clear();
+    await page.goto('about:blank');
+    await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await page.waitForSelector('#home-cat-report .notice button', { timeout: 15000 });
+    const offlineGuide = await page.evaluate(() => {
+      const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+      return { visible: Boolean(link?.checkVisibility()), text: link?.textContent.trim() ?? null,
+        catalogCards: document.querySelectorAll('#home-primary-paths .home-path').length };
+    });
+    const available = responses.get('/') === true && offlineGuide.visible
+      && offlineGuide.text === 'New to Marvel Comics?';
+    t.check('a worker-served shell exposes the guide with its catalog unavailable',
+      available, JSON.stringify({ offlineGuide, responses: [...responses] }));
+    if (available) {
+      await click(page, '#home-categories a[href="#/new-to-comics"]');
+      await page.waitForSelector('#view-new-to-comics:not([hidden])');
+      await click(page, '#view-new-to-comics a[href="#/genres"]');
+      await page.waitForSelector('#genres-report .notice button', { timeout: 15000 });
+      const failed = await page.evaluate(() => ({
+        notice: document.querySelector('#genres-report').textContent.trim(),
+        cards: document.querySelectorAll('#genres-results .catalog-card').length,
+      }));
+      t.check('offline Genres reports catalog failure without fabricating starters',
+        failed.notice.includes('Retry catalog') && failed.cards === 0, JSON.stringify(failed));
+      await workerSession.send('Network.emulateNetworkConditions', {
+        offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1,
+      });
+      await page.setOfflineMode(false);
+      await click(page, '#genres-report .notice button');
+      await page.waitForSelector('#genres-results .catalog-card', { timeout: 15000 });
+      t.check('Genres retry restores real starters after network returns',
+        await page.$$eval('#genres-results .catalog-card', (cards) => cards.length === 10));
+    }
   } catch (error) {
     console.error('HOME_UPDATES real offline check failed:', error);
     throw error;
   } finally {
+    if (workerSession) await workerSession.send('Network.emulateNetworkConditions', {
+      offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1,
+    });
     if (pageSession) await pageSession.detach();
     if (workerSession) await workerSession.detach();
     await context.close();
@@ -3034,6 +3082,233 @@ const SCENARIOS = [
     id: 'breadcrumb-navigation',
     title: 'routed pages show one truthful, usable breadcrumb trail',
     async run(page, t) {
+      const directContext = await page.browser().createBrowserContext();
+      try {
+        const direct = await directContext.newPage();
+        direct.__denyExternal = true;
+        await preparePage(direct, page.__origin, page.__mutation, 'breadcrumb-navigation');
+        await open(direct, '/#/new-to-comics');
+        const boot = await direct.evaluate(() => ({
+          visible: document.querySelector('#view-new-to-comics')?.hidden === false,
+          heading: document.querySelector('#new-to-comics-h')?.textContent.trim() ?? null,
+          focus: document.activeElement?.id ?? null,
+          title: document.title,
+          home: document.querySelector('.brand[data-view="home"]')?.getAttribute('aria-current'),
+          crumb: document.querySelector('#view-new-to-comics .breadcrumb a')?.getAttribute('href') ?? null,
+        }));
+        t.check('direct guide route shows its named static panel', boot.visible && boot.heading === 'New to comics?',
+          JSON.stringify(boot));
+        if (boot.visible) {
+          t.check('guide Home-current marker and Explore breadcrumb identify its parent',
+            boot.home === 'page' && boot.crumb === '#/browse', JSON.stringify(boot));
+          t.check('direct guide boot retains document focus and its own title',
+            boot.focus !== 'new-to-comics-h' && boot.title === 'New to comics? | Recap Page', JSON.stringify(boot));
+          await direct.reload({ waitUntil: 'load' });
+          const reloaded = await direct.evaluate(() => ({
+            visible: document.querySelector('#view-new-to-comics')?.hidden === false,
+            focus: document.activeElement?.id ?? null,
+            hash: location.hash,
+          }));
+          t.check('reloading the guide retains the route without forcing heading focus',
+            reloaded.visible && reloaded.focus !== 'new-to-comics-h'
+              && parseRoute(reloaded.hash)?.view === 'new-to-comics', JSON.stringify(reloaded));
+          const card = await direct.$('#home-categories a[href="#/new-to-comics"]');
+          t.check('the Home guide entry exists for a deliberate navigation', Boolean(card));
+          if (card) {
+            await card.dispose();
+            await click(direct, '#view-new-to-comics .breadcrumb a');
+            await direct.waitForSelector('#view-home:not([hidden])');
+            await direct.focus('#home-categories a[href="#/new-to-comics"]');
+            await direct.keyboard.press('Enter');
+            const arrived = await direct.evaluate(() => ({
+              visible: document.querySelector('#view-new-to-comics')?.hidden === false,
+              focus: document.activeElement?.id, home: document.querySelector('.brand')?.getAttribute('aria-current'),
+              crumb: document.querySelector('#view-new-to-comics .breadcrumb a')?.getAttribute('href'),
+            }));
+            t.check('deliberate Home navigation focuses the guide heading with Home current',
+              arrived.visible && arrived.focus === 'new-to-comics-h' && arrived.home === 'page'
+                && arrived.crumb === '#/browse', JSON.stringify(arrived));
+            await direct.goBack();
+            await direct.waitForSelector('#view-home:not([hidden])');
+            await direct.goForward();
+            await direct.waitForSelector('#view-new-to-comics:not([hidden])');
+            t.check('Back and Forward restore the guide with its heading focused',
+              await direct.evaluate(() => document.activeElement?.id === 'new-to-comics-h'));
+          }
+        }
+      } finally {
+        await directContext.close();
+      }
+
+      const starterContext = await page.browser().createBrowserContext();
+      try {
+        const starter = await starterContext.newPage();
+        starter.__denyExternal = true;
+        await preparePage(starter, page.__origin, page.__mutation, 'breadcrumb-navigation');
+        await open(starter, '/?catalog=actual#/genres');
+        await starter.waitForSelector('#genres-type option[value="espionage"]');
+        await starter.select('#genres-type', 'espionage');
+        await starter.select('#genres-tone', 'dark');
+        const filtered = await starter.evaluate(() => ({
+          type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+          hash: location.hash,
+        }));
+        t.check('the real catalog fixture establishes both non-default Genres choices',
+          filtered.type === 'espionage' && filtered.tone === 'dark', JSON.stringify(filtered));
+        await starter.evaluate(() => { location.hash = '#/new-to-comics'; });
+        await starter.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        const guideReady = await starter.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false
+          && Boolean(document.querySelector('#view-new-to-comics a[href="#/genres"]')));
+        t.check('the filtered Genres visit can reach the guide and its starter link', guideReady);
+        if (guideReady) {
+          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.waitForSelector('#view-genres:not([hidden])');
+          const orientation = await starter.evaluate(() => ({
+            type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+          }));
+          t.check('the orientation link retains Genres choices rather than acting as the starter reset',
+            orientation.type === 'espionage' && orientation.tone === 'dark', JSON.stringify(orientation));
+          await starter.goBack();
+          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
+          const nativeStarters = await starter.evaluate(() => {
+            const link = document.querySelector('#view-new-to-comics a[href="#/genres"]');
+            const results = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
+              const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
+              let allowed = false;
+              link.addEventListener('click', (seen) => { allowed = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+              link.dispatchEvent(event);
+              return allowed;
+            });
+            const event = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+            let middle = false;
+            link.addEventListener('auxclick', (seen) => { middle = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+            link.dispatchEvent(event);
+            return { results, middle };
+          });
+          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.waitForSelector('#view-genres:not([hidden])');
+          const retainedChoices = await starter.evaluate(() => ({
+            type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+          }));
+          t.check('modified or middle activation of the starter link stays native without resetting filters',
+            nativeStarters.results.every(Boolean) && nativeStarters.middle
+              && retainedChoices.type === 'espionage' && retainedChoices.tone === 'dark',
+            JSON.stringify({ ...nativeStarters, ...retainedChoices }));
+          await starter.goBack();
+          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
+          const ids = [
+            'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
+            'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
+            'black-panther-reading-order', 'deadpool-best-of',
+          ].map((id) => `list:${id}`);
+          const snapshot = () => starter.evaluate(() => ({
+            type: document.querySelector('#genres-type')?.value,
+            tone: document.querySelector('#genres-tone')?.value,
+            heading: document.querySelector('#genres-results h2')?.textContent.trim(),
+            cards: [...document.querySelectorAll('#genres-results .catalog-card')].map((node) => node.dataset.story),
+            hash: location.hash,
+          }));
+          await click(starter, '#view-new-to-comics a[href="#/genres"]');
+          await starter.waitForSelector('#view-genres:not([hidden])');
+          await starter.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          const reset = await snapshot();
+          t.check('guide resets both Genres choices and shows the ten literal starters in order',
+            reset.type === '' && reset.tone === '' && reset.heading === 'Popular places to start'
+              && JSON.stringify(reset.cards) === JSON.stringify(ids), JSON.stringify(reset));
+          await starter.goBack();
+          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
+          await starter.goBack();
+          await starter.waitForFunction(() => document.querySelector('#view-genres')?.hidden === false
+            && document.querySelector('#genres-type')?.value === 'espionage'
+            && document.querySelector('#genres-tone')?.value === 'dark');
+          const back = await snapshot();
+          await starter.goForward();
+          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
+          await starter.goForward();
+          await starter.waitForSelector('#view-genres:not([hidden])');
+          await starter.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          const forward = await snapshot();
+          t.check('Back restores filtered Genres and Forward restores the guide starters',
+            back.type === 'espionage' && back.tone === 'dark'
+              && forward.type === '' && forward.tone === ''
+              && JSON.stringify(forward.cards) === JSON.stringify(ids), JSON.stringify({ back, forward }));
+        }
+      } finally {
+        await starterContext.close();
+      }
+
+      const stateContext = await page.browser().createBrowserContext();
+      try {
+        const saved = await stateContext.newPage();
+        saved.__denyExternal = true;
+        await preparePage(saved, page.__origin, page.__mutation, 'breadcrumb-navigation');
+        let fixture = createList(createEmptyState(), { id: 'guide-a', name: 'Guide A' });
+        fixture = createList(fixture, { id: 'guide-b', name: 'Guide B' });
+        fixture = addIssuesToList(fixture, 'guide-a', [{ issueId: -9101, title: 'Guide A comic', source: 'manual' }]).state;
+        fixture = addIssuesToList(fixture, 'guide-b', [{ issueId: -9102, title: 'Guide B comic', source: 'manual' }]).state;
+        await saved.evaluateOnNewDocument((state) => {
+          if (sessionStorage.getItem('guide.fixture.initialized')) return;
+          sessionStorage.setItem('guide.fixture.initialized', '1');
+          localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+          localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
+        }, fixture);
+        await open(saved, '/#/read/guide-a');
+        await saved.waitForSelector('#reading-filters input[value="unread"]');
+        await saved.$eval('#full', (details) => { details.open = true; });
+        await saved.$eval('#reading-filters input[value="unread"]', (radio) => radio.click());
+        await saved.waitForFunction(() => location.hash.includes('filter=unread'));
+        const before = await saved.evaluate(() => localStorage.getItem('mrt.state.v2'));
+        await click(saved, '.brand[data-view="home"]');
+        const card = await saved.$('#home-categories a[href="#/new-to-comics"]');
+        t.check('the same-list reading fixture can reach the Home guide entry', Boolean(card));
+        if (card) {
+          await card.dispose();
+          await click(saved, '#home-categories a[href="#/new-to-comics"]');
+          await saved.waitForSelector('#view-new-to-comics:not([hidden])');
+          const entered = await saved.evaluate(() => ({ hash: location.hash,
+            state: localStorage.getItem('mrt.state.v2'), settings: JSON.parse(localStorage.getItem('mrt.settings')) }));
+          await saved.goBack();
+          await saved.waitForSelector('#view-home:not([hidden])');
+          await saved.goForward();
+          await saved.waitForSelector('#view-new-to-comics:not([hidden])');
+          const after = await saved.evaluate(() => ({ hash: location.hash,
+            state: localStorage.getItem('mrt.state.v2'), settings: JSON.parse(localStorage.getItem('mrt.settings')) }));
+          t.check('same-list guide navigation and history retain bytes and the addressed reading filter',
+            before === entered.state && before === after.state
+              && parseRoute(entered.hash)?.listId === 'guide-a' && parseRoute(entered.hash)?.filter === 'unread'
+              && parseRoute(after.hash)?.listId === 'guide-a' && parseRoute(after.hash)?.filter === 'unread'
+              && entered.settings.filter === 'unread' && after.settings.filter === 'unread',
+            JSON.stringify({ entered, after }));
+          const prior = JSON.parse(after.state);
+          await saved.evaluate(() => { location.hash = '#/new-to-comics/guide-b?filter=unread'; });
+          await saved.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).active === 'guide-b');
+          const addressed = await saved.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
+          const contentKeys = ['listOrder', 'lists', 'issues', 'read', 'notes', 'overrides'];
+          t.check('an explicitly addressed other list changes active selection, not reading content',
+            addressed.active === 'guide-b'
+              && contentKeys.every((key) => isDeepStrictEqual(prior[key], addressed[key])),
+            JSON.stringify({ before: prior.active, after: addressed.active }));
+          await saved.evaluate(() => history.replaceState(history.state, '', '#/new-to-comics/guide-b'));
+          await saved.reload({ waitUntil: 'load' });
+          const restored = await saved.evaluate(() => ({
+            filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+            checked: document.querySelector('#reading-filters input:checked')?.value,
+          }));
+          t.check('an omitted filter at guide boot retains the restored reading setting',
+            restored.filter === 'unread' && restored.checked === 'unread', JSON.stringify(restored));
+          await click(saved, '.ri[data-view="about"]');
+          await saved.goBack();
+          await saved.waitForSelector('#view-new-to-comics:not([hidden])');
+          const traversed = await saved.evaluate(() => ({
+            filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+            checked: document.querySelector('#reading-filters input:checked')?.value,
+          }));
+          t.check('an omitted filter during history traversal restores and saves All',
+            traversed.filter === 'all' && traversed.checked === 'all', JSON.stringify(traversed));
+        }
+      } finally {
+        await stateContext.close();
+      }
       const trail = () => page.evaluate(() => {
         const visible = [...document.querySelectorAll('.view')].filter((node) => !node.hidden);
         const breadcrumbs = visible.flatMap((node) => [...node.querySelectorAll(':scope > .breadcrumb')]);
@@ -3352,6 +3627,122 @@ const SCENARIOS = [
     id: 'home-category-gateway',
     title: 'Home offers concise reading paths that scale to more categories',
     async run(page, t) {
+      const guideContext = await page.browser().createBrowserContext();
+      try {
+        const guidePage = await guideContext.newPage();
+        guidePage.__denyExternal = true;
+        await preparePage(guidePage, page.__origin, page.__mutation, 'home-category-gateway');
+        const inspectGuide = async () => {
+          const rendered = await guidePage.evaluate(() => {
+            const links = [...document.querySelectorAll('#home-categories a[href="#/new-to-comics"]')];
+            const link = links[0];
+            const headingRow = link?.closest('.sec-h');
+            const heading = headingRow?.querySelector('#home-cat-h');
+            const headingBox = heading?.getBoundingClientRect();
+            const linkBox = link?.getBoundingClientRect();
+            const rowBox = headingRow?.getBoundingClientRect();
+            return { count: links.length, visible: Boolean(link?.checkVisibility()),
+              text: link?.textContent.trim() ?? null, tag: link?.tagName ?? null,
+              className: link?.className ?? null,
+              heading: heading?.textContent.trim() ?? null,
+              headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
+                && headingBox && headingBox.width > 1 && headingBox.height > 1),
+              headingWidth: headingBox?.width ?? 0, headingHeight: headingBox?.height ?? 0,
+              sameRow: Boolean(rowBox && linkBox && headingBox && Math.abs(linkBox.top - rowBox.top) < 1
+                && linkBox.right <= rowBox.right + 1 && headingBox.right <= linkBox.left + 1
+                && headingBox.bottom > linkBox.top && linkBox.bottom > headingBox.top),
+              linkWidth: linkBox?.width ?? 0, rowWidth: rowBox?.width ?? 0,
+              linkHeight: linkBox?.height ?? 0,
+              category: Boolean(link?.closest('#home-primary-paths, #home-more-paths')),
+              icons: link?.querySelectorAll('svg').length ?? 0 };
+          });
+          const node = await guidePage.$('#home-categories a[href="#/new-to-comics"]');
+          const accessible = node ? await guidePage.accessibility.snapshot({ root: node }) : null;
+          if (node) await node.dispose();
+          return { ...rendered, name: accessible?.name ?? null };
+        };
+        const valid = (card) => card.count === 1 && card.visible && card.tag === 'A'
+          && card.text === 'New to Marvel Comics?' && card.name === card.text
+          && card.className === 'home-guide-link' && card.heading === 'Explore'
+          && card.headingVisible && card.sameRow && card.linkHeight >= 44
+          && card.linkWidth > 0 && card.linkWidth < card.rowWidth / 2
+          && !card.category && card.icons === 0;
+        await open(guidePage, '/?local-catalog=pending#/home');
+        await guidePage.waitForFunction(() => window.__mrtLocalPending.catalog.length === 1);
+        const pending = await inspectGuide();
+        t.check('guide entry remains visible and exactly named while the catalog is pending',
+          valid(pending), JSON.stringify(pending));
+        await guidePage.evaluate(() => window.__mrtSettleLocalRequest('catalog', 'down'));
+        await guidePage.waitForSelector('#home-cat-report .notice button');
+        const failed = await inspectGuide();
+        t.check('guide entry survives catalog failure beside Retry catalog',
+          valid(failed) && await guidePage.$eval('#home-cat-report button', (button) => button.textContent.trim() === 'Retry catalog'),
+          JSON.stringify(failed));
+        await guidePage.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+        await click(guidePage, '#home-cat-report button');
+        await guidePage.waitForSelector('#home-primary-paths .home-path');
+        const retried = await inspectGuide();
+        t.check('catalog retry restores category paths without duplicating the guide entry',
+          valid(retried), JSON.stringify(retried));
+        if (valid(retried)) {
+          const selector = '#home-categories a[href="#/new-to-comics"]';
+          const press = [];
+          const client = await guidePage.createCDPSession();
+          try {
+            await client.send('Emulation.setTouchEmulationEnabled', { enabled: true });
+            for (const forced of [false, true]) {
+              await guidePage.emulateMediaFeatures([{ name: 'forced-colors', value: forced ? 'active' : 'none' }]);
+              await guidePage.$eval(selector, (node) => {
+                document.activeElement?.blur();
+                node.scrollIntoView({ block: 'center' });
+              });
+              const measure = () => guidePage.$eval(selector, (node) => {
+                const css = getComputedStyle(node);
+                const box = node.getBoundingClientRect();
+                return {
+                  marked: node.hasAttribute('data-pressing'), shadow: css.boxShadow, outline: css.outlineStyle,
+                  width: css.outlineWidth, offset: css.outlineOffset, tap: css.webkitTapHighlightColor,
+                  box: [box.x, box.y, box.width, box.height], hash: location.hash,
+                };
+              });
+              const before = await measure();
+              await client.send('Input.dispatchTouchEvent', {
+                type: 'touchStart',
+                touchPoints: [{ x: before.box[0] + before.box[2] / 2, y: before.box[1] + before.box[3] / 2 }],
+              });
+              const held = await measure();
+              await client.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+              const cancelled = await measure();
+              press.push({ forced, before, held, cancelled });
+            }
+          } finally {
+            await guidePage.emulateMediaFeatures([]);
+            await client.detach();
+          }
+          t.check('the Home guide link gives held touch feedback without moving or activating',
+            press.every(({ forced, before, held, cancelled }) => held.marked
+              && (forced ? held.outline === 'solid' && held.width === '3px' && held.offset === '-3px'
+                : held.shadow.includes('inset') && held.shadow !== before.shadow)
+              && held.tap === before.tap && held.box.every((value, i) => Math.abs(value - before.box[i]) < 0.5)
+              && !cancelled.marked && cancelled.hash === before.hash), JSON.stringify(press));
+          await guidePage.focus('#home-categories a[href="#/new-to-comics"]');
+          await guidePage.keyboard.press('Enter');
+          t.check('the Home guide entry activates with the keyboard',
+            await guidePage.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false
+              && document.activeElement?.id === 'new-to-comics-h'));
+        }
+        await open(guidePage, '/?catalog=empty#/home');
+        await guidePage.waitForFunction(() => document.querySelector('#home-paths-status')?.textContent
+          .includes('No reading paths are bundled'));
+        const empty = await inspectGuide();
+        t.check('guide entry remains visible when the catalog has no paths', valid(empty), JSON.stringify(empty));
+        await seedFixtureState(guidePage);
+        await guidePage.waitForSelector('#home-primary-paths .home-path');
+        const saved = await inspectGuide();
+        t.check('guide entry stays beside visible Explore with a saved Reading List', valid(saved), JSON.stringify(saved));
+      } finally {
+        await guideContext.close();
+      }
       await open(page, '/');
       await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
       const settleLayout = () => page.evaluate(() => new Promise((resolve) => {
@@ -16924,6 +17315,466 @@ SCENARIOS.push({
   id: 'semantic-destinations',
   title: 'destinations expose native links, resolved titles and actual manual membership',
   async run(page, t) {
+    const guideContext = await page.browser().createBrowserContext();
+    try {
+      const guide = await guideContext.newPage();
+      guide.__denyExternal = true;
+      await preparePage(guide, page.__origin, page.__mutation, 'semantic-destinations');
+      await open(guide, '/#/library');
+      const entry = await guide.evaluate(() => {
+        const root = document.querySelector('#library-empty');
+        const link = root?.querySelector('a[href="#/new-to-comics"]');
+        return { visible: Boolean(root?.checkVisibility() && link?.checkVisibility()),
+          tag: link?.tagName ?? null, text: link?.textContent.trim() ?? null };
+      });
+      t.check('zero-list Library exposes its exact native guide entry',
+        entry.visible && entry.tag === 'A' && entry.text === 'New to comics? Start here', JSON.stringify(entry));
+      if (entry.visible) {
+        const native = await guide.evaluate(() => {
+          const link = document.querySelector('#library-empty a[href="#/new-to-comics"]');
+          return ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
+            const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
+            let allowed = false;
+            link.addEventListener('click', (seen) => { allowed = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+            link.dispatchEvent(event);
+            return allowed;
+          });
+        });
+        const middle = await guide.evaluate(() => {
+          const link = document.querySelector('#library-empty a[href="#/new-to-comics"]');
+          const event = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+          let allowed = false;
+          link.addEventListener('auxclick', (seen) => { allowed = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+          link.dispatchEvent(event);
+          return allowed;
+        });
+        t.check('guide links retain modifier and middle-click browser defaults', native.every(Boolean) && middle);
+        await guide.focus('#library-empty a[href="#/new-to-comics"]');
+        await guide.keyboard.press('Enter');
+        t.check('Library guide activation focuses the guide heading',
+          await guide.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false
+            && document.activeElement?.id === 'new-to-comics-h'));
+        await guide.goBack();
+        await guide.waitForSelector('#view-library:not([hidden])');
+        await click(guide, '#btn-new-list');
+        await guide.waitForSelector('#ask[open] #ask-input');
+        await guide.$eval('#ask-input', (input) => { input.value = 'Empty guide fixture'; });
+        await click(guide, '#ask-ok');
+        await guide.waitForSelector('#view-read:not([hidden])');
+        await click(guide, '.ri[data-view="library"]');
+        await guide.waitForSelector('#view-library:not([hidden])');
+        const savedEmpty = await guide.evaluate(() => ({
+          count: JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length,
+          visible: document.querySelector('#library-empty')?.checkVisibility(),
+          link: document.querySelector('#library-empty a[href="#/new-to-comics"]')?.checkVisibility(),
+        }));
+        t.check('a saved empty list hides the zero-list guide link',
+          savedEmpty.count === 1 && !savedEmpty.visible && !savedEmpty.link, JSON.stringify(savedEmpty));
+        await click(guide, '#library-yours-list a');
+        await guide.waitForSelector('#view-read:not([hidden])');
+        await deleteActiveList(guide);
+        await guide.waitForFunction(() => [...document.querySelectorAll('#app-report .notice button')]
+          .some((button) => button.textContent.trim() === 'Undo removal'), { timeout: 15000 });
+        await click(guide, '.ri[data-view="library"]');
+        await guide.waitForSelector('#view-library:not([hidden])');
+        const removed = await guide.evaluate(() => ({
+          count: JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length,
+          link: document.querySelector('#library-empty a[href="#/new-to-comics"]')?.checkVisibility(),
+        }));
+        t.check('removing the last list reveals the guide entry', removed.count === 0 && removed.link, JSON.stringify(removed));
+        await clickNoticeButton(guide, 'Undo removal');
+        await click(guide, '.ri[data-view="library"]');
+        await guide.waitForSelector('#view-library:not([hidden])');
+        t.check('restoring the removed list hides the guide entry again',
+          await guide.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 1
+            && document.querySelector('#library-empty').hidden
+            && !document.querySelector('#library-empty a[href="#/new-to-comics"]')?.checkVisibility()));
+      }
+    } finally {
+      await guideContext.close();
+    }
+
+    const copyContext = await page.browser().createBrowserContext();
+    try {
+      const copy = await copyContext.newPage();
+      copy.__denyExternal = true;
+      await preparePage(copy, page.__origin, page.__mutation, 'semantic-destinations');
+      await open(copy, '/#/new-to-comics');
+      const panel = await copy.$('#view-new-to-comics:not([hidden])');
+      t.check('the guide panel exists before copy and link checks', Boolean(panel));
+      if (panel) {
+        await panel.dispose();
+        const content = await copy.evaluate(() => {
+          const guide = document.querySelector('#view-new-to-comics');
+          const clone = guide.cloneNode(true);
+          clone.querySelectorAll('.breadcrumb, [aria-hidden="true"]').forEach((node) => node.remove());
+          const words = (text) => (text.match(/[\p{L}\p{N}]+(?:['\u2019-][\p{L}\p{N}]+)*/gu) ?? []).length;
+          return {
+            whole: words(clone.textContent), basics: words(clone.querySelector('.guide-basics')?.textContent ?? ''),
+            links: [...guide.querySelectorAll('a[href^="https:"]')].map((link) => ({
+              href: link.getAttribute('href'), text: link.textContent.trim(), target: link.target,
+              rel: link.rel, optional: /optional/i.test(link.closest('section')?.textContent ?? ''),
+            })),
+            books: [...guide.querySelectorAll('[data-preview-id]')].map((link) => ({
+              id: link.dataset.previewId, href: link.getAttribute('href'), text: link.textContent.trim(),
+            })),
+            orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
+              view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
+            })),
+            credit: guide.textContent.includes('r/Marvel wiki'),
+          };
+        });
+        const expected = [
+          'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics',
+          'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
+          'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
+          'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+        ];
+        console.log(`GUIDE_COPY ${JSON.stringify({ basics: content.basics, whole: content.whole })}`);
+        t.check('guide basics and complete reader-facing copy meet their word targets',
+          content.basics > 0 && content.basics <= 160 && content.whole <= 325, JSON.stringify(content));
+        const indents = await copy.$$eval('#view-new-to-comics .guide-copy ul', (lists) =>
+          lists.map((list) => Number.parseFloat(getComputedStyle(list).paddingInlineStart)));
+        t.check('each guide bullet list keeps its markers inside the card',
+          indents.every((indent) => indent >= 16), JSON.stringify(indents));
+        t.check('guide external links have the expected destinations, names and safe attributes',
+          content.credit && content.links.length === expected.length
+            && expected.every((href) => content.links.some((link) => link.href === href))
+            && content.links.every((link) => link.text && link.target === '_blank'
+              && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer'))
+            && content.books.length === 2,
+          JSON.stringify(content.links));
+        t.check('both optional books have their exact bookmarkable preview addresses',
+          JSON.stringify(content.books) === JSON.stringify([
+            { id: 'history-of-the-marvel-universe-2019', href: '#/preview/history-of-the-marvel-universe-2019',
+              text: 'History of the Marvel Universe (2019)' },
+            { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)' },
+          ]), JSON.stringify(content.books));
+        const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
+          'young-readers', 'library', 'add', 'data', 'about'];
+        t.check('the concise orientation links every named page to its own route',
+          JSON.stringify(content.orientation.map(({ view }) => view)) === JSON.stringify(pages)
+            && content.orientation.every(({ view, href, text }) => href === `#/${view}` && text),
+          JSON.stringify(content.orientation));
+        const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
+        const actual = await copy.$(selector);
+        t.check('a representative actual external guide anchor exists for activation', Boolean(actual));
+        if (actual) {
+          await actual.dispose();
+          const probe = `${page.__origin}/icons/ui.svg?guide-probe=1`;
+          const beforeTargets = new Set(copyContext.targets());
+          const originalUrl = copy.url();
+          await copy.focus(selector);
+          await copy.$eval(selector, (link, url) => { link.href = url; }, probe);
+          const target = page.browser().waitForTarget((candidate) => candidate.browserContext() === copyContext
+            && !beforeTargets.has(candidate) && candidate.url() === probe, { timeout: 3000 })
+            .catch((error) => { if (error.name === 'TimeoutError') return null; throw error; });
+          await copy.keyboard.press('Enter');
+          const opened = await target;
+          t.check('real guide link activation opens a separate local target and leaves the app unchanged',
+            Boolean(opened) && copy.url() === originalUrl, JSON.stringify({ opened: Boolean(opened), before: originalUrl, after: copy.url() }));
+          if (copy.url() === originalUrl) {
+            await copy.$eval(selector.replace('[href^="https://www.reddit.com/"]', '[href*="guide-probe"]'),
+              (link, href) => { link.href = href; }, content.links.find((link) => link.href.startsWith('https://www.reddit.com/')).href);
+          }
+          const openedPage = opened ? await opened.page() : null;
+          if (openedPage) await openedPage.close();
+        }
+      }
+    } finally {
+      await copyContext.close();
+    }
+
+    const bookContext = await page.browser().createBrowserContext();
+    try {
+      const bookPage = await bookContext.newPage();
+      bookPage.__denyExternal = true;
+      await preparePage(bookPage, page.__origin, page.__mutation, 'semantic-destinations');
+      let existing = createList(createEmptyState(), { id: 'existing-guide-list', name: 'Existing list' });
+      existing = addIssuesToList(existing, 'existing-guide-list', [
+        { issueId: -9104, title: 'Existing comic', source: 'manual' },
+      ]).state;
+      await bookPage.evaluateOnNewDocument((saved) => {
+        if (sessionStorage.getItem('guide.books.fixture')) return;
+        sessionStorage.setItem('guide.books.fixture', '1');
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
+      }, existing);
+      await open(bookPage, '/?catalog=actual#/new-to-comics');
+      const expectedBooks = [
+        { id: 'history-of-the-marvel-universe-2019', ids: [75119, 75120, 75121, 75122, 75123, 75124] },
+        { id: 'marvels-1994', ids: [10280, 10281, 10282, 10283] },
+      ];
+      const present = expectedBooks.every(({ id }) => ACTUAL_CATALOG.lists.some((entry) => entry.id === id));
+      t.check('both guide book destinations are in the actual catalog', present);
+      if (present) {
+        const before = await bookPage.evaluate(() => ({
+          raw: localStorage.getItem('mrt.state.v2'),
+          filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        }));
+        const selector = `[data-preview-id="${expectedBooks[0].id}"]`;
+        const native = await bookPage.$eval(selector, (link) => {
+          const modifiers = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
+            const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
+            let allowed = false;
+            link.addEventListener('click', (seen) => { allowed = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+            link.dispatchEvent(event);
+            return allowed;
+          });
+          const event = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+          let middle = false;
+          link.addEventListener('auxclick', (seen) => { middle = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+          link.dispatchEvent(event);
+          return modifiers.every(Boolean) && middle;
+        });
+        t.check('book links leave modified and middle activation to the browser', native);
+        await bookPage.focus(selector);
+        await bookPage.keyboard.press('Enter');
+        await bookPage.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
+          {}, expectedBooks[0].ids.length);
+        const originalPreview = await bookPage.evaluate(() => ({
+          hash: location.hash,
+          raw: localStorage.getItem('mrt.state.v2'),
+          filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+          ids: [...document.querySelectorAll('#preview-body .preview-issue-link')]
+            .map((link) => Number(link.dataset.issueId)),
+        }));
+        t.check('the first book opens its exact issues without changing saved data or the filter',
+          originalPreview.hash === `#/preview/${expectedBooks[0].id}` && originalPreview.raw === before.raw
+            && originalPreview.filter === before.filter
+            && JSON.stringify(originalPreview.ids) === JSON.stringify(expectedBooks[0].ids),
+          JSON.stringify(originalPreview));
+        await click(bookPage, '#preview-close');
+        await bookPage.waitForFunction((id) => !document.querySelector('#preview').open
+          && document.activeElement?.dataset.previewId === id, {}, expectedBooks[0].id);
+        await bookPage.goForward();
+        await bookPage.waitForSelector('#preview[open] .preview-issue-link');
+        await bookPage.keyboard.press('Escape');
+        await bookPage.waitForFunction((id) => !document.querySelector('#preview').open
+          && document.activeElement?.dataset.previewId === id, {}, expectedBooks[0].id);
+        t.check('Close, Forward and Escape restore the guide link rather than adding a dead history stop',
+          await bookPage.evaluate(() => location.hash.startsWith('#/new-to-comics')));
+        await click(bookPage, selector);
+        await bookPage.waitForSelector('#preview[open] .preview-issue-link');
+        await bookPage.evaluate(() => {
+          window.__guideSetItem = Storage.prototype.setItem;
+          Storage.prototype.setItem = function setItem(key, value) {
+            if (key === 'mrt.state.v2') throw new DOMException('Synthetic quota refusal', 'QuotaExceededError');
+            return window.__guideSetItem.call(this, key, value);
+          };
+        });
+        await click(bookPage, '#preview-add [data-act="main"]');
+        await bookPage.waitForFunction(() => document.querySelector('#preview-report')?.textContent.includes('could not be saved'));
+        const refused = await bookPage.evaluate(() => ({
+          raw: localStorage.getItem('mrt.state.v2'),
+          action: document.querySelector('#preview-add [data-act="main"]')?.textContent,
+        }));
+        t.check('a failed book import keeps existing bytes and the Add action',
+          refused.raw === before.raw && refused.action.includes('Add'), JSON.stringify(refused));
+        await bookPage.evaluate(() => { Storage.prototype.setItem = window.__guideSetItem; });
+        await click(bookPage, '#preview-add [data-act="main"]');
+        await bookPage.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent === 'Open list');
+        const imported = await bookPage.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const list = Object.values(state.lists).find((candidate) => candidate.catalogId === id);
+          return { state, list };
+        }, expectedBooks[0].id);
+        t.check('Add saves the exact book vector without changing the earlier list',
+          JSON.stringify(imported.list?.itemIds.map(Number)) === JSON.stringify(expectedBooks[0].ids)
+            && isDeepStrictEqual(imported.state.lists['existing-guide-list'], existing.lists['existing-guide-list']),
+          JSON.stringify(imported.list));
+        await click(bookPage, '#preview-add [data-act="main"]');
+        await bookPage.waitForSelector('#view-read:not([hidden])');
+        t.check('Open selects the saved book ID, not its catalog ID',
+          parseRoute(await bookPage.evaluate(() => location.hash))?.listId === imported.list.id);
+        await bookPage.goBack();
+        await bookPage.waitForFunction(() => document.querySelector('#preview[open] #preview-add [data-act="main"]')
+          ?.textContent === 'Open list');
+        await click(bookPage, '#preview-close');
+        await bookPage.waitForSelector('#view-new-to-comics:not([hidden])');
+        await click(bookPage, `[data-preview-id="${expectedBooks[1].id}"]`);
+        await bookPage.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
+          {}, expectedBooks[1].ids.length);
+        const second = await bookPage.$$eval('#preview-body .preview-issue-link', (links) =>
+          links.map((link) => Number(link.dataset.issueId)));
+        t.check('the second book contains the four selected originals and excludes issue zero',
+          JSON.stringify(second) === JSON.stringify(expectedBooks[1].ids), JSON.stringify(second));
+        await click(bookPage, '#preview-body .preview-issue-link');
+        await bookPage.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+        const crumbs = await bookPage.$$eval('#view-issue .breadcrumb a', (links) =>
+          links.map((link) => ({ text: link.textContent.trim(), href: link.getAttribute('href') })));
+        const bookCrumb = crumbs.find((crumb) => crumb.href === `#/preview/${expectedBooks[1].id}`);
+        t.check('a guide book comic points back to its actual guide and preview',
+          crumbs.some((crumb) => crumb.href === '#/new-to-comics')
+            && bookCrumb?.text === 'Marvels (1994)', JSON.stringify(crumbs));
+        if (bookCrumb) {
+          await click(bookPage, `#view-issue .breadcrumb a[href="#/preview/${expectedBooks[1].id}"]`);
+          await bookPage.waitForSelector('#preview[open] .preview-issue-link');
+          t.check('the book breadcrumb reopens its actual preview',
+            await bookPage.evaluate((id) => location.hash === `#/preview/${id}`, expectedBooks[1].id));
+        }
+      }
+    } finally {
+      await bookContext.close();
+    }
+
+    const previewContext = await page.browser().createBrowserContext();
+    try {
+      const previewPage = await previewContext.newPage();
+      previewPage.__denyExternal = true;
+      await preparePage(previewPage, page.__origin, page.__mutation, 'semantic-destinations');
+      let fixture = createList(createEmptyState(), { id: 'preview-fixture', name: 'Existing list' });
+      fixture = addIssuesToList(fixture, 'preview-fixture', [
+        { issueId: -9103, title: 'Existing comic', source: 'manual' },
+      ]).state;
+      await previewPage.evaluateOnNewDocument((saved) => {
+        if (sessionStorage.getItem('guide.preview.fixture')) return;
+        sessionStorage.setItem('guide.preview.fixture', '1');
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
+      }, fixture);
+      await open(previewPage, '/#/read/preview-fixture');
+      await previewPage.waitForSelector('#reading-filters input[value="unread"]:checked');
+      const before = await previewPage.evaluate(() => ({
+        state: localStorage.getItem('mrt.state.v2'),
+        filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+      }));
+      await previewPage.evaluate(() => { location.hash = '#/preview/browser-check'; });
+      await previewPage.waitForSelector('#preview[open] .preview-issue-link');
+      const direct = await previewPage.evaluate(() => ({
+        hash: location.hash,
+        state: localStorage.getItem('mrt.state.v2'),
+        filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        links: [...document.querySelectorAll('#preview-body .preview-issue-link')]
+          .map((link) => link.getAttribute('href')),
+      }));
+      t.check('a direct catalog preview preserves saved data and the reading filter',
+        direct.hash === '#/preview/browser-check' && direct.state === before.state && direct.filter === before.filter,
+        JSON.stringify(direct));
+      t.check('a direct preview exposes the fixture issues in their actual order',
+        JSON.stringify(direct.links) === JSON.stringify(ORDER.items.map((item) =>
+          `#/issue/${item.issueId}?order=browser-check`)), JSON.stringify(direct.links));
+      await previewPage.reload({ waitUntil: 'load' });
+      await previewPage.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('reloading a preview retains its catalog address and saved bytes',
+        await previewPage.evaluate((state) => location.hash === '#/preview/browser-check'
+          && localStorage.getItem('mrt.state.v2') === state, before.state));
+      await click(previewPage, '#preview-body .preview-issue-link');
+      await previewPage.waitForSelector('#view-issue:not([hidden])');
+      await previewPage.goBack();
+      await previewPage.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.activeElement?.dataset.focusSource === 'preview');
+      t.check('Back from a preview comic reopens the same preview and restores its issue link',
+        await previewPage.evaluate(() => location.hash === '#/preview/browser-check'
+          && document.activeElement?.getAttribute('href') === '#/issue/900001?order=browser-check'));
+      await click(previewPage, '#preview-close');
+      await previewPage.waitForFunction(() => !document.querySelector('#preview')?.open
+        && location.hash.startsWith('#/new-to-comics'));
+      t.check('closing a direct preview returns to the guide without writing saved data',
+        await previewPage.evaluate((state) => !document.querySelector('#view-new-to-comics').hidden
+          && localStorage.getItem('mrt.state.v2') === state, before.state));
+      await previewPage.evaluate(() => { location.hash = '#/preview/not-a-real-list'; });
+      await previewPage.waitForFunction(() => document.querySelector('#guide-preview-report')?.textContent
+        .includes('not in this catalog'));
+      await click(previewPage, '#guide-preview-report .notice-dismiss');
+      await previewPage.waitForFunction(() => location.hash.startsWith('#/new-to-comics')
+        && !document.querySelector('#guide-preview-report .notice'));
+      t.check('a missing catalog ID explains the problem and offers a return to the guide',
+        await previewPage.evaluate((state) => localStorage.getItem('mrt.state.v2') === state
+          && !document.querySelector('#preview').open, before.state));
+    } finally {
+      await previewContext.close();
+    }
+
+    const previewFaultContext = await page.browser().createBrowserContext();
+    try {
+      const fault = await previewFaultContext.newPage();
+      fault.__denyExternal = true;
+      await preparePage(fault, page.__origin, page.__mutation, 'semantic-destinations');
+      for (const mode of ['pending', 'down']) {
+        const id = 'history-of-the-marvel-universe-2019';
+        await open(fault, `/?catalog=actual&local-health=ready&local-catalog=${mode}#/about`);
+        await fault.evaluate(() => { location.hash = '#/new-to-comics'; });
+        await fault.waitForSelector('#view-new-to-comics:not([hidden])');
+        const guide = await fault.evaluate(() => ({
+          length: history.length, saved: localStorage.getItem('mrt.state.v2'),
+        }));
+        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
+        if (mode === 'pending') {
+          await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0
+            && !document.querySelector('#guide-preview-status').hidden);
+        } else {
+          await fault.waitForSelector('#guide-preview-report .notice button');
+          await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+        }
+        const first = await fault.evaluate(() => ({
+          length: history.length, depth: history.state.readingPosition.depth,
+        }));
+        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
+        const repeated = await fault.evaluate(() => ({
+          length: history.length, depth: history.state.readingPosition.depth,
+          parent: history.state.guidePreviewParent, hash: location.hash,
+        }));
+        t.check(`repeating a ${mode} book preview retains exactly one history entry`,
+          first.length === guide.length + 1 && repeated.length === first.length
+            && repeated.depth === first.depth && repeated.parent === id && repeated.hash === `#/preview/${id}`,
+          JSON.stringify({ guide, first, repeated }));
+        if (mode === 'pending') await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+        await fault.waitForSelector('#preview[open] .preview-issue-link');
+        await click(fault, '#preview-close');
+        await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`closing the repeated ${mode} preview returns once to its guide opener`,
+          await fault.evaluate(({ id: expected, saved }) => location.hash === '#/new-to-comics'
+            && !document.querySelector('#preview').open && document.activeElement?.dataset.previewId === expected
+            && localStorage.getItem('mrt.state.v2') === saved, { id, saved: guide.saved }));
+        await fault.goBack();
+        await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`Back after the repeated ${mode} preview reaches the previous page without a dead entry`,
+          await fault.evaluate(() => location.hash === '#/about' && !document.querySelector('#view-about').hidden));
+      }
+      await open(fault, '/?local-health=ready&local-catalog=down#/preview/browser-check');
+      await fault.waitForSelector('#guide-preview-report .notice button');
+      const failed = await fault.$eval('#guide-preview-report .notice', (node) => node.textContent);
+      await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+      await click(fault, '#guide-preview-report .notice button');
+      await fault.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('a failed catalog preview names the failure and Retry opens the requested list',
+        failed.includes('could not be loaded') && await fault.$eval('#preview-h', (node) => node.textContent) === ORDER.name,
+        failed);
+
+      await open(fault, '/?local-health=ready&local-order=down#/preview/browser-check');
+      await fault.waitForSelector('#preview[open] #preview-body .notice button');
+      await fault.evaluate(() => { window.__mrtLocalModes.order = 'ready'; });
+      await click(fault, '#preview-body .notice button');
+      await fault.waitForSelector('#preview-body .preview-issue-link');
+      t.check('a failed comic-list load offers a working retry inside its preview',
+        await fault.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.length) === ORDER.items.length);
+
+      await open(fault, '/?local-health=ready&local-catalog=pending#/preview/browser-check');
+      await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0
+        && !document.querySelector('#guide-preview-status').hidden);
+      await fault.evaluate(() => { location.hash = '#/about'; });
+      await fault.waitForSelector('#view-about:not([hidden])');
+      await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+      await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('a late catalog response cannot reopen a preview after navigation',
+        await fault.evaluate(() => !document.querySelector('#preview').open
+          && !document.querySelector('#view-about').hidden && location.hash.startsWith('#/about')));
+
+      await open(fault, '/?local-health=ready&local-order=pending#/preview/browser-check');
+      await fault.waitForFunction(() => window.__mrtLocalPending.order.length > 0
+        && document.querySelector('#preview').open);
+      await fault.evaluate(() => { location.hash = '#/about'; });
+      await fault.waitForSelector('#view-about:not([hidden])');
+      await fault.evaluate(() => window.__mrtSettleLocalRequest('order'));
+      await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('a late comic-list response cannot repaint or reopen a departed preview',
+        await fault.evaluate(() => !document.querySelector('#preview').open
+          && !document.querySelector('#view-about').hidden && location.hash.startsWith('#/about')));
+    } finally {
+      await previewFaultContext.close();
+    }
+
     let state = createList(createEmptyState(), { id: 'manual/a', name: 'Same name', catalogId: 'browser-check' });
     state = createList(state, { id: 'manual-b', name: 'Same name' });
     const manual = { issueId: -9001, title: 'Hand entered comic', source: 'manual' };
@@ -18887,6 +19738,86 @@ SCENARIOS.push(responsiveOwner({
   title: 'Exact historical build, ordinary title and narrow prose use available content width',
   async run(page, t) {
     page.__ux09Owner = 'responsive-reflow';
+    await page.setViewport({ width: 320, height: 720 });
+    await open(page, '/?catalog=actual#/new-to-comics');
+    const guidePresent = await page.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false);
+    t.check('guide presentation has a visible panel at narrow width', guidePresent);
+    if (guidePresent) {
+      const cdp = await page.createCDPSession();
+      await page.evaluate(() => { location.hash = '#/home'; });
+      await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false);
+      const homeMeasurements = [];
+      for (const width of [320, 390, 1280]) {
+        await page.setViewport({ width, height: 900 });
+        for (const theme of ['light', 'dark', 'system']) {
+          await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+          for (const forced of [false, true]) {
+            await cdp.send('Emulation.setEmulatedMedia', { features: [
+              { name: 'forced-colors', value: forced ? 'active' : 'none' },
+              { name: 'prefers-reduced-motion', value: 'reduce' },
+            ] });
+            homeMeasurements.push(await page.evaluate(() => ({
+              width: innerWidth, theme: document.documentElement.dataset.theme,
+              forced: matchMedia('(forced-colors: active)').matches,
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+              homeEntry: (() => {
+                const link = document.querySelector('#home-categories a.home-guide-link[href="#/new-to-comics"]');
+                const box = link?.getBoundingClientRect();
+                const headingRow = link?.closest('.sec-h');
+                const row = headingRow?.getBoundingClientRect();
+                const heading = headingRow?.querySelector('#home-cat-h');
+                const headingBox = heading?.getBoundingClientRect();
+                return Boolean(link?.checkVisibility() && heading?.checkVisibility()
+                  && !heading.closest('.visually-hidden') && box && row && headingBox
+                  && headingBox.width > 1 && headingBox.height > 1
+                  && headingBox.right <= box.left + 1 && headingBox.bottom > box.top && box.bottom > headingBox.top
+                  && box.width > 0 && box.width < row.width / 2 && box.height >= 44
+                  && box.left >= 0 && box.right <= innerWidth
+                  && heading.textContent.trim() === 'Explore');
+              })(),
+            })));
+          }
+        }
+      }
+      await page.evaluate(() => { location.hash = '#/new-to-comics'; });
+      await page.waitForFunction(() => document.querySelector('#view-new-to-comics')?.hidden === false);
+      const guideMeasurements = [];
+      for (const width of [320, 390, 1280]) {
+        await page.setViewport({ width, height: 900 });
+        for (const theme of ['light', 'dark', 'system']) {
+          await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+          for (const forced of [false, true]) {
+            await cdp.send('Emulation.setEmulatedMedia', { features: [
+              { name: 'forced-colors', value: forced ? 'active' : 'none' },
+              { name: 'prefers-reduced-motion', value: 'reduce' },
+            ] });
+            guideMeasurements.push(await page.evaluate(() => ({
+              width: innerWidth, theme: document.documentElement.dataset.theme,
+              forced: matchMedia('(forced-colors: active)').matches,
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+              heading: document.querySelector('#new-to-comics-h')?.checkVisibility() ?? false,
+              links: [...document.querySelectorAll('#view-new-to-comics a')].every((link) => {
+                const box = link.getBoundingClientRect();
+                return link.checkVisibility() && box.width > 0 && box.height > 0
+                  && box.left >= 0 && box.right <= innerWidth;
+              }),
+            })));
+          }
+        }
+      }
+      await cdp.send('Emulation.setEmulatedMedia', { features: [] });
+      await cdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      const zoom = await page.evaluate(() => ({ scale: visualViewport.scale,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth }));
+      await cdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+      await cdp.detach();
+      t.check('Home guide entry fits beside Explore with a comfortable target across themes and widths',
+        homeMeasurements.every((entry) => entry.homeEntry && !entry.overflow), JSON.stringify(homeMeasurements));
+      t.check('guide content remains visible without overflow across themes, forced colors and reduced motion',
+        guideMeasurements.every((entry) => entry.heading && entry.links && !entry.overflow), JSON.stringify(guideMeasurements));
+      t.check('guide remains free of page overflow at 200 percent zoom', zoom.scale === 2 && !zoom.overflow,
+        JSON.stringify(zoom));
+    }
     responsiveStep(page, 'RF01-about');
     await page.evaluateOnNewDocument(() => {
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));

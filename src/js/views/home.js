@@ -136,7 +136,7 @@ export function createHomeView({
     const nodes = elements();
     if (nodes.home.hidden) return;
     const populated = getState().listOrder.length > 0;
-    nodes.categoriesHeading.classList.toggle('visually-hidden', !populated);
+    nodes.categoriesHeading.classList.remove('visually-hidden');
     renderContinue(populated);
     renderSavedLists(nodes.yoursSection, nodes.yoursList);
     void renderGateways();
