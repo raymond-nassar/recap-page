@@ -310,7 +310,7 @@
     "guideType": "event",
     "window": "Q2",
     "disposition": "new-order",
-    "reason": "Awaiting source review: 28 of 29 positions resolve exactly; Fall of the Hulks: MODOK #1 is still absent from provider metadata on 2026-11-06 and is proposed as a recorded gap under the gap-tolerant publication policy",
+    "reason": "Awaiting source review: 28 candidate IDs have provider metadata, four source-to-provider series name differences require approval, and Fall of the Hulks: MODOK #1 remains an open recorded metadata gap",
     "sourceRetrievedAt": "2026-11-06",
     "overlapIds": [],
     "catalogIds": [],

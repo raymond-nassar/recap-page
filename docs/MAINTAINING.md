@@ -594,9 +594,9 @@ Unavailable dates, cover, digital ID, page count and creators may stay `null` or
 pinned payload.
 
 A user-approved gap-tolerant guide may ship as `depth: partial` and `spotlightKind: other`.
-Keep exact identities in `rows`, including those established by reviewed evidence but omitted by
-the metadata provider. Put every unresolved or explicitly unavailable identity in optional
-`sourceGaps`, mirror it in the mapping, and exclude it from Markdown and browser payloads.
+Keep reviewed exact identities in `rows`, even if absent from the provider. Keep unresolved or
+unavailable identities in `sourceGaps` and mirror them in the mapping. `expect` counts exact rows
+to omit gaps from output; historical guides counting gaps keep placeholders.
 Each gap records its one-based source position, raw issue and range references, normalized identity,
 kind and status, checked date, audit basis, sorted evidence sources and a digest recomputed from
 that complete evidence. `published-metadata-gap` is open and fillable; `availability-exclusion` is

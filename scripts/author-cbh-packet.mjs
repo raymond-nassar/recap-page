@@ -258,14 +258,19 @@ export function buildMarkdown(mapping) {
     kind: 'exact',
     value: row,
   }]));
-  for (const gap of mapping.sourceGaps ?? []) {
-    rowsBySourcePosition.set(gap.sourcePosition, { kind: 'gap', value: gap });
+  const sourceGaps = mapping.sourceGaps ?? [];
+  // Older reviewed guides count placeholders; a count of exact rows omits them.
+  const omitGaps = sourceGaps.length > 0 && manifest.expect === mapping.rows.length;
+  if (!omitGaps) {
+    for (const gap of sourceGaps) {
+      rowsBySourcePosition.set(gap.sourcePosition, { kind: 'gap', value: gap });
+    }
   }
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
     `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
     ...(repeatedCount === 0 ? [] : [
-      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
+      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each ${omitGaps ? 'resolved' : 'distinct'} comic once at its first source occurrence.`,
     ]),
     'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',

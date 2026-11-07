@@ -19,8 +19,8 @@
       "issueNumber": "1",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-11-06",
-      "auditBasis": "The source places Fall of the Hulks: MODOK #1, which it calls a digital-only release, third in the Fall of the Hulks order. The vendored series index has no Fall of the Hulks: MODOK series; its only M.O.D.O.K. titles are M.O.D.O.K.: Reign Delay and Modok's 11. The provider search for Fall of the Hulks returned 9 issues (Alpha, Gamma, Red Hulk 1 to 4 and Savage She-Hulks 1 to 3) without the MODOK one-shot, MODOK returned only the 6 Modok's 11 issues, and Fall of the Hulks MODOK and MODOK 2010 returned 0. Searches with periods in M.O.D.O.K. returned HTTP 500 and are not counted as evidence. This bounds only these queries, not publication, provider-wide metadata or subscription availability, and no Marvel issue id is inferred.",
+      "checkedAt": "2026-11-07",
+      "auditBasis": "The source places Fall of the Hulks: MODOK #1, which it calls a digital-only release, third in the Fall of the Hulks order. The vendored series index has no Fall of the Hulks: MODOK series; its only M.O.D.O.K. titles are M.O.D.O.K.: Reign Delay and Modok's 11. The provider search for Fall of the Hulks returned 9 issues (Alpha, Gamma, Red Hulk 1 to 4 and Savage She-Hulks 1 to 3) without the MODOK one-shot, MODOK returned only the 6 Modok's 11 issues, and Fall of the Hulks MODOK and MODOK 2010 returned 0. Searches with periods in M.O.D.O.K. returned HTTP 500 and are not counted as evidence. This bounds only these queries, not publication, provider-wide metadata or subscription availability, and no Marvel issue id is inferred. An unconfirmed search-index candidate, 32756, returned HTTP 404 from the provider detail endpoint on 2026-11-07 UTC; it is not adopted as the comic identity.",
       "evidenceSources": [
         {
           "kind": "guide",
@@ -29,33 +29,43 @@
         },
         {
           "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/32756",
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "metadata-api",
           "url": "https://marvel.emreparker.com/v1/search/issues?q=Fall%20of%20the%20Hulks%20MODOK",
-          "retrievedAt": "2026-11-06"
+          "retrievedAt": "2026-11-07"
         },
         {
           "kind": "metadata-api",
           "url": "https://marvel.emreparker.com/v1/search/issues?q=Fall%20of%20the%20Hulks",
-          "retrievedAt": "2026-11-06"
+          "retrievedAt": "2026-11-07"
         },
         {
           "kind": "metadata-api",
           "url": "https://marvel.emreparker.com/v1/search/issues?q=MODOK%202010",
-          "retrievedAt": "2026-11-06"
+          "retrievedAt": "2026-11-07"
         },
         {
           "kind": "metadata-api",
           "url": "https://marvel.emreparker.com/v1/search/issues?q=MODOK",
-          "retrievedAt": "2026-11-06"
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1155",
+          "retrievedAt": "2026-11-07"
         }
       ],
-      "evidenceDigest": "27148b2708ab37915812ae9325d45f93d71dda4063be2d0f398bf2bafe8af700"
+      "evidenceDigest": "adf20d8bdb3b7c5812ad6839da8e70ce449f5eb8803a15e50a5f239707df7116"
     }
   ],
   "expectedCount": 28,
   "proposedManifest": {
     "id": "fall-of-the-hulks",
     "name": "Fall of the Hulks and World War Hulks",
-    "description": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots, as the Intelligencia hunts the Hulks.",
+    "description": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots. The MODOK one-shot is not included because its metadata could not be resolved.",
     "type": "event",
     "depth": "partial",
     "beginner": false,
@@ -82,7 +92,7 @@
       "Red Hulk",
       "Comic Book Herald"
     ],
-    "expect": 29,
+    "expect": 28,
     "coverIssueId": 29293
   },
   "insertionAnchor": {
@@ -359,7 +369,7 @@
       "issueNumber": "1",
       "seriesId": 11280,
       "candidateIssueId": 33580,
-      "manualSeriesSelectionApproved": true,
+      "manualSeriesSelectionApproved": false,
       "selectionNote": "The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand."
     },
     {
@@ -372,7 +382,7 @@
       "issueNumber": "2",
       "seriesId": 11280,
       "candidateIssueId": 33581,
-      "manualSeriesSelectionApproved": true,
+      "manualSeriesSelectionApproved": false,
       "selectionNote": "The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand."
     },
     {
@@ -385,7 +395,7 @@
       "issueNumber": "1",
       "seriesId": 11283,
       "candidateIssueId": 33582,
-      "manualSeriesSelectionApproved": true,
+      "manualSeriesSelectionApproved": false,
       "selectionNote": "The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand."
     },
     {
@@ -398,7 +408,7 @@
       "issueNumber": "2",
       "seriesId": 11283,
       "candidateIssueId": 33583,
-      "manualSeriesSelectionApproved": true,
+      "manualSeriesSelectionApproved": false,
       "selectionNote": "The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand."
     },
     {

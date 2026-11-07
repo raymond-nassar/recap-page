@@ -1049,6 +1049,56 @@ test('excluded source rows conserve exact positions without changing legacy pack
   assert.deepEqual(sourcePositionsForPacket(legacy), [1, 2]);
 });
 
+test('gap-tolerant checklists omit unresolved positions when the manifest counts exact rows', () => {
+  const mapping = genericEvidence().mapping;
+  mapping.rows[0].sourceGroup = 'First section';
+  mapping.rows[1].sourcePosition = 3;
+  mapping.rows[1].sourceGroup = 'Second section';
+  mapping.sourceGaps = [{
+    sourcePosition: 2,
+    sourceIssueReference: 'Missing Issue #1',
+    sourceRangeReference: null,
+    sourceGroup: 'Gap-only section',
+  }];
+  const gaps = structuredClone(mapping.sourceGaps);
+
+  const markdown = buildMarkdown(mapping);
+  const parsed = parseChecklist(markdown);
+  assert.deepEqual(parsed.entries.map((entry) => String(entry.issueId)), ['9001', '9002']);
+  assert.deepEqual(parsed.unresolved, []);
+  assert.doesNotMatch(markdown, /Missing Issue #1|Gap-only section/);
+  assert.match(markdown, /## First section\n- \[ \]/);
+  assert.match(markdown, /## Second section\n- \[ \]/);
+  assert.deepEqual(mapping.sourceGaps, gaps);
+});
+
+test('gap-tolerant repeat notes distinguish resolved comics from omitted gaps', () => {
+  const mapping = genericEvidence({ withRepeat: true }).mapping;
+  mapping.sourceOccurrenceCount = 4;
+  mapping.sourceGaps = [{
+    sourcePosition: 4,
+    sourceIssueReference: 'Missing Issue #1',
+    sourceRangeReference: null,
+  }];
+
+  const markdown = buildMarkdown(mapping);
+  assert.match(markdown, /each resolved comic once at its first source occurrence/);
+  assert.doesNotMatch(markdown, /Missing Issue #1/);
+  assert.deepEqual(parseChecklist(markdown).entries.map((entry) => String(entry.issueId)), ['9001', '9002']);
+});
+
+test('existing Thanos checklist keeps its exact issue sequence and excludes its recorded gaps', async () => {
+  const id = 'thanos-reading-order';
+  const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+  const shipped = parseChecklist(await readFile(path.join(dataDir, 'orders', `${id}.md`), 'utf8'));
+  const generated = parseChecklist(buildMarkdown(mapping));
+
+  assert.equal(mapping.sourceGaps.length, 7);
+  assert.equal(mapping.approvedManifest.expect, mapping.rows.length);
+  assert.deepEqual(generated.unresolved, []);
+  assert.deepEqual(generated.entries.map((entry) => entry.issueId), shipped.entries.map((entry) => entry.issueId));
+});
+
 test('checklist gap copy normalizes each typographic dash independently', () => {
   const mapping = genericEvidence().mapping;
   mapping.sourceGaps = [{
@@ -1056,10 +1106,10 @@ test('checklist gap copy normalizes each typographic dash independently', () => 
     sourceIssueReference: 'Gap \u2013 source \u2014 #1',
     sourceRangeReference: null,
   }];
-  assert.match(
-    buildMarkdown(mapping),
-    /- \[ \] Gap - source - #1 <!-- mrt:source-occurrence=3 -->/,
-  );
+  mapping.approvedManifest.expect = mapping.rows.length + mapping.sourceGaps.length;
+  const markdown = buildMarkdown(mapping);
+  assert.match(markdown, /- \[ \] Gap - source - #1 <!-- mrt:source-occurrence=3 -->/);
+  assert.deepEqual(parseChecklist(markdown).unresolved.map((entry) => entry.sourceKey), ['3']);
 });
 
 test('the three blocked source shapes reconstruct one unique first-occurrence sequence', () => {
