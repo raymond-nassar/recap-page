@@ -18330,7 +18330,9 @@ SCENARIOS.push(
         await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
         await page.waitForSelector('#view-home [data-category="genres"] .home-path-count', { timeout: 15000 });
         const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-        const census = await page.$$eval('#view-home .home-path-count', (nodes) => nodes.map((node) => node.textContent.trim()));
+        const census = await page.$$eval('#view-home [data-category]', (nodes) => Object.fromEntries(
+          nodes.map((node) => [node.dataset.category, node.querySelector('.home-path-count')?.textContent.trim()]),
+        ));
         const initialHistory = await page.evaluate(() => history.length);
         await page.goto(`${page.__origin}/?catalog=actual#/lines?query=Civil+War`, { waitUntil: 'load' });
         await page.waitForSelector('#view-genres:not([hidden])', { timeout: 15000 });
@@ -18363,8 +18365,9 @@ SCENARIOS.push(
         t.check('opening old addresses leaves saved reading data unchanged',
           await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
         t.check('the bundled catalog reports the current Timeline and Genres lists',
-          census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
-            && census.includes('299 Reading Lists'), JSON.stringify(census));
+          census.timeline === `${currentReadingCensus.modernTimeline} Reading Lists`
+            && census.genres === `${currentReadingCensus.visible - currentReadingCensus.mcu} Reading Lists`,
+          JSON.stringify(census));
 
         await chooseGenre(page, 'political');
         const searched = await page.evaluate(() => [...document.querySelectorAll(
