@@ -10,7 +10,7 @@ import {
   firstSentence, groupCatalog, parseCatalog, storyTypeStories,
 } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
-import { assertCurrentReadingRoster } from './helpers/current-reading-library.mjs';
+import { assertCurrentReadingRoster, registeredCuratedGuides } from './helpers/current-reading-library.mjs';
 
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
 const sha = (value) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -113,6 +113,10 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
   // The Captain America (2025) Modern Timeline lists were registered after these reviews.
   const laterModernTimelineIds = ['captain-america-2025-our-secret-wars',
     'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel'];
+  const batchIds = ['mc2', 'second-clone-saga', 'marvel-1602', 'blood-and-thunder'];
+  assert.ok(batchIds.every((id) => registeredCuratedGuides.some((entry) => entry.id === id)));
+  const laterCuratedIds = registeredCuratedGuides.slice(registeredCuratedGuides
+    .findLastIndex((entry) => batchIds.includes(entry.id)) + 1).map((entry) => entry.id);
   for (const guide of guides) {
     const ledger = await readJson(`scripts/data/curated-source-ledgers/${guide.id}.json`);
     // Keep the coordinator's approved two-guide snapshot intact; the supplemental review below
@@ -120,7 +124,7 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
     const report = buildComparisonReport({
       candidateIds: ledger.resolvedVector,
       orders: orders.filter((entry) => entry.orderId !== guide.id
-        && !['marvel-1602', 'blood-and-thunder', ...laterModernTimelineIds].includes(entry.orderId)),
+        && !['marvel-1602', 'blood-and-thunder', ...laterModernTimelineIds, ...laterCuratedIds].includes(entry.orderId)),
     });
     assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger));
     const sealedReport = { candidateId: guide.id, ledgerDigest: ledger.ledgerDigest, ...report };
@@ -146,7 +150,7 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
     const expected = { candidateId: candidate.id, ledgerDigest: candidate.ledgerDigest,
       ...buildComparisonReport({ candidateIds: candidate.resolvedVector,
         orders: orders.filter((entry) => entry.orderId !== candidate.id
-          && !laterModernTimelineIds.includes(entry.orderId)) }) };
+          && ![...laterModernTimelineIds, ...laterCuratedIds].includes(entry.orderId)) }) };
     expected.reportDigest = curatedRelationshipReportDigestFor(expected);
     assert.deepEqual(report, expected);
     assert.deepEqual(decisions.map(({ orderId, relationship, sharedIds }) => [orderId, relationship, sharedIds]),

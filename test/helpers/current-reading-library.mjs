@@ -32,7 +32,12 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
   // A gap-tolerant guide keeps its open gaps in place as placeholders, which count toward the
   // payload's items but not toward its complete ones, so it states how many of its rows they are.
   const keys = Object.keys(entry).sort();
-  assert.ok(['id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount'].includes(keys.join(',')));
+  assert.ok([
+    'id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount',
+    'id,insertionAnchor,rowCount,surface', 'id,insertionAnchor,placeholderRowCount,rowCount,surface',
+  ].includes(keys.join(',')));
+  assert.ok(!Object.hasOwn(entry, 'surface') || entry.surface === 'modern-timeline',
+    'A curated addition may explicitly join only Modern Timeline.');
   assert.ok(typeof entry.id === 'string' && entry.id);
   assert.ok(Number.isInteger(entry.rowCount) && entry.rowCount > 0);
   assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
@@ -72,6 +77,8 @@ const addedPlaceholderRows = registeredCuratedGuides
 const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface === undefined);
 export const registeredEventContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'modern-timeline');
+const curatedEventCount = registeredCuratedGuides
+  .filter((guide) => guide.surface === 'modern-timeline').length;
 export const registeredYoungReaderContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'young-readers');
 const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
@@ -83,8 +90,8 @@ export const currentReadingCensus = Object.freeze({
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // Retained internal classification, not a browse screen; includes the four CBRO additions.
   storylines: 50,
-  modernTimeline: 148 + registeredEventContracts.length,
-  modernTimelineStories: 144 + registeredEventContracts.length,
+  modernTimeline: 148 + registeredEventContracts.length + curatedEventCount,
+  modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta - 2
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
