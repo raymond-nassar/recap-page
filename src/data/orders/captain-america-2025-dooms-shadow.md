@@ -2,7 +2,7 @@
 
 Source: [owner selection](https://github.com/raymond-nassar/recap-page/issues/1146).
 Selected by raymond-nassar for Modern Timeline. This is a selected sequence, not an exhaustive event index.
-6 owner-confirmed identities have no provider details or cover.
+6 owner-confirmed identities have a cover and credits from marvel.com and the Marvel Fandom wiki, not the metadata provider.
 See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.
 
 - [ ] [Captain America (2025) #6 <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/123361/captain_america_2025_6)

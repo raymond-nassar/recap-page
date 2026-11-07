@@ -7,8 +7,8 @@
   "sourceCandidateSha256": "25871f338cc0f97b410f1443f89bf373ac34223950975c01afb495d4388cf028",
   "packetDigest": "55c7df78fc2da84d51e8801362b2b78299b93368b6d7ae718f24fe6d379f3128",
   "sourceIssueBearingBlocksSha256": "fdc187352a824634cf65456d2fdd290535234529e4bd27058ede80e53ccdf2a7",
-  "mappingDigest": "17334884c37c6fe4503006f6945aadc88ff3c4cbcbcb0cbe77a1f27a3c752598",
-  "reportDigest": "3079bae7859c267f063377de8fb736e966ed550e8f1fbebb63917571dbde2850",
+  "mappingDigest": "bebb7c44b65a813916c9f7e5a2a51953fed2fd621f523e001eda68a8e5796fa8",
+  "reportDigest": "a330355d8dd9ce313ed9eef43ab7508bcbc058322245da48a962089e6c623e77",
   "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
   "sourceOccurrenceCount": 5,
   "sourceIdentityCount": 5,
@@ -104,7 +104,7 @@
   },
   "sourceSha256": "25871f338cc0f97b410f1443f89bf373ac34223950975c01afb495d4388cf028",
   "proposalDigest": "d1e2fdd244f7f01a553cc7c8d2a6d8c410decc91a2ddd6a6110f623b0f9d55bf",
-  "approvalDigest": "0dd2a72002a91348b6f41503b7718714ca3ba35e1fc7df80c9cc5bfea96b5caa",
+  "approvalDigest": "78f77d69604d1748a17ca67babb5acaa3693a756544b08d256dede485f61ad80",
   "insertionAnchor": {
     "beforeId": "marvel-zombies-reading-order"
   },

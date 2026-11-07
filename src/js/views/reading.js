@@ -18,6 +18,7 @@ import {
   upNext,
   coverUrl,
   isDeferred, setDeferred, queuedIssueIds, listReadingProgress,
+  OWNER_EXTERNAL_SUPPLEMENT,
 } from '../lib/model.js';
 import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
 import { readerAction, readerContext } from '../lib/readerDestination.js';
@@ -51,7 +52,9 @@ export function rowCacheKey(item, currentId, today, covers) {
 
 export function detailsState(item) {
   if (item?.hydrated) return null;
-  if (item?.detailsRefused && item?.identityEvidenceKind === 'owner-confirmed-identity') return 'owner-confirmed';
+  if (item?.detailsRefused && item?.identityEvidenceKind === 'owner-confirmed-identity') {
+    return item.metadataSourceKind === OWNER_EXTERNAL_SUPPLEMENT ? 'owner-supplemented' : 'owner-confirmed';
+  }
   if (item?.detailsRefused) return 'norecord';
   if (item?.source !== 'manual') return 'pending';
   return null;
@@ -61,6 +64,12 @@ export const DETAILS_BADGE = {
   'owner-confirmed': {
     text: 'identity confirmed',
     hint: 'The owner confirmed this comic identity. The metadata snapshot has no provider details or cover.',
+  },
+  // Same visible text as an unsupplemented confirmation, because the identity evidence is the
+  // same; only the hint differs, so it never tells a reader looking at a cover that there is none.
+  'owner-supplemented': {
+    text: 'identity confirmed',
+    hint: 'The owner confirmed this comic identity. Its cover and credits come from marvel.com and the Marvel Fandom wiki, not the metadata provider.',
   },
   norecord: {
     text: 'no details held',
@@ -86,9 +95,8 @@ export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = 
     return 'No synopsis is recorded for this comic.';
   }
   if (!issue?.hydrated && issue?.detailsRefused) {
-    if (issue.identityEvidenceKind === 'owner-confirmed-identity') {
-      return DETAILS_BADGE['owner-confirmed'].hint;
-    }
+    const state = detailsState(issue);
+    if (state === 'owner-confirmed' || state === 'owner-supplemented') return DETAILS_BADGE[state].hint;
     return DETAILS_BADGE.norecord.hint;
   }
   return 'Story summary has not been loaded.';

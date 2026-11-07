@@ -996,9 +996,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:686` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:694` and the issue-details view at
 `src/js/views/issue.js:102`. The function behind both already answers for the absence at
-`src/js/views/reading.js:82-94`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:91-102`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1125,7 +1125,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:11021-11072`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16466-16603`.
+`src/data/catalog.json:16481-16618`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3008,19 +3008,57 @@ supplies the confirming actor, exact issue IDs, labels and URLs, and the separat
 Issue #6 is the same identity One World Under Doom already confirms, so the two lists share it.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:467-471`, `scripts/vendor-orders.mjs:534-535`, `scripts/vendor-orders.mjs:578-579`).
-The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
-provider details and covers remain empty. No comic image bytes are stored and no Unlimited
-availability is inferred.
+(`scripts/vendor-orders.mjs:491-495`, `scripts/vendor-orders.mjs:559-560`, `scripts/vendor-orders.mjs:604-605`).
+Unless a row carries the external supplement described below, the published rows carry only their
+confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
+empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
+Unlimited availability is inferred.
+
+### Owner-approved external supplement for owner-confirmed comics
+
+The provider will never hold a record for an issue it answered with HTTP 404, so on 2026-11-06 the
+owner approved filling the display details of owner-confirmed comics from two named outside sources,
+recorded per comic. The twelve Captain America (2025) rows above, #5-16, are the first to use it.
+One World Under Doom shares issue #6 but its own row is unchanged and carries no supplement.
+
+- **Cover address:** read from the comic's own marvel.com issue page, the row's recorded Marvel URL,
+  and only because the provider has no record of it. The value is an image address on the pinned
+  cover host. No image bytes are downloaded or stored (constraint 1), and `read.marvel.com` is never
+  read.
+- **Release date, page count and credits:** read from one pinned revision of the comic's Marvel
+  Fandom wiki page, `Captain America Vol 14 <number>`, cited as a permanent `?oldid=` address. The
+  twelve revisions are 11190343 (#5), 10991298 (#6), 11075075 (#7), 11232703 (#8), 11082084 (#9),
+  11094983 (#10), 11261417 (#11), 11204868 (#12), 11228907 (#13), 11204874 (#14), 11237488 (#15)
+  and 11258317 (#16), all retrieved on 2026-11-06. Credits keep the writer, penciler and cover
+  artist roles in the provider's spelling.
+
+Each supplemented mapping row records an `externalMetadataSupplement` with the approving owner,
+approval and retrieval dates, the supplied `fields` and one `sources` entry per field. The validator
+accepts it only on an owner-confirmed row, only for cover, on-sale date, page count and credits, only
+when every field names exactly one allowed source, only when the cover source is the row's own Marvel
+URL and the wiki source is a pinned revision, and only when the cover is on the pinned host
+(`scripts/lib/owner-external-supplement.mjs:39-96`). The inventory refuses a supplement anywhere
+else (`scripts/lib/cbh-inventory.mjs:1160-1166`).
+
+The vendored item copies exactly those fields and adds `metadataSourceKind:
+"owner-external-supplement"`, a closed value recorded per comic. It still keeps `seriesId`,
+`seriesName`, `mu`, `digitalId` and `description` null, keeps `detailsRefused` true and keeps the
+owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
+its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
+item to exactly what its mapping row records and every other owner-confirmed item to the old empty
+shape (`test/helpers/owner-delivery-contract.mjs:102-134`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
-provider record after import and reload (`src/js/lib/model.js:223-225`,
-`src/js/views/reading.js:54`, `src/js/views/reading.js:61-63`). The actor, date, URL and confirmation
-comment stay in the repository evidence. This additive marker does not change saved-data version 4;
-existing saves need no migration, and older builds may discard the marker without changing reading
+provider record after import and reload (`src/js/lib/model.js:243-252`,
+`src/js/views/reading.js:55-57`, `src/js/views/reading.js:64-73`). It keeps `metadataSourceKind` the
+same way, only as the closed value and only beside an owner-confirmed identity, so a supplemented
+comic's badge hint, gap sentence and catalog label credit marvel.com and the Marvel Fandom wiki
+instead of claiming it has no cover. The actor, date, URL and confirmation
+comment stay in the repository evidence. These additive markers do not change saved-data version 4;
+existing saves need no migration, and older builds may discard the markers without changing reading
 progress or issue identity.
 
 After Phase Two merged, each report and approval was renewed against 309 existing

@@ -61,7 +61,57 @@
       ],
       "resolvedIssueTitle": "Captain America (2025) #12",
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "externalMetadataSupplement": {
+        "kind": "owner-external-supplement",
+        "approvedBy": "raymond-nassar",
+        "approvedAt": "2026-11-06",
+        "retrievedAt": "2026-11-06",
+        "fields": {
+          "cover": {
+            "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/01a1456b9761",
+            "ext": "jpg"
+          },
+          "onSale": "2026-06-24T00:00:00+0000",
+          "pageCount": 32,
+          "creators": [
+            {
+              "name": "Valerio Schiti",
+              "role": "cover artist"
+            },
+            {
+              "name": "Valerio Schiti",
+              "role": "penciler"
+            },
+            {
+              "name": "Ben Harvey",
+              "role": "penciler"
+            },
+            {
+              "name": "Chip Zdarsky",
+              "role": "writer"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "kind": "marvel-issue-page",
+            "url": "https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
+            "fields": [
+              "cover"
+            ]
+          },
+          {
+            "kind": "marvel-fandom-wiki",
+            "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_14_12?oldid=11204868",
+            "fields": [
+              "onSale",
+              "pageCount",
+              "creators"
+            ]
+          }
+        ]
+      }
     },
     {
       "sourcePosition": 2,
@@ -82,7 +132,57 @@
       ],
       "resolvedIssueTitle": "Captain America (2025) #13",
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/130147/",
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "externalMetadataSupplement": {
+        "kind": "owner-external-supplement",
+        "approvedBy": "raymond-nassar",
+        "approvedAt": "2026-11-06",
+        "retrievedAt": "2026-11-06",
+        "fields": {
+          "cover": {
+            "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/01a1456b9f23",
+            "ext": "jpg"
+          },
+          "onSale": "2026-07-15T00:00:00+0000",
+          "pageCount": 32,
+          "creators": [
+            {
+              "name": "Valerio Schiti",
+              "role": "cover artist"
+            },
+            {
+              "name": "Ton Lima",
+              "role": "penciler"
+            },
+            {
+              "name": "Ben Harvey",
+              "role": "penciler"
+            },
+            {
+              "name": "Chip Zdarsky",
+              "role": "writer"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "kind": "marvel-issue-page",
+            "url": "https://www.marvel.com/comics/issue/130147/",
+            "fields": [
+              "cover"
+            ]
+          },
+          {
+            "kind": "marvel-fandom-wiki",
+            "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_14_13?oldid=11228907",
+            "fields": [
+              "onSale",
+              "pageCount",
+              "creators"
+            ]
+          }
+        ]
+      }
     },
     {
       "sourcePosition": 3,
@@ -103,7 +203,57 @@
       ],
       "resolvedIssueTitle": "Captain America (2025) #14",
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/130148/",
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "externalMetadataSupplement": {
+        "kind": "owner-external-supplement",
+        "approvedBy": "raymond-nassar",
+        "approvedAt": "2026-11-06",
+        "retrievedAt": "2026-11-06",
+        "fields": {
+          "cover": {
+            "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/01a1456ba5b1",
+            "ext": "jpg"
+          },
+          "onSale": "2026-08-05T00:00:00+0000",
+          "pageCount": 32,
+          "creators": [
+            {
+              "name": "Valerio Schiti",
+              "role": "cover artist"
+            },
+            {
+              "name": "Romulo Fajardo, Jr.",
+              "role": "cover artist"
+            },
+            {
+              "name": "Ton Lima",
+              "role": "penciler"
+            },
+            {
+              "name": "Chip Zdarsky",
+              "role": "writer"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "kind": "marvel-issue-page",
+            "url": "https://www.marvel.com/comics/issue/130148/",
+            "fields": [
+              "cover"
+            ]
+          },
+          {
+            "kind": "marvel-fandom-wiki",
+            "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_14_14?oldid=11204874",
+            "fields": [
+              "onSale",
+              "pageCount",
+              "creators"
+            ]
+          }
+        ]
+      }
     },
     {
       "sourcePosition": 4,
@@ -124,7 +274,57 @@
       ],
       "resolvedIssueTitle": "Captain America (2025) #15",
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "externalMetadataSupplement": {
+        "kind": "owner-external-supplement",
+        "approvedBy": "raymond-nassar",
+        "approvedAt": "2026-11-06",
+        "retrievedAt": "2026-11-06",
+        "fields": {
+          "cover": {
+            "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/019f61e5731b",
+            "ext": "jpg"
+          },
+          "onSale": "2026-09-02T00:00:00+0000",
+          "pageCount": 32,
+          "creators": [
+            {
+              "name": "Valerio Schiti",
+              "role": "cover artist"
+            },
+            {
+              "name": "Romulo Fajardo, Jr.",
+              "role": "cover artist"
+            },
+            {
+              "name": "Valerio Schiti",
+              "role": "penciler"
+            },
+            {
+              "name": "Chip Zdarsky",
+              "role": "writer"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "kind": "marvel-issue-page",
+            "url": "https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
+            "fields": [
+              "cover"
+            ]
+          },
+          {
+            "kind": "marvel-fandom-wiki",
+            "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_14_15?oldid=11237488",
+            "fields": [
+              "onSale",
+              "pageCount",
+              "creators"
+            ]
+          }
+        ]
+      }
     },
     {
       "sourcePosition": 5,
@@ -145,10 +345,60 @@
       ],
       "resolvedIssueTitle": "Captain America (2025) #16",
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "externalMetadataSupplement": {
+        "kind": "owner-external-supplement",
+        "approvedBy": "raymond-nassar",
+        "approvedAt": "2026-11-06",
+        "retrievedAt": "2026-11-06",
+        "fields": {
+          "cover": {
+            "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/01a121b41680",
+            "ext": "jpg"
+          },
+          "onSale": "2026-10-28T00:00:00+0000",
+          "pageCount": 32,
+          "creators": [
+            {
+              "name": "Valerio Schiti",
+              "role": "cover artist"
+            },
+            {
+              "name": "Valerio Schiti",
+              "role": "penciler"
+            },
+            {
+              "name": "Ben Harvey",
+              "role": "penciler"
+            },
+            {
+              "name": "Chip Zdarsky",
+              "role": "writer"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "kind": "marvel-issue-page",
+            "url": "https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
+            "fields": [
+              "cover"
+            ]
+          },
+          {
+            "kind": "marvel-fandom-wiki",
+            "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_14_16?oldid=11258317",
+            "fields": [
+              "onSale",
+              "pageCount",
+              "creators"
+            ]
+          }
+        ]
+      }
     }
   ],
-  "mappingDigest": "17334884c37c6fe4503006f6945aadc88ff3c4cbcbcb0cbe77a1f27a3c752598",
+  "mappingDigest": "bebb7c44b65a813916c9f7e5a2a51953fed2fd621f523e001eda68a8e5796fa8",
   "candidateMetadata": [],
   "reviewStatus": "approved",
   "packetReview": "Actual source, insertion and relationship review by GitHub Copilot stronger-model reviewer, GPT-6 Astra (gpt-6-astra), task agent cap-stronger-reviewer.",
@@ -188,13 +438,13 @@
     "rationale": "All five positions match the owner source, including the slugless URLs for issues #13 and #14. All five retain owner confirmation without invented metadata. The 2026 placement is correct. The name, description and supernatural tags are consistent with the supplied scope.",
     "reviewedAt": "2026-11-06T21:40:27.962Z",
     "proposalDigest": "d1e2fdd244f7f01a553cc7c8d2a6d8c410decc91a2ddd6a6110f623b0f9d55bf",
-    "reportDigest": "3079bae7859c267f063377de8fb736e966ed550e8f1fbebb63917571dbde2850",
+    "reportDigest": "a330355d8dd9ce313ed9eef43ab7508bcbc058322245da48a962089e6c623e77",
     "packetDigest": "55c7df78fc2da84d51e8801362b2b78299b93368b6d7ae718f24fe6d379f3128",
-    "mappingDigest": "17334884c37c6fe4503006f6945aadc88ff3c4cbcbcb0cbe77a1f27a3c752598",
+    "mappingDigest": "bebb7c44b65a813916c9f7e5a2a51953fed2fd621f523e001eda68a8e5796fa8",
     "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
     "peerDigests": {
-      "captain-america-2025-dooms-shadow": "e312cae5f883bac8ace9117acf093a4f564b270239b8c6504f73816aff12f5f2",
-      "captain-america-2025-our-secret-wars": "1d18dedcfa4e285f19adf5f58d61cdd5162cfbe97ae30472c0ba3f38a0269bb0"
+      "captain-america-2025-dooms-shadow": "22e03569ca3a53a539cfc670b09d7df6bbcdfd2a70b3a421ea9d490128c5f5b3",
+      "captain-america-2025-our-secret-wars": "46c4b147c7f360fca248ca24da9007ec1bb5dc670024d031d80e196a4f0e055a"
     },
     "sourceCounts": {
       "sourceOccurrenceCount": 5,
@@ -3944,7 +4194,7 @@
         "reviewedAt": "2026-11-06T21:40:27.962Z"
       }
     ],
-    "approvalDigest": "0dd2a72002a91348b6f41503b7718714ca3ba35e1fc7df80c9cc5bfea96b5caa"
+    "approvalDigest": "78f77d69604d1748a17ca67babb5acaa3693a756544b08d256dede485f61ad80"
   },
   "sourceGapResolutions": [
     {

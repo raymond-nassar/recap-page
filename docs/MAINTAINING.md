@@ -550,7 +550,11 @@ At minimum, record:
 * The final resolved issue IDs.
 * Independent verification for every non-mechanical correction.
 
-Never scrape `marvel.com` or `read.marvel.com`. Do not commit comic images.
+Never scrape `marvel.com` or `read.marvel.com`. Do not commit comic images. The one owner-approved
+exception: when the metadata provider has no record of an owner-confirmed comic, its own marvel.com
+issue page may be read for the cover image address only, recorded with its source as described in
+the [data provenance](DATA_PROVENANCE.md#owner-approved-external-supplement-for-owner-confirmed-comics)
+policy. `read.marvel.com` is never read.
 
 ## Build a Comic Book Herald packet
 

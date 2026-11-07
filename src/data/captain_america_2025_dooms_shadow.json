@@ -6,7 +6,7 @@
   "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
   "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
   "sourceLicense": null,
-  "generatedAt": "2026-11-06T21:41:13.198Z",
+  "generatedAt": "2026-11-06T23:42:42.163Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 6,
   "collections": 0,
@@ -20,15 +20,36 @@
       "url": "https://www.marvel.com/comics/issue/123361/captain_america_2025_6",
       "seriesId": null,
       "seriesName": null,
-      "onSale": null,
+      "onSale": "2026-01-21T00:00:00+0000",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/6957e7a70cf64",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
       "detailsRefused": true,
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
     },
     {
       "issueId": 123362,
@@ -37,15 +58,36 @@
       "url": "https://www.marvel.com/comics/issue/123362/captain_america_2025_7",
       "seriesId": null,
       "seriesName": null,
-      "onSale": null,
+      "onSale": "2026-02-18T00:00:00+0000",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/69836452ca21e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
       "detailsRefused": true,
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
     },
     {
       "issueId": 123363,
@@ -54,15 +96,36 @@
       "url": "https://www.marvel.com/comics/issue/123363/captain_america_2025_8",
       "seriesId": null,
       "seriesName": null,
-      "onSale": null,
+      "onSale": "2026-03-18T00:00:00+0000",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/69a0877c7c489",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Martin Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Bazaldua",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
       "detailsRefused": true,
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
     },
     {
       "issueId": 123364,
@@ -71,15 +134,36 @@
       "url": "https://www.marvel.com/comics/issue/123364/captain_america_2025_9",
       "seriesId": null,
       "seriesName": null,
-      "onSale": null,
+      "onSale": "2026-04-22T00:00:00+0000",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/69cfe7568b7c6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romulo Fajardo, Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ton Lima",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
       "detailsRefused": true,
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
     },
     {
       "issueId": 123365,
@@ -88,15 +172,36 @@
       "url": "https://www.marvel.com/comics/issue/123365/",
       "seriesId": null,
       "seriesName": null,
-      "onSale": null,
+      "onSale": "2026-04-29T00:00:00+0000",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/69dcef670ce89",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
       "detailsRefused": true,
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
     },
     {
       "issueId": 130145,
@@ -105,15 +210,36 @@
       "url": "https://www.marvel.com/comics/issue/130145/captain_america_2025_11",
       "seriesId": null,
       "seriesName": null,
-      "onSale": null,
+      "onSale": "2026-05-13T00:00:00+0000",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/019dc14453b2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
       "detailsRefused": true,
-      "identityEvidenceKind": "owner-confirmed-identity"
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
     }
   ]
 }

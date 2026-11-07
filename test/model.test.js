@@ -1086,6 +1086,53 @@ test('owner-confirmed identity is distinct from missing metadata and makes no av
   }), { placeholders: 0, empty: 0, ownerConfirmed: 0 }, 'later metadata ends the identity-only gap');
 });
 
+test('an owner-confirmed comic with the external supplement is not described as having no cover', () => {
+  const supplemented = {
+    issueId: 123360,
+    title: 'Captain America (2025) #5',
+    detailsRefused: true,
+    identityEvidenceKind: 'owner-confirmed-identity',
+    metadataSourceKind: 'owner-external-supplement',
+    cover: { path: 'https://i.annihil.us/u/prod/marvel/i/mg/7/90/6914ee9e39e83', ext: 'jpg' },
+  };
+  const plain = { issueId: 121580, detailsRefused: true, identityEvidenceKind: 'owner-confirmed-identity' };
+  assert.deepEqual(countOrderGaps({ items: [supplemented, plain] }),
+    { placeholders: 0, empty: 0, ownerConfirmed: 2, ownerSupplemented: 1 });
+  assert.deepEqual(orderGapSentences({ items: [supplemented, plain] }), [
+    '1 of them have an owner-confirmed issue identity but no provider details or cover.',
+    '1 of them has an owner-confirmed issue identity, with a cover and credits from marvel.com and the Marvel Fandom wiki rather than the metadata provider.',
+  ]);
+  const both = orderGapSentences({ items: [supplemented, { ...supplemented, issueId: 123361 }] });
+  assert.deepEqual(both, [
+    '2 of them have an owner-confirmed issue identity, with a cover and credits from marvel.com and the Marvel Fandom wiki rather than the metadata provider.',
+  ]);
+  assert.ok(!both.join(' ').includes('Marvel Unlimited'));
+  assert.ok(!both.join(' ').includes('no provider details or cover'));
+});
+
+test('the external supplement marker survives only as the closed value beside an owner-confirmed identity', () => {
+  const kept = normalizeIssue({
+    issueId: 123360,
+    title: 'Captain America (2025) #5',
+    source: 'curated',
+    detailsRefused: true,
+    identityEvidenceKind: 'owner-confirmed-identity',
+    metadataSourceKind: 'owner-external-supplement',
+    cover: { path: 'https://i.annihil.us/u/prod/marvel/i/mg/7/90/6914ee9e39e83', ext: 'jpg' },
+  });
+  assert.equal(kept.metadataSourceKind, 'owner-external-supplement');
+  assert.equal(kept.identityEvidenceKind, 'owner-confirmed-identity');
+  assert.equal(kept.hydrated, false);
+  assert.equal(kept.digitalId, null, 'the supplement never supplies a reader link');
+  assert.ok(coverUrl(kept), 'the supplemented cover renders');
+  assert.equal('metadataSourceKind' in normalizeIssue({
+    issueId: 123360, identityEvidenceKind: 'owner-confirmed-identity', metadataSourceKind: 'fandom',
+  }), false, 'an unrecognized source kind is dropped');
+  assert.equal('metadataSourceKind' in normalizeIssue({
+    issueId: 99, title: 'Ordinary issue', metadataSourceKind: 'owner-external-supplement',
+  }), false, 'the marker is not kept on a comic the owner did not confirm');
+});
+
 test('a gap of one is not described in the plural', () => {
   const one = orderGapSentences({ items: [{ issueId: 1, seriesId: null, digitalId: null }] });
   assert.equal(one.length, 1);

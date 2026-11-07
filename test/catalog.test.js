@@ -134,6 +134,19 @@ test('catalog gap labels omit zero and preserve singular and plural meanings', (
   assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 2 }), [
     '2 comics have owner-confirmed identities but no provider details or covers',
   ]);
+  assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 1, ownerSupplementedCount: 1 }), [
+    '1 comic has an owner-confirmed identity with a cover and credits from marvel.com and the Marvel Fandom wiki',
+  ]);
+  assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 3, ownerSupplementedCount: 2 }), [
+    '1 comic has an owner-confirmed identity but no provider details or cover',
+    '2 comics have owner-confirmed identities with covers and credits from marvel.com and the Marvel Fandom wiki',
+  ]);
+  const entry = { id: 'cap', file: 'cap.json', name: 'Cap', count: 6, ownerConfirmedIdentityCount: 2 };
+  const read = (extra) => parseCatalog({ lists: [{ ...entry, ...extra }] }).lists[0].ownerSupplementedCount;
+  assert.equal(read({}), 0);
+  assert.equal(read({ ownerSupplementedCount: 2 }), 2);
+  assert.equal(read({ ownerSupplementedCount: 5 }), 2, 'never more supplemented than confirmed comics');
+  assert.equal(read({ ownerSupplementedCount: 'two' }), 0);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 2 }), [
     '1 comic has no Marvel Unlimited link yet and cannot be opened',
     '2 comics have no details, covers, or Unlimited links',

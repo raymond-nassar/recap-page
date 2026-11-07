@@ -19,7 +19,7 @@ Establish the release intent before choosing a procedure:
 
 Use `docs/RELEASING.md` for shared release decisions, platform/version separation, and coordinated
 release policy. `docs/RELEASING.md:7-31` Use `docs/MAINTAINING.md` for the general release-cutting
-checklist. `docs/MAINTAINING.md:1033-1039`
+checklist. `docs/MAINTAINING.md:1037-1043`
 
 ## Route platform-specific work
 

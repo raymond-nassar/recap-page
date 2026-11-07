@@ -14,6 +14,10 @@ import { OWNER_PROVIDER } from '../../scripts/lib/owner-guide.mjs';
 import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs';
 import { parseChecklist } from '../../src/js/lib/markdown.js';
 import { normalizeCover } from '../../src/js/lib/model.js';
+import { allowedCoverUrl } from '../../src/js/lib/coverHost.js';
+import {
+  OWNER_EXTERNAL_SUPPLEMENT_KIND, validateOwnerExternalSupplement,
+} from '../../scripts/lib/owner-external-supplement.mjs';
 import {
   currentReadingCensus, registeredCuratedGuides, registeredOwnerBaselineRows, registeredOwnerContracts,
 } from './current-reading-library.mjs';
@@ -95,21 +99,40 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.ok(payload.items.every((row) => row.description === null && !row.placeholder));
   for (const [index, item] of payload.items.entries()) {
     const row = mapping.rows[index];
+    if (Object.hasOwn(row, 'externalMetadataSupplement')) {
+      assert.equal(row.identityEvidenceKind, 'owner-confirmed-identity',
+        'Only an owner-confirmed identity may carry an external metadata supplement.');
+    }
     if (row.identityEvidenceKind === 'owner-confirmed-identity') {
       assert.equal(item.detailsRefused, true);
       assert.equal(item.identityEvidenceKind, 'owner-confirmed-identity');
       assert.equal(item.url, row.marvelIssueUrl);
       assert.equal(item.seriesId, null);
       assert.equal(item.seriesName, null);
-      assert.equal(item.onSale, null);
       assert.equal(item.mu, null);
       assert.equal(item.digitalId, null);
+      assert.equal(item.description, null);
+      assert.equal(mapping.candidateMetadata.some((candidate) => candidate.id === item.issueId), false);
+      if (Object.hasOwn(row, 'externalMetadataSupplement')) {
+        // The owner approved outside details for this comic; every one must match the recorded
+        // supplement exactly and the cover must stay an address on the pinned host.
+        const { fields } = validateOwnerExternalSupplement(row);
+        assert.equal(item.metadataSourceKind, OWNER_EXTERNAL_SUPPLEMENT_KIND);
+        assert.deepEqual(item.cover, fields.cover ?? null);
+        assert.equal(item.onSale, fields.onSale ?? null);
+        assert.equal(item.pageCount, fields.pageCount ?? null);
+        assert.deepEqual(item.creators, fields.creators ?? []);
+        if (item.cover) assert.ok(allowedCoverUrl(item.cover.path), 'A supplemented cover must be on the pinned host.');
+        continue;
+      }
+      assert.equal(Object.hasOwn(item, 'metadataSourceKind'), false);
+      assert.equal(item.onSale, null);
       assert.equal(item.cover, null);
       assert.equal(item.pageCount, null);
       assert.deepEqual(item.creators, []);
-      assert.equal(mapping.candidateMetadata.some((candidate) => candidate.id === item.issueId), false);
       continue;
     }
+    assert.equal(Object.hasOwn(item, 'metadataSourceKind'), false);
     assert.ok(!item.detailsRefused);
     const metadata = mapping.candidateMetadata.find((row) => row.id === item.issueId)?.providerProjection;
     assert.ok(metadata, 'Every published original needs its approved metadata projection.');
@@ -142,6 +165,10 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.equal(
     catalog.lists.find((row) => row.id === id).ownerConfirmedIdentityCount ?? 0,
     mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length,
+  );
+  assert.equal(
+    catalog.lists.find((row) => row.id === id).ownerSupplementedCount ?? 0,
+    mapping.rows.filter((row) => Object.hasOwn(row, 'externalMetadataSupplement')).length,
   );
 
   const library = await loadCurrentOwnerLibrary(id, { root });

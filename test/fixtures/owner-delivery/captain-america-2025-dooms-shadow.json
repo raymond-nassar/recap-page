@@ -7,8 +7,8 @@
   "sourceCandidateSha256": "baf8ac1d08355f1e2d2ad67054a44b619c20511b2fd78b29d55311451c4204bf",
   "packetDigest": "788d9b7a7a396b82d124fb51ce35a596763374a250318e594f42b8fd6f8be271",
   "sourceIssueBearingBlocksSha256": "3a3892646972b057bb8adc9594269b2fb31dbe5ac2b9d5508665e60be1135dc4",
-  "mappingDigest": "e312cae5f883bac8ace9117acf093a4f564b270239b8c6504f73816aff12f5f2",
-  "reportDigest": "ef6b7d8b999897fc4797948e9da7313c83829f0c39274699747b35c399f43ea5",
+  "mappingDigest": "22e03569ca3a53a539cfc670b09d7df6bbcdfd2a70b3a421ea9d490128c5f5b3",
+  "reportDigest": "cf1afb3bc68c99b867a41e9f5156daed6df820019d59e07c1b3588d84016974f",
   "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
   "sourceOccurrenceCount": 6,
   "sourceIdentityCount": 6,
@@ -119,7 +119,7 @@
   },
   "sourceSha256": "baf8ac1d08355f1e2d2ad67054a44b619c20511b2fd78b29d55311451c4204bf",
   "proposalDigest": "2880fd46a154c9bb1cda7f6fe3b30d8cc4ae770dcf6a0d7ccb942b69849ce6c2",
-  "approvalDigest": "cec1c73fc391b7ba642d5c7c99b8746f8314d7ea668bcaeecfd8005bbac7c1f2",
+  "approvalDigest": "2fa0abec54db09af68327244c3dd5b31cc8bdec56561af55619d4864884cf619",
   "insertionAnchor": {
     "beforeId": "marvel-zombies-reading-order"
   },

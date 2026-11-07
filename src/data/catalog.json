@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T21:41:13.546Z",
+  "generatedAt": "2026-11-06T23:42:42.560Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2107,6 +2107,7 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "ownerConfirmedIdentityCount": 1,
+      "ownerSupplementedCount": 1,
       "collections": 0,
       "characters": [
         "Captain America",
@@ -2132,7 +2133,7 @@
       "sourceSection": "Vol. 1: Our Secret Wars (collects #1-5)",
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
-      "updatedAt": "2026-11-06T21:41:12.811Z"
+      "updatedAt": "2026-11-06T23:42:41.767Z"
     },
     {
       "id": "one-world-under-doom",
@@ -2194,10 +2195,14 @@
       "tones": [
         "epic"
       ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
       "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "ownerConfirmedIdentityCount": 6,
+      "ownerSupplementedCount": 6,
       "collections": 0,
       "characters": [
         "Captain America",
@@ -2215,13 +2220,16 @@
       "variant": null,
       "beginner": false,
       "timeline": 2025,
-      "coverIssueId": null,
-      "cover": null,
+      "coverIssueId": 123361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/6957e7a70cf64",
+        "ext": "jpg"
+      },
       "source": "https://github.com/raymond-nassar/recap-page/issues/1146",
       "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
-      "updatedAt": "2026-11-06T21:41:13.198Z"
+      "updatedAt": "2026-11-06T23:42:42.163Z"
     },
     {
       "id": "captain-america-2025-hells-angel",
@@ -2236,10 +2244,14 @@
       "tones": [
         "dark"
       ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
       "count": 5,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "ownerConfirmedIdentityCount": 5,
+      "ownerSupplementedCount": 5,
       "collections": 0,
       "characters": [
         "Captain America",
@@ -2256,13 +2268,16 @@
       "variant": null,
       "beginner": false,
       "timeline": 2026,
-      "coverIssueId": null,
-      "cover": null,
+      "coverIssueId": 130146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/01a1456b9761",
+        "ext": "jpg"
+      },
       "source": "https://github.com/raymond-nassar/recap-page/issues/1146",
       "sourceSection": "Vol. 3: Hell's Angel (collects #12-16)",
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
-      "updatedAt": "2026-11-06T21:41:13.546Z"
+      "updatedAt": "2026-11-06T23:42:42.560Z"
     },
     {
       "id": "marvel-zombies-reading-order",
