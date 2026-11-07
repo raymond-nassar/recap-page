@@ -189,8 +189,10 @@ export function createCloudBackup({
           });
           if (gate?.held !== false) return false;
           const locks = launchSync.locks ?? coordinatorOptions.locks ?? globalThis.navigator?.locks;
-          if (typeof locks?.request !== 'function') return false;
-          return locks.request(CLOUD_SYNC_OFFER_LOCK, { mode: 'exclusive', ifAvailable: true }, (lock) => Boolean(lock));
+          if (typeof locks?.query !== 'function') return false;
+          const state = await locks.query();
+          if (!Array.isArray(state?.held) || !Array.isArray(state?.pending)) return false;
+          return ![...state.held, ...state.pending].some((lock) => lock.name === CLOUD_SYNC_OFFER_LOCK);
         },
       } : {}),
     });

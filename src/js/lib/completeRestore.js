@@ -729,6 +729,16 @@ export class CompleteRestore {
     }
   }
 
+  async checkAvailability() {
+    if (!this.state.available) {
+      return {
+        ok: false, changed: false,
+        error: this.state.message ?? this.state.unavailableReason ?? RESTORE_MESSAGES.starting,
+      };
+    }
+    return this.withExclusive(async () => ({ ok: true }));
+  }
+
   assertRunning(record) {
     if (this.exclusiveHeld !== true || this.verified !== record
       || readMarker(this.raw).raw !== `active:${record.id}`) {
@@ -814,14 +824,17 @@ export class CompleteRestore {
 
   // Leaves storage exactly as it was found, or with a recovery the next start offers. Never both
   // half-written and unrecorded.
-  async restore(text, { draftRecovery = [], expectedPriorDigest, importDraft, assertAuthorized, assertStillAuthorized } = {}) {
+  async restore(text, {
+    draftRecovery = [], expectedPriorDigest, importDraft, assertAuthorized, assertStillAuthorized, onApplyStart,
+  } = {}) {
     if (!this.capable || this.unavailableReason) return { ok: false, changed: false, error: this.unavailableReason ?? RESTORE_MESSAGES.noJournal };
     if (this.recovery) return { ok: false, changed: false, error: RESTORE_MESSAGES.recovery };
     if (expectedPriorDigest !== undefined && (typeof expectedPriorDigest !== 'string' || !HEX.test(expectedPriorDigest))) {
       return { ok: false, changed: false, error: 'The saved copy could not be checked, so nothing was replaced. Check again.' };
     }
     if ((assertAuthorized !== undefined && typeof assertAuthorized !== 'function')
-      || (assertStillAuthorized !== undefined && typeof assertStillAuthorized !== 'function')) {
+      || (assertStillAuthorized !== undefined && typeof assertStillAuthorized !== 'function')
+      || (onApplyStart !== undefined && typeof onApplyStart !== 'function')) {
       return { ok: false, changed: false, error: 'The cloud choice could not be checked, so nothing was replaced.' };
     }
     let backup;
@@ -926,7 +939,8 @@ export class CompleteRestore {
       }
       try {
         const guarded = expectedPriorDigest !== undefined || assertAuthorized || assertStillAuthorized;
-        await this.apply(found, record, 'forward', assertAuthorized ? assertStep : null, guarded ? assertReady : null);
+        onApplyStart?.();
+        await this.apply(found, record, 'forward', null, guarded ? assertReady : null);
       } catch (error) {
         await this.settleFailure();
         error.changed = null;

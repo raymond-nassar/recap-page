@@ -2494,6 +2494,7 @@ const cloudBackup = createCloudBackup({
   launchSync: {
     hasInteracted: () => cloudActivity,
     snapshotCurrent: cloudSnapshotCurrent,
+    restoreReady: () => completeRestore.checkAvailability(),
     restore: (text, options) => completeRestore.restore(text, {
       ...options, importDraft, draftRecovery: importDraft.recovery.slice(),
     }),
@@ -2516,6 +2517,7 @@ const cloudSyncPrompt = createCloudSyncPrompt({
   onLoad: () => cloudBackup.loadSync(),
   onFinished: reloadWithNotice,
   report: (message) => notify('#app-report', `${message} Check Cloud backup in Backup & settings.`, 'warn', 'cloud-sync'),
+  focusSuccessor: () => focusViewHeading(view, arrivalHeading()?.id),
   announce,
 });
 

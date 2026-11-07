@@ -1724,23 +1724,23 @@
     "fp": "095eb3e10df0bee6",
     "head": "export const CLOUD_BACKUP_CADENCE = Object.freeze({"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1568-1579|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:1568-1579",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1722-1733|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1722-1733",
     "fp": "2499eb9e27356a8a",
     "head": "async allocate() {"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1666|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:1666",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1820|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1820",
     "fp": "677baafd30c320ae",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1784-1785|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:1784-1785",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1938-1939|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1938-1939",
     "fp": "6646963445582955",
     "head": "const { known } = await this.listed(connection);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1844-1846|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:1844-1846",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1998-2000|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1998-2000",
     "fp": "96364a1531f6737d",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
   },
@@ -1784,8 +1784,8 @@
     "fp": "c551965afe6556d6",
     "head": "async cleanUp(id, { journal = true, offered = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:911-918|0": {
-    "anchor": "src/js/lib/completeRestore.js:911-918",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:924-931|0": {
+    "anchor": "src/js/lib/completeRestore.js:924-931",
     "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
@@ -1829,8 +1829,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3031-3057|0": {
-    "anchor": "src/js/main.js:3031-3057",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3033-3059|0": {
+    "anchor": "src/js/main.js:3033-3059",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1909,13 +1909,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3031-3057|0": {
-    "anchor": "src/js/main.js:3031-3057",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3033-3059|0": {
+    "anchor": "src/js/main.js:3033-3059",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3819-3861|0": {
-    "anchor": "src/js/main.js:3819-3861",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3821-3863|0": {
+    "anchor": "src/js/main.js:3821-3863",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1969,28 +1969,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3040|0": {
-    "anchor": "src/js/main.js:3040",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3042|0": {
+    "anchor": "src/js/main.js:3042",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3715-3734|0": {
-    "anchor": "src/js/main.js:3715-3734",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3717-3736|0": {
+    "anchor": "src/js/main.js:3717-3736",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3736-3940|0": {
-    "anchor": "src/js/main.js:3736-3940",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3738-3942|0": {
+    "anchor": "src/js/main.js:3738-3942",
     "fp": "ccd270589be2ddb8",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3833-3839|0": {
-    "anchor": "src/js/main.js:3833-3839",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3835-3841|0": {
+    "anchor": "src/js/main.js:3835-3841",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3859-3860|0": {
-    "anchor": "src/js/main.js:3859-3860",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3861-3862|0": {
+    "anchor": "src/js/main.js:3861-3862",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2104,8 +2104,8 @@
     "fp": "cee382686897cf30",
     "head": "storage = globalThis.localStorage,"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:922|0": {
-    "anchor": "src/js/lib/completeRestore.js:922",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:935|0": {
+    "anchor": "src/js/lib/completeRestore.js:935",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },
@@ -2509,8 +2509,8 @@
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:2815-2816|0": {
-    "anchor": "src/js/main.js:2815-2816",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:2817-2818|0": {
+    "anchor": "src/js/main.js:2817-2818",
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
@@ -2544,8 +2544,8 @@
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:2815-2816|0": {
-    "anchor": "src/js/main.js:2815-2816",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:2817-2818|0": {
+    "anchor": "src/js/main.js:2817-2818",
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
@@ -2884,8 +2884,8 @@
     "fp": "30990219b3c5e62c",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3031-3057|0": {
-    "anchor": "src/js/main.js:3031-3057",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3033-3059|0": {
+    "anchor": "src/js/main.js:3033-3059",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },

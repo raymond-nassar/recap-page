@@ -24355,6 +24355,10 @@ SCENARIOS.push({
       });
       const errors = [];
       actual.on('pageerror', (error) => errors.push(error.message));
+      const debugSupport = await readFile(new URL('../packaging/ios/RecapPage/DebugSupport.swift', import.meta.url), 'utf8');
+      const trackingScript = debugSupport.match(/static let passiveAuditTrackingScript = #"""\r?\n([\s\S]*?)\r?\n\s*"""#/);
+      if (!trackingScript) throw new Error('The iOS passive-audit tracking script could not be found.');
+      await actual.evaluateOnNewDocument(trackingScript[1]);
       await actual.evaluateOnNewDocument(() => {
         let connected = false;
         const originalFetch = window.fetch;
@@ -24395,6 +24399,19 @@ SCENARIOS.push({
         JSON.stringify({ booted, buttons, errors }));
       t.check('the prepared page raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
       if (!booted) return;
+      const audit = await actual.evaluate(() => ({
+        valid: window.__recapPassiveGuard?.globalInventoryValid(),
+        inventory: window.__recapPassiveGuard?.inventory(),
+      }));
+      const cloudListeners = audit.inventory?.filter((entry) => entry.script === '/js/main.js'
+        && entry.enclosingFunction === 'boot' && ['pointerdown', 'keydown'].includes(entry.type)) ?? [];
+      t.check('the prepared iOS page passes the exact passive-audit global inventory', audit.valid === true, JSON.stringify(audit));
+      t.check('the passive audit records both exact cloud activity listeners',
+        cloudListeners.length === 2 && cloudListeners.some((entry) => entry.type === 'pointerdown'
+          && entry.target === 'document' && entry.capture && entry.passive === true && !entry.once)
+          && cloudListeners.some((entry) => entry.type === 'keydown'
+            && entry.target === 'document' && entry.capture && entry.passive === null && !entry.once),
+        JSON.stringify(cloudListeners));
 
       const health = await actual.evaluate(async ({ path, header }) => {
         const response = await fetch(path, { cache: 'no-store' });
@@ -24680,7 +24697,7 @@ SCENARIOS.push({
         const current = await captureCompleteBackup({ storage: localStorage });
         const components = structuredClone(current.backup.components);
         const ids = Object.keys(components.reader.issues).slice(0, count);
-        components.reader.read = Object.fromEntries(ids.map((id, index) => [id, 1_700_000_000_000 + index]));
+        components.reader.read = Object.fromEntries(ids.map((id, index) => [id, 1_700_000_000_000 + number * 100 + index]));
         const backup = await createCompleteBackup(components);
         const stream = 'd'.repeat(32);
         const bytes = await protocol.pack(backup.text, { stream, generation: number, device: 'Phone' });
@@ -24699,6 +24716,15 @@ SCENARIOS.push({
         connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
       }))?.held;
     });
+    const reviewFocused = () => page.evaluate(() => document.activeElement?.id === 'btn-cloud-sync-review');
+    const headingFocused = () => page.waitForFunction(() => {
+      const section = document.querySelector('.view:not([hidden])');
+      return document.activeElement?.id === section?.getAttribute('aria-labelledby');
+    }, { timeout: 2000 }).then(() => true, () => false);
+    const openReview = async () => {
+      await page.$eval('#btn-cloud-sync-review', (node) => { node.focus(); node.click(); });
+      await page.waitForSelector('#ask[open][data-question="sync"]');
+    };
 
     await seedRemote(1, 1, true);
     const original = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
@@ -24723,11 +24749,33 @@ SCENARIOS.push({
     await page.waitForSelector('#cloud-sync-notice:not([hidden])');
     t.check('Escape keeps the upload hold and a quiet Review progress action',
       await held() && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === original);
-    await click(page, '#btn-cloud-sync-review');
-    await page.waitForSelector('#ask[open][data-question="sync"]');
+    const launchDismissFocus = await page.evaluate(() => ({
+      id: document.activeElement?.id, tag: document.activeElement?.tagName,
+      hidden: Boolean(document.activeElement?.closest('[hidden]')),
+    }));
+    t.check('dismissing the launch question places focus on the available review action',
+      launchDismissFocus.id === 'btn-cloud-sync-review', JSON.stringify(launchDismissFocus));
+    await openReview();
     t.check('the quiet action reopens the divergent choice with Keep focused',
       await page.evaluate(() => document.querySelector('#ask-title').textContent === 'Your progress differs between devices'
         && document.activeElement?.id === 'ask-alternate'));
+    await escapeShellDialog(page, '#ask');
+    t.check('Escape from the reopened question returns focus to Review progress', await reviewFocused());
+    await openReview();
+    await page.evaluate(() => new Promise((resolve) => {
+      const dialog = document.querySelector('#ask');
+      dialog.addEventListener('close', () => setTimeout(resolve, 0), { once: true });
+      document.querySelector('#ask-cancel').click();
+    }));
+    t.check('Cancel from the reopened question returns focus to Review progress', await reviewFocused());
+    await openReview();
+    await page.evaluate(() => new Promise((resolve) => {
+      const dialog = document.querySelector('#ask');
+      dialog.addEventListener('close', () => setTimeout(resolve, 0), { once: true });
+      if (dialog.dispatchEvent(new Event('cancel', { cancelable: true }))) dialog.close('');
+    }));
+    t.check('Android Back from the reopened question returns focus to Review progress', await reviewFocused());
+    await openReview();
     await click(page, '#ask-alternate');
     await page.waitForFunction(async () => {
       const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
@@ -24739,6 +24787,7 @@ SCENARIOS.push({
     }, { timeout: 20000 });
     t.check('Keep releases uploads without changing this device or removing the other device',
       await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === original && fixture.host.items.has('phone-1'));
+    t.check('Keep from the reopened question moves focus to the visible view heading', await headingFocused());
 
     await seedRemote(2, 2);
     await page.reload({ waitUntil: 'load' });
@@ -24777,7 +24826,7 @@ SCENARIOS.push({
     await page.waitForSelector('#ask[open][data-question="sync"]');
     const late = await page.$eval('#ask-body', (node) => node.textContent);
     t.check('the late choice is worded as differing progress and keeps the safe answer focused',
-      late.includes('Both this device and Phone changed since they last matched.')
+      !late.includes('Both this device and Phone changed since they last matched.')
         && await page.evaluate(() => document.activeElement?.id === 'ask-alternate'), late);
     await page.evaluate(() => {
       const raw = localStorage.getItem('mrt.state.v2');
@@ -24816,13 +24865,7 @@ SCENARIOS.push({
     await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
     t.check('the next launch checks again and offers the still-different cloud progress', await held());
 
-    await seedRemote(4, 1);
-    await page.waitForFunction(() => document.querySelector('#ask').open
-      && document.querySelector('#ask-body').textContent.includes('1 comics read'), { timeout: 20000 });
-    t.check('a newer cloud backup replaces the open choice without releasing the upload hold', await held());
-    for (const id of ['phone-1', 'phone-2', 'phone-3', 'phone-4']) fixture.host.items.delete(id);
-    await page.waitForFunction(() => !document.querySelector('#cloud-sync-notice').hidden
-      && document.querySelector('#cloud-sync-message').textContent.includes('withdrawn'), { timeout: 20000 });
+    await click(page, '#ask-alternate');
     await page.waitForFunction(async () => {
       const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
       const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
@@ -24832,10 +24875,89 @@ SCENARIOS.push({
         connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
       }))?.held === false;
     }, { timeout: 20000 });
-    t.check('a removed backup closes the choice and explains why it was withdrawn',
-      await page.evaluate(() => !document.querySelector('#ask').open && document.querySelector('#btn-cloud-sync-review').hidden)
+    t.check('Keep from a launch question moves focus to the visible view heading', await headingFocused());
+
+    await seedRemote(4, 4);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    await seedRemote(5, 1);
+    await page.waitForFunction(() => document.querySelector('#ask').open
+      && document.querySelector('#ask-body').textContent.includes('1 comics read'), { timeout: 20000 });
+    t.check('a newer cloud backup replaces the open choice without releasing the upload hold', await held());
+    for (const id of ['phone-1', 'phone-2', 'phone-3', 'phone-4', 'phone-5']) fixture.host.items.delete(id);
+    await page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held === false;
+    }, { timeout: 20000 });
+    t.check('a removed backup closes the choice and clears the notice after a conclusive check',
+      await page.evaluate(() => !document.querySelector('#ask').open && document.querySelector('#cloud-sync-notice').hidden
+        && document.querySelector('#btn-cloud-sync-review').hidden)
         && !(await held()));
     t.check('the offer and recovery journey has no page errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-launch-empty',
+  title: 'an empty device loads cloud progress without promising a nonexistent kept copy',
+  async run(page, t) {
+    const fixture = cloudFixtureHost();
+    fixture.signedIn();
+    await installCloudFixture(page, fixture);
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page);
+    const packed = await page.evaluate(async () => {
+      const { CloudBackupProtocol, cloudBackupName } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const { CAPTURE_KEYS, captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
+      const current = await captureCompleteBackup({ storage: localStorage });
+      const components = structuredClone(current.backup.components);
+      const issue = Object.keys(components.reader.issues)[0];
+      components.reader.read = { [issue]: 1_700_000_000_000 };
+      const backup = await createCompleteBackup(components);
+      const stream = 'd'.repeat(32);
+      const bytes = await protocol.pack(backup.text, { stream, generation: 1, device: 'Phone' });
+      for (const key of CAPTURE_KEYS) localStorage.removeItem(key);
+      return { name: cloudBackupName(stream, 1), bytes: Array.from(bytes) };
+    });
+    const bytes = Buffer.from(packed.bytes);
+    fixture.host.items.set('phone-1', {
+      id: 'phone-1', name: packed.name, bytes: bytes.toString('base64'), size: bytes.length, created: Date.now(),
+    });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    const question = await page.$eval('#ask-body', (node) => node.textContent);
+    t.check('the question warns about replacement without promising a copy or Go back',
+      question.includes('Loading replaces what is on this device.')
+        && !question.includes("A copy of this device's progress is kept")
+        && !question.includes('you can go back'), question);
+    const navigation = page.waitForNavigation({ waitUntil: 'load', timeout: 30000 });
+    await click(page, '#ask-ok');
+    await navigation;
+    await page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held === false;
+    }, { timeout: 20000 });
+    const loaded = await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length);
+    const kept = [...fixture.host.items.values()].filter((item) => item.name.startsWith('recap-page-kept-v1-'));
+    await open(page, '/#/data');
+    t.check('Load installs the other progress without a cloud safety copy or Go back action',
+      loaded === 1 && kept.length === 0 && await page.$eval('#btn-cloud-sync-back', (node) => node.hidden),
+      JSON.stringify({ loaded, kept: kept.length }));
+    t.check('the empty-device journey has no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
 

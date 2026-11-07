@@ -9,6 +9,7 @@ export const CLOUD_SYNC_CHECK_TIMEOUT_MS = 30_000;
 export const CLOUD_SYNC_OFFER_RECHECK_MS = 5_000;
 
 const HOLD_UNCONFIRMED = 'The cloud upload hold could not be confirmed. Turn automatic backup off on this device until the check can finish.';
+const OFFER_WATCH_DELAYS = [CLOUD_SYNC_OFFER_RECHECK_MS, 15_000, 60_000, 5 * 60_000];
 const emptyReader = exportBackup(createEmptyState());
 delete emptyReader.exportedAt;
 delete emptyReader.active;
@@ -30,7 +31,8 @@ function offerIdentity(offer) {
   return canonical({
     epoch: offer.epoch, remote: offer.remote, localDigest: offer.localDigest,
     localContentDigest: offer.localContentDigest, comparison: offer.comparison,
-    othersDiffering: offer.othersDiffering,
+    othersDiffering: offer.othersDiffering, listing: offer.listing,
+    keepLocal: offer.keepLocal, priorKept: offer.priorKept,
   });
 }
 
@@ -68,17 +70,20 @@ export class CloudLaunchSync {
     protocol, coordinator, capture, locks = globalThis.navigator?.locks, cryptoProvider = globalThis.crypto,
     marker = createCloudSyncMarker(),
     isBlocked = () => false, isOnline = () => globalThis.navigator?.onLine !== false,
-    hasInteracted = () => false, connectionCurrent = async () => true, snapshotCurrent = () => true, restore = null,
+    hasInteracted = () => false, connectionCurrent = async () => true, snapshotCurrent = () => true,
+    restore = null, restoreReady = null,
     setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
     clearTimer = (timer) => globalThis.clearTimeout(timer), onChange = () => {}, announce = () => {},
   } = {}) {
     if (!protocol || !coordinator
       || [capture, isBlocked, isOnline, hasInteracted, connectionCurrent, snapshotCurrent, setTimer, clearTimer, onChange, announce]
-        .some((value) => typeof value !== 'function') || (restore !== null && typeof restore !== 'function')) {
+        .some((value) => typeof value !== 'function') || (restore !== null && typeof restore !== 'function')
+      || (restoreReady !== null && typeof restoreReady !== 'function')) {
       throw new TypeError('Cloud sync needs its protocol, backup coordinator and saved-data owners.');
     }
     Object.assign(this, {
-      protocol, coordinator, capture, locks, cryptoProvider, marker, isBlocked, isOnline, hasInteracted, connectionCurrent, snapshotCurrent, restore,
+      protocol, coordinator, capture, locks, cryptoProvider, marker, isBlocked, isOnline, hasInteracted,
+      connectionCurrent, snapshotCurrent, restore, restoreReady,
       setTimer, clearTimer, onChange, announce,
     });
     this.active = false;
@@ -93,9 +98,11 @@ export class CloudLaunchSync {
     this.running = null;
     this.probe = null;
     this.watch = null;
+    this.offerWatchCount = 0;
     this.cancelCheck = null;
     this.cancelArm = null;
     this.followerRead = null;
+    this.followerEpoch = undefined;
     this.gateRelease = null;
     this.queuedCheck = false;
     this.uncertainPending = null;
@@ -110,9 +117,10 @@ export class CloudLaunchSync {
     this.state = Object.freeze({ phase: 'off', offer: null, error: null, kept: null, historyUnknown: false });
   }
 
-  publish(phase, offer = null, error = null, code = null) {
+  publish(phase, offer = null, error = null, code = null, action = null) {
+    if (['off', 'clear', 'ready', 'offer', 'failed', 'loaded'].includes(phase)) this.notice = null;
     this.state = Object.freeze({
-      phase, offer, error, code, kept: this.kept, historyUnknown: this.historyUnknown,
+      phase, offer, error, code, action, kept: this.kept, historyUnknown: this.historyUnknown,
       notice: this.notice,
       canOverride: phase === 'failed',
     });
@@ -176,6 +184,7 @@ export class CloudLaunchSync {
     this.cancelArm = null;
     this.followerRead?.cancel();
     this.followerRead = null;
+    this.followerEpoch = undefined;
     const release = this.gateRelease;
     this.gateRelease = null;
     release?.controller.abort();
@@ -184,6 +193,7 @@ export class CloudLaunchSync {
     this.holdUnconfirmed = false;
     this.watch?.cancel?.();
     this.watch = null;
+    this.offerWatchCount = 0;
     if (this.action) this.action.invalid = true;
     this.action = null;
     this.reserving = false;
@@ -275,6 +285,7 @@ export class CloudLaunchSync {
     this.election = this.locks.request(CLOUD_SYNC_OFFER_LOCK, { mode: 'exclusive', ifAvailable: true }, async (lock) => {
       if (!lock || !this.active || sequence !== this.sequence) {
         if (this.active && sequence === this.sequence) {
+          if (this.state.phase !== 'following') this.followerEpoch = undefined;
           this.publish('following');
           this.scheduleRetry();
         }
@@ -359,7 +370,8 @@ export class CloudLaunchSync {
         });
         const gate = await Promise.race([this.protocol.syncGate({ ...this.context }), timeout, stopped]);
         if (!current()) return;
-        if (gate && !gate.held) {
+        if (this.followerEpoch === undefined) this.followerEpoch = gate?.epoch ?? null;
+        else if (gate && !gate.held && gate.epoch !== this.followerEpoch && !this.marker.pending()) {
           this.coordinator.releaseSync();
           this.publish('clear');
           return;
@@ -381,10 +393,11 @@ export class CloudLaunchSync {
   scheduleOfferWatch() {
     this.cancelTimer();
     if (!this.active || this.state.phase !== 'offer') return;
+    const delay = OFFER_WATCH_DELAYS[Math.min(this.offerWatchCount, OFFER_WATCH_DELAYS.length - 1)];
     this.timer = this.setTimer(() => {
       this.timer = null;
       void this.watchOffer();
-    }, CLOUD_SYNC_OFFER_RECHECK_MS);
+    }, delay);
   }
 
   watchCurrent(ticket) {
@@ -406,16 +419,13 @@ export class CloudLaunchSync {
       const probe = (async () => {
         await this.current(ticket.sequence, ticket.attempt);
         const snapshot = await this.capture();
-        const remotes = await this.protocol.discoverSync(this.context);
+        const remembered = await this.protocol.syncState({ connection: this.context.connection });
+        const listing = await this.protocol.syncListing(this.context);
         await this.current(ticket.sequence, ticket.attempt);
         if (this.isBlocked() || snapshot.backup.digest !== offer.localContentDigest
-          || !this.snapshotCurrent(snapshot.witness)) return true;
-        const result = compareCloudBackups({
-          ownStream: this.context.stream, localDigest: offer.localDigest, localEmpty: isEmpty(snapshot.backup),
-          remotes, ...offer.comparison,
-        });
-        return !result.offer || canonical(result.offer) !== canonical(offer.remote)
-          || result.othersDiffering !== offer.othersDiffering;
+          || !this.snapshotCurrent(snapshot.witness)
+          || canonical(remembered?.kept ?? null) !== canonical(offer.priorKept)) return true;
+        return canonical(listing) !== canonical(offer.listing);
       })();
       const timeout = new Promise((resolve, reject) => {
         deadline = this.setTimer(() => reject(new CloudBackupError('The cloud check took too long. Try again.', 'timeout')),
@@ -430,7 +440,7 @@ export class CloudLaunchSync {
         this.notice = 'The cloud backup changed, so the earlier choice was withdrawn.';
         this.publish('checking');
         await this.checkLeader(ticket.sequence);
-      }
+      } else this.offerWatchCount += 1;
     } catch (error) {
       if (this.watchCurrent(ticket)) {
         this.attempt += 1;
@@ -446,6 +456,10 @@ export class CloudLaunchSync {
 
   async requestCheck() {
     if (!this.active) return;
+    if (this.action?.restoring) {
+      this.queuedCheck = true;
+      return;
+    }
     if (this.holdUnconfirmed && this.leader && !this.action && !this.gateRelease) return this.checkNow();
     const sequence = this.sequence;
     const release = this.gateRelease;
@@ -470,6 +484,10 @@ export class CloudLaunchSync {
   }
 
   flushQueuedCheck() {
+    if (this.state.phase === 'loaded') {
+      this.queuedCheck = false;
+      return;
+    }
     if (!this.active || !this.queuedCheck || this.action || this.gateRelease || this.running || this.reserving) return;
     this.queuedCheck = false;
     void this.requestCheck();
@@ -515,6 +533,7 @@ export class CloudLaunchSync {
           const snapshot = await this.capture();
           const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
           const remembered = await this.protocol.syncState({ connection: this.context.connection });
+          const declinedByStream = await this.protocol.syncDeclines(this.context);
           const history = await this.protocol.keptHistory({ connection: this.context.connection });
           const last = await this.protocol.lastUploaded({ connection: this.context.connection });
           const remotes = await this.protocol.discoverSync(this.context);
@@ -528,10 +547,12 @@ export class CloudLaunchSync {
           const result = compareCloudBackups({
             ownStream: this.context.stream, localDigest: digest, localEmpty: isEmpty(snapshot.backup), remotes,
             matchedDigest: remembered?.matchedDigest ?? null, declinedDigest: remembered?.declinedDigest ?? null,
+            declinedByStream,
             keptDigest: remembered?.kept?.personalDigest ?? null, lastUploadedDigest: last?.personalDigest ?? null,
           });
           const comparison = {
             matchedDigest: remembered?.matchedDigest ?? null, declinedDigest: remembered?.declinedDigest ?? null,
+            declinedByStream,
             keptDigest: remembered?.kept?.personalDigest ?? null, lastUploadedDigest: last?.personalDigest ?? null,
           };
           await this.current(sequence, attempt);
@@ -543,10 +564,14 @@ export class CloudLaunchSync {
           this.kept = remembered?.kept ?? null;
           this.historyUnknown = history.unknown;
           if (result.offer) {
+            this.offerWatchCount = 0;
+            const listing = remotes.map(({ id, name, stream, generation, listedSize }) =>
+              ({ id, name, stream, generation, size: listedSize }));
             const offer = {
               kind: result.kind, quiet: this.interacted, remote: result.offer,
               local: localFacts(after.backup), localDigest: digest, localContentDigest: after.backup.digest,
-              othersDiffering: result.othersDiffering, epoch: this.epoch, comparison,
+              othersDiffering: result.othersDiffering, epoch: this.epoch, comparison, listing,
+              keepLocal: !isEmpty(after.backup) || Boolean(this.kept), priorKept: this.kept,
             };
             this.coordinator.holdSync('awaiting-choice');
             this.publish('offer', offer);
@@ -557,7 +582,6 @@ export class CloudLaunchSync {
           if (result.observedMatch) {
             await this.protocol.rememberSync({
               ...this.context, matchedDigest: digest,
-              declinedDigest: comparison.declinedDigest === digest ? null : comparison.declinedDigest,
               authorize: current, signal: controller.signal,
             });
             assertCurrent();
@@ -572,6 +596,10 @@ export class CloudLaunchSync {
             authorize: () => current() && !this.isBlocked() && this.snapshotCurrent(after.witness),
             signal: controller.signal,
           });
+          if ((result.observedMatch || remembered?.matchedDigest === digest || remembered?.kept)
+            && last?.personalDigest !== digest) {
+            this.coordinator.retry();
+          }
         })();
         this.probe = probe;
         void probe.then(() => { if (this.probe === probe) this.probe = null; }, () => {
@@ -622,14 +650,22 @@ export class CloudLaunchSync {
     const gate = await this.protocol.syncGate(this.context);
     assertCurrent();
     if (!gate?.pending) return;
-    const state = await this.protocol.syncState({ connection: this.context.connection });
-    assertCurrent();
-    const declined = state?.declinedDigest ?? null;
+    const stream = gate.pending.stream;
+    const declined = stream === undefined
+      ? (await this.protocol.syncState({ connection: this.context.connection }))?.declinedDigest ?? null
+      : (await this.protocol.syncDeclines({ ...this.context, signal })).find((entry) => entry.stream === stream)?.digest ?? null;
     if (declined !== gate.pending.previous && declined !== gate.pending.intended) {
       throw new CloudBackupError('The earlier cloud choice could not be checked, so backups stay paused.', 'raced');
     }
     if (declined !== gate.pending.previous) {
-      await this.protocol.rememberSync({ ...this.context, declinedDigest: gate.pending.previous, authorize: authorized, signal });
+      if (stream === undefined) {
+        await this.protocol.rememberSync({ ...this.context, declinedDigest: gate.pending.previous, authorize: authorized, signal });
+      } else {
+        await this.protocol.rememberDecline({
+          ...this.context, remoteStream: stream, digest: gate.pending.previous, expected: gate.pending.intended,
+          authorize: authorized, signal,
+        });
+      }
     }
     assertCurrent();
     await this.current(sequence, attempt);
@@ -747,10 +783,10 @@ export class CloudLaunchSync {
     }
   }
 
-  fail(error) {
+  fail(error, action = null) {
     this.coordinator.holdSync('check-failed');
     const failure = this.holdUnconfirmed ? new CloudBackupError(HOLD_UNCONFIRMED, 'hold-unconfirmed') : error;
-    this.publish('failed', null, failure?.message ?? 'Cloud progress could not be checked. Try again.', failure?.code ?? null);
+    this.publish('failed', null, failure?.message ?? 'Cloud progress could not be checked. Try again.', failure?.code ?? null, action);
     this.scheduleRetry();
   }
 
@@ -778,6 +814,10 @@ export class CloudLaunchSync {
       || !this.snapshotCurrent(snapshot.witness)) {
       throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
     }
+    const remembered = await this.protocol.syncState({ connection: this.context.connection });
+    if (canonical(remembered?.kept ?? null) !== canonical(action.offer.priorKept)) {
+      throw new CloudBackupError('The kept cloud copy changed, so the earlier choice was withdrawn. Check again.', 'raced');
+    }
     const remotes = await this.protocol.discoverSync(this.context);
     await this.assertAction(action);
     const after = await this.capture();
@@ -795,7 +835,7 @@ export class CloudLaunchSync {
     return after;
   }
 
-  async runOffer(operation) {
+  async runOffer(actionName, operation) {
     if (!this.active || !this.leader || this.state.phase !== 'offer' || this.action) {
       return { ok: false, error: 'That cloud choice is no longer available. Check again.' };
     }
@@ -810,7 +850,7 @@ export class CloudLaunchSync {
       return (await operation(action)) ?? { ok: true };
     } catch (error) {
       if (this.active && action.sequence === this.sequence && this.action === action
-        && (!action.invalid || error?.code === 'hold-unconfirmed')) this.fail(error);
+        && (!action.invalid || error?.code === 'hold-unconfirmed')) this.fail(error, actionName);
       return { ok: false, error: error?.message ?? 'The cloud choice could not be completed. Check again.' };
     } finally {
       this.finishAction(action);
@@ -818,22 +858,36 @@ export class CloudLaunchSync {
   }
 
   async keepOffer() {
-    return this.runOffer(async (action) => {
+    return this.runOffer('keep', async (action) => {
       let pending = false;
       try {
         await this.validateOffer(action);
         await this.assertAction(action);
+        const remoteStream = action.offer.remote.stream;
+        const previous = action.offer.comparison.declinedByStream.find((entry) => entry.stream === remoteStream)?.digest ?? null;
+        const decision = { stream: remoteStream, previous, intended: action.offer.remote.digest };
         await this.protocol.setSyncGate({
           ...this.context, epoch: action.epoch, held: true,
-          pending: { previous: action.offer.comparison.declinedDigest, intended: action.offer.remote.digest },
+          pending: decision,
         });
         pending = true;
         await this.assertAction(action);
-        await this.protocol.rememberSync({ ...this.context, declinedDigest: action.offer.remote.digest });
+        await this.protocol.rememberDecline({
+          ...this.context, remoteStream, digest: decision.intended, expected: previous,
+        });
         const snapshot = await this.validateOffer(action);
+        if (action.offer.othersDiffering > 0) {
+          await this.protocol.setSyncGate({
+            ...this.context, epoch: action.epoch, held: true, pending: null,
+            authorize: () => this.actionCurrent(action) && this.snapshotCurrent(snapshot.witness),
+          });
+          pending = false;
+          await this.checkLeader(action.sequence);
+          return;
+        }
         await this.releaseGate(action.sequence, action.attempt, {
           pending: null, authorize: () => this.actionCurrent(action) && this.snapshotCurrent(snapshot.witness),
-          pendingOnFailure: { previous: action.offer.comparison.declinedDigest, intended: action.offer.remote.digest },
+          pendingOnFailure: decision,
         });
         pending = false;
       } catch (error) {
@@ -886,7 +940,7 @@ export class CloudLaunchSync {
       return { ok: true };
     } catch (error) {
       if (this.active && action.sequence === this.sequence && this.action === action
-        && (!action.invalid || error?.code === 'hold-unconfirmed')) this.fail(error);
+        && (!action.invalid || error?.code === 'hold-unconfirmed')) this.fail(error, 'override');
       return { ok: false, error: error?.message ?? 'Backups could not be resumed. Check again.' };
     } finally {
       this.finishAction(action);
@@ -894,30 +948,30 @@ export class CloudLaunchSync {
   }
 
   async loadOffer() {
-    return this.runOffer(async (action) => {
-      if (!this.restore) throw new CloudBackupError('Cloud restore is not available, so nothing was replaced.', 'unsupported');
+    return this.runOffer('load', async (action) => {
+      if (!this.restore || !this.restoreReady) {
+        throw new CloudBackupError('Cloud restore cannot be checked, so nothing was replaced.', 'unsupported');
+      }
       const local = await this.validateOffer(action);
       const offered = action.offer.remote;
       await this.protocol.fetchBackup(offered, { connection: this.context.connection, expectedByteDigest: offered.byteDigest });
       await this.assertAction(action);
-      const made = await this.protocol.exclusive(async () => {
-        await this.assertAction(action);
-        const now = await this.capture();
-        if (now.backup.digest !== local.backup.digest || !this.snapshotCurrent(now.witness)) {
-          throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
-        }
-        return this.protocol.upload({ text: now.text, backup: now.backup, personalDigest: action.offer.localDigest });
+      const readiness = await this.restoreReady();
+      if (!readiness?.ok) throw new CloudBackupError(readiness?.error ?? 'Cloud restore is not ready, so nothing was replaced.', 'paused');
+      await this.assertAction(action);
+      const kept = !action.offer.keepLocal ? null : await this.protocol.prepareKeptSnapshot({
+        ...this.context, snapshot: local, personalDigest: action.offer.localDigest,
+        authorize: async () => {
+          await this.assertAction(action);
+          if (this.isBlocked() || !this.snapshotCurrent(local.witness)) {
+            throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
+          }
+        },
       });
       await this.assertAction(action);
-      const kept = await this.protocol.keepBackup({
-        ...this.context, generation: made.generation, personalDigest: action.offer.localDigest,
-        contentDigest: action.offer.localContentDigest,
-      });
-      await this.assertAction(action);
-      if (kept.contentDigest !== action.offer.localContentDigest || kept.personalDigest !== action.offer.localDigest) {
+      if (kept && (kept.contentDigest !== action.offer.localContentDigest || kept.personalDigest !== action.offer.localDigest)) {
         throw new CloudBackupError('The cloud safety copy could not be verified, so nothing was replaced.', 'verify');
       }
-      this.kept = kept;
       await this.validateOffer(action);
       const selected = await this.protocol.fetchBackup(offered, {
         connection: this.context.connection, expectedByteDigest: offered.byteDigest,
@@ -927,14 +981,19 @@ export class CloudLaunchSync {
         expectedPriorDigest: action.offer.localContentDigest,
         assertAuthorized: () => this.assertAction(action),
         assertStillAuthorized: () => this.assertActionCurrent(action),
+        onApplyStart: () => { this.assertActionCurrent(action); action.restoring = true; },
       });
       if (!restored?.ok) {
         throw new CloudBackupError(restored?.error ?? 'Cloud progress could not be loaded. Recovery may be available.', 'restore');
       }
       let warning = null;
       try {
+        this.assertActionCurrent(action);
+        if (kept) this.kept = await this.protocol.activateKept({
+          ...this.context, kept, authorize: () => this.actionCurrent(action), prune: this.isOnline(),
+        });
         await this.assertAction(action);
-        await this.protocol.rememberSync({ ...this.context, matchedDigest: offered.digest, declinedDigest: null });
+        await this.protocol.rememberSync({ ...this.context, matchedDigest: offered.digest });
       } catch {
         warning = 'Progress was loaded, but the cloud check is still pending. Backups stay paused until it can be checked again.';
       }
@@ -947,7 +1006,7 @@ export class CloudLaunchSync {
   }
 
   async goBack() {
-    if (!this.active || this.state.phase !== 'clear' || !this.kept || this.action || this.reserving || !this.restore) {
+    if (!this.active || this.state.phase !== 'clear' || !this.kept || this.action || this.reserving || !this.restore || !this.restoreReady) {
       return { ok: false, error: 'The kept cloud copy is no longer available. Check again.' };
     }
     const target = this.kept;
@@ -964,9 +1023,11 @@ export class CloudLaunchSync {
       try {
         await this.assertAction(action);
         if (this.isBlocked()) throw new CloudBackupError('Finish recovery before going back.', 'paused');
+        const readiness = await this.restoreReady();
+        if (!readiness?.ok) throw new CloudBackupError(readiness?.error ?? 'Cloud restore is not ready, so nothing was replaced.', 'paused');
+        await this.assertAction(action);
         const snapshot = await this.capture();
         const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
-        const remembered = await this.protocol.syncState({ connection: this.context.connection });
         const prepared = await this.protocol.prepareKeptRestore({
           ...this.context, kept: target, snapshot, personalDigest: digest,
           authorize: async () => {
@@ -980,6 +1041,7 @@ export class CloudLaunchSync {
         const remotes = await this.protocol.discoverSync(this.context);
         const after = await this.capture();
         const latest = await this.protocol.syncState({ connection: this.context.connection });
+        const declinedByStream = await this.protocol.syncDeclines(this.context);
         const last = await this.protocol.lastUploaded({ connection: this.context.connection });
         await this.assertAction(action);
         if (after.backup.digest !== snapshot.backup.digest || !this.snapshotCurrent(after.witness) || this.isBlocked()) {
@@ -988,23 +1050,24 @@ export class CloudLaunchSync {
         const comparison = compareCloudBackups({
           ownStream: this.context.stream, localDigest: digest, localEmpty: isEmpty(snapshot.backup), remotes,
           matchedDigest: latest?.matchedDigest ?? null, declinedDigest: latest?.declinedDigest ?? null,
+          declinedByStream,
           keptDigest: latest?.kept?.personalDigest ?? null, lastUploadedDigest: last?.personalDigest ?? null,
         });
         if (comparison.offer) throw new CloudBackupError('Cloud progress changed. Review the new choice before going back.', 'raced');
         const restored = await this.restore(prepared.target.text, {
           expectedPriorDigest: snapshot.backup.digest, assertAuthorized: () => this.assertAction(action),
           assertStillAuthorized: () => this.assertActionCurrent(action),
+          onApplyStart: () => { this.assertActionCurrent(action); action.restoring = true; },
         });
         if (!restored?.ok) {
           throw new CloudBackupError(restored?.error ?? 'The kept progress could not be loaded. Recovery may be available.', 'restore');
         }
         let warning = null;
         try {
-          await this.assertAction(action);
-          this.kept = await this.protocol.activateKept({ ...this.context, kept: prepared.replacement });
-          await this.assertAction(action);
-          await this.protocol.rememberSync({
-            ...this.context, declinedDigest: remembered?.matchedDigest ?? null,
+          this.assertActionCurrent(action);
+          this.kept = await this.protocol.activateKept({
+            ...this.context, kept: prepared.replacement, authorize: () => this.actionCurrent(action),
+            prune: this.isOnline(),
           });
         } catch {
           warning = 'Progress was loaded, but the cloud check is still pending. Backups stay paused until it can be checked again.';
@@ -1016,7 +1079,7 @@ export class CloudLaunchSync {
         return { ok: true, changed: true, ...(warning ? { warning } : {}) };
       } catch (error) {
         if (error?.code === 'gone') this.kept = null;
-        if (this.active && action.sequence === this.sequence && this.action === action && !action.invalid) this.fail(error);
+        if (this.active && action.sequence === this.sequence && this.action === action && !action.invalid) this.fail(error, 'back');
         return { ok: false, error: error?.message ?? 'The kept cloud copy could not be loaded. Check again.' };
       } finally {
         this.finishAction(action);

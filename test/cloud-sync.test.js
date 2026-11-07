@@ -154,6 +154,24 @@ test('a declined backup is a kept choice, not proof this device is ahead', () =>
   }
 });
 
+test('declined progress is remembered for its own stream, not another device', () => {
+  const phone = remote(PHONE, 1, B);
+  const tablet = remote(TABLET, 1, C);
+  const kept = compare({
+    declinedByStream: [{ stream: PHONE, digest: B }, { stream: TABLET, digest: C }],
+    remotes: [phone, tablet],
+  });
+  assert.equal(kept.kind, 'kept-choice');
+  assert.equal(kept.offer, null);
+
+  const changedTablet = remote(TABLET, 2, B);
+  const changed = compare({
+    declinedByStream: [{ stream: PHONE, digest: B }, { stream: TABLET, digest: C }],
+    remotes: [phone, changedTablet],
+  });
+  assert.equal(changed.offer, changedTablet, 'a different stream does not inherit the phone decision');
+});
+
 test('an active-list-only difference is an echo under the personal digest, not a complete-copy match', async () => {
   let state = createList(createEmptyState(), { id: 'one', name: 'One' });
   state = createList(state, { id: 'two', name: 'Two' });

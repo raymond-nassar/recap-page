@@ -35,7 +35,7 @@ function fixture() {
     removeItem: (key) => markerValues.delete(key),
   }));
   const data = {
-    gate: null, remotes: [], failure: null, seen: [], next: 0, matchedDigest: null, declinedDigest: null,
+    gate: null, remotes: [], failure: null, seen: [], next: 0, matchedDigest: null, declinedDigest: null, declinedByStream: [],
     snapshot: {
       text: 'snapshot',
       backup: {
@@ -70,9 +70,28 @@ function fixture() {
       data.seen.push(data.gate?.held);
       if (data.wait) await data.wait;
       if (data.failure) throw Object.assign(new Error('Check failed.'), { code: data.failure });
-      return data.remotes;
+      return data.remotes.map((remote) => ({
+        ...remote, name: `recap-page-backup-v1-${remote.stream}-${remote.generation}.json.gz`,
+        listedSize: remote.listedSize ?? null,
+      }));
+    },
+    async syncListing() {
+      return data.remotes.map(({ id, stream, generation, listedSize }) => ({
+        id, stream, generation, name: `recap-page-backup-v1-${stream}-${generation}.json.gz`, size: listedSize ?? null,
+      }));
     },
     async syncState() { return { matchedDigest: data.matchedDigest, declinedDigest: data.declinedDigest, kept: null }; },
+    async syncDeclines() { return structuredClone(data.declinedByStream); },
+    async rememberDecline(next) {
+      if (next.signal?.aborted || (next.authorize && !next.authorize())) {
+        throw Object.assign(new Error('The cloud check changed.'), { code: 'raced' });
+      }
+      const current = data.declinedByStream.find((entry) => entry.stream === next.remoteStream)?.digest ?? null;
+      if (next.expected !== undefined && current !== next.expected) throw Object.assign(new Error('stale'), { code: 'raced' });
+      data.declinedByStream = data.declinedByStream.filter((entry) => entry.stream !== next.remoteStream);
+      if (next.digest !== null) data.declinedByStream.push({ stream: next.remoteStream, digest: next.digest });
+      return structuredClone(data.declinedByStream);
+    },
     async keptHistory() { return { unknown: true }; },
     async lastUploaded() { return null; },
     async rememberSync(next) {
@@ -86,11 +105,15 @@ function fixture() {
   };
   const make = (options = {}) => {
     const calls = [];
-    const coordinator = { holdSync: (code) => calls.push(['hold', code]), releaseSync: () => calls.push(['release']) };
+    const coordinator = {
+      holdSync: (code) => calls.push(['hold', code]), releaseSync: () => calls.push(['release']),
+      retry: () => calls.push(['retry']),
+    };
     const states = [];
     const sync = new CloudLaunchSync({
       protocol, coordinator, capture: async () => data.snapshot, locks: mutex, cryptoProvider: webcrypto, marker,
       isBlocked: () => false, isOnline: () => true, onChange: (state) => states.push(state),
+      restoreReady: async () => ({ ok: true }),
       setTimer: () => 1, clearTimer: () => {},
       ...options,
     });
@@ -125,6 +148,56 @@ test('an inconclusive launch check keeps uploads paused until a later check succ
   sync.stop();
 });
 
+test('a withdrawn choice clears its notice when a later check finds another offer', async () => {
+  const env = fixture();
+  env.data.remotes = [{
+    id: 'phone', stream: 'd'.repeat(32), generation: 1, digest: 'e'.repeat(64), contentDigest: 'f'.repeat(64),
+    byteDigest: '1'.repeat(64), createdAt: 123, device: 'Phone', readCount: 2, lastReadAt: 122,
+  }];
+  const { sync } = env.make();
+  await sync.start(context);
+  sync.savedChanged();
+  assert.match(sync.state.notice, /withdrawn/);
+  await sync.checkNow();
+  assert.equal(sync.state.phase, 'offer');
+  assert.equal(sync.state.notice, null);
+  sync.stop();
+});
+
+test('a withdrawn choice clears its notice when a later check finds no offer', async () => {
+  const env = fixture();
+  env.data.remotes = [{
+    id: 'phone', stream: 'd'.repeat(32), generation: 1, digest: 'e'.repeat(64), contentDigest: 'f'.repeat(64),
+    byteDigest: '1'.repeat(64), createdAt: 123, device: 'Phone', readCount: 2, lastReadAt: 122,
+  }];
+  const { sync } = env.make();
+  await sync.start(context);
+  sync.savedChanged();
+  assert.match(sync.state.notice, /withdrawn/);
+  env.data.remotes = [];
+  await sync.checkNow();
+  assert.equal(sync.state.phase, 'clear');
+  assert.equal(sync.state.notice, null);
+  sync.stop();
+});
+
+test('a failed Load identifies the action and keeps the upload hold', async () => {
+  const env = fixture();
+  env.data.remotes = [{
+    id: 'phone', stream: 'd'.repeat(32), generation: 1, digest: 'e'.repeat(64), contentDigest: 'f'.repeat(64),
+    byteDigest: '1'.repeat(64), createdAt: 123, device: 'Phone', readCount: 2, lastReadAt: 122,
+  }];
+  env.protocol.fetchBackup = async () => { throw new Error('The selected backup could not be read.'); };
+  const { sync } = env.make({ restore: async () => ({ ok: true }) });
+  await sync.start(context);
+  const result = await sync.loadOffer();
+  assert.equal(result.ok, false);
+  assert.equal(sync.state.phase, 'failed');
+  assert.equal(sync.state.action, 'load');
+  assert.equal(env.data.gate.held, true);
+  sync.stop();
+});
+
 test('one tab owns a pending offer and a follower rechecks after that tab closes', async () => {
   const env = fixture();
   env.data.remotes = [{
@@ -144,6 +217,35 @@ test('one tab owns a pending offer and a follower rechecks after that tab closes
   assert.equal(env.data.gate.held, true);
   assert.equal(second.sync.state.offer.remote.id, 'phone');
   second.sync.stop();
+});
+
+test('a follower may release only after a newer leader completed its own check', async () => {
+  const env = fixture();
+  env.data.remotes = [{
+    id: 'phone', stream: 'd'.repeat(32), generation: 1, digest: 'e'.repeat(64), contentDigest: 'f'.repeat(64),
+    byteDigest: '1'.repeat(64), createdAt: 123, device: 'Phone', readCount: 2, lastReadAt: 122,
+  }];
+  const first = env.make();
+  const follower = env.make();
+  await first.sync.start(context);
+  await follower.sync.start(context);
+  await follower.sync.checkNow();
+  assert.equal(follower.sync.state.phase, 'following');
+  assert.ok(!follower.calls.some(([kind]) => kind === 'release'));
+
+  first.sync.stop();
+  await new Promise((resolve) => { setImmediate(resolve); });
+  env.data.remotes = [];
+  const newer = env.make();
+  await newer.sync.start(context);
+  assert.equal(newer.sync.state.phase, 'clear');
+  const checks = env.data.seen.length;
+  await follower.sync.checkNow();
+  assert.equal(follower.sync.state.phase, 'clear');
+  assert.equal(env.data.seen.length, checks, 'the follower uses the newer leader result');
+  assert.deepEqual(follower.calls.at(-1), ['release']);
+  follower.sync.stop();
+  newer.sync.stop();
 });
 
 test('a late follower read cannot release the hold after that tab restarts', { timeout: 1000 }, async () => {
@@ -220,7 +322,7 @@ test('a change before hold release commits withdraws Keep and restores its pendi
 
   assert.equal(result.ok, false);
   assert.equal(env.data.gate.held, true, 'the durable upload hold is rearmed before the worker lock is released');
-  assert.equal(env.data.declinedDigest, null, 'the invalidated choice does not suppress the other device');
+  assert.deepEqual(env.data.declinedByStream, [], 'the invalidated choice does not suppress the other device');
   assert.notEqual(sync.state.phase, 'clear');
   assert.ok(!calls.some(([kind]) => kind === 'release'));
   sync.stop();
@@ -256,7 +358,7 @@ test('a change after hold release commits is a later edit, not a withdrawn Keep'
 
   assert.equal(result.ok, true);
   assert.equal(env.data.gate.held, false);
-  assert.equal(env.data.declinedDigest, 'e'.repeat(64));
+  assert.deepEqual(env.data.declinedByStream, [{ stream: 'd'.repeat(32), digest: 'e'.repeat(64) }]);
   assert.equal(sync.state.phase, 'clear');
   assert.equal(sync.state.notice, null, 'a completed choice is not announced as withdrawn');
   sync.stop();
@@ -282,7 +384,7 @@ test('a failed release verification re-arms the hold and rolls back an unconfirm
   const result = await sync.keepOffer();
   assert.equal(result.ok, false);
   assert.equal(env.data.gate.held, true);
-  assert.equal(env.data.declinedDigest, null);
+  assert.deepEqual(env.data.declinedByStream, []);
   assert.equal(sync.state.phase, 'failed');
   assert.ok(!calls.some(([kind]) => kind === 'release'));
   sync.stop();
@@ -367,7 +469,7 @@ for (const choice of ['check', 'request', 'override', 'raced repair']) {
       assert.equal(sync.state.phase, 'clear');
       assert.equal(env.data.gate.held, false);
     }
-    assert.equal(env.data.declinedDigest, null, 'the unconfirmed Keep did not suppress the offered backup');
+    assert.deepEqual(env.data.declinedByStream, [], 'the unconfirmed Keep did not suppress the offered backup');
     sync.stop();
   });
 }
@@ -716,10 +818,11 @@ test('a late interrupted-choice recovery cannot overwrite a subsequent Keep', { 
     await sync.checkNow();
     assert.equal(sync.state.phase, 'offer');
     assert.equal((await sync.keepOffer()).ok, true);
-    assert.equal(env.data.declinedDigest, digest);
+    assert.deepEqual(env.data.declinedByStream, [{ stream: 'd'.repeat(32), digest }]);
     release();
     await new Promise((resolve) => { setImmediate(resolve); });
-    assert.equal(env.data.declinedDigest, digest, 'the obsolete rollback cannot erase the newer choice');
+    assert.deepEqual(env.data.declinedByStream, [{ stream: 'd'.repeat(32), digest }],
+      'the obsolete rollback cannot erase the newer choice');
     assert.equal(env.data.gate.held, false, 'the obsolete rollback cannot re-arm or clear a newer gate');
   } finally {
     release();

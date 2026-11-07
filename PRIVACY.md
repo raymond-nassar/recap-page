@@ -57,11 +57,12 @@ When OneDrive backup is on, the app also checks other devices' newest backups at
 return to the app and after sign-in. It may download those backups to compare your saved data. If
 progress differs, you choose which copy to use; the app never merges them. While a choice is
 waiting, the app checks periodically for a changed or removed backup. Before loading another
-device's progress, it keeps a separate copy of this device's data in OneDrive and the existing
-local recovery copy. The app aims to keep the newest three recorded cloud copies for this device
-and connection. Copies it cannot check or remove, and copies from earlier connections, may remain
-and need deleting in their cloud folders. **Go back to kept progress** offers the most recently
-kept copy; any other kept copies are not listed by that control.
+device's progress, it keeps a separate copy in OneDrive when this device has data or settings to
+preserve or an earlier kept copy, as well as the existing local recovery copy. The app aims to keep
+the newest three recorded cloud copies for this device and connection. Copies it cannot check or
+remove, and copies from earlier connections, may remain and need deleting in their cloud folders.
+**Go back to what was on this device before** offers the most recently kept copy; any other kept
+copies are not listed by that control.
 
 The app keeps the backup list's short summaries only while it is open. It also keeps the last
 matched and declined content digests, recorded kept-copy references and a pending-check marker on

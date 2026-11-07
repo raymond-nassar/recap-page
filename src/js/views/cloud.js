@@ -101,7 +101,13 @@ function syncStatus(model) {
   if (!sync || sync.phase === 'off' || sync.phase === 'clear') return '';
   if (sync.phase === 'failed') {
     if (sync.code === 'hold-unconfirmed') return cloudErrorText(sync.error, model.scope);
-    return `The cloud check did not finish. Automatic backups are paused. ${cloudErrorText(sync.error, model.scope) ?? 'Check again.'}`;
+    const failure = {
+      keep: "This device's progress could not be kept.",
+      load: 'The cloud progress could not be loaded.',
+      back: 'The kept progress could not be loaded.',
+      override: 'Automatic backups could not be resumed.',
+    }[sync.action] ?? 'The cloud check did not finish.';
+    return `${failure} Backups from this device are paused until Recap Page can check for progress from your other devices. ${cloudErrorText(sync.error, model.scope) ?? 'Check again.'}`;
   }
   if (sync.phase === 'offer') return 'Different progress was found in the cloud. Automatic backups are paused until you choose.';
   if (sync.phase === 'working') return 'Your cloud choice is being completed. Automatic backups are paused.';
@@ -290,19 +296,18 @@ export function cloudSyncQuestion(offer, { when = longTime } = {}) {
   const different = offer.quiet || offer.kind !== 'remote-ahead';
   const { remote, local } = offer;
   const marked = (time) => time === null ? 'not marked read yet' : `last marked read ${when(time)}`;
-  const first = different && offer.kind === 'both-changed'
-    ? `Both this device and ${remote.device} changed since they last matched.` : '';
   const facts = [
     `${remote.device} saved progress at ${when(remote.createdAt)}: ${remote.readCount} comics read, ${marked(remote.lastReadAt)}.`,
     `This device: ${local.readCount} comics read, ${marked(local.lastReadAt)}.`,
   ];
   const others = offer.othersDiffering > 0
     ? `${plural(offer.othersDiffering, 'other device')} also ${offer.othersDiffering === 1 ? 'has' : 'have'} different progress.` : '';
-  const warning = different ? 'Choose which progress to keep using. The other is kept as a copy.'
-    : "Loading replaces what is on this device. A copy of this device's progress is kept, and you can go back to it from Backup & settings.";
+  const warning = different
+    ? `Choose which progress to keep using.${offer.keepLocal === false ? '' : ' The other is kept as a copy.'}`
+    : `Loading replaces what is on this device.${offer.keepLocal === false ? '' : " A copy of this device's progress is kept, and you can go back to it from Backup & settings."}`;
   return {
     title: different ? 'Your progress differs between devices' : 'Newer progress found',
-    body: [first, ...facts, others, warning].filter(Boolean).join('\n\n'),
+    body: [...facts, others, warning].filter(Boolean).join('\n\n'),
     keepLabel: "Keep this device's progress",
     loadLabel: different ? "Load the other device's progress" : 'Load newer progress',
     focusKeep: different,
@@ -310,20 +315,37 @@ export function cloudSyncQuestion(offer, { when = longTime } = {}) {
 }
 
 function syncOfferId(offer) {
-  return JSON.stringify([offer.epoch, offer.remote, offer.localContentDigest, offer.kind, offer.othersDiffering]);
+  return JSON.stringify([
+    offer.epoch, offer.remote, offer.localContentDigest, offer.kind, offer.othersDiffering, offer.keepLocal, offer.priorKept,
+  ]);
 }
 
 export function createCloudSyncPrompt({
-  elements, getModel, ask, withdraw, onKeep, onLoad, onFinished, report, announce = () => {}, when = longTime,
+  elements, getModel, ask, withdraw, onKeep, onLoad, onFinished, report, announce = () => {},
+  focusSuccessor = () => {}, when = longTime,
 }) {
   let question = null;
   let attempted = null;
-  let announced = null;
+  let announcedOffer = null;
 
   const currentOffer = () => {
     const sync = getModel()?.sync;
     return sync?.phase === 'offer' ? sync.offer : null;
   };
+
+  function rescueFocus() {
+    const document = globalThis.document;
+    if (!document || document.querySelector('dialog[open]')) return;
+    const active = document.activeElement;
+    if (active?.isConnected && active !== document.body && active !== document.documentElement
+      && !active.closest?.('[hidden], [inert], dialog:not([open])')) return;
+    const { notice, review } = elements();
+    if (currentOffer() && review && !review.disabled && !review.hidden && !notice?.hidden) {
+      review.focus();
+    } else {
+      focusSuccessor();
+    }
+  }
 
   async function show(offer) {
     const id = syncOfferId(offer);
@@ -342,6 +364,7 @@ export function createCloudSyncPrompt({
     const current = currentOffer();
     if (ticket.withdrawn || !current || syncOfferId(current) !== id || (answer !== 'keep' && answer !== 'load')) {
       render();
+      if (answer !== 'busy') rescueFocus();
       return;
     }
     try {
@@ -353,6 +376,7 @@ export function createCloudSyncPrompt({
       report(error?.message ?? 'The cloud choice could not be completed. Check again.');
     }
     render();
+    rescueFocus();
   }
 
   function render() {
@@ -363,17 +387,16 @@ export function createCloudSyncPrompt({
     if (question && question.id !== id && !question.withdrawn) {
       question.withdrawn = true;
       withdraw();
+      const withdrawn = getModel()?.sync?.notice;
+      if (withdrawn) announce(withdrawn);
     }
     if (!offer) {
       attempted = null;
       const withdrawn = getModel()?.sync?.notice;
+      if (['clear', 'off'].includes(getModel()?.sync?.phase)) announcedOffer = null;
       notice.hidden = !withdrawn;
       if (review) review.hidden = true;
       if (message && withdrawn) message.textContent = withdrawn;
-      if (withdrawn && announced !== withdrawn) {
-        announced = withdrawn;
-        announce(withdrawn);
-      } else if (!withdrawn) announced = null;
       return;
     }
     if (message) message.textContent = 'Your progress differs between devices.';
@@ -382,9 +405,10 @@ export function createCloudSyncPrompt({
       attempted = id;
       void show(offer);
     }
-    notice.hidden = Boolean(question && !question.withdrawn && question.id === id);
-    if (!notice.hidden && announced !== id) {
-      announced = id;
+    notice.hidden = false;
+    const announcement = JSON.stringify([offer.remote.stream ?? offer.remote.device, offer.kind]);
+    if (!question && announcedOffer !== announcement) {
+      announcedOffer = announcement;
       announce('Your progress differs between devices. Review progress.');
     }
   }
@@ -421,6 +445,7 @@ export function createCloudBackupView({
   // What the card last showed, so each change worth hearing is said once, as it happens, and never what a
   // page finds already true when it opens (stage 3 review, S3b-2).
   let heard = null;
+  let lastSyncFailure = null;
   const report = (message, kind = 'error', claims = null) => {
     claimed = claims;
     notify('#cloud-backup-report', cloudErrorText(message, getModel().scope), kind);
@@ -482,6 +507,7 @@ export function createCloudBackupView({
     nodes.card.hidden = !model.shown;
     if (!model.shown) {
       heard = null;
+      lastSyncFailure = null;
       return;
     }
     const { host } = model;
@@ -497,7 +523,15 @@ export function createCloudBackupView({
     const notice = noticeOf(model, heard?.host);
     const newKeptProblem = model.keptProblem && !heard?.keptProblem;
     const newKeptAttention = model.keptAttention > (heard?.keptAttention ?? 0);
-    if (heard && said && (newKeptProblem || newKeptAttention || (notice && notice !== heard.notice))) announce(said);
+    const syncFailed = connected && model.sync?.phase === 'failed';
+    const newNotice = syncFailed
+      ? !model.sync.action && notice !== lastSyncFailure
+      : notice && notice !== heard?.notice;
+    if (heard && said && (newKeptProblem || newKeptAttention || newNotice)) announce(said);
+    if (syncFailed) lastSyncFailure = notice;
+    else if (!connected || !model.on || ['off', 'clear', 'offer', 'ready', 'loaded'].includes(model.sync?.phase)) {
+      lastSyncFailure = null;
+    }
     heard = { host, notice, keptProblem: Boolean(model.keptProblem), keptAttention: model.keptAttention ?? 0 };
     nodes.progress.hidden = !(model.on && model.backup.phase === 'saving');
     const choices = cloudSignInChoices(model);
@@ -729,9 +763,9 @@ export function createCloudBackupView({
   function syncBack() {
     return run(async () => {
       const yes = await askConfirm({
-        title: 'Go back to the kept progress?',
+        title: 'Go back to what was on this device before?',
         body: "Loading the kept copy replaces what is on this device. A separate cloud copy of this device's current progress is kept first.",
-        confirmLabel: 'Go back to kept progress',
+        confirmLabel: 'Go back to what was on this device before',
       });
       if (!yes) return;
       const result = await onSyncBack();

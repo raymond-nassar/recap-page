@@ -409,10 +409,12 @@ that individual backup does not include settings.
 
 With OneDrive backup turned on for the app, Recap Page checks for different progress at launch,
 after returning and after sign-in. You choose which device's progress to use; the app never merges
-copies. Before loading, it keeps a separate cloud copy of this device's data and the existing local
-recovery copy. **Go back to kept progress** offers the latest kept cloud copy. The app aims to keep
-the newest three recorded copies for this device and connection; other unconfirmed or earlier
-copies may remain in their cloud folders.
+copies. Before loading, it keeps a separate cloud copy when this device has data or settings to
+preserve or an earlier kept copy, as well as the existing local recovery copy.
+**Go back to what was on this device before** offers
+the latest kept cloud copy.
+The app aims to keep the newest three recorded copies for this device and connection; other unconfirmed
+or earlier copies may remain in their cloud folders.
 
 Export opens Android's file picker. Choose a folder **on the device**, such as Downloads, to
 keep the file local. Recap Page requests local storage, but document providers control which
