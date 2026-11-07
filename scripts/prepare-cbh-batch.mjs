@@ -2814,10 +2814,11 @@ async function indexFrozenPackets(packetsDir) {
   try {
     entries = await readdir(packetsDir, { withFileTypes: true });
   } catch (error) {
-    if (error?.code === 'ENOENT') return new Map();
+    if (error?.code === 'ENOENT') return { byId: new Map(), byInventoryId: new Map() };
     throw error;
   }
 
+  const byId = new Map();
   const byInventoryId = new Map();
   for (const entry of entries
     .filter((candidate) => candidate.isFile() && candidate.name.endsWith('.json'))
@@ -2827,11 +2828,12 @@ async function indexFrozenPackets(packetsDir) {
     if (packet.id !== fileId) {
       throw new Error(`${entry.name} packet id must match its filename`);
     }
+    byId.set(packet.id, packet);
     const matches = byInventoryId.get(packet.inventoryId) ?? [];
     matches.push(packet);
     byInventoryId.set(packet.inventoryId, matches);
   }
-  return byInventoryId;
+  return { byId, byInventoryId };
 }
 
 export async function selectPreparationGuides(onlyIds, {
@@ -2840,30 +2842,19 @@ export async function selectPreparationGuides(onlyIds, {
   inventoryPaths = INVENTORY_PATHS,
   manifestPath = MANIFEST_PATH,
 } = {}) {
-  if (onlyIds == null) return GUIDES;
-  const requestedIds = Array.isArray(onlyIds) ? onlyIds : [...onlyIds];
+  const requestedIds = onlyIds == null ? null : (Array.isArray(onlyIds) ? onlyIds : [...onlyIds]);
   const legacyById = new Map(GUIDES.map((guide) => [guide.id, guide]));
-  const packetsByInventoryId = await indexFrozenPackets(packetsDir);
   let inventory = null;
   let catalogEntries = null;
   const selected = [];
+  const selectedIds = new Set();
+  const select = (guide) => {
+    if (selectedIds.has(guide.id)) throw new Error(`Duplicate selected packet or guide id: ${guide.id}`);
+    selectedIds.add(guide.id);
+    selected.push(guide);
+  };
 
-  for (const id of requestedIds) {
-    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
-      throw new Error(`Invalid inventory id: ${id}`);
-    }
-    const matchingPackets = packetsByInventoryId.get(id) ?? [];
-    if (matchingPackets.length > 1) {
-      throw new Error(`Inventory id ${id} has multiple frozen packets`);
-    }
-    const packet = matchingPackets[0] ?? null;
-    if (!packet) {
-      const legacy = legacyById.get(id);
-      if (!legacy) throw new Error(`Unknown inventory id: ${id}`);
-      selected.push(legacy);
-      continue;
-    }
-
+  const loadInventories = async () => {
     if (inventory == null) {
       const selectedPaths = inventoryPath == null ? inventoryPaths : [inventoryPath];
       const inventories = await Promise.all(selectedPaths.map(async (candidatePath) => {
@@ -2878,26 +2869,66 @@ export async function selectPreparationGuides(onlyIds, {
       inventory = inventories.flat();
       const inventoryIds = new Set();
       for (const record of inventory) {
-        if (inventoryIds.has(record.id)) {
-          throw new Error(`Inventory id ${record.id} exists in multiple maintained inventories`);
+        for (const sourceId of [record.id, ...(record.childSources ?? []).map((child) => child.id)]) {
+          if (inventoryIds.has(sourceId)) {
+            throw new Error(`Inventory id ${sourceId} exists in multiple maintained inventories`);
+          }
+          inventoryIds.add(sourceId);
         }
-        inventoryIds.add(record.id);
       }
     }
+    return inventory;
+  };
+
+  if (requestedIds == null) {
+    const records = await loadInventories();
+    const registeredLegacyChildren = records.flatMap((record) => (
+      (record.childSources ?? []).map((child) => child.id).filter((id) => legacyById.has(id))
+    ));
+    if (registeredLegacyChildren.length > 0) {
+      throw new Error(`The legacy batch includes registered child sources: ${registeredLegacyChildren.join(', ')}; select guides with --only`);
+    }
+    return GUIDES;
+  }
+  const packets = await indexFrozenPackets(packetsDir);
+
+  for (const id of requestedIds) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
+      throw new Error(`Invalid guide or inventory id: ${id}`);
+    }
+    const matchingPackets = packets.byInventoryId.get(id) ?? [];
+    const directPacket = packets.byId.get(id);
+    if (matchingPackets.length > 1
+      || (directPacket && matchingPackets.some((packet) => packet.id !== directPacket.id))) {
+      throw new Error(`Inventory id ${id} has multiple frozen packets`);
+    }
+    const packet = directPacket ?? matchingPackets[0] ?? null;
+    if (!packet) {
+      const legacy = legacyById.get(id);
+      const records = await loadInventories();
+      if (records.some((record) => record.childSources?.some((child) => child.id === id))) {
+        throw new Error(`${id} is a registered child source without a frozen packet`);
+      }
+      if (!legacy) throw new Error(`Unknown guide or inventory id: ${id}`);
+      select(legacy);
+      continue;
+    }
+
+    await loadInventories();
     const manifest = catalogEntries == null
       ? JSON.parse(await readFile(manifestPath, 'utf8'))
       : null;
     catalogEntries ??= Array.isArray(manifest?.lists) ? manifest.lists : [];
-    const inventoryRecord = inventory.find((record) => record.id === id);
+    const inventoryRecord = inventory.find((record) => record.id === packet.inventoryId);
     if (!inventoryRecord) {
-      throw new Error(`${packet.id} names unknown inventory id ${id}`);
+      throw new Error(`${packet.id} names unknown inventory id ${packet.inventoryId}`);
     }
     validateFrozenPacket(packet, {
       expectedId: packet.id,
       inventoryRecord,
       catalogEntries,
     });
-    selected.push({
+    select({
       ...packet,
       isFrozenPacket: true,
       approvedSourceCount: sourceOccurrenceCountFor(packet),
@@ -2916,13 +2947,13 @@ async function main() {
     throw new Error('Use either --force-approved or --refresh-approved, not both');
   }
   const onlyArgs = args.filter((arg) => arg.startsWith('--only='));
-  if (onlyArgs.length > 1) throw new Error('Use --only once with a comma-separated inventory id list');
+  if (onlyArgs.length > 1) throw new Error('Use --only once with a comma-separated guide or inventory id list');
   const onlyIds = onlyArgs.length === 0
     ? null
     : onlyArgs[0].slice('--only='.length).split(',').map((id) => id.trim()).filter(Boolean);
-  if (onlyIds?.length === 0) throw new Error('--only must name at least one inventory id');
+  if (onlyIds?.length === 0) throw new Error('--only must name at least one guide or inventory id');
   if (onlyIds && new Set(onlyIds).size !== onlyIds.length) {
-    throw new Error('--only contains a duplicate inventory id');
+    throw new Error('--only contains a duplicate guide or inventory id');
   }
   const guides = await selectPreparationGuides(onlyIds);
   const { getJson } = createJsonFetcher();
@@ -3093,6 +3124,9 @@ async function main() {
       sourceRetrievedAt: guide.sourceRetrievedAt ?? RETRIEVED_AT,
       ...(Object.hasOwn(guide, 'sourceContentSha256')
         ? { sourceContentSha256: guide.sourceContentSha256 }
+        : {}),
+      ...(Object.hasOwn(guide, 'sourceExpansion')
+        ? { sourceExpansion: guide.sourceExpansion }
         : {}),
       sourceRetrievalStatus: guide.sourceUnavailable ? guide.sourceError : 'retrieved',
       approvedSourceCount: guide.sourceUnavailable

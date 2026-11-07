@@ -134,6 +134,8 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
       'x-men-utopia',
       'x-men-nation-x',
       'necrosha',
+      'realm-of-kings',
+      'fall-of-the-hulks',
       'siege-dark-reign-prelude',
       'doomwar',
       'second-coming',
@@ -389,9 +391,9 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   }
 });
 
-test('blocked approved candidates retain exact blocker evidence', async () => {
+test('batch two retains its historical blocker evidence', async () => {
   const decimation = await readJson(path.join(mappingsDir, 'decimation.json'));
-  const realm = await readJson(path.join(overlapsDir, 'realm-of-kings.json'));
+  const realm = await readJson(path.join(root, 'test', 'fixtures', 'cbh-batch-two-realm-overlap.json'));
   const worldWarHulk = await readJson(path.join(overlapsDir, 'world-war-hulk.json'));
 
   assert.equal(decimation.rows.length, 57);

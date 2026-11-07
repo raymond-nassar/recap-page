@@ -1049,6 +1049,129 @@ test('excluded source rows conserve exact positions without changing legacy pack
   assert.deepEqual(sourcePositionsForPacket(legacy), [1, 2]);
 });
 
+test('gap-tolerant checklists omit unresolved positions when the manifest counts exact rows', () => {
+  const mapping = genericEvidence().mapping;
+  mapping.rows[0].sourceGroup = 'First section';
+  mapping.rows[1].sourcePosition = 3;
+  mapping.rows[1].sourceGroup = 'Second section';
+  mapping.sourceGaps = [{
+    sourcePosition: 2,
+    sourceIssueReference: 'Missing Issue #1',
+    sourceRangeReference: null,
+    sourceGroup: 'Gap-only section',
+  }];
+  const gaps = structuredClone(mapping.sourceGaps);
+
+  const markdown = buildMarkdown(mapping);
+  const parsed = parseChecklist(markdown);
+  assert.deepEqual(parsed.entries.map((entry) => String(entry.issueId)), ['9001', '9002']);
+  assert.deepEqual(parsed.unresolved, []);
+  assert.doesNotMatch(markdown, /Missing Issue #1|Gap-only section/);
+  assert.match(markdown, /## First section\n- \[ \]/);
+  assert.match(markdown, /## Second section\n- \[ \]/);
+  assert.deepEqual(mapping.sourceGaps, gaps);
+});
+
+test('a trade-level anthology expansion is bound to the packet and mapping digests', () => {
+  const packet = genericPacket();
+  const previousPacketDigest = packet.packetDigest;
+  packet.sourceExpansion = {
+    kind: 'trade-anthology-index',
+    name: 'League of Comic Geeks',
+    url: 'https://leagueofcomicgeeks.com/comic/9488865/realm-of-kings-hc',
+    retrievedAt: '2026-11-07',
+  };
+  packet.packetDigest = packetDigestFor(packet);
+  assert.notEqual(packet.packetDigest, previousPacketDigest);
+  assert.doesNotThrow(() => validateFrozenPacket(packet));
+
+  const mapping = genericMapping(packet);
+  const previousMappingDigest = mapping.mappingDigest;
+  mapping.sourceExpansion = structuredClone(packet.sourceExpansion);
+  mapping.mappingDigest = mappingDigestFor(mapping);
+  assert.notEqual(mapping.mappingDigest, previousMappingDigest);
+  assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
+
+  const changed = structuredClone(mapping);
+  changed.sourceExpansion.url = 'https://example.com/another-index';
+  assert.notEqual(mappingDigestFor(changed), mapping.mappingDigest);
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(packet, changed),
+    /mapping source expansion differs from its frozen packet/i,
+  );
+  delete changed.sourceExpansion;
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(packet, changed),
+    /mapping source expansion differs from its frozen packet/i,
+  );
+
+  for (const [field, value] of [
+    ['kind', 'unrecognized'],
+    ['name', ' '],
+    ['name', '<script>'],
+    ['url', 'http://example.com/index'],
+    ['url', 'https://example.com/index)'],
+    ['retrievedAt', 'not-a-date'],
+    ['retrievedAt', '2026-02-31'],
+  ]) {
+    const invalid = structuredClone(packet);
+    invalid.sourceExpansion[field] = value;
+    invalid.packetDigest = packetDigestFor(invalid);
+    assert.throws(() => validateFrozenPacket(invalid), /sourceExpansion/i);
+  }
+  const unexpected = structuredClone(packet);
+  unexpected.sourceExpansion.extra = 'unsupported';
+  unexpected.packetDigest = packetDigestFor(unexpected);
+  assert.throws(() => validateFrozenPacket(unexpected), /sourceExpansion.*unsupported fields/i);
+});
+
+test('a trade-level anthology checklist credits its numbered index without claiming CBH issue order', () => {
+  const mapping = genericEvidence().mapping;
+  const historical = buildMarkdown(mapping);
+  assert.match(historical, /transcribes only issue-bearing references/);
+
+  mapping.sourceExpansion = {
+    kind: 'trade-anthology-index',
+    name: 'League of Comic Geeks',
+    url: 'https://leagueofcomicgeeks.com/comic/9488865/realm-of-kings-hc',
+    retrievedAt: '2026-11-07',
+  };
+  const markdown = buildMarkdown(mapping);
+  assert.match(markdown, /Comic Book Herald.*collected editions rather than a complete issue sequence/);
+  assert.match(markdown, /\[League of Comic Geeks\]\(https:\/\/leagueofcomicgeeks\.com\/comic\/9488865\/realm-of-kings-hc\)/);
+  assert.match(markdown, /2026-11-07/);
+  assert.match(markdown, /not verified as the physical order/);
+  assert.doesNotMatch(markdown, /transcribes only issue-bearing references|preserves its source order/);
+  assert.deepEqual(parseChecklist(markdown).entries.map((entry) => String(entry.issueId)), ['9001', '9002']);
+});
+
+test('gap-tolerant repeat notes distinguish resolved comics from omitted gaps', () => {
+  const mapping = genericEvidence({ withRepeat: true }).mapping;
+  mapping.sourceOccurrenceCount = 4;
+  mapping.sourceGaps = [{
+    sourcePosition: 4,
+    sourceIssueReference: 'Missing Issue #1',
+    sourceRangeReference: null,
+  }];
+
+  const markdown = buildMarkdown(mapping);
+  assert.match(markdown, /each resolved comic once at its first source occurrence/);
+  assert.doesNotMatch(markdown, /Missing Issue #1/);
+  assert.deepEqual(parseChecklist(markdown).entries.map((entry) => String(entry.issueId)), ['9001', '9002']);
+});
+
+test('existing Thanos checklist keeps its exact issue sequence and excludes its recorded gaps', async () => {
+  const id = 'thanos-reading-order';
+  const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+  const shipped = parseChecklist(await readFile(path.join(dataDir, 'orders', `${id}.md`), 'utf8'));
+  const generated = parseChecklist(buildMarkdown(mapping));
+
+  assert.equal(mapping.sourceGaps.length, 7);
+  assert.equal(mapping.approvedManifest.expect, mapping.rows.length);
+  assert.deepEqual(generated.unresolved, []);
+  assert.deepEqual(generated.entries.map((entry) => entry.issueId), shipped.entries.map((entry) => entry.issueId));
+});
+
 test('checklist gap copy normalizes each typographic dash independently', () => {
   const mapping = genericEvidence().mapping;
   mapping.sourceGaps = [{
@@ -1056,10 +1179,10 @@ test('checklist gap copy normalizes each typographic dash independently', () => 
     sourceIssueReference: 'Gap \u2013 source \u2014 #1',
     sourceRangeReference: null,
   }];
-  assert.match(
-    buildMarkdown(mapping),
-    /- \[ \] Gap - source - #1 <!-- mrt:source-occurrence=3 -->/,
-  );
+  mapping.approvedManifest.expect = mapping.rows.length + mapping.sourceGaps.length;
+  const markdown = buildMarkdown(mapping);
+  assert.match(markdown, /- \[ \] Gap - source - #1 <!-- mrt:source-occurrence=3 -->/);
+  assert.deepEqual(parseChecklist(markdown).unresolved.map((entry) => entry.sourceKey), ['3']);
 });
 
 test('the three blocked source shapes reconstruct one unique first-occurrence sequence', () => {
@@ -1333,6 +1456,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
   const ordersDir = path.join(tempDir, 'orders');
   const payloadDir = path.join(tempDir, 'payloads');
   const manifestFile = path.join(tempDir, 'curated-lists.json');
+  const inventoryFile = path.join(tempDir, 'inventory.json');
 
   try {
     await Promise.all([
@@ -1343,7 +1467,27 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
       mkdir(payloadDir),
     ]);
     const evidence = genericEvidence({ withPeer: true, withRepeat: true });
-    const peerMapping = evidence.peerMappings[0];
+    const peerMapping = structuredClone(evidence.peerMappings[0]);
+    const parentUrl = 'https://www.comicbookherald.com/future-cosmic/';
+    evidence.packet.inventoryId = 'future-cosmic';
+    evidence.packet.sourceUrl = `${parentUrl}future-event/`;
+    evidence.packet.proposedManifest.sourcePage = evidence.packet.sourceUrl;
+    evidence.packet.sourceExpansion = {
+      kind: 'trade-anthology-index',
+      name: 'League of Comic Geeks',
+      url: 'https://leagueofcomicgeeks.com/comic/9488865/realm-of-kings-hc',
+      retrievedAt: '2026-11-07',
+    };
+    const inventoryRecord = {
+      id: evidence.packet.inventoryId,
+      url: parentUrl,
+      disposition: 'grouped-variant',
+      childSources: [{
+        id: evidence.packet.id,
+        url: evidence.packet.sourceUrl,
+        retrievedAt: '2026-08-22',
+      }],
+    };
     const manifestEntry = (id, out, sourcePage) => ({
       id,
       name: id,
@@ -1384,6 +1528,9 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
     evidence.packet.insertionAnchor = { beforeId: 'existing' };
     evidence.packet.packetDigest = packetDigestFor(evidence.packet);
     Object.assign(evidence.mapping, {
+      inventoryId: evidence.packet.inventoryId,
+      sourceUrl: evidence.packet.sourceUrl,
+      sourceExpansion: structuredClone(evidence.packet.sourceExpansion),
       packetDigest: evidence.packet.packetDigest,
       proposedManifest: structuredClone(evidence.packet.proposedManifest),
       approvedManifest: structuredClone(evidence.packet.proposedManifest),
@@ -1428,6 +1575,11 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
       ),
       writeFile(manifestFile, JSON.stringify(manifest), 'utf8'),
       writeFile(
+        inventoryFile,
+        JSON.stringify([inventoryRecord]),
+        'utf8',
+      ),
+      writeFile(
         path.join(payloadDir, 'existing.json'),
         JSON.stringify({ items: [{ issueId: 7001 }] }),
         'utf8',
@@ -1448,8 +1600,12 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
       manifestFile,
       payloadDir,
       peerIds: ['peer-event'],
+      inventoryPaths: [inventoryFile],
     });
     assert.deepEqual(summary, { guides: 1, rows: 2, manifestEntries: 3 });
+    const checklist = await readFile(path.join(ordersDir, 'future-event.md'), 'utf8');
+    assert.match(checklist, /League of Comic Geeks/);
+    assert.match(checklist, /not verified as the physical order/);
     const authoredManifest = JSON.parse(await readFile(manifestFile, 'utf8'));
     assert.deepEqual(
       authoredManifest.lists.find((entry) => entry.id === 'peer-event'),
@@ -1458,6 +1614,55 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
     await writeFile(
       path.join(payloadDir, 'future_event.json'),
       JSON.stringify({ items: [{ issueId: 9001 }, { issueId: 9002 }] }),
+      'utf8',
+    );
+    await writeFile(
+      inventoryFile,
+      JSON.stringify([{
+        ...inventoryRecord,
+        childSources: [{ ...inventoryRecord.childSources[0], url: `${parentUrl}different-source/` }],
+      }]),
+      'utf8',
+    );
+    await assert.rejects(
+      () => authorPacket(['future-event'], {
+        publicationRoot: tempDir,
+        mappingsDir,
+        overlapsDir,
+        packetsDir,
+        ordersDir,
+        manifestFile,
+        payloadDir,
+        peerIds: ['peer-event'],
+        inventoryPaths: [inventoryFile],
+      }),
+      /source URL differs from inventory/i,
+    );
+    for (const [records, expected] of [
+      [[], /unknown inventory record/i],
+      [[inventoryRecord, inventoryRecord], /ambiguous inventory source identity/i],
+      [[{ ...inventoryRecord, id: 'another-parent' }], /registered child source belongs to a different inventory record/i],
+      [[inventoryRecord, { id: evidence.packet.id, url: 'https://www.comicbookherald.com/another-source/' }], /ambiguous inventory source identity/i],
+    ]) {
+      await writeFile(inventoryFile, JSON.stringify(records), 'utf8');
+      await assert.rejects(
+        () => authorPacket(['future-event'], {
+          publicationRoot: tempDir,
+          mappingsDir,
+          overlapsDir,
+          packetsDir,
+          ordersDir,
+          manifestFile,
+          payloadDir,
+          peerIds: ['peer-event'],
+          inventoryPaths: [inventoryFile],
+        }),
+        expected,
+      );
+    }
+    await writeFile(
+      inventoryFile,
+      JSON.stringify([inventoryRecord]),
       'utf8',
     );
 
@@ -1488,6 +1693,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
         manifestFile,
         payloadDir,
         peerIds: ['peer-event'],
+        inventoryPaths: [inventoryFile],
       }),
       /mapping row 2 sourcePosition differs from its frozen packet/i,
     );
@@ -1519,6 +1725,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
         manifestFile,
         payloadDir,
         peerIds: ['peer-event'],
+        inventoryPaths: [inventoryFile],
       }),
       /mapping digest is stale/i,
     );

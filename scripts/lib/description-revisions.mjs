@@ -102,11 +102,22 @@ export function sealChapterDescriptionRevisions({ issue, previous, current, entr
 // emitter, and anything else is unrecorded copy that must stop the check.
 export function createDescriptionRevisions(value, chapterValue = sealChapterDescriptionRevisions({
   issue: value.issue, previous: null, current: null, entries: [],
-})) {
+}), additionalValues = []) {
   const record = validateDescriptionRevisions(value);
+  assert.ok(Array.isArray(additionalValues), 'Additional description revisions must be a list.');
+  const records = [record, ...additionalValues.map(validateDescriptionRevisions)];
+  const entries = records.flatMap((item) => item.entries);
+  const ids = new Set();
+  const files = new Set();
+  for (const entry of entries) {
+    assert.ok(!ids.has(entry.id), `${entry.id}: duplicate revision across records.`);
+    assert.ok(!files.has(entry.file), `${entry.file}: duplicate revision file across records.`);
+    ids.add(entry.id);
+    files.add(entry.file);
+  }
   const chapters = validateChapterDescriptionRevisions(chapterValue);
-  const byId = new Map(record.entries.map((entry) => [entry.id, entry]));
-  const byFile = new Map(record.entries.map((entry) => [entry.file, entry]));
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+  const byFile = new Map(entries.map((entry) => [entry.file, entry]));
   const chapterById = new Map(chapters.entries.map((entry) => [entry.id, entry]));
   const chapterByFile = new Map(chapters.entries.map((entry) => [chapterFileFor(entry.id), entry]));
 
@@ -201,7 +212,7 @@ export function createDescriptionRevisions(value, chapterValue = sealChapterDesc
   }
 
   return {
-    record, entries: record.entries, chapters, beforeEntry, afterEntry, beforeManifest, beforePayloadText,
+    record, records, entries, chapters, beforeEntry, afterEntry, beforeManifest, beforePayloadText,
     undoEntry, redoEntry, undoManifest, undoPayloadText,
   };
 }
@@ -209,6 +220,7 @@ export function createDescriptionRevisions(value, chapterValue = sealChapterDesc
 const readRecord = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
 export const descriptionRevisions = createDescriptionRevisions(
   readRecord('description-revisions.json'), readRecord('chapter-description-revisions.json'),
+  [readRecord('modern-event-description-revision.json')],
 );
 
 export function describeDescriptionRevision({ id, file, before, after, support, sources = [] }, payload) {
