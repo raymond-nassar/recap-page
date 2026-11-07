@@ -134,6 +134,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
       'x-men-utopia',
       'x-men-nation-x',
       'necrosha',
+      'siege-dark-reign-prelude',
       'doomwar',
       'second-coming',
       'thanos-imperative',

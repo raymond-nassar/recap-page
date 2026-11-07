@@ -20,6 +20,23 @@ const valid = {
   expect: 40,
 };
 
+test('reading blocks are opt-in local sections, not an inferred collected-edition boundary', () => {
+  const local = { ...valid, sourceUrl: undefined, sourceFile: 'civil-war.md' };
+  const selected = parseManifest({ lists: [{ ...local, sectionKind: 'reading-blocks' }] });
+  assert.deepEqual(selected.errors, []);
+  assert.equal(selected.entries[0].sectionKind, 'reading-blocks');
+  assert.equal(Object.hasOwn(parseManifest({ lists: [local] }).entries[0], 'sectionKind'), false);
+  for (const entry of [
+    { ...valid, sectionKind: 'reading-blocks' },
+    ...[null, false, '', 'collections', ['reading-blocks']].map((sectionKind) => ({ ...local, sectionKind })),
+    { ...local, sectionKind: 'reading-blocks', partitionFile: 'parts.json', catalog: false },
+  ]) {
+    const result = parseManifest({ lists: [entry] });
+    assert.equal(result.entries.length, 0);
+    assert.match(result.errors.join('\n'), /sectionKind/);
+  }
+});
+
 test('Storylines metadata is strict, whole-group and partition-parent-only', () => {
   for (const storylines of [null, 'true', 1, []]) {
     assert.ok(parseManifest({ lists: [{ ...valid, storylines }] }).errors.length,

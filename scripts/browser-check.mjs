@@ -18888,7 +18888,7 @@ SCENARIOS.push(
           await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
         t.check('the bundled catalog reports the current Timeline and Genres lists',
           census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
-            && census.includes('302 Reading Lists'), JSON.stringify(census));
+            && census.includes('303 Reading Lists'), JSON.stringify(census));
 
         await chooseGenre(page, 'political');
         const searched = await page.evaluate(() => [...document.querySelectorAll(
@@ -23795,7 +23795,7 @@ async function runLongCollectionNavigation(page, t) {
       id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
     })));
     receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
-      cards40: eventIds.length === 40, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      cards41: eventIds.length === 41, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
       variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
       crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
       linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),

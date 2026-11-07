@@ -1122,10 +1122,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11021-11072`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11067-11118`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16481-16618`.
+`src/data/catalog.json:16536-16673`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3473,3 +3473,40 @@ All four guides preserve credited source addresses and store cover addresses onl
 description, source commentary, comic image or Marvel page is stored or fetched, including the
 pages' share.marvel.com Read links. No availability is promised and no existing saved data,
 backups or original issue vector is changed.
+
+## Siege with a Dark Reign prelude
+
+[Issue 1150](https://github.com/raymond-nassar/recap-page/issues/1150) records the owner's
+selection of main events and essential tie-ins, with the Avengers and Thunderbolts runs made
+explicit. This is a project-curated compilation, not an unchanged single-page checklist.
+The credited sources are [Comic Book Herald's Dark Reign guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/dark-reign-reading-order-list/)
+and [Siege guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-13-siege-checklist/),
+retrieved on 2026-11-06. The [between-events page](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-dark-reign-to-siege/)
+informed the coverage audit, not a wholesale import.
+[CBRO's Siege bibliography](https://comicbookreadingorders.com/marvel/events/siege-reading-order/)
+independently supports the selected Loki chapter before Siege #4.
+
+The [local checklist](../src/data/orders/siege-dark-reign-prelude.md) contains 107 distinct
+originals in seven reading blocks. Its earlier setup begins in December 2008 and reaches 2010;
+the owner approved placing the complete reading in 2010, immediately before Doomwar.
+Dark Avengers #1-16, New Avengers #48-64, Mighty Avengers #21-36,
+Avengers: The Initiative #20-35 and Thunderbolts #126-143 contribute 83 numbered originals.
+The remaining 24 cover the opening one-shot, Deadpool crossover, Utopia, selected annuals,
+The List: Avengers, The Cabal, all four Siege issues and the selected event/aftermath chapters.
+The Initiative #31 appears in both source guides and is retained once, with its repeat recorded.
+The provider's official main-series title remains Siege (2009), although its four issues were
+published in 2010.
+
+The [factual source ledger](../scripts/data/curated-source-ledgers/siege-dark-reign-prelude.json)
+accounts for selected, partly selected, excluded and repeated source ranges. All 107 identities
+were verified with genuine successful issue-detail responses; no metadata gap or placeholder was
+invented. Its human source approval and digest-bound reciprocal dispositions cover 340 distinct
+existing visible or retained-hidden orders: 21 partial overlaps and 319 with no shared originals.
+Shared comics stay in both distinct scopes. In particular, the supplied Dark Reign sequence uses
+Dark Avengers #7-8 within Utopia, while the older Utopia guide contains #9-10; that older selection
+and its authority are not rewritten.
+
+Reading blocks retain their labels without claiming to be collected editions. No source
+commentary, provider description or comic image bytes are copied. Cover addresses alone are
+stored, no availability is promised, and no existing guide, saved progress, note or backup format
+changes.

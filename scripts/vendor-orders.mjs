@@ -645,7 +645,9 @@ async function main() {
     // How many collected editions the order is divided into. Counted from the items rather
     // than from the headings, because a heading with no issues under it is not a book a reader
     // can read, and the catalog states this number next to the issue count.
-    const collections = new Set(items.map((i) => i.collectedIn).filter(Boolean)).size;
+    const collections = order.sectionKind === 'reading-blocks'
+      ? 0
+      : new Set(items.map((i) => i.collectedIn).filter(Boolean)).size;
 
     const dupes = new Set();
     const seenIds = new Set();
@@ -663,6 +665,7 @@ async function main() {
       description: order.description,
       source: order.sourcePage,
       ...(order.sourceSection ? { sourceSection: order.sourceSection } : {}),
+      ...(order.sectionKind ? { sectionKind: order.sectionKind } : {}),
       sourceOrigin: order.sourceOrigin,
       sourceLicense: order.sourceLicense,
       generatedAt,

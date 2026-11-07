@@ -9308,6 +9308,52 @@
       "coverIssueId": 28103
     },
     {
+      "id": "siege-dark-reign-prelude",
+      "name": "Siege: Dark Reign Prelude and Essential Tie-Ins",
+      "description": "Norman Osborn's rise and fall, from a Dark Reign prelude beginning in 2008 to the 2010 Siege of Asgard. Follow Dark Avengers, New Avengers, Mighty Avengers, Avengers: The Initiative and Thunderbolts, with the complete four-issue Siege event and selected crossover chapters. The prelude includes the Deadpool/Thunderbolts crossover and Utopia; the event finishes with New Avengers Finale.",
+      "type": "event",
+      "depth": "essential",
+      "storyTypes": [
+        "political",
+        "war",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "siege-dark-reign-prelude.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+      "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
+      "sourceLicense": null,
+      "sectionKind": "reading-blocks",
+      "out": "siege_dark_reign_prelude.json",
+      "characters": [
+        "Avengers",
+        "Dark Avengers",
+        "Thunderbolts",
+        "Norman Osborn",
+        "Thor",
+        "Loki"
+      ],
+      "keywords": [
+        "Siege",
+        "Dark Reign",
+        "New Avengers",
+        "Mighty Avengers",
+        "Avengers: The Initiative",
+        "Thunderbolts",
+        "Utopia",
+        "Deadpool"
+      ],
+      "expect": 107,
+      "timeline": 2010,
+      "coverIssueId": 30468
+    },
+    {
       "id": "doomwar",
       "name": "Doomwar",
       "description": "The complete six-issue conflict between Wakanda and Doctor Doom.",
