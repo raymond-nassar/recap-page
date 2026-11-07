@@ -47,7 +47,7 @@ test('seven independent events remain on Timeline and Genres, not MCU Prep or th
     .flatMap((story) => story.lists.map((list) => list.id)));
   assert.ok(eventIds.every((id) => genreIds.has(id)));
   const timeline = modernTimelineLists(catalog.lists);
-  assert.equal(timeline.length, 155);
+  assert.equal(timeline.length, currentReadingCensus.modernTimeline);
   assert.deepEqual(timeline.filter((entry) => entry.timeline === 2023).map((entry) => entry.id), legacyEventIds);
   assert.deepEqual(timeline.slice(-4).map((entry) => [entry.id, entry.timeline]), [
     ['captain-america-2025-our-secret-wars', 2025], ['one-world-under-doom', 2025],

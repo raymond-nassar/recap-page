@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T00:05:27.240Z",
+  "generatedAt": "2026-11-07T02:45:33.118Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -14276,6 +14276,61 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T15:16:57.185Z"
+    },
+    {
+      "id": "siege-dark-reign-prelude",
+      "file": "siege_dark_reign_prelude.json",
+      "name": "Siege: Dark Reign Prelude and Essential Tie-Ins",
+      "description": "Norman Osborn's rise and fall, from a Dark Reign prelude beginning in 2008 to the 2010 Siege of Asgard. Follow Dark Avengers, New Avengers, Mighty Avengers, Avengers: The Initiative and Thunderbolts, with the complete four-issue Siege event and selected crossover chapters. The prelude includes the Deadpool/Thunderbolts crossover and Utopia; the event finishes with New Avengers Finale.",
+      "type": "event",
+      "depth": "essential",
+      "storyTypes": [
+        "political",
+        "war",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
+      "count": 107,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Dark Avengers",
+        "Thunderbolts",
+        "Norman Osborn",
+        "Thor",
+        "Loki"
+      ],
+      "keywords": [
+        "Siege",
+        "Dark Reign",
+        "New Avengers",
+        "Mighty Avengers",
+        "Avengers: The Initiative",
+        "Thunderbolts",
+        "Utopia",
+        "Deadpool"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2010,
+      "coverIssueId": 30468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/59c2d0c4a857a",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+      "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T02:45:33.118Z"
     },
     {
       "id": "doomwar",
