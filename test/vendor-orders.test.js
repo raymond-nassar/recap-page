@@ -421,6 +421,34 @@ globalThis.fetch = async () => {
   assert.equal(payload.items[0].digitalId, 101);
 });
 
+test('reading-block vendoring preserves headings without claiming collected editions and leaves defaults unchanged', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-reading-blocks-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  setFixtureCoverIssue(fixture, 1);
+  const data = path.join(fixture, 'src', 'data');
+  const manifestPath = path.join(data, 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  writeFileSync(path.join(data, 'orders', 'atomic-order.md'),
+    '## Earlier setup\n\n- [ ] [Atomic Order #1](https://www.marvel.com/comics/issue/1/atomic_order_1)\n');
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  for (const readingBlocks of [true, false]) {
+    if (readingBlocks) manifest.lists[0].sectionKind = 'reading-blocks';
+    else delete manifest.lists[0].sectionKind;
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+    const result = spawnSync(process.execPath,
+      ['scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+      { cwd: fixture, encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    const payload = JSON.parse(readFileSync(path.join(data, 'atomic_order.json'), 'utf8'));
+    const catalog = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8'));
+    assert.equal(payload.items[0].collectedIn, 'Earlier setup');
+    assert.equal(payload.collections, readingBlocks ? 0 : 1);
+    assert.equal(catalog.lists[0].collections, payload.collections);
+    assert.equal(payload.sectionKind, readingBlocks ? 'reading-blocks' : undefined);
+  }
+});
+
 test('invalid cache-only metadata leaves final vendor outputs unchanged', (t) => {
   const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cache-atomic-'));
   t.after(() => rmSync(fixture, { recursive: true, force: true }));
