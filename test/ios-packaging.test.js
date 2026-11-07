@@ -1247,6 +1247,13 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
 });
 
+test('T03 passive DOM digest stays strict about navigation visibility', () => {
+  const digest = debugSupport.slice(debugSupport.indexOf('const domDigest = async () => {'),
+    debugSupport.indexOf('window.__recapPassiveGuard = Object.freeze({'));
+  assert.match(digest, /const clone = document\.documentElement\.cloneNode\(true\);/);
+  assert.doesNotMatch(digest, /classList|mobile-nav-hidden|rail-header/);
+});
+
 test('the SE privacy scroll diagnostic skips unless its dedicated run opts in', () => {
   const start = presentationTests.indexOf('func testSEPrivacyScrollDiagnostic() throws {');
   const head = presentationTests.slice(start, presentationTests.indexOf('let app = launch(', start));
@@ -1631,7 +1638,7 @@ test('iOS Library and Search controls retain one named parent target', () => {
   const controller = appSource('WebViewController');
   for (const selector of [
     '.breadcrumb a', '#library-rated-shelf .btn', '#view-library .search-hub-card',
-    '#view-add .search-hub-card', '#view-add summary',
+    '#view-add .search-hub-card', '#view-add summary', '.mobile-link[data-view="add"]',
   ]) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
