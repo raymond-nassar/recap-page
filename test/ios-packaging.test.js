@@ -1653,7 +1653,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
   assert.match(tests, /let displacement = element\.frame\.midY - usableFrame\.midY/);
   assert.match(tests, /press\(forDuration: 0\.1, thenDragTo: end\)/);
-  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=']) {
+  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=', '.home-guide-link']) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
 });
