@@ -18,7 +18,9 @@ import {
 } from '../src/js/lib/completeBackup.js';
 import { keepCurrentQuestion, keptNotice } from '../src/js/views/data.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue } from '../src/js/lib/model.js';
-import { KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_MARKER_KEY } from '../src/js/storage.js';
+import {
+  KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_MARKER_KEY, CLOUD_SYNC_PENDING_KEY,
+} from '../src/js/storage.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT } from '../src/js/lib/listHistory.js';
 import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences } from '../src/js/lib/importDraft.js';
 
@@ -225,6 +227,19 @@ function environment(entries = localEntries()) {
 
 const priorOf = (env) => Object.fromEntries(RESTORE_KEYS.map((key) => [key, env.storage.map.get(key) ?? null]));
 const emptyImportDraft = () => ({ recovery: [], uncertain: false });
+
+test('complete backup and restore do not carry the local cloud-check marker', async () => {
+  const env = environment();
+  const marker = 'local-cloud-check-marker';
+  env.storage.setItem(CLOUD_SYNC_PENDING_KEY, marker);
+  const backup = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  assert.ok(!backup.text.includes(marker), 'a portable file does not contain this device-only marker');
+  assert.ok(!RESTORE_KEYS.includes(CLOUD_SYNC_PENDING_KEY));
+  const tab = await env.open();
+  const { text } = await fileBackup();
+  assert.equal((await tab.restore(text, { importDraft: emptyImportDraft() })).ok, true);
+  assert.equal(env.storage.getItem(CLOUD_SYNC_PENDING_KEY), marker, 'restoring data leaves the live marker alone');
+});
 
 test('complete restore applies authentic pre-withdrawal reader drafts and keeps their exact source and selections', async () => {
   const { readFileSync } = await import('node:fs');
@@ -530,6 +545,46 @@ test('a guarded restore retains recovery if import source becomes unsaved betwee
   assert.ok(tab.state.recovery, 'the interrupted restore remains recoverable');
 });
 
+test('a guarded cloud restore completes if its network authorization changes after the marker', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  let authorized = true;
+  const progress = env.journal.progress;
+  env.journal.progress = async (record) => {
+    await progress(record);
+    if (record.writes === 1) authorized = false;
+  };
+  const result = await tab.restore((await fileBackup()).text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft(),
+    assertAuthorized: async () => { if (!authorized) throw new Error('The cloud connection changed.'); },
+  });
+  assert.deepEqual([result.ok, result.changed], [true, true]);
+  assert.equal(env.journal.record.phase, 'done');
+  assert.equal(tab.state.recovery, null);
+});
+
+test('a guarded cloud restore still stops if its local authorization is invalidated between writes', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  let valid = true;
+  const progress = env.journal.progress;
+  env.journal.progress = async (record) => {
+    await progress(record);
+    if (record.writes === 1) valid = false;
+  };
+  const result = await tab.restore((await fileBackup()).text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft(),
+    assertAuthorized: async () => {},
+    assertStillAuthorized: () => { if (!valid) throw new Error('The local cloud choice changed.'); },
+  });
+  assert.deepEqual([result.ok, result.changed], [false, null]);
+  assert.match(result.error, /local cloud choice changed/i);
+  assert.equal(env.journal.record.writes, 1);
+  assert.ok(tab.state.recovery);
+});
+
 test('a guarded restore does not report success when the import state becomes uncertain at completion', async () => {
   const env = environment();
   const tab = await env.open();
@@ -646,6 +701,7 @@ async function checkMarkerReadFailure(persistent, optionsFor = async () => ({}))
   assert.equal(readMarker(env.storage).state, 'active');
   assert.ok(env.journal.record, 'an active marker must not outlive its recovery journal');
   assert.deepEqual([result.ok, result.changed, result.copyKept], [false, false, true]);
+  assert.equal(result.recoveryPending, true, 'the marked journal can still finish after reload');
   assert.match(result.error, /recovery copy was kept/i);
   assertImage(env, before, 'a failed marker check does not replace data');
   assert.equal(tab.state.available, false);
@@ -1237,6 +1293,95 @@ test('a copy unreadable at the start is never deleted unseen: keeping finds it r
     'the copy, Finish and Restore prior data are offered instead',
   );
   assert.equal(JSON.parse(await tab.exportPrior()).restoreId, record.id);
+  assert.equal(tab.state.phase, 'paused');
+});
+
+test('a guarded restore rechecks unsaved import source after asynchronous pre-marker authorization', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  const draft = emptyImportDraft();
+  const result = await tab.restore((await fileBackup()).text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: draft,
+    assertAuthorized: async () => {
+      queueMicrotask(() => queueMicrotask(() => { draft.recovery = ['unsaved source']; }));
+    },
+  });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /import draft.*unsaved or unchecked/i);
+  assert.deepEqual(draft.recovery, ['unsaved source']);
+  assertImage(env, before, 'a draft that changed after authorization prevents the next write');
+  assert.equal(env.journal.record, null);
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+});
+
+test('a guarded restore rechecks local authorization after asynchronous pre-marker authorization', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  const before = priorOf(env);
+  let valid = true;
+  const assertCurrent = () => { if (!valid) throw new Error('The cloud choice changed.'); };
+  const result = await tab.restore((await fileBackup()).text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft(), assertStillAuthorized: assertCurrent,
+    assertAuthorized: async () => {
+      assertCurrent();
+      queueMicrotask(() => queueMicrotask(() => { valid = false; }));
+    },
+  });
+  assert.deepEqual([result.ok, result.changed], [false, false]);
+  assert.match(result.error, /cloud choice changed/i);
+  assertImage(env, before, 'a revoked cloud choice prevents the next write');
+  assert.equal(env.journal.record, null);
+  assert.equal(env.storage.getItem(RESTORE_MARKER_KEY), null);
+});
+
+test('a guarded restore refuses a foreign write before the final checkpoint', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  let injected = false;
+  const progress = env.journal.progress;
+  env.journal.progress = async (record) => {
+    await progress(record);
+    if (!injected && record.phase === 'applying' && record.writes === 8) {
+      injected = true;
+      env.storage.setItem(SETTINGS_KEY, JSON.stringify({ theme: 'light' }));
+    }
+  };
+  const result = await tab.restore((await fileBackup()).text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft(),
+  });
+  assert.equal(injected, true);
+  assert.deepEqual([result.ok, result.changed], [false, null]);
+  assert.match(result.error, /saved data.*changed|does not match/i);
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'light');
+  assert.equal(env.journal.record.phase, 'applying');
+  assert.equal(tab.state.phase, 'paused');
+});
+
+test('a guarded restore refuses a foreign write after the final checkpoint', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const kept = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+  let injected = false;
+  const progress = env.journal.progress;
+  env.journal.progress = async (record) => {
+    await progress(record);
+    if (!injected && record.phase === 'done') {
+      injected = true;
+      env.storage.setItem(SETTINGS_KEY, JSON.stringify({ theme: 'light' }));
+    }
+  };
+  const result = await tab.restore((await fileBackup()).text, {
+    expectedPriorDigest: kept.backup.digest, importDraft: emptyImportDraft(),
+  });
+  assert.equal(injected, true);
+  assert.deepEqual([result.ok, result.changed], [false, null]);
+  assert.match(result.error, /saved data.*changed|does not match/i);
+  assert.equal(JSON.parse(env.storage.getItem(SETTINGS_KEY)).theme, 'light');
+  assert.equal(env.journal.record.phase, 'done');
   assert.equal(tab.state.phase, 'paused');
 });
 

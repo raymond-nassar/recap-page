@@ -168,6 +168,8 @@ enum DebugSupport {
         ['keydown', true, null, '/mobile/mobile-ui.js', 'wireMobileUi'],
         ['keydown', true, null, '/js/views/home-updates.js', 'wire'],
         ['pointerdown', false, null, '/js/views/home-updates.js', 'wire'],
+        ['pointerdown', true, true, '/js/main.js', 'boot'],
+        ['keydown', true, null, '/js/main.js', 'boot'],
         ['keydown', true, null, '/js/lib/tooltips.js', 'wireTooltips'],
         ['pointerover', false, null, '/js/lib/tooltips.js', 'wireTooltips'],
         ['pointerout', false, null, '/js/lib/tooltips.js', 'wireTooltips'],

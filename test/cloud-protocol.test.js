@@ -14,13 +14,17 @@ import {
   MAX_CLOUD_BACKUP_BYTES, CloudBackupError, CloudBackupProtocol, cloudBackupName, cloudDeviceLabel, createCloudRecordStore,
   parseCloudBackupName,
 } from '../src/js/lib/cloudProtocol.js';
-import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, personalDigest } from '../src/js/lib/cloudCoordinator.js';
+import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, createSavedChanges, personalDigest } from '../src/js/lib/cloudCoordinator.js';
 import { CLOUD_SIGN_IN_POLL_MS, ERASE_HOST_SILENT_DEVICE, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
-import { cloudCardStatus, cloudCardWarns, cloudEraseNote, cloudEraseOutcome } from '../src/js/views/cloud.js';
+import { cloudCardStatus, cloudCardWarns, cloudEraseNote, cloudEraseOutcome, cloudSyncQuestion } from '../src/js/views/cloud.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
-import { canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
+import { CAPTURE_KEYS, canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
-import { CLOUD_BACKUP_DATABASE, CLOUD_BACKUP_LOCK, KEY, SETTINGS_KEY, SIDEBAR_KEY } from '../src/js/storage.js';
+import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences } from '../src/js/lib/importDraft.js';
+import {
+  CLOUD_BACKUP_DATABASE, CLOUD_BACKUP_LOCK, CLOUD_SYNC_OFFER_LOCK, CLOUD_SYNC_PENDING_KEY,
+  IMPORT_DRAFT_KEY, KEY, RESTORE_MARKER_KEY, SETTINGS_KEY, SIDEBAR_KEY,
+} from '../src/js/storage.js';
 import { createCloudHostTransport } from '../src/js/lib/cloudHostTransport.js';
 import { createICloudTransport } from '../packaging/ios/icloud-web/icloudTransport.js';
 
@@ -138,6 +142,15 @@ function fakeIndexedDB() {
       connections.delete(name);
       databases.delete(name);
     },
+  };
+}
+
+function loseNextSyncWrite(idb, protocol) {
+  const write = protocol.records.writeSync;
+  protocol.records.writeSync = (...args) => {
+    protocol.records.writeSync = write;
+    idb.faults.drop = 1;
+    return write(...args);
   };
 }
 
@@ -280,6 +293,17 @@ function fakeLocks() {
   return {
     held: (name) => slot(name).held.length,
     waiting: (name) => slot(name).queue.length,
+    async query() {
+      return {
+        held: [...names].flatMap(([name, lock]) => lock.held.map(({ mode }) => ({ name, mode }))),
+        pending: [...names].flatMap(([name, lock]) => lock.queue.map(({ mode }) => ({ name, mode }))),
+      };
+    },
+    closeHolder(name) {
+      const lock = slot(name);
+      lock.held.length = 0;
+      pump(lock);
+    },
     async request(name, options, callback) {
       const lock = slot(name);
       const mode = options.mode ?? 'exclusive';
@@ -293,7 +317,8 @@ function fakeLocks() {
       }
       try { return await callback({ name, mode }); }
       finally {
-        lock.held.splice(lock.held.indexOf(entry), 1);
+        const index = lock.held.indexOf(entry);
+        if (index >= 0) lock.held.splice(index, 1);
         pump(lock);
       }
     },
@@ -326,6 +351,7 @@ function fakeTime(start = 1_800_000_000_000) {
       return id;
     },
     clearTimer(id) { timers.delete(id); },
+    pendingIn(ms) { return [...timers.values()].some((timer) => timer.at === now + ms); },
     async advance(ms, coordinators = []) {
       const end = now + ms;
       for (;;) {
@@ -387,9 +413,18 @@ function device(read = { 1: 111 }) {
   };
 }
 
+function savedDraft(rawText) {
+  return {
+    format: DRAFT_FORMAT, version: DRAFT_VERSION, rawText, occurrences: sourceOccurrences(rawText),
+    incarnation: 'local', revision: 'local', previousSources: [],
+    destination: { id: 'dest', created: 5, name: 'Pasted', newList: true, prefix: [] },
+    expected: null, readerToken: null, paused: false, pending: null,
+  };
+}
+
 function harness({ idb = fakeIndexedDB(), transport = fakeTransport(), locks = fakeLocks(), time = { now: 1_800_000_000_000 } } = {}) {
   return {
-    idb, transport, locks, time,
+    idb, transport, locks, time, syncStorage: memoryStorage(),
     make: (overrides = {}) => new CloudBackupProtocol({
       transport, records: createCloudRecordStore(idb), cryptoProvider: webcrypto, locks, clock: () => time.now, ...overrides,
     }),
@@ -675,6 +710,94 @@ test('review: retention protects a go-back reference older than the newest three
   assert.equal((await protocol.syncState(ON)).kept.id, copies[0].id);
 });
 
+test('retention also protects an unconfirmed replacement older than the newest three', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const prune = protocol.pruneKept;
+  protocol.pruneKept = async () => {};
+  const copies = [];
+  for (let change = 1; change <= 5; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const context = await syncContext(protocol);
+  const entry = (await protocol.keptLedger()).entries.find((held) => held.id === copies[0].id);
+  await protocol.rememberKept(context, entry);
+  await protocol.setKeptPending({ ...context, kept: copies[1], expected: null, authorize: () => true });
+  protocol.pruneKept = prune;
+  await protocol.pruneKept(context);
+  assert.ok(env.transport.files.has(copies[0].id), 'the active recovery reference is preserved');
+  assert.ok(env.transport.files.has(copies[1].id), 'the unconfirmed replacement is preserved');
+});
+
+test('retention protects both staged references after consent is withdrawn', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const prune = protocol.pruneKept;
+  protocol.pruneKept = async () => {};
+  const copies = [];
+  for (let change = 1; change <= 5; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const context = await syncContext(protocol);
+  const entry = (await protocol.keptLedger()).entries.find((held) => held.id === copies[0].id);
+  await protocol.rememberKept(context, entry);
+  await protocol.setKeptPending({
+    ...context, kept: copies[1], targetDigest: 'a'.repeat(64), previousKept: copies[0], expected: null, authorize: () => true,
+  });
+  await protocol.withdrawConsent();
+  await protocol.recordConsent(CONSENT);
+  protocol.pruneKept = prune;
+  await protocol.pruneKept(await syncContext(protocol));
+  assert.ok(env.transport.files.has(copies[0].id), 'the previous active copy remains protected');
+  assert.ok(env.transport.files.has(copies[1].id), 'the staged replacement remains protected');
+});
+
+test('retention protects a staged copy after this device starts a new stream', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  const prune = protocol.pruneKept;
+  protocol.pruneKept = async () => {};
+  const copies = [];
+  for (let change = 1; change <= 5; change += 1) {
+    copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+  }
+  const context = await syncContext(protocol);
+  const entry = (await protocol.keptLedger()).entries.find((held) => held.id === copies[0].id);
+  await protocol.rememberKept(context, entry);
+  await protocol.setKeptPending({
+    ...context, kept: copies[1], targetDigest: 'a'.repeat(64), previousKept: copies[0], expected: null, authorize: () => true,
+  });
+  const record = await protocol.record();
+  await protocol.restream({ stream: record.stream, consent: record.consent }, { allocate: false });
+  protocol.pruneKept = prune;
+  await protocol.pruneKept(await syncContext(protocol));
+  assert.ok(env.transport.files.has(copies[0].id), 'the previous active copy remains protected');
+  assert.ok(env.transport.files.has(copies[1].id), 'the staged replacement remains protected across stream changes');
+});
+
+test('a pending recovery marker waits for pruning and rechecks the exact file', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const kept = await protocol.keepBackup(await uploadForKept(protocol, device(), 1));
+  const context = await syncContext(protocol);
+  let finished = false;
+  let writing;
+  await env.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive' }, async () => {
+    writing = protocol.setKeptPending({ ...context, kept, expected: null, authorize: () => true })
+      .then(() => { finished = true; });
+    await settle();
+    assert.equal(finished, false, 'the recovery marker waits while the backup worker holds the lock');
+  });
+  await writing;
+  await protocol.setKeptPending({ ...context, kept: null, expected: kept, authorize: () => true });
+  env.transport.files.delete(kept.id);
+  await assert.rejects(protocol.setKeptPending({ ...context, kept, expected: null, authorize: () => true }));
+  assert.equal(await protocol.keptPending(ON), null, 'a vanished copy cannot be marked safe');
+});
+
 // A file as this version writes one, assembled here so a test can alter any part of it.
 function envelopeFile({ stream, generation, backup, device: label = 'Planted', createdAt = 5 }) {
   return gzipSync(Buffer.from(canonical({
@@ -683,6 +806,151 @@ function envelopeFile({ stream, generation, backup, device: label = 'Planted', c
 }
 
 // ------------------------------------------------------------------ the record
+
+test('sync discovery checks the newest generation of every other stream and returns exact content identities', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const first = await device({ 1: 111 }).snapshot();
+  const second = await device({ 1: 222 }).snapshot();
+  const another = 'a'.repeat(32);
+  env.transport.store(cloudBackupName(stream, 1), envelopeFile({ stream, generation: 1, backup: first.backup }));
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: first.backup }));
+  const latest = env.transport.store(cloudBackupName(OTHER, 2), envelopeFile({
+    stream: OTHER, generation: 2, backup: second.backup, device: 'Phone', createdAt: 123,
+  }));
+  env.transport.store(cloudBackupName(another, 1), envelopeFile({ stream: another, generation: 1, backup: first.backup }));
+  env.transport.store('notes.txt', new Uint8Array([1]));
+  const found = await protocol.discoverSync(await syncContext(protocol));
+  assert.equal(found.length, 2);
+  const phone = found.find((item) => item.stream === OTHER);
+  assert.equal(phone.id, latest);
+  assert.equal(phone.generation, 2);
+  assert.equal(phone.createdAt, 123);
+  assert.equal(phone.device, 'Phone');
+  assert.equal(phone.digest, second.personalDigest);
+  assert.equal(phone.contentDigest, second.backup.digest);
+  assert.match(phone.byteDigest, /^[a-f0-9]{64}$/);
+  assert.equal(phone.text, undefined, 'the checked contents are fetched again when chosen');
+});
+
+test('sync discovery refuses an unreadable newest backup instead of falling back to an older generation', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const saved = await device().snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+  env.transport.store(cloudBackupName(OTHER, 2), new Uint8Array([1, 2, 3]));
+  await assert.rejects(protocol.discoverSync(await syncContext(protocol)), { code: 'invalid' });
+});
+
+test('sync discovery fails closed for ambiguous, unsupported and omitted backup identities', async () => {
+  const saved = await device().snapshot();
+  for (const kind of ['duplicate', 'future', 'omitted']) {
+    const env = harness({ transport: fakeTransport({ duplicates: true }) });
+    const { protocol } = await consented(env, kind === 'omitted' ? { limits: { streams: 1, readsPerStream: 4 } } : undefined);
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+    if (kind === 'duplicate') {
+      env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+    } else if (kind === 'future') {
+      env.transport.store('recap-page-backup-v2-unreadable.json.gz', new Uint8Array([1]));
+    } else {
+      const another = 'a'.repeat(32);
+      env.transport.store(cloudBackupName(another, 1), envelopeFile({ stream: another, generation: 1, backup: saved.backup }));
+    }
+    await assert.rejects(protocol.discoverSync(await syncContext(protocol)), { code: 'invalid' }, kind);
+  }
+});
+
+test('sync discovery refuses a newer candidate appearing while the current candidate is being read', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const saved = await device().snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+  env.transport.faults.read.push(async () => {
+    env.transport.store(cloudBackupName(OTHER, 2), envelopeFile({ stream: OTHER, generation: 2, backup: saved.backup }));
+  });
+  await assert.rejects(protocol.discoverSync(await syncContext(protocol)), { code: 'raced' });
+});
+
+test('the sync upload gate is durable, consent-scoped and erased with the cloud record', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const epoch = 'b'.repeat(32);
+  assert.equal(await protocol.syncGate(context), null, 'an absent gate is not permission to upload');
+  await protocol.setSyncGate({ ...context, epoch, held: true });
+  assert.deepEqual(await env.make().syncGate(context), { ...context, epoch, held: true, version: 1 });
+  await protocol.setSyncGate({ ...context, epoch, held: false });
+  assert.equal((await env.make().syncGate(context)).held, false);
+  await protocol.withdrawConsent();
+  await protocol.recordConsent(CONSENT);
+  const renewed = await syncContext(protocol);
+  assert.notEqual(renewed.consentId, context.consentId);
+  assert.equal(await env.make().syncGate(renewed), null, 'earlier consent cannot authorize an upload');
+  await assert.rejects(protocol.setSyncGate({ ...context, epoch, held: false }), { code: 'needs-consent' });
+  await protocol.forget();
+  assert.equal(env.idb.databases.get(CLOUD_BACKUP_DATABASE).get('stream').has('sync-gate'), false);
+});
+
+test('a canceled sync gate release aborts its transaction before it can commit', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const epoch = 'b'.repeat(32);
+  await protocol.setSyncGate({ ...context, epoch, held: true });
+
+  const controller = new AbortController();
+  const write = protocol.records.writeSyncGate;
+  protocol.records.writeSyncGate = (change, options) => write((...args) => {
+    const result = change(...args);
+    controller.abort();
+    return result;
+  }, options);
+  let committed = false;
+  await assert.rejects(protocol.setSyncGate({
+    ...context, epoch, held: false, authorize: () => true, signal: controller.signal,
+    onCommitted: () => { committed = true; },
+  }));
+  assert.equal(committed, false);
+  assert.equal((await env.make().syncGate(context)).held, true);
+
+  protocol.records.writeSyncGate = write;
+  await assert.rejects(protocol.setSyncGate({
+    ...context, epoch: 'c'.repeat(32), held: true, authorize: () => false,
+  }), { code: 'raced' });
+  assert.equal((await env.make().syncGate(context)).epoch, epoch, 'an obsolete hold cannot replace the current epoch');
+
+  const rollback = new AbortController();
+  const writeSync = protocol.records.writeSync;
+  protocol.records.writeSync = (change, options) => writeSync((...args) => {
+    const result = change(...args);
+    rollback.abort();
+    return result;
+  }, options);
+  await assert.rejects(protocol.rememberSync({
+    ...context, declinedDigest: 'd'.repeat(64), authorize: () => true, signal: rollback.signal,
+  }));
+  assert.equal((await env.make().syncState(ON))?.declinedDigest ?? null, null,
+    'a canceled interrupted-choice rollback cannot commit');
+});
+
+test('a sync gate release reports its commit before the verification read', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const epoch = 'b'.repeat(32);
+  await protocol.setSyncGate({ ...context, epoch, held: true });
+  let committed = false;
+  const read = protocol.records.readSyncGate;
+  protocol.records.readSyncGate = async () => {
+    assert.equal(committed, true, 'the committed choice is known before read-back begins');
+    return read();
+  };
+  await protocol.setSyncGate({
+    ...context, epoch, held: false, signal: new AbortController().signal,
+    onCommitted: () => { committed = true; },
+  });
+  assert.equal((await env.make().syncGate(context)).held, false);
+});
 
 test('the record is written with strict durability, survives a new page, and is refused rather than lost', async () => {
   const idb = fakeIndexedDB();
@@ -1549,20 +1817,2682 @@ function windowsHost(transport, { account = 'reader@example.test' } = {}) {
   });
 }
 
-function page({ env, home = device(), channel = null, databases, savedChanges = null, device: label = 'Microsoft Edge on Windows' } = {}) {
+function page({
+  env, home = device(), channel = null, databases, savedChanges = null, launchSync = false,
+  events = new EventTarget(), isHidden = () => false, isOnline = () => true, device: label = 'Microsoft Edge on Windows',
+  isBlocked = () => false,
+} = {}) {
   const time = fakeTime();
   const protocol = env.make({ clock: time.now });
   const cloud = createCloudBackup({
     transport: env.transport, protocol, ...(label === null ? {} : { device: label }), channel, setTimer: time.setTimer, savedChanges,
-    capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }),
+    syncStorage: () => env.syncStorage,
+    capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }), isBlocked,
     databases: databases ?? (async () => [...env.idb.databases.keys()].map((name) => ({ name, version: 1 }))),
     coordinator: {
-      locks: env.locks, events: new EventTarget(), clock: time.now, setTimer: time.setTimer, clearTimer: time.clearTimer,
-      cryptoProvider: webcrypto, isOnline: () => true, isHidden: () => false,
+      locks: env.locks, events, clock: time.now, setTimer: time.setTimer, clearTimer: time.clearTimer,
+      cryptoProvider: webcrypto, isOnline, isHidden,
     },
+    ...(launchSync ? {
+      launchSync: {
+        locks: env.locks, setTimer: time.setTimer, clearTimer: time.clearTimer, cryptoProvider: webcrypto,
+        restoreReady: async () => ({ ok: true }),
+        snapshotCurrent: (witness) => CAPTURE_KEYS.every((key) => (home.storage.getItem(key) ?? null) === witness[key]),
+        ...(launchSync === true ? {} : launchSync),
+      },
+    } : {}),
   });
   return { env, protocol, home, time, cloud, run: (ms = 0) => time.advance(ms, [cloud]) };
 }
+
+test('a consented OneDrive launch checks other devices before the automatic backup can run', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const { cloud, time } = page({ env, launchSync: true });
+  await cloud.resume();
+  assert.ok(cloud.model.sync, 'launch sync is part of the cloud card model');
+  await until(() => cloud.model.sync.phase === 'offer', 'the other device is offered');
+  assert.equal(cloud.model.sync.offer.remote.device, 'Phone');
+  await time.advance(CLOUD_BACKUP_CADENCE.minIntervalMs, [cloud]);
+  assert.deepEqual(env.transport.created, [], 'an unresolved offer holds automatic uploads');
+  await cloud.turnOff();
+});
+
+for (const provider of ['googledrive', 'icloud']) {
+  test(`${provider} keeps its existing backup behavior without the OneDrive launch offer`, async () => {
+    const transport = windowsHost(fakeTransport());
+    transport.status = async () => ({
+      enabled: true, provider, state: 'connected', connection: 'connection-one', account: 'reader@example.test',
+    });
+    const env = harness({ transport });
+    const protocol = env.make();
+    await protocol.recordConsent({ ...CONSENT, provider });
+    const remote = await device({ 1: 333 }).snapshot();
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    const tab = page({ env, launchSync: true });
+    await tab.cloud.resume();
+    assert.equal(tab.cloud.model.sync.phase, 'off');
+    await tab.time.advance(CLOUD_BACKUP_CADENCE.maxWaitMs, [tab.cloud]);
+    assert.ok(env.transport.created.some((name) => parseCloudBackupName(name)), 'automatic backup still runs');
+    assert.equal(tab.cloud.model.sync.phase, 'off', 'no launch choice is shown');
+    await tab.cloud.turnOff();
+  });
+}
+
+test('a saved change withdraws a launch offer immediately, before it is checked again', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const savedChanges = createSavedChanges();
+  const { cloud, home, time } = page({ env, launchSync: true, savedChanges });
+  await cloud.resume();
+  await until(() => cloud.model.sync.phase === 'offer', 'the other device is offered');
+  home.mark(2);
+  savedChanges.notify();
+  assert.equal(cloud.model.sync.phase, 'checking', 'the old offer is withdrawn as soon as the data changes');
+  await time.advance(1000, [cloud]);
+  await until(() => cloud.model.sync.phase === 'offer', 'the changed device is compared again');
+  assert.equal(cloud.model.sync.offer.local.readCount, 2);
+  await cloud.turnOff();
+});
+
+test('turning off withdraws a cloud choice before consent withdrawal finishes', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  let release;
+  const paused = new Promise((resolve) => { release = resolve; });
+  const withdraw = tab.protocol.withdrawConsent.bind(tab.protocol);
+  tab.protocol.withdrawConsent = async () => { await paused; return withdraw(); };
+  const turningOff = tab.cloud.turnOff();
+  assert.equal(tab.cloud.model.sync.phase, 'off', 'the old choice disappears before storage answers');
+  assert.equal((await tab.cloud.keepSync()).ok, false);
+  release();
+  await turningOff;
+});
+
+test('an outstanding cloud choice stays open while unchanged, then follows newer and removed backups', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const older = await device({ 1: 333 }).snapshot();
+  const first = env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: older.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const shown = tab.cloud.model.sync.offer;
+  const lists = env.transport.calls.filter((call) => call === 'list').length;
+  const reads = env.transport.calls.filter((call) => call === 'read').length;
+  await tab.time.advance(5000);
+  await until(() => env.transport.calls.filter((call) => call === 'list').length > lists, 'the offer is rechecked');
+  await until(() => tab.time.pendingIn(5000) || tab.time.pendingIn(15000), 'the next offer check is scheduled');
+  assert.equal(env.transport.calls.filter((call) => call === 'read').length, reads, 'unchanged backups are not downloaded again');
+  assert.equal(tab.time.pendingIn(15000), true, 'unchanged listings back off');
+  assert.equal(tab.cloud.model.sync.phase, 'offer', 'the unchanged offer remains');
+  assert.equal(tab.cloud.model.sync.offer, shown, 'an unchanged question is not interrupted');
+  assert.equal((await protocol.syncGate(context)).held, true);
+
+  const newer = await device({ 2: 444 }).snapshot();
+  const second = env.transport.store(cloudBackupName(OTHER, 2), envelopeFile({
+    stream: OTHER, generation: 2, backup: newer.backup, device: 'Phone', createdAt: 124,
+  }));
+  await tab.time.advance(15000);
+  await until(() => tab.cloud.model.sync.offer?.remote.id === second, 'the newer backup replaces the earlier choice');
+  await until(() => tab.time.pendingIn(5000), 'the replacement is watched');
+  assert.equal((await protocol.syncGate(context)).held, true);
+
+  env.transport.files.delete(first);
+  env.transport.files.delete(second);
+  await tab.time.advance(5000);
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the vanished backup is withdrawn and checked again');
+  assert.equal(tab.cloud.model.sync.notice, null);
+  assert.equal((await protocol.syncGate(context)).held, false);
+  await tab.cloud.turnOff();
+});
+
+test('an unchanged offer uses bounded listing-only checks over an hour, including unknown listed sizes', async () => {
+  const transport = windowsHost(fakeTransport());
+  const list = transport.list.bind(transport);
+  transport.list = async (options) => (await list(options)).map((item) => ({ ...item, size: null }));
+  const env = harness({ transport });
+  await consented(env);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const reads = transport.calls.filter((call) => call === 'read').length;
+  const lists = transport.calls.filter((call) => call === 'list').length;
+  const delays = [5_000, 15_000, 60_000, ...Array(11).fill(300_000)];
+  for (const [index, delay] of delays.entries()) {
+    await tab.time.advance(delay);
+    const next = index === 0 ? 15_000 : index === 1 ? 60_000 : 300_000;
+    await until(() => tab.time.pendingIn(next), 'the next backed-off listing is scheduled');
+    assert.equal(tab.cloud.model.sync.phase, 'offer');
+  }
+  await tab.time.advance(3_600_000 - delays.reduce((sum, delay) => sum + delay, 0));
+  assert.equal(transport.calls.filter((call) => call === 'list').length - lists, 14);
+  assert.equal(transport.calls.filter((call) => call === 'read').length, reads, 'unchanged files are never downloaded by the watch');
+  await tab.cloud.turnOff();
+});
+
+test('a same-size change remains subject to byte verification before Keep', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  const id = env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const file = env.transport.files.get(id);
+  file.bytes[file.bytes.length - 1] ^= 1;
+  await tab.time.advance(5_000);
+  await until(() => tab.time.pendingIn(15_000), 'the unchanged listing is watched');
+  assert.equal(tab.cloud.model.sync.phase, 'offer', 'a listing cannot detect changed bytes of the same size');
+  assert.equal((await tab.cloud.keepSync()).ok, false, 'the final check does detect the changed bytes');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.deepEqual(await protocol.syncDeclines(context), []);
+  await tab.cloud.turnOff();
+});
+
+test('a stalled offer recheck withdraws the choice and ignores its eventual answer', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  let release;
+  let entered = false;
+  const wait = new Promise((resolve) => { release = resolve; });
+  env.transport.faults.list.push(async () => { entered = true; await wait; });
+  await tab.time.advance(5000);
+  await until(() => entered, 'the offer recheck starts');
+  await tab.time.advance(30_000);
+  await until(() => tab.cloud.model.sync.phase === 'failed', 'the timed-out offer is withdrawn');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.equal((await tab.cloud.keepSync()).ok, false);
+  release();
+  await settle();
+  assert.equal(tab.cloud.model.sync.phase, 'failed');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  await tab.cloud.turnOff();
+});
+
+test('a late offer recheck cannot undo a Keep chosen while it was waiting', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  let release;
+  let entered = false;
+  const wait = new Promise((resolve) => { release = resolve; });
+  env.transport.faults.list.push(async () => { entered = true; await wait; });
+  await tab.time.advance(5000);
+  await until(() => entered, 'the offer recheck starts');
+  assert.deepEqual(await tab.cloud.keepSync(), { ok: true });
+  assert.equal((await protocol.syncGate(context)).held, false);
+  release();
+  await settle();
+  assert.equal(tab.cloud.model.sync.phase, 'clear');
+  assert.equal((await protocol.syncGate(context)).held, false);
+  await tab.cloud.turnOff();
+});
+
+for (const change of ['sign-out', 'account switch']) {
+  test(`an offer is withdrawn when its next check observes ${change}`, async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const remote = await device({ 1: 333 }).snapshot();
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    const tab = page({ env, launchSync: true });
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+    if (change === 'sign-out') env.transport.host.state = 'not-connected';
+    else env.transport.signedIn('connection-two');
+    await tab.time.advance(5000);
+    await until(() => tab.cloud.model.sync.phase === 'off', 'the old offer and account are withdrawn');
+    assert.equal((await tab.cloud.keepSync()).ok, false);
+    assert.equal((await protocol.syncGate(context)).held, true);
+    assert.deepEqual(env.transport.created, []);
+    assert.equal(tab.cloud.model.on, false);
+    await tab.cloud.turnOff();
+  });
+}
+
+test('a local save at the final no-offer gate release keeps uploads paused', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const tab = page({
+    env, home,
+    launchSync: { snapshotCurrent: (witness) => CAPTURE_KEYS.every((key) => home.storage.getItem(key) === witness[key]) },
+  });
+  const setGate = tab.protocol.setSyncGate.bind(tab.protocol);
+  let changed = false;
+  tab.protocol.setSyncGate = async (args) => {
+    if (!args.held && !changed) {
+      changed = true;
+      home.mark(999);
+    }
+    return setGate(args);
+  };
+  await tab.cloud.resume();
+  await until(() => ['failed', 'clear'].includes(tab.cloud.model.sync.phase), 'the check settles');
+  assert.equal(tab.cloud.model.sync.phase, 'failed', 'the changed snapshot is refused');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.deepEqual(env.transport.created, []);
+  await tab.cloud.turnOff();
+});
+
+test('a matching device does not erase the decision to keep different progress from another device', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const local = await home.snapshot();
+  const declined = await device({ 1: 333 }).snapshot();
+  const third = 'e'.repeat(32);
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: declined.backup, device: 'Phone', createdAt: 123,
+  }));
+  env.transport.store(cloudBackupName(third, 1), envelopeFile({
+    stream: third, generation: 1, backup: local.backup, device: 'Tablet', createdAt: 124,
+  }));
+  await protocol.rememberSync({ ...context, declinedDigest: declined.personalDigest });
+  const tab = page({ env, home, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the matching device is checked');
+  assert.equal((await protocol.syncState(ON)).declinedDigest, declined.personalDigest);
+  await tab.cloud.recheckSync();
+  assert.equal(tab.cloud.model.sync.phase, 'clear', 'the unchanged declined backup is not offered again');
+  await tab.cloud.turnOff();
+});
+
+test('returning after a minute re-arms the hold and checks newly saved cloud progress', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const events = new EventTarget();
+  let hidden = false;
+  const { cloud, time } = page({ env, launchSync: true, events, isHidden: () => hidden });
+  await cloud.resume();
+  await until(() => cloud.model.sync.phase === 'clear', 'the initial check finishes');
+  hidden = true;
+  events.dispatchEvent(new Event('visibilitychange'));
+  await time.advance(60_000, [cloud]);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  hidden = false;
+  events.dispatchEvent(new Event('visibilitychange'));
+  assert.notEqual(cloud.model.sync.phase, 'clear', 'the old result is withdrawn on return');
+  await until(() => cloud.model.sync.phase === 'offer', 'the new cloud progress is offered');
+  assert.equal(cloud.model.sync.offer.remote.device, 'Phone');
+  await cloud.turnOff();
+});
+
+test('Keep records the declined remote and allows this device to back up without removing the other device', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  const remoteId = env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const { cloud, time, home } = page({ env, launchSync: true });
+  const before = await home.snapshot();
+  await cloud.resume();
+  await until(() => cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const offered = cloud.model.sync.offer;
+  assert.deepEqual(await cloud.keepSync(), { ok: true });
+  assert.deepEqual(await protocol.syncDeclines(context), [{ stream: OTHER, digest: offered.remote.digest }]);
+  assert.equal((await protocol.syncGate(context)).held, false);
+  await time.advance(CLOUD_BACKUP_CADENCE.minIntervalMs, [cloud]);
+  assert.ok(env.transport.files.has(remoteId), 'ordinary pruning never removes another device');
+  assert.equal((await home.snapshot()).backup.digest, before.backup.digest, 'Keep does not replace local data');
+  assert.ok(env.transport.created.some((name) => parseCloudBackupName(name)?.stream === context.stream));
+  await cloud.turnOff();
+});
+
+test('Keep remembers each differing remote stream without alternating offers', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const first = await device({ 1: 333 }).snapshot();
+  const second = await device({ 2: 444 }).snapshot();
+  const tablet = 'e'.repeat(32);
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: first.backup, device: 'Phone', createdAt: 123,
+  }));
+  env.transport.store(cloudBackupName(tablet, 1), envelopeFile({
+    stream: tablet, generation: 1, backup: second.backup, device: 'Tablet', createdAt: 124,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the first stream is offered');
+  const declinedFirst = tab.cloud.model.sync.offer.remote.stream;
+  assert.equal((await tab.cloud.keepSync()).ok, true);
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other stream is offered');
+  assert.notEqual(tab.cloud.model.sync.offer.remote.stream, declinedFirst);
+  assert.equal((await protocol.syncGate(context)).held, true, 'uploads stay held while the second choice is pending');
+  assert.deepEqual(env.transport.created, [], 'the first Keep does not upload before the second choice');
+  assert.equal((await tab.cloud.keepSync()).ok, true);
+  await tab.cloud.recheckSync();
+  assert.equal(tab.cloud.model.sync.phase, 'clear', 'both prior choices remain remembered');
+  await tab.cloud.recheckSync();
+  assert.equal(tab.cloud.model.sync.phase, 'clear', 'checking again does not alternate between streams');
+  assert.equal((await env.make().syncDeclines(context)).length, 2, 'both choices survive a new protocol instance');
+  await tab.cloud.turnOff();
+});
+
+for (const interveningUpload of [false, true]) test(`Load and Go back preserve a choice and promptly upload after an intervening upload: ${interveningUpload}`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const original = await home.snapshot();
+  const declined = await device({ 2: 444 }).snapshot();
+  const selected = await device({ 1: 333 }).snapshot();
+  const tablet = 'e'.repeat(32);
+  env.transport.store(cloudBackupName(tablet, 1), envelopeFile({
+    stream: tablet, generation: 1, backup: declined.backup, device: 'Tablet', createdAt: 124,
+  }));
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: selected.backup, device: 'Phone', createdAt: 123,
+  }));
+  const makeRestore = async () => {
+    const restore = new CompleteRestore({
+      storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+      cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+    });
+    await restore.start();
+    await restore.inspect();
+    return restore;
+  };
+  const draft = { recovery: [], uncertain: false };
+  let restore = await makeRestore();
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the newest tablet is offered');
+  assert.equal(tab.cloud.model.sync.offer.remote.stream, tablet);
+  assert.equal((await tab.cloud.keepSync()).ok, true);
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the phone is offered next');
+  assert.equal(tab.cloud.model.sync.offer.remote.stream, OTHER);
+  assert.equal((await tab.cloud.loadSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, selected.backup.digest);
+  assert.deepEqual(await protocol.syncDeclines(context), [{ stream: tablet, digest: declined.personalDigest }]);
+
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  await restore.releaseShared();
+  restore = await makeRestore();
+  const reopened = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await reopened.cloud.resume();
+  await until(() => reopened.cloud.model.sync.phase === 'clear', 'the loaded device is checked after restart');
+  await reopened.run(0);
+  assert.equal((await protocol.lastUploaded(ON)).personalDigest, selected.personalDigest);
+  if (interveningUpload) await protocol.upload(await device({ 1: 777 }).snapshot());
+  assert.equal((await reopened.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, original.backup.digest);
+  assert.deepEqual(await env.make().syncDeclines(context), [{ stream: tablet, digest: declined.personalDigest }]);
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  await restore.releaseShared();
+  const afterBack = page({ env, home, launchSync: true });
+  await afterBack.cloud.resume();
+  await until(() => afterBack.cloud.model.sync.phase === 'clear', 'the restored prior progress is checked after restart');
+  await afterBack.run(0);
+  assert.equal((await protocol.lastUploaded(ON)).personalDigest, original.personalDigest,
+    'Go back publishes the checked restored progress without the ordinary backup spacing');
+  await afterBack.cloud.turnOff();
+  await reopened.cloud.turnOff();
+  await tab.cloud.turnOff();
+});
+
+test('Keep refuses a remote whose bytes changed after the offer', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  const remoteId = env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const { cloud } = page({ env, launchSync: true });
+  await cloud.resume();
+  await until(() => cloud.model.sync.phase === 'offer', 'the other device is offered');
+  env.transport.files.get(remoteId).bytes = new Uint8Array([1, 2, 3]);
+  const result = await cloud.keepSync();
+  assert.equal(result.ok, false);
+  assert.equal((await protocol.syncState(ON))?.declinedDigest ?? null, null);
+  assert.equal((await protocol.syncGate(context)).held, true);
+  await cloud.turnOff();
+});
+
+test('a save during Keep withdraws the choice and restores the previous declined marker', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const savedChanges = createSavedChanges();
+  const tab = page({ env, launchSync: true, savedChanges });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const remember = tab.protocol.rememberDecline.bind(tab.protocol);
+  let changed = false;
+  tab.protocol.rememberDecline = async (args) => {
+    const result = await remember(args);
+    if (!changed && args.digest !== null) {
+      changed = true;
+      tab.home.mark(2);
+      savedChanges.notify();
+    }
+    return result;
+  };
+  assert.equal((await tab.cloud.keepSync()).ok, false);
+  assert.deepEqual(await protocol.syncDeclines(context), []);
+  const gate = await protocol.syncGate(context);
+  assert.equal(gate.held, true);
+  assert.equal(gate.pending, undefined);
+  await tab.time.advance(1000, [tab.cloud]);
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the changed device is offered again');
+  await tab.cloud.turnOff();
+});
+
+test('an interrupted Keep is rolled back before a later launch checks or releases the hold', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const remoteDigest = await personalDigest(remote.backup, webcrypto);
+  const epoch = 'a'.repeat(32);
+  await protocol.setSyncGate({ ...context, epoch, held: true });
+  await protocol.setSyncGate({ ...context, epoch, held: true, pending: { previous: null, intended: remoteDigest } });
+  await protocol.rememberSync({ ...context, declinedDigest: remoteDigest });
+  const { cloud } = page({ env, launchSync: true });
+  await cloud.resume();
+  await until(() => cloud.model.sync.phase === 'offer', 'the interrupted choice is offered again');
+  assert.equal((await protocol.syncState(ON)).declinedDigest, null);
+  const gate = await protocol.syncGate(context);
+  assert.equal(gate.held, true);
+  assert.equal(gate.pending, undefined);
+  await cloud.turnOff();
+});
+
+test('an interrupted per-stream Keep restores its previous decision without touching other streams', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  const third = 'e'.repeat(32);
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const previous = 'a'.repeat(64);
+  const unrelated = 'b'.repeat(64);
+  await protocol.rememberDecline({ ...context, remoteStream: OTHER, digest: previous, expected: null });
+  await protocol.rememberDecline({ ...context, remoteStream: third, digest: unrelated, expected: null });
+  const epoch = 'c'.repeat(32);
+  await protocol.setSyncGate({ ...context, epoch, held: true });
+  await protocol.setSyncGate({
+    ...context, epoch, held: true, pending: { stream: OTHER, previous, intended: remote.personalDigest },
+  });
+  await protocol.rememberDecline({ ...context, remoteStream: OTHER, digest: remote.personalDigest, expected: previous });
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the interrupted choice is offered again');
+  assert.deepEqual(await protocol.syncDeclines(context), [
+    { stream: third, digest: unrelated }, { stream: OTHER, digest: previous },
+  ]);
+  assert.equal((await protocol.syncGate(context)).pending, undefined);
+  await tab.cloud.turnOff();
+});
+
+test('a corrupt per-stream choice record keeps uploads paused instead of silently forgetting it', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  await protocol.rememberDecline({ ...context, remoteStream: OTHER, digest: 'a'.repeat(64), expected: null });
+  env.idb.databases.get(CLOUD_BACKUP_DATABASE).get('stream').get('sync-declines').entries[0].digest = 'invalid';
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'failed', 'the corrupt choice fails the check');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.deepEqual(env.transport.created, []);
+  await tab.cloud.turnOff();
+});
+
+test('per-stream choices are not adopted after consent is withdrawn and granted again', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const old = await syncContext(protocol);
+  await protocol.rememberDecline({ ...old, remoteStream: OTHER, digest: 'a'.repeat(64), expected: null });
+  await protocol.withdrawConsent();
+  await protocol.recordConsent(CONSENT);
+  const current = await syncContext(protocol);
+  assert.notEqual(current.consentId, old.consentId);
+  assert.deepEqual(await protocol.syncDeclines(current), []);
+  await assert.rejects(protocol.syncDeclines(old), { code: 'needs-consent' });
+});
+
+for (const fault of ['abort', 'drop']) {
+  test(`a ${fault === 'abort' ? 'transaction abort' : 'lost write'} during a per-stream choice is reported`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    env.idb.faults[fault] = 1;
+    await assert.rejects(protocol.rememberDecline({
+      ...context, remoteStream: OTHER, digest: 'a'.repeat(64), expected: null,
+    }), { code: 'storage' });
+    assert.deepEqual(await protocol.syncDeclines(context), []);
+  });
+}
+
+test('a failed post-Load activation is retried and Go back restores the pre-Load copy', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const tab = page({
+    env, home,
+    launchSync: { restore: (text, options) => restore.restore(text, { ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [] }) },
+  });
+  const activate = tab.protocol.records.resolveKeptPending.bind(tab.protocol.records);
+  let activationAttempted = false;
+  tab.protocol.records.resolveKeptPending = async (options) => {
+    if (!activationAttempted) {
+      activationAttempted = true;
+      env.idb.faults.abort = 1;
+    }
+    return activate(options);
+  };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const result = await tab.cloud.loadSync();
+  assert.equal(activationAttempted, true);
+  assert.equal(result.ok, true, result.error);
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.match(result.warning, /Go back is unavailable/);
+  const pending = await protocol.keptPending(ON);
+  assert.equal(pending.contentDigest, prior.backup.digest);
+  assert.ok(env.transport.files.has(pending.id));
+  assert.ok(await restore.exportPrior());
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the cloud check completes again');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, false);
+  assert.equal(tab.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await tab.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+for (const direction of ['forward', 'prior']) test(
+  direction === 'forward'
+    ? 'Finish restore after an interrupted Load promotes the staged pre-Load copy'
+    : 'Restore prior data after an interrupted Load preserves the earlier Go back copy',
+  async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const home = device();
+    const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    home.mark(999);
+    const prior = await home.snapshot();
+    const remote = await device({ 1: 333 }).snapshot();
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    const journal = createRestoreJournal(env.idb);
+    const progress = journal.progress.bind(journal);
+    let interrupted = false;
+    journal.progress = async (record) => {
+      if (!interrupted) {
+        interrupted = true;
+        throw new Error('The first restore checkpoint failed.');
+      }
+      return progress(record);
+    };
+    const makeRestore = (source = createRestoreJournal(env.idb)) => new CompleteRestore({
+      storage: home.storage, locks: env.locks, journal: source, events: null,
+      clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+    });
+    let restore = makeRestore(journal);
+    await restore.start();
+    await restore.inspect();
+    const launch = () => ({
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, {
+        ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+      }),
+    });
+    const tab = page({ env, home, launchSync: launch(), isBlocked: () => restore.state.phase !== 'open' });
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+    assert.equal((await tab.cloud.loadSync()).ok, false);
+    assert.equal(interrupted, true);
+    assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+    const pending = await protocol.keptPending(ON);
+    assert.equal(pending.contentDigest, prior.backup.digest);
+    await tab.cloud.recheckSync();
+    await until(() => tab.cloud.model.sync.phase === 'failed', 'the unresolved restore blocks a cloud check');
+    assert.equal((await protocol.keptPending(ON)).id, pending.id, 'the journal must settle before the staged copy can be resolved');
+
+    env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+    await restore.releaseShared();
+    restore = makeRestore();
+    await restore.start();
+    await restore.inspect();
+    assert.equal(direction === 'forward' ? restore.state.recovery?.canFinish : restore.state.recovery?.canRestorePrior, true);
+    assert.equal((await restore.recover(direction)).ok, true);
+    assert.equal((await home.snapshot()).backup.digest, direction === 'forward' ? remote.backup.digest : prior.backup.digest);
+    await restore.releaseShared();
+    restore = makeRestore();
+    await restore.start();
+    await restore.inspect();
+    const reopened = page({ env, home, launchSync: launch(), isBlocked: () => restore.state.phase !== 'open' });
+    await reopened.cloud.resume();
+    await until(() => reopened.cloud.model.sync.phase === (direction === 'forward' ? 'clear' : 'offer'), 'the recovered progress is checked');
+    assert.equal(reopened.cloud.model.sync.keptUnavailable, false);
+    assert.equal(reopened.cloud.model.sync.kept.contentDigest, direction === 'forward' ? prior.backup.digest : earlier.contentDigest);
+    assert.equal(await protocol.keptPending(ON), null);
+    if (direction === 'prior') assert.equal((await reopened.cloud.keepSync()).ok, true);
+    assert.equal((await reopened.cloud.goBackSync()).ok, true);
+    assert.equal((await home.snapshot()).backup.digest, direction === 'forward' ? prior.backup.digest : earlier.contentDigest);
+    await reopened.cloud.turnOff();
+    await tab.cloud.turnOff();
+    await restore.releaseShared();
+  },
+);
+
+test('staged recovery revision: an unchecked landed restore marker keeps the copy through Finish restore', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const makeRestore = () => new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  let restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  let restored = null;
+  const launch = () => ({
+    restoreReady: () => restore.checkAvailability(),
+    restore: async (text, options) => {
+      restored = await restore.restore(text, {
+        ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+      });
+      return restored;
+    },
+  });
+  const tab = page({ env, home, launchSync: launch(), isBlocked: () => restore.state.phase !== 'open' });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const get = home.storage.getItem;
+  const set = home.storage.setItem;
+  let failRead = false;
+  home.storage.setItem = (key, value) => {
+    set(key, value);
+    if (key === RESTORE_MARKER_KEY && value.startsWith('active:')) failRead = true;
+  };
+  home.storage.getItem = (key) => {
+    if (key === RESTORE_MARKER_KEY && failRead) {
+      failRead = false;
+      throw new Error('The active marker could not be read back.');
+    }
+    return get(key);
+  };
+  assert.equal((await tab.cloud.loadSync()).ok, false);
+  home.storage.getItem = get;
+  home.storage.setItem = set;
+  assert.equal(restored?.copyKept, true);
+  assert.equal(restored?.recoveryPending, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest, 'no restore writes have landed yet');
+  const pending = await protocol.keptPending(ON);
+  assert.equal(pending?.contentDigest, prior.backup.digest, 'a recoverable restore retains its staged copy');
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  await restore.releaseShared();
+  restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  assert.equal(restore.state.recovery?.canFinish, true);
+  assert.equal((await restore.recover('forward')).ok, true);
+  await restore.releaseShared();
+  restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  const reopened = page({ env, home, launchSync: launch(), isBlocked: () => restore.state.phase !== 'open' });
+  await reopened.cloud.resume();
+  await until(() => reopened.cloud.model.sync.phase === 'clear', 'the finished restore is checked');
+  assert.equal(reopened.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await reopened.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await reopened.cloud.turnOff();
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('a page that closes during activation promotes its staged copy on the next launch', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const makeRestore = () => new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  let restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  let activationStarted = false;
+  const launch = () => ({
+    restoreReady: () => restore.checkAvailability(),
+    restore: async (text, options) => {
+      const result = await restore.restore(text, {
+        ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+      });
+      if (result.ok && !activationStarted) {
+        tab.protocol.fetchRecordedKept = async () => {
+          activationStarted = true;
+          await new Promise(() => {});
+        };
+      }
+      return result;
+    },
+  });
+  const tab = page({ env, home, launchSync: launch() });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  void tab.cloud.loadSync();
+  await until(() => activationStarted, 'activation reaches the cloud verification window');
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await protocol.keptPending(ON)).contentDigest, prior.backup.digest);
+
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  env.locks.closeHolder(CLOUD_BACKUP_LOCK);
+  await restore.releaseShared();
+  restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  const reopened = page({ env, home, launchSync: launch() });
+  await reopened.cloud.resume();
+  await until(() => reopened.cloud.model.sync.phase === 'clear', 'the restored progress is checked after restart');
+  assert.equal(reopened.cloud.model.sync.keptUnavailable, false);
+  assert.equal(reopened.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await reopened.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await reopened.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+for (const activationFails of [false, true]) test(
+  `a restored import draft preserves its source and recovery copy (activation fails: ${activationFails})`,
+  async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const home = device();
+    await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    home.mark(999);
+    const priorDraft = savedDraft('- [ ] [One](https://www.marvel.com/comics/issue/1/)');
+    home.storage.setItem(IMPORT_DRAFT_KEY, JSON.stringify(priorDraft));
+    const prior = await home.snapshot();
+    const remoteDevice = device({ 1: 333 });
+    const remoteDraft = savedDraft('- [ ] [Two](https://www.marvel.com/comics/issue/2/)');
+    remoteDevice.storage.setItem(IMPORT_DRAFT_KEY, JSON.stringify(remoteDraft));
+    const remote = await remoteDevice.snapshot();
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    const makeRestore = () => new CompleteRestore({
+      storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+      clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+    });
+    let restore = makeRestore();
+    await restore.start();
+    await restore.inspect();
+    const launch = () => ({
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, {
+        ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+      }),
+    });
+    const tab = page({ env, home, launchSync: launch() });
+    if (activationFails) {
+      const commit = tab.protocol.records.resolveKeptPending.bind(tab.protocol.records);
+      tab.protocol.records.resolveKeptPending = (change) => {
+        env.idb.faults.abort = 1;
+        return commit(change);
+      };
+    }
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', 'the other draft is offered');
+    const result = await tab.cloud.loadSync();
+    assert.equal(result.ok, true, result.error);
+    if (activationFails) assert.match(result.warning, /Go back is unavailable/);
+    else assert.equal(result.warning, undefined, 'retained draft sources do not make a successful restore look inconclusive');
+    const loaded = await home.snapshot();
+    assert.notEqual(loaded.backup.digest, remote.backup.digest, 'restoring keeps the local draft source as well');
+    assert.ok(loaded.backup.components.draft.previousSources.includes(JSON.stringify(priorDraft)));
+
+    env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+    await restore.releaseShared();
+    restore = makeRestore();
+    await restore.start();
+    await restore.inspect();
+    const reopened = page({ env, home, launchSync: launch() });
+    await reopened.cloud.resume();
+    await until(() => reopened.cloud.model.sync.phase === 'clear', 'the restored draft is checked after restart');
+    assert.equal(reopened.cloud.model.sync.keptUnavailable, false);
+    assert.equal(reopened.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+    assert.equal((await reopened.cloud.goBackSync()).ok, true);
+    const returned = await home.snapshot();
+    assert.equal(returned.backup.components.draft.rawText, priorDraft.rawText);
+    assert.ok(returned.backup.components.draft.previousSources.some((source) => source.includes(remoteDraft.rawText)));
+    await reopened.cloud.turnOff();
+    await tab.cloud.turnOff();
+    await restore.releaseShared();
+  },
+);
+
+test('a staged Load remains recoverable after consent is withdrawn and granted again', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const makeRestore = () => new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  let restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  const launch = () => ({
+    restoreReady: () => restore.checkAvailability(),
+    restore: (text, options) => restore.restore(text, {
+      ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+    }),
+  });
+  const tab = page({ env, home, launchSync: launch() });
+  const commit = tab.protocol.records.resolveKeptPending.bind(tab.protocol.records);
+  tab.protocol.records.resolveKeptPending = (change) => {
+    env.idb.faults.abort = 1;
+    return commit(change);
+  };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  assert.match((await tab.cloud.loadSync()).warning, /Go back is unavailable/);
+  const pending = await protocol.keptPending(ON);
+  assert.equal(pending.contentDigest, prior.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+  await protocol.recordConsent(CONSENT);
+  assert.equal((await protocol.syncState(ON))?.kept ?? null, null, 'the old consent cleared the active reference');
+  restore = makeRestore();
+  await restore.start();
+  await restore.inspect();
+  const reopened = page({ env, home, launchSync: launch() });
+  await reopened.cloud.resume();
+  await until(() => ['clear', 'failed'].includes(reopened.cloud.model.sync.phase), 'the check finishes after new consent');
+  assert.equal(reopened.cloud.model.sync.phase, 'clear', reopened.cloud.model.sync.error);
+  assert.equal(reopened.cloud.model.sync.keptUnavailable, false);
+  assert.equal(reopened.cloud.model.sync.kept.id, pending.id);
+  assert.ok(env.transport.files.has(earlier.id));
+  assert.equal((await reopened.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await reopened.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+for (const missing of [false, true]) test(`a prior outcome after new consent checks the earlier reference (missing: ${missing})`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const snapshot = await home.snapshot();
+  const context = await syncContext(protocol);
+  const kept = await protocol.prepareKeptSnapshot({
+    ...context, snapshot, personalDigest: snapshot.personalDigest, authorize: async () => {},
+  });
+  const target = await device({ 1: 333 }).snapshot();
+  await protocol.setKeptPending({
+    ...context, kept, targetDigest: target.backup.digest, previousKept: earlier, expected: null, authorize: () => true,
+  });
+  await protocol.withdrawConsent();
+  await protocol.recordConsent(CONSENT);
+  if (missing) env.transport.files.delete(earlier.id);
+  const tab = page({ env, home, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => ['clear', 'failed'].includes(tab.cloud.model.sync.phase), 'the staged prior outcome is checked');
+  if (missing) {
+    assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
+    assert.equal(tab.cloud.model.sync.keptUnavailable, true);
+    assert.equal((await protocol.keptPending(ON)).id, kept.id);
+    assert.equal((await protocol.syncState(ON))?.kept ?? null, null);
+    assert.equal((await tab.cloud.discardPendingSync()).ok, true);
+    assert.equal(await protocol.keptPending(ON), null);
+  } else {
+    assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
+    assert.equal(tab.cloud.model.sync.kept.id, earlier.id);
+    assert.equal(tab.cloud.model.sync.keptUnavailable, false);
+    assert.equal(await protocol.keptPending(ON), null);
+  }
+  await tab.cloud.turnOff();
+});
+
+test('staged recovery revision: another account can Load without overwriting the earlier account', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const snapshot = await home.snapshot();
+  const context = await syncContext(protocol);
+  const kept = await protocol.prepareKeptSnapshot({
+    ...context, snapshot, personalDigest: snapshot.personalDigest, authorize: async () => {},
+  });
+  const remote = await device({ 1: 333 }).snapshot();
+  await protocol.setKeptPending({
+    ...context, kept, targetDigest: remote.backup.digest, previousKept: earlier, expected: null, authorize: () => true,
+  });
+  const before = await protocol.keptPending({ ...ON, details: true });
+  await protocol.withdrawConsent();
+  env.transport.signedIn('connection-two');
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const tab = page({ env, home, launchSync: {
+    restoreReady: () => restore.checkAvailability(),
+    restore: (text, options) => restore.restore(text, {
+      ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+    }),
+  } });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other account checks for progress');
+  assert.equal(tab.cloud.model.sync.offer.priorPending, null, 'the earlier account does not block this one');
+  assert.equal(cloudSyncQuestion(tab.cloud.model.sync.offer).loadDisabled, false);
+  assert.equal((await tab.cloud.loadSync()).ok, true);
+  assert.equal((await home.snapshot()).personalDigest, remote.personalDigest);
+  assert.ok(env.transport.files.has(kept.id));
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+  env.transport.signedIn(CONSENT.connection);
+  await protocol.recordConsent(CONSENT);
+  assert.deepEqual(await protocol.keptPending({ ...ON, details: true }), before,
+    'the earlier account retains its exact unresolved stage');
+});
+
+test('staged recovery revision: pending copies for different accounts remain isolated through deletion', async () => {
+  const { env, protocol, home, restore, tab } = await loadWithUnconfirmedRecovery();
+  const first = await protocol.keptPending({ ...ON, details: true });
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+  env.transport.signedIn('connection-two');
+  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  const context = await syncContext(protocol, 'connection-two');
+  const snapshot = await home.snapshot();
+  const kept = await protocol.prepareKeptSnapshot({
+    ...context, snapshot, personalDigest: snapshot.personalDigest, authorize: async () => {},
+  });
+  const target = await device({ 1: 555 }).snapshot();
+  await protocol.setKeptPending({
+    ...context, kept, targetDigest: target.backup.digest, targetPersonalDigest: target.personalDigest,
+    operationId: 'b'.repeat(32), previousKept: null, expected: null, authorize: () => true,
+  });
+  const staged = await protocol.records.readKeptPending();
+  assert.equal(staged.pending.version, 4);
+  assert.deepEqual(staged.pending.entries.map((entry) => entry.connection).sort(), [CONSENT.connection, 'connection-two']);
+  for (const change of [6, 7, 8, 9]) await protocol.keepBackup(await uploadForKept(protocol, home, change));
+  assert.ok(env.transport.files.has(first.kept.id), 'the earlier account is never pruned by this account');
+  assert.ok(env.transport.files.has(kept.id), 'the current account protects its own staged copy');
+  const result = await protocol.deleteOwnBackups({ connection: 'connection-two' });
+  assert.deepEqual(result.failed, []);
+  assert.ok(env.transport.files.has(first.kept.id), 'deleting this account leaves the other account copy');
+  assert.equal(env.transport.files.has(kept.id), false);
+  env.transport.signedIn(CONSENT.connection);
+  await protocol.recordConsent(CONSENT);
+  assert.deepEqual(await protocol.keptPending({ ...ON, details: true }), first,
+    'deletion removed only the named account stage');
+});
+
+test('staged recovery revision: no-write cleanup cannot remove a newer staged attempt', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const context = await syncContext(protocol);
+  const snapshot = await home.snapshot();
+  const kept = await protocol.prepareKeptSnapshot({
+    ...context, snapshot, personalDigest: snapshot.personalDigest, authorize: async () => {},
+  });
+  const target = await device({ 1: 333 }).snapshot();
+  const stage = {
+    ...context, kept, targetDigest: target.backup.digest, targetPersonalDigest: target.personalDigest,
+    operationId: 'a'.repeat(32), previousKept: null,
+  };
+  await protocol.setKeptPending({ ...stage, expected: null, authorize: () => true });
+  const old = await protocol.keptPending({ ...ON, details: true });
+  await protocol.setKeptPending({ ...stage, operationId: 'b'.repeat(32), expected: old, authorize: () => true });
+  await assert.rejects(protocol.undoKeptPending({ ...context, pending: old }), (error) => error.code === 'raced');
+  assert.equal((await protocol.keptPending({ ...ON, details: true })).operationId, 'b'.repeat(32));
+  assert.ok(env.transport.files.has(kept.id));
+});
+
+async function loadWithUnconfirmedRecovery(fault = 'abort') {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, {
+        ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+      }),
+    },
+  });
+  const commit = tab.protocol.records.resolveKeptPending.bind(tab.protocol.records);
+  let faulted = false;
+  tab.protocol.records.resolveKeptPending = async (change) => {
+    if (!faulted) {
+      faulted = true;
+      if (fault === 'read-back') {
+        const result = await commit(change);
+        const read = tab.protocol.keptPending.bind(tab.protocol);
+        tab.protocol.keptPending = async () => {
+          tab.protocol.keptPending = read;
+          throw new Error('The recovery reference read-back failed.');
+        };
+        return result;
+      }
+      env.idb.faults[fault] = 1;
+    }
+    return commit(change);
+  };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, true, result.error);
+  assert.match(result.warning, /Go back is unavailable/);
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  return { env, protocol, home, earlier, prior, remote, restore, tab };
+}
+
+test('a staged Load is recovered after this device starts a new stream', async () => {
+  const { env, protocol, home, prior, restore, tab } = await loadWithUnconfirmedRecovery();
+  const staged = await protocol.keptPending(ON);
+  const record = await protocol.record();
+  await protocol.restream({ stream: record.stream, consent: record.consent }, { allocate: false });
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  await restore.releaseShared();
+  const resumedRestore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await resumedRestore.start();
+  await resumedRestore.inspect();
+  const reopened = page({
+    env, home, launchSync: {
+      restoreReady: () => resumedRestore.checkAvailability(),
+      restore: (text, options) => resumedRestore.restore(text, {
+        ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+      }),
+    },
+  });
+  await reopened.cloud.resume();
+  await until(() => ['clear', 'failed', 'offer'].includes(reopened.cloud.model.sync.phase), 'the new stream checks the staged copy');
+  assert.notEqual(reopened.cloud.model.sync.phase, 'failed', reopened.cloud.model.sync.error);
+  assert.equal(reopened.cloud.model.sync.keptUnavailable, false);
+  assert.equal(reopened.cloud.model.sync.kept.id, staged.id);
+  assert.equal(await protocol.keptPending(ON), null);
+  if (reopened.cloud.model.sync.phase === 'offer') {
+    assert.equal((await reopened.cloud.keepSync()).ok, true);
+  }
+  assert.equal((await reopened.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await reopened.cloud.turnOff();
+  await tab.cloud.turnOff();
+  await resumedRestore.releaseShared();
+});
+
+for (const fault of ['drop', 'read-back']) test(`a ${fault} during recovery activation is reconciled atomically`, async () => {
+  const { protocol, home, earlier, prior, restore, tab } = await loadWithUnconfirmedRecovery(fault);
+  const pending = await protocol.keptPending(ON);
+  const active = (await protocol.syncState(ON)).kept;
+  if (fault === 'drop') {
+    assert.equal(pending.contentDigest, prior.backup.digest);
+    assert.equal(active.id, earlier.id, 'a lost transaction changes neither reference');
+  } else {
+    assert.equal(pending, null);
+    assert.equal(active.contentDigest, prior.backup.digest, 'a committed transaction changes both references together');
+  }
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the activation is checked again');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, false);
+  assert.equal(tab.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await tab.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('staged recovery revision: switching the active list still promotes the restored copy', async () => {
+  const { protocol, home, prior, remote, restore, tab } = await loadWithUnconfirmedRecovery();
+  const saved = JSON.parse(home.storage.getItem(KEY));
+  saved.active = saved.active === 'list' ? 'later' : 'list';
+  home.storage.setItem(KEY, JSON.stringify(saved));
+  assert.equal((await home.snapshot()).personalDigest, remote.personalDigest);
+  await tab.cloud.recheckSync();
+  await until(() => ['clear', 'failed'].includes(tab.cloud.model.sync.phase), 'the edited selection is checked');
+  assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
+  assert.equal(tab.cloud.model.sync.keptUnavailable, false);
+  assert.equal(tab.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await tab.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('staged recovery revision: equal personal digests do not guess an ambiguous outcome', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  const saved = createList(JSON.parse(home.storage.getItem(KEY)), { id: 'third', name: 'Third list' });
+  home.storage.setItem(KEY, JSON.stringify(saved));
+  const prior = await home.snapshot();
+  home.storage.setItem(KEY, JSON.stringify({ ...saved, active: 'later' }));
+  const target = await home.snapshot();
+  assert.equal(target.personalDigest, prior.personalDigest);
+  const context = await syncContext(protocol);
+  const kept = await protocol.prepareKeptSnapshot({
+    ...context, snapshot: prior, personalDigest: prior.personalDigest, authorize: async () => {},
+  });
+  await protocol.setKeptPending({
+    ...context, kept, targetDigest: target.backup.digest, targetPersonalDigest: target.personalDigest,
+    operationId: 'a'.repeat(32), previousKept: earlier, expected: null, authorize: () => true,
+  });
+  home.storage.setItem(KEY, JSON.stringify({ ...saved, active: 'third' }));
+  const current = await home.snapshot();
+  assert.notEqual(current.backup.digest, prior.backup.digest);
+  assert.notEqual(current.backup.digest, target.backup.digest);
+  assert.equal(current.personalDigest, prior.personalDigest);
+  const tab = page({ env, home, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => ['clear', 'failed'].includes(tab.cloud.model.sync.phase), 'the unchanged personal progress is checked');
+  assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
+  assert.equal(tab.cloud.model.sync.keptUnavailable, true, 'neither direction is guessed');
+  assert.equal((await protocol.keptPending(ON)).id, kept.id);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await tab.cloud.discardPendingSync()).ok, true);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await protocol.syncState(ON)).kept, null);
+  assert.equal((await home.snapshot()).backup.digest, current.backup.digest);
+  await tab.cloud.turnOff();
+});
+
+test('staged recovery revision: an edited ambiguous result has a safe exit and a later Load', async () => {
+  const { env, protocol, home, earlier, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  const saved = JSON.parse(home.storage.getItem(KEY));
+  saved.read['2'] = 1001;
+  home.storage.setItem(KEY, JSON.stringify(saved));
+  const edited = await home.snapshot();
+  const newer = await device({ 1: 444 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 2), envelopeFile({
+    stream: OTHER, generation: 2, backup: newer.backup, device: 'Phone', createdAt: 124,
+  }));
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the changed progress is offered');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, true);
+  assert.equal(cloudSyncQuestion(tab.cloud.model.sync.offer).loadDisabled, true);
+  const before = env.transport.created.length;
+  assert.equal((await tab.cloud.loadSync()).ok, false);
+  assert.equal(env.transport.created.length, before, 'a blocked Load does not create another copy');
+  assert.equal((await protocol.keptPending(ON)).id, pending.id);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await home.snapshot()).backup.digest, edited.backup.digest);
+  assert.ok(env.transport.files.has(pending.id));
+  const exit = await tab.cloud.discardPendingSync();
+  assert.equal(exit.ok, true, exit.error);
+  await until(() => tab.cloud.model.sync.phase === 'offer' && !tab.cloud.model.sync.keptUnavailable,
+    'the current cloud offer is available after the explicit exit');
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await protocol.syncState(ON)).kept, null, 'the older copy is not misrepresented as the latest recovery');
+  assert.ok(env.transport.files.has(pending.id), 'the staged cloud copy is not deleted');
+  assert.ok(env.transport.files.has(earlier.id), 'the earlier cloud copy is not deleted');
+  assert.equal((await home.snapshot()).backup.digest, edited.backup.digest, 'the exit changes no local progress');
+  assert.equal(cloudSyncQuestion(tab.cloud.model.sync.offer).loadDisabled, false);
+  const loaded = await tab.cloud.loadSync();
+  assert.equal(loaded.ok, true, loaded.error);
+  assert.equal((await protocol.syncState(ON)).kept.contentDigest, edited.backup.digest,
+    'the next Load keeps the actual state it replaces');
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('staged recovery revision: the exit refuses a stage replaced by another tab', async () => {
+  const { protocol, home, earlier, restore, tab } = await loadWithUnconfirmedRecovery();
+  home.mark(1001);
+  const before = await home.snapshot();
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear' && tab.cloud.model.sync.keptUnavailable,
+    'the changed progress leaves an ambiguous stage');
+  const resolve = tab.protocol.resolveKeptPending.bind(tab.protocol);
+  let replaced = false;
+  tab.protocol.resolveKeptPending = async (options) => {
+    if (options.outcome === 'discard' && !replaced) {
+      replaced = true;
+      const current = await tab.protocol.keptPending({ ...ON, details: true });
+      await tab.protocol.setKeptPending({
+        ...options, ...current, operationId: 'c'.repeat(32), expected: current, authorize: () => true,
+      });
+    }
+    return resolve(options);
+  };
+  const result = await tab.cloud.discardPendingSync();
+  assert.equal(replaced, true);
+  assert.equal(result.ok, false);
+  assert.equal((await protocol.keptPending({ ...ON, details: true })).operationId, 'c'.repeat(32));
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await home.snapshot()).backup.digest, before.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('staged recovery revision: signing out during the exit preserves the pending copy', async () => {
+  const { env, protocol, home, earlier, restore, tab } = await loadWithUnconfirmedRecovery();
+  home.mark(1001);
+  const before = await home.snapshot();
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear' && tab.cloud.model.sync.keptUnavailable,
+    'the changed progress leaves an ambiguous stage');
+  const pending = await protocol.keptPending({ ...ON, details: true });
+  const resolve = tab.protocol.resolveKeptPending.bind(tab.protocol);
+  let signedOut = false;
+  tab.protocol.resolveKeptPending = async (options) => {
+    if (options.outcome === 'discard' && !signedOut) {
+      signedOut = true;
+      await protocol.withdrawConsent();
+    }
+    return resolve(options);
+  };
+  const result = await tab.cloud.discardPendingSync();
+  assert.equal(signedOut, true);
+  assert.equal(result.ok, false);
+  assert.ok(env.transport.files.has(pending.kept.id));
+  assert.ok(env.transport.files.has(earlier.id));
+  assert.equal((await home.snapshot()).backup.digest, before.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+  await protocol.recordConsent(CONSENT);
+  assert.deepEqual(await protocol.keptPending({ ...ON, details: true }), pending);
+});
+
+for (const timing of ['after staging', 'during stage read-back']) {
+  test(`staged recovery revision: a saved edit ${timing} clears a no-write stage`, async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const home = device();
+    const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    home.mark(999);
+    const remote = await device({ 1: 333 }).snapshot();
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    const changes = createSavedChanges();
+    const restore = new CompleteRestore({
+      storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+      clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+    });
+    await restore.start();
+    await restore.inspect();
+    let restored = null;
+    const tab = page({ env, home, savedChanges: changes, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: async (text, options) => {
+        restored = await restore.restore(text, {
+          ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+        });
+        return restored;
+      },
+    } });
+    let changed = false;
+    const edit = () => {
+      if (changed) return;
+      changed = true;
+      home.mark(1001);
+      changes.notify();
+    };
+    if (timing === 'after staging') {
+      const stage = tab.protocol.setKeptPending.bind(tab.protocol);
+      tab.protocol.setKeptPending = async (options) => {
+        const result = await stage(options);
+        if (options.kept && options.targetDigest) edit();
+        return result;
+      };
+    } else {
+      const write = tab.protocol.records.writeKeptPending.bind(tab.protocol.records);
+      tab.protocol.records.writeKeptPending = async (change) => {
+        const result = await write(change);
+        edit();
+        return result;
+      };
+    }
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+    assert.equal((await tab.cloud.loadSync()).ok, false);
+    assert.equal(changed, true);
+    if (timing === 'after staging') assert.equal(restored?.changed, false, 'the guarded restore wrote nothing');
+    else assert.equal(restored, null, 'restore never starts after an unconfirmed stage write');
+    assert.equal(await protocol.keptPending(ON), null, 'only the exact unstarted attempt is cleared');
+    assert.equal((await protocol.syncState(ON)).kept.id, earlier.id, 'the earlier Go back remains current');
+    assert.equal((await home.snapshot()).backup.components.reader.read['2'], 1001);
+    await tab.cloud.turnOff();
+    await restore.releaseShared();
+  });
+}
+
+test('staged recovery revision: a pending slot left by an older erase has a safe exit', async () => {
+  const { env, protocol, home, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+  await legacyRecordWrite(env.idb, () => null);
+  for (const key of CAPTURE_KEYS) home.storage.removeItem(key);
+  await protocol.recordConsent(CONSENT);
+  const afterErase = await home.snapshot();
+  const reopened = page({ env, home, launchSync: true });
+  await reopened.cloud.resume();
+  await until(() => ['clear', 'failed', 'offer'].includes(reopened.cloud.model.sync.phase),
+    'the new stream checks the orphaned pending slot');
+  assert.notEqual(reopened.cloud.model.sync.phase, 'failed', reopened.cloud.model.sync.error);
+  assert.equal(reopened.cloud.model.sync.keptUnavailable, true);
+  const exit = await reopened.cloud.discardPendingSync();
+  assert.equal(exit.ok, true, exit.error);
+  await until(() => ['clear', 'offer'].includes(reopened.cloud.model.sync.phase)
+    && !reopened.cloud.model.sync.keptUnavailable, 'the orphaned stage no longer blocks this device');
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.ok(env.transport.files.has(pending.id), 'the older cloud recovery copy is not deleted');
+  assert.equal((await home.snapshot()).backup.digest, afterErase.backup.digest);
+  await reopened.cloud.turnOff();
+});
+
+test('staged recovery revision: deleting this device clears its stage only after successful deletion', async () => {
+  const { env, protocol, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+  const remove = env.transport.delete.bind(env.transport);
+  let fail = true;
+  env.transport.delete = async (id, options) => {
+    if (id === pending.id && fail) {
+      fail = false;
+      throw Object.assign(new Error('The kept copy could not be deleted.'), { code: 'timeout' });
+    }
+    return remove(id, options);
+  };
+  const first = await protocol.deleteOwnBackups(ON);
+  assert.ok(first.failed.some((entry) => entry.id === pending.id));
+  assert.equal((await protocol.records.readKeptPending()).present, true, 'a failed deletion retains the reference');
+  assert.ok(env.transport.files.has(pending.id));
+  const second = await protocol.deleteOwnBackups(ON);
+  assert.deepEqual(second.failed, []);
+  assert.equal((await protocol.records.readKeptPending()).present, false, 'a successful deletion clears the stage');
+  assert.equal(env.transport.files.has(pending.id), false);
+});
+
+test('staged recovery revision: a missing staged copy does not fail the cloud check', async () => {
+  const { env, protocol, prior, earlier, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  const file = env.transport.files.get(pending.id);
+  env.transport.files.delete(pending.id);
+  await tab.cloud.recheckSync();
+  await until(() => ['clear', 'failed'].includes(tab.cloud.model.sync.phase), 'the missing recovery copy is reported');
+  assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
+  assert.equal(tab.cloud.model.sync.keptUnavailable, true);
+  assert.equal((await protocol.keptPending(ON)).id, pending.id);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await tab.cloud.goBackSync()).ok, false);
+  env.transport.files.set(pending.id, file);
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the exact recovery copy is checked again');
+  assert.equal(tab.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('staged recovery revision: an altered staged file leaves a conclusive check usable', async () => {
+  const { env, protocol, home, earlier, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  const file = env.transport.files.get(pending.id);
+  const before = await home.snapshot();
+  file.bytes = new Uint8Array([1, 2, 3]);
+  await tab.cloud.recheckSync();
+  await until(() => ['clear', 'failed'].includes(tab.cloud.model.sync.phase), 'the altered recovery copy is checked');
+  assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
+  assert.equal(tab.cloud.model.sync.keptUnavailable, true);
+  assert.equal((await tab.cloud.goBackSync()).ok, false);
+  const exit = await tab.cloud.discardPendingSync();
+  assert.equal(exit.ok, true, exit.error);
+  await until(() => tab.cloud.model.sync.phase === 'clear' && !tab.cloud.model.sync.keptUnavailable, 'the exit is checked');
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await protocol.syncState(ON)).kept, null);
+  assert.ok(env.transport.files.has(pending.id), 'an altered file is left alone');
+  assert.ok(env.transport.files.has(earlier.id), 'an earlier file is left alone');
+  assert.equal((await home.snapshot()).backup.digest, before.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('a corrupt staged outcome keeps the earlier Go back copy unavailable', async () => {
+  const { env, protocol, earlier, prior, restore, tab } = await loadWithUnconfirmedRecovery();
+  const slot = env.idb.databases.get(CLOUD_BACKUP_DATABASE).get('stream');
+  const valid = structuredClone(slot.get('kept-pending'));
+  slot.get('kept-pending').targetDigest = 'invalid';
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'failed', 'the corrupt recovery outcome is reported');
+  assert.match(tab.cloud.model.sync.error, /Go back is unavailable/);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await tab.cloud.goBackSync()).ok, false);
+  slot.set('kept-pending', valid);
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the checked outcome is retried');
+  assert.equal(tab.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('a local save during staged-copy verification cannot promote a stale result', async () => {
+  const { env, protocol, home, earlier, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  const fetch = tab.protocol.fetchRecordedKept.bind(tab.protocol);
+  let changed = false;
+  tab.protocol.fetchRecordedKept = async (options) => {
+    const result = await fetch(options);
+    if (!changed) {
+      changed = true;
+      home.mark(1001);
+    }
+    return result;
+  };
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'failed', 'the stale recovery check is refused');
+  assert.equal(changed, true);
+  assert.equal((await protocol.keptPending(ON)).id, pending.id);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  const newer = await device({ 1: 444 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 2), envelopeFile({
+    stream: OTHER, generation: 2, backup: newer.backup, device: 'Phone', createdAt: 124,
+  }));
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the edited progress is offered');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, true);
+  assert.equal(cloudSyncQuestion(tab.cloud.model.sync.offer).loadDisabled, true);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('withdrawing consent during staged-copy verification cannot activate it', async () => {
+  const { protocol, restore, tab } = await loadWithUnconfirmedRecovery();
+  const pending = await protocol.keptPending(ON);
+  const fetch = tab.protocol.fetchRecordedKept.bind(tab.protocol);
+  tab.protocol.fetchRecordedKept = async (options) => {
+    const result = await fetch(options);
+    await protocol.withdrawConsent();
+    return result;
+  };
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'failed', 'the changed consent stops the recovery check');
+  const held = await protocol.records.readKeptPending();
+  assert.equal(held.present, true);
+  assert.equal(held.pending.kept.id, pending.id);
+  assert.equal(held.record.consent, null);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+for (const fault of ['abort', 'drop', 'read-back']) test(`Load refuses a pending recovery marker with ${fault}`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  let restored = false;
+  const tab = page({ env, home, launchSync: { restore: async () => { restored = true; return { ok: true }; } } });
+  const setPending = tab.protocol.setKeptPending.bind(tab.protocol);
+  tab.protocol.setKeptPending = async (options) => {
+    if (fault === 'read-back') {
+      const read = tab.protocol.keptPending.bind(tab.protocol);
+      let failed = false;
+      tab.protocol.keptPending = async (input) => {
+        if (!failed) { failed = true; throw new Error('Pending marker read-back failed.'); }
+        return read(input);
+      };
+    } else env.idb.faults[fault] = 1;
+    return setPending(options);
+  };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, false);
+  assert.equal(restored, false, 'no restore begins until the marker is confirmed');
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  const pending = await protocol.keptPending(ON);
+  assert.equal(pending, null, 'the exact stage is cleared when no restore began, even after an uncertain read-back');
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the unchanged progress can be checked again');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, false, 'the unchanged source resolves an uncertain marker');
+  assert.equal(await protocol.keptPending(ON), null);
+  await tab.cloud.turnOff();
+});
+
+test('an interrupted restore that leaves prior data discards its pending marker', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, home, launchSync: {
+    restore: async (text, options) => {
+      options.onApplyStart();
+      return { ok: false, error: 'The restore was interrupted.' };
+    },
+  } });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  assert.equal((await tab.cloud.loadSync()).ok, false);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  assert.equal((await protocol.keptPending(ON)).contentDigest, prior.backup.digest);
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the cloud is checked after interruption');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, false);
+  assert.equal(tab.cloud.model.sync.kept.id, earlier.id);
+  assert.equal(await protocol.keptPending(ON), null);
+  await tab.cloud.turnOff();
+});
+
+test('a pending recovery marker survives reconnecting and is cleared by Erase', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const first = await protocol.keepBackup(await uploadForKept(protocol, home, 3));
+  await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  const context = await syncContext(protocol);
+  await protocol.setKeptPending({ ...context, kept: first, expected: null, authorize: () => true });
+  await protocol.withdrawConsent();
+  await protocol.recordConsent(CONSENT);
+  assert.equal((await protocol.keptPending(ON)).id, first.id);
+  const tab = page({ env, home, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the reconnected device checks the cloud');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, true);
+  assert.equal((await tab.cloud.goBackSync()).ok, false);
+  await tab.cloud.beforeErase();
+  assert.deepEqual(await tab.cloud.afterErase(true), { ok: true, problems: [] });
+  assert.equal((await protocol.records.readKeptPending()).present, false);
+  assert.ok(env.transport.files.has(first.id), 'Erase leaves the kept cloud file untouched');
+  await tab.cloud.turnOff();
+});
+
+for (const path of ['choice', 'watch']) test(`a changed pending recovery marker withdraws an open offer on ${path}`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const kept = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  home.mark(999);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, home, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const previous = tab.cloud.model.sync.offer;
+  assert.equal(previous.priorPending, null);
+  await protocol.setKeptPending({ ...context, kept, expected: null, authorize: () => true });
+  if (path === 'choice') {
+    assert.equal((await tab.cloud.keepSync()).ok, false);
+    assert.deepEqual(await protocol.syncDeclines(context), [], 'an invalidated choice is not remembered');
+    assert.equal((await protocol.syncGate(context)).held, true);
+  } else {
+    await tab.run(5_000);
+    await until(() => tab.cloud.model.sync.phase === 'offer' && tab.cloud.model.sync.offer.priorPending,
+      'the changed marker causes a new offer');
+    assert.notEqual(tab.cloud.model.sync.offer, previous);
+    assert.equal(tab.cloud.model.sync.offer.priorPending.kept.id, kept.id);
+  }
+  await tab.cloud.turnOff();
+});
+
+test('Load keeps the exact local copy in the cloud and a journal before replacing it', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const home = device();
+  const prior = await home.snapshot();
+  const priorReader = home.storage.getItem(KEY);
+  const draft = { recovery: [], uncertain: false };
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const tab = page({
+    env, home,
+    launchSync: { restore: (text, options) => {
+      assert.equal(typeof options.assertStillAuthorized, 'function');
+      options.assertStillAuthorized();
+      return restore.restore(text, { ...options, importDraft: draft, draftRecovery: draft.recovery.slice() });
+    } },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, true, result.error);
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  assert.deepEqual(env.transport.generations(context.stream), [],
+    'the data being replaced is not published as the newest ordinary backup');
+  const sync = await protocol.syncState(ON);
+  assert.equal(sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null, 'a confirmed activation clears the pending marker');
+  assert.ok(env.transport.files.has(sync.kept.id), 'the independent cloud copy still exists');
+  assert.equal((await protocol.fetchKeptBackup({ ...context, kept: sync.kept })).text, prior.text);
+  assert.equal((await protocol.syncGate(context)).held, true, 'the stale page cannot upload before reloading');
+  assert.equal(JSON.parse(await restore.exportPrior()).values[KEY], priorReader, 'the local recovery journal remains available');
+  await tab.cloud.turnOff();
+});
+
+test('a refused Load never activates or prunes the earlier go-back copy', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  let earlier;
+  for (const change of [2, 3, 4]) {
+    const request = await uploadForKept(protocol, home, change);
+    earlier = await protocol.keepBackup(request);
+  }
+  home.mark(999);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const before = await home.snapshot();
+  const tab = page({ env, home, launchSync: { restore: async () => ({ ok: false, changed: false, error: 'Close other tabs.' }) } });
+  await tab.cloud.resume();
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote remains available');
+    assert.equal((await tab.cloud.loadSync()).ok, false);
+    assert.deepEqual((await protocol.syncState(ON)).kept, earlier, 'a refused restore cannot move Go back');
+    assert.equal(await protocol.keptPending(ON), null, 'a restore refused before writes rolls back its marker');
+    assert.ok(env.transport.files.has(earlier.id), 'the earlier copy is not pruned');
+    assert.equal((await home.snapshot()).backup.digest, before.backup.digest);
+    if (attempt < 2) await tab.cloud.recheckSync();
+  }
+  assert.equal((await protocol.syncGate(context)).held, true);
+  await tab.cloud.turnOff();
+});
+
+test('a late failed download leaves the prior Go back copy active and all earlier copies intact', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  let earlier;
+  for (const change of [2, 3, 4]) earlier = await protocol.keepBackup(await uploadForKept(protocol, home, change));
+  const retainedBefore = [...env.transport.files.values()]
+    .filter((file) => file.name.startsWith('recap-page-kept-')).map((file) => file.name);
+  home.mark(999);
+  const local = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  const remoteId = env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  let restored = false;
+  const tab = page({ env, home, launchSync: { restore: async () => { restored = true; return { ok: true }; } } });
+  const fetch = tab.protocol.fetchBackup.bind(tab.protocol);
+  let selectedReads = 0;
+  tab.protocol.fetchBackup = async (item, options) => {
+    if (item.id === remoteId && ++selectedReads === 2) throw new CloudBackupError('The download failed.', 'unavailable');
+    return fetch(item, options);
+  };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  assert.equal((await tab.cloud.loadSync()).ok, false);
+  assert.equal(selectedReads, 2, 'the second, post-staging download is the failure');
+  assert.equal(restored, false);
+  assert.deepEqual((await protocol.syncState(ON)).kept, earlier);
+  assert.ok(retainedBefore.every((name) => [...env.transport.files.values()].some((file) => file.name === name)));
+  assert.equal((await home.snapshot()).backup.digest, local.backup.digest);
+  await tab.cloud.turnOff();
+});
+
+test('a matching verified regular upload is reused without creating another ordinary backup', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const local = await home.snapshot();
+  const uploaded = await protocol.upload(local);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  assert.equal((await tab.cloud.loadSync()).ok, true);
+  assert.deepEqual(env.transport.generations(context.stream), [uploaded.generation]);
+  assert.equal((await protocol.syncState(ON)).kept.generation, uploaded.generation);
+  assert.equal((await protocol.syncState(ON)).kept.contentDigest, local.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+for (const history of ['none', 'active', 'pending']) test(`Load handles empty local data with ${history} recovery history`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const hasEarlierKept = history !== 'none';
+  let earlier = null;
+  if (hasEarlierKept) {
+    const snapshot = await device().snapshot();
+    const uploaded = await protocol.upload(snapshot);
+    earlier = await protocol.keepBackup({
+      ...context, generation: uploaded.generation,
+      personalDigest: snapshot.personalDigest, contentDigest: snapshot.backup.digest,
+    });
+    if (history === 'pending') {
+      await protocol.setKeptPending({ ...context, kept: earlier, expected: null, authorize: () => true });
+      await protocol.records.writeSync((state) => ({ ...state, kept: null }));
+    }
+  }
+  const storage = memoryStorage();
+  const home = {
+    storage,
+    snapshot: async () => {
+      const { text, backup } = await captureCompleteBackup({ storage, cryptoProvider: webcrypto });
+      return { text, backup, personalDigest: await personalDigest(backup, webcrypto) };
+    },
+  };
+  const empty = await home.snapshot();
+  const ordinaryBefore = env.transport.generations(context.stream);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const makeRestore = async () => {
+    const instance = new CompleteRestore({
+      storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null, cryptoProvider: webcrypto,
+      reload: () => {}, lockAnswerMs: 200,
+    });
+    await instance.start();
+    await instance.inspect();
+    return instance;
+  };
+  let restore = await makeRestore();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  const question = cloudSyncQuestion(tab.cloud.model.sync.offer, { when: () => 'earlier' });
+  if (history === 'pending') {
+    assert.equal(question.loadDisabled, true);
+    assert.match(question.body, /earlier cloud recovery copy.*Load is unavailable/);
+    const result = await tab.cloud.loadSync();
+    assert.equal(result.ok, false);
+    assert.equal((await home.snapshot()).backup.digest, empty.backup.digest);
+    assert.equal((await protocol.keptPending(ON)).id, earlier.id);
+    assert.ok(env.transport.files.has(earlier.id));
+    await tab.cloud.turnOff();
+    await restore.releaseShared();
+    return;
+  } else if (hasEarlierKept) {
+    assert.match(question.body, /A copy of this device's progress is kept, and you can go back/);
+  } else {
+    assert.doesNotMatch(question.body, /A copy of this device's progress is kept|you can go back/);
+  }
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, true, result.error);
+  assert.deepEqual(env.transport.generations(context.stream), ordinaryBefore, 'Load does not create an ordinary backup');
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  if (hasEarlierKept) {
+    const kept = (await protocol.syncState(ON)).kept;
+    assert.notEqual(kept.id, earlier.id, 'the older copy no longer masquerades as the pre-Load state');
+    assert.equal(kept.contentDigest, empty.backup.digest);
+    assert.equal(keptCreates(env.transport).length, 2);
+    assert.ok(env.transport.files.has(earlier.id), 'the earlier kept file is retained');
+
+    env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+    await restore.releaseShared();
+    restore = await makeRestore();
+    const reopened = page({
+      env, home, launchSync: {
+        restoreReady: () => restore.checkAvailability(),
+        restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+      },
+    });
+    await reopened.cloud.resume();
+    await until(() => reopened.cloud.model.sync.phase === 'clear', 'the loaded state is checked after restart');
+    const back = await reopened.cloud.goBackSync();
+    assert.equal(back.ok, true, back.error);
+    assert.equal((await home.snapshot()).backup.digest, empty.backup.digest, 'Go back restores the exact empty state');
+    await reopened.cloud.turnOff();
+  } else {
+    assert.deepEqual(keptCreates(env.transport), []);
+    assert.equal((await protocol.syncState(ON))?.kept ?? null, null);
+  }
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+for (const trigger of ['Load', 'watch']) test(`an empty-device offer is withdrawn if its earlier kept reference changes: ${trigger}`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const storage = memoryStorage();
+  const home = {
+    storage,
+    snapshot: async () => {
+      const { text, backup } = await captureCompleteBackup({ storage, cryptoProvider: webcrypto });
+      return { text, backup, personalDigest: await personalDigest(backup, webcrypto) };
+    },
+  };
+  const empty = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null, cryptoProvider: webcrypto,
+    reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  const other = await device().snapshot();
+  const uploaded = await protocol.upload(other);
+  const kept = await protocol.keepBackup({
+    ...context, generation: uploaded.generation,
+    personalDigest: other.personalDigest, contentDigest: other.backup.digest,
+  });
+  if (trigger === 'Load') {
+    const result = await tab.cloud.loadSync();
+    assert.equal(result.ok, false);
+    assert.match(result.error, /changed|withdrawn/i);
+  } else {
+    const original = tab.cloud.model.sync.offer;
+    await tab.time.advance(5000);
+    await until(() => tab.cloud.model.sync.phase === 'offer' && tab.cloud.model.sync.offer !== original,
+      'the offer is replaced after the kept reference changes');
+    assert.match(cloudSyncQuestion(tab.cloud.model.sync.offer, { when: () => 'earlier' }).body,
+      /A copy of this device's progress is kept/);
+  }
+  assert.equal((await home.snapshot()).backup.digest, empty.backup.digest);
+  assert.equal((await protocol.syncState(ON)).kept.id, kept.id);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('an otherwise empty device with customized settings still gets a cloud safety copy', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const storage = memoryStorage([[SETTINGS_KEY, JSON.stringify({ theme: 'dark' })]]);
+  const snapshot = () => captureCompleteBackup({ storage, cryptoProvider: webcrypto });
+  const prior = await snapshot();
+  const home = { storage, snapshot };
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  assert.equal((await tab.cloud.loadSync()).ok, true);
+  assert.equal((await protocol.syncState(ON)).kept.contentDigest, prior.backup.digest);
+  assert.equal(keptCreates(env.transport).length, 1);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('the checked state loaded from another device uploads without the normal spacing delay', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  await protocol.upload(await home.snapshot());
+  home.mark(999);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  assert.equal((await tab.cloud.loadSync()).ok, true);
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  await restore.releaseShared();
+  const reopened = page({ env, home, launchSync: true });
+  await reopened.cloud.resume();
+  await until(() => reopened.cloud.model.sync.phase === 'clear', 'the loaded state is checked after reopening');
+  await reopened.run(0);
+  assert.equal((await protocol.lastUploaded(ON)).personalDigest, remote.personalDigest,
+    'the verified loaded state replaces the previous ordinary backup immediately after the check');
+  assert.ok(env.transport.generations(context.stream).length >= 2);
+  await reopened.cloud.turnOff();
+  await tab.cloud.turnOff();
+});
+
+test('a restore blocked by another tab makes no safety upload', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const home = device();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  const other = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  await other.start();
+  await other.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, launchSync: {
+      restoreReady: () => restore.checkAvailability(),
+      restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }),
+    },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  const before = env.transport.created.length;
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, false);
+  assert.equal(env.transport.created.length, before, 'a refused restore does not create any cloud copy');
+  await tab.cloud.turnOff();
+  await other.releaseShared();
+  await restore.releaseShared();
+});
+
+test('network and return events wait for an in-progress cloud restore to finish', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const home = device();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const events = new EventTarget();
+  const journal = createRestoreJournal(env.idb);
+  const progress = journal.progress;
+  journal.progress = async (record) => {
+    await progress(record);
+    if (record.writes === 1) {
+      events.dispatchEvent(new Event('offline'));
+      events.dispatchEvent(new Event('online'));
+    }
+  };
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal, events: null, cryptoProvider: webcrypto,
+    reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, events,
+    launchSync: { restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }) },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, true, result.error);
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  assert.equal(tab.cloud.model.sync.phase, 'loaded', 'the old page stays held until it reloads');
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('a disconnect during restore still activates the already verified prior cloud copy', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const prior = await home.snapshot();
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const events = new EventTarget();
+  let online = true;
+  const journal = createRestoreJournal(env.idb);
+  const progress = journal.progress;
+  journal.progress = async (record) => {
+    await progress(record);
+    if (record.writes === 1) {
+      online = false;
+      events.dispatchEvent(new Event('offline'));
+    }
+  };
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal, events: null, cryptoProvider: webcrypto,
+    reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const draft = { recovery: [], uncertain: false };
+  const tab = page({
+    env, home, events, isOnline: () => online,
+    launchSync: { restore: (text, options) => restore.restore(text, { ...options, importDraft: draft, draftRecovery: [] }) },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, true, result.error);
+  assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+  assert.equal((await protocol.syncState(ON))?.kept?.contentDigest, prior.backup.digest,
+    'Go back names the verified data from immediately before Load');
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('a follower cannot release a stale clear gate when no check leader existed', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const epoch = 'a'.repeat(32);
+  await protocol.setSyncGate({ ...context, epoch, held: true });
+  await protocol.setSyncGate({ ...context, epoch, held: false });
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  let acquired;
+  let release;
+  const ready = new Promise((resolve) => { acquired = resolve; });
+  const waiting = new Promise((resolve) => { release = resolve; });
+  const lock = env.locks.request(CLOUD_SYNC_OFFER_LOCK, { mode: 'exclusive' }, async () => {
+    acquired();
+    await waiting;
+  });
+  await ready;
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'following', 'the tab initially follows the lock holder');
+  release();
+  await lock;
+  await tab.cloud.checkSync();
+  await until(() => ['offer', 'clear'].includes(tab.cloud.model.sync.phase), 'the follower settles');
+  assert.equal(tab.cloud.model.sync.phase, 'offer', 'a stale clear gate cannot stand in for a new check');
+  assert.ok(env.transport.calls.includes('list'));
+  await tab.cloud.turnOff();
+});
+
+test('an upload observes the offer lock without taking the election itself', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const request = env.locks.request.bind(env.locks);
+  const query = env.locks.query.bind(env.locks);
+  let electionRequests = 0;
+  let queries = 0;
+  env.locks.request = (name, ...args) => {
+    if (name === CLOUD_SYNC_OFFER_LOCK) electionRequests += 1;
+    return request(name, ...args);
+  };
+  env.locks.query = async () => { queries += 1; return query(); };
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the initial check finishes');
+  const before = electionRequests;
+  await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.ok(queries > 0, 'the uploader queries the lock state');
+  assert.equal(electionRequests, before, 'checking permission never competes in the offer election');
+  assert.ok(env.transport.created.some((name) => parseCloudBackupName(name)), 'an unheld upload proceeds');
+  await tab.cloud.turnOff();
+});
+
+test('Load refuses replacement if the independent cloud copy cannot be kept', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  let restored = false;
+  const tab = page({ env, launchSync: { restore: async () => { restored = true; return { ok: true }; } } });
+  const before = await tab.home.snapshot();
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  tab.protocol.keepBackup = async () => { throw new Error('Injected kept-copy failure.'); };
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, false);
+  assert.equal(restored, false);
+  assert.equal((await tab.home.snapshot()).backup.digest, before.backup.digest);
+  assert.equal((await protocol.syncGate(context)).held, true);
+  await tab.cloud.turnOff();
+});
+
+test('Load creates no kept copy when its durable history witness cannot be written', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  let restored = false;
+  const tab = page({ env, launchSync: { restore: async () => { restored = true; return { ok: true }; } } });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  tab.protocol.records.writeKeptWitness = async () => { throw new Error('Injected history-witness failure.'); };
+  const result = await tab.cloud.loadSync();
+  assert.equal(result.ok, false);
+  assert.equal(restored, false);
+  assert.deepEqual(keptCreates(env.transport), []);
+  assert.equal((await protocol.syncGate(context)).held, true);
+  await tab.cloud.turnOff();
+});
+
+for (const change of ['remote vanished', 'signed out', 'local active list changed']) {
+  test(`Load withdraws if ${change} while the safety copy is being kept`, async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const remote = await device({ 1: 333 }).snapshot();
+    const remoteId = env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    let restored = false;
+    const savedChanges = createSavedChanges();
+    const tab = page({ env, savedChanges, launchSync: { restore: async () => { restored = true; return { ok: true }; } } });
+    const before = await tab.home.snapshot();
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+    const keep = tab.protocol.keepBackup.bind(tab.protocol);
+    tab.protocol.keepBackup = async (args) => {
+      const kept = await keep(args);
+      if (change === 'remote vanished') env.transport.files.delete(remoteId);
+      if (change === 'signed out') env.transport.host.state = 'not-connected';
+      if (change === 'local active list changed') {
+        tab.home.open('later');
+        savedChanges.notify();
+      }
+      return kept;
+    };
+    const result = await tab.cloud.loadSync();
+    assert.equal(result.ok, false);
+    assert.equal(restored, false);
+    const after = await tab.home.snapshot();
+    assert.equal(after.personalDigest, before.personalDigest, 'the prior reading progress remains');
+    assert.equal((await protocol.syncGate(context)).held, true);
+    await tab.cloud.turnOff();
+  });
+}
+
+test('a warned override releases only a failed check, and the next check re-arms the hold', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  env.transport.faults.list.push('unavailable');
+  const { cloud } = page({ env, launchSync: true });
+  await cloud.resume();
+  await until(() => cloud.model.sync.phase === 'failed', 'the failed check is reported');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.deepEqual(await cloud.overrideSync(), { ok: true });
+  assert.equal((await protocol.syncGate(context)).held, false);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  await cloud.recheckSync();
+  assert.equal(cloud.model.sync.phase, 'offer');
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.equal((await cloud.overrideSync()).ok, false, 'an outstanding choice cannot be bypassed');
+  await cloud.turnOff();
+});
+
+test('a second tab follows the failed-check override rather than making its own choice', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  env.transport.faults.list.push('unavailable');
+  const leader = page({ env, launchSync: true });
+  const follower = page({ env, home: leader.home, launchSync: true });
+  await leader.cloud.resume();
+  await until(() => leader.cloud.model.sync.phase === 'failed', 'the leader reports the failed check');
+  await follower.cloud.resume();
+  await until(() => follower.cloud.model.sync.phase === 'following', 'the other tab follows');
+  assert.equal((await follower.cloud.overrideSync()).ok, false);
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.deepEqual(await leader.cloud.overrideSync(), { ok: true });
+  await follower.cloud.checkSync();
+  assert.equal(follower.cloud.model.sync.phase, 'clear');
+  assert.equal((await protocol.syncGate(context)).held, false);
+  await leader.cloud.turnOff();
+  await follower.cloud.refresh();
+});
+
+test('a follower cannot upload while the leader cannot restore an uncertain hold', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const leader = page({ env, launchSync: true });
+  const follower = page({ env, home: leader.home, launchSync: true });
+  await leader.cloud.resume();
+  await until(() => leader.cloud.model.sync.phase === 'offer', 'the leader offers the other device');
+  await follower.cloud.resume();
+  await until(() => follower.cloud.model.sync.phase === 'following', 'the second tab follows');
+
+  const setGate = leader.protocol.setSyncGate.bind(leader.protocol);
+  let releaseUncertain = false;
+  leader.protocol.setSyncGate = async (next) => {
+    if (releaseUncertain && next.held) throw new CloudBackupError('The hold cannot be written.', 'storage');
+    const result = await setGate(next);
+    if (!next.held) {
+      releaseUncertain = true;
+      throw new CloudBackupError('The hold cannot be verified.', 'storage');
+    }
+    return result;
+  };
+  assert.equal((await leader.cloud.keepSync()).ok, false);
+  assert.equal((await protocol.syncGate(context)).held, false, 'the fault leaves the stored hold uncertain');
+  await follower.cloud.checkSync();
+  const before = env.transport.created.length;
+  await follower.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, before, 'the elected failed check still prevents an upload');
+  leader.protocol.setSyncGate = setGate;
+  await leader.cloud.turnOff();
+  await follower.cloud.refresh();
+});
+
+test('a failed initial hold prevents an already-running tab from uploading', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const other = page({ env, launchSync: true });
+  await other.cloud.resume();
+  await until(() => other.cloud.model.sync.phase === 'clear', 'the first tab finishes its earlier check');
+  assert.equal((await protocol.syncGate(context)).held, false);
+
+  const opening = page({ env, home: other.home, launchSync: true });
+  const setGate = opening.protocol.setSyncGate.bind(opening.protocol);
+  opening.protocol.setSyncGate = async (next) => {
+    if (next.held) throw new CloudBackupError('The hold cannot be written.', 'storage');
+    return setGate(next);
+  };
+  await opening.cloud.resume();
+  await until(() => opening.cloud.model.sync.phase === 'failed', 'the new check reports its unconfirmed hold');
+  assert.equal(opening.cloud.model.sync.code, 'hold-unconfirmed');
+  const before = env.transport.created.length;
+  await other.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, before, 'a failed hold must not let another tab upload');
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  await other.run(CLOUD_BACKUP_CADENCE.recheckMs);
+  assert.equal(env.transport.created.length, before, 'closing the failed tab must not release an older clear gate');
+  const recovery = page({ env, home: other.home, launchSync: true });
+  await recovery.cloud.resume();
+  await until(() => recovery.cloud.model.sync.phase === 'clear', 'a new check resolves the abandoned marker');
+  assert.equal(env.syncStorage.getItem(CLOUD_SYNC_PENDING_KEY), null);
+  await other.run(CLOUD_BACKUP_CADENCE.recheckMs);
+  assert.ok(env.transport.created.length > before, 'a successful new check resumes backups');
+  await recovery.cloud.turnOff();
+  opening.protocol.setSyncGate = setGate;
+  await opening.cloud.refresh();
+  await other.cloud.refresh();
+});
+
+test('a refused pending marker still leaves a durable IndexedDB hold before reporting failure', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const other = page({ env, launchSync: true });
+  await other.cloud.resume();
+  await until(() => other.cloud.model.sync.phase === 'clear', 'the earlier check completes');
+  const write = env.syncStorage.setItem;
+  env.syncStorage.setItem = () => { throw new Error('Storage refused the marker.'); };
+  const opening = page({ env, home: other.home, launchSync: true });
+  await opening.cloud.resume();
+  await until(() => opening.cloud.model.sync.phase === 'failed', 'the marker failure is reported');
+  assert.equal(opening.cloud.model.sync.code, 'hold-unconfirmed');
+  assert.equal((await protocol.syncGate(context)).held, true, 'the independent durable hold was still attempted');
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  const before = env.transport.created.length;
+  await other.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, before, 'a failed marker write cannot enable an older tab');
+  env.syncStorage.setItem = write;
+  const recovery = page({ env, home: other.home, launchSync: true });
+  await recovery.cloud.resume();
+  await until(() => recovery.cloud.model.sync.phase === 'clear', 'the marker can be repaired');
+  await recovery.cloud.turnOff();
+  await opening.cloud.refresh();
+  await other.cloud.refresh();
+});
+
+test('a removed pending marker cannot authorize an old Keep choice', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+  }));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'offer', 'the other device is offered');
+  env.syncStorage.removeItem(CLOUD_SYNC_PENDING_KEY);
+  assert.equal((await tab.cloud.keepSync()).ok, false);
+  assert.equal((await protocol.syncGate(context)).held, true);
+  assert.equal((await protocol.syncState(ON))?.declinedDigest ?? null, null);
+  await tab.cloud.turnOff();
+});
+
+test('Go back protects the current data before loading the exact prior kept copy', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const prior = await home.snapshot();
+  const uploaded = await protocol.upload(prior);
+  const originalKept = await protocol.keepBackup({
+    ...context, generation: uploaded.generation, personalDigest: prior.personalDigest, contentDigest: prior.backup.digest,
+  });
+  home.mark(999);
+  const current = await home.snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: current.backup, device: 'Phone', createdAt: 123,
+  }));
+  await protocol.rememberSync({ ...context, matchedDigest: current.personalDigest });
+  const draft = { recovery: [], uncertain: false };
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const tab = page({
+    env, home,
+    launchSync: { restore: (text, options) => {
+      assert.equal(typeof options.assertStillAuthorized, 'function');
+      options.assertStillAuthorized();
+      return restore.restore(text, { ...options, importDraft: draft, draftRecovery: draft.recovery.slice() });
+    } },
+  });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the current cloud progress is checked');
+  assert.equal(tab.cloud.model.sync.kept.id, originalKept.id);
+  const result = await tab.cloud.goBackSync();
+  assert.equal(result.ok, true, result.error);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  const after = await protocol.syncState(ON);
+  assert.equal(after.kept.contentDigest, current.backup.digest, 'the data being replaced is now the go-back copy');
+  assert.equal(await protocol.keptPending(ON), null, 'a confirmed Go back clears the pending marker');
+  assert.ok(env.transport.files.has(after.kept.id));
+  assert.ok(env.transport.files.has(originalKept.id), 'the target survives until its verified bytes are consumed');
+  assert.equal((await protocol.syncGate(context)).held, true, 'uploads wait for the page to reload');
+  await tab.cloud.turnOff();
+});
+
+test('a failed post-Go-back activation is retried and preserves the replaced copy', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const earlier = await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+  const target = await home.snapshot();
+  home.mark(999);
+  const prior = await home.snapshot();
+  const restore = new CompleteRestore({
+    storage: home.storage, locks: env.locks, journal: createRestoreJournal(env.idb), events: null,
+    clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+  });
+  await restore.start();
+  await restore.inspect();
+  const tab = page({
+    env, home,
+    launchSync: { restore: (text, options) => restore.restore(text, { ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [] }) },
+  });
+  const activate = tab.protocol.records.resolveKeptPending.bind(tab.protocol.records);
+  let activationAttempted = false;
+  tab.protocol.records.resolveKeptPending = async (options) => {
+    if (!activationAttempted) {
+      activationAttempted = true;
+      env.idb.faults.abort = 1;
+    }
+    return activate(options);
+  };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the current cloud progress is checked');
+  const result = await tab.cloud.goBackSync();
+  assert.equal(activationAttempted, true);
+  assert.equal(result.ok, true, result.error);
+  assert.match(result.warning, /Go back is unavailable/);
+  assert.equal((await home.snapshot()).backup.digest, target.backup.digest);
+  assert.equal((await protocol.syncState(ON)).kept.id, earlier.id);
+  const pending = await protocol.keptPending(ON);
+  assert.equal(pending.contentDigest, prior.backup.digest);
+  assert.ok(env.transport.files.has(pending.id));
+  assert.ok(await restore.exportPrior());
+  await tab.cloud.recheckSync();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the cloud check completes again');
+  assert.equal(tab.cloud.model.sync.keptUnavailable, false);
+  assert.equal(tab.cloud.model.sync.kept.contentDigest, prior.backup.digest);
+  assert.equal(await protocol.keptPending(ON), null);
+  assert.equal((await tab.cloud.goBackSync()).ok, true);
+  assert.equal((await home.snapshot()).backup.digest, prior.backup.digest);
+  await tab.cloud.turnOff();
+  await restore.releaseShared();
+});
+
+test('Go back reports a vanished kept copy before uploading or replacing anything', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const context = await syncContext(protocol);
+  const home = device();
+  const prior = await home.snapshot();
+  const uploaded = await protocol.upload(prior);
+  const kept = await protocol.keepBackup({
+    ...context, generation: uploaded.generation, personalDigest: prior.personalDigest, contentDigest: prior.backup.digest,
+  });
+  home.mark(999);
+  const current = await home.snapshot();
+  let restored = false;
+  const tab = page({ env, home, launchSync: { restore: async () => { restored = true; return { ok: true }; } } });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'clear', 'the cloud check finishes');
+  env.transport.files.delete(kept.id);
+  const creates = env.transport.created.length;
+  const result = await tab.cloud.goBackSync();
+  assert.equal(result.ok, false);
+  assert.equal(restored, false);
+  assert.equal(env.transport.created.length, creates);
+  assert.equal((await home.snapshot()).backup.digest, current.backup.digest);
+  await tab.cloud.turnOff();
+});
 
 test('other devices see this one by its browser and the system it runs on', () => {
   const edge = { userAgentData: { brands: [{ brand: 'Not)A;Brand' }, { brand: 'Chromium' }, { brand: 'Microsoft Edge' }], platform: 'Windows' } };
@@ -1881,6 +4811,37 @@ test('startup asks the host only when this browser holds consent', async () => {
   tab.home.storage.clear();
   await tab.cloud.afterErase(true);
   assert.deepEqual([await asked(), env.idb.databases.has(CLOUD_BACKUP_DATABASE)], [0, true], 'erased, the database kept');
+});
+
+test('erase removes a pending cloud check only after the erase succeeds', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  env.syncStorage.setItem(CLOUD_SYNC_PENDING_KEY, 'a'.repeat(32));
+  const tab = page({ env });
+  await tab.cloud.resume();
+  await tab.cloud.beforeErase();
+  await tab.cloud.afterErase(false);
+  assert.equal(env.syncStorage.getItem(CLOUD_SYNC_PENDING_KEY), 'a'.repeat(32), 'a refused erase preserves the hold');
+  await tab.cloud.beforeErase();
+  const outcome = await tab.cloud.afterErase(true);
+  assert.equal(outcome.ok, true);
+  assert.equal(env.syncStorage.getItem(CLOUD_SYNC_PENDING_KEY), null, 'a completed erase removes the local marker');
+});
+
+test('erase reports a pending cloud marker that storage refuses to remove', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  env.syncStorage.setItem(CLOUD_SYNC_PENDING_KEY, 'a'.repeat(32));
+  const tab = page({ env });
+  await tab.cloud.resume();
+  await tab.cloud.beforeErase();
+  const remove = env.syncStorage.removeItem;
+  env.syncStorage.removeItem = () => { throw new Error('Storage refused removal.'); };
+  const outcome = await tab.cloud.afterErase(true);
+  assert.equal(outcome.ok, false);
+  assert.match(outcome.problems.join(' '), /cloud check marker/i);
+  assert.equal(env.syncStorage.getItem(CLOUD_SYNC_PENDING_KEY), 'a'.repeat(32));
+  env.syncStorage.removeItem = remove;
 });
 
 // The erase question promised to disconnect every profile, or this browser had cloud backup: a host that
@@ -2506,15 +5467,19 @@ test('sync state survives a cancelled erase and is forgotten atomically with a c
   await tab.run(0);
   await remember(tab.protocol, { matchedDigest: 'a'.repeat(64), declinedDigest: 'b'.repeat(64) });
   const before = await tab.protocol.syncState(ON);
+  const context = await syncContext(tab.protocol);
+  await tab.protocol.rememberDecline({ ...context, remoteStream: OTHER, digest: 'c'.repeat(64), expected: null });
 
   await tab.cloud.beforeErase();
   await tab.cloud.afterErase(false);
   assert.deepEqual(await tab.protocol.syncState(ON), before, 'a cancelled erase keeps the marker');
+  assert.deepEqual(await tab.protocol.syncDeclines(context), [{ stream: OTHER, digest: 'c'.repeat(64) }]);
 
   await tab.cloud.beforeErase();
   tab.home.storage.clear();
   assert.deepEqual(await tab.cloud.afterErase(true), { ok: true, problems: [] });
   assert.deepEqual(await tab.protocol.records.readSync(), { record: null, sync: null, syncPresent: false });
+  assert.equal((await tab.protocol.records.readSyncDeclines()).present, false, 'a completed erase removes the choices');
 });
 
 for (const lostWrites of [1, 2]) {
@@ -2639,6 +5604,45 @@ test('kept ledger retains the newest three exact identities without touching oth
   assert.deepEqual(env.transport.generations(OTHER), [1], 'another installation is untouched');
   assert.equal((await protocol.syncState(ON)).kept.id, copies[4].id, 'the current go-back copy is never pruned');
 });
+
+for (const missing of ['witness', 'ledger', 'both']) {
+  test(`missing kept-copy ${missing} stays uncertain and never deletes unrecorded copies`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const home = device();
+    const copies = [];
+    for (let change = 1; change <= 3; change += 1) {
+      copies.push(await protocol.keepBackup(await uploadForKept(protocol, home, change)));
+    }
+    const foreign = env.transport.store(`recap-page-kept-v1-${OTHER}-1-${'a'.repeat(32)}.json.gz`,
+      env.transport.files.get(copies[0].id).bytes);
+    const store = env.idb.databases.get(CLOUD_BACKUP_DATABASE).get('stream');
+    if (missing !== 'ledger') store.delete('kept-history');
+    if (missing !== 'witness') store.delete('kept-ledger');
+    assert.equal((await protocol.keptHistory(ON)).unknown, true);
+    await protocol.keepBackup(await uploadForKept(protocol, home, 4));
+    assert.ok(env.transport.files.has(foreign), 'a file outside the ledger is never pruned');
+    if (missing !== 'witness') {
+      for (const copy of copies) assert.ok(env.transport.files.has(copy.id), 'a lost ledger cannot authorize deletion');
+    }
+  });
+}
+
+for (const corrupt of ['witness', 'ledger', 'both']) {
+  test(`corrupt kept-copy ${corrupt} cannot authorize cleanup or replacement`, async () => {
+    const env = harness();
+    const { protocol } = await consented(env);
+    const home = device();
+    const original = await protocol.keepBackup(await uploadForKept(protocol, home, 1));
+    const store = env.idb.databases.get(CLOUD_BACKUP_DATABASE).get('stream');
+    if (corrupt !== 'ledger') store.set('kept-history', { version: 99 });
+    if (corrupt !== 'witness') store.set('kept-ledger', { version: 99 });
+    const next = await uploadForKept(protocol, home, 2);
+    await assert.rejects(protocol.keepBackup(next));
+    assert.ok(env.transport.files.has(original.id));
+    assert.equal(keptCreates(env.transport).length, 1, 'no second kept copy is created');
+  });
+}
 
 test('kept ledger retries a created but unverified copy by its exact identity', async () => {
   const env = harness();
@@ -3540,7 +6544,7 @@ test('sync pin is replaced only after the new verified copy and the pin itself a
   const second = await home.snapshot();
   await protocol.upload(second);
   const pin2 = { ...ON, stream, generation: 2, personalDigest: second.personalDigest, contentDigest: second.backup.digest };
-  env.idb.faults.drop = 1;
+  loseNextSyncWrite(env.idb, protocol);
   await assert.rejects(protocol.keepBackup({ ...pin2, consentId }), { code: 'storage' });
   assert.deepEqual((await protocol.syncState(ON)).kept, kept1, 'a lost pin write keeps the old reference');
 
@@ -3773,7 +6777,7 @@ test('sync pin leaves a failed independent copy and the earlier recovery referen
     if (fault === 'read-timeout') env.transport.faults.read.push(null, 'timeout');
     if (fault === 'read-corrupt') env.transport.faults.read.push(null, 'corrupt');
     if (fault === 'create-lost') env.transport.faults.create.push('lost');
-    if (fault === 'lost-reference') env.idb.faults.drop = 1;
+    if (fault === 'lost-reference') loseNextSyncWrite(env.idb, protocol);
     const deletes = env.transport.calls.filter((call) => call === 'delete').length;
     const code = fault === 'read-corrupt' ? 'verify' : fault === 'lost-reference' ? 'storage' : 'timeout';
     await assert.rejects(protocol.keepBackup({
@@ -4273,6 +7277,51 @@ function icloudNative(connection) {
   };
   return native;
 }
+
+test('OneDrive on iPhone and iPad transports inherits the launch offer before uploading', async () => {
+  for (const [label, nav] of [
+    ['iPhone', { userAgent: 'iPhone' }],
+    ['iPad', { userAgent: 'Macintosh', maxTouchPoints: 5 }],
+  ]) {
+    const connection = 'c'.repeat(32);
+    const native = icloudNative(connection);
+    native.autoUpload = true;
+    const postMessage = native.postMessage.bind(native);
+    const calls = [];
+    native.postMessage = async (message) => {
+      calls.push(message.op);
+      if (message.op === 'status') {
+        return {
+          v: 1, kind: 'cloud-result', status: 200, body: JSON.stringify({
+            ok: true, status: {
+              provider: 'onedrive', providers: ['icloud', 'onedrive'], state: 'connected', connection,
+              account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
+            },
+          }),
+        };
+      }
+      return postMessage(message);
+    };
+    const transport = createICloudTransport({ native, nav, createTransport: createCloudHostTransport });
+    const env = harness({ transport });
+    const protocol = env.make();
+    await protocol.recordConsent({ connection, provider: 'onedrive', device: transport.device });
+    const remote = await device({ 1: 333 }).snapshot();
+    await transport.create(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Desktop', createdAt: 123,
+    }), { connection });
+    const createdBefore = calls.filter((op) => op === 'create').length;
+    const tab = page({ env, launchSync: true, device: null });
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', `${label} offers the other device`);
+    assert.equal(transport.device, `Recap Page on ${label}`);
+    assert.equal(tab.cloud.model.sync.offer.remote.device, 'Desktop');
+    assert.ok(calls.includes('list') && calls.includes('read'), 'the check crosses the native transport');
+    await tab.time.advance(CLOUD_BACKUP_CADENCE.minIntervalMs, [tab.cloud]);
+    assert.equal(calls.filter((op) => op === 'create').length, createdBefore, 'the unresolved offer holds uploads');
+    await tab.cloud.turnOff();
+  }
+});
 
 // One backup already made and uploaded, and the next one to make, on a device whose iCloud keeps the
 // next file waiting until the test uploads it.

@@ -135,6 +135,10 @@ cannot be taken back, with no Undo and no kept copy, the danger appearance throu
   dialog whose only close control sits at its top holds that too, in a `dialog-head`.
   Route headings retain focus for orientation, but pointer navigation must not force a focus box
   around a page title. Keep normal `:focus-visible` indicators for keyboard navigation.
+- **Cloud progress choices.** Use the shared question for the two progress choices without
+  stacking it on another dialog. Focus Keep when progress differs or an offer arrives after
+  the reader starts using the app. A dismissed offer remains available as a quiet action while
+  uploads stay paused. Withdraw a choice when its checked data or connection changes.
 - **Fields and errors.** Associate a visible label with each visible field. A placeholder is not a
   label. Associate actionable error text with the field while preserving its hint; mark the
   invalid state, reveal any containing disclosure and focus the field needing correction.
@@ -183,6 +187,7 @@ owners for the changed contract; extend missing coverage with observable behavio
 |---|---|---|
 | Destinations and route intent | `formatRoute` and `isPlainNavigation` in `src/js/lib/route.js` | `test/route.test.js`; `semantic-destinations`, `narrow-navigation` |
 | Questions, cancellation and focus | `askConfirm`, `askText` and `askNote` in `src/js/ask.js` | `test/ask.test.js`; `responsive-controls`, `danger-confirmations` |
+| Cloud progress choice | `askSyncChoice` in `src/js/ask.js` and the cloud prompt in `src/js/views/cloud.js` | `test/ask.test.js`, `test/data-view.test.js`; `cloud-launch-sync` |
 | Dialog shell | The `ask` or `preview` class, a `dialog-foot`, and `holdDialogEdges` in `src/js/lib/dialogShell.js` | `test/dialog-shell.test.js`; `dialog-shell` |
 | Field validation | `wireFieldValidation` in `src/js/views/shared/field-validation.js` | `test/add-view.test.js`; `responsive-controls` |
 | Decorative icons | `uiIcon` in `src/js/lib/uiIcon.js` and the local SVG symbols | `test/portable-icons.test.js` |

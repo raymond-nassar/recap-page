@@ -98,6 +98,7 @@ function installDom({ withDialog = true, withChoice = true } = {}) {
     'ask-error': makeElement(),
     'ask-ok': makeElement(),
     'ask-cancel': makeElement(),
+    'ask-alternate': makeElement({ hidden: true }),
     ...(withChoice ? { 'ask-choice-field': makeElement({ hidden: true }), 'ask-choice-label': makeElement(), 'ask-choice': makeElement({ checked: false }) } : {}),
   };
   globalThis.document = { activeElement: null, getElementById: (id) => parts[id] ?? null };
@@ -139,6 +140,55 @@ test('a confirmed question resolves yes and a cancelled one resolves no', async 
     const no = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
     dlg.close('');
     assert.equal(await within(no, 'no to settle'), false);
+  } finally {
+    clearDom();
+  }
+});
+
+test('a cloud choice offers Keep, Load and Cancel without stacking another question', async () => {
+  try {
+    const { askSyncChoice, askConfirm, withdrawSyncChoice, dlg, parts } = await wired();
+    const choice = askSyncChoice({
+      title: 'Your progress differs between devices', body: 'Choose which progress to keep using.',
+      keepLabel: "Keep this device's progress", loadLabel: "Load the other device's progress", focusKeep: true,
+    });
+    assert.equal(parts['ask-alternate'].hidden, false);
+    assert.equal(globalThis.document.activeElement, parts['ask-alternate'], 'the safe Keep choice has focus');
+    assert.equal(await askConfirm({ title: 'Another question' }), false, 'questions never stack');
+    parts['ask-alternate'].fire('click');
+    assert.equal(await within(choice, 'Keep to settle'), 'keep');
+
+    const load = askSyncChoice({ title: 'Newer progress found', keepLabel: 'Keep', loadLabel: 'Load' });
+    assert.equal(globalThis.document.activeElement, parts['ask-ok']);
+    dlg.close('ok');
+    assert.equal(await within(load, 'Load to settle'), 'load');
+
+    const cancelled = askSyncChoice({ title: 'Newer progress found', keepLabel: 'Keep', loadLabel: 'Load' });
+    withdrawSyncChoice();
+    assert.equal(await within(cancelled, 'withdrawn offer to settle'), null);
+    const ordinary = askConfirm({ title: 'Ordinary question' });
+    assert.equal(parts['ask-alternate'].hidden, true, 'the extra answer does not leak into later questions');
+    dlg.close('');
+    assert.equal(await within(ordinary, 'ordinary question to settle'), false);
+  } finally {
+    clearDom();
+  }
+});
+
+test('an unchecked cloud recovery copy disables Load and does not disable later questions', async () => {
+  try {
+    const { askSyncChoice, askConfirm, dlg, parts } = await wired();
+    const choice = askSyncChoice({
+      title: 'Newer progress found', keepLabel: 'Keep', loadLabel: 'Load', loadDisabled: true,
+    });
+    assert.equal(parts['ask-ok'].disabled, true);
+    assert.equal(globalThis.document.activeElement, parts['ask-alternate']);
+    parts['ask-alternate'].fire('click');
+    assert.equal(await within(choice, 'Keep to settle'), 'keep');
+    const ordinary = askConfirm({ title: 'Ordinary question' });
+    assert.equal(parts['ask-ok'].disabled, false);
+    dlg.close('ok');
+    assert.equal(await within(ordinary, 'ordinary question to settle'), true);
   } finally {
     clearDom();
   }

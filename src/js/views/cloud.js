@@ -96,6 +96,26 @@ function keptAttentionNotice({ keptAttention } = {}) {
   return `${count} could not be confirmed or removed. Check your cloud folder and delete any unwanted copies by hand.`;
 }
 
+function syncStatus(model) {
+  const { sync } = model;
+  if (!sync || sync.phase === 'off' || sync.phase === 'clear') return '';
+  if (sync.phase === 'failed') {
+    if (sync.code === 'hold-unconfirmed') return cloudErrorText(sync.error, model.scope);
+    const failure = {
+      keep: "This device's progress could not be kept.",
+      load: 'The cloud progress could not be loaded.',
+      back: 'The kept progress could not be loaded.',
+      override: 'Automatic backups could not be resumed.',
+      discard: 'The earlier Go back choice could not be cleared.',
+    }[sync.action] ?? 'The cloud check did not finish.';
+    return `${failure} Backups from this device are paused until Recap Page can check for progress from your other devices. ${cloudErrorText(sync.error, model.scope) ?? 'Check again.'}`;
+  }
+  if (sync.phase === 'offer') return 'Different progress was found in the cloud. Automatic backups are paused until you choose.';
+  if (sync.phase === 'working') return 'Your cloud choice is being completed. Automatic backups are paused.';
+  if (sync.phase === 'loaded') return sync.error ?? 'Progress was loaded. Automatic backups wait until the app reopens.';
+  return 'Checking cloud progress. Automatic backups are paused.';
+}
+
 // The card's persistent line: the account, and what is happening to backups.
 function cloudConnectionStatus(model, { when = longTime, at = shortTime } = {}) {
   const name = cloudProviderName(model);
@@ -131,19 +151,24 @@ function cloudConnectionStatus(model, { when = longTime, at = shortTime } = {}) 
           : `${account} This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser's earlier backups will then be listed as another device's.`;
       }
       if (!model.on) return account;
-      return `${account} ${cloudBackupStatus(model.backup, { name, when, at, scope: model.scope })}`;
+      return `${account} ${syncStatus(model) || cloudBackupStatus(model.backup, { name, when, at, scope: model.scope })}`;
     }
     default: return '';
   }
 }
 
 export function cloudCardStatus(model, options = {}) {
-  return [cloudConnectionStatus(model, options), earlierCopiesNotice(model), keptAttentionNotice(model)].filter(Boolean).join(' ');
+  const history = model.sync?.kept && model.sync.historyUnknown
+    ? 'Earlier kept copies may exist. Check their cloud folders for copies the app cannot account for.' : '';
+  const pending = model.sync?.keptUnavailable
+    ? 'The last cloud recovery copy could not be confirmed, so Go back is unavailable. Choose Continue without Go back to load other progress.' : '';
+  return [cloudConnectionStatus(model, options), earlierCopiesNotice(model), keptAttentionNotice(model), history, pending].filter(Boolean).join(' ');
 }
 
 // Stopped and failed states, which wear the warning notice, whose mark does not rely on color.
 export function cloudCardWarns(model) {
   const { host } = model;
+  if (model.sync?.phase === 'failed' || model.sync?.keptUnavailable) return true;
   if (model.keptProblem || model.keptAttention > 0) return true;
   if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
   if (host === 'not-connected') return Boolean(model.message);
@@ -161,6 +186,7 @@ function noticeOf(model, previous) {
   if (host === 'unavailable' && model.agreed) return `unavailable:${model.message}`;
   if (host === 'connected' && model.askedAgain) return 'asked-again';
   if (host === 'connected' && model.recordUnreadable) return 'record-unreadable';
+  if (host === 'connected' && model.sync?.phase === 'failed') return `sync-failed:${model.sync.error}`;
   if (host === 'connected' && model.on && model.backup.phase === 'failed') return `failed:${model.backup.code}`;
   return null;
 }
@@ -269,12 +295,167 @@ export function renderCloudCopy(model, root = globalThis.document) {
   }
 }
 
+export function cloudSyncQuestion(offer, { when = longTime } = {}) {
+  const different = offer.quiet || offer.kind !== 'remote-ahead';
+  const { remote, local } = offer;
+  const marked = (time) => time === null ? 'not marked read yet' : `last marked read ${when(time)}`;
+  const facts = [
+    `${remote.device} saved progress at ${when(remote.createdAt)}: ${remote.readCount} comics read, ${marked(remote.lastReadAt)}.`,
+    `This device: ${local.readCount} comics read, ${marked(local.lastReadAt)}.`,
+  ];
+  const others = offer.othersDiffering > 0
+    ? `${plural(offer.othersDiffering, 'other device')} also ${offer.othersDiffering === 1 ? 'has' : 'have'} different progress.` : '';
+  const loadDisabled = Boolean(offer.priorPending);
+  const warning = loadDisabled
+    ? 'The earlier cloud recovery copy could not be confirmed, so Load is unavailable. In Backup & settings, choose Continue without Go back to allow another Load.'
+    : different
+      ? `Choose which progress to keep using.${offer.keepLocal === false ? '' : ' The other is kept as a copy.'}`
+      : `Loading replaces what is on this device.${offer.keepLocal === false ? '' : " A copy of this device's progress is kept, and you can go back to it from Backup & settings."}`;
+  return {
+    title: different ? 'Your progress differs between devices' : 'Newer progress found',
+    body: [...facts, others, warning].filter(Boolean).join('\n\n'),
+    keepLabel: "Keep this device's progress",
+    loadLabel: different ? "Load the other device's progress" : 'Load newer progress',
+    focusKeep: different || loadDisabled, loadDisabled,
+  };
+}
+
+export function cloudSyncDiscardQuestion() {
+  return {
+    title: 'Continue without Go back?',
+    body: "The app will no longer offer Go back for the earlier restore. This does not change this device's progress or delete the cloud copies now. If you later load other progress or go back, the app may remove older kept copies.",
+    confirmLabel: 'Continue without Go back',
+  };
+}
+
+function syncOfferId(offer) {
+  return JSON.stringify([
+    offer.epoch, offer.remote, offer.localContentDigest, offer.kind, offer.othersDiffering, offer.keepLocal,
+    offer.priorKept, offer.priorPending,
+  ]);
+}
+
+export function createCloudSyncPrompt({
+  elements, getModel, ask, withdraw, onKeep, onLoad, onFinished, report, announce = () => {},
+  focusSuccessor = () => {}, onQuestionChange = () => {}, when = longTime,
+}) {
+  let question = null;
+  let pendingQuestions = 0;
+  let attempted = null;
+  let announcedOffer = null;
+
+  const currentOffer = () => {
+    const sync = getModel()?.sync;
+    return sync?.phase === 'offer' ? sync.offer : null;
+  };
+
+  function rescueFocus() {
+    const document = globalThis.document;
+    if (!document || document.querySelector('dialog[open]')) return;
+    const active = document.activeElement;
+    if (active?.isConnected && active !== document.body && active !== document.documentElement
+      && !active.closest?.('[hidden], [inert], dialog:not([open])')) return;
+    const { notice, review } = elements();
+    if (currentOffer() && review && !review.disabled && !review.hidden && !notice?.hidden) {
+      review.focus();
+    } else {
+      focusSuccessor();
+    }
+  }
+
+  async function show(offer) {
+    const id = syncOfferId(offer);
+    if (question || syncOfferId(currentOffer() ?? offer) !== id || !currentOffer()) return;
+    const ticket = { id, withdrawn: false };
+    question = ticket;
+    attempted = id;
+    pendingQuestions += 1;
+    try {
+      onQuestionChange(true);
+      render();
+      let answer;
+      try { answer = await ask(cloudSyncQuestion(offer, { when })); }
+      catch (error) {
+        report(error?.message ?? 'The cloud choice could not be opened.');
+      }
+      if (question !== ticket) return;
+      question = null;
+      const current = currentOffer();
+      if (ticket.withdrawn || !current || syncOfferId(current) !== id || (answer !== 'keep' && answer !== 'load')) {
+        render();
+        if (answer !== 'busy') rescueFocus();
+        return;
+      }
+      try {
+        const result = await (answer === 'keep' ? onKeep() : onLoad());
+        if (!result?.ok) report(result?.error ?? 'The cloud choice could not be completed. Check again.');
+        else if (answer === 'load') onFinished(result.warning ?? 'Progress loaded from your cloud backup.');
+        else announce("This device's progress was kept.");
+      } catch (error) {
+        report(error?.message ?? 'The cloud choice could not be completed. Check again.');
+      }
+      render();
+      rescueFocus();
+    } finally {
+      if (question === ticket) question = null;
+      pendingQuestions -= 1;
+      onQuestionChange(pendingQuestions > 0);
+    }
+  }
+
+  function render() {
+    const { notice, message, review } = elements();
+    if (!notice) return;
+    const offer = currentOffer();
+    const id = offer ? syncOfferId(offer) : null;
+    if (question && question.id !== id && !question.withdrawn) {
+      question.withdrawn = true;
+      withdraw();
+      const withdrawn = getModel()?.sync?.notice;
+      if (withdrawn) announce(withdrawn);
+    }
+    if (!offer) {
+      attempted = null;
+      const withdrawn = getModel()?.sync?.notice;
+      if (['clear', 'off'].includes(getModel()?.sync?.phase)) announcedOffer = null;
+      notice.hidden = !withdrawn;
+      if (review) review.hidden = true;
+      if (message && withdrawn) message.textContent = withdrawn;
+      return;
+    }
+    if (message) message.textContent = 'Your progress differs between devices.';
+    if (review) review.hidden = false;
+    if (!offer.quiet && !question && attempted !== id) {
+      attempted = id;
+      void show(offer);
+    }
+    notice.hidden = false;
+    const announcement = JSON.stringify([offer.remote.stream ?? offer.remote.device, offer.kind]);
+    if (!question && announcedOffer !== announcement) {
+      announcedOffer = announcement;
+      announce('Your progress differs between devices. Review progress.');
+    }
+  }
+
+  function wire() {
+    elements().review?.addEventListener('click', () => {
+      const offer = currentOffer();
+      if (offer) void show(offer);
+    });
+    render();
+  }
+
+  return { wire, render };
+}
+
 export function createCloudBackupView({
   el, elements, askConfirm, askConfirmChoice, notify, getModel, announce = () => {},
   onConnect, onTurnOn, onTurnOff, onDiscover, onFetch, onRestore, onDeleteOwn, onDisconnect, onRetry, onFinished,
+  onSyncCheck, onSyncOverride, onSyncBack, onSyncDiscard,
   when = longTime, at = shortTime,
 }) {
   let working = false;
+  let syncQuestionPending = false;
   // The person's answer while turning automatic backup on or off, so the switch does not flick back
   // while the change is made.
   let toggling = null;
@@ -289,6 +470,7 @@ export function createCloudBackupView({
   // What the card last showed, so each change worth hearing is said once, as it happens, and never what a
   // page finds already true when it opens (stage 3 review, S3b-2).
   let heard = null;
+  let lastSyncFailure = null;
   const report = (message, kind = 'error', claims = null) => {
     claimed = claims;
     notify('#cloud-backup-report', cloudErrorText(message, getModel().scope), kind);
@@ -350,10 +532,12 @@ export function createCloudBackupView({
     nodes.card.hidden = !model.shown;
     if (!model.shown) {
       heard = null;
+      lastSyncFailure = null;
       return;
     }
     const { host } = model;
     const connected = host === 'connected';
+    if (nodes.syncAbout) nodes.syncAbout.hidden = model.provider !== 'onedrive';
     nodes.intro.hidden = !(host === 'not-connected' || host === 'signing-in');
     const said = cloudCardStatus(model, { when, at });
     nodes.status.textContent = said;
@@ -364,7 +548,15 @@ export function createCloudBackupView({
     const notice = noticeOf(model, heard?.host);
     const newKeptProblem = model.keptProblem && !heard?.keptProblem;
     const newKeptAttention = model.keptAttention > (heard?.keptAttention ?? 0);
-    if (heard && said && (newKeptProblem || newKeptAttention || (notice && notice !== heard.notice))) announce(said);
+    const syncFailed = connected && model.sync?.phase === 'failed';
+    const newNotice = syncFailed
+      ? !model.sync.action && notice !== lastSyncFailure
+      : notice && notice !== heard?.notice;
+    if (heard && said && (newKeptProblem || newKeptAttention || newNotice)) announce(said);
+    if (syncFailed) lastSyncFailure = notice;
+    else if (!connected || !model.on || ['off', 'clear', 'offer', 'ready', 'loaded'].includes(model.sync?.phase)) {
+      lastSyncFailure = null;
+    }
     heard = { host, notice, keptProblem: Boolean(model.keptProblem), keptAttention: model.keptAttention ?? 0 };
     nodes.progress.hidden = !(model.on && model.backup.phase === 'saving');
     const choices = cloudSignInChoices(model);
@@ -382,6 +574,21 @@ export function createCloudBackupView({
     const agreed = model.agreed && !model.askedAgain;
     nodes.auto.hidden = !(connected || (model.agreed && host !== 'not-connected' && host !== 'signing-in'));
     nodes.autoInput.checked = toggling ?? agreed;
+    if (nodes.syncActions) {
+      const sync = model.sync;
+      nodes.syncCheck.hidden = sync?.phase !== 'failed';
+      nodes.syncOverride.hidden = sync?.phase !== 'failed';
+      nodes.syncOverride.disabled = working || !sync?.canOverride;
+      nodes.syncBack.hidden = !(sync?.phase === 'clear' && sync.kept && !sync.keptUnavailable);
+      if (nodes.syncDiscard) {
+        nodes.syncDiscard.hidden = !sync?.keptUnavailable || !['clear', 'offer', 'failed'].includes(sync.phase);
+        nodes.syncDiscard.disabled = working || syncQuestionPending;
+      }
+      nodes.syncActions.hidden = nodes.syncCheck.hidden && nodes.syncOverride.hidden && nodes.syncBack.hidden
+        && (nodes.syncDiscard?.hidden ?? true);
+      nodes.syncCheck.disabled = working;
+      nodes.syncBack.disabled = working;
+    }
     // A hidden switch is off: with nobody connected, backups are not on here.
     if (claimed !== null && toggling === null && claimed !== (!nodes.auto.hidden && nodes.autoInput.checked)) {
       claimed = null;
@@ -418,9 +625,13 @@ export function createCloudBackupView({
     finally {
       working = false;
       render();
-      const lost = !globalThis.document?.activeElement || globalThis.document.activeElement === globalThis.document.body;
+      const active = globalThis.document?.activeElement;
+      const lost = !active || active === globalThis.document.body || active === globalThis.document.documentElement
+        || !active.isConnected || active.closest?.('[hidden], [inert], dialog:not([open])');
       if (lost) {
-        const usable = (node) => node?.isConnected && !node.disabled && !node.closest?.('[hidden]');
+        const usable = (node) => node?.isConnected && node !== globalThis.document?.body
+          && node !== globalThis.document?.documentElement && !node.disabled && !node.closest?.('[hidden]')
+          && !node.closest?.('[inert], dialog:not([open])');
         const { status, report: line } = elements();
         if (usable(opener)) opener.focus();
         else if (reportWhenGone && usable(line)) line.focus();
@@ -569,6 +780,45 @@ export function createCloudBackupView({
     }, { reportWhenGone: true });
   }
 
+  function syncOverride() {
+    return run(async () => {
+      const yes = await askConfirm({
+        title: 'Back up this device anyway?',
+        body: 'This device may not have the newest cloud progress. Backing it up now may offer older progress to your other devices.',
+        confirmLabel: 'Back up this device anyway',
+      });
+      if (!yes) return;
+      const result = await onSyncOverride();
+      if (!result.ok) report(result.error);
+      else announce('Automatic backups can continue.');
+    });
+  }
+
+  function syncBack() {
+    return run(async () => {
+      const yes = await askConfirm({
+        title: 'Go back to what was on this device before?',
+        body: "Loading the kept copy replaces what is on this device. A separate cloud copy of this device's current progress is kept first.",
+        confirmLabel: 'Go back to what was on this device before',
+      });
+      if (!yes) return;
+      const result = await onSyncBack();
+      if (!result.ok) report(result.error);
+      else onFinished(result.warning ?? 'Kept progress loaded from your cloud backup.');
+    });
+  }
+
+  function syncDiscard() {
+    if (syncQuestionPending) return undefined;
+    return run(async () => {
+      const yes = await askConfirm(cloudSyncDiscardQuestion());
+      if (!yes) return;
+      const result = await onSyncDiscard();
+      if (!result.ok) report(result.error);
+      else announce('The earlier Go back choice was cleared. Cloud copies were not deleted.');
+    });
+  }
+
   function wire() {
     const nodes = elements();
     if (!nodes.card) return;
@@ -588,8 +838,18 @@ export function createCloudBackupView({
     });
     nodes.remove.addEventListener('click', () => { void deleteOwn(); });
     nodes.disconnect.addEventListener('click', () => { void disconnect(); });
+    nodes.syncCheck?.addEventListener('click', () => { void run(() => onSyncCheck()); });
+    nodes.syncOverride?.addEventListener('click', () => { void syncOverride(); });
+    nodes.syncBack?.addEventListener('click', () => { void syncBack(); });
+    nodes.syncDiscard?.addEventListener('click', () => { void syncDiscard(); });
     render();
   }
 
-  return { wire, render };
+  function setSyncQuestionPending(pending) {
+    if (syncQuestionPending === pending) return;
+    syncQuestionPending = pending;
+    render();
+  }
+
+  return { wire, render, setSyncQuestionPending };
 }

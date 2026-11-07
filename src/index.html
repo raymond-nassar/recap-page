@@ -119,6 +119,10 @@
                written, and moving it into an assertive region would say it a second time, which
                is what BL-027 removed. -->
           <div id="app-report" class="report"></div>
+          <div id="cloud-sync-notice" class="notice notice-act" hidden>
+            <span class="grow" id="cloud-sync-message">Your progress differs between devices.</span>
+            <button type="button" class="btn btn-g" id="btn-cloud-sync-review">Review progress</button>
+          </div>
 
           <!-- Shown only when saved data could not be read. Saving stays paused until the
                user chooses, so the unreadable original is never overwritten. -->
@@ -1019,6 +1023,12 @@
                   <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
                 </div>
                 <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
+                <div class="field-row" id="cloud-sync-actions" hidden>
+                  <button type="button" class="btn btn-g" id="btn-cloud-sync-check" hidden>Check now</button>
+                  <button type="button" class="btn btn-g" id="btn-cloud-sync-override" hidden>Back up this device anyway</button>
+                  <button type="button" class="btn btn-g" id="btn-cloud-sync-back" hidden>Go back to what was on this device before</button>
+                  <button type="button" class="btn btn-g" id="btn-cloud-sync-discard" hidden>Continue without Go back</button>
+                </div>
                 <details class="setting-more" id="cloud-discovery" hidden>
                   <summary id="cloud-discovery-summary">Backups in this OneDrive</summary>
                   <div id="cloud-discovery-list"></div>
@@ -1031,6 +1041,7 @@
                 <details class="setting-more">
                   <summary>About cloud backup</summary>
                   <p class="rail-hint">A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this browser are kept, and older ones go to OneDrive's recycle bin. Restoring one replaces everything it holds.</p>
+                  <p class="rail-hint" id="cloud-sync-about" hidden>When automatic backup is on, the app checks other devices for different progress. Before loading it, the app keeps a separate cloud copy of this device's progress. It aims to keep the newest three recorded copies for this connection; older or unconfirmed copies may remain. Go back to what was on this device before offers the most recently kept copy.</p>
                   <p class="rail-hint" id="cloud-backup-privacy">Backups go to Recap Page's own folder in your OneDrive, the only part of it the app can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page's developer has no access to them. Disconnecting stops cloud backup in every browser profile on this Windows account; backups already in OneDrive stay until you delete them here or in OneDrive.</p>
                 </details>
               </div>
@@ -1489,6 +1500,7 @@
         </p>
         <div class="ask-foot dialog-foot">
           <button type="button" class="btn btn-g" id="ask-cancel">Cancel</button>
+          <button type="button" class="btn btn-g" id="ask-alternate" hidden></button>
           <button type="submit" class="btn" id="ask-ok" value="ok">OK</button>
         </div>
       </form>
