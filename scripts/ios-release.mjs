@@ -129,6 +129,14 @@ function assertMainSource(entry, main = 'origin/main', root = ROOT) {
   requireValue(capable, 'source predates iOS reservation support; reserve a later main commit');
 }
 
+export function assertIosCloudSource(entry, mode, { root = ROOT } = {}) {
+  if (mode !== 'export') return;
+  const preparation = execFileSync('git', ['show', `${entry.sourceRevision}:scripts/prepare-ios.mjs`],
+    { cwd: root, encoding: 'utf8' });
+  requireValue(preparation.includes('RECAP_IOS_CLOUD_CLIENT'),
+    'source predates iOS OneDrive configuration support; reserve a later main commit');
+}
+
 export function checkIosHistory({ root = ROOT } = {}) {
   const command = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
   let previous = { schemaVersion: 1, retiredThrough: 1, reservations: [] };
@@ -224,6 +232,7 @@ async function preflight() {
   const ledger = validateIosLedger(JSON.parse(git('show', `origin/main:${ledgerFile}`)));
   const entry = iosReservation(ledger, env.IOS_BUILD_NUMBER);
   assertMainSource(entry);
+  assertIosCloudSource(entry, env.IOS_MODE);
   requireValue(env.IOS_MODE === 'export' ? entry.artifact === null : entry.artifact !== null,
     'export requires an unsealed reservation; upload requires a merged seal');
   // An unsuccessful or uncertain run consumes its attempt too. Never silently retry a sign/upload.

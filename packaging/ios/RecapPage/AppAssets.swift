@@ -54,7 +54,7 @@ struct AppAssets {
             AssetManifest.self, from: Data(contentsOf: root.appendingPathComponent("ios-assets.json")))
         self.root = root
         self.config = config
-        paths = Set(manifest.files.map(\.path))
+        paths = Set(manifest.files.map(\.path)).subtracting(["ios-config.json"])
     }
 
     static func bundled(in bundle: Bundle = .main) throws -> AppAssets {

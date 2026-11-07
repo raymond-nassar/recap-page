@@ -18,7 +18,7 @@ import { rootTokens } from '../scripts/check-spacing.mjs';
 import { paletteTokenFindings } from '../scripts/check-palette.mjs';
 import { execFileSync } from 'node:child_process';
 import {
-  assertIosAppendOnly, candidateIdentity, checkIosHistory, iosReservation, iosUploadRecord, reserveIosBuild,
+  assertIosAppendOnly, assertIosCloudSource, candidateIdentity, checkIosHistory, iosReservation, iosUploadRecord, reserveIosBuild,
   sealIosArtifact, validateIosLedger, verifyIosUpload,
 } from '../scripts/ios-release.mjs';
 import { artifactRecord, iosBuild } from '../scripts/lib/release-identity.mjs';
@@ -108,6 +108,46 @@ test('iOS upload verification refuses an unmerged seal, changed size, same-size 
 
 test('committed iOS ledger history and current append preserve prior reservations', () => {
   checkIosHistory();
+});
+
+test('iOS export preflight refuses a source without OneDrive support but leaves old uploads and history valid', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-cloud-source-'));
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    return git('rev-parse', 'HEAD');
+  };
+  try {
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
+    await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'process.env.RECAP_IOS_BUILD_NUMBER;\n');
+    await writeFile(join(root, 'scripts', 'prepare-ios.mjs'), 'export const oldPreparation = true;\n');
+    const ledgerPath = join(root, 'packaging', 'ios', 'build-numbers.json');
+    await writeFile(ledgerPath, JSON.stringify(initialIosLedger()));
+    const oldSource = commit();
+    const oldEntry = { ...iosSource, sourceRevision: oldSource, sourceTree: git('rev-parse', 'HEAD^{tree}') };
+    await writeFile(ledgerPath, JSON.stringify(reserveIosBuild(initialIosLedger(), oldEntry)));
+    commit();
+    await writeFile(join(root, 'scripts', 'prepare-ios.mjs'), read('scripts/prepare-ios.mjs'));
+    const capable = commit();
+    git('update-ref', 'refs/remotes/origin/main', capable);
+    assert.throws(() => assertIosCloudSource(oldEntry, 'export', { root }), /predates iOS OneDrive configuration/);
+    assert.doesNotThrow(() => assertIosCloudSource(oldEntry, 'upload', { root }));
+    assert.doesNotThrow(() => assertIosCloudSource({ ...oldEntry, sourceRevision: capable }, 'export', { root }));
+    assert.doesNotThrow(() => checkIosHistory({ root }));
+    const release = read('scripts/ios-release.mjs');
+    const preflight = release.slice(release.indexOf('async function preflight()'), release.indexOf('function run('));
+    assert.match(preflight, /assertMainSource\(entry\);\s*assertIosCloudSource\(entry, env\.IOS_MODE\);/);
+    assert.ok(preflight.indexOf('assertIosCloudSource(') < preflight.indexOf('env.GITHUB_OUTPUT'),
+      'source capability is checked before the job can offer approval');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test('iOS upload receipts retain the seal and report upload plus exactly 90 days as an estimated expiry', () => {
@@ -564,6 +604,23 @@ test('the generated Read launcher stylesheet is linked, hashed and served by the
   assert.match(responder, /Data\(contentsOf: assets\.root\.appendingPathComponent\(path\)/);
   assert.match(responder, /case "css": return "text\/css; charset=utf-8"/);
   assert.match(appSource('AppSchemeHandler'), /responder\.reply\(to: request\.url, method: request\.httpMethod\)/);
+});
+
+test('iOS native configuration is excluded from served paths even when the manifest lists it', () => {
+  assert.match(appSource('AppAssets'), /paths = Set\(manifest\.files\.map\(\\\.path\)\)\.subtracting\(\["ios-config\.json"\]\)/);
+  assert.match(appSource('AssetResponder'), /guard assets\.paths\.contains\(path\)/);
+  const native = read('packaging/ios/RecapPageTests/AssetResponderTests.swift');
+  assert.match(native, /func testNativeConfigurationIsNeverServed/);
+  assert.match(native, /XCTAssertEqual\(responder\.reply[\s\S]*?statusCode, 404\)/);
+});
+
+test('iOS OneDrive claims the callback and cancels expiry before exchanging its code', () => {
+  const source = appSource('OneDriveBackupHandler');
+  const callback = source.slice(source.indexOf('private func signInReturned('), source.indexOf('private func finishSignIn('));
+  assert.match(callback, /current\.epoch == attempt, !current\.claimed/);
+  assert.match(callback, /case \.code\(let code\):\s*signIn\?\.claimed = true\s*signInTimer\?\.cancel\(\)\s*signInTimer = nil\s*Task \{ await self\.finishSignIn/);
+  const native = read('packaging/ios/RecapPageTests/OneDriveBackupTests.swift');
+  assert.match(native, /func testAClaimedCallbackSurvivesExpiryDuringTokenExchange/);
 });
 
 test('the iOS page loads the phone layer and the iOS overlay after the shared styles, at the cover viewport', async () => {

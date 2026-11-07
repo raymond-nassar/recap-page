@@ -5,9 +5,11 @@ import XCTest
 private final class FakeOneDriveTransport: OneDriveTransport {
     var requests: [OneDriveRequest] = []
     var answer: @MainActor (OneDriveRequest) -> OneDriveResponse = { _ in OneDriveResponse(status: 500, headers: [:], body: Data()) }
+    var beforeAnswer: (@MainActor (OneDriveRequest) async throws -> Void)?
 
     func send(_ request: OneDriveRequest) async throws -> OneDriveResponse {
         requests.append(request)
+        try await beforeAnswer?(request)
         return answer(request)
     }
 }
@@ -94,6 +96,18 @@ final class OneDriveAuthorizationTests: XCTestCase {
         XCTAssertFalse(OneDriveAuthorization.validClientId("-starts-with-dash"))
     }
 
+    func testS256MatchesRFC7636AppendixB() throws {
+        let verifier = "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
+        let bytes = try XCTUnwrap(Data(base64Encoded:
+            verifier.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/") + "="))
+        let known = OneDriveAuthorization { _ in bytes }
+        XCTAssertEqual(known.verifier, verifier)
+        XCTAssertEqual(known.challenge, "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM")
+        let url = try XCTUnwrap(known.url(clientId: "client-1"))
+        let items = try XCTUnwrap(URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems)
+        XCTAssertEqual(items.first { $0.name == "code_challenge" }?.value, "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM")
+    }
+
     func testTheIdTokenMustBeForThisAppThisSignInAndStillCurrent() throws {
         let now = 1_800_000_000_000.0
         let good: [String: Any] = [
@@ -150,14 +164,14 @@ final class OneDriveBackupHandlerTests: XCTestCase {
         defaults.removePersistentDomain(forName: suite)
     }
 
-    private func make() -> OneDriveBackupHandler {
+    private func make(signInSeconds: Double = 5 * 60) -> OneDriveBackupHandler {
         let handler = OneDriveBackupHandler(
             clientId: clientId, transport: transport, credentials: credentials, launcher: launcher,
             defaults: defaults, now: { [unowned self] in self.now },
             random: { [unowned self] count in
                 self.counter &+= 1
                 return Data(repeating: self.counter, count: count)
-            }
+            }, signInSeconds: signInSeconds
         )
         self.handler = handler
         return handler
@@ -221,6 +235,29 @@ final class OneDriveBackupHandlerTests: XCTestCase {
         return try await settled()
     }
 
+    func testAClaimedCallbackSurvivesExpiryDuringTokenExchange() async throws {
+        transport.answer = { [unowned self] request in
+            self.microsoft(request) ?? OneDriveResponse(status: 500, headers: [:], body: Data())
+        }
+        transport.beforeAnswer = { request in
+            if request.url.absoluteString.hasSuffix("/oauth2/v2.0/token") {
+                try await Task.sleep(nanoseconds: 300_000_000)
+            }
+        }
+        _ = make(signInSeconds: 0.05)
+        let started = try await status("connect")
+        XCTAssertEqual(started["state"] as? String, "signing-in")
+        let state = try XCTUnwrap(launcher.parameter("state"))
+        let answer = try XCTUnwrap(URL(string: "\(OneDriveAuthorization.redirectUri)?code=code-1&state=\(state)"))
+        launcher.completion?(.success(answer))
+        launcher.completion?(.success(answer))
+        let connected = try await settled()
+        XCTAssertEqual(connected["state"] as? String, "connected")
+        XCTAssertEqual(credentials.record?.refreshToken, "refresh-1")
+        XCTAssertEqual(transport.requests.filter { $0.url.absoluteString.hasSuffix("/oauth2/v2.0/token") }.count, 1)
+        XCTAssertEqual(launcher.cancelled, 0)
+    }
+
     func testASignInConnectsTheAppFolderAndTheTokenGoesOnlyToGraph() async throws {
         let connected = try await signIn()
         XCTAssertEqual(connected["provider"] as? String, "onedrive")
@@ -233,7 +270,9 @@ final class OneDriveBackupHandlerTests: XCTestCase {
         let redeem = try XCTUnwrap(transport.requests.first)
         let form = String(decoding: redeem.body ?? Data(), as: UTF8.self)
         XCTAssertTrue(form.contains("grant_type=authorization_code"))
-        XCTAssertTrue(form.contains("code_verifier="))
+        let fields = try XCTUnwrap(URLComponents(string: "https://fixture.invalid/?\(form)")?.queryItems)
+        XCTAssertEqual(fields.first { $0.name == "code_verifier" }?.value,
+            "AwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM")
         XCTAssertNil(redeem.headers["Authorization"])
 
         transport.requests = []

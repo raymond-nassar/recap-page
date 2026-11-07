@@ -36,6 +36,7 @@ final class OneDriveBackupHandler {
         let authorization: OneDriveAuthorization
         let expiresAt: Double
         let epoch: UInt64
+        var claimed = false
     }
 
     private struct AccessToken {
@@ -166,7 +167,7 @@ final class OneDriveBackupHandler {
     }
 
     private func signInReturned(_ result: Result<URL, OneDriveSignInEnding>, attempt: UInt64) {
-        guard let current = signIn, current.epoch == attempt else { return }
+        guard let current = signIn, current.epoch == attempt, !current.claimed else { return }
         switch result {
         case .failure(let ending):
             endSignIn(attempt, ending: ending == .cancelled ? "cancelled" : "failed")
@@ -177,6 +178,9 @@ final class OneDriveBackupHandler {
             case .ended(let reason):
                 endSignIn(attempt, ending: reason)
             case .code(let code):
+                signIn?.claimed = true
+                signInTimer?.cancel()
+                signInTimer = nil
                 Task { await self.finishSignIn(code: code, authorization: current.authorization, attempt: attempt) }
             }
         }
