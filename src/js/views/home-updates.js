@@ -7,7 +7,9 @@ const IOS_FEATURE_COPY = new Map([
   ['iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.',
     'You can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.'],
 ]);
-const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/;
+// OneDrive and a Microsoft account are offered on iPhone and iPad too since 4.5.0 (#1113), so only the
+// Microsoft Store still marks a line as another platform's.
+const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/;
 const VIEWING_FAILURES = {
   unreadable: 'browser storage could not be read',
   'locks-unavailable': 'browser storage locking is unavailable',

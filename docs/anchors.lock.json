@@ -1604,13 +1604,13 @@
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:457-489|0": {
-    "anchor": "docs/IOS.md:457-489",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:473-505|0": {
+    "anchor": "docs/IOS.md:473-505",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:477-481|0": {
-    "anchor": "docs/IOS.md:477-481",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:493-497|0": {
+    "anchor": "docs/IOS.md:493-497",
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
@@ -1619,18 +1619,18 @@
     "fp": "b0a4750ea6767f95",
     "head": "If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:192-198|0": {
-    "anchor": "docs/RELEASING.md:192-198",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:193-199|0": {
+    "anchor": "docs/RELEASING.md:193-199",
     "fp": "32d6e59ef7c50726",
     "head": "**Microsoft Store release is manual-only from the default branch.** GitHub releases, Android tags,"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:205-215|0": {
-    "anchor": "docs/RELEASING.md:205-215",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:206-216|0": {
+    "anchor": "docs/RELEASING.md:206-216",
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:308-314|0": {
-    "anchor": "docs/RELEASING.md:308-314",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:309-315|0": {
+    "anchor": "docs/RELEASING.md:309-315",
     "fp": "0ac7b7fd79909700",
     "head": "Upload mode downloads the packet from the selected successful export run of this workflow on"
   },
@@ -1664,23 +1664,23 @@
     "fp": "ce0481b546ab544e",
     "head": "## Normal release operations"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/RELEASING.md:205-215|0": {
-    "anchor": "docs/RELEASING.md:205-215",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/RELEASING.md:206-216|0": {
+    "anchor": "docs/RELEASING.md:206-216",
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:416-425|0": {
-    "anchor": "docs/IOS.md:416-425",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:432-441|0": {
+    "anchor": "docs/IOS.md:432-441",
     "fp": "fa779b8e01b8f8c9",
     "head": "## Signing and internal TestFlight"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:457-489|0": {
-    "anchor": "docs/IOS.md:457-489",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:473-505|0": {
+    "anchor": "docs/IOS.md:473-505",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/RELEASING.md:257-284|0": {
-    "anchor": "docs/RELEASING.md:257-284",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/RELEASING.md:258-285|0": {
+    "anchor": "docs/RELEASING.md:258-285",
     "fp": "db1889f906600a13",
     "head": "## iOS allocation and exact-artifact contract"
   },
@@ -1694,8 +1694,8 @@
     "fp": "69ee19f753078b7e",
     "head": "## Live-review stop points"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/RELEASING.md:190-198|0": {
-    "anchor": "docs/RELEASING.md:190-198",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/RELEASING.md:191-199|0": {
+    "anchor": "docs/RELEASING.md:191-199",
     "fp": "8a62df7c6c617d75",
     "head": "## Independent publication gates"
   },
@@ -1704,8 +1704,8 @@
     "fp": "ef88d42bea1c0f8d",
     "head": "## Build controlled proof packages"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work|docs/RELEASING.md:225-238|0": {
-    "anchor": "docs/RELEASING.md:225-238",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work|docs/RELEASING.md:226-239|0": {
+    "anchor": "docs/RELEASING.md:226-239",
     "fp": "f608e6624cff2139",
     "head": "## Delivered release matrix"
   },
@@ -2494,13 +2494,13 @@
     "fp": "db046a4ee4a55494",
     "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:384|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:384",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:397|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:397",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:398|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:398",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:411|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:411",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -2529,13 +2529,13 @@
     "fp": "244f4f24bf6d281b",
     "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:384|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:384",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:397|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:397",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:398|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:398",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:411|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:411",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },

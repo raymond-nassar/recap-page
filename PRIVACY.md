@@ -1,11 +1,11 @@
 # Recap Page privacy policy
 
-Last updated: 2026-11-03
+Last updated: 2026-11-07
 
 Recap Page keeps your reading lists, progress, notes and settings on your device. It sends only the
-requests described below, plus a backup to your own OneDrive, or on iPhone and iPad to your own iCloud, if you
-turn that on. You can delete cloud backups from the app or in OneDrive or iCloud Drive, and erase the
-app's data on your device at any time.
+requests described below, plus a backup to your own OneDrive, or on iPhone and iPad to your own iCloud or
+OneDrive, if you turn that on. You can delete cloud backups from the app or in OneDrive or iCloud
+Drive, and erase the app's data on your device at any time.
 
 ## What stays on your device
 
@@ -31,7 +31,8 @@ contents. Restoring a backup replaces your saved data after you confirm.
 
 OneDrive backup is off until you turn it on in **Backup & settings**. You sign in with a personal
 Microsoft account in your browser. Connecting alone uploads nothing. Each device asks you
-separately before it backs up.
+separately before it backs up. On iPhone and iPad, you choose iCloud or OneDrive, and the app backs
+up to one of them at a time.
 
 The app can reach only its own folder in your OneDrive. A backup holds your lists, progress, ratings,
 notes, completion dates, enjoyment choices, custom entries, preferences, any unfinished import, and
@@ -59,7 +60,8 @@ your saved data.
 The app keeps your Microsoft sign-in on your device so backups can continue. It also keeps your
 account name or email there to show which account is connected. Neither is part of a backup. On
 Windows, all browser profiles for the same Windows user share the sign-in. On Android, it is kept
-in the app's protected private storage.
+in the app's protected private storage. On iPhone and iPad, it is kept in the device's keychain for
+this app only, and it does not move to other devices.
 
 ## Optional iCloud backup
 

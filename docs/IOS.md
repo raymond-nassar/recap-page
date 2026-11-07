@@ -373,6 +373,22 @@ shared backup engine, its schedule and its restore are unchanged.
   over an in-memory fake store, which Debug builds can also use at launch through
   `RECAP_IOS_ICLOUD_FAKE`. The real store is accepted on a TestFlight build on the owner's devices.
 
+## OneDrive backup
+
+Added for 4.5.0 (#1113). A TestFlight export whose `ios-testflight` environment supplies
+`RECAP_ONEDRIVE_CLIENT_ID` carries the OneDrive client in its configuration, and the backup card then
+offers **Connect iCloud** and **Sign in with Microsoft**, one connection at a time. Every other build, pull
+request and CI builds included, carries none and offers iCloud alone. A missing or invalid client ID
+fails the export rather than falling back; [RELEASING](RELEASING.md) lists the protected inputs.
+
+- **Sign-in.** Microsoft's consumers authority through `ASWebAuthenticationSession`, PKCE and the
+  redirect `msauth.io.github.raymondnassar.recappage://auth`, registered on the owner's app
+  registration for this bundle ID. No Microsoft library is added. Tokens stay in the Keychain on
+  this device only, and a reinstall forgets them.
+- **Testing.** No CI runner can sign in to a Microsoft account, so the XCTests drive the handler and
+  router over a fake Graph transport, a fake Keychain and a fake sign-in sheet. Sign-in and backup are
+  accepted on a TestFlight build on the owner's devices.
+
 ## Known limits
 
 - Files export and restore, Read hand-off, Dynamic Type, iPad window sizing and the missing-data
