@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
+import { parseChecklist } from '../src/js/lib/markdown.js';
+import { curatedLedgerDigestFor, curatedRelationshipReportDigestFor } from '../scripts/lib/owner-guide.mjs';
+import { approvalDigestFor } from '../scripts/lib/cbh-inventory.mjs';
 
 const valid = {
   id: 'civil-war',
@@ -19,6 +22,60 @@ const valid = {
   keywords: ['crossover'],
   expect: 40,
 };
+
+for (const [id, expected, characters] of [
+  ['history-of-the-marvel-universe-2019', [75119, 75120, 75121, 75122, 75123, 75124], ['Galactus', 'Franklin Richards']],
+  ['marvels-1994', [10280, 10281, 10282, 10283], ['Phil Sheldon']],
+]) {
+  test(`guide book ${id} retains its owner-selected originals through source, payload, and catalog`, async () => {
+    const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
+    const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+    const entry = manifest.lists.find((candidate) => candidate.id === id);
+    assert.ok(entry, `${id} must be a curated source`);
+    assert.equal(entry.type, 'creator-run');
+    assert.equal(entry.depth, 'complete');
+    assert.equal(entry.beginner, false);
+    assert.equal(entry.timeline ?? null, null);
+    assert.deepEqual(entry.storyTypes ?? [], []);
+    assert.deepEqual(entry.characters, characters);
+    const checklist = await readFile(new URL(`../src/data/orders/${entry.sourceFile}`, import.meta.url), 'utf8');
+    const parsed = parseChecklist(checklist);
+    assert.deepEqual(parsed.unresolved, []);
+    assert.deepEqual(parsed.entries.map((row) => row.issueId), expected);
+    const payload = JSON.parse(await readFile(new URL(`../src/data/${entry.out}`, import.meta.url), 'utf8'));
+    assert.deepEqual(payload.items.map((row) => row.issueId), expected);
+    const card = catalog.lists.find((candidate) => candidate.id === id);
+    assert.ok(card, `${id} must have a catalog preview`);
+    assert.equal(card.count, expected.length);
+    assert.equal(card.file, entry.out);
+    assert.deepEqual(card.characters, characters);
+  });
+}
+
+test('guide book source ledgers retain the reviewed complete-library evidence', async () => {
+  for (const [id, peer] of [
+    ['history-of-the-marvel-universe-2019', 'marvels-1994'],
+    ['marvels-1994', 'history-of-the-marvel-universe-2019'],
+  ]) {
+    const ledger = JSON.parse(await readFile(
+      new URL(`../scripts/data/curated-source-ledgers/${id}.json`, import.meta.url), 'utf8',
+    ));
+    assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger));
+    const { relationshipReview: review } = ledger;
+    assert.equal(review.status, 'approved');
+    assert.equal(review.authorityType, 'agent-content-review');
+    assert.equal(review.approvalDigest, approvalDigestFor(review));
+    assert.equal(review.report.candidateId, id);
+    assert.equal(review.report.ledgerDigest, ledger.ledgerDigest);
+    assert.equal(review.report.reportDigest, curatedRelationshipReportDigestFor(review.report));
+    assert.equal(review.report.comparisonCount, 344);
+    assert.equal(review.report.comparisons.length, 344);
+    assert.equal(new Set(review.report.comparisons.map(({ orderId }) => orderId)).size, 344);
+    assert.ok(review.report.comparisons.some(({ orderId }) => orderId === peer));
+    assert.ok(review.report.comparisons.every(({ sharedCount, sharedIds, relationship }) =>
+      sharedCount === 0 && sharedIds.length === 0 && relationship === 'none'));
+  }
+});
 
 test('reading blocks are opt-in local sections, not an inferred collected-edition boundary', () => {
   const local = { ...valid, sourceUrl: undefined, sourceFile: 'civil-war.md' };
@@ -509,13 +566,20 @@ test('every order authored here records how it was derived', async () => {
       trail.length > 200,
       `${entry.sourceFile}: has no derivation trail above its first checklist item`,
     );
-    // A trail is reviewable if it can be followed: either to the script that wrote the file, or
-    // to the record that says how a hand-compiled sequence was arrived at.
-    assert.match(
-      trail,
-      /scripts\/[\w-]+\.mjs|DATA_PROVENANCE\.md/,
-      `${entry.sourceFile}: trail names neither a generating script nor the provenance record`,
-    );
+    // A factual ledger is also a derivation record, but it must name this order and its exact rows.
+    if (!/scripts\/[\w-]+\.mjs|DATA_PROVENANCE\.md/.test(trail)) {
+      const ledgerLink = `../../../scripts/data/curated-source-ledgers/${entry.id}.json`;
+      assert.ok(trail.includes(`](${ledgerLink})`),
+        `${entry.sourceFile}: trail names neither a generating script nor a provenance record`);
+      const ledger = JSON.parse(await readFile(new URL(
+        `../scripts/data/curated-source-ledgers/${entry.id}.json`, import.meta.url,
+      ), 'utf8'));
+      assert.equal(ledger.id, entry.id);
+      assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger));
+      assert.ok(ledger.source?.url && ledger.source?.boundary);
+      assert.ok(Array.isArray(ledger.sourceRows) && ledger.sourceRows.length > 0);
+      assert.deepEqual(ledger.resolvedVector, parseChecklist(md).entries.map((row) => row.issueId));
+    }
   }
 });
 

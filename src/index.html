@@ -246,14 +246,24 @@
             </section>
             <section class="card card-static guide-copy" aria-labelledby="guide-start-h">
               <h2 id="guide-start-h">Find a starting point</h2>
-              <p><a href="#/genres" class="btn primary" data-view="genres">Explore the ten starter picks</a></p>
-              <p>Optional: <a href="https://www.marvel.com/comics/series/27019/history_of_the_marvel_universe_2019" target="_blank" rel="noopener noreferrer">History of the Marvel Universe (2019)</a> surveys Marvel's history. <a href="https://marvel.com/comics/issue/10280/marvels_1994_1" target="_blank" rel="noopener noreferrer">Marvels (1994), issue 1</a> begins a story seen through a photographer's eyes.</p>
+              <p><a href="#/genres" class="btn primary" data-view="genres" data-guide-starters>Explore the ten starter picks</a></p>
+              <p>Optional: <a href="#/preview/history-of-the-marvel-universe-2019" data-preview-id="history-of-the-marvel-universe-2019">History of the Marvel Universe (2019)</a> surveys Marvel's history. <a href="#/preview/marvels-1994" data-preview-id="marvels-1994">Marvels (1994)</a> sees that world through a photographer's eyes.</p>
+              <p id="guide-preview-status" role="status" aria-live="polite" hidden>Loading the Reading List...</p>
+              <div id="guide-preview-report" class="report"></div>
             </section>
             <section class="card card-static guide-copy" aria-labelledby="guide-app-h">
               <h2 id="guide-app-h">Getting around Recap Page</h2>
-              <p>On Home, Modern Timeline follows modern stories; Genres browses by genre or tone; Character spotlights focus on people and teams; MCU Prep pairs comics with movies and shows; Marvel Ages groups lists by publishing period; and Young readers offers stories for younger readers. Home also shows What's new, your lists, and where to continue when available.</p>
-              <p>Library holds saved lists, reading history, progress by series, ratings, and comics added by hand. Search finds comics, series, and creators, or lets you paste a list or add comics by hand. Backup &amp; settings manages backups and preferences; About has credits, privacy, and shortcuts.</p>
-              <p>Choose and save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.</p>
+              <div>
+                <ul>
+                  <li><a href="#/home" data-view="home">Home</a>: resume reading and explore.</li>
+                  <li><a href="#/catalog" data-view="catalog">Modern Timeline</a>: follow modern stories. <a href="#/genres" data-view="genres">Genres</a>: browse by genre or tone.</li>
+                  <li><a href="#/spotlights" data-view="spotlights">Character spotlights</a>: find people and teams. <a href="#/marvel-on-screen" data-view="marvel-on-screen">MCU Prep</a>: explore comics behind movies and shows.</li>
+                  <li><a href="#/marvel-ages" data-view="marvel-ages">Marvel Ages</a>: browse by publishing period. <a href="#/young-readers" data-view="young-readers">Young readers</a>: find stories for younger readers.</li>
+                  <li><a href="#/library" data-view="library">Library</a>: see saved lists and progress. <a href="#/add" data-view="add">Search</a>: find or add comics.</li>
+                  <li><a href="#/data" data-view="data">Backup &amp; settings</a>: manage your data and preferences. <a href="#/about" data-view="about">About</a>: see credits and privacy.</li>
+                  <li>Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.</li>
+                </ul>
+              </div>
             </section>
             <section class="card card-static guide-copy" aria-labelledby="guide-more-h">
               <h2 id="guide-more-h">Learn more</h2>

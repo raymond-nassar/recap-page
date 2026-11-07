@@ -124,6 +124,14 @@ export function breadcrumbHierarchy({
     }
     if (context?.kind === 'order' && typeof context.id === 'string' && context.id) {
       const browseRoute = canonicalView(context.shelf);
+      if (browseRoute === 'new-to-comics' && formatRoute({ view: browseRoute, previewId: context.id })) {
+        return [
+          cards,
+          linked(browseRoute, STATIC_VIEW_LABELS.get(browseRoute)),
+          linked(browseRoute, cleanLabel(context.name, 'Reading List'), { previewId: context.id }),
+          current(title),
+        ];
+      }
       const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === browseRoute);
       if (shelf) {
         return [
@@ -274,10 +282,13 @@ function parseRatedRoute(search) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone, previewId,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
+  if (canonical === 'new-to-comics' && previewId !== undefined) {
+    return typeof previewId === 'string' && PATH_TOKEN.test(previewId) ? `${PREFIX}preview/${previewId}` : '';
+  }
   if (canonical === 'library-rated') return formatRatedRoute(rated);
   if (canonical === 'issue') {
     const id = issueId(rawIssueId);
@@ -340,6 +351,10 @@ export function parseRoute(hash) {
   // Ahead of the VIEWS check, because the Browse segment no longer names a view of its own.
   const atCards = view === HOME_CARDS_SEGMENT;
   view = atCards ? 'home' : canonicalView(view);
+  if (view === 'preview') {
+    if (parts.length !== 2 || !PATH_TOKEN.test(listId ?? '') || search) return null;
+    return { view: 'new-to-comics', previewId: listId };
+  }
   if (view === RETIRED_PATHS_SEGMENT) {
     const named = listId === null ? new URLSearchParams(search).getAll(PATH_KEY) : [listId];
     const pathId = named.length === 1 && PATH_TOKEN.test(named[0]) ? named[0] : null;

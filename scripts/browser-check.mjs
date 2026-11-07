@@ -3160,6 +3160,15 @@ const SCENARIOS = [
           && Boolean(document.querySelector('#view-new-to-comics a[href="#/genres"]')));
         t.check('the filtered Genres visit can reach the guide and its starter link', guideReady);
         if (guideReady) {
+          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.waitForSelector('#view-genres:not([hidden])');
+          const orientation = await starter.evaluate(() => ({
+            type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+          }));
+          t.check('the orientation link retains Genres choices rather than acting as the starter reset',
+            orientation.type === 'espionage' && orientation.tone === 'dark', JSON.stringify(orientation));
+          await starter.goBack();
+          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const nativeStarters = await starter.evaluate(() => {
             const link = document.querySelector('#view-new-to-comics a[href="#/genres"]');
             const results = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
@@ -17398,6 +17407,12 @@ SCENARIOS.push({
               href: link.getAttribute('href'), text: link.textContent.trim(), target: link.target,
               rel: link.rel, optional: /optional/i.test(link.closest('section')?.textContent ?? ''),
             })),
+            books: [...guide.querySelectorAll('[data-preview-id]')].map((link) => ({
+              id: link.dataset.previewId, href: link.getAttribute('href'), text: link.textContent.trim(),
+            })),
+            orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
+              view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
+            })),
             credit: guide.textContent.includes('r/Marvel wiki'),
           };
         });
@@ -17406,19 +17421,33 @@ SCENARIOS.push({
           'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
           'https://www.youtube.com/watch?v=FYnkpCfKuDw',
-          'https://www.marvel.com/comics/series/27019/history_of_the_marvel_universe_2019',
-          'https://marvel.com/comics/issue/10280/marvels_1994_1',
         ];
         console.log(`GUIDE_COPY ${JSON.stringify({ basics: content.basics, whole: content.whole })}`);
         t.check('guide basics and complete reader-facing copy meet their word targets',
           content.basics > 0 && content.basics <= 160 && content.whole <= 325, JSON.stringify(content));
+        const indents = await copy.$$eval('#view-new-to-comics .guide-copy ul', (lists) =>
+          lists.map((list) => Number.parseFloat(getComputedStyle(list).paddingInlineStart)));
+        t.check('each guide bullet list keeps its markers inside the card',
+          indents.every((indent) => indent >= 16), JSON.stringify(indents));
         t.check('guide external links have the expected destinations, names and safe attributes',
           content.credit && content.links.length === expected.length
             && expected.every((href) => content.links.some((link) => link.href === href))
             && content.links.every((link) => link.text && link.target === '_blank'
               && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer'))
-            && content.links.filter((link) => link.href.includes('marvel.com/comics/')).every((link) => link.optional),
+            && content.books.length === 2,
           JSON.stringify(content.links));
+        t.check('both optional books have their exact bookmarkable preview addresses',
+          JSON.stringify(content.books) === JSON.stringify([
+            { id: 'history-of-the-marvel-universe-2019', href: '#/preview/history-of-the-marvel-universe-2019',
+              text: 'History of the Marvel Universe (2019)' },
+            { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)' },
+          ]), JSON.stringify(content.books));
+        const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
+          'young-readers', 'library', 'add', 'data', 'about'];
+        t.check('the concise orientation links every named page to its own route',
+          JSON.stringify(content.orientation.map(({ view }) => view)) === JSON.stringify(pages)
+            && content.orientation.every(({ view, href, text }) => href === `#/${view}` && text),
+          JSON.stringify(content.orientation));
         const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
         const actual = await copy.$(selector);
         t.check('a representative actual external guide anchor exists for activation', Boolean(actual));
@@ -17447,6 +17476,256 @@ SCENARIOS.push({
     } finally {
       await copyContext.close();
     }
+
+    const bookContext = await page.browser().createBrowserContext();
+    try {
+      const bookPage = await bookContext.newPage();
+      bookPage.__denyExternal = true;
+      await preparePage(bookPage, page.__origin, page.__mutation, 'semantic-destinations');
+      let existing = createList(createEmptyState(), { id: 'existing-guide-list', name: 'Existing list' });
+      existing = addIssuesToList(existing, 'existing-guide-list', [
+        { issueId: -9104, title: 'Existing comic', source: 'manual' },
+      ]).state;
+      await bookPage.evaluateOnNewDocument((saved) => {
+        if (sessionStorage.getItem('guide.books.fixture')) return;
+        sessionStorage.setItem('guide.books.fixture', '1');
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
+      }, existing);
+      await open(bookPage, '/?catalog=actual#/new-to-comics');
+      const expectedBooks = [
+        { id: 'history-of-the-marvel-universe-2019', ids: [75119, 75120, 75121, 75122, 75123, 75124] },
+        { id: 'marvels-1994', ids: [10280, 10281, 10282, 10283] },
+      ];
+      const present = expectedBooks.every(({ id }) => ACTUAL_CATALOG.lists.some((entry) => entry.id === id));
+      t.check('both guide book destinations are in the actual catalog', present);
+      if (present) {
+        const before = await bookPage.evaluate(() => ({
+          raw: localStorage.getItem('mrt.state.v2'),
+          filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        }));
+        const selector = `[data-preview-id="${expectedBooks[0].id}"]`;
+        const native = await bookPage.$eval(selector, (link) => {
+          const modifiers = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
+            const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
+            let allowed = false;
+            link.addEventListener('click', (seen) => { allowed = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+            link.dispatchEvent(event);
+            return allowed;
+          });
+          const event = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+          let middle = false;
+          link.addEventListener('auxclick', (seen) => { middle = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+          link.dispatchEvent(event);
+          return modifiers.every(Boolean) && middle;
+        });
+        t.check('book links leave modified and middle activation to the browser', native);
+        await bookPage.focus(selector);
+        await bookPage.keyboard.press('Enter');
+        await bookPage.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
+          {}, expectedBooks[0].ids.length);
+        const originalPreview = await bookPage.evaluate(() => ({
+          hash: location.hash,
+          raw: localStorage.getItem('mrt.state.v2'),
+          filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+          ids: [...document.querySelectorAll('#preview-body .preview-issue-link')]
+            .map((link) => Number(link.dataset.issueId)),
+        }));
+        t.check('the first book opens its exact issues without changing saved data or the filter',
+          originalPreview.hash === `#/preview/${expectedBooks[0].id}` && originalPreview.raw === before.raw
+            && originalPreview.filter === before.filter
+            && JSON.stringify(originalPreview.ids) === JSON.stringify(expectedBooks[0].ids),
+          JSON.stringify(originalPreview));
+        await click(bookPage, '#preview-close');
+        await bookPage.waitForFunction((id) => !document.querySelector('#preview').open
+          && document.activeElement?.dataset.previewId === id, {}, expectedBooks[0].id);
+        await bookPage.goForward();
+        await bookPage.waitForSelector('#preview[open] .preview-issue-link');
+        await bookPage.keyboard.press('Escape');
+        await bookPage.waitForFunction((id) => !document.querySelector('#preview').open
+          && document.activeElement?.dataset.previewId === id, {}, expectedBooks[0].id);
+        t.check('Close, Forward and Escape restore the guide link rather than adding a dead history stop',
+          await bookPage.evaluate(() => location.hash.startsWith('#/new-to-comics')));
+        await click(bookPage, selector);
+        await bookPage.waitForSelector('#preview[open] .preview-issue-link');
+        await bookPage.evaluate(() => {
+          window.__guideSetItem = Storage.prototype.setItem;
+          Storage.prototype.setItem = function setItem(key, value) {
+            if (key === 'mrt.state.v2') throw new DOMException('Synthetic quota refusal', 'QuotaExceededError');
+            return window.__guideSetItem.call(this, key, value);
+          };
+        });
+        await click(bookPage, '#preview-add [data-act="main"]');
+        await bookPage.waitForFunction(() => document.querySelector('#preview-report')?.textContent.includes('could not be saved'));
+        const refused = await bookPage.evaluate(() => ({
+          raw: localStorage.getItem('mrt.state.v2'),
+          action: document.querySelector('#preview-add [data-act="main"]')?.textContent,
+        }));
+        t.check('a failed book import keeps existing bytes and the Add action',
+          refused.raw === before.raw && refused.action.includes('Add'), JSON.stringify(refused));
+        await bookPage.evaluate(() => { Storage.prototype.setItem = window.__guideSetItem; });
+        await click(bookPage, '#preview-add [data-act="main"]');
+        await bookPage.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent === 'Open list');
+        const imported = await bookPage.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const list = Object.values(state.lists).find((candidate) => candidate.catalogId === id);
+          return { state, list };
+        }, expectedBooks[0].id);
+        t.check('Add saves the exact book vector without changing the earlier list',
+          JSON.stringify(imported.list?.itemIds.map(Number)) === JSON.stringify(expectedBooks[0].ids)
+            && isDeepStrictEqual(imported.state.lists['existing-guide-list'], existing.lists['existing-guide-list']),
+          JSON.stringify(imported.list));
+        await click(bookPage, '#preview-add [data-act="main"]');
+        await bookPage.waitForSelector('#view-read:not([hidden])');
+        t.check('Open selects the saved book ID, not its catalog ID',
+          parseRoute(await bookPage.evaluate(() => location.hash))?.listId === imported.list.id);
+        await bookPage.goBack();
+        await bookPage.waitForFunction(() => document.querySelector('#preview[open] #preview-add [data-act="main"]')
+          ?.textContent === 'Open list');
+        await click(bookPage, '#preview-close');
+        await bookPage.waitForSelector('#view-new-to-comics:not([hidden])');
+        await click(bookPage, `[data-preview-id="${expectedBooks[1].id}"]`);
+        await bookPage.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
+          {}, expectedBooks[1].ids.length);
+        const second = await bookPage.$$eval('#preview-body .preview-issue-link', (links) =>
+          links.map((link) => Number(link.dataset.issueId)));
+        t.check('the second book contains the four selected originals and excludes issue zero',
+          JSON.stringify(second) === JSON.stringify(expectedBooks[1].ids), JSON.stringify(second));
+        await click(bookPage, '#preview-body .preview-issue-link');
+        await bookPage.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+        const crumbs = await bookPage.$$eval('#view-issue .breadcrumb a', (links) =>
+          links.map((link) => ({ text: link.textContent.trim(), href: link.getAttribute('href') })));
+        const bookCrumb = crumbs.find((crumb) => crumb.href === `#/preview/${expectedBooks[1].id}`);
+        t.check('a guide book comic points back to its actual guide and preview',
+          crumbs.some((crumb) => crumb.href === '#/new-to-comics')
+            && bookCrumb?.text === 'Marvels (1994)', JSON.stringify(crumbs));
+        if (bookCrumb) {
+          await click(bookPage, `#view-issue .breadcrumb a[href="#/preview/${expectedBooks[1].id}"]`);
+          await bookPage.waitForSelector('#preview[open] .preview-issue-link');
+          t.check('the book breadcrumb reopens its actual preview',
+            await bookPage.evaluate((id) => location.hash === `#/preview/${id}`, expectedBooks[1].id));
+        }
+      }
+    } finally {
+      await bookContext.close();
+    }
+
+    const previewContext = await page.browser().createBrowserContext();
+    try {
+      const previewPage = await previewContext.newPage();
+      previewPage.__denyExternal = true;
+      await preparePage(previewPage, page.__origin, page.__mutation, 'semantic-destinations');
+      let fixture = createList(createEmptyState(), { id: 'preview-fixture', name: 'Existing list' });
+      fixture = addIssuesToList(fixture, 'preview-fixture', [
+        { issueId: -9103, title: 'Existing comic', source: 'manual' },
+      ]).state;
+      await previewPage.evaluateOnNewDocument((saved) => {
+        if (sessionStorage.getItem('guide.preview.fixture')) return;
+        sessionStorage.setItem('guide.preview.fixture', '1');
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
+      }, fixture);
+      await open(previewPage, '/#/read/preview-fixture');
+      await previewPage.waitForSelector('#reading-filters input[value="unread"]:checked');
+      const before = await previewPage.evaluate(() => ({
+        state: localStorage.getItem('mrt.state.v2'),
+        filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+      }));
+      await previewPage.evaluate(() => { location.hash = '#/preview/browser-check'; });
+      await previewPage.waitForSelector('#preview[open] .preview-issue-link');
+      const direct = await previewPage.evaluate(() => ({
+        hash: location.hash,
+        state: localStorage.getItem('mrt.state.v2'),
+        filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        links: [...document.querySelectorAll('#preview-body .preview-issue-link')]
+          .map((link) => link.getAttribute('href')),
+      }));
+      t.check('a direct catalog preview preserves saved data and the reading filter',
+        direct.hash === '#/preview/browser-check' && direct.state === before.state && direct.filter === before.filter,
+        JSON.stringify(direct));
+      t.check('a direct preview exposes the fixture issues in their actual order',
+        JSON.stringify(direct.links) === JSON.stringify(ORDER.items.map((item) =>
+          `#/issue/${item.issueId}?order=browser-check`)), JSON.stringify(direct.links));
+      await previewPage.reload({ waitUntil: 'load' });
+      await previewPage.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('reloading a preview retains its catalog address and saved bytes',
+        await previewPage.evaluate((state) => location.hash === '#/preview/browser-check'
+          && localStorage.getItem('mrt.state.v2') === state, before.state));
+      await click(previewPage, '#preview-body .preview-issue-link');
+      await previewPage.waitForSelector('#view-issue:not([hidden])');
+      await previewPage.goBack();
+      await previewPage.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.activeElement?.dataset.focusSource === 'preview');
+      t.check('Back from a preview comic reopens the same preview and restores its issue link',
+        await previewPage.evaluate(() => location.hash === '#/preview/browser-check'
+          && document.activeElement?.getAttribute('href') === '#/issue/900001?order=browser-check'));
+      await click(previewPage, '#preview-close');
+      await previewPage.waitForFunction(() => !document.querySelector('#preview')?.open
+        && location.hash.startsWith('#/new-to-comics'));
+      t.check('closing a direct preview returns to the guide without writing saved data',
+        await previewPage.evaluate((state) => !document.querySelector('#view-new-to-comics').hidden
+          && localStorage.getItem('mrt.state.v2') === state, before.state));
+      await previewPage.evaluate(() => { location.hash = '#/preview/not-a-real-list'; });
+      await previewPage.waitForFunction(() => document.querySelector('#guide-preview-report')?.textContent
+        .includes('not in this catalog'));
+      await click(previewPage, '#guide-preview-report .notice-dismiss');
+      await previewPage.waitForFunction(() => location.hash.startsWith('#/new-to-comics')
+        && !document.querySelector('#guide-preview-report .notice'));
+      t.check('a missing catalog ID explains the problem and offers a return to the guide',
+        await previewPage.evaluate((state) => localStorage.getItem('mrt.state.v2') === state
+          && !document.querySelector('#preview').open, before.state));
+    } finally {
+      await previewContext.close();
+    }
+
+    const previewFaultContext = await page.browser().createBrowserContext();
+    try {
+      const fault = await previewFaultContext.newPage();
+      fault.__denyExternal = true;
+      await preparePage(fault, page.__origin, page.__mutation, 'semantic-destinations');
+      await open(fault, '/?local-health=ready&local-catalog=down#/preview/browser-check');
+      await fault.waitForSelector('#guide-preview-report .notice button');
+      const failed = await fault.$eval('#guide-preview-report .notice', (node) => node.textContent);
+      await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+      await click(fault, '#guide-preview-report .notice button');
+      await fault.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('a failed catalog preview names the failure and Retry opens the requested list',
+        failed.includes('could not be loaded') && await fault.$eval('#preview-h', (node) => node.textContent) === ORDER.name,
+        failed);
+
+      await open(fault, '/?local-health=ready&local-order=down#/preview/browser-check');
+      await fault.waitForSelector('#preview[open] #preview-body .notice button');
+      await fault.evaluate(() => { window.__mrtLocalModes.order = 'ready'; });
+      await click(fault, '#preview-body .notice button');
+      await fault.waitForSelector('#preview-body .preview-issue-link');
+      t.check('a failed comic-list load offers a working retry inside its preview',
+        await fault.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.length) === ORDER.items.length);
+
+      await open(fault, '/?local-health=ready&local-catalog=pending#/preview/browser-check');
+      await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0
+        && !document.querySelector('#guide-preview-status').hidden);
+      await fault.evaluate(() => { location.hash = '#/about'; });
+      await fault.waitForSelector('#view-about:not([hidden])');
+      await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+      await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('a late catalog response cannot reopen a preview after navigation',
+        await fault.evaluate(() => !document.querySelector('#preview').open
+          && !document.querySelector('#view-about').hidden && location.hash.startsWith('#/about')));
+
+      await open(fault, '/?local-health=ready&local-order=pending#/preview/browser-check');
+      await fault.waitForFunction(() => window.__mrtLocalPending.order.length > 0
+        && document.querySelector('#preview').open);
+      await fault.evaluate(() => { location.hash = '#/about'; });
+      await fault.waitForSelector('#view-about:not([hidden])');
+      await fault.evaluate(() => window.__mrtSettleLocalRequest('order'));
+      await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('a late comic-list response cannot repaint or reopen a departed preview',
+        await fault.evaluate(() => !document.querySelector('#preview').open
+          && !document.querySelector('#view-about').hidden && location.hash.startsWith('#/about')));
+    } finally {
+      await previewFaultContext.close();
+    }
+
     let state = createList(createEmptyState(), { id: 'manual/a', name: 'Same name', catalogId: 'browser-check' });
     state = createList(state, { id: 'manual-b', name: 'Same name' });
     const manual = { issueId: -9001, title: 'Hand entered comic', source: 'manual' };

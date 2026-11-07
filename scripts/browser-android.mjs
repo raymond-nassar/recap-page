@@ -1411,6 +1411,28 @@ async function storyTypesDropdowns(page, profile, label) {
     && Boolean(document.querySelector('#view-new-to-comics a[href="#/genres"]')));
   check(guideReady, `${label}: filtered Genres reaches the guide and its starter link`);
   if (guideReady) {
+    const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    for (const [id, ids] of [
+      ['history-of-the-marvel-universe-2019', [75119, 75120, 75121, 75122, 75123, 75124]],
+      ['marvels-1994', [10280, 10281, 10282, 10283]],
+    ]) {
+      await click(page, `#view-new-to-comics [data-preview-id="${id}"]`);
+      await page.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
+        {}, ids.length);
+      const preview = await page.evaluate(() => ({
+        hash: location.hash,
+        ids: [...document.querySelectorAll('#preview-body .preview-issue-link')]
+          .map((link) => Number(link.dataset.issueId)),
+        overflow: document.documentElement.scrollWidth > innerWidth,
+        saved: localStorage.getItem('mrt.state.v2'),
+      }));
+      check(preview.hash === `#/preview/${id}` && JSON.stringify(preview.ids) === JSON.stringify(ids)
+        && !preview.overflow && preview.saved === savedBefore,
+      `${label}: ${id} opens its exact issues without overflow or saved-data changes`);
+      await click(page, '#preview-close');
+      await page.waitForFunction((expected) => !document.querySelector('#preview').open
+        && document.activeElement?.dataset.previewId === expected, {}, id);
+    }
     await click(page, '#view-new-to-comics a[href="#/genres"]');
     await page.waitForSelector('#view-genres:not([hidden])');
     const fromGuide = await snapshot();

@@ -1,0 +1,124 @@
+{
+  "id": "marvels-1994",
+  "name": "Marvels (1994)",
+  "description": "Kurt Busiek and Alex Ross tell Marvel's history through photographer Phil Sheldon. Includes the original four issues; the later issue 0 is not included.",
+  "source": "https://en.wikipedia.org/wiki/Marvels",
+  "sourceOrigin": "Compiled for this project from the original four-issue series",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-07T09:24:07.640Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 10280,
+      "title": "Marvels (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10280/marvels_1994_1",
+      "seriesId": 2048,
+      "seriesName": "Marvels (1994)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 2210,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/56fbd199dad73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10281,
+      "title": "Marvels (1994) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10281/marvels_1994_2",
+      "seriesId": 2048,
+      "seriesName": "Marvels (1994)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "1994-02-01T00:00:00+0000",
+      "digitalId": 3383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/56fbd2462cdb1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10282,
+      "title": "Marvels (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10282/marvels_1994_3",
+      "seriesId": 2048,
+      "seriesName": "Marvels (1994)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "1994-03-01T00:00:00+0000",
+      "digitalId": 6461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/56fbd2e9bb238",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10283,
+      "title": "Marvels (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10283/marvels_1994_4",
+      "seriesId": 2048,
+      "seriesName": "Marvels (1994)",
+      "onSale": "1994-04-01T00:00:00+0000",
+      "mu": "1994-04-01T00:00:00+0000",
+      "digitalId": 6462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/56fbd36e5b833",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
