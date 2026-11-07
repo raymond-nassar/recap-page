@@ -34,12 +34,9 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 - Improved the iPhone Search navigation's accessibility by presenting its label as one named
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation.
-
-<!-- SLOT #1166: new in-app logo and wordmark plus the website; app icons unchanged.
-Insert the merged PR's reader note into the summary above, its saved-data compatibility into the
-section below, and its full note under Look and feel, only after it merges. If it does not ship
-in 4.5.0, remove this entire comment without changing other entries.
--->
+- A refreshed Recap Page wordmark appears on Home and the project website, with a smaller phone
+  layout and simpler Home navigation. The Marvel Unlimited notice is shorter and links to
+  Marvel's FAQ.
 
 ### Saved data and upgrading
 
@@ -66,6 +63,10 @@ Scroll positions after finishing a Reading List live only in browser history, an
 all-read progress creates no separate completion record. The new and expanded Reading Lists are
 catalog additions; comics shared with existing lists keep their identities, so progress already
 recorded on them carries over.
+
+No saved-data format, key, migration, restore, backup or reading-destination change. Both existing
+notice dismissal identities remain exactly the same, so dismissed notices are not reintroduced.
+Older builds and existing backups remain compatible; no backup or conversion step is required.
 
 If you already saved the Amazing Spider-Man guide, Preview can add an updated copy beside it. Your
 original list and its completion history stay as they are, and the copy uses the existing list
@@ -118,6 +119,10 @@ by this release record. The owner's decision, "Defer it: fail safely now, add 'l
 as a follow-up", routes the local-only fallback to #1163 rather than this release.
 
 ### Look and feel
+
+- A refreshed Recap Page wordmark appears on Home and the project website, with a smaller phone
+  layout and simpler Home navigation. The Marvel Unlimited notice is shorter and links to
+  Marvel's FAQ. (#1168, for #1166)
 
 - Buttons, links and cards now show a pressed edge while you hold them, including on touch
   screens, without changing their size, keyboard focus or what they do. (#1136)
