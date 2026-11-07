@@ -203,7 +203,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:662-724`. Runtime loads and parses that same-origin catalog once at
+at `scripts/vendor-orders.mjs:692-754`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:2001-2012`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
@@ -278,9 +278,9 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1149-1167` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1157-1175` passes
 a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:706-708`. The write, result, and notification are handled together at
+`src/js/lib/model.js:738-740`. The write, result, and notification are handled together at
 `src/js/storage.js:724-751`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
@@ -294,7 +294,7 @@ The UI restores the row and shows a notice rather than making an unsaved change 
 offered only after the mark is saved. The next Done, a change of view, and ten seconds
 (`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
 offer records the view it was made in, the list's membership and deferral arrays by reference, the
-comic's read timestamp and the list's queue, at `src/js/views/reading.js:1487-1501`. The first
+comic's read timestamp and the list's queue, at `src/js/views/reading.js:1495-1509`. The first
 repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
 or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
 transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
@@ -309,9 +309,9 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:809`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:817`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
-`src/js/views/reading.js:38-46`.
+`src/js/views/reading.js:39-47`.
 
 **Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
 Not every state replacement goes through that method, though: boot loads state at
@@ -935,12 +935,12 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1624-1677`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1637-1690`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:406-416`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:760-778`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:773-791`.
 The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
 paths remains a separate stop in each sequence.
 

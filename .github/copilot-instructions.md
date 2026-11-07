@@ -695,7 +695,7 @@ which is the failure this recovery undid.
 | 10 | Market-facing framing does not apply. This is a single-user private app, so segments, growth, retention, funnels, and A/B tests are out of scope. |
 | 11 | Match repository writing conventions. Shipped surfaces contain no em dashes. |
 
-Five notes on the table, none of which alter it.
+Six notes on the table, none of which alter it.
 
 - **The finding inside constraint 6 is closed, and the row's wording predates the fix.** The row
   tells you to record a disagreement between the comment above the enum in
@@ -720,6 +720,13 @@ Five notes on the table, none of which alter it.
 - **Constraint 4 has an owner-approved Android-only exception (#810).** The Android app may include
   Google Play services auth and its transitive libraries for Google Drive sign-in. Browser runtime
   dependencies remain at zero; the row is unchanged because it records the original constraint.
+- **Constraint 2 has one owner-approved exception, cover addresses for owner-confirmed comics.**
+  Approved by the owner on 2026-11-06: when the metadata provider has no record of an
+  owner-confirmed comic, its own marvel.com issue page may be read for the cover image address only.
+  Only the address is recorded, never image bytes (constraint 1), the comic's release date, page
+  count and credits come from a pinned Marvel Fandom wiki revision instead, and each comic records
+  both sources. `read.marvel.com` stays forbidden without exception. `docs/DATA_PROVENANCE.md`
+  documents the field rules; the row is unchanged because it records the original constraint.
 
 **A hypothesis that was tested and refuted.** While 8 and 9 were unrecovered, the two rules below
 were the leading candidates for them, because exactly two were unmapped and exactly two numbers were

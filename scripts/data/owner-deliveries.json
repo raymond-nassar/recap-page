@@ -180,6 +180,21 @@
       "id": "fantastic-four-and-power-pack",
       "contract": "test/fixtures/owner-delivery/fantastic-four-and-power-pack.json",
       "surface": "young-readers"
+    },
+    {
+      "id": "captain-america-2025-our-secret-wars",
+      "contract": "test/fixtures/owner-delivery/captain-america-2025-our-secret-wars.json",
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "captain-america-2025-dooms-shadow",
+      "contract": "test/fixtures/owner-delivery/captain-america-2025-dooms-shadow.json",
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "captain-america-2025-hells-angel",
+      "contract": "test/fixtures/owner-delivery/captain-america-2025-hells-angel.json",
+      "surface": "modern-timeline"
     }
   ]
 }

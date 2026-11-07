@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "id": "captain-america-2025-dooms-shadow",
+  "name": "Captain America (2025) Vol. 2: Doom's Shadow",
+  "surface": "modern-timeline",
+  "proposalStatus": "approved",
+  "sourceCandidateSha256": "baf8ac1d08355f1e2d2ad67054a44b619c20511b2fd78b29d55311451c4204bf",
+  "packetDigest": "788d9b7a7a396b82d124fb51ce35a596763374a250318e594f42b8fd6f8be271",
+  "sourceIssueBearingBlocksSha256": "3a3892646972b057bb8adc9594269b2fb31dbe5ac2b9d5508665e60be1135dc4",
+  "mappingDigest": "7082bc089b833b42c1dd5a9b0541861741ade75c7f3a34a81cf0fec1fe10a8a3",
+  "reportDigest": "754adf21fd59705bdb84c002f19f206d83ae662fb778d0dfc2aa20e6633331a5",
+  "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
+  "sourceOccurrenceCount": 6,
+  "sourceIdentityCount": 6,
+  "exactCanonicalIssueIds": [],
+  "gapSourcePositions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "repeatedSourceReferences": [],
+  "optionalSourcePositions": [],
+  "sourcePositionVector": [
+    {
+      "sourcePosition": 1,
+      "sourceBullet": 6,
+      "section": null,
+      "sourceReference": "#6 https://www.marvel.com/comics/issue/123361/captain_america_2025_6",
+      "sourceIdentity": "Captain America (2025) #6",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBullet": 7,
+      "section": null,
+      "sourceReference": "#7 https://www.marvel.com/comics/issue/123362/captain_america_2025_7",
+      "sourceIdentity": "Captain America (2025) #7",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBullet": 8,
+      "section": null,
+      "sourceReference": "#8 https://www.marvel.com/comics/issue/123363/captain_america_2025_8",
+      "sourceIdentity": "Captain America (2025) #8",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBullet": 9,
+      "section": null,
+      "sourceReference": "#9 https://www.marvel.com/comics/issue/123364/captain_america_2025_9",
+      "sourceIdentity": "Captain America (2025) #9",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBullet": 10,
+      "section": null,
+      "sourceReference": "#10 https://www.marvel.com/comics/issue/123365/",
+      "sourceIdentity": "Captain America (2025) #10",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 6,
+      "sourceBullet": 11,
+      "section": null,
+      "sourceReference": "#11 https://www.marvel.com/comics/issue/130145/captain_america_2025_11",
+      "sourceIdentity": "Captain America (2025) #11",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null
+    }
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 6,
+    "sourceIdentityCount": 6,
+    "includedIssueCount": 6,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
+  },
+  "sourceSha256": "baf8ac1d08355f1e2d2ad67054a44b619c20511b2fd78b29d55311451c4204bf",
+  "proposalDigest": "2880fd46a154c9bb1cda7f6fe3b30d8cc4ae770dcf6a0d7ccb942b69849ce6c2",
+  "approvalDigest": "f1a592f37ae2a09c1c8a3ddb6aaa1b7155b5dd5a6ef7e05f6f9546f97fe6f097",
+  "insertionAnchor": {
+    "beforeId": "marvel-zombies-reading-order"
+  },
+  "timeline": 2025,
+  "sameYearOrder": [
+    "captain-america-2025-our-secret-wars",
+    "one-world-under-doom",
+    "captain-america-2025-dooms-shadow"
+  ],
+  "peerIds": [
+    "captain-america-2025-our-secret-wars",
+    "captain-america-2025-hells-angel"
+  ],
+  "description": "The aftermath of One World Under Doom, civil war in Latveria, and a clash with Red Hulk.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/1146",
+  "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      123361,
+      "Captain America (2025) #6",
+      null
+    ],
+    [
+      2,
+      123362,
+      "Captain America (2025) #7",
+      null
+    ],
+    [
+      3,
+      123363,
+      "Captain America (2025) #8",
+      null
+    ],
+    [
+      4,
+      123364,
+      "Captain America (2025) #9",
+      null
+    ],
+    [
+      5,
+      123365,
+      "Captain America (2025) #10",
+      null
+    ],
+    [
+      6,
+      130145,
+      "Captain America (2025) #11",
+      null
+    ]
+  ],
+  "annotations": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/captain-america-2025-dooms-shadow.json",
+    "scripts/data/owner-packets/captain-america-2025-dooms-shadow.json",
+    "scripts/data/owner-mappings/captain-america-2025-dooms-shadow.json",
+    "scripts/data/owner-overlaps/captain-america-2025-dooms-shadow.json",
+    "src/data/orders/captain-america-2025-dooms-shadow.md"
+  ],
+  "vectorSha256": "5f782128feb7ad84dc25c0413b98569bfb0bae36ee62500cfaeb71357e274515"
+}

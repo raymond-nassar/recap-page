@@ -80,16 +80,24 @@ test('an order dated outside every era is caught by name, rather than lost', () 
   }
 });
 
-// The 2025 event is intentionally held here until a named era covers its year. Pinning exact
-// membership keeps later out-of-range orders from quietly joining it.
-test('the approved 2025 event is the only shipped order held in the fallback', () => {
+// The approved 2025 and 2026 events are intentionally held here until a named era covers their
+// years. Pinning exact membership keeps later out-of-range orders from quietly joining them.
+test('the approved 2025 and 2026 events are the only shipped orders held in the fallback', () => {
   const strays = events
     .filter((s) => eraKey(s) === fallback.key)
     .map((s) => `${s.name ?? s.lists[0].name} (${storyYear(s)})`);
-  assert.deepEqual(strays, ['One World Under Doom (2025)']);
+  assert.deepEqual(strays, [
+    'Captain America (2025) Vol. 1: Our Secret Wars (2025)',
+    'One World Under Doom (2025)',
+    "Captain America (2025) Vol. 2: Doom's Shadow (2025)",
+    "Captain America (2025) Vol. 3: Hell's Angel (2026)",
+  ]);
   const fallbackStories = sections.filter((section) => section.fallback)
     .flatMap((section) => section.stories);
-  assert.deepEqual(fallbackStories.map((story) => story.key), ['list:one-world-under-doom']);
+  assert.deepEqual(fallbackStories.map((story) => story.key), [
+    'list:captain-america-2025-our-secret-wars', 'list:one-world-under-doom',
+    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel',
+  ]);
 });
 
 // The fallback's rows share nothing but having been refused by every era, so a range over them would

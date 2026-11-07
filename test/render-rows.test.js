@@ -190,6 +190,13 @@ test('an owner-confirmed identity remains distinct from an ordinary provider ref
   assert.match(DETAILS_BADGE['owner-confirmed'].hint, /owner confirmed this comic identity/);
   assert.match(DETAILS_BADGE['owner-confirmed'].hint, /no provider details or cover/);
   assert.equal(synopsisFallback(confirmed), DETAILS_BADGE['owner-confirmed'].hint);
+  const supplemented = { ...confirmed, metadataSourceKind: 'owner-external-supplement' };
+  assert.equal(detailsState(supplemented), 'owner-supplemented');
+  assert.equal(DETAILS_BADGE['owner-supplemented'].text, 'identity confirmed');
+  assert.equal(DETAILS_BADGE['owner-supplemented'].hint,
+    'The owner confirmed this comic identity. Its cover and credits come from marvel.com and the Marvel Fandom wiki, not the metadata provider.');
+  assert.equal(synopsisFallback(supplemented), DETAILS_BADGE['owner-supplemented'].hint);
+  assert.equal(detailsState({ ...supplemented, identityEvidenceKind: undefined }), 'norecord');
 });
 
 // The visible half of a badge is two or three words, so the reason has to live in the hidden half

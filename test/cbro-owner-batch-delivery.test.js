@@ -110,6 +110,9 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
   const orders = await Promise.all([...files].map(async ([orderId, file]) => ({
     orderId, issueIds: (await readJson(`src/data/${file}`)).items,
   })));
+  // The Captain America (2025) Modern Timeline lists were registered after these reviews.
+  const laterModernTimelineIds = ['captain-america-2025-our-secret-wars',
+    'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel'];
   for (const guide of guides) {
     const ledger = await readJson(`scripts/data/curated-source-ledgers/${guide.id}.json`);
     // Keep the coordinator's approved two-guide snapshot intact; the supplemental review below
@@ -117,7 +120,7 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
     const report = buildComparisonReport({
       candidateIds: ledger.resolvedVector,
       orders: orders.filter((entry) => entry.orderId !== guide.id
-        && !['marvel-1602', 'blood-and-thunder'].includes(entry.orderId)),
+        && !['marvel-1602', 'blood-and-thunder', ...laterModernTimelineIds].includes(entry.orderId)),
     });
     assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger));
     const sealedReport = { candidateId: guide.id, ledgerDigest: ledger.ledgerDigest, ...report };
@@ -142,7 +145,8 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
     const candidate = await readJson(`scripts/data/curated-source-ledgers/${report.candidateId}.json`);
     const expected = { candidateId: candidate.id, ledgerDigest: candidate.ledgerDigest,
       ...buildComparisonReport({ candidateIds: candidate.resolvedVector,
-        orders: orders.filter((entry) => entry.orderId !== candidate.id) }) };
+        orders: orders.filter((entry) => entry.orderId !== candidate.id
+          && !laterModernTimelineIds.includes(entry.orderId)) }) };
     expected.reportDigest = curatedRelationshipReportDigestFor(expected);
     assert.deepEqual(report, expected);
     assert.deepEqual(decisions.map(({ orderId, relationship, sharedIds }) => [orderId, relationship, sharedIds]),

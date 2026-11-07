@@ -17,15 +17,18 @@ import {
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const legacyEventIds = ['the-death-of-ms-marvel', 'contest-of-chaos', 'gang-war'];
-const eventIds = [...legacyEventIds, 'one-world-under-doom'];
+const captainAmericaIds = [
+  'captain-america-2025-our-secret-wars', 'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel',
+];
+const eventIds = [...legacyEventIds, 'one-world-under-doom', ...captainAmericaIds];
 
-test('four independent events remain on Timeline and Genres, not MCU Prep or the historical Storylines projection', async () => {
+test('seven independent events remain on Timeline and Genres, not MCU Prep or the historical Storylines projection', async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface === undefined).length - 2;
   // Young readers' owner picks and local curated guides join the rosters without becoming MCU Prep.
   const otherAdditions = registeredYoungReaderContracts.length + registeredCuratedGuides.length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [220 + laterMcu + otherAdditions, 297 + laterMcu + otherAdditions, 298 + laterMcu + otherAdditions]);
+    [223 + laterMcu + otherAdditions, 300 + laterMcu + otherAdditions, 301 + laterMcu + otherAdditions]);
   assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 50]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
@@ -33,6 +36,9 @@ test('four independent events remain on Timeline and Genres, not MCU Prep or the
   const anchorIndex = catalog.lists.findIndex((entry) => entry.id === 'marvel-zombies-reading-order');
   assert.ok(doomIndex >= 0 && anchorIndex >= 0);
   assert.ok(doomIndex < anchorIndex);
+  const capIndexes = captainAmericaIds.map((id) => catalog.lists.findIndex((entry) => entry.id === id));
+  assert.ok(capIndexes[0] >= 0 && capIndexes[0] < doomIndex);
+  assert.ok(doomIndex < capIndexes[1] && capIndexes[1] < capIndexes[2] && capIndexes[2] < anchorIndex);
   const stories = groupCatalog(catalog.lists);
   const mcu = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen').select(stories);
   assert.ok(mcu.every((story) => story.lists.every((list) => !eventIds.includes(list.id))));
@@ -41,16 +47,18 @@ test('four independent events remain on Timeline and Genres, not MCU Prep or the
     .flatMap((story) => story.lists.map((list) => list.id)));
   assert.ok(eventIds.every((id) => genreIds.has(id)));
   const timeline = modernTimelineLists(catalog.lists);
-  assert.equal(timeline.length, 152);
+  assert.equal(timeline.length, 155);
   assert.deepEqual(timeline.filter((entry) => entry.timeline === 2023).map((entry) => entry.id), legacyEventIds);
-  assert.equal(timeline.at(-1).id, 'one-world-under-doom');
-  assert.equal(timeline.at(-1).timeline, 2025);
+  assert.deepEqual(timeline.slice(-4).map((entry) => [entry.id, entry.timeline]), [
+    ['captain-america-2025-our-secret-wars', 2025], ['one-world-under-doom', 2025],
+    ['captain-america-2025-dooms-shadow', 2025], ['captain-america-2025-hells-angel', 2026],
+  ]);
   assert.ok(legacyEventIds.every((id) => timeline.findIndex((entry) => entry.id === id)
     < timeline.findIndex((entry) => entry.id === 'fall-house-x-rise-powers-x')));
 });
 
 test('the supplied 47 legacy positions keep their exact identities, source sections and short annotations', async () => {
-  const legacyContracts = registeredEventContracts.filter((entry) => entry.id !== 'one-world-under-doom');
+  const legacyContracts = registeredEventContracts.filter((entry) => legacyEventIds.includes(entry.id));
   assert.deepEqual(legacyContracts.map((entry) => entry.rows.length), [7, 9, 31]);
   assert.deepEqual(legacyContracts.map((entry) => entry.vectorSha256), [
     '35e4df4e24b0df864cfc9e93ca78ad9906e6ad89128dbe34b494b7b1df44ea3c',

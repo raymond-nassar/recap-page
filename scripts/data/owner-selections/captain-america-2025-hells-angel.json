@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "id": "captain-america-2025-hells-angel",
+  "sourceProvider": "owner-selection",
+  "sourceAuthor": null,
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/1146",
+  "sourceSection": "Vol. 3: Hell's Angel (collects #12-16)",
+  "sourceRetrievedAt": "2026-11-06",
+  "sourceLicense": null,
+  "sourceCredit": "Selected by raymond-nassar for Modern Timeline",
+  "attributionStatus": "Owner-selection credit only; original compiler and source page are not identified in the supplied snapshot.",
+  "sourceFacts": {
+    "selectionSupplier": "Repository owner",
+    "originalCompiler": null,
+    "originalSourcePage": null,
+    "permissionBasis": "The owner explicitly directed this exact selection for delivery to the app; no broader license is asserted."
+  },
+  "gapIssueUrl": "https://github.com/raymond-nassar/recap-page/issues/1145",
+  "inputReceipt": {
+    "sourceKind": "pasted-message-snapshot",
+    "name": "captain-america-2025-zdarsky.md",
+    "snapshotSha256": "e26b3955d72261f7a99697915b721cdd89b26bafbe51f056cfd06e8aab9f3c91",
+    "snapshotBytes": 1583,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "sourceOccurrenceCount": 5,
+  "sourceIdentityCount": 5,
+  "publishedIssueCount": 0,
+  "sourceGapCount": 5,
+  "repeatedSourceReferenceCount": 0,
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceBullet": 12,
+      "section": null,
+      "sourceReference": "#12 https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
+      "sourceIdentity": "Captain America (2025) #12",
+      "issueNumber": "12",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 130146,
+        "url": "https://marvel.emreparker.com/v1/issues/130146",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBullet": 13,
+      "section": null,
+      "sourceReference": "#13 https://www.marvel.com/comics/issue/130147/",
+      "sourceIdentity": "Captain America (2025) #13",
+      "issueNumber": "13",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 130147,
+        "url": "https://marvel.emreparker.com/v1/issues/130147",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBullet": 14,
+      "section": null,
+      "sourceReference": "#14 https://www.marvel.com/comics/issue/130148/",
+      "sourceIdentity": "Captain America (2025) #14",
+      "issueNumber": "14",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 130148,
+        "url": "https://marvel.emreparker.com/v1/issues/130148",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBullet": 15,
+      "section": null,
+      "sourceReference": "#15 https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
+      "sourceIdentity": "Captain America (2025) #15",
+      "issueNumber": "15",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 130149,
+        "url": "https://marvel.emreparker.com/v1/issues/130149",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBullet": 16,
+      "section": null,
+      "sourceReference": "#16 https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
+      "sourceIdentity": "Captain America (2025) #16",
+      "issueNumber": "16",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 135945,
+        "url": "https://marvel.emreparker.com/v1/issues/135945",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    }
+  ]
+}

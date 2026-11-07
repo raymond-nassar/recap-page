@@ -177,20 +177,26 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
   assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
-  assert.deepEqual(selectedLists.slice(-2).map(({ id, timeline }) => [id, timeline]), [
+  assert.deepEqual(selectedLists.slice(-5).map(({ id, timeline }) => [id, timeline]), [
     ['fall-house-x-rise-powers-x', 2024],
+    ['captain-america-2025-our-secret-wars', 2025],
     ['one-world-under-doom', 2025],
+    ['captain-america-2025-dooms-shadow', 2025],
+    ['captain-america-2025-hells-angel', 2026],
   ]);
-  assert.equal(selectedStories.at(-1).key, 'list:one-world-under-doom');
-  assert.equal(selectedStories.at(-1).lists.length, 1);
-  assert.equal(selectedStories.at(-1).lists[0].description.includes(
+  const doomStory = selectedStories.find(({ key }) => key === 'list:one-world-under-doom');
+  assert.equal(selectedStories.at(-1).key, 'list:captain-america-2025-hells-angel');
+  assert.equal(doomStory.lists.length, 1);
+  assert.equal(doomStory.lists[0].description.includes(
     'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
   ), true);
-  assert.equal(selectedStories.at(-1).lists[0].description.includes(
+  assert.equal(doomStory.lists[0].description.includes(
     'Read Fantastic Four (2025) #1-3 together.',
   ), true);
   assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
-  assert.ok(unplacedSection.stories.some(({ key }) => key === 'list:one-world-under-doom'));
+  assert.ok(['list:one-world-under-doom', 'list:captain-america-2025-our-secret-wars',
+    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel']
+    .every((key) => unplacedSection.stories.some((story) => story.key === key)));
   assert.equal(olderEvents.length, 38);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),

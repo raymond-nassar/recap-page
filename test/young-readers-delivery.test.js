@@ -147,11 +147,14 @@ test('the Comic Book Herald inventory, packets and relationship approvals stay c
   const registry = await readJson('test/fixtures/curated-guide-additions.json');
   const later = registry.guides.slice(registry.guides.findLastIndex((guide) => cbhIds.includes(guide.id)) + 1)
     .map((guide) => guide.id);
+  // The Captain America (2025) Modern Timeline lists were registered after these approvals.
+  const laterModernTimelineIds = ['captain-america-2025-our-secret-wars',
+    'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel'];
   const reviewedDigest = libraryDigestExcludingOrders({
     ...library,
     manifest: descriptionRevisions.undoManifest(beforeAmazingSpiderManSupplementManifest(library.manifest)),
     orderIssueIds: beforeAmazingSpiderManSupplementOrders(library.orderIssueIds),
-  }, [...cbhIds, ...ownerIds, ...later]);
+  }, [...cbhIds, ...ownerIds, ...later, ...laterModernTimelineIds]);
   const mappings = Object.fromEntries(await Promise.all(cbhIds.map(async (id) => [id,
     await readJson(`scripts/data/cbh-mappings/${id}.json`)])));
   for (const record of inventory) {
