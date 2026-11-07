@@ -44,7 +44,7 @@ import {
 import { createNavigationPosition } from './lib/navigationPosition.js';
 import { uiIcon } from './lib/uiIcon.js';
 import { labelledName } from './lib/accname.js';
-import { askConfirm, askConfirmChoice, askText, askNote, wireAsk } from './ask.js';
+import { askConfirm, askConfirmChoice, askSyncChoice, askText, askNote, wireAsk, withdrawSyncChoice } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from './lib/saveEducation.js';
@@ -82,12 +82,12 @@ import { createIssueRatingView } from './views/issue-rating.js';
 import { holdDialogEdges } from './lib/dialogShell.js';
 import { CompleteRestore, PRIOR_COPY_FILENAME, RESTORE_MESSAGES } from './lib/completeRestore.js';
 import {
-  captureCompleteBackup, parseCompleteBackup, completeBackupFileRefusal, completeBackupSummary, COMPLETE_BACKUP_FILENAME,
+  CAPTURE_KEYS, captureCompleteBackup, parseCompleteBackup, completeBackupFileRefusal, completeBackupSummary, COMPLETE_BACKUP_FILENAME,
 } from './lib/completeBackup.js';
 import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.js';
 import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
 import { cloudTransport } from './lib/cloudTransports.js';
-import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
+import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, createCloudSyncPrompt, renderCloudCopy } from './views/cloud.js';
 import { isIosApp } from './lib/platform.js';
 import { shouldRevealMobileNavigation } from './lib/mobileNavigation.js';
 import { wirePressFeedback } from './lib/pressFeedback.js';
@@ -2478,14 +2478,45 @@ const completeBackupView = createCompleteBackupView({
 // cloudTransports.js, as the Android app does, behind the same four operations (CQ-2). Nothing else in the
 // page names a provider. A build
 // without cloud backup answers 404 there, so it shows nothing and starts nothing.
+let cloudActivity = false;
+function cloudSnapshotCurrent(witness) {
+  if (!witness || importDraft.recovery.length > 0 || importDraft.uncertain) return false;
+  try { return CAPTURE_KEYS.every((key) => (localStorage.getItem(key) ?? null) === witness[key]); }
+  catch { throw new Error('Saved data could not be read, so the cloud choice was withdrawn.'); }
+}
+
 const cloudBackup = createCloudBackup({
   transport: cloudTransport(),
   capture: () => captureCompleteBackup({ storage: localStorage, importDraft }),
   // Every complete-restore phase but open, so no capture mixes restored data with earlier data.
   isBlocked: () => completeRestore.state.phase !== 'open',
   savedChanges,
+  launchSync: {
+    hasInteracted: () => cloudActivity,
+    snapshotCurrent: cloudSnapshotCurrent,
+    restore: (text, options) => completeRestore.restore(text, {
+      ...options, importDraft, draftRecovery: importDraft.recovery.slice(),
+    }),
+  },
   channel: typeof globalThis.BroadcastChannel === 'function' ? new globalThis.BroadcastChannel(CLOUD_BACKUP_CHANNEL) : null,
-  onChange: (model) => { cloudBackupView.render(model); renderCloudCopy(model); },
+  onChange: (model) => {
+    cloudBackupView.render(model);
+    cloudSyncPrompt.render();
+    renderCloudCopy(model);
+    if (model.sync?.phase !== 'failed' && model.sync?.phase !== 'working' && notices.has('cloud-sync')) clearNotice('cloud-sync');
+  },
+});
+
+const cloudSyncPrompt = createCloudSyncPrompt({
+  elements: () => ({ notice: $('#cloud-sync-notice'), message: $('#cloud-sync-message'), review: $('#btn-cloud-sync-review') }),
+  getModel: () => cloudBackup.model,
+  ask: askSyncChoice,
+  withdraw: withdrawSyncChoice,
+  onKeep: () => cloudBackup.keepSync(),
+  onLoad: () => cloudBackup.loadSync(),
+  onFinished: reloadWithNotice,
+  report: (message) => notify('#app-report', `${message} Check Cloud backup in Backup & settings.`, 'warn', 'cloud-sync'),
+  announce,
 });
 
 // The Cloud backup card. A restore from the account goes through the complete restore engine, as a file's
@@ -2500,6 +2531,8 @@ const cloudBackupView = createCloudBackupView({
     retry: $('#btn-cloud-retry'), auto: $('#cloud-auto'), autoInput: $('#opt-cloud-auto'), discovery: $('#cloud-discovery'),
     discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
     remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),
+    syncActions: $('#cloud-sync-actions'), syncCheck: $('#btn-cloud-sync-check'),
+    syncOverride: $('#btn-cloud-sync-override'), syncBack: $('#btn-cloud-sync-back'), syncAbout: $('#cloud-sync-about'),
   }),
   askConfirm,
   askConfirmChoice,
@@ -2514,6 +2547,9 @@ const cloudBackupView = createCloudBackupView({
   onDeleteOwn: () => cloudBackup.deleteOwn(),
   onDisconnect: () => cloudBackup.disconnect(),
   onRetry: () => cloudBackup.retry(),
+  onSyncCheck: () => cloudBackup.recheckSync(),
+  onSyncOverride: () => cloudBackup.overrideSync(),
+  onSyncBack: () => cloudBackup.goBackSync(),
   onFinished: reloadWithNotice,
 });
 
@@ -3097,6 +3133,10 @@ export function boot() {
   homeUpdatesView.wire();
   previewView.wire();
   wireAsk();
+  cloudSyncPrompt.wire();
+  const markCloudActivity = () => { cloudActivity = true; cloudBackup.markActivity(); };
+  document.addEventListener('pointerdown', markCloudActivity, { capture: true, passive: true });
+  document.addEventListener('keydown', markCloudActivity, { capture: true });
   wirePressFeedback({ document, window });
   for (const dialog of document.querySelectorAll('dialog.ask, dialog.preview')) holdDialogEdges(dialog);
   completionView.wire();

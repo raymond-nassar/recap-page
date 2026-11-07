@@ -8,7 +8,8 @@ import {
   completeRestoreQuestion, createDataView, eraseDialogBody, eraseOutcome, keepCurrentQuestion,
 } from '../src/js/views/data.js';
 import {
-  cloudBackupStatus, cloudCardStatus, cloudEraseNote, createCloudBackupView, renderCloudCopy,
+  cloudBackupStatus, cloudCardStatus, cloudEraseNote, cloudSyncQuestion, createCloudBackupView,
+  createCloudSyncPrompt, renderCloudCopy,
 } from '../src/js/views/cloud.js';
 import { createEmptyState, createList, exportBackup } from '../src/js/lib/model.js';
 
@@ -488,7 +489,8 @@ function buttonsIn(node) {
 }
 
 function cloudNodes() {
-  const nodes = Object.fromEntries(['card', ...CONTROLS, 'signInGoogle', 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
+  const nodes = Object.fromEntries(['card', ...CONTROLS, 'signInGoogle', 'autoInput', 'discoverySummary',
+    'syncActions', 'syncCheck', 'syncOverride', 'syncBack', 'syncAbout'].map((key) => [key, stubNode()]));
   // The line under the card, which the page's notify writes into and the card withdraws from.
   nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
   nodes.found = stubNode({
@@ -517,6 +519,8 @@ function cloudCard(model, overrides = {}) {
     onConnect: record('connect'), onTurnOn: record('on'), onTurnOff: record('off'), onDiscover: record('discover'),
     onFetch: record('fetch', (copy) => ({ ...copy, text: '{"backup":true}' })), onRestore: record('restore', { ok: true }),
     onDeleteOwn: record('delete', { deleted: 2, failed: [] }), onDisconnect: record('disconnect'), onRetry: () => state.calls.push(['retry']),
+    onSyncCheck: record('sync-check'), onSyncOverride: record('sync-override', { ok: true }),
+    onSyncBack: record('sync-back', { ok: true }),
     onFinished: (message) => state.calls.push(['finished', message]),
     ...overrides,
   });
@@ -525,6 +529,97 @@ function cloudCard(model, overrides = {}) {
   const shown = () => CONTROLS.filter((key) => !nodes[key].hidden);
   return { nodes, view, state, shown, show(next) { state.model = next; view.render(next); } };
 }
+
+test('cloud choices name both progress snapshots and do not invent a missing time', () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: false, remote: { device: 'Phone', createdAt: 123, readCount: 2, lastReadAt: 100 },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 1,
+  };
+  const newer = cloudSyncQuestion(offer, { when });
+  assert.equal(newer.title, 'Newer progress found');
+  assert.match(newer.body, /Phone saved progress at T123: 2 comics read, last marked read T100\./);
+  assert.match(newer.body, /This device: 0 comics read, not marked read yet\./);
+  assert.match(newer.body, /1 other device/);
+  assert.equal(newer.focusKeep, false);
+  const late = cloudSyncQuestion({ ...offer, quiet: true }, { when });
+  assert.equal(late.title, 'Your progress differs between devices');
+  assert.ok(late.body.startsWith('Phone saved progress at T123:'));
+  assert.doesNotMatch(late.body, /Both this device and Phone changed since they last matched\./);
+  assert.equal(late.focusKeep, true);
+  assert.equal(late.loadLabel, "Load the other device's progress");
+  assert.ok(cloudSyncQuestion({ ...offer, kind: 'first-match' }, { when }).body.startsWith('Phone saved progress at T123:'));
+  assert.match(cloudSyncQuestion({ ...offer, kind: 'both-changed' }, { when }).body,
+    /Both this device and Phone changed since they last matched\./);
+});
+
+test('cloud prompt stays available after dismissal and withdraws when its offer changes', async () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: false, epoch: 'one', localContentDigest: 'local',
+    remote: { id: 'phone', digest: 'remote', device: 'Phone', createdAt: 123, readCount: 1, lastReadAt: null },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 0,
+  };
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode() };
+  const state = { model: { sync: { phase: 'offer', offer } }, questions: [], withdrawn: 0, answers: [] };
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => state.model, when,
+    ask: (question) => { state.questions.push(question); return new Promise((resolve) => state.answers.push(resolve)); },
+    withdraw: () => { state.withdrawn += 1; }, announce: () => {}, report: () => {},
+    onKeep: async () => ({ ok: true }), onLoad: async () => ({ ok: true }), onFinished: () => {},
+  });
+  prompt.wire();
+  assert.equal(state.questions.length, 1, 'an early offer opens the question');
+  state.model = { sync: { phase: 'offer', offer: { ...offer, quiet: true } } };
+  prompt.render();
+  assert.equal(state.withdrawn, 0, 'activity does not interrupt a question already being answered');
+  state.answers.shift()(null);
+  await settled();
+  assert.equal(nodes.notice.hidden, false, 'Cancel keeps a quiet way back to the unresolved choice');
+  nodes.review._fire();
+  assert.equal(state.questions.length, 2);
+  assert.equal(state.questions[1].focusKeep, true, 'the late choice has safe focus');
+  state.model = { sync: { phase: 'checking', notice: 'The cloud backup changed, so the earlier choice was withdrawn.' } };
+  prompt.render();
+  assert.equal(state.withdrawn, 1, 'a stale question is closed immediately');
+  assert.equal(nodes.notice.hidden, false);
+  assert.equal(nodes.review.hidden, true);
+  assert.match(nodes.message.textContent, /withdrawn/);
+  state.answers.shift()(null);
+  await settled();
+  state.model = { sync: { phase: 'clear' } };
+  prompt.render();
+  assert.equal(nodes.notice.hidden, true);
+});
+
+test('a failed cloud check exposes a warned override and a current kept copy exposes Go back', async () => {
+  const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting', code: 'check-failed' } };
+  const card = cloudCard({ ...connected, sync: { phase: 'failed', error: 'OneDrive did not answer.', canOverride: true } });
+  assert.match(card.nodes.status.textContent, /backups are paused/i);
+  assert.equal(card.nodes.syncCheck.hidden, false);
+  assert.equal(card.nodes.syncOverride.hidden, false);
+  card.nodes.syncCheck._fire();
+  await settled();
+  card.state.answers.push(true);
+  card.nodes.syncOverride._fire();
+  await settled();
+  assert.match(card.state.asked[0].body, /may not have the newest/i);
+  assert.deepEqual(card.state.calls.map(([name]) => name), ['sync-check', 'sync-override']);
+  card.show({ ...connected, sync: { phase: 'clear', kept: { id: 'kept' }, historyUnknown: true } });
+  assert.equal(card.nodes.syncBack.hidden, false);
+  assert.match(card.nodes.status.textContent, /earlier kept copies may exist/i);
+  card.state.answers.push(true);
+  card.nodes.syncBack._fire();
+  await settled();
+  assert.ok(card.state.calls.some(([name]) => name === 'sync-back'));
+});
+
+test('an unconfirmed cloud hold does not claim that every upload is paused', () => {
+  const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting', code: 'check-failed' } };
+  const error = 'The cloud upload hold could not be confirmed. Turn automatic backup off on this device until the check can finish.';
+  const card = cloudCard({ ...connected, sync: { phase: 'failed', code: 'hold-unconfirmed', error, canOverride: true } });
+  assert.match(card.nodes.status.textContent, /upload hold could not be confirmed/i);
+  assert.match(card.nodes.status.textContent, /turn automatic backup off/i);
+  assert.doesNotMatch(card.nodes.status.textContent, /automatic backups are paused/i);
+});
 
 test('the Google sign-in button follows the offered providers and sends the chosen provider', async () => {
   const signedOut = { ...CLOUD, host: 'not-connected', account: null };
@@ -546,6 +641,17 @@ test('the Google sign-in button follows the offered providers and sends the chos
   card.show({ ...CLOUD, provider: 'googledrive', providers: ['onedrive', 'googledrive'] });
   assert.equal(card.nodes.signIn.hidden, true);
   assert.equal(card.nodes.signInGoogle.hidden, true);
+});
+
+test('the progress-check explanation appears only for OneDrive', () => {
+  const card = cloudCard(CLOUD);
+  assert.equal(card.nodes.syncAbout.hidden, false);
+  card.show({ ...CLOUD, provider: 'googledrive' });
+  assert.equal(card.nodes.syncAbout.hidden, true);
+  card.show({ ...CLOUD, provider: 'icloud' });
+  assert.equal(card.nodes.syncAbout.hidden, true);
+  card.show({ ...CLOUD, provider: 'onedrive' });
+  assert.equal(card.nodes.syncAbout.hidden, false);
 });
 
 test('the cloud card shows only what each state allows, and nothing at all in a build without cloud backup', () => {

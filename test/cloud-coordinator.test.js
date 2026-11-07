@@ -184,6 +184,49 @@ test('main.js wraps the guard every owner of saved data writes through, before a
 
 // ------------------------------------------------------------------ what is backed up, and when
 
+test('a sync hold blocks scheduled, hidden-page, online and retry uploads until released', async () => {
+  const env = harness();
+  const coordinator = env.make();
+  coordinator.holdSync('checking');
+  coordinator.start();
+  await env.time.advance(quietMs, [coordinator]);
+  assert.equal(coordinator.state.phase, 'waiting');
+  assert.equal(coordinator.state.code, 'checking');
+  coordinator.holdSync('check-failed');
+  coordinator.notify();
+  env.hidden = true;
+  env.events.dispatchEvent(new Event('visibilitychange'));
+  env.events.dispatchEvent(new Event('online'));
+  coordinator.retry();
+  await env.time.advance(minIntervalMs, [coordinator]);
+  assert.equal(env.uploads.length, 0, 'a failed check never authorizes an automatic upload');
+  assert.equal(coordinator.state.code, 'check-failed');
+  coordinator.releaseSync();
+  await env.time.advance(0, [coordinator]);
+  assert.equal(env.uploads.length, 1, 'a resolved hold allows the pending hidden-page upload');
+});
+
+test('a worker queued before another tab arms the shared hold checks again under the worker lock', async () => {
+  const env = harness();
+  const shared = { held: false };
+  let release;
+  const previous = env.locks.request('worker', { mode: 'exclusive' }, () => new Promise((resolve) => { release = resolve; }));
+  await until(() => release);
+  const coordinator = env.start({ syncUploadAllowed: async () => !shared.held });
+  await env.time.advance(quietMs);
+  shared.held = true;
+  release();
+  await previous;
+  await coordinator.idle();
+  assert.equal(env.uploads.length, 0, 'a queued worker does not upload after the shared hold is armed');
+  assert.equal(coordinator.state.phase, 'waiting');
+  assert.equal(coordinator.state.code, 'sync-held');
+  shared.held = false;
+  coordinator.retry();
+  await env.time.advance(0, [coordinator]);
+  assert.equal(env.uploads.length, 1, 'a later authorized retry can upload');
+});
+
 test('the first run backs up the newest state, and a burst of changes becomes one backup', async () => {
   const env = harness();
   const coordinator = env.start();

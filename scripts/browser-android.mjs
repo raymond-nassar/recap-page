@@ -4715,10 +4715,10 @@ async function confirmationQuestions(page, label, viewport) {
     for (const list of Object.values(state.lists)) list.name = `${list.name} (restored copy)`;
     return JSON.stringify(state);
   }, KEY);
-  const question = async (name) => {
+  const question = async (name, { focus = 'ask-cancel', order = ['ask-cancel', 'ask-ok'] } = {}) => {
     await page.waitForSelector('#ask[open]');
     await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-    const shown = await page.$eval('#ask', (dialog) => {
+    const shown = await page.$eval('#ask', (dialog, minimumTarget) => {
       const view = dialog.getBoundingClientRect();
       const top = Math.max(0, view.top);
       const bottom = Math.min(innerHeight, view.bottom);
@@ -4731,13 +4731,26 @@ async function confirmationQuestions(page, label, viewport) {
       text.selectNodeContents(dialog.querySelector('#ask-body'));
       const footTop = dialog.querySelector('.ask-foot').getBoundingClientRect().top;
       const clear = (rect) => within(rect) && rect.bottom <= footTop + 0.5;
+      const buttons = [...dialog.querySelectorAll('.ask-foot button')].filter((button) => !button.hidden);
+      const labelsFit = buttons.every((button) => {
+        const bounds = button.getBoundingClientRect();
+        const range = document.createRange();
+        range.selectNodeContents(button);
+        const lines = [...range.getClientRects()];
+        return bounds.width >= minimumTarget && bounds.height >= minimumTarget && lines.length > 0
+          && lines.every((line) => line.left >= bounds.left - 0.5 && line.right <= bounds.right + 0.5
+            && line.top >= bounds.top - 0.5 && line.bottom <= bounds.bottom + 0.5);
+      });
       const opened = {
         scrollTop: dialog.scrollTop, overflows: dialog.scrollHeight > dialog.clientHeight + 1,
+        dialogHeight: view.height, footHeight: dialog.querySelector('.ask-foot').getBoundingClientRect().height,
+        titleBottom: dialog.querySelector('#ask-title').getBoundingClientRect().bottom, footTop,
         title: clear(dialog.querySelector('#ask-title').getBoundingClientRect()),
         start: clear(text.getClientRects()[0] ?? { height: 0 }),
         focus: document.activeElement?.id,
         cancel: reachable(dialog.querySelector('#ask-cancel')), confirm: reachable(dialog.querySelector('#ask-ok')),
-        order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+        alternate: !dialog.querySelector('#ask-alternate').hidden && reachable(dialog.querySelector('#ask-alternate')),
+        labelsFit, order: buttons.map((button) => button.id),
         danger: dialog.querySelector('#ask-ok').classList.contains('btn-danger'),
       };
       // Held in view, the answers must not hide the end of the question once it is scrolled to.
@@ -4746,10 +4759,11 @@ async function confirmationQuestions(page, label, viewport) {
       opened.end = !!last && within(last) && last.bottom <= dialog.querySelector('.ask-foot').getBoundingClientRect().top + 0.5;
       dialog.scrollTop = 0;
       return opened;
-    });
-    check(shown.scrollTop === 0 && shown.title && shown.start && shown.end && shown.focus === 'ask-cancel'
-      && shown.cancel && shown.confirm && JSON.stringify(shown.order) === JSON.stringify(['ask-cancel', 'ask-ok']),
-    `${label}: the ${name} question opens at its title, Cancel focused, both answers in view, and reads to its end ${JSON.stringify(shown)}`);
+    }, viewport.desktop ? 44 : 48);
+    check(shown.scrollTop === 0 && shown.title && shown.start && shown.end && shown.focus === focus
+      && shown.cancel && shown.confirm && shown.labelsFit && (!order.includes('ask-alternate') || shown.alternate)
+      && JSON.stringify(shown.order) === JSON.stringify(order),
+    `${label}: the ${name} question opens at its title, safe focus and its visible answers in view, and reads to its end ${JSON.stringify(shown)}`);
     // UX-31 (#830): erasing keeps nothing to go back to, so its answer alone wears the danger look; the
     // restore, its Undo and the saved copy each keep a copy.
     check(shown.danger === (name === 'erase'),
@@ -4793,10 +4807,32 @@ async function confirmationQuestions(page, label, viewport) {
   if (viewport.textScale) check(erase.overflows, `${label}: at 200% text the erase question overflows its dialog`);
   await click(page, '#ask-cancel');
   await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#btn-wipe').disabled);
+  const openSync = (kind) => page.evaluate(async (nextKind) => {
+    const [{ askSyncChoice }, { cloudSyncQuestion }] = await Promise.all([
+      import('/js/ask.js'), import('/js/views/cloud.js'),
+    ]);
+    window.__androidCloudQuestion = askSyncChoice(cloudSyncQuestion({
+      kind: nextKind, quiet: false, local: { readCount: 209, lastReadAt: 1700000000000 },
+      remote: { device: 'Phone', createdAt: 1700000000000, readCount: 214, lastReadAt: 1700000000000 },
+      othersDiffering: 1,
+    }));
+  }, kind);
+  await openSync('both-changed');
+  const sync = await question('cloud progress', {
+    focus: 'ask-alternate', order: ['ask-cancel', 'ask-alternate', 'ask-ok'],
+  });
+  await click(page, '#ask-cancel');
+  await page.evaluate(() => window.__androidCloudQuestion);
+  await openSync('remote-ahead');
+  const newer = await question('newer cloud progress', {
+    focus: 'ask-ok', order: ['ask-cancel', 'ask-alternate', 'ask-ok'],
+  });
+  await click(page, '#ask-cancel');
+  await page.evaluate(() => window.__androidCloudQuestion);
   const after = await names();
   check(JSON.stringify(after) === JSON.stringify(before),
     `${label}: restoring, undoing, and declining the saved copy and the erase leaves the reading data as it was ${JSON.stringify({ before, after })}`);
-  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved, erase })}`);
+  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved, erase, sync, newer })}`);
 }
 
 // #830: the dialogs that now share the questions' shell, opened the way a reader on a phone reaches

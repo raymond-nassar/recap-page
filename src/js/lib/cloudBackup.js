@@ -9,14 +9,17 @@
 // cloud backup record already exists, which indexedDB.databases() says without creating it, and opening
 // Backup & settings costs one status request that such a build answers 404.
 
-import { CLOUD_BACKUP_DATABASE } from '../storage.js';
+import { CLOUD_BACKUP_DATABASE, CLOUD_SYNC_OFFER_LOCK } from '../storage.js';
 import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel, isUnreadableKeptLedger, isUnreadableRecord } from './cloudProtocol.js';
 import { CloudBackupCoordinator } from './cloudCoordinator.js';
 import { cloudErrorText } from './cloudCopy.js';
+import { CloudLaunchSync, createCloudSyncMarker } from './cloudLaunchSync.js';
+import { CAPTURE_KEYS } from './completeBackup.js';
 
 export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
 // How often the card asks whether a sign-in in the browser has finished. The host answers from memory.
 export const CLOUD_SIGN_IN_POLL_MS = 2000;
+export const CLOUD_SYNC_RETURN_MS = 60_000;
 // Host states that hold a connection.
 const LINKED = new Set(['connected', 'needs-sign-in']);
 const NOT_ANSWERING = Object.freeze({ enabled: false, transient: true });
@@ -51,11 +54,13 @@ export function createCloudBackup({
   transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
   device = transport?.device ?? browserDeviceLabel(globalThis.navigator, transport?.scope), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
-  coordinator: coordinatorOptions = {}, onChange = () => {},
+  syncStorage = () => globalThis.localStorage,
+  coordinator: coordinatorOptions = {}, launchSync = null, onChange = () => {},
 } = {}) {
   if (['status', 'connect', 'disconnect'].some((operation) => typeof transport?.[operation] !== 'function')) {
     throw new TypeError('Cloud backup on this page needs a transport that reports the account and can connect and disconnect it.');
   }
+  const syncMarker = createCloudSyncMarker(syncStorage);
   // Where a sign-in reaches: every browser profile on the Windows account the host runs in, or, from the
   // Android app, this device alone. The card and the erase say which.
   const scope = transport.scope === 'device' ? 'device' : 'profiles';
@@ -68,6 +73,8 @@ export function createCloudBackup({
   let keptProblem = false;
   let keptRevision = 0;
   let coordinator = null;
+  let launch = null;
+  let launchContext = null;
   let discovery = IDLE;
   let discoveries = 0;
   let poll = null;
@@ -84,6 +91,7 @@ export function createCloudBackup({
   let setAside = false;
   let releaseErase = null;
   let model = null;
+  let hiddenAt = null;
 
   const enabled = () => status?.enabled === true;
   const linkedConnection = () => (enabled() && LINKED.has(status.state) && status.connection ? status.connection : null);
@@ -122,6 +130,7 @@ export function createCloudBackup({
       keptAttention,
       keptProblem,
       backup: coordinator?.state ?? OFF,
+      ...(launchSync ? { sync: launch?.state ?? { phase: 'off', offer: null, error: null } } : {}),
       discovery,
       scope,
     });
@@ -130,6 +139,14 @@ export function createCloudBackup({
   function publish() {
     model = compose();
     try { onChange(model); } catch { /* a view's failure changes nothing here */ }
+  }
+
+  function withdrawLaunch() {
+    if (!launch) return;
+    launch.stop();
+    launch = null;
+    launchContext = null;
+    publish();
   }
 
   // true or false when the browser can say whether the record's database exists, null when it cannot.
@@ -161,11 +178,79 @@ export function createCloudBackup({
         }
       },
       ...coordinatorOptions,
+      ...(launchSync ? {
+        syncUploadAllowed: async () => {
+          const current = await protocol.record();
+          if (!current?.consent) return false;
+          if (current.consent.provider !== 'onedrive') return true;
+          if (syncMarker.pending()) return false;
+          const gate = await protocol.syncGate({
+            connection: current.consent.connection, stream: current.stream, consentId: current.consent.id,
+          });
+          if (gate?.held !== false) return false;
+          const locks = launchSync.locks ?? coordinatorOptions.locks ?? globalThis.navigator?.locks;
+          if (typeof locks?.request !== 'function') return false;
+          return locks.request(CLOUD_SYNC_OFFER_LOCK, { mode: 'exclusive', ifAvailable: true }, (lock) => Boolean(lock));
+        },
+      } : {}),
     });
     // Saved changes are listened for from the first time backups start, so a browser that never turns
     // cloud backup on hears none of them.
-    savedChanges?.subscribe(() => coordinator.notify());
+    savedChanges?.subscribe(() => {
+      launch?.savedChanged();
+      coordinator.notify();
+    });
+    const events = coordinatorOptions.events ?? globalThis;
+    const isHidden = coordinatorOptions.isHidden ?? (() => globalThis.document?.visibilityState === 'hidden');
+    const clock = coordinatorOptions.clock ?? Date.now;
+    events?.addEventListener?.('storage', (event) => {
+      if (event?.key === null || CAPTURE_KEYS.includes(event?.key)) launch?.savedChanged();
+    });
+    events?.addEventListener?.('visibilitychange', () => {
+      if (isHidden()) hiddenAt = clock();
+      else {
+        const away = hiddenAt !== null && clock() - hiddenAt >= CLOUD_SYNC_RETURN_MS;
+        hiddenAt = null;
+        if (away) void launch?.requestCheck();
+      }
+    });
+    events?.addEventListener?.('offline', () => { void launch?.requestCheck(); });
+    events?.addEventListener?.('online', () => { void launch?.requestCheck(); });
     return coordinator;
+  }
+
+  function configureLaunch(running) {
+    const agreed = consent();
+    if (!launchSync || !record || agreed?.provider !== 'onedrive') {
+      if (launch) {
+        launch.stop();
+        launch = null;
+        launchContext = null;
+        running.releaseSync();
+      }
+      return;
+    }
+    const context = { connection: agreed.connection, stream: record.stream, consentId: agreed.id };
+    if (launch?.active && launchContext?.connection === context.connection
+      && launchContext.stream === context.stream && launchContext.consentId === context.consentId) return;
+    launch?.stop();
+    launchContext = context;
+    running.holdSync('checking');
+    launch = new CloudLaunchSync({
+      ...launchSync, protocol, coordinator: running, capture, isBlocked, marker: syncMarker,
+      isOnline: coordinatorOptions.isOnline ?? (() => globalThis.navigator?.onLine !== false),
+      connectionCurrent: async (context) => {
+        const now = await transport.status();
+        return now?.enabled === true && now.state === 'connected' && now.provider === 'onedrive'
+          && now.connection === context.connection;
+      },
+      onChange: (state) => {
+        publish();
+        if (state.phase === 'failed' && state.code === 'needs-consent') void refresh();
+      },
+      announce,
+    });
+    void launch.start(context);
   }
 
   async function refreshKeptCopies() {
@@ -197,8 +282,11 @@ export function createCloudBackup({
     const run = queue.then(async () => {
       const before = status?.state ?? null;
       const beforeConnection = linkedConnection();
+      const beforeProvider = status?.provider;
       try { status = await transport.status(); } catch { status = NOT_ANSWERING; }
-      if (before !== status?.state || beforeConnection !== linkedConnection()) {
+      if (before !== status?.state || beforeConnection !== linkedConnection() || beforeProvider !== status?.provider) {
+        if (launch && (beforeConnection !== linkedConnection() || status?.state !== 'connected'
+          || beforeProvider !== status?.provider)) withdrawLaunch();
         keptRevision += 1;
         earlierKept = null;
         keptAttention = null;
@@ -224,10 +312,19 @@ export function createCloudBackup({
       const waiting = status.transient === true && consent() !== null;
       if ((isOn() || waiting) && !held) {
         const running = backups();
+        configureLaunch(running);
         if (!running.active) running.start();
         // Signed in again after Microsoft asked for it: backups go on at once.
-        else if (before !== 'connected' && status.state === 'connected' && running.state.phase === 'needs-sign-in') running.retry();
-      } else coordinator?.stop();
+        else if (before !== 'connected' && status.state === 'connected') {
+          if (launch?.active) void launch.requestCheck();
+          else if (running.state.phase === 'needs-sign-in') running.retry();
+        }
+      } else {
+        launch?.stop();
+        launch = null;
+        launchContext = null;
+        coordinator?.stop();
+      }
       if (discovery.connection !== null && discovery.connection !== linkedConnection()) {
         discoveries += 1;
         discovery = IDLE;
@@ -243,7 +340,7 @@ export function createCloudBackup({
     try { channel?.postMessage('changed'); } catch { /* other tabs catch up when they next look */ }
   }
   if (channel) {
-    channel.onmessage = () => { void refresh(); };
+    channel.onmessage = () => { void refresh().then(() => launch?.follow()); };
     // Listening never keeps anything alive on its own. Node's channel would hold open any process that
     // imports the page's modules, as the tests do; a browser's has no unref, and needs none.
     channel.unref?.();
@@ -322,6 +419,21 @@ export function createCloudBackup({
     // A saved change of anything a backup holds.
     notify() { coordinator?.notify(); },
     retry() { coordinator?.retry(); },
+    checkSync() { return launch?.checkNow(); },
+    recheckSync() { return launch?.requestCheck(); },
+    markActivity() { launch?.markActivity(); },
+    keepSync() {
+      return launch?.keepOffer() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
+    },
+    loadSync() {
+      return launch?.loadOffer() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
+    },
+    overrideSync() {
+      return launch?.overrideFailure() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
+    },
+    goBackSync() {
+      return launch?.goBack() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
+    },
 
     // Signs in to the service the person chose, or the transport's own when there was no choice to make.
     async connect(provider) {
@@ -349,6 +461,7 @@ export function createCloudBackup({
     },
 
     async turnOff() {
+      withdrawLaunch();
       coordinator?.stop();
       try { await protocol.withdrawConsent(); }
       finally {
@@ -369,6 +482,7 @@ export function createCloudBackup({
     async deleteOwn() {
       const connection = linkedConnection();
       if (!connection) throw new CloudBackupError(NOT_LINKED, 'not-connected');
+      withdrawLaunch();
       coordinator?.stop();
       try { return await protocol.deleteOwnBackups({ connection }); }
       finally {
@@ -380,6 +494,7 @@ export function createCloudBackup({
 
     // The host forgets the sign-in for every browser profile on this Windows account. Files stay.
     async disconnect() {
+      withdrawLaunch();
       coordinator?.stop();
       try { await transport.disconnect(); }
       finally {
@@ -404,6 +519,7 @@ export function createCloudBackup({
       held = true;
       wasRunning = Boolean(coordinator?.active);
       promised = enabled() && DISCONNECT_NAMED.has(status.state);
+      withdrawLaunch();
       coordinator?.stop();
       erasing = (async () => {
         const exists = await recordExists();
@@ -488,9 +604,22 @@ export function createCloudBackup({
       }
       // A build without cloud backup, in a browser that never had it: nothing to forget, and no request.
       if (!enabled() && record === null && await recordExists() !== true) {
+        let markerError = null;
+        let markerLock = null;
+        try {
+          if (syncMarker.pending()) {
+            markerLock = await protocol.hold();
+            const exists = await recordExists();
+            if (exists !== false && (await protocol.record())?.consent) {
+              throw new CloudBackupError('Cloud backup changed during erase, so the pending cloud check was kept.', 'raced');
+            }
+            syncMarker.erase();
+          }
+        } catch (error) { markerError = error; }
+        finally { markerLock?.(); }
         release();
         held = false;
-        return { ok: true, problems: [] };
+        return markerError ? { ok: false, problems: [markerError.message] } : { ok: true, problems: [] };
       }
       const problems = [];
       let kept = false;
@@ -504,6 +633,13 @@ export function createCloudBackup({
           problems.push(cloudErrorText(error?.message ?? 'This browser could not forget its cloud backup record.', scope));
           // Consent given in another tab during the erase too, so the erased state is never backed up under it.
           await protocol.withdrawConsent().catch(() => {});
+        }
+      }
+      if (!kept) {
+        try { syncMarker.erase(); }
+        catch (error) {
+          kept = true;
+          problems.push(error.message);
         }
       }
       // Forgotten, withdrawn, or still set aside as beforeErase confirmed before the first write: this
