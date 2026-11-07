@@ -64,6 +64,22 @@ final class AssetResponderTests: XCTestCase {
         }
     }
 
+    func testNativeConfigurationIsNeverServed() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let config = #"{"version":"0","origin":"recappage://localhost","scheme":"recappage","host":"localhost","securityHeaders":{},"health":{"path":"/health","headers":{}},"oneDriveClientId":"synthetic-client"}"#
+        try Data(config.utf8).write(to: directory.appendingPathComponent("ios-config.json"))
+        try Data(#"{"files":[{"path":"ios-config.json"}]}"#.utf8)
+            .write(to: directory.appendingPathComponent("ios-assets.json"))
+        let assets = try AppAssets(root: directory)
+        XCTAssertEqual(assets.config.oneDriveClientId, "synthetic-client")
+        XCTAssertFalse(assets.paths.contains("ios-config.json"))
+        let responder = AssetResponder(assets: assets)
+        XCTAssertEqual(responder.reply(to: URL(string: "recappage://localhost/ios-config.json"), method: "GET").statusCode, 404)
+        XCTAssertEqual(responder.reply(to: URL(string: "recappage://localhost/ios-config.json"), method: "HEAD").statusCode, 405)
+    }
+
     func testAConfigurationNamingAnotherOriginIsRefused() throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)

@@ -5236,6 +5236,51 @@ function icloudNative(connection) {
   return native;
 }
 
+test('OneDrive on iPhone and iPad transports inherits the launch offer before uploading', async () => {
+  for (const [label, nav] of [
+    ['iPhone', { userAgent: 'iPhone' }],
+    ['iPad', { userAgent: 'Macintosh', maxTouchPoints: 5 }],
+  ]) {
+    const connection = 'c'.repeat(32);
+    const native = icloudNative(connection);
+    native.autoUpload = true;
+    const postMessage = native.postMessage.bind(native);
+    const calls = [];
+    native.postMessage = async (message) => {
+      calls.push(message.op);
+      if (message.op === 'status') {
+        return {
+          v: 1, kind: 'cloud-result', status: 200, body: JSON.stringify({
+            ok: true, status: {
+              provider: 'onedrive', providers: ['icloud', 'onedrive'], state: 'connected', connection,
+              account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
+            },
+          }),
+        };
+      }
+      return postMessage(message);
+    };
+    const transport = createICloudTransport({ native, nav, createTransport: createCloudHostTransport });
+    const env = harness({ transport });
+    const protocol = env.make();
+    await protocol.recordConsent({ connection, provider: 'onedrive', device: transport.device });
+    const remote = await device({ 1: 333 }).snapshot();
+    await transport.create(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Desktop', createdAt: 123,
+    }), { connection });
+    const createdBefore = calls.filter((op) => op === 'create').length;
+    const tab = page({ env, launchSync: true, device: null });
+    await tab.cloud.resume();
+    await until(() => tab.cloud.model.sync.phase === 'offer', `${label} offers the other device`);
+    assert.equal(transport.device, `Recap Page on ${label}`);
+    assert.equal(tab.cloud.model.sync.offer.remote.device, 'Desktop');
+    assert.ok(calls.includes('list') && calls.includes('read'), 'the check crosses the native transport');
+    await tab.time.advance(CLOUD_BACKUP_CADENCE.minIntervalMs, [tab.cloud]);
+    assert.equal(calls.filter((op) => op === 'create').length, createdBefore, 'the unresolved offer holds uploads');
+    await tab.cloud.turnOff();
+  }
+});
+
 // One backup already made and uploaded, and the next one to make, on a device whose iCloud keeps the
 // next file waiting until the test uploads it.
 async function icloudBackups() {

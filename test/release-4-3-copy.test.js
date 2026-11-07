@@ -52,9 +52,10 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 // The owner approved this privacy policy paragraph on #1079:
 // https://github.com/raymond-nassar/recap-page/issues/1079#issuecomment-6591655469
 // Its iCloud backup and iPhone and iPad device-storage wording awaits the owner's approval on #1101.
-// Its OneDrive launch-check, kept-copy and pending-marker wording awaits the owner's approval on #1158.
+// Its OneDrive backup on iPhone and iPad and launch-check, kept-copy and pending-marker wording
+// awaits the owner's approval on #1158.
 test('the privacy policy preserves approved text and wording pending on #1101 and #1158', () => {
-  assert.equal(digest(read('PRIVACY.md')), '9ccd667eb77ff419dadb5ebb455bb0a29eb1a3df139e40fc92b279ce0111f104');
+  assert.equal(digest(read('PRIVACY.md')), 'd2aeb0eb07c489159e340a34e9f0f2300cacbcdb02c68aa09011bfcde0a34da7');
 });
 
 test('the 4.3.0 Microsoft Store fields are the approved text', () => {

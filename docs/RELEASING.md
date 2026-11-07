@@ -134,6 +134,7 @@ through chat and never copies withheld evidence into a build:
 | `microsoft-store-production` | `RECAP_ONEDRIVE_CLIENT_ID` | Read the Application (client) ID from the personal-account app's Entra Overview at that time. |
 | `android-release-candidate` | `RECAP_ONEDRIVE_CLIENT_ID` | The same Entra Application (client) ID. |
 | `android-release-candidate` | `RECAP_ONEDRIVE_PLAY_REDIRECT_HASH` | The already registered, unencoded base64 SHA-1 Android redirect hash for the Play app signing certificate, not the upload certificate. |
+| `ios-testflight` | `RECAP_ONEDRIVE_CLIENT_ID` | The same Entra Application (client) ID, whose registration carries the iOS platform redirect `msauth.io.github.raymondnassar.recappage://auth`. Only the export step reads it; the exported app must embed it or the export fails. |
 
 These are public-client identifiers carried by installed packages, not client
 passwords. The owner's rule still keeps them out of source, Issues, PRs and logs.

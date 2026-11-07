@@ -80,12 +80,12 @@ Home links and does not include category tiles. The empty-Home native scenario c
 default and largest text sizes, that each of the two targets has its full name, is at least 44
 points in each direction, has no separate native element, inside or outside the link, for its name
 or drawn words, and opens its destination, independently of the populated audit fixture.
-Whether WebKit exposes those drawn words separately can only be settled on a Simulator. At the largest accessibility text size, the Backup &
-settings section headings can wrap within their existing column rather than widening the page.
-At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
-iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
-correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
-adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
+Whether WebKit exposes those drawn words separately can only be settled on a Simulator. At the largest
+accessibility text size, the Backup & settings section headings can wrap in their existing column.
+At compact iOS widths the page title uses closer line spacing, preserving its size, to give the privacy
+explanation more room above navigation. The iOS Theme selector also wraps at that text size. On a
+375-point iPhone SE Simulator, WebKit overflowed its correctly sized field; Edge contained it on both
+platform bundles. Both iOS-only adjustments keep shared field dimensions and tokens unchanged.
 
 The presentation audit uses a fail-closed passive-text guard, approved in #1005, not a blanket
 exemption for text. Ten previously reviewed cases remain positive fixtures: the iPad sidebar's
@@ -372,6 +372,22 @@ shared backup engine, its schedule and its restore are unchanged.
 - **Testing.** Unsigned Simulator builds on CI cannot reach iCloud, so the XCTests run the handler
   over an in-memory fake store, which Debug builds can also use at launch through
   `RECAP_IOS_ICLOUD_FAKE`. The real store is accepted on a TestFlight build on the owner's devices.
+
+## OneDrive backup
+
+Added for 4.5.0 (#1113). A TestFlight export whose `ios-testflight` environment supplies
+`RECAP_ONEDRIVE_CLIENT_ID` carries the OneDrive client in its configuration, and the backup card then
+offers **Connect iCloud** and **Sign in with Microsoft**, one connection at a time. Every other build, pull
+request and CI builds included, carries none and offers iCloud alone. A missing or invalid client ID
+fails the export rather than falling back; [RELEASING](RELEASING.md) lists the protected inputs.
+
+- **Sign-in.** Microsoft's consumers authority through `ASWebAuthenticationSession`, PKCE and the
+  redirect `msauth.io.github.raymondnassar.recappage://auth`, registered on the owner's app
+  registration for this bundle ID. No Microsoft library is added. Tokens stay in the Keychain on
+  this device only, and a reinstall forgets them.
+- **Testing.** No CI runner can sign in to a Microsoft account, so the XCTests drive the handler and
+  router over a fake Graph transport, a fake Keychain and a fake sign-in sheet. Sign-in and backup are
+  accepted on a TestFlight build on the owner's devices.
 
 ## Known limits
 

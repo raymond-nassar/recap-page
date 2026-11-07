@@ -129,6 +129,14 @@ function assertMainSource(entry, main = 'origin/main', root = ROOT) {
   requireValue(capable, 'source predates iOS reservation support; reserve a later main commit');
 }
 
+export function assertIosCloudSource(entry, mode, { root = ROOT } = {}) {
+  if (mode !== 'export') return;
+  const preparation = execFileSync('git', ['show', `${entry.sourceRevision}:scripts/prepare-ios.mjs`],
+    { cwd: root, encoding: 'utf8' });
+  requireValue(preparation.includes('RECAP_IOS_CLOUD_CLIENT'),
+    'source predates iOS OneDrive configuration support; reserve a later main commit');
+}
+
 export function checkIosHistory({ root = ROOT } = {}) {
   const command = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
   let previous = { schemaVersion: 1, retiredThrough: 1, reservations: [] };
@@ -224,6 +232,7 @@ async function preflight() {
   const ledger = validateIosLedger(JSON.parse(git('show', `origin/main:${ledgerFile}`)));
   const entry = iosReservation(ledger, env.IOS_BUILD_NUMBER);
   assertMainSource(entry);
+  assertIosCloudSource(entry, env.IOS_MODE);
   requireValue(env.IOS_MODE === 'export' ? entry.artifact === null : entry.artifact !== null,
     'export requires an unsealed reservation; upload requires a merged seal');
   // An unsuccessful or uncertain run consumes its attempt too. Never silently retry a sign/upload.
@@ -271,8 +280,19 @@ async function authenticated(mode) {
     'application source must be the clean reservation checkout');
     const ledgerCopy = join(env.RUNNER_TEMP, 'ios-ledger.json');
     await save(ledgerCopy, ledger);
-    run(process.execPath, ['scripts/prepare-ios.mjs'], { cwd: source,
-      env: { ...env, RECAP_IOS_LEDGER: ledgerCopy, RECAP_IOS_BUILD_NUMBER: String(entry.buildNumber) } });
+    // OneDrive ships only with the protected client identifier; a missing or invalid one fails here
+    // rather than building without it (#1113). Children see only the private file's path.
+    const { removeReleaseCloudInput, writeReleaseCloudInput } = await import('./release-cloud-client.mjs');
+    const clientId = env.RECAP_ONEDRIVE_CLIENT_ID;
+    const cloud = await writeReleaseCloudInput(false, env);
+    delete env.RECAP_ONEDRIVE_CLIENT_ID;
+    try {
+      run(process.execPath, ['scripts/prepare-ios.mjs'], { cwd: source,
+        env: { ...env, RECAP_IOS_LEDGER: ledgerCopy, RECAP_IOS_BUILD_NUMBER: String(entry.buildNumber),
+          RECAP_IOS_CLOUD_CLIENT: join(cloud.directory, 'cloud-client.json') } });
+    } finally {
+      await removeReleaseCloudInput(env);
+    }
     const archive = join(env.RUNNER_TEMP, 'RecapPage.xcarchive');
     const options = join(env.RUNNER_TEMP, 'ios-export.plist');
     await writeFile(options, `<?xml version="1.0" encoding="UTF-8"?>
@@ -304,6 +324,8 @@ async function authenticated(mode) {
       && plist('CFBundleShortVersionString') === entry.productVersion, 'exported app identity mismatch');
     requireValue(JSON.stringify(await json(join(app, 'web', 'build-info.json')))
       === JSON.stringify(candidateIdentity(entry)), 'embedded source identity mismatch');
+    requireValue((await json(join(app, 'web', 'ios-config.json'))).oneDriveClientId === clientId,
+      'exported app lacks the approved OneDrive client configuration');
     run('codesign', ['--verify', '--deep', '--strict', app]);
     const record = await artifactRecord(path, candidateIdentity(entry));
     await save(join(output, 'ios-artifact.json'), record);

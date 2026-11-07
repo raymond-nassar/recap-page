@@ -45,6 +45,19 @@ final class WebViewController: UIViewController, WKUIDelegate {
             bridge.cloud = ICloudBackupHandler(store: ICloudDriveStore())
         }
         #endif
+        #if RECAP_ICLOUD || DEBUG
+        if let iCloud = bridge.cloud as? ICloudBackupHandler,
+           let clientId = assets.config.oneDriveClientId,
+           OneDriveAuthorization.validClientId(clientId) {
+            let oneDrive = OneDriveBackupHandler(
+                clientId: clientId,
+                transport: OneDriveURLSessionTransport(),
+                credentials: OneDriveKeychain(),
+                launcher: OneDriveBrowserSignIn { [weak self] in self?.view.window }
+            )
+            bridge.cloud = CloudBackupRouter(iCloud: iCloud, oneDrive: oneDrive)
+        }
+        #endif
         let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
         installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)
@@ -151,7 +164,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '#btn-chero-open, .app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
         + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label, '
-        + '#form-search label[for="search-q"]';
+        + '#form-search label[for="search-q"], .mobile-link[data-view="add"]';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {

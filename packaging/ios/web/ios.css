@@ -72,6 +72,12 @@
   margin-left: 0;
 }
 
+@media (max-width: 420px) {
+  :root[data-ios-largest-text="true"] #view-data #data-h {
+    line-height: 1.05;
+  }
+}
+
 :root[data-ios-largest-text="true"] #view-data .setgroup > h2 {
   overflow-wrap: anywhere;
 }

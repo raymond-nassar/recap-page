@@ -919,7 +919,9 @@ a time. Its status lists the providers it offers, OneDrive first, and names the 
 names the provider it wants, and one naming none means OneDrive, so a page written before Google Drive
 keeps working. The card offers a choice only when a build offers more than one, and Google Drive never
 appears in the iPhone and iPad app. Google Drive is offered on Windows alone so far, and only by a build
-whose client configuration carries Google's desktop client, so every build today offers OneDrive alone.
+whose client configuration carries Google's desktop client, so every Windows and Android build today
+offers OneDrive alone. The iPhone and iPad app offers iCloud Drive, and OneDrive beside it only in a
+build whose release supplies the OneDrive client; its status lists iCloud first.
 Android has Google Drive's operations built and tested but no way to sign in to Google yet, because
 Google no longer accepts an app's own address scheme on Android, so nothing there makes one. Google
 Drive asks for the `drive.file` scope and nothing wider, which reaches only the files this app made or
@@ -1191,7 +1193,7 @@ under that origin in WebKit's storage, which allows each origin 5 MiB;
 ### iCloud Drive backup
 
 The iOS transport answers the shared cloud backup contract through the app's existing script-message
-handler. The provider is `icloud`, the only entry in its `providers`, and `connect({provider:'icloud'})`
+handler. The provider is `icloud`, the first entry in its `providers`, and `connect({provider:'icloud'})`
 records a connection against the device's current iCloud identity. The page sees no identity token.
 Disconnect forgets that connection, not the device's iCloud sign-in. Files live in Documents in the
 app's ubiquity container, which the Files app shows as **Recap Page**, not in CloudKit.
@@ -1229,3 +1231,21 @@ The native code compiles only with `RECAP_ICLOUD` or Debug; the page adapter is 
 copied into every iOS build. The app's Debug and Release configurations set `RECAP_ICLOUD` and sign
 with the iCloud Documents entitlements, and `iCloudBackup` bundles the adapter and card.
 [iCloud backup](IOS.md#icloud-backup) records the signed-device acceptance still required.
+
+### OneDrive on iPhone and iPad
+
+A build whose release supplies the protected OneDrive client also offers OneDrive (#1113). A router in
+front of the iCloud handler lists both providers and holds at most one connection: connecting either
+is refused while the other is connected, and data operations go to the one in use. Sign-in mirrors
+Android's own PKCE flow against Microsoft's consumers authority, with no Microsoft library, through
+`ASWebAuthenticationSession` and the registered redirect `msauth.io.github.raymondnassar.recappage://auth`.
+The ID token's audience, nonce and expiry are checked, and a grant without app-folder access is refused.
+Tokens live in the Keychain, readable after first unlock on this device only, and the access token is
+sent to Microsoft Graph alone; upload-session `PUT`s carry no Authorization header. Because Keychain
+items outlive the app, the first launch after an install forgets any earlier sign-in.
+
+The store keeps the OneDrive contract the other hosts keep: a create refuses a taken name in its
+request body, every create is read back and its digest compared, deletes go to the recycle bin, a
+deleted app folder counts as consent withdrawn, and disconnect forgets the sign-in on this device only.
+The native code sits under the same `RECAP_ICLOUD` boundary as iCloud, and the page sees OneDrive only
+when the build's configuration carries a valid client ID; ordinary pull request and CI builds carry none.
