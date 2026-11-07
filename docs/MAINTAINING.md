@@ -599,7 +599,7 @@ issue ID, title, number, series identity and exact issue link. Keep those facts 
 Unavailable dates, cover, digital ID, page count and creators may stay `null` or empty in the
 pinned payload.
 
-A user-approved gap-tolerant guide may ship as `depth: partial` and `spotlightKind: other`.
+Approved gap-tolerant guides may use `depth: partial`; character runs also use `spotlightKind: other`.
 Keep reviewed exact identities in `rows`, even if absent from the provider. Keep unresolved or
 unavailable identities in `sourceGaps` and mirror them in the mapping. `expect` counts exact rows
 to omit gaps from output; historical guides counting gaps keep placeholders.

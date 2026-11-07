@@ -1122,10 +1122,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11067-11118`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11133-11184`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16536-16673`.
+`src/data/catalog.json:16623-16760`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3510,3 +3510,39 @@ Reading blocks retain their labels without claiming to be collected editions. No
 commentary, provider description or comic image bytes are copied. Cover addresses alone are
 stored, no availability is promised, and no existing guide, saved progress, note or backup format
 changes.
+
+## Realm of Kings and Fall of the Hulks
+
+The [Realm of Kings guide](https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/)
+is a trade-level selection rather than a printed issue-by-issue checklist. The owner selected the
+opening one-shot, Guardians of the Galaxy #20-25, the three named Imperial Guard, Inhumans and
+Son of Hulk miniseries, and Nova #29-35. The [numbered anthology index](https://leagueofcomicgeeks.com/comic/9488865/realm-of-kings-hc)
+supplies the miniseries order; its numbering was not verified as the physical order in the book.
+The opening one-shot appears once. Nova #36 is in the linked collection index but outside the
+source's selected #29-35 range. The [frozen packet](../scripts/data/cbh-packets/realm-of-kings.json)
+and [local checklist](../src/data/orders/realm-of-kings.md) retain the 28 selected originals.
+
+The [Fall of the Hulks and World War Hulks guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/fall-of-the-hulks-world-war-hulks/)
+prints 29 issue positions. Its separate trade summary is not part of that selection. The
+[packet](../scripts/data/cbh-packets/fall-of-the-hulks.json) preserves position 3, Fall of the Hulks:
+MODOK #1, as an open metadata gap linked to [Issue 1155](https://github.com/raymond-nassar/recap-page/issues/1155).
+The [local checklist](../src/data/orders/fall-of-the-hulks.md) publishes the other 28 exactly
+resolved issues without substituting an identity or presenting a placeholder as an issue.
+The source's Spider-Man & Thor and Wolverine & Captain America titles correspond to the provider's
+Spider-Man Vs. Thor and Wolverine Vs. Captain America titles; the source's trade summary and
+provider series identities corroborate those four reviewed positions. The bounded MODOK searches
+do not establish provider-wide absence or subscription availability.
+
+The owner approved both source selections, their 2009 shelf placement before Siege, and all eleven
+partial relationships in [Issue 1156](https://github.com/raymond-nassar/recap-page/issues/1156).
+The [complete-library review contract](../test/fixtures/cbh-modern-event-review.json) binds the
+341 existing source or visible orders, including generated children and the retained hidden parent,
+and each mapped peer. The [Realm](../scripts/data/cbh-mappings/realm-of-kings.json) and
+[Fall](../scripts/data/cbh-mappings/fall-of-the-hulks.json) mappings bind the separately regenerated
+manifest reports and individual relationship approvals. Shared originals remain in both scopes.
+The placement is an editorial shelf order, not a claim that every issue in either event precedes
+every Siege issue.
+
+The guides credit their exact Comic Book Herald sources and the selected secondary index. Source
+commentary and image bytes are not copied; only issue facts, links and cover addresses are stored.
+Neither guide promises availability, and existing lists and saved progress remain unchanged.

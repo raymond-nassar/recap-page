@@ -9308,6 +9308,72 @@
       "coverIssueId": 28103
     },
     {
+      "id": "realm-of-kings",
+      "name": "Realm of Kings",
+      "description": "The Realm of Kings one-shot, Guardians of the Galaxy, the Imperial Guard, Inhumans and Son of Hulk miniseries, and Nova follow the aftermath of War of Kings toward The Thanos Imperative.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "timeline": 2009,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "realm-of-kings.md",
+      "sourcePage": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+      "sourceSection": "Realm of Kings Trade Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "realm_of_kings.json",
+      "characters": [
+        "Nova",
+        "Guardians of the Galaxy",
+        "Quasar",
+        "Inhumans",
+        "Imperial Guard"
+      ],
+      "keywords": [
+        "Realm of Kings",
+        "The Fault",
+        "War of Kings",
+        "Marvel Cosmic"
+      ],
+      "expect": 28,
+      "coverIssueId": 29292
+    },
+    {
+      "id": "fall-of-the-hulks",
+      "name": "Fall of the Hulks and World War Hulks",
+      "description": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots. The MODOK one-shot is not included because its metadata could not be resolved.",
+      "type": "event",
+      "depth": "partial",
+      "beginner": false,
+      "timeline": 2009,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "fall-of-the-hulks.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/fall-of-the-hulks-world-war-hulks/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "fall_of_the_hulks.json",
+      "characters": [
+        "Hulk",
+        "Red Hulk",
+        "She-Hulk",
+        "Skaar",
+        "Intelligencia"
+      ],
+      "keywords": [
+        "Fall of the Hulks",
+        "World War Hulks",
+        "Intelligencia",
+        "Red Hulk",
+        "Comic Book Herald"
+      ],
+      "expect": 28,
+      "coverIssueId": 29293
+    },
+    {
       "id": "siege-dark-reign-prelude",
       "name": "Siege: Dark Reign Prelude and Essential Tie-Ins",
       "description": "Norman Osborn's rise and fall, from a Dark Reign prelude beginning in 2008 to the 2010 Siege of Asgard. Follow Dark Avengers, New Avengers, Mighty Avengers, Avengers: The Initiative and Thunderbolts, with the complete four-issue Siege event and selected crossover chapters. The prelude includes the Deadpool/Thunderbolts crossover and Utopia; the event finishes with New Avengers Finale.",

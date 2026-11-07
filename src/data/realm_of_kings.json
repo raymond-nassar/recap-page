@@ -1,0 +1,997 @@
+{
+  "id": "realm-of-kings",
+  "name": "Realm of Kings",
+  "description": "The Realm of Kings one-shot, Guardians of the Galaxy, the Imperial Guard, Inhumans and Son of Hulk miniseries, and Nova follow the aftermath of War of Kings toward The Thanos Imperative.",
+  "source": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+  "sourceSection": "Realm of Kings Trade Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-07T06:36:13.433Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 28,
+  "collections": 6,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 29292,
+      "title": "Realm of Kings (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/29292/realm_of_kings_2009_1",
+      "seriesId": 9088,
+      "seriesName": "Realm of Kings (2009)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-03-11T00:00:00+0000",
+      "digitalId": 13588,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5771450ef044c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonardo Manco",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings Trade Reading List"
+    },
+    {
+      "issueId": 25308,
+      "title": "Guardians of the Galaxy (2008) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/25308/guardians_of_the_galaxy_2008_20",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2009-11-25T00:00:00+0000",
+      "digitalId": 14773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/517ad68878d23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #20-25"
+    },
+    {
+      "issueId": 25309,
+      "title": "Guardians of the Galaxy (2008) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/25309/guardians_of_the_galaxy_2008_21",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2010-09-16T00:00:00+0000",
+      "digitalId": 14774,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/517ad7e750faf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #20-25"
+    },
+    {
+      "issueId": 29022,
+      "title": "Guardians of the Galaxy (2008) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/29022/guardians_of_the_galaxy_2008_22",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2010-01-19T00:00:00+0000",
+      "digitalId": 13726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/517ad7df48bd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #20-25"
+    },
+    {
+      "issueId": 29009,
+      "title": "Guardians of the Galaxy (2008) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/29009/guardians_of_the_galaxy_2008_23",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-02-09T00:00:00+0000",
+      "digitalId": 13894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/517ad7d83fa99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wes Craig",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #20-25"
+    },
+    {
+      "issueId": 29010,
+      "title": "Guardians of the Galaxy (2008) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/29010/guardians_of_the_galaxy_2008_24",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2013-05-22T10:04:40+0000",
+      "digitalId": 14117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/517ad7cb98978",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #20-25"
+    },
+    {
+      "issueId": 32551,
+      "title": "Guardians of the Galaxy (2008) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/32551/guardians_of_the_galaxy_2008_25",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-04-21T00:00:00+0000",
+      "mu": "2011-01-04T00:00:00+0000",
+      "digitalId": 14384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/517ad7c491ddf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #20-25"
+    },
+    {
+      "issueId": 28697,
+      "title": "Realm of Kings Imperial Guard (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28697/realm_of_kings_imperial_guard_2009_1",
+      "seriesId": 9052,
+      "seriesName": "Realm of Kings Imperial Guard (2009 - 2010)",
+      "onSale": "2009-11-11T00:00:00+0000",
+      "mu": "2011-03-16T00:00:00+0000",
+      "digitalId": 17664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/577fdd0cbfa32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Imperial Guard #1-5"
+    },
+    {
+      "issueId": 28698,
+      "title": "Realm of Kings Imperial Guard (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/28698/realm_of_kings_imperial_guard_2009_2",
+      "seriesId": 9052,
+      "seriesName": "Realm of Kings Imperial Guard (2009 - 2010)",
+      "onSale": "2009-12-09T00:00:00+0000",
+      "mu": "2011-03-17T00:00:00+0000",
+      "digitalId": 18198,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/577fefb6abb89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Haberlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Imperial Guard #1-5"
+    },
+    {
+      "issueId": 28699,
+      "title": "Realm of Kings Imperial Guard (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/28699/realm_of_kings_imperial_guard_2009_3",
+      "seriesId": 9052,
+      "seriesName": "Realm of Kings Imperial Guard (2009 - 2010)",
+      "onSale": "2010-01-13T00:00:00+0000",
+      "mu": "2011-03-24T00:00:00+0000",
+      "digitalId": 18524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/577ff16ff0ee1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Haberlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Imperial Guard #1-5"
+    },
+    {
+      "issueId": 28700,
+      "title": "Realm of Kings Imperial Guard (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/28700/realm_of_kings_imperial_guard_2009_4",
+      "seriesId": 9052,
+      "seriesName": "Realm of Kings Imperial Guard (2009 - 2010)",
+      "onSale": "2010-02-10T00:00:00+0000",
+      "mu": "2011-03-31T00:00:00+0000",
+      "digitalId": 13856,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/577ff23a6aa07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Imperial Guard #1-5"
+    },
+    {
+      "issueId": 28717,
+      "title": "Realm of Kings Imperial Guard (2009) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/28717/realm_of_kings_imperial_guard_2009_5",
+      "seriesId": 9052,
+      "seriesName": "Realm of Kings Imperial Guard (2009 - 2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-12-09T00:00:00+0000",
+      "digitalId": 14121,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/577ff2db8b948",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Haberlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Imperial Guard #1-5"
+    },
+    {
+      "issueId": 28701,
+      "title": "Realm of Kings Inhumans (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-03-14T00:00:00+0000",
+      "digitalId": 13626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/577145e52c26a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Inhumans #1-5"
+    },
+    {
+      "issueId": 28702,
+      "title": "Realm of Kings Inhumans (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2011-03-18T00:00:00+0000",
+      "digitalId": 18193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5771456df1256",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Inhumans #1-5"
+    },
+    {
+      "issueId": 28703,
+      "title": "Realm of Kings Inhumans (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-04-01T00:00:00+0000",
+      "digitalId": 18197,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/577ff6cff41aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Inhumans #1-5"
+    },
+    {
+      "issueId": 28704,
+      "title": "Realm of Kings Inhumans (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-12-09T00:00:00+0000",
+      "digitalId": 13929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/e0/577ff76855eb8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Inhumans #1-5"
+    },
+    {
+      "issueId": 28705,
+      "title": "Realm of Kings Inhumans (2009) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2010-03-31T00:00:00+0000",
+      "mu": "2010-12-16T00:00:00+0000",
+      "digitalId": 14237,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/577ff87dcc650",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Inhumans #1-5"
+    },
+    {
+      "issueId": 30782,
+      "title": "Realm of Kings: Son of Hulk (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/30782/realm_of_kings_son_of_hulk_2010_1",
+      "seriesId": 9252,
+      "seriesName": "Realm of Kings: Son of Hulk (2010)",
+      "onSale": "2010-02-03T00:00:00+0000",
+      "mu": "2011-07-21T16:46:53+0000",
+      "digitalId": 17980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/00/57714056f2785",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Fichera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Son of Hulk #1-4"
+    },
+    {
+      "issueId": 29724,
+      "title": "Realm of Kings: Son of Hulk (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/29724/realm_of_kings_son_of_hulk_2010_2",
+      "seriesId": 9252,
+      "seriesName": "Realm of Kings: Son of Hulk (2010)",
+      "onSale": "2010-03-03T00:00:00+0000",
+      "mu": "2010-12-24T00:00:00+0000",
+      "digitalId": 13997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5cae4df58a0af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Fichera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Son of Hulk #1-4"
+    },
+    {
+      "issueId": 29725,
+      "title": "Realm of Kings: Son of Hulk (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/29725/realm_of_kings_son_of_hulk_2010_3",
+      "seriesId": 9252,
+      "seriesName": "Realm of Kings: Son of Hulk (2010)",
+      "onSale": "2010-04-07T00:00:00+0000",
+      "mu": "2011-01-07T00:00:00+0000",
+      "digitalId": 14262,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/5cae536799966",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Fichera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Son of Hulk #1-4"
+    },
+    {
+      "issueId": 29726,
+      "title": "Realm of Kings: Son of Hulk (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/29726/realm_of_kings_son_of_hulk_2010_4",
+      "seriesId": 9252,
+      "seriesName": "Realm of Kings: Son of Hulk (2010)",
+      "onSale": "2010-05-05T00:00:00+0000",
+      "mu": "2011-01-21T00:00:00+0000",
+      "digitalId": 14480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5caf3821c685c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Fichera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Realm of Kings: Son of Hulk #1-4"
+    },
+    {
+      "issueId": 26094,
+      "title": "Nova (2007) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/26094/nova_2007_29",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2010-07-01T00:00:00+0000",
+      "digitalId": 13620,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5790d6608e5bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nelson Pereira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    },
+    {
+      "issueId": 26095,
+      "title": "Nova (2007) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/26095/nova_2007_30",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2009-10-28T00:00:00+0000",
+      "mu": "2010-11-25T00:00:00+0000",
+      "digitalId": 13621,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5790d8afe7c65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nelson Pereira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    },
+    {
+      "issueId": 26096,
+      "title": "Nova (2007) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/26096/nova_2007_31",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2009-11-04T00:00:00+0000",
+      "mu": "2011-03-10T00:00:00+0000",
+      "digitalId": 17695,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5669fc7db03d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    },
+    {
+      "issueId": 26097,
+      "title": "Nova (2007) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/26097/nova_2007_32",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2009-12-03T00:00:00+0000",
+      "mu": "2011-08-04T00:00:00+0000",
+      "digitalId": 17358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5669fdd721c60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    },
+    {
+      "issueId": 29025,
+      "title": "Nova (2007) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/29025/nova_2007_33",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-08-11T00:00:00+0000",
+      "digitalId": 18539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5669fca15d165",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    },
+    {
+      "issueId": 29026,
+      "title": "Nova (2007) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/29026/nova_2007_34",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2010-02-03T00:00:00+0000",
+      "mu": "2011-08-18T00:00:00+0000",
+      "digitalId": 13784,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/5669fc626f5dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Costanza",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    },
+    {
+      "issueId": 29027,
+      "title": "Nova (2007) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/29027/nova_2007_35",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-12-16T00:00:00+0000",
+      "digitalId": 14119,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5790f94dc6b70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nova #29-35"
+    }
+  ]
+}

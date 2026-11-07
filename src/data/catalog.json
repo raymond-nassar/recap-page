@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T02:45:33.118Z",
+  "generatedAt": "2026-11-07T06:36:13.433Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -14276,6 +14276,93 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T15:16:57.185Z"
+    },
+    {
+      "id": "realm-of-kings",
+      "file": "realm_of_kings.json",
+      "name": "Realm of Kings",
+      "description": "The Realm of Kings one-shot, Guardians of the Galaxy, the Imperial Guard, Inhumans and Son of Hulk miniseries, and Nova follow the aftermath of War of Kings toward The Thanos Imperative.",
+      "type": "event",
+      "depth": "complete",
+      "writers": [
+        "Andy Lanning",
+        "Dan Abnett"
+      ],
+      "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Nova",
+        "Guardians of the Galaxy",
+        "Quasar",
+        "Inhumans",
+        "Imperial Guard"
+      ],
+      "keywords": [
+        "Realm of Kings",
+        "The Fault",
+        "War of Kings",
+        "Marvel Cosmic"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2009,
+      "coverIssueId": 29292,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5771450ef044c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+      "sourceSection": "Realm of Kings Trade Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T06:36:13.433Z"
+    },
+    {
+      "id": "fall-of-the-hulks",
+      "file": "fall_of_the_hulks.json",
+      "name": "Fall of the Hulks and World War Hulks",
+      "description": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots. The MODOK one-shot is not included because its metadata could not be resolved.",
+      "type": "event",
+      "depth": "partial",
+      "writers": [
+        "Jeff Parker"
+      ],
+      "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 2,
+      "characters": [
+        "Hulk",
+        "Red Hulk",
+        "She-Hulk",
+        "Skaar",
+        "Intelligencia"
+      ],
+      "keywords": [
+        "Fall of the Hulks",
+        "World War Hulks",
+        "Intelligencia",
+        "Red Hulk",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2009,
+      "coverIssueId": 29293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/59418f757ce49",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/fall-of-the-hulks-world-war-hulks/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T06:36:13.433Z"
     },
     {
       "id": "siege-dark-reign-prelude",
