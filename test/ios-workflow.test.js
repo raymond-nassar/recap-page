@@ -946,10 +946,12 @@ test('TestFlight secrets are confined to the owner-protected sign and upload ste
   assert.equal(secretSteps.length, 2);
   assert.match(secretSteps[0], /if: inputs.mode == 'export'/);
   assert.match(secretSteps[1], /if: inputs.mode == 'upload'/);
-  for (const step of secretSteps) {
-    assert.deepEqual([...step.matchAll(/secrets\.(\w+)/g)].map((match) => match[1]).sort(),
-      ['APPLE_TEAM_ID', 'ASC_ISSUER_ID', 'ASC_KEY_ID', 'ASC_PRIVATE_KEY']);
+  // Only the export builds the app, so only it receives the OneDrive client identifier (#1113).
+  const signing = ['APPLE_TEAM_ID', 'ASC_ISSUER_ID', 'ASC_KEY_ID', 'ASC_PRIVATE_KEY'];
+  for (const [step, extra] of [[secretSteps[0], ['RECAP_ONEDRIVE_CLIENT_ID']], [secretSteps[1], []]]) {
+    assert.deepEqual([...step.matchAll(/secrets\.(\w+)/g)].map((match) => match[1]).sort(), [...signing, ...extra].sort());
   }
+  assert.match(secretSteps[0], /RECAP_ONEDRIVE_CLIENT_ID: \$\{\{ secrets\.RECAP_ONEDRIVE_CLIENT_ID \}\}/);
   const cleanup = deliver.split('name: Remove the private API key\n')[1].split(/\n {6}- /)[0];
   assert.match(cleanup, /if: always\(\)/);
   assert.match(cleanup, /rm -f "\$RUNNER_TEMP"\/ios-private-keys\/AuthKey_\*\.p8/);
@@ -1041,4 +1043,23 @@ test('TestFlight packet selection requires the same build from a successful manu
     ['conclusion', 'failure'], ['conclusion', null], ['display_title', 'iOS export build 3'],
     ['display_title', 'iOS upload build 2'],
   ]) assert.throws(() => assertExportRun({ ...run, [field]: value }, 2), /unsuccessful export/);
+});
+
+test('the dedicated SE scroll diagnostic workflow opts in and requires one passing test', () => {
+  const diagnostic = readFileSync(new URL('../.github/workflows/ios-se-scroll-diagnostic.yml', import.meta.url), 'utf8')
+    .replace(/\r\n/g, '\n');
+  const step = diagnostic.split('      - name: Run the one SE scroll diagnostic\n')[1]?.split(/\n {6}- /)[0] ?? '';
+  assert.match(step, /\n {8}env:\n {10}TEST_RUNNER_RECAP_RUN_SE_SCROLL_DIAGNOSTIC: '1'\n/);
+  assert.equal((diagnostic.match(/TEST_RUNNER_RECAP_RUN_SE_SCROLL_DIAGNOSTIC/g) ?? []).length, 1);
+  assert.match(step, /-only-testing:RecapPageUITests\/PresentationUITests\/testSEPrivacyScrollDiagnostic(?:\s|\\)/);
+  assert.doesNotMatch(step, /-skip-testing/);
+  assert.match(diagnostic, /summary\.result === 'Passed' && summary\.totalTestCount === 1\s*&& summary\.passedTests === 1 && summary\.failedTests === 0 && summary\.skippedTests === 0/);
+});
+
+test('ordinary iOS workflow does not opt in to or exclude the SE scroll diagnostic', () => {
+  const scheme = readFileSync(new URL('../packaging/ios/RecapPage.xcodeproj/xcshareddata/xcschemes/RecapPage.xcscheme', import.meta.url), 'utf8');
+  assert.doesNotMatch(workflow, /RECAP_RUN_SE_SCROLL_DIAGNOSTIC/);
+  assert.doesNotMatch(workflow,
+    /-skip-testing(?::|\s+)RecapPageUITests\/PresentationUITests(?:\/testSEPrivacyScrollDiagnostic)?(?=\s|[\\'"]|$)/);
+  assert.doesNotMatch(scheme, /RECAP_RUN_SE_SCROLL_DIAGNOSTIC/);
 });

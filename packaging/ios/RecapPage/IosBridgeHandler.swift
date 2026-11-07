@@ -116,9 +116,10 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
     private let dataLossState: IOSDataLossState
     private var pending: PendingExport?
     #if RECAP_ICLOUD || DEBUG
-    /// iCloud backup, set only by a build that carries it; without it a cloud request is answered 404,
-    /// which the page reads as cloud backup not being part of this build.
-    var cloud: ICloudBackupHandler?
+    /// Cloud backup, set only by a build that carries it; without it a cloud request is answered 404,
+    /// which the page reads as cloud backup not being part of this build. iCloud alone, or iCloud and
+    /// OneDrive through the router when the build carries a OneDrive client.
+    var cloud: CloudBackupHandling?
     #endif
 
     init(

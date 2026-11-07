@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
 import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
-  prepareIos, readIosFeatures, readIosIdentity,
+  prepareIos, readIosCloudClient, readIosFeatures, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
 import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
@@ -18,7 +18,7 @@ import { rootTokens } from '../scripts/check-spacing.mjs';
 import { paletteTokenFindings } from '../scripts/check-palette.mjs';
 import { execFileSync } from 'node:child_process';
 import {
-  assertIosAppendOnly, candidateIdentity, checkIosHistory, iosReservation, iosUploadRecord, reserveIosBuild,
+  assertIosAppendOnly, assertIosCloudSource, candidateIdentity, checkIosHistory, iosReservation, iosUploadRecord, reserveIosBuild,
   sealIosArtifact, validateIosLedger, verifyIosUpload,
 } from '../scripts/ios-release.mjs';
 import { artifactRecord, iosBuild } from '../scripts/lib/release-identity.mjs';
@@ -108,6 +108,46 @@ test('iOS upload verification refuses an unmerged seal, changed size, same-size 
 
 test('committed iOS ledger history and current append preserve prior reservations', () => {
   checkIosHistory();
+});
+
+test('iOS export preflight refuses a source without OneDrive support but leaves old uploads and history valid', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-cloud-source-'));
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    return git('rev-parse', 'HEAD');
+  };
+  try {
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
+    await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'process.env.RECAP_IOS_BUILD_NUMBER;\n');
+    await writeFile(join(root, 'scripts', 'prepare-ios.mjs'), 'export const oldPreparation = true;\n');
+    const ledgerPath = join(root, 'packaging', 'ios', 'build-numbers.json');
+    await writeFile(ledgerPath, JSON.stringify(initialIosLedger()));
+    const oldSource = commit();
+    const oldEntry = { ...iosSource, sourceRevision: oldSource, sourceTree: git('rev-parse', 'HEAD^{tree}') };
+    await writeFile(ledgerPath, JSON.stringify(reserveIosBuild(initialIosLedger(), oldEntry)));
+    commit();
+    await writeFile(join(root, 'scripts', 'prepare-ios.mjs'), read('scripts/prepare-ios.mjs'));
+    const capable = commit();
+    git('update-ref', 'refs/remotes/origin/main', capable);
+    assert.throws(() => assertIosCloudSource(oldEntry, 'export', { root }), /predates iOS OneDrive configuration/);
+    assert.doesNotThrow(() => assertIosCloudSource(oldEntry, 'upload', { root }));
+    assert.doesNotThrow(() => assertIosCloudSource({ ...oldEntry, sourceRevision: capable }, 'export', { root }));
+    assert.doesNotThrow(() => checkIosHistory({ root }));
+    const release = read('scripts/ios-release.mjs');
+    const preflight = release.slice(release.indexOf('async function preflight()'), release.indexOf('function run('));
+    assert.match(preflight, /assertMainSource\(entry\);\s*assertIosCloudSource\(entry, env\.IOS_MODE\);/);
+    assert.ok(preflight.indexOf('assertIosCloudSource(') < preflight.indexOf('env.GITHUB_OUTPUT'),
+      'source capability is checked before the job can offer approval');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test('iOS upload receipts retain the seal and report upload plus exactly 90 days as an estimated expiry', () => {
@@ -476,6 +516,52 @@ test('the prepared iCloud-only page wires through the main entry and connects wi
   assert.deepEqual(connected, ['icloud']);
 });
 
+test('a release-configured iOS build offers OneDrive beside iCloud, and only it carries the client identifier', async () => {
+  const clientId = 'fixture-client-1113';
+  const client = (providers) => JSON.stringify({ format: 'recap-page-cloud-client', version: 1, providers });
+  const clientPath = join(scratch, 'ios-cloud-client.json');
+  await writeFile(clientPath, client({ onedrive: { clientId, authority: 'consumers' } }));
+  assert.equal(await readIosCloudClient(clientPath), clientId);
+  assert.equal(await readIosCloudClient(undefined), null);
+  assert.equal(await readIosCloudClient(''), null);
+  await assert.rejects(readIosCloudClient('relative.json'), /absolute path/);
+  await assert.rejects(readIosCloudClient(join(scratch, 'absent-client.json')), /could not be read/);
+  const invalid = join(scratch, 'ios-cloud-client-invalid.json');
+  for (const providers of [{ onedrive: { clientId, authority: 'common' } }, { onedrive: { clientId: ' ', authority: 'consumers' } }]) {
+    await writeFile(invalid, client(providers));
+    await assert.rejects(readIosCloudClient(invalid), (error) => !String(error.message).includes(clientId));
+  }
+
+  const preview = join(scratch, 'onedrive-web');
+  const result = await prepareIos(preview, { cloudClientPath: clientPath });
+  const config = JSON.parse(await readFile(join(preview, 'ios-config.json'), 'utf8'));
+  assert.equal(config.oneDriveClientId, clientId);
+  const page = await readFile(join(preview, 'index.html'), 'utf8');
+  assert.match(page, /id="btn-cloud-sign-in"[^>]*>[\s\S]*?Sign in with Microsoft<\/button>/);
+  assert.match(page, /id="btn-cloud-connect-icloud"[^>]*>Connect iCloud<\/button>/);
+  assert.doesNotMatch(page, /btn-cloud-sign-in-google|Sign in with Google|g-logo\.png/);
+  assert.match(page, /your own iCloud or OneDrive/);
+  assert.match(page, /OneDrive keeps deleted ones in its recycle bin/);
+  assert.match(page, /Recap Page's own folder in your OneDrive, the only part of it the app can reach/);
+  assert.doesNotMatch(page, /Windows account|every browser profile/);
+  assert.ok(result.manifest.files.some(({ path }) => path === 'brands/ms-symbollockup_mssymbol_19.svg'));
+  assert.ok(!result.manifest.files.some(({ path }) => path === 'brands/g-logo.png'));
+
+  // An ordinary build, the one every pull request and CI run makes, names no client and offers iCloud alone.
+  const ordinary = join(scratch, 'ordinary-web');
+  await prepareIos(ordinary, { cloudClientPath: undefined });
+  assert.equal(JSON.parse(await readFile(join(ordinary, 'ios-config.json'), 'utf8')).oneDriveClientId, undefined);
+  assert.doesNotMatch(await readFile(join(ordinary, 'index.html'), 'utf8'), /OneDrive|Sign in with Microsoft/);
+
+  // OneDrive is a choice inside the cloud card, so it cannot ride a build that removed the card.
+  const offPath = join(scratch, 'onedrive-icloud-off.json');
+  await writeFile(offPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: false }));
+  await assert.rejects(prepareIos(join(scratch, 'onedrive-off-web'), { featuresPath: offPath, cloudClientPath: clientPath }),
+    /rides the cloud backup build/);
+  await writeFile(invalid, client({ onedrive: { clientId, authority: 'consumers' }, googledrive: { clientId, redirectUri: 'x' } }));
+  await assert.rejects(prepareIos(join(scratch, 'onedrive-invalid-web'), { cloudClientPath: invalid }));
+});
+
 test('iOS feature configuration fails closed and preview overrides cannot enter a reserved release', async () => {
   const featuresPath = join(scratch, 'invalid-features.json');
   for (const invalid of [null, [], {}, { schemaVersion: 2, iCloudBackup: false },
@@ -518,6 +604,23 @@ test('the generated Read launcher stylesheet is linked, hashed and served by the
   assert.match(responder, /Data\(contentsOf: assets\.root\.appendingPathComponent\(path\)/);
   assert.match(responder, /case "css": return "text\/css; charset=utf-8"/);
   assert.match(appSource('AppSchemeHandler'), /responder\.reply\(to: request\.url, method: request\.httpMethod\)/);
+});
+
+test('iOS native configuration is excluded from served paths even when the manifest lists it', () => {
+  assert.match(appSource('AppAssets'), /paths = Set\(manifest\.files\.map\(\\\.path\)\)\.subtracting\(\["ios-config\.json"\]\)/);
+  assert.match(appSource('AssetResponder'), /guard assets\.paths\.contains\(path\)/);
+  const native = read('packaging/ios/RecapPageTests/AssetResponderTests.swift');
+  assert.match(native, /func testNativeConfigurationIsNeverServed/);
+  assert.match(native, /XCTAssertEqual\(responder\.reply[\s\S]*?statusCode, 404\)/);
+});
+
+test('iOS OneDrive claims the callback and cancels expiry before exchanging its code', () => {
+  const source = appSource('OneDriveBackupHandler');
+  const callback = source.slice(source.indexOf('private func signInReturned('), source.indexOf('private func finishSignIn('));
+  assert.match(callback, /current\.epoch == attempt, !current\.claimed/);
+  assert.match(callback, /case \.code\(let code\):\s*signIn\?\.claimed = true\s*signInTimer\?\.cancel\(\)\s*signInTimer = nil\s*Task \{ await self\.finishSignIn/);
+  const native = read('packaging/ios/RecapPageTests/OneDriveBackupTests.swift');
+  assert.match(native, /func testAClaimedCallbackSurvivesExpiryDuringTokenExchange/);
 });
 
 test('the iOS page loads the phone layer and the iOS overlay after the shared styles, at the cover viewport', async () => {
@@ -1074,6 +1177,28 @@ test('iOS presentation checks retain comic-page WebKit accessibility under displ
   assert.match(presentationTests, /XCTAssertEqual\(comic\["cardDisplay"\] as\? String, "contents"/);
   assert.match(presentationTests, /app\.webViews\.firstMatch\.buttons\.matching\(NSPredicate\(format: "label == %@", actionName\)\)/);
   assert.match(presentationTests, /"nativeHierarchy": app\.debugDescription/);
+
+  const seed = presentationTests.match(/private static let savedComicSeed = #"""\s*\n([\s\S]*?)\n\s*"""#/);
+  assert.ok(seed, 'the saved-comic fixture is present');
+  const writes = [];
+  runInNewContext(seed[1], { localStorage: { setItem: (key, value) => writes.push([key, JSON.parse(value)]) } });
+  assert.equal(writes.length, 1);
+  assert.equal(writes[0][0], 'mrt.state.v2');
+  const state = writes[0][1];
+  assert.equal(state.issues['2092'].title, 'House of M (2005) #1');
+  assert.deepEqual(state.lists['ios-progress'].itemIds, [2092]);
+  assert.deepEqual(state.read, {});
+
+  const comic = presentationTests.slice(
+    presentationTests.indexOf('func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes()'),
+    presentationTests.indexOf('func testDynamicTypeReflowsCoreScreensAtBothAppearances()'));
+  assert.match(comic, /UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge/);
+  assert.match(comic, /route: "comic", emptyHomeTest: true/);
+  assert.match(comic, /XCTAssertFalse\(unsavedMarkRead\.exists/);
+  assert.match(comic, /app\.terminate\(\)\s*app\.launchEnvironment\.removeValue\(forKey: "RECAP_IOS_RESTORE_TEST_SEED"\)\s*app\.launchEnvironment\["RECAP_IOS_SCREENSHOT_SEED"\] = Self\.savedComicSeed\s*app\.launch\(\)/);
+  assert.match(comic, /revealNativeTarget\(markRead, in: app, precise: true\)/);
+  assert.match(comic, /markRead\.tap\(\)[\s\S]*?markUnread\.waitForExistence\(timeout: 30\)/);
+  assert.match(comic, /app\.terminate\(\)\s*app\.launchEnvironment\.removeValue\(forKey: "RECAP_IOS_SCREENSHOT_SEED"\)\s*app\.launch\(\)[\s\S]*?persistedMarkUnread\.waitForExistence\(timeout: 30\)/);
 });
 
 test('T03 retains ten reviewed positives and accepts only complete passive-text hit-region proofs', () => {
@@ -1176,7 +1301,8 @@ test('T03 fixtures settle inserted DOM before measuring passivity and legacy pos
 test('T03 reveals each enumerated native target before demanding its unchanged in-viewport no-op proof', () => {
   const legacy = presentationTests.slice(presentationTests.indexOf('private func verifyPassiveAuditTexts'),
     presentationTests.indexOf('private func freshPassiveState'));
-  assert.match(legacy, /revealNativeTarget\(element, in: app, bottomClearance: 44\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.match(legacy, /try revealPassiveAuditTarget\(element, in: app\)[\s\S]*?acceptPassiveFinding\(element, in: app, routeState: state\)/);
+  assert.doesNotMatch(legacy, /bottomClearance/);
   assert.match(presentationTests, /webFrame\.contains\(nativeFrame\)/);
 });
 
@@ -1233,13 +1359,53 @@ test('T03 pins the native label before any guard tap instead of dereferencing a 
   assert.match(guard, /"candidate": candidate, "nativeLabel": nativeLabel/);
 });
 
-test('T03 prepares positive fixtures away from native bottom navigation without scrolling audit findings', () => {
-  assert.match(presentationTests, /bottomClearance: CGFloat = 0/);
-  assert.match(presentationTests, /min\(webView\.frame\.maxY, toggle\.frame\.minY\) - bottomClearance/);
-  assert.match(presentationTests, /revealNativeTarget\(element, in: app, bottomClearance: 44\)/);
+test('T03 positions positive fixtures within the actual native navigation boundary', () => {
+  const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
+    presentationTests.indexOf('final class PresentationUITests'));
+  assert.match(reveal, /if toggle\.exists && toggle\.frame\.minY < webView\.frame\.maxY \{\s*usableBottom = toggle\.frame\.minY/);
+  assert.match(reveal, /\["Library", "Search"\], "Recap Page", "Home"/);
+  assert.match(reveal, /frame\.minY >= barBand && frame\.minY < usableBottom \{\s*usableBottom = frame\.minY/);
+  assert.doesNotMatch(presentationTests, /bottomClearance/);
+  const positiveReveal = presentationTests.slice(presentationTests.indexOf('private func passiveRevealFrame('),
+    presentationTests.indexOf('private func verifyPassiveAuditTexts('));
+  assert.match(positiveReveal, /let height = \(rect\["height"\] as\? NSNumber\)\?\.doubleValue/);
+  assert.match(positiveReveal, /let reservedHeight = height \* webFrame\.width \/ viewport/);
+  assert.match(positiveReveal, /height: webFrame\.height - reservedHeight/);
+  assert.doesNotMatch(positiveReveal, /toggle|barBand|mobile-nav-hidden/);
+  assert.match(positiveReveal, /for attempt in 0\.\.\.8 \{\s*let state = try freshPassiveState\(of: app\)/);
+  assert.match(positiveReveal, /usableFrame\.contains\(targetFrame\)/);
+  assert.match(positiveReveal, /guard attempt < 8 else \{\s*XCTFail/);
+  assert.match(presentationTests, /try revealPassiveAuditTarget\(element, in: app\)/);
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
-  assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
+  assert.doesNotMatch(guard, /revealNativeTarget|revealPassiveAuditTarget|thenDragTo|swipe/);
+});
+
+test('first-run tile uses a precise native reveal without changing shared helper defaults', () => {
+  const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
+    presentationTests.indexOf('final class PresentationUITests'));
+  assert.match(reveal, /precise: Bool = false/);
+  assert.match(reveal, /if precise && abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
+  assert.match(reveal, /element\.isHittable && element\.frame\.minY >= usableFrame\.minY\s*&& element\.frame\.maxY <= usableBottom/);
+  const firstRun = presentationTests.slice(
+    presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('private func assertNoSeparateTextTarget('));
+  assert.match(firstRun, /revealNativeTarget\(link, in: app, precise: true\)/);
+  assert.match(presentationTests, /revealNativeTarget\(summary, in: app\)/);
+  assert.match(launchTests, /revealNativeTarget\(finish, in: reader\)/);
+});
+
+test('T03 passive DOM digest stays strict about navigation visibility', () => {
+  const digest = debugSupport.slice(debugSupport.indexOf('const domDigest = async () => {'),
+    debugSupport.indexOf('window.__recapPassiveGuard = Object.freeze({'));
+  assert.match(digest, /const clone = document\.documentElement\.cloneNode\(true\);/);
+  assert.doesNotMatch(digest, /classList|mobile-nav-hidden|rail-header/);
+});
+
+test('the SE privacy scroll diagnostic skips unless its dedicated run opts in', () => {
+  const start = presentationTests.indexOf('func testSEPrivacyScrollDiagnostic() throws {');
+  const head = presentationTests.slice(start, presentationTests.indexOf('let app = launch(', start));
+  assert.match(head, /guard ProcessInfo\.processInfo\.environment\["RECAP_RUN_SE_SCROLL_DIAGNOSTIC"\] == "1" else \{\s*throw XCTSkip\(/);
 });
 
 test('T03 positions a partially covered Data heading before its native audit', () => {
@@ -1620,7 +1786,7 @@ test('iOS Library and Search controls retain one named parent target', () => {
   const controller = appSource('WebViewController');
   for (const selector of [
     '.breadcrumb a', '#library-rated-shelf .btn', '#view-library .search-hub-card',
-    '#view-add .search-hub-card', '#view-add summary',
+    '#view-add .search-hub-card', '#view-add summary', '.mobile-link[data-view="add"]',
   ]) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
