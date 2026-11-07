@@ -36,6 +36,7 @@ function fixture() {
   }));
   const data = {
     gate: null, remotes: [], failure: null, seen: [], next: 0, matchedDigest: null, declinedDigest: null, declinedByStream: [],
+    kept: null, pendingKept: null,
     snapshot: {
       text: 'snapshot',
       backup: {
@@ -80,7 +81,8 @@ function fixture() {
         id, stream, generation, name: `recap-page-backup-v1-${stream}-${generation}.json.gz`, size: listedSize ?? null,
       }));
     },
-    async syncState() { return { matchedDigest: data.matchedDigest, declinedDigest: data.declinedDigest, kept: null }; },
+    async syncState() { return { matchedDigest: data.matchedDigest, declinedDigest: data.declinedDigest, kept: data.kept }; },
+    async keptPending() { return data.pendingKept; },
     async syncDeclines() { return structuredClone(data.declinedByStream); },
     async rememberDecline(next) {
       if (next.signal?.aborted || (next.authorize && !next.authorize())) {
@@ -244,6 +246,33 @@ test('a follower may release only after a newer leader completed its own check',
   assert.equal(follower.sync.state.phase, 'clear');
   assert.equal(env.data.seen.length, checks, 'the follower uses the newer leader result');
   assert.deepEqual(follower.calls.at(-1), ['release']);
+  follower.sync.stop();
+  newer.sync.stop();
+});
+
+test('a follower refreshes the recovery warning before publishing a newer leader result', async () => {
+  const env = fixture();
+  env.data.remotes = [{
+    id: 'phone', stream: 'd'.repeat(32), generation: 1, digest: 'e'.repeat(64), contentDigest: 'f'.repeat(64),
+    byteDigest: '1'.repeat(64), createdAt: 123, device: 'Phone', readCount: 2, lastReadAt: 122,
+  }];
+  const leader = env.make();
+  const follower = env.make();
+  await leader.sync.start(context);
+  await follower.sync.start(context);
+  await follower.sync.checkNow();
+  assert.equal(follower.sync.state.phase, 'following');
+  leader.sync.stop();
+  await new Promise((resolve) => { setImmediate(resolve); });
+  env.data.remotes = [];
+  env.data.kept = { id: 'old-copy' };
+  env.data.pendingKept = { id: 'unconfirmed-replacement' };
+  const newer = env.make();
+  await newer.sync.start(context);
+  await follower.sync.checkNow();
+  assert.equal(follower.sync.state.phase, 'clear');
+  assert.equal(follower.sync.state.kept.id, 'old-copy');
+  assert.equal(follower.sync.state.keptUnavailable, true);
   follower.sync.stop();
   newer.sync.stop();
 });

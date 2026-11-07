@@ -656,6 +656,10 @@ test('a failed cloud check exposes a warned override and a current kept copy exp
   card.nodes.syncBack._fire();
   await settled();
   assert.ok(card.state.calls.some(([name]) => name === 'sync-back'));
+  card.show({ ...connected, sync: { phase: 'clear', kept: { id: 'kept' }, keptUnavailable: true } });
+  assert.equal(card.nodes.syncBack.hidden, true, 'an unconfirmed replacement withdraws the older action');
+  assert.match(card.nodes.status.textContent, /Go back is unavailable/);
+  assert.equal(card.nodes.status.classList.contains('notice-warn'), true);
 });
 
 test('identical failed cloud checks are spoken once until a check succeeds', () => {

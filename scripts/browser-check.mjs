@@ -25632,11 +25632,12 @@ SCENARIOS.push({
         const backup = await createCompleteBackup(components);
         const stream = 'd'.repeat(32);
         const bytes = await protocol.pack(backup.text, { stream, generation: number, device: 'Phone' });
-        return { name: cloudBackupName(stream, number), bytes: Array.from(bytes) };
+        return { name: cloudBackupName(stream, number), bytes: Array.from(bytes), readCount: ids.length };
       }, { generation, readCount, consent });
       const bytes = Buffer.from(packed.bytes);
       const id = `phone-${generation}`;
       fixture.host.items.set(id, { id, name: packed.name, bytes: bytes.toString('base64'), size: bytes.length, created: Date.now() });
+      return packed.readCount;
     };
     const held = async () => page.evaluate(async () => {
       const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
@@ -25829,6 +25830,47 @@ SCENARIOS.push({
       await page.evaluate(() => !document.querySelector('#ask').open && document.querySelector('#cloud-sync-notice').hidden
         && document.querySelector('#btn-cloud-sync-review').hidden)
         && !(await held()));
+
+    const expectedLoaded = await seedRemote(6, 4);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    await page.evaluate(() => {
+      const put = IDBObjectStore.prototype.put;
+      IDBObjectStore.prototype.put = function (value, key) {
+        if (key === 'sync' && value?.kept && !window.__activationFault) {
+          window.__activationFault = true;
+          sessionStorage.setItem('test-cloud-activation-fault', 'hit');
+          this.transaction.abort();
+          return undefined;
+        }
+        return put.call(this, value, key);
+      };
+    });
+    const failedActivationNavigation = page.waitForNavigation({ waitUntil: 'load', timeout: 30000 });
+    await click(page, '#ask-ok');
+    await failedActivationNavigation;
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Go back is unavailable'),
+      { timeout: 20000 });
+    const unavailable = await page.evaluate(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const [pending, state] = await Promise.all([
+        protocol.keptPending({ connection: 'c'.repeat(32) }), protocol.syncState({ connection: 'c'.repeat(32) }),
+      ]);
+      return {
+        fault: sessionStorage.getItem('test-cloud-activation-fault'),
+        loaded: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
+        pending: pending?.id, previous: state?.kept?.id,
+        hidden: document.querySelector('#btn-cloud-sync-back').hidden,
+        warned: document.querySelector('#cloud-backup-status').classList.contains('notice-warn'),
+        status: document.querySelector('#cloud-backup-status').textContent,
+      };
+    });
+    t.check('an unconfirmed post-Load recovery copy withdraws Go back after the page reloads',
+      unavailable.fault === 'hit' && unavailable.loaded === expectedLoaded && expectedLoaded > 0 && Boolean(unavailable.pending)
+        && unavailable.pending !== unavailable.previous && unavailable.hidden && unavailable.warned, JSON.stringify(unavailable));
     t.check('the offer and recovery journey has no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });

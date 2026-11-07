@@ -159,13 +159,15 @@ function cloudConnectionStatus(model, { when = longTime, at = shortTime } = {}) 
 export function cloudCardStatus(model, options = {}) {
   const history = model.sync?.kept && model.sync.historyUnknown
     ? 'Earlier kept copies may exist. Check their cloud folders for copies the app cannot account for.' : '';
-  return [cloudConnectionStatus(model, options), earlierCopiesNotice(model), keptAttentionNotice(model), history].filter(Boolean).join(' ');
+  const pending = model.sync?.keptUnavailable
+    ? 'The last cloud recovery copy could not be confirmed, so Go back is unavailable. Check your cloud folder.' : '';
+  return [cloudConnectionStatus(model, options), earlierCopiesNotice(model), keptAttentionNotice(model), history, pending].filter(Boolean).join(' ');
 }
 
 // Stopped and failed states, which wear the warning notice, whose mark does not rely on color.
 export function cloudCardWarns(model) {
   const { host } = model;
-  if (model.sync?.phase === 'failed') return true;
+  if (model.sync?.phase === 'failed' || model.sync?.keptUnavailable) return true;
   if (model.keptProblem || model.keptAttention > 0) return true;
   if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
   if (host === 'not-connected') return Boolean(model.message);
@@ -316,7 +318,8 @@ export function cloudSyncQuestion(offer, { when = longTime } = {}) {
 
 function syncOfferId(offer) {
   return JSON.stringify([
-    offer.epoch, offer.remote, offer.localContentDigest, offer.kind, offer.othersDiffering, offer.keepLocal, offer.priorKept,
+    offer.epoch, offer.remote, offer.localContentDigest, offer.kind, offer.othersDiffering, offer.keepLocal,
+    offer.priorKept, offer.priorPending,
   ]);
 }
 
@@ -554,7 +557,7 @@ export function createCloudBackupView({
       nodes.syncCheck.hidden = sync?.phase !== 'failed';
       nodes.syncOverride.hidden = sync?.phase !== 'failed';
       nodes.syncOverride.disabled = working || !sync?.canOverride;
-      nodes.syncBack.hidden = !(sync?.phase === 'clear' && sync.kept);
+      nodes.syncBack.hidden = !(sync?.phase === 'clear' && sync.kept && !sync.keptUnavailable);
       nodes.syncActions.hidden = nodes.syncCheck.hidden && nodes.syncOverride.hidden && nodes.syncBack.hidden;
       nodes.syncCheck.disabled = working;
       nodes.syncBack.disabled = working;

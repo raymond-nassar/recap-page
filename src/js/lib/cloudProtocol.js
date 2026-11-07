@@ -55,6 +55,7 @@ const SYNC_GATE_SLOT = 'sync-gate';
 const SYNC_DECLINES_SLOT = 'sync-declines';
 const KEPT_WITNESS_SLOT = 'kept-history';
 const KEPT_LEDGER_SLOT = 'kept-ledger';
+const KEPT_PENDING_SLOT = 'kept-pending';
 const RECORD_OPEN_MS = 5000;
 const KEPT_LIMIT = 3;
 const KEPT_LOCKED = Symbol('kept copy worker lock');
@@ -293,6 +294,15 @@ function checkSyncState(value) {
     && (value.declinedDigest === null || validDigest(value.declinedDigest))
     && (kept === null || validKept(kept));
   if (!valid) refuse(SYNC_UNREADABLE, 'storage');
+  return value;
+}
+
+function checkKeptPending(value) {
+  if (!exactFields(value, ['connection', 'kept', 'stream', 'version']) || value.version !== 1
+    || !validConnection(value.connection) || typeof value.stream !== 'string' || !STREAM.test(value.stream)
+    || !validKept(value.kept) || value.kept.connection !== value.connection || value.kept.stream !== value.stream) {
+    refuse('The pending cloud recovery copy could not be checked, so Go back is unavailable.', 'storage');
+  }
   return value;
 }
 
@@ -622,6 +632,32 @@ export function createCloudRecordStore(factory = globalThis.indexedDB, { timeout
         };
       };
     }, { signal, onCommitted }),
+    readKeptPending: () => run('readonly', (store, { set }) => {
+      const request = store.get(RECORD_SLOT);
+      request.onsuccess = () => {
+        const record = request.result ?? null;
+        const pending = store.get(KEPT_PENDING_SLOT);
+        const key = store.getKey(KEPT_PENDING_SLOT);
+        key.onsuccess = () => set({ record, pending: pending.result ?? null, present: key.result !== undefined });
+      };
+    }),
+    writeKeptPending: (change) => run('readwrite', (store, { set, refuse: stop }) => {
+      const request = store.get(RECORD_SLOT);
+      request.onsuccess = () => {
+        const record = request.result ?? null;
+        const pending = store.get(KEPT_PENDING_SLOT);
+        const key = store.getKey(KEPT_PENDING_SLOT);
+        key.onsuccess = () => {
+          let after;
+          try { after = change(pending.result ?? null, record, key.result !== undefined); }
+          catch (error) { stop(error); return; }
+          if (after === undefined) { set(pending.result ?? null); return; }
+          if (after === null) store.delete(KEPT_PENDING_SLOT);
+          else store.put(after, KEPT_PENDING_SLOT);
+          set(after);
+        };
+      };
+    }),
     readKeptLedger: () => run('readonly', (store, { set }) => {
       const request = store.get(RECORD_SLOT);
       request.onsuccess = () => {
@@ -680,6 +716,7 @@ export function createCloudRecordStore(factory = globalThis.indexedDB, { timeout
       store.delete(SYNC_DECLINES_SLOT);
       store.delete(KEPT_LEDGER_SLOT);
       store.delete(KEPT_WITNESS_SLOT);
+      store.delete(KEPT_PENDING_SLOT);
     }),
     async close() {
       const pending = opening;
@@ -767,7 +804,7 @@ export class CloudBackupProtocol {
     }
     if (['read', 'write', 'readSync', 'writeSync', 'readSyncGate', 'writeSyncGate', 'readSyncDeclines', 'writeSyncDeclines',
       'readKeptLedger', 'writeKeptLedger',
-      'readKeptWitness', 'writeKeptWitness', 'forget']
+      'readKeptWitness', 'writeKeptWitness', 'readKeptPending', 'writeKeptPending', 'forget']
       .some((operation) => typeof records?.[operation] !== 'function')
       || typeof clock !== 'function') {
       throw new TypeError('Cloud backup needs its record and a clock.');
@@ -879,6 +916,36 @@ export class CloudBackupProtocol {
     const state = checkSyncState(sync);
     if (!sameSyncContext(state, record)) return null;
     return { ...state, kept: state.kept?.connection === named ? state.kept : null, current: true };
+  }
+
+  async keptPending({ connection } = {}) {
+    const named = connectionOf(connection);
+    const { record: rawRecord, pending, present } = await this.records.readKeptPending();
+    const record = currentConsent(rawRecord, named);
+    if (!present) return null;
+    const held = checkKeptPending(pending);
+    return held.connection === named && held.stream === record.stream ? held.kept : null;
+  }
+
+  async setKeptPending({ connection, stream, consentId, kept, expected, authorize } = {}) {
+    const context = syncContext({ connection, stream, consentId });
+    if (!this.locks || (kept !== null && (!validKept(kept) || kept.connection !== connection || kept.stream !== stream))
+      || (expected !== null && (!validKept(expected) || expected.connection !== connection || expected.stream !== stream))
+      || typeof authorize !== 'function') {
+      refuse('The pending cloud recovery copy could not be recorded.', 'invalid');
+    }
+    return this.exclusive(async () => {
+      if (kept !== null) await this.fetchRecordedKept({ ...context, kept });
+      await this.records.writeKeptPending((raw, record, present) => {
+        requireSyncContext(record, context);
+        if (!authorize()) refuse('The cloud choice changed. Check again.', 'raced');
+        const previous = present ? checkKeptPending(raw) : null;
+        const current = previous?.connection === connection && previous.stream === stream ? previous.kept : null;
+        if (canonical(current) !== canonical(expected)) refuse('The pending cloud recovery copy changed. Check again.', 'raced');
+        return kept === null ? null : { version: 1, connection, stream, kept };
+      });
+      if (canonical(await this.keptPending({ connection })) !== canonical(kept) || !authorize()) throw recordLost();
+    });
   }
 
   async syncDeclines({ connection, stream, consentId, signal } = {}) {
@@ -1248,7 +1315,10 @@ export class CloudBackupProtocol {
         cleanupStopped(signal);
         const record = requireSyncContext(rawRecord, context);
         const state = syncPresent ? checkSyncState(sync) : null;
-        return sameSyncContext(state, record) && state.kept?.id === entry.id && state.kept.name === entry.name;
+        const pending = await wait(this.keptPending({ connection: context.connection }));
+        cleanupStopped(signal);
+        return (sameSyncContext(state, record) && state.kept?.id === entry.id && state.kept.name === entry.name)
+          || (pending?.id === entry.id && pending.name === entry.name);
       };
       let listed;
       try { listed = await wait(this.listed(context.connection), true); }
@@ -1712,7 +1782,8 @@ export class CloudBackupProtocol {
       const { present: declinesPresent } = await this.records.readSyncDeclines();
       const { ledgerPresent } = await this.records.readKeptLedger();
       const { present: witnessPresent } = await this.records.readKeptWitness();
-      if (record !== null || syncPresent || declinesPresent || ledgerPresent || witnessPresent) throw recordLost();
+      const { present: keptPendingPresent } = await this.records.readKeptPending();
+      if (record !== null || syncPresent || declinesPresent || ledgerPresent || witnessPresent || keptPendingPresent) throw recordLost();
       return null;
     });
   }
