@@ -585,6 +585,12 @@ Omit both optional fields when no issue repeats; the existing digest meaning sta
 CBRO packets follow the same rule. With repeats, a CBRO inventory's `sourceRowCount` counts all
 source occurrences. The manifest expectation and generated checklist count distinct comics.
 
+For a trade-level guide whose anthology expansion follows an independently numbered index, record
+`sourceExpansion` in the frozen packet with `kind: trade-anthology-index`, the index `name`, exact
+HTTPS `url` and `retrievedAt` date. The mapping retains the same digest-bound evidence and its
+checklist credits the index without claiming the numbering is verified physical book order. This
+field records the selected basis; it does not approve the anthology boundary, order or repeats.
+
 For a `complete-guide`, list every source-defined whole issue. Exclude prose-only recommendations
 or collected editions only when the source does not place them in the issue sequence.
 An ambiguous identity blocks the candidate; never infer a replacement or shorten the guide.
@@ -593,10 +599,10 @@ issue ID, title, number, series identity and exact issue link. Keep those facts 
 Unavailable dates, cover, digital ID, page count and creators may stay `null` or empty in the
 pinned payload.
 
-A user-approved gap-tolerant guide may ship as `depth: partial` and `spotlightKind: other`.
-Keep exact identities in `rows`, including those established by reviewed evidence but omitted by
-the metadata provider. Put every unresolved or explicitly unavailable identity in optional
-`sourceGaps`, mirror it in the mapping, and exclude it from Markdown and browser payloads.
+Approved gap-tolerant guides may use `depth: partial`; character runs also use `spotlightKind: other`.
+Keep reviewed exact identities in `rows`, even if absent from the provider. Keep unresolved or
+unavailable identities in `sourceGaps` and mirror them in the mapping. `expect` counts exact rows
+to omit gaps from output; historical guides counting gaps keep placeholders.
 Each gap records its one-based source position, raw issue and range references, normalized identity,
 kind and status, checked date, audit basis, sorted evidence sources and a digest recomputed from
 that complete evidence. `published-metadata-gap` is open and fillable; `availability-exclusion` is
@@ -648,6 +654,13 @@ Do not regroup issues to make the file look cleaner.
 Exclude prose-only recommendations, optional older runs, collected editions, and non-comic notes
 unless the source clearly makes them part of the issue order.
 
+For a grouped inventory record, register each distinct page beneath its parent as a guide ID, exact
+URL and retrieval date in `childSources`. Named preparation accepts the child guide ID, or the
+inventory ID when it identifies only one packet. A registered child without a frozen packet cannot
+use the legacy path. Unqualified preparation refuses the legacy batch if it contains a registered
+child; select the intended guides with `--only`. Registration does not approve the source boundary
+or any overlap.
+
 When a page has several guides, keep its exact URL and set `sourceSection` to each guide's stable
 visible heading. Page and section together identify the source. Without `sourceSection`, the URL
 alone must be unique. Never invent a URL fragment or DOM id.
@@ -691,8 +704,9 @@ npm run vendor -- --only=<id>
 ```
 
 Authoring checks every named candidate before writing any checklist or manifest entry.
-It stops if the packet, mapping sequence, report, live catalog, peer mapping, disposition or approved
-manifest differs from reviewed evidence. Omitting `--only` keeps the legacy batch behavior.
+It rechecks the packet's current inventory identity and stops if the packet, mapping sequence,
+report, live catalog, peer mapping, disposition or approved manifest differs from reviewed evidence.
+Omitting `--only` keeps the legacy batch behavior.
 Every catalog card must credit Comic Book Herald and link to the exact guide section followed.
 
 Use `--peer` when a separately authored candidate was reviewed against a shipped guide's mapping.

@@ -140,17 +140,33 @@
     "id": "marvel-cosmic",
     "title": "What about Marvel Cosmic?",
     "url": "https://www.comicbookherald.com/marvel-cosmic-reading-order/",
+    "childSources": [
+      {
+        "id": "realm-of-kings",
+        "url": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+        "retrievedAt": "2026-11-06"
+      }
+    ],
     "guideType": "era",
     "window": "Q1",
     "disposition": "grouped-variant",
-    "reason": "Shipped splits: Annihilation Conquest, War of Kings, and The Thanos Imperative; Realm of Kings remains blocked by three shared Nova issues",
+    "reason": "Shipped splits: Annihilation Conquest, War of Kings, Realm of Kings, and The Thanos Imperative; Realm uses the owner-reviewed anthology expansion and approved partial relationships",
     "sourceRetrievedAt": "2026-08-21",
     "overlapIds": [
+      "adam-warlock-reading-order",
+      "groot-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "inhumans-reading-order",
+      "nova-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "rocket-raccoon-reading-order",
+      "star-lord-reading-order",
       "war-of-kings"
     ],
     "catalogIds": [
       "annihilation-conquest",
       "war-of-kings",
+      "realm-of-kings",
       "thanos-imperative"
     ],
     "deliveryStatus": "shipped"
@@ -310,11 +326,16 @@
     "guideType": "event",
     "window": "Q2",
     "disposition": "new-order",
-    "reason": "Blocked: Fall of the Hulks: MODOK #1 is absent from repository metadata, so exact resolution failed",
-    "sourceRetrievedAt": "2026-08-21",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked"
+    "reason": "Shipped: 28 exact rows and approved partial relationships; Fall of the Hulks: MODOK #1 remains an open recorded metadata gap",
+    "sourceRetrievedAt": "2026-11-06",
+    "overlapIds": [
+      "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "question-of-the-week-do-you-have-a-hulk-reading-order"
+    ],
+    "catalogIds": [
+      "fall-of-the-hulks"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 21,

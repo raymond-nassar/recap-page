@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, writeFileSync, readFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync, readFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,6 +13,7 @@ import {
 import {
   packetDigestFor,
   validateFrozenPacket,
+  validateInventoryState,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { resolveMapping } from '../scripts/resolve-cbh-order.mjs';
 
@@ -311,6 +312,169 @@ test('preparation selects one frozen packet by inventory id without changing leg
   const legacy = await selectPreparationGuides(['minimum-carnage'], { packetsDir });
   assert.deepEqual(legacy.map((guide) => guide.id), ['minimum-carnage']);
   assert.equal(legacy[0].isFrozenPacket, undefined);
+  const legacyBatch = await selectPreparationGuides(null, { packetsDir, inventoryPath, manifestPath });
+  assert.ok(legacyBatch.some((guide) => guide.id === 'minimum-carnage'));
+  assert.ok(legacyBatch.every((guide) => guide.isFrozenPacket === undefined));
+});
+
+test('grouped source children bind exact guide identities and source pages', () => {
+  const parentUrl = 'https://www.comicbookherald.com/future-cosmic/';
+  const childUrl = `${parentUrl}realm-of-kings/`;
+  const packet = frozenPacket({
+    id: 'realm-of-kings',
+    inventoryId: 'future-cosmic',
+    sourceUrl: childUrl,
+  });
+  const grouped = {
+    position: 1,
+    id: 'future-cosmic',
+    title: 'Future Cosmic',
+    url: parentUrl,
+    guideType: 'era',
+    window: null,
+    disposition: 'grouped-variant',
+    reason: 'One grouped source with a distinct child page.',
+    sourceRetrievedAt: '2026-08-22',
+    overlapIds: [],
+    catalogIds: [],
+    deliveryStatus: 'shipped',
+    childSources: [{ id: packet.id, url: childUrl, retrievedAt: '2026-08-22' }],
+  };
+
+  assert.doesNotThrow(() => validateInventoryState([grouped]));
+  assert.doesNotThrow(() => validateFrozenPacket(packet, { inventoryRecord: grouped }));
+  const misattributed = frozenPacket({
+    id: packet.id,
+    inventoryId: packet.inventoryId,
+    sourceUrl: parentUrl,
+  });
+  assert.throws(() => validateFrozenPacket(misattributed, {
+    inventoryRecord: grouped,
+  }), /source URL differs from inventory/i);
+  assert.throws(() => validateFrozenPacket(packet, {
+    inventoryRecord: {
+      ...grouped,
+      childSources: [{ id: 'different-child', url: childUrl, retrievedAt: '2026-08-22' }],
+    },
+  }), /source URL differs from inventory/i);
+  assert.throws(() => validateFrozenPacket(packet, {
+    inventoryRecord: {
+      ...grouped,
+      childSources: [{ id: packet.id, url: `${parentUrl}other-child/`, retrievedAt: '2026-08-22' }],
+    },
+  }), /source URL differs from inventory/i);
+  assert.throws(() => validateInventoryState([{
+    ...grouped,
+    childSources: [grouped.childSources[0], grouped.childSources[0]],
+  }]), /duplicate.*child/i);
+  assert.throws(() => validateInventoryState([{
+    ...grouped,
+    childSources: [{ id: packet.id, url: 'https://example.com/realm-of-kings/', retrievedAt: '2026-08-22' }],
+  }]), /child.*source/i);
+  assert.throws(() => validateInventoryState([{
+    ...grouped,
+    childSources: null,
+  }]), /child.*non-empty array/i);
+  assert.throws(() => validateInventoryState([grouped, {
+    ...grouped,
+    position: 2,
+    id: packet.id,
+    url: 'https://www.comicbookherald.com/another-group/',
+    childSources: [{
+      id: 'another-child',
+      url: 'https://www.comicbookherald.com/another-group/another-child/',
+      retrievedAt: '2026-08-22',
+    }],
+  }]), /duplicate inventory id/i);
+  assert.throws(() => validateInventoryState([{
+    ...grouped,
+    disposition: 'new-order',
+    deliveryStatus: 'pending',
+  }]), /child.*grouped/i);
+});
+
+test('grouped source children prepare by guide id without falling back to a legacy guide', async (t) => {
+  const tempDir = mkdtempSync(path.join(os.tmpdir(), 'cbh-child-select-'));
+  t.after(() => rmSync(tempDir, { recursive: true, force: true }));
+  const packetsDir = path.join(tempDir, 'packets');
+  const inventoryPath = path.join(tempDir, 'inventory.json');
+  const manifestPath = path.join(tempDir, 'manifest.json');
+  mkdirSync(packetsDir);
+  const parentUrl = 'https://www.comicbookherald.com/future-cosmic/';
+  const makeChild = (id) => frozenPacket({
+    id,
+    inventoryId: 'future-cosmic',
+    sourceUrl: `${parentUrl}${id}/`,
+  });
+  const first = makeChild('realm-of-kings');
+  const second = makeChild('cosmic-companion');
+  const record = {
+    position: 1,
+    id: 'future-cosmic',
+    title: 'Future Cosmic',
+    url: parentUrl,
+    guideType: 'era',
+    window: null,
+    disposition: 'grouped-variant',
+    reason: 'One grouped source with distinct child pages.',
+    sourceRetrievedAt: '2026-08-22',
+    overlapIds: [],
+    catalogIds: [],
+    deliveryStatus: 'shipped',
+    childSources: [first, second].map(({ id, sourceUrl }) => ({
+      id, url: sourceUrl, retrievedAt: '2026-08-22',
+    })),
+  };
+  writeFileSync(inventoryPath, JSON.stringify([record]), 'utf8');
+  writeFileSync(manifestPath, JSON.stringify({ lists: [] }), 'utf8');
+  const options = { packetsDir, inventoryPath, manifestPath };
+
+  await assert.rejects(
+    () => selectPreparationGuides([first.id], options),
+    /registered child source without a frozen packet/i,
+  );
+  await assert.rejects(
+    () => selectPreparationGuides([second.id], options),
+    /registered child source without a frozen packet/i,
+  );
+  await assert.rejects(
+    () => selectPreparationGuides(null, options),
+    /legacy batch.*registered child.*realm-of-kings/i,
+  );
+  writeFileSync(path.join(packetsDir, `${first.id}.json`), JSON.stringify(first), 'utf8');
+  const byChild = await selectPreparationGuides([first.id], options);
+  assert.equal(byChild[0].id, first.id);
+  assert.equal(byChild[0].isFrozenPacket, true);
+  assert.equal(byChild[0].packetDigest, first.packetDigest);
+  await assert.rejects(
+    () => selectPreparationGuides(null, options),
+    /legacy batch.*registered child.*realm-of-kings/i,
+  );
+  const byParent = await selectPreparationGuides([record.id], options);
+  assert.equal(byParent[0].id, first.id);
+  assert.equal(byParent[0].isFrozenPacket, true);
+  await assert.rejects(
+    () => selectPreparationGuides([first.id, record.id], options),
+    /same.*packet|duplicate.*packet/i,
+  );
+
+  writeFileSync(path.join(packetsDir, `${second.id}.json`), JSON.stringify(second), 'utf8');
+  const selected = await selectPreparationGuides([first.id, second.id], options);
+  assert.deepEqual(selected.map((guide) => guide.id), [first.id, second.id]);
+  assert.ok(selected.every((guide) => guide.isFrozenPacket));
+  await assert.rejects(
+    () => selectPreparationGuides([record.id], options),
+    /multiple frozen packets/i,
+  );
+
+  const unapproved = { ...first };
+  delete unapproved.sourceReview;
+  unapproved.packetDigest = packetDigestFor(unapproved);
+  writeFileSync(path.join(packetsDir, `${first.id}.json`), JSON.stringify(unapproved), 'utf8');
+  await assert.rejects(
+    () => selectPreparationGuides([first.id], options),
+    /sourceReview requires human or stronger-model authority/i,
+  );
 });
 
 test('resolveMapping requires real metadata and rejects unresolved rows', async () => {

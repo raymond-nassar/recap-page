@@ -100,6 +100,22 @@
       },
       "rowCount": 107,
       "surface": "modern-timeline"
+    },
+    {
+      "id": "realm-of-kings",
+      "insertionAnchor": {
+        "beforeId": "siege-dark-reign-prelude"
+      },
+      "rowCount": 28,
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "fall-of-the-hulks",
+      "insertionAnchor": {
+        "beforeId": "siege-dark-reign-prelude"
+      },
+      "rowCount": 28,
+      "surface": "modern-timeline"
     }
   ]
 }

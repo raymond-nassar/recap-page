@@ -421,6 +421,54 @@ globalThis.fetch = async () => {
   assert.equal(payload.items[0].digitalId, 101);
 });
 
+test('gap-tolerant CBH authoring vendors only exact issues without placeholders', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cbh-gap-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  const data = path.join(fixture, 'src', 'data');
+  const manifestPath = path.join(data, 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  const entry = manifest.lists[0];
+  entry.depth = 'partial';
+  entry.coverIssueId = 1;
+  entry.sourceOrigin = "Compiled for this project from Comic Book Herald's guide";
+  writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+  const mapping = {
+    id: entry.id,
+    reviewStatus: 'approved',
+    packetReview: 'fixture review',
+    sourceUrl: entry.sourcePage,
+    approvedManifest: entry,
+    sourceOccurrenceCount: 2,
+    rows: [{
+      sourcePosition: 1,
+      resolutionStatus: 'exact',
+      selectedIssueId: 1,
+      resolvedIssueTitle: 'Atomic Order #1',
+      issueNumber: '1',
+      marvelIssueUrl: 'https://www.marvel.com/comics/issue/1/atomic_order_1',
+    }],
+    sourceGaps: [{
+      sourcePosition: 2,
+      sourceIssueReference: 'Missing Atomic Order #2',
+      sourceRangeReference: null,
+    }],
+  };
+  writeFileSync(path.join(data, 'orders', entry.sourceFile), buildMarkdown(mapping));
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  const output = spawnSync(process.execPath,
+    ['scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+    { cwd: fixture, encoding: 'utf8' });
+
+  assert.equal(output.status, 0, `${output.stdout}\n${output.stderr}`);
+  const payload = JSON.parse(readFileSync(path.join(data, 'atomic_order.json'), 'utf8'));
+  assert.equal(payload.count, 1);
+  assert.deepEqual(payload.items.map((item) => item.issueId), [1]);
+  assert.equal(payload.placeholders, 0);
+  assert.deepEqual(payload.unresolved, []);
+  assert.equal(mapping.sourceGaps[0].sourcePosition, 2);
+});
+
 test('reading-block vendoring preserves headings without claiming collected editions and leaves defaults unchanged', (t) => {
   const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-reading-blocks-'));
   t.after(() => rmSync(fixture, { recursive: true, force: true }));

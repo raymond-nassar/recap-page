@@ -85,6 +85,7 @@ const PACKET_FIELDS = new Set([
   'sourceContentSha256',
   'sourceIssueBearingBlocksSha256',
   'sourceBoundary',
+  'sourceExpansion',
   'excludedSourceReferences',
   'excludedSourceRows',
   'sourceOccurrenceCount',
@@ -109,6 +110,7 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'sourceRetrievedAt',
   'sourceProvider',
   'sourceContentSha256',
+  'sourceExpansion',
   'sourceRetrievalStatus',
   'approvedSourceCount',
   'excludedSourceReferences',
@@ -249,6 +251,36 @@ function assertSha256(value, label) {
 function assertNonEmptyString(value, label) {
   if (typeof value !== 'string' || !value.trim()) {
     throw new Error(`${label} must be a non-empty string`);
+  }
+}
+
+export function validateSourceExpansion(expansion, label = 'sourceExpansion') {
+  if (!isPlainObject(expansion)) throw new Error(`${label} must be an object`);
+  const fields = ['kind', 'name', 'url', 'retrievedAt'];
+  const unexpected = Object.keys(expansion).filter((field) => !fields.includes(field));
+  if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
+  if (expansion.kind !== 'trade-anthology-index') {
+    throw new Error(`${label} kind must be trade-anthology-index`);
+  }
+  assertNonEmptyString(expansion.name, `${label} name`);
+  if (expansion.name !== expansion.name.trim() || /[\r\n<>]/.test(expansion.name)) {
+    throw new Error(`${label} name must be a single trimmed line without markup`);
+  }
+  let url;
+  try {
+    url = new URL(expansion.url);
+  } catch {
+    throw new Error(`${label} url must be an exact HTTPS index URL`);
+  }
+  if (url.protocol !== 'https:' || url.username || url.password
+    || url.href !== expansion.url || /[()\s]/.test(expansion.url)) {
+    throw new Error(`${label} url must be an exact HTTPS index URL`);
+  }
+  const date = typeof expansion.retrievedAt === 'string' ? expansion.retrievedAt : '';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)
+    || Number.isNaN(Date.parse(date))
+    || new Date(date).toISOString().slice(0, 10) !== date) {
+    throw new Error(`${label} retrievedAt must be a valid YYYY-MM-DD date`);
   }
 }
 
@@ -987,6 +1019,10 @@ function issueIdFromMarvelUrl(value) {
 
 export function assertMappingMatchesPacketOccurrences(packet, mapping) {
   const packetId = String(packet?.id ?? mapping?.id ?? 'Candidate');
+  if (canonicalJson(packet.sourceExpansion ?? null)
+    !== canonicalJson(mapping?.sourceExpansion ?? null)) {
+    throw new Error(`${packetId} mapping source expansion differs from its frozen packet`);
+  }
   const expectedPositions = sourcePositionsForPacket(packet);
   const expectedCount = sourceOccurrenceCountFor(packet);
   const packetReferences = packet.repeatedSourceReferences ?? null;
@@ -1522,6 +1558,9 @@ export function validatePacketProposal(packet, {
     );
   }
   assertNonEmptyString(packet.sourceBoundary, `${packet.id} sourceBoundary`);
+  if (Object.hasOwn(packet, 'sourceExpansion')) {
+    validateSourceExpansion(packet.sourceExpansion, `${packet.id} sourceExpansion`);
+  }
   if (!Array.isArray(packet.excludedSourceReferences)
     || packet.excludedSourceReferences.some((entry) => typeof entry !== 'string' || !entry.trim())) {
     throw new Error(`${packet.id} excludedSourceReferences must be an array of non-empty strings`);
@@ -1555,7 +1594,9 @@ export function validatePacketProposal(packet, {
     if (inventoryRecord.id !== packet.inventoryId) {
       throw new Error(`${packet.id} inventory identity does not match ${packet.inventoryId}`);
     }
-    const inventorySourceUrl = inventoryRecord.url ?? inventoryRecord.sourceUrl;
+    const registeredChild = childSourcesForRecord(inventoryRecord)
+      .find((child) => child.id === packet.id);
+    const inventorySourceUrl = registeredChild?.url ?? inventoryRecord.url ?? inventoryRecord.sourceUrl;
     if (inventorySourceUrl !== packet.sourceUrl) {
       throw new Error(`${packet.id} source URL differs from inventory record ${packet.inventoryId}`);
     }
@@ -1656,6 +1697,58 @@ function assertField(name, value, predicate, message) {
   if (!predicate(value)) {
     throw new Error(`${name}: ${message}`);
   }
+}
+
+function childSourcesForRecord(record) {
+  if (!Object.hasOwn(record, 'childSources')) return [];
+  const label = `Record ${record.id} child sources`;
+  if (record.disposition !== 'grouped-variant') {
+    throw new Error(`${label} require a grouped-variant disposition`);
+  }
+  if (!Array.isArray(record.childSources) || record.childSources.length === 0) {
+    throw new Error(`${label} must be a non-empty array`);
+  }
+  const parentAddress = record.url ?? record.sourceUrl;
+  let parent;
+  try {
+    parent = new URL(parentAddress);
+  } catch {
+    throw new Error(`${label} require an absolute parent URL`);
+  }
+  if (parent.protocol !== 'https:' || parent.search || parent.hash
+    || parent.username || parent.password || parent.href !== parentAddress) {
+    throw new Error(`${label} require an exact HTTPS parent page`);
+  }
+  const parentPath = `${parent.pathname.replace(/\/+$/, '')}/`;
+  const ids = new Set();
+  const urls = new Set();
+  for (const child of record.childSources) {
+    if (!isPlainObject(child) || Object.keys(child).length !== 3
+      || typeof child.id !== 'string'
+      || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(child.id)
+      || child.id === record.id
+      || typeof child.url !== 'string'
+      || !/^\d{4}-\d{2}-\d{2}$/.test(String(child.retrievedAt ?? ''))) {
+      throw new Error(`${label} must contain exact child id, url and retrieval date`);
+    }
+    let url;
+    try {
+      url = new URL(child.url);
+    } catch {
+      throw new Error(`${label} must contain absolute child source URLs`);
+    }
+    if (url.protocol !== 'https:' || url.origin !== parent.origin
+      || !url.pathname.startsWith(parentPath) || url.pathname === parentPath
+      || url.search || url.hash || url.username || url.password || url.href !== child.url) {
+      throw new Error(`${label} must name exact child source pages beneath the parent`);
+    }
+    if (ids.has(child.id) || urls.has(child.url)) {
+      throw new Error(`${label} contain a duplicate child identity`);
+    }
+    ids.add(child.id);
+    urls.add(child.url);
+  }
+  return record.childSources;
 }
 
 export function validateBatchNoDuplicates(batchRecords = [], existingRecords = [], peerRecords = []) {
@@ -1769,6 +1862,12 @@ export function validateInventory(records) {
     counts[record.guideType] += 1;
 
     validateInventoryRecord(record);
+    for (const child of childSourcesForRecord(record)) {
+      if (seenIds.has(child.id)) throw new Error(`Duplicate inventory id: ${child.id}`);
+      if (seenUrls.has(child.url)) throw new Error(`Duplicate inventory url: ${child.url}`);
+      seenIds.add(child.id);
+      seenUrls.add(child.url);
+    }
     if (record.guideType === 'commerce' && record.disposition !== 'excluded') {
       throw new Error(`commerce record ${record.id} must be excluded`);
     }
@@ -1830,6 +1929,7 @@ function validateInventoryRecord(record, { baseline = false } = {}) {
   assertField(`Record ${position} overlapIds`, record.overlapIds, (value) => Array.isArray(value) && value.every((entry) => typeof entry === 'string'), 'must be an array of strings');
   assertField(`Record ${position} catalogIds`, record.catalogIds, (value) => Array.isArray(value) && value.every((entry) => typeof entry === 'string'), 'must be an array of strings');
   assertField(`Record ${position} deliveryStatus`, record.deliveryStatus, (value) => DELIVERY_STATUSES.includes(value), 'must be a known delivery status');
+  childSourcesForRecord(record);
 
   if (baseline) {
     if (record.disposition === 'new-order' && record.deliveryStatus !== 'pending') {
@@ -1941,6 +2041,13 @@ export function validateInventoryState(records) {
       seenSources.urls.add(record.url);
     }
     ids.add(record.id);
+    for (const child of childSourcesForRecord(record)) {
+      if (ids.has(child.id)) throw new Error(`Duplicate inventory id: ${child.id}`);
+      if (seenSources.urls.has(child.url)) throw new Error(`Duplicate inventory url: ${child.url}`);
+      ids.add(child.id);
+      seenSources.urls.add(child.url);
+      seenSources.wholePages.add(child.url);
+    }
     if (new Set(record.overlapIds).size !== record.overlapIds.length) {
       throw new Error(`Record ${record.id} contains duplicate overlap ids`);
     }
