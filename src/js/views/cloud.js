@@ -323,7 +323,7 @@ export function cloudSyncQuestion(offer, { when = longTime } = {}) {
 export function cloudSyncDiscardQuestion() {
   return {
     title: 'Continue without Go back?',
-    body: "The app will no longer offer Go back for the earlier restore. This does not change this device's progress or delete the cloud copies now. Later backups may remove older kept copies.",
+    body: "The app will no longer offer Go back for the earlier restore. This does not change this device's progress or delete the cloud copies now. If you later load other progress or go back, the app may remove older kept copies.",
     confirmLabel: 'Continue without Go back',
   };
 }

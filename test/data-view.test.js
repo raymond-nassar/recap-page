@@ -595,6 +595,7 @@ test('staged recovery revision: the card offers a warned and cancelable exit', a
   assert.equal(card.state.asked[1].confirmLabel, 'Continue without Go back');
   assert.match(card.state.asked[1].body, /does not.*delete.*cloud copies/i);
   assert.match(card.state.asked[1].body, /does not.*change.*progress/i);
+  assert.match(card.state.asked[1].body, /If you later load other progress or go back, the app may remove older kept copies\./);
   assert.deepEqual(card.state.calls.map(([name]) => name), ['sync-discard']);
   card.show({ ...connected, sync: { phase: 'clear', kept: null, keptUnavailable: false } });
   assert.equal(card.nodes.syncDiscard.hidden, true);
