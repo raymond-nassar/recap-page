@@ -14,6 +14,9 @@ struct AppConfig: Decodable, Equatable {
     let host: String
     let securityHeaders: [String: String]
     let health: Health
+    /// The OneDrive client a release build carries; absent from every other build, which then offers no
+    /// OneDrive.
+    let oneDriveClientId: String?
 }
 
 /// The generated `ios-assets.json`. Only the paths it lists are ever served.

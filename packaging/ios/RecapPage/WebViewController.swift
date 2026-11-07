@@ -45,6 +45,19 @@ final class WebViewController: UIViewController, WKUIDelegate {
             bridge.cloud = ICloudBackupHandler(store: ICloudDriveStore())
         }
         #endif
+        #if RECAP_ICLOUD || DEBUG
+        if let iCloud = bridge.cloud as? ICloudBackupHandler,
+           let clientId = assets.config.oneDriveClientId,
+           OneDriveAuthorization.validClientId(clientId) {
+            let oneDrive = OneDriveBackupHandler(
+                clientId: clientId,
+                transport: OneDriveURLSessionTransport(),
+                credentials: OneDriveKeychain(),
+                launcher: OneDriveBrowserSignIn { [weak self] in self?.view.window }
+            )
+            bridge.cloud = CloudBackupRouter(iCloud: iCloud, oneDrive: oneDrive)
+        }
+        #endif
         let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
         installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)

@@ -271,8 +271,19 @@ async function authenticated(mode) {
     'application source must be the clean reservation checkout');
     const ledgerCopy = join(env.RUNNER_TEMP, 'ios-ledger.json');
     await save(ledgerCopy, ledger);
-    run(process.execPath, ['scripts/prepare-ios.mjs'], { cwd: source,
-      env: { ...env, RECAP_IOS_LEDGER: ledgerCopy, RECAP_IOS_BUILD_NUMBER: String(entry.buildNumber) } });
+    // OneDrive ships only with the protected client identifier; a missing or invalid one fails here
+    // rather than building without it (#1113). Children see only the private file's path.
+    const { removeReleaseCloudInput, writeReleaseCloudInput } = await import('./release-cloud-client.mjs');
+    const clientId = env.RECAP_ONEDRIVE_CLIENT_ID;
+    const cloud = await writeReleaseCloudInput(false, env);
+    delete env.RECAP_ONEDRIVE_CLIENT_ID;
+    try {
+      run(process.execPath, ['scripts/prepare-ios.mjs'], { cwd: source,
+        env: { ...env, RECAP_IOS_LEDGER: ledgerCopy, RECAP_IOS_BUILD_NUMBER: String(entry.buildNumber),
+          RECAP_IOS_CLOUD_CLIENT: join(cloud.directory, 'cloud-client.json') } });
+    } finally {
+      await removeReleaseCloudInput(env);
+    }
     const archive = join(env.RUNNER_TEMP, 'RecapPage.xcarchive');
     const options = join(env.RUNNER_TEMP, 'ios-export.plist');
     await writeFile(options, `<?xml version="1.0" encoding="UTF-8"?>
@@ -304,6 +315,8 @@ async function authenticated(mode) {
       && plist('CFBundleShortVersionString') === entry.productVersion, 'exported app identity mismatch');
     requireValue(JSON.stringify(await json(join(app, 'web', 'build-info.json')))
       === JSON.stringify(candidateIdentity(entry)), 'embedded source identity mismatch');
+    requireValue((await json(join(app, 'web', 'ios-config.json'))).oneDriveClientId === clientId,
+      'exported app lacks the approved OneDrive client configuration');
     run('codesign', ['--verify', '--deep', '--strict', app]);
     const record = await artifactRecord(path, candidateIdentity(entry));
     await save(join(output, 'ios-artifact.json'), record);

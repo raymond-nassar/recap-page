@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
 import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
-  prepareIos, readIosFeatures, readIosIdentity,
+  prepareIos, readIosCloudClient, readIosFeatures, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
 import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
@@ -474,6 +474,52 @@ test('the prepared iCloud-only page wires through the main entry and connects wi
   elements().connectICloud.listeners.get('click')();
   await Promise.resolve();
   assert.deepEqual(connected, ['icloud']);
+});
+
+test('a release-configured iOS build offers OneDrive beside iCloud, and only it carries the client identifier', async () => {
+  const clientId = 'fixture-client-1113';
+  const client = (providers) => JSON.stringify({ format: 'recap-page-cloud-client', version: 1, providers });
+  const clientPath = join(scratch, 'ios-cloud-client.json');
+  await writeFile(clientPath, client({ onedrive: { clientId, authority: 'consumers' } }));
+  assert.equal(await readIosCloudClient(clientPath), clientId);
+  assert.equal(await readIosCloudClient(undefined), null);
+  assert.equal(await readIosCloudClient(''), null);
+  await assert.rejects(readIosCloudClient('relative.json'), /absolute path/);
+  await assert.rejects(readIosCloudClient(join(scratch, 'absent-client.json')), /could not be read/);
+  const invalid = join(scratch, 'ios-cloud-client-invalid.json');
+  for (const providers of [{ onedrive: { clientId, authority: 'common' } }, { onedrive: { clientId: ' ', authority: 'consumers' } }]) {
+    await writeFile(invalid, client(providers));
+    await assert.rejects(readIosCloudClient(invalid), (error) => !String(error.message).includes(clientId));
+  }
+
+  const preview = join(scratch, 'onedrive-web');
+  const result = await prepareIos(preview, { cloudClientPath: clientPath });
+  const config = JSON.parse(await readFile(join(preview, 'ios-config.json'), 'utf8'));
+  assert.equal(config.oneDriveClientId, clientId);
+  const page = await readFile(join(preview, 'index.html'), 'utf8');
+  assert.match(page, /id="btn-cloud-sign-in"[^>]*>[\s\S]*?Sign in with Microsoft<\/button>/);
+  assert.match(page, /id="btn-cloud-connect-icloud"[^>]*>Connect iCloud<\/button>/);
+  assert.doesNotMatch(page, /btn-cloud-sign-in-google|Sign in with Google|g-logo\.png/);
+  assert.match(page, /your own iCloud or OneDrive/);
+  assert.match(page, /OneDrive keeps deleted ones in its recycle bin/);
+  assert.match(page, /Recap Page's own folder in your OneDrive, the only part of it the app can reach/);
+  assert.doesNotMatch(page, /Windows account|every browser profile/);
+  assert.ok(result.manifest.files.some(({ path }) => path === 'brands/ms-symbollockup_mssymbol_19.svg'));
+  assert.ok(!result.manifest.files.some(({ path }) => path === 'brands/g-logo.png'));
+
+  // An ordinary build, the one every pull request and CI run makes, names no client and offers iCloud alone.
+  const ordinary = join(scratch, 'ordinary-web');
+  await prepareIos(ordinary, { cloudClientPath: undefined });
+  assert.equal(JSON.parse(await readFile(join(ordinary, 'ios-config.json'), 'utf8')).oneDriveClientId, undefined);
+  assert.doesNotMatch(await readFile(join(ordinary, 'index.html'), 'utf8'), /OneDrive|Sign in with Microsoft/);
+
+  // OneDrive is a choice inside the cloud card, so it cannot ride a build that removed the card.
+  const offPath = join(scratch, 'onedrive-icloud-off.json');
+  await writeFile(offPath, JSON.stringify({ schemaVersion: 1, iCloudBackup: false }));
+  await assert.rejects(prepareIos(join(scratch, 'onedrive-off-web'), { featuresPath: offPath, cloudClientPath: clientPath }),
+    /rides the cloud backup build/);
+  await writeFile(invalid, client({ onedrive: { clientId, authority: 'consumers' }, googledrive: { clientId, redirectUri: 'x' } }));
+  await assert.rejects(prepareIos(join(scratch, 'onedrive-invalid-web'), { cloudClientPath: invalid }));
 });
 
 test('iOS feature configuration fails closed and preview overrides cannot enter a reserved release', async () => {

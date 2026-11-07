@@ -116,6 +116,7 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          RECAP_ONEDRIVE_CLIENT_ID: ${{ secrets.RECAP_ONEDRIVE_CLIENT_ID }}
         run: node scripts/ios-release.mjs export
       - name: Verify the merged seal and upload once
         if: inputs.mode == 'upload'
