@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1504`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1515`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
@@ -303,7 +303,7 @@ and it shares the same single offer: the result goes under the card's commands, 
 stands only while Home is the view, so leaving Home or using Done in the reading view ends it.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2995-3021`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:3031-3057`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -436,12 +436,14 @@ Every `localStorage` name the tracker writes, and why it exists:
 | `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 | `mrt.homeUpdates.seen.v1` | explicit opening of Home highlights, through `src/js/lib/homeUpdatesSeen.js` | actual browser app-storage or owned-key deletion | The highest viewed release batch on this device, held outside reading data and backups. Key-specific locking merges the durable maximum and verifies readback. Failed viewing writes clear New for this visit with a local warning, not a reading-save error. Reading erase, Start fresh, restore and undo keep this preference. Actual absence retires queued viewing requests; only another explicit opening can recreate it. |
 | `mrt.readerClosure.dismissed.v1` | explicit dismissal of Home's Marvel Unlimited notice, through `src/js/lib/noticeDismissal.js` | actual browser app-storage or owned-key deletion | Exact notice identity acknowledged on this device, one per reader phase, so a dismissal before December 7 does not hide the post-cutoff notice, which shows without a reload when the day changes. Like Home highlights, excluded from reading, complete and cloud backups. Reading erase, Start fresh, salvage, pre-restore, complete restore and undo leave it unchanged. Missing, malformed, different or unreadable values show the notice. Failed saves hide it for this page only without a reading-save warning. A materially new notice uses a new identity. |
-| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:901` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
+| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:922` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
+| `mrt.cloud-backup.sync-pending.v1` | the elected OneDrive check before arming its database hold | a confirmed check or choice, a later successful check, or a successful erase | A device-local election token that blocks other tabs' uploads while a cloud check is unresolved. It contains no reading data and is not included in portable backups or restores. Older builds ignore it. |
 
-Fourteen rows in all: thirteen fixed names, and one family whose suffix is the moment it was written.
-The storage module declares eight of the fixed names: its own five, and the settings, sidebar and
-complete-restore marker names it holds for the complete backup. The other five are declared by their
-owners, which is why an enumeration taken from the storage module alone misses them. One route
+Fifteen rows in all: fourteen fixed names, and one family whose suffix is the moment it was written.
+The storage module declares nine of the fixed names: its own five, the settings, sidebar and
+complete-restore marker names it holds for the complete backup, and the cloud-check marker. The
+other five are declared by their owners, which is why an enumeration taken from the storage module
+alone misses them. One route
 crosses every row a complete restore writes: Restore prior data, offered when a complete restore is
 interrupted, puts each key back exactly as it was, so it removes a key that did not exist before.
 
@@ -450,7 +452,7 @@ that unreadable data is no longer wanted. A copy protecting an active saving blo
 but cannot be removed: downloading or starting fresh still needs it. Removal becomes available after
 the block is resolved.
 
-The erase names itself in six rows, and that is a different kind of naming. Its reader write must
+The erase names itself in seven rows, and that is a different kind of naming. Its reader write must
 be verified as the exact empty payload with this erase's token before history cleanup is allowed.
 Cleanup checks the captured reader and history values again; a later tab's data is not erased.
 Partial or unconfirmed cleanup is reported explicitly. **It does not reach the salvage copies.** Measuring that needs
@@ -550,7 +552,7 @@ can save, prepares every owner's exact bytes first, generated tokens included, a
 order:
 
 1. Save a journal holding the backup, every prior value and every prepared value in IndexedDB, and
-   read it back whole, at `src/js/lib/completeRestore.js:890-897`.
+   read it back whole, at `src/js/lib/completeRestore.js:911-918`.
 2. Set the marker to `active:` and the restore's id.
 3. Write each component, recording progress in the journal after every write.
 4. Check that every component holds its prepared bytes, record the journal as finished, set the
@@ -689,19 +691,20 @@ lost reply or a request that lands late can only add an older generation. The co
 IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
 backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
 committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:1325-1336`, because a browser that is killed can roll localStorage back,
+`src/js/lib/cloudProtocol.js:1568-1579`, because a browser that is killed can roll localStorage back,
 as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
 naming its stream, generation, device label and time, compressed with gzip, and its name declares the
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup can delete up to two of this stream's ordinary
-backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:1597-1599`:
+backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:1844-1846`:
 one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
-**Sync foundations.** Comparison and saved-state primitives prepare for a later choice between
-different devices' progress; they do not enable a launch check or restore by themselves. A separate
-key in the existing cloud database stores the last shared match and a declined digest under their
+**Sync check and choices.** OneDrive checks the other devices' newest validated backups at launch,
+after a minute away and after sign-in. Google Drive and iCloud retain their existing backup and manual
+restore behavior; they do not yet enable this check. A separate key in the existing cloud database
+stores the last shared match and a declined digest under their
 connection, consent and stream, along with a kept-copy reference that retains its own provenance.
 Comparison explicitly recognizes another device's latest copy of this device's last upload as an
 echo, without suppressing a different device's divergent copy. A declined copy is a kept choice,
@@ -737,13 +740,31 @@ Recorded unverified identities are checked under the ordinary deadlines before a
 created. A replacement between the last byte check and the provider
 delete can still be removed; the provider contract has no conditional content check.
 Earlier-connection copies are never automatically acted on under the current connection and may
-require manual deletion.
+require manual deletion. A separate durable history witness is written and verified before creating
+a kept copy. Missing history is unknown, not proof that no earlier copies exist; only exact recorded
+entries are eligible for cleanup.
 
-The checked kept-file discovery and restore primitives are not yet connected to reader-facing sync
-controls. Ordinary discovery counts kept-looking files as other files without reading them. The
-opt-in discovery bounds reads, checks names, identities, sizes and content, reports invalid and
-omitted entries, and rechecks a selected file before use. A matching local reference is not inferred
-from the filename or decoded content alone: its exact identity and byte digest must still match.
+The launch check elects one tab under a separate offer lock, then writes a device-only pending-check
+marker before arming the durable upload hold under the worker lock. Workers refuse uploads while
+either hold remains. Before releasing a confirmed choice, the leader clears the marker while the
+database hold is still set, then releases that hold. A later check replaces an abandoned marker.
+Erase removes the marker along with the cloud records, but portable backup and restore do not carry
+it; older builds ignore it. If the marker and database hold both cannot be written, the card warns
+that the hold is unconfirmed and says to turn automatic backup off. If the checking tab then closes,
+an older tab may upload; issue #1161 tracks this remaining case. Other tabs follow a confirmed shared
+hold; no worker waits for the person's answer while holding its upload lock. When a hold is confirmed,
+failed or inconclusive checks leave uploads paused until a later check succeeds or the person confirms
+the warned override.
+A late check is quiet, and dismissing an offer leaves it available. A choice is bound to the
+connection, consent, election, local content and selected remote identity and bytes, and is rechecked
+before it is applied.
+
+Before Load, the exact local snapshot is uploaded and independently kept and verified; the complete
+restore then creates its existing local journal and recovery copy. Go back similarly protects the
+current data before consuming the exact verified kept reference. The card exposes only the current
+kept reference, not a list of older retained files. The provider cannot atomically prevent a different
+device writing after the final check, so a later remote change is not globally serialized with restore.
+Ordinary discovery counts kept-looking files as other files without reading them.
 
 A connection belongs to the Windows host, the Android app or the iOS app; the Windows host shares it
 between browser profiles, while consent belongs to each browser. So every list, read, create and delete names the
@@ -753,11 +774,16 @@ agreed again, and nothing it verified before counts as backed up there. Consent 
 the same connection, is a new consent with its own random id, and a backup counts only under the
 consent it was made under.
 
+The upload hold, comparison state and kept-copy history are local cloud-database records, not new
+fields in backup files. An older build does not read or enforce the hold and can upload without this
+check, so it must not be relied on to participate safely in the new choice. Existing saved-data and
+backup-format compatibility rules still apply.
+
 **Copies of the record.** A device or system backup can bring the stream record back: an iPhone
 restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
 or Android profile restored the same way. Such a record holds a counter behind the files its stream
 already has, and nothing on any platform says so. So every backup lists before it creates, at
-`src/js/lib/cloudProtocol.js:1537-1538`: a file of this stream at or above the number just taken, or a
+`src/js/lib/cloudProtocol.js:1784-1785`: a file of this stream at or above the number just taken, or a
 create refused because its name is taken, means another copy of the record is in use, and the browser
 starts a new stream, committed with strict durability and read back, rather than use that number. The
 old stream's files are left alone, because the other copy may still be making them, and discovery
@@ -775,7 +801,7 @@ change.
 
 **The transport.** Below the protocol is one transport per page, the only way the engine reaches a
 provider, and no token ever crosses it. It is installed through one registration point in the page's
-wiring, at `src/js/main.js:2482`: the Windows host's fetch transport, or the bridge the Android app or
+wiring, at `src/js/main.js:2489`: the Windows host's fetch transport, or the bridge the Android app or
 the iOS app (#949) supplies. Its four operations act on the app's own area of one account, and each
 names the connection the page's consent was for:
 
@@ -867,7 +893,7 @@ read at all is not reported that way, because it may still be intact, and a late
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:1423`, so a small file that expands without end costs no more than the
+`src/js/lib/cloudProtocol.js:1666`, so a small file that expands without end costs no more than the
 cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
 there is read and checked again, then restored through the complete restore engine above.
 
@@ -948,8 +974,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:98-110`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:3793-3799` and
-`src/js/main.js:3819-3820`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:3833-3839` and
+`src/js/main.js:3859-3860`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:297-299`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:340-346`.
@@ -966,14 +992,14 @@ unread or deferred comics never finish one. Each stop is counted and drawn by th
 whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
 the reading the path names, at `src/js/views/catalog.js:40-54` and `src/js/views/catalog.js:74-96`. The
 place and the path's own progress are repainted in place by the Timeline's position-only refresh,
-which every Store-driven render calls at `src/js/main.js:3004`, preserving the selector, the stops
+which every Store-driven render calls at `src/js/main.js:3040`, preserving the selector, the stops
 and their DOM identities.
 
 Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
 **You are here**, at `src/js/views/catalog.js:378-402`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
-any selection has settled, while its source address is retained, at `src/js/main.js:3675-3694`. After Back renders that path,
+any selection has settled, while its source address is retained, at `src/js/main.js:3715-3734`. After Back renders that path,
 focus returns to the control and brings it into view at `src/js/views/catalog.js:404-415`; there is
 no scroll position in saved reading data. Shared history-entry positions yield to this explicit
 opener so the focused control remains in view.
@@ -982,7 +1008,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3696-3900`.
+`src/js/main.js:3736-3940`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1009,8 +1035,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:167-218`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3779-3821`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2995-3021`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:3819-3861`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:3031-3057`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Completion is independent history, not a reader migration

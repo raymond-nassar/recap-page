@@ -775,7 +775,7 @@ export class CompleteRestore {
     return next;
   }
 
-  async apply(found, record, direction, beforeStep = null) {
+  async apply(found, record, direction, beforeStep = null, afterStep = null) {
     let current = record;
     const components = direction === 'forward' ? found.plan.components : [...found.plan.components].reverse();
     for (const component of components) {
@@ -787,30 +787,42 @@ export class CompleteRestore {
         ? Array.from({ length: component.effects.length - where.highest }, (_, i) => where.highest + i)
         : Array.from({ length: where.lowest }, (_, i) => where.lowest - 1 - i);
       for (const step of steps) {
-        if (beforeStep) beforeStep();
+        if (beforeStep) await beforeStep();
+        if (afterStep) afterStep();
         if (this.writeStep(component, step, direction, current)) {
           current = await this.checkpoint({ ...current, writes: current.writes + 1 });
         }
       }
     }
-    const check = classify(this.raw, found);
-    if (check.foreign || !(direction === 'forward' ? check.allPrepared : check.allPrior)) {
-      throw new Error('Saved data does not match the restore, so it stopped. Recovery is available.');
-    }
-    if (beforeStep) beforeStep();
+    const assertApplied = () => {
+      this.assertRunning(current);
+      const check = classify(this.raw, found);
+      if (check.foreign || !(direction === 'forward' ? check.allPrepared : check.allPrior)) {
+        throw new Error('Saved data does not match the restore, so it stopped. Recovery is available.');
+      }
+    };
+    if (beforeStep) await beforeStep();
+    if (afterStep) afterStep();
+    assertApplied();
     current = await this.checkpoint({ ...current, phase: 'done', finishedAt: this.clock() });
-    if (beforeStep) beforeStep();
+    if (beforeStep) await beforeStep();
+    if (afterStep) afterStep();
+    assertApplied();
     this.markOwn(`done:${current.id}`);
     return current;
   }
 
   // Leaves storage exactly as it was found, or with a recovery the next start offers. Never both
   // half-written and unrecorded.
-  async restore(text, { draftRecovery = [], expectedPriorDigest, importDraft } = {}) {
+  async restore(text, { draftRecovery = [], expectedPriorDigest, importDraft, assertAuthorized, assertStillAuthorized } = {}) {
     if (!this.capable || this.unavailableReason) return { ok: false, changed: false, error: this.unavailableReason ?? RESTORE_MESSAGES.noJournal };
     if (this.recovery) return { ok: false, changed: false, error: RESTORE_MESSAGES.recovery };
     if (expectedPriorDigest !== undefined && (typeof expectedPriorDigest !== 'string' || !HEX.test(expectedPriorDigest))) {
       return { ok: false, changed: false, error: 'The saved copy could not be checked, so nothing was replaced. Check again.' };
+    }
+    if ((assertAuthorized !== undefined && typeof assertAuthorized !== 'function')
+      || (assertStillAuthorized !== undefined && typeof assertStillAuthorized !== 'function')) {
+      return { ok: false, changed: false, error: 'The cloud choice could not be checked, so nothing was replaced.' };
     }
     let backup;
     try { backup = await parseCompleteBackup(text, { cryptoProvider: this.cryptoProvider }); }
@@ -828,6 +840,15 @@ export class CompleteRestore {
         if (draftRecovery.length || importDraft.recovery.length || importDraft.uncertain) {
           throw new Error('The import draft has unsaved or unchecked source. Download its import-draft backup before trying again.');
         }
+      };
+      const assertReady = () => {
+        assertDraft();
+        if (assertStillAuthorized) assertStillAuthorized();
+      };
+      const assertStep = async () => {
+        assertReady();
+        if (assertAuthorized) await assertAuthorized();
+        assertReady();
       };
       let witness = null;
       if (expectedPriorDigest !== undefined) {
@@ -895,7 +916,7 @@ export class CompleteRestore {
         if (!(error instanceof CompleteBackupError)) await abandon(error);
       }
       if (!matches) await abandon(new Error('The recovery copy could not be saved, so nothing was replaced.'));
-      try { assertCurrent(); }
+      try { assertCurrent(); await assertStep(); assertCurrent(); assertReady(); }
       catch (error) { await abandon(error); }
       this.verified = record;
       try { this.markOwn(`active:${record.id}`); }
@@ -904,7 +925,8 @@ export class CompleteRestore {
         throw Object.assign(new Error(RESTORE_MESSAGES.markerUnchecked), { copyKept: true, markerUnchecked: true });
       }
       try {
-        await this.apply(found, record, 'forward', expectedPriorDigest === undefined ? null : assertDraft);
+        const guarded = expectedPriorDigest !== undefined || assertAuthorized || assertStillAuthorized;
+        await this.apply(found, record, 'forward', assertAuthorized ? assertStep : null, guarded ? assertReady : null);
       } catch (error) {
         await this.settleFailure();
         error.changed = null;

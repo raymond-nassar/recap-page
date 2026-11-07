@@ -1222,6 +1222,8 @@ export const READER_RESTORE_KEYS = Object.freeze({ main: KEY, snapshot: PRERESTO
 // a backup in one tab apart from a backup or a deletion in another.
 export const CLOUD_BACKUP_DATABASE = 'mrt-cloud-backup-v1';
 export const CLOUD_BACKUP_LOCK = 'mrt.cloud-backup.worker.v1';
+export const CLOUD_SYNC_OFFER_LOCK = 'mrt.cloud-backup.sync-offer.v1';
+export const CLOUD_SYNC_PENDING_KEY = 'mrt.cloud-backup.sync-pending.v1';
 
 // Prior values are only kept, never parsed or restored by the single-kind paths, so they are held to
 // the complete file's ceiling rather than the 8 MiB one. A restore must never be refused because the

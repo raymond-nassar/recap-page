@@ -1,6 +1,6 @@
 # Recap Page privacy policy
 
-Last updated: 2026-11-03
+Last updated: 2026-11-07
 
 Recap Page keeps your reading lists, progress, notes and settings on your device. It sends only the
 requests described below, plus a backup to your own OneDrive, or on iPhone and iPad to your own iCloud, if you
@@ -48,13 +48,25 @@ except that it also backs up at once when you leave the page. These are attempts
 a lost connection, a full OneDrive or a closing app can stop one. Check the time of the last
 successful backup before you rely on it.
 
-The app aims to keep the two most recent backups for each device. The app never merges backups. To
-show the backup list, it downloads the recent backups in your cloud account, including other
-devices' backups, and checks that each is complete and readable. It keeps only a short summary of
-each, and only while the app is open: the file's identifier, which device made it, when, its size,
-how many lists and completion history records it holds, and whether it includes an import draft.
-The list shows the device, the time and the number of lists. Only a restore you confirm replaces
-your saved data.
+The app aims to keep the two most recent regular backups for each device. To show the backup list,
+it downloads the recent backups in your cloud account, including other devices' backups, and checks
+that each is complete and readable. The list shows the device, the time and the number of lists.
+
+When OneDrive backup is on, the app also checks other devices' newest backups at launch, after you
+return to the app and after sign-in. It may download those backups to compare your saved data. If
+progress differs, you choose which copy to use; the app never merges them. While a choice is
+waiting, the app checks periodically for a changed or removed backup. Before loading another
+device's progress, it keeps a separate copy of this device's data in OneDrive and the existing
+local recovery copy. The app aims to keep the newest three recorded cloud copies for this device
+and connection. Copies it cannot check or remove, and copies from earlier connections, may remain
+and need deleting in their cloud folders. **Go back to kept progress** offers the most recently
+kept copy; any other kept copies are not listed by that control.
+
+The app keeps the backup list's short summaries only while it is open. It also keeps the last
+matched and declined content digests, recorded kept-copy references and a pending-check marker on
+this device so it can remember your choice, protect those copies and pause uploads during a check.
+Those records are not included in a backup.
+Only a restore you confirm replaces your saved data.
 
 The app keeps your Microsoft sign-in on your device so backups can continue. It also keeps your
 account name or email there to show which account is connected. Neither is part of a backup. On
@@ -69,9 +81,10 @@ with iCloud Drive turned on. Connecting alone uploads nothing, and the app asks 
 up.
 
 Backups go to the Recap Page folder in your iCloud Drive, which you can see in the Files app. A
-backup holds the same things as a OneDrive backup, described above, and backups are made, listed and
-checked the same way, except that older backups are deleted only after a newer backup has uploaded.
-If iCloud has not yet uploaded the latest backup, the app says so.
+backup holds the same things as a OneDrive backup, described above, and regular backups are made
+and listed the same way, except that older backups are deleted only after a newer backup has
+uploaded. The automatic progress check and offer are not yet available for iCloud. If iCloud has
+not yet uploaded the latest backup, the app says so.
 
 Recap Page does not encrypt backups itself, so treat them like your other files in iCloud Drive. The
 developer never receives a copy. Apple's [privacy policy](https://www.apple.com/legal/privacy/)
@@ -117,9 +130,11 @@ privacy statement. Questions posted there are public.
 ## Deleting your data
 
 - To stop future backups, turn automatic backup off.
-- To delete this device's backups from OneDrive or iCloud, choose **Delete this device's cloud backups** in
-  **Backup & settings**. When you disconnect, you can also choose **Also delete this device's
-  cloud backups**. If deletion fails, the app tells you that files remain.
+- To delete this device's regular backups and the kept copies recorded for its current connection
+  from OneDrive or iCloud, choose **Delete this device's cloud backups** in **Backup & settings**.
+  When you disconnect, you can also choose **Also delete this device's cloud backups**. Copies from
+  earlier connections may need deleting by hand in their cloud folders. If deletion cannot be
+  completed, the app reports what could not be confirmed, removed or recorded.
 - You can also delete the files in OneDrive itself. OneDrive keeps deleted files in its recycle
   bin for up to 30 days; empty it to remove them sooner.
 - On iPhone and iPad, you can also delete the files in the Recap Page folder of iCloud Drive in the

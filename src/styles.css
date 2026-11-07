@@ -1835,6 +1835,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    button is sized to the 44px target minimum rather than the notice's own type scale,
    because it is a real destination for a finger and not a piece of the message. */
 .notice-act { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+#cloud-sync-notice[hidden] { display: none; }
 .notice-act .grow { flex: 1; }
 .notice-act button {
   min-height: var(--target); padding-inline: var(--space-6); display: inline-flex; align-items: center;
@@ -2225,6 +2226,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 .ask h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); font-weight: 600; }
 .ask p { margin: 0 0 var(--space-6); max-width: 52ch; }
+#ask[data-question="sync"] #ask-body { white-space: pre-line; }
 .ask label { display: block; font-size: var(--t-body); color: var(--muted); margin-bottom: var(--space-2); }
 /* The shared input rule already carries the colours and the border. Only the box needs
    saying here: inside a dialog the field is the whole width, and it has to clear the 44px
@@ -2236,6 +2238,16 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: var(--target); }
+#ask[data-question="sync"] .ask-foot .btn { min-height: var(--target-touch); line-height: 1.2; padding-inline: var(--space-4); }
+@media (max-width: 420px) {
+  #ask[data-question="sync"] { width: calc(100vw - 1rem); padding-inline: var(--space-4); }
+  #ask[data-question="sync"] .ask-foot { margin-inline: calc(-1 * var(--space-4)); padding-inline: var(--space-4); }
+}
+@media (max-height: 480px) and (min-width: 560px) {
+  #ask[data-question="sync"] { width: calc(100vw - 2rem); }
+  #ask[data-question="sync"] .ask-foot { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); }
+  #ask[data-question="sync"] .ask-foot .btn { min-width: 0; }
+}
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
 :is(.markdown-export, .ask-choice) .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
 :is(.markdown-export, .ask-choice) input[type="checkbox"] { width: auto; min-height: auto; }

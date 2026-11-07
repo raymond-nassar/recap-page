@@ -16020,7 +16020,7 @@ function questionAnswer() {
     label: ok.textContent.trim(),
     danger: ok.classList.contains('btn-danger'),
     focus: document.activeElement?.id ?? null,
-    order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+    order: [...dialog.querySelectorAll('.ask-foot button')].filter((button) => !button.hidden).map((button) => button.id),
     ratio: Math.round(((light + 0.05) / (dark + 0.05)) * 100) / 100,
   };
 }
@@ -20223,6 +20223,7 @@ const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
 
 function cloudFixtureHost(provider = 'onedrive') {
   const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null,
+    listGate: null, listFailure: false,
     waitingForUpload: false, connectFailure: false, chosenProvider: null };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
   const status = () => ({
@@ -20243,6 +20244,11 @@ function cloudFixtureHost(provider = 'onedrive') {
       host.gate = null;
       return gate.then(() => handle(operation, input));
     }
+    if (operation === 'list' && host.listGate) {
+      const gate = host.listGate;
+      host.listGate = null;
+      return gate.then(() => handle(operation, input));
+    }
     host.calls.push(operation);
     if (operation === 'status') return { ok: true, status: status() };
     if (operation === 'connect') {
@@ -20261,7 +20267,9 @@ function cloudFixtureHost(provider = 'onedrive') {
     }
     const refused = guard(input);
     if (refused) return refused;
-    if (operation === 'list') return { ok: true, items: [...host.items.values()].map(shape) };
+    if (operation === 'list') return host.listFailure
+      ? refuse('unavailable', 'OneDrive did not answer the backup check.')
+      : { ok: true, items: [...host.items.values()].map(shape) };
     if (operation === 'read') {
       const item = host.items.get(input.id);
       return item ? { ok: true, bytes: item.bytes } : refuse('not-found', 'That item is no longer in OneDrive.');
@@ -24500,6 +24508,289 @@ SCENARIOS.push({
         await rm(scratch, { recursive: true, force: true });
       }
     }
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-launch-sync',
+  title: 'a cloud launch offer stays reversible through Keep, Load and Go back',
+  async run(page, t) {
+    const fixture = cloudFixtureHost();
+    fixture.signedIn();
+    await installCloudFixture(page, fixture);
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page);
+    const seedRemote = async (generation, readCount, consent = false) => {
+      const packed = await page.evaluate(async ({ generation: number, readCount: count, consent: agree }) => {
+        const { CloudBackupProtocol, cloudBackupName } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        const { captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
+        const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+        if (agree) await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
+        const current = await captureCompleteBackup({ storage: localStorage });
+        const components = structuredClone(current.backup.components);
+        const ids = Object.keys(components.reader.issues).slice(0, count);
+        components.reader.read = Object.fromEntries(ids.map((id, index) => [id, 1_700_000_000_000 + index]));
+        const backup = await createCompleteBackup(components);
+        const stream = 'd'.repeat(32);
+        const bytes = await protocol.pack(backup.text, { stream, generation: number, device: 'Phone' });
+        return { name: cloudBackupName(stream, number), bytes: Array.from(bytes) };
+      }, { generation, readCount, consent });
+      const bytes = Buffer.from(packed.bytes);
+      const id = `phone-${generation}`;
+      fixture.host.items.set(id, { id, name: packed.name, bytes: bytes.toString('base64'), size: bytes.length, created: Date.now() });
+    };
+    const held = async () => page.evaluate(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held;
+    });
+
+    await seedRemote(1, 1, true);
+    const original = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    const first = await page.evaluate(() => ({
+      title: document.querySelector('#ask-title').textContent, body: document.querySelector('#ask-body').textContent,
+      focus: document.activeElement?.id, actions: [...document.querySelectorAll('#ask .ask-foot button')]
+        .filter((button) => !button.hidden).map((button) => button.textContent.trim()),
+    }));
+    t.check('an initial different snapshot shows both devices and safe Keep focus before any upload',
+      first.title === 'Your progress differs between devices' && first.body.includes('Phone')
+        && first.body.includes('1 comics read') && first.body.includes('This device: 0 comics read')
+        && first.focus === 'ask-alternate' && first.actions.length === 3 && await held()
+        && !fixture.host.calls.includes('create'), JSON.stringify(first));
+    await completePresentation(page, t, {
+      label: 'the cloud progress question', root: '#ask',
+      order: ['#ask-cancel', '#ask-alternate', '#ask-ok'],
+      names: { '#ask-cancel': 'Cancel', '#ask-alternate': "Keep this device's progress", '#ask-ok': "Load the other device's progress" },
+    });
+    await escapeShellDialog(page, '#ask');
+    await page.waitForSelector('#cloud-sync-notice:not([hidden])');
+    t.check('Escape keeps the upload hold and a quiet Review progress action',
+      await held() && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === original);
+    await click(page, '#btn-cloud-sync-review');
+    await page.waitForSelector('#ask[open][data-question="sync"]');
+    t.check('the quiet action reopens the divergent choice with Keep focused',
+      await page.evaluate(() => document.querySelector('#ask-title').textContent === 'Your progress differs between devices'
+        && document.activeElement?.id === 'ask-alternate'));
+    await click(page, '#ask-alternate');
+    await page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      const gate = await protocol.syncGate({ connection: record.consent.connection, stream: record.stream, consentId: record.consent.id });
+      return gate?.held === false;
+    }, { timeout: 20000 });
+    t.check('Keep releases uploads without changing this device or removing the other device',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === original && fixture.host.items.has('phone-1'));
+
+    await seedRemote(2, 2);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    const navigation = page.waitForNavigation({ waitUntil: 'load', timeout: 30000 });
+    await click(page, '#ask-ok');
+    await navigation;
+    const loaded = await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length);
+    const kept = [...fixture.host.items.values()].filter((item) => item.name.startsWith('recap-page-kept-v1-'));
+    t.check('Load replaces progress only after an independent cloud safety copy was made',
+      loaded === 2 && kept.length >= 1 && fixture.host.items.has('phone-2'), JSON.stringify({ loaded, kept: kept.length }));
+    await open(page, '/#/data');
+    await page.waitForSelector('#btn-cloud-sync-back:not([hidden])', { timeout: 20000 });
+    await click(page, '#btn-cloud-sync-back');
+    await page.waitForSelector('#ask[open]');
+    const backQuestion = await page.$eval('#ask-body', (node) => node.textContent);
+    const backNavigation = page.waitForNavigation({ waitUntil: 'load', timeout: 30000 });
+    await click(page, '#ask-ok');
+    await backNavigation;
+    const restored = await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length);
+    t.check('Go back warns about replacement, protects the current state and restores the earlier progress',
+      backQuestion.includes('replaces what is on this device') && restored === 0
+        && [...fixture.host.items.values()].filter((item) => item.name.startsWith('recap-page-kept-v1-')).length >= 2,
+      JSON.stringify({ restored, backQuestion }));
+
+    await seedRemote(3, 3);
+    let releaseList;
+    fixture.host.listGate = new Promise((resolve) => { releaseList = resolve; });
+    await page.reload({ waitUntil: 'load' });
+    await page.keyboard.press('Tab');
+    releaseList();
+    await page.waitForSelector('#cloud-sync-notice:not([hidden])', { timeout: 20000 });
+    t.check('a result arriving after the reader starts using the page stays quiet',
+      await page.evaluate(() => !document.querySelector('#ask').open));
+    await click(page, '#btn-cloud-sync-review');
+    await page.waitForSelector('#ask[open][data-question="sync"]');
+    const late = await page.$eval('#ask-body', (node) => node.textContent);
+    t.check('the late choice is worded as differing progress and keeps the safe answer focused',
+      late.includes('Both this device and Phone changed since they last matched.')
+        && await page.evaluate(() => document.activeElement?.id === 'ask-alternate'), late);
+    await page.evaluate(() => {
+      const raw = localStorage.getItem('mrt.state.v2');
+      const changed = JSON.parse(raw);
+      changed.active = null;
+      localStorage.setItem('mrt.state.v2', JSON.stringify(changed));
+      window.dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue: raw, newValue: JSON.stringify(changed) }));
+    });
+    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    t.check('a cross-tab saved change closes the stale offer before an answer can be taken', await held());
+
+    fixture.host.listFailure = true;
+    await open(page, '/#/data');
+    await page.waitForSelector('#btn-cloud-sync-override:not([hidden]):not([disabled])', { timeout: 20000 });
+    await click(page, '#btn-cloud-sync-override');
+    await page.waitForSelector('#ask[open]');
+    const warning = await page.$eval('#ask-body', (node) => node.textContent);
+    await escapeShellDialog(page, '#ask');
+    t.check('a failed check warns before an override, and Cancel leaves uploads held',
+      warning.includes('may not have the newest cloud progress') && await held(), warning);
+    await click(page, '#btn-cloud-sync-override');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held === false;
+    }, { timeout: 20000 });
+    t.check('the explicit override releases the failed-check hold', !(await held()));
+    fixture.host.listFailure = false;
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    t.check('the next launch checks again and offers the still-different cloud progress', await held());
+
+    await seedRemote(4, 1);
+    await page.waitForFunction(() => document.querySelector('#ask').open
+      && document.querySelector('#ask-body').textContent.includes('1 comics read'), { timeout: 20000 });
+    t.check('a newer cloud backup replaces the open choice without releasing the upload hold', await held());
+    for (const id of ['phone-1', 'phone-2', 'phone-3', 'phone-4']) fixture.host.items.delete(id);
+    await page.waitForFunction(() => !document.querySelector('#cloud-sync-notice').hidden
+      && document.querySelector('#cloud-sync-message').textContent.includes('withdrawn'), { timeout: 20000 });
+    await page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held === false;
+    }, { timeout: 20000 });
+    t.check('a removed backup closes the choice and explains why it was withdrawn',
+      await page.evaluate(() => !document.querySelector('#ask').open && document.querySelector('#btn-cloud-sync-review').hidden)
+        && !(await held()));
+    t.check('the offer and recovery journey has no page errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-launch-hold-tab-close',
+  title: 'a failed cloud hold survives closing its tab',
+  async run(page, t) {
+    const fixture = cloudFixtureHost();
+    fixture.signedIn();
+    await installCloudFixture(page, fixture);
+    await page.evaluateOnNewDocument(() => {
+      window.__cloudWorkerAttempts = 0;
+      window.__cloudCreates = 0;
+      const request = navigator.locks.request.bind(navigator.locks);
+      navigator.locks.request = (name, ...args) => {
+        if (name === 'mrt.cloud-backup.worker.v1') window.__cloudWorkerAttempts += 1;
+        return request(name, ...args);
+      };
+      const fetch = window.fetch;
+      window.fetch = (...args) => {
+        const url = new URL(typeof args[0] === 'string' ? args[0] : args[0].url, location.href);
+        if (url.pathname === '/__recap_cloud__/v1/create') window.__cloudCreates += 1;
+        return fetch(...args);
+      };
+    });
+    await seedFixtureState(page);
+    await page.evaluate(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
+    });
+    await page.reload({ waitUntil: 'load' });
+    const gateIsClear = async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held === false;
+    };
+    await page.waitForFunction(gateIsClear, { timeout: 20000 });
+    t.check('the already-running tab starts with a clear, completed check', await page.evaluate(gateIsClear));
+
+    const context = page.browserContext();
+    const faulty = await context.newPage();
+    try {
+      faulty.__denyExternal = true;
+      await preparePage(faulty, page.__origin, null);
+      await installCloudFixture(faulty, fixture);
+      await faulty.evaluateOnNewDocument(() => {
+        window.__failedGateWrites = 0;
+        const put = IDBObjectStore.prototype.put;
+        IDBObjectStore.prototype.put = function (value, key) {
+          if (this.transaction.db.name === 'mrt-cloud-backup-v1' && key === 'sync-gate' && value?.held === true) {
+            window.__failedGateWrites += 1;
+            this.transaction.abort();
+            return undefined;
+          }
+          return put.call(this, value, key);
+        };
+      });
+      await open(faulty, '/?catalog=browser-check#/data');
+      await faulty.waitForFunction(() => window.__failedGateWrites > 0
+        && document.querySelector('#cloud-backup-status').textContent.includes('could not be confirmed'), { timeout: 20000 });
+      t.check('the failed tab warns that its hold was not confirmed',
+        await faulty.evaluate(() => document.querySelector('#cloud-backup-status').textContent.includes('Turn automatic backup off')));
+      t.check('the independent pending marker survives the refused IndexedDB hold',
+        await page.evaluate(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null)
+          && await page.evaluate(gateIsClear));
+    } finally {
+      await faulty.close();
+    }
+
+    const before = await page.evaluate(() => ({ attempts: window.__cloudWorkerAttempts, creates: window.__cloudCreates }));
+    await page.evaluate(() => {
+      const key = 'mrt.state.v2';
+      const saved = JSON.parse(localStorage.getItem(key));
+      saved.read[Object.keys(saved.issues)[0]] = 1_700_000_000_000;
+      localStorage.setItem(key, JSON.stringify(saved));
+      window.dispatchEvent(new StorageEvent('storage', { key }));
+      Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
+      window.dispatchEvent(new Event('visibilitychange'));
+    });
+    await page.waitForFunction((attempts) => window.__cloudWorkerAttempts > attempts, { timeout: 15000 }, before.attempts);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    t.check('the older tab attempts work but does not upload after the failed tab closes',
+      await page.evaluate((creates) => window.__cloudCreates === creates, before.creates));
+
+    const recovery = await context.newPage();
+    try {
+      recovery.__denyExternal = true;
+      await preparePage(recovery, page.__origin, null);
+      await installCloudFixture(recovery, fixture);
+      await open(recovery, '/?catalog=browser-check#/data');
+      await recovery.waitForFunction(gateIsClear, { timeout: 20000 });
+      await recovery.waitForFunction(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null, { timeout: 20000 });
+      t.check('a later successful check clears the abandoned marker', true);
+    } finally {
+      await recovery.close();
+    }
+    await page.waitForFunction((creates) => window.__cloudCreates > creates, { timeout: 20000 }, before.creates);
+    t.check('the older tab then uploads the saved change', true);
   },
 });
 
