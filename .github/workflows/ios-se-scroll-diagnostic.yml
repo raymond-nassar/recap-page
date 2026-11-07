@@ -89,6 +89,8 @@ jobs:
       - name: Run the one SE scroll diagnostic
         timeout-minutes: 30
         shell: bash
+        env:
+          TEST_RUNNER_RECAP_RUN_SE_SCROLL_DIAGNOSTIC: '1'
         run: |
           set -euo pipefail
           xcodebuild test-without-building \

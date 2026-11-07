@@ -10,6 +10,7 @@ import {
   HOME_CATEGORIES,
   MARVEL_AGES_CATEGORY,
   PUBLISHING_CATEGORIES,
+  STORY_TYPES,
   publishingAgeGroups,
   availableHomeCategories,
   catalogEntries,
@@ -31,7 +32,8 @@ const presentationSource = [
   read('src/js/views/shared/saved-lists.js'),
   read('src/js/views/reading.js'),
 ].join('\n');
-const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
+const rawCatalog = JSON.parse(read('src/data/catalog.json'));
+const catalog = parseCatalog(rawCatalog);
 const stories = catalogEntries(catalog.lists);
 
 test('Genres gateway counts the same eligible lists as genre browsing', () => {
@@ -39,9 +41,28 @@ test('Genres gateway counts the same eligible lists as genre browsing', () => {
   const gateway = availableHomeCategories(stories).find((category) => category.key === 'genres');
   const eligible = catalog.lists.filter((list) => list.type !== 'screen-companion' && list.storyTypes.length);
   assert.equal(gateway.count, eligible.length);
-  assert.equal(gateway.count, 303);
+  assert.equal(rawCatalog.lists.length, currentReadingCensus.visible);
+  const expected = rawCatalog.lists.filter((list) => list.type !== 'screen-companion'
+    && Array.isArray(list.storyTypes) && list.storyTypes.some((tag) => Object.hasOwn(STORY_TYPES, tag)));
+  assert.deepEqual(eligible.map(({ id }) => id).sort(), expected.map(({ id }) => id).sort());
+  assert.equal(gateway.count, expected.length);
   assert.equal(gateway.count, pool.reduce((total, story) => total + story.lists.length, 0));
   assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
+});
+
+test('Genres gateway permits untagged lists and excludes them without requiring metadata', () => {
+  const { lists } = parseCatalog({ lists: [
+    { id: 'tagged', name: 'Tagged', storyTypes: ['espionage'] },
+    { id: 'omitted', name: 'Omitted' },
+    { id: 'empty', name: 'Empty', storyTypes: [] },
+    { id: 'unknown', name: 'Unknown', storyTypes: ['not-a-known-genre'] },
+    { id: 'mcu', name: 'MCU', type: 'screen-companion', storyTypes: ['espionage'] },
+  ].map((entry) => ({ ...rawCatalog.lists[0], type: null, storyTypes: undefined, ...entry })) });
+  assert.equal(lists.length, 5, 'optional metadata never removes a catalog list');
+  const entries = catalogEntries(lists);
+  const selected = HOME_CATEGORIES.find(({ key }) => key === 'genres').select(entries);
+  assert.deepEqual(selected.flatMap(({ lists }) => lists.map(({ id }) => id)), ['tagged']);
+  assert.equal(availableHomeCategories(entries).find(({ key }) => key === 'genres').count, 1);
 });
 
 // Home projects individual readings before selecting a category, including grouped companions.

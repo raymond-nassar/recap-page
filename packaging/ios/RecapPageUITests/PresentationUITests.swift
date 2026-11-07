@@ -13,12 +13,28 @@ private func layoutMetrics(from label: String, prefix: String = "recap-layout-pr
 }
 
 @MainActor
-func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, bottomClearance: CGFloat = 0) {
+func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, precise: Bool = false) {
     let webView = app.webViews.firstMatch
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
-    let usableBottom = toggle.exists
-        ? min(webView.frame.maxY, toggle.frame.minY) - bottomClearance : webView.frame.maxY
+    // The phone bar holds the Home brand, Library, Search and More, and at large text it wraps
+    // into two rows with More below the links. Bounding by More alone counted the links' row as
+    // usable, and on iPhone SE run 42318380637 a passive-text tap at 279,606.5 opened Search.
+    var usableBottom = webView.frame.maxY
+    if toggle.exists && toggle.frame.minY < webView.frame.maxY {
+        usableBottom = toggle.frame.minY
+        let barLinks = webView.links.matching(NSPredicate(
+            format: "label IN %@ OR label CONTAINS[c] %@ OR label == %@",
+            ["Library", "Search"], "Recap Page", "Home"))
+        // Only the row directly above More is the bar; a same-named content link further up is not.
+        let barBand = toggle.frame.minY - toggle.frame.height - 16
+        for link in barLinks.allElementsBoundByIndex where link.exists {
+            let frame = link.frame
+            if frame.height > 0 && frame.minY >= barBand && frame.minY < usableBottom {
+                usableBottom = frame.minY
+            }
+        }
+    }
     let usableFrame = CGRect(
         x: webView.frame.minX, y: webView.frame.minY,
         width: webView.frame.width, height: usableBottom - webView.frame.minY)
@@ -32,7 +48,13 @@ func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, bottomC
         let origin = app.coordinate(withNormalizedOffset: .zero)
         let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
         let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
-        start.press(forDuration: 0.1, thenDragTo: end)
+        // SE run 42346141032 alternated past the largest-text tile at the default drag velocity.
+        if precise && abs(displacement) <= usableFrame.height / 2 {
+            start.press(forDuration: 0.1, thenDragTo: end,
+                        withVelocity: .slow, thenHoldForDuration: 0.2)
+        } else {
+            start.press(forDuration: 0.1, thenDragTo: end)
+        }
     }
     XCTAssertTrue(element.isHittable, "\(element.label) is hittable after native scrolling")
     XCTAssertGreaterThanOrEqual(element.frame.minY, usableFrame.minY)
@@ -49,6 +71,25 @@ final class PresentationUITests: XCTestCase {
         "--t-title": 28,
         "--t-title-lg": 40,
     ]
+
+    private static let savedComicSeed = #"""
+    localStorage.setItem('mrt.state.v2', JSON.stringify({
+      schemaVersion: 4, read: {}, overrides: {}, notes: {}, ratings: {},
+      issues: {
+        2092: {
+          issueId: 2092, title: 'House of M (2005) #1', number: '1',
+          seriesId: 855, seriesName: 'House of M (2005)', digitalId: 1947, source: 'curated'
+        }
+      },
+      lists: {
+        'ios-progress': {
+          id: 'ios-progress', name: 'iOS progress fixture', description: '', note: '',
+          created: 1, catalogId: null, itemIds: [2092], collectedIn: {}, deferredIssueIds: []
+        }
+      },
+      listOrder: ['ios-progress'], active: 'ios-progress'
+    }));
+    """#
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -893,13 +934,42 @@ final class PresentationUITests: XCTestCase {
               display: style.display, visibility: style.visibility, opacity: style.opacity,
               transform: style.transform };
           })(),
-          dragProbes: [0.25, 0.60].map(fraction => {
-            const x = innerWidth * 0.035, y = innerHeight * fraction;
-            const hit = document.elementFromPoint(x, y);
-            return { x, y, hit: hit ? describe(hit) : null,
-              interactive: Boolean(hit?.closest(interactiveSelector)),
-              navigation: Boolean(hit && document.getElementById('sidebar')?.contains(hit)) };
-          }),
+          dragProbes: (() => {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.querySelector('.view:not([hidden])');
+            if (!sidebar || !content) return [];
+            const isInteractive = element => {
+              for (let node = element; node; node = node.parentElement) {
+                if (node.matches(controlSelector)
+                  || (node.hasAttribute('tabindex') && node.getAttribute('tabindex') !== '-1')
+                  || ['onclick', 'onmousedown', 'onmouseup', 'onpointerdown', 'ontouchstart']
+                    .some(name => typeof node[name] === 'function')) return true;
+              }
+              return false;
+            };
+            const xFractions = [0.12, 0.20, 0.35, 0.50, 0.65, 0.80, 0.90];
+            const yFractions = [0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85];
+            for (const xFraction of xFractions) {
+              const safe = yFractions.map(yFraction => {
+                const x = innerWidth * xFraction, y = innerHeight * yFraction;
+                const hit = document.elementFromPoint(x, y);
+                return { xFraction, yFraction, x, y, hit,
+                  interactive: Boolean(hit && isInteractive(hit)),
+                  navigation: Boolean(hit && sidebar.contains(hit)),
+                  content: Boolean(hit && content.contains(hit)) };
+              }).filter(point => point.hit && point.content && !point.interactive && !point.navigation);
+              for (let upper = 0; upper < safe.length; upper++) {
+                for (let lower = upper + 1; lower < safe.length; lower++) {
+                  if (safe[lower].yFraction - safe[upper].yFraction < 0.3) continue;
+                  return [safe[upper], safe[lower]].map(({ xFraction, yFraction, x, y, hit }) => ({
+                    xFraction, yFraction, x, y, hit: describe(hit),
+                    interactive: false, navigation: false,
+                  }));
+                }
+              }
+            }
+            return [];
+          })(),
           privacyOwners: currentView === 'view-data'
             ? [...document.querySelectorAll('#view-data .sub [data-cloud-copy="on"]')].map(element => {
               const explanation = window.__recapPassiveGuard.explain(element);
@@ -1053,6 +1123,85 @@ final class PresentationUITests: XCTestCase {
         return try XCTUnwrap(layoutMetrics(from: monitor.label, prefix: "recap-passive-probe "))
     }
 
+    private func passiveRevealFrame(webFrame: CGRect, proof: [String: Any]) -> CGRect? {
+        guard !webFrame.isEmpty, !webFrame.isInfinite,
+              let viewport = (proof["viewportWidth"] as? NSNumber)?.doubleValue,
+              viewport.isFinite, viewport > 0,
+              let navigation = proof["navigationState"] as? [String: Any],
+              let display = navigation["display"] as? String,
+              let position = navigation["position"] as? String else { return nil }
+        if display == "none" || position != "fixed" { return webFrame }
+        guard let rect = navigation["rect"] as? [String: Any],
+              let height = (rect["height"] as? NSNumber)?.doubleValue,
+              height.isFinite, height > 0 else { return nil }
+        let reservedHeight = height * webFrame.width / viewport
+        guard reservedHeight.isFinite, reservedHeight < webFrame.height else { return nil }
+        // SE run 42333629714 exposed More at 615 but the complete bar at 610.
+        // Reserve its full height even while translated, since scrolling can reveal it.
+        return CGRect(x: webFrame.minX, y: webFrame.minY, width: webFrame.width,
+                      height: webFrame.height - reservedHeight)
+    }
+
+    private func revealPassiveAuditTarget(_ element: XCUIElement, in app: XCUIApplication) throws {
+        for attempt in 0...8 {
+            let state = try freshPassiveState(of: app)
+            let proof = try XCTUnwrap(state["guard"] as? [String: Any])
+            let webFrame = app.webViews.firstMatch.frame
+            let usableFrame = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame, proof: proof),
+                "the complete bottom bar has measured positioning geometry")
+            let targetFrame = element.frame
+            let clear = element.isHittable && usableFrame.contains(targetFrame)
+            try record("t03-passive-reveal", [
+                "attempt": attempt, "label": element.label,
+                "nativeFrame": NSCoder.string(for: targetFrame),
+                "usableFrame": NSCoder.string(for: usableFrame),
+                "navigationState": proof["navigationState"] ?? NSNull(),
+                "clear": clear,
+            ], summary: ["attempt": attempt, "nativeFrame": NSCoder.string(for: targetFrame),
+                         "usableFrame": NSCoder.string(for: usableFrame), "clear": clear])
+            if clear { return }
+            guard attempt < 8 else {
+                XCTFail("the passive text must clear the complete bottom bar before its no-op proof")
+                throw NSError(domain: "RecapPageUITests", code: 1,
+                              userInfo: [NSLocalizedDescriptionKey: "Passive text reveal did not converge"])
+            }
+            let displacement = targetFrame.midY - usableFrame.midY
+            let travel = min(abs(displacement), usableFrame.height / 2)
+            let startY = usableFrame.midY + (displacement > 0 ? travel / 2 : -travel / 2)
+            let endY = usableFrame.midY + (displacement > 0 ? -travel / 2 : travel / 2)
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
+            let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
+            start.press(forDuration: 0.1, thenDragTo: end)
+        }
+    }
+
+    func testPassiveRevealFrameReservesTheCompleteMeasuredBar() throws {
+        let webFrame = CGRect(x: 0, y: 20, width: 375, height: 647)
+        func proof(height: Double, transform: String = "matrix(1, 0, 0, 1, 0, 0)") -> [String: Any] {
+            ["viewportWidth": 375, "navigationState": [
+                "display": "grid", "position": "fixed", "transform": transform,
+                "rect": ["height": height],
+            ]]
+        }
+        let visible = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame, proof: proof(height: 57)))
+        XCTAssertEqual(visible.maxY, 610)
+        XCTAssertFalse(visible.contains(CGRect(x: 199, y: 599, width: 160, height: 15)),
+                       "the rejected SE text cannot be accepted above the native More child")
+        let translated = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame,
+            proof: proof(height: 57, transform: "matrix(1, 0, 0, 1, 0, 57)")))
+        XCTAssertEqual(translated, visible, "revealing the bar cannot reduce the reserved space")
+        let twoRows = try XCTUnwrap(passiveRevealFrame(webFrame: webFrame, proof: proof(height: 114)))
+        XCTAssertEqual(twoRows.maxY, 553)
+        for height in [0, -1, Double.infinity, 647] {
+            XCTAssertNil(passiveRevealFrame(webFrame: webFrame, proof: proof(height: height)))
+        }
+        XCTAssertNil(passiveRevealFrame(webFrame: webFrame, proof: [:]))
+        XCTAssertEqual(passiveRevealFrame(webFrame: webFrame, proof: [
+            "viewportWidth": 375, "navigationState": ["display": "grid", "position": "static"],
+        ]), webFrame, "desktop rail headers do not occupy the viewport bottom")
+    }
+
     private func verifyPassiveAuditTexts(in app: XCUIApplication, homeVisible: Bool) throws -> [XCUIElement] {
         let state = try passiveState(of: app)
         let cases = try XCTUnwrap(state["cases"] as? [[String: Any]])
@@ -1081,7 +1230,7 @@ final class PresentationUITests: XCTestCase {
             let element = container.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
             XCTAssertTrue(element.waitForExistence(timeout: 30), "the exact passive StaticText exists in its container")
             XCTAssertEqual(element.elementType, .staticText)
-            revealNativeTarget(element, in: app, bottomClearance: 44)
+            try revealPassiveAuditTarget(element, in: app)
             XCTAssertTrue(container.frame.contains(element.frame), "the exact text stays within its named AX container")
             let proved = try acceptPassiveFinding(element, in: app, routeState: state)
             XCTAssertTrue(proved, "the reviewed positive requires the same exact native no-op proof: \(key)")
@@ -1546,7 +1695,7 @@ final class PresentationUITests: XCTestCase {
 
     func testComicPageRetainsNativeHeadingAndActionsAtBothTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
-            let app = launch(category: category, route: "comic")
+            let app = launch(category: category, route: "comic", emptyHomeTest: true)
             let result = try probeResult(of: app)
             let screens = try XCTUnwrap(result["screens"] as? [[String: Any]])
             let screen = try XCTUnwrap(screens.first)
@@ -1576,6 +1725,36 @@ final class PresentationUITests: XCTestCase {
                 "heading": heading.label, "action": action.label, "details": details.label,
             ])
             capture(app, named: "t03-comic-tree-\(category.rawValue)")
+
+            let markReadName = "Mark as read: \(title)"
+            let markUnreadName = "Mark as unread: \(title)"
+            let unsavedMarkRead = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markReadName)).firstMatch
+            XCTAssertFalse(unsavedMarkRead.exists, "a bundled comic outside saved data has no saved progress action")
+
+            app.terminate()
+            app.launchEnvironment.removeValue(forKey: "RECAP_IOS_RESTORE_TEST_SEED")
+            app.launchEnvironment["RECAP_IOS_SCREENSHOT_SEED"] = Self.savedComicSeed
+            app.launch()
+            _ = try probeResult(of: app)
+            let markRead = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markReadName)).firstMatch
+            XCTAssertTrue(markRead.waitForExistence(timeout: 30), "the saved comic starts unread")
+            XCTAssertTrue(markRead.isEnabled)
+            revealNativeTarget(markRead, in: app, precise: true)
+            markRead.tap()
+            let markUnread = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markUnreadName)).firstMatch
+            XCTAssertTrue(markUnread.waitForExistence(timeout: 30), "marking the comic read updates its action")
+
+            app.terminate()
+            app.launchEnvironment.removeValue(forKey: "RECAP_IOS_SCREENSHOT_SEED")
+            app.launch()
+            _ = try probeResult(of: app)
+            let persistedMarkUnread = app.webViews.firstMatch.buttons.matching(
+                NSPredicate(format: "label == %@", markUnreadName)).firstMatch
+            XCTAssertTrue(persistedMarkUnread.waitForExistence(timeout: 30),
+                          "reading progress survives relaunch without reseeding")
             app.terminate()
         }
     }
@@ -1701,7 +1880,7 @@ final class PresentationUITests: XCTestCase {
                     let prefix = "Recommended start here. Modern Timeline. "
                     link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
-                    revealNativeTarget(link, in: app)
+                    revealNativeTarget(link, in: app, precise: true)
                     // The count is catalog data, so it is read back from the label and held to its
                     // shape; the drawn count piece is then rejected as a target like the others.
                     let count = String(link.label.dropFirst(prefix.count).dropLast())
@@ -2540,6 +2719,9 @@ final class PresentationUITests: XCTestCase {
     }
 
     func testSEPrivacyScrollDiagnostic() throws {
+        guard ProcessInfo.processInfo.environment["RECAP_RUN_SE_SCROLL_DIAGNOSTIC"] == "1" else {
+            throw XCTSkip("The SE privacy scroll diagnostic runs only from its dedicated workflow.")
+        }
         let expected = "Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below."
         let app = launch(category: .accessibilityExtraExtraExtraLarge, route: "all")
 
@@ -2699,17 +2881,27 @@ final class PresentationUITests: XCTestCase {
                   let dragProbes = priorGuard["dragProbes"] as? [[String: Any]],
                   dragProbes.count == 2,
                   dragProbes.allSatisfy({ $0["hit"] is [String: Any]
-                      && $0["interactive"] as? Bool == false && $0["navigation"] as? Bool == false }) else {
+                      && $0["interactive"] as? Bool == false && $0["navigation"] as? Bool == false
+                      && ($0["xFraction"] as? Double) != nil && ($0["yFraction"] as? Double) != nil }) else {
                 try stop("the intended drag endpoints are not confirmed noninteractive")
                 return
             }
-            let startY = direction == "down" ? 0.60 : 0.25
-            let endY = direction == "down" ? 0.25 : 0.60
-            let start = web.coordinate(withNormalizedOffset: CGVector(dx: 0.035, dy: CGFloat(startY)))
-            let end = web.coordinate(withNormalizedOffset: CGVector(dx: 0.035, dy: CGFloat(endY)))
+            let upper = dragProbes[0]
+            let lower = dragProbes[1]
+            let startProbe = direction == "down" ? lower : upper
+            let endProbe = direction == "down" ? upper : lower
+            guard let startX = startProbe["xFraction"] as? Double,
+                  let startY = startProbe["yFraction"] as? Double,
+                  let endX = endProbe["xFraction"] as? Double,
+                  let endY = endProbe["yFraction"] as? Double else {
+                try stop("the safe drag endpoint coordinates are malformed")
+                return
+            }
+            let start = web.coordinate(withNormalizedOffset: CGVector(dx: CGFloat(startX), dy: CGFloat(startY)))
+            let end = web.coordinate(withNormalizedOffset: CGVector(dx: CGFloat(endX), dy: CGFloat(endY)))
             start.press(forDuration: 0.1, thenDragTo: end)
             guard let sample = try observation("gesture-\(index + 1)", gesture: [
-                "direction": direction, "startX": 0.035, "startY": startY, "endX": 0.035, "endY": endY,
+                "direction": direction, "startX": startX, "startY": startY, "endX": endX, "endY": endY,
             ]) else {
                 try stop("gesture \(index + 1) did not yield matched stable observations")
                 return
