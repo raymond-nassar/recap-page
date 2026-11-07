@@ -167,6 +167,13 @@ code {
   font-size: 1.25rem;
   font-weight: 800;
 }
+.site-name img { display: block; width: auto; height: 2.25rem; max-width: 100%; object-fit: contain; }
+.site-name-text { display: none; }
+@media (max-width: 42rem) { .site-name img { height: 1.75rem; } }
+@media (forced-colors: active) {
+  .site-name img { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .site-name-text { display: inline; color: CanvasText; }
+}
 
 .site-name a {
   color: var(--text);

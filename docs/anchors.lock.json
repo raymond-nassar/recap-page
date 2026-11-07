@@ -2084,8 +2084,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1568|0": {
-    "anchor": "src/index.html:1568",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1567|0": {
+    "anchor": "src/index.html:1567",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2349,8 +2349,8 @@
     "fp": "4fae061e31c80e37",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1263-1267|0": {
-    "anchor": "src/index.html:1263-1267",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1262-1266|0": {
+    "anchor": "src/index.html:1262-1266",
     "fp": "fcca1b9ce2478dad",
     "head": "Comic, series, and creator metadata comes from the community"
   },
@@ -2549,13 +2549,13 @@
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:617-620|0": {
-    "anchor": "src/index.html:617-620",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:616-619|0": {
+    "anchor": "src/index.html:616-619",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:567-613|0": {
-    "anchor": "src/index.html:567-613",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:566-612|0": {
+    "anchor": "src/index.html:566-612",
     "fp": "31a99210662f2ef2",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2589,23 +2589,23 @@
     "fp": "d23956badf88861b",
     "head": "test('one shared renderer integrates Back with breadcrumbs without adding it to dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:326-402|0": {
-    "anchor": "src/index.html:326-402",
+  "docs/UX_STUDY.md|job-stories|src/index.html:325-401|0": {
+    "anchor": "src/index.html:325-401",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:349-350|0": {
-    "anchor": "src/index.html:349-350",
+  "docs/UX_STUDY.md|job-stories|src/index.html:348-349|0": {
+    "anchor": "src/index.html:348-349",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:617-620|0": {
-    "anchor": "src/index.html:617-620",
+  "docs/UX_STUDY.md|job-stories|src/index.html:616-619|0": {
+    "anchor": "src/index.html:616-619",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:619-623|0": {
-    "anchor": "src/index.html:619-623",
+  "docs/UX_STUDY.md|job-stories|src/index.html:618-622|0": {
+    "anchor": "src/index.html:618-622",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -2634,8 +2634,8 @@
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:1061|0": {
-    "anchor": "src/styles.css:1061",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:1059|0": {
+    "anchor": "src/styles.css:1059",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2644,8 +2644,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:326-402|0": {
-    "anchor": "src/index.html:326-402",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:325-401|0": {
+    "anchor": "src/index.html:325-401",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2684,8 +2684,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:706-712|0": {
-    "anchor": "src/index.html:706-712",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:705-711|0": {
+    "anchor": "src/index.html:705-711",
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
@@ -2694,23 +2694,23 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2318-2320|0": {
-    "anchor": "src/styles.css:2318-2320",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2320-2322|0": {
+    "anchor": "src/styles.css:2320-2322",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:346-350|0": {
-    "anchor": "src/styles.css:346-350",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:344-348|0": {
+    "anchor": "src/styles.css:344-348",
     "fp": "d9d7960f54d817a6",
     "head": ":focus-visible {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:76|0": {
-    "anchor": "src/styles.css:76",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:74|0": {
+    "anchor": "src/styles.css:74",
     "fp": "a5b4761171505d57",
     "head": "--focus-width: 3px;"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:835|0": {
-    "anchor": "src/styles.css:835",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:833|0": {
+    "anchor": "src/styles.css:833",
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
@@ -2719,68 +2719,68 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2318-2320|0": {
-    "anchor": "src/styles.css:2318-2320",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2320-2322|0": {
+    "anchor": "src/styles.css:2320-2322",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:835|0": {
-    "anchor": "src/styles.css:835",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:833|0": {
+    "anchor": "src/styles.css:833",
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:346-348|0": {
-    "anchor": "src/index.html:346-348",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:345-347|0": {
+    "anchor": "src/index.html:345-347",
     "fp": "b22251e455876ddc",
     "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:183-189|0": {
-    "anchor": "src/styles.css:183-189",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:181-187|0": {
+    "anchor": "src/styles.css:181-187",
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:183-189|1": {
-    "anchor": "src/styles.css:183-189",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:181-187|1": {
+    "anchor": "src/styles.css:181-187",
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:989|0": {
-    "anchor": "src/styles.css:989",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:987|0": {
+    "anchor": "src/styles.css:987",
     "fp": "fa2e5d6a0448cd58",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: var(--stroke-1) solid rgb(var(--tint-base)"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1159-1160|0": {
-    "anchor": "src/styles.css:1159-1160",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1157-1158|0": {
+    "anchor": "src/styles.css:1157-1158",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1162|0": {
-    "anchor": "src/styles.css:1162",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1160|0": {
+    "anchor": "src/styles.css:1160",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:326-402|0": {
-    "anchor": "src/index.html:326-402",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:325-401|0": {
+    "anchor": "src/index.html:325-401",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:883-890|0": {
-    "anchor": "src/styles.css:883-890",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:881-888|0": {
+    "anchor": "src/styles.css:881-888",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1176-1179|0": {
-    "anchor": "src/styles.css:1176-1179",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1174-1177|0": {
+    "anchor": "src/styles.css:1174-1177",
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2773-2774|0": {
-    "anchor": "src/styles.css:2773-2774",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2775-2776|0": {
+    "anchor": "src/styles.css:2775-2776",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:82-83|0": {
-    "anchor": "src/styles.css:82-83",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:80-81|0": {
+    "anchor": "src/styles.css:80-81",
     "fp": "c2ca4aa4ff10907b",
     "head": "--target-min: 24px;"
   },
@@ -2789,8 +2789,8 @@
     "fp": "3c66740b177d162f",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1234-1287|0": {
-    "anchor": "src/styles.css:1234-1287",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1232-1285|0": {
+    "anchor": "src/styles.css:1232-1285",
     "fp": "2d25420743119414",
     "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
@@ -2804,8 +2804,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:843|0": {
-    "anchor": "src/index.html:843",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:842|0": {
+    "anchor": "src/index.html:842",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2824,8 +2824,8 @@
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:326-402|0": {
-    "anchor": "src/index.html:326-402",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:325-401|0": {
+    "anchor": "src/index.html:325-401",
     "fp": "284ac54589beb90f",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2839,13 +2839,13 @@
     "fp": "a663c64fbb9d008e",
     "head": "if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:162|0": {
-    "anchor": "src/styles.css:162",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:160|0": {
+    "anchor": "src/styles.css:160",
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2318-2320|0": {
-    "anchor": "src/styles.css:2318-2320",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2320-2322|0": {
+    "anchor": "src/styles.css:2320-2322",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2854,18 +2854,18 @@
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:384-390|0": {
-    "anchor": "src/styles.css:384-390",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:382-388|0": {
+    "anchor": "src/styles.css:382-388",
     "fp": "af710fc8b2bd45bb",
     "head": ".rail {"
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:392-395|0": {
-    "anchor": "src/styles.css:392-395",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:390-393|0": {
+    "anchor": "src/styles.css:390-393",
     "fp": "ba4d0e152f725f15",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:349-350|0": {
-    "anchor": "src/index.html:349-350",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:348-349|0": {
+    "anchor": "src/index.html:348-349",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -2924,13 +2924,13 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1280-1291|0": {
-    "anchor": "src/index.html:1280-1291",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1279-1290|0": {
+    "anchor": "src/index.html:1279-1290",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:349-350|0": {
-    "anchor": "src/index.html:349-350",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:348-349|0": {
+    "anchor": "src/index.html:348-349",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -2959,8 +2959,8 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:567-613|0": {
-    "anchor": "src/index.html:567-613",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:566-612|0": {
+    "anchor": "src/index.html:566-612",
     "fp": "31a99210662f2ef2",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -6534,43 +6534,43 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2013-2015|0": {
-    "anchor": "src/styles.css:2013-2015",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2015-2017|0": {
+    "anchor": "src/styles.css:2015-2017",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2031-2033|0": {
-    "anchor": "src/styles.css:2031-2033",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2033-2035|0": {
+    "anchor": "src/styles.css:2033-2035",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2359|0": {
-    "anchor": "src/styles.css:2359",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2361|0": {
+    "anchor": "src/styles.css:2361",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2383|0": {
-    "anchor": "src/styles.css:2383",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2385|0": {
+    "anchor": "src/styles.css:2385",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:572|0": {
-    "anchor": "src/styles.css:572",
+  "scripts/check-palette.mjs|preamble|src/styles.css:570|0": {
+    "anchor": "src/styles.css:570",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:572|1": {
-    "anchor": "src/styles.css:572",
+  "scripts/check-palette.mjs|preamble|src/styles.css:570|1": {
+    "anchor": "src/styles.css:570",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:576|0": {
-    "anchor": "src/styles.css:576",
+  "scripts/check-palette.mjs|preamble|src/styles.css:574|0": {
+    "anchor": "src/styles.css:574",
     "fp": "625387adc8d9b735",
     "head": "width: 3px; height: 60%; border-radius: 0 var(--radius-marker) var(--radius-marker) 0; background: v"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:980|0": {
-    "anchor": "src/styles.css:980",
+  "scripts/check-palette.mjs|preamble|src/styles.css:978|0": {
+    "anchor": "src/styles.css:978",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },

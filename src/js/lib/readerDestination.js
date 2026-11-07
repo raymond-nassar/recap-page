@@ -5,10 +5,9 @@ export function readerAction(now = new Date()) {
 }
 
 export function readerClosureNotice(now = new Date()) {
-  return (readerDestination(now) === 'unlimited'
-    ? 'Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded.'
-    : 'Reading in Marvel Unlimited ended December 7, 2026.')
-    + ' From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.';
+  return readerDestination(now) === 'unlimited'
+    ? 'Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.'
+    : 'Marvel Unlimited has ended, so Read opens the Marvel Comics website.';
 }
 
 export function readerDestination(now = new Date()) {

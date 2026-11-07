@@ -207,8 +207,8 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
   assert.match(home, /id="home-primary-paths"/);
   assert.match(home, /id="home-secondary-paths"/);
   assert.match(home, /id="home-more-paths"[^>]*hidden/);
-  assert.match(home, /id="home-h" class="home-brand">RECAP PAGE!<\/h1>/);
-  assert.match(home, /class="home-action">Browse\. Choose\. Read\.<\/p>/);
+  assert.match(home, /id="home-h" class="home-brand"><img class="home-wordmark"[^>]*\/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
+  assert.doesNotMatch(home, /class="home-action"|Browse\. Choose\. Read\./);
   assert.doesNotMatch(home, /id="home-featured"|id="home-grid"|id="home-chips"|id="form-home-q"/);
   assert.doesNotMatch(home, /Featured journey|A place to start|Filter Reading Lists/);
   assert.doesNotMatch(source, /How do you want to read\?/);

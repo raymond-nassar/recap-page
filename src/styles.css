@@ -58,9 +58,7 @@
   --elev-selection-bar: 0 -6px 20px rgb(var(--shadow-rgb) / calc(30% * var(--shadow-alpha)));
   --elev-done-bar: 0 8px 24px rgb(var(--shadow-rgb) / 24%);
   --elev-cover: 0 18px 46px rgb(var(--shadow-rgb) / calc(53.333% * var(--shadow-alpha)));
-  /* Text shadows, counted with the shadows above: the logotype's offset print, the same offset in em
-     where it grows with the text, and the initials on a cover placeholder. */
-  --text-shadow-logotype: 5px 5px 0 var(--accent);
+  /* Text shadows for the wrap-up cheer and initials on a cover placeholder. */
   --text-shadow-offset: .0625em .0625em 0 var(--accent);
   --text-shadow-art: .055em .055em 0 rgb(var(--shadow-rgb) / 45%);
   /* Motion. #827's scale is 150, 200 and 300ms on a decelerating curve. Step one keeps today's `ease`
@@ -1872,22 +1870,22 @@ progress { accent-color: var(--accent); height: 6px; }
 .linkish:hover { color: var(--text); }
 
 /* ============================================================ home */
-#view-home > .head { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
-.home-lockup { grid-column: 2; display: grid; justify-items: center; text-align: center; gap: var(--space-5); padding: var(--space-4) 0 var(--space-2); }
+#view-home > .head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); }
+.home-lockup { grid-column: 1 / -1; grid-row: 1; min-width: 0; display: grid; justify-items: center; text-align: center; padding: var(--space-4) 0 var(--space-2); }
 #view-home .home-brand {
-  color: var(--logo-fill); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; letter-spacing: .035em; line-height: .9;
-  text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: center;
-  -webkit-text-stroke: 1px var(--on-accent); text-shadow: var(--text-shadow-logotype);
+  position: relative; margin: 0; width: min(100%, 30rem); color: var(--text);
+  font-size: var(--t-title-lg); line-height: 1.2;
 }
-.home-action {
-  margin: 0; color: var(--text); font-size: var(--t-subtitle); font-weight: 800;
-  letter-spacing: .08em;
+.home-wordmark { display: block; width: 100%; height: auto; margin-inline: auto; }
+.home-brand-text {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
 }
+#view-home > .head > .breadcrumb { grid-column: 1; grid-row: 2; }
 #home-updates {
-  grid-column: 3; align-self: center; justify-self: end; position: relative; min-width: 0;
+  grid-column: 2; grid-row: 2; align-self: center; justify-self: end; position: relative; min-width: 0;
   color: var(--muted);
 }
+#home-updates-toggle > .home-updates-label { white-space: nowrap; }
 #home-updates-toggle, #home-updates .home-updates-more > summary {
   cursor: pointer; min-width: var(--target); min-height: var(--target); padding: var(--space-5) var(--space-4);
   border-radius: var(--radius-compact); font-size: var(--t-body); color: var(--text);
@@ -1915,7 +1913,7 @@ progress { accent-color: var(--accent); height: 6px; }
 .home-updates-list > span { min-width: 0; }
 .home-updates-list > button { flex-shrink: 0; }
 @media (max-width: 720px) {
-  #view-home > .head { grid-template-columns: minmax(0, 1fr) auto; }
+  #view-home > .head { grid-template-columns: minmax(0, 1fr) minmax(0, auto); }
   .home-lockup { grid-column: 1 / -1; grid-row: 1; }
   #view-home > .head > .breadcrumb { grid-row: 2; }
   #home-updates { grid-column: 2; grid-row: 2; }
@@ -1924,11 +1922,15 @@ progress { accent-color: var(--accent); height: 6px; }
   #home-updates-toggle { width: max-content; max-width: 100%; margin-left: auto; }
   .home-updates-list { flex-wrap: wrap; }
 }
-@media (max-width: 880px) and (max-height: 500px) {
-  #view-home > .head > .breadcrumb, #view-home #home-updates { grid-row: 1; }
+@media (max-width: 600px) {
+  #view-home .home-brand { width: min(100%, 200px); }
+  .home-lockup { padding: var(--space-2) 0; }
+  #view-home > .head { gap: var(--space-4); }
 }
 @media (forced-colors: active) {
-  #view-home .home-brand { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }
+  #view-home .home-brand { color: CanvasText; }
+  .home-wordmark { display: none; }
+  .home-brand-text { position: static; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal; }
 }
 
 /* Continue reading. Deliberately lighter than the reading view's hero: it answers one
@@ -2954,7 +2956,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .rail-header.bar-two-rows :is(.brand, .mobile-link, .rail-toggle) { flex-direction: row; gap: var(--space-3); }
 }
 
-#reader-closure-notice { position: relative; }
+#reader-closure-notice { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
 
