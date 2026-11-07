@@ -1044,3 +1044,22 @@ test('TestFlight packet selection requires the same build from a successful manu
     ['display_title', 'iOS upload build 2'],
   ]) assert.throws(() => assertExportRun({ ...run, [field]: value }, 2), /unsuccessful export/);
 });
+
+test('the dedicated SE scroll diagnostic workflow opts in and requires one passing test', () => {
+  const diagnostic = readFileSync(new URL('../.github/workflows/ios-se-scroll-diagnostic.yml', import.meta.url), 'utf8')
+    .replace(/\r\n/g, '\n');
+  const step = diagnostic.split('      - name: Run the one SE scroll diagnostic\n')[1]?.split(/\n {6}- /)[0] ?? '';
+  assert.match(step, /\n {8}env:\n {10}TEST_RUNNER_RECAP_RUN_SE_SCROLL_DIAGNOSTIC: '1'\n/);
+  assert.equal((diagnostic.match(/TEST_RUNNER_RECAP_RUN_SE_SCROLL_DIAGNOSTIC/g) ?? []).length, 1);
+  assert.match(step, /-only-testing:RecapPageUITests\/PresentationUITests\/testSEPrivacyScrollDiagnostic(?:\s|\\)/);
+  assert.doesNotMatch(step, /-skip-testing/);
+  assert.match(diagnostic, /summary\.result === 'Passed' && summary\.totalTestCount === 1\s*&& summary\.passedTests === 1 && summary\.failedTests === 0 && summary\.skippedTests === 0/);
+});
+
+test('ordinary iOS workflow does not opt in to or exclude the SE scroll diagnostic', () => {
+  const scheme = readFileSync(new URL('../packaging/ios/RecapPage.xcodeproj/xcshareddata/xcschemes/RecapPage.xcscheme', import.meta.url), 'utf8');
+  assert.doesNotMatch(workflow, /RECAP_RUN_SE_SCROLL_DIAGNOSTIC/);
+  assert.doesNotMatch(workflow,
+    /-skip-testing(?::|\s+)RecapPageUITests\/PresentationUITests(?:\/testSEPrivacyScrollDiagnostic)?(?=\s|[\\'"]|$)/);
+  assert.doesNotMatch(scheme, /RECAP_RUN_SE_SCROLL_DIAGNOSTIC/);
+});

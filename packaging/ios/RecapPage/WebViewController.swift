@@ -164,7 +164,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '#btn-chero-open, .app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
         + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label, '
-        + '#form-search label[for="search-q"]';
+        + '#form-search label[for="search-q"], .mobile-link[data-view="add"]';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {

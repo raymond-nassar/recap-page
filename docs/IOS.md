@@ -80,12 +80,12 @@ Home links and does not include category tiles. The empty-Home native scenario c
 default and largest text sizes, that each of the two targets has its full name, is at least 44
 points in each direction, has no separate native element, inside or outside the link, for its name
 or drawn words, and opens its destination, independently of the populated audit fixture.
-Whether WebKit exposes those drawn words separately can only be settled on a Simulator. At the largest accessibility text size, the Backup &
-settings section headings can wrap within their existing column rather than widening the page.
-At that text size, the iOS Theme selector also permits its selected text to wrap. On the 375-point
-iPhone SE Simulator, WebKit otherwise let the native selector's single-line text overflow its
-correctly sized field. Edge contained the same field on both platform bundles. This iOS-only
-adjustment keeps the shared field dimensions and tokens and does not change Windows or Android.
+Whether WebKit exposes those drawn words separately can only be settled on a Simulator. At the largest
+accessibility text size, the Backup & settings section headings can wrap in their existing column.
+At compact iOS widths the page title uses closer line spacing, preserving its size, to give the privacy
+explanation more room above navigation. The iOS Theme selector also wraps at that text size. On a
+375-point iPhone SE Simulator, WebKit overflowed its correctly sized field; Edge contained it on both
+platform bundles. Both iOS-only adjustments keep shared field dimensions and tokens unchanged.
 
 The presentation audit uses a fail-closed passive-text guard, approved in #1005, not a blanket
 exemption for text. Ten previously reviewed cases remain positive fixtures: the iPad sidebar's
