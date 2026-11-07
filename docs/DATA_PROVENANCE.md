@@ -996,9 +996,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:686` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:694` and the issue-details view at
 `src/js/views/issue.js:102`. The function behind both already answers for the absence at
-`src/js/views/reading.js:82-94`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:91-102`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1122,10 +1122,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:10911-10962`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11067-11118`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16335-16472`.
+`src/data/catalog.json:16536-16673`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2999,20 +2999,66 @@ supplies the confirming actor, decision date, exact issue IDs, labels and URLs. 
 its original source position and provider 404 rather than turning owner evidence into a provider
 response.
 
+The three Captain America (2025) Modern Timeline lists use the same evidence kind for twelve
+owner-confirmed identities: issue #5 in Our Secret Wars, issues #6-11 in Doom's Shadow and issues
+#12-16 in Hell's Angel. Issues #1-4 resolve through the provider. The recorded
+[Captain America (2025) confirmation](https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832)
+supplies the confirming actor, exact issue IDs, labels and URLs, and the separate
+[gap Issue](https://github.com/raymond-nassar/recap-page/issues/1145) records each provider 404.
+Issue #6 is the same identity One World Under Doom already confirms, so the two lists share it.
+
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:836-858`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:467-471`, `scripts/vendor-orders.mjs:534-535`, `scripts/vendor-orders.mjs:578-579`).
-The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
-provider details and covers remain empty. No comic image bytes are stored and no Unlimited
-availability is inferred.
+(`scripts/vendor-orders.mjs:491-495`, `scripts/vendor-orders.mjs:559-560`, `scripts/vendor-orders.mjs:604-605`).
+Unless a row carries the external supplement described below, the published rows carry only their
+confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
+empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
+Unlimited availability is inferred.
+
+### Owner-approved external supplement for owner-confirmed comics
+
+The provider will never hold a record for an issue it answered with HTTP 404, so on 2026-11-06 the
+owner approved filling the display details of owner-confirmed comics from two named outside sources,
+recorded per comic. The twelve Captain America (2025) rows above, #5-16, are the first to use it.
+One World Under Doom shares issue #6 but its own row is unchanged and carries no supplement.
+
+- **Cover address:** read from the comic's own marvel.com issue page, the row's recorded Marvel URL,
+  and only because the provider has no record of it. The value is an image address on the pinned
+  cover host. No image bytes are downloaded or stored (constraint 1), and `read.marvel.com` is never
+  read.
+- **Release date, page count and credits:** read from one pinned revision of the comic's Marvel
+  Fandom wiki page, `Captain America Vol 14 <number>`, cited as a permanent `?oldid=` address. The
+  twelve revisions are 11190343 (#5), 10991298 (#6), 11075075 (#7), 11232703 (#8), 11082084 (#9),
+  11094983 (#10), 11261417 (#11), 11204868 (#12), 11228907 (#13), 11204874 (#14), 11237488 (#15)
+  and 11258317 (#16), all retrieved on 2026-11-06. Credits keep the writer, penciler and cover
+  artist roles in the provider's spelling.
+
+Each supplemented mapping row records an `externalMetadataSupplement` with the approving owner,
+approval and retrieval dates, the supplied `fields` and one `sources` entry per field. The validator
+accepts it only on an owner-confirmed row, only for cover, on-sale date, page count and credits, only
+when it carries both a cover and credits, only when every field names exactly one allowed source, only when the cover source is the row's own Marvel
+URL and the wiki source is a pinned revision, and only when the cover is on the pinned host
+(`scripts/lib/owner-external-supplement.mjs:39-99`). The inventory refuses a supplement anywhere
+else (`scripts/lib/cbh-inventory.mjs:1160-1166`).
+
+The vendored item copies exactly those fields and adds `metadataSourceKind:
+"owner-external-supplement"`, a closed value recorded per comic. It still keeps `seriesId`,
+`seriesName`, `mu`, `digitalId` and `description` null, keeps `detailsRefused` true and keeps the
+owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
+its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
+item to exactly what its mapping row records and every other owner-confirmed item to the old empty
+shape (`test/helpers/owner-delivery-contract.mjs:102-134`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
-provider record after import and reload (`src/js/lib/model.js:223-225`,
-`src/js/views/reading.js:54`, `src/js/views/reading.js:61-63`). The actor, date, URL and confirmation
-comment stay in the repository evidence. This additive marker does not change saved-data version 4;
-existing saves need no migration, and older builds may discard the marker without changing reading
+provider record after import and reload (`src/js/lib/model.js:243-252`,
+`src/js/views/reading.js:55-57`, `src/js/views/reading.js:64-73`). It keeps `metadataSourceKind` the
+same way, only as the closed value and only beside an owner-confirmed identity, so a supplemented
+comic's badge hint, gap sentence and catalog label credit marvel.com and the Marvel Fandom wiki
+instead of claiming it has no cover. The actor, date, URL and confirmation
+comment stay in the repository evidence. These additive markers do not change saved-data version 4;
+existing saves need no migration, and older builds may discard the markers without changing reading
 progress or issue identity.
 
 After Phase Two merged, each report and approval was renewed against 309 existing
@@ -3427,3 +3473,40 @@ All four guides preserve credited source addresses and store cover addresses onl
 description, source commentary, comic image or Marvel page is stored or fetched, including the
 pages' share.marvel.com Read links. No availability is promised and no existing saved data,
 backups or original issue vector is changed.
+
+## Siege with a Dark Reign prelude
+
+[Issue 1150](https://github.com/raymond-nassar/recap-page/issues/1150) records the owner's
+selection of main events and essential tie-ins, with the Avengers and Thunderbolts runs made
+explicit. This is a project-curated compilation, not an unchanged single-page checklist.
+The credited sources are [Comic Book Herald's Dark Reign guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/dark-reign-reading-order-list/)
+and [Siege guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-13-siege-checklist/),
+retrieved on 2026-11-06. The [between-events page](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-dark-reign-to-siege/)
+informed the coverage audit, not a wholesale import.
+[CBRO's Siege bibliography](https://comicbookreadingorders.com/marvel/events/siege-reading-order/)
+independently supports the selected Loki chapter before Siege #4.
+
+The [local checklist](../src/data/orders/siege-dark-reign-prelude.md) contains 107 distinct
+originals in seven reading blocks. Its earlier setup begins in December 2008 and reaches 2010;
+the owner approved placing the complete reading in 2010, immediately before Doomwar.
+Dark Avengers #1-16, New Avengers #48-64, Mighty Avengers #21-36,
+Avengers: The Initiative #20-35 and Thunderbolts #126-143 contribute 83 numbered originals.
+The remaining 24 cover the opening one-shot, Deadpool crossover, Utopia, selected annuals,
+The List: Avengers, The Cabal, all four Siege issues and the selected event/aftermath chapters.
+The Initiative #31 appears in both source guides and is retained once, with its repeat recorded.
+The provider's official main-series title remains Siege (2009), although its four issues were
+published in 2010.
+
+The [factual source ledger](../scripts/data/curated-source-ledgers/siege-dark-reign-prelude.json)
+accounts for selected, partly selected, excluded and repeated source ranges. All 107 identities
+were verified with genuine successful issue-detail responses; no metadata gap or placeholder was
+invented. Its human source approval and digest-bound reciprocal dispositions cover 340 distinct
+existing visible or retained-hidden orders: 21 partial overlaps and 319 with no shared originals.
+Shared comics stay in both distinct scopes. In particular, the supplied Dark Reign sequence uses
+Dark Avengers #7-8 within Utopia, while the older Utopia guide contains #9-10; that older selection
+and its authority are not rewritten.
+
+Reading blocks retain their labels without claiming to be collected editions. No source
+commentary, provider description or comic image bytes are copied. Cover addresses alone are
+stored, no availability is promised, and no existing guide, saved progress, note or backup format
+changes.

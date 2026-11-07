@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "id": "captain-america-2025-dooms-shadow",
+  "inventoryId": "captain-america-2025-dooms-shadow",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/1146",
+  "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
+  "sourceRetrievedAt": "2026-11-06",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "baf8ac1d08355f1e2d2ad67054a44b619c20511b2fd78b29d55311451c4204bf",
+  "sourceIssueBearingBlocksSha256": "3a3892646972b057bb8adc9594269b2fb31dbe5ac2b9d5508665e60be1135dc4",
+  "sourceBoundary": "The exact owner-selected Captain America (2025) Vol. 2: Doom's Shadow source. All 6 supplied positions are recorded in supplied order; 0 resolve to exact provider metadata and 6 are owner-confirmed identities whose provider lookups returned HTTP 404. This is not a claim of series completeness.",
+  "excludedSourceReferences": [],
+  "canonicalSourcePositions": true,
+  "sourceOccurrenceCount": 6,
+  "expectedCount": 6,
+  "proposedManifest": {
+    "id": "captain-america-2025-dooms-shadow",
+    "name": "Captain America (2025) Vol. 2: Doom's Shadow",
+    "description": "The aftermath of One World Under Doom, civil war in Latveria, and a clash with Red Hulk.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": 2025,
+    "sourceFile": "captain-america-2025-dooms-shadow.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1146",
+    "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
+    "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+    "sourceLicense": null,
+    "out": "captain_america_2025_dooms_shadow.json",
+    "characters": [
+      "Captain America",
+      "Doctor Doom",
+      "Red Hulk"
+    ],
+    "keywords": [
+      "Captain America (2025)",
+      "Chip Zdarsky",
+      "Doom's Shadow",
+      "One World Under Doom"
+    ],
+    "expect": 6,
+    "coverIssueId": null,
+    "group": null,
+    "groupName": null,
+    "variant": null
+  },
+  "insertionAnchor": {
+    "beforeId": "marvel-zombies-reading-order"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Captain America (2025) #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "6",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Captain America (2025) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "7",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Captain America (2025) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "8",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Captain America (2025) #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "9",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Captain America (2025) #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "10",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Captain America (2025) #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "11",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "packetDigest": "788d9b7a7a396b82d124fb51ce35a596763374a250318e594f42b8fd6f8be271",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot stronger-model reviewer, GPT-6 Astra (gpt-6-astra), task agent cap-stronger-reviewer",
+    "rationale": "All six positions match the owner source, including the slugless URL for issue #10. All six retain explicit owner-confirmed identity evidence and null provider details. Placement in 2025 immediately after One World Under Doom is correct. The name, description and tags preserve the selected scope.",
+    "reviewedAt": "2026-11-06T21:40:27.962Z",
+    "proposalDigest": "2880fd46a154c9bb1cda7f6fe3b30d8cc4ae770dcf6a0d7ccb942b69849ce6c2"
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 1,
+      "previousSourceIssueReference": "Captain America (2025) #6",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "6",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123361,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "6",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #6, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123361",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123361,
+        "label": "Captain America (2025) #6",
+        "url": "https://www.marvel.com/comics/issue/123361/captain_america_2025_6",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "77c06e24e99733742dfc26add40c928c4dc464de7547ba1f40cd07cd164a52cf"
+    },
+    {
+      "sourcePosition": 2,
+      "previousSourceIssueReference": "Captain America (2025) #7",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "7",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123362,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "7",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #7, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123362",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123362,
+        "label": "Captain America (2025) #7",
+        "url": "https://www.marvel.com/comics/issue/123362/captain_america_2025_7",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "1b65d980025ecff57c317b4a7394de64e3df3a973f47db566f7a42fc04aa1e40"
+    },
+    {
+      "sourcePosition": 3,
+      "previousSourceIssueReference": "Captain America (2025) #8",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "8",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123363,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "8",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #8, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123363",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123363,
+        "label": "Captain America (2025) #8",
+        "url": "https://www.marvel.com/comics/issue/123363/captain_america_2025_8",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "5160f6a18bdc4dd5682d370273deec3a5364d26d0508562a69ee9a475f8e57a2"
+    },
+    {
+      "sourcePosition": 4,
+      "previousSourceIssueReference": "Captain America (2025) #9",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "9",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123364,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #9, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123364",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123364,
+        "label": "Captain America (2025) #9",
+        "url": "https://www.marvel.com/comics/issue/123364/captain_america_2025_9",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "c7d5b78a01dcf0b638b616692b38bfe5b40e679dcce459a7172dd266f817d0c0"
+    },
+    {
+      "sourcePosition": 5,
+      "previousSourceIssueReference": "Captain America (2025) #10",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "10",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123365,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "10",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #10, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123365",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123365,
+        "label": "Captain America (2025) #10",
+        "url": "https://www.marvel.com/comics/issue/123365/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "badc31feb54b91c72edb22e8e0f64b22aa1806775ed5eb71d39cc17c6db88a65"
+    },
+    {
+      "sourcePosition": 6,
+      "previousSourceIssueReference": "Captain America (2025) #11",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "11",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130145,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "11",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #11, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130145",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 130145,
+        "label": "Captain America (2025) #11",
+        "url": "https://www.marvel.com/comics/issue/130145/captain_america_2025_11",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "20942099f292f5ddcecc7c17e209a26974fabc7b2b1238fcb9fb3ca1f4e4f91e"
+    }
+  ]
+}

@@ -18,18 +18,18 @@ request is a single owner guide or a batch, its intended surface, and the actual
 |---|---|
 | Owner-authored Markdown for an MCU Prep guide or an owner's young readers pick | [Owner Markdown delivery](../../../docs/READING_LIST_DELIVERY.md), the single-guide route. `docs/READING_LIST_DELIVERY.md:5-8` |
 | Multiple supplied lists in one agreed delivery | [Batch delivery](../../../docs/BATCH_READING_LIST_DELIVERY.md), which keeps list identities and source order separate. `docs/BATCH_READING_LIST_DELIVERY.md:1-3` |
-| Actual Comic Book Herald source | [Comic Book Herald packet](../../../docs/MAINTAINING.md#build-a-comic-book-herald-packet). `docs/MAINTAINING.md:555` |
-| Actual Comic Book Reading Orders source within a known historical release | [Historical Comic Book Reading Orders packet](../../../docs/MAINTAINING.md#build-a-comic-book-reading-orders-historical-event-packet). `docs/MAINTAINING.md:718` |
+| Actual Comic Book Herald source | [Comic Book Herald packet](../../../docs/MAINTAINING.md#build-a-comic-book-herald-packet). `docs/MAINTAINING.md:559` |
+| Actual Comic Book Reading Orders source within a known historical release | [Historical Comic Book Reading Orders packet](../../../docs/MAINTAINING.md#build-a-comic-book-reading-orders-historical-event-packet). `docs/MAINTAINING.md:722` |
 | Local curated source or another factual compilation | [Curated reading order](../../../docs/MAINTAINING.md#add-a-curated-reading-order). `docs/MAINTAINING.md:446` |
 
 Use the batch procedure only when several supplied lists are in one agreed delivery. A batch that
 contains different sources also follows each selected source-specific procedure. The batch guide's
-source table defines these routes and stop conditions. `docs/BATCH_READING_LIST_DELIVERY.md:105-114`
+source table defines these routes and stop conditions. `docs/BATCH_READING_LIST_DELIVERY.md:108-117`
 
 Do not use the owner-Markdown route for Comic Book Herald, Comic Book Reading Orders, or non-MCU
 event lists when their documented route differs. If the provider, source boundary, or list shape is
 unclear, retain the original and request the smallest source decision. Never invent provider
-attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST_DELIVERY.md:105-114`
+attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST_DELIVERY.md:108-117`
 
 ## Preserve the source while preparing delivery
 

@@ -97,6 +97,10 @@ function checkEntry(raw, index, seen) {
   if (raw.sourceSection != null && !sourceSection) {
     at('sourceSection must be a non-empty string when present');
   }
+  if (Object.hasOwn(raw, 'sectionKind')
+    && (raw.sectionKind !== 'reading-blocks' || !sourceFile || partitionFile)) {
+    at('sectionKind must be reading-blocks on an ordinary local checklist when present');
+  }
   if (raw.partitionFile != null && !partitionFile) {
     at('partitionFile must be a plain *.json name when present');
   }
@@ -235,6 +239,7 @@ function checkEntry(raw, index, seen) {
       // is credited by sourceOrigin alone rather than given a link that goes nowhere.
       sourcePage: httpsUrl(raw.sourcePage) ?? sourceUrl,
       sourceSection,
+      ...(Object.hasOwn(raw, 'sectionKind') ? { sectionKind: raw.sectionKind } : {}),
       sourceOrigin: str(raw.sourceOrigin),
       sourceLicense: str(raw.sourceLicense),
       description: str(raw.description),

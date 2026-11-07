@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { normalizeTitle } from '../../src/js/lib/markdown.js';
+import { validateOwnerExternalSupplement } from './owner-external-supplement.mjs';
 
 export const GUIDE_TYPES = Object.freeze([
   'event',
@@ -1152,6 +1153,16 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
     if ((row.identityEvidenceKind === 'owner-confirmed-identity')
       !== confirmedPositions.has(row.sourcePosition)) {
       throw new Error(`${packetId} mapping row ${row.sourcePosition} has unbound owner-confirmed identity evidence`);
+    }
+    // Outside sources may fill an owner-confirmed row, never a provider-backed one, and only with
+    // per-field provenance. It is kept off candidateMetadata so the fabricated-metadata check
+    // still means what it says: nothing on such a row came from the provider.
+    if (Object.hasOwn(row, 'externalMetadataSupplement')) {
+      try {
+        validateOwnerExternalSupplement(row);
+      } catch (error) {
+        throw new Error(`${packetId} mapping row ${row.sourcePosition} has an invalid external metadata supplement: ${error.message}`, { cause: error });
+      }
     }
   }
   return true;

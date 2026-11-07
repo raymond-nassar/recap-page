@@ -201,6 +201,11 @@ function normalizeEntry(raw) {
     : null;
   const ownerConfirmedIdentityCount = Number.isInteger(raw.ownerConfirmedIdentityCount)
     && raw.ownerConfirmedIdentityCount >= 0 ? raw.ownerConfirmedIdentityCount : 0;
+  // A subset of the owner-confirmed count, so it can never exceed it: a catalog claiming more
+  // supplemented comics than confirmed ones would make the two labels add up to a false total.
+  const ownerSupplementedCount = Number.isInteger(raw.ownerSupplementedCount)
+    && raw.ownerSupplementedCount >= 0
+    ? Math.min(raw.ownerSupplementedCount, ownerConfirmedIdentityCount) : 0;
   if (!id || !name || !file || count == null
     || placeholderCount == null || emptyRecordCount == null) return null;
 
@@ -212,6 +217,7 @@ function normalizeEntry(raw) {
     placeholderCount,
     emptyRecordCount,
     ownerConfirmedIdentityCount,
+    ownerSupplementedCount,
     // How many collected editions the order is divided into, or 0 for an ordinary issue order.
     // A trade order is a different kind of reading commitment, so the number a reader weighs is
     // the number of books, not only the number of issues.
@@ -329,10 +335,17 @@ export function catalogGapLabels(list) {
       `${count} ${count === 1 ? 'comic has no details, cover, or Unlimited link' : 'comics have no details, covers, or Unlimited links'}`,
     );
   }
-  if (list?.ownerConfirmedIdentityCount > 0) {
-    const count = list.ownerConfirmedIdentityCount;
+  const supplemented = Math.min(Math.max(Number(list?.ownerSupplementedCount) || 0, 0),
+    Math.max(Number(list?.ownerConfirmedIdentityCount) || 0, 0));
+  if (list?.ownerConfirmedIdentityCount - supplemented > 0) {
+    const count = list.ownerConfirmedIdentityCount - supplemented;
     out.push(
       `${count} ${count === 1 ? 'comic has an owner-confirmed identity' : 'comics have owner-confirmed identities'} but no provider details or ${count === 1 ? 'cover' : 'covers'}`,
+    );
+  }
+  if (supplemented > 0) {
+    out.push(
+      `${supplemented} ${supplemented === 1 ? 'comic has an owner-confirmed identity' : 'comics have owner-confirmed identities'} with ${supplemented === 1 ? 'a cover' : 'covers'} and credits from marvel.com and the Marvel Fandom wiki`,
     );
   }
   return out;

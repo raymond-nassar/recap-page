@@ -1,0 +1,207 @@
+{
+  "id": "captain-america-2025-hells-angel",
+  "name": "Captain America (2025) Vol. 3: Hell's Angel",
+  "description": "Steve is in a coma and trapped in Hell with Doctor Doom, searching for a sword that can destroy Mephisto, as the Marvel Universe heads toward Armageddon.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/1146",
+  "sourceSection": "Vol. 3: Hell's Angel (collects #12-16)",
+  "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-07T00:05:27.240Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 130146,
+      "title": "Captain America (2025) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-06-24T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/01a1456b9761",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
+    },
+    {
+      "issueId": 130147,
+      "title": "Captain America (2025) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/130147/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-07-15T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/01a1456b9f23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ton Lima",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
+    },
+    {
+      "issueId": 130148,
+      "title": "Captain America (2025) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/130148/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-08-05T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/01a1456ba5b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romulo Fajardo, Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ton Lima",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
+    },
+    {
+      "issueId": 130149,
+      "title": "Captain America (2025) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-09-02T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/019f61e5731b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romulo Fajardo, Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
+    },
+    {
+      "issueId": 135945,
+      "title": "Captain America (2025) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-10-28T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/01a121b41680",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement"
+    }
+  ]
+}

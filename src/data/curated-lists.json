@@ -1645,6 +1645,42 @@
       "coverIssueId": 111661
     },
     {
+      "id": "captain-america-2025-our-secret-wars",
+      "name": "Captain America (2025) Vol. 1: Our Secret Wars",
+      "description": "Steve Rogers' first mission after waking from the ice, and his first encounter with Doctor Doom in Latveria.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "timeline": 2025,
+      "sourceFile": "captain-america-2025-our-secret-wars.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1146",
+      "sourceSection": "Vol. 1: Our Secret Wars (collects #1-5)",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "out": "captain_america_2025_our_secret_wars.json",
+      "characters": [
+        "Captain America",
+        "Doctor Doom"
+      ],
+      "keywords": [
+        "Captain America (2025)",
+        "Chip Zdarsky",
+        "Our Secret Wars",
+        "One World Under Doom"
+      ],
+      "expect": 5,
+      "coverIssueId": 123356,
+      "group": null,
+      "groupName": null,
+      "variant": null
+    },
+    {
       "id": "one-world-under-doom",
       "name": "One World Under Doom",
       "description": "Doctor Doom brings one world under his rule in 2025, and the Fantastic Four, the Avengers, Storm and Captain America have to live in it. Ryan North's Fantastic Four leads into the main series and a selection of tie-ins. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together.",
@@ -1678,6 +1714,80 @@
       ],
       "expect": 85,
       "coverIssueId": 113858,
+      "group": null,
+      "groupName": null,
+      "variant": null
+    },
+    {
+      "id": "captain-america-2025-dooms-shadow",
+      "name": "Captain America (2025) Vol. 2: Doom's Shadow",
+      "description": "The aftermath of One World Under Doom, civil war in Latveria, and a clash with Red Hulk.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "war",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "timeline": 2025,
+      "sourceFile": "captain-america-2025-dooms-shadow.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1146",
+      "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "out": "captain_america_2025_dooms_shadow.json",
+      "characters": [
+        "Captain America",
+        "Doctor Doom",
+        "Red Hulk"
+      ],
+      "keywords": [
+        "Captain America (2025)",
+        "Chip Zdarsky",
+        "Doom's Shadow",
+        "One World Under Doom"
+      ],
+      "expect": 6,
+      "coverIssueId": null,
+      "group": null,
+      "groupName": null,
+      "variant": null
+    },
+    {
+      "id": "captain-america-2025-hells-angel",
+      "name": "Captain America (2025) Vol. 3: Hell's Angel",
+      "description": "Steve is in a coma and trapped in Hell with Doctor Doom, searching for a sword that can destroy Mephisto, as the Marvel Universe heads toward Armageddon.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
+      "beginner": false,
+      "timeline": 2026,
+      "sourceFile": "captain-america-2025-hells-angel.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1146",
+      "sourceSection": "Vol. 3: Hell's Angel (collects #12-16)",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "out": "captain_america_2025_hells_angel.json",
+      "characters": [
+        "Captain America",
+        "Doctor Doom",
+        "Mephisto"
+      ],
+      "keywords": [
+        "Captain America (2025)",
+        "Chip Zdarsky",
+        "Hell's Angel"
+      ],
+      "expect": 5,
+      "coverIssueId": null,
       "group": null,
       "groupName": null,
       "variant": null
@@ -9196,6 +9306,52 @@
       "expect": 14,
       "timeline": 2009,
       "coverIssueId": 28103
+    },
+    {
+      "id": "siege-dark-reign-prelude",
+      "name": "Siege: Dark Reign Prelude and Essential Tie-Ins",
+      "description": "Norman Osborn's rise and fall, from a Dark Reign prelude beginning in 2008 to the 2010 Siege of Asgard. Follow Dark Avengers, New Avengers, Mighty Avengers, Avengers: The Initiative and Thunderbolts, with the complete four-issue Siege event and selected crossover chapters. The prelude includes the Deadpool/Thunderbolts crossover and Utopia; the event finishes with New Avengers Finale.",
+      "type": "event",
+      "depth": "essential",
+      "storyTypes": [
+        "political",
+        "war",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "siege-dark-reign-prelude.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+      "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
+      "sourceLicense": null,
+      "sectionKind": "reading-blocks",
+      "out": "siege_dark_reign_prelude.json",
+      "characters": [
+        "Avengers",
+        "Dark Avengers",
+        "Thunderbolts",
+        "Norman Osborn",
+        "Thor",
+        "Loki"
+      ],
+      "keywords": [
+        "Siege",
+        "Dark Reign",
+        "New Avengers",
+        "Mighty Avengers",
+        "Avengers: The Initiative",
+        "Thunderbolts",
+        "Utopia",
+        "Deadpool"
+      ],
+      "expect": 107,
+      "timeline": 2010,
+      "coverIssueId": 30468
     },
     {
       "id": "doomwar",

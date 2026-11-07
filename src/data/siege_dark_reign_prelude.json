@@ -1,0 +1,3560 @@
+{
+  "id": "siege-dark-reign-prelude",
+  "name": "Siege: Dark Reign Prelude and Essential Tie-Ins",
+  "description": "Norman Osborn's rise and fall, from a Dark Reign prelude beginning in 2008 to the 2010 Siege of Asgard. Follow Dark Avengers, New Avengers, Mighty Avengers, Avengers: The Initiative and Thunderbolts, with the complete four-issue Siege event and selected crossover chapters. The prelude includes the Deadpool/Thunderbolts crossover and Utopia; the event finishes with New Avengers Finale.",
+  "source": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+  "sectionKind": "reading-blocks",
+  "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-07T02:45:33.118Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 107,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 22980,
+      "title": "Secret Invasion: Dark Reign (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/22980/secret_invasion_dark_reign_2008_1",
+      "seriesId": 6391,
+      "seriesName": "Secret Invasion: Dark Reign (2008)",
+      "onSale": "2008-12-10T00:00:00+0000",
+      "mu": "2009-11-24T00:00:00+0000",
+      "digitalId": 12263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5151f61b6f895",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Alex Maleev",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 22880,
+      "title": "New Avengers (2004) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/22880/new_avengers_2004_48",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2008-12-24T00:00:00+0000",
+      "mu": "2009-07-24T00:00:00+0000",
+      "digitalId": 11339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5773ea4e0b0dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 22480,
+      "title": "Thunderbolts (2006) #126",
+      "number": "126",
+      "url": "https://www.marvel.com/comics/issue/22480/thunderbolts_2006_126",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2008-11-19T00:00:00+0000",
+      "mu": "2008-11-19T00:00:00+0000",
+      "digitalId": 11634,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5c1c0254217b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto De La Torre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 22881,
+      "title": "Thunderbolts (2006) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/22881/thunderbolts_2006_127",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2008-12-17T00:00:00+0000",
+      "mu": "2008-12-17T00:00:00+0000",
+      "digitalId": 11635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5744ce5d3eef1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto De La Torre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 22912,
+      "title": "Avengers: The Initiative (2007) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/22912/avengers_the_initiative_2007_20",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2008-12-31T00:00:00+0000",
+      "mu": "2009-08-25T00:00:00+0000",
+      "digitalId": 10950,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/58dd09cca3bcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harvey Tolibao",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bong Dazo",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Kurth",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23112,
+      "title": "Avengers: The Initiative (2007) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/23112/avengers_the_initiative_2007_21",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-01-28T00:00:00+0000",
+      "mu": "2009-07-06T00:00:00+0000",
+      "digitalId": 12898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/4e958dcf75807",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23608,
+      "title": "Avengers: The Initiative (2007) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/23608/avengers_the_initiative_2007_22",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-02-25T00:00:00+0000",
+      "mu": "2009-07-06T00:00:00+0000",
+      "digitalId": 12902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/4e9594e0b78ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23968,
+      "title": "Avengers: The Initiative (2007) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/23968/avengers_the_initiative_2007_23",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-04-22T00:00:00+0000",
+      "mu": "2010-11-04T00:00:00+0000",
+      "digitalId": 15594,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/4e95979f77c63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23088,
+      "title": "New Avengers (2004) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/23088/new_avengers_2004_49",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-01-28T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 13088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5773ea806cfd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23175,
+      "title": "Dark Avengers (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23175/dark_avengers_2009_1",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-01-21T00:00:00+0000",
+      "mu": "2009-01-21T00:00:00+0000",
+      "digitalId": 12982,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/514c9ca17bba9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Daniel Acuna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Renaud",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23089,
+      "title": "Thunderbolts (2006) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/23089/thunderbolts_2006_128",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-01-21T00:00:00+0000",
+      "mu": "2009-01-21T00:00:00+0000",
+      "digitalId": 13122,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5744ce69b4a83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto De La Torre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23584,
+      "title": "Thunderbolts (2006) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/23584/thunderbolts_2006_129",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-02-25T00:00:00+0000",
+      "mu": "2009-07-20T00:00:00+0000",
+      "digitalId": 13124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5744ce321e805",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto De La Torre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Magno",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23146,
+      "title": "Deadpool (2008) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/23146/deadpool_2008_6",
+      "seriesId": 5701,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2009-01-14T00:00:00+0000",
+      "mu": "2009-01-14T00:00:00+0000",
+      "digitalId": 13000,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/57323d2c9aadb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23634,
+      "title": "Deadpool (2008) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/23634/deadpool_2008_7",
+      "seriesId": 5701,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2009-02-04T00:00:00+0000",
+      "mu": "2009-02-04T00:00:00+0000",
+      "digitalId": 13007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/573242901db75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24167,
+      "title": "Avengers: The Initiative (2007) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/24167/avengers_the_initiative_2007_24",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-05-28T00:00:00+0000",
+      "mu": "2010-08-03T00:00:00+0000",
+      "digitalId": 12485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/4e95993593b6c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23790,
+      "title": "Deadpool (2008) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/23790/deadpool_2008_8",
+      "seriesId": 5701,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2009-03-04T00:00:00+0000",
+      "mu": "2009-03-04T00:00:00+0000",
+      "digitalId": 13079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/51a4f5f9d9e4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Pearson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23748,
+      "title": "Thunderbolts (2006) #130",
+      "number": "130",
+      "url": "https://www.marvel.com/comics/issue/23748/thunderbolts_2006_130",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 13126,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5744cde57b45a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bong Dazo",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23984,
+      "title": "Deadpool (2008) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/23984/deadpool_2008_9",
+      "seriesId": 5701,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2009-04-01T00:00:00+0000",
+      "mu": "2009-04-01T00:00:00+0000",
+      "digitalId": 14091,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/57324a638b8ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Pearson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23940,
+      "title": "Thunderbolts (2006) #131",
+      "number": "131",
+      "url": "https://www.marvel.com/comics/issue/23940/thunderbolts_2006_131",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-04-29T00:00:00+0000",
+      "mu": "2009-04-29T00:00:00+0000",
+      "digitalId": 13630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5744ce4c7e1c6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bong Dazo",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23655,
+      "title": "Dark Avengers (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23655/dark_avengers_2009_2",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-02-18T00:00:00+0000",
+      "mu": "2009-02-18T00:00:00+0000",
+      "digitalId": 13539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/514c9cc2cd25c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23821,
+      "title": "Dark Avengers (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/23821/dark_avengers_2009_3",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-03-18T00:00:00+0000",
+      "mu": "2009-03-18T00:00:00+0000",
+      "digitalId": 12983,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/514c9ce657dee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24013,
+      "title": "Dark Avengers (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/24013/dark_avengers_2009_4",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-04-29T00:00:00+0000",
+      "mu": "2009-04-29T00:00:00+0000",
+      "digitalId": 12529,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/514c9e4c8497a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23106,
+      "title": "The Mighty Avengers (2007) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/23106/the_mighty_avengers_2007_21",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-02-04T00:00:00+0000",
+      "mu": "2009-02-04T00:00:00+0000",
+      "digitalId": 13054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/04/4f7c8e76e8feb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23603,
+      "title": "The Mighty Avengers (2007) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/23603/the_mighty_avengers_2007_22",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-02-25T00:00:00+0000",
+      "mu": "2009-02-25T00:00:00+0000",
+      "digitalId": 13879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/4f7c8ef244ac0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23762,
+      "title": "The Mighty Avengers (2007) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/23762/the_mighty_avengers_2007_23",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 13107,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/4f7c8ff521376",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23964,
+      "title": "The Mighty Avengers (2007) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/23964/the_mighty_avengers_2007_24",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-04-22T00:00:00+0000",
+      "mu": "2009-04-22T00:00:00+0000",
+      "digitalId": 13584,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/4f7c90635bfbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24163,
+      "title": "The Mighty Avengers (2007) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/24163/the_mighty_avengers_2007_25",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-06-03T00:00:00+0000",
+      "mu": "2009-06-03T00:00:00+0000",
+      "digitalId": 12534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/4f7c916638465",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Noah Salonga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25970,
+      "title": "The Mighty Avengers (2007) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/25970/the_mighty_avengers_2007_26",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-06-17T00:00:00+0000",
+      "mu": "2009-06-17T00:00:00+0000",
+      "digitalId": 12654,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4f7c9235e45ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Harvey Tolibao",
+          "role": "cover artist"
+        },
+        {
+          "name": "Noah Salonga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23583,
+      "title": "New Avengers (2004) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/23583/new_avengers_2004_50",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-02-25T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 13980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5ca50b348d203",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Aja",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Gaydos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23747,
+      "title": "New Avengers (2004) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/23747/new_avengers_2004_51",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-08-18T00:00:00+0000",
+      "digitalId": 13058,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/5773ea00cea12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 23938,
+      "title": "New Avengers (2004) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/23938/new_avengers_2004_52",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-04-22T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 13528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5773e90f6cd22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24145,
+      "title": "New Avengers (2004) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/24145/new_avengers_2004_53",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-05-28T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 12498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/5773e905001e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26031,
+      "title": "New Avengers (2004) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/26031/new_avengers_2004_54",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 12688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5773e8eff2441",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25971,
+      "title": "The Mighty Avengers (2007) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/25971/the_mighty_avengers_2007_27",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-07-15T00:00:00+0000",
+      "mu": "2009-07-15T00:00:00+0000",
+      "digitalId": 12958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/4f7c92a66c689",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25972,
+      "title": "The Mighty Avengers (2007) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/25972/the_mighty_avengers_2007_28",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-08-19T00:00:00+0000",
+      "mu": "2009-08-19T00:00:00+0000",
+      "digitalId": 13585,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/4f7c9338178f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25973,
+      "title": "The Mighty Avengers (2007) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/25973/the_mighty_avengers_2007_29",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-09-16T00:00:00+0000",
+      "mu": "2011-03-08T00:00:00+0000",
+      "digitalId": 16909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5b0467ce85b29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25974,
+      "title": "The Mighty Avengers (2007) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/25974/the_mighty_avengers_2007_30",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2011-03-15T00:00:00+0000",
+      "digitalId": 13583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4f7c943b0e7a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25975,
+      "title": "The Mighty Avengers (2007) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/25975/the_mighty_avengers_2007_31",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-03-22T00:00:00+0000",
+      "digitalId": 17631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/4f7c94a00e459",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24216,
+      "title": "Dark Avengers (2009) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/24216/dark_avengers_2009_5",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-06-03T00:00:00+0000",
+      "mu": "2009-06-03T00:00:00+0000",
+      "digitalId": 12580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/514c9eef8c7d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24810,
+      "title": "Dark Avengers (2009) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/24810/dark_avengers_2009_6",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12677,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/514c9f24153c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Conrad",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24573,
+      "title": "Avengers: The Initiative (2007) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/24573/avengers_the_initiative_2007_25",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12673,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/4e959a67b3953",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27543,
+      "title": "Avengers: The Initiative (2007) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/27543/avengers_the_initiative_2007_26",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-07-22T00:00:00+0000",
+      "mu": "2010-08-17T00:00:00+0000",
+      "digitalId": 13989,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/4e8214ea4c0ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo De Longis",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27544,
+      "title": "Avengers: The Initiative (2007) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/27544/avengers_the_initiative_2007_27",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2010-10-05T00:00:00+0000",
+      "digitalId": 16413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/4e8217d23c163",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo De Longis",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26033,
+      "title": "New Avengers (2004) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/26033/new_avengers_2004_55",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-07-29T00:00:00+0000",
+      "mu": "2010-02-26T00:00:00+0000",
+      "digitalId": 13466,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5773e8e143a75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26035,
+      "title": "New Avengers (2004) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/26035/new_avengers_2004_56",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2011-09-09T16:27:42+0000",
+      "digitalId": 16390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5773e7d8f3312",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26036,
+      "title": "New Avengers (2004) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/26036/new_avengers_2004_57",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2010-11-09T00:00:00+0000",
+      "digitalId": 13467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5773e801c7334",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26037,
+      "title": "New Avengers (2004) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/26037/new_avengers_2004_58",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-10-28T00:00:00+0000",
+      "mu": "2010-11-16T00:00:00+0000",
+      "digitalId": 13717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5773e6451f4e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25976,
+      "title": "The Mighty Avengers (2007) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/25976/the_mighty_avengers_2007_32",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2011-03-29T00:00:00+0000",
+      "digitalId": 15037,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4f7c9504222ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 25977,
+      "title": "The Mighty Avengers (2007) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/25977/the_mighty_avengers_2007_33",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-03-29T00:00:00+0000",
+      "digitalId": 15035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/4f7c96b72cc60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27513,
+      "title": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27513/dark_avengersuncanny_x-men_utopia_1_2009_1",
+      "seriesId": 8799,
+      "seriesName": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/4bb45b68ef7cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Top Cow Joe Weems",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26966,
+      "title": "Uncanny X-Men (1963) #513",
+      "number": "513",
+      "url": "https://www.marvel.com/comics/issue/26966/uncanny_x-men_1963_513",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-07-01T00:00:00+0000",
+      "mu": "2010-09-01T00:00:00+0000",
+      "digitalId": 12766,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/59271fc24f6e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24812,
+      "title": "Dark Avengers (2009) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/24812/dark_avengers_2009_7",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-07-15T00:00:00+0000",
+      "mu": "2009-07-15T00:00:00+0000",
+      "digitalId": 12945,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/514c9f5f097d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luke Ross",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26967,
+      "title": "Uncanny X-Men (1963) #514",
+      "number": "514",
+      "url": "https://www.marvel.com/comics/issue/26967/uncanny_x-men_1963_514",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-08-12T00:00:00+0000",
+      "mu": "2010-11-17T00:00:00+0000",
+      "digitalId": 16919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/5927228f489d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rian Hughes",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24813,
+      "title": "Dark Avengers (2009) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/24813/dark_avengers_2009_8",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2011-01-24T00:00:00+0000",
+      "digitalId": 16557,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/514ca06314a11",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luke Ross",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27512,
+      "title": "Dark Avengers/Uncanny X-Men: Exodus (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27512/dark_avengersuncanny_x-men_exodus_2009_1",
+      "seriesId": 8798,
+      "seriesName": "Dark Avengers/Uncanny X-Men: Exodus (2009)",
+      "onSale": "2009-09-10T00:00:00+0000",
+      "mu": "2011-01-25T15:09:50+0000",
+      "digitalId": 16942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5ae75f7d92355",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27545,
+      "title": "Avengers: The Initiative (2007) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/27545/avengers_the_initiative_2007_28",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2011-03-08T00:00:00+0000",
+      "digitalId": 17454,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4e8f27f0adbe5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo De Longis",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27546,
+      "title": "Avengers: The Initiative (2007) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/27546/avengers_the_initiative_2007_29",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-10-28T00:00:00+0000",
+      "mu": "2011-03-15T00:00:00+0000",
+      "digitalId": 13608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/4e8f2caa77cf6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo De Longis",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27547,
+      "title": "Avengers: The Initiative (2007) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/27547/avengers_the_initiative_2007_30",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2011-03-22T00:00:00+0000",
+      "digitalId": 13609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4e8f31c2e02ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26038,
+      "title": "New Avengers (2004) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/26038/new_avengers_2004_59",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2011-02-22T00:00:00+0000",
+      "digitalId": 17632,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/5773e60d6594e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26039,
+      "title": "New Avengers (2004) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/26039/new_avengers_2004_60",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2015-10-19T00:00:00+0000",
+      "digitalId": 17634,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5773e57c2cdaf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27420,
+      "title": "DARK REIGN: THE LIST - AVENGERS 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27420/dark_reign_the_list_-_avengers_1_2009_1",
+      "seriesId": 43541,
+      "seriesName": "DARK REIGN: THE LIST - AVENGERS 1 (2009 - Present)",
+      "onSale": "2009-09-09T00:00:00+0000",
+      "mu": "2009-09-09T00:00:00+0000",
+      "digitalId": 13693,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/52c5cb286f828",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26024,
+      "title": "New Avengers Annual (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/26024/new_avengers_annual_2009_3",
+      "seriesId": 8140,
+      "seriesName": "New Avengers Annual (2009)",
+      "onSale": "2009-12-09T00:00:00-0500",
+      "mu": "2011-04-05T00:00:00-0400",
+      "digitalId": 17635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/56425a92ad43c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 29288,
+      "title": "The Mighty Avengers (2007) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/29288/the_mighty_avengers_2007_34",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2010-03-03T00:00:00+0000",
+      "mu": "2010-12-14T00:00:00+0000",
+      "digitalId": 13967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/4f7c983a17847",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24809,
+      "title": "Dark Avengers Annual (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24809/dark_avengers_annual_2009_1",
+      "seriesId": 7676,
+      "seriesName": "Dark Avengers Annual (2009)",
+      "onSale": "2009-12-03T00:00:00+0000",
+      "mu": "2010-10-05T00:00:00+0000",
+      "digitalId": 15300,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5b3689c807506",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24147,
+      "title": "Thunderbolts (2006) #132",
+      "number": "132",
+      "url": "https://www.marvel.com/comics/issue/24147/thunderbolts_2006_132",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-05-20T00:00:00+0000",
+      "mu": "2009-05-20T00:00:00+0000",
+      "digitalId": 13631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5c239ffa49743",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Miguel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto De La Torre",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26755,
+      "title": "Thunderbolts (2006) #133",
+      "number": "133",
+      "url": "https://www.marvel.com/comics/issue/26755/thunderbolts_2006_133",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5c23a594daa27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Miguel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26756,
+      "title": "Thunderbolts (2006) #134",
+      "number": "134",
+      "url": "https://www.marvel.com/comics/issue/26756/thunderbolts_2006_134",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-07-29T00:00:00+0000",
+      "mu": "2009-07-29T00:00:00+0000",
+      "digitalId": 15966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5c23ab4fdfc7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26757,
+      "title": "Thunderbolts (2006) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/26757/thunderbolts_2006_135",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-09-10T00:00:00+0000",
+      "mu": "2011-06-10T00:00:00+0000",
+      "digitalId": 16895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5c23b0e984aa1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26758,
+      "title": "Thunderbolts (2006) #136",
+      "number": "136",
+      "url": "https://www.marvel.com/comics/issue/26758/thunderbolts_2006_136",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-09-30T00:00:00+0000",
+      "mu": "2011-06-13T00:00:00+0000",
+      "digitalId": 13475,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5c23b733471f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26759,
+      "title": "Thunderbolts (2006) #137",
+      "number": "137",
+      "url": "https://www.marvel.com/comics/issue/26759/thunderbolts_2006_137",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2011-06-20T00:00:00+0000",
+      "digitalId": 18625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5744d10b9a1e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Rebecca Buchman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Diggle",
+          "role": "writer"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24814,
+      "title": "Dark Avengers (2009) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/24814/dark_avengers_2009_9",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-09-16T00:00:00+0000",
+      "mu": "2009-12-23T00:00:00+0000",
+      "digitalId": 13562,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/514ca04f8dedc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24806,
+      "title": "Dark Avengers (2009) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/24806/dark_avengers_2009_10",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2010-02-09T00:00:00+0000",
+      "digitalId": 13811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/514ca040da121",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24807,
+      "title": "Dark Avengers (2009) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/24807/dark_avengers_2009_11",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-04-12T00:00:00+0000",
+      "digitalId": 13571,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/514ca194535bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 24808,
+      "title": "Dark Avengers (2009) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/24808/dark_avengers_2009_12",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2011-02-15T11:29:42+0000",
+      "digitalId": 17382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/514ca1caf3b63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 27548,
+      "title": "Avengers: The Initiative (2007) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/27548/avengers_the_initiative_2007_31",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2010-11-16T00:00:00+0000",
+      "digitalId": 17393,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/4e95d72bcf5c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26760,
+      "title": "Thunderbolts (2006) #138",
+      "number": "138",
+      "url": "https://www.marvel.com/comics/issue/26760/thunderbolts_2006_138",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-06-24T00:00:00+0000",
+      "digitalId": 13632,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5c23d44fa606f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26761,
+      "title": "Thunderbolts (2006) #139",
+      "number": "139",
+      "url": "https://www.marvel.com/comics/issue/26761/thunderbolts_2006_139",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2011-06-27T00:00:00+0000",
+      "digitalId": 14804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5c23db5cc8bef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 26762,
+      "title": "Thunderbolts (2006) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/26762/thunderbolts_2006_140",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-06-29T00:00:00+0000",
+      "digitalId": 14805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/5c23e112ea040",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dark Reign prelude: Avengers and Thunderbolts"
+    },
+    {
+      "issueId": 28078,
+      "title": "Siege: The Cabal (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28078/siege_the_cabal_2010_1",
+      "seriesId": 9057,
+      "seriesName": "Siege: The Cabal (2010)",
+      "onSale": "2009-12-03T00:00:00+0000",
+      "mu": "2011-04-01T00:00:00+0000",
+      "digitalId": 17360,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/517aed561bcd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Gaudiano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Lark",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege prelude: The Cabal"
+    },
+    {
+      "issueId": 30468,
+      "title": "Siege (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/30468/siege_2009_1",
+      "seriesId": 9178,
+      "seriesName": "Siege (2009)",
+      "onSale": "2010-01-06T00:00:00+0000",
+      "mu": "2010-12-20T00:00:00+0000",
+      "digitalId": 13748,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/59c2d0c4a857a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #1 and essential tie-ins"
+    },
+    {
+      "issueId": 27549,
+      "title": "Avengers: The Initiative (2007) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/27549/avengers_the_initiative_2007_32",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2010-11-19T00:00:00+0000",
+      "digitalId": 17426,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/4e95daaf4146b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rebecca Buchman",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #1 and essential tie-ins"
+    },
+    {
+      "issueId": 29594,
+      "title": "Dark Avengers (2009) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/29594/dark_avengers_2009_13",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2010-09-14T00:00:00+0000",
+      "digitalId": 14682,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/52c5c387a0455",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #1 and essential tie-ins"
+    },
+    {
+      "issueId": 29016,
+      "title": "New Avengers (2004) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/29016/new_avengers_2004_61",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2011-06-06T00:00:00+0000",
+      "digitalId": 13721,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5773e4eca07ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Serge Lapointe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #1 and essential tie-ins"
+    },
+    {
+      "issueId": 30469,
+      "title": "Siege (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/30469/siege_2009_2",
+      "seriesId": 9178,
+      "seriesName": "Siege (2009)",
+      "onSale": "2010-02-03T00:00:00+0000",
+      "mu": "2011-04-01T00:00:00+0000",
+      "digitalId": 13786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/517aede8d3af6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #2 and essential tie-ins"
+    },
+    {
+      "issueId": 29816,
+      "title": "Avengers: The Initiative (2007) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/29816/avengers_the_initiative_2007_33",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-11-23T00:00:00+0000",
+      "digitalId": 13912,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/4e95e011889e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #2 and essential tie-ins"
+    },
+    {
+      "issueId": 29595,
+      "title": "Dark Avengers (2009) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/29595/dark_avengers_2009_14",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-09-28T00:00:00+0000",
+      "digitalId": 13890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/52c5c3460cac6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #2 and essential tie-ins"
+    },
+    {
+      "issueId": 29017,
+      "title": "New Avengers (2004) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/29017/new_avengers_2004_62",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-11-23T00:00:00+0000",
+      "digitalId": 13931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/5773e352f0f99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #2 and essential tie-ins"
+    },
+    {
+      "issueId": 26694,
+      "title": "Thor (2007) #607",
+      "number": "607",
+      "url": "https://www.marvel.com/comics/issue/26694/thor_2007_607",
+      "seriesId": 2473,
+      "seriesName": "Thor (2007 - 2011)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-12-09T00:00:00+0000",
+      "digitalId": 13919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/56f2c769b23e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Mico Suayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #2 and essential tie-ins"
+    },
+    {
+      "issueId": 29834,
+      "title": "Thunderbolts (2006) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/29834/thunderbolts_2006_141",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-12-06T00:00:00+0000",
+      "digitalId": 13922,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5c25094617dd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nelson Pereira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #2 and essential tie-ins"
+    },
+    {
+      "issueId": 30470,
+      "title": "Siege (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/30470/siege_2009_3",
+      "seriesId": 9178,
+      "seriesName": "Siege (2009)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-12-20T00:00:00+0000",
+      "digitalId": 14079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/517ea96b73710",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 29817,
+      "title": "Avengers: The Initiative (2007) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/29817/avengers_the_initiative_2007_34",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2010-03-24T00:00:00+0000",
+      "mu": "2010-12-21T00:00:00+0000",
+      "digitalId": 14151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/4e95e67859f1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 29596,
+      "title": "Dark Avengers (2009) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/29596/dark_avengers_2009_15",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-12-14T00:00:00+0000",
+      "digitalId": 14081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/52c5c33ae567f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 29289,
+      "title": "The Mighty Avengers (2007) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/29289/the_mighty_avengers_2007_35",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2010-03-24T00:00:00+0000",
+      "mu": "2010-03-24T00:00:00+0000",
+      "digitalId": 14142,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/4f7c98968a421",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 29018,
+      "title": "New Avengers (2004) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/29018/new_avengers_2004_63",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2010-03-24T00:00:00+0000",
+      "mu": "2010-12-21T00:00:00+0000",
+      "digitalId": 14138,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5773e4164c917",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 30484,
+      "title": "New Mutants (2009) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/30484/new_mutants_2009_11",
+      "seriesId": 7455,
+      "seriesName": "New Mutants (2009 - 2012)",
+      "onSale": "2010-03-31T00:00:00+0000",
+      "mu": "2010-12-01T00:00:00+0000",
+      "digitalId": 14233,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5155cbc8e381b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 30570,
+      "title": "Thor (2007) #608",
+      "number": "608",
+      "url": "https://www.marvel.com/comics/issue/30570/thor_2007_608",
+      "seriesId": 2473,
+      "seriesName": "Thor (2007 - 2011)",
+      "onSale": "2010-03-24T00:00:00+0000",
+      "mu": "2010-12-16T00:00:00+0000",
+      "digitalId": 14145,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/56f2c73a7eb70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Mico Suayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 29835,
+      "title": "Thunderbolts (2006) #142",
+      "number": "142",
+      "url": "https://www.marvel.com/comics/issue/29835/thunderbolts_2006_142",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2010-03-24T00:00:00+0000",
+      "mu": "2010-12-07T00:00:00+0000",
+      "digitalId": 14146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/587fd8059f17c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 32926,
+      "title": "Siege: Loki (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/32926/siege_loki_2010_1",
+      "seriesId": 9753,
+      "seriesName": "Siege: Loki (2010)",
+      "onSale": "2010-04-14T00:00:00+0000",
+      "mu": "2011-01-13T00:00:00+0000",
+      "digitalId": 14316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/517af069cce2a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #3 and essential tie-ins"
+    },
+    {
+      "issueId": 30471,
+      "title": "Siege (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/30471/siege_2009_4",
+      "seriesId": 9178,
+      "seriesName": "Siege (2009)",
+      "onSale": "2010-05-12T00:00:00+0000",
+      "mu": "2015-10-15T11:29:19+0000",
+      "digitalId": 14547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/517aee0b2667b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #4 and essential tie-ins"
+    },
+    {
+      "issueId": 29931,
+      "title": "Avengers: The Initiative (2007) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/29931/avengers_the_initiative_2007_35",
+      "seriesId": 1945,
+      "seriesName": "Avengers: The Initiative (2007 - 2010)",
+      "onSale": "2010-05-12T00:00:00+0000",
+      "mu": "2011-01-24T00:00:00+0000",
+      "digitalId": 14576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/4e95e85964001",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #4 and essential tie-ins"
+    },
+    {
+      "issueId": 29933,
+      "title": "Dark Avengers (2009) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/29933/dark_avengers_2009_16",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2010-05-12T00:00:00+0000",
+      "mu": "2011-01-28T00:00:00+0000",
+      "digitalId": 14609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/52c5c336a94ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #4 and essential tie-ins"
+    },
+    {
+      "issueId": 29939,
+      "title": "The Mighty Avengers (2007) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/29939/the_mighty_avengers_2007_36",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2010-04-28T00:00:00+0000",
+      "mu": "2010-12-28T00:00:00+0000",
+      "digitalId": 14433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/4f7c98fe10d2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #4 and essential tie-ins"
+    },
+    {
+      "issueId": 29944,
+      "title": "New Avengers (2004) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/29944/new_avengers_2004_64",
+      "seriesId": 753,
+      "seriesName": "New Avengers (2004 - 2010)",
+      "onSale": "2010-04-28T00:00:00+0000",
+      "mu": "2011-01-04T00:00:00+0000",
+      "digitalId": 14417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/5773e19684c7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #4 and essential tie-ins"
+    },
+    {
+      "issueId": 30571,
+      "title": "Thor (2007) #609",
+      "number": "609",
+      "url": "https://www.marvel.com/comics/issue/30571/thor_2007_609",
+      "seriesId": 2473,
+      "seriesName": "Thor (2007 - 2011)",
+      "onSale": "2010-04-28T00:00:00+0000",
+      "mu": "2010-12-30T00:00:00+0000",
+      "digitalId": 14437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/517e8200a4360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Mico Suayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege #4 and essential tie-ins"
+    },
+    {
+      "issueId": 30572,
+      "title": "Thor (2007) #610",
+      "number": "610",
+      "url": "https://www.marvel.com/comics/issue/30572/thor_2007_610",
+      "seriesId": 2473,
+      "seriesName": "Thor (2007 - 2011)",
+      "onSale": "2010-05-26T00:00:00+0000",
+      "mu": "2011-01-20T00:00:00+0000",
+      "digitalId": 14750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/517e8213d45a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mico Suayan",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Siege aftermath: Thor, Thunderbolts and New Avengers Finale"
+    },
+    {
+      "issueId": 29862,
+      "title": "Thunderbolts (2006) #143",
+      "number": "143",
+      "url": "https://www.marvel.com/comics/issue/29862/thunderbolts_2006_143",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2010-04-28T00:00:00+0000",
+      "mu": "2011-01-03T00:00:00+0000",
+      "digitalId": 14438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/587fd87297785",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege aftermath: Thor, Thunderbolts and New Avengers Finale"
+    },
+    {
+      "issueId": 31473,
+      "title": "New Avengers Finale (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/31473/new_avengers_finale_2010_1",
+      "seriesId": 9720,
+      "seriesName": "New Avengers Finale (2010)",
+      "onSale": "2010-05-12T00:00:00+0000",
+      "mu": "2011-01-25T00:00:00+0000",
+      "digitalId": 14569,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/5e611102e3dbd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 80,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Siege aftermath: Thor, Thunderbolts and New Avengers Finale"
+    }
+  ]
+}

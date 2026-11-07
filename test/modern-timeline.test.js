@@ -1,10 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { modernTimelinePosition } from '../src/js/views/catalog.js';
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { compareIssueSets, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
+import { curatedLedgerDigestFor, curatedRelationshipReportDigestFor } from '../scripts/lib/owner-guide.mjs';
+import { validateApprovalDigest } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
   MODERN_TIMELINE_FEATURED_ID,
@@ -43,6 +47,100 @@ const list = (id, timeline, extra = {}) => ({
   type: 'event',
   timeline,
   ...extra,
+});
+
+test('Siege joins 2010 with the full approved Avengers and Thunderbolts reading and labeled earlier setup', () => {
+  const id = 'siege-dark-reign-prelude';
+  const selected = modernTimelineLists(catalog.lists);
+  const entry = selected.find((item) => item.id === id);
+  assert.ok(entry);
+  assert.equal(entry.timeline, 2010);
+  assert.equal(entry.collections, 0);
+  assert.equal(entry.count, 107);
+  assert.match(entry.description, /prelude beginning in 2008/);
+  assert.deepEqual(selected.filter((item) => item.timeline === 2010).map((item) => item.id), [
+    id, 'doomwar', 'second-coming', 'thanos-imperative', 'x-men-curse-of-the-mutants',
+    'shadowland', 'wolverine-goes-to-hell', 'chaos-war',
+  ]);
+  assert.equal(selected.length, currentReadingCensus.modernTimeline);
+  assert.equal(selected.filter((item) => item.id === id).length, 1);
+  assert.ok(!selected.some((item) => item.id === 'dark-reign-avengers'));
+  const payload = JSON.parse(readFileSync(join(ROOT, 'src', 'data', entry.file), 'utf8'));
+  const vector = payload.items.map((item) => item.issueId);
+  assert.equal(createHash('sha256').update(JSON.stringify(vector)).digest('hex'),
+    'caae0c6f1f8b0e00adf52726862f387b6c814edfb1855a82e3111e3f347c2003');
+  assert.deepEqual([vector[0], vector.at(-1)], [22980, 31473]);
+  assert.equal(new Set(vector).size, 107);
+  assert.equal(payload.placeholders, 0);
+  assert.equal(payload.sectionKind, 'reading-blocks');
+  assert.equal(new Set(payload.items.map((item) => item.collectedIn)).size, 7);
+  assert.match(payload.items[0].collectedIn, /^Dark Reign prelude/);
+  assert.match(payload.items.at(-1).collectedIn, /Siege aftermath/);
+  for (const [seriesId, first, last] of [
+    [6599, 1, 16], [753, 48, 64], [1866, 21, 36], [1945, 20, 35], [18527, 126, 143],
+  ]) {
+    const numbers = payload.items.filter((item) => item.seriesId === seriesId).map((item) => Number(item.number));
+    assert.deepEqual([...numbers].sort((a, b) => a - b),
+      Array.from({ length: last - first + 1 }, (_, index) => first + index), `series ${seriesId}`);
+  }
+  assert.deepEqual(payload.items.filter((item) => item.seriesId === 9178).map((item) => item.title), [
+    'Siege (2009) #1', 'Siege (2009) #2', 'Siege (2009) #3', 'Siege (2009) #4',
+  ]);
+  const crossoverAt = vector.indexOf(23790);
+  assert.deepEqual(vector.slice(crossoverAt, crossoverAt + 4), [23790, 23748, 23984, 23940]);
+  const utopiaAt = vector.indexOf(27513);
+  assert.deepEqual(vector.slice(utopiaAt, utopiaAt + 6), [27513, 26966, 24812, 26967, 24813, 27512]);
+});
+
+test('Siege retains exact source accounting and human authority for the complete approved library snapshot', () => {
+  const ledger = JSON.parse(readFileSync(join(ROOT, 'scripts', 'data', 'curated-source-ledgers',
+    'siege-dark-reign-prelude.json'), 'utf8'));
+  assert.equal(ledger.ledgerDigest, curatedLedgerDigestFor(ledger));
+  assert.equal(ledger.ledgerDigest, '2eedf17039c6e7092568c8ec01977d15ec2b62a7ab73aaa70594d02fb80775d9');
+  assert.deepEqual(ledger.sourceRows.map((row) => row.sourcePosition),
+    Array.from({ length: 107 }, (_, index) => index + 1));
+  assert.deepEqual(ledger.sourceRows.map((row) => row.selectedIssueId), ledger.resolvedVector);
+  assert.deepEqual(ledger.counts, { intendedPositions: 107, resolved: 107, gaps: 0, repeats: 1 });
+  assert.equal(ledger.repeats[0].sourceReference, 'Avengers: The Initiative #31');
+  assert.deepEqual(ledger.sourceGaps, []);
+  const review = ledger.relationshipReview;
+  const report = review.report;
+  assert.equal(report.reportDigest, '840cdb966b2724af5b3b29afa3784c77d677b5151ede829dad23fb9741cbaa48');
+  assert.equal(report.reportDigest, curatedRelationshipReportDigestFor(report));
+  assert.equal(report.ledgerDigest, ledger.ledgerDigest);
+  validateApprovalDigest(review, ledger.id);
+  assert.equal(review.sourceReview.authorityType, 'human');
+  assert.equal(review.sourceReview.authorityIdentity, 'raymond-nassar');
+  assert.equal(review.sourceReview.ledgerDigest, ledger.ledgerDigest);
+  assert.equal(review.sourceReview.reportDigest, report.reportDigest);
+  const peers = new Map();
+  const manifest = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'curated-lists.json'), 'utf8'));
+  for (const entry of manifest.lists) if (entry.id !== ledger.id) {
+    peers.set(entry.id, JSON.parse(readFileSync(join(ROOT, 'src', 'data', entry.out), 'utf8')));
+  }
+  for (const entry of catalog.lists) if (entry.id !== ledger.id) {
+    peers.set(entry.id, JSON.parse(readFileSync(join(ROOT, 'src', 'data', entry.file), 'utf8')));
+  }
+  assert.equal(report.comparisonCount, 340);
+  assert.equal(report.comparisons.length, report.comparisonCount);
+  assert.equal(new Set(report.comparisons.map((item) => item.orderId)).size, report.comparisonCount);
+  assert.equal(report.comparisons.filter((item) => item.relationship === 'partial').length, 21);
+  assert.equal(review.dispositions.length, report.comparisonCount);
+  for (const comparison of report.comparisons) {
+    const payload = peers.get(comparison.orderId);
+    assert.ok(payload);
+    assert.deepEqual(comparison, {
+      orderId: comparison.orderId,
+      ...compareIssueSets(ledger.resolvedVector.map(String), issueIdsFromValue(payload)),
+    });
+    const authority = review.dispositions.find((item) => item.orderId === comparison.orderId);
+    assert.equal(authority.decision, 'approved');
+    assert.equal(authority.ledgerDigest, ledger.ledgerDigest);
+    assert.equal(authority.reportDigest, report.reportDigest);
+    assert.equal(authority.authorityType, comparison.relationship === 'none' ? 'policy' : 'human');
+    if (comparison.relationship === 'partial') assert.equal(authority.authority, 'raymond-nassar');
+    assert.deepEqual(authority.sharedIds, comparison.sharedIds);
+  }
 });
 
 test('intentional completion advances timeline positioning without changing actual partial comic progress', () => {
@@ -177,20 +275,26 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
   assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
-  assert.deepEqual(selectedLists.slice(-2).map(({ id, timeline }) => [id, timeline]), [
+  assert.deepEqual(selectedLists.slice(-5).map(({ id, timeline }) => [id, timeline]), [
     ['fall-house-x-rise-powers-x', 2024],
+    ['captain-america-2025-our-secret-wars', 2025],
     ['one-world-under-doom', 2025],
+    ['captain-america-2025-dooms-shadow', 2025],
+    ['captain-america-2025-hells-angel', 2026],
   ]);
-  assert.equal(selectedStories.at(-1).key, 'list:one-world-under-doom');
-  assert.equal(selectedStories.at(-1).lists.length, 1);
-  assert.equal(selectedStories.at(-1).lists[0].description.includes(
+  const doomStory = selectedStories.find(({ key }) => key === 'list:one-world-under-doom');
+  assert.equal(selectedStories.at(-1).key, 'list:captain-america-2025-hells-angel');
+  assert.equal(doomStory.lists.length, 1);
+  assert.equal(doomStory.lists[0].description.includes(
     'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
   ), true);
-  assert.equal(selectedStories.at(-1).lists[0].description.includes(
+  assert.equal(doomStory.lists[0].description.includes(
     'Read Fantastic Four (2025) #1-3 together.',
   ), true);
   assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
-  assert.ok(unplacedSection.stories.some(({ key }) => key === 'list:one-world-under-doom'));
+  assert.ok(['list:one-world-under-doom', 'list:captain-america-2025-our-secret-wars',
+    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel']
+    .every((key) => unplacedSection.stories.some((story) => story.key === key)));
   assert.equal(olderEvents.length, 38);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),

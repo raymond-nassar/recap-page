@@ -5400,7 +5400,7 @@ const SCENARIOS = [
         && timeline.doom.meta.includes(
           '10 comics have owner-confirmed identities but no provider details or covers',
         )
-        && timeline.cardYears.at(-1) === 2025
+        && timeline.cardYears.at(-1) === 2026
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
           { title: 'Daredevil & Black Widow Opening Sequence', year: 1998 },
@@ -5408,7 +5408,7 @@ const SCENARIOS = [
           { title: 'Marvel Boy to Early X-Men Setup', year: 2000 },
         ]),
         JSON.stringify({ cards: timeline.cards, firstCards: timeline.firstCards }));
-      t.check('the 2025 Doom event follows the 2024 timeline entry without joining another surface',
+      t.check('the 2025 Doom event keeps its year among its Captain America peers without joining another surface',
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
@@ -18364,7 +18364,7 @@ SCENARIOS.push(
           await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBefore);
         t.check('the bundled catalog reports the current Timeline and Genres lists',
           census.includes(`${currentReadingCensus.modernTimeline} Reading Lists`)
-            && census.includes('299 Reading Lists'), JSON.stringify(census));
+            && census.includes('303 Reading Lists'), JSON.stringify(census));
 
         await chooseGenre(page, 'political');
         const searched = await page.evaluate(() => [...document.querySelectorAll(
@@ -22882,7 +22882,10 @@ for (const guide of readOwnerGuideRegistry().guides) {
   const contract = JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'));
   SCENARIOS.push(ownerGuideScenario(contract));
   const mapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${guide.id}.json`, import.meta.url), 'utf8'));
-  if (mapping.rows.some((row) => row.identityEvidenceKind === 'owner-confirmed-identity')) {
+  const ownerRows = mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length;
+  // A guide whose rows are all owner-confirmed had no earlier provider-only copy for a reader to save,
+  // and the saved-copy seed needs four such rows, so Doom's Shadow and Hell's Angel register none.
+  if (ownerRows > 0 && mapping.rows.length - ownerRows >= 4) {
     SCENARIOS.push(ownerGuideScenario(contract, { savedCopyOnly: true }));
   }
 }
@@ -23188,7 +23191,7 @@ async function runLongCollectionNavigation(page, t) {
       id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
     })));
     receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
-      cards40: eventIds.length === 40, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      cards41: eventIds.length === 41, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
       variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
       crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
       linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),
@@ -23196,7 +23199,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
+      ['fresh-start', 13, 'king-in-black'], ['current', 20, 'captain-america-2025-hells-angel'],
       ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);

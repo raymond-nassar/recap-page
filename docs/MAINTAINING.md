@@ -550,7 +550,11 @@ At minimum, record:
 * The final resolved issue IDs.
 * Independent verification for every non-mechanical correction.
 
-Never scrape `marvel.com` or `read.marvel.com`. Do not commit comic images.
+Never scrape `marvel.com` or `read.marvel.com`. Do not commit comic images. The one owner-approved
+exception: when the metadata provider has no record of an owner-confirmed comic, its own marvel.com
+issue page may be read for the cover image address only, recorded with its source as described in
+the [data provenance](DATA_PROVENANCE.md#owner-approved-external-supplement-for-owner-confirmed-comics)
+policy. `read.marvel.com` is never read.
 
 ## Build a Comic Book Herald packet
 
@@ -1753,3 +1757,19 @@ The final check must exit zero with zero drifted, zero new and zero removed.
 Ordinary blessing cannot create or repair immutable history declarations; use the separately
 approved [historical evidence flow](../CONTRIBUTING.md#historical-evidence-anchors) when that is
 actually required, not as an archive marker.
+
+## Local checklist reading blocks
+
+An ordinary local checklist may opt into `"sectionKind": "reading-blocks"` in the curated
+manifest. Its section labels still populate `collectedIn`, preserving the existing presentation
+and saved-data format, but named vendoring reports zero collected editions. Omitted values keep
+the ordinary collection-count behavior. The option is closed: unknown values, remote sources
+and partition parents are rejected.
+
+The [Siege compilation](../src/data/orders/siege-dark-reign-prelude.md) uses this distinction for
+its Dark Reign prelude and event chapters. Maintain its exact selection and credited source
+boundaries in the [source ledger](../scripts/data/curated-source-ledgers/siege-dark-reign-prelude.json);
+changes to the factual vector or overlap report need fresh digest-bound authority.
+Use the named vendor route with genuine request-bound metadata cache evidence, never fabricated
+responses. A curated event explicitly registered with `"surface": "modern-timeline"` contributes
+to the current reading census without changing the immutable baseline or owner contracts.

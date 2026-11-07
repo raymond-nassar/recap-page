@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T07:42:04.187Z",
+  "generatedAt": "2026-11-07T02:45:33.118Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2088,6 +2088,54 @@
       "updatedAt": "2026-08-22T09:26:45.416Z"
     },
     {
+      "id": "captain-america-2025-our-secret-wars",
+      "file": "captain_america_2025_our_secret_wars.json",
+      "name": "Captain America (2025) Vol. 1: Our Secret Wars",
+      "description": "Steve Rogers' first mission after waking from the ice, and his first encounter with Doctor Doom in Latveria.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
+      "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 1,
+      "ownerSupplementedCount": 1,
+      "collections": 0,
+      "characters": [
+        "Captain America",
+        "Doctor Doom"
+      ],
+      "keywords": [
+        "Captain America (2025)",
+        "Chip Zdarsky",
+        "Our Secret Wars",
+        "One World Under Doom"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2025,
+      "coverIssueId": 123356,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/685c54025d1eb",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1146",
+      "sourceSection": "Vol. 1: Our Secret Wars (collects #1-5)",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T00:05:26.469Z"
+    },
+    {
       "id": "one-world-under-doom",
       "file": "one_world_under_doom.json",
       "name": "One World Under Doom",
@@ -2132,6 +2180,104 @@
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
       "updatedAt": "2026-10-22T12:00:00.000Z"
+    },
+    {
+      "id": "captain-america-2025-dooms-shadow",
+      "file": "captain_america_2025_dooms_shadow.json",
+      "name": "Captain America (2025) Vol. 2: Doom's Shadow",
+      "description": "The aftermath of One World Under Doom, civil war in Latveria, and a clash with Red Hulk.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "war",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
+      "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 6,
+      "ownerSupplementedCount": 6,
+      "collections": 0,
+      "characters": [
+        "Captain America",
+        "Doctor Doom",
+        "Red Hulk"
+      ],
+      "keywords": [
+        "Captain America (2025)",
+        "Chip Zdarsky",
+        "Doom's Shadow",
+        "One World Under Doom"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2025,
+      "coverIssueId": 123361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/6957e7a70cf64",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1146",
+      "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T00:05:26.821Z"
+    },
+    {
+      "id": "captain-america-2025-hells-angel",
+      "file": "captain_america_2025_hells_angel.json",
+      "name": "Captain America (2025) Vol. 3: Hell's Angel",
+      "description": "Steve is in a coma and trapped in Hell with Doctor Doom, searching for a sword that can destroy Mephisto, as the Marvel Universe heads toward Armageddon.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural"
+      ],
+      "tones": [
+        "dark"
+      ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
+      "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 5,
+      "ownerSupplementedCount": 5,
+      "collections": 0,
+      "characters": [
+        "Captain America",
+        "Doctor Doom",
+        "Mephisto"
+      ],
+      "keywords": [
+        "Captain America (2025)",
+        "Chip Zdarsky",
+        "Hell's Angel"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2026,
+      "coverIssueId": 130146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/01a1456b9761",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1146",
+      "sourceSection": "Vol. 3: Hell's Angel (collects #12-16)",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T00:05:27.240Z"
     },
     {
       "id": "marvel-zombies-reading-order",
@@ -14130,6 +14276,61 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T15:16:57.185Z"
+    },
+    {
+      "id": "siege-dark-reign-prelude",
+      "file": "siege_dark_reign_prelude.json",
+      "name": "Siege: Dark Reign Prelude and Essential Tie-Ins",
+      "description": "Norman Osborn's rise and fall, from a Dark Reign prelude beginning in 2008 to the 2010 Siege of Asgard. Follow Dark Avengers, New Avengers, Mighty Avengers, Avengers: The Initiative and Thunderbolts, with the complete four-issue Siege event and selected crossover chapters. The prelude includes the Deadpool/Thunderbolts crossover and Utopia; the event finishes with New Avengers Finale.",
+      "type": "event",
+      "depth": "essential",
+      "storyTypes": [
+        "political",
+        "war",
+        "myth-fantasy"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Brian Michael Bendis"
+      ],
+      "count": 107,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Dark Avengers",
+        "Thunderbolts",
+        "Norman Osborn",
+        "Thor",
+        "Loki"
+      ],
+      "keywords": [
+        "Siege",
+        "Dark Reign",
+        "New Avengers",
+        "Mighty Avengers",
+        "Avengers: The Initiative",
+        "Thunderbolts",
+        "Utopia",
+        "Deadpool"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2010,
+      "coverIssueId": 30468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/59c2d0c4a857a",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+      "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T02:45:33.118Z"
     },
     {
       "id": "doomwar",

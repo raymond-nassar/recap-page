@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "captain-america-2025-dooms-shadow",
+  "sourceProvider": "owner-selection",
+  "sourceAuthor": null,
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/1146",
+  "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
+  "sourceRetrievedAt": "2026-11-06",
+  "sourceLicense": null,
+  "sourceCredit": "Selected by raymond-nassar for Modern Timeline",
+  "attributionStatus": "Owner-selection credit only; original compiler and source page are not identified in the supplied snapshot.",
+  "sourceFacts": {
+    "selectionSupplier": "Repository owner",
+    "originalCompiler": null,
+    "originalSourcePage": null,
+    "permissionBasis": "The owner explicitly directed this exact selection for delivery to the app; no broader license is asserted."
+  },
+  "gapIssueUrl": "https://github.com/raymond-nassar/recap-page/issues/1145",
+  "inputReceipt": {
+    "sourceKind": "pasted-message-snapshot",
+    "name": "captain-america-2025-zdarsky.md",
+    "snapshotSha256": "e26b3955d72261f7a99697915b721cdd89b26bafbe51f056cfd06e8aab9f3c91",
+    "snapshotBytes": 1583,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "sourceOccurrenceCount": 6,
+  "sourceIdentityCount": 6,
+  "publishedIssueCount": 0,
+  "sourceGapCount": 6,
+  "repeatedSourceReferenceCount": 0,
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceBullet": 6,
+      "section": null,
+      "sourceReference": "#6 https://www.marvel.com/comics/issue/123361/captain_america_2025_6",
+      "sourceIdentity": "Captain America (2025) #6",
+      "issueNumber": "6",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 123361,
+        "url": "https://marvel.emreparker.com/v1/issues/123361",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBullet": 7,
+      "section": null,
+      "sourceReference": "#7 https://www.marvel.com/comics/issue/123362/captain_america_2025_7",
+      "sourceIdentity": "Captain America (2025) #7",
+      "issueNumber": "7",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 123362,
+        "url": "https://marvel.emreparker.com/v1/issues/123362",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBullet": 8,
+      "section": null,
+      "sourceReference": "#8 https://www.marvel.com/comics/issue/123363/captain_america_2025_8",
+      "sourceIdentity": "Captain America (2025) #8",
+      "issueNumber": "8",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 123363,
+        "url": "https://marvel.emreparker.com/v1/issues/123363",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBullet": 9,
+      "section": null,
+      "sourceReference": "#9 https://www.marvel.com/comics/issue/123364/captain_america_2025_9",
+      "sourceIdentity": "Captain America (2025) #9",
+      "issueNumber": "9",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 123364,
+        "url": "https://marvel.emreparker.com/v1/issues/123364",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBullet": 10,
+      "section": null,
+      "sourceReference": "#10 https://www.marvel.com/comics/issue/123365/",
+      "sourceIdentity": "Captain America (2025) #10",
+      "issueNumber": "10",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 123365,
+        "url": "https://marvel.emreparker.com/v1/issues/123365",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    },
+    {
+      "sourcePosition": 6,
+      "sourceBullet": 11,
+      "section": null,
+      "sourceReference": "#11 https://www.marvel.com/comics/issue/130145/captain_america_2025_11",
+      "sourceIdentity": "Captain America (2025) #11",
+      "issueNumber": "11",
+      "sourceSeriesCandidateId": 42747,
+      "sourceSeriesUrl": "https://www.marvel.com/comics/series/42747/captain_america_2025_present",
+      "status": "gap",
+      "selectedIssueId": null,
+      "canonicalSourcePosition": null,
+      "optional": false,
+      "annotation": null,
+      "providerLookup": {
+        "candidateRecordId": 130145,
+        "url": "https://marvel.emreparker.com/v1/issues/130145",
+        "httpStatus": 404,
+        "retrievedAt": "2026-11-06",
+        "note": "A failed provider lookup is not evidence of nonexistence, publication or availability."
+      }
+    }
+  ]
+}

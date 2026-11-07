@@ -348,20 +348,24 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
       await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);
       checkSaved(t, await readSaved(page));
       if (nextOriginal.identityEvidenceKind === 'owner-confirmed-identity') {
-        const identityStatus = await page.$$eval('#rows .row', (nodes, id) => {
+        const supplemented = nextOriginal.metadataSourceKind === 'owner-external-supplement';
+        const identityStatus = await page.$$eval('#rows .row', (nodes, id, badgeClass) => {
           const row = nodes.find((node) => Number(node.querySelector('.rt')?.dataset.issueId) === id);
-          const badge = row?.querySelector('.badge-owner-confirmed');
+          const badge = row?.querySelector(`.${badgeClass}`);
           return {
             title: row?.querySelector('.rt')?.textContent.trim() ?? null,
             badge: badge?.childNodes[0]?.textContent.trim() ?? null,
             hint: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
           };
-        }, nextOriginal.issueId);
+        }, nextOriginal.issueId, supplemented ? 'badge-owner-supplemented' : 'badge-owner-confirmed');
         t.check('owner-confirmed identity remains explicit after import and reload',
           identityStatus.title === nextOriginal.title
           && identityStatus.badge === 'identity confirmed'
           && /owner confirmed this comic identity/.test(identityStatus.hint ?? '')
-          && /no provider details or cover/.test(identityStatus.hint ?? ''), JSON.stringify(identityStatus));
+          && (supplemented
+            ? /cover and credits come from marvel\.com and the Marvel Fandom wiki/.test(identityStatus.hint ?? '')
+              && !/no provider details or cover/.test(identityStatus.hint ?? '')
+            : /no provider details or cover/.test(identityStatus.hint ?? '')), JSON.stringify(identityStatus));
       }
       await page.evaluate(() => {
         window.__dispatching = true;

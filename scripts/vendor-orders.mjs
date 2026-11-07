@@ -33,6 +33,7 @@ import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.
 import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
 import { countOrderGaps } from '../src/js/lib/model.js';
+import { OWNER_EXTERNAL_SUPPLEMENT_KIND, supplementItemFields } from './lib/owner-external-supplement.mjs';
 import {
   RATED_GUIDE_INDEX_FILE,
   buildRatedGuideIndex,
@@ -86,6 +87,25 @@ async function getText(url) {
 async function loadOrderText(order) {
   if (order.sourceFile) return readFile(join(ORDERS_DIR, order.sourceFile), 'utf8');
   return getText(order.sourceUrl);
+}
+
+// Owner-approved outside details for owner-confirmed comics live on the reviewed mapping, beside
+// their per-field provenance, so this is the only place vendoring may read them from. A list with
+// no owner mapping, or no supplemented row, gets an empty map and vendors exactly as before.
+async function loadOwnerSupplements(order) {
+  let mapping;
+  try {
+    mapping = JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'owner-mappings', `${order.id}.json`), 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return new Map();
+    throw error;
+  }
+  const supplements = new Map();
+  for (const row of mapping.rows ?? []) {
+    if (!Object.hasOwn(row, 'externalMetadataSupplement')) continue;
+    supplements.set(String(row.selectedIssueId), supplementItemFields(row));
+  }
+  return supplements;
 }
 
 async function loadPartitionLedgers(orders) {
@@ -367,7 +387,9 @@ export function catalogContains(payloadById) {
 function catalogEntry(order, payload) {
   const writers = catalogWriters(payload);
   const { coverIssueId, cover } = catalogCover(order, payload);
-  const { placeholders, empty, ownerConfirmed } = countOrderGaps(payload);
+  const {
+    placeholders, empty, ownerConfirmed, ownerSupplemented,
+  } = countOrderGaps(payload);
   return {
     id: order.id,
     file: order.out,
@@ -387,6 +409,8 @@ function catalogEntry(order, payload) {
     placeholderCount: placeholders,
     emptyRecordCount: empty,
     ...(ownerConfirmed ? { ownerConfirmedIdentityCount: ownerConfirmed } : {}),
+    // A subset of the count above, written only when nonzero so older entries keep their bytes.
+    ...(ownerSupplemented ? { ownerSupplementedCount: ownerSupplemented } : {}),
     // Derived from the payload for the same reason the issue count is: a number the reader
     // sees before importing must come from the file they will actually import. Orders that are
     // not divided into collected editions report 0, which the catalog renders as nothing.
@@ -529,12 +553,14 @@ async function main() {
     const { entries, unresolved } = parsedOrder;
     let missingDigital = 0;
     let missingCover = 0;
+    const supplements = await loadOwnerSupplements(order);
 
     const issueItems = entries.map((e) => {
       const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';
       const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});
+      const supplement = ownerConfirmed ? supplements.get(String(e.issueId)) : undefined;
       if (d.digitalId == null) missingDigital += 1;
-      const cover = coverBase(d.cover);
+      const cover = supplement ? supplement.cover : coverBase(d.cover);
       if (!cover) missingCover += 1;
       const metadataTitle = cleanText(d.title ?? e.title);
       const metadataNumber = parseIssueNumber(metadataTitle);
@@ -552,7 +578,7 @@ async function main() {
           url: d.detailUrl ?? e.url,
           seriesId: d.seriesId ?? null,
           seriesName: d.seriesName == null ? null : cleanText(d.seriesName),
-          onSale: d.onSaleDate ?? null,
+          onSale: supplement ? supplement.onSale : (d.onSaleDate ?? null),
           mu: d.unlimitedDate ?? null,
           digitalId: d.digitalId ?? null,
           cover,
@@ -565,10 +591,10 @@ async function main() {
           // `npm run contract` still asserts the service returns it, so this stays reversible by
           // changing this one line back rather than by rebuilding anything.
           description: null,
-          pageCount: d.pageCount ?? null,
-          creators: Array.isArray(d.creators)
+          pageCount: supplement ? supplement.pageCount : (d.pageCount ?? null),
+          creators: supplement ? supplement.creators.map((c) => ({ name: c.name, role: c.role })) : (Array.isArray(d.creators)
             ? d.creators.filter((c) => /writer|penciler|artist/i.test(c.role ?? '')).map((c) => ({ name: c.name, role: c.role }))
-            : [],
+            : []),
           // The one thing this run learned that the item cannot otherwise show. An issue the
           // service answered 404 for is recorded here as refused, so the app is reading what the
           // lookup was told instead of inferring it from every field being empty. Written only
@@ -577,6 +603,10 @@ async function main() {
           // run, so an empty diff is not the thing to check a run against.
           ...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),
           ...(ownerConfirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
+          // Which outside sources filled an owner-confirmed comic is recorded on the mapping row;
+          // the item carries only the closed kind, so the app can say truthfully where the cover
+          // and credits came from while every provider field stays null.
+          ...(supplement ? { metadataSourceKind: OWNER_EXTERNAL_SUPPLEMENT_KIND } : {}),
           // The collected edition this issue belongs to, taken from the checklist's own
           // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
           // no collection record for anything published after 2023, so there is nothing
@@ -615,7 +645,9 @@ async function main() {
     // How many collected editions the order is divided into. Counted from the items rather
     // than from the headings, because a heading with no issues under it is not a book a reader
     // can read, and the catalog states this number next to the issue count.
-    const collections = new Set(items.map((i) => i.collectedIn).filter(Boolean)).size;
+    const collections = order.sectionKind === 'reading-blocks'
+      ? 0
+      : new Set(items.map((i) => i.collectedIn).filter(Boolean)).size;
 
     const dupes = new Set();
     const seenIds = new Set();
@@ -633,6 +665,7 @@ async function main() {
       description: order.description,
       source: order.sourcePage,
       ...(order.sourceSection ? { sourceSection: order.sourceSection } : {}),
+      ...(order.sectionKind ? { sectionKind: order.sectionKind } : {}),
       sourceOrigin: order.sourceOrigin,
       sourceLicense: order.sourceLicense,
       generatedAt,
