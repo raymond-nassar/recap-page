@@ -34,9 +34,8 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 - Improved the iPhone Search navigation's accessibility by presenting its label as one named
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation.
-- A refreshed Recap Page wordmark appears on Home and the project website, with a smaller phone
-  layout and simpler Home navigation. The Marvel Unlimited notice is shorter and links to
-  Marvel's FAQ.
+- Home shows a refreshed Recap Page wordmark, and the Marvel Unlimited notice is now shorter, with
+  a link to Marvel's FAQ.
 
 ### Saved data and upgrading
 
@@ -64,7 +63,8 @@ all-read progress creates no separate completion record. The new and expanded Re
 catalog additions; comics shared with existing lists keep their identities, so progress already
 recorded on them carries over.
 
-No saved-data format, key, migration, restore, backup or reading-destination change. Both existing
+The refreshed wordmark and shorter Marvel Unlimited notice make no saved-data format, key,
+migration, restore, backup or reading-destination change. Both existing
 notice dismissal identities remain exactly the same, so dismissed notices are not reintroduced.
 Older builds and existing backups remain compatible; no backup or conversion step is required.
 
@@ -123,7 +123,6 @@ as a follow-up", routes the local-only fallback to #1163 rather than this releas
 - A refreshed Recap Page wordmark appears on Home and the project website, with a smaller phone
   layout and simpler Home navigation. The Marvel Unlimited notice is shorter and links to
   Marvel's FAQ. (#1168, for #1166)
-
 - Buttons, links and cards now show a pressed edge while you hold them, including on touch
   screens, without changing their size, keyboard focus or what they do. (#1136)
 - Screen changes now fade in gently while keeping navigation immediate and honoring
