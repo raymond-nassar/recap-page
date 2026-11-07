@@ -40,6 +40,10 @@ export const PAGE_SOURCES = Object.freeze([
     source: 'pages/assets/android-reading-preview.png',
     destination: 'assets/android-reading-preview.png',
   }),
+  Object.freeze({
+    source: 'pages/assets/wordmark.png',
+    destination: 'assets/wordmark.png',
+  }),
 ]);
 
 export const PAGE_OUTPUTS = Object.freeze(

@@ -51,8 +51,10 @@ test('current shipped identity and short attribution use Recap Page', () => {
   const reading = readFileSync(join(SHIPPED, 'js', 'views', 'reading.js'), 'utf8');
 
   assert.match(html, /<title>Recap Page<\/title>/);
-  assert.match(html, /<b class="lbl">Recap&nbsp;Page<\/b>/);
-  assert.match(html, /<h1 id="home-h" class="home-brand">RECAP PAGE!<\/h1>/);
+  assert.match(html, /<a href="#\/home" class="brand" data-view="home" aria-label="Home">/);
+  assert.match(html, /<b class="lbl">Home<\/b>/);
+  assert.match(html, /<h1 id="home-h" class="home-brand"><img class="home-wordmark"[^>]+alt="" aria-hidden="true"[^>]*\/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
+  assert.doesNotMatch(html, /class="home-action"|Browse\. Choose\. Read\./);
   assert.match(html, /<h1 id="order-name">Recap Page<\/h1>/);
   assert.equal(manifest.name, 'Recap Page');
   assert.equal(manifest.short_name, 'Recap');

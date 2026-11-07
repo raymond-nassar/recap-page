@@ -1363,7 +1363,7 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
     presentationTests.indexOf('final class PresentationUITests'));
   assert.match(reveal, /if toggle\.exists && toggle\.frame\.minY < webView\.frame\.maxY \{\s*usableBottom = toggle\.frame\.minY/);
-  assert.match(reveal, /\["Library", "Search"\], "Recap Page", "Home"/);
+  assert.match(reveal, /\["Library", "Search"\], "Home", "Home"/);
   assert.match(reveal, /frame\.minY >= barBand && frame\.minY < usableBottom \{\s*usableBottom = frame\.minY/);
   assert.doesNotMatch(presentationTests, /bottomClearance/);
   const positiveReveal = presentationTests.slice(presentationTests.indexOf('private func passiveRevealFrame('),
@@ -1748,7 +1748,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /app\.staticTexts\["Continue manually"\]\.exists/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
-  assert.match(tests, /app\.staticTexts\["Recap Page"\]\.exists/);
+  assert.match(tests, /app\.staticTexts\["Home"\]\.exists/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(brandLink\.frame\.height,\s*44/);
   assert.match(tests, /app\.staticTexts\["What's new"\]\.exists/);
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);

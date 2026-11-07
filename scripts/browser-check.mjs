@@ -3792,7 +3792,7 @@ const SCENARIOS = [
         };
       });
       t.check('the first-run heading is the stable app masthead without an explanatory line',
-        context.heading === 'RECAP PAGE!' && context.explanatoryLines === 0,
+        context.heading === 'Recap Page' && context.explanatoryLines === 0,
         JSON.stringify(context));
       t.check('the discovery tiers use concise action headings',
         JSON.stringify(context.sectionHeadings) === JSON.stringify(['Explore', 'Discover More']),
@@ -15470,7 +15470,7 @@ const SCENARIOS = [
             href: link.getAttribute('href'),
             visible: link.getBoundingClientRect().height > 0,
           })),
-          images: [...document.images].map((image) => ({
+          images: [...document.images].filter((image) => !image.matches('.site-name img')).map((image) => ({
             complete: image.complete,
             width: image.naturalWidth,
             height: image.naturalHeight,
