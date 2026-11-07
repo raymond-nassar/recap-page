@@ -22882,7 +22882,10 @@ for (const guide of readOwnerGuideRegistry().guides) {
   const contract = JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'));
   SCENARIOS.push(ownerGuideScenario(contract));
   const mapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${guide.id}.json`, import.meta.url), 'utf8'));
-  if (mapping.rows.some((row) => row.identityEvidenceKind === 'owner-confirmed-identity')) {
+  const ownerRows = mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length;
+  // A guide whose rows are all owner-confirmed had no earlier provider-only copy for a reader to save,
+  // and the saved-copy seed needs four such rows, so Doom's Shadow and Hell's Angel register none.
+  if (ownerRows > 0 && mapping.rows.length - ownerRows >= 4) {
     SCENARIOS.push(ownerGuideScenario(contract, { savedCopyOnly: true }));
   }
 }

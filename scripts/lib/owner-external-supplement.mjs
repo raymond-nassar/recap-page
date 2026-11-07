@@ -52,6 +52,9 @@ export function validateOwnerExternalSupplement(row, label = `Source position ${
   const present = Object.keys(fields);
   assert.ok(present.length > 0 && present.every((field) => SUPPLEMENT_FIELDS.includes(field)),
     `${label}: a supplement may carry only ${SUPPLEMENT_FIELDS.join(', ')}.`);
+  // Every reader-facing sentence about a supplemented comic promises a cover and credits.
+  assert.ok(Object.hasOwn(fields, 'cover') && Object.hasOwn(fields, 'creators'),
+    `${label}: a supplement must carry both a cover and credits.`);
   if (Object.hasOwn(fields, 'cover')) {
     assert.ok(allowedCoverUrl(fields.cover?.path), `${label}: a supplement cover must be an address on the pinned cover host.`);
     assert.deepEqual(normalizeCover(fields.cover), fields.cover, `${label}: a supplement cover must already be normalized.`);

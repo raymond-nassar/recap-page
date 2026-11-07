@@ -5,6 +5,7 @@ import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.m
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
 import { validateOwnerExternalSupplement } from '../scripts/lib/owner-external-supplement.mjs';
 import { assertMappingMatchesPacketOccurrences } from '../scripts/lib/cbh-inventory.mjs';
+import { mergeIssueMetadata } from '../src/js/lib/model.js';
 
 const ID = 'captain-america-2025-our-secret-wars';
 const json = async (name) => JSON.parse(await readFile(new URL(`../${name}`, import.meta.url), 'utf8'));
@@ -27,10 +28,23 @@ test('a recorded supplement names one source for every field it supplies', async
   };
   assert.throws(altered((s) => { s.fields.cover.path = 'https://example.com/u/prod/marvel/i/mg/7/90/x'; }), /pinned cover host/);
   assert.throws(altered((s) => { s.fields.digitalId = 1; }), /may carry only/);
+  assert.throws(altered((s) => { delete s.fields.creators; }), /both a cover and credits/);
+  assert.throws(altered((s) => { delete s.fields.cover; }), /both a cover and credits/);
   assert.throws(altered((s) => { s.sources.pop(); }), /exactly one recorded source/);
   assert.throws(altered((s) => { s.sources[0].fields.push('creators'); }), /cannot supply/);
   assert.throws(altered((s) => { s.sources[0].url = 'https://read.marvel.com/#/book/1'; }), /own marvel.com issue page/);
   assert.throws(altered((s) => { s.sources[1].url = 'https://marvel.fandom.com/wiki/Captain_America_Vol_14_5'; }), /pinned page revision/);
+});
+
+test('a list that vendors no credits for a comic keeps the credits another list supplied', async () => {
+  const doomsShadow = await json('src/data/captain_america_2025_dooms_shadow.json');
+  const owud = await json('src/data/one_world_under_doom.json');
+  const supplemented = doomsShadow.items.find((item) => item.issueId === 123361);
+  const bare = owud.items.find((item) => item.issueId === 123361);
+  assert.deepEqual(bare.creators, []);
+  const merged = mergeIssueMetadata(supplemented, bare);
+  assert.deepEqual(merged.creators, supplemented.creators);
+  assert.ok(merged.creators.some((creator) => creator.name === 'Ben Harvey'));
 });
 
 test('the inventory refuses a supplement on a row the owner did not confirm', async () => {

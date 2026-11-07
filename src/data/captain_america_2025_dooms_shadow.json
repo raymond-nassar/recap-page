@@ -6,7 +6,7 @@
   "sourceSection": "Vol. 2: Doom's Shadow (collects #6-11)",
   "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
   "sourceLicense": null,
-  "generatedAt": "2026-11-06T23:42:42.163Z",
+  "generatedAt": "2026-11-07T00:05:26.821Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 6,
   "collections": 0,
@@ -40,6 +40,10 @@
         },
         {
           "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
           "role": "penciler"
         },
         {

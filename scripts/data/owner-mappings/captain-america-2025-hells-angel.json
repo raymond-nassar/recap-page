@@ -438,12 +438,12 @@
     "rationale": "All five positions match the owner source, including the slugless URLs for issues #13 and #14. All five retain owner confirmation without invented metadata. The 2026 placement is correct. The name, description and supernatural tags are consistent with the supplied scope.",
     "reviewedAt": "2026-11-06T21:40:27.962Z",
     "proposalDigest": "d1e2fdd244f7f01a553cc7c8d2a6d8c410decc91a2ddd6a6110f623b0f9d55bf",
-    "reportDigest": "a330355d8dd9ce313ed9eef43ab7508bcbc058322245da48a962089e6c623e77",
+    "reportDigest": "8164e0e1528ba2cb3bf0e1aac2ca8c34e07a631464dcf208f4b49d214da5aafa",
     "packetDigest": "55c7df78fc2da84d51e8801362b2b78299b93368b6d7ae718f24fe6d379f3128",
     "mappingDigest": "bebb7c44b65a813916c9f7e5a2a51953fed2fd621f523e001eda68a8e5796fa8",
     "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
     "peerDigests": {
-      "captain-america-2025-dooms-shadow": "22e03569ca3a53a539cfc670b09d7df6bbcdfd2a70b3a421ea9d490128c5f5b3",
+      "captain-america-2025-dooms-shadow": "7082bc089b833b42c1dd5a9b0541861741ade75c7f3a34a81cf0fec1fe10a8a3",
       "captain-america-2025-our-secret-wars": "46c4b147c7f360fca248ca24da9007ec1bb5dc670024d031d80e196a4f0e055a"
     },
     "sourceCounts": {
@@ -4194,7 +4194,7 @@
         "reviewedAt": "2026-11-06T21:40:27.962Z"
       }
     ],
-    "approvalDigest": "78f77d69604d1748a17ca67babb5acaa3693a756544b08d256dede485f61ad80"
+    "approvalDigest": "ef917ef8d718dbe06806900c334084365d4c4da952c7008a7c3be00972d28e11"
   },
   "sourceGapResolutions": [
     {

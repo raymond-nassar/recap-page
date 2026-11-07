@@ -318,9 +318,15 @@ export function upsertIssue(state, input) {
   return { ...state, issues: { ...state.issues, [issue.issueId]: merged } };
 }
 
+// An empty creators list records that a source had no credits, not that the comic has none.
+// One World Under Doom vendors issue 123361 with [] and, imported after Doom's Shadow, erased
+// its supplemented credits while the badge still said they were there.
 function stripNulls(o) {
   const out = {};
-  for (const [k, v] of Object.entries(o)) if (v != null) out[k] = v;
+  for (const [k, v] of Object.entries(o)) {
+    if (v == null || (k === 'creators' && Array.isArray(v) && v.length === 0)) continue;
+    out[k] = v;
+  }
   return out;
 }
 

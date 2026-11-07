@@ -89,6 +89,10 @@
               "role": "penciler"
             },
             {
+              "name": "Ben Harvey",
+              "role": "penciler"
+            },
+            {
               "name": "Chip Zdarsky",
               "role": "writer"
             }
@@ -470,7 +474,7 @@
       }
     }
   ],
-  "mappingDigest": "22e03569ca3a53a539cfc670b09d7df6bbcdfd2a70b3a421ea9d490128c5f5b3",
+  "mappingDigest": "7082bc089b833b42c1dd5a9b0541861741ade75c7f3a34a81cf0fec1fe10a8a3",
   "candidateMetadata": [],
   "reviewStatus": "approved",
   "packetReview": "Actual source, insertion and relationship review by GitHub Copilot stronger-model reviewer, GPT-6 Astra (gpt-6-astra), task agent cap-stronger-reviewer.",
@@ -511,9 +515,9 @@
     "rationale": "Doom's Shadow and One World Under Doom share exactly issue 123361, Captain America (2025) #6. Neither list contains the other, so partial overlap is accurate. Retaining both occurrences is acceptable as an intentional read-again relationship between separately selected lists. Every other recorded comparison has zero shared issues.",
     "reviewedAt": "2026-11-06T21:40:27.962Z",
     "proposalDigest": "2880fd46a154c9bb1cda7f6fe3b30d8cc4ae770dcf6a0d7ccb942b69849ce6c2",
-    "reportDigest": "cf1afb3bc68c99b867a41e9f5156daed6df820019d59e07c1b3588d84016974f",
+    "reportDigest": "754adf21fd59705bdb84c002f19f206d83ae662fb778d0dfc2aa20e6633331a5",
     "packetDigest": "788d9b7a7a396b82d124fb51ce35a596763374a250318e594f42b8fd6f8be271",
-    "mappingDigest": "22e03569ca3a53a539cfc670b09d7df6bbcdfd2a70b3a421ea9d490128c5f5b3",
+    "mappingDigest": "7082bc089b833b42c1dd5a9b0541861741ade75c7f3a34a81cf0fec1fe10a8a3",
     "libraryDigest": "bc3279df5b1336a30d0c1c71c03d199e38b109771e828312369bc549bf4c27e0",
     "peerDigests": {
       "captain-america-2025-hells-angel": "bebb7c44b65a813916c9f7e5a2a51953fed2fd621f523e001eda68a8e5796fa8",
@@ -4269,7 +4273,7 @@
         "reviewedAt": "2026-11-06T21:40:27.962Z"
       }
     ],
-    "approvalDigest": "2fa0abec54db09af68327244c3dd5b31cc8bdec56561af55619d4864884cf619"
+    "approvalDigest": "f1a592f37ae2a09c1c8a3ddb6aaa1b7155b5dd5a6ef7e05f6f9546f97fe6f097"
   },
   "sourceGapResolutions": [
     {

@@ -3037,9 +3037,9 @@ One World Under Doom shares issue #6 but its own row is unchanged and carries no
 Each supplemented mapping row records an `externalMetadataSupplement` with the approving owner,
 approval and retrieval dates, the supplied `fields` and one `sources` entry per field. The validator
 accepts it only on an owner-confirmed row, only for cover, on-sale date, page count and credits, only
-when every field names exactly one allowed source, only when the cover source is the row's own Marvel
+when it carries both a cover and credits, only when every field names exactly one allowed source, only when the cover source is the row's own Marvel
 URL and the wiki source is a pinned revision, and only when the cover is on the pinned host
-(`scripts/lib/owner-external-supplement.mjs:39-96`). The inventory refuses a supplement anywhere
+(`scripts/lib/owner-external-supplement.mjs:39-99`). The inventory refuses a supplement anywhere
 else (`scripts/lib/cbh-inventory.mjs:1160-1166`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:

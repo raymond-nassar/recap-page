@@ -1824,8 +1824,8 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:732-734|0": {
-    "anchor": "src/js/lib/model.js:732-734",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:738-740|0": {
+    "anchor": "src/js/lib/model.js:738-740",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
@@ -2259,9 +2259,9 @@
     "fp": "ee83bead50989c2c",
     "head": "if (Object.hasOwn(row, 'externalMetadataSupplement')) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|scripts/lib/owner-external-supplement.mjs:39-96|0": {
-    "anchor": "scripts/lib/owner-external-supplement.mjs:39-96",
-    "fp": "37bfd149b68e6602",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|scripts/lib/owner-external-supplement.mjs:39-99|0": {
+    "anchor": "scripts/lib/owner-external-supplement.mjs:39-99",
+    "fp": "5a6db58dddefc813",
     "head": "export function validateOwnerExternalSupplement(row, label = `Source position ${row?.sourcePosition}"
   },
   "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|src/js/lib/model.js:243-252|0": {
@@ -2609,8 +2609,8 @@
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1159-1190|0": {
-    "anchor": "src/js/lib/model.js:1159-1190",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1165-1196|0": {
+    "anchor": "src/js/lib/model.js:1165-1196",
     "fp": "ec402d5548694459",
     "head": "export function validateBackup(raw) {"
   },
@@ -2674,8 +2674,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:983-1062|0": {
-    "anchor": "src/js/lib/model.js:983-1062",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:989-1068|0": {
+    "anchor": "src/js/lib/model.js:989-1068",
     "fp": "7462a630913f868e",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
