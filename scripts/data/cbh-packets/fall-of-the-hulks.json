@@ -96,8 +96,15 @@
     "coverIssueId": 29293
   },
   "insertionAnchor": {
-    "beforeId": "doomwar"
+    "beforeId": "siege-dark-reign-prelude"
   },
+  "sourceReview": {
+    "authorityType": "human",
+    "authorityIdentity": "@raymond-nassar",
+    "rationale": "The owner approved all 29 source positions, 28 exact identities, the MODOK metadata gap and the four reviewed title translations. The decision is recorded at https://github.com/raymond-nassar/recap-page/issues/1156#issuecomment-6703273841.",
+    "reviewedAt": "2026-11-07"
+  },
+  "packetDigest": "6f548de032aa951ff0cb114e3e39527e965f12dc0e1feb98ab6d4d62cc33af9d",
   "rows": [
     {
       "sourcePosition": 1,
@@ -369,7 +376,7 @@
       "issueNumber": "1",
       "seriesId": 11280,
       "candidateIssueId": 33580,
-      "manualSeriesSelectionApproved": false,
+      "manualSeriesSelectionApproved": true,
       "selectionNote": "The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand."
     },
     {
@@ -382,7 +389,7 @@
       "issueNumber": "2",
       "seriesId": 11280,
       "candidateIssueId": 33581,
-      "manualSeriesSelectionApproved": false,
+      "manualSeriesSelectionApproved": true,
       "selectionNote": "The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand."
     },
     {
@@ -395,7 +402,7 @@
       "issueNumber": "1",
       "seriesId": 11283,
       "candidateIssueId": 33582,
-      "manualSeriesSelectionApproved": false,
+      "manualSeriesSelectionApproved": true,
       "selectionNote": "The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand."
     },
     {
@@ -408,7 +415,7 @@
       "issueNumber": "2",
       "seriesId": 11283,
       "candidateIssueId": 33583,
-      "manualSeriesSelectionApproved": false,
+      "manualSeriesSelectionApproved": true,
       "selectionNote": "The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand."
     },
     {

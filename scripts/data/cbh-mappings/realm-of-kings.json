@@ -1,23 +1,56 @@
 {
   "id": "realm-of-kings",
   "inventoryId": "marvel-cosmic",
+  "packetDigest": "efdb6ef3d734953ee0dce6a5e2169d606dde5ffd33fe16a820d201ae81c9d5e1",
   "sourceUrl": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
-  "sourceRetrievedAt": "2026-08-21",
+  "sourceSection": "Realm of Kings Trade Reading Order",
+  "sourceRetrievedAt": "2026-11-07",
+  "sourceExpansion": {
+    "kind": "trade-anthology-index",
+    "name": "League of Comic Geeks Realm of Kings hardcover",
+    "url": "https://leagueofcomicgeeks.com/comic/9488865/realm-of-kings-hc",
+    "retrievedAt": "2026-11-07"
+  },
   "sourceRetrievalStatus": "retrieved",
   "approvedSourceCount": 28,
   "excludedSourceReferences": [
-    "Nova #36, which appears only in the broader omnibus description on the bridge page",
-    "The Thanos Imperative, maintained as a separate proposed order"
+    "The one-shot within the linked anthology is outside the owner-selected miniseries boundary; the separately recommended opening one-shot is retained once.",
+    "Nova #36 is in the linked collection but outside the explicitly named #29-35 selection.",
+    "The Thanos Imperative is the separately maintained follow-on guide."
   ],
   "reviewStatus": "pending-independent-review",
   "proposedManifest": {
+    "id": "realm-of-kings",
+    "name": "Realm of Kings",
+    "description": "The Realm of Kings one-shot, Guardians of the Galaxy, the Imperial Guard, Inhumans and Son of Hulk miniseries, and Nova follow the aftermath of War of Kings toward The Thanos Imperative.",
     "type": "event",
     "depth": "complete",
     "beginner": false,
-    "group": null,
-    "variant": null,
     "timeline": 2009,
-    "coverSourceReference": "Realm of Kings #1"
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "realm-of-kings.md",
+    "sourcePage": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+    "sourceSection": "Realm of Kings Trade Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "realm_of_kings.json",
+    "characters": [
+      "Nova",
+      "Guardians of the Galaxy",
+      "Quasar",
+      "Inhumans",
+      "Imperial Guard"
+    ],
+    "keywords": [
+      "Realm of Kings",
+      "The Fault",
+      "War of Kings",
+      "Marvel Cosmic"
+    ],
+    "expect": 28,
+    "coverIssueId": 29292
   },
   "candidateMetadata": [
     {
@@ -119,76 +152,6 @@
       "onSaleDate": "2010-04-21T00:00:00+0000"
     },
     {
-      "id": 28701,
-      "title": "Realm of Kings Inhumans",
-      "issueTitle": "Realm of Kings Inhumans (2009) #1",
-      "seriesTitle": "Realm of Kings Inhumans",
-      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
-      "seriesId": 9053,
-      "issueNumber": "1",
-      "seriesYear": 2009,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
-      "onSaleDate": "2009-11-18T00:00:00+0000"
-    },
-    {
-      "id": 28702,
-      "title": "Realm of Kings Inhumans",
-      "issueTitle": "Realm of Kings Inhumans (2009) #2",
-      "seriesTitle": "Realm of Kings Inhumans",
-      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
-      "seriesId": 9053,
-      "issueNumber": "2",
-      "seriesYear": 2009,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
-      "onSaleDate": "2009-12-16T00:00:00+0000"
-    },
-    {
-      "id": 28703,
-      "title": "Realm of Kings Inhumans",
-      "issueTitle": "Realm of Kings Inhumans (2009) #3",
-      "seriesTitle": "Realm of Kings Inhumans",
-      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
-      "seriesId": 9053,
-      "issueNumber": "3",
-      "seriesYear": 2009,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
-      "onSaleDate": "2010-01-20T00:00:00+0000"
-    },
-    {
-      "id": 28704,
-      "title": "Realm of Kings Inhumans",
-      "issueTitle": "Realm of Kings Inhumans (2009) #4",
-      "seriesTitle": "Realm of Kings Inhumans",
-      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
-      "seriesId": 9053,
-      "issueNumber": "4",
-      "seriesYear": 2009,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
-      "onSaleDate": "2010-02-24T00:00:00+0000"
-    },
-    {
-      "id": 28705,
-      "title": "Realm of Kings Inhumans",
-      "issueTitle": "Realm of Kings Inhumans (2009) #5",
-      "seriesTitle": "Realm of Kings Inhumans",
-      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
-      "seriesId": 9053,
-      "issueNumber": "5",
-      "seriesYear": 2009,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
-      "onSaleDate": "2010-03-31T00:00:00+0000"
-    },
-    {
       "id": 28697,
       "title": "Realm of Kings Imperial Guard",
       "issueTitle": "Realm of Kings Imperial Guard (2009) #1",
@@ -257,6 +220,76 @@
       "manualSeriesSelectionApproved": false,
       "detailUrl": "https://www.marvel.com/comics/issue/28717/realm_of_kings_imperial_guard_2009_5",
       "onSaleDate": "2010-03-17T00:00:00+0000"
+    },
+    {
+      "id": 28701,
+      "title": "Realm of Kings Inhumans",
+      "issueTitle": "Realm of Kings Inhumans (2009) #1",
+      "seriesTitle": "Realm of Kings Inhumans",
+      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "seriesId": 9053,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
+      "onSaleDate": "2009-11-18T00:00:00+0000"
+    },
+    {
+      "id": 28702,
+      "title": "Realm of Kings Inhumans",
+      "issueTitle": "Realm of Kings Inhumans (2009) #2",
+      "seriesTitle": "Realm of Kings Inhumans",
+      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "seriesId": 9053,
+      "issueNumber": "2",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
+      "onSaleDate": "2009-12-16T00:00:00+0000"
+    },
+    {
+      "id": 28703,
+      "title": "Realm of Kings Inhumans",
+      "issueTitle": "Realm of Kings Inhumans (2009) #3",
+      "seriesTitle": "Realm of Kings Inhumans",
+      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "seriesId": 9053,
+      "issueNumber": "3",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
+      "onSaleDate": "2010-01-20T00:00:00+0000"
+    },
+    {
+      "id": 28704,
+      "title": "Realm of Kings Inhumans",
+      "issueTitle": "Realm of Kings Inhumans (2009) #4",
+      "seriesTitle": "Realm of Kings Inhumans",
+      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "seriesId": 9053,
+      "issueNumber": "4",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
+      "onSaleDate": "2010-02-24T00:00:00+0000"
+    },
+    {
+      "id": 28705,
+      "title": "Realm of Kings Inhumans",
+      "issueTitle": "Realm of Kings Inhumans (2009) #5",
+      "seriesTitle": "Realm of Kings Inhumans",
+      "apiSeriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "seriesId": 9053,
+      "issueNumber": "5",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
+      "onSaleDate": "2010-03-31T00:00:00+0000"
     },
     {
       "id": 30782,
@@ -418,11 +451,12 @@
       "sourcePosition": 1,
       "sourceIssueReference": "Realm of Kings #1",
       "sourceRangeReference": null,
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings",
       "seriesYear": 2009,
       "issueNumber": "1",
       "seriesId": 9088,
-      "candidateIssueId": null,
+      "candidateIssueId": 29292,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -441,11 +475,12 @@
       "sourcePosition": 2,
       "sourceIssueReference": "Guardians of the Galaxy #20",
       "sourceRangeReference": "Guardians of the Galaxy #20-25",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
       "seriesYear": 2008,
       "issueNumber": "20",
       "seriesId": 4885,
-      "candidateIssueId": null,
+      "candidateIssueId": 25308,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -464,11 +499,12 @@
       "sourcePosition": 3,
       "sourceIssueReference": "Guardians of the Galaxy #21",
       "sourceRangeReference": "Guardians of the Galaxy #20-25",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
       "seriesYear": 2008,
       "issueNumber": "21",
       "seriesId": 4885,
-      "candidateIssueId": null,
+      "candidateIssueId": 25309,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -487,11 +523,12 @@
       "sourcePosition": 4,
       "sourceIssueReference": "Guardians of the Galaxy #22",
       "sourceRangeReference": "Guardians of the Galaxy #20-25",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
       "seriesYear": 2008,
       "issueNumber": "22",
       "seriesId": 4885,
-      "candidateIssueId": null,
+      "candidateIssueId": 29022,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -510,11 +547,12 @@
       "sourcePosition": 5,
       "sourceIssueReference": "Guardians of the Galaxy #23",
       "sourceRangeReference": "Guardians of the Galaxy #20-25",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
       "seriesYear": 2008,
       "issueNumber": "23",
       "seriesId": 4885,
-      "candidateIssueId": null,
+      "candidateIssueId": 29009,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -533,11 +571,12 @@
       "sourcePosition": 6,
       "sourceIssueReference": "Guardians of the Galaxy #24",
       "sourceRangeReference": "Guardians of the Galaxy #20-25",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
       "seriesYear": 2008,
       "issueNumber": "24",
       "seriesId": 4885,
-      "candidateIssueId": null,
+      "candidateIssueId": 29010,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -556,11 +595,12 @@
       "sourcePosition": 7,
       "sourceIssueReference": "Guardians of the Galaxy #25",
       "sourceRangeReference": "Guardians of the Galaxy #20-25",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
       "seriesYear": 2008,
       "issueNumber": "25",
       "seriesId": 4885,
-      "candidateIssueId": null,
+      "candidateIssueId": 32551,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -577,128 +617,14 @@
     },
     {
       "sourcePosition": 8,
-      "sourceIssueReference": "Realm of Kings Inhumans #1",
-      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
-      "normalizedSeriesTitle": "Realm of Kings Inhumans",
-      "seriesYear": 2009,
-      "issueNumber": "1",
-      "seriesId": 9053,
-      "candidateIssueId": null,
-      "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "28701"
-      ],
-      "selectedIssueId": 28701,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
-      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #1",
-      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        28701
-      ]
-    },
-    {
-      "sourcePosition": 9,
-      "sourceIssueReference": "Realm of Kings Inhumans #2",
-      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
-      "normalizedSeriesTitle": "Realm of Kings Inhumans",
-      "seriesYear": 2009,
-      "issueNumber": "2",
-      "seriesId": 9053,
-      "candidateIssueId": null,
-      "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "28702"
-      ],
-      "selectedIssueId": 28702,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
-      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #2",
-      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        28702
-      ]
-    },
-    {
-      "sourcePosition": 10,
-      "sourceIssueReference": "Realm of Kings Inhumans #3",
-      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
-      "normalizedSeriesTitle": "Realm of Kings Inhumans",
-      "seriesYear": 2009,
-      "issueNumber": "3",
-      "seriesId": 9053,
-      "candidateIssueId": null,
-      "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "28703"
-      ],
-      "selectedIssueId": 28703,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
-      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #3",
-      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        28703
-      ]
-    },
-    {
-      "sourcePosition": 11,
-      "sourceIssueReference": "Realm of Kings Inhumans #4",
-      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
-      "normalizedSeriesTitle": "Realm of Kings Inhumans",
-      "seriesYear": 2009,
-      "issueNumber": "4",
-      "seriesId": 9053,
-      "candidateIssueId": null,
-      "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "28704"
-      ],
-      "selectedIssueId": 28704,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
-      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #4",
-      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        28704
-      ]
-    },
-    {
-      "sourcePosition": 12,
-      "sourceIssueReference": "Realm of Kings Inhumans #5",
-      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
-      "normalizedSeriesTitle": "Realm of Kings Inhumans",
-      "seriesYear": 2009,
-      "issueNumber": "5",
-      "seriesId": 9053,
-      "candidateIssueId": null,
-      "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "28705"
-      ],
-      "selectedIssueId": 28705,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
-      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #5",
-      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        28705
-      ]
-    },
-    {
-      "sourcePosition": 13,
-      "sourceIssueReference": "Realm of Kings Imperial Guard #1",
+      "sourceIssueReference": "Realm of Kings: Imperial Guard #1",
       "sourceRangeReference": "Realm of Kings: Imperial Guard #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings Imperial Guard",
       "seriesYear": 2009,
       "issueNumber": "1",
       "seriesId": 9052,
-      "candidateIssueId": null,
+      "candidateIssueId": 28697,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -714,14 +640,15 @@
       ]
     },
     {
-      "sourcePosition": 14,
-      "sourceIssueReference": "Realm of Kings Imperial Guard #2",
+      "sourcePosition": 9,
+      "sourceIssueReference": "Realm of Kings: Imperial Guard #2",
       "sourceRangeReference": "Realm of Kings: Imperial Guard #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings Imperial Guard",
       "seriesYear": 2009,
       "issueNumber": "2",
       "seriesId": 9052,
-      "candidateIssueId": null,
+      "candidateIssueId": 28698,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -737,14 +664,15 @@
       ]
     },
     {
-      "sourcePosition": 15,
-      "sourceIssueReference": "Realm of Kings Imperial Guard #3",
+      "sourcePosition": 10,
+      "sourceIssueReference": "Realm of Kings: Imperial Guard #3",
       "sourceRangeReference": "Realm of Kings: Imperial Guard #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings Imperial Guard",
       "seriesYear": 2009,
       "issueNumber": "3",
       "seriesId": 9052,
-      "candidateIssueId": null,
+      "candidateIssueId": 28699,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -760,14 +688,15 @@
       ]
     },
     {
-      "sourcePosition": 16,
-      "sourceIssueReference": "Realm of Kings Imperial Guard #4",
+      "sourcePosition": 11,
+      "sourceIssueReference": "Realm of Kings: Imperial Guard #4",
       "sourceRangeReference": "Realm of Kings: Imperial Guard #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings Imperial Guard",
       "seriesYear": 2009,
       "issueNumber": "4",
       "seriesId": 9052,
-      "candidateIssueId": null,
+      "candidateIssueId": 28700,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -783,14 +712,15 @@
       ]
     },
     {
-      "sourcePosition": 17,
-      "sourceIssueReference": "Realm of Kings Imperial Guard #5",
+      "sourcePosition": 12,
+      "sourceIssueReference": "Realm of Kings: Imperial Guard #5",
       "sourceRangeReference": "Realm of Kings: Imperial Guard #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings Imperial Guard",
       "seriesYear": 2009,
       "issueNumber": "5",
       "seriesId": 9052,
-      "candidateIssueId": null,
+      "candidateIssueId": 28717,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -806,14 +736,135 @@
       ]
     },
     {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Realm of Kings: Inhumans #1",
+      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
+      "normalizedSeriesTitle": "Realm of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 9053,
+      "candidateIssueId": 28701,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28701"
+      ],
+      "selectedIssueId": 28701,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
+      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #1",
+      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28701
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Realm of Kings: Inhumans #2",
+      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
+      "normalizedSeriesTitle": "Realm of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 9053,
+      "candidateIssueId": 28702,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28702"
+      ],
+      "selectedIssueId": 28702,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
+      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #2",
+      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28702
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Realm of Kings: Inhumans #3",
+      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
+      "normalizedSeriesTitle": "Realm of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 9053,
+      "candidateIssueId": 28703,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28703"
+      ],
+      "selectedIssueId": 28703,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
+      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #3",
+      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28703
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Realm of Kings: Inhumans #4",
+      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
+      "normalizedSeriesTitle": "Realm of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "seriesId": 9053,
+      "candidateIssueId": 28704,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28704"
+      ],
+      "selectedIssueId": 28704,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
+      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #4",
+      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28704
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Realm of Kings: Inhumans #5",
+      "sourceRangeReference": "Realm of Kings: Inhumans #1-5",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
+      "normalizedSeriesTitle": "Realm of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "5",
+      "seriesId": 9053,
+      "candidateIssueId": 28705,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28705"
+      ],
+      "selectedIssueId": 28705,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
+      "resolvedIssueTitle": "Realm of Kings Inhumans (2009) #5",
+      "note": "Marvel series 9053 (Realm of Kings Inhumans (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28705
+      ]
+    },
+    {
       "sourcePosition": 18,
       "sourceIssueReference": "Realm of Kings: Son of Hulk #1",
       "sourceRangeReference": "Realm of Kings: Son of Hulk #1-4",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings: Son of Hulk",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 9252,
-      "candidateIssueId": null,
+      "candidateIssueId": 30782,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -832,11 +883,12 @@
       "sourcePosition": 19,
       "sourceIssueReference": "Realm of Kings: Son of Hulk #2",
       "sourceRangeReference": "Realm of Kings: Son of Hulk #1-4",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings: Son of Hulk",
       "seriesYear": 2010,
       "issueNumber": "2",
       "seriesId": 9252,
-      "candidateIssueId": null,
+      "candidateIssueId": 29724,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -855,11 +907,12 @@
       "sourcePosition": 20,
       "sourceIssueReference": "Realm of Kings: Son of Hulk #3",
       "sourceRangeReference": "Realm of Kings: Son of Hulk #1-4",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings: Son of Hulk",
       "seriesYear": 2010,
       "issueNumber": "3",
       "seriesId": 9252,
-      "candidateIssueId": null,
+      "candidateIssueId": 29725,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -878,11 +931,12 @@
       "sourcePosition": 21,
       "sourceIssueReference": "Realm of Kings: Son of Hulk #4",
       "sourceRangeReference": "Realm of Kings: Son of Hulk #1-4",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Realm of Kings: Son of Hulk",
       "seriesYear": 2010,
       "issueNumber": "4",
       "seriesId": 9252,
-      "candidateIssueId": null,
+      "candidateIssueId": 29726,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -901,11 +955,12 @@
       "sourcePosition": 22,
       "sourceIssueReference": "Nova #29",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "29",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 26094,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -924,11 +979,12 @@
       "sourcePosition": 23,
       "sourceIssueReference": "Nova #30",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "30",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 26095,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -947,11 +1003,12 @@
       "sourcePosition": 24,
       "sourceIssueReference": "Nova #31",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "31",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 26096,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -970,11 +1027,12 @@
       "sourcePosition": 25,
       "sourceIssueReference": "Nova #32",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "32",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 26097,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -993,11 +1051,12 @@
       "sourcePosition": 26,
       "sourceIssueReference": "Nova #33",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "33",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 29025,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -1016,11 +1075,12 @@
       "sourcePosition": 27,
       "sourceIssueReference": "Nova #34",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "34",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 29026,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -1039,11 +1099,12 @@
       "sourcePosition": 28,
       "sourceIssueReference": "Nova #35",
       "sourceRangeReference": "Nova #29-35",
+      "sourceGroup": "Realm of Kings Trade Reading Order",
       "normalizedSeriesTitle": "Nova",
       "seriesYear": 2007,
       "issueNumber": "35",
       "seriesId": 2504,
-      "candidateIssueId": null,
+      "candidateIssueId": 29027,
       "manualSeriesSelectionApproved": false,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
@@ -1058,5 +1119,6 @@
         29027
       ]
     }
-  ]
+  ],
+  "mappingDigest": "587f292922e2eba5c921b6742e484317f6bdc3ccc75f0980b41ac0d29a706308"
 }

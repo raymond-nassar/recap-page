@@ -1,20 +1,99 @@
 {
   "id": "fall-of-the-hulks",
   "inventoryId": "fall-of-the-hulks",
+  "packetDigest": "6f548de032aa951ff0cb114e3e39527e965f12dc0e1feb98ab6d4d62cc33af9d",
   "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/fall-of-the-hulks-world-war-hulks/",
-  "sourceRetrievedAt": "2026-08-21",
+  "sourceRetrievedAt": "2026-11-06",
   "sourceRetrievalStatus": "retrieved",
   "approvedSourceCount": 29,
   "excludedSourceReferences": [],
+  "sourceOccurrenceCount": 29,
+  "sourceGaps": [
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Fall of the Hulks: MODOK #1",
+      "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
+      "normalizedSeriesTitle": "Fall of the Hulks: MODOK",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-11-07",
+      "auditBasis": "The source places Fall of the Hulks: MODOK #1, which it calls a digital-only release, third in the Fall of the Hulks order. The vendored series index has no Fall of the Hulks: MODOK series; its only M.O.D.O.K. titles are M.O.D.O.K.: Reign Delay and Modok's 11. The provider search for Fall of the Hulks returned 9 issues (Alpha, Gamma, Red Hulk 1 to 4 and Savage She-Hulks 1 to 3) without the MODOK one-shot, MODOK returned only the 6 Modok's 11 issues, and Fall of the Hulks MODOK and MODOK 2010 returned 0. Searches with periods in M.O.D.O.K. returned HTTP 500 and are not counted as evidence. This bounds only these queries, not publication, provider-wide metadata or subscription availability, and no Marvel issue id is inferred. An unconfirmed search-index candidate, 32756, returned HTTP 404 from the provider detail endpoint on 2026-11-07 UTC; it is not adopted as the comic identity.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/fall-of-the-hulks-world-war-hulks/",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/32756",
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Fall%20of%20the%20Hulks%20MODOK",
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Fall%20of%20the%20Hulks",
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=MODOK%202010",
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=MODOK",
+          "retrievedAt": "2026-11-07"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1155",
+          "retrievedAt": "2026-11-07"
+        }
+      ],
+      "evidenceDigest": "adf20d8bdb3b7c5812ad6839da8e70ce449f5eb8803a15e50a5f239707df7116"
+    }
+  ],
   "reviewStatus": "pending-independent-review",
   "proposedManifest": {
+    "id": "fall-of-the-hulks",
+    "name": "Fall of the Hulks and World War Hulks",
+    "description": "Follow Comic Book Herald's Fall of the Hulks and World War Hulks order across Hulk, Incredible Hulks and the event one-shots. The MODOK one-shot is not included because its metadata could not be resolved.",
     "type": "event",
-    "depth": "complete",
+    "depth": "partial",
     "beginner": false,
-    "group": null,
-    "variant": null,
     "timeline": 2009,
-    "coverSourceReference": "Fall of the Hulks: Alpha #1"
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "fall-of-the-hulks.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/fall-of-the-hulks-world-war-hulks/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "fall_of_the_hulks.json",
+    "characters": [
+      "Hulk",
+      "Red Hulk",
+      "She-Hulk",
+      "Skaar",
+      "Intelligencia"
+    ],
+    "keywords": [
+      "Fall of the Hulks",
+      "World War Hulks",
+      "Intelligencia",
+      "Red Hulk",
+      "Comic Book Herald"
+    ],
+    "expect": 28,
+    "coverIssueId": 29293
   },
   "candidateMetadata": [
     {
@@ -415,550 +494,674 @@
       "sourcePosition": 1,
       "sourceIssueReference": "Fall of the Hulks: Alpha #1",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: Alpha",
       "seriesYear": 2009,
       "issueNumber": "1",
       "seriesId": 9136,
-      "candidateIssueId": null,
+      "candidateIssueId": 29293,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29293
+        "29293"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29293,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29293/fall_of_the_hulks_alpha_2009_1",
       "resolvedIssueTitle": "Fall of the Hulks Alpha (2009) #1",
-      "note": "Marvel series 9136 (Fall of the Hulks Alpha (2009)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9136 (Fall of the Hulks Alpha (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29293
+      ]
     },
     {
       "sourcePosition": 2,
       "sourceIssueReference": "Fall of the Hulks: Gamma #1",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: Gamma",
       "seriesYear": 2009,
       "issueNumber": "1",
       "seriesId": 9069,
-      "candidateIssueId": null,
+      "candidateIssueId": 28859,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        28859
+        "28859"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 28859,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/28859/fall_of_the_hulks_gamma_2009_1",
       "resolvedIssueTitle": "Fall of the Hulks Gamma (2009) #1",
-      "note": "Marvel series 9069 (Fall of the Hulks Gamma (2009)) is the reviewed metadata series for this source reference."
-    },
-    {
-      "sourcePosition": 3,
-      "sourceIssueReference": "Fall of the Hulks: MODOK #1",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Fall of the Hulks: MODOK",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "seriesId": null,
-      "candidateIssueId": null,
-      "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "unmatched",
-      "candidateIssueIds": [],
-      "selectedIssueId": null,
-      "marvelIssueUrl": null,
-      "resolvedIssueTitle": null,
-      "note": "No repository metadata series was found for Fall of the Hulks: MODOK; the row remains unmatched."
+      "note": "Marvel series 9069 (Fall of the Hulks Gamma (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28859
+      ]
     },
     {
       "sourcePosition": 4,
       "sourceIssueReference": "Hulk #19",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Hulk",
       "seriesYear": 2008,
       "issueNumber": "19",
       "seriesId": 3374,
-      "candidateIssueId": null,
+      "candidateIssueId": 25371,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        25371
+        "25371"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 25371,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/25371/hulk_2008_19",
       "resolvedIssueTitle": "Hulk (2008) #19",
-      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25371
+      ]
     },
     {
       "sourcePosition": 5,
       "sourceIssueReference": "Fall of the Hulks: Red Hulk #1",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: Red Hulk",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 9187,
-      "candidateIssueId": null,
+      "candidateIssueId": 29889,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29889
+        "29889"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29889,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29889/fall_of_the_hulks_red_hulk_2010_1",
       "resolvedIssueTitle": "Fall of the Hulks: Red Hulk (2010) #1",
-      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29889
+      ]
     },
     {
       "sourcePosition": 6,
       "sourceIssueReference": "Incredible Hulks #606",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Incredible Hulks",
       "seriesYear": 2010,
       "issueNumber": "606",
       "seriesId": 8842,
-      "candidateIssueId": null,
+      "candidateIssueId": 27651,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        27651
+        "27651"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 27651,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/27651/incredible_hulks_2010_606",
       "resolvedIssueTitle": "Incredible Hulks (2010) #606",
-      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27651
+      ]
     },
     {
       "sourcePosition": 7,
       "sourceIssueReference": "Hulk #20",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Hulk",
       "seriesYear": 2008,
       "issueNumber": "20",
       "seriesId": 3374,
-      "candidateIssueId": null,
+      "candidateIssueId": 25372,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        25372
+        "25372"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 25372,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/25372/hulk_2008_20",
       "resolvedIssueTitle": "Hulk (2008) #20",
-      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25372
+      ]
     },
     {
       "sourcePosition": 8,
       "sourceIssueReference": "Incredible Hulks #607",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Incredible Hulks",
       "seriesYear": 2010,
       "issueNumber": "607",
       "seriesId": 8842,
-      "candidateIssueId": null,
+      "candidateIssueId": 27652,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        27652
+        "27652"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 27652,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/27652/incredible_hulks_2010_607",
       "resolvedIssueTitle": "Incredible Hulks (2010) #607",
-      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27652
+      ]
     },
     {
       "sourcePosition": 9,
       "sourceIssueReference": "Fall of the Hulks: Red Hulk #2",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: Red Hulk",
       "seriesYear": 2010,
       "issueNumber": "2",
       "seriesId": 9187,
-      "candidateIssueId": null,
+      "candidateIssueId": 31500,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        31500
+        "31500"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 31500,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/31500/fall_of_the_hulks_red_hulk_2010_2",
       "resolvedIssueTitle": "Fall of the Hulks: Red Hulk (2010) #2",
-      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        31500
+      ]
     },
     {
       "sourcePosition": 10,
       "sourceIssueReference": "Fall of the Hulks: The Savage She-Hulks #1",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: The Savage She-Hulks",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 9306,
-      "candidateIssueId": null,
+      "candidateIssueId": 29807,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29807
+        "29807"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29807,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29807/fall_of_the_hulks_the_savage_she-hulks_2010_1",
       "resolvedIssueTitle": "Fall of the Hulks: The Savage She-Hulks (2010) #1",
-      "note": "Marvel series 9306 (Fall of the Hulks: The Savage She-Hulks (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9306 (Fall of the Hulks: The Savage She-Hulks (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29807
+      ]
     },
     {
       "sourcePosition": 11,
       "sourceIssueReference": "Fall of the Hulks: Red Hulk #3",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: Red Hulk",
       "seriesYear": 2010,
       "issueNumber": "3",
       "seriesId": 9187,
-      "candidateIssueId": null,
+      "candidateIssueId": 29891,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29891
+        "29891"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29891,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29891/fall_of_the_hulks_red_hulk_2010_3",
       "resolvedIssueTitle": "Fall of the Hulks: Red Hulk (2010) #3",
-      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29891
+      ]
     },
     {
       "sourcePosition": 12,
       "sourceIssueReference": "Hulk #21",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Hulk",
       "seriesYear": 2008,
       "issueNumber": "21",
       "seriesId": 3374,
-      "candidateIssueId": null,
+      "candidateIssueId": 30416,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        30416
+        "30416"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 30416,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/30416/hulk_2008_21",
       "resolvedIssueTitle": "Hulk (2008) #21",
-      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        30416
+      ]
     },
     {
       "sourcePosition": 13,
       "sourceIssueReference": "Incredible Hulks #608",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Incredible Hulks",
       "seriesYear": 2010,
       "issueNumber": "608",
       "seriesId": 8842,
-      "candidateIssueId": null,
+      "candidateIssueId": 27653,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        27653
+        "27653"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 27653,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/27653/incredible_hulks_2010_608",
       "resolvedIssueTitle": "Incredible Hulks (2010) #608",
-      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27653
+      ]
     },
     {
       "sourcePosition": 14,
       "sourceIssueReference": "Fall of the Hulks: The Savage She-Hulks #2",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: The Savage She-Hulks",
       "seriesYear": 2010,
       "issueNumber": "2",
       "seriesId": 9306,
-      "candidateIssueId": null,
+      "candidateIssueId": 29808,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29808
+        "29808"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29808,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29808/fall_of_the_hulks_the_savage_she-hulks_2010_2",
       "resolvedIssueTitle": "Fall of the Hulks: The Savage She-Hulks (2010) #2",
-      "note": "Marvel series 9306 (Fall of the Hulks: The Savage She-Hulks (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9306 (Fall of the Hulks: The Savage She-Hulks (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29808
+      ]
     },
     {
       "sourcePosition": 15,
       "sourceIssueReference": "Fall of the Hulks: The Savage She-Hulks #3",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: The Savage She-Hulks",
       "seriesYear": 2010,
       "issueNumber": "3",
       "seriesId": 9306,
-      "candidateIssueId": null,
+      "candidateIssueId": 29809,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29809
+        "29809"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29809,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29809/fall_of_the_hulks_the_savage_she-hulks_2010_3",
       "resolvedIssueTitle": "Fall of the Hulks: The Savage She-Hulks (2010) #3",
-      "note": "Marvel series 9306 (Fall of the Hulks: The Savage She-Hulks (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9306 (Fall of the Hulks: The Savage She-Hulks (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29809
+      ]
     },
     {
       "sourcePosition": 16,
       "sourceIssueReference": "Fall of the Hulks: Red Hulk #4",
       "sourceRangeReference": null,
+      "sourceGroup": "Fall of the Hulks Reading Order",
       "normalizedSeriesTitle": "Fall of the Hulks: Red Hulk",
       "seriesYear": 2010,
       "issueNumber": "4",
       "seriesId": 9187,
-      "candidateIssueId": null,
+      "candidateIssueId": 29892,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        29892
+        "29892"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 29892,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/29892/fall_of_the_hulks_red_hulk_2010_4",
       "resolvedIssueTitle": "Fall of the Hulks: Red Hulk (2010) #4",
-      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9187 (Fall of the Hulks: Red Hulk (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29892
+      ]
     },
     {
       "sourcePosition": 17,
       "sourceIssueReference": "World War Hulks #1",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 9737,
-      "candidateIssueId": null,
+      "candidateIssueId": 32531,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        32531
+        "32531"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 32531,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/32531/world_war_hulks_2010_1",
       "resolvedIssueTitle": "World War Hulks (2010) #1",
-      "note": "Marvel series 9737 (World War Hulks (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9737 (World War Hulks (2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        32531
+      ]
     },
     {
       "sourcePosition": 18,
       "sourceIssueReference": "World War Hulks: Hulked Out Heroes #1",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks: Hulked Out Heroes",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 9714,
-      "candidateIssueId": null,
+      "candidateIssueId": 32762,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        32762
+        "32762"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 32762,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/32762/world_war_hulks_hulked-out_heroes_2010_1",
       "resolvedIssueTitle": "World War Hulks: Hulked-Out Heroes (2010) #1",
-      "note": "Marvel series 9714 (World War Hulks: Hulked-Out Heroes (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9714 (World War Hulks: Hulked-Out Heroes (2010)) is the reviewed metadata series for this source reference. The source writes Hulked Out Heroes; Marvel names the selected series World War Hulks: Hulked-Out Heroes.",
+      "status": "exact",
+      "selectedIssueIds": [
+        32762
+      ]
     },
     {
       "sourcePosition": 19,
       "sourceIssueReference": "World War Hulks: Hulked Out Heroes #2",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks: Hulked Out Heroes",
       "seriesYear": 2010,
       "issueNumber": "2",
       "seriesId": 9714,
-      "candidateIssueId": null,
+      "candidateIssueId": 32763,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        32763
+        "32763"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 32763,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/32763/world_war_hulks_hulked-out_heroes_2010_2",
       "resolvedIssueTitle": "World War Hulks: Hulked-Out Heroes (2010) #2",
-      "note": "Marvel series 9714 (World War Hulks: Hulked-Out Heroes (2010)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 9714 (World War Hulks: Hulked-Out Heroes (2010)) is the reviewed metadata series for this source reference. The source writes Hulked Out Heroes; Marvel names the selected series World War Hulks: Hulked-Out Heroes.",
+      "status": "exact",
+      "selectedIssueIds": [
+        32763
+      ]
     },
     {
       "sourcePosition": 20,
       "sourceIssueReference": "Hulk #22",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "Hulk",
       "seriesYear": 2008,
       "issueNumber": "22",
       "seriesId": 3374,
-      "candidateIssueId": null,
+      "candidateIssueId": 30417,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        30417
+        "30417"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 30417,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/30417/hulk_2008_22",
       "resolvedIssueTitle": "Hulk (2008) #22",
-      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        30417
+      ]
     },
     {
       "sourcePosition": 21,
       "sourceIssueReference": "Incredible Hulks #609",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "Incredible Hulks",
       "seriesYear": 2010,
       "issueNumber": "609",
       "seriesId": 8842,
-      "candidateIssueId": null,
+      "candidateIssueId": 31074,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        31074
+        "31074"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 31074,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/31074/incredible_hulks_2010_609",
       "resolvedIssueTitle": "Incredible Hulks (2010) #609",
-      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        31074
+      ]
     },
     {
       "sourcePosition": 22,
       "sourceIssueReference": "World War Hulks: Spider-Man & Thor #1",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks: Spider-Man & Thor",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 11280,
-      "candidateIssueId": null,
+      "candidateIssueId": 33580,
       "manualSeriesSelectionApproved": true,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        33580
+        "33580"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 33580,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/33580/world_war_hulks_spider-man_vs_thor_2010_1",
       "resolvedIssueTitle": "World War Hulks: Spider-Man Vs. Thor (2010) #1",
-      "note": "Marvel series 11280 (World War Hulks: Spider-Man Vs. Thor (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand."
+      "note": "Marvel series 11280 (World War Hulks: Spider-Man Vs. Thor (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand. The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand.",
+      "status": "exact",
+      "selectedIssueIds": [
+        33580
+      ]
     },
     {
       "sourcePosition": 23,
       "sourceIssueReference": "World War Hulks: Spider-Man & Thor #2",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks: Spider-Man & Thor",
       "seriesYear": 2010,
       "issueNumber": "2",
       "seriesId": 11280,
-      "candidateIssueId": null,
+      "candidateIssueId": 33581,
       "manualSeriesSelectionApproved": true,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        33581
+        "33581"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 33581,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/33581/world_war_hulks_spider-man_vs_thor_2010_2",
       "resolvedIssueTitle": "World War Hulks: Spider-Man Vs. Thor (2010) #2",
-      "note": "Marvel series 11280 (World War Hulks: Spider-Man Vs. Thor (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand."
+      "note": "Marvel series 11280 (World War Hulks: Spider-Man Vs. Thor (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand. The source title is World War Hulks: Spider-Man & Thor; Marvel names the selected series World War Hulks: Spider-Man Vs. Thor. Marvel writes Vs. where the source writes an ampersand.",
+      "status": "exact",
+      "selectedIssueIds": [
+        33581
+      ]
     },
     {
       "sourcePosition": 24,
       "sourceIssueReference": "World War Hulks: Wolverine & Captain America #1",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks: Wolverine & Captain America",
       "seriesYear": 2010,
       "issueNumber": "1",
       "seriesId": 11283,
-      "candidateIssueId": null,
+      "candidateIssueId": 33582,
       "manualSeriesSelectionApproved": true,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        33582
+        "33582"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 33582,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/33582/world_war_hulks_wolverine_vs_captain_america_2010_1",
       "resolvedIssueTitle": "World War Hulks: Wolverine Vs. Captain America (2010) #1",
-      "note": "Marvel series 11283 (World War Hulks: Wolverine Vs. Captain America (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand."
+      "note": "Marvel series 11283 (World War Hulks: Wolverine Vs. Captain America (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand. The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand.",
+      "status": "exact",
+      "selectedIssueIds": [
+        33582
+      ]
     },
     {
       "sourcePosition": 25,
       "sourceIssueReference": "World War Hulks: Wolverine & Captain America #2",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "World War Hulks: Wolverine & Captain America",
       "seriesYear": 2010,
       "issueNumber": "2",
       "seriesId": 11283,
-      "candidateIssueId": null,
+      "candidateIssueId": 33583,
       "manualSeriesSelectionApproved": true,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        33583
+        "33583"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 33583,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/33583/world_war_hulks_wolverine_vs_captain_america_2010_2",
       "resolvedIssueTitle": "World War Hulks: Wolverine Vs. Captain America (2010) #2",
-      "note": "Marvel series 11283 (World War Hulks: Wolverine Vs. Captain America (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand."
+      "note": "Marvel series 11283 (World War Hulks: Wolverine Vs. Captain America (2010)) is the reviewed metadata series for this source reference. The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand. The source title is World War Hulks: Wolverine & Captain America; Marvel names the selected series World War Hulks: Wolverine Vs. Captain America. Marvel writes Vs. where the source writes an ampersand.",
+      "status": "exact",
+      "selectedIssueIds": [
+        33583
+      ]
     },
     {
       "sourcePosition": 26,
       "sourceIssueReference": "Hulk #23",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "Hulk",
       "seriesYear": 2008,
       "issueNumber": "23",
       "seriesId": 3374,
-      "candidateIssueId": null,
+      "candidateIssueId": 30418,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        30418
+        "30418"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 30418,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/30418/hulk_2008_23",
       "resolvedIssueTitle": "Hulk (2008) #23",
-      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        30418
+      ]
     },
     {
       "sourcePosition": 27,
       "sourceIssueReference": "Incredible Hulks #610",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "Incredible Hulks",
       "seriesYear": 2010,
       "issueNumber": "610",
       "seriesId": 8842,
-      "candidateIssueId": null,
+      "candidateIssueId": 31076,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        31076
+        "31076"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 31076,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/31076/incredible_hulks_2010_610",
       "resolvedIssueTitle": "Incredible Hulks (2010) #610",
-      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        31076
+      ]
     },
     {
       "sourcePosition": 28,
       "sourceIssueReference": "Incredible Hulks #611",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "Incredible Hulks",
       "seriesYear": 2010,
       "issueNumber": "611",
       "seriesId": 8842,
-      "candidateIssueId": null,
+      "candidateIssueId": 31077,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        31077
+        "31077"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 31077,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/31077/incredible_hulks_2010_611",
       "resolvedIssueTitle": "Incredible Hulks (2010) #611",
-      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 8842 (Incredible Hulks (2010 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        31077
+      ]
     },
     {
       "sourcePosition": 29,
       "sourceIssueReference": "Hulk #24",
       "sourceRangeReference": null,
+      "sourceGroup": "World War Hulks",
       "normalizedSeriesTitle": "Hulk",
       "seriesYear": 2008,
       "issueNumber": "24",
       "seriesId": 3374,
-      "candidateIssueId": null,
+      "candidateIssueId": 30419,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
-        30419
+        "30419"
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 30419,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/30419/hulk_2008_24",
       "resolvedIssueTitle": "Hulk (2008) #24",
-      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 3374 (Hulk (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        30419
+      ]
     }
-  ]
+  ],
+  "mappingDigest": "9721d06c00f0a73d92b4d05c6af36c7511819d21f00ded890691865349013208"
 }
