@@ -1450,11 +1450,13 @@ async function storyTypesDropdowns(page, profile, label) {
     await page.waitForFunction(() => document.querySelector('#genres-type').value === ''
       && document.querySelector('#genres-tone').value === '');
     check(sameStarters(await snapshot()), `${label}: Forward restores the guide's unfiltered starters`);
-  } else {
     await page.goBack();
-    await page.waitForFunction(() => document.querySelector('#genres-type').value === 'espionage'
-      && document.querySelector('#genres-tone').value === 'dark');
+    await page.waitForSelector('#view-new-to-comics:not([hidden])');
   }
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('#view-genres')?.hidden === false
+    && document.querySelector('#genres-type').value === 'espionage'
+    && document.querySelector('#genres-tone').value === 'dark');
   await choose('#genres-tone', '');
   await choose('#genres-type', '');
   state = await snapshot();

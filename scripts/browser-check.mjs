@@ -3182,12 +3182,19 @@ const SCENARIOS = [
             let middle = false;
             link.addEventListener('auxclick', (seen) => { middle = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
             link.dispatchEvent(event);
-            return { results, middle, type: document.querySelector('#genres-type').value,
-              tone: document.querySelector('#genres-tone').value };
+            return { results, middle };
           });
+          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.waitForSelector('#view-genres:not([hidden])');
+          const retainedChoices = await starter.evaluate(() => ({
+            type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+          }));
           t.check('modified or middle activation of the starter link stays native without resetting filters',
             nativeStarters.results.every(Boolean) && nativeStarters.middle
-              && nativeStarters.type === 'espionage' && nativeStarters.tone === 'dark', JSON.stringify(nativeStarters));
+              && retainedChoices.type === 'espionage' && retainedChoices.tone === 'dark',
+            JSON.stringify({ ...nativeStarters, ...retainedChoices }));
+          await starter.goBack();
+          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const ids = [
             'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
             'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
@@ -17683,6 +17690,47 @@ SCENARIOS.push({
       const fault = await previewFaultContext.newPage();
       fault.__denyExternal = true;
       await preparePage(fault, page.__origin, page.__mutation, 'semantic-destinations');
+      for (const mode of ['pending', 'down']) {
+        const id = 'history-of-the-marvel-universe-2019';
+        await open(fault, `/?catalog=actual&local-health=ready&local-catalog=${mode}#/about`);
+        await fault.evaluate(() => { location.hash = '#/new-to-comics'; });
+        await fault.waitForSelector('#view-new-to-comics:not([hidden])');
+        const guide = await fault.evaluate(() => ({
+          length: history.length, saved: localStorage.getItem('mrt.state.v2'),
+        }));
+        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
+        if (mode === 'pending') {
+          await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0
+            && !document.querySelector('#guide-preview-status').hidden);
+        } else {
+          await fault.waitForSelector('#guide-preview-report .notice button');
+          await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+        }
+        const first = await fault.evaluate(() => ({
+          length: history.length, depth: history.state.readingPosition.depth,
+        }));
+        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
+        const repeated = await fault.evaluate(() => ({
+          length: history.length, depth: history.state.readingPosition.depth,
+          parent: history.state.guidePreviewParent, hash: location.hash,
+        }));
+        t.check(`repeating a ${mode} book preview retains exactly one history entry`,
+          first.length === guide.length + 1 && repeated.length === first.length
+            && repeated.depth === first.depth && repeated.parent === id && repeated.hash === `#/preview/${id}`,
+          JSON.stringify({ guide, first, repeated }));
+        if (mode === 'pending') await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+        await fault.waitForSelector('#preview[open] .preview-issue-link');
+        await click(fault, '#preview-close');
+        await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`closing the repeated ${mode} preview returns once to its guide opener`,
+          await fault.evaluate(({ id: expected, saved }) => location.hash === '#/new-to-comics'
+            && !document.querySelector('#preview').open && document.activeElement?.dataset.previewId === expected
+            && localStorage.getItem('mrt.state.v2') === saved, { id, saved: guide.saved }));
+        await fault.goBack();
+        await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`Back after the repeated ${mode} preview reaches the previous page without a dead entry`,
+          await fault.evaluate(() => location.hash === '#/about' && !document.querySelector('#view-about').hidden));
+      }
       await open(fault, '/?local-health=ready&local-catalog=down#/preview/browser-check');
       await fault.waitForSelector('#guide-preview-report .notice button');
       const failed = await fault.$eval('#guide-preview-report .notice', (node) => node.textContent);

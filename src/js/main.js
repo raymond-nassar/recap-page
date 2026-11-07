@@ -1295,11 +1295,13 @@ function navigateToGuidePreview(previewId) {
   if (!href) return;
   navigationPosition.cancel();
   navigationPosition.capture();
-  const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
-  delete current.issueFocusOpener;
-  history.replaceState({ ...current, guidePreviewOpener: previewId }, '', location.href);
-  navigationPosition.push(href);
-  history.replaceState({ ...history.state, guidePreviewParent: previewId }, '', location.href);
+  if (location.hash !== href) {
+    const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+    delete current.issueFocusOpener;
+    history.replaceState({ ...current, guidePreviewOpener: previewId }, '', location.href);
+    navigationPosition.push(href);
+    history.replaceState({ ...history.state, guidePreviewParent: previewId }, '', location.href);
+  }
   acknowledgedHash = location.hash;
   applyRoute({ view: 'new-to-comics', previewId }, { focus: true });
 }
