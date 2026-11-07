@@ -1235,12 +1235,22 @@ test('T03 pins the native label before any guard tap instead of dereferencing a 
 });
 
 test('T03 positions positive fixtures within the actual native navigation boundary', () => {
-  assert.match(presentationTests, /let usableBottom = toggle\.exists \? min\(webView\.frame\.maxY, toggle\.frame\.minY\) : webView\.frame\.maxY/);
+  const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
+    presentationTests.indexOf('final class PresentationUITests'));
+  assert.match(reveal, /if toggle\.exists && toggle\.frame\.minY < webView\.frame\.maxY \{\s*usableBottom = toggle\.frame\.minY/);
+  assert.match(reveal, /\["Library", "Search"\], "Recap Page", "Home"/);
+  assert.match(reveal, /frame\.minY >= barBand && frame\.minY < usableBottom \{\s*usableBottom = frame\.minY/);
   assert.doesNotMatch(presentationTests, /bottomClearance/);
   assert.match(presentationTests, /revealNativeTarget\(element, in: app\)/);
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
   assert.doesNotMatch(guard, /revealNativeTarget|thenDragTo|swipe/);
+});
+
+test('the SE privacy scroll diagnostic skips unless its dedicated run opts in', () => {
+  const start = presentationTests.indexOf('func testSEPrivacyScrollDiagnostic() throws {');
+  const head = presentationTests.slice(start, presentationTests.indexOf('let app = launch(', start));
+  assert.match(head, /guard ProcessInfo\.processInfo\.environment\["RECAP_RUN_SE_SCROLL_DIAGNOSTIC"\] == "1" else \{\s*throw XCTSkip\(/);
 });
 
 test('T03 positions a partially covered Data heading before its native audit', () => {

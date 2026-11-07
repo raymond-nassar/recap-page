@@ -17,7 +17,24 @@ func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication) {
     let webView = app.webViews.firstMatch
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
-    let usableBottom = toggle.exists ? min(webView.frame.maxY, toggle.frame.minY) : webView.frame.maxY
+    // The phone bar holds the Home brand, Library, Search and More, and at large text it wraps
+    // into two rows with More below the links. Bounding by More alone counted the links' row as
+    // usable, and on iPhone SE run 42318380637 a passive-text tap at 279,606.5 opened Search.
+    var usableBottom = webView.frame.maxY
+    if toggle.exists && toggle.frame.minY < webView.frame.maxY {
+        usableBottom = toggle.frame.minY
+        let barLinks = webView.links.matching(NSPredicate(
+            format: "label IN %@ OR label CONTAINS[c] %@ OR label == %@",
+            ["Library", "Search"], "Recap Page", "Home"))
+        // Only the row directly above More is the bar; a same-named content link further up is not.
+        let barBand = toggle.frame.minY - toggle.frame.height - 16
+        for link in barLinks.allElementsBoundByIndex where link.exists {
+            let frame = link.frame
+            if frame.height > 0 && frame.minY >= barBand && frame.minY < usableBottom {
+                usableBottom = frame.minY
+            }
+        }
+    }
     let usableFrame = CGRect(
         x: webView.frame.minX, y: webView.frame.minY,
         width: webView.frame.width, height: usableBottom - webView.frame.minY)
@@ -2568,6 +2585,9 @@ final class PresentationUITests: XCTestCase {
     }
 
     func testSEPrivacyScrollDiagnostic() throws {
+        guard ProcessInfo.processInfo.environment["RECAP_RUN_SE_SCROLL_DIAGNOSTIC"] == "1" else {
+            throw XCTSkip("The SE privacy scroll diagnostic runs only from its dedicated workflow.")
+        }
         let expected = "Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below."
         let app = launch(category: .accessibilityExtraExtraExtraLarge, route: "all")
 
