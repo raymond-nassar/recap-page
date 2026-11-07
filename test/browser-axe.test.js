@@ -23,7 +23,7 @@ test('the pass covers a fixed list of the app\'s screens in light, dark and forc
   const forced = (theme) => theme.media.find((feature) => feature.name === 'forced-colors')?.value;
   assert.deepEqual(AXE_THEMES.map(forced), ['none', 'none', 'active']);
   assert.equal(new Set(AXE_ROUTES.map((route) => route.id)).size, AXE_ROUTES.length, 'route ids are unique');
-  assert.deepEqual(AXE_ROUTES.filter((route) => !route.seeded).map((route) => route.id), ['home-first-run']);
+  assert.deepEqual(AXE_ROUTES.filter((route) => !route.seeded).map((route) => route.id), ['home-first-run', 'library-first-run']);
   for (const route of AXE_ROUTES) {
     assert.equal(parseRoute(route.hash)?.view, route.view, `${route.id} is an address the app routes to ${route.view}`);
     assert.match(html, new RegExp(`id="view-${route.view}"`), `${route.id} names a screen the app has`);
@@ -31,6 +31,23 @@ test('the pass covers a fixed list of the app\'s screens in light, dark and forc
     assert.ok(anchor && html.includes(`id="${anchor}"`), `${route.id} waits for an element the page has, ${route.ready}`);
   }
   assert.deepEqual(AXE_TAGS, ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']);
+});
+
+test('the rules pass includes the guide with its heading as a seeded route', () => {
+  const route = AXE_ROUTES.find(({ id }) => id === 'new-to-comics');
+  assert.ok(route, 'the guide is included in AXE_ROUTES');
+  assert.equal(route.view, 'new-to-comics');
+  assert.equal(route.seeded, true);
+  assert.equal(route.ready, '#new-to-comics-h');
+});
+
+test('the rules pass includes the unseeded Library guide entry', () => {
+  const route = AXE_ROUTES.find(({ id }) => id === 'library-first-run');
+  assert.ok(route, 'the zero-list Library is included in AXE_ROUTES');
+  assert.equal(route.view, 'library');
+  assert.equal(route.seeded, false);
+  assert.match(route.ready, /#library-empty:not\(\[hidden\]\)/);
+  assert.match(route.ready, /a\[href="#\/new-to-comics"\]/);
 });
 
 test('the seeded routes open a real Reading List with some of it read', () => {

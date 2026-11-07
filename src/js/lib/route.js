@@ -27,7 +27,7 @@ export const VIEWS = [
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
-  'data', 'about', 'completed', ...LIBRARY_VIEWS.map((v) => v.value), 'library-rated',
+  'data', 'about', 'new-to-comics', 'completed', ...LIBRARY_VIEWS.map((v) => v.value), 'library-rated',
 ];
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
@@ -66,6 +66,7 @@ const STATIC_VIEW_LABELS = new Map([
   ['library-rated', 'Your ratings'],
   ['data', 'Backup & settings'],
   ['about', 'About this app'],
+  ['new-to-comics', 'New to comics?'],
 ]);
 
 const cleanLabel = (value, fallback) => (
@@ -99,6 +100,8 @@ export function breadcrumbHierarchy({
   // A category's parent is the set of cards it was chosen from, so its Home crumb returns there.
   const cards = linked('home', 'Home', { at: HOME_CARDS });
 
+  if (view === 'new-to-comics') return [cards, current(STATIC_VIEW_LABELS.get(view))];
+
   if (view === 'read') {
     return [
       home,
@@ -121,6 +124,14 @@ export function breadcrumbHierarchy({
     }
     if (context?.kind === 'order' && typeof context.id === 'string' && context.id) {
       const browseRoute = canonicalView(context.shelf);
+      if (browseRoute === 'new-to-comics' && formatRoute({ view: browseRoute, previewId: context.id })) {
+        return [
+          cards,
+          linked(browseRoute, STATIC_VIEW_LABELS.get(browseRoute)),
+          linked(browseRoute, cleanLabel(context.name, 'Reading List'), { previewId: context.id }),
+          current(title),
+        ];
+      }
       const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === browseRoute);
       if (shelf) {
         return [
@@ -271,10 +282,13 @@ function parseRatedRoute(search) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone, previewId,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
+  if (canonical === 'new-to-comics' && previewId !== undefined) {
+    return typeof previewId === 'string' && PATH_TOKEN.test(previewId) ? `${PREFIX}preview/${previewId}` : '';
+  }
   if (canonical === 'library-rated') return formatRatedRoute(rated);
   if (canonical === 'issue') {
     const id = issueId(rawIssueId);
@@ -337,6 +351,10 @@ export function parseRoute(hash) {
   // Ahead of the VIEWS check, because the Browse segment no longer names a view of its own.
   const atCards = view === HOME_CARDS_SEGMENT;
   view = atCards ? 'home' : canonicalView(view);
+  if (view === 'preview') {
+    if (parts.length !== 2 || !PATH_TOKEN.test(listId ?? '') || search) return null;
+    return { view: 'new-to-comics', previewId: listId };
+  }
   if (view === RETIRED_PATHS_SEGMENT) {
     const named = listId === null ? new URLSearchParams(search).getAll(PATH_KEY) : [listId];
     const pathId = named.length === 1 && PATH_TOKEN.test(named[0]) ? named[0] : null;

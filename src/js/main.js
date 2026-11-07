@@ -1290,6 +1290,22 @@ function navigateTo(view, at = null) {
   showView(view, { push: true, at });
 }
 
+function navigateToGuidePreview(previewId) {
+  const href = formatRoute({ view: 'new-to-comics', previewId });
+  if (!href) return;
+  navigationPosition.cancel();
+  navigationPosition.capture();
+  if (location.hash !== href) {
+    const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+    delete current.issueFocusOpener;
+    history.replaceState({ ...current, guidePreviewOpener: previewId }, '', location.href);
+    navigationPosition.push(href);
+    history.replaceState({ ...history.state, guidePreviewParent: previewId }, '', location.href);
+  }
+  acknowledgedHash = location.hash;
+  applyRoute({ view: 'new-to-comics', previewId }, { focus: true });
+}
+
 function issueFocusHref(issueId, context = null) {
   return formatRoute({ view: 'issue', issueId, context });
 }
@@ -1359,7 +1375,16 @@ function wireNav() {
       // Every link to the ratings browser is labelled and addressed as the unfiltered list, so it
       // must not reopen whatever filters the reader last committed there.
       if (btn.dataset.view === 'library-rated') ratedView.setCommitted({});
+      if (btn.dataset.view === 'genres' && btn.hasAttribute('data-guide-starters')) storyTypesView.set();
       navigateTo(btn.dataset.view, btn.dataset.at ?? null);
+    });
+  }
+
+  for (const link of document.querySelectorAll('[data-preview-id]')) {
+    link.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      navigateToGuidePreview(link.dataset.previewId);
     });
   }
 
@@ -1397,6 +1422,10 @@ let routeReady = false;
 let applyingRoute = false;
 let acknowledgedHash = null;
 let navigationPosition;
+let routedPreviewId = null;
+let routedPreviewToken = null;
+let routedPreviewReady = null;
+const GUIDE_PREVIEW_NOTICE = 'guide-preview-load';
 
 // `push` separates a deliberate navigation from a passive correction, and the distinction is what
 // keeps Back usable. A reader who marks twenty issues read must not have to press Back twenty times
@@ -1425,18 +1454,20 @@ function syncHash({ push = false } = {}) {
   // every store.update reaches renderAll, which syncs.
   const { shown, showFilter } = readingView.filterTraversalSnapshot({ push });
   const sort = view === 'spotlights' ? catalogView.sort() : null;
-  const next = view === 'issue' && issueRoute
-    ? formatRoute(issueRoute)
-    : view === 'library-rated'
-      ? formatRoute({ view, rated: ratedView.committed() })
-      : formatRoute({
-        view,
-        listId: activeListId(),
-        filter: showFilter ? shown : DEFAULT_FILTER,
-        full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-        sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
-        ...(view === 'genres' ? storyTypesView.selection() : {}),
-      });
+  const next = routedPreviewId && view === 'new-to-comics'
+    ? formatRoute({ view, previewId: routedPreviewId })
+    : view === 'issue' && issueRoute
+      ? formatRoute(issueRoute)
+      : view === 'library-rated'
+        ? formatRoute({ view, rated: ratedView.committed() })
+        : formatRoute({
+          view,
+          listId: activeListId(),
+          filter: showFilter ? shown : DEFAULT_FILTER,
+          full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
+          sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+          ...(view === 'genres' ? storyTypesView.selection() : {}),
+        });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1479,6 +1510,7 @@ function syncHash({ push = false } = {}) {
 // the question the guard means. BL-068 has since given the map a null prototype, so this now holds
 // twice over, and it stays because it states the question rather than relying on the map's type.
 function applyRoute(route, { focus, filterIfAbsent }) {
+  const departedPreviewId = routedPreviewId;
   applyingRoute = true;
   try {
     if (issueSynopsisId != null && (route.view !== 'issue' || route.issueId !== issueSynopsisId)) {
@@ -1493,6 +1525,15 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     }
     issueView.cancel();
     issueRoute = null;
+    if (route.previewId) {
+      readingView.endFilterRun({ commit: false });
+      showView('new-to-comics', { focus });
+      routedPreviewId = route.previewId;
+      routedPreviewToken = {};
+      routedPreviewReady = loadGuidePreview(route.previewId, routedPreviewToken);
+      if (focus) void restoreIssueFocusOpener('new-to-comics');
+      return;
+    }
     // Ahead of the list and reading filter writes, because this address carries neither and
     // applying it must leave both exactly as they were.
     if (route.view === 'library-rated') {
@@ -1542,7 +1583,10 @@ function applyRoute(route, { focus, filterIfAbsent }) {
   } finally {
     applyingRoute = false;
   }
-  if (focus) void restoreIssueFocusOpener(route.view);
+  if (focus && route.view === 'new-to-comics' && departedPreviewId
+    && history.state?.guidePreviewOpener === departedPreviewId) {
+    focusGuidePreviewOpener(departedPreviewId);
+  } else if (focus) void restoreIssueFocusOpener(route.view);
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1554,6 +1598,14 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
     if (capturePosition) navigationPosition.capture();
   }
   retireReaderHelp(); readingView.retireDoneResult();
+  if (routedPreviewId) {
+    routedPreviewId = null;
+    routedPreviewToken = null;
+    routedPreviewReady = null;
+    $('#guide-preview-status').hidden = true;
+    clearNotice(GUIDE_PREVIEW_NOTICE);
+  }
+  if ($('#preview').open) $('#preview').close();
   previewView.invalidate();
   tooltips?.dismiss();
   // There is nothing to read without an active list, so the reading view hands over to the
@@ -1693,7 +1745,7 @@ function renderBreadcrumbs() {
 }
 
 function railParentView(next) {
-  if (next === 'home' || HOME_CATEGORIES.some(({ route }) => route === next)
+  if (next === 'home' || next === 'new-to-comics' || HOME_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'home';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
@@ -1720,6 +1772,64 @@ function matchingIssueOpener(opener) {
   )) ?? null;
 }
 
+function guidePreviewLink(previewId) {
+  const href = formatRoute({ view: 'new-to-comics', previewId });
+  return [...document.querySelectorAll('#view-new-to-comics a[data-preview-id]')]
+    .find((candidate) => candidate.dataset.previewId === previewId && candidate.getAttribute('href') === href);
+}
+
+function focusGuidePreviewOpener(previewId) {
+  const link = guidePreviewLink(previewId);
+  if (link?.isConnected) link.focus();
+  else focusViewHeading('new-to-comics');
+}
+
+function leaveGuidePreview() {
+  const previewId = routedPreviewId;
+  if (!previewId) return;
+  if (history.state?.guidePreviewParent === previewId && navigationPosition.canGoBack) {
+    history.back();
+    return;
+  }
+  routedPreviewId = null;
+  routedPreviewToken = null;
+  routedPreviewReady = null;
+  $('#guide-preview-status').hidden = true;
+  clearNotice(GUIDE_PREVIEW_NOTICE);
+  syncHash();
+  focusGuidePreviewOpener(previewId);
+}
+
+async function loadGuidePreview(previewId, token) {
+  const current = () => routedPreviewToken === token && routedPreviewId === previewId
+    && view === 'new-to-comics' && parseRoute(location.hash)?.previewId === previewId;
+  const status = $('#guide-preview-status');
+  clearNotice(GUIDE_PREVIEW_NOTICE);
+  status.hidden = false;
+  let catalog;
+  try {
+    catalog = await loadCatalog();
+  } catch (error) {
+    if (!current()) return;
+    status.hidden = true;
+    notify('#guide-preview-report', `The Reading List could not be loaded: ${error.message}. Your saved data is unchanged.`,
+      'error', GUIDE_PREVIEW_NOTICE, {
+        label: 'Try again',
+        onClick: () => { if (current()) routedPreviewReady = loadGuidePreview(previewId, token); },
+      }, { label: 'Return to guide', onClick: leaveGuidePreview });
+    return;
+  }
+  if (!current()) return;
+  status.hidden = true;
+  const list = catalog.lists.find((entry) => entry.id === previewId);
+  if (!list) {
+    notify('#guide-preview-report', 'That Reading List is not in this catalog. Choose another starting point.',
+      'warn', GUIDE_PREVIEW_NOTICE, null, { label: 'Return to guide', onClick: leaveGuidePreview });
+    return;
+  }
+  await previewView.open(list);
+}
+
 async function restoreIssueFocusOpener(sourceView) {
   const opener = history.state?.issueFocusOpener;
   if (!opener || opener.view !== sourceView) return;
@@ -1732,13 +1842,18 @@ async function restoreIssueFocusOpener(sourceView) {
     readingView.renderRows();
   }
   if (opener.surface === 'preview' && opener.contextId) {
-    try {
-      const catalog = await loadCatalog();
-      const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-      if (list && view === sourceView) await previewView.open(list);
-    } catch {
-      focusViewHeading(sourceView);
-      return;
+    if (routedPreviewId === opener.contextId) {
+      await routedPreviewReady;
+      if (routedPreviewId !== opener.contextId || !$('#preview').open) return;
+    } else {
+      try {
+        const catalog = await loadCatalog();
+        const list = catalog.lists.find((entry) => entry.id === opener.contextId);
+        if (list && view === sourceView) await previewView.open(list);
+      } catch {
+        focusViewHeading(sourceView);
+        return;
+      }
     }
   }
   await new Promise((resolve) => requestAnimationFrame(resolve));
@@ -3426,7 +3541,7 @@ const issueView = createIssueView({
   decorateResult: (result, { catalog }) => ({
     ...result,
     breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
-      ? catalogListBrowseRoute(catalog?.lists, result.context.id)
+      ? guidePreviewLink(result.context.id) ? 'new-to-comics' : catalogListBrowseRoute(catalog?.lists, result.context.id)
       : null,
   }),
   elements: () => ({
@@ -3860,6 +3975,10 @@ const previewView = createPreviewView({
   onClose: async (closedList, { changed, isCurrent }) => {
     if (!isCurrent()) return;
     placeNotices();
+    if (closedList?.id === routedPreviewId && view === 'new-to-comics') {
+      leaveGuidePreview();
+      return;
+    }
     if (closedList && changed && (view === 'add' || view === 'add-search')) {
       const held = captureFocus($(`#view-${view}`));
       await searchListsView.refresh();
@@ -3889,9 +4008,10 @@ const previewView = createPreviewView({
       }));
       return;
     }
-    $('#preview-body').replaceChildren(el('p', {
-      class: 'rail-hint',
-      text: `The comic list could not be loaded: ${error.message}. You can still add the order.`,
+    $('#preview-body').replaceChildren(noticeEl({
+      msg: `The comic list could not be loaded: ${error.message}. You can still add the order.`,
+      kind: 'warn',
+      action: { label: 'Try again', onClick: () => { void retry(); } },
     }));
   },
   onOpen: (list, saved) => openSavedCatalogList(list, saved, '#preview-report'),

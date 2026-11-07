@@ -62,6 +62,95 @@ test('destination interception leaves modifiers middle click and prevented defau
   assert.equal(formatRoute({ view: 'read', listId: 'manual/a' }), '#/read/manual%2Fa');
 });
 
+test('new-to-comics keeps route context and returns its Home breadcrumb to Explore', () => {
+  assert.ok(VIEWS.includes('new-to-comics'), 'new-to-comics is a registered view');
+  const hash = formatRoute({ view: 'new-to-comics', listId: 'list/a', filter: 'unread' });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'new-to-comics', listId: 'list/a', filter: 'unread', full: false,
+  });
+  assert.deepEqual(breadcrumbHierarchy({ view: 'new-to-comics' }), [
+    { label: 'Home', href: '#/browse' },
+    { label: 'New to comics?', current: true },
+  ]);
+  assert.equal(routeTitle({ view: 'new-to-comics' }), 'New to comics? | Recap Page');
+});
+
+test('guide book previews have bookmarkable catalog addresses without saved-list or filter state', () => {
+  for (const id of ['history-of-the-marvel-universe-2019', 'marvels-1994']) {
+    const hash = formatRoute({
+      view: 'new-to-comics', previewId: id, listId: 'unrelated', filter: 'unread',
+    });
+    assert.equal(hash, `#/preview/${id}`);
+    assert.deepEqual(parseRoute(hash), { view: 'new-to-comics', previewId: id });
+  }
+  for (const hash of [
+    '#/preview', '#/preview/', '#/preview/../read', '#/preview/Marvels',
+    '#/preview/marvels-1994?filter=unread', '#/preview/marvels-1994/extra',
+  ]) assert.equal(parseRoute(hash), null, hash);
+  for (const previewId of ['', '../read', 'Marvels', 'marvels?x']) {
+    assert.equal(formatRoute({ view: 'new-to-comics', previewId }), '', previewId);
+  }
+});
+
+test('new-to-comics has a named static panel and a native Genres destination', () => {
+  const html = read('src/index.html');
+  const start = html.indexOf('<section id="view-new-to-comics"');
+  assert.notEqual(start, -1, 'new-to-comics panel exists');
+  const end = html.indexOf('<!-- ---------------------------------------- reading view -->', start);
+  assert.notEqual(end, -1, 'the guide is a distinct static panel');
+  const guide = html.slice(start, end);
+  has(guide, /aria-labelledby="new-to-comics-h"/, 'guide heading association');
+  has(guide, /<h1 id="new-to-comics-h">New to comics\?<\/h1>/, 'guide heading');
+  has(guide, /<a\b[^>]*href="#\/genres"[^>]*>[^<]+<\/a>/, 'native Genres starter destination');
+});
+
+test('guide links its optional books and every named app page to real destinations', () => {
+  const html = read('src/index.html');
+  const start = html.indexOf('<section id="view-new-to-comics"');
+  const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
+  for (const [id, label] of [
+    ['history-of-the-marvel-universe-2019', 'History of the Marvel Universe (2019)'],
+    ['marvels-1994', 'Marvels (1994)'],
+  ]) {
+    assert.ok(guide.includes(`href="#/preview/${id}" data-preview-id="${id}">${label}</a>`),
+      `${label} must link to its exact catalog preview`);
+  }
+  const orientation = guide.slice(guide.indexOf('aria-labelledby="guide-app-h"'), guide.indexOf('</section>',
+    guide.indexOf('aria-labelledby="guide-app-h"')));
+  assert.match(orientation, /<ul>[\s\S]*<li>/, 'app orientation is a short list');
+  for (const [view, label] of [
+    ['home', 'Home'], ['catalog', 'Modern Timeline'], ['genres', 'Genres'],
+    ['spotlights', 'Character spotlights'], ['marvel-on-screen', 'MCU Prep'],
+    ['marvel-ages', 'Marvel Ages'], ['young-readers', 'Young readers'],
+    ['library', 'Library'], ['add', 'Search'], ['data', 'Backup &amp; settings'], ['about', 'About'],
+  ]) {
+    assert.ok(orientation.includes(`href="#/${view}" data-view="${view}">${label}</a>`),
+      `${label} must link to its page`);
+  }
+});
+
+test('new-to-comics credits its sources and gives every external link a safe separate target', () => {
+  const html = read('src/index.html');
+  const start = html.indexOf('<section id="view-new-to-comics"');
+  assert.notEqual(start, -1, 'guide exists before its external links are inspected');
+  const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
+  const links = [...guide.matchAll(/<a\b([^>]*)>([^<]+)<\/a>/g)].map(([, attrs, label]) => ({ attrs, label }));
+  const expected = [
+    'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics',
+    'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
+    'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
+    'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+  ];
+  for (const href of expected) {
+    const link = links.find(({ attrs }) => attrs.includes(`href="${href}"`));
+    assert.ok(link, `guide links to ${href}`);
+    assert.match(link.attrs, /target="_blank"/, `${link.label} opens separately`);
+    assert.match(link.attrs, /rel="noopener noreferrer"/, `${link.label} disowns its opener`);
+  }
+  assert.match(guide, /r\/Marvel wiki/, 'the guide credits the r/Marvel wiki');
+  assert.match(guide, /optional/i, 'the suggested books are optional');
+});
+
 test('completed lists have a real bookmarkable panel at the unchanged reading-data origin', () => {
   assert.ok(VIEWS.includes('completed'));
   const hash = formatRoute({ view: 'completed', listId: 'my/list' });
@@ -224,6 +313,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['add', ['Home', 'Search']],
     ['data', ['Home', 'Backup & settings']],
     ['about', ['Home', 'About this app']],
+    ['new-to-comics', ['Home', 'New to comics?']],
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
     ['genres', ['Home', 'Genres']],
@@ -319,6 +409,24 @@ test('dynamic Reading List and issue hierarchies use only validated context', ()
       ['Home', 'Resolved title'],
     );
   }
+});
+
+test('a newcomer guide book issue links back to its actual guide and preview', () => {
+  assert.deepEqual(breadcrumbHierarchy({
+    view: 'issue',
+    issueTitle: 'Marvels (1994) #1',
+    context: {
+      kind: 'order',
+      id: 'marvels-1994',
+      name: 'Marvels (1994)',
+      shelf: 'new-to-comics',
+    },
+  }), [
+    { label: 'Home', href: '#/browse' },
+    { label: 'New to comics?', href: '#/new-to-comics' },
+    { label: 'Marvels (1994)', href: '#/preview/marvels-1994' },
+    { label: 'Marvels (1994) #1', current: true },
+  ]);
 });
 
 test('a list id rides along and comes back intact', () => {

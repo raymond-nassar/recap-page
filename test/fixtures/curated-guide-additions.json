@@ -116,6 +116,22 @@
       },
       "rowCount": 28,
       "surface": "modern-timeline"
+    },
+    {
+      "id": "history-of-the-marvel-universe-2019",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 6,
+      "surface": "new-to-comics"
+    },
+    {
+      "id": "marvels-1994",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 4,
+      "surface": "new-to-comics"
     }
   ]
 }

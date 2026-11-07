@@ -1,0 +1,2211 @@
+{
+  "schemaVersion": 1,
+  "id": "history-of-the-marvel-universe-2019",
+  "guideIssue": "https://github.com/raymond-nassar/recap-page/issues/1151",
+  "source": {
+    "provider": "project-curated",
+    "url": "https://www.overdrive.com/media/6092392/history-of-the-marvel-universe",
+    "retrievedAt": "2026-11-07",
+    "boundary": "History of the Marvel Universe (2019), issues 1 through 6.",
+    "sourceReconciliation": "The collection listing identifies issues 1 through 6. The configured metadata provider's complete series response identifies those six originals; their ascending issue order is this project's ordering, not copied source commentary.",
+    "metadataSeriesUrl": "https://marvel.emreparker.com/v1/series/27019/issues?limit=200&offset=0",
+    "metadataRetrievedAt": "2026-11-07",
+    "metadataSeriesReceipt": {
+      "basename": "beginner-series-27019.json",
+      "sha256": "a360d0ade56b76d5785e2bff31c552267a29199a693f4f5aab762efcc80c0e56",
+      "bytes": 2203
+    },
+    "permission": "Factual issue identities and order only; no source prose, branding, layout or image bytes are copied. No separate source license is asserted."
+  },
+  "proposedPlacement": {
+    "name": "History of the Marvel Universe (2019)",
+    "description": "Mark Waid and Javier Rodriguez trace the history of the Marvel Universe in a six-issue story.",
+    "type": "creator-run",
+    "depth": "complete",
+    "timeline": null,
+    "beginner": false,
+    "insertionBefore": "mcu-prep-daredevil-born-again",
+    "reason": "The six original issues form the miniseries written by Mark Waid. It ranges across history rather than starting in the year it was published, and is not a Modern Timeline event."
+  },
+  "counts": {
+    "sourcePositions": 6,
+    "resolved": 6,
+    "gaps": 0,
+    "repeats": 0
+  },
+  "sourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceKey": "history-of-the-marvel-universe-2019-1",
+      "sourceIssueReference": "History of the Marvel Universe (2019) #1",
+      "seriesId": 27019,
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "selectedIssueId": 75119,
+      "resolvedIssueTitle": "History of the Marvel Universe (2019) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75119/history_of_the_marvel_universe_2019_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/75119"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceKey": "history-of-the-marvel-universe-2019-2",
+      "sourceIssueReference": "History of the Marvel Universe (2019) #2",
+      "seriesId": 27019,
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "selectedIssueId": 75120,
+      "resolvedIssueTitle": "History of the Marvel Universe (2019) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75120/history_of_the_marvel_universe_2019_2",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/75120"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceKey": "history-of-the-marvel-universe-2019-3",
+      "sourceIssueReference": "History of the Marvel Universe (2019) #3",
+      "seriesId": 27019,
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "selectedIssueId": 75121,
+      "resolvedIssueTitle": "History of the Marvel Universe (2019) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75121/history_of_the_marvel_universe_2019_3",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/75121"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceKey": "history-of-the-marvel-universe-2019-4",
+      "sourceIssueReference": "History of the Marvel Universe (2019) #4",
+      "seriesId": 27019,
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "selectedIssueId": 75122,
+      "resolvedIssueTitle": "History of the Marvel Universe (2019) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75122/history_of_the_marvel_universe_2019_4",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/75122"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceKey": "history-of-the-marvel-universe-2019-5",
+      "sourceIssueReference": "History of the Marvel Universe (2019) #5",
+      "seriesId": 27019,
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "selectedIssueId": 75123,
+      "resolvedIssueTitle": "History of the Marvel Universe (2019) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75123/history_of_the_marvel_universe_2019_5",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/75123"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceKey": "history-of-the-marvel-universe-2019-6",
+      "sourceIssueReference": "History of the Marvel Universe (2019) #6",
+      "seriesId": 27019,
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "selectedIssueId": 75124,
+      "resolvedIssueTitle": "History of the Marvel Universe (2019) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75124/history_of_the_marvel_universe_2019_6",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/75124"
+    }
+  ],
+  "resolvedVector": [
+    75119,
+    75120,
+    75121,
+    75122,
+    75123,
+    75124
+  ],
+  "repeats": [],
+  "relationshipReview": {
+    "reviewer": "Copilot book-source-review",
+    "authorityType": "agent-content-review",
+    "reviewedAt": "2026-11-07T01:13:55.9451438-08:00",
+    "status": "approved",
+    "basisPreflightDigest": "0b60f22f9a9abb0980501c6ba35eed6664d9410b64fa31343f48ea1f141a619c",
+    "insertionBefore": "mcu-prep-daredevil-born-again",
+    "rationale": "The exact original-issue vector and source boundary were independently reviewed. All 343 existing orders and the other selected book share no provider issue IDs. The creator-run classification and insertion were reviewed.",
+    "report": {
+      "candidateId": "history-of-the-marvel-universe-2019",
+      "ledgerDigest": "d9c84e567076be0c7502a00ee4d0cab472f6edc7bfbf06019ca70e348ffd5dca",
+      "libraryDigest": "641491a87ed0e2e38cfb8e1730cbf385a33e2e7070567bff32b2752a62fa699f",
+      "candidateCount": 6,
+      "comparisonCount": 344,
+      "comparisons": [
+        {
+          "orderId": "abomination-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "absolute-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "adam-warlock-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agatha-harkness-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "age-of-x-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agents-of-atlas-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "all-new-all-different-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "annihilation-conquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ant-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "apocalypse-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "atlantis-attacks",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-defenders-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-disassembled",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-doomsday-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-enemy-within",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "axis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "best-ultron-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-panther-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-widow-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "blood-and-thunder",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "bloodties",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-2025-dooms-shadow",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-2025-hells-angel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-2025-our-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-reading-order-modern-marvel-era",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-marvel-ms-marvel-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "chaos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "childs-play",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "clone-conspiracy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-champions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-chaos",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "damnation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "daredevil-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-phoenix-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-reign-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-web",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-past",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-present",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dead-mans-hand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "deadpool-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "death-of-doctor-strange",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "devils-reign",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-doom-primer",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-octopus-otto-octavius-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-multiverse-of-madness",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "donny-cates-marvel-universe-reading-order-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doomwar",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "eighth-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "emma-frost-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "essential-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "evolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "falcon-sam-wilson-captain-america-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-house-x-rise-powers-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-of-the-hulks",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-and-power-pack",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fatal-attractions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "franklin-richards-one-shots",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "gang-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "generations",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "groot-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "guardians-of-the-galaxy-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hawkeye-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroes-reborn-2021",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroic-age-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-full",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-minimal",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hope-summers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-xavier",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinite-destinies",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinity-countdown-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-vs-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-fist-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-2020",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "judgment-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "king-in-black",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kravens-last-hunt",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kree-skrull-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "last-annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "loki-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-1602",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-2099",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-black-panther",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-captain-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-spider-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-adventures-the-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-fresh-start-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-01",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-02",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-03",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-04",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-05",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-06",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-07",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-08",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-09",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-10",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-11",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-12",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-13",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-14",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-15",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-16",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-17",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-18",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-19",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-20",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-21",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-22",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-23",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-24",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-25",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-26",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-27",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-28",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-29",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-30",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-31",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-32",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-33",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-34",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-35",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-36",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-37",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-38",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-39",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-40",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-41",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-42",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-43",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-44",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-45",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-46",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-47",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-48",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-49",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-50",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-51",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-52",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-53",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-54",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-55",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-56",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-57",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-58",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-59",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-60",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-61",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-62",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-63",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-64",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-65",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-66",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-67",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-68",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-69",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-70",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-71",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-72",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-73",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-74",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-75",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-76",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-77",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-78",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-rising",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-hero-adventures",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-heroes-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-what-if",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-zombies-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-1994",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-best-phoenix-comics",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "maximum-security",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mc2",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-agatha-all-along",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ant-man-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-infinity-war-endgame",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-black-panther-2018",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-brave-new-world",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-civil-war-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-marvel-2019",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-daredevil-born-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-deadpool-and-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-doctor-strange-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-eternals",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-fantastic-four-first-steps",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-guardians-of-the-galaxy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2-2010",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-3-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-moon-knight",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-she-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-spider-man-brand-new-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-avengers-2012",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-incredible-hulk-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-ragnarok-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-the-dark-world-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thunderbolts",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-visionquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mephisto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-complex",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "midnight-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "minimum-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "modern-x-men-fast-track",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "monsters-unleashed",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-girl-and-devil-dinosaur",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-knight-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ms-marvel-kamala-khan-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "muir-island-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mutant-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mys-tech-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "namor-sub-mariner-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nebula-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "necrosha",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe-trades",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nick-fury-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nova-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "one-world-under-doom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-galactic-storm",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-zero-tolerance",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "original-clone-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-covenant",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phoenix-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "power-pack-pack-attack-and-team-ups",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "professor-x-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "punisher-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "realm-of-kings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reckoning-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reed-richards-and-sue-storms-wedding",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "revolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rise-of-the-midnight-sons",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rocket-raccoon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "runaways-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "scarlet-witch-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-clone-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-coming",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-wars-ii",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "setup-to-modern-timeline",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadow-king-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadowland",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shang-chi-master-of-kung-fu-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "siege-dark-reign-prelude",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silent-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silk-cindy-moon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silver-surfer-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "sins-of-sinister",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-geddon",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-gwen-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-island",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-2099-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-far-from-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-identity-crisis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-no-way-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-the-other",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-verse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spidey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "star-lord-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-imperative",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-death-of-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-defenders-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-night-gwen-stacy-died",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-unbeatable-squirrel-girl",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-vision-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-the-mighty-avenger",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thunderbolts-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "time-and-time-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-marvel-intro",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venom-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venomverse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wandavision",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-kings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-the-realms",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "white-tiger-ava-ayala",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "winter-soldier-bucky-barnes-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-goes-to-hell",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "world-war-hulk-aftersmash",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wraith-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-23-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-cutioners-song",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-force-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-age-of-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-battle-of-the-atom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-curse-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-divided-we-stand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-extermination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-manifest-destiny",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-nation-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-regenesis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-schism",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-trial-of-jean-grey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-utopia",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-of-swords",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-termination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-tinction-agenda",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "young-avengers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ],
+      "reportDigest": "5e78ba8b054739ee9183838dbbffb96a1408e2756b97b4574fd1ce110fc9241c"
+    },
+    "dispositions": [],
+    "approvalDigest": "8dbaac3af12d4523a741ad56759b1ad357b0b942926ffc6246e74091e0f601e4"
+  },
+  "ledgerDigest": "d9c84e567076be0c7502a00ee4d0cab472f6edc7bfbf06019ca70e348ffd5dca"
+}
