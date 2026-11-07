@@ -3040,7 +3040,7 @@ accepts it only on an owner-confirmed row, only for cover, on-sale date, page co
 when it carries both a cover and credits, only when every field names exactly one allowed source, only when the cover source is the row's own Marvel
 URL and the wiki source is a pinned revision, and only when the cover is on the pinned host
 (`scripts/lib/owner-external-supplement.mjs:39-99`). The inventory refuses a supplement anywhere
-else (`scripts/lib/cbh-inventory.mjs:1160-1166`).
+else (`scripts/lib/cbh-inventory.mjs:1196-1202`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:
 "owner-external-supplement"`, a closed value recorded per comic. It still keeps `seriesId`,

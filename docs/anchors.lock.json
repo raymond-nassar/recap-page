@@ -1519,8 +1519,8 @@
     "fp": "e68c1d5b4a58f20e",
     "head": "## Build a Comic Book Herald packet"
   },
-  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:722|0": {
-    "anchor": "docs/MAINTAINING.md:722",
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:736|0": {
+    "anchor": "docs/MAINTAINING.md:736",
     "fp": "d8181dc2cde63c63",
     "head": "## Build a Comic Book Reading Orders historical event packet"
   },
@@ -1589,8 +1589,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1037-1043|0": {
-    "anchor": "docs/MAINTAINING.md:1037-1043",
+  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1051-1057|0": {
+    "anchor": "docs/MAINTAINING.md:1051-1057",
     "fp": "69038f7c150c0982",
     "head": "## Cutting a release"
   },
@@ -2254,8 +2254,8 @@
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|scripts/lib/cbh-inventory.mjs:1160-1166|0": {
-    "anchor": "scripts/lib/cbh-inventory.mjs:1160-1166",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|scripts/lib/cbh-inventory.mjs:1196-1202|0": {
+    "anchor": "scripts/lib/cbh-inventory.mjs:1196-1202",
     "fp": "ee83bead50989c2c",
     "head": "if (Object.hasOwn(row, 'externalMetadataSupplement')) {"
   },

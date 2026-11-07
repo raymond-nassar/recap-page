@@ -140,10 +140,17 @@
     "id": "marvel-cosmic",
     "title": "What about Marvel Cosmic?",
     "url": "https://www.comicbookherald.com/marvel-cosmic-reading-order/",
+    "childSources": [
+      {
+        "id": "realm-of-kings",
+        "url": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+        "retrievedAt": "2026-11-06"
+      }
+    ],
     "guideType": "era",
     "window": "Q1",
     "disposition": "grouped-variant",
-    "reason": "Shipped splits: Annihilation Conquest, War of Kings, and The Thanos Imperative; Realm of Kings remains blocked by three shared Nova issues",
+    "reason": "Shipped splits: Annihilation Conquest, War of Kings, and The Thanos Imperative; Realm of Kings needs a reviewed collection boundary and relationship dispositions",
     "sourceRetrievedAt": "2026-08-21",
     "overlapIds": [
       "war-of-kings"

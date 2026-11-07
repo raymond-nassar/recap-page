@@ -14,6 +14,7 @@ import {
   validateMappingDigest,
   validateReportDigest,
   sourceCountsForPacket,
+  validateSourceExpansion,
   validateSourceIdentities,
 } from './lib/cbh-inventory.mjs';
 import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
@@ -27,6 +28,10 @@ const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const ORDERS_DIR = path.join(ROOT, 'src', 'data', 'orders');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const TYPHOGRAPHIC_DASHES = /[\u2013\u2014]/g;
+const LEGACY_UNREGISTERED_PACKET = Object.freeze({
+  id: 'modern-x-men-fast-track',
+  digest: '7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a',
+});
 
 export const FIRST_PACKET_IDS = Object.freeze([
   'secret-war',
@@ -259,6 +264,9 @@ export function buildMarkdown(mapping) {
     value: row,
   }]));
   const sourceGaps = mapping.sourceGaps ?? [];
+  if (Object.hasOwn(mapping, 'sourceExpansion')) {
+    validateSourceExpansion(mapping.sourceExpansion, `${mapping.id} sourceExpansion`);
+  }
   // Older reviewed guides count placeholders; a count of exact rows omits them.
   const omitGaps = sourceGaps.length > 0 && manifest.expect === mapping.rows.length;
   if (!omitGaps) {
@@ -268,7 +276,13 @@ export function buildMarkdown(mapping) {
   }
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
-    `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
+    ...(Object.hasOwn(mapping, 'sourceExpansion')
+      ? [
+        `Comic Book Herald presents collected editions rather than a complete issue sequence. The anthology expansion follows the numbered [${escapeLinkText(mapping.sourceExpansion.name, true)}](${mapping.sourceExpansion.url}) index, retrieved ${mapping.sourceExpansion.retrievedAt}; its order is not verified as the physical order in the book.`,
+      ]
+      : [
+        `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
+      ]),
     ...(repeatedCount === 0 ? [] : [
       `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each ${omitGaps ? 'resolved' : 'distinct'} comic once at its first source occurrence.`,
     ]),
@@ -479,6 +493,13 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   peerIds = [],
   includeLater = false,
   publicationRoot = ROOT,
+  inventoryPaths = [
+    'cbh-modern-inventory.json',
+    'cbh-character-inventory.json',
+    'cbh-ultimate-inventory.json',
+    'cbh-young-readers-inventory.json',
+    'cbh-mcu-companion-inventory.json',
+  ].map((file) => path.join(publicationRoot, 'scripts', 'data', file)),
 } = {}) {
   assertNoDuplicates(packetIds, 'authored packet id');
   assertNoDuplicates(peerIds, 'external peer id');
@@ -493,10 +514,18 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const initialInputs = await readPublicationInputs({ root: publicationRoot, paths: initialPaths });
   const initialManifest = initialInputs.json(manifestFile);
   assert(parseManifest(initialManifest).errors.length === 0, 'The existing manifest is invalid before authoring');
+  const hasFrozenPacket = packetIds.some((id) => (
+    initialInputs.json(path.join(mappingsDir, `${id}.json`)).packetDigest
+  ));
+  if (hasFrozenPacket) {
+    assert(Array.isArray(inventoryPaths) && inventoryPaths.length > 0,
+      'Frozen packet authoring requires maintained inventories');
+  }
   const inputs = await readPublicationInputs({
     root: publicationRoot,
     paths: [
       ...initialPaths,
+      ...(hasFrozenPacket ? inventoryPaths : []),
       ...initialManifest.lists.map((entry) => path.join(payloadDir, entry.out || `${entry.id}.json`)),
       ...packetIds.flatMap((id) => [
         path.join(overlapsDir, `${id}.json`),
@@ -513,6 +542,14 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const reviewedLibraryDigest = libraryDigestExcludingOrders(library, excludedOrderIds);
   const current = library.manifest;
   const currentLists = Array.isArray(current.lists) ? current.lists : [];
+  const inventoryRecords = hasFrozenPacket
+    ? inventoryPaths.flatMap((file) => {
+      const inventory = inputs.json(file);
+      const records = Array.isArray(inventory) ? inventory : inventory?.records;
+      assert(Array.isArray(records), `Inventory ${file} must contain records`);
+      return records;
+    })
+    : [];
   const existing = existingEntriesForPacket(currentLists, packetIds);
   const externalPeerIdSet = new Set(peerIds);
   const laterOrderIdSet = new Set(laterOrderIds);
@@ -547,6 +584,26 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
       ...peerIds,
     ];
     if (packet) {
+      const inventoryMatches = inventoryRecords.filter((record) => record.id === packet.inventoryId);
+      const childMatches = inventoryRecords.filter((record) => (
+        Array.isArray(record.childSources)
+        && record.childSources.some((child) => child.id === packet.id)
+      ));
+      assert(inventoryMatches.length <= 1 && childMatches.length <= 1,
+        `${id} has an ambiguous inventory source identity`);
+      const inventoryRecord = inventoryMatches[0] ?? null;
+      if (childMatches.length > 0) {
+        assert(childMatches[0] === inventoryRecord,
+          `${id} registered child source belongs to a different inventory record`);
+        assert(!inventoryRecords.some((record) => record.id === id),
+          `${id} has an ambiguous inventory source identity`);
+      }
+      if (!inventoryRecord) {
+        assert(packet.id === LEGACY_UNREGISTERED_PACKET.id
+          && packet.packetDigest === LEGACY_UNREGISTERED_PACKET.digest
+          && currentLists.some((entry) => entry.id === packet.id),
+        `${id} names an unknown inventory record`);
+      }
       const peerMappings = packetIds
         .filter((peerId) => peerId !== id)
         .map((peerId) => mappingById.get(peerId))
@@ -558,6 +615,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
         currentLibraryDigest: reviewedLibraryDigest,
         peerMappings,
         expectedOrderIds,
+        packetValidation: inventoryRecord ? { inventoryRecord } : {},
       });
       insertionAnchors[id] = packet.insertionAnchor;
     } else {
