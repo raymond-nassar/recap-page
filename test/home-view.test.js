@@ -97,7 +97,7 @@ function harness({
   const categoriesRoot = node();
   const nodes = {
     home: node({ hidden: false }),
-    categoriesHeading: node({ class: populated ? '' : 'visually-hidden' }),
+    categoriesHeading: node(),
     categoriesRoot,
     continueSection: node(),
     continueHeading: node({ text: 'Continue reading' }),
@@ -235,6 +235,41 @@ test('Home gateways and Continue expose native destinations without changing rea
   assert.equal(typeof h.nodes.continueRead.listeners.click, 'function');
 });
 
+test('Home Explore has one compact inline guide link beside its visible heading', () => {
+  const html = readFileSync(join(ROOT, 'src/index.html'), 'utf8');
+  const start = html.indexOf('<section class="sec home-categories"');
+  const end = html.indexOf('<!-- ---------------------------------------- reading view -->', start);
+  assert.ok(start >= 0 && end > start, 'Home Explore markup exists');
+  const home = html.slice(start, end);
+  const links = [...home.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)]
+    .filter(([, attrs]) => /href="#\/new-to-comics"/.test(attrs));
+  assert.equal(links.length, 1, 'exactly one guide link belongs to Home Explore');
+  const [, attrs, text] = links[0];
+  assert.equal(text.trim(), 'New to Marvel Comics?', 'the complete visible guide-card text');
+  assert.match(attrs, /class="home-guide-link"/);
+  assert.match(attrs, /data-view="new-to-comics"/);
+  assert.doesNotMatch(attrs, /home-path|aria-label=/);
+  const headingRow = home.match(/<div class="sec-h[^"]*">([\s\S]*?)<\/div>/)?.[1] ?? '';
+  assert.match(headingRow, /<h2 id="home-cat-h">Explore<\/h2>/, 'Explore is a visible section heading');
+  assert.ok(headingRow.includes(links[0][0]), 'the link shares the heading row');
+  assert.ok(home.indexOf(links[0][0]) < home.indexOf('id="home-primary-paths"'),
+    'the guide is outside the catalog-owned path lists');
+  assert.doesNotMatch(links[0][0], /<svg\b/);
+});
+
+test('the no-list Library state owns the guide link, not an empty saved list', () => {
+  const html = readFileSync(join(ROOT, 'src/index.html'), 'utf8');
+  const start = html.indexOf('<section class="empty" id="library-empty"');
+  const end = html.indexOf('</section>', start);
+  assert.ok(start >= 0 && end > start, 'the existing Library empty state exists');
+  const empty = html.slice(start, end);
+  assert.match(empty, /<a\b[^>]*href="#\/new-to-comics"[^>]*>New to comics\? Start here<\/a>/,
+    'the zero-list Library state has its guide link');
+  const main = readFileSync(join(ROOT, 'src/js/main.js'), 'utf8');
+  assert.match(main, /\$\('#library-empty'\)\.hidden = store\.state\.listOrder\.length !== 0;/,
+    'the existing saved-list count remains authoritative');
+});
+
 test('Home view owns focused first-run choices, saved lists, and shared gateways', async () => {
   const h = harness();
   h.view.render();
@@ -282,6 +317,22 @@ test('Home has no introductory or global Search shortcut before or after adding 
   h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
   h.view.render();
   assert.equal(findById(h.nodes.categoriesRoot, 'home-first-run'), null);
+});
+
+test('Home Explore heading stays visible as Reading Lists are added and removed', () => {
+  const h = harness({ catalogLoader: () => new Promise(() => {}) });
+  h.view.render();
+  assert.equal(h.nodes.categoriesHeading.classList.contains('visually-hidden'), false, 'no saved lists');
+
+  h.state.listOrder.push('a');
+  h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
+  h.view.render();
+  assert.equal(h.nodes.categoriesHeading.classList.contains('visually-hidden'), false, 'one saved list');
+
+  h.state.listOrder.length = 0;
+  delete h.state.lists.a;
+  h.view.render();
+  assert.equal(h.nodes.categoriesHeading.classList.contains('visually-hidden'), false, 'after removal');
 });
 
 test('453 Home refresh uses effective launchability and saved provenance without repainting gateways', () => {

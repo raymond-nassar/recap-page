@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T06:36:13.433Z",
+  "generatedAt": "2026-11-07T09:24:07.640Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -16115,6 +16115,82 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-11-03T05:52:26.040Z"
+    },
+    {
+      "id": "history-of-the-marvel-universe-2019",
+      "file": "history_of_the_marvel_universe_2019.json",
+      "name": "History of the Marvel Universe (2019)",
+      "description": "Mark Waid and Javier Rodriguez trace the history of the Marvel Universe in a six-issue story.",
+      "type": "creator-run",
+      "depth": "complete",
+      "writers": [
+        "Mark Waid",
+        "Mike O'sullivan"
+      ],
+      "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Galactus",
+        "Franklin Richards"
+      ],
+      "keywords": [
+        "Marvel history",
+        "Mark Waid",
+        "Javier Rodriguez"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 75119,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5d2c9272ad1b0",
+        "ext": "jpg"
+      },
+      "source": "https://www.overdrive.com/media/6092392/history-of-the-marvel-universe",
+      "sourceOrigin": "Compiled for this project using OverDrive's collection listing",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T09:23:37.143Z"
+    },
+    {
+      "id": "marvels-1994",
+      "file": "marvels_1994.json",
+      "name": "Marvels (1994)",
+      "description": "Kurt Busiek and Alex Ross tell Marvel's history through photographer Phil Sheldon. Includes the original four issues; the later issue 0 is not included.",
+      "type": "creator-run",
+      "depth": "complete",
+      "writers": [
+        "Kurt Busiek"
+      ],
+      "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Phil Sheldon"
+      ],
+      "keywords": [
+        "Marvels",
+        "Kurt Busiek",
+        "Alex Ross"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/56fbd199dad73",
+        "ext": "jpg"
+      },
+      "source": "https://en.wikipedia.org/wiki/Marvels",
+      "sourceOrigin": "Compiled for this project from the original four-issue series",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-07T09:24:07.640Z"
     },
     {
       "id": "mcu-prep-daredevil-born-again",

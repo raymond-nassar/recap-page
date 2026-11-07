@@ -36,8 +36,8 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
     'id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount',
     'id,insertionAnchor,rowCount,surface', 'id,insertionAnchor,placeholderRowCount,rowCount,surface',
   ].includes(keys.join(',')));
-  assert.ok(!Object.hasOwn(entry, 'surface') || entry.surface === 'modern-timeline',
-    'A curated addition may explicitly join only Modern Timeline.');
+  assert.ok(!Object.hasOwn(entry, 'surface') || ['modern-timeline', 'new-to-comics'].includes(entry.surface),
+    'A curated addition may explicitly join Modern Timeline or the newcomer guide.');
   assert.ok(typeof entry.id === 'string' && entry.id);
   assert.ok(Number.isInteger(entry.rowCount) && entry.rowCount > 0);
   assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
@@ -79,6 +79,8 @@ export const registeredEventContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'modern-timeline');
 const curatedEventCount = registeredCuratedGuides
   .filter((guide) => guide.surface === 'modern-timeline').length;
+const curatedNewcomerCount = registeredCuratedGuides
+  .filter((guide) => guide.surface === 'new-to-comics').length;
 export const registeredYoungReaderContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'young-readers');
 const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
@@ -89,7 +91,7 @@ export const currentReadingCensus = Object.freeze({
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // Retained internal classification, not a browse screen; includes the four CBRO additions.
-  storylines: 50,
+  storylines: 50 + curatedNewcomerCount,
   modernTimeline: 148 + registeredEventContracts.length + curatedEventCount,
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta

@@ -377,9 +377,26 @@ function mainClose(context) {
   const start = mainSource.indexOf('  onClose: async ');
   const end = mainSource.indexOf('\n  onIssueLoadFailure:', start);
   assert.ok(start >= 0 && end > start);
+  if (!Object.hasOwn(context, 'routedPreviewId')) context.routedPreviewId = null;
   const expression = mainSource.slice(start + '  onClose: '.length, end).trim().replace(/,$/, '');
   return runInNewContext(`(${expression})`, context);
 }
+
+test('the real close owner leaves a matching routed guide preview only while current', async () => {
+  let notices = 0;
+  let exits = 0;
+  const context = {
+    view: 'new-to-comics',
+    routedPreviewId: list.id,
+    placeNotices: () => { notices += 1; },
+    leaveGuidePreview: () => { exits += 1; },
+  };
+  const close = mainClose(context);
+  await close(list, { changed: false, isCurrent: () => true });
+  await close(list, { changed: false, isCurrent: () => false });
+  assert.equal(exits, 1);
+  assert.equal(notices, 1);
+});
 
 test('the real close owner keeps notice placement but skips a no-change repaint', async () => {
   let notices = 0;
