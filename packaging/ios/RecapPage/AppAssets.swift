@@ -14,6 +14,9 @@ struct AppConfig: Decodable, Equatable {
     let host: String
     let securityHeaders: [String: String]
     let health: Health
+    /// The OneDrive client a release build carries; absent from every other build, which then offers no
+    /// OneDrive.
+    let oneDriveClientId: String?
 }
 
 /// The generated `ios-assets.json`. Only the paths it lists are ever served.
@@ -51,7 +54,7 @@ struct AppAssets {
             AssetManifest.self, from: Data(contentsOf: root.appendingPathComponent("ios-assets.json")))
         self.root = root
         self.config = config
-        paths = Set(manifest.files.map(\.path))
+        paths = Set(manifest.files.map(\.path)).subtracting(["ios-config.json"])
     }
 
     static func bundled(in bundle: Bundle = .main) throws -> AppAssets {

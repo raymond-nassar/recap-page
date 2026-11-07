@@ -946,10 +946,12 @@ test('TestFlight secrets are confined to the owner-protected sign and upload ste
   assert.equal(secretSteps.length, 2);
   assert.match(secretSteps[0], /if: inputs.mode == 'export'/);
   assert.match(secretSteps[1], /if: inputs.mode == 'upload'/);
-  for (const step of secretSteps) {
-    assert.deepEqual([...step.matchAll(/secrets\.(\w+)/g)].map((match) => match[1]).sort(),
-      ['APPLE_TEAM_ID', 'ASC_ISSUER_ID', 'ASC_KEY_ID', 'ASC_PRIVATE_KEY']);
+  // Only the export builds the app, so only it receives the OneDrive client identifier (#1113).
+  const signing = ['APPLE_TEAM_ID', 'ASC_ISSUER_ID', 'ASC_KEY_ID', 'ASC_PRIVATE_KEY'];
+  for (const [step, extra] of [[secretSteps[0], ['RECAP_ONEDRIVE_CLIENT_ID']], [secretSteps[1], []]]) {
+    assert.deepEqual([...step.matchAll(/secrets\.(\w+)/g)].map((match) => match[1]).sort(), [...signing, ...extra].sort());
   }
+  assert.match(secretSteps[0], /RECAP_ONEDRIVE_CLIENT_ID: \$\{\{ secrets\.RECAP_ONEDRIVE_CLIENT_ID \}\}/);
   const cleanup = deliver.split('name: Remove the private API key\n')[1].split(/\n {6}- /)[0];
   assert.match(cleanup, /if: always\(\)/);
   assert.match(cleanup, /rm -f "\$RUNNER_TEMP"\/ios-private-keys\/AuthKey_\*\.p8/);

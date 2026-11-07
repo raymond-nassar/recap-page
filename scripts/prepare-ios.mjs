@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { cp, lstat, mkdir, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseCloudClient } from '../host/cloudConfig.mjs';
 import { assertSourceUnchanged, iosBuild, stampAbout } from './lib/release-identity.mjs';
 import { SVG_CONTENT, drawIcon, encodePng } from './build-icons.mjs';
 import { CSP } from '../server.mjs';
@@ -27,6 +28,10 @@ const MARKER_CONTENT = 'Recap Page generated iOS assets v1\n';
 // the bundled app already has its own offline shell. iOS uses its own cloud connection action, so
 // the other providers' sign-in logos have no remaining callers.
 export const EXCLUDED = Object.freeze(['dev-faults.html', 'dev-faults.js', 'dev-faults.css', 'sw.js', 'js/app.js', 'brands/ms-symbollockup_mssymbol_19.svg', 'brands/g-logo.png']);
+// A build signs in to OneDrive only when its release supplies the protected client configuration here, as
+// the Windows and Android packagers take theirs (#1113). Ordinary builds and previews carry none.
+export const IOS_CLOUD_CLIENT_ENV = 'RECAP_IOS_CLOUD_CLIENT';
+const MICROSOFT_LOGO = 'brands/ms-symbollockup_mssymbol_19.svg';
 export const IOS_ASSET_DIR = join(ROOT, 'packaging', 'ios', 'build', 'generated', 'web');
 export const IOS_ICON_PATH = join(ROOT, 'packaging', 'ios', 'RecapPage', 'Assets.xcassets', 'AppIcon.appiconset', 'AppIcon.png');
 export const IOS_ICON_SIZE = 1024;
@@ -103,6 +108,19 @@ export async function readIosFeatures(path = IOS_FEATURES_PATH) {
   return features;
 }
 
+// The OneDrive client identifier from a release's private configuration file, or null when none is
+// given. Every failure is generic, so a log never carries the identifier.
+export async function readIosCloudClient(path) {
+  if (path === undefined || path === '') return null;
+  if (typeof path !== 'string' || !isAbsolute(path)) throw new Error('iOS cloud client configuration must be an absolute path');
+  const text = await readFile(path, 'utf8').catch(() => {
+    throw new Error('iOS cloud client configuration could not be read');
+  });
+  const { providers } = parseCloudClient(text);
+  if (providers.googledrive) throw new Error('iOS cloud client configuration may name only OneDrive');
+  return providers.onedrive.clientId;
+}
+
 async function cleanOwnedOutput(directory) {
   for (let current = directory; ; current = dirname(current)) {
     const info = await lstat(current).catch((error) => {
@@ -156,32 +174,41 @@ function removeDivById(html, id, message) {
   throw new Error(message);
 }
 
-function iosCloudCard(html) {
+function iosCloudCard(html, oneDrive) {
   let index = html;
-  for (const id of ['btn-cloud-sign-in', 'btn-cloud-sign-in-google']) {
+  for (const id of oneDrive ? ['btn-cloud-sign-in-google'] : ['btn-cloud-sign-in', 'btn-cloud-sign-in-google']) {
     index = replaceIosPattern(index, new RegExp(`<button\\b[^>]*id="${id}"[^>]*>[\\s\\S]*?<\\/button>`, 'g'), '',
       `iOS cloud sign-in action changed: ${id}`);
   }
   const copy = [
     ['Keep a complete backup in your own OneDrive, made automatically as you read.',
-      'Keep a complete backup in your own iCloud, made automatically as you read.'],
+      `Keep a complete backup in your own ${oneDrive ? 'iCloud or OneDrive' : 'iCloud'}, made automatically as you read.`],
     ['Back up this browser automatically', 'Back up this device automatically'],
     ['Backups in this OneDrive', 'Backups in this iCloud'],
     ['A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this browser are kept, and older ones go to OneDrive\'s recycle bin. Restoring one replaces everything it holds.',
-      'A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this device are kept, and older backups are deleted only after a newer backup has uploaded. Restoring one replaces everything it holds.'],
+      `A backup is made shortly after you make changes, and when you leave Recap Page. The two newest from this device are kept, and older backups are deleted only after a newer backup has uploaded${oneDrive ? '; OneDrive keeps deleted ones in its recycle bin' : ''}. Restoring one replaces everything it holds.`],
   ];
   for (const [source, replacement] of copy) index = replaceIosCopy(index, source, replacement);
+  // The OneDrive half follows the approved Android paragraph; it awaits the owner's approval on #1158.
+  const privacy = oneDrive
+    ? 'Backups go to the Recap Page folder in your iCloud Drive, or to Recap Page\'s own folder in your OneDrive, the only part of it the app can reach. Recap Page does not encrypt them, so they are as private as anything else you keep there, and Recap Page\'s developer has no access to them. Disconnecting stops cloud backup on this device without signing out of iCloud; backups already in iCloud or OneDrive stay until you delete them.'
+    : 'Backups go to the Recap Page folder in your iCloud Drive. Recap Page does not encrypt them, so treat them like other files in your iCloud Drive. Disconnecting stops backups on this device without signing out of iCloud; backups already in iCloud stay until you delete them.';
   return replaceIosPattern(index, /<p class="rail-hint" id="cloud-backup-privacy">[\s\S]*?<\/p>/g,
-    '<p class="rail-hint" id="cloud-backup-privacy">Backups go to the Recap Page folder in your iCloud Drive. Recap Page does not encrypt them, so treat them like other files in your iCloud Drive. Disconnecting stops backups on this device without signing out of iCloud; backups already in iCloud stay until you delete them.</p>',
+    `<p class="rail-hint" id="cloud-backup-privacy">${privacy}</p>`,
     'iOS cloud privacy copy changed');
 }
 
-function iosStaticCopy(html, iCloudBackup) {
-  let index = iCloudBackup ? iosCloudCard(html) : removeDivById(html, 'cloud-backup', 'iOS cloud backup card changed');
+function iosStaticCopy(html, iCloudBackup, oneDrive) {
+  let index = iCloudBackup ? iosCloudCard(html, oneDrive) : removeDivById(html, 'cloud-backup', 'iOS cloud backup card changed');
   const cloudCopy = /<span data-cloud-copy="on"\s+hidden>[\s\S]*?<\/span>/g;
   const cloudCopies = [...index.matchAll(cloudCopy)].length;
   if (cloudCopies !== 4) throw new Error(`iOS cloud copy changed: expected 4 spans, found ${cloudCopies}`);
-  const enabledCopy = [
+  const enabledCopy = oneDrive ? [
+    'This is app storage. Recap Page uploads your saved data only if you turn on cloud backup, and then only to your own iCloud or OneDrive.',
+    'Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud or OneDrive, if you turn on cloud backup below.',
+    'This choice is saved in this app and included in a backup to your own iCloud or OneDrive, if you turn cloud backup on.',
+    'Cloud backup is the one exception, and only once you turn it on. After you make changes, Recap Page sends a complete backup of what you save to your own iCloud, or to your own OneDrive once you sign in on Microsoft\'s own page. It also lists and reads the backups there, and deletes older backups only after a newer backup has uploaded. Apple or Microsoft processes these files as part of your iCloud or OneDrive storage.',
+  ] : [
     'This is app storage. Recap Page uploads your saved data only if you turn on cloud backup, and then only to your own iCloud.',
     'Your reading progress is saved privately in this app, and Recap Page sends it only to your own iCloud, if you turn on cloud backup below.',
     'This choice is saved in this app and included in a backup to your own iCloud, if you turn cloud backup on.',
@@ -218,7 +245,8 @@ function iosStaticCopy(html, iCloudBackup) {
 // The shared page with the iOS entry, phone layer, overlay, viewport and privacy introduction. Each
 // marker must appear exactly once, so a change to the shared entry stops preparation for review
 // rather than producing a page that silently lost one of them.
-export function iosIndex(html, build, { iCloudBackup = false } = {}) {
+export function iosIndex(html, build, { iCloudBackup = false, oneDrive = false } = {}) {
+  if (oneDrive && !iCloudBackup) throw new Error('OneDrive on iOS rides the cloud backup build, which is off');
   let index = stampAbout(html, build);
   const documentTag = '<html lang="en">';
   once(index, documentTag, 'Shared document entry changed; iOS projection needs review');
@@ -240,8 +268,8 @@ export function iosIndex(html, build, { iCloudBackup = false } = {}) {
   index = index.replace(privacyIntro, `${privacyHeading}
               <p class="rail-hint">
                 Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.
-                There is no account to create and no analytics or tracking. ${iCloudBackup
-                  ? 'Recap Page uploads your saved lists, progress and notes only if you turn on cloud backup in Backup & settings, and then only to your own iCloud.'
+                There is no ${oneDrive ? 'Recap Page account' : 'account'} to create and no analytics or tracking. ${iCloudBackup
+                  ? `Recap Page uploads your saved lists, progress and notes only if you turn on cloud backup in Backup & settings, and then only to your own ${oneDrive ? 'iCloud or OneDrive' : 'iCloud'}.`
                   : 'The automatic service requests do not upload your saved lists, progress or notes.'}
                 Backups of this device to iCloud or to a computer include this app's saved data.
                 Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.
@@ -250,7 +278,7 @@ export function iosIndex(html, build, { iCloudBackup = false } = {}) {
               <p class="rail-hint">
                 If you test this app through TestFlight, Apple shares some information with the developer: crash reports, usage information such as your device model and how often you open the app, and any feedback you send. If you were invited by email, it can include your name and email address.
               </p>`);
-  return iosStaticCopy(index, iCloudBackup);
+  return iosStaticCopy(index, iCloudBackup, oneDrive);
 }
 
 // The launcher keeps shared open.js; its iOS-only target overlay sits after open.css.
@@ -267,11 +295,16 @@ export function iosLauncher(html) {
     .replace(stylesheet, `${stylesheet}\n    ${overlay}`);
 }
 
-export async function prepareIos(output = IOS_ASSET_DIR, { featuresPath = IOS_FEATURES_PATH } = {}) {
+export async function prepareIos(output = IOS_ASSET_DIR, {
+  featuresPath = IOS_FEATURES_PATH, cloudClientPath = process.env[IOS_CLOUD_CLIENT_ENV],
+} = {}) {
   if (resolve(featuresPath) !== IOS_FEATURES_PATH && process.env.RECAP_IOS_BUILD_NUMBER) {
     throw new Error('iOS feature previews cannot be used for a reserved release build');
   }
   const features = await readIosFeatures(featuresPath);
+  const oneDriveClientId = await readIosCloudClient(cloudClientPath);
+  const oneDrive = oneDriveClientId !== null;
+  if (oneDrive && !features.iCloudBackup) throw new Error('OneDrive on iOS rides the cloud backup build, which is off');
   const directory = resolve(output);
   for (const protectedPath of [SOURCE, PHONE, WEB, ICLOUD_WEB, join(ROOT, 'scripts')]) {
     if (inside(directory, protectedPath) || inside(protectedPath, directory)) {
@@ -305,15 +338,16 @@ export async function prepareIos(output = IOS_ASSET_DIR, { featuresPath = IOS_FE
       path: LOCAL_SERVER_HEALTH_PATH,
       headers: { [LOCAL_SERVER_HEADER_NAME]: LOCAL_SERVER_HEADER_VALUE },
     },
+    ...(oneDrive ? { oneDriveClientId } : {}),
   };
 
-  const index = iosIndex(await readFile(join(SOURCE, 'index.html'), 'utf8'), build, features);
+  const index = iosIndex(await readFile(join(SOURCE, 'index.html'), 'utf8'), build, { ...features, oneDrive });
   const launcher = iosLauncher(await readFile(join(SOURCE, 'open.html'), 'utf8'));
 
   await cleanOwnedOutput(directory);
   const entries = [];
   for (const path of sharedPaths) {
-    if (EXCLUDED.includes(path)) continue;
+    if (EXCLUDED.includes(path) && !(oneDrive && path === MICROSOFT_LOGO)) continue;
     const source = join(SOURCE, path);
     const destination = join(directory, path);
     await mkdir(dirname(destination), { recursive: true });

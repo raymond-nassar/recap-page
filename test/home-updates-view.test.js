@@ -77,7 +77,7 @@ test('iOS projects platform-specific highlights without changing the generated s
   assert.match(text, /Search now finds Reading Lists as you type/);
   assert.match(text, /You can now back up your reading progress to your own iCloud Drive/);
   assert.doesNotMatch(text, /iPhone and iPad:/, 'iOS readers see iCloud backup as their own feature');
-  assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/);
+  assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
   const web = harness({ content: homeUpdatesContent });
   web.view.wire();
@@ -104,6 +104,19 @@ test('iOS wiring omits unreviewed proper names but retains ordinary edge and win
   const web = harness({ content });
   web.view.wire();
   assert.deepEqual(walk(web.nodes.content).filter((item) => item.tag === 'li').map((item) => item.textContent), features);
+});
+
+test('iOS shows OneDrive highlights, which iPhone and iPad offer too, and still hides other platforms', () => {
+  const features = [
+    'Back up to your own OneDrive after signing in with a personal Microsoft account.',
+    'Android: back up to your own OneDrive.',
+    'Install the app from the Microsoft Store.',
+  ];
+  const content = { version: '1.0.0', batch: { ...batch, features, listIds: [] } };
+  const ios = harness({ content, isIos: true });
+  ios.view.wire();
+  assert.deepEqual(walk(ios.nodes.content).filter((item) => item.tag === 'li').map((item) => item.textContent),
+    features.slice(0, 1));
 });
 
 test('construction is lazy and one-time wiring stays closed without acknowledging', () => {
