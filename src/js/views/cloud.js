@@ -304,15 +304,18 @@ export function cloudSyncQuestion(offer, { when = longTime } = {}) {
   ];
   const others = offer.othersDiffering > 0
     ? `${plural(offer.othersDiffering, 'other device')} also ${offer.othersDiffering === 1 ? 'has' : 'have'} different progress.` : '';
-  const warning = different
-    ? `Choose which progress to keep using.${offer.keepLocal === false ? '' : ' The other is kept as a copy.'}`
-    : `Loading replaces what is on this device.${offer.keepLocal === false ? '' : " A copy of this device's progress is kept, and you can go back to it from Backup & settings."}`;
+  const loadDisabled = Boolean(offer.priorPending);
+  const warning = loadDisabled
+    ? 'The earlier cloud recovery copy could not be confirmed, so Load is unavailable. Check your cloud folder.'
+    : different
+      ? `Choose which progress to keep using.${offer.keepLocal === false ? '' : ' The other is kept as a copy.'}`
+      : `Loading replaces what is on this device.${offer.keepLocal === false ? '' : " A copy of this device's progress is kept, and you can go back to it from Backup & settings."}`;
   return {
     title: different ? 'Your progress differs between devices' : 'Newer progress found',
     body: [...facts, others, warning].filter(Boolean).join('\n\n'),
     keepLabel: "Keep this device's progress",
     loadLabel: different ? "Load the other device's progress" : 'Load newer progress',
-    focusKeep: different,
+    focusKeep: different || loadDisabled, loadDisabled,
   };
 }
 

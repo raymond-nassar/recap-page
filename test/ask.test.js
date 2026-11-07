@@ -175,6 +175,25 @@ test('a cloud choice offers Keep, Load and Cancel without stacking another quest
   }
 });
 
+test('an unchecked cloud recovery copy disables Load and does not disable later questions', async () => {
+  try {
+    const { askSyncChoice, askConfirm, dlg, parts } = await wired();
+    const choice = askSyncChoice({
+      title: 'Newer progress found', keepLabel: 'Keep', loadLabel: 'Load', loadDisabled: true,
+    });
+    assert.equal(parts['ask-ok'].disabled, true);
+    assert.equal(globalThis.document.activeElement, parts['ask-alternate']);
+    parts['ask-alternate'].fire('click');
+    assert.equal(await within(choice, 'Keep to settle'), 'keep');
+    const ordinary = askConfirm({ title: 'Ordinary question' });
+    assert.equal(parts['ask-ok'].disabled, false);
+    dlg.close('ok');
+    assert.equal(await within(ordinary, 'ordinary question to settle'), true);
+  } finally {
+    clearDom();
+  }
+});
+
 test('the Cancel button backs out without the caller wiring anything per question', async () => {
   try {
     const { askConfirm, dlg, parts } = await wired();

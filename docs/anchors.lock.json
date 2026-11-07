@@ -1724,23 +1724,23 @@
     "fp": "095eb3e10df0bee6",
     "head": "export const CLOUD_BACKUP_CADENCE = Object.freeze({"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1793-1804|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:1793-1804",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1912-1923|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:1912-1923",
     "fp": "2499eb9e27356a8a",
     "head": "async allocate() {"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:1891|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:1891",
-    "fp": "677baafd30c320ae",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:2010-2015|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:2010-2015",
+    "fp": "cb0df7c40a97577d",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:2009-2010|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:2009-2010",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:2128-2129|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:2128-2129",
     "fp": "6646963445582955",
     "head": "const { known } = await this.listed(connection);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:2069-2071|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:2069-2071",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:2188-2190|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:2188-2190",
     "fp": "96364a1531f6737d",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
   },
@@ -2889,9 +2889,9 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:95-181|0": {
-    "anchor": "src/js/ask.js:95-181",
-    "fp": "72cc2a0b04f59d69",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:95-182|0": {
+    "anchor": "src/js/ask.js:95-182",
+    "fp": "405001e66db2a8a6",
     "head": "function open({"
   },
   "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2187|0": {

@@ -94,7 +94,7 @@ export function wireAsk() {
 // makes the destructive default "no".
 function open({
   title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, danger = false, choice = null,
-  alternateLabel = null, focusAlternate = false,
+  alternateLabel = null, focusAlternate = false, disableConfirm = false,
 }) {
   const {
     dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, choiceField, choiceLabel,
@@ -110,6 +110,7 @@ function open({
   p.textContent = body;
   p.hidden = !body;
   ok.textContent = confirmLabel;
+  ok.disabled = disableConfirm;
   // UX-31 (#830): an answer that cannot be taken back wears the danger appearance Erase all local data
   // already has, so it does not look like every other confirmation. Set on every question, so the next
   // one cannot inherit it. Cancel still comes first and takes focus.
@@ -180,12 +181,13 @@ function open({
   return answered;
 }
 
-export async function askSyncChoice({ title, body = '', keepLabel, loadLabel, focusKeep = false }) {
+export async function askSyncChoice({ title, body = '', keepLabel, loadLabel, focusKeep = false, loadDisabled = false }) {
   const result = await open({
-    title, body, confirmLabel: loadLabel, alternateLabel: keepLabel, focusAlternate: focusKeep,
+    title, body, confirmLabel: loadLabel, alternateLabel: keepLabel,
+    focusAlternate: focusKeep || loadDisabled, disableConfirm: loadDisabled,
   });
   if (result.unavailable) return 'busy';
-  return result.alternate ? 'keep' : result.ok ? 'load' : null;
+  return result.alternate ? 'keep' : result.ok && !loadDisabled ? 'load' : null;
 }
 
 export function withdrawSyncChoice() {

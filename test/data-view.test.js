@@ -564,6 +564,19 @@ test('a late empty-device cloud question does not promise a kept copy', () => {
   assert.doesNotMatch(question.body, /The other is kept as a copy/);
 });
 
+test('an unresolved cloud recovery copy explains why Load is unavailable', () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: false, keepLocal: true, priorPending: { kept: { id: 'pending' } },
+    remote: { device: 'Phone', createdAt: 123, readCount: 1, lastReadAt: 100 },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 0,
+  };
+  const question = cloudSyncQuestion(offer, { when: () => 'earlier' });
+  assert.equal(question.loadDisabled, true);
+  assert.equal(question.focusKeep, true);
+  assert.match(question.body, /earlier cloud recovery copy.*Load is unavailable/);
+  assert.doesNotMatch(question.body, /A copy of this device's progress is kept/);
+});
+
 test('cloud prompt stays available after dismissal and withdraws when its offer changes', async () => {
   const offer = {
     kind: 'remote-ahead', quiet: false, epoch: 'one', localContentDigest: 'local',

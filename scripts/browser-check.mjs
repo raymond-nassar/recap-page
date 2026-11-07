@@ -25834,6 +25834,10 @@ SCENARIOS.push({
     const expectedLoaded = await seedRemote(6, 4);
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    const beforeFailedActivation = await page.evaluate(async () => {
+      const { captureCompleteBackup } = await import('/js/lib/completeBackup.js');
+      return (await captureCompleteBackup({ storage: localStorage })).backup.digest;
+    });
     await page.evaluate(() => {
       const put = IDBObjectStore.prototype.put;
       IDBObjectStore.prototype.put = function (value, key) {
@@ -25850,9 +25854,8 @@ SCENARIOS.push({
     await click(page, '#ask-ok');
     await failedActivationNavigation;
     await open(page, '/#/data');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Go back is unavailable'),
-      { timeout: 20000 });
-    const unavailable = await page.evaluate(async () => {
+    await page.waitForSelector('#btn-cloud-sync-back:not([hidden])', { timeout: 20000 });
+    const reconciled = await page.evaluate(async () => {
       const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
       const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
       const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
@@ -25862,15 +25865,80 @@ SCENARIOS.push({
       return {
         fault: sessionStorage.getItem('test-cloud-activation-fault'),
         loaded: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
-        pending: pending?.id, previous: state?.kept?.id,
+        pending: pending?.id ?? null, kept: state?.kept?.contentDigest,
         hidden: document.querySelector('#btn-cloud-sync-back').hidden,
-        warned: document.querySelector('#cloud-backup-status').classList.contains('notice-warn'),
-        status: document.querySelector('#cloud-backup-status').textContent,
       };
     });
-    t.check('an unconfirmed post-Load recovery copy withdraws Go back after the page reloads',
-      unavailable.fault === 'hit' && unavailable.loaded === expectedLoaded && expectedLoaded > 0 && Boolean(unavailable.pending)
-        && unavailable.pending !== unavailable.previous && unavailable.hidden && unavailable.warned, JSON.stringify(unavailable));
+    t.check('a failed activation is reconciled to the exact pre-Load copy after the page reloads',
+      reconciled.fault === 'hit' && reconciled.loaded === expectedLoaded && expectedLoaded > 0 && reconciled.pending === null
+        && reconciled.kept === beforeFailedActivation && !reconciled.hidden, JSON.stringify(reconciled));
+    await click(page, '#btn-cloud-sync-back');
+    await page.waitForSelector('#ask[open]');
+    const recoveredNavigation = page.waitForNavigation({ waitUntil: 'load', timeout: 30000 });
+    await click(page, '#ask-ok');
+    await recoveredNavigation;
+    const recoveredDigest = await page.evaluate(async () => {
+      const { captureCompleteBackup } = await import('/js/lib/completeBackup.js');
+      return (await captureCompleteBackup({ storage: localStorage })).backup.digest;
+    });
+    t.check('Go back after activation recovery restores the exact earlier progress', recoveredDigest === beforeFailedActivation);
+
+    await seedRemote(7, 3);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    await page.evaluateOnNewDocument(() => {
+      if (sessionStorage.getItem('test-cloud-edit-after-restore') !== 'yes') return;
+      sessionStorage.removeItem('test-cloud-edit-after-restore');
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const id = Object.keys(state.issues)[0];
+      state.read[id] = 1_800_000_000_000;
+      localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    });
+    await page.evaluate(() => {
+      const put = IDBObjectStore.prototype.put;
+      IDBObjectStore.prototype.put = function (value, key) {
+        if (key === 'sync' && value?.kept && !window.__secondActivationFault) {
+          window.__secondActivationFault = true;
+          sessionStorage.setItem('test-cloud-edit-after-restore', 'yes');
+          this.transaction.abort();
+          return undefined;
+        }
+        return put.call(this, value, key);
+      };
+    });
+    const changedNavigation = page.waitForNavigation({ waitUntil: 'load', timeout: 30000 });
+    await click(page, '#ask-ok');
+    await changedNavigation;
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Go back is unavailable'),
+      { timeout: 20000 });
+    const pendingBeforeNewOffer = await page.evaluate(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      return (await new CloudBackupProtocol({ transport: createCloudHostTransport() })
+        .keptPending({ connection: 'c'.repeat(32) }))?.id ?? null;
+    });
+    await seedRemote(8, 2);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    const blockedLoad = await page.evaluate(() => ({
+      disabled: document.querySelector('#ask-ok').disabled,
+      focus: document.activeElement?.id,
+      body: document.querySelector('#ask-body').textContent,
+    }));
+    t.check('an inconclusive staged copy disables Load and focuses Keep in the next choice',
+      Boolean(pendingBeforeNewOffer) && blockedLoad.disabled && blockedLoad.focus === 'ask-alternate'
+        && blockedLoad.body.includes('earlier cloud recovery copy') && blockedLoad.body.includes('Load is unavailable'),
+      JSON.stringify(blockedLoad));
+    await click(page, '#ask-alternate');
+    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    const pendingAfterKeep = await page.evaluate(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      return (await new CloudBackupProtocol({ transport: createCloudHostTransport() })
+        .keptPending({ connection: 'c'.repeat(32) }))?.id ?? null;
+    });
+    t.check('Keep leaves the unconfirmed recovery copy recorded', pendingAfterKeep === pendingBeforeNewOffer);
     t.check('the offer and recovery journey has no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
