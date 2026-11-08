@@ -810,6 +810,16 @@ test('app startup prerequisites preserve native-only and all five installed jour
 const browserDiagnostic = workflow.slice(workflow.indexOf('\n  browser-diagnostic:'));
 const preparation = workflow.slice(workflow.indexOf('\n  preparation:'), workflow.indexOf('\n  browser-diagnostic:'));
 
+test('browser diagnostic includes release history for the ordinary Pages scenario', () => {
+  const checkout = browserDiagnostic.slice(
+    browserDiagnostic.indexOf('      - name: Check out the exact diagnostic source'),
+    browserDiagnostic.indexOf('      - name: Set up the diagnostic driver'),
+  );
+  assert.match(checkout, /ref: \$\{\{ github\.sha \}\}/);
+  assert.match(checkout, /fetch-depth: 0/);
+  assert.match(checkout, /persist-credentials: false/);
+});
+
 test('portable preparation excludes nonmanual and incomplete proof executions', () => {
   assert.match(workflow, /release_preparation:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const expression = preparation.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
