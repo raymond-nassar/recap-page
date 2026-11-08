@@ -1303,10 +1303,11 @@ when the build's configuration carries a valid client ID; ordinary pull request 
 Secondary screens put Back at the leading edge. Home, Library and Search do not offer it, and More
 remains a navigation sheet rather than a new history screen. Desktop rail destinations are roots too.
 The control uses the existing hash-history position and scroll restoration. Android keeps system Back;
-iPhone enables the native left-edge history gesture. Neither changes the storage origin or saved data.
+iPhone and iPad enable the native left-edge history gesture. Neither changes the storage origin or
+saved data.
 
-Home's Continue card puts its cover above Read and Done, with the remaining actions as wrapping links.
-Short, wide screens use a compact cover column so Read and Done still clear the bottom navigation.
+At 620px and below, Home's Continue card puts its cover above Read and Done, with the remaining actions
+as wrapping links. Wider screens, phones in landscape included, keep the cover beside the buttons.
 Action notices give their message a complete row above wrapping actions. The phone Done notice bounds
 its scrollable message to 30% of the content height above the bottom bar, keeping Undo visible; an
 overflowing message becomes keyboard-focusable without changing its announcement.

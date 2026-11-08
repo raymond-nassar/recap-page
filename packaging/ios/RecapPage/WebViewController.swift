@@ -91,6 +91,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         appPage = assets.appPageURL
         #if DEBUG
         DebugSupport.prepareHandOffRecorder(in: view)
+        DebugSupport.prepareBackGestureDiagnostics(for: webView, in: view)
         #endif
         startLoading()
     }

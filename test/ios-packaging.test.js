@@ -1743,7 +1743,9 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
 
 test('iOS Back, Continue and Preview inline controls retain token-sized native line boxes', () => {
   const overlay = read('packaging/ios/web/ios.css');
-  assert.match(overlay, /:root \.app-back\.quiet,\s*:root #chero-actions :is\(button, a\),\s*:root #preview-secondary :is\(button, a\)\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s);
+  assert.match(overlay, /:root \.app-back\.quiet,\s*:root #preview-secondary :is\(button, a\)\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s);
+  assert.match(overlay, /@media \(max-width: 620px\) \{\s*:root #chero-actions :is\(button, a\) \{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s,
+    'the phone card\'s inline quiet actions are target-sized only where they are inline');
   assert.match(overlay, /:root \.app-back > \.gi\s*\{\s*display:\s*none;/);
   assert.match(overlay, /:root \.app-back-label\s*\{\s*display:\s*inline;/);
   assert.match(overlay, /:root \.app-back::before\s*\{[^}]*content:\s*"\u2039"\s*\/\s*"";/s);
@@ -1835,7 +1837,20 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /link\.tap\(\)/);
   assert.match(nativeTest, /back\.tap\(\)/);
   assert.match(nativeTest, /CGVector\(dx: 0, dy: 0\.5\)/);
-  assert.match(nativeTest, /edge\.press\(forDuration: 0\.1, thenDragTo: destination/);
+  assert.match(nativeTest, /edge\.press\(forDuration: 0\.05, thenDragTo: destination\)/);
+  assert.doesNotMatch(nativeTest, /edge\.press\(forDuration: 0\.1/);
+  // The baseline swipe runs from a secondary screen before any dialog opens in the launch.
+  const baseline = nativeTest.indexOf('"a quick edge swipe, before any dialog has opened, returns Home"');
+  assert.ok(baseline > 0 && baseline < nativeTest.indexOf('toggle.tap()'));
+  assert.ok(nativeTest.indexOf('openList.tap()') < baseline);
+  assert.match(nativeTest, /atLastSwipe = nativeGesture\(\)/);
+  assert.match(presentationTests, /launchEnvironment\["RECAP_IOS_BACK_GESTURE_DIAGNOSTICS"\] = "1"/);
+  const debug = appSource('DebugSupport');
+  for (const field of ['allowsBackForwardNavigationGestures', 'canGoBack', 'backCount', 'forwardCount', 'posted', 'acknowledged']) {
+    assert.match(debug, new RegExp(`"${field}":`), field);
+  }
+  assert.match(appSource('IosBridgeHandler'), /#if DEBUG\s+DebugSupport\.recordBackGesturePosted\(enabled\)\s+#endif/);
+  assert.match(appSource('WebViewController'), /DebugSupport\.prepareBackGestureDiagnostics\(for: webView, in: view\)\s+#endif/);
   assert.match(nativeTest, /metrics\["historyPops"\] as\? Int == pops/);
   assert.match(nativeTest, /metrics\["timeOrigin"\] as\? Double == timeOrigin/);
   assert.match(nativeTest, /abs\(y - homeY\) <= 1 && abs\(x - homeX\) <= 1/);

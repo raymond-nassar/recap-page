@@ -2494,13 +2494,13 @@
     "fp": "db046a4ee4a55494",
     "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:409|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:409",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:410|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:410",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:423|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:423",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:424|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:424",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -2529,13 +2529,13 @@
     "fp": "244f4f24bf6d281b",
     "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:409|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:409",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:410|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:410",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:423|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:423",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:424|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:424",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -2556,7 +2556,7 @@
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:569-615|0": {
     "anchor": "src/index.html:569-615",
-    "fp": "31a99210662f2ef2",
+    "fp": "4bf6e9f8eefa237d",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:62-97|0": {
@@ -2694,8 +2694,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2354-2356|0": {
-    "anchor": "src/styles.css:2354-2356",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2376-2378|0": {
+    "anchor": "src/styles.css:2376-2378",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2719,8 +2719,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2354-2356|0": {
-    "anchor": "src/styles.css:2354-2356",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2376-2378|0": {
+    "anchor": "src/styles.css:2376-2378",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2774,8 +2774,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2810-2811|0": {
-    "anchor": "src/styles.css:2810-2811",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2832-2833|0": {
+    "anchor": "src/styles.css:2832-2833",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2844,8 +2844,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2354-2356|0": {
-    "anchor": "src/styles.css:2354-2356",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2376-2378|0": {
+    "anchor": "src/styles.css:2376-2378",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2961,7 +2961,7 @@
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:569-615|0": {
     "anchor": "src/index.html:569-615",
-    "fp": "31a99210662f2ef2",
+    "fp": "4bf6e9f8eefa237d",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:955|0": {
@@ -6534,23 +6534,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2041-2043|0": {
-    "anchor": "src/styles.css:2041-2043",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2063-2065|0": {
+    "anchor": "src/styles.css:2063-2065",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2059-2061|0": {
-    "anchor": "src/styles.css:2059-2061",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2081-2083|0": {
+    "anchor": "src/styles.css:2081-2083",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2395|0": {
-    "anchor": "src/styles.css:2395",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2417|0": {
+    "anchor": "src/styles.css:2417",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2419|0": {
-    "anchor": "src/styles.css:2419",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2441|0": {
+    "anchor": "src/styles.css:2441",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

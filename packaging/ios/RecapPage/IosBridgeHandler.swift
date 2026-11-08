@@ -185,8 +185,14 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
                 replyHandler(nil, "The back gesture request requires a true or false state.")
                 return
             }
+            #if DEBUG
+            DebugSupport.recordBackGesturePosted(enabled)
+            #endif
             onBackGestureChange?(enabled)
             replyHandler(["v": 1, "kind": "back-gesture-result", "enabled": enabled], nil)
+            #if DEBUG
+            DebugSupport.recordBackGestureAcknowledged(enabled)
+            #endif
         #if RECAP_ICLOUD || DEBUG
         case "cloud":
             guard let operation = body["op"] as? String, let text = body["body"] as? String else {

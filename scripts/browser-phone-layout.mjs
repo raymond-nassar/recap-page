@@ -1,6 +1,9 @@
 import { mkdir } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
+import { ratio } from './check-palette.mjs';
+import { decodePng } from './lib/painted-contrast.mjs';
 import { createEmptyState, createList, addIssuesToList, exportBackup, markRead, setDeferred } from '../src/js/lib/model.js';
 
 const listId = 'phone-layout';
@@ -225,16 +228,20 @@ export const phoneContinue = {
         const primary = document.querySelector('.chero-primary-actions');
         return {
           center: Math.abs(art.left + art.width / 2 - root.left - root.width / 2),
-          primary: !!primary && primary.contains(document.querySelector('#btn-chero-read'))
+          primary: !!primary && getComputedStyle(primary).display === 'flex'
+            && primary.contains(document.querySelector('#btn-chero-read'))
             && primary.contains(document.querySelector('#btn-chero-done')),
           quiet: ['open', 'review', 'deferred'].every((id) => {
             const node = document.querySelector(`#btn-chero-${id}`);
-            return !node.hidden && node.classList.contains('btn-link') && node.getBoundingClientRect().height >= target;
+            const style = getComputedStyle(node);
+            return !node.hidden && style.backgroundColor === 'rgba(0, 0, 0, 0)' && style.textDecorationLine === 'underline'
+              && node.getBoundingClientRect().height >= target;
           }),
           overflow: document.documentElement.scrollWidth > innerWidth,
         };
       }, profile.platform === 'android' ? 48 : 44);
-      checked(t, `${label}: centered cover, paired primary actions and three quiet actions`, card.center <= 1 && card.primary && card.quiet && !card.overflow, card);
+      if (profile.width <= 620) checked(t, `${label}: centered cover, paired primary actions and three quiet actions`,
+        card.center <= 1 && card.primary && card.quiet && !card.overflow, card);
       await capture(page, profile, theme, 'continue');
       await click(page, '#btn-chero-deferred');
       await page.waitForSelector('#view-read:not([hidden]) #full[open]');
@@ -817,7 +824,219 @@ export function dataReflowScenario({ cloudFixtureHost, installCloudFixture, seed
   };
 }
 
-export const phoneLayoutScenarios = [phoneBack, phoneContinue, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneCatalogReflow];
+const referenceFiles = new Map();
+function referenceFile(ref, path) {
+  const key = `${ref}:${path}`;
+  if (!referenceFiles.has(key)) {
+    try {
+      referenceFiles.set(key, execFileSync('git', ['show', key], { encoding: 'utf8', maxBuffer: 1 << 26 }));
+    } catch (error) {
+      throw new Error(`The Continue card comparison needs ${key}; fetch full history first. ${error.message}`, { cause: error });
+    }
+  }
+  return referenceFiles.get(key);
+}
+
+// The card was centered for phones only (#1175). Above 620px every layer must still render main's card
+// before #1178, so the reference is that commit's stylesheets and action classes swapped into the same page.
+const MAIN_BEFORE_CARD = '4f6453e296ce15437c1ebd06be92ffef84f084ba';
+const PHONE_CARD = 'a595e4090783e9a56ab329a4b36a306f2737f1b4';
+
+async function measureContinueCard(page) {
+  await settle(page);
+  return page.evaluate(() => {
+    const root = document.querySelector('#home-continue').getBoundingClientRect();
+    const rect = (node) => {
+      const box = node.getBoundingClientRect();
+      return [box.left - root.left, box.top - root.top, box.width, box.height].map((value) => Math.round(value * 100) / 100);
+    };
+    const boxes = { card: [0, 0, root.width, root.height].map((value) => Math.round(value * 100) / 100) };
+    for (const selector of ['.art', '.chero-body', '#chero-h', '#chero-count', '#chero-bar', '#chero-next', '#chero-actions']) {
+      boxes[selector] = rect(document.querySelector(`#home-continue ${selector}`));
+    }
+    const styles = {};
+    for (const node of document.querySelectorAll('#chero-actions .btn')) {
+      boxes[node.id] = rect(node);
+      const style = getComputedStyle(node);
+      styles[node.id] = ['display', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft', 'fontSize', 'fontWeight',
+        'backgroundColor', 'color', 'borderTopColor', 'borderTopLeftRadius', 'textDecorationLine', 'minHeight', 'lineHeight',
+        'textAlign'].map((key) => `${key}=${style[key]}`).join(' ');
+    }
+    return { boxes, styles, textAlign: getComputedStyle(document.querySelector('.chero-in')).textAlign };
+  });
+}
+
+async function applyReferenceCard(page, ref) {
+  const sheets = {
+    styles: referenceFile(ref, 'src/styles.css'),
+    mobile: referenceFile(ref, 'packaging/android/web/mobile.css'),
+    ios: referenceFile(ref, 'packaging/ios/web/ios.css'),
+  };
+  const html = referenceFile(ref, 'src/index.html');
+  const classes = Object.fromEntries(['read', 'done', 'open', 'review', 'deferred'].map((id) => {
+    const match = html.match(new RegExp(`class="([^"]+)" id="btn-chero-${id}"`));
+    if (!match) throw new Error(`${ref} has no class for btn-chero-${id}`);
+    return [id, match[1]];
+  }));
+  const swapped = await page.evaluate((sheets, current, classes, wrapped) => {
+    const swaps = [];
+    const replace = (node, text, name) => {
+      const style = document.createElement('style');
+      style.textContent = text;
+      node.replaceWith(style);
+      swaps.push(name);
+    };
+    for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
+      const path = new URL(link.href).pathname;
+      if (path.endsWith('/styles.css')) replace(link, sheets.styles, 'styles');
+      else if (path.endsWith('/mobile.css')) replace(link, sheets.mobile, 'mobile');
+      else if (path.endsWith('/ios.css')) replace(link, sheets.ios, 'ios');
+    }
+    for (const style of document.querySelectorAll('style')) {
+      if (style.textContent === current.mobile) replace(style, sheets.mobile, 'mobile overlay');
+      else if (style.textContent === current.ios) replace(style, sheets.ios, 'ios overlay');
+    }
+    for (const [id, name] of Object.entries(classes)) document.querySelector(`#btn-chero-${id}`).className = name;
+    const wrapper = document.querySelector('.chero-primary-actions');
+    if (wrapper && !wrapped) wrapper.replaceWith(...wrapper.childNodes);
+    return swaps;
+  }, sheets, { mobile: mobileCss, ios: iosCss }, classes, html.includes('class="chero-primary-actions"'));
+  return swapped;
+}
+
+function sameCard(now, then) {
+  const drift = [];
+  for (const [key, box] of Object.entries(then.boxes)) {
+    const mine = now.boxes[key];
+    if (!mine || mine.some((value, index) => Math.abs(value - box[index]) > 0.5)) drift.push({ key, now: mine, then: box });
+  }
+  for (const [key, style] of Object.entries(then.styles)) {
+    if (now.styles[key] !== style) drift.push({ key, now: now.styles[key], then: style });
+  }
+  if (now.textAlign !== then.textAlign) drift.push({ key: 'text-align', now: now.textAlign, then: then.textAlign });
+  return drift;
+}
+
+const wideCardProfiles = [
+  { width: 1280, height: 900, platform: 'desktop', ref: MAIN_BEFORE_CARD },
+  { width: 820, height: 1180, platform: 'desktop', ref: MAIN_BEFORE_CARD },
+  { width: 844, height: 390, platform: 'desktop', ref: MAIN_BEFORE_CARD },
+  { width: 820, height: 1180, platform: 'ios', ref: MAIN_BEFORE_CARD },
+  { width: 844, height: 390, platform: 'ios', ref: MAIN_BEFORE_CARD },
+  { width: 820, height: 1180, platform: 'android', ref: MAIN_BEFORE_CARD },
+  { width: 844, height: 390, platform: 'android', ref: MAIN_BEFORE_CARD },
+  { width: 393, height: 852, platform: 'ios', ref: PHONE_CARD },
+  { width: 360, height: 800, platform: 'android', ref: PHONE_CARD },
+];
+
+export const continueWideMatchesMain = {
+  id: 'continue-wide-matches-main',
+  title: 'Continue keeps main\'s card above 620px on every layer and the phone card at 620px and below',
+  async run(page, t, selected) {
+    const androidOnly = selected?.every((profile) => profile.platform === 'android');
+    const chosen = androidOnly ? wideCardProfiles.filter((profile) => profile.platform === 'android') : wideCardProfiles;
+    await forProfiles(page, t, async (profile, theme) => {
+      const label = `${profile.platform} ${profile.width}x${profile.height} ${theme}`;
+      await page.$eval('#home-continue', (node) => node.scrollIntoView({ block: 'center' }));
+      await capture(page, profile, theme, 'continue-card');
+      const now = await measureContinueCard(page);
+      const swaps = await applyReferenceCard(page, profile.ref);
+      const then = await measureContinueCard(page);
+      const drift = sameCard(now, then);
+      checked(t, `${label}: Continue card geometry and action styling match ${profile.ref.slice(0, 8)}`,
+        swaps.length > 0 && drift.length === 0, { swaps, drift });
+    }, chosen);
+  },
+};
+
+const guidePillProfiles = [
+  { width: 1280, height: 900, platform: 'desktop' },
+  { width: 393, height: 852, platform: 'ios' },
+  { width: 360, height: 800, platform: 'android' },
+];
+
+async function guidePillContrast(page, hover) {
+  await page.$eval('#home-categories .home-guide-link', (node) => node.scrollIntoView({ block: 'center' }));
+  const box = await page.$eval('#home-categories .home-guide-link', (node) => {
+    const rect = node.getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    const text = [...range.getClientRects()].find((part) => part.width && part.height);
+    return { left: rect.left, top: rect.top, width: rect.width, height: rect.height, textLeft: text.left, textTop: text.top };
+  });
+  await page.mouse.move(hover ? box.left + box.width / 2 : 0, hover ? box.top + box.height / 2 : 0);
+  await settle(page);
+  const colour = await page.$eval('#home-categories .home-guide-link', (node) => getComputedStyle(node).color);
+  const clip = { x: Math.round(box.textLeft) - 3, y: Math.round(box.textTop) + 1, width: 1, height: 1 };
+  const shot = decodePng(await page.screenshot({ clip: { ...clip, x: clip.x + await page.evaluate(() => scrollX), y: clip.y + await page.evaluate(() => scrollY) } }));
+  const background = shot.pixel(0, 0);
+  const text = colour.match(/\d+/g).slice(0, 3).map(Number);
+  await page.mouse.move(0, 0);
+  return { hover, text, background, ratio: Math.round(ratio(text, background) * 100) / 100 };
+}
+
+export const guideLinkPill = {
+  id: 'guide-link-pill',
+  title: 'The New to Marvel Comics? link is an accent pill that stays readable, sized and unwrapped mid-word',
+  async run(page, t, selected) {
+    const androidOnly = selected?.every((profile) => profile.platform === 'android');
+    const chosen = androidOnly ? guidePillProfiles.filter((profile) => profile.platform === 'android') : guidePillProfiles;
+    await forProfiles(page, t, async (profile, theme) => {
+      const label = `${profile.platform} ${profile.width} ${theme}`;
+      await page.$eval('#home-categories', (node) => node.scrollIntoView({ block: 'center' }));
+      await settle(page);
+      await capture(page, profile, theme, 'guide-link');
+      const style = await page.evaluate(() => {
+        const probe = document.createElement('span');
+        probe.style.cssText = 'background: rgb(var(--accent-line) / 10%); color: var(--accent-text); border: 1px solid rgb(var(--accent-line) / 30%);';
+        document.body.append(probe);
+        const expected = getComputedStyle(probe);
+        const want = { background: expected.backgroundColor, color: expected.color, border: expected.borderTopColor };
+        probe.remove();
+        return [...document.querySelectorAll('a[href="#/new-to-comics"].home-guide-link')].map((node) => {
+          const css = getComputedStyle(node);
+          const box = node.getBoundingClientRect();
+          return { id: node.closest('section')?.id, want, background: css.backgroundColor, color: css.color,
+            border: css.borderTopColor, borderWidth: css.borderTopWidth, radius: parseFloat(css.borderTopLeftRadius),
+            underline: css.textDecorationLine, height: box.height, rendered: box.height > 0, name: node.textContent.trim() };
+        });
+      });
+      const target = profile.platform === 'android' ? 48 : 44;
+      checked(t, `${label}: Home and empty Library guide links are accent-tint pills without underline`,
+        style.length === 2 && style.some((link) => link.id === 'library-empty')
+        && style.every((link) => link.background === link.want.background && link.color === link.want.color
+          && link.border === link.want.border && link.borderWidth === '1px' && link.radius >= 999 && link.underline === 'none')
+        && style.filter((link) => link.rendered).every((link) => link.height >= target), style);
+      const contrast = [await guidePillContrast(page, false)];
+      if (profile.platform === 'desktop') contrast.push(await guidePillContrast(page, true));
+      console.log(`GUIDE-PILL-CONTRAST ${JSON.stringify({ ...profile, theme, contrast })}`);
+      checked(t, `${label}: painted guide pill text contrast is at least 4.5:1`, contrast.every((row) => row.ratio >= 4.5), contrast);
+      await largeText(page, profile);
+      const large = await page.evaluate(() => {
+        const node = document.querySelector('#home-categories .home-guide-link');
+        const words = [];
+        const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+        for (let text = walker.nextNode(); text; text = walker.nextNode()) {
+          for (const match of text.data.matchAll(/\S+/g)) {
+            const range = document.createRange();
+            range.setStart(text, match.index);
+            range.setEnd(text, match.index + match[0].length);
+            words.push({ word: match[0], lines: new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size });
+          }
+        }
+        return { words, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          clipped: node.scrollWidth > node.clientWidth + 1 };
+      });
+      checked(t, `${label}: at the largest text the guide pill splits no word and does not widen the page`,
+        large.words.length > 0 && large.words.every((word) => word.lines === 1) && !large.overflow && !large.clipped, large);
+      await page.$eval('#home-categories', (node) => node.scrollIntoView({ block: 'center' }));
+      await settle(page);
+      await capture(page, profile, theme, 'guide-link-largest');
+    }, chosen);
+  },
+};
+
+export const phoneLayoutScenarios = [phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',
@@ -846,7 +1065,16 @@ export const phoneLayoutMutations = [
       const style = document.createElement('style');
       style.textContent = 'body #home-continue .art { margin-inline: 0; justify-self: start; }';
       document.head.append(style);
-      for (const action of document.querySelectorAll('#chero-actions > .btn-link')) action.className = 'btn btn-g';
+    }),
+  },
+  {
+    id: 'phone-card-everywhere', breaks: 'continue-wide-matches-main', why: 'the phone card restyle leaks above 620px',
+    script: () => document.addEventListener('DOMContentLoaded', () => {
+      const style = document.createElement('style');
+      style.textContent = 'html body .chero-in { grid-template-columns: 1fr; text-align: center; } '
+        + 'html body .chero-in .art { justify-self: center; margin-inline: auto; } '
+        + 'html body #chero-actions > .btn-g { background: none; text-decoration: underline; }';
+      document.head.append(style);
     }),
   },
 ];

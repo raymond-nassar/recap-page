@@ -27,6 +27,9 @@ final class NavigationCoordinator: NSObject, WKNavigationDelegate {
             String(describing: navigationAction.targetFrame?.isMainFrame),
             String(navigationAction.targetFrame == nil),
             String(describing: decision))
+        DebugSupport.recordMainNavigation(
+            type: navigationAction.navigationType, url: navigationAction.request.url,
+            decision: String(describing: decision))
         #endif
         switch decision {
         case .allow:

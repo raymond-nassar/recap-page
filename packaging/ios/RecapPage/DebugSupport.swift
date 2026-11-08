@@ -21,6 +21,8 @@ enum DebugSupport {
     static let iCloudFakeKey = "RECAP_IOS_ICLOUD_FAKE"
     static let probeResultIdentifier = "recap-probe-result"
     static let handOffRecorderIdentifier = "ios-handoff-recorder"
+    static let backGestureDiagnosticsKey = "RECAP_IOS_BACK_GESTURE_DIAGNOSTICS"
+    static let backGestureDiagnosticsIdentifier = "ios-back-gesture-diagnostics"
 
     private static var environment: [String: String] {
         ProcessInfo.processInfo.environment
@@ -762,6 +764,80 @@ enum DebugSupport {
                 label.accessibilityLabel = (value as? String) ?? "error: the probe returned \(String(describing: value))"
             }
         }
+    }
+
+    // On newest-iPhone job 128789812268 an edge swipe left the page unchanged with nothing to say why,
+    // so a swipe test reads the native side of the gesture here: the web view's own flag and history at
+    // the moment it asks, and the last state the page posted and the bridge acknowledged.
+    @MainActor private static var backGestureRequests = 0
+    @MainActor private static var backGesturePosted: Bool?
+    @MainActor private static var backGestureAcknowledged: Bool?
+    @MainActor private static var mainNavigations: [String] = []
+
+    static var recordsBackGesture: Bool {
+        environment[backGestureDiagnosticsKey] == "1"
+    }
+
+    @MainActor
+    static func recordBackGesturePosted(_ enabled: Bool) {
+        backGestureRequests += 1
+        backGesturePosted = enabled
+    }
+
+    @MainActor
+    static func recordBackGestureAcknowledged(_ enabled: Bool) {
+        backGestureAcknowledged = enabled
+    }
+
+    @MainActor
+    static func recordMainNavigation(type: WKNavigationType, url: URL?, decision: String) {
+        guard recordsBackGesture else { return }
+        mainNavigations.append("\(type.rawValue) #\(url?.fragment ?? "") \(decision)")
+        if mainNavigations.count > 8 { mainNavigations.removeFirst() }
+    }
+
+    @MainActor
+    static func prepareBackGestureDiagnostics(for webView: WKWebView, in view: UIView) {
+        guard recordsBackGesture else { return }
+        let probe = BackGestureDiagnosticsView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        probe.webView = webView
+        probe.accessibilityIdentifier = backGestureDiagnosticsIdentifier
+        probe.isAccessibilityElement = true
+        probe.isUserInteractionEnabled = false
+        probe.alpha = 0.1
+        view.addSubview(probe)
+    }
+
+    @MainActor
+    fileprivate static func backGestureDiagnostics(of webView: WKWebView?) -> String {
+        guard let webView else { return "error: the web view is gone" }
+        let list = webView.backForwardList
+        let record: [String: Any] = [
+            "allowsBackForwardNavigationGestures": webView.allowsBackForwardNavigationGestures,
+            "canGoBack": webView.canGoBack,
+            "backCount": list.backList.count,
+            "forwardCount": list.forwardList.count,
+            "current": list.currentItem?.url.fragment ?? "",
+            "back": list.backItem?.url.fragment ?? "",
+            "requests": backGestureRequests,
+            "posted": backGesturePosted.map { $0 as Any } ?? NSNull(),
+            "acknowledged": backGestureAcknowledged.map { $0 as Any } ?? NSNull(),
+            "navigations": mainNavigations,
+        ]
+        guard let data = try? JSONSerialization.data(withJSONObject: record, options: [.sortedKeys]) else {
+            return "error: the gesture state could not be encoded"
+        }
+        return String(decoding: data, as: UTF8.self)
+    }
+}
+
+/// Computes its label when accessibility asks, so a test reads the state at that moment, not a copy.
+private final class BackGestureDiagnosticsView: UIView {
+    weak var webView: WKWebView?
+
+    override var accessibilityLabel: String? {
+        get { DebugSupport.backGestureDiagnostics(of: webView) }
+        set {}
     }
 }
 #endif

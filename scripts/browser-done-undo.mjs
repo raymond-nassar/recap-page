@@ -420,7 +420,7 @@ export const doneHome = {
     const commands = await page.$$eval('#chero-actions > .chero-primary-actions > .btn', (nodes) => nodes
       .filter((node) => node.getClientRects().length).map((node) => [node.id, node.className]));
     t.check('Done sits beside Read as a secondary command, named and described as on the hero',
-      ready && commands[0]?.join() === 'btn-chero-read,btn btn-lg' && commands[1]?.join() === 'btn-chero-done,btn btn-g'
+      ready && commands[0]?.join() === 'btn-chero-read,btn' && commands[1]?.join() === 'btn-chero-done,btn btn-g'
       && commands.length === 2
       && ax?.name === 'Done' && ax.description === DESCRIPTION && !ax.keyshortcuts
       && start.done?.height === start.read?.height, JSON.stringify({ commands, ax, start }));

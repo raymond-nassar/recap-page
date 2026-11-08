@@ -1957,20 +1957,30 @@ progress { accent-color: var(--accent); height: 6px; }
 }
 /* 132 rather than 106, for the same reason the catalog cover grew: this is the other place a
    reader is being asked to decide something. */
-.chero-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); text-align: center; }
-.chero-in .art { width: 132px; max-width: 100%; justify-self: center; margin-inline: auto; }
-.chero-body { min-width: 0; }
-#chero-actions { justify-content: center; align-items: center; }
-.chero-primary-actions { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: var(--space-4); width: 100%; }
-.chero-primary-actions > .btn { min-height: var(--target); justify-content: center; padding-block: var(--space-2); }
-#chero-actions > .btn-link { min-height: var(--target); max-width: 100%; padding: 0 var(--space-4); }
+.chero-in { display: grid; grid-template-columns: 132px 1fr; gap: var(--space-8); align-items: start; }
+/* Read and Done share a row only in the single-column phone card. Wider, the wrapper adds no box, so
+   both stay items of the action row exactly as before #1178; it carries no role or name of its own. */
+.chero-primary-actions { display: contents; }
 .chero.continue-empty { padding: var(--space-5); }
 .continue-empty .chero-in { grid-template-columns: 1fr; }
 .continue-empty .art { display: none; }
-@media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
-@media (min-width: 560px) and (max-height: 600px) {
-  .chero-in { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
-  .chero-in .art { max-width: 112px; }
+/* The centered card is a phone layout (#1175). The owner wanted it on mobile only, and above 620px the
+   cover sits beside left-aligned text, where a centered column left the progress bar stranded. */
+@media (max-width: 620px) {
+  .chero-in { grid-template-columns: 1fr; gap: var(--space-6); align-items: normal; text-align: center; }
+  .chero-in .art { width: 132px; max-width: 132px; justify-self: center; margin-inline: auto; }
+  .chero-body { min-width: 0; }
+  #chero-actions { justify-content: center; align-items: center; }
+  .chero-primary-actions { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: var(--space-4); width: 100%; }
+  .chero-primary-actions > .btn { min-height: var(--target); justify-content: center; padding-block: var(--space-2); }
+  /* Read and the quiet actions take the comic screen's large and link treatments at those classes' own
+     weight, so platform layers that outrank them there still do. */
+  .chero-primary-actions > :where(#btn-chero-read) { padding-inline: var(--space-8); font-size: var(--t-body-lg); font-weight: 700; }
+  :where(#chero-actions) > .btn-g {
+    background: none; color: var(--blue); border-color: transparent; text-decoration: underline; text-underline-offset: 3px;
+  }
+  :where(#chero-actions) > .btn-g:hover { filter: none; text-decoration-thickness: var(--stroke-2); }
+  #chero-actions > .btn-g { min-height: var(--target); max-width: 100%; padding: 0 var(--space-4); }
 }
 /* `anywhere` rather than `break-word` (#998). Both wrap "presentation" at iOS's largest text, but the
    heading sits in a grid track sized from its min-content, which `break-word` leaves at the longest
@@ -2016,12 +2026,24 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* ---------------------------------------------------------- reading paths */
 
 .home-categories { max-width: 72rem; }
+/* The guide invitation is a soft accent pill, the owner's choice, so it reads as an offer beside
+   Explore rather than as plain text or a second heading. The fill and border are the same accent
+   tints the selected filter pill and the current row use, and the label stays `--accent-text`,
+   which is gated at 4.5:1 against the page. Labels wrap between words only, so a large text size
+   makes the pill taller instead of splitting a word or widening the page. */
 .home-guide-link {
-  display: inline-flex; align-items: center; justify-content: flex-end; max-width: 48%; min-width: 0;
-  min-height: var(--target); padding-inline: var(--space-2); color: var(--accent-text);
-  font-size: var(--t-body); font-weight: 600; text-align: right; overflow-wrap: anywhere;
+  display: inline-flex; align-items: center; justify-content: center; min-width: 0; max-width: 100%;
+  min-height: var(--target); padding: var(--space-2) var(--space-6);
+  border: var(--stroke-1) solid rgb(var(--accent-line) / 30%); border-radius: var(--radius-pill);
+  background: rgb(var(--accent-line) / 10%); color: var(--accent-text);
+  font-size: var(--t-body); font-weight: 600; line-height: 1.25; text-align: center;
+  text-decoration: none; overflow-wrap: normal;
 }
-.home-guide-link:hover { color: var(--text); }
+.home-guide-link:hover { background: rgb(var(--accent-line) / 16%); border-color: var(--accent-text); }
+.sec-h > .home-guide-link { flex: 0 1 auto; max-width: 48%; align-self: center; }
+@media (forced-colors: active) {
+  .home-guide-link { border-color: LinkText; color: LinkText; background: Canvas; }
+}
 .home-paths {
   list-style: none; margin: var(--space-5) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);
