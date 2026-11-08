@@ -24,6 +24,7 @@ import { ERA_TILES, ratio } from './check-palette.mjs';
 import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import { touchFeedbackCheck } from './lib/touch-feedback.mjs';
+import { androidPhoneProfiles, phoneLayoutScenarios } from './browser-phone-layout.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
@@ -37,7 +38,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
-  'story-types', 'touch-feedback',
+  'story-types', 'touch-feedback', 'phone-layout',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -5314,7 +5315,15 @@ async function completeBackupAndroidCheck(page, label) {
 
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
-  let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
+  if (onlyArgs[0] === '--only=phone-layout') {
+    const page = await browser.newPage();
+    page.__origin = origin;
+    for (const scenario of phoneLayoutScenarios) {
+      await scenario.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) }, androidPhoneProfiles);
+    }
+  }
+  let viewports = onlyArgs[0] === '--only=phone-layout' ? []
+    : [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
   if (phoneHeader) viewports = [
     { width: 320, height: 740, textScale: 2, theme: 'light' },
@@ -5485,7 +5494,7 @@ try {
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
   ));
-  assert.ok(viewports.length, `Unknown viewport: ${onlyViewport}`);
+  assert.ok(viewports.length || onlyArgs[0] === '--only=phone-layout', `Unknown viewport: ${onlyViewport}`);
   if (placeholderAx) assert.deepEqual(viewports.map((profile) => profile.id), ['M11', 'M16'],
     'Placeholder AX proof requires exactly M11 and M16');
   for (const viewport of viewports) {

@@ -143,6 +143,7 @@ export default [
       'scripts/browser-bulk-read.mjs',
       'scripts/browser-milestones.mjs',
       'scripts/browser-save-notice.mjs',
+      'scripts/browser-phone-layout.mjs',
       'scripts/browser-reading-card.mjs',
       'scripts/browser-ordered-import.mjs',
       'scripts/browser-completion.mjs',

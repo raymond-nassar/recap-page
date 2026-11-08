@@ -1082,7 +1082,9 @@ test('the iOS overlay names only shared design tokens, never a raw color', () =>
   const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
   assert.doesNotMatch(css, /\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(\s*(?!var\()/i);
-  const shared = rootTokens(read('src/styles.css'));
+  // Color tokens are defined per theme rather than on :root, and are as shared as the rest.
+  const shared = new Set([...rootTokens(read('src/styles.css')).keys(),
+    ...[...read('src/styles.css').matchAll(/(--[-\w]+)\s*:/g)].map((match) => match[1])]);
   for (const [, name] of css.matchAll(/var\(\s*(--[-\w]+)/g)) {
     if (name !== '--ios-text-scale') assert.ok(shared.has(name), `${name} is a shared token`);
   }
@@ -1230,6 +1232,7 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
   assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
+  assert.match(presentationTests, /const breadcrumbLabel = matchMedia\('\(min-width: 881px\)'\)\.matches \? \{/);
   for (const key of [
     'sidebar-app', 'home-count-total', 'home-count-word', 'home-next-caption', 'home-lists-summary',
     'library-lists-summary', 'library-ratings-caption', 'current-breadcrumb',
@@ -1379,6 +1382,13 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   const guard = presentationTests.slice(presentationTests.indexOf('private func acceptPassiveFinding('),
     presentationTests.indexOf('private func performAccessibilityAudit('));
   assert.doesNotMatch(guard, /revealNativeTarget|revealPassiveAuditTarget|thenDragTo|swipe/);
+});
+
+test('T03 reveals nearby passive text without an overshooting native drag', () => {
+  const reveal = presentationTests.slice(presentationTests.indexOf('private func revealPassiveAuditTarget('),
+    presentationTests.indexOf('func testPassiveRevealFrameReservesTheCompleteMeasuredBar()'));
+  assert.match(reveal, /element\.isHittable && usableFrame\.contains\(targetFrame\)/);
+  assert.match(reveal, /if abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
 });
 
 test('first-run tile uses a precise native reveal without changing shared helper defaults', () => {
@@ -1729,6 +1739,146 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
   assert.match(overlay, /:root \.skip-link\s*\{[^}]*line-height:\s*var\(--target\);[^}]*padding-block:\s*0;/s);
   assert.match(overlay, /:root #reader-closure-faq\s*\{[^}]*display:\s*inline-block;[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*var\(--target\);/s);
   assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
+});
+
+test('iOS Back, Continue and Preview inline controls retain token-sized native line boxes', () => {
+  const overlay = read('packaging/ios/web/ios.css');
+  assert.match(overlay, /:root \.app-back\.quiet,\s*:root #preview-secondary :is\(button, a\)\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s);
+  assert.match(overlay, /@media \(max-width: 620px\) \{\s*:root #chero-actions :is\(button, a\) \{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s,
+    'the phone card\'s inline quiet actions are target-sized only where they are inline');
+  assert.match(overlay, /:root \.app-back > \.gi\s*\{\s*display:\s*none;/);
+  assert.match(overlay, /:root \.app-back-label\s*\{\s*display:\s*inline;/);
+  assert.match(overlay, /:root \.app-back::before\s*\{[^}]*content:\s*"\u2039"\s*\/\s*"";/s);
+});
+
+test('iOS Back, Continue and Preview actions expose their named parent and track hidden state', () => {
+  const controller = appSource('WebViewController');
+  const script = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)[1];
+  const visualChild = () => ({
+    setAttribute(key, value) { this[key] = value; },
+    getAttribute(key) { return this[key] ?? null; },
+    append() {},
+  });
+  const makeControl = (id, name, hidden = false) => {
+    const attributes = new Map([['aria-label', name]]);
+    return {
+      id, hidden, dataset: {}, innerText: name, childNodes: [],
+      children: [visualChild()],
+      matches: (selector) => selector.split(',').some((part) =>
+        (id === 'back' && part.trim() === '.app-back')
+          || (id === 'preview-copy' && part.trim() === '#preview-secondary button')
+          || (id === 'preview-link' && part.trim() === '#preview-secondary a')
+          || (id.startsWith('btn-chero-') && part.trim() === '#chero-actions button')),
+      getAttribute: (key) => attributes.get(key) ?? null,
+      setAttribute: (key, value) => attributes.set(key, value),
+      removeAttribute: (key) => attributes.delete(key),
+    };
+  };
+  const controls = [
+    makeControl('back', 'Back'),
+    makeControl('btn-chero-read', 'Read', true),
+    makeControl('btn-chero-done', 'Done', true),
+    makeControl('btn-chero-open', 'Open the list: fixture'),
+    makeControl('btn-chero-review', 'Review read comics', true),
+    makeControl('btn-chero-deferred', 'Deferred comics', true),
+    makeControl('preview-copy', 'Use updated copy', true),
+    makeControl('preview-link', 'Open Reading List'),
+  ];
+  let refresh;
+  runInNewContext(script, {
+    document: {
+      documentElement: {},
+      createElement: visualChild,
+      querySelectorAll: (selector) => controls.filter((control) =>
+        selector.split(',').some((part) => part.trim() === `#${control.id}`
+          || (control.id === 'back' && part.trim() === '.app-back')
+          || (control.id === 'preview-copy' && part.trim() === '#preview-secondary button')
+          || (control.id === 'preview-link' && part.trim() === '#preview-secondary a'))),
+    },
+    Node: { TEXT_NODE: 3 },
+    MutationObserver: class {
+      constructor(callback) { refresh = callback; }
+      observe(_root, options) { assert.deepEqual(Array.from(options.attributeFilter), ['hidden']); }
+    },
+  });
+  for (const control of controls) {
+    assert.equal(control.dataset.iosAccessibleTarget, 'true', control.id);
+    assert.equal(control.getAttribute('aria-label'), control.innerText, control.id);
+    assert.equal(control.children[0]['aria-hidden'], 'true', control.id);
+    assert.equal(control.getAttribute('aria-hidden'), control.hidden ? 'true' : null, control.id);
+  }
+  for (const control of controls.slice(1)) {
+    control.hidden = !control.hidden;
+    refresh();
+    assert.equal(control.getAttribute('aria-hidden'), control.hidden ? 'true' : null, control.id);
+    control.setAttribute('aria-label', `${control.innerText} updated`);
+    refresh();
+    assert.equal(control.getAttribute('aria-label'), `${control.innerText} updated`, control.id);
+    control.children = [];
+    const text = {
+      nodeType: 3, textContent: control.innerText,
+      replaceWith(element) {
+        control.childNodes = [element];
+        control.children = [element];
+      },
+    };
+    control.childNodes = [text];
+    refresh();
+    assert.equal(control.children[0]['aria-hidden'], 'true', `${control.id} repainted label`);
+    assert.notEqual(control.childNodes[0], text, `${control.id} has no standalone text node`);
+  }
+});
+
+test('iOS ships without the edge-swipe back gesture and leaves no path that turns it on', () => {
+  for (const name of ['WebViewController', 'IosBridgeHandler', 'NavigationCoordinator', 'DebugSupport']) {
+    assert.doesNotMatch(appSource(name), /allowsBackForwardNavigationGestures|onBackGestureChange|back-gesture|BackGesture/, name);
+  }
+  for (const file of ['packaging/ios/web/app.js', 'packaging/ios/web/bridge.js']) {
+    assert.doesNotMatch(read(file), /watchModalDialogs|back-gesture|back gesture/, file);
+  }
+  assert.doesNotMatch(presentationTests, /RECAP_IOS_BACK_GESTURE_DIAGNOSTICS|swipeBack|LeftEdgeSwipe/);
+});
+
+test('iOS Back is tested against real taps and app popstate restoration on secondary screens only', () => {
+  const nativeTest = presentationTests.slice(
+    presentationTests.indexOf('func testBackRestoresHashHistoryOnlyFromSecondaryScreensAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'));
+  assert.ok(nativeTest.length > 0);
+  assert.match(nativeTest, /link\.tap\(\)/);
+  assert.match(nativeTest, /back\.tap\(\)/);
+  assert.match(nativeTest, /metrics\["historyPops"\] as\? Int == initialPops \+ 1/);
+  assert.match(presentationTests, /window\.__recapProbeDocument \?\?= crypto\.randomUUID\(\);/);
+  assert.match(presentationTests, /documentToken: window\.__recapProbeDocument/);
+  const tokenScript = presentationTests.match(/window\.__recapProbeDocument \?\?= crypto\.randomUUID\(\);/)[0];
+  let sequence = 0;
+  const crypto = { randomUUID: () => `document-${++sequence}` };
+  const currentDocument = { window: {}, crypto };
+  runInNewContext(tokenScript, currentDocument);
+  const firstToken = currentDocument.window.__recapProbeDocument;
+  runInNewContext(tokenScript, currentDocument);
+  assert.equal(currentDocument.window.__recapProbeDocument, firstToken);
+  const reloadedDocument = { window: {}, crypto };
+  runInNewContext(tokenScript, reloadedDocument);
+  assert.notEqual(reloadedDocument.window.__recapProbeDocument, firstToken);
+  assert.match(nativeTest, /let documentToken = try XCTUnwrap\(home\["documentToken"\] as\? String\)/);
+  assert.match(nativeTest, /metrics\["documentToken"\] as\? String == documentToken/);
+  assert.doesNotMatch(presentationTests, /timeOrigin/);
+  assert.match(nativeTest, /abs\(y - homeY\) <= 1 && abs\(x - homeX\) <= 1/);
+  assert.match(nativeTest, /homeDepth, startDepth \+ 3/);
+  assert.match(nativeTest, /start\["initialEntry"\]/);
+  assert.match(presentationTests, /const launchView = await waitFor\(\(\) => document\.querySelector\('\.view:not\(\[hidden\]\)'\)\?\.id, 'launch view'\);\s+await nextFrame\(\);\s+initialEntry = \{/);
+  assert.match(nativeTest, /"Home is a tab root and shows no Back"/);
+  assert.match(nativeTest, /"Library is a tab root and shows no Back"/);
+  assert.match(nativeTest, /"Search is a tab root and shows no Back"/);
+  assert.match(nativeTest, /back\.frame\.midX, webView\.frame\.midX/);
+  assert.match(nativeTest, /backStyle\["iconDisplay"\] as\? String, "none"/);
+  assert.match(nativeTest, /XCTAssertNotEqual\(try XCTUnwrap\(backStyle\["labelDisplay"\] as\? String\), "none"\)/);
+  assert.match(nativeTest, /XCTAssertGreaterThan\(try XCTUnwrap\(backStyle\["labelWidth"\] as\? Double\), 0\)/);
+  assert.match(nativeTest, /XCTAssertGreaterThan\(try XCTUnwrap\(backStyle\["labelHeight"\] as\? Double\), 0\)/);
+  assert.match(nativeTest, /backStyle\["labelInsideControl"\] as\? Bool, true/);
+  assert.match(nativeTest, /backStyle\["chevronContent"\] as\? String\)\.contains/);
+  assert.doesNotMatch(nativeTest, /XCTAssertEqual\(backStyle\["labelDisplay"\]/);
+  assert.doesNotMatch(nativeTest, /evaluateJavaScript|history\.back\(|location\.hash\s*=/);
 });
 
 test('iOS web controls expose one accessible target without changing visible layout', () => {

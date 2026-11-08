@@ -89,9 +89,10 @@ test('one shared renderer integrates Back with breadcrumbs without adding it to 
   assert.match(main, /const trail = breadcrumbHierarchy\(\{/);
   assert.match(main, /el\('nav', \{ class: 'breadcrumb', 'aria-label': 'Breadcrumb' \}\)/);
   assert.match(main, /if \(existing\?\.dataset\.trail === trailKey\) return;/);
-  assert.match(main, /if \(!existing\) \{ if \(view === 'home'\) head\.append\(breadcrumb\); else head\.before\(breadcrumb\); \}/);
+  assert.match(main, /if \(!existing\) head\.before\(breadcrumb\);/);
+  assert.match(main, /const backAvailable = navigationPosition\.canGoBack && !isRoot;/);
   assert.match(main, /syncHash\(\{ push \}\);\s*renderBreadcrumbs\(\);/);
-  assert.match(main, /if \(!trail\.length && !backAvailable\)/);
+  assert.match(main, /if \(\(!trail\.length && !backAvailable\) \|\| \(isRoot && isNarrow\)\)/);
   assert.match(main, /const issueView = createIssueView\(\{[\s\S]*?\n\s*renderBreadcrumbs,[\s\S]*?\n\}\);/);
   assert.doesNotMatch(html, /<dialog[^>]*>[\s\S]*?class="breadcrumb"/);
   assert.doesNotMatch(main, /#preview[\s\S]{0,120}renderBreadcrumbs|#ask[\s\S]{0,120}renderBreadcrumbs/);

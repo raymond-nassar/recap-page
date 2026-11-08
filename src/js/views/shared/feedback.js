@@ -273,3 +273,47 @@ export function createFeedback({
     noticeEl,
   };
 }
+
+export function watchNoticeOverflow(document) {
+  const selector = '.notice-act .grow';
+  const watched = new Set();
+  // Content can change without resizing its box, especially in the persistent cloud notice.
+  const refresh = (message) => {
+    const horizontal = message.scrollWidth > message.clientWidth;
+    message.toggleAttribute('data-horizontal-scroll', horizontal);
+    if (horizontal || message.scrollHeight > message.clientHeight) {
+      message.setAttribute('tabindex', '0');
+    } else {
+      message.removeAttribute('tabindex');
+    }
+  };
+  const sizes = new document.defaultView.ResizeObserver((entries) => {
+    for (const { target } of entries) refresh(target);
+  });
+  const observe = (message) => {
+    if (watched.has(message)) return;
+    watched.add(message);
+    sizes.observe(message);
+    refresh(message);
+  };
+  const observeTree = (node) => {
+    if (node.nodeType !== 1) return;
+    if (node.matches(selector)) observe(node);
+    for (const message of node.querySelectorAll(selector)) observe(message);
+  };
+  const mutations = new document.defaultView.MutationObserver((records) => {
+    for (const record of records) {
+      for (const node of record.addedNodes) observeTree(node);
+      const element = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+      const message = element?.closest(selector);
+      if (message && watched.has(message)) refresh(message);
+    }
+    for (const message of watched) {
+      if (message.isConnected) continue;
+      sizes.unobserve(message);
+      watched.delete(message);
+    }
+  });
+  mutations.observe(document.body, { childList: true, subtree: true, characterData: true });
+  observeTree(document.body);
+}

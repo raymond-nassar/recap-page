@@ -111,7 +111,7 @@ final class PresentationUITests: XCTestCase {
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(
             route: route, positionsDataAudit: positionsDataAudit)
-        if route == "all" || route.hasPrefix("guard-") {
+        if route == "all" || route == "history" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
         if emptyHomeTest {
@@ -128,7 +128,22 @@ final class PresentationUITests: XCTestCase {
 
     private static func layoutProbe(route: String, positionsDataAudit: Bool) -> String {
         let routeScript: String
-        if route == "comic" {
+        if route == "history" {
+            // The presentation seed sets an active list, so the app may start on the list rather than
+            // Home. The test measures where it started instead of assuming depth 0 is Home.
+            routeScript = """
+            const launchView = await waitFor(() => document.querySelector('.view:not([hidden])')?.id, 'launch view');
+            await nextFrame();
+            initialEntry = {
+              href: location.href,
+              view: launchView,
+              depth: history.state?.readingPosition?.depth ?? 0,
+            };
+            await openRoute(routes[0]);
+            screens.push(snapshot('view-home'));
+            window.setInterval(refreshMonitor, 100);
+            """
+        } else if route == "comic" {
             routeScript = """
             const covers = document.getElementById('opt-covers');
             if (covers.checked) covers.click();
@@ -219,10 +234,39 @@ final class PresentationUITests: XCTestCase {
         monitor.setAttribute('aria-live', 'polite');
         monitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden;white-space:nowrap';
         document.body.append(monitor);
+        let historyPops = 0;
+        let initialEntry = null;
+        window.__recapProbeDocument ??= crypto.randomUUID();
+        window.addEventListener('popstate', () => { historyPops += 1; });
         const snapshot = (view) => ({
           view,
           activeView: document.querySelector('.view:not([hidden])')?.id,
           href: location.href,
+          historyPops,
+          initialEntry,
+          modalOpen: Boolean(document.querySelector('dialog[open]')),
+          scrollX, scrollY,
+          readingPosition: history.state?.readingPosition,
+          documentToken: window.__recapProbeDocument,
+          back: (() => {
+            const control = document.querySelector('.view:not([hidden]) .app-back');
+            if (!control) return null;
+            const label = control.querySelector('.app-back-label');
+            const controlRect = control.getBoundingClientRect();
+            const labelRect = label.getBoundingClientRect();
+            return {
+              label: control.getAttribute('aria-label'),
+              labelDisplay: getComputedStyle(label).display,
+              labelWidth: labelRect.width,
+              labelHeight: labelRect.height,
+              labelInsideControl: labelRect.left >= controlRect.left - 1
+                && labelRect.top >= controlRect.top - 1
+                && labelRect.right <= controlRect.right + 1
+                && labelRect.bottom <= controlRect.bottom + 1,
+              iconDisplay: getComputedStyle(control.querySelector('.gi')).display,
+              chevronContent: getComputedStyle(control, '::before').content,
+            };
+          })(),
           moreMethods: (() => {
             const disclosure = document.getElementById('add-other-methods');
             const summary = disclosure.querySelector('summary');
@@ -902,9 +946,9 @@ final class PresentationUITests: XCTestCase {
       const active = document.activeElement;
       const currentView = document.querySelector('.view:not([hidden])')?.id;
       dataAuditSynchronize?.(currentView, active);
-      const breadcrumbLabel = {
+      const breadcrumbLabel = matchMedia('(min-width: 881px)').matches ? {
         'view-library': 'Library', 'view-add': 'Search', 'view-data': 'Backup & settings',
-      }[currentView];
+      }[currentView] : null;
       const state = {
         tick: ++passiveTick,
         href: location.href,
@@ -1106,6 +1150,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(toggle.label, "More", "the type-independent query still selects More")
             XCTAssertGreaterThanOrEqual(toggle.frame.width, 44, "More retains its native target width")
             XCTAssertGreaterThanOrEqual(toggle.frame.height, 44, "More retains its native target height")
+            XCTAssertTrue(toggle.isHittable, "More is on screen before it is tapped: \(toggle.frame)")
             toggle.tap()
             let closeVisible = close.waitForExistence(timeout: 30)
             if !closeVisible {
@@ -1172,7 +1217,13 @@ final class PresentationUITests: XCTestCase {
             let origin = app.coordinate(withNormalizedOffset: .zero)
             let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
             let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
-            start.press(forDuration: 0.1, thenDragTo: end)
+            // The SE's default drag jumped a near-visible text frame from y 294 to -25.
+            if abs(displacement) <= usableFrame.height / 2 {
+                start.press(forDuration: 0.1, thenDragTo: end,
+                            withVelocity: .slow, thenHoldForDuration: 0.2)
+            } else {
+                start.press(forDuration: 0.1, thenDragTo: end)
+            }
         }
     }
 
@@ -1852,6 +1903,135 @@ final class PresentationUITests: XCTestCase {
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-data")
                 app.terminate()
             }
+        }
+    }
+
+    func testBackRestoresHashHistoryOnlyFromSecondaryScreensAtDefaultAndLargestTextSizes() throws {
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            throw XCTSkip("The phone Back contract is checked on iPhone.")
+        }
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, route: "history")
+            _ = try probeResult(of: app)
+            let monitor = layoutMonitor(of: app)
+            func state() throws -> [String: Any] {
+                try XCTUnwrap(layoutMetrics(from: monitor.label), monitor.label)
+            }
+            func waitForState(_ name: String, _ condition: @escaping ([String: Any]) -> Bool) throws {
+                let settled = XCTNSPredicateExpectation(predicate: NSPredicate { element, _ in
+                    guard let element = element as? XCUIElement,
+                          let metrics = layoutMetrics(from: element.label) else { return false }
+                    return condition(metrics)
+                }, object: monitor)
+                XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 30), .completed, name)
+            }
+            let start = try state()
+            let initial = try XCTUnwrap(start["initialEntry"] as? [String: Any], "the probe recorded the launch entry")
+            let rootDepth = try XCTUnwrap(initial["depth"] as? Int)
+            let startDepth = try XCTUnwrap((start["readingPosition"] as? [String: Any])?["depth"] as? Int)
+            XCTAssertEqual(start["activeView"] as? String, "view-home")
+            XCTAssertGreaterThanOrEqual(startDepth, rootDepth)
+            XCTAssertTrue(start["back"] is NSNull, "Home is a tab root and shows no Back")
+            let webView = app.webViews.firstMatch
+            // The phone bar slides away while a page scrolls down and returns after 16 px of upward
+            // scroll. On newest-iPhone run 128711270701 More sat at y 961, below the 956 pt screen, after
+            // a scroll, so the bar is brought back the way a reader would before any tab is tapped.
+            func showBar() {
+                let toggle = moreToggle(of: app)
+                XCTAssertTrue(toggle.waitForExistence(timeout: 30))
+                if !toggle.isHittable {
+                    let from = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4))
+                    let to = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.48))
+                    from.press(forDuration: 0.1, thenDragTo: to,
+                               withVelocity: .slow, thenHoldForDuration: 0.5)
+                }
+                let shown = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "hittable == true"), object: toggle)
+                XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 15), .completed,
+                               "the bottom bar is back in view before a tab is tapped")
+            }
+            func openNavigation(_ name: String, view: String, depth: Int) throws {
+                let link = app.links.matching(identifier: name).firstMatch
+                revealNavigationLink(link, named: name, in: app)
+                XCTAssertTrue(link.isHittable)
+                link.tap()
+                try waitForState("a native \(name) tap pushes one app hash entry") { metrics in
+                    let position = metrics["readingPosition"] as? [String: Any]
+                    return metrics["activeView"] as? String == view
+                        && (position?["depth"] as? Int) == depth
+                        && metrics["modalOpen"] as? Bool == false
+                }
+            }
+            showBar()
+            try openNavigation("Library", view: "view-library", depth: startDepth + 1)
+            XCTAssertTrue(try state()["back"] is NSNull, "Library is a tab root and shows no Back")
+            try openNavigation("Search", view: "view-add", depth: startDepth + 2)
+            XCTAssertTrue(try state()["back"] is NSNull, "Search is a tab root and shows no Back")
+            XCTAssertFalse(app.webViews.firstMatch.buttons["Back"].exists, "no Back control on Search")
+            try openNavigation("Home", view: "view-home", depth: startDepth + 3)
+            let top = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3))
+            let bottom = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
+            bottom.press(forDuration: 0.1, thenDragTo: top,
+                         withVelocity: .slow, thenHoldForDuration: 0.5)
+            try waitForState("Home has a saved nonzero scroll position") { metrics in
+                guard let y = metrics["scrollY"] as? Double,
+                      let position = metrics["readingPosition"] as? [String: Any],
+                      let savedY = position["y"] as? Double else { return false }
+                return y > 80 && abs(savedY - y) <= 1
+            }
+            // The nudge that shows the bar moves Home, so the return is checked against the position
+            // Home was left at.
+            showBar()
+            try waitForState("Home keeps a saved nonzero scroll position with the bar shown") { metrics in
+                guard let y = metrics["scrollY"] as? Double,
+                      let position = metrics["readingPosition"] as? [String: Any],
+                      let savedY = position["y"] as? Double else { return false }
+                return metrics["activeView"] as? String == "view-home"
+                    && y > 80 && abs(savedY - y) <= 1
+            }
+            let home = try state()
+            let homeHref = try XCTUnwrap(home["href"] as? String)
+            let initialPops = try XCTUnwrap(home["historyPops"] as? Int)
+            let documentToken = try XCTUnwrap(home["documentToken"] as? String)
+            let homePosition = try XCTUnwrap(home["readingPosition"] as? [String: Any])
+            let homeDepth = try XCTUnwrap(homePosition["depth"] as? Int)
+            let homeY = try XCTUnwrap(home["scrollY"] as? Double)
+            let homeX = try XCTUnwrap(home["scrollX"] as? Double)
+            XCTAssertEqual(homeDepth, startDepth + 3)
+            // Backup & settings sits in More on a phone, where it is a secondary screen with Back.
+            try openNavigation("Backup & settings", view: "view-data", depth: homeDepth + 1)
+            let back = app.webViews.firstMatch.buttons["Back"].firstMatch
+            XCTAssertTrue(back.waitForExistence(timeout: 30))
+            XCTAssertEqual(back.label, "Back")
+            XCTAssertGreaterThanOrEqual(back.frame.width, 44)
+            XCTAssertGreaterThanOrEqual(back.frame.height, 44)
+            XCTAssertLessThan(back.frame.midX, webView.frame.midX, "Back sits at the leading edge")
+            assertNoSeparateTextTarget(["Back"], in: webView, within: back, for: "Back")
+            let backStyle = try XCTUnwrap(state()["back"] as? [String: Any])
+            XCTAssertEqual(backStyle["label"] as? String, "Back")
+            XCTAssertNotEqual(try XCTUnwrap(backStyle["labelDisplay"] as? String), "none")
+            XCTAssertGreaterThan(try XCTUnwrap(backStyle["labelWidth"] as? Double), 0)
+            XCTAssertGreaterThan(try XCTUnwrap(backStyle["labelHeight"] as? Double), 0)
+            XCTAssertEqual(backStyle["labelInsideControl"] as? Bool, true)
+            XCTAssertEqual(backStyle["iconDisplay"] as? String, "none")
+            XCTAssertTrue(try XCTUnwrap(backStyle["chevronContent"] as? String).contains("\u{2039}"))
+            XCTAssertTrue(back.isHittable, "Back is reachable at the top of the secondary screen")
+            back.tap()
+            try waitForState("Back restores the exact Home entry without a document reload") { metrics in
+                guard let y = metrics["scrollY"] as? Double,
+                      let x = metrics["scrollX"] as? Double,
+                      let position = metrics["readingPosition"] as? [String: Any] else { return false }
+                return metrics["href"] as? String == homeHref
+                    && metrics["activeView"] as? String == "view-home"
+                    && metrics["historyPops"] as? Int == initialPops + 1
+                    && metrics["documentToken"] as? String == documentToken
+                    && (position["depth"] as? Int) == homeDepth
+                    && abs(y - homeY) <= 1 && abs(x - homeX) <= 1
+            }
+            try record("hash-history-\(category.rawValue)", [
+                "start": start, "before": home, "button": try state(),
+            ])
+            app.terminate()
         }
     }
 

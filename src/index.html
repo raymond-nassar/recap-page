@@ -203,7 +203,9 @@
                   </div>
                   <p class="chero-next" id="chero-next"></p>
                   <div class="cta" id="chero-actions">
-                    <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Mark as read and continue.</span>
+                    <div class="chero-primary-actions">
+                      <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Mark as read and continue.</span>
+                    </div>
                     <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier comics</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
@@ -581,7 +583,7 @@
                 <a href="#/browse" class="btn primary" data-view="home" data-at="categories">Browse</a>
                 <a href="#/add" class="btn" data-view="add">Search</a>
               </div>
-              <p><a href="#/new-to-comics" data-view="new-to-comics">New to comics? Start here</a></p>
+              <p><a href="#/new-to-comics" class="home-guide-link" data-view="new-to-comics">New to comics? Start here</a></p>
             </section>
 
             <section class="sec" id="library-rated-shelf" aria-labelledby="library-rated-shelf-h">
@@ -1461,7 +1463,7 @@
         <span class="rail-hint">Marvel metadata via marvel.emreparker.com.</span>
       </div>
       <div class="preview-foot dialog-foot">
-        <div id="preview-add"></div>
+        <div id="preview-add"><div id="preview-secondary" class="preview-offline"></div></div>
         <div id="preview-offline" class="preview-offline"></div>
       </div>
     </dialog>

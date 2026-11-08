@@ -417,11 +417,11 @@ export const doneHome = {
     await wait(500);
     const start = await observeHome(page);
     const ax = ready ? await page.accessibility.snapshot({ root: await page.$('#btn-chero-done'), interestingOnly: false }) : null;
-    const commands = await page.$$eval('#chero-actions > .btn', (nodes) => nodes
+    const commands = await page.$$eval('#chero-actions > .chero-primary-actions > .btn', (nodes) => nodes
       .filter((node) => node.getClientRects().length).map((node) => [node.id, node.className]));
     t.check('Done sits beside Read as a secondary command, named and described as on the hero',
-      ready && commands[0]?.[0] === 'btn-chero-read' && commands[1]?.join() === 'btn-chero-done,btn btn-g'
-      && commands.filter(([, name]) => name === 'btn').length === 1
+      ready && commands[0]?.join() === 'btn-chero-read,btn' && commands[1]?.join() === 'btn-chero-done,btn btn-g'
+      && commands.length === 2
       && ax?.name === 'Done' && ax.description === DESCRIPTION && !ax.keyshortcuts
       && start.done?.height === start.read?.height, JSON.stringify({ commands, ax, start }));
     if (!ready) {

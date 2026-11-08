@@ -808,7 +808,10 @@ main { min-width: 0; }
 .headright { display: flex; align-items: center; gap: var(--space-6); }
 
 .breadcrumb { margin: 0 0 var(--space-5); min-width: 0; }
-.app-back { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--target); margin-bottom: var(--space-3); }
+.app-back.quiet {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
+  min-width: var(--target); min-height: var(--target); margin-bottom: var(--space-3); border-color: transparent;
+}
 #view-home > .head > .breadcrumb { grid-column: 1; grid-row: 1; margin: 0; align-self: center; }
 #view-home .app-back { margin-bottom: 0; }
 #view-home .home-lockup { order: -1; }
@@ -1309,6 +1312,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .card-static h2 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
 .card-static h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
 .guide-copy p { margin: 0 0 var(--space-5); line-height: 1.5; }
+.guide-copy { overflow-wrap: anywhere; }
 .guide-copy p:last-child { margin-bottom: 0; }
 .guide-copy ul { margin: 0; padding-inline-start: var(--space-7); }
 .guide-copy li + li { margin-top: var(--space-3); }
@@ -1413,7 +1417,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    is the shape that makes a reader parse a sentence to find out which key does what. */
 .keys { border-collapse: collapse; margin: var(--space-1) 0 var(--space-4); }
 .keys th { text-align: left; font-weight: 400; padding: var(--space-2) var(--space-6) var(--space-2) 0; white-space: nowrap; vertical-align: top; }
-.keys td { padding: var(--space-2) 0; color: var(--muted); font-size: var(--t-body); }
+.keys td { padding: var(--space-2) 0; color: var(--muted); font-size: var(--t-body); overflow-wrap: anywhere; }
 
 /* A stacked form puts each child on its own grid row, which stretches a submit button to the full
    width of the card and makes it read as a banner rather than as a button. */
@@ -1442,6 +1446,7 @@ input[type="file"]::file-selector-button {
   margin-right: var(--space-4); cursor: pointer;
 }
 input[type="file"]::file-selector-button:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
+#view-data input[type="file"] { max-width: 100%; min-width: 0; }
 #view-data input[type="file"]::file-selector-button {
   min-height: var(--target); padding: var(--space-5) var(--space-7); border-radius: var(--radius-lg);
   background: rgb(var(--tint-base) / 5.882%); color: var(--text); font-weight: 600;
@@ -1788,7 +1793,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
 }
 .catalog-card-title .catalog-card-preview:hover { text-decoration-color: currentColor; }
-.catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; }
+.catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; overflow-wrap: anywhere; }
 .catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
 /* One action, sized to its words: Add as a secondary button, or a saved list's primary Open. */
 .catalog-card-actions {
@@ -1806,6 +1811,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card-2);
 }
 .result-main { flex: 1 1 auto; min-width: 0; }
+.catalog-row { flex-wrap: wrap; }
+.catalog-row .result-main { flex: 1 1 12rem; }
+.catalog-row > .btn { flex: 0 0 auto; max-width: 100%; overflow-wrap: normal; }
 .result-title { font-size: var(--t-body); font-weight: 600; margin: 0; }
 .result-meta { color: var(--muted); font-size: var(--t-caption); }
 .result progress { width: 120px; }
@@ -1836,11 +1844,14 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 /* A notice that carries an action, such as the undo offered after a list is deleted. The
    button is sized to the 44px target minimum rather than the notice's own type scale,
    because it is a real destination for a finger and not a piece of the message. */
-.notice-act { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.notice-act { position: relative; display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; text-align: left; }
+.notice-act:has(> .grow)::before { position: absolute; top: var(--space-4); left: var(--space-5); }
 #cloud-sync-notice[hidden] { display: none; }
-.notice-act .grow { flex: 1; }
+.notice-act .grow { flex: 0 0 100%; min-width: 0; padding-inline-start: 0; overflow-wrap: normal; word-break: normal; overflow-x: auto; } .notice-act:is(.notice-ok, .notice-warn, .notice-error, .notice-busy) .grow { padding-inline-start: var(--space-10); }
+.notice-act .grow[data-horizontal-scroll] { min-height: var(--target); }
 .notice-act button {
   min-height: var(--target); padding-inline: var(--space-6); display: inline-flex; align-items: center;
+  overflow-wrap: normal; flex: 0 1 auto;
 }
 
 /* Dismiss is the lesser of the two when a notice carries both, so it reads as secondary by losing
@@ -1906,7 +1917,8 @@ progress { accent-color: var(--accent); height: 6px; }
   background: var(--card); color: var(--text); box-shadow: var(--elev-updates-panel);
   overflow-wrap: anywhere;
 }
-.home-updates-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.home-updates-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.home-updates-head > button { flex-shrink: 0; overflow-wrap: normal; }
 #home-updates-title { margin: 0; font-size: var(--t-subtitle); }
 #home-updates :is(button, .home-updates-more > summary) { min-height: var(--target); min-width: var(--target); }
 #home-updates h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-4); }
@@ -1946,10 +1958,35 @@ progress { accent-color: var(--accent); height: 6px; }
 /* 132 rather than 106, for the same reason the catalog cover grew: this is the other place a
    reader is being asked to decide something. */
 .chero-in { display: grid; grid-template-columns: 132px 1fr; gap: var(--space-8); align-items: start; }
+/* Read and Done share a row only in the single-column phone card. Wider, the wrapper adds no box, so
+   both stay items of the action row exactly as before #1178; it carries no role or name of its own. */
+.chero-primary-actions { display: contents; }
 .chero.continue-empty { padding: var(--space-5); }
 .continue-empty .chero-in { grid-template-columns: 1fr; }
 .continue-empty .art { display: none; }
-@media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
+/* The centered card is a phone layout (#1175). The owner wanted it on mobile only, and above 620px the
+   cover sits beside left-aligned text, where a centered column left the progress bar stranded. */
+@media (max-width: 620px) {
+  .chero-in { grid-template-columns: 1fr; gap: var(--space-6); align-items: normal; text-align: center; }
+  .chero-in .art { width: 132px; max-width: 132px; justify-self: center; margin-inline: auto; }
+  .chero-body { min-width: 0; }
+  #chero-actions { justify-content: center; align-items: center; }
+  .chero-primary-actions { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: var(--space-4); width: 100%; }
+  .chero-primary-actions > .btn { min-height: var(--target); justify-content: center; padding-block: var(--space-2); }
+  /* Read and the quiet actions take the comic screen's large and link treatments at those classes' own
+     weight, so platform layers that outrank them there still do. */
+  .chero-primary-actions > :where(#btn-chero-read) { padding-inline: var(--space-8); font-size: var(--t-body-lg); font-weight: 700; }
+  :where(#chero-actions) > .btn-g {
+    background: none; color: var(--blue); border-color: transparent; text-decoration: underline; text-underline-offset: 3px;
+  }
+  :where(#chero-actions) > .btn-g:hover { filter: none; text-decoration-thickness: var(--stroke-2); }
+  #chero-actions > .btn-g { min-height: var(--target); max-width: 100%; padding: 0 var(--space-4); }
+}
+/* A short phone in landscape keeps the cover beside the text, so Read stays above the navigation band. */
+@media (min-width: 560px) and (max-width: 620px) and (max-height: 600px) {
+  .chero-in { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  .chero-in .art { max-width: 112px; }
+}
 /* `anywhere` rather than `break-word` (#998). Both wrap "presentation" at iOS's largest text, but the
    heading sits in a grid track sized from its min-content, which `break-word` leaves at the longest
    word: measured in Edge on the Windows layout at 320px, that track still pushed the heading 16px past
@@ -1994,12 +2031,27 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* ---------------------------------------------------------- reading paths */
 
 .home-categories { max-width: 72rem; }
+/* The guide invitation is a soft accent pill, the owner's choice, so it reads as an offer beside
+   Explore rather than as plain text or a second heading. The fill and border are the same accent
+   tints the selected filter pill and the current row use, and the label stays `--accent-text`,
+   which is gated at 4.5:1 against the page. The pill keeps its natural one-line width beside
+   Explore; when the two cannot share the row it moves whole onto its own line below the heading,
+   and only a row too narrow for the whole label breaks it, between words, never mid-word. Capping
+   it at half the row instead split "New to Marvel / Comics?" on a 393 px iPhone with room to spare. */
 .home-guide-link {
-  display: inline-flex; align-items: center; justify-content: flex-end; max-width: 48%; min-width: 0;
-  min-height: var(--target); padding-inline: var(--space-2); color: var(--accent-text);
-  font-size: var(--t-body); font-weight: 600; text-align: right; overflow-wrap: anywhere;
+  display: inline-flex; align-items: center; justify-content: center; min-width: 0; max-width: 100%;
+  min-height: var(--target); padding: var(--space-2) var(--space-6);
+  border: var(--stroke-1) solid rgb(var(--accent-line) / 30%); border-radius: var(--radius-pill);
+  background: rgb(var(--accent-line) / 10%); color: var(--accent-text);
+  font-size: var(--t-body); font-weight: 600; line-height: 1.25; text-align: center;
+  text-decoration: none; overflow-wrap: normal;
 }
-.home-guide-link:hover { color: var(--text); }
+.home-guide-link:hover { background: rgb(var(--accent-line) / 16%); border-color: var(--accent-text); }
+#home-categories > .sec-h { flex-wrap: wrap; row-gap: var(--space-3); }
+.sec-h > .home-guide-link { flex: 0 0 auto; align-self: center; }
+@media (forced-colors: active) {
+  .home-guide-link { border-color: LinkText; color: LinkText; background: Canvas; }
+}
 .home-paths {
   list-style: none; margin: var(--space-5) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);
@@ -2216,7 +2268,13 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 /* ---------------------------------------------------------- preview dialog */
 
 .preview-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-6); }
-.preview-head h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.preview-head h2, #preview-h { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.preview-head { flex-wrap: wrap; }
+.preview-head > button { flex-shrink: 0; overflow-wrap: normal; margin-left: auto; }
+/* A basis in em keeps Close beside an ordinary title, as before the wrap was allowed, and wraps it
+   below only once large text makes the title's basis wider than the room left beside Close. */
+.preview-head > #preview-h { flex: 1 1 8em; min-width: 0; }
+.preview-head + #preview-h { margin-top: var(--space-5); }
 .preview-desc { max-width: 62ch; }
 /* UX-12 (#830): the list reads in the dialog's own scroll, the one scroller, rather than in a box of its
    own inside a dialog that also scrolled, which put two scrollbars side by side. */
@@ -2234,6 +2292,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+#preview-add > #preview-secondary { display: contents; }
+.preview > :is(#preview-secondary, #preview-offline) { margin-block: var(--space-4); }
 /* Success just after an add keeps a hint's spacing, in the text colour so it is not missed. */
 .preview-added { color: var(--text); font-weight: 600; }
 .preview-notes { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-5); }
@@ -2556,6 +2616,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    than by weight alone, and its count is quieter and lighter so the label stays a plain heading a
    reader can jump between. The group is a grid so the heading and its rows share the .4rem rhythm. */
 .lgroup { display: grid; gap: var(--space-3); margin: 0 0 var(--space-7); }
+#series-progress, #series-progress .lgroup { grid-template-columns: minmax(0, 1fr); }
 .lgroup-h { margin: 0; padding-bottom: var(--space-3); border-bottom: var(--stroke-1) solid var(--line); font-size: var(--t-subtitle); font-weight: 600; color: var(--text); }
 .lgroup-n { color: var(--muted); font-size: var(--t-caption); font-weight: 400; margin-left: var(--space-3); }
 
@@ -2963,6 +3024,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-notice { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
+#view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }
 
 /* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
    Keep native tap highlights and selection. */

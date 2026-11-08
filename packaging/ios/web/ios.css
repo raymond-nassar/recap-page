@@ -46,6 +46,45 @@
   min-width: var(--target);
 }
 
+:root .app-back.quiet,
+:root #preview-secondary :is(button, a) {
+  min-width: var(--target);
+  min-height: var(--target);
+  line-height: max(var(--target), 1.5em);
+}
+
+/* Only the phone card's quiet actions are inline links; wider, they stay the padded buttons main has. */
+@media (max-width: 620px) {
+  :root #chero-actions :is(button, a) {
+    min-width: var(--target);
+    min-height: var(--target);
+    line-height: max(var(--target), 1.5em);
+  }
+}
+
+:root .app-back.quiet {
+  color: var(--blue);
+  gap: var(--space-2);
+}
+
+:root .app-back > .gi {
+  display: none;
+}
+
+:root .app-back-label {
+  display: inline;
+}
+
+/* UIKit draws its back chevron larger than the "Back" beside it, in the tint color. The overlay
+   never sets a font size, so the glyph is scaled instead. */
+:root .app-back::before {
+  content: "‹";
+  content: "‹" / "";
+  display: inline-block;
+  line-height: 1;
+  transform: scale(1.5);
+}
+
 :root #view-data .backup-restore-label {
   min-height: var(--target);
   line-height: max(var(--target), 1.5em);

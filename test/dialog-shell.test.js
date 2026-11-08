@@ -42,7 +42,7 @@ test('every shell dialog wears the shell and holds one row of answers', () => {
 // Measured at 360x800 with the offline status and the metadata credit held too, it was 311px tall.
 test('Preview holds only its actions, with its notes just above them', () => {
   const preview = dialogMarkup('preview');
-  assert.match(preview, /<div class="preview-notes">\s*<div id="preview-offline-status"><\/div>\s*<span class="grow"><\/span>\s*<span class="rail-hint">Marvel metadata via marvel\.emreparker\.com\.<\/span>\s*<\/div>\s*<div class="preview-foot dialog-foot">\s*<div id="preview-add"><\/div>\s*<div id="preview-offline" class="preview-offline"><\/div>\s*<\/div>\s*$/);
+  assert.match(preview, /<div class="preview-notes">\s*<div id="preview-offline-status"><\/div>\s*<span class="grow"><\/span>\s*<span class="rail-hint">Marvel metadata via marvel\.emreparker\.com\.<\/span>\s*<\/div>\s*<div class="preview-foot dialog-foot">\s*<div id="preview-add"><div id="preview-secondary" class="preview-offline"><\/div><\/div>\s*<div id="preview-offline" class="preview-offline"><\/div>\s*<\/div>\s*$/);
   assert.match(MAIN, /offlineStatus: \$\('#preview-offline-status'\),/);
 });
 
@@ -134,4 +134,42 @@ test('a dialog that holds nothing, or a browser without ResizeObserver, is left 
   assert.equal(holdDialogEdges(null, FakeObserver), null);
   assert.equal(holdDialogEdges(fakeDialog({ foot: 84 }).dialog, null), null);
   assert.equal(props.size, 0);
+});
+
+test('Preview moves a tall title into the scroller instead of covering the body with held chrome', () => {
+  const props = new Map();
+  const title = { getBoundingClientRect: () => ({ height: 180 }) };
+  let compactMoves = 0;
+  const close = {};
+  const head = {
+    querySelector: (selector) => selector === 'h2' ? title : close,
+    getBoundingClientRect: () => ({ height: title.parentElement === head ? 224 : 44 }),
+    after(node) { compactMoves += 1; node.parentElement = dialog; },
+    prepend(node) { node.parentElement = head; },
+  };
+  const foot = { getBoundingClientRect: () => ({ height: 80 }) };
+  const dialog = {
+    clientHeight: 400,
+    querySelector: (selector) => ({
+      '.dialog-foot': foot, '.dialog-head': head, '.preview-head': head,
+    })[selector] ?? null,
+    style: { setProperty: (key, value) => props.set(key, value) },
+  };
+  title.parentElement = head;
+  const observer = holdDialogEdges(dialog, FakeObserver);
+  observer.callback();
+  assert.equal(title.parentElement, dialog);
+  assert.equal(props.get(HEAD_HEIGHT), '44px');
+  assert.equal(props.get(FOOT_HEIGHT), '80px');
+  assert.ok(observer.observed.includes(title) && observer.observed.includes(dialog));
+  observer.callback();
+  assert.equal(compactMoves, 1, 'its own resized edges do not restart the space-budget switch');
+  // 304px of held chrome is more than half of 560px, though less than two thirds of it.
+  dialog.clientHeight = 560;
+  observer.callback();
+  assert.equal(title.parentElement, dialog, 'held chrome over half the dialog height stays compact');
+  dialog.clientHeight = 800;
+  observer.callback();
+  assert.equal(title.parentElement, head, 'a roomy dialog restores the ordinary heading');
+  assert.equal(props.get(HEAD_HEIGHT), '224px');
 });

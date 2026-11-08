@@ -119,6 +119,7 @@ test('A phone shows Home\'s Done result in a bar above the navigation that focus
   assert.match(css, /body:has\(#btn-rail-toggle\[aria-expanded="true"\]\) #home-continue #done-result \{ visibility: hidden; \}/);
   const short = css.lastIndexOf('@media (max-width: 880px) and (max-height: 500px) {');
   assert.match(css.slice(short), /#home-continue #done-result \{ left: max\(24rem, /);
+  assert.match(css, /#home-continue #done-result \.grow \{[^}]*max-height: calc\(\(100dvh - var\(--mobile-nav-height, 80px\)\) \* \.3\); overflow-y: auto;/);
   assert.match(overlay.slice(0, overlay.indexOf('\nfunction ')), /\n {2}wireDoneBar\(\);/);
   assert.match(overlay, /root\.style\.setProperty\('--done-bar-height', /);
 });

@@ -54,7 +54,7 @@ import { createRatedComicsView } from './views/rated-comics.js';
 import { createRatedGuideIndexLoader } from './lib/ratedComics.js';
 import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
-import { createFeedback } from './views/shared/feedback.js';
+import { createFeedback, watchNoticeOverflow } from './views/shared/feedback.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
 import { createBulkReadView } from './views/bulk-read.js';
@@ -993,6 +993,7 @@ function renderSidebar() {
     toggle.dataset.tip = `${label} · Ctrl+\\`;
   }
   tooltips?.refresh();
+  renderBreadcrumbs();
   revealMobileNavigation();
 }
 
@@ -1718,8 +1719,12 @@ function renderBreadcrumbs() {
     context: resolvedContext,
   });
   const existing = section.querySelector('.breadcrumb');
-  const backAvailable = navigationPosition.canGoBack;
-  if (!trail.length && !backAvailable) {
+  const isRoot = ['home', 'library', 'add'].includes(view)
+    || (!isNarrow && ['data', 'about'].includes(view));
+  const backAvailable = navigationPosition.canGoBack && !isRoot;
+  // On a phone the bottom bar already names the tab roots, and the trail's lone "Home" link is drawn
+  // like Back at the top left, which the owner ruled out for tab roots (#1175).
+  if ((!trail.length && !backAvailable) || (isRoot && isNarrow)) {
     existing?.remove();
     return;
   }
@@ -1732,16 +1737,16 @@ function renderBreadcrumbs() {
   const breadcrumb = existing || el('nav', { class: 'breadcrumb', 'aria-label': 'Breadcrumb' });
   breadcrumb.dataset.trail = trailKey;
   const back = el('button', {
-    type: 'button', class: 'quiet app-back',
+    type: 'button', class: 'quiet app-back', 'aria-label': 'Back',
     onclick: () => {
       if (!navigationPosition.canGoBack) return;
       navigationPosition.cancel();
       navigationPosition.capture();
       history.back();
     },
-  }, [uiIcon('arrow-left', 'gi'), 'Back']);
+  }, [uiIcon('arrow-left', 'gi'), el('span', { class: 'app-back-label', text: 'Back' })]);
   breadcrumb.replaceChildren(...(backAvailable ? [back] : []), ...(trail.length ? [list] : []));
-  if (!existing) { if (view === 'home') head.append(breadcrumb); else head.before(breadcrumb); }
+  if (!existing) head.before(breadcrumb);
 }
 
 function railParentView(next) {
@@ -2254,7 +2259,7 @@ async function importCurated(list, btn, {
       isCurrent,
       retry: () => {
         if (asCopy) {
-          const copyButton = isCurrent() && $('#preview').open ? $('#preview-add [data-act="add-copy"]') : null;
+          const copyButton = isCurrent() && $('#preview').open ? $('#preview-secondary [data-act="add-copy"]') : null;
           if (copyButton?.dataset.key === list.id) {
             if (document.activeElement === document.body) copyButton.focus({ preventScroll: true });
             copyButton.click();
@@ -3188,6 +3193,7 @@ function renderAll() {
 // boot call is a ReferenceError rather than an undefined, because the temporal dead zone does
 // not hoist the way function declarations do.
 export function boot() {
+  watchNoticeOverflow(document);
   navigationPosition = createNavigationPosition({ window, document, history });
   // The marker alone decides, synchronously, whether saving starts paused; the tab lock is requested
   // here and answered a few milliseconds after this function returns. Nothing waits for it to draw,
@@ -3987,6 +3993,7 @@ const previewView = createPreviewView({
   el,
   elements: () => ({
     add: $('#preview-add'),
+    secondary: $('#preview-secondary'),
     offline: $('#preview-offline'),
     offlineStatus: $('#preview-offline-status'),
     body: $('#preview-body'),

@@ -278,7 +278,15 @@ export function createPreviewView({
   function syncAdd() {
     const nodes = elements();
     if (!previewList || !nodes.dialog.open) return;
-    nodes.add.replaceChildren(...addControls(previewList));
+    paintAdd(previewList);
+  }
+
+  function paintAdd(list) {
+    const nodes = elements();
+    const [primary, ...secondary] = addControls(list);
+    const secondaryIsHeld = nodes.secondary.parentElement === nodes.add;
+    nodes.add.replaceChildren(primary, ...(secondaryIsHeld ? [nodes.secondary] : []));
+    nodes.secondary.replaceChildren(...secondary);
   }
 
   function returnFocus(held, fallback) {
@@ -290,7 +298,7 @@ export function createPreviewView({
     const session = previewSession;
     if (!isCurrent(session) || session.closed) return;
     const nodes = elements();
-    const held = captureFocus(nodes.add);
+    const held = captureFocus(nodes.dialog);
     justAdded.add(list.id);
     const listId = await onAdd(list, button);
     if (!isCurrent(session)) return;
@@ -315,7 +323,7 @@ export function createPreviewView({
     const session = previewSession;
     if (!isCurrent(session) || session.closed || session.copyPending || !session.missing
       || !isInLibrary(list.id)) return;
-    const held = captureFocus(elements().add);
+    const held = captureFocus(elements().secondary);
     session.copyPending = true;
     button.disabled = true;
     const listId = await onAddCopy(list, button, { isCurrent: () => isCurrent(session) && !session.closed });
@@ -327,7 +335,7 @@ export function createPreviewView({
     }
     if (listId) session.copyId = listId;
     syncAdd();
-    returnFocus(held, () => elements().add.querySelector(`[data-act="${listId ? 'open-copy' : 'add-copy'}"]`));
+    returnFocus(held, () => elements().secondary.querySelector(`[data-act="${listId ? 'open-copy' : 'add-copy'}"]`));
   }
 
   function paint(list) {
@@ -343,7 +351,7 @@ export function createPreviewView({
     ].filter(Boolean).join(' · ');
     nodes.description.textContent = list.description || '';
     nodes.source.replaceChildren(...[presentation.attributionLine(list)].filter(Boolean));
-    nodes.add.replaceChildren(...addControls(list));
+    paintAdd(list);
     const offline = elements().offline;
     if (offline) {
       const [action, cancel, status] = createOfflineControls(list);
@@ -365,7 +373,7 @@ export function createPreviewView({
       const savedIds = Array.isArray(saved?.itemIds) ? new Set(saved.itemIds.map(String)) : null;
       const missing = savedIds ? order.items.filter((item) => !savedIds.has(String(item.issueId))).length : 0;
       previewSession.missing = missing;
-      const held = captureFocus(nodes.add);
+      const held = captureFocus(nodes.dialog);
       syncAdd();
       returnFocus(held);
       const notice = missing ? [el('p', {

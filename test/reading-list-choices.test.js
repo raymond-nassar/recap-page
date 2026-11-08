@@ -275,7 +275,7 @@ test('Preview inspects one named list even when supplied a logical sibling group
   globalThis.document = { body: {}, activeElement: null };
   t.after(() => { if (prior === undefined) delete globalThis.document; else globalThis.document = prior; });
   const nodes = Object.fromEntries(
-    ['add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source'].map((key) => [key, node()]),
+    ['add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'secondary', 'source'].map((key) => [key, node()]),
   );
   const loaded = [];
   const state = createEmptyState();
