@@ -2235,6 +2235,9 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-head h2, #preview-h { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .preview-head { flex-wrap: wrap; }
 .preview-head > button { flex-shrink: 0; overflow-wrap: normal; margin-left: auto; }
+/* A basis in em keeps Close beside an ordinary title, as before the wrap was allowed, and wraps it
+   below only once large text makes the title's basis wider than the room left beside Close. */
+.preview-head > #preview-h { flex: 1 1 8em; min-width: 0; }
 .preview-head + #preview-h { margin-top: var(--space-5); }
 .preview-desc { max-width: 62ch; }
 /* UX-12 (#830): the list reads in the dialog's own scroll, the one scroller, rather than in a box of its

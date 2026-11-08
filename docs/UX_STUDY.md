@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:3154-3180`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:3156-3182`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2190`, `src/js/views/reading.js:440-448`, `src/js/views/reading.js:465-479`, against
+Evidence: `src/js/main.js:2192`, `src/js/views/reading.js:440-448`, `src/js/views/reading.js:465-479`, against
 `src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:836`,
-  `src/styles.css:2345-2347`.
+  `src/styles.css:2348-2350`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1177-1180` and `src/styles.css:2801-2802`, sizing both from `src/styles.css:80-81`.
+`src/styles.css:1177-1180` and `src/styles.css:2804-2805`, sizing both from `src/styles.css:80-81`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2345-2347`.
+`src/styles.css:2348-2350`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:836`, `src/styles.css:2345-2347`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:836`, `src/styles.css:2348-2350`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -746,7 +746,7 @@ Evidence: `src/index.html:62-97`, `src/js/lib/route.js:23-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:95-195`,
-`src/js/main.js:1693-1748`, `test/ux-completion.test.js:87-100`.
+`src/js/main.js:1693-1750`, `test/ux-completion.test.js:87-100`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 

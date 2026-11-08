@@ -164,6 +164,10 @@ test('Preview moves a tall title into the scroller instead of covering the body 
   assert.ok(observer.observed.includes(title) && observer.observed.includes(dialog));
   observer.callback();
   assert.equal(compactMoves, 1, 'its own resized edges do not restart the space-budget switch');
+  // 304px of held chrome is more than half of 560px, though less than two thirds of it.
+  dialog.clientHeight = 560;
+  observer.callback();
+  assert.equal(title.parentElement, dialog, 'held chrome over half the dialog height stays compact');
   dialog.clientHeight = 800;
   observer.callback();
   assert.equal(title.parentElement, head, 'a roomy dialog restores the ordinary heading');

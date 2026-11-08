@@ -35,7 +35,7 @@ export function holdDialogEdges(dialog, Observer = globalThis.ResizeObserver) {
         if (secondary && secondary.parentElement !== add) add.append(secondary);
         if (offline && offline.parentElement !== foot) foot.append(offline);
         const compact = head.getBoundingClientRect().height
-        + (foot?.getBoundingClientRect().height ?? 0) > dialog.clientHeight * .65;
+        + (foot?.getBoundingClientRect().height ?? 0) > dialog.clientHeight * .5;
         if (compact) {
           head.after(title);
           if (secondary) foot.before(secondary);
