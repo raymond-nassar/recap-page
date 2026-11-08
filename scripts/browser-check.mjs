@@ -19778,11 +19778,38 @@ SCENARIOS.push(responsiveOwner({
                 const row = headingRow?.getBoundingClientRect();
                 const heading = headingRow?.querySelector('#home-cat-h');
                 const headingBox = heading?.getBoundingClientRect();
-                return Boolean(link?.checkVisibility() && heading?.checkVisibility()
-                  && !heading.closest('.visually-hidden') && box && row && headingBox
-                  && headingBox.width > 1 && headingBox.height > 1
-                  && headingBox.right <= box.left + 1 && headingBox.bottom > box.top && box.bottom > headingBox.top
-                  && box.width > 0 && box.width < row.width / 2 && box.height >= 44
+                if (!link || !heading || !box || !row || !headingBox) return false;
+                // Lines a text run occupies, and whether any single word was split across lines.
+                const lineTops = (node, start = 0, end = node.length) => {
+                  const range = document.createRange();
+                  range.setStart(node, start); range.setEnd(node, end);
+                  return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
+                };
+                const wordsWhole = (el) => {
+                  const node = el.firstChild;
+                  let at = 0;
+                  return el.textContent.split(' ').every((word) => {
+                    const ok = !word || lineTops(node, at, at + word.length) === 1;
+                    at += word.length + 1;
+                    return ok;
+                  });
+                };
+                const saved = link.getAttribute('style');
+                link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
+                const natural = link.getBoundingClientRect().width;
+                if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
+                const gap = parseFloat(getComputedStyle(headingRow).columnGap) || 0;
+                const besideFits = headingBox.width + gap + natural <= row.width + 0.5;
+                const beside = headingBox.bottom > box.top && box.bottom > headingBox.top && headingBox.right <= box.left + 1;
+                const below = box.top >= headingBox.bottom - 1 && box.left >= row.left - 1;
+                return Boolean(link.checkVisibility() && heading.checkVisibility()
+                  && !heading.closest('.visually-hidden')
+                  && headingBox.width > 1 && headingBox.height > 1 && heading.scrollWidth <= heading.clientWidth + 1
+                  && lineTops(heading.firstChild) === 1
+                  && (besideFits ? beside : below)
+                  && (natural > row.width + 0.5 || lineTops(link.firstChild) === 1)
+                  && wordsWhole(link)
+                  && box.width > 0 && box.height >= 44
                   && box.left >= 0 && box.right <= innerWidth
                   && heading.textContent.trim() === 'Explore');
               })(),
@@ -19822,7 +19849,7 @@ SCENARIOS.push(responsiveOwner({
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth }));
       await cdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
       await cdp.detach();
-      t.check('Home guide entry fits beside Explore with a comfortable target across themes and widths',
+      t.check('Home guide entry stays whole beside Explore when both fit, else below it, with a comfortable target across themes and widths',
         homeMeasurements.every((entry) => entry.homeEntry && !entry.overflow), JSON.stringify(homeMeasurements));
       t.check('guide content remains visible without overflow across themes, forced colors and reduced motion',
         guideMeasurements.every((entry) => entry.heading && entry.links && !entry.overflow), JSON.stringify(guideMeasurements));

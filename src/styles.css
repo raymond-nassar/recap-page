@@ -2029,8 +2029,10 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* The guide invitation is a soft accent pill, the owner's choice, so it reads as an offer beside
    Explore rather than as plain text or a second heading. The fill and border are the same accent
    tints the selected filter pill and the current row use, and the label stays `--accent-text`,
-   which is gated at 4.5:1 against the page. Labels wrap between words only, so a large text size
-   makes the pill taller instead of splitting a word or widening the page. */
+   which is gated at 4.5:1 against the page. The pill keeps its natural one-line width beside
+   Explore; when the two cannot share the row it moves whole onto its own line below the heading,
+   and only a row too narrow for the whole label breaks it, between words, never mid-word. Capping
+   it at half the row instead split "New to Marvel / Comics?" on a 393 px iPhone with room to spare. */
 .home-guide-link {
   display: inline-flex; align-items: center; justify-content: center; min-width: 0; max-width: 100%;
   min-height: var(--target); padding: var(--space-2) var(--space-6);
@@ -2040,7 +2042,8 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   text-decoration: none; overflow-wrap: normal;
 }
 .home-guide-link:hover { background: rgb(var(--accent-line) / 16%); border-color: var(--accent-text); }
-.sec-h > .home-guide-link { flex: 0 1 auto; max-width: 48%; align-self: center; }
+#home-categories > .sec-h { flex-wrap: wrap; row-gap: var(--space-3); }
+.sec-h > .home-guide-link { flex: 0 0 auto; align-self: center; }
 @media (forced-colors: active) {
   .home-guide-link { border-color: LinkText; color: LinkText; background: Canvas; }
 }

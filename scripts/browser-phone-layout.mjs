@@ -953,7 +953,41 @@ const guidePillProfiles = [
   { width: 1280, height: 900, platform: 'desktop' },
   { width: 393, height: 852, platform: 'ios' },
   { width: 360, height: 800, platform: 'android' },
+  { width: 320, height: 640, platform: 'android' },
 ];
+
+// The pill sits whole beside Explore when both fit at natural widths, else whole on its own line,
+// and only a row too narrow for the whole label may break it, between words. The heading is never
+// squeezed or split, and the page never widens.
+function guideLayout() {
+  const link = document.querySelector('#home-categories .home-guide-link');
+  const row = link.closest('.sec-h');
+  const heading = row.querySelector('#home-cat-h');
+  const lines = (node, start = 0, end = node.length) => {
+    const range = document.createRange();
+    range.setStart(node, start); range.setEnd(node, end);
+    return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
+  };
+  const saved = link.getAttribute('style');
+  link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
+  const natural = link.getBoundingClientRect().width;
+  if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
+  const box = link.getBoundingClientRect();
+  const head = heading.getBoundingClientRect();
+  const rowBox = row.getBoundingClientRect();
+  const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+  const besideFits = head.width + gap + natural <= rowBox.width + 0.5;
+  const beside = head.bottom > box.top && box.bottom > head.top && head.right <= box.left + 1;
+  const below = box.top >= head.bottom - 1;
+  const wholeFits = natural <= rowBox.width + 0.5;
+  return { natural: Math.round(natural), row: Math.round(rowBox.width), heading: Math.round(head.width), besideFits, beside, below,
+    pillLines: lines(link.firstChild), headingLines: lines(heading.firstChild),
+    headingClipped: heading.scrollWidth > heading.clientWidth + 1,
+    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    ok: (besideFits ? beside : below) && (!wholeFits || lines(link.firstChild) === 1)
+      && lines(heading.firstChild) === 1 && heading.scrollWidth <= heading.clientWidth + 1
+      && document.documentElement.scrollWidth <= document.documentElement.clientWidth };
+}
 
 async function guidePillContrast(page, hover) {
   await page.$eval('#home-categories .home-guide-link', (node) => node.scrollIntoView({ block: 'center' }));
@@ -983,7 +1017,7 @@ export const guideLinkPill = {
     const chosen = androidOnly ? guidePillProfiles.filter((profile) => profile.platform === 'android') : guidePillProfiles;
     await forProfiles(page, t, async (profile, theme) => {
       const label = `${profile.platform} ${profile.width} ${theme}`;
-      await page.$eval('#home-categories', (node) => node.scrollIntoView({ block: 'center' }));
+      await page.$eval('#home-categories > .sec-h', (node) => node.scrollIntoView({ block: 'center' }));
       await settle(page);
       await capture(page, profile, theme, 'guide-link');
       const style = await page.evaluate(() => {
@@ -1011,6 +1045,9 @@ export const guideLinkPill = {
       if (profile.platform === 'desktop') contrast.push(await guidePillContrast(page, true));
       console.log(`GUIDE-PILL-CONTRAST ${JSON.stringify({ ...profile, theme, contrast })}`);
       checked(t, `${label}: painted guide pill text contrast is at least 4.5:1`, contrast.every((row) => row.ratio >= 4.5), contrast);
+      const layout = await page.evaluate(guideLayout);
+      checked(t, `${label}: the guide pill stays whole beside Explore when both fit, else on its own line, and the heading is never squeezed`,
+        layout.ok, layout);
       await largeText(page, profile);
       const large = await page.evaluate(() => {
         const node = document.querySelector('#home-categories .home-guide-link');
@@ -1029,7 +1066,9 @@ export const guideLinkPill = {
       });
       checked(t, `${label}: at the largest text the guide pill splits no word and does not widen the page`,
         large.words.length > 0 && large.words.every((word) => word.lines === 1) && !large.overflow && !large.clipped, large);
-      await page.$eval('#home-categories', (node) => node.scrollIntoView({ block: 'center' }));
+      const largeLayout = await page.evaluate(guideLayout);
+      checked(t, `${label}: at the largest text the guide pill and Explore follow the same placement rule`, largeLayout.ok, largeLayout);
+      await page.$eval('#home-categories > .sec-h', (node) => node.scrollIntoView({ block: 'center' }));
       await settle(page);
       await capture(page, profile, theme, 'guide-link-largest');
     }, chosen);
