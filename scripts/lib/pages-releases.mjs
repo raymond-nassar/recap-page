@@ -20,7 +20,7 @@ export const RECENT_RELEASES = 5;
 export const PLATFORM_LABELS = new Map([
   [
     'When OneDrive backup is on, Recap Page can offer progress from another device when it differs from yours. Choose which progress to use; the app never merges backups.',
-    'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud and Google Drive retain existing backup and manual restore.',
+    'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud keeps its existing backup and manual restore.',
   ],
   [
     'On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time, so your reading progress can follow you across your devices.',
