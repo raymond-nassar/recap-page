@@ -1,6 +1,6 @@
 import { CLOUD_SYNC_OFFER_LOCK, CLOUD_SYNC_PENDING_KEY } from '../storage.js';
 import { backupAfterCompleteRestore, canonical, settingsFromStorage } from './completeBackup.js';
-import { compareCloudBackups, personalDigest } from './cloudSync.js';
+import { compareCloudBackups, materialDigest, personalDigest } from './cloudSync.js';
 import { createEmptyState, exportBackup } from './model.js';
 import { CLOUD_BACKUP_CADENCE } from './cloudCoordinator.js';
 import { CloudBackupError } from './cloudProtocol.js';
@@ -549,7 +549,9 @@ export class CloudLaunchSync {
           if (!this.isOnline()) throw new CloudBackupError('The cloud check needs a connection. Try again when online.', 'offline');
           if (this.isBlocked()) throw new CloudBackupError('Finish recovery before checking cloud progress.', 'paused');
           const snapshot = await this.capture();
-          const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
+          const [digest, material] = await Promise.all([
+            personalDigest(snapshot.backup, this.cryptoProvider), materialDigest(snapshot.backup, this.cryptoProvider),
+          ]);
           let remembered = await this.protocol.syncState({ connection: this.context.connection });
           let pendingKept = await this.protocol.keptPending({ connection: this.context.connection, details: true });
           this.kept = remembered?.kept ?? null;
@@ -588,7 +590,8 @@ export class CloudLaunchSync {
             throw new CloudBackupError('Saved data changed during the cloud check. Check again.', 'raced');
           }
           const result = compareCloudBackups({
-            ownStream: this.context.stream, localDigest: digest, localEmpty: isEmpty(snapshot.backup), remotes,
+            ownStream: this.context.stream, localDigest: digest, localMaterial: material,
+            localEmpty: isEmpty(snapshot.backup), remotes,
             matchedDigest: remembered?.matchedDigest ?? null, declinedDigest: remembered?.declinedDigest ?? null,
             declinedByStream,
             keptDigest: remembered?.kept?.personalDigest ?? null, lastUploadedDigest: last?.personalDigest ?? null,
@@ -613,7 +616,7 @@ export class CloudLaunchSync {
               ({ id, name, stream, generation, size: listedSize }));
             const offer = {
               kind: result.kind, quiet: this.interacted, remote: result.offer,
-              local: localFacts(after.backup), localDigest: digest, localContentDigest: after.backup.digest,
+              local: localFacts(after.backup), localDigest: digest, localMaterial: material, localContentDigest: after.backup.digest,
               othersDiffering: result.othersDiffering, epoch: this.epoch, comparison, listing,
               keepLocal: !isEmpty(after.backup) || Boolean(this.kept) || Boolean(pendingKept),
               priorKept: this.kept, priorPending: pendingKept,
@@ -626,7 +629,7 @@ export class CloudLaunchSync {
           }
           if (result.observedMatch) {
             await this.protocol.rememberSync({
-              ...this.context, matchedDigest: digest,
+              ...this.context, matchedDigest: material,
               authorize: current, signal: controller.signal,
             });
             assertCurrent();
@@ -641,7 +644,7 @@ export class CloudLaunchSync {
             authorize: () => current() && !this.isBlocked() && this.snapshotCurrent(after.witness),
             signal: controller.signal,
           });
-          if ((result.observedMatch || remembered?.matchedDigest === digest || remembered?.kept)
+          if ((result.observedMatch || [digest, material].includes(remembered?.matchedDigest) || remembered?.kept)
             && last?.personalDigest !== digest) {
             this.coordinator.retry();
           }
@@ -854,7 +857,9 @@ export class CloudLaunchSync {
     await this.assertAction(action);
     if (this.isBlocked()) throw new CloudBackupError('Finish recovery before choosing cloud progress.', 'paused');
     const snapshot = await this.capture();
-    const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
+    const [digest, material] = await Promise.all([
+      personalDigest(snapshot.backup, this.cryptoProvider), materialDigest(snapshot.backup, this.cryptoProvider),
+    ]);
     if (snapshot.backup.digest !== action.offer.localContentDigest || digest !== action.offer.localDigest
       || !this.snapshotCurrent(snapshot.witness)) {
       throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
@@ -872,7 +877,7 @@ export class CloudLaunchSync {
       throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
     }
     const result = compareCloudBackups({
-      ownStream: this.context.stream, localDigest: digest, localEmpty: isEmpty(snapshot.backup),
+      ownStream: this.context.stream, localDigest: digest, localMaterial: material, localEmpty: isEmpty(snapshot.backup),
       remotes, ...action.offer.comparison,
     });
     if (!result.offer || canonical(result.offer) !== canonical(action.offer.remote)
@@ -912,7 +917,7 @@ export class CloudLaunchSync {
         await this.assertAction(action);
         const remoteStream = action.offer.remote.stream;
         const previous = action.offer.comparison.declinedByStream.find((entry) => entry.stream === remoteStream)?.digest ?? null;
-        const decision = { stream: remoteStream, previous, intended: action.offer.remote.digest };
+        const decision = { stream: remoteStream, previous, intended: action.offer.remote.material ?? action.offer.remote.digest };
         await this.protocol.setSyncGate({
           ...this.context, epoch: action.epoch, held: true,
           pending: decision,
@@ -1145,7 +1150,7 @@ export class CloudLaunchSync {
       }
       try {
         await this.assertAction(action);
-        await this.protocol.rememberSync({ ...this.context, matchedDigest: offered.digest });
+        await this.protocol.rememberSync({ ...this.context, matchedDigest: offered.material ?? offered.digest });
       } catch {
         warning ??= 'Progress was loaded, but the cloud check is still pending. Backups stay paused until it can be checked again.';
       }
@@ -1180,7 +1185,9 @@ export class CloudLaunchSync {
         if (!readiness?.ok) throw new CloudBackupError(readiness?.error ?? 'Cloud restore is not ready, so nothing was replaced.', 'paused');
         await this.assertAction(action);
         const snapshot = await this.capture();
-        const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
+        const [digest, material] = await Promise.all([
+          personalDigest(snapshot.backup, this.cryptoProvider), materialDigest(snapshot.backup, this.cryptoProvider),
+        ]);
         const prepared = await this.protocol.prepareKeptRestore({
           ...this.context, kept: target, snapshot, personalDigest: digest,
           authorize: async () => {
@@ -1201,7 +1208,8 @@ export class CloudLaunchSync {
           throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
         }
         const comparison = compareCloudBackups({
-          ownStream: this.context.stream, localDigest: digest, localEmpty: isEmpty(snapshot.backup), remotes,
+          ownStream: this.context.stream, localDigest: digest, localMaterial: material,
+          localEmpty: isEmpty(snapshot.backup), remotes,
           matchedDigest: latest?.matchedDigest ?? null, declinedDigest: latest?.declinedDigest ?? null,
           declinedByStream,
           keptDigest: latest?.kept?.personalDigest ?? null, lastUploadedDigest: last?.personalDigest ?? null,

@@ -17,6 +17,7 @@ import {
 import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, createSavedChanges, personalDigest } from '../src/js/lib/cloudCoordinator.js';
 import { CLOUD_SIGN_IN_POLL_MS, ERASE_HOST_SILENT_DEVICE, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
 import { cloudCardStatus, cloudCardWarns, cloudEraseNote, cloudEraseOutcome, cloudSyncQuestion } from '../src/js/views/cloud.js';
+import { materialDigest } from '../src/js/lib/cloudSync.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
 import { CAPTURE_KEYS, canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
@@ -382,12 +383,17 @@ async function until(check, message, timeoutMs = 10_000) {
 // ------------------------------------------------------------------ fixtures
 
 // Saved data on one device, changed the way its owners change it, and the backup a capture of it
-// makes, as the coordinator hands it to the protocol.
+// makes, as the coordinator hands it to the protocol. Since #1176 a read time alone is not progress,
+// so each time these fixtures use also rates one comic keyed by that time: two devices with different
+// times still differ in progress, as the tests below intend, while their read counts stay unchanged.
+const progressAt = (time) => ({ [100000 + time]: 5 });
+
 function device(read = { 1: 111 }) {
   let state = createList(createEmptyState(), { id: 'list', name: 'On this device' });
   state = addIssuesToList(state, 'list', [{ issueId: 1, title: 'One' }, { issueId: 2, title: 'Two' }]).state;
   state = createList(state, { id: 'later', name: 'Later' });
-  state = { ...state, active: 'list', read: { ...state.read, ...read } };
+  const rated = Object.values(read).reduce((all, time) => ({ ...all, ...progressAt(time) }), {});
+  state = { ...state, active: 'list', read: { ...state.read, ...read }, ratings: { ...state.ratings, ...rated } };
   const storage = memoryStorage([
     [SETTINGS_KEY, JSON.stringify({ apiBase: API_BASE, covers: true, theme: 'dark', filter: 'all', readingShortcut: true, hideDescriptions: true })],
     [SIDEBAR_KEY, 'false'],
@@ -398,7 +404,7 @@ function device(read = { 1: 111 }) {
     storage,
     // Issue 2 read at a new moment: a change a backup holds.
     mark(time) {
-      state = { ...state, read: { ...state.read, 2: time } };
+      state = { ...state, read: { ...state.read, 2: time }, ratings: { ...state.ratings, ...progressAt(time) } };
       save();
     },
     // Another list opened: the one change a backup leaves out.
@@ -2182,7 +2188,7 @@ test('Keep records the declined remote and allows this device to back up without
   await until(() => cloud.model.sync.phase === 'offer', 'the other device is offered');
   const offered = cloud.model.sync.offer;
   assert.deepEqual(await cloud.keepSync(), { ok: true });
-  assert.deepEqual(await protocol.syncDeclines(context), [{ stream: OTHER, digest: offered.remote.digest }]);
+  assert.deepEqual(await protocol.syncDeclines(context), [{ stream: OTHER, digest: offered.remote.material }]);
   assert.equal((await protocol.syncGate(context)).held, false);
   await time.advance(CLOUD_BACKUP_CADENCE.minIntervalMs, [cloud]);
   assert.ok(env.transport.files.has(remoteId), 'ordinary pruning never removes another device');
@@ -2230,6 +2236,7 @@ for (const interveningUpload of [false, true]) test(`Load and Go back preserve a
   const original = await home.snapshot();
   const declined = await device({ 2: 444 }).snapshot();
   const selected = await device({ 1: 333 }).snapshot();
+  const declinedMaterial = await materialDigest(declined.backup, webcrypto);
   const tablet = 'e'.repeat(32);
   env.transport.store(cloudBackupName(tablet, 1), envelopeFile({
     stream: tablet, generation: 1, backup: declined.backup, device: 'Tablet', createdAt: 124,
@@ -2262,7 +2269,7 @@ for (const interveningUpload of [false, true]) test(`Load and Go back preserve a
   assert.equal(tab.cloud.model.sync.offer.remote.stream, OTHER);
   assert.equal((await tab.cloud.loadSync()).ok, true);
   assert.equal((await home.snapshot()).backup.digest, selected.backup.digest);
-  assert.deepEqual(await protocol.syncDeclines(context), [{ stream: tablet, digest: declined.personalDigest }]);
+  assert.deepEqual(await protocol.syncDeclines(context), [{ stream: tablet, digest: declinedMaterial }]);
 
   env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
   await restore.releaseShared();
@@ -2280,7 +2287,7 @@ for (const interveningUpload of [false, true]) test(`Load and Go back preserve a
   if (interveningUpload) await protocol.upload(await device({ 1: 777 }).snapshot());
   assert.equal((await reopened.cloud.goBackSync()).ok, true);
   assert.equal((await home.snapshot()).backup.digest, original.backup.digest);
-  assert.deepEqual(await env.make().syncDeclines(context), [{ stream: tablet, digest: declined.personalDigest }]);
+  assert.deepEqual(await env.make().syncDeclines(context), [{ stream: tablet, digest: declinedMaterial }]);
   env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
   await restore.releaseShared();
   const afterBack = page({ env, home, launchSync: true });

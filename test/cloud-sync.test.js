@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
-import { captureCompleteBackup } from '../src/js/lib/completeBackup.js';
+import { readFileSync } from 'node:fs';
+import { captureCompleteBackup, parseCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, exportBackup } from '../src/js/lib/model.js';
 import { KEY, SETTINGS_KEY } from '../src/js/storage.js';
-import { compareCloudBackups, personalDigest } from '../src/js/lib/cloudSync.js';
+import { compareCloudBackups, materialDigest, personalDigest } from '../src/js/lib/cloudSync.js';
 
 const digest = (character) => character.repeat(64);
 const stream = (character) => character.repeat(32);
@@ -263,4 +264,131 @@ test('conflicting duplicate generations are refused regardless of listing order'
   ]) {
     assert.throws(() => compare({ remotes }), /same device and generation/);
   }
+});
+
+// ------------------------------------------------------------------ material progress (#1176)
+
+const V430 = JSON.parse(readFileSync(new URL('./fixtures/cloud-material-v4.3.0.json', import.meta.url), 'utf8'));
+
+async function currentCapture(saved = V430.saved) {
+  const storage = { getItem: (key) => saved[key] ?? null };
+  return (await captureCompleteBackup({ storage, cryptoProvider: webcrypto })).backup;
+}
+
+const material = (backup) => materialDigest(backup, webcrypto);
+
+function variant(backup, change) {
+  const copy = structuredClone(backup);
+  change(copy.components);
+  return copy;
+}
+
+test('a 4.3.0 backup and this build\'s backup of the same saved data have one material digest', async () => {
+  const older = await parseCompleteBackup(V430.backupText, { cryptoProvider: webcrypto });
+  const current = await currentCapture();
+  assert.equal(await material(older), await material(current));
+  assert.notEqual(await material(current), await personalDigest(current, webcrypto),
+    'the tagged material space never names a personal digest');
+});
+
+test('absent and empty collections give the same material digest', async () => {
+  const older = await parseCompleteBackup(V430.backupText, { cryptoProvider: webcrypto });
+  const sparse = variant(older, (components) => {
+    delete components.reader.ratings;
+    components.reader.ratings = undefined;
+    delete components.reader.lists.empty.collectedIn;
+    delete components.reader.lists.empty.deferredIssueIds;
+    delete components.reader.lists.empty.itemIds;
+    components.reader.lists.two.collectedIn = { 21: null };
+  });
+  const emptied = variant(older, (components) => {
+    components.reader.ratings = {};
+    components.history = { ...components.history, records: [] };
+  });
+  const absentHistory = variant(older, (components) => {
+    components.reader.ratings = {};
+    components.history = null;
+  });
+  assert.equal(await material(sparse), await material(variant(older, (components) => {
+    delete components.reader.ratings;
+  })));
+  assert.equal(await material(emptied), await material(absentHistory));
+});
+
+test('only reading progress changes the material digest: settings, times, order of lists, notes and details do not', async () => {
+  const base = await currentCapture();
+  const same = {
+    settings: (c) => { c.settings = { ...c.settings, theme: 'light', covers: false, sidebarCollapsed: true }; },
+    'read times': (c) => { c.reader.read = { 11: 1, 21: 2 }; },
+    'sidebar list order': (c) => { c.reader.listOrder = [...c.reader.listOrder].reverse(); },
+    'active list': (c) => { c.reader.active = 'two'; },
+    'list description and note': (c) => { c.reader.lists.one.description = 'Other'; c.reader.lists.one.note = 'Other'; },
+    'issue notes': (c) => { c.reader.notes = { 11: 'Changed' }; },
+    'availability overrides': (c) => { c.reader.overrides = { 12: true }; },
+    'saved comic details': (c) => { c.reader.issues = {}; },
+    'import draft': (c) => { c.draft = null; },
+    'finished time': (c) => { c.history.records[0].completedAt += 1000; },
+    'an unfinished, unrated history entry': (c) => {
+      c.history.records.push({ listId: 'empty', created: 1, catalogId: null, completedAt: null, rating: null });
+    },
+  };
+  for (const [label, change] of Object.entries(same)) {
+    assert.equal(await material(variant(base, change)), await material(base), `${label} is not progress`);
+  }
+  const different = {
+    'read set': (c) => { c.reader.read = { ...c.reader.read, 12: 5 }; },
+    'list membership': (c) => { c.reader.lists.two.itemIds = [21, 22]; },
+    'order within a list': (c) => { c.reader.lists.one.itemIds = [13, 12, 11]; },
+    deferrals: (c) => { c.reader.lists.one.deferredIssueIds = []; },
+    rename: (c) => { c.reader.lists.one.name = 'Renamed'; },
+    'rating value': (c) => { c.reader.ratings = { 11: 3 }; },
+    'finished list rating': (c) => { c.history.records[0].rating = 'down'; },
+    'list finished': (c) => {
+      c.history.records.push({ listId: 'one', created: c.reader.lists.one.created, catalogId: null, completedAt: 9, rating: null });
+    },
+    'list no longer finished': (c) => { c.history.records[0].completedAt = null; c.history.records[0].rating = null; },
+  };
+  for (const [label, change] of Object.entries(different)) {
+    assert.notEqual(await material(variant(base, change)), await material(base), `${label} is progress`);
+  }
+});
+
+function remoteWith(deviceStream, generation, personal, materialValue, createdAt = generation) {
+  return Object.freeze({ stream: deviceStream, generation, digest: personal, material: materialValue, createdAt });
+}
+
+const M = digest('7');
+const N = digest('8');
+
+test('a remote whose progress matches is not offered even when its personal digest differs', () => {
+  const settingsOnly = remoteWith(PHONE, 2, B, M);
+  assert.deepEqual(compare({ localMaterial: M, remotes: [settingsOnly] }), {
+    kind: 'in-step', offer: null, othersDiffering: 0, observedMatch: true,
+  });
+  const progressed = remoteWith(PHONE, 3, B, N);
+  assert.equal(compare({ localMaterial: M, remotes: [progressed] }).offer, progressed);
+  assert.equal(compare({ remotes: [settingsOnly] }).offer, settingsOnly,
+    'without a local material digest the personal comparison is unchanged');
+});
+
+test('stored references written before #1176 hold personal digests and are still honored', () => {
+  const phone = remoteWith(PHONE, 2, B, N);
+  for (const record of [{ matchedDigest: B }, { declinedDigest: B }, { keptDigest: B },
+    { declinedByStream: [{ stream: PHONE, digest: B }] }]) {
+    const result = compare({ localMaterial: M, ...record, remotes: [phone] });
+    assert.equal(result.offer, null, `${Object.keys(record)[0]} holding a personal digest is honored`);
+  }
+  for (const record of [{ matchedDigest: N }, { declinedDigest: N }, { keptDigest: N },
+    { declinedByStream: [{ stream: PHONE, digest: N }] }]) {
+    const result = compare({ localMaterial: M, ...record, remotes: [phone] });
+    assert.equal(result.offer, null, `${Object.keys(record)[0]} holding a material digest is honored`);
+  }
+  assert.equal(compare({ localMaterial: M, declinedDigest: N, remotes: [remoteWith(PHONE, 3, C, digest('9'))] }).offer?.generation, 3,
+    'a decision names its backup, not a later one with different progress');
+});
+
+test('a match recorded by material digest makes later remote progress remote-ahead', () => {
+  const phone = remoteWith(PHONE, 2, B, N);
+  assert.equal(compare({ localDigest: A, localMaterial: M, matchedDigest: M, remotes: [phone] }).kind, 'remote-ahead');
+  assert.equal(compare({ localDigest: A, localMaterial: M, matchedDigest: digest('9'), remotes: [phone] }).kind, 'both-changed');
 });
