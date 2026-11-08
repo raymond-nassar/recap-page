@@ -415,6 +415,7 @@ export const phoneLayoutMutations = [
         + 'html body #home-continue #done-result .grow { max-height: none; } '
         + 'html body #series-progress, html body #series-progress .lgroup { grid-template-columns: 1fr; } '
         + 'html body .guide-copy, html body .keys td { overflow-wrap: normal; } '
+        + 'html body .catalog-row { flex-wrap: nowrap; } html body .catalog-row .result-main { flex: 1 1 auto; } '
         + 'html body .catalog-row > .btn { flex: 1 1 0; overflow-wrap: anywhere; } '
         + 'html body .home-updates-head, html body .android-sheet-header { flex-wrap: nowrap; } '
         + 'html body .home-updates-head > button, html body .android-sheet-header > button { flex-shrink: 1; overflow-wrap: anywhere; } '

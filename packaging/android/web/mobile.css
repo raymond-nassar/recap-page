@@ -33,6 +33,7 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--target-touch); }
 .app-back-label { display: none; }
 body .app-back.quiet { padding-inline: 0; min-width: var(--target-touch); min-height: var(--target-touch); }
+.chero-primary-actions > .btn { min-height: var(--target-touch); }
 body .catalog-row > .btn { overflow-wrap: normal; }
 body .notice-act > .grow { overflow-wrap: normal; }
 /* An item after the first leads with its "/", and stretched to the 48px link that "/" put the item's
