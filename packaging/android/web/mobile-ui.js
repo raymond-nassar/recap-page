@@ -177,6 +177,9 @@ function wireDoneBar() {
   };
   const sizes = new ResizeObserver(() => {
     if (!watched) return;
+    const message = watched.querySelector('.grow');
+    if (message && message.scrollHeight > message.clientHeight) message.setAttribute('tabindex', '0');
+    else message?.removeAttribute('tabindex');
     root.style.setProperty('--done-bar-height', `${Math.ceil(watched.getBoundingClientRect().height)}px`);
     clearFocus();
   });

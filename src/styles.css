@@ -1312,6 +1312,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .card-static h2 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
 .card-static h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
 .guide-copy p { margin: 0 0 var(--space-5); line-height: 1.5; }
+.guide-copy { overflow-wrap: anywhere; }
 .guide-copy p:last-child { margin-bottom: 0; }
 .guide-copy ul { margin: 0; padding-inline-start: var(--space-7); }
 .guide-copy li + li { margin-top: var(--space-3); }
@@ -1416,7 +1417,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    is the shape that makes a reader parse a sentence to find out which key does what. */
 .keys { border-collapse: collapse; margin: var(--space-1) 0 var(--space-4); }
 .keys th { text-align: left; font-weight: 400; padding: var(--space-2) var(--space-6) var(--space-2) 0; white-space: nowrap; vertical-align: top; }
-.keys td { padding: var(--space-2) 0; color: var(--muted); font-size: var(--t-body); }
+.keys td { padding: var(--space-2) 0; color: var(--muted); font-size: var(--t-body); overflow-wrap: anywhere; }
 
 /* A stacked form puts each child on its own grid row, which stretches a submit button to the full
    width of the card and makes it read as a banner rather than as a button. */
@@ -1809,6 +1810,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card-2);
 }
 .result-main { flex: 1 1 auto; min-width: 0; }
+.catalog-row { flex-wrap: wrap; }
+.catalog-row .result-main { flex: 1 1 12rem; }
+.catalog-row > .btn { flex: 0 0 auto; overflow-wrap: normal; }
 .result-title { font-size: var(--t-body); font-weight: 600; margin: 0; }
 .result-meta { color: var(--muted); font-size: var(--t-caption); }
 .result progress { width: 120px; }
@@ -1839,11 +1843,13 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 /* A notice that carries an action, such as the undo offered after a list is deleted. The
    button is sized to the 44px target minimum rather than the notice's own type scale,
    because it is a real destination for a finger and not a piece of the message. */
-.notice-act { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.notice-act { position: relative; display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; text-align: left; }
+.notice-act:has(> .grow)::before { position: absolute; top: var(--space-4); left: var(--space-5); }
 #cloud-sync-notice[hidden] { display: none; }
-.notice-act .grow { flex: 1; }
+.notice-act .grow { flex: 0 0 100%; min-width: 0; padding-inline-start: 0; overflow-wrap: normal; word-break: normal; } .notice-act:is(.notice-ok, .notice-warn, .notice-error, .notice-busy) .grow { padding-inline-start: var(--space-10); }
 .notice-act button {
   min-height: var(--target); padding-inline: var(--space-6); display: inline-flex; align-items: center;
+  overflow-wrap: normal; flex: 0 1 auto;
 }
 
 /* Dismiss is the lesser of the two when a notice carries both, so it reads as secondary by losing
@@ -1905,7 +1911,8 @@ progress { accent-color: var(--accent); height: 6px; }
   background: var(--card); color: var(--text); box-shadow: var(--elev-updates-panel);
   overflow-wrap: anywhere;
 }
-.home-updates-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.home-updates-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.home-updates-head > button { flex-shrink: 0; overflow-wrap: normal; }
 #home-updates-title { margin: 0; font-size: var(--t-subtitle); }
 #home-updates :is(button, .home-updates-more > summary) { min-height: var(--target); min-width: var(--target); }
 #home-updates h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-4); }
@@ -1955,6 +1962,10 @@ progress { accent-color: var(--accent); height: 6px; }
 .continue-empty .chero-in { grid-template-columns: 1fr; }
 .continue-empty .art { display: none; }
 @media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
+@media (min-width: 560px) and (max-height: 600px) {
+  .chero-in { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  .chero-in .art { max-width: 112px; }
+}
 /* `anywhere` rather than `break-word` (#998). Both wrap "presentation" at iOS's largest text, but the
    heading sits in a grid track sized from its min-content, which `break-word` leaves at the longest
    word: measured in Edge on the Windows layout at 320px, that track still pushed the heading 16px past
@@ -1962,10 +1973,6 @@ progress { accent-color: var(--accent); height: 6px; }
 .chero h2 { font-size: var(--t-title); margin: var(--space-2) 0 var(--space-5); font-weight: 600; letter-spacing: -.02em; overflow-wrap: anywhere; }
 .chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-lg); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
-@media (min-width: 560px) and (max-height: 600px) {
-  .chero-in { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
-  .chero-in .art { max-width: 112px; }
-}
 /* The shared fallback is sized for the reading view's larger cover, so it is scaled down
    here rather than being duplicated. */
 .chero .art .fallback { padding: var(--space-4); border-radius: var(--radius-lg); }
@@ -2225,7 +2232,10 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 /* ---------------------------------------------------------- preview dialog */
 
 .preview-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-6); }
-.preview-head h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.preview-head h2, #preview-h { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.preview-head { flex-wrap: wrap; }
+.preview-head > button { flex-shrink: 0; overflow-wrap: normal; margin-left: auto; }
+.preview-head + #preview-h { margin-top: var(--space-5); }
 .preview-desc { max-width: 62ch; }
 /* UX-12 (#830): the list reads in the dialog's own scroll, the one scroller, rather than in a box of its
    own inside a dialog that also scrolled, which put two scrollbars side by side. */
@@ -2243,6 +2253,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+#preview-add > #preview-secondary { display: contents; }
+.preview > :is(#preview-secondary, #preview-offline) { margin-block: var(--space-4); }
 /* Success just after an add keeps a hint's spacing, in the text colour so it is not missed. */
 .preview-added { color: var(--text); font-weight: 600; }
 .preview-notes { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-5); }
@@ -2565,6 +2577,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    than by weight alone, and its count is quieter and lighter so the label stays a plain heading a
    reader can jump between. The group is a grid so the heading and its rows share the .4rem rhythm. */
 .lgroup { display: grid; gap: var(--space-3); margin: 0 0 var(--space-7); }
+#series-progress, #series-progress .lgroup { grid-template-columns: minmax(0, 1fr); }
 .lgroup-h { margin: 0; padding-bottom: var(--space-3); border-bottom: var(--stroke-1) solid var(--line); font-size: var(--t-subtitle); font-weight: 600; color: var(--text); }
 .lgroup-n { color: var(--muted); font-size: var(--t-caption); font-weight: 400; margin-left: var(--space-3); }
 
@@ -2972,6 +2985,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-notice { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
+#view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }
 
 /* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
    Keep native tap highlights and selection. */
@@ -2984,4 +2998,3 @@ select, input[type="search"], input[type="text"], input[type="url"] {
     outline-offset: calc(-1 * var(--focus-width));
   }
 }
-#view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }

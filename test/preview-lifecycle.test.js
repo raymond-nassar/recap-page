@@ -33,7 +33,7 @@ function harness(t, { loadOrder = async () => order, onAdd, onAddCopy, onClose }
   globalThis.document = document;
   t.after(() => { if (prior === undefined) delete globalThis.document; else globalThis.document = prior; });
   const nodes = Object.fromEntries(
-    ['add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source']
+    ['add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source']
       .map((key) => [key, node()]),
   );
   const timers = [];
@@ -112,7 +112,7 @@ test('Preview refreshes a real Add and preserves its Open and focus behavior', a
   assert.equal(h.calls.restored.length, 1);
   // UX-12 (#830): the Add used to schedule a repaint 1.5s later that swapped its success line away.
   assert.equal(h.timers.length, 0);
-  assert.equal(h.nodes.add.children[1].text, 'Added to your Library: 1 comic.');
+  assert.equal(h.nodes.secondary.children[0].text, 'Added to your Library: 1 comic.');
   const open = h.nodes.add.children[0];
   assert.equal(open.children[0], 'Open list');
   open.onclick();
@@ -171,23 +171,23 @@ test('Preview offers a separate updated copy without changing an older snapshot'
   assert.match(notice.text, /saved comic details, read progress, comic notes, ratings and availability choices/i);
   assert.equal(h.nodes.add.children[0].href, '#/read/existing');
   assert.deepEqual(saved.itemIds, [1, 3]);
-  const copy = h.nodes.add.children.find((child) => child.dataset?.act === 'add-copy');
+  const copy = h.nodes.secondary.children.find((child) => child.dataset?.act === 'add-copy');
   assert.ok(copy);
   await copy.onclick({ currentTarget: copy });
   assert.equal(h.calls.copied, 1);
   assert.deepEqual(saved.itemIds, [1, 3]);
-  const open = h.nodes.add.children.find((child) => child.dataset?.act === 'open-copy');
+  const open = h.nodes.secondary.children.find((child) => child.dataset?.act === 'open-copy');
   assert.equal(open.href, '#/read/copy');
-  assert.match(h.nodes.add.children.find((child) => child.role === 'status').text, /added updated copy/i);
+  assert.match(h.nodes.secondary.children.find((child) => child.role === 'status').text, /added updated copy/i);
 
   h.setState({ lists: { existing: { ...saved, itemIds: [2, 1] } }, listOrder: ['existing'] });
   await h.view.open({ ...list, count: 2 });
   assert.equal(h.nodes.body.children[0].class, 'preview-list', 'reordered but complete copies need no notice');
-  assert.ok(!h.nodes.add.children.some((child) => child.dataset?.act === 'add-copy'));
+  assert.ok(!h.nodes.secondary.children.some((child) => child.dataset?.act === 'add-copy'));
   h.setState({ lists: {}, listOrder: [] });
   await h.view.open({ ...list, count: 2 });
   assert.equal(h.nodes.body.children[0].class, 'preview-list', 'new imports need no notice');
-  assert.ok(!h.nodes.add.children.some((child) => child.dataset?.act === 'add-copy'));
+  assert.ok(!h.nodes.secondary.children.some((child) => child.dataset?.act === 'add-copy'));
 });
 
 test('an updated-copy save blocks repeat clicks and reports failure without claiming success', async (t) => {
@@ -199,7 +199,7 @@ test('an updated-copy save blocks repeat clicks and reports failure without clai
   const saved = { id: 'existing', catalogId: list.id, itemIds: [1] };
   h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
   await h.view.open({ ...list, count: 2 });
-  const button = h.nodes.add.children.find((child) => child.dataset?.act === 'add-copy');
+  const button = h.nodes.secondary.children.find((child) => child.dataset?.act === 'add-copy');
   const saving = button.onclick({ currentTarget: button });
   assert.equal(button.disabled, true);
   await button.onclick({ currentTarget: button });
@@ -207,8 +207,8 @@ test('an updated-copy save blocks repeat clicks and reports failure without clai
   pending.resolve(null);
   await saving;
   assert.deepEqual(saved.itemIds, [1]);
-  assert.ok(h.nodes.add.children.some((child) => child.dataset?.act === 'add-copy'));
-  assert.ok(!h.nodes.add.children.some((child) => child.dataset?.act === 'open-copy'));
+  assert.ok(h.nodes.secondary.children.some((child) => child.dataset?.act === 'add-copy'));
+  assert.ok(!h.nodes.secondary.children.some((child) => child.dataset?.act === 'open-copy'));
 });
 
 test('an updated copy completing after dismissal refreshes the source once', async (t) => {
@@ -220,7 +220,7 @@ test('an updated copy completing after dismissal refreshes the source once', asy
   const saved = { id: 'existing', catalogId: list.id, itemIds: [1] };
   h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
   await h.view.open({ ...list, count: 2 });
-  const button = h.nodes.add.children.find((child) => child.dataset?.act === 'add-copy');
+  const button = h.nodes.secondary.children.find((child) => child.dataset?.act === 'add-copy');
   const saving = button.onclick({ currentTarget: button });
   await h.close();
   h.setState({

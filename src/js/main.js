@@ -2257,7 +2257,7 @@ async function importCurated(list, btn, {
       isCurrent,
       retry: () => {
         if (asCopy) {
-          const copyButton = isCurrent() && $('#preview').open ? $('#preview-add [data-act="add-copy"]') : null;
+          const copyButton = isCurrent() && $('#preview').open ? $('#preview-secondary [data-act="add-copy"]') : null;
           if (copyButton?.dataset.key === list.id) {
             if (document.activeElement === document.body) copyButton.focus({ preventScroll: true });
             copyButton.click();
@@ -3990,6 +3990,7 @@ const previewView = createPreviewView({
   el,
   elements: () => ({
     add: $('#preview-add'),
+    secondary: $('#preview-secondary'),
     offline: $('#preview-offline'),
     offlineStatus: $('#preview-offline-status'),
     body: $('#preview-body'),

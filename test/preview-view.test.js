@@ -29,6 +29,7 @@ test('Preview rejects an older issue response after a newer selection opens', as
   globalThis.document = { activeElement: null, body: {} };
   const nodes = {
     add: node(),
+    secondary: node(),
     body: node(),
     close: node(),
     description: node(),
@@ -79,6 +80,7 @@ test('Preview rejects an older issue response after a newer selection opens', as
 test('Preview separates individual issues after an edition without changing original order', async () => {
   const nodes = {
     add: node(),
+    secondary: node(),
     body: node(),
     close: node(),
     description: node(),
@@ -148,7 +150,7 @@ test('Preview keeps interior padding open, and after an add makes Open list the 
   const realSetTimeout = globalThis.setTimeout;
   try {
     const nodes = Object.fromEntries([
-      'add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+      'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
     ].map((key) => [key, node()]));
     nodes.dialog.getBoundingClientRect = () => ({ left: 10, top: 20, right: 110, bottom: 120 });
     let saved = false;
@@ -180,10 +182,10 @@ test('Preview keeps interior padding open, and after an add makes Open list the 
     nodes.add.children[0].onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
     assert.equal(opened, 0);
     assert.match(nodes.add.children[0]['aria-label'], /^Open list: List one$/);
-    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 comics.');
-    assert.equal(nodes.add.children[1].role, 'status', 'the page announcer is behind the modal, so the dialog says it');
+    assert.equal(nodes.secondary.children[0].text, 'Added to your Library: 3 comics.');
+    assert.equal(nodes.secondary.children[0].role, 'status', 'the page announcer is behind the modal, so the dialog says it');
     view.syncAdd();
-    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 comics.', 'a repaint keeps the success line');
+    assert.equal(nodes.secondary.children[0].text, 'Added to your Library: 3 comics.', 'a repaint keeps the success line');
     nodes.add.children[0].onclick();
     assert.equal(opened, 1);
     nodes.dialog.listeners.click({ target: nodes.dialog, clientX: 9, clientY: 21 });
@@ -201,7 +203,7 @@ test('Preview puts its offline status above the held actions, not among them', a
   globalThis.document = { activeElement: null, body: {} };
   try {
     const nodes = Object.fromEntries([
-      'add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'offline', 'offlineStatus', 'paths', 'source',
+      'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'offline', 'offlineStatus', 'paths', 'source',
     ].map((key) => [key, node()]));
     const withAttributes = (tag, props, children) => ({
       ...element(tag, props, children),
@@ -224,7 +226,7 @@ test('Preview puts its offline status above the held actions, not among them', a
     view.invalidate();
 
     const iosNodes = Object.fromEntries([
-      'add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'offline', 'offlineStatus', 'paths', 'source',
+      'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'offline', 'offlineStatus', 'paths', 'source',
     ].map((key) => [key, node()]));
     const iosView = createPreviewView({
       isIos: true,
