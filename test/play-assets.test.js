@@ -194,6 +194,27 @@ test('capture allowlist serves only the generated shell and named local fixtures
   assert.throws(() => previewResponse(`${ORIGIN}/`, 'POST', assets), /Blocked/);
 });
 
+test('store captures accept the local wordmark without admitting cover or external images', () => {
+  const artwork = readFileSync(new URL('../src/icons/wordmark.png', import.meta.url));
+  const assets = new Map([['icons/wordmark.png', artwork]]);
+  const response = previewResponse(`${ORIGIN}/icons/wordmark.png`, 'GET', assets);
+  assert.equal(response.contentType, 'image/png');
+  assert.equal(response.body, artwork);
+  for (const script of ['capture-store-assets.mjs', 'capture-play-assets.mjs']) {
+    const source = readFileSync(new URL(`../scripts/${script}`, import.meta.url), 'utf8');
+    const expression = source.match(/safeImages:\s*([\s\S]*?),\r?\n\s*(?:horizontalOverflow|privateTextAbsent):/)[1];
+    for (const [path, expected] of [
+      ['/icons/wordmark.png', true], ['/icons/icon.svg', true], ['/covers/comic.png', false],
+      ['/icons/unreviewed.png', false], ['https://example.com/icons/wordmark.png', false],
+    ]) {
+      const url = new URL(path, ORIGIN).href;
+      const document = { images: [{ src: url, getAttribute: () => url }] };
+      assert.equal(runInNewContext(expression, { document, location: { origin: ORIGIN }, URL }),
+        expected, `${script}: ${path}`);
+    }
+  }
+});
+
 test('cloud fixture enables OneDrive copy without an account, sign-in or writable transport', () => {
   const url = `${ORIGIN}/__recap_cloud__/v1/status`;
   const body = JSON.parse(previewResponse(url, 'POST', new Map()).body);

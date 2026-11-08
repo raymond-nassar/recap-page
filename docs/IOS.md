@@ -67,7 +67,7 @@ three samples hitting Library navigation and none hitting the owner.
 
 The native shell maps the system text size to the six shared type tokens. It does not zoom the page
 or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
-header one column so the What's new control keeps enough width to read. This adjustment is confined
+header one column with What's new in the second row, clear of the wordmark. This adjustment is confined
 to the iOS bundle; the shared Windows and Android styles do not change. The iOS skip link uses the
 shared `--target` token for a 44-point hit region, and the standalone Read links use the shared
 `--target-touch` token for 48-point regions. The native shell gives each link its accessible name
@@ -192,7 +192,7 @@ executable fails that check rather than passing without inspecting anything.
 The four sidebar navigation links and the Continue card's Open the list link use the same accessible
 parent-target treatment, preserving their names and actions rather than exempting nested text.
 The footer's About link also uses that treatment and the shared `--target` token for its minimum
-width and height. These changes apply only to the iOS bundle; no shared markup or Android style changes.
+width and height. The notice FAQ uses the same parent treatment and token-sized line box, only on iOS.
 The same parent-target treatment covers breadcrumb links, Library's ratings and tool links,
 Search's tool links and More ways to add summary, and Backup & settings' disclosure summaries.
 The backup-file labels retain their label-to-file-input association and file-picker activation.

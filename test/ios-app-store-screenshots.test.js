@@ -57,6 +57,7 @@ test('the capture matches the three App Store slots and their screens in order',
     ['05-professor-x', 'light'], ['06-library', 'light'], ['07-backup-settings', 'light'],
   ]);
   assert.equal(SCREENS[6].caption, 'Back up your lists and progress to your own iCloud, automatically as you read.');
+  assert.deepEqual(SCREENS[0].text, ['Recap Page']);
   for (const { folder } of SETS) {
     const screens = fixtures(folder);
     assert.deepEqual(screens.map(({ name }) => name), SCREENS.map(({ name }) => name), folder);
