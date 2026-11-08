@@ -1414,3 +1414,84 @@ function stubDeps(overrides = {}) {
     ...overrides,
   };
 }
+
+test('the progress notice dismiss records the same Keep decision as the question, and is named for it', async () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: true, epoch: 'one', localContentDigest: 'local',
+    remote: { id: 'phone', digest: 'remote', device: 'Phone', createdAt: 123, readCount: 1, lastReadAt: null },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 0,
+  };
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode(), dismiss: stubNode() };
+  const calls = [];
+  const state = { model: { sync: { phase: 'offer', offer } }, spoken: [], pending: [], answers: [] };
+  let finish;
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => state.model, when,
+    ask: () => new Promise((resolve) => state.answers.push(resolve)),
+    withdraw: () => {}, announce: (message) => state.spoken.push(message), report: () => {},
+    onKeep: (...args) => { calls.push(['keep', args]); return new Promise((resolve) => { finish = resolve; }); },
+    onLoad: async () => { calls.push(['load']); return { ok: true }; }, onFinished: () => {},
+    onQuestionChange: (pending) => state.pending.push(pending),
+  });
+  prompt.wire();
+  assert.match(nodes.dismiss.getAttribute('aria-label'), /^Dismiss the progress notice and keep this device's progress$/);
+  nodes.dismiss._fire();
+  await settled();
+  nodes.dismiss._fire();
+  nodes.review._fire();
+  await settled();
+  assert.equal(state.answers.length, 0, 'a question cannot open while the dismissal is recording Keep');
+  assert.deepEqual(state.pending, [true], 'the recovery exit is held while the dismissal records its choice');
+  finish({ ok: true });
+  await settled();
+  assert.deepEqual(state.pending, [true, false]);
+  assert.equal(state.spoken.at(-1), "This device's progress was kept.");
+
+  nodes.review._fire();
+  await settled();
+  state.answers.shift()('keep');
+  await settled();
+  finish({ ok: true });
+  await settled();
+  assert.deepEqual(calls, [['keep', []], ['keep', []]], 'the dismiss and Keep make one identical call');
+});
+
+test('a withdrawn offer shows its notice only to a reader who had the question open', async () => {
+  const offer = {
+    kind: 'remote-ahead', quiet: true, epoch: 'one', localContentDigest: 'local',
+    remote: { id: 'phone', digest: 'remote', device: 'Phone', createdAt: 123, readCount: 1, lastReadAt: null },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering: 0,
+  };
+  const withdrawnNotice = 'Saved data changed, so the earlier cloud choice was withdrawn.';
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode(), dismiss: stubNode() };
+  const state = { model: { sync: { phase: 'offer', offer } }, answers: [] };
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => state.model, when,
+    ask: () => new Promise((resolve) => state.answers.push(resolve)),
+    withdraw: () => {}, announce: () => {}, report: () => {},
+    onKeep: async () => ({ ok: true }), onLoad: async () => ({ ok: true }), onFinished: () => {},
+  });
+  prompt.wire();
+  assert.equal(nodes.notice.hidden, false, 'the quiet offer shows its banner');
+  state.model = { sync: { phase: 'checking', notice: withdrawnNotice } };
+  prompt.render();
+  assert.equal(nodes.notice.hidden, true, 'a withdrawal nobody was answering rechecks quietly');
+
+  state.model = { sync: { phase: 'offer', offer: { ...offer, localContentDigest: 'local-2' } } };
+  prompt.render();
+  nodes.review._fire();
+  await settled();
+  state.model = { sync: { phase: 'checking', notice: withdrawnNotice } };
+  prompt.render();
+  assert.equal(nodes.notice.hidden, false, 'an open question that is withdrawn says so');
+  assert.equal(nodes.message.textContent, withdrawnNotice);
+  assert.equal(nodes.dismiss.getAttribute('aria-label'), 'Dismiss the cloud notice');
+  state.answers.shift()(null);
+  await settled();
+  nodes.dismiss._fire();
+  await settled();
+  assert.equal(nodes.notice.hidden, true, 'the withdrawal notice can be dismissed');
+  state.model = { sync: { phase: 'checking', notice: withdrawnNotice } };
+  prompt.render();
+  assert.equal(nodes.notice.hidden, true, 'a dismissed notice does not return for the same withdrawal');
+});

@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1567`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1568`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
@@ -710,8 +710,15 @@ stream, so choosing Keep for one device cannot erase a choice made for another.
 Comparison explicitly recognizes another device's latest copy of this device's last upload as an
 echo, without suppressing a different device's divergent copy. A declined copy is a kept choice,
 not evidence that this device is ahead. A no-offer result without an echo or a shared match is
-likewise not evidence that the device is ahead. Like automatic backup, comparison uses the personal
-digest, which excludes the active list.
+likewise not evidence that the device is ahead. Since #1176 an offer compares a material digest:
+SHA-256 over a `recap-material-v1` prefix and the comics marked read, each list's identity, name,
+order, deferrals and collected-in choices, rating values, and which history records were finished or
+rated. Times, the sidebar order, notes, overrides, saved comic details, settings and the import draft
+are left out. Discovery computes it from the backups it already downloads, so listings and uploads
+are unchanged. New matched, declined and kept-choice values store it; a stored reference is honored
+when it equals either digest, so records written by earlier builds still count. The personal digest,
+which excludes only the active list, still drives upload dedupe, echo recognition, the kept-copy
+reference and its verification.
 Erase removes the record, sync state, per-stream choices, kept-copy ledger and pending recovery
 reference together.
 Context-changing writes inspect the old record and sync state in the same transaction, so an
@@ -758,7 +765,9 @@ an older tab may upload; issue #1161 tracks this remaining case. Other tabs foll
 hold; no worker waits for the person's answer while holding its upload lock. When a hold is confirmed,
 failed or inconclusive checks leave uploads paused until a later check succeeds or the person confirms
 the warned override.
-A late check is quiet, and dismissing an offer leaves it available. A choice is bound to the
+A late check is quiet, and closing the question leaves the offer available. The banner's dismiss
+control records the same choice as Keep, and a withdrawn offer is announced only to someone who had
+its question open. A choice is bound to the
 connection, consent, election, local content and selected remote identity and bytes, and is rechecked
 before it is applied. While a choice waits, the watcher lists identities and sizes without downloading
 unchanged files, backing off from five seconds to five minutes. Since a same-size in-place change is

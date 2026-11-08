@@ -343,6 +343,11 @@ export function createCloudSyncPrompt({
   let pendingQuestions = 0;
   let attempted = null;
   let announcedOffer = null;
+  // The owner asked (#1176) that a withdrawal is reported only to a reader who had the question
+  // open; any other withdrawal rechecks quietly instead of replacing the banner with a notice.
+  let withdrawnWhileOpen = false;
+  let dismissing = false;
+  const dismissControl = (notice) => elements().dismiss ?? notice?.querySelector?.('#btn-cloud-sync-dismiss') ?? null;
 
   const currentOffer = () => {
     const sync = getModel()?.sync;
@@ -365,7 +370,7 @@ export function createCloudSyncPrompt({
 
   async function show(offer) {
     const id = syncOfferId(offer);
-    if (question || syncOfferId(currentOffer() ?? offer) !== id || !currentOffer()) return;
+    if (question || dismissing || syncOfferId(currentOffer() ?? offer) !== id || !currentOffer()) return;
     const ticket = { id, withdrawn: false };
     question = ticket;
     attempted = id;
@@ -406,25 +411,32 @@ export function createCloudSyncPrompt({
   function render() {
     const { notice, message, review } = elements();
     if (!notice) return;
+    const dismiss = dismissControl(notice);
     const offer = currentOffer();
     const id = offer ? syncOfferId(offer) : null;
     if (question && question.id !== id && !question.withdrawn) {
       question.withdrawn = true;
+      withdrawnWhileOpen = true;
       withdraw();
       const withdrawn = getModel()?.sync?.notice;
       if (withdrawn) announce(withdrawn);
     }
     if (!offer) {
       attempted = null;
-      const withdrawn = getModel()?.sync?.notice;
-      if (['clear', 'off'].includes(getModel()?.sync?.phase)) announcedOffer = null;
+      const sync = getModel()?.sync;
+      if (['clear', 'off'].includes(sync?.phase)) announcedOffer = null;
+      if (!sync?.notice) withdrawnWhileOpen = false;
+      const withdrawn = withdrawnWhileOpen ? sync.notice : null;
       notice.hidden = !withdrawn;
       if (review) review.hidden = true;
       if (message && withdrawn) message.textContent = withdrawn;
+      if (dismiss) labelDismiss(dismiss, 'Dismiss the cloud notice');
       return;
     }
+    withdrawnWhileOpen = false;
     if (message) message.textContent = 'Your progress differs between devices.';
     if (review) review.hidden = false;
+    if (dismiss) labelDismiss(dismiss, "Dismiss the progress notice and keep this device's progress");
     if (!offer.quiet && !question && attempted !== id) {
       attempted = id;
       void show(offer);
@@ -437,11 +449,75 @@ export function createCloudSyncPrompt({
     }
   }
 
+  function labelDismiss(control, label) {
+    if (control.getAttribute?.('aria-label') !== label) control.setAttribute?.('aria-label', label);
+    if (control.dataset && control.dataset.tooltip !== label) control.dataset.tooltip = label;
+  }
+
+  // Dismissing the offer is the owner's "keep this device's progress for now" (#1176), so it records
+  // exactly the decision the question's Keep answer records, through the same call.
+  async function dismissNotice() {
+    const offer = currentOffer();
+    if (!offer) {
+      withdrawnWhileOpen = false;
+      render();
+      rescueFocus();
+      return;
+    }
+    if (question || dismissing) return;
+    dismissing = true;
+    attempted = syncOfferId(offer);
+    pendingQuestions += 1;
+    try {
+      onQuestionChange(true);
+      try {
+        const result = await onKeep();
+        if (!result?.ok) report(result?.error ?? 'The cloud choice could not be completed. Check again.');
+        else announce("This device's progress was kept.");
+      } catch (error) {
+        report(error?.message ?? 'The cloud choice could not be completed. Check again.');
+      }
+      render();
+      rescueFocus();
+    } finally {
+      dismissing = false;
+      pendingQuestions -= 1;
+      onQuestionChange(pendingQuestions > 0);
+    }
+  }
+
+  // The app's identity comes first on Home, so the notice follows its lockup there; on every other
+  // screen it stays at the top of the content. Measured on a 360px Android screen, the notice above
+  // the wordmark pushed Done on the Continue card to about 4px above the bottom bar (#1176).
+  // Watching Home's hidden attribute moves it in the same task as the view switch, before paint.
+  let homeSlot = null;
+  function placeNotice() {
+    const document = globalThis.document;
+    const { notice } = elements();
+    const home = document?.getElementById?.('view-home');
+    const head = home?.querySelector?.(':scope > .head');
+    if (!notice || !head) return;
+    homeSlot ??= notice.parentNode.insertBefore(document.createComment('cloud-sync-notice'), notice);
+    const onHome = !home.hidden;
+    if (onHome ? notice.previousElementSibling === head : homeSlot.nextSibling === notice) return;
+    const focused = notice.contains(document.activeElement) ? document.activeElement : null;
+    if (onHome) head.after(notice);
+    else homeSlot.after(notice);
+    focused?.focus({ preventScroll: true });
+  }
+
   function wire() {
-    elements().review?.addEventListener('click', () => {
+    const { notice, review } = elements();
+    review?.addEventListener('click', () => {
       const offer = currentOffer();
       if (offer) void show(offer);
     });
+    dismissControl(notice)?.addEventListener('click', () => { void dismissNotice(); });
+    const home = globalThis.document?.getElementById?.('view-home');
+    if (home && typeof MutationObserver === 'function') {
+      new MutationObserver(placeNotice).observe(home, { attributes: true, attributeFilter: ['hidden'] });
+      placeNotice();
+    }
     render();
   }
 
