@@ -1373,3 +1373,11 @@ test('the 4.5.0 progress offer does not advertise Google Drive backup', () => {
   const item = releaseItems('4.5.0', page).find((entry) => entry.includes(escapeHtml(feature)));
   assert.equal(item, `<strong>${escapeHtml(label)}</strong> ${escapeHtml(feature)}`);
 });
+
+test('the 4.5.0 navigation and layout summary identifies its phone-width scope', () => {
+  const feature = 'Back now sits at the top left on secondary screens. On phones held upright, Continue reading centers the comic above Read and Done. Notices, Search and large-text dialogs stay readable and reachable without widening the page.';
+  const label = 'Every platform. Continue reading layout: phone-width screens.';
+  const page = releasesPage(changelog, new Map([['4.5.0', '2030-01-02']])).html;
+  const item = releaseItems('4.5.0', page).find((entry) => entry.includes(escapeHtml(feature)));
+  assert.equal(item, `<strong>${escapeHtml(label)}</strong> ${escapeHtml(feature)}`);
+});

@@ -23,8 +23,8 @@ export const PLATFORM_LABELS = new Map([
     'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud keeps its existing backup and manual restore.',
   ],
   [
-    'Back now sits at the top left on secondary screens, and on iPhone you can also swipe from the left edge to go back. On phones, Continue reading centers the comic above Read and Done. Notices, Search and large-text dialogs stay readable and reachable without widening the page.',
-    'Every platform. Edge-swipe Back: iPhone only.',
+    'Back now sits at the top left on secondary screens. On phones held upright, Continue reading centers the comic above Read and Done. Notices, Search and large-text dialogs stay readable and reachable without widening the page.',
+    'Every platform. Continue reading layout: phone-width screens.',
   ],
   [
     'On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time, so your reading progress can follow you across your devices.',

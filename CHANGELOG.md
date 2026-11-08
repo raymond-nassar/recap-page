@@ -32,9 +32,9 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
   Marvel Team-Up issues in the Amazing Spider-Man guide.
 - Buttons, links and cards now show a pressed edge while you hold them, and screen changes fade in
   gently while honoring reduced-motion settings.
-- Back now sits at the top left on secondary screens, and on iPhone you can also swipe from the
-  left edge to go back. On phones, Continue reading centers the comic above Read and Done.
-  Notices, Search and large-text dialogs stay readable and reachable without widening the page.
+- Back now sits at the top left on secondary screens. On phones held upright, Continue reading
+  centers the comic above Read and Done. Notices, Search and large-text dialogs stay readable
+  and reachable without widening the page.
 - Improved the iPhone Search navigation's accessibility by presenting its label as one named
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation.
@@ -60,9 +60,9 @@ Narrowing the progress offer to reading progress changes no schema, storage key,
 backup listing or record version. Backups written by 4.3.0, 4.4.0 and the 4.5.0 test builds are
 read unchanged, and choices recorded by earlier 4.5.0 test builds are still honored. A tester
 upgrading from an earlier 4.5.0 test build may see the question once more for a device after
-that device next saves only a settings change; one Keep or dismissal settles it until that
-device's reading progress changes. The navigation and layout improvements make no storage,
-backup, key or migration change.
+that device next backs up a change that leaves its reading progress the same, such as a setting
+or a note; one Keep or dismissal settles it until that device's reading progress changes. The
+navigation and layout improvements make no storage, backup, key or migration change.
 
 The guide, Search accessibility and presentation changes do not change storage keys or backup
 contents. Opening the guide or an unsaved preview does not create a Reading List; adding one
@@ -148,13 +148,13 @@ as a follow-up", routes the local-only fallback to #1163 rather than this releas
 - Improved the iPhone Search navigation's accessibility by presenting its label as one named
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation. (#1152)
-- Back now sits at the top left of secondary screens, hidden on the main navigation roots, and
-  iPhone adds the familiar swipe from the left edge to go back. On phones, Continue reading
-  centers the comic above Read and Done, with opening the list and reviewing earlier or deferred
-  comics as quieter actions. Confirmation messages use the full width with their actions beneath
-  them, and long unbroken names scroll inside the message instead of widening the page. At large
-  text sizes, confirmations and Preview keep their main actions reachable, and Search results and
-  catalog cards stay within the screen. (#1178, for #1175)
+- Back now sits at the top left of secondary screens, hidden on the main navigation roots.
+  On phones held upright, Continue reading centers the comic above Read and Done, with opening
+  the list and reviewing earlier or deferred comics as quieter actions. Confirmation messages use
+  the full width with their actions beneath them, and long unbroken names scroll inside the
+  message instead of widening the page. At large text sizes, confirmations and Preview keep their
+  main actions reachable, and Search results and catalog cards stay within the screen. On Home,
+  the "New to Marvel Comics?" link is now a purple button. (#1178, for #1175)
 
 ### Release and maintenance
 
