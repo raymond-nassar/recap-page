@@ -250,9 +250,18 @@ final class PresentationUITests: XCTestCase {
           back: (() => {
             const control = document.querySelector('.view:not([hidden]) .app-back');
             if (!control) return null;
+            const label = control.querySelector('.app-back-label');
+            const controlRect = control.getBoundingClientRect();
+            const labelRect = label.getBoundingClientRect();
             return {
               label: control.getAttribute('aria-label'),
-              labelDisplay: getComputedStyle(control.querySelector('.app-back-label')).display,
+              labelDisplay: getComputedStyle(label).display,
+              labelWidth: labelRect.width,
+              labelHeight: labelRect.height,
+              labelInsideControl: labelRect.left >= controlRect.left - 1
+                && labelRect.top >= controlRect.top - 1
+                && labelRect.right <= controlRect.right + 1
+                && labelRect.bottom <= controlRect.bottom + 1,
               iconDisplay: getComputedStyle(control.querySelector('.gi')).display,
               chevronContent: getComputedStyle(control, '::before').content,
             };
@@ -2010,7 +2019,10 @@ final class PresentationUITests: XCTestCase {
             assertNoSeparateTextTarget(["Back"], in: webView, within: back, for: "Back")
             let backStyle = try XCTUnwrap(state()["back"] as? [String: Any])
             XCTAssertEqual(backStyle["label"] as? String, "Back")
-            XCTAssertEqual(backStyle["labelDisplay"] as? String, "inline")
+            XCTAssertNotEqual(try XCTUnwrap(backStyle["labelDisplay"] as? String), "none")
+            XCTAssertGreaterThan(try XCTUnwrap(backStyle["labelWidth"] as? Double), 0)
+            XCTAssertGreaterThan(try XCTUnwrap(backStyle["labelHeight"] as? Double), 0)
+            XCTAssertEqual(backStyle["labelInsideControl"] as? Bool, true)
             XCTAssertEqual(backStyle["iconDisplay"] as? String, "none")
             XCTAssertTrue(try XCTUnwrap(backStyle["chevronContent"] as? String).contains("\u{2039}"))
             XCTAssertTrue(back.isHittable, "Back is reachable at the top of the secondary screen")

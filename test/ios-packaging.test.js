@@ -1842,6 +1842,12 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /back\.frame\.midX, webView\.frame\.midX/);
   assert.match(nativeTest, /metrics\["href"\] as\? String == libraryHref/);
   assert.match(nativeTest, /backStyle\["iconDisplay"\] as\? String, "none"/);
+  assert.match(nativeTest, /XCTAssertNotEqual\(try XCTUnwrap\(backStyle\["labelDisplay"\] as\? String\), "none"\)/);
+  assert.match(nativeTest, /XCTAssertGreaterThan\(try XCTUnwrap\(backStyle\["labelWidth"\] as\? Double\), 0\)/);
+  assert.match(nativeTest, /XCTAssertGreaterThan\(try XCTUnwrap\(backStyle\["labelHeight"\] as\? Double\), 0\)/);
+  assert.match(nativeTest, /backStyle\["labelInsideControl"\] as\? Bool, true/);
+  assert.match(nativeTest, /backStyle\["chevronContent"\] as\? String\)\.contains/);
+  assert.doesNotMatch(nativeTest, /XCTAssertEqual\(backStyle\["labelDisplay"\]/);
   assert.doesNotMatch(nativeTest, /evaluateJavaScript|history\.back\(|location\.hash\s*=/);
 });
 
