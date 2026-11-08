@@ -10,8 +10,15 @@ const items = [1, 2, 3].map((number) => ({
   seriesId: number === 3 ? 990001 : 990000, seriesName: `${number === 3 ? 'Later phone layout' : 'Phone layout'} (2026)`,
   digitalId: 700000 + number, source: 'curated',
 }));
-const catalogList = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8')).lists.find((list) => list.id === 'house-of-m');
+const actualCatalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+const catalogList = actualCatalog.lists.find((list) => list.id === 'house-of-m');
 const catalog = { lists: [{ ...catalogList, name: listName }], paths: [] };
+const reflowCatalog = {
+  lists: ['house-of-m', 'house-of-m-essential', 'marvel-knights-to-planet-x-73']
+    .map((id) => actualCatalog.lists.find((list) => list.id === id)),
+  paths: [],
+};
+if (reflowCatalog.lists.some((list) => !list)) throw new Error('The reflow catalog fixtures are missing.');
 let state = createList(createEmptyState(), { id: listId, name: listName, catalogId: catalogList.id });
 state = addIssuesToList(state, listId, items).state;
 state = markRead(state, items[0].issueId, true, 1767225600000);
@@ -40,7 +47,7 @@ async function open(page, view) {
   await settle(page);
 }
 
-async function setup(page, profile, theme) {
+async function setup(page, profile, theme, fixtureCatalog = catalog) {
   await page.goto('about:blank');
   await page.setBypassCSP(true);
   await page.setViewport({ width: profile.width, height: profile.height, isMobile: profile.platform !== 'desktop', hasTouch: profile.platform !== 'desktop', deviceScaleFactor: 1 });
@@ -56,7 +63,7 @@ async function setup(page, profile, theme) {
         : Promise.reject(new TypeError('Phone layout fixture blocks external requests'));
     };
     window.open = () => null;
-  }, initial, theme, catalog);
+  }, initial, theme, fixtureCatalog);
   await page.goto(`${page.__origin}/#/home`, { waitUntil: 'load' });
   await page.waitForSelector('#home-continue:not([hidden])');
   const needsOverlay = profile.platform === 'ios' || (profile.platform === 'android'
@@ -75,6 +82,16 @@ async function capture(page, profile, theme, surface) {
   const dir = join(evidence, baseline ? 'before' : 'after');
   await mkdir(dir, { recursive: true });
   await page.screenshot({ path: join(dir, `${profile.platform}-${profile.width}x${profile.height}-${theme}-${surface}.png`) });
+}
+
+async function capturePhoneContent(page, profile, theme, surface, selector) {
+  if (!evidence || page.__mutation) return;
+  await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
+  await settle(page);
+  await page.evaluate(() => scrollBy(0, -24));
+  await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().bottom
+    <= visualViewport.height + 0.5);
+  await capture(page, profile, theme, surface);
 }
 
 async function largeText(page, profile) {
@@ -112,11 +129,11 @@ function checked(t, name, ok, detail) {
   if (!baseline) t.check(name, ok, JSON.stringify(detail));
 }
 
-async function forProfiles(page, t, run, selected) {
+async function forProfiles(page, t, run, selected, fixtureCatalog) {
   for (const profile of selected ?? profiles) {
     for (const theme of ['light', 'dark']) {
       let cleanup;
-      try { cleanup = await setup(page, profile, theme); } catch (error) {
+      try { cleanup = await setup(page, profile, theme, fixtureCatalog); } catch (error) {
         console.error(`Setup ${profile.platform} ${profile.width} ${theme}: ${error.stack}`);
         throw error;
       }
@@ -410,7 +427,213 @@ export const phoneNotices = {
   },
 };
 
-export const phoneLayoutScenarios = [phoneBack, phoneContinue, phoneNotices];
+async function phoneViewport(page) {
+  return page.evaluate(() => {
+    const nav = document.querySelector('.rail-header').getBoundingClientRect();
+    return {
+      visual: visualViewport.width, visualHeight: visualViewport.height, layout: innerWidth,
+      page: document.documentElement.scrollWidth,
+      nav: { left: nav.left, right: nav.right, bottom: nav.bottom },
+    };
+  });
+}
+
+function phoneViewportFits(viewport) {
+  return Math.abs(viewport.layout - viewport.visual) < 0.5
+    && viewport.page <= viewport.visual
+    && viewport.nav.left >= 0 && viewport.nav.right <= viewport.visual + 0.5
+    && viewport.nav.bottom <= viewport.visualHeight + 0.5;
+}
+
+export const phoneSearchReflow = {
+  id: 'phone-search-reflow',
+  title: 'saved and unsaved Search results fit the phone viewport at ordinary and largest text',
+  async run(page, t, selected) {
+    await forProfiles(page, t, async (profile, theme) => {
+      const label = `${profile.platform} ${profile.width} ${theme}`;
+      await open(page, 'add-search');
+      await page.$eval('#search-q', (node) => {
+        node.value = 'House of M';
+        node.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector('#search-lists-results [data-story="list:house-of-m-essential"] > .btn');
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        const viewport = await phoneViewport(page);
+        const rows = await page.$$eval('#search-lists-results .catalog-row', (nodes) => nodes.map((row) => {
+          const action = row.querySelector(':scope > .btn');
+          const rowBox = row.getBoundingClientRect();
+          const buttonBox = action?.getBoundingClientRect();
+          const text = document.createRange();
+          if (action) text.selectNodeContents(action);
+          return {
+            story: row.dataset.story, width: row.clientWidth, scroll: row.scrollWidth,
+            action: action?.textContent.trim(), name: action?.getAttribute('aria-label'),
+            inside: Boolean(buttonBox) && buttonBox.left >= rowBox.left
+              && buttonBox.right <= rowBox.right + 0.5 && action.scrollWidth <= action.clientWidth + 1,
+            lines: new Set([...text.getClientRects()].filter((rect) => rect.width > 0)
+              .map((rect) => Math.round(rect.top))).size,
+          };
+        }));
+        const saved = rows.find((row) => row.story === 'list:house-of-m');
+        const unsaved = rows.find((row) => row.story === 'list:house-of-m-essential');
+        checked(t, `${label} ${size}: Search rows and bottom tabs fit the visual viewport`,
+          phoneViewportFits(viewport) && rows.length >= 2
+          && rows.every((row) => row.scroll <= row.width + 1 && row.inside), { viewport, rows });
+        checked(t, `${label} ${size}: saved Open and unsaved Add retain their names and Open stays whole`,
+          saved?.action === 'Open →' && saved.name?.startsWith('Open')
+          && saved.lines === 1 && unsaved?.action === '+ Add to library'
+          && unsaved.name?.startsWith('Add to library:'), { saved, unsaved });
+        if (size === 'largest') {
+          await capturePhoneContent(page, profile, theme, `search-reflow-${size}`,
+            '#search-lists-results [data-story="list:house-of-m-essential"] > .btn');
+        }
+      }
+      for (const id of ['house-of-m', 'house-of-m-essential']) {
+        const selector = `#search-lists-results [data-story="list:${id}"] > .btn`;
+        await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
+        await settle(page);
+        const target = await page.$eval(selector, (node) => {
+          node.focus({ preventScroll: true });
+          const box = node.getBoundingClientRect();
+          const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+          return { focused: document.activeElement === node, hit: node.contains(hit), width: box.width, height: box.height };
+        });
+        checked(t, `${label} largest: ${id} action is focusable and under its pointer target`,
+          target.focused && target.hit && target.width >= 44 && target.height >= 44, target);
+      }
+    }, selected ?? [profiles[1]], reflowCatalog);
+  },
+};
+
+export const phoneCatalogReflow = {
+  id: 'phone-catalog-reflow',
+  title: 'the catalog description fits the phone viewport at ordinary and largest text',
+  async run(page, t, selected) {
+    await forProfiles(page, t, async (profile, theme) => {
+      const label = `${profile.platform} ${profile.width} ${theme}`;
+      await open(page, 'catalog');
+      await page.$eval('#catalog-q', (node) => {
+        node.value = 'New X-Men: Assault on Weapon Plus';
+        node.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const selector = '#catalog-results [data-story="list:marvel-knights-to-planet-x-73"] .catalog-card-desc';
+      await page.waitForSelector(selector);
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        const viewport = await phoneViewport(page);
+        const description = await page.$eval(selector, (node) => {
+          const box = node.getBoundingClientRect();
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const lines = [...range.getClientRects()].filter((rect) => rect.width > 0);
+          return {
+            text: node.textContent, width: node.clientWidth, scroll: node.scrollWidth,
+            lines: lines.length, inside: lines.every((rect) => rect.left >= box.left - 0.5 && rect.right <= box.right + 0.5),
+          };
+        });
+        checked(t, `${label} ${size}: the real catalog description and bottom tabs fit the visual viewport`,
+          phoneViewportFits(viewport) && description.text.includes('mutant experimentation')
+          && description.scroll <= description.width + 1 && description.lines > 0 && description.inside,
+          { viewport, description });
+        if (size === 'largest') {
+          await capturePhoneContent(page, profile, theme, `catalog-reflow-${size}`, selector);
+        }
+      }
+    }, selected ?? [profiles[1]], reflowCatalog);
+  },
+};
+
+export function dataReflowScenario({ cloudFixtureHost, installCloudFixture, seedFixtureState, open }) {
+  return {
+    id: 'narrow-data-reflow',
+    title: 'backup file controls fit a narrow Windows window with and without cloud backup',
+    async run(page, t) {
+      await page.setViewport({ width: 480, height: 800 });
+      await seedFixtureState(page);
+      const noCloud = page.waitForResponse((response) =>
+        new URL(response.url()).pathname === '/__recap_cloud__/v1/status' && response.status() === 404);
+      await open(page, '/#/data');
+      await noCloud;
+      await page.waitForSelector('#view-data:not([hidden])');
+      const tokens = await page.evaluate(() => Object.fromEntries(
+        ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
+          .map((token) => [token, parseFloat(getComputedStyle(document.documentElement).getPropertyValue(token))]),
+      ));
+      const measure = async (state) => {
+        for (const theme of ['light', 'dark']) {
+          for (const size of ['ordinary', 'largest']) {
+            await page.evaluate(({ values, chosen, scaled }) => {
+              document.documentElement.dataset.theme = chosen;
+              for (const [token, value] of Object.entries(values)) {
+                document.documentElement.style.setProperty(token, `${value * (scaled ? 2 : 1)}px`);
+              }
+            }, { values: tokens, chosen: theme, scaled: size === 'largest' });
+            await settle(page);
+            const layout = await page.evaluate(() => {
+              const inputs = ['restore-complete', 'restore-file', 'restore-draft']
+                .map((id) => document.getElementById(id))
+                .filter((node) => node && node.checkVisibility() && !node.closest('[hidden]'));
+              return {
+                visual: visualViewport.width, layout: innerWidth, page: document.documentElement.scrollWidth,
+                files: inputs.map((node) => {
+                  const box = node.getBoundingClientRect();
+                  const row = node.closest('.field-row').getBoundingClientRect();
+                  return {
+                    id: node.id, label: node.labels?.[0]?.textContent.trim(), disabled: node.disabled,
+                    left: box.left, right: box.right, rowLeft: row.left, rowRight: row.right,
+                    width: box.width, height: box.height,
+                  };
+                }),
+              };
+            });
+            checked(t, `${state} ${theme} ${size}: file controls and the page fit the 480px visual viewport`,
+              layout.layout === layout.visual && layout.page <= layout.visual
+              && ['restore-complete', 'restore-file', 'restore-draft'].every((id) => layout.files.some((input) => input.id === id))
+              && layout.files.every((input) => input.label && !input.disabled && input.width > 0 && input.height >= 44
+                && input.left >= input.rowLeft - 0.5 && input.right <= input.rowRight + 0.5),
+              layout);
+            if (state === 'connected' && theme === 'dark' && size === 'largest') {
+              await page.$eval('#restore-file', (node) => node.scrollIntoView({ block: 'center' }));
+              await settle(page);
+              await capture(page, { platform: 'desktop', width: 480, height: 800 }, theme, 'data-reflow-connected-largest');
+            }
+          }
+        }
+      };
+      checked(t, 'the unconfigured build has no cloud card', await page.$eval('#cloud-backup', (node) => node.hidden));
+      await measure('without cloud');
+
+      const fixture = cloudFixtureHost();
+      await installCloudFixture(page, fixture);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#cloud-backup:not([hidden]) #btn-cloud-sign-in:not([hidden])');
+      await measure('signed out');
+      await page.$eval('#btn-cloud-sign-in', (node) => node.click());
+      await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Finish signing in'));
+      fixture.signedIn();
+      await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'),
+        { timeout: 15000 });
+      await page.waitForSelector('#cloud-auto:not([hidden])');
+      await measure('connected');
+      for (const id of ['restore-complete', 'restore-file', 'restore-draft']) {
+        await page.$eval(`#${id}`, (node) => node.scrollIntoView({ block: 'center' }));
+        await settle(page);
+        const target = await page.$eval(`#${id}`, (node) => {
+          node.focus({ preventScroll: true });
+          const box = node.getBoundingClientRect();
+          return {
+            focus: document.activeElement === node,
+            hit: node.contains(document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2)),
+          };
+        });
+        checked(t, `connected largest: ${id} is focusable and under its pointer target`, target.focus && target.hit, target);
+      }
+    },
+  };
+}
+
+export const phoneLayoutScenarios = [phoneBack, phoneContinue, phoneNotices, phoneSearchReflow, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',

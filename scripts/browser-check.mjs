@@ -23628,7 +23628,7 @@ const saveNotice = await import('./browser-save-notice.mjs');
 SCENARIOS.push(saveNotice.saveNoticePlacement);
 MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const phoneLayout = await import('./browser-phone-layout.mjs');
-SCENARIOS.push(...phoneLayout.phoneLayoutScenarios);
+SCENARIOS.push(...phoneLayout.phoneLayoutScenarios, phoneLayout.dataReflowScenario({ cloudFixtureHost, installCloudFixture, seedFixtureState, open }));
 MUTATIONS.push(...phoneLayout.phoneLayoutMutations);
 const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);

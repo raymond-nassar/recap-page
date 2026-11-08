@@ -1446,6 +1446,7 @@ input[type="file"]::file-selector-button {
   margin-right: var(--space-4); cursor: pointer;
 }
 input[type="file"]::file-selector-button:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
+#view-data input[type="file"] { max-width: 100%; min-width: 0; }
 #view-data input[type="file"]::file-selector-button {
   min-height: var(--target); padding: var(--space-5) var(--space-7); border-radius: var(--radius-lg);
   background: rgb(var(--tint-base) / 5.882%); color: var(--text); font-weight: 600;
@@ -1792,7 +1793,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
 }
 .catalog-card-title .catalog-card-preview:hover { text-decoration-color: currentColor; }
-.catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; }
+.catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; overflow-wrap: anywhere; }
 .catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
 /* One action, sized to its words: Add as a secondary button, or a saved list's primary Open. */
 .catalog-card-actions {
@@ -1812,7 +1813,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .result-main { flex: 1 1 auto; min-width: 0; }
 .catalog-row { flex-wrap: wrap; }
 .catalog-row .result-main { flex: 1 1 12rem; }
-.catalog-row > .btn { flex: 0 0 auto; overflow-wrap: normal; }
+.catalog-row > .btn { flex: 0 0 auto; max-width: 100%; overflow-wrap: normal; }
 .result-title { font-size: var(--t-body); font-weight: 600; margin: 0; }
 .result-meta { color: var(--muted); font-size: var(--t-caption); }
 .result progress { width: 120px; }
