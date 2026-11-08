@@ -51,11 +51,13 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 
 // The owner approved this privacy policy paragraph on #1079:
 // https://github.com/raymond-nassar/recap-page/issues/1079#issuecomment-6591655469
-// Its iCloud backup and iPhone and iPad device-storage wording awaits the owner's approval on #1101.
+// Its iCloud backup and iPhone and iPad device-storage wording was approved on #1101:
+// https://github.com/raymond-nassar/recap-page/pull/1101
 // The cloud backup wording was approved on #1158:
 // https://github.com/raymond-nassar/recap-page/issues/1158#issuecomment-6709789692
-// Launch-check wording revised after that review awaits the owner's confirmation on #1158.
-test('the privacy policy preserves approved text and wording pending on #1101 and #1158', () => {
+// The launch-check wording revised after that review was approved on #1158 too:
+// https://github.com/raymond-nassar/recap-page/issues/1158#issuecomment-6713935238
+test('the privacy policy preserves its approved wording', () => {
   const privacy = read('PRIVACY.md');
   assert.match(privacy, /It normally backs up no more than once every five\s+minutes\./);
   assert.match(privacy, /after a progress check confirms that\s+this device's data needs backing up\./);

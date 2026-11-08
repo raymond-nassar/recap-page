@@ -9,6 +9,7 @@ Keep a backup in your own cloud storage account. Backup is optional, not automat
 sync: each installation saves separately, and restoring a backup replaces its saved data.
 
 - **OneDrive:** automatic backup shipped in 4.3.0 on Windows and Android.
+  Version 4.5.0 adds OneDrive on iPhone and iPad, with one connected provider at a time.
 - **Google Drive:** work for Windows and Android is deferred while the owner hears from users.
   It has not shipped. See [the cloud backup request](https://github.com/raymond-nassar/recap-page/issues/810).
 - **iCloud:** automatic backup is part of version 4.4.0 on iPhone and iPad. Windows and Android

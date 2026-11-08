@@ -73,17 +73,36 @@ test('iOS projects platform-specific highlights without changing the generated s
   const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
   assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length,
     'every real feature needs reviewed iOS copy, not omission');
-  assert.match(text, /Genres replaces Storylines on Home/);
-  assert.match(text, /Search now finds Reading Lists as you type/);
-  assert.match(text, /You can now back up your reading progress to your own iCloud Drive/);
-  assert.doesNotMatch(text, /iPhone and iPad:/, 'iOS readers see iCloud backup as their own feature');
+  assert.match(text, /On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud/);
+  assert.match(text, /so your reading progress can follow you across your devices/);
+  assert.match(text, /Improved the iPhone Search navigation's accessibility/);
   assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
   const web = harness({ content: homeUpdatesContent });
   web.view.wire();
   const webText = walk(web.nodes.content).map((item) => item.textContent).join(' ');
-  assert.match(webText, /iPhone and iPad: you can now back up your reading progress to your own iCloud Drive/,
-    'other platforms see iCloud backup named as the iPhone and iPad feature it is');
+  assert.match(webText, /On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud/,
+    'other platforms see the new OneDrive option named as the iPhone and iPad feature it is');
+});
+
+test('iOS retains the historical iCloud and Windows release-copy projections', () => {
+  const features = [
+    'Back up automatically to your own OneDrive on Windows and Android, or move your reading data with one complete backup file.',
+    'Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.',
+    'iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.',
+  ];
+  const content = { version: '4.4.0', batch: { ...batch, features, listIds: [] } };
+  const ios = harness({ content, isIos: true });
+  ios.view.wire();
+  const rendered = walk(ios.nodes.content).filter((item) => item.tag === 'li').map((item) => item.textContent);
+  assert.deepEqual(rendered, [
+    'Move your reading data with one complete backup file.',
+    'Use clearer phone layouts and screen reader labels.',
+    features[2].replace('iPhone and iPad: you', 'You'),
+  ]);
+  const web = harness({ content });
+  web.view.wire();
+  assert.deepEqual(walk(web.nodes.content).filter((item) => item.tag === 'li').map((item) => item.textContent), features);
 });
 
 test('iOS wiring omits unreviewed proper names but retains ordinary edge and windows prose', () => {

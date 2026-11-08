@@ -19,6 +19,22 @@ export const RECENT_RELEASES = 5;
 // new release note cannot publish without someone deciding what its label should say.
 export const PLATFORM_LABELS = new Map([
   [
+    'When OneDrive backup is on, Recap Page can offer progress from another device when it differs from yours. Choose which progress to use; the app never merges backups.',
+    'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud keeps its existing backup and manual restore.',
+  ],
+  [
+    'On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time, so your reading progress can follow you across your devices.',
+    'New OneDrive option: iPhone and iPad. OneDrive backup is also available on Windows and Android.',
+  ],
+  [
+    "Improved the iPhone Search navigation's accessibility by presenting its label as one named control. On smaller iPhones at the largest text size, the Backup & settings title now leaves more room for the privacy explanation.",
+    'iPhone only.',
+  ],
+  [
+    'Buttons, links and cards now show a pressed edge while you hold them, and screen changes fade in gently while honoring reduced-motion settings.',
+    'Every platform.',
+  ],
+  [
     'Search now finds Reading Lists as you type, including MCU Prep lists, genres, characters and descriptive matches. Preview or add a list directly from the results. Reading List matching works offline and stays on your device; submit the same field to keep searching for individual comics.',
     'Every platform.',
   ],
