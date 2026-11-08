@@ -43,6 +43,7 @@ body .app-back > .gi { font-size: 24px; width: 1em; height: 1em; }
 body #chero-actions > .btn-link { min-height: var(--target-touch); }
 body .catalog-row > .btn { overflow-wrap: normal; }
 body .notice-act > .grow { overflow-wrap: normal; }
+body .notice-act > .grow[data-horizontal-scroll] { min-height: var(--target-touch); }
 /* An item after the first leads with its "/", and stretched to the 48px link that "/" put the item's
    baseline at its top, so the trail's baseline row dropped Library 15px below Home on a 13-inch iPad
    and 13px on a 1280 by 800 Android tablet (#1070, #1042). Aligning on baselines inside the item too

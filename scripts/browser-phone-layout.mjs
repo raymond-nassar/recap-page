@@ -5,6 +5,7 @@ import { createEmptyState, createList, addIssuesToList, exportBackup, markRead, 
 
 const listId = 'phone-layout';
 const listName = 'Avengers: Doomsday & Avengers: Secret Wars';
+const longListName = 'W'.repeat(200);
 const items = [1, 2, 3].map((number) => ({
   issueId: 900000 + number, title: `${number === 3 ? 'Later phone layout' : 'Phone layout'} (2026) #${number}`, number: String(number),
   seriesId: number === 3 ? 990001 : 990000, seriesName: `${number === 3 ? 'Later phone layout' : 'Phone layout'} (2026)`,
@@ -24,6 +25,10 @@ state = addIssuesToList(state, listId, items).state;
 state = markRead(state, items[0].issueId, true, 1767225600000);
 state = setDeferred(state, listId, items[2].issueId, true);
 const initial = exportBackup(state);
+const longInitial = exportBackup({
+  ...state,
+  lists: { ...state.lists, [listId]: { ...state.lists[listId], name: longListName } },
+});
 const mobileCss = readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
 const iosCss = readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8');
 const mobileUiScript = readFileSync(new URL('../packaging/android/web/mobile-ui.js', import.meta.url), 'utf8');
@@ -47,7 +52,7 @@ async function open(page, view) {
   await settle(page);
 }
 
-async function setup(page, profile, theme, fixtureCatalog = catalog) {
+async function setup(page, profile, theme, fixtureCatalog = catalog, fixtureState = initial) {
   await page.goto('about:blank');
   await page.setBypassCSP(true);
   await page.setViewport({ width: profile.width, height: profile.height, isMobile: profile.platform !== 'desktop', hasTouch: profile.platform !== 'desktop', deviceScaleFactor: 1 });
@@ -63,7 +68,7 @@ async function setup(page, profile, theme, fixtureCatalog = catalog) {
         : Promise.reject(new TypeError('Phone layout fixture blocks external requests'));
     };
     window.open = () => null;
-  }, initial, theme, fixtureCatalog);
+  }, fixtureState, theme, fixtureCatalog);
   await page.goto(`${page.__origin}/#/home`, { waitUntil: 'load' });
   await page.waitForSelector('#home-continue:not([hidden])');
   const needsOverlay = profile.platform === 'ios' || (profile.platform === 'android'
@@ -132,11 +137,11 @@ function checked(t, name, ok, detail) {
   if (!baseline) t.check(name, ok, JSON.stringify(detail));
 }
 
-async function forProfiles(page, t, run, selected, fixtureCatalog) {
+async function forProfiles(page, t, run, selected, fixtureCatalog, fixtureState) {
   for (const profile of selected ?? profiles) {
     for (const theme of ['light', 'dark']) {
       let cleanup;
-      try { cleanup = await setup(page, profile, theme, fixtureCatalog); } catch (error) {
+      try { cleanup = await setup(page, profile, theme, fixtureCatalog, fixtureState); } catch (error) {
         console.error(`Setup ${profile.platform} ${profile.width} ${theme}: ${error.stack}`);
         throw error;
       }
@@ -337,12 +342,15 @@ export const phoneNotices = {
       }, ordinaryStyle);
       await settle(page);
       const ordinaryNotice = await page.$eval('.notice-act:has(.grow)', (node) => {
-        const text = node.querySelector('.grow').getBoundingClientRect();
+        const message = node.querySelector('.grow');
+        const text = message.getBoundingClientRect();
         return { width: text.width, available: node.clientWidth,
-          actionsBelow: [...node.querySelectorAll('button')].every((button) => button.getBoundingClientRect().top >= text.bottom) };
+          actionsBelow: [...node.querySelectorAll('button')].every((button) => button.getBoundingClientRect().top >= text.bottom),
+          noExtraStop: message.scrollWidth <= message.clientWidth && message.scrollHeight <= message.clientHeight
+            && !message.hasAttribute('tabindex') };
       });
       checked(t, `${label}: ordinary removal message fills its row above actions`,
-        ordinaryNotice.width >= ordinaryNotice.available - 65 && ordinaryNotice.actionsBelow, ordinaryNotice);
+        ordinaryNotice.width >= ordinaryNotice.available - 65 && ordinaryNotice.actionsBelow && ordinaryNotice.noExtraStop, ordinaryNotice);
       await capture(page, profile, theme, 'removal-notice');
       await page.evaluate((scaled, platform) => {
         document.documentElement.style.cssText = scaled;
@@ -375,17 +383,60 @@ export const phoneNotices = {
           return {
             height: box.height, available: visualViewport.height - rail.height,
             wholeWords: getComputedStyle(message).overflowWrap === 'normal',
-            focusable: message.scrollHeight <= message.clientHeight || message.getAttribute('tabindex') === '0',
+            focusable: (message.scrollHeight <= message.clientHeight && message.scrollWidth <= message.clientWidth)
+              || message.getAttribute('tabindex') === '0',
             undoVisible: action.top >= box.top && action.bottom <= box.bottom,
           };
         });
         checked(t, `${label}: Done leaves a readable content band and usable Undo`, done.height < done.available / 2
           && done.wholeWords && done.focusable && done.undoVisible, done);
         await capture(page, profile, theme, 'done-large-text');
+        const doneMessage = await page.$eval('#done-result .grow', (node, word) => {
+          const previous = node.textContent;
+          node.textContent = `${previous} ${word}`;
+          return previous;
+        }, longListName);
+        await page.waitForFunction(() => {
+          const message = document.querySelector('#done-result .grow');
+          return message.scrollWidth > message.clientWidth && message.getAttribute('tabindex') === '0';
+        });
+        const longDone = await page.$eval('#done-result', (node) => {
+          const message = node.querySelector('.grow');
+          const undo = node.querySelector('button').getBoundingClientRect();
+          const bar = node.getBoundingClientRect();
+          return {
+            page: document.documentElement.scrollWidth, visual: visualViewport.width,
+            height: bar.height, available: visualViewport.height - document.querySelector('.rail-header').offsetHeight,
+            undoVisible: undo.top >= bar.top && undo.bottom <= bar.bottom,
+            focusable: message.getAttribute('tabindex') === '0',
+          };
+        });
+        checked(t, `${label}: a long Done message stays scrollable without covering Undo or widening the page`,
+          longDone.page <= longDone.visual + 1 && longDone.height < longDone.available / 2
+          && longDone.undoVisible && longDone.focusable, longDone);
+        await page.$eval('#done-result .grow', (node, original) => { node.textContent = original; }, doneMessage);
+        await settle(page);
         await click(page, '#done-result button');
         await page.waitForFunction(() => !JSON.parse(localStorage.getItem('mrt.state.v2')).read[900002]);
         checked(t, `${label}: bounded Done Undo preserves its outcome`, true);
       }
+      await open(page, 'home');
+      await page.$eval('#cloud-sync-notice', (node) => { node.hidden = false; });
+      await page.$eval('#cloud-sync-message', (node, word) => { node.textContent = word; }, longListName);
+      await page.waitForFunction(() => {
+        const message = document.querySelector('#cloud-sync-message');
+        return message.scrollWidth > message.clientWidth && message.getAttribute('tabindex') === '0';
+      });
+      checked(t, `${label}: the shared cloud message receives keyboard scrolling when its text overflows`,
+        await page.$eval('#cloud-sync-message', (node) => getComputedStyle(node).overflowX === 'auto'));
+      await page.$eval('#cloud-sync-message', (node) => { node.textContent = 'Your progress differs between devices.'; });
+      await page.waitForFunction(() => {
+        const message = document.querySelector('#cloud-sync-message');
+        return message.scrollWidth <= message.clientWidth && message.scrollHeight <= message.clientHeight
+          && !message.hasAttribute('tabindex');
+      });
+      checked(t, `${label}: the cloud message loses the extra tab stop when its text fits`, true);
+      await page.$eval('#cloud-sync-notice', (node) => { node.hidden = true; });
       for (const view of ['progress', 'new-to-comics', 'about', 'add-search']) {
         await open(page, view);
         const viewport = await page.evaluate(() => {
@@ -427,6 +478,134 @@ export const phoneNotices = {
       await click(page, '#preview-close');
       await page.waitForSelector('#preview:not([open])');
     }, selected ?? (process.argv.includes('--prove') ? [...profiles, androidPhoneProfiles[0]] : profiles));
+  },
+};
+
+export const phoneLongNotice = {
+  id: 'phone-long-notice',
+  title: 'an unbroken list name stays readable without widening the phone viewport',
+  async run(page, t, selected) {
+    await forProfiles(page, t, async (profile, theme) => {
+      const label = `${profile.platform} ${profile.width} ${theme}`;
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        await open(page, 'read');
+        if (profile.platform === 'desktop') await page.$eval('#list-actions', (node) => { node.open = true; });
+        else await click(page, '#android-list-options');
+        await click(page, '#btn-delete-list');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction((name) => [...document.querySelectorAll('.notice-act .grow')]
+          .some((node) => node.textContent.includes(name)), {}, longListName);
+        await settle(page);
+        const notice = await page.evaluate((name) => {
+          const message = [...document.querySelectorAll('.notice-act .grow')]
+            .find((node) => node.textContent.includes(name));
+          const box = message.getBoundingClientRect();
+          const parent = message.parentElement.getBoundingClientRect();
+          const word = document.createRange();
+          const text = message.firstChild;
+          const start = text.textContent.indexOf(name);
+          word.setStart(text, start);
+          word.setEnd(text, start + name.length);
+          const rail = document.querySelector('.rail-header').getBoundingClientRect();
+          return {
+            visual: visualViewport.width, layout: innerWidth, page: document.documentElement.scrollWidth,
+            rail: { left: rail.left, right: rail.right, width: rail.width },
+            message: {
+              width: box.width, height: box.height, parentWidth: parent.width, scrollWidth: message.scrollWidth,
+              overflowX: getComputedStyle(message).overflowX, overflowWrap: getComputedStyle(message).overflowWrap,
+              wordBreak: getComputedStyle(message).wordBreak, tabIndex: message.getAttribute('tabindex'),
+              wordLines: new Set([...word.getClientRects()].map((rect) => Math.round(rect.top))).size,
+            },
+            actions: [...message.parentElement.querySelectorAll('button')].map((button) => {
+              const action = button.getBoundingClientRect();
+              return { name: button.textContent.trim(), below: action.top >= box.bottom - 0.5 };
+            }),
+          };
+        }, longListName);
+        checked(t, `${label} ${size}: the whole word stays inside a scrollable message without widening the page`,
+          Math.abs(notice.visual - notice.layout) <= 1 && notice.page <= notice.visual + 1
+          && (profile.platform === 'desktop' || (notice.rail.width > 0 && notice.rail.left >= 0
+            && notice.rail.right <= notice.visual + 1))
+          && notice.message.width > notice.message.parentWidth * .8
+          && notice.message.scrollWidth > notice.message.width
+          && notice.message.overflowX === 'auto' && notice.message.overflowWrap === 'normal'
+          && notice.message.wordBreak === 'normal' && notice.message.wordLines === 1
+          && notice.message.height >= (profile.platform === 'android' ? 48 : 44),
+          notice);
+        checked(t, `${label} ${size}: Undo and Dismiss remain below the message`,
+          ['Undo removal', 'Dismiss'].every((name) => notice.actions.some((action) => action.name === name && action.below)),
+          notice.actions);
+        await page.evaluate((name) => {
+          const message = [...document.querySelectorAll('.notice-act .grow')]
+            .find((node) => node.textContent.includes(name));
+          message.scrollLeft = 0;
+          message.focus();
+        }, longListName);
+        await page.keyboard.press('ArrowRight');
+        await settle(page);
+        const keyboard = await page.evaluate((name) => {
+          const message = [...document.querySelectorAll('.notice-act .grow')]
+            .find((node) => node.textContent.includes(name));
+          return { focus: document.activeElement === message, tabIndex: message.getAttribute('tabindex'), scrollLeft: message.scrollLeft };
+        }, longListName);
+        checked(t, `${label} ${size}: keyboard focus scrolls the complete message`,
+          keyboard.focus && keyboard.tabIndex === '0' && keyboard.scrollLeft > 0, keyboard);
+        if (profile.platform !== 'desktop') {
+          const touch = await page.evaluate((name) => {
+            const message = [...document.querySelectorAll('.notice-act .grow')]
+              .find((node) => node.textContent.includes(name));
+            message.scrollIntoView({ block: 'center' });
+            message.scrollLeft = 0;
+            const box = message.getBoundingClientRect();
+            return { start: box.left + box.width * .8, end: box.left + box.width * .2, y: box.top + box.height / 2 };
+          }, longListName);
+          await page.touchscreen.touchStart(touch.start, touch.y);
+          await page.touchscreen.touchMove(touch.end, touch.y);
+          await page.touchscreen.touchEnd();
+          await settle(page);
+          const scrolled = await page.evaluate((name) => [...document.querySelectorAll('.notice-act .grow')]
+            .find((node) => node.textContent.includes(name)).scrollLeft, longListName);
+          checked(t, `${label} ${size}: a touch swipe scrolls the complete message`, scrolled > 0, { ...touch, scrolled });
+        }
+        const tailVisible = await page.evaluate((name) => {
+          const message = [...document.querySelectorAll('.notice-act .grow')]
+            .find((node) => node.textContent.includes(name));
+          message.scrollLeft = message.scrollWidth;
+          const text = message.firstChild;
+          const end = text.textContent.indexOf(name) + name.length;
+          const tail = document.createRange();
+          tail.setStart(text, end - 1);
+          tail.setEnd(text, end);
+          const char = tail.getBoundingClientRect();
+          const box = message.getBoundingClientRect();
+          return char.left >= box.left && char.right <= box.right + 0.5;
+        }, longListName);
+        checked(t, `${label} ${size}: the end of the unbroken name is reachable`, tailVisible);
+        const accessibility = await page.createCDPSession();
+        const { nodes } = await accessibility.send('Accessibility.getFullAXTree');
+        await accessibility.detach();
+        checked(t, `${label} ${size}: the complete message remains in the accessibility tree`,
+          nodes.some((node) => !node.ignored && node.name?.value?.includes(longListName)));
+        await page.waitForFunction((name) => document.querySelector('#announcer').textContent.includes(name), {}, longListName);
+        const announcement = await page.$eval('#announcer', (node) => node.textContent);
+        checked(t, `${label} ${size}: the removal and both choices are announced`,
+          announcement.includes(longListName) && announcement.includes('Undo removal') && announcement.includes('Dismiss'),
+          announcement);
+        const choice = size === 'ordinary' ? 'Undo removal' : 'Dismiss';
+        await page.evaluate((name, action) => {
+          const message = [...document.querySelectorAll('.notice-act .grow')]
+            .find((node) => node.textContent.includes(name));
+          const button = [...message.parentElement.querySelectorAll('button')]
+            .find((candidate) => candidate.textContent.trim() === action);
+          button.click();
+        }, longListName, choice);
+        await page.waitForFunction((id, restored) =>
+          Boolean(JSON.parse(localStorage.getItem('mrt.state.v2')).lists[id]) === restored, {}, listId, size === 'ordinary');
+        checked(t, `${label} ${size}: ${choice} ${size === 'ordinary' ? 'restores the list' : 'leaves it removed'}`, true);
+      }
+    }, selected ?? [profiles[0], profiles[1]], catalog, longInitial);
   },
 };
 
@@ -638,7 +817,7 @@ export function dataReflowScenario({ cloudFixtureHost, installCloudFixture, seed
   };
 }
 
-export const phoneLayoutScenarios = [phoneBack, phoneContinue, phoneNotices, phoneSearchReflow, phoneCatalogReflow];
+export const phoneLayoutScenarios = [phoneBack, phoneContinue, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',

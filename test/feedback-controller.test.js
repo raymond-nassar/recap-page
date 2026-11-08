@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { createFeedback } from '../src/js/views/shared/feedback.js';
+import { createFeedback, watchNoticeOverflow } from '../src/js/views/shared/feedback.js';
 
 function fixture({ live = false } = {}) {
   const scheduled = [];
@@ -55,6 +55,7 @@ function fixture({ live = false } = {}) {
     schedule: (fn) => scheduled.push(fn),
     focusViewHeading: () => {},
     getCurrentView: () => 'read',
+    observeNoticeOverflow: () => {},
   });
   return {
     announcer,
@@ -90,4 +91,55 @@ test('feedback speaks a non-live notice once and leaves a live notice in its own
   live.flush();
   assert.equal(live.announcer.textContent, '');
   assert.equal(live.pane.children.length, 1);
+});
+
+test('notice scrolling is focusable only while content overflows and stops observing removed messages', () => {
+  const attributes = new Map();
+  const message = {
+    nodeType: 1, isConnected: true, clientWidth: 100, scrollWidth: 100, clientHeight: 40, scrollHeight: 40,
+    matches: () => true,
+    querySelectorAll: () => [],
+    closest() { return this; },
+    setAttribute: (name, value) => attributes.set(name, value),
+    removeAttribute: (name) => attributes.delete(name),
+    toggleAttribute(name, on) { if (on) attributes.set(name, ''); else attributes.delete(name); },
+  };
+  const body = {
+    nodeType: 1, matches: () => false, querySelectorAll: () => [message], closest: () => null,
+  };
+  let resize;
+  let mutate;
+  const observed = [];
+  const unobserved = [];
+  class ResizeObserver {
+    constructor(callback) { resize = callback; }
+    observe(target) { observed.push(target); }
+    unobserve(target) { unobserved.push(target); }
+  }
+  class MutationObserver {
+    constructor(callback) { mutate = callback; }
+    observe() {}
+  }
+  watchNoticeOverflow({ body, defaultView: { ResizeObserver, MutationObserver } });
+  assert.deepEqual(observed, [message]);
+  assert.equal(attributes.has('tabindex'), false);
+
+  message.scrollWidth = 200;
+  mutate([{ target: message, addedNodes: [] }]);
+  assert.equal(attributes.get('tabindex'), '0');
+  assert.equal(attributes.has('data-horizontal-scroll'), true);
+
+  message.scrollWidth = 100;
+  message.scrollHeight = 80;
+  resize([{ target: message }]);
+  assert.equal(attributes.get('tabindex'), '0');
+  assert.equal(attributes.has('data-horizontal-scroll'), false);
+
+  message.scrollHeight = 40;
+  resize([{ target: message }]);
+  assert.equal(attributes.has('tabindex'), false);
+
+  message.isConnected = false;
+  mutate([{ target: body, addedNodes: [] }]);
+  assert.deepEqual(unobserved, [message]);
 });

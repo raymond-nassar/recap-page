@@ -1847,7 +1847,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .notice-act { position: relative; display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; text-align: left; }
 .notice-act:has(> .grow)::before { position: absolute; top: var(--space-4); left: var(--space-5); }
 #cloud-sync-notice[hidden] { display: none; }
-.notice-act .grow { flex: 0 0 100%; min-width: 0; padding-inline-start: 0; overflow-wrap: normal; word-break: normal; } .notice-act:is(.notice-ok, .notice-warn, .notice-error, .notice-busy) .grow { padding-inline-start: var(--space-10); }
+.notice-act .grow { flex: 0 0 100%; min-width: 0; padding-inline-start: 0; overflow-wrap: normal; word-break: normal; overflow-x: auto; } .notice-act:is(.notice-ok, .notice-warn, .notice-error, .notice-busy) .grow { padding-inline-start: var(--space-10); }
+.notice-act .grow[data-horizontal-scroll] { min-height: var(--target); }
 .notice-act button {
   min-height: var(--target); padding-inline: var(--space-6); display: inline-flex; align-items: center;
   overflow-wrap: normal; flex: 0 1 auto;
