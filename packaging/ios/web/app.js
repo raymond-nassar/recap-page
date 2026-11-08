@@ -122,7 +122,12 @@ const downloadBridge = createIosBridge({
 });
 setDownloadHandler(downloadBridge.save);
 if (native && typeof native.postMessage === 'function') {
-  watchModalDialogs({ document, Observer: MutationObserver, post: (message) => native.postMessage(message) });
+  watchModalDialogs({
+    document, Observer: MutationObserver, post: (message) => native.postMessage(message),
+    diagnose: (message) => console.error(message),
+  });
+} else {
+  console.error('The iOS back gesture bridge is unavailable.');
 }
 
 // iOS can end a web view's content process while the app is in the background. The shell then

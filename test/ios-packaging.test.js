@@ -1863,7 +1863,10 @@ test('iOS turns the edge-swipe back gesture off while any dialog is open', async
   const handler = appSource('IosBridgeHandler');
   assert.match(controller, /bridge\.onBackGestureChange = \{ \[weak webView\] enabled in\s+webView\?\.allowsBackForwardNavigationGestures = enabled/);
   assert.match(handler, /case "back-gesture":[\s\S]*?guard let enabled = body\["enabled"\] as\? Bool[\s\S]*?onBackGestureChange\?\(enabled\)/);
-  assert.match(read('packaging/ios/web/app.js'), /watchModalDialogs\(\{ document, Observer: MutationObserver/);
+  const iosApp = read('packaging/ios/web/app.js');
+  assert.match(iosApp, /watchModalDialogs\(\{\s*document, Observer: MutationObserver/);
+  assert.match(iosApp, /diagnose: \(message\) => console\.error\(message\)/);
+  assert.match(iosApp, /\} else \{\s*console\.error\('The iOS back gesture bridge is unavailable\.'\);\s*\}/);
 
   let open = null;
   let observed = null;
@@ -1878,7 +1881,13 @@ test('iOS turns the edge-swipe back gesture off while any dialog is open', async
     observe(target, options) { observed = { target, options }; }
     disconnect() {}
   }
-  watchModalDialogs({ document, Observer, post: (message) => { posts.push(message); return Promise.resolve(); } });
+  watchModalDialogs({
+    document, Observer, diagnose: () => {},
+    post: (message) => {
+      posts.push(message);
+      return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: message.enabled });
+    },
+  });
   assert.equal(observed.target, document.documentElement);
   assert.deepEqual(observed.options, { subtree: true, attributes: true, attributeFilter: ['open'] });
   assert.deepEqual(posts, [{ v: 1, kind: 'back-gesture', enabled: true }]);
@@ -1888,7 +1897,110 @@ test('iOS turns the edge-swipe back gesture off while any dialog is open', async
   open = null;
   callback();
   assert.deepEqual(posts.map(({ enabled }) => enabled), [true, false, true]);
-  assert.doesNotThrow(() => watchModalDialogs({ document, Observer, post: () => { throw new Error('gone'); } }));
+  const errors = [];
+  assert.doesNotThrow(() => watchModalDialogs({
+    document, Observer, diagnose: (message) => errors.push(message),
+    post: () => { throw new Error('gone'); },
+  }));
+  assert.equal(errors.length, 1);
+});
+
+test('iOS reports an unconfirmed back-gesture update and allows a later retry', async () => {
+  const expected = {
+    throws: 'The iOS back gesture request could not be sent.',
+    rejects: 'The iOS back gesture request was rejected.',
+    malformed: 'The iOS back gesture response was invalid.',
+    'wrong-state': 'The iOS back gesture response was invalid.',
+    empty: 'The iOS back gesture response was invalid.',
+  };
+  const tick = () => new Promise((resolve) => setImmediate(resolve));
+  for (const failure of ['throws', 'rejects', 'malformed', 'wrong-state', 'empty']) {
+    const reports = [];
+    let attempts = 0;
+    const document = { documentElement: {}, querySelector: () => null };
+    class Observer {
+      observe() {}
+      disconnect() {}
+    }
+    const watcher = watchModalDialogs({
+      document, Observer,
+      diagnose: (message) => reports.push(message),
+      post: (message) => {
+        attempts += 1;
+        if (attempts === 1) {
+          if (failure === 'throws') throw new Error('bridge unavailable');
+          if (failure === 'rejects') return Promise.reject(new Error('bridge unavailable'));
+          if (failure === 'malformed') return Promise.resolve({ v: 1, kind: 'unexpected', enabled: message.enabled });
+          if (failure === 'wrong-state') return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: !message.enabled });
+          return Promise.resolve();
+        }
+        return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: message.enabled });
+      },
+    });
+    await tick();
+    assert.deepEqual(reports, [expected[failure]], failure);
+    watcher.update();
+    await tick();
+    assert.equal(attempts, 2, failure);
+    assert.deepEqual(reports, [expected[failure]], failure);
+  }
+});
+
+test('iOS ignores an obsolete back-gesture failure after a newer state succeeds', async () => {
+  const reports = [];
+  const posts = [];
+  let open = false;
+  let callback;
+  let rejectOld;
+  const document = { documentElement: {}, querySelector: () => open ? {} : null };
+  class Observer {
+    constructor(fn) { callback = fn; }
+    observe() {}
+    disconnect() {}
+  }
+  const watcher = watchModalDialogs({
+    document, Observer, diagnose: (message) => reports.push(message),
+    post: (message) => {
+      posts.push(message);
+      if (!message.enabled) return new Promise((_resolve, reject) => { rejectOld = reject; });
+      return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: true });
+    },
+  });
+  open = true;
+  callback();
+  open = false;
+  callback();
+  rejectOld(new Error('obsolete request'));
+  await new Promise((resolve) => setImmediate(resolve));
+  watcher.update();
+  assert.equal(posts.length, 3);
+  assert.deepEqual(reports, []);
+});
+
+test('iOS does not report a back-gesture failure after the watcher disconnects', async () => {
+  const reports = [];
+  let rejectPending;
+  let disconnected = false;
+  let attempts = 0;
+  const document = { documentElement: {}, querySelector: () => null };
+  class Observer {
+    observe() {}
+    disconnect() { disconnected = true; }
+  }
+  const watcher = watchModalDialogs({
+    document, Observer, diagnose: (message) => reports.push(message),
+    post: () => {
+      attempts += 1;
+      return new Promise((_resolve, reject) => { rejectPending = reject; });
+    },
+  });
+  watcher.disconnect();
+  rejectPending(new Error('page ended'));
+  await new Promise((resolve) => setImmediate(resolve));
+  watcher.update();
+  assert.equal(disconnected, true);
+  assert.equal(attempts, 1);
+  assert.deepEqual(reports, []);
 });
 
 test('iOS web controls expose one accessible target without changing visible layout', () => {
