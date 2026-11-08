@@ -1722,7 +1722,9 @@ function renderBreadcrumbs() {
   const isRoot = ['home', 'library', 'add'].includes(view)
     || (!isNarrow && ['data', 'about'].includes(view));
   const backAvailable = navigationPosition.canGoBack && !isRoot;
-  if (!trail.length && !backAvailable) {
+  // On a phone the bottom bar already names the tab roots, and the trail's lone "Home" link is drawn
+  // like Back at the top left, which the owner ruled out for tab roots (#1175).
+  if ((!trail.length && !backAvailable) || (isRoot && isNarrow)) {
     existing?.remove();
     return;
   }
