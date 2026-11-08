@@ -549,8 +549,9 @@ export class CloudLaunchSync {
           if (!this.isOnline()) throw new CloudBackupError('The cloud check needs a connection. Try again when online.', 'offline');
           if (this.isBlocked()) throw new CloudBackupError('Finish recovery before checking cloud progress.', 'paused');
           const snapshot = await this.capture();
-          const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
-          const material = await materialDigest(snapshot.backup, this.cryptoProvider);
+          const [digest, material] = await Promise.all([
+            personalDigest(snapshot.backup, this.cryptoProvider), materialDigest(snapshot.backup, this.cryptoProvider),
+          ]);
           let remembered = await this.protocol.syncState({ connection: this.context.connection });
           let pendingKept = await this.protocol.keptPending({ connection: this.context.connection, details: true });
           this.kept = remembered?.kept ?? null;
@@ -856,8 +857,9 @@ export class CloudLaunchSync {
     await this.assertAction(action);
     if (this.isBlocked()) throw new CloudBackupError('Finish recovery before choosing cloud progress.', 'paused');
     const snapshot = await this.capture();
-    const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
-    const material = await materialDigest(snapshot.backup, this.cryptoProvider);
+    const [digest, material] = await Promise.all([
+      personalDigest(snapshot.backup, this.cryptoProvider), materialDigest(snapshot.backup, this.cryptoProvider),
+    ]);
     if (snapshot.backup.digest !== action.offer.localContentDigest || digest !== action.offer.localDigest
       || !this.snapshotCurrent(snapshot.witness)) {
       throw new CloudBackupError('Saved data changed, so the earlier cloud choice was withdrawn.', 'raced');
@@ -1183,8 +1185,9 @@ export class CloudLaunchSync {
         if (!readiness?.ok) throw new CloudBackupError(readiness?.error ?? 'Cloud restore is not ready, so nothing was replaced.', 'paused');
         await this.assertAction(action);
         const snapshot = await this.capture();
-        const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
-        const material = await materialDigest(snapshot.backup, this.cryptoProvider);
+        const [digest, material] = await Promise.all([
+          personalDigest(snapshot.backup, this.cryptoProvider), materialDigest(snapshot.backup, this.cryptoProvider),
+        ]);
         const prepared = await this.protocol.prepareKeptRestore({
           ...this.context, kept: target, snapshot, personalDigest: digest,
           authorize: async () => {

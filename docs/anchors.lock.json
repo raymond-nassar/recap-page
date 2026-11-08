@@ -2694,8 +2694,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2320-2322|0": {
-    "anchor": "src/styles.css:2320-2322",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2324-2326|0": {
+    "anchor": "src/styles.css:2324-2326",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2719,8 +2719,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2320-2322|0": {
-    "anchor": "src/styles.css:2320-2322",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2324-2326|0": {
+    "anchor": "src/styles.css:2324-2326",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2774,8 +2774,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2775-2776|0": {
-    "anchor": "src/styles.css:2775-2776",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2779-2780|0": {
+    "anchor": "src/styles.css:2779-2780",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2844,8 +2844,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2320-2322|0": {
-    "anchor": "src/styles.css:2320-2322",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2324-2326|0": {
+    "anchor": "src/styles.css:2324-2326",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6534,23 +6534,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2015-2017|0": {
-    "anchor": "src/styles.css:2015-2017",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2019-2021|0": {
+    "anchor": "src/styles.css:2019-2021",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2033-2035|0": {
-    "anchor": "src/styles.css:2033-2035",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2037-2039|0": {
+    "anchor": "src/styles.css:2037-2039",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2361|0": {
-    "anchor": "src/styles.css:2361",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2365|0": {
+    "anchor": "src/styles.css:2365",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2385|0": {
-    "anchor": "src/styles.css:2385",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2389|0": {
+    "anchor": "src/styles.css:2389",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
