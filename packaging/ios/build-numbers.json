@@ -55,6 +55,17 @@
         "bytes": 4209384,
         "sha256": "54f739405775b2a4f4be6f82c5855e50d2d86714a69b311b52b3b2958d58cef5"
       }
+    },
+    {
+      "buildNumber": 8,
+      "productVersion": "4.5.0",
+      "sourceRevision": "d46f45c247473914f46fa1511554e446ae383bbe",
+      "sourceTree": "4bf0241b2fb681b3a82657dd8b1eec23bf5b0f72",
+      "artifact": {
+        "name": "RecapPage.ipa",
+        "bytes": 4554079,
+        "sha256": "ccb94dc7b159418323d15b95986012b46976908d9caa9198e02e9cff7cb55b94"
+      }
     }
   ]
 }

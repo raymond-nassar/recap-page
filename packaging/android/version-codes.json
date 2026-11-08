@@ -120,6 +120,17 @@
         "bytes": 6116730,
         "sha256": "fce156b3bb4930589a3fa4de56b6b0e17d4a1aef3560c5a6ec942de4f365f5a0"
       }
+    },
+    {
+      "versionCode": 3000016,
+      "productVersion": "4.5.0",
+      "sourceRevision": "d46f45c247473914f46fa1511554e446ae383bbe",
+      "sourceTree": "4bf0241b2fb681b3a82657dd8b1eec23bf5b0f72",
+      "artifact": {
+        "name": "recap-page-android.aab",
+        "bytes": 6273125,
+        "sha256": "1f7bfcd7e762b55f6c2c8c650b295882ea63ac5fbcdf02731539c05f0b1b06c0"
+      }
     }
   ]
 }
