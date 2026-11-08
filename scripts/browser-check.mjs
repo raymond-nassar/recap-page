@@ -26127,11 +26127,19 @@ SCENARIOS.push({
 });
 
 async function reportCloudHoldTrace(page, fixture, evidence) {
-  const sample = await settleWithin(page.evaluate(() => ({
-    events: window.__cloudTrace?.events ?? null,
-    installed: window.__cloudTrace?.installed ?? [],
-    creates: window.__cloudCreates ?? null,
-  })), 5000);
+  const sample = await settleWithin(page.evaluate(() => {
+    const wait = window.__cloudWait ?? null;
+    if (wait?.active) {
+      wait.active = false;
+      wait.visibility.push(window.__cloudTrace.nativeVisibility.call(document));
+    }
+    return {
+      events: window.__cloudTrace?.events ?? null,
+      installed: window.__cloudTrace?.installed ?? [],
+      creates: window.__cloudCreates ?? null,
+      wait,
+    };
+  }), 5000);
   const announce = evidence.announces.at(-1) ?? null;
   const origin = announce ?? evidence.startedAt;
   const relative = (at) => typeof at === 'number' ? at - origin : null;
@@ -26145,6 +26153,13 @@ async function reportCloudHoldTrace(page, fixture, evidence) {
     recoveryClosed: relative(evidence.recoveryClosedAt),
     waitStarted: relative(evidence.waitStartedAt),
     waitEnded: relative(evidence.waitEndedAt),
+    // Real visibility at wait start and at observation (or at the trace on a timeout), frames the
+    // older tab ran meanwhile, and the interval poll that first saw the create.
+    waitVisibility: sample?.wait?.visibility ?? null,
+    waitFrames: sample?.wait?.frames ?? null,
+    waitPolls: sample?.wait?.polls ?? null,
+    createSeenPoll: sample?.wait?.seenPoll ?? null,
+    createSeen: relative(sample?.wait?.seenAt),
     createsBefore: evidence.before?.creates ?? null,
     createsObserved: sample?.creates ?? null,
     createAfterAnnounce: announce !== null && create ? create[0] - announce : null,
@@ -26194,7 +26209,7 @@ async function reportCloudHoldTrace(page, fixture, evidence) {
     }), 5000);
     console.log(`CLOUD-HOLD-TIMEOUT ${JSON.stringify(detail)}`);
   }
-  if (!evidence.failure && (sample?.error || !Array.isArray(sample?.events)
+  if (!evidence.failure && (sample?.error || !Array.isArray(sample?.events) || sample.wait?.seenPoll == null
     || !['coordinator', 'launch'].every((kind) => sample.installed.includes(kind))
     || events.some(([, name]) => name === 'trace-error'))) {
     throw new Error('The cloud hold trace did not produce complete evidence.');
@@ -26306,7 +26321,11 @@ SCENARIOS.push({
           connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
         }))?.held === false;
       };
-      await page.waitForFunction(gateIsClear, { timeout: 20000 });
+      // The older page goes to the background once another tab opens, and a background tab can get no
+      // animation frames, which Puppeteer's default polling needs. Bringing it forward would fire a real
+      // visibilitychange against the faked 'hidden' state, so poll on an interval instead.
+      const olderTab = { polling: 100 };
+      await page.waitForFunction(gateIsClear, { ...olderTab, timeout: 20000 });
       if (!await page.evaluate(() => ['coordinator', 'launch'].every((kind) => window.__cloudTrace?.installed.includes(kind)))) {
         throw new Error('The cloud hold trace did not install.');
       }
@@ -26354,7 +26373,8 @@ SCENARIOS.push({
         Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
         window.dispatchEvent(new Event('visibilitychange'));
       });
-      await page.waitForFunction((attempts) => window.__cloudWorkerAttempts > attempts, { timeout: 15000 }, before.attempts);
+      await page.waitForFunction((attempts) => window.__cloudWorkerAttempts > attempts,
+        { ...olderTab, timeout: 15000 }, before.attempts);
       await new Promise((resolve) => setTimeout(resolve, 500));
       t.check('the older tab attempts work but does not upload after the failed tab closes',
         await page.evaluate((creates) => window.__cloudCreates === creates, before.creates));
@@ -26405,8 +26425,32 @@ SCENARIOS.push({
         evidence.recoveryClosedAt = Date.now();
       }
       evidence.waitStartedAt = Date.now();
+      await page.evaluate(() => {
+        const wait = {
+          visibility: [window.__cloudTrace.nativeVisibility.call(document)],
+          frames: 0, polls: 0, seenPoll: null, seenAt: null, active: true,
+        };
+        window.__cloudWait = wait;
+        const count = () => {
+          if (!wait.active) return;
+          wait.frames += 1;
+          requestAnimationFrame(count);
+        };
+        requestAnimationFrame(count);
+      });
       try {
-        await page.waitForFunction((creates) => window.__cloudCreates > creates, { timeout: 20000 }, before.creates);
+        await page.waitForFunction((creates) => {
+          const wait = window.__cloudWait;
+          wait.polls += 1;
+          if (window.__cloudCreates <= creates) return false;
+          if (wait.seenPoll === null) {
+            wait.active = false;
+            wait.seenPoll = wait.polls;
+            wait.seenAt = Date.now();
+            wait.visibility.push(window.__cloudTrace.nativeVisibility.call(document));
+          }
+          return true;
+        }, { ...olderTab, timeout: 20000 }, before.creates);
       } finally {
         evidence.waitEndedAt = Date.now();
       }
