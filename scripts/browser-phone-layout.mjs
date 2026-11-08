@@ -433,7 +433,7 @@ async function phoneViewport(page) {
     return {
       visual: visualViewport.width, visualHeight: visualViewport.height, layout: innerWidth,
       page: document.documentElement.scrollWidth,
-      nav: { left: nav.left, right: nav.right, bottom: nav.bottom },
+      nav: { left: nav.left, top: nav.top, right: nav.right, bottom: nav.bottom, width: nav.width, height: nav.height },
     };
   });
 }
@@ -441,7 +441,8 @@ async function phoneViewport(page) {
 function phoneViewportFits(viewport) {
   return Math.abs(viewport.layout - viewport.visual) < 0.5
     && viewport.page <= viewport.visual
-    && viewport.nav.left >= 0 && viewport.nav.right <= viewport.visual + 0.5
+    && viewport.nav.width > 0 && viewport.nav.height > 0 && viewport.nav.left >= 0 && viewport.nav.top >= 0
+    && viewport.nav.right <= viewport.visual + 0.5
     && viewport.nav.bottom <= viewport.visualHeight + 0.5;
 }
 
