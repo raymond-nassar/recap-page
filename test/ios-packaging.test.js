@@ -11,7 +11,7 @@ import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
   prepareIos, readIosCloudClient, readIosFeatures, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
-import { createIosBridge, validateIosExport, watchModalDialogs } from '../packaging/ios/web/bridge.js';
+import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
 import { CSP } from '../server.mjs';
 import { rootTokens } from '../scripts/check-spacing.mjs';
@@ -1829,40 +1829,33 @@ test('iOS Back, Continue and Preview actions expose their named parent and track
   }
 });
 
-test('iOS native history gestures are enabled and tested against real taps and app popstate restoration', () => {
-  assert.match(appSource('WebViewController'), /webView\.allowsBackForwardNavigationGestures = true/);
+test('iOS ships without the edge-swipe back gesture and leaves no path that turns it on', () => {
+  for (const name of ['WebViewController', 'IosBridgeHandler', 'NavigationCoordinator', 'DebugSupport']) {
+    assert.doesNotMatch(appSource(name), /allowsBackForwardNavigationGestures|onBackGestureChange|back-gesture|BackGesture/, name);
+  }
+  for (const file of ['packaging/ios/web/app.js', 'packaging/ios/web/bridge.js']) {
+    assert.doesNotMatch(read(file), /watchModalDialogs|back-gesture|back gesture/, file);
+  }
+  assert.doesNotMatch(presentationTests, /RECAP_IOS_BACK_GESTURE_DIAGNOSTICS|swipeBack|LeftEdgeSwipe/);
+});
+
+test('iOS Back is tested against real taps and app popstate restoration on secondary screens only', () => {
   const nativeTest = presentationTests.slice(
-    presentationTests.indexOf('func testLeftEdgeSwipeRestoresHashHistoryLikeBackAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('func testBackRestoresHashHistoryOnlyFromSecondaryScreensAtDefaultAndLargestTextSizes()'),
     presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'));
+  assert.ok(nativeTest.length > 0);
   assert.match(nativeTest, /link\.tap\(\)/);
   assert.match(nativeTest, /back\.tap\(\)/);
-  assert.match(nativeTest, /CGVector\(dx: 0, dy: 0\.5\)/);
-  assert.match(nativeTest, /edge\.press\(forDuration: 0\.05, thenDragTo: destination\)/);
-  assert.doesNotMatch(nativeTest, /edge\.press\(forDuration: 0\.1/);
-  // The baseline swipe runs from a secondary screen before any dialog opens in the launch.
-  const baseline = nativeTest.indexOf('"a quick edge swipe, before any dialog has opened, returns Home"');
-  assert.ok(baseline > 0 && baseline < nativeTest.indexOf('toggle.tap()'));
-  assert.ok(nativeTest.indexOf('openList.tap()') < baseline);
-  assert.match(nativeTest, /atLastSwipe = nativeGesture\(\)/);
-  assert.match(presentationTests, /launchEnvironment\["RECAP_IOS_BACK_GESTURE_DIAGNOSTICS"\] = "1"/);
-  const debug = appSource('DebugSupport');
-  for (const field of ['allowsBackForwardNavigationGestures', 'canGoBack', 'backCount', 'forwardCount', 'posted', 'acknowledged']) {
-    assert.match(debug, new RegExp(`"${field}":`), field);
-  }
-  assert.match(appSource('IosBridgeHandler'), /#if DEBUG\s+DebugSupport\.recordBackGesturePosted\(enabled\)\s+#endif/);
-  assert.match(appSource('WebViewController'), /DebugSupport\.prepareBackGestureDiagnostics\(for: webView, in: view\)\s+#endif/);
-  assert.match(nativeTest, /metrics\["historyPops"\] as\? Int == pops/);
+  assert.match(nativeTest, /metrics\["historyPops"\] as\? Int == initialPops \+ 1/);
   assert.match(nativeTest, /metrics\["timeOrigin"\] as\? Double == timeOrigin/);
   assert.match(nativeTest, /abs\(y - homeY\) <= 1 && abs\(x - homeX\) <= 1/);
-  assert.match(nativeTest, /rootChanged\.isInverted = true/);
-  assert.match(nativeTest, /XCTAssertTrue\(close\.isHittable, "the More sheet's Close remains reachable after the swipe"\)/);
   assert.match(nativeTest, /homeDepth, startDepth \+ 3/);
   assert.match(nativeTest, /start\["initialEntry"\]/);
   assert.match(presentationTests, /const launchView = await waitFor\(\(\) => document\.querySelector\('\.view:not\(\[hidden\]\)'\)\?\.id, 'launch view'\);\s+await nextFrame\(\);\s+initialEntry = \{/);
-  assert.match(presentationTests, /view: launchView,/);
+  assert.match(nativeTest, /"Home is a tab root and shows no Back"/);
+  assert.match(nativeTest, /"Library is a tab root and shows no Back"/);
   assert.match(nativeTest, /"Search is a tab root and shows no Back"/);
   assert.match(nativeTest, /back\.frame\.midX, webView\.frame\.midX/);
-  assert.match(nativeTest, /metrics\["href"\] as\? String == libraryHref/);
   assert.match(nativeTest, /backStyle\["iconDisplay"\] as\? String, "none"/);
   assert.match(nativeTest, /XCTAssertNotEqual\(try XCTUnwrap\(backStyle\["labelDisplay"\] as\? String\), "none"\)/);
   assert.match(nativeTest, /XCTAssertGreaterThan\(try XCTUnwrap\(backStyle\["labelWidth"\] as\? Double\), 0\)/);
@@ -1871,177 +1864,6 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /backStyle\["chevronContent"\] as\? String\)\.contains/);
   assert.doesNotMatch(nativeTest, /XCTAssertEqual\(backStyle\["labelDisplay"\]/);
   assert.doesNotMatch(nativeTest, /evaluateJavaScript|history\.back\(|location\.hash\s*=/);
-});
-
-test('iOS modal gesture test observes its dialog without querying the inert history probe', () => {
-  const nativeTest = presentationTests.slice(
-    presentationTests.indexOf('func testLeftEdgeSwipeRestoresHashHistoryLikeBackAtDefaultAndLargestTextSizes()'),
-    presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'));
-  const modal = nativeTest.slice(
-    nativeTest.indexOf('// A swipe while a dialog is open'),
-    nativeTest.indexOf('let swipeResult ='));
-  const opened = modal.indexOf('toggle.tap()');
-  const closed = modal.indexOf('close.tap()');
-  assert.ok(opened > 0 && closed > opened, 'the test opens and closes the real More dialog');
-  assert.match(modal.slice(0, opened), /let poppedBeforeSwipe = try XCTUnwrap\(state\(\)\["historyPops"\] as\? Int\)/);
-  const whileOpen = modal.slice(opened, closed);
-  assert.doesNotMatch(whileOpen, /\b(?:state|waitForState)\(/, 'the monitor is outside the modal accessibility tree');
-  assert.match(whileOpen, /swipeBack\(\)/);
-  assert.match(whileOpen, /XCTAssertTrue\(close\.isHittable[^\n]*after the swipe/);
-  const afterClose = modal.slice(closed);
-  assert.match(afterClose, /metrics\["modalOpen"\] as\? Bool == false/);
-  assert.match(afterClose, /metrics\["href"\] as\? String == dataHref/);
-  assert.match(afterClose, /metrics\["historyPops"\] as\? Int == poppedBeforeSwipe/);
-});
-
-test('iOS turns the edge-swipe back gesture off while any dialog is open', async () => {
-  const controller = appSource('WebViewController');
-  const handler = appSource('IosBridgeHandler');
-  assert.match(controller, /bridge\.onBackGestureChange = \{ \[weak webView\] enabled in\s+webView\?\.allowsBackForwardNavigationGestures = enabled/);
-  assert.match(handler, /case "back-gesture":[\s\S]*?guard let enabled = body\["enabled"\] as\? Bool[\s\S]*?onBackGestureChange\?\(enabled\)/);
-  const iosApp = read('packaging/ios/web/app.js');
-  assert.match(iosApp, /watchModalDialogs\(\{\s*document, Observer: MutationObserver/);
-  assert.match(iosApp, /diagnose: \(message\) => console\.error\(message\)/);
-  assert.match(iosApp, /\} else \{\s*console\.error\('The iOS back gesture bridge is unavailable\.'\);\s*\}/);
-
-  let open = null;
-  let observed = null;
-  let callback = null;
-  const posts = [];
-  const document = {
-    documentElement: {},
-    querySelector: (selector) => (selector === 'dialog[open]' ? open : null),
-  };
-  class Observer {
-    constructor(fn) { callback = fn; }
-    observe(target, options) { observed = { target, options }; }
-    disconnect() {}
-  }
-  watchModalDialogs({
-    document, Observer, diagnose: () => {},
-    post: (message) => {
-      posts.push(message);
-      return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: message.enabled });
-    },
-  });
-  assert.equal(observed.target, document.documentElement);
-  assert.deepEqual(observed.options, { subtree: true, attributes: true, attributeFilter: ['open'] });
-  assert.deepEqual(posts, [{ v: 1, kind: 'back-gesture', enabled: true }]);
-  open = {};
-  callback();
-  callback();
-  open = null;
-  callback();
-  assert.deepEqual(posts.map(({ enabled }) => enabled), [true, false, true]);
-  const errors = [];
-  assert.doesNotThrow(() => watchModalDialogs({
-    document, Observer, diagnose: (message) => errors.push(message),
-    post: () => { throw new Error('gone'); },
-  }));
-  assert.equal(errors.length, 1);
-});
-
-test('iOS reports an unconfirmed back-gesture update and allows a later retry', async () => {
-  const expected = {
-    throws: 'The iOS back gesture request could not be sent.',
-    rejects: 'The iOS back gesture request was rejected.',
-    malformed: 'The iOS back gesture response was invalid.',
-    'wrong-state': 'The iOS back gesture response was invalid.',
-    empty: 'The iOS back gesture response was invalid.',
-  };
-  const tick = () => new Promise((resolve) => setImmediate(resolve));
-  for (const failure of ['throws', 'rejects', 'malformed', 'wrong-state', 'empty']) {
-    const reports = [];
-    let attempts = 0;
-    const document = { documentElement: {}, querySelector: () => null };
-    class Observer {
-      observe() {}
-      disconnect() {}
-    }
-    const watcher = watchModalDialogs({
-      document, Observer,
-      diagnose: (message) => reports.push(message),
-      post: (message) => {
-        attempts += 1;
-        if (attempts === 1) {
-          if (failure === 'throws') throw new Error('bridge unavailable');
-          if (failure === 'rejects') return Promise.reject(new Error('bridge unavailable'));
-          if (failure === 'malformed') return Promise.resolve({ v: 1, kind: 'unexpected', enabled: message.enabled });
-          if (failure === 'wrong-state') return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: !message.enabled });
-          return Promise.resolve();
-        }
-        return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: message.enabled });
-      },
-    });
-    await tick();
-    assert.deepEqual(reports, [expected[failure]], failure);
-    watcher.update();
-    await tick();
-    assert.equal(attempts, 2, failure);
-    assert.deepEqual(reports, [expected[failure]], failure);
-  }
-});
-
-test('iOS ignores an obsolete back-gesture failure after a newer state succeeds', async () => {
-  const reports = [];
-  const posts = [];
-  let open = false;
-  let callback;
-  let rejectOld;
-  let disabledRequests = 0;
-  const document = { documentElement: {}, querySelector: () => open ? {} : null };
-  class Observer {
-    constructor(fn) { callback = fn; }
-    observe() {}
-    disconnect() {}
-  }
-  const watcher = watchModalDialogs({
-    document, Observer, diagnose: (message) => reports.push(message),
-    post: (message) => {
-      posts.push(message);
-      if (!message.enabled && ++disabledRequests === 1) {
-        return new Promise((_resolve, reject) => { rejectOld = reject; });
-      }
-      return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: message.enabled });
-    },
-  });
-  open = true;
-  callback();
-  open = false;
-  callback();
-  open = true;
-  callback();
-  rejectOld(new Error('obsolete request'));
-  await new Promise((resolve) => setImmediate(resolve));
-  watcher.update();
-  assert.deepEqual(posts.map(({ enabled }) => enabled), [true, false, true, false]);
-  assert.deepEqual(reports, []);
-});
-
-test('iOS does not report a back-gesture failure after the watcher disconnects', async () => {
-  const reports = [];
-  let rejectPending;
-  let disconnected = false;
-  let attempts = 0;
-  const document = { documentElement: {}, querySelector: () => null };
-  class Observer {
-    observe() {}
-    disconnect() { disconnected = true; }
-  }
-  const watcher = watchModalDialogs({
-    document, Observer, diagnose: (message) => reports.push(message),
-    post: () => {
-      attempts += 1;
-      return new Promise((_resolve, reject) => { rejectPending = reject; });
-    },
-  });
-  watcher.disconnect();
-  rejectPending(new Error('page ended'));
-  await new Promise((resolve) => setImmediate(resolve));
-  watcher.update();
-  assert.equal(disconnected, true);
-  assert.equal(attempts, 1);
-  assert.deepEqual(reports, []);
 });
 
 test('iOS web controls expose one accessible target without changing visible layout', () => {

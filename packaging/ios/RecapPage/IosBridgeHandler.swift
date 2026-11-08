@@ -115,9 +115,6 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
     private let pickerDriver: PickerDriver?
     private let dataLossState: IOSDataLossState
     private var pending: PendingExport?
-    /// Set by the controller to switch the web view's edge-swipe back gesture; the page turns it off
-    /// while a dialog is open so a swipe cannot change the screen behind the dialog.
-    var onBackGestureChange: ((Bool) -> Void)?
     #if RECAP_ICLOUD || DEBUG
     /// Cloud backup, set only by a build that carries it; without it a cloud request is answered 404,
     /// which the page reads as cloud backup not being part of this build. iCloud alone, or iCloud and
@@ -180,19 +177,6 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
         case "dismiss-data-loss":
             dataLossState.dismissNotice()
             replyHandler(["v": 1, "kind": "data-loss-result", "status": "dismissed"], nil)
-        case "back-gesture":
-            guard let enabled = body["enabled"] as? Bool else {
-                replyHandler(nil, "The back gesture request requires a true or false state.")
-                return
-            }
-            #if DEBUG
-            DebugSupport.recordBackGesturePosted(enabled)
-            #endif
-            onBackGestureChange?(enabled)
-            replyHandler(["v": 1, "kind": "back-gesture-result", "enabled": enabled], nil)
-            #if DEBUG
-            DebugSupport.recordBackGestureAcknowledged(enabled)
-            #endif
         #if RECAP_ICLOUD || DEBUG
         case "cloud":
             guard let operation = body["op"] as? String, let text = body["body"] as? String else {

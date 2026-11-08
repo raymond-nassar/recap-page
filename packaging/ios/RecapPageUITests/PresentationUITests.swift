@@ -114,9 +114,6 @@ final class PresentationUITests: XCTestCase {
         if route == "all" || route == "history" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
-        if route == "history" {
-            app.launchEnvironment["RECAP_IOS_BACK_GESTURE_DIAGNOSTICS"] = "1"
-        }
         if emptyHomeTest {
             app.launchEnvironment["RECAP_IOS_RESTORE_TEST_SEED"] = "1"
             app.launchEnvironment["RECAP_IOS_DATA_LOSS_RESET"] = "1"
@@ -1908,9 +1905,9 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
-    func testLeftEdgeSwipeRestoresHashHistoryLikeBackAtDefaultAndLargestTextSizes() throws {
+    func testBackRestoresHashHistoryOnlyFromSecondaryScreensAtDefaultAndLargestTextSizes() throws {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
-            throw XCTSkip("The left-edge navigation contract is checked on iPhone.")
+            throw XCTSkip("The phone Back contract is checked on iPhone.")
         }
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category, route: "history")
@@ -1919,53 +1916,22 @@ final class PresentationUITests: XCTestCase {
             func state() throws -> [String: Any] {
                 try XCTUnwrap(layoutMetrics(from: monitor.label), monitor.label)
             }
-            let gestureProbe = app.descendants(matching: .any)
-                .matching(identifier: "ios-back-gesture-diagnostics").firstMatch
-            func nativeGesture() -> String {
-                gestureProbe.exists ? gestureProbe.label : "the native gesture diagnostics are missing"
-            }
-            var atLastSwipe = "no swipe yet"
-            func swipeEvidence() -> String {
-                let page = (try? state()).map { metrics in
-                    let position = metrics["readingPosition"] as? [String: Any]
-                    return "view=\(metrics["activeView"] ?? "nil") href=\(metrics["href"] ?? "nil") "
-                        + "pops=\(metrics["historyPops"] ?? "nil") depth=\(position?["depth"] ?? "nil") "
-                        + "modalOpen=\(metrics["modalOpen"] ?? "nil")"
-                } ?? "unreadable"
-                return "native at the swipe: \(atLastSwipe); native now: \(nativeGesture()); page now: \(page)"
-            }
-            func waitForState(
-                _ name: String, swipe: Bool = false, _ condition: @escaping ([String: Any]) -> Bool
-            ) throws {
+            func waitForState(_ name: String, _ condition: @escaping ([String: Any]) -> Bool) throws {
                 let settled = XCTNSPredicateExpectation(predicate: NSPredicate { element, _ in
                     guard let element = element as? XCUIElement,
                           let metrics = layoutMetrics(from: element.label) else { return false }
                     return condition(metrics)
                 }, object: monitor)
-                let outcome = XCTWaiter.wait(for: [settled], timeout: 30)
-                XCTAssertEqual(outcome, .completed, swipe && outcome != .completed ? "\(name). \(swipeEvidence())" : name)
+                XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 30), .completed, name)
             }
             let start = try state()
             let initial = try XCTUnwrap(start["initialEntry"] as? [String: Any], "the probe recorded the launch entry")
-            let rootHref = try XCTUnwrap(initial["href"] as? String)
-            let rootView = try XCTUnwrap(initial["view"] as? String)
             let rootDepth = try XCTUnwrap(initial["depth"] as? Int)
-            let startHref = try XCTUnwrap(start["href"] as? String)
             let startDepth = try XCTUnwrap((start["readingPosition"] as? [String: Any])?["depth"] as? Int)
             XCTAssertEqual(start["activeView"] as? String, "view-home")
             XCTAssertGreaterThanOrEqual(startDepth, rootDepth)
             XCTAssertTrue(start["back"] is NSNull, "Home is a tab root and shows no Back")
             let webView = app.webViews.firstMatch
-            let edge = webView.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
-                .withOffset(CGVector(dx: 1, dy: 0))
-            let destination = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.85, dy: 0.5))
-            // A quick flick from the edge, the way a reader swipes back. a595e409's slow drag with a hold
-            // never navigated natively, and nothing before this baseline separated a gesture that does
-            // not work at all from one that a dialog had left switched off.
-            func swipeBack() {
-                atLastSwipe = nativeGesture()
-                edge.press(forDuration: 0.05, thenDragTo: destination)
-            }
             // The phone bar slides away while a page scrolls down and returns after 16 px of upward
             // scroll. On newest-iPhone run 128711270701 More sat at y 961, below the 956 pt screen, after
             // a scroll, so the bar is brought back the way a reader would before any tab is tapped.
@@ -1983,44 +1949,6 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 15), .completed,
                                "the bottom bar is back in view before a tab is tapped")
             }
-            // Baseline, before any dialog has opened in this launch: the list screen is a secondary
-            // screen reached from Home's Continue card without the More sheet, so the swipe here proves
-            // the gesture itself before the checks that depend on dialogs switching it off and on.
-            // The link's accessible name carries the list's name, "Open the list: <list>", and web
-            // elements have no identifier, so it is found by the start of its label.
-            let openList = webView.links.matching(NSPredicate(format: "label BEGINSWITH %@", "Open the list")).firstMatch
-            XCTAssertTrue(openList.waitForExistence(timeout: 30), "Home's Continue card offers Open the list")
-            var nudges = 0
-            while !openList.isHittable && nudges < 8 {
-                let from = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
-                let to = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.45))
-                from.press(forDuration: 0.1, thenDragTo: to, withVelocity: .slow, thenHoldForDuration: 0.5)
-                nudges += 1
-            }
-            XCTAssertTrue(openList.isHittable, "Open the list is reachable: frame=\(openList.frame)")
-            openList.tap()
-            try waitForState("Open the list pushes the list screen as one app hash entry") { metrics in
-                let position = metrics["readingPosition"] as? [String: Any]
-                return metrics["activeView"] as? String == "view-read"
-                    && (position?["depth"] as? Int) == startDepth + 1
-                    && metrics["modalOpen"] as? Bool == false
-            }
-            let onList = try state()
-            XCTAssertFalse(onList["back"] is NSNull, "the list screen is secondary and shows Back")
-            let listPops = try XCTUnwrap(onList["historyPops"] as? Int)
-            XCTAssertTrue(nativeGesture().contains("\"canGoBack\":true"),
-                          "the web view can go back before the baseline swipe: \(nativeGesture())")
-            swipeBack()
-            try waitForState("a quick edge swipe, before any dialog has opened, returns Home", swipe: true) { metrics in
-                let position = metrics["readingPosition"] as? [String: Any]
-                return metrics["href"] as? String == startHref
-                    && metrics["activeView"] as? String == "view-home"
-                    && metrics["historyPops"] as? Int == listPops + 1
-                    && metrics["timeOrigin"] as? Double == start["timeOrigin"] as? Double
-                    && (position?["depth"] as? Int) == startDepth
-            }
-            let baselineResult = try state()
-            showBar()
             func openNavigation(_ name: String, view: String, depth: Int) throws {
                 let link = app.links.matching(identifier: name).firstMatch
                 revealNavigationLink(link, named: name, in: app)
@@ -2033,8 +1961,8 @@ final class PresentationUITests: XCTestCase {
                         && metrics["modalOpen"] as? Bool == false
                 }
             }
+            showBar()
             try openNavigation("Library", view: "view-library", depth: startDepth + 1)
-            let libraryHref = try XCTUnwrap(state()["href"] as? String)
             XCTAssertTrue(try state()["back"] is NSNull, "Library is a tab root and shows no Back")
             try openNavigation("Search", view: "view-add", depth: startDepth + 2)
             XCTAssertTrue(try state()["back"] is NSNull, "Search is a tab root and shows no Back")
@@ -2050,45 +1978,27 @@ final class PresentationUITests: XCTestCase {
                       let savedY = position["y"] as? Double else { return false }
                 return y > 80 && abs(savedY - y) <= 1
             }
-            // The phone bar slides away while a page scrolls down, so it is shown again before a tab is
-            // tapped. The nudge moves Home, so each return is checked against the position Home was left at.
-            func revealBar() throws -> [String: Any] {
-                showBar()
-                try waitForState("Home keeps a saved nonzero scroll position with the bar shown") { metrics in
-                    guard let y = metrics["scrollY"] as? Double,
-                          let position = metrics["readingPosition"] as? [String: Any],
-                          let savedY = position["y"] as? Double else { return false }
-                    return metrics["activeView"] as? String == "view-home"
-                        && y > 80 && abs(savedY - y) <= 1
-                }
-                return try state()
+            // The nudge that shows the bar moves Home, so the return is checked against the position
+            // Home was left at.
+            showBar()
+            try waitForState("Home keeps a saved nonzero scroll position with the bar shown") { metrics in
+                guard let y = metrics["scrollY"] as? Double,
+                      let position = metrics["readingPosition"] as? [String: Any],
+                      let savedY = position["y"] as? Double else { return false }
+                return metrics["activeView"] as? String == "view-home"
+                    && y > 80 && abs(savedY - y) <= 1
             }
-            let home = try revealBar()
+            let home = try state()
             let homeHref = try XCTUnwrap(home["href"] as? String)
             let initialPops = try XCTUnwrap(home["historyPops"] as? Int)
             let timeOrigin = try XCTUnwrap(home["timeOrigin"] as? Double)
             let homePosition = try XCTUnwrap(home["readingPosition"] as? [String: Any])
             let homeDepth = try XCTUnwrap(homePosition["depth"] as? Int)
+            let homeY = try XCTUnwrap(home["scrollY"] as? Double)
+            let homeX = try XCTUnwrap(home["scrollX"] as? Double)
             XCTAssertEqual(homeDepth, startDepth + 3)
-            func waitForHome(pops: Int, leftAt left: [String: Any], swipe: Bool = false) throws -> [String: Any] {
-                let homeY = try XCTUnwrap(left["scrollY"] as? Double)
-                let homeX = try XCTUnwrap(left["scrollX"] as? Double)
-                try waitForState("Back restores the exact Home entry without a document reload", swipe: swipe) { metrics in
-                    guard let y = metrics["scrollY"] as? Double,
-                          let x = metrics["scrollX"] as? Double,
-                          let position = metrics["readingPosition"] as? [String: Any] else { return false }
-                    return metrics["href"] as? String == homeHref
-                        && metrics["activeView"] as? String == "view-home"
-                        && metrics["historyPops"] as? Int == pops
-                        && metrics["timeOrigin"] as? Double == timeOrigin
-                        && (position["depth"] as? Int) == homeDepth
-                        && abs(y - homeY) <= 1 && abs(x - homeX) <= 1
-                }
-                return try state()
-            }
             // Backup & settings sits in More on a phone, where it is a secondary screen with Back.
-            let secondary = "Backup & settings"
-            try openNavigation(secondary, view: "view-data", depth: homeDepth + 1)
+            try openNavigation("Backup & settings", view: "view-data", depth: homeDepth + 1)
             let back = app.webViews.firstMatch.buttons["Back"].firstMatch
             XCTAssertTrue(back.waitForExistence(timeout: 30))
             XCTAssertEqual(back.label, "Back")
@@ -2106,96 +2016,19 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(try XCTUnwrap(backStyle["chevronContent"] as? String).contains("\u{2039}"))
             XCTAssertTrue(back.isHittable, "Back is reachable at the top of the secondary screen")
             back.tap()
-            let buttonResult = try waitForHome(pops: initialPops + 1, leftAt: home)
-            let homeAgain = try revealBar()
-            try openNavigation(secondary, view: "view-data", depth: homeDepth + 1)
-            // A swipe while a dialog is open must not change the screen behind it.
-            let dataHref = try XCTUnwrap(state()["href"] as? String)
-            let poppedBeforeSwipe = try XCTUnwrap(state()["historyPops"] as? Int)
-            let toggle = moreToggle(of: app)
-            XCTAssertTrue(toggle.waitForExistence(timeout: 30))
-            let toggleShown = XCTNSPredicateExpectation(
-                predicate: NSPredicate(format: "hittable == true"), object: toggle)
-            XCTAssertEqual(XCTWaiter.wait(for: [toggleShown], timeout: 15), .completed,
-                           "More is reachable on the freshly opened secondary screen: "
-                               + "identifier=\(toggle.identifier), frame=\(toggle.frame), hittable=\(toggle.isHittable)")
-            let toggleEvidence = "identifier=\(toggle.identifier), label=\(toggle.label), "
-                + "frame=\(toggle.frame), hittable=\(toggle.isHittable)"
-            toggle.tap()
-            let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
-            let closeShown = close.waitForExistence(timeout: 30)
-            if !closeShown { print("More did not open: \(toggleEvidence)\n\(app.debugDescription)") }
-            XCTAssertTrue(closeShown, "More presents its Close control: \(toggleEvidence)")
-            XCTAssertTrue(close.isHittable, "the More sheet's Close is reachable")
-            // A modal makes the body-level history monitor inert, so inspect it only after Close.
-            swipeBack()
-            XCTAssertTrue(close.isHittable, "the More sheet's Close remains reachable after the swipe")
-            close.tap()
-            try waitForState("More closes without navigating", swipe: true) { metrics in
-                metrics["modalOpen"] as? Bool == false && metrics["href"] as? String == dataHref
-                    && metrics["historyPops"] as? Int == poppedBeforeSwipe
-            }
-            swipeBack()
-            let swipeResult = try waitForHome(pops: initialPops + 2, leftAt: homeAgain, swipe: true)
-            swipeBack()
-            try waitForState("the next left-edge swipe returns to Search, not another Home entry", swipe: true) { metrics in
-                let position = metrics["readingPosition"] as? [String: Any]
-                return metrics["activeView"] as? String == "view-add"
-                    && metrics["historyPops"] as? Int == initialPops + 3
-                    && (position?["depth"] as? Int) == startDepth + 2
-            }
-            swipeBack()
-            try waitForState("the following swipe returns to Library", swipe: true) { metrics in
-                let position = metrics["readingPosition"] as? [String: Any]
-                return metrics["href"] as? String == libraryHref
-                    && metrics["activeView"] as? String == "view-library"
-                    && metrics["historyPops"] as? Int == initialPops + 4
-                    && (position?["depth"] as? Int) == startDepth + 1
-            }
-            let libraryResult = try state()
-            swipeBack()
-            try waitForState("the next swipe returns to the Home entry the probe opened", swipe: true) { metrics in
-                let position = metrics["readingPosition"] as? [String: Any]
-                return metrics["href"] as? String == startHref
+            try waitForState("Back restores the exact Home entry without a document reload") { metrics in
+                guard let y = metrics["scrollY"] as? Double,
+                      let x = metrics["scrollX"] as? Double,
+                      let position = metrics["readingPosition"] as? [String: Any] else { return false }
+                return metrics["href"] as? String == homeHref
                     && metrics["activeView"] as? String == "view-home"
-                    && metrics["historyPops"] as? Int == initialPops + 5
-                    && (position?["depth"] as? Int) == startDepth
+                    && metrics["historyPops"] as? Int == initialPops + 1
+                    && metrics["timeOrigin"] as? Double == timeOrigin
+                    && (position["depth"] as? Int) == homeDepth
+                    && abs(y - homeY) <= 1 && abs(x - homeX) <= 1
             }
-            var pops = initialPops + 5
-            var depth = startDepth
-            while depth > rootDepth {
-                swipeBack()
-                depth -= 1
-                pops += 1
-                let expectedDepth = depth
-                let expectedPops = pops
-                try waitForState("each swipe returns one entry toward the launch entry", swipe: true) { metrics in
-                    let position = metrics["readingPosition"] as? [String: Any]
-                    return metrics["historyPops"] as? Int == expectedPops
-                        && ((position?["depth"] as? Int) ?? 0) == expectedDepth
-                }
-            }
-            try waitForState("history returns to the exact launch entry", swipe: true) { metrics in
-                let position = metrics["readingPosition"] as? [String: Any]
-                return metrics["href"] as? String == rootHref
-                    && metrics["activeView"] as? String == rootView
-                    && ((position?["depth"] as? Int) ?? 0) == rootDepth
-            }
-            let finalPops = pops
-            swipeBack()
-            let rootChanged = XCTNSPredicateExpectation(predicate: NSPredicate { element, _ in
-                guard let element = element as? XCUIElement,
-                      let metrics = layoutMetrics(from: element.label) else { return true }
-                return metrics["href"] as? String != rootHref
-                    || metrics["historyPops"] as? Int != finalPops
-            }, object: monitor)
-            rootChanged.isInverted = true
-            XCTAssertEqual(XCTWaiter.wait(for: [rootChanged], timeout: 2), .completed,
-                           "swiping at the first app entry does not leave the app or synthesize history")
             try record("hash-history-\(category.rawValue)", [
-                "start": start, "baselineSwipe": baselineResult, "before": home, "beforeSwipe": homeAgain,
-                "button": buttonResult, "leftEdgeSwipe": swipeResult,
-                "previousLibraryEntry": libraryResult, "root": try state(),
+                "start": start, "before": home, "button": try state(),
             ])
             app.terminate()
         }

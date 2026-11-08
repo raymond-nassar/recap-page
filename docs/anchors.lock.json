@@ -2494,13 +2494,13 @@
     "fp": "db046a4ee4a55494",
     "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:410|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:410",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:405|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:405",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:424|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:424",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:419|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:419",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -2529,13 +2529,13 @@
     "fp": "244f4f24bf6d281b",
     "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:410|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:410",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:405|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:405",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:424|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:424",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:419|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:419",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },

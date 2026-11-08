@@ -62,10 +62,6 @@ final class WebViewController: UIViewController, WKUIDelegate {
         installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)
         WebViewFactory.configure(webView)
-        webView.allowsBackForwardNavigationGestures = true
-        bridge.onBackGestureChange = { [weak webView] enabled in
-            webView?.allowsBackForwardNavigationGestures = enabled
-        }
         webView.isOpaque = false
         webView.backgroundColor = .recapPageBackground
         webView.scrollView.backgroundColor = .recapPageBackground
@@ -91,7 +87,6 @@ final class WebViewController: UIViewController, WKUIDelegate {
         appPage = assets.appPageURL
         #if DEBUG
         DebugSupport.prepareHandOffRecorder(in: view)
-        DebugSupport.prepareBackGestureDiagnostics(for: webView, in: view)
         #endif
         startLoading()
     }

@@ -25345,12 +25345,6 @@ SCENARIOS.push({
       });
       const errors = [];
       actual.on('pageerror', (error) => errors.push(error.message));
-      const gestureDiagnostics = [];
-      actual.on('console', (message) => {
-        if (message.type() === 'error' && message.text().includes('iOS back gesture')) {
-          gestureDiagnostics.push(message.text());
-        }
-      });
       const debugSupport = await readFile(new URL('../packaging/ios/RecapPage/DebugSupport.swift', import.meta.url), 'utf8');
       const trackingScript = debugSupport.match(/static let passiveAuditTrackingScript = #"""\r?\n([\s\S]*?)\r?\n\s*"""#/);
       if (!trackingScript) throw new Error('The iOS passive-audit tracking script could not be found.');
@@ -25371,7 +25365,6 @@ SCENARIOS.push({
         window.webkit = { messageHandlers: { recap: {
           async postMessage(message) {
             window.__iosCloudCalls.push(message);
-            if (message.kind === 'back-gesture') return { v: 1, kind: 'back-gesture-result', enabled: message.enabled };
             if (message.kind !== 'cloud') return { v: 1, kind: 'data-loss-result', status: 'recorded' };
             if (message.op === 'connect') connected = true;
             const body = message.op === 'list' ? { ok: true, items: [] } : {
@@ -25541,10 +25534,6 @@ SCENARIOS.push({
       t.check('keyboard activation connects with the iCloud provider through the installed adapter',
         connected && request && JSON.stringify(JSON.parse(request.body)) === JSON.stringify({ provider: 'icloud' }),
         JSON.stringify({ connected, request, errors }));
-      const gestures = calls.filter((call) => call.kind === 'back-gesture');
-      t.check('the prepared iOS bridge confirms gesture state without diagnostics',
-        gestures.some((call) => call.enabled === true) && gestureDiagnostics.length === 0,
-        JSON.stringify({ gestures, gestureDiagnostics }));
       t.check('connection raises no uncaught errors', errors.length === 0, JSON.stringify(errors));
       t.check('the prepared page makes no unexpected external requests', outsideRequests.length === 0,
         JSON.stringify(outsideRequests));
