@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
 
 export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
@@ -178,9 +179,76 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
     } finally { await faulty.close(); }
   }
   await page.evaluate((key) => localStorage.removeItem(key), key);
+  await iosClosureTargets(page, t);
   await route(page, '#/about', '#view-about:not([hidden])');
   t.check('About keeps the cutoff explanation independently', await page.$eval('#view-about',
     (node) => node.textContent.includes('December 7, 2026') && node.textContent.includes('not a single-comic link')));
+}
+
+async function iosClosureTargets(page, t) {
+  const mobile = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+  const overlay = await readFile(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8');
+  const controller = await readFile(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
+  const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)[1];
+  const ios = await page.browserContext().newPage();
+  try {
+    for (const [width, height, largest, theme] of [
+      [390, 844, false, 'light'], [390, 844, false, 'dark'],
+      [812, 375, true, 'dark'], [844, 390, true, 'light'],
+      [844, 390, true, 'dark'], [880, 390, true, 'light'],
+    ]) {
+      await ios.setViewport({ width, height });
+      await ios.goto(new URL('/#/home', page.url()).href, { waitUntil: 'load' });
+      await ios.waitForSelector('#reader-closure-faq', { visible: true });
+      await ios.evaluate((styles) => {
+        document.adoptedStyleSheets = styles.map((text) => {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(text);
+          return sheet;
+        });
+      }, [mobile, overlay]);
+      await ios.evaluate(({ largest, theme }) => {
+        document.documentElement.dataset.iosLargestText = String(largest);
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.setProperty('--ios-text-scale', largest ? String(53 / 17) : '1');
+      }, { largest, theme });
+      await ios.evaluate(adapter);
+      await ios.evaluate(() => {
+        document.activeElement.blur();
+        scrollTo(0, 0);
+      });
+      const observed = await ios.evaluate(() => {
+        const faq = document.querySelector('#reader-closure-faq');
+        const image = document.querySelector('.home-wordmark').getBoundingClientRect();
+        const toggle = document.querySelector('#home-updates-toggle').getBoundingClientRect();
+        const hit = document.elementFromPoint((image.left + image.right) / 2, (image.top + image.bottom) / 2);
+        return {
+          adapted: faq.dataset.iosAccessibleTarget === 'true',
+          name: faq.getAttribute('aria-label'),
+          hiddenText: [...faq.children].every((child) => child.getAttribute('aria-hidden') === 'true'),
+          targetHeight: faq.getBoundingClientRect().height,
+          lineHeight: parseFloat(getComputedStyle(faq).lineHeight),
+          noOverlap: toggle.top >= image.bottom,
+          imageHit: Boolean(hit?.closest('#home-h')),
+          hit: hit?.id || hit?.tagName,
+          scrollY,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        };
+      });
+      const label = `iOS overlay ${width}x${height} ${largest ? 'largest' : 'default'} ${theme}`;
+      t.check(`${label} exposes one named FAQ target with a 44pt text line`,
+        observed.adapted && observed.name === "Marvel's FAQ" && observed.hiddenText
+        && observed.targetHeight >= 44 && observed.lineHeight >= 44, JSON.stringify(observed));
+      t.check(`${label} stacks updates clear of the wordmark without horizontal overflow`,
+        observed.noOverlap && observed.imageHit && !observed.overflow, JSON.stringify(observed));
+      await ios.focus('#reader-closure-faq');
+      await ios.keyboard.press('Tab');
+      t.check(`${label} retains FAQ-to-Dismiss keyboard order`,
+        await ios.$eval('#reader-closure-dismiss', (node) => node === document.activeElement));
+    }
+  } finally {
+    await ios.close();
+  }
 }
 
 async function localClock(page) {

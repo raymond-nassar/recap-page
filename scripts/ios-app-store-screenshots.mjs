@@ -42,7 +42,7 @@ export const FICTIONAL_SYNOPSIS = 'A lighthouse keeper follows a strange signal 
 export const SCREENS = Object.freeze([
   {
     name: '01-home', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty',
-    text: ['RECAP PAGE!'], dismissNotice: true,
+    text: ['Recap Page'], dismissNotice: true,
     caption: 'Start from Home: guided reading paths, genres and character spotlights.',
   },
   {

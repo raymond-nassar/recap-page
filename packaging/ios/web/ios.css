@@ -56,6 +56,12 @@
   line-height: max(var(--target), 1.5em);
 }
 
+:root #reader-closure-faq {
+  display: inline-block;
+  min-height: var(--target);
+  line-height: var(--target);
+}
+
 :root[data-ios-largest-text="true"] #view-home > .head {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -67,6 +73,7 @@
 
 :root[data-ios-largest-text="true"] #view-home #home-updates {
   grid-column: 1;
+  grid-row: 2;
   width: 100%;
   justify-self: stretch;
   margin-left: 0;
