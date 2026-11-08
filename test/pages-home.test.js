@@ -1367,7 +1367,7 @@ test('release dates come from the local clone and a clone without tags is refuse
 });
 
 test('the 4.5.0 progress offer does not advertise Google Drive backup', () => {
-  const feature = 'When OneDrive backup is on, Recap Page can offer progress from another device when it differs from yours. Choose which progress to use; the app never merges backups.';
+  const feature = 'When OneDrive backup is on, Recap Page can offer progress from another device when your reading progress differs: comics marked read, your lists, ratings and finished lists. Choose which progress to use, or dismiss the notice to keep yours; the app never merges backups.';
   const label = 'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud keeps its existing backup and manual restore.';
   const page = releasesPage(changelog, new Map([['4.5.0', '2030-01-02']])).html;
   const item = releaseItems('4.5.0', page).find((entry) => entry.includes(escapeHtml(feature)));

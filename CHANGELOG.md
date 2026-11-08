@@ -19,8 +19,9 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 - On iPhone and iPad, you can now back up to your own OneDrive as well as iCloud, one at a time,
   so your reading progress can follow you across your devices.
-- When OneDrive backup is on, Recap Page can offer progress from another device when it differs
-  from yours. Choose which progress to use; the app never merges backups.
+- When OneDrive backup is on, Recap Page can offer progress from another device when your reading
+  progress differs: comics marked read, your lists, ratings and finished lists. Choose which
+  progress to use, or dismiss the notice to keep yours; the app never merges backups.
 - New to Marvel comics? Open the new guide from Home or an empty Library for a quick introduction,
   starter picks, and two optional Reading Lists you can preview before saving.
 - Finishing a Reading List now gives you a clearer next step: one next Modern Timeline list,
@@ -31,6 +32,9 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
   Marvel Team-Up issues in the Amazing Spider-Man guide.
 - Buttons, links and cards now show a pressed edge while you hold them, and screen changes fade in
   gently while honoring reduced-motion settings.
+- Back now sits at the top left on secondary screens, and on iPhone you can also swipe from the
+  left edge to go back. On phones, Continue reading centers the comic above Read and Done.
+  Notices, Search and large-text dialogs stay readable and reachable without widening the page.
 - Improved the iPhone Search navigation's accessibility by presenting its label as one named
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation.
@@ -51,6 +55,14 @@ pending-check marker are device-local and are not carried in a backup or restore
 Erase removes them. Older builds can read the existing saved data and backups, but ignore the new
 records and marker, do not enforce the new hold or the unconfirmed recovery withdrawal, and do not
 show the offer; they must not be relied on for safe participation.
+
+Narrowing the progress offer to reading progress changes no schema, storage key, uploaded data,
+backup listing or record version. Backups written by 4.3.0, 4.4.0 and the 4.5.0 test builds are
+read unchanged, and choices recorded by earlier 4.5.0 test builds are still honored. A tester
+upgrading from an earlier 4.5.0 test build may see the question once more for a device after
+that device next saves only a settings change; one Keep or dismissal settles it until that
+device's reading progress changes. The navigation and layout improvements make no storage,
+backup, key or migration change.
 
 The guide, Search accessibility and presentation changes do not change storage keys or backup
 contents. Opening the guide or an unsaved preview does not create a Reading List; adding one
@@ -111,6 +123,12 @@ approvals remain separate.
   from yours. Choose which progress to use; the app never merges backups. Before loading the
   other copy, the app keeps a local recovery copy and normally keeps this device's prior state in
   OneDrive too. An empty device with no older kept copy skips the cloud copy. (#1162, part of #1068)
+- The progress offer now appears only when reading progress differs: which comics are marked read,
+  the lists in your library with their order and deferred comics, ratings and finished lists.
+  Display settings, the sidebar, notes and saved comic details no longer raise it on their own,
+  and choosing another device's progress still brings over its whole backup. The notice can be
+  dismissed, which keeps this device's progress until another device saves different progress,
+  and on Home it now sits below the app's name. (#1177, for #1176)
 
 The offer checks opted-in OneDrive at launch, after returning from at least one minute away, and
 after sign-in, including on iPhone and iPad. Google Drive and iCloud keep their existing backup and
@@ -130,6 +148,13 @@ as a follow-up", routes the local-only fallback to #1163 rather than this releas
 - Improved the iPhone Search navigation's accessibility by presenting its label as one named
   control. On smaller iPhones at the largest text size, the Backup & settings title now leaves
   more room for the privacy explanation. (#1152)
+- Back now sits at the top left of secondary screens, hidden on the main navigation roots, and
+  iPhone adds the familiar swipe from the left edge to go back. On phones, Continue reading
+  centers the comic above Read and Done, with opening the list and reviewing earlier or deferred
+  comics as quieter actions. Confirmation messages use the full width with their actions beneath
+  them, and long unbroken names scroll inside the message instead of widening the page. At large
+  text sizes, confirmations and Preview keep their main actions reachable, and Search results and
+  catalog cards stay within the screen. (#1178, for #1175)
 
 ### Release and maintenance
 
