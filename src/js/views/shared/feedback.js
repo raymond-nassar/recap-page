@@ -78,7 +78,6 @@ export function createFeedback({
   schedule,
   focusViewHeading,
   getCurrentView,
-  observeNoticeOverflow = watchNoticeOverflow,
 }) {
   const announce = announceChannel(
     () => {
@@ -260,7 +259,6 @@ export function createFeedback({
     placeNotices();
   }
 
-  observeNoticeOverflow(getDocument());
   return {
     announce,
     announceState,

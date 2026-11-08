@@ -55,7 +55,6 @@ function fixture({ live = false } = {}) {
     schedule: (fn) => scheduled.push(fn),
     focusViewHeading: () => {},
     getCurrentView: () => 'read',
-    observeNoticeOverflow: () => {},
   });
   return {
     announcer,
@@ -91,6 +90,12 @@ test('feedback speaks a non-live notice once and leaves a live notice in its own
   live.flush();
   assert.equal(live.announcer.textContent, '');
   assert.equal(live.pane.children.length, 1);
+});
+
+test('the app controller can be imported before a document exists', async () => {
+  assert.equal(globalThis.document, undefined);
+  const { boot } = await import('../src/js/main.js');
+  assert.equal(typeof boot, 'function');
 });
 
 test('notice scrolling is focusable only while content overflows and stops observing removed messages', () => {

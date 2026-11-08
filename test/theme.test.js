@@ -949,7 +949,7 @@ test('every pair resolves in both themes, so nothing is skipped unmeasured', () 
 // A minimum names its target token since #827, so the declaration is read through the tokens of the
 // shared :root block and still measured in pixels.
 function declaredPixelMinHeight(selector) {
-  const rule = stripComments(css).match(new RegExp(`${selector}\\s*\\{([^}]*)\\}`));
+  const rule = stripComments(css).match(new RegExp(`(?:^|\\})\\s*${selector}\\s*\\{([^}]*)\\}`));
   assert.ok(rule, `${selector} has no rule`);
   const declaration = resolveTokens(rule[1], rootTokens(css)).match(/(?:^|;)\s*min-height:\s*([\d.]+)px\s*(?:;|$)/);
   assert.ok(declaration, `${selector} has no pixel minimum height`);

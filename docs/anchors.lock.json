@@ -1914,8 +1914,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3944-3986|0": {
-    "anchor": "src/js/main.js:3944-3986",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3945-3987|0": {
+    "anchor": "src/js/main.js:3945-3987",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1974,23 +1974,23 @@
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3840-3859|0": {
-    "anchor": "src/js/main.js:3840-3859",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3841-3860|0": {
+    "anchor": "src/js/main.js:3841-3860",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3861-4071|0": {
-    "anchor": "src/js/main.js:3861-4071",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3862-4072|0": {
+    "anchor": "src/js/main.js:3862-4072",
     "fp": "7123f1a816678673",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3958-3964|0": {
-    "anchor": "src/js/main.js:3958-3964",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3959-3965|0": {
+    "anchor": "src/js/main.js:3959-3965",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3984-3985|0": {
-    "anchor": "src/js/main.js:3984-3985",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3985-3986|0": {
+    "anchor": "src/js/main.js:3985-3986",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2809,18 +2809,18 @@
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/views/shared/feedback.js:207-220|0": {
-    "anchor": "src/js/views/shared/feedback.js:207-220",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/views/shared/feedback.js:206-219|0": {
+    "anchor": "src/js/views/shared/feedback.js:206-219",
     "fp": "38c4368f85d70fd6",
     "head": "// A message goes down exactly one channel. Writing into a container that is itself a live"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/views/shared/feedback.js:213-220|0": {
-    "anchor": "src/js/views/shared/feedback.js:213-220",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/views/shared/feedback.js:212-219|0": {
+    "anchor": "src/js/views/shared/feedback.js:212-219",
     "fp": "6652b6bce926b430",
     "head": "function isLive(node) {"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/views/shared/feedback.js:230-253|0": {
-    "anchor": "src/js/views/shared/feedback.js:230-253",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/views/shared/feedback.js:229-252|0": {
+    "anchor": "src/js/views/shared/feedback.js:229-252",
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
@@ -2909,8 +2909,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/shared/feedback.js:230-253|0": {
-    "anchor": "src/js/views/shared/feedback.js:230-253",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/shared/feedback.js:229-252|0": {
+    "anchor": "src/js/views/shared/feedback.js:229-252",
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },

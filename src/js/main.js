@@ -54,7 +54,7 @@ import { createRatedComicsView } from './views/rated-comics.js';
 import { createRatedGuideIndexLoader } from './lib/ratedComics.js';
 import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
-import { createFeedback } from './views/shared/feedback.js';
+import { createFeedback, watchNoticeOverflow } from './views/shared/feedback.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
 import { createBulkReadView } from './views/bulk-read.js';
@@ -3193,6 +3193,7 @@ function renderAll() {
 // boot call is a ReferenceError rather than an undefined, because the temporal dead zone does
 // not hoist the way function declarations do.
 export function boot() {
+  watchNoticeOverflow(document);
   navigationPosition = createNavigationPosition({ window, document, history });
   // The marker alone decides, synchronously, whether saving starts paused; the tab lock is requested
   // here and answered a few milliseconds after this function returns. Nothing waits for it to draw,

@@ -62,7 +62,6 @@ function controller(doc) {
     schedule: () => {},
     focusViewHeading: (view) => doc.querySelector(`#view-${view}`),
     getCurrentView: () => 'read',
-    observeNoticeOverflow: () => {},
   });
 }
 
