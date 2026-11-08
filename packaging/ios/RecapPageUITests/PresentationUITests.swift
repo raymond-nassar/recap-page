@@ -236,6 +236,7 @@ final class PresentationUITests: XCTestCase {
         document.body.append(monitor);
         let historyPops = 0;
         let initialEntry = null;
+        window.__recapProbeDocument ??= crypto.randomUUID();
         window.addEventListener('popstate', () => { historyPops += 1; });
         const snapshot = (view) => ({
           view,
@@ -246,7 +247,7 @@ final class PresentationUITests: XCTestCase {
           modalOpen: Boolean(document.querySelector('dialog[open]')),
           scrollX, scrollY,
           readingPosition: history.state?.readingPosition,
-          timeOrigin: performance.timeOrigin,
+          documentToken: window.__recapProbeDocument,
           back: (() => {
             const control = document.querySelector('.view:not([hidden]) .app-back');
             if (!control) return null;
@@ -1991,7 +1992,7 @@ final class PresentationUITests: XCTestCase {
             let home = try state()
             let homeHref = try XCTUnwrap(home["href"] as? String)
             let initialPops = try XCTUnwrap(home["historyPops"] as? Int)
-            let timeOrigin = try XCTUnwrap(home["timeOrigin"] as? Double)
+            let documentToken = try XCTUnwrap(home["documentToken"] as? String)
             let homePosition = try XCTUnwrap(home["readingPosition"] as? [String: Any])
             let homeDepth = try XCTUnwrap(homePosition["depth"] as? Int)
             let homeY = try XCTUnwrap(home["scrollY"] as? Double)
@@ -2023,7 +2024,7 @@ final class PresentationUITests: XCTestCase {
                 return metrics["href"] as? String == homeHref
                     && metrics["activeView"] as? String == "view-home"
                     && metrics["historyPops"] as? Int == initialPops + 1
-                    && metrics["timeOrigin"] as? Double == timeOrigin
+                    && metrics["documentToken"] as? String == documentToken
                     && (position["depth"] as? Int) == homeDepth
                     && abs(y - homeY) <= 1 && abs(x - homeX) <= 1
             }
