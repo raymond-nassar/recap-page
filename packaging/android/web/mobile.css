@@ -33,7 +33,14 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--target-touch); }
 .app-back-label { display: none; }
 body .app-back.quiet { padding-inline: 0; min-width: var(--target-touch); min-height: var(--target-touch); }
+/* Android's own back arrow is full contrast at the 24dp icon size; the muted 16px glyph read as a
+   disabled control beside the screen title (#1178 review). */
+body .app-back.quiet { color: var(--text); }
+body .app-back > .gi { font-size: 24px; width: 1em; height: 1em; }
 .chero-primary-actions > .btn { min-height: var(--target-touch); }
+/* styles.css sizes these quiet actions to the 44px desktop target with an id selector, which outranks
+   the generic 48dp rule above. */
+body #chero-actions > .btn-link { min-height: var(--target-touch); }
 body .catalog-row > .btn { overflow-wrap: normal; }
 body .notice-act > .grow { overflow-wrap: normal; }
 /* An item after the first leads with its "/", and stretched to the 48px link that "/" put the item's

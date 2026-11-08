@@ -142,6 +142,8 @@ export const phoneBack = {
         await click(page, `.rail-header [data-view="${view}"]`);
         await page.waitForSelector(`#view-${view}:not([hidden])`);
         checked(t, `${label}: ${view} has no Back`, await page.$('.view:not([hidden]) .app-back') === null);
+        if (profile.platform !== 'desktop') checked(t, `${label}: ${view} shows no back-style breadcrumb on a phone`,
+          await page.$('.view:not([hidden]) .breadcrumb') === null);
       }
       await page.evaluate(() => scrollTo(0, 300));
       const position = await page.evaluate(() => scrollY);
@@ -192,7 +194,7 @@ export const phoneContinue = {
       if (profile.platform !== 'desktop') checked(t, `${label}: Read clears the bar with the Marvel Unlimited notice shown`,
         homeBand.noticeVisible && homeBand.readBottom <= homeBand.fold, homeBand);
       await page.$eval('#home-continue', (node) => node.scrollIntoView({ block: 'center' }));
-      const card = await page.evaluate(() => {
+      const card = await page.evaluate((target) => {
         const root = document.querySelector('#home-continue').getBoundingClientRect();
         const art = document.querySelector('#home-continue .art').getBoundingClientRect();
         const primary = document.querySelector('.chero-primary-actions');
@@ -202,11 +204,11 @@ export const phoneContinue = {
             && primary.contains(document.querySelector('#btn-chero-done')),
           quiet: ['open', 'review', 'deferred'].every((id) => {
             const node = document.querySelector(`#btn-chero-${id}`);
-            return !node.hidden && node.classList.contains('btn-link') && node.getBoundingClientRect().height >= 44;
+            return !node.hidden && node.classList.contains('btn-link') && node.getBoundingClientRect().height >= target;
           }),
           overflow: document.documentElement.scrollWidth > innerWidth,
         };
-      });
+      }, profile.platform === 'android' ? 48 : 44);
       checked(t, `${label}: centered cover, paired primary actions and three quiet actions`, card.center <= 1 && card.primary && card.quiet && !card.overflow, card);
       await capture(page, profile, theme, 'continue');
       await click(page, '#btn-chero-deferred');
@@ -252,6 +254,14 @@ export const phoneNotices = {
       checked(t, `${label}: ordinary Preview retains held actions and a semantic-free wrapper`,
         await page.$eval('#preview-secondary', (node) => node.parentElement.id === 'preview-add'
           && !['role', 'aria-label', 'tabindex'].some((attribute) => node.hasAttribute(attribute))));
+      const head = await page.evaluate(() => {
+        const title = document.querySelector('#preview-h').getBoundingClientRect();
+        const close = document.querySelector('#preview-close').getBoundingClientRect();
+        return { titleTop: title.top, closeTop: close.top, closeBottom: close.bottom, titleBottom: title.bottom,
+          inHead: document.querySelector('#preview-h').parentElement.classList.contains('preview-head') };
+      });
+      checked(t, `${label}: ordinary Preview keeps Close on the title's row`,
+        head.inHead && head.closeTop < head.titleBottom && head.closeBottom > head.titleTop, head);
       await previewControls(page, t, `${label} ordinary`);
       await capture(page, profile, theme, 'preview');
       await click(page, '#preview-close');

@@ -54,6 +54,11 @@
   line-height: max(var(--target), 1.5em);
 }
 
+:root .app-back.quiet {
+  color: var(--blue);
+  gap: var(--space-2);
+}
+
 :root .app-back > .gi {
   display: none;
 }
@@ -62,10 +67,14 @@
   display: inline;
 }
 
+/* UIKit draws its back chevron larger than the "Back" beside it, in the tint color. The overlay
+   never sets a font size, so the glyph is scaled instead. */
 :root .app-back::before {
   content: "‹";
   content: "‹" / "";
+  display: inline-block;
   line-height: 1;
+  transform: scale(1.5);
 }
 
 :root #view-data .backup-restore-label {
