@@ -1232,6 +1232,7 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /XCTAssertEqual\(unreviewedFindings,\s*0/);
   assert.match(presentationTests, /#sidebar #rail-reading/);
   assert.match(presentationTests, /#home-continue #chero-count > b\.glance-n/);
+  assert.match(presentationTests, /const breadcrumbLabel = matchMedia\('\(min-width: 881px\)'\)\.matches \? \{/);
   for (const key of [
     'sidebar-app', 'home-count-total', 'home-count-word', 'home-next-caption', 'home-lists-summary',
     'library-lists-summary', 'library-ratings-caption', 'current-breadcrumb',
@@ -1835,6 +1836,8 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /movedUnderDialog\.isInverted = true/);
   assert.match(nativeTest, /homeDepth, startDepth \+ 3/);
   assert.match(nativeTest, /start\["initialEntry"\]/);
+  assert.match(presentationTests, /const launchView = await waitFor\(\(\) => document\.querySelector\('\.view:not\(\[hidden\]\)'\)\?\.id, 'launch view'\);\s+await nextFrame\(\);\s+initialEntry = \{/);
+  assert.match(presentationTests, /view: launchView,/);
   assert.match(nativeTest, /"Search is a tab root and shows no Back"/);
   assert.match(nativeTest, /back\.frame\.midX, webView\.frame\.midX/);
   assert.match(nativeTest, /metrics\["href"\] as\? String == libraryHref/);

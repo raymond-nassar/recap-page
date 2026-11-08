@@ -132,9 +132,11 @@ final class PresentationUITests: XCTestCase {
             // The presentation seed sets an active list, so the app may start on the list rather than
             // Home. The test measures where it started instead of assuming depth 0 is Home.
             routeScript = """
+            const launchView = await waitFor(() => document.querySelector('.view:not([hidden])')?.id, 'launch view');
+            await nextFrame();
             initialEntry = {
               href: location.href,
-              view: document.querySelector('.view:not([hidden])')?.id ?? null,
+              view: launchView,
               depth: history.state?.readingPosition?.depth ?? 0,
             };
             await openRoute(routes[0]);
@@ -934,9 +936,9 @@ final class PresentationUITests: XCTestCase {
       const active = document.activeElement;
       const currentView = document.querySelector('.view:not([hidden])')?.id;
       dataAuditSynchronize?.(currentView, active);
-      const breadcrumbLabel = {
+      const breadcrumbLabel = matchMedia('(min-width: 881px)').matches ? {
         'view-library': 'Library', 'view-add': 'Search', 'view-data': 'Backup & settings',
-      }[currentView];
+      }[currentView] : null;
       const state = {
         tick: ++passiveTick,
         href: location.href,
