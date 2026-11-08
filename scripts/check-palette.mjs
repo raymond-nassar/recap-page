@@ -161,7 +161,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2413`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2418`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -224,7 +224,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2389`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2394`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -238,8 +238,8 @@ export const SURFACES = {
   },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:2035-2037`) and 19% over the raised card on hover
-  // (`src/styles.css:2053-2055`).
+  // card at rest (`src/styles.css:2040-2042`) and 19% over the raised card on hover
+  // (`src/styles.css:2058-2060`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],

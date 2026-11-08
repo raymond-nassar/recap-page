@@ -22,7 +22,7 @@
 
 import { CLOUD_BACKUP_DATABASE, CLOUD_BACKUP_LOCK } from '../storage.js';
 import { MAX_COMPLETE_BACKUP_BYTES, canonical, completeBackupSummary, parseCompleteBackup } from './completeBackup.js';
-import { personalDigest as digestPersonalBackup } from './cloudSync.js';
+import { materialDigest, personalDigest as digestPersonalBackup } from './cloudSync.js';
 
 export const CLOUD_ENVELOPE_FORMAT = 'recap-page-cloud-backup';
 export const CLOUD_ENVELOPE_VERSION = 1;
@@ -2285,11 +2285,13 @@ export class CloudBackupProtocol {
       if (!checked) refuse('A newest cloud backup could not be checked. No progress was changed.', 'invalid');
       const backup = await parseCompleteBackup(checked.text, { cryptoProvider: this.cryptoProvider });
       const digest = await digestPersonalBackup(backup, this.cryptoProvider);
+      // Computed from the backup this check has already downloaded, so it costs no extra transfer.
+      const material = await materialDigest(backup, this.cryptoProvider);
       const read = Object.values(backup.components.reader.read);
       const identity = { ...checked };
       delete identity.text;
       result.push({
-        ...identity, name: item.name, listedSize: item.size, digest, contentDigest: backup.digest, readCount: read.length,
+        ...identity, name: item.name, listedSize: item.size, digest, material, contentDigest: backup.digest, readCount: read.length,
         lastReadAt: read.reduce((latest, value) => Math.max(latest, value), 0) || null,
       });
     }

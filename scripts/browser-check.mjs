@@ -25671,6 +25671,9 @@ SCENARIOS.push({
         const components = structuredClone(current.backup.components);
         const ids = Object.keys(components.reader.issues).slice(0, count);
         components.reader.read = Object.fromEntries(ids.map((id, index) => [id, 1_700_000_000_000 + number * 100 + index]));
+        // The fixture has fewer issues than the larger counts ask for, and read times alone are not
+        // a difference in progress (#1176), so a rating unique to each generation keeps every one distinct.
+        components.reader.ratings = { ...components.reader.ratings, [Object.keys(components.reader.issues)[0]]: number / 2 };
         const backup = await createCompleteBackup(components);
         const stream = 'd'.repeat(32);
         const bytes = await protocol.pack(backup.text, { stream, generation: number, device: 'Phone' });
@@ -26079,6 +26082,139 @@ SCENARIOS.push({
         afterExit.pending === null && afterExit.kept === null && afterExit.focus === 'cloud-backup-status', JSON.stringify(afterExit));
     }
     t.check('the offer and recovery journey has no page errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-launch-dismiss',
+  title: 'the cloud progress notice follows the Home lockup, asks only about reading progress and dismisses as Keep',
+  async run(page, t) {
+    await page.setViewport({ width: 1280, height: 900 });
+    const fixture = cloudFixtureHost();
+    fixture.signedIn();
+    await installCloudFixture(page, fixture);
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page);
+    // The other device's backup is this device's progress with one change applied: `settings`
+    // changes only the theme and the read times, `progress` also marks one more comic read and `more`
+    // marks two, so it differs from the progress the dismiss kept.
+    const seedRemote = async (generation, change, consent = false, stream = 'd'.repeat(32)) => {
+      const packed = await page.evaluate(async ({ generation: number, change: kind, consent: agree, stream: from }) => {
+        const { CloudBackupProtocol, cloudBackupName } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        const { captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
+        const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+        if (agree) await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
+        const current = await captureCompleteBackup({ storage: localStorage });
+        const components = structuredClone(current.backup.components);
+        components.settings.theme = components.settings.theme === 'dark' ? 'light' : 'dark';
+        for (const id of Object.keys(components.reader.read)) components.reader.read[id] += 1000 * number;
+        if (kind !== 'settings') {
+          const unread = Object.keys(components.reader.issues).filter((id) => !(id in components.reader.read));
+          for (const id of unread.slice(0, kind === 'more' ? 2 : 1)) components.reader.read[id] = 1_700_000_000_000 + number;
+        }
+        const backup = await createCompleteBackup(components);
+        const bytes = await protocol.pack(backup.text, { stream: from, generation: number, device: 'Phone' });
+        return { name: cloudBackupName(from, number), bytes: Array.from(bytes) };
+      }, { generation, change, consent, stream });
+      const bytes = Buffer.from(packed.bytes);
+      const id = `${stream.slice(0, 1)}-${generation}`;
+      fixture.host.items.set(id, { id, name: packed.name, bytes: bytes.toString('base64'), size: bytes.length, created: Date.now() });
+    };
+    const released = () => page.waitForFunction(async () => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      const gate = await protocol.syncGate({ connection: record.consent.connection, stream: record.stream, consentId: record.consent.id });
+      return gate?.held === false;
+    }, { timeout: 20000 });
+    const quiet = () => page.evaluate(() => !document.querySelector('#ask').open
+      && document.querySelector('#cloud-sync-notice').hidden);
+
+    await seedRemote(1, 'settings', true);
+    const original = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.reload({ waitUntil: 'load' });
+    await released();
+    t.check('a backup that differs only in display settings and read times raises no offer', await quiet());
+
+    await seedRemote(2, 'progress');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    await escapeShellDialog(page, '#ask');
+    await page.waitForSelector('#cloud-sync-notice:not([hidden])');
+    const onHome = await page.evaluate(() => {
+      const notice = document.querySelector('#cloud-sync-notice');
+      const lockup = document.querySelector('#view-home .home-lockup');
+      const dismiss = document.querySelector('#btn-cloud-sync-dismiss');
+      const box = dismiss.getBoundingClientRect();
+      return {
+        home: !document.querySelector('#view-home').hidden,
+        afterHead: notice.previousElementSibling === document.querySelector('#view-home > .head'),
+        below: notice.getBoundingClientRect().top >= lockup.getBoundingClientRect().bottom,
+        name: dismiss.getAttribute('aria-label'), glyph: dismiss.textContent.trim(),
+        glyphHidden: dismiss.firstElementChild?.getAttribute('aria-hidden') === 'true',
+        width: box.width, height: box.height,
+      };
+    });
+    t.check('on Home the notice follows the lockup rather than sitting above the wordmark',
+      onHome.home && onHome.afterHead && onHome.below, JSON.stringify(onHome));
+    t.check('the dismiss control is named for its choice, shows a hidden x and keeps a full target',
+      onHome.name === "Dismiss the progress notice and keep this device's progress" && onHome.glyph === '\u00d7'
+        && onHome.glyphHidden && onHome.width >= 44 && onHome.height >= 44, JSON.stringify(onHome));
+
+    await page.evaluate(() => { location.hash = '#/library'; });
+    await page.waitForSelector('#view-library:not([hidden])', { timeout: 15000 });
+    const elsewhere = await page.evaluate(() => {
+      const notice = document.querySelector('#cloud-sync-notice');
+      const heading = document.querySelector('#view-library .head');
+      return {
+        shown: !notice.hidden, inWrap: notice.parentElement === document.querySelector('#main > .wrap'),
+        above: notice.getBoundingClientRect().bottom <= heading.getBoundingClientRect().top,
+      };
+    });
+    t.check('on other screens the notice stays at the top of the content', Object.values(elsewhere).every(Boolean),
+      JSON.stringify(elsewhere));
+    await page.evaluate(() => document.querySelector('.brand[data-view="home"]').click());
+    await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
+    t.check('returning Home places the notice after the lockup again', await page.evaluate(() => document
+      .querySelector('#cloud-sync-notice').previousElementSibling === document.querySelector('#view-home > .head')));
+
+    await page.$eval('#btn-cloud-sync-dismiss', (node) => { node.focus(); node.click(); });
+    await released();
+    await page.waitForFunction(() => document.querySelector('#cloud-sync-notice').hidden, { timeout: 20000 });
+    const after = await page.evaluate(() => ({
+      saved: localStorage.getItem('mrt.state.v2'), focus: document.activeElement?.id,
+      body: document.activeElement === document.body,
+    }));
+    t.check('the dismiss keeps this device\u2019s progress and leaves focus on the page',
+      after.saved === original && !after.body, JSON.stringify({ focus: after.focus, body: after.body }));
+    await page.reload({ waitUntil: 'load' });
+    await released();
+    t.check('after the dismiss the same backup is not offered again', await quiet());
+
+    await seedRemote(3, 'more');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    t.check('a later different reading progress from the other device offers again', true);
+
+    // Two devices now differ. Keep answers for one, and its recheck offers the other before it
+    // returns, so a single dismissal must keep this device's progress against both.
+    await seedRemote(1, 'progress', false, 'e'.repeat(32));
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    await escapeShellDialog(page, '#ask');
+    await page.waitForSelector('#cloud-sync-notice:not([hidden])');
+    await page.$eval('#btn-cloud-sync-dismiss', (node) => node.click());
+    await released();
+    await page.waitForFunction(() => document.querySelector('#cloud-sync-notice').hidden, { timeout: 20000 });
+    t.check('one dismissal with two differing devices leaves no banner and keeps this device\u2019s progress',
+      await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, original));
+    await page.reload({ waitUntil: 'load' });
+    await released();
+    t.check('after that dismissal neither device is offered again', await quiet());
+    t.check('the dismiss journey has no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
 

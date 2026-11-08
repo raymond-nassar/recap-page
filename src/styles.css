@@ -1860,6 +1860,10 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    keeps the 44px target it inherits, because being secondary is not a reason to be harder to hit. */
 .notice-dismiss { border-color: transparent; }
 .notice-dismiss:hover, .notice-dismiss:focus-visible { border-color: var(--line-2); }
+/* #1176: measured at 44x44 on a 360px phone beside a 48px Review, short of the 48dp Android target. */
+@media (max-width: 700px) {
+  #btn-cloud-sync-dismiss { min-width: var(--target-touch); min-height: var(--target-touch); }
+}
 
 progress { accent-color: var(--accent); height: 6px; }
 

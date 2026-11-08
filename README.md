@@ -173,10 +173,12 @@ each hold one kind without device settings.
 
 Where the build includes it, OneDrive backup is off until you turn it on in **Backup & settings**.
 Connecting alone uploads nothing. It sends a complete backup to your own OneDrive only after you
-turn it on. Once enabled, the app checks for different progress at launch, after returning to the
-app and after sign-in. You choose which progress to use; the app never merges backups. Before
-loading another device's progress, the app keeps a separate cloud copy when this device has data or
-settings to preserve or an earlier kept copy, as well as the existing local recovery copy.
+turn it on. Once enabled, the app checks for different reading progress, meaning comics marked read,
+lists, ratings and finished lists, at launch, after returning to the app and after sign-in. You
+choose which progress to use, or dismiss the notice to keep this device's; the app never merges
+backups. Loading another device's progress brings over its whole backup. Before loading it, the app
+keeps a separate cloud copy when this device has data or settings to preserve or an earlier kept
+copy, as well as the existing local recovery copy.
 **Go back to what was on this device before**
 offers the most recently kept cloud copy in **Backup & settings**. The app aims to keep the newest
 three recorded copies for this device and connection. Unconfirmed and earlier-connection copies may
