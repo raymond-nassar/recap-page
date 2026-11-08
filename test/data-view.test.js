@@ -1495,3 +1495,105 @@ test('a withdrawn offer shows its notice only to a reader who had the question o
   prompt.render();
   assert.equal(nodes.notice.hidden, true, 'a dismissed notice does not return for the same withdrawal');
 });
+
+function differingOffer(device, othersDiffering, epoch = 'one') {
+  return {
+    kind: 'remote-ahead', quiet: true, epoch, localContentDigest: 'local',
+    remote: { id: device, stream: device, digest: `remote-${device}`, device, createdAt: 123, readCount: 1, lastReadAt: null },
+    local: { readCount: 0, lastReadAt: null }, othersDiffering,
+  };
+}
+
+test('one dismissal keeps this device against every differing device in its check, and stops at a failure', async () => {
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode(), dismiss: stubNode() };
+  const queue = [differingOffer('tablet', 1), differingOffer('laptop', 0)];
+  const state = { model: { sync: { phase: 'offer', offer: differingOffer('phone', 2) } }, spoken: [], reports: [] };
+  const kept = [];
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => state.model, when,
+    ask: () => new Promise(() => {}), withdraw: () => {},
+    announce: (message) => state.spoken.push(message), report: (message) => state.reports.push(message),
+    onKeep: async () => {
+      kept.push(state.model.sync.offer.remote.device);
+      // Keep's own recheck publishes the next differing device before Keep returns.
+      const next = queue.shift();
+      state.model = next ? { sync: { phase: 'offer', offer: next } } : { sync: { phase: 'clear' } };
+      prompt.render();
+      return { ok: true };
+    },
+    onLoad: async () => ({ ok: true }), onFinished: () => {},
+  });
+  prompt.wire();
+  nodes.dismiss._fire();
+  await settled();
+  assert.deepEqual(kept, ['phone', 'tablet', 'laptop'], 'each pass records the same Keep for the next device');
+  assert.equal(nodes.notice.hidden, true, 'the banner is gone after one dismissal');
+  assert.deepEqual(state.spoken.filter((s) => s === "This device's progress was kept."), ["This device's progress was kept."]);
+
+  kept.length = 0;
+  state.model = { sync: { phase: 'offer', offer: differingOffer('phone', 3, 'two') } };
+  queue.push(differingOffer('tablet', 2, 'two'), differingOffer('laptop', 1, 'two'), differingOffer('watch', 0, 'other'));
+  prompt.render();
+  nodes.dismiss._fire();
+  await settled();
+  assert.deepEqual(kept, ['phone', 'tablet', 'laptop'], 'an offer from a different check is not kept by this dismissal');
+  assert.equal(nodes.notice.hidden, false, 'the newer check stays offered');
+
+  kept.length = 0;
+  queue.length = 0;
+  let calls = 0;
+  const failNodes = { notice: stubNode(), message: stubNode(), review: stubNode(), dismiss: stubNode() };
+  const failing = createCloudSyncPrompt({
+    elements: () => failNodes, getModel: () => state.model, when,
+    ask: () => new Promise(() => {}), withdraw: () => {}, announce: () => {},
+    report: (message) => state.reports.push(message),
+    onKeep: async () => {
+      calls += 1;
+      state.model = { sync: { phase: 'offer', offer: differingOffer(`next-${calls}`, 1, 'three') } };
+      return calls === 1 ? { ok: true } : { ok: false, error: 'Keep failed.' };
+    },
+    onLoad: async () => ({ ok: true }), onFinished: () => {},
+  });
+  state.model = { sync: { phase: 'offer', offer: differingOffer('phone', 5, 'three') } };
+  failing.wire();
+  failNodes.dismiss._fire();
+  await settled();
+  assert.equal(calls, 2, 'the first failure ends the dismissal');
+  assert.equal(state.reports.at(-1), 'Keep failed.');
+});
+
+test('a dismissal records Keep only for the offer the reader was shown', async () => {
+  const nodes = { notice: stubNode(), message: stubNode(), review: stubNode(), dismiss: stubNode() };
+  const withdrawnNotice = 'Saved data changed, so the earlier cloud choice was withdrawn.';
+  const state = { model: { sync: { phase: 'offer', offer: differingOffer('phone', 0) } }, answers: [] };
+  let keeps = 0;
+  const prompt = createCloudSyncPrompt({
+    elements: () => nodes, getModel: () => state.model, when,
+    ask: () => new Promise((resolve) => state.answers.push(resolve)),
+    withdraw: () => {}, announce: () => {}, report: () => {},
+    onKeep: async () => { keeps += 1; return { ok: true }; },
+    onLoad: async () => ({ ok: true }), onFinished: () => {},
+  });
+  prompt.wire();
+  nodes.review._fire();
+  await settled();
+  state.model = { sync: { phase: 'checking', notice: withdrawnNotice } };
+  prompt.render();
+  state.answers.shift()(null);
+  await settled();
+  assert.equal(nodes.message.textContent, withdrawnNotice, 'the reader is looking at the withdrawal');
+
+  state.model = { sync: { phase: 'offer', offer: differingOffer('tablet', 0, 'two') } };
+  nodes.dismiss._fire();
+  await settled();
+  assert.equal(keeps, 0, 'closing the withdrawal does not keep an offer that arrived unseen');
+  assert.equal(nodes.message.textContent, 'Your progress differs between devices.', 'the new offer is drawn instead');
+
+  state.model = { sync: { phase: 'offer', offer: differingOffer('laptop', 0, 'three') } };
+  nodes.dismiss._fire();
+  await settled();
+  assert.equal(keeps, 0, 'a different offer than the one drawn is not kept');
+  nodes.dismiss._fire();
+  await settled();
+  assert.equal(keeps, 1, 'once drawn, the dismissal keeps it');
+});

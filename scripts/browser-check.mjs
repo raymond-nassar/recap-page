@@ -26084,8 +26084,8 @@ SCENARIOS.push({
     // The other device's backup is this device's progress with one change applied: `settings`
     // changes only the theme and the read times, `progress` also marks one more comic read and `more`
     // marks two, so it differs from the progress the dismiss kept.
-    const seedRemote = async (generation, change, consent = false) => {
-      const packed = await page.evaluate(async ({ generation: number, change: kind, consent: agree }) => {
+    const seedRemote = async (generation, change, consent = false, stream = 'd'.repeat(32)) => {
+      const packed = await page.evaluate(async ({ generation: number, change: kind, consent: agree, stream: from }) => {
         const { CloudBackupProtocol, cloudBackupName } = await import('/js/lib/cloudProtocol.js');
         const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
         const { captureCompleteBackup, createCompleteBackup } = await import('/js/lib/completeBackup.js');
@@ -26100,12 +26100,11 @@ SCENARIOS.push({
           for (const id of unread.slice(0, kind === 'more' ? 2 : 1)) components.reader.read[id] = 1_700_000_000_000 + number;
         }
         const backup = await createCompleteBackup(components);
-        const stream = 'd'.repeat(32);
-        const bytes = await protocol.pack(backup.text, { stream, generation: number, device: 'Phone' });
-        return { name: cloudBackupName(stream, number), bytes: Array.from(bytes) };
-      }, { generation, change, consent });
+        const bytes = await protocol.pack(backup.text, { stream: from, generation: number, device: 'Phone' });
+        return { name: cloudBackupName(from, number), bytes: Array.from(bytes) };
+      }, { generation, change, consent, stream });
       const bytes = Buffer.from(packed.bytes);
-      const id = `phone-${generation}`;
+      const id = `${stream.slice(0, 1)}-${generation}`;
       fixture.host.items.set(id, { id, name: packed.name, bytes: bytes.toString('base64'), size: bytes.length, created: Date.now() });
     };
     const released = () => page.waitForFunction(async () => {
@@ -26184,6 +26183,22 @@ SCENARIOS.push({
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
     t.check('a later different reading progress from the other device offers again', true);
+
+    // Two devices now differ. Keep answers for one, and its recheck offers the other before it
+    // returns, so a single dismissal must keep this device's progress against both.
+    await seedRemote(1, 'progress', false, 'e'.repeat(32));
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#ask[open][data-question="sync"]', { timeout: 20000 });
+    await escapeShellDialog(page, '#ask');
+    await page.waitForSelector('#cloud-sync-notice:not([hidden])');
+    await page.$eval('#btn-cloud-sync-dismiss', (node) => node.click());
+    await released();
+    await page.waitForFunction(() => document.querySelector('#cloud-sync-notice').hidden, { timeout: 20000 });
+    t.check('one dismissal with two differing devices leaves no banner and keeps this device\u2019s progress',
+      await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, original));
+    await page.reload({ waitUntil: 'load' });
+    await released();
+    t.check('after that dismissal neither device is offered again', await quiet());
     t.check('the dismiss journey has no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });

@@ -347,6 +347,9 @@ export function createCloudSyncPrompt({
   // open; any other withdrawal rechecks quietly instead of replacing the banner with a notice.
   let withdrawnWhileOpen = false;
   let dismissing = false;
+  // What the visible dismiss control stood for when it was last drawn, so a tap meant to close a
+  // withdrawal notice cannot record Keep for an offer that arrived after the reader looked.
+  let dismissShows = null;
   const dismissControl = (notice) => elements().dismiss ?? notice?.querySelector?.('#btn-cloud-sync-dismiss') ?? null;
 
   const currentOffer = () => {
@@ -431,9 +434,11 @@ export function createCloudSyncPrompt({
       if (review) review.hidden = true;
       if (message && withdrawn) message.textContent = withdrawn;
       if (dismiss) labelDismiss(dismiss, 'Dismiss the cloud notice');
+      dismissShows = withdrawn ? { mode: 'notice', id: null } : null;
       return;
     }
     withdrawnWhileOpen = false;
+    dismissShows = { mode: 'offer', id };
     if (message) message.textContent = 'Your progress differs between devices.';
     if (review) review.hidden = false;
     if (dismiss) labelDismiss(dismiss, "Dismiss the progress notice and keep this device's progress");
@@ -458,10 +463,15 @@ export function createCloudSyncPrompt({
   // exactly the decision the question's Keep answer records, through the same call.
   async function dismissNotice() {
     const offer = currentOffer();
+    const shown = dismissShows;
     if (!offer) {
       withdrawnWhileOpen = false;
       render();
       rescueFocus();
+      return;
+    }
+    if (shown?.mode !== 'offer' || shown.id !== syncOfferId(offer)) {
+      render();
       return;
     }
     if (question || dismissing) return;
@@ -470,13 +480,30 @@ export function createCloudSyncPrompt({
     pendingQuestions += 1;
     try {
       onQuestionChange(true);
+      // Keep answers for one device. With others differing, its own recheck publishes the next
+      // device's offer in the same epoch before Keep returns, and a single pass left the banner up
+      // with unchanged text, so the reader's one dismissal keeps this device's progress against each
+      // of them, bounded by the devices the offer counted and stopping at the first failure.
+      const passes = offer.othersDiffering + 1;
+      let kept = false;
       try {
-        const result = await onKeep();
-        if (!result?.ok) report(result?.error ?? 'The cloud choice could not be completed. Check again.');
-        else announce("This device's progress was kept.");
+        for (let pass = 0; pass < passes; pass += 1) {
+          if (pass > 0) {
+            const next = currentOffer();
+            if (!next || next.epoch !== offer.epoch) break;
+            attempted = syncOfferId(next);
+          }
+          const result = await onKeep();
+          if (!result?.ok) {
+            report(result?.error ?? 'The cloud choice could not be completed. Check again.');
+            break;
+          }
+          kept = true;
+        }
       } catch (error) {
         report(error?.message ?? 'The cloud choice could not be completed. Check again.');
       }
+      if (kept) announce("This device's progress was kept.");
       render();
       rescueFocus();
     } finally {

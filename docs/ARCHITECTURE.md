@@ -766,8 +766,8 @@ hold; no worker waits for the person's answer while holding its upload lock. Whe
 failed or inconclusive checks leave uploads paused until a later check succeeds or the person confirms
 the warned override.
 A late check is quiet, and closing the question leaves the offer available. The banner's dismiss
-control records the same choice as Keep, and a withdrawn offer is announced only to someone who had
-its question open. A choice is bound to the
+control records the same choice as Keep for the offer it shows, once per device that check found
+different, and a withdrawn offer is announced only to someone who had its question open. A choice is bound to the
 connection, consent, election, local content and selected remote identity and bytes, and is rechecked
 before it is applied. While a choice waits, the watcher lists identities and sizes without downloading
 unchanged files, backing off from five seconds to five minutes. Since a same-size in-place change is
