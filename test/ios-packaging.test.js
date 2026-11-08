@@ -11,7 +11,7 @@ import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
   prepareIos, readIosCloudClient, readIosFeatures, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
-import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
+import { createIosBridge, validateIosExport, watchModalDialogs } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
 import { CSP } from '../server.mjs';
 import { rootTokens } from '../scripts/check-spacing.mjs';
@@ -1082,7 +1082,9 @@ test('the iOS overlay names only shared design tokens, never a raw color', () =>
   const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
   assert.doesNotMatch(css, /\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(\s*(?!var\()/i);
-  const shared = rootTokens(read('src/styles.css'));
+  // Color tokens are defined per theme rather than on :root, and are as shared as the rest.
+  const shared = new Set([...rootTokens(read('src/styles.css')).keys(),
+    ...[...read('src/styles.css').matchAll(/(--[-\w]+)\s*:/g)].map((match) => match[1])]);
   for (const [, name] of css.matchAll(/var\(\s*(--[-\w]+)/g)) {
     if (name !== '--ios-text-scale') assert.ok(shared.has(name), `${name} is a shared token`);
   }
@@ -1830,10 +1832,47 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /metrics\["timeOrigin"\] as\? Double == timeOrigin/);
   assert.match(nativeTest, /abs\(y - homeY\) <= 1 && abs\(x - homeX\) <= 1/);
   assert.match(nativeTest, /rootChanged\.isInverted = true/);
-  assert.match(nativeTest, /homeDepth, 2/);
+  assert.match(nativeTest, /movedUnderDialog\.isInverted = true/);
+  assert.match(nativeTest, /homeDepth, startDepth \+ 3/);
+  assert.match(nativeTest, /start\["initialEntry"\]/);
+  assert.match(nativeTest, /"Search is a tab root and shows no Back"/);
+  assert.match(nativeTest, /back\.frame\.midX, webView\.frame\.midX/);
   assert.match(nativeTest, /metrics\["href"\] as\? String == libraryHref/);
   assert.match(nativeTest, /backStyle\["iconDisplay"\] as\? String, "none"/);
   assert.doesNotMatch(nativeTest, /evaluateJavaScript|history\.back\(|location\.hash\s*=/);
+});
+
+test('iOS turns the edge-swipe back gesture off while any dialog is open', async () => {
+  const controller = appSource('WebViewController');
+  const handler = appSource('IosBridgeHandler');
+  assert.match(controller, /bridge\.onBackGestureChange = \{ \[weak webView\] enabled in\s+webView\?\.allowsBackForwardNavigationGestures = enabled/);
+  assert.match(handler, /case "back-gesture":[\s\S]*?guard let enabled = body\["enabled"\] as\? Bool[\s\S]*?onBackGestureChange\?\(enabled\)/);
+  assert.match(read('packaging/ios/web/app.js'), /watchModalDialogs\(\{ document, Observer: MutationObserver/);
+
+  let open = null;
+  let observed = null;
+  let callback = null;
+  const posts = [];
+  const document = {
+    documentElement: {},
+    querySelector: (selector) => (selector === 'dialog[open]' ? open : null),
+  };
+  class Observer {
+    constructor(fn) { callback = fn; }
+    observe(target, options) { observed = { target, options }; }
+    disconnect() {}
+  }
+  watchModalDialogs({ document, Observer, post: (message) => { posts.push(message); return Promise.resolve(); } });
+  assert.equal(observed.target, document.documentElement);
+  assert.deepEqual(observed.options, { subtree: true, attributes: true, attributeFilter: ['open'] });
+  assert.deepEqual(posts, [{ v: 1, kind: 'back-gesture', enabled: true }]);
+  open = {};
+  callback();
+  callback();
+  open = null;
+  callback();
+  assert.deepEqual(posts.map(({ enabled }) => enabled), [true, false, true]);
+  assert.doesNotThrow(() => watchModalDialogs({ document, Observer, post: () => { throw new Error('gone'); } }));
 });
 
 test('iOS web controls expose one accessible target without changing visible layout', () => {
