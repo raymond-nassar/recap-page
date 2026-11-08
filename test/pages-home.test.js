@@ -1367,8 +1367,16 @@ test('release dates come from the local clone and a clone without tags is refuse
 });
 
 test('the 4.5.0 progress offer does not advertise Google Drive backup', () => {
-  const feature = 'When OneDrive backup is on, Recap Page can offer progress from another device when it differs from yours. Choose which progress to use; the app never merges backups.';
+  const feature = 'When OneDrive backup is on, Recap Page can offer progress from another device when your reading progress differs: comics marked read, your lists, ratings and finished lists. Choose which progress to use, or dismiss the notice to keep yours; the app never merges backups.';
   const label = 'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud keeps its existing backup and manual restore.';
+  const page = releasesPage(changelog, new Map([['4.5.0', '2030-01-02']])).html;
+  const item = releaseItems('4.5.0', page).find((entry) => entry.includes(escapeHtml(feature)));
+  assert.equal(item, `<strong>${escapeHtml(label)}</strong> ${escapeHtml(feature)}`);
+});
+
+test('the 4.5.0 navigation and layout summary identifies its phone-width scope', () => {
+  const feature = 'Back now sits at the top left on secondary screens. On phones held upright, Continue reading centers the comic above Read and Done. Notices, Search and large-text dialogs stay readable and reachable without widening the page.';
+  const label = 'Every platform. Continue reading layout: phone-width screens.';
   const page = releasesPage(changelog, new Map([['4.5.0', '2030-01-02']])).html;
   const item = releaseItems('4.5.0', page).find((entry) => entry.includes(escapeHtml(feature)));
   assert.equal(item, `<strong>${escapeHtml(label)}</strong> ${escapeHtml(feature)}`);
