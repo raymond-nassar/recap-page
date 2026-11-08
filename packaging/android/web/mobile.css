@@ -249,7 +249,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   #hero-by, #hero-desc { margin-bottom: var(--space-4); }
   #hero-desc, #hero-facts, #hero .cta { clear: both; }
   #hero-facts { gap: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
-  .hero .cta > .btn, .chero .cta > .btn { width: 100%; justify-content: center; }
+  .hero .cta > .btn { width: 100%; justify-content: center; }
+  .chero-primary-actions > .btn { flex: 1 1 6rem; }
   .facts { gap: var(--space-6); }
   .headright { flex-wrap: wrap; }
   .sec-h { flex-wrap: wrap; }
