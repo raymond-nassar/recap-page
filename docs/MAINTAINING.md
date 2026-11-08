@@ -207,9 +207,9 @@ Unresolved completion stops the ordinary suite.
 For a hosted browser-only check, dispatch **Windows App Certification Kit** at the exact
 committed branch with `diagnostic_target=ordinary-browser`, `diagnostic_only=true`,
 `native_only=false` and `release_preparation=false`. This runs the ordinary suite on Windows
-without native proof, WACK or packaging. Its `qualified=false` record binds the source and
-workflow commit to the installed driver version and locked driver digest. It uploads no artifacts
-and cannot satisfy release or production acceptance. Invalid flag combinations fail before setup.
+without native proof, WACK or packaging, with full history and tags for the project-home build.
+Its `qualified=false` record binds the source and workflow commit to the installed driver version
+and locked driver digest. It uploads no artifacts and cannot qualify a release. Invalid flags fail before setup.
 
 For the bounded context/export comparison, use `diagnostic_target=ordinary-browser-context-isolation`
 with the same diagnostic-only flags. It runs two fresh Edge processes: blank context plus blank
