@@ -1216,7 +1216,13 @@ final class PresentationUITests: XCTestCase {
             let origin = app.coordinate(withNormalizedOffset: .zero)
             let start = origin.withOffset(CGVector(dx: usableFrame.midX, dy: startY))
             let end = origin.withOffset(CGVector(dx: usableFrame.midX, dy: endY))
-            start.press(forDuration: 0.1, thenDragTo: end)
+            // The SE's default drag jumped a near-visible text frame from y 294 to -25.
+            if abs(displacement) <= usableFrame.height / 2 {
+                start.press(forDuration: 0.1, thenDragTo: end,
+                            withVelocity: .slow, thenHoldForDuration: 0.2)
+            } else {
+                start.press(forDuration: 0.1, thenDragTo: end)
+            }
         }
     }
 

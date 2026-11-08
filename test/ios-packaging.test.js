@@ -1384,6 +1384,13 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   assert.doesNotMatch(guard, /revealNativeTarget|revealPassiveAuditTarget|thenDragTo|swipe/);
 });
 
+test('T03 reveals nearby passive text without an overshooting native drag', () => {
+  const reveal = presentationTests.slice(presentationTests.indexOf('private func revealPassiveAuditTarget('),
+    presentationTests.indexOf('func testPassiveRevealFrameReservesTheCompleteMeasuredBar()'));
+  assert.match(reveal, /element\.isHittable && usableFrame\.contains\(targetFrame\)/);
+  assert.match(reveal, /if abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
+});
+
 test('first-run tile uses a precise native reveal without changing shared helper defaults', () => {
   const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
     presentationTests.indexOf('final class PresentationUITests'));
