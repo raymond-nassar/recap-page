@@ -20072,6 +20072,7 @@ SCENARIOS.push({
     'reduced-navigation', 'reduced-back', 'rapid-navigation',
   ],
   async run(page, t) {
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);
     await t.step('import-long-order', () => importLongOrder(page));
     const seeded = await page.evaluate(() => {
       const state = JSON.parse(localStorage.getItem('mrt.state.v2') || '{}');
@@ -26208,8 +26209,27 @@ SCENARIOS.push({
       await preparePage(recovery, page.__origin, null);
       await installCloudFixture(recovery, fixture);
       await open(recovery, '/?catalog=browser-check#/data');
-      await recovery.waitForFunction(gateIsClear, { timeout: 20000 });
-      await recovery.waitForFunction(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null, { timeout: 20000 });
+      try {
+        await recovery.waitForFunction(gateIsClear, { timeout: 20000 });
+        await recovery.waitForFunction(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null, { timeout: 20000 });
+      } catch (err) {
+        const observed = await settleWithin(recovery.evaluate(async () => ({
+          visibility: document.visibilityState,
+          focus: document.hasFocus(),
+          status: document.querySelector('#cloud-backup-status')?.textContent ?? null,
+          pending: localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null,
+          locks: await navigator.locks.query().then((query) => ({
+            held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
+            pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
+          })),
+          frame: await Promise.race([
+            new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
+            new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
+          ]),
+        })), 5000);
+        console.log(`CLOUD-HOLD-RECOVERY ${JSON.stringify(observed)} ${completeRestoreErrorText(err)}`);
+        throw err;
+      }
       t.check('a later successful check clears the abandoned marker', true);
     } finally {
       await recovery.close();
