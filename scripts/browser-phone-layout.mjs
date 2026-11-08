@@ -59,9 +59,11 @@ async function setup(page, profile, theme) {
   }, initial, theme, catalog);
   await page.goto(`${page.__origin}/#/home`, { waitUntil: 'load' });
   await page.waitForSelector('#home-continue:not([hidden])');
-  if (profile.platform === 'ios') {
+  const needsOverlay = profile.platform === 'ios' || (profile.platform === 'android'
+    && !await page.evaluate(() => document.documentElement.classList.contains('android-mobile-ui')));
+  if (needsOverlay) {
     await page.addStyleTag({ content: mobileCss });
-    await page.addStyleTag({ content: iosCss });
+    if (profile.platform === 'ios') await page.addStyleTag({ content: iosCss });
     await page.evaluate(`${mobileUiScript.replace('export function', 'function')}\nwireMobileUi({ arrivalHeading: () => document.querySelector('.view:not([hidden]) h1') });`);
   }
   await settle(page);
@@ -394,7 +396,7 @@ export const phoneNotices = {
       await capture(page, profile, theme, 'preview-large-text-scrolled');
       await click(page, '#preview-close');
       await page.waitForSelector('#preview:not([open])');
-    }, selected);
+    }, selected ?? (process.argv.includes('--prove') ? [...profiles, androidPhoneProfiles[0]] : profiles));
   },
 };
 
@@ -412,7 +414,11 @@ export const phoneLayoutMutations = [
       style.textContent = 'body .notice-act .grow { flex: 1; } '
         + 'html body #home-continue #done-result .grow { max-height: none; } '
         + 'html body #series-progress, html body #series-progress .lgroup { grid-template-columns: 1fr; } '
-        + 'html body .guide-copy, html body .keys td { overflow-wrap: normal; }';
+        + 'html body .guide-copy, html body .keys td { overflow-wrap: normal; } '
+        + 'html body .catalog-row > .btn { flex: 1 1 0; overflow-wrap: anywhere; } '
+        + 'html body .home-updates-head, html body .android-sheet-header { flex-wrap: nowrap; } '
+        + 'html body .home-updates-head > button, html body .android-sheet-header > button { flex-shrink: 1; overflow-wrap: anywhere; } '
+        + 'html body input[type="number"] { min-height: 44px; height: 44px; }';
       document.head.append(style);
     }),
   },
@@ -422,6 +428,7 @@ export const phoneLayoutMutations = [
       const style = document.createElement('style');
       style.textContent = 'body #home-continue .art { margin-inline: 0; justify-self: start; }';
       document.head.append(style);
+      for (const action of document.querySelectorAll('#chero-actions > .btn-link')) action.className = 'btn btn-g';
     }),
   },
 ];
