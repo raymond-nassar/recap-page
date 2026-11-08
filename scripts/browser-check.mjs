@@ -18604,6 +18604,16 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     if (rewritten === source) throw new Error(`Mutation ${mutation.id} did not change ${path}`);
     rewrites.set(`${origin}${path}`, rewritten);
   }
+  if (scenarioId === 'cloud-launch-hold-tab-close') {
+    // Install observers before either object is created, so the first check and any restart are recorded.
+    for (const [path, constructor, kind] of [
+      ['/js/lib/cloudCoordinator.js', 'CloudBackupCoordinator', 'coordinator'],
+      ['/js/lib/cloudLaunchSync.js', 'CloudLaunchSync', 'launch'],
+    ]) {
+      const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
+      rewrites.set(`${origin}${path}`, `${source}\nglobalThis.__mrtCloudTraceInstall(${constructor}, '${kind}');\n`);
+    }
+  }
   await page.setRequestInterception(true);
   page.on('request', async (request) => {
     if (scenarioId === 'reader-launcher-feedback') {
@@ -26116,126 +26126,297 @@ SCENARIOS.push({
   },
 });
 
+async function reportCloudHoldTrace(page, fixture, evidence) {
+  const sample = await settleWithin(page.evaluate(() => ({
+    events: window.__cloudTrace?.events ?? null,
+    installed: window.__cloudTrace?.installed ?? [],
+    creates: window.__cloudCreates ?? null,
+  })), 5000);
+  const announce = evidence.announces.at(-1) ?? null;
+  const origin = announce ?? evidence.startedAt;
+  const relative = (at) => typeof at === 'number' ? at - origin : null;
+  const events = Array.isArray(sample?.events) ? sample.events : [];
+  const create = events.find(([, name, count]) => name === 'create' && count > evidence.before?.creates);
+  console.log(`CLOUD-HOLD-TRACE ${JSON.stringify({
+    result: evidence.failure ? failureCode(evidence.failure) : 'completed',
+    reference: announce === null ? 'scenario-start' : 'recovery-announce',
+    announces: evidence.announces.map(relative),
+    recoveryChecked: relative(evidence.recoveryCheckedAt),
+    recoveryClosed: relative(evidence.recoveryClosedAt),
+    waitStarted: relative(evidence.waitStartedAt),
+    waitEnded: relative(evidence.waitEndedAt),
+    createsBefore: evidence.before?.creates ?? null,
+    createsObserved: sample?.creates ?? null,
+    createAfterAnnounce: announce !== null && create ? create[0] - announce : null,
+    fixtureItemsBefore: evidence.before?.fixtureItems ?? null,
+    fixtureItemsObserved: fixture.host.items.size,
+    installed: sample?.installed ?? [],
+    unavailable: sample?.error ?? null,
+    events: events.map(([at, name, detail]) => [relative(at), name, detail]),
+  })}`);
+  if (evidence.failure?.name === 'TimeoutError') {
+    const detail = await settleWithin(page.evaluate(async () => {
+      const trace = window.__cloudTrace;
+      const launch = trace?.launch;
+      const coordinator = trace?.coordinator;
+      const sampledAt = Date.now();
+      const observed = {
+        sampledAt,
+        creates: window.__cloudCreates ?? null,
+        nativeVisibility: trace?.nativeVisibility?.call(document) ?? null,
+        reportedVisibility: document.visibilityState,
+        hidden: document.hidden,
+        focus: document.hasFocus(),
+        pending: localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null,
+        launch: launch ? {
+          active: launch.active, phase: launch.state.phase, code: launch.state.code ?? null,
+          leader: launch.leader, retryCount: launch.retryCount, running: Boolean(launch.running),
+          probe: Boolean(launch.probe),
+        } : null,
+        coordinator: coordinator ? {
+          active: coordinator.active, dirty: coordinator.dirty, waiting: coordinator.waiting,
+          hold: coordinator.syncHold, halted: coordinator.halted, code: coordinator.code,
+          flushing: coordinator.flushing, running: Boolean(coordinator.running), timer: coordinator.timer !== null,
+          retryAt: coordinator.retryAt, recheckAt: coordinator.recheckAt, lastUploadAt: coordinator.lastUploadAt,
+        } : null,
+        locks: await navigator.locks.query().then((query) => ({
+          held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
+          pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
+        })),
+      };
+      observed.frame = await Promise.race([
+        new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
+        new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
+      ]);
+      observed.afterFrameProbeAt = Date.now();
+      observed.afterFrameProbeCreates = window.__cloudCreates ?? null;
+      return observed;
+    }), 5000);
+    console.log(`CLOUD-HOLD-TIMEOUT ${JSON.stringify(detail)}`);
+  }
+  if (!evidence.failure && (sample?.error || !Array.isArray(sample?.events)
+    || !['coordinator', 'launch'].every((kind) => sample.installed.includes(kind))
+    || events.some(([, name]) => name === 'trace-error'))) {
+    throw new Error('The cloud hold trace did not produce complete evidence.');
+  }
+}
+
 SCENARIOS.push({
   id: 'cloud-launch-hold-tab-close',
   title: 'a failed cloud hold survives closing its tab',
   async run(page, t) {
     const fixture = cloudFixtureHost();
     fixture.signedIn();
-    await installCloudFixture(page, fixture);
-    await page.evaluateOnNewDocument(() => {
-      window.__cloudWorkerAttempts = 0;
-      window.__cloudCreates = 0;
-      const request = navigator.locks.request.bind(navigator.locks);
-      navigator.locks.request = (name, ...args) => {
-        if (name === 'mrt.cloud-backup.worker.v1') window.__cloudWorkerAttempts += 1;
-        return request(name, ...args);
-      };
-      const fetch = window.fetch;
-      window.fetch = (...args) => {
-        const url = new URL(typeof args[0] === 'string' ? args[0] : args[0].url, location.href);
-        if (url.pathname === '/__recap_cloud__/v1/create') window.__cloudCreates += 1;
-        return fetch(...args);
-      };
-    });
-    await seedFixtureState(page);
-    await page.evaluate(async () => {
-      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
-      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
-      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
-      await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
-    });
-    await page.reload({ waitUntil: 'load' });
-    const gateIsClear = async () => {
-      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
-      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
-      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
-      const record = await protocol.record();
-      return (await protocol.syncGate({
-        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
-      }))?.held === false;
-    };
-    await page.waitForFunction(gateIsClear, { timeout: 20000 });
-    t.check('the already-running tab starts with a clear, completed check', await page.evaluate(gateIsClear));
-
-    const context = page.browserContext();
-    const faulty = await context.newPage();
+    const evidence = { startedAt: Date.now(), announces: [], before: null, failure: null };
     try {
-      faulty.__denyExternal = true;
-      await preparePage(faulty, page.__origin, null);
-      await installCloudFixture(faulty, fixture);
-      await faulty.evaluateOnNewDocument(() => {
-        window.__failedGateWrites = 0;
-        const put = IDBObjectStore.prototype.put;
-        IDBObjectStore.prototype.put = function (value, key) {
-          if (this.transaction.db.name === 'mrt-cloud-backup-v1' && key === 'sync-gate' && value?.held === true) {
-            window.__failedGateWrites += 1;
-            this.transaction.abort();
-            return undefined;
+      await installCloudFixture(page, fixture);
+      await page.evaluateOnNewDocument(() => {
+        window.__cloudWorkerAttempts = 0;
+        window.__cloudCreates = 0;
+        // Both tabs use the same wall clock; performance.now() has a different origin in each document.
+        const trace = {
+          events: [], installed: [], sequence: 0, coordinator: null, launch: null,
+          nativeVisibility: Object.getOwnPropertyDescriptor(Document.prototype, 'visibilityState')?.get,
+        };
+        window.__cloudTrace = trace;
+        const record = (name, detail = null) => trace.events.push([Date.now(), name, detail]);
+        window.__mrtCloudTraceInstall = (Type, kind) => {
+          if (trace.installed.includes(kind)) throw new Error(`Duplicate cloud trace: ${kind}`);
+          trace.installed.push(kind);
+          const wrap = (name, before, after = null) => {
+            const original = Type.prototype[name];
+            if (typeof original !== 'function') throw new Error(`Missing cloud trace method: ${kind}.${name}`);
+            Type.prototype[name] = function (...args) {
+              trace[kind] = this;
+              const id = after ? ++trace.sequence : null;
+              before(this, args, id);
+              const result = original.apply(this, args);
+              if (after) {
+                if (!result || typeof result.then !== 'function') record('trace-error', `${kind}.${name} did not return a promise`);
+                else void result.then(() => after(this, null, id), (error) => after(this, error, id));
+              }
+              return result;
+            };
+          };
+          if (kind === 'coordinator') {
+            wrap('start', (s) => record('coordinator-start', [s.active, s.epoch]));
+            wrap('stop', (s) => record('coordinator-stop', [s.active, s.epoch]));
+            wrap('holdSync', (s, [code]) => record('hold', code));
+            wrap('releaseSync', (s) => record('release', s.waiting));
+            wrap('wait', (s, [code]) => record('wait', [code, s.flushing]));
+            wrap('failed', (s, [error]) => record('backup-failed', error?.code ?? null));
+            wrap('work', (s, args, id) => record('work-start', [id, s.waiting, s.syncHold, s.flushing]),
+              (s, error, id) => record('work-end', [
+                id, error?.code ?? s.waiting ?? s.halted ?? s.code ?? (s.dirty ? 'pending' : 'clean'),
+                s.syncHold, s.flushing, s.lastUploadAt || null,
+              ]));
+          } else if (kind === 'launch') {
+            wrap('start', () => record('launch-start'));
+            wrap('stop', (s) => record('launch-stop', [s.active, s.state.phase]));
+            wrap('publish', (s, [phase, , , code]) => record('phase', [phase, code]));
+            wrap('scheduleRetry', (s) => record('retry', s.retryCount));
+            wrap('follow', (s) => record('follow', [s.leader, s.state.phase]));
+            wrap('checkNow', (s, args, id) => record('recheck-start', [id, s.leader, s.retryCount]),
+              (s, error, id) => record('recheck-end', [id, s.state.phase, error?.code ?? s.state.code ?? null]));
+            wrap('checkLeader', (s, args, id) => record('leader-start', [id, s.attempt, s.retryCount, Boolean(s.running)]),
+              (s, error, id) => record('leader-end', [id, s.state.phase, error?.code ?? s.state.code ?? null]));
+          } else {
+            throw new Error(`Unknown cloud trace: ${kind}`);
           }
-          return put.call(this, value, key);
+        };
+        const request = navigator.locks.request.bind(navigator.locks);
+        navigator.locks.request = (name, ...args) => {
+          if (name === 'mrt.cloud-backup.worker.v1') window.__cloudWorkerAttempts += 1;
+          return request(name, ...args);
+        };
+        window.addEventListener('storage', (event) => {
+          if (event.key === 'mrt.cloud-backup.sync-pending.v1') record('marker', event.newValue === null ? 'removed' : 'set');
+        });
+        const fetch = window.fetch;
+        window.fetch = (...args) => {
+          const url = new URL(typeof args[0] === 'string' ? args[0] : args[0].url, location.href);
+          let create = null;
+          if (url.pathname === '/__recap_cloud__/v1/create') {
+            window.__cloudCreates += 1;
+            create = window.__cloudCreates;
+            record('create', create);
+          }
+          const response = fetch(...args);
+          if (create !== null) {
+            void response.then((value) => record('create-response', [create, value.status]),
+              (error) => record('create-error', [create, error?.name ?? null]));
+          }
+          return response;
         };
       });
-      await open(faulty, '/?catalog=browser-check#/data');
-      await faulty.waitForFunction(() => window.__failedGateWrites > 0
-        && document.querySelector('#cloud-backup-status').textContent.includes('could not be confirmed'), { timeout: 20000 });
-      t.check('the failed tab warns that its hold was not confirmed',
-        await faulty.evaluate(() => document.querySelector('#cloud-backup-status').textContent.includes('Turn automatic backup off')));
-      t.check('the independent pending marker survives the refused IndexedDB hold',
-        await page.evaluate(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null)
-          && await page.evaluate(gateIsClear));
-    } finally {
-      await faulty.close();
-    }
-
-    const before = await page.evaluate(() => ({ attempts: window.__cloudWorkerAttempts, creates: window.__cloudCreates }));
-    await page.evaluate(() => {
-      const key = 'mrt.state.v2';
-      const saved = JSON.parse(localStorage.getItem(key));
-      saved.read[Object.keys(saved.issues)[0]] = 1_700_000_000_000;
-      localStorage.setItem(key, JSON.stringify(saved));
-      window.dispatchEvent(new StorageEvent('storage', { key }));
-      Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
-      window.dispatchEvent(new Event('visibilitychange'));
-    });
-    await page.waitForFunction((attempts) => window.__cloudWorkerAttempts > attempts, { timeout: 15000 }, before.attempts);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    t.check('the older tab attempts work but does not upload after the failed tab closes',
-      await page.evaluate((creates) => window.__cloudCreates === creates, before.creates));
-
-    const recovery = await context.newPage();
-    try {
-      recovery.__denyExternal = true;
-      await preparePage(recovery, page.__origin, null);
-      await installCloudFixture(recovery, fixture);
-      await open(recovery, '/?catalog=browser-check#/data');
-      try {
-        await recovery.waitForFunction(gateIsClear, { timeout: 20000 });
-        await recovery.waitForFunction(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null, { timeout: 20000 });
-      } catch (err) {
-        const observed = await settleWithin(recovery.evaluate(async () => ({
-          visibility: document.visibilityState,
-          focus: document.hasFocus(),
-          status: document.querySelector('#cloud-backup-status')?.textContent ?? null,
-          pending: localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null,
-          locks: await navigator.locks.query().then((query) => ({
-            held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
-            pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
-          })),
-          frame: await Promise.race([
-            new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
-            new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
-          ]),
-        })), 5000);
-        console.log(`CLOUD-HOLD-RECOVERY ${JSON.stringify(observed)} ${completeRestoreErrorText(err)}`);
-        throw err;
+      await seedFixtureState(page);
+      await page.evaluate(async () => {
+        const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+        await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
+      });
+      await page.reload({ waitUntil: 'load' });
+      const gateIsClear = async () => {
+        const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+        const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+        const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+        const record = await protocol.record();
+        return (await protocol.syncGate({
+          connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+        }))?.held === false;
+      };
+      await page.waitForFunction(gateIsClear, { timeout: 20000 });
+      if (!await page.evaluate(() => ['coordinator', 'launch'].every((kind) => window.__cloudTrace?.installed.includes(kind)))) {
+        throw new Error('The cloud hold trace did not install.');
       }
-      t.check('a later successful check clears the abandoned marker', true);
+      t.check('the already-running tab starts with a clear, completed check', await page.evaluate(gateIsClear));
+
+      const context = page.browserContext();
+      const faulty = await context.newPage();
+      try {
+        faulty.__denyExternal = true;
+        await preparePage(faulty, page.__origin, null);
+        await installCloudFixture(faulty, fixture);
+        await faulty.evaluateOnNewDocument(() => {
+          window.__failedGateWrites = 0;
+          const put = IDBObjectStore.prototype.put;
+          IDBObjectStore.prototype.put = function (value, key) {
+            if (this.transaction.db.name === 'mrt-cloud-backup-v1' && key === 'sync-gate' && value?.held === true) {
+              window.__failedGateWrites += 1;
+              this.transaction.abort();
+              return undefined;
+            }
+            return put.call(this, value, key);
+          };
+        });
+        await open(faulty, '/?catalog=browser-check#/data');
+        await faulty.waitForFunction(() => window.__failedGateWrites > 0
+          && document.querySelector('#cloud-backup-status').textContent.includes('could not be confirmed'), { timeout: 20000 });
+        t.check('the failed tab warns that its hold was not confirmed',
+          await faulty.evaluate(() => document.querySelector('#cloud-backup-status').textContent.includes('Turn automatic backup off')));
+        t.check('the independent pending marker survives the refused IndexedDB hold',
+          await page.evaluate(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null)
+            && await page.evaluate(gateIsClear));
+      } finally {
+        await faulty.close();
+      }
+
+      const before = await page.evaluate(() => ({ attempts: window.__cloudWorkerAttempts, creates: window.__cloudCreates }));
+      before.fixtureItems = fixture.host.items.size;
+      evidence.before = before;
+      await page.evaluate(() => {
+        const key = 'mrt.state.v2';
+        const saved = JSON.parse(localStorage.getItem(key));
+        saved.read[Object.keys(saved.issues)[0]] = 1_700_000_000_000;
+        localStorage.setItem(key, JSON.stringify(saved));
+        window.dispatchEvent(new StorageEvent('storage', { key }));
+        Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
+        window.dispatchEvent(new Event('visibilitychange'));
+      });
+      await page.waitForFunction((attempts) => window.__cloudWorkerAttempts > attempts, { timeout: 15000 }, before.attempts);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      t.check('the older tab attempts work but does not upload after the failed tab closes',
+        await page.evaluate((creates) => window.__cloudCreates === creates, before.creates));
+
+      const recovery = await context.newPage();
+      recovery.on('console', (message) => {
+        const match = /^CLOUD-HOLD-ANNOUNCE (\d+)$/.exec(message.text());
+        if (match) evidence.announces.push(Number(match[1]));
+      });
+      try {
+        recovery.__denyExternal = true;
+        await preparePage(recovery, page.__origin, null);
+        await installCloudFixture(recovery, fixture);
+        await recovery.evaluateOnNewDocument(() => {
+          const post = BroadcastChannel.prototype.postMessage;
+          BroadcastChannel.prototype.postMessage = function (...args) {
+            const result = post.apply(this, args);
+            if (this.name === 'mrt.cloud-backup.changes.v1') console.debug(`CLOUD-HOLD-ANNOUNCE ${Date.now()}`);
+            return result;
+          };
+        });
+        await open(recovery, '/?catalog=browser-check#/data');
+        try {
+          await recovery.waitForFunction(gateIsClear, { timeout: 20000 });
+          await recovery.waitForFunction(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null, { timeout: 20000 });
+        } catch (err) {
+          const observed = await settleWithin(recovery.evaluate(async () => ({
+            visibility: document.visibilityState,
+            focus: document.hasFocus(),
+            status: document.querySelector('#cloud-backup-status')?.textContent ?? null,
+            pending: localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null,
+            locks: await navigator.locks.query().then((query) => ({
+              held: query.held.map((lock) => `${lock.name}:${lock.mode}`),
+              pending: query.pending.map((lock) => `${lock.name}:${lock.mode}`),
+            })),
+            frame: await Promise.race([
+              new Promise((resolve) => requestAnimationFrame(() => resolve(true))),
+              new Promise((resolve) => setTimeout(() => resolve(false), 1000)),
+            ]),
+          })), 5000);
+          console.log(`CLOUD-HOLD-RECOVERY ${JSON.stringify(observed)} ${completeRestoreErrorText(err)}`);
+          throw err;
+        }
+        evidence.recoveryCheckedAt = Date.now();
+        t.check('a later successful check clears the abandoned marker', true);
+      } finally {
+        await recovery.close();
+        evidence.recoveryClosedAt = Date.now();
+      }
+      evidence.waitStartedAt = Date.now();
+      try {
+        await page.waitForFunction((creates) => window.__cloudCreates > creates, { timeout: 20000 }, before.creates);
+      } finally {
+        evidence.waitEndedAt = Date.now();
+      }
+      t.check('the older tab then uploads the saved change', true);
+    } catch (error) {
+      evidence.failure = error;
+      throw error;
     } finally {
-      await recovery.close();
+      await reportCloudHoldTrace(page, fixture, evidence);
     }
-    await page.waitForFunction((creates) => window.__cloudCreates > creates, { timeout: 20000 }, before.creates);
-    t.check('the older tab then uploads the saved change', true);
   },
 });
 
