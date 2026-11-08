@@ -1840,7 +1840,7 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /metrics\["timeOrigin"\] as\? Double == timeOrigin/);
   assert.match(nativeTest, /abs\(y - homeY\) <= 1 && abs\(x - homeX\) <= 1/);
   assert.match(nativeTest, /rootChanged\.isInverted = true/);
-  assert.match(nativeTest, /movedUnderDialog\.isInverted = true/);
+  assert.match(nativeTest, /XCTAssertTrue\(close\.isHittable, "the More sheet's Close remains reachable after the swipe"\)/);
   assert.match(nativeTest, /homeDepth, startDepth \+ 3/);
   assert.match(nativeTest, /start\["initialEntry"\]/);
   assert.match(presentationTests, /const launchView = await waitFor\(\(\) => document\.querySelector\('\.view:not\(\[hidden\]\)'\)\?\.id, 'launch view'\);\s+await nextFrame\(\);\s+initialEntry = \{/);
@@ -1856,6 +1856,27 @@ test('iOS native history gestures are enabled and tested against real taps and a
   assert.match(nativeTest, /backStyle\["chevronContent"\] as\? String\)\.contains/);
   assert.doesNotMatch(nativeTest, /XCTAssertEqual\(backStyle\["labelDisplay"\]/);
   assert.doesNotMatch(nativeTest, /evaluateJavaScript|history\.back\(|location\.hash\s*=/);
+});
+
+test('iOS modal gesture test observes its dialog without querying the inert history probe', () => {
+  const nativeTest = presentationTests.slice(
+    presentationTests.indexOf('func testLeftEdgeSwipeRestoresHashHistoryLikeBackAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'));
+  const modal = nativeTest.slice(
+    nativeTest.indexOf('// A swipe while a dialog is open'),
+    nativeTest.indexOf('let swipeResult ='));
+  const opened = modal.indexOf('toggle.tap()');
+  const closed = modal.indexOf('close.tap()');
+  assert.ok(opened > 0 && closed > opened, 'the test opens and closes the real More dialog');
+  assert.match(modal.slice(0, opened), /let poppedBeforeSwipe = try XCTUnwrap\(state\(\)\["historyPops"\] as\? Int\)/);
+  const whileOpen = modal.slice(opened, closed);
+  assert.doesNotMatch(whileOpen, /\b(?:state|waitForState)\(/, 'the monitor is outside the modal accessibility tree');
+  assert.match(whileOpen, /swipeBack\(\)/);
+  assert.match(whileOpen, /XCTAssertTrue\(close\.isHittable[^\n]*after the swipe/);
+  const afterClose = modal.slice(closed);
+  assert.match(afterClose, /metrics\["modalOpen"\] as\? Bool == false/);
+  assert.match(afterClose, /metrics\["href"\] as\? String == dataHref/);
+  assert.match(afterClose, /metrics\["historyPops"\] as\? Int == poppedBeforeSwipe/);
 });
 
 test('iOS turns the edge-swipe back gesture off while any dialog is open', async () => {

@@ -2045,28 +2045,25 @@ final class PresentationUITests: XCTestCase {
             }
             // A swipe while a dialog is open must not change the screen behind it.
             let dataHref = try XCTUnwrap(state()["href"] as? String)
+            let poppedBeforeSwipe = try XCTUnwrap(state()["historyPops"] as? Int)
             let toggle = moreToggle(of: app)
             XCTAssertTrue(toggle.waitForExistence(timeout: 30))
             let toggleShown = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "hittable == true"), object: toggle)
             XCTAssertEqual(XCTWaiter.wait(for: [toggleShown], timeout: 15), .completed,
-                           "More is reachable on the freshly opened secondary screen")
+                           "More is reachable on the freshly opened secondary screen: "
+                               + "identifier=\(toggle.identifier), frame=\(toggle.frame), hittable=\(toggle.isHittable)")
+            let toggleEvidence = "identifier=\(toggle.identifier), label=\(toggle.label), "
+                + "frame=\(toggle.frame), hittable=\(toggle.isHittable)"
             toggle.tap()
-            try waitForState("More opens as a dialog") { metrics in metrics["modalOpen"] as? Bool == true }
-            let poppedBeforeSwipe = try XCTUnwrap(state()["historyPops"] as? Int)
-            swipeBack()
-            let movedUnderDialog = XCTNSPredicateExpectation(predicate: NSPredicate { element, _ in
-                guard let element = element as? XCUIElement,
-                      let metrics = layoutMetrics(from: element.label) else { return true }
-                return metrics["href"] as? String != dataHref
-                    || metrics["historyPops"] as? Int != poppedBeforeSwipe
-            }, object: monitor)
-            movedUnderDialog.isInverted = true
-            XCTAssertEqual(XCTWaiter.wait(for: [movedUnderDialog], timeout: 2), .completed,
-                           "a left-edge swipe under an open dialog leaves the screen behind it unchanged")
             let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
-            XCTAssertTrue(close.waitForExistence(timeout: 30))
+            let closeShown = close.waitForExistence(timeout: 30)
+            if !closeShown { print("More did not open: \(toggleEvidence)\n\(app.debugDescription)") }
+            XCTAssertTrue(closeShown, "More presents its Close control: \(toggleEvidence)")
             XCTAssertTrue(close.isHittable, "the More sheet's Close is reachable")
+            // A modal makes the body-level history monitor inert, so inspect it only after Close.
+            swipeBack()
+            XCTAssertTrue(close.isHittable, "the More sheet's Close remains reachable after the swipe")
             close.tap()
             try waitForState("More closes without navigating") { metrics in
                 metrics["modalOpen"] as? Bool == false && metrics["href"] as? String == dataHref
