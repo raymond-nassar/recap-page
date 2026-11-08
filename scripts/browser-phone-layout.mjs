@@ -89,8 +89,11 @@ async function capturePhoneContent(page, profile, theme, surface, selector) {
   await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
   await settle(page);
   await page.evaluate(() => scrollBy(0, -24));
-  await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().bottom
-    <= visualViewport.height + 0.5);
+  await page.waitForFunction(() => {
+    const nav = document.querySelector('.rail-header');
+    return !nav.classList.contains('mobile-nav-hidden')
+      && Math.abs(nav.getBoundingClientRect().bottom - innerHeight) <= 1;
+  });
   await capture(page, profile, theme, surface);
 }
 
@@ -579,10 +582,10 @@ export function dataReflowScenario({ cloudFixtureHost, installCloudFixture, seed
                 visual: visualViewport.width, layout: innerWidth, page: document.documentElement.scrollWidth,
                 files: inputs.map((node) => {
                   const box = node.getBoundingClientRect();
-                  const row = node.closest('.field-row').getBoundingClientRect();
+                  const row = node.closest('.field-row')?.getBoundingClientRect();
                   return {
                     id: node.id, label: node.labels?.[0]?.textContent.trim(), disabled: node.disabled,
-                    left: box.left, right: box.right, rowLeft: row.left, rowRight: row.right,
+                    left: box.left, right: box.right, rowLeft: row?.left, rowRight: row?.right,
                     width: box.width, height: box.height,
                   };
                 }),
@@ -592,6 +595,7 @@ export function dataReflowScenario({ cloudFixtureHost, installCloudFixture, seed
               layout.layout === layout.visual && layout.page <= layout.visual
               && ['restore-complete', 'restore-file', 'restore-draft'].every((id) => layout.files.some((input) => input.id === id))
               && layout.files.every((input) => input.label && !input.disabled && input.width > 0 && input.height >= 44
+                && input.rowLeft !== undefined && input.rowRight !== undefined
                 && input.left >= input.rowLeft - 0.5 && input.right <= input.rowRight + 0.5),
               layout);
             if (state === 'connected' && theme === 'dark' && size === 'largest') {
