@@ -13,6 +13,7 @@ body :is(button, .btn, select, summary, .checkbox, .fp > span, .path > span) {
 }
 body .row-actions-toggle, body .row-actions .mini { min-height: var(--target-touch); }
 #marvel-ages-modern-all { min-height: var(--target-touch); }
+body .home-guide-link { min-height: var(--target-touch); }
 body #view-home #home-updates :is(button, summary) { min-height: var(--target-touch); min-width: var(--target-touch); }
 body #view-home #home-updates-toggle { padding-inline: 0; }
 body :is(button, .btn, select, input, textarea) { font-size: var(--t-body); }
@@ -37,10 +38,12 @@ body .app-back.quiet { padding-inline: 0; min-width: var(--target-touch); min-he
    disabled control beside the screen title (#1178 review). */
 body .app-back.quiet { color: var(--text); }
 body .app-back > .gi { font-size: 24px; width: 1em; height: 1em; }
-.chero-primary-actions > .btn { min-height: var(--target-touch); }
-/* styles.css sizes these quiet actions to the 44px desktop target with an id selector, which outranks
-   the generic 48dp rule above. */
-body #chero-actions > .btn-link { min-height: var(--target-touch); }
+/* The phone card's paired and quiet actions exist only at 620px and below, where styles.css sizes the
+   quiet ones to the 44px desktop target with an id selector that outranks the generic 48dp rule. */
+@media (max-width: 620px) {
+  .chero-primary-actions > .btn { min-height: var(--target-touch); }
+  body #chero-actions > .btn-g { min-height: var(--target-touch); }
+}
 body .catalog-row > .btn { overflow-wrap: normal; }
 body .notice-act > .grow { overflow-wrap: normal; }
 body .notice-act > .grow[data-horizontal-scroll] { min-height: var(--target-touch); }
@@ -317,7 +320,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
    the overlay measures, and it gives way to the More panel. The page's scroll padding and a focused
    control's scroll margin both apply as focus scrolls, so the height is added once, to the margin. A
    short landscape screen has Read and Done in the band above the navigation, so there the bar starts
-   beside them. */
+   beside them where the card is wide, and on a phone-width card it narrows to a strip at the left
+   rather than taking whatever the rail leaves, which at 400px split screen was 8px. */
 @media (max-width: 880px) {
   #home-continue #done-result {
     position: fixed; z-index: 19; left: var(--space-4); right: var(--space-4);
@@ -333,8 +337,11 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--done-bar-height, 0px) + var(--space-6)); }
   body:has(#btn-rail-toggle[aria-expanded="true"]) #home-continue #done-result { visibility: hidden; }
 }
-@media (max-width: 880px) and (max-height: 500px) {
+@media (max-width: 620px) and (max-height: 500px) {
   #home-continue #done-result { right: auto; width: min(20rem, calc(100vw - var(--space-6))); }
+}
+@media (min-width: 621px) and (max-width: 880px) and (max-height: 500px) {
+  #home-continue #done-result { left: max(24rem, calc(100vw - var(--space-4) - 26rem)); }
 }
 
 /* #980, the owner's choice on 2026-10-29: a comic's own page leads with its cover, because the cover

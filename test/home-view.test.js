@@ -590,8 +590,8 @@ test('UX-41 Home\'s Done follows Read as a secondary command, named and describe
     .map(([, attributes, label]) => ({ attributes, label: label.trim() }));
   assert.deepEqual(buttons.slice(0, 2).map(({ label }) => label), ['Read', 'Done'], 'Done sits directly after Read');
   const [read, done] = buttons;
-  assert.match(read.attributes, /class="btn btn-lg"/, 'Read stays the primary command');
-  assert.equal(buttons.filter(({ attributes }) => /class="btn btn-lg"/.test(attributes)).length, 1, 'and the only one');
+  assert.match(read.attributes, /class="btn"/, 'Read stays the primary command');
+  assert.equal(buttons.filter(({ attributes }) => /class="btn"/.test(attributes)).length, 1, 'and the only one');
   assert.match(done.attributes, /id="btn-chero-done"/);
   assert.match(done.attributes, /class="btn btn-g"/, 'Done is secondary');
   assert.match(done.attributes, /aria-describedby="chero-done-help"/);

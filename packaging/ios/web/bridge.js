@@ -16,49 +16,6 @@ export function validateIosExport({ filename, type, text }) {
   }
 }
 
-// The edge swipe goes back through the web view's own history, which knows nothing of the page's
-// dialogs, so a swipe under an open confirmation changed the screen behind it. Android's system Back
-// closes the dialog first; here the shell turns the gesture off while any dialog is open instead.
-// The state is posted at start, so a page that reloads with nothing open always re-enables it.
-export function watchModalDialogs({ document, Observer, post, diagnose }) {
-  let last = null;
-  let generation = 0;
-  let active = true;
-  const update = () => {
-    if (!active) return;
-    const enabled = !document.querySelector('dialog[open]');
-    if (enabled === last) return;
-    last = enabled;
-    const request = ++generation;
-    const failed = (message) => {
-      if (!active || request !== generation) return;
-      last = null;
-      diagnose(message);
-    };
-    try {
-      Promise.resolve(post({ v: 1, kind: 'back-gesture', enabled })).then((reply) => {
-        if (!active || request !== generation) return;
-        if (reply?.v !== 1 || reply.kind !== 'back-gesture-result' || reply.enabled !== enabled) {
-          failed('The iOS back gesture response was invalid.');
-        }
-      }, () => failed('The iOS back gesture request was rejected.'));
-    } catch {
-      failed('The iOS back gesture request could not be sent.');
-    }
-  };
-  const observer = new Observer(update);
-  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['open'] });
-  update();
-  return {
-    update,
-    disconnect: () => {
-      active = false;
-      generation += 1;
-      observer.disconnect();
-    },
-  };
-}
-
 export function createIosBridge({ host, native, report }) {
   let pending = null;
   let sequence = 0;

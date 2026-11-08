@@ -47,11 +47,19 @@
 }
 
 :root .app-back.quiet,
-:root #chero-actions :is(button, a),
 :root #preview-secondary :is(button, a) {
   min-width: var(--target);
   min-height: var(--target);
   line-height: max(var(--target), 1.5em);
+}
+
+/* Only the phone card's quiet actions are inline links; wider, they stay the padded buttons main has. */
+@media (max-width: 620px) {
+  :root #chero-actions :is(button, a) {
+    min-width: var(--target);
+    min-height: var(--target);
+    line-height: max(var(--target), 1.5em);
+  }
 }
 
 :root .app-back.quiet {

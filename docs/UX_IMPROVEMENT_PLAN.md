@@ -36,7 +36,7 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## 5. iOS restart reassurance
 
-**Outcome:** After iOS ends and reloads the page, show the saved-progress reassurance and slide it away after about five seconds. Do not show it on an ordinary launch. The current lifecycle sets a one-load restart flag (`packaging/ios/RecapPage/WebViewController.swift:409`) and reloads the app page (`packaging/ios/RecapPage/WebViewController.swift:423`).
+**Outcome:** After iOS ends and reloads the page, show the saved-progress reassurance and slide it away after about five seconds. Do not show it on an ordinary launch. The current lifecycle sets a one-load restart flag (`packaging/ios/RecapPage/WebViewController.swift:405`) and reloads the app page (`packaging/ios/RecapPage/WebViewController.swift:419`).
 
 **Dependencies:** Confirm the message's exact text, animation, and accessibility announcement. Respect reduced-motion settings and avoid hiding it before assistive technology can announce it.
 

@@ -1,7 +1,7 @@
 import { arrivalHeading, boot } from '../js/main.js';
 import { wireMobileUi } from '../mobile/mobile-ui.js';
 import { setDownloadHandler } from '../js/lib/download.js';
-import { createIosBridge, watchModalDialogs } from './bridge.js';
+import { createIosBridge } from './bridge.js';
 
 const DATA_LOSS_COPY = Object.freeze({
   messageBeforeLink: 'Your saved reading data is missing from this device. Restore from a backup file in ',
@@ -121,14 +121,6 @@ const downloadBridge = createIosBridge({
   },
 });
 setDownloadHandler(downloadBridge.save);
-if (native && typeof native.postMessage === 'function') {
-  watchModalDialogs({
-    document, Observer: MutationObserver, post: (message) => native.postMessage(message),
-    diagnose: (message) => console.error(message),
-  });
-} else {
-  console.error('The iOS back gesture bridge is unavailable.');
-}
 
 // iOS can end a web view's content process while the app is in the background. The shell then
 // reloads the page with this flag set before any page script runs, so the reader learns why the page
