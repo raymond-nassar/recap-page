@@ -1952,6 +1952,7 @@ test('iOS ignores an obsolete back-gesture failure after a newer state succeeds'
   let open = false;
   let callback;
   let rejectOld;
+  let disabledRequests = 0;
   const document = { documentElement: {}, querySelector: () => open ? {} : null };
   class Observer {
     constructor(fn) { callback = fn; }
@@ -1962,18 +1963,22 @@ test('iOS ignores an obsolete back-gesture failure after a newer state succeeds'
     document, Observer, diagnose: (message) => reports.push(message),
     post: (message) => {
       posts.push(message);
-      if (!message.enabled) return new Promise((_resolve, reject) => { rejectOld = reject; });
-      return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: true });
+      if (!message.enabled && ++disabledRequests === 1) {
+        return new Promise((_resolve, reject) => { rejectOld = reject; });
+      }
+      return Promise.resolve({ v: 1, kind: 'back-gesture-result', enabled: message.enabled });
     },
   });
   open = true;
   callback();
   open = false;
   callback();
+  open = true;
+  callback();
   rejectOld(new Error('obsolete request'));
   await new Promise((resolve) => setImmediate(resolve));
   watcher.update();
-  assert.equal(posts.length, 3);
+  assert.deepEqual(posts.map(({ enabled }) => enabled), [true, false, true, false]);
   assert.deepEqual(reports, []);
 });
 
