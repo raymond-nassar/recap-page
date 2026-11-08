@@ -18596,6 +18596,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
     ['/js/lib/dialogShell.js', mutation?.rewriteDialogShell],
+    ['/styles.css', mutation?.rewriteStyles],
     ['/js/views/rated-comics.js', mutation?.rewriteRatedView],
     ['/js/lib/ratedComics.js', mutation?.rewriteRatedComics],
   ]) {
@@ -18648,7 +18649,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     if (rewritten) {
       await request.respond({
         status: 200,
-        contentType: 'application/javascript; charset=utf-8',
+        contentType: request.url().endsWith('.css') ? 'text/css; charset=utf-8' : 'application/javascript; charset=utf-8',
         headers: { 'cache-control': 'no-store' },
         body: rewritten,
       });

@@ -1982,6 +1982,11 @@ progress { accent-color: var(--accent); height: 6px; }
   :where(#chero-actions) > .btn-g:hover { filter: none; text-decoration-thickness: var(--stroke-2); }
   #chero-actions > .btn-g { min-height: var(--target); max-width: 100%; padding: 0 var(--space-4); }
 }
+/* A short phone in landscape keeps the cover beside the text, so Read stays above the navigation band. */
+@media (min-width: 560px) and (max-width: 620px) and (max-height: 600px) {
+  .chero-in { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  .chero-in .art { max-width: 112px; }
+}
 /* `anywhere` rather than `break-word` (#998). Both wrap "presentation" at iOS's largest text, but the
    heading sits in a grid track sized from its min-content, which `break-word` leaves at the longest
    word: measured in Edge on the Windows layout at 320px, that track still pushed the heading 16px past

@@ -862,6 +862,16 @@ async function measureContinueCard(page) {
         'backgroundColor', 'color', 'borderTopColor', 'borderTopLeftRadius', 'textDecorationLine', 'minHeight', 'lineHeight',
         'textAlign'].map((key) => `${key}=${style[key]}`).join(' ');
     }
+    // Done's confirmation follows the actions and is fixed over the bottom bar on Android phones, so its
+    // viewport box is compared too. A stand-in is used because the real one retires on a timer.
+    const probe = document.createElement('p');
+    probe.id = 'done-result';
+    probe.className = 'notice notice-ok notice-act';
+    probe.innerHTML = '<span class="grow">Marked as read.</span><button type="button" class="quiet">Undo</button>';
+    document.querySelector('#chero-actions').after(probe);
+    const bar = probe.getBoundingClientRect();
+    boxes['done-result'] = [bar.left, bar.top, bar.width, bar.height].map((value) => Math.round(value * 100) / 100);
+    probe.remove();
     return { boxes, styles, textAlign: getComputedStyle(document.querySelector('.chero-in')).textAlign };
   });
 }
@@ -927,6 +937,9 @@ const wideCardProfiles = [
   { width: 844, height: 390, platform: 'android', ref: MAIN_BEFORE_CARD },
   { width: 393, height: 852, platform: 'ios', ref: PHONE_CARD },
   { width: 360, height: 800, platform: 'android', ref: PHONE_CARD },
+  // A short phone landscape keeps a595's side-by-side card and its Done bar, and so does split screen.
+  { width: 592, height: 360, platform: 'android', ref: PHONE_CARD },
+  { width: 400, height: 480, platform: 'android', ref: PHONE_CARD },
 ];
 
 export const continueWideMatchesMain = {
@@ -942,6 +955,9 @@ export const continueWideMatchesMain = {
       const now = await measureContinueCard(page);
       const swaps = await applyReferenceCard(page, profile.ref);
       const then = await measureContinueCard(page);
+      // The desktop gap above the card deliberately differs from main's, which moves the in-flow
+      // confirmation by that gap, so the Done bar is compared only against the phone reference.
+      if (profile.ref !== PHONE_CARD) delete then.boxes['done-result'];
       const drift = sameCard(now, then);
       checked(t, `${label}: Continue card geometry and action styling match ${profile.ref.slice(0, 8)}`,
         swaps.length > 0 && drift.length === 0, { swaps, drift });
@@ -1108,12 +1124,10 @@ export const phoneLayoutMutations = [
   },
   {
     id: 'phone-card-everywhere', breaks: 'continue-wide-matches-main', why: 'the phone card restyle leaks above 620px',
-    script: () => document.addEventListener('DOMContentLoaded', () => {
-      const style = document.createElement('style');
-      style.textContent = 'html body .chero-in { grid-template-columns: 1fr; text-align: center; } '
-        + 'html body .chero-in .art { justify-self: center; margin-inline: auto; } '
-        + 'html body #chero-actions > .btn-g { background: none; text-decoration: underline; }';
-      document.head.append(style);
-    }),
+    // Written into the served stylesheet rather than a separate style, so the reference swap replaces it
+    // and only the measurement under test carries the leak.
+    rewriteStyles: (source) => `${source}\nhtml body .chero-in { grid-template-columns: 1fr; text-align: center; }\n`
+      + 'html body .chero-in .art { justify-self: center; margin-inline: auto; }\n'
+      + 'html body #chero-actions > .btn-g { background: none; text-decoration: underline; }\n',
   },
 ];

@@ -1986,7 +1986,9 @@ final class PresentationUITests: XCTestCase {
             // Baseline, before any dialog has opened in this launch: the list screen is a secondary
             // screen reached from Home's Continue card without the More sheet, so the swipe here proves
             // the gesture itself before the checks that depend on dialogs switching it off and on.
-            let openList = webView.links.matching(identifier: "Open the list").firstMatch
+            // The link's accessible name carries the list's name, "Open the list: <list>", and web
+            // elements have no identifier, so it is found by the start of its label.
+            let openList = webView.links.matching(NSPredicate(format: "label BEGINSWITH %@", "Open the list")).firstMatch
             XCTAssertTrue(openList.waitForExistence(timeout: 30), "Home's Continue card offers Open the list")
             var nudges = 0
             while !openList.isHittable && nudges < 8 {

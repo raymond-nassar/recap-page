@@ -320,7 +320,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
    the overlay measures, and it gives way to the More panel. The page's scroll padding and a focused
    control's scroll margin both apply as focus scrolls, so the height is added once, to the margin. A
    short landscape screen has Read and Done in the band above the navigation, so there the bar starts
-   right of them. */
+   beside them where the card is wide, and on a phone-width card it narrows to a strip at the left
+   rather than taking whatever the rail leaves, which at 400px split screen was 8px. */
 @media (max-width: 880px) {
   #home-continue #done-result {
     position: fixed; z-index: 19; left: var(--space-4); right: var(--space-4);
@@ -336,7 +337,10 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--done-bar-height, 0px) + var(--space-6)); }
   body:has(#btn-rail-toggle[aria-expanded="true"]) #home-continue #done-result { visibility: hidden; }
 }
-@media (max-width: 880px) and (max-height: 500px) {
+@media (max-width: 620px) and (max-height: 500px) {
+  #home-continue #done-result { right: auto; width: min(20rem, calc(100vw - var(--space-6))); }
+}
+@media (min-width: 621px) and (max-width: 880px) and (max-height: 500px) {
   #home-continue #done-result { left: max(24rem, calc(100vw - var(--space-4) - 26rem)); }
 }
 
