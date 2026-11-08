@@ -111,7 +111,7 @@ final class PresentationUITests: XCTestCase {
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(
             route: route, positionsDataAudit: positionsDataAudit)
-        if route == "all" || route.hasPrefix("guard-") {
+        if route == "all" || route == "history" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
         if emptyHomeTest {
@@ -128,7 +128,13 @@ final class PresentationUITests: XCTestCase {
 
     private static func layoutProbe(route: String, positionsDataAudit: Bool) -> String {
         let routeScript: String
-        if route == "comic" {
+        if route == "history" {
+            routeScript = """
+            await openRoute(routes[0]);
+            screens.push(snapshot('view-home'));
+            window.setInterval(refreshMonitor, 100);
+            """
+        } else if route == "comic" {
             routeScript = """
             const covers = document.getElementById('opt-covers');
             if (covers.checked) covers.click();
@@ -219,10 +225,26 @@ final class PresentationUITests: XCTestCase {
         monitor.setAttribute('aria-live', 'polite');
         monitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden;white-space:nowrap';
         document.body.append(monitor);
+        let historyPops = 0;
+        window.addEventListener('popstate', () => { historyPops += 1; });
         const snapshot = (view) => ({
           view,
           activeView: document.querySelector('.view:not([hidden])')?.id,
           href: location.href,
+          historyPops,
+          scrollX, scrollY,
+          readingPosition: history.state?.readingPosition,
+          timeOrigin: performance.timeOrigin,
+          back: (() => {
+            const control = document.querySelector('.view:not([hidden]) .app-back');
+            if (!control) return null;
+            return {
+              label: control.getAttribute('aria-label'),
+              labelDisplay: getComputedStyle(control.querySelector('.app-back-label')).display,
+              iconDisplay: getComputedStyle(control.querySelector('.gi')).display,
+              chevronContent: getComputedStyle(control, '::before').content,
+            };
+          })(),
           moreMethods: (() => {
             const disclosure = document.getElementById('add-other-methods');
             const summary = disclosure.querySelector('summary');
@@ -1852,6 +1874,136 @@ final class PresentationUITests: XCTestCase {
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-data")
                 app.terminate()
             }
+        }
+    }
+
+    func testLeftEdgeSwipeRestoresHashHistoryLikeBackAtDefaultAndLargestTextSizes() throws {
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            throw XCTSkip("The left-edge navigation contract is checked on iPhone.")
+        }
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, route: "history")
+            _ = try probeResult(of: app)
+            let monitor = layoutMonitor(of: app)
+            func state() throws -> [String: Any] {
+                try XCTUnwrap(layoutMetrics(from: monitor.label), monitor.label)
+            }
+            func waitForState(_ name: String, _ condition: @escaping ([String: Any]) -> Bool) throws {
+                let settled = XCTNSPredicateExpectation(predicate: NSPredicate { element, _ in
+                    guard let element = element as? XCUIElement,
+                          let metrics = layoutMetrics(from: element.label) else { return false }
+                    return condition(metrics)
+                }, object: monitor)
+                XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 30), .completed, name)
+            }
+            let rootHref = try XCTUnwrap(state()["href"] as? String)
+            func openNavigation(_ name: String, view: String, depth: Int) throws {
+                let link = app.links.matching(identifier: name).firstMatch
+                revealNavigationLink(link, named: name, in: app)
+                XCTAssertTrue(link.isHittable)
+                link.tap()
+                try waitForState("a native \(name) tap pushes one app hash entry") { metrics in
+                    let position = metrics["readingPosition"] as? [String: Any]
+                    return metrics["activeView"] as? String == view
+                        && (position?["depth"] as? Int) == depth
+                }
+            }
+            try openNavigation("Library", view: "view-library", depth: 1)
+            let libraryHref = try XCTUnwrap(state()["href"] as? String)
+            try openNavigation("Home", view: "view-home", depth: 2)
+            let webView = app.webViews.firstMatch
+            let top = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3))
+            let bottom = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
+            bottom.press(forDuration: 0.1, thenDragTo: top,
+                         withVelocity: .slow, thenHoldForDuration: 0.5)
+            try waitForState("Home has a saved nonzero scroll position") { metrics in
+                guard let y = metrics["scrollY"] as? Double,
+                      let position = metrics["readingPosition"] as? [String: Any],
+                      let savedY = position["y"] as? Double else { return false }
+                return y > 80 && abs(savedY - y) <= 1
+            }
+            let home = try state()
+            let homeHref = try XCTUnwrap(home["href"] as? String)
+            let homeY = try XCTUnwrap(home["scrollY"] as? Double)
+            let homeX = try XCTUnwrap(home["scrollX"] as? Double)
+            let initialPops = try XCTUnwrap(home["historyPops"] as? Int)
+            let timeOrigin = try XCTUnwrap(home["timeOrigin"] as? Double)
+            let homePosition = try XCTUnwrap(home["readingPosition"] as? [String: Any])
+            let homeDepth = try XCTUnwrap(homePosition["depth"] as? Int)
+            func waitForHome(pops: Int) throws -> [String: Any] {
+                try waitForState("Back restores the exact Home entry without a document reload") { metrics in
+                    guard let y = metrics["scrollY"] as? Double,
+                          let x = metrics["scrollX"] as? Double,
+                          let position = metrics["readingPosition"] as? [String: Any] else { return false }
+                    return metrics["href"] as? String == homeHref
+                        && metrics["activeView"] as? String == "view-home"
+                        && metrics["historyPops"] as? Int == pops
+                        && metrics["timeOrigin"] as? Double == timeOrigin
+                        && (position["depth"] as? Int) == homeDepth
+                        && abs(y - homeY) <= 1 && abs(x - homeX) <= 1
+                }
+                return try state()
+            }
+            try openNavigation("Search", view: "view-add", depth: homeDepth + 1)
+            let back = app.webViews.firstMatch.buttons["Back"].firstMatch
+            XCTAssertTrue(back.waitForExistence(timeout: 30))
+            XCTAssertEqual(back.label, "Back")
+            XCTAssertGreaterThanOrEqual(back.frame.width, 44)
+            XCTAssertGreaterThanOrEqual(back.frame.height, 44)
+            assertNoSeparateTextTarget(["Back"], in: webView, within: back, for: "Back")
+            let backStyle = try XCTUnwrap(state()["back"] as? [String: Any])
+            XCTAssertEqual(backStyle["label"] as? String, "Back")
+            XCTAssertEqual(backStyle["labelDisplay"] as? String, "inline")
+            XCTAssertEqual(backStyle["iconDisplay"] as? String, "none")
+            XCTAssertTrue(try XCTUnwrap(backStyle["chevronContent"] as? String).contains("‹"))
+            back.tap()
+            let buttonResult = try waitForHome(pops: initialPops + 1)
+            try openNavigation("Search", view: "view-add", depth: homeDepth + 1)
+            let edge = webView.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
+                .withOffset(CGVector(dx: 1, dy: 0))
+            let destination = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.85, dy: 0.5))
+            edge.press(forDuration: 0.1, thenDragTo: destination,
+                       withVelocity: .slow, thenHoldForDuration: 0.2)
+            let swipeResult = try waitForHome(pops: initialPops + 2)
+            XCTAssertEqual(try XCTUnwrap(swipeResult["scrollY"] as? Double),
+                           try XCTUnwrap(buttonResult["scrollY"] as? Double),
+                           accuracy: 1)
+            XCTAssertEqual(homeDepth, 2, "the swipe returns to an intermediate entry, not the initial page")
+            edge.press(forDuration: 0.1, thenDragTo: destination,
+                       withVelocity: .slow, thenHoldForDuration: 0.2)
+            try waitForState("the next left-edge swipe returns to Library, not another Home entry") { metrics in
+                let position = metrics["readingPosition"] as? [String: Any]
+                return metrics["href"] as? String == libraryHref
+                    && metrics["activeView"] as? String == "view-library"
+                    && metrics["historyPops"] as? Int == initialPops + 3
+                    && (position?["depth"] as? Int) == 1
+            }
+            let libraryResult = try state()
+            edge.press(forDuration: 0.1, thenDragTo: destination,
+                       withVelocity: .slow, thenHoldForDuration: 0.2)
+            try waitForState("the final history swipe returns to the initial app entry") { metrics in
+                let position = metrics["readingPosition"] as? [String: Any]
+                return metrics["href"] as? String == rootHref
+                    && metrics["activeView"] as? String == "view-home"
+                    && metrics["historyPops"] as? Int == initialPops + 4
+                    && (position?["depth"] as? Int) == 0
+            }
+            edge.press(forDuration: 0.1, thenDragTo: destination,
+                       withVelocity: .slow, thenHoldForDuration: 0.2)
+            let rootChanged = XCTNSPredicateExpectation(predicate: NSPredicate { element, _ in
+                guard let element = element as? XCUIElement,
+                      let metrics = layoutMetrics(from: element.label) else { return true }
+                return metrics["href"] as? String != rootHref
+                    || metrics["historyPops"] as? Int != initialPops + 4
+            }, object: monitor)
+            rootChanged.isInverted = true
+            XCTAssertEqual(XCTWaiter.wait(for: [rootChanged], timeout: 2), .completed,
+                           "swiping at the first app entry does not leave the app or synthesize history")
+            try record("hash-history-\(category.rawValue)", [
+                "before": home, "button": buttonResult, "leftEdgeSwipe": swipeResult,
+                "previousLibraryEntry": libraryResult, "root": try state(),
+            ])
+            app.terminate()
         }
     }
 

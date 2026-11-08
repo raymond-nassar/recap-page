@@ -62,6 +62,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)
         WebViewFactory.configure(webView)
+        webView.allowsBackForwardNavigationGestures = true
         webView.isOpaque = false
         webView.backgroundColor = .recapPageBackground
         webView.scrollView.backgroundColor = .recapPageBackground
@@ -161,23 +162,31 @@ final class WebViewController: UIViewController, WKUIDelegate {
       const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle, #btn-home-browse, #btn-home-add';
       const additionalTargets = '#sidebar-nav a.ri[data-view="library"], #sidebar-nav a.ri[data-view="add"], '
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
-        + '#btn-chero-open, .app-footer > a[data-view="about"], '
+        + '.app-back, #btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-review, #btn-chero-deferred, '
+        + '#preview-secondary button, #preview-secondary a, '
+        + '.app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
         + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label, '
         + '#form-search label[for="search-q"], .mobile-link[data-view="add"], .home-guide-link, #reader-closure-faq';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
-          '#btn-chero-read, #btn-chero-done, #btn-chero-review, #btn-chero-deferred')) {
+          '#btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-review, #btn-chero-deferred, '
+            + '#preview-secondary button, #preview-secondary a')) {
           if (control.hidden) control.setAttribute('aria-hidden', 'true');
           else control.removeAttribute('aria-hidden');
         }
         for (const target of document.querySelectorAll(`${selector}, ${additionalTargets}`)) {
-          const label = (target.id === 'btn-chero-open' ? target.getAttribute('aria-label') : null)
+          const namedAction = target.matches(
+            '.app-back, #chero-actions button, #chero-actions a, #preview-secondary button, #preview-secondary a');
+          const label = (namedAction ? target.getAttribute('aria-label') : null)
             || (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
           if (!label) continue;
           if (target.dataset.iosAccessibleTarget === 'true') {
             if (target.getAttribute('aria-label') !== label) target.setAttribute('aria-label', label);
-            continue;
+            const unwrappedText = [...target.childNodes].some(node =>
+              node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+            const exposedChild = [...target.children].some(child => child.getAttribute('aria-hidden') !== 'true');
+            if (!namedAction || (!unwrappedText && !exposedChild)) continue;
           }
           if (target.matches('.backup-restore-label') || target.matches('#form-search label[for="search-q"]')) {
             target.setAttribute('role', 'button');

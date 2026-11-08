@@ -46,6 +46,28 @@
   min-width: var(--target);
 }
 
+:root .app-back.quiet,
+:root #chero-actions :is(button, a),
+:root #preview-secondary :is(button, a) {
+  min-width: var(--target);
+  min-height: var(--target);
+  line-height: max(var(--target), 1.5em);
+}
+
+:root .app-back > .gi {
+  display: none;
+}
+
+:root .app-back-label {
+  display: inline;
+}
+
+:root .app-back::before {
+  content: "‹";
+  content: "‹" / "";
+  line-height: 1;
+}
+
 :root #view-data .backup-restore-label {
   min-height: var(--target);
   line-height: max(var(--target), 1.5em);

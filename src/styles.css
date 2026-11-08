@@ -808,7 +808,10 @@ main { min-width: 0; }
 .headright { display: flex; align-items: center; gap: var(--space-6); }
 
 .breadcrumb { margin: 0 0 var(--space-5); min-width: 0; }
-.app-back { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--target); margin-bottom: var(--space-3); }
+.app-back.quiet {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
+  min-width: var(--target); min-height: var(--target); margin-bottom: var(--space-3); border-color: transparent;
+}
 #view-home > .head > .breadcrumb { grid-column: 1; grid-row: 1; margin: 0; align-self: center; }
 #view-home .app-back { margin-bottom: 0; }
 #view-home .home-lockup { order: -1; }

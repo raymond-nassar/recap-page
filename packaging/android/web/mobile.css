@@ -31,6 +31,8 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .row-focus-title { min-height: var(--target-touch); display: flex; align-items: center; }
 .row .cb { width: var(--target-touch); height: var(--target-touch); }
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--target-touch); }
+.app-back-label { display: none; }
+body .app-back.quiet { padding-inline: 0; min-width: var(--target-touch); min-height: var(--target-touch); }
 /* An item after the first leads with its "/", and stretched to the 48px link that "/" put the item's
    baseline at its top, so the trail's baseline row dropped Library 15px below Home on a 13-inch iPad
    and 13px on a 1280 by 800 Android tablet (#1070, #1042). Aligning on baselines inside the item too
@@ -177,6 +179,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   .breadcrumb a { gap: var(--space-4); text-decoration: none; font-weight: 600; }
   .breadcrumb a::before {
     content: "";
+  .breadcrumb:has(.app-back) ol { display: none; }
     width: 8px;
     height: 8px;
     border-left: var(--stroke-2) solid currentColor;

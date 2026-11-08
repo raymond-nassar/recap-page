@@ -993,6 +993,7 @@ function renderSidebar() {
     toggle.dataset.tip = `${label} · Ctrl+\\`;
   }
   tooltips?.refresh();
+  renderBreadcrumbs();
   revealMobileNavigation();
 }
 
@@ -1718,7 +1719,9 @@ function renderBreadcrumbs() {
     context: resolvedContext,
   });
   const existing = section.querySelector('.breadcrumb');
-  const backAvailable = navigationPosition.canGoBack;
+  const isRoot = ['home', 'library', 'add'].includes(view)
+    || (!isNarrow && ['data', 'about'].includes(view));
+  const backAvailable = navigationPosition.canGoBack && !isRoot;
   if (!trail.length && !backAvailable) {
     existing?.remove();
     return;
@@ -1732,16 +1735,16 @@ function renderBreadcrumbs() {
   const breadcrumb = existing || el('nav', { class: 'breadcrumb', 'aria-label': 'Breadcrumb' });
   breadcrumb.dataset.trail = trailKey;
   const back = el('button', {
-    type: 'button', class: 'quiet app-back',
+    type: 'button', class: 'quiet app-back', 'aria-label': 'Back',
     onclick: () => {
       if (!navigationPosition.canGoBack) return;
       navigationPosition.cancel();
       navigationPosition.capture();
       history.back();
     },
-  }, [uiIcon('arrow-left', 'gi'), 'Back']);
+  }, [uiIcon('arrow-left', 'gi'), el('span', { class: 'app-back-label', text: 'Back' })]);
   breadcrumb.replaceChildren(...(backAvailable ? [back] : []), ...(trail.length ? [list] : []));
-  if (!existing) { if (view === 'home') head.append(breadcrumb); else head.before(breadcrumb); }
+  if (!existing) head.before(breadcrumb);
 }
 
 function railParentView(next) {

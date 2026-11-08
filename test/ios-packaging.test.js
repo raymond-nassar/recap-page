@@ -1731,6 +1731,111 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
   assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
 });
 
+test('iOS Back, Continue and Preview inline controls retain token-sized native line boxes', () => {
+  const overlay = read('packaging/ios/web/ios.css');
+  assert.match(overlay, /:root \.app-back\.quiet,\s*:root #chero-actions :is\(button, a\),\s*:root #preview-secondary :is\(button, a\)\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s);
+  assert.match(overlay, /:root \.app-back > \.gi\s*\{\s*display:\s*none;/);
+  assert.match(overlay, /:root \.app-back-label\s*\{\s*display:\s*inline;/);
+  assert.match(overlay, /:root \.app-back::before\s*\{[^}]*content:\s*"\u2039"\s*\/\s*"";/s);
+});
+
+test('iOS Back, Continue and Preview actions expose their named parent and track hidden state', () => {
+  const controller = appSource('WebViewController');
+  const script = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)[1];
+  const visualChild = () => ({
+    setAttribute(key, value) { this[key] = value; },
+    getAttribute(key) { return this[key] ?? null; },
+    append() {},
+  });
+  const makeControl = (id, name, hidden = false) => {
+    const attributes = new Map([['aria-label', name]]);
+    return {
+      id, hidden, dataset: {}, innerText: name, childNodes: [],
+      children: [visualChild()],
+      matches: (selector) => selector.split(',').some((part) =>
+        (id === 'back' && part.trim() === '.app-back')
+          || (id === 'preview-copy' && part.trim() === '#preview-secondary button')
+          || (id === 'preview-link' && part.trim() === '#preview-secondary a')
+          || (id.startsWith('btn-chero-') && part.trim() === '#chero-actions button')),
+      getAttribute: (key) => attributes.get(key) ?? null,
+      setAttribute: (key, value) => attributes.set(key, value),
+      removeAttribute: (key) => attributes.delete(key),
+    };
+  };
+  const controls = [
+    makeControl('back', 'Back'),
+    makeControl('btn-chero-read', 'Read', true),
+    makeControl('btn-chero-done', 'Done', true),
+    makeControl('btn-chero-open', 'Open the list: fixture'),
+    makeControl('btn-chero-review', 'Review read comics', true),
+    makeControl('btn-chero-deferred', 'Deferred comics', true),
+    makeControl('preview-copy', 'Use updated copy', true),
+    makeControl('preview-link', 'Open Reading List'),
+  ];
+  let refresh;
+  runInNewContext(script, {
+    document: {
+      documentElement: {},
+      createElement: visualChild,
+      querySelectorAll: (selector) => controls.filter((control) =>
+        selector.split(',').some((part) => part.trim() === `#${control.id}`
+          || (control.id === 'back' && part.trim() === '.app-back')
+          || (control.id === 'preview-copy' && part.trim() === '#preview-secondary button')
+          || (control.id === 'preview-link' && part.trim() === '#preview-secondary a'))),
+    },
+    Node: { TEXT_NODE: 3 },
+    MutationObserver: class {
+      constructor(callback) { refresh = callback; }
+      observe(_root, options) { assert.deepEqual(Array.from(options.attributeFilter), ['hidden']); }
+    },
+  });
+  for (const control of controls) {
+    assert.equal(control.dataset.iosAccessibleTarget, 'true', control.id);
+    assert.equal(control.getAttribute('aria-label'), control.innerText, control.id);
+    assert.equal(control.children[0]['aria-hidden'], 'true', control.id);
+    assert.equal(control.getAttribute('aria-hidden'), control.hidden ? 'true' : null, control.id);
+  }
+  for (const control of controls.slice(1)) {
+    control.hidden = !control.hidden;
+    refresh();
+    assert.equal(control.getAttribute('aria-hidden'), control.hidden ? 'true' : null, control.id);
+    control.setAttribute('aria-label', `${control.innerText} updated`);
+    refresh();
+    assert.equal(control.getAttribute('aria-label'), `${control.innerText} updated`, control.id);
+    control.children = [];
+    const text = {
+      nodeType: 3, textContent: control.innerText,
+      replaceWith(element) {
+        control.childNodes = [element];
+        control.children = [element];
+      },
+    };
+    control.childNodes = [text];
+    refresh();
+    assert.equal(control.children[0]['aria-hidden'], 'true', `${control.id} repainted label`);
+    assert.notEqual(control.childNodes[0], text, `${control.id} has no standalone text node`);
+  }
+});
+
+test('iOS native history gestures are enabled and tested against real taps and app popstate restoration', () => {
+  assert.match(appSource('WebViewController'), /webView\.allowsBackForwardNavigationGestures = true/);
+  const nativeTest = presentationTests.slice(
+    presentationTests.indexOf('func testLeftEdgeSwipeRestoresHashHistoryLikeBackAtDefaultAndLargestTextSizes()'),
+    presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'));
+  assert.match(nativeTest, /link\.tap\(\)/);
+  assert.match(nativeTest, /back\.tap\(\)/);
+  assert.match(nativeTest, /CGVector\(dx: 0, dy: 0\.5\)/);
+  assert.match(nativeTest, /edge\.press\(forDuration: 0\.1, thenDragTo: destination/);
+  assert.match(nativeTest, /metrics\["historyPops"\] as\? Int == pops/);
+  assert.match(nativeTest, /metrics\["timeOrigin"\] as\? Double == timeOrigin/);
+  assert.match(nativeTest, /abs\(y - homeY\) <= 1 && abs\(x - homeX\) <= 1/);
+  assert.match(nativeTest, /rootChanged\.isInverted = true/);
+  assert.match(nativeTest, /homeDepth, 2/);
+  assert.match(nativeTest, /metrics\["href"\] as\? String == libraryHref/);
+  assert.match(nativeTest, /backStyle\["iconDisplay"\] as\? String, "none"/);
+  assert.doesNotMatch(nativeTest, /evaluateJavaScript|history\.back\(|location\.hash\s*=/);
+});
+
 test('iOS web controls expose one accessible target without changing visible layout', () => {
   const controller = appSource('WebViewController');
   const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
