@@ -18595,6 +18595,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
+    ['/js/lib/dialogShell.js', mutation?.rewriteDialogShell],
     ['/js/views/rated-comics.js', mutation?.rewriteRatedView],
     ['/js/lib/ratedComics.js', mutation?.rewriteRatedComics],
   ]) {
@@ -23626,6 +23627,9 @@ MUTATIONS.push(...milestones.milestoneMutations);
 const saveNotice = await import('./browser-save-notice.mjs');
 SCENARIOS.push(saveNotice.saveNoticePlacement);
 MUTATIONS.push(...saveNotice.saveNoticeMutations);
+const phoneLayout = await import('./browser-phone-layout.mjs');
+SCENARIOS.push(...phoneLayout.phoneLayoutScenarios);
+MUTATIONS.push(...phoneLayout.phoneLayoutMutations);
 const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);
 SCENARIOS.push(readingCard.readingCardPhoneOverview);
