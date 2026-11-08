@@ -1138,6 +1138,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(toggle.label, "More", "the type-independent query still selects More")
             XCTAssertGreaterThanOrEqual(toggle.frame.width, 44, "More retains its native target width")
             XCTAssertGreaterThanOrEqual(toggle.frame.height, 44, "More retains its native target height")
+            XCTAssertTrue(toggle.isHittable, "More is on screen before it is tapped: \(toggle.frame)")
             toggle.tap()
             let closeVisible = close.waitForExistence(timeout: 30)
             if !closeVisible {
@@ -1946,16 +1947,42 @@ final class PresentationUITests: XCTestCase {
                       let savedY = position["y"] as? Double else { return false }
                 return y > 80 && abs(savedY - y) <= 1
             }
-            let home = try state()
+            // The phone bar slides away while a page scrolls down and returns after 16 px of upward
+            // scroll. On newest-iPhone run 128711270701 More sat at y 961, below the 956 pt screen, after
+            // this scroll, so the bar is brought back the way a reader would before any tab is tapped.
+            // The nudge moves Home, so each return is checked against the position Home was left at.
+            func revealBar() throws -> [String: Any] {
+                let toggle = moreToggle(of: app)
+                XCTAssertTrue(toggle.waitForExistence(timeout: 30))
+                if !toggle.isHittable {
+                    let from = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4))
+                    let to = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.48))
+                    from.press(forDuration: 0.1, thenDragTo: to,
+                               withVelocity: .slow, thenHoldForDuration: 0.5)
+                }
+                let shown = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "hittable == true"), object: toggle)
+                XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 15), .completed,
+                               "the bottom bar is back in view before a tab is tapped")
+                try waitForState("Home keeps a saved nonzero scroll position with the bar shown") { metrics in
+                    guard let y = metrics["scrollY"] as? Double,
+                          let position = metrics["readingPosition"] as? [String: Any],
+                          let savedY = position["y"] as? Double else { return false }
+                    return metrics["activeView"] as? String == "view-home"
+                        && y > 80 && abs(savedY - y) <= 1
+                }
+                return try state()
+            }
+            let home = try revealBar()
             let homeHref = try XCTUnwrap(home["href"] as? String)
-            let homeY = try XCTUnwrap(home["scrollY"] as? Double)
-            let homeX = try XCTUnwrap(home["scrollX"] as? Double)
             let initialPops = try XCTUnwrap(home["historyPops"] as? Int)
             let timeOrigin = try XCTUnwrap(home["timeOrigin"] as? Double)
             let homePosition = try XCTUnwrap(home["readingPosition"] as? [String: Any])
             let homeDepth = try XCTUnwrap(homePosition["depth"] as? Int)
             XCTAssertEqual(homeDepth, startDepth + 3)
-            func waitForHome(pops: Int) throws -> [String: Any] {
+            func waitForHome(pops: Int, leftAt left: [String: Any]) throws -> [String: Any] {
+                let homeY = try XCTUnwrap(left["scrollY"] as? Double)
+                let homeX = try XCTUnwrap(left["scrollX"] as? Double)
                 try waitForState("Back restores the exact Home entry without a document reload") { metrics in
                     guard let y = metrics["scrollY"] as? Double,
                           let x = metrics["scrollX"] as? Double,
@@ -1984,8 +2011,10 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(backStyle["labelDisplay"] as? String, "inline")
             XCTAssertEqual(backStyle["iconDisplay"] as? String, "none")
             XCTAssertTrue(try XCTUnwrap(backStyle["chevronContent"] as? String).contains("\u{2039}"))
+            XCTAssertTrue(back.isHittable, "Back is reachable at the top of the secondary screen")
             back.tap()
-            let buttonResult = try waitForHome(pops: initialPops + 1)
+            let buttonResult = try waitForHome(pops: initialPops + 1, leftAt: home)
+            let homeAgain = try revealBar()
             try openNavigation(secondary, view: "view-data", depth: homeDepth + 1)
             let edge = webView.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
                 .withOffset(CGVector(dx: 1, dy: 0))
@@ -1998,6 +2027,10 @@ final class PresentationUITests: XCTestCase {
             let dataHref = try XCTUnwrap(state()["href"] as? String)
             let toggle = moreToggle(of: app)
             XCTAssertTrue(toggle.waitForExistence(timeout: 30))
+            let toggleShown = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "hittable == true"), object: toggle)
+            XCTAssertEqual(XCTWaiter.wait(for: [toggleShown], timeout: 15), .completed,
+                           "More is reachable on the freshly opened secondary screen")
             toggle.tap()
             try waitForState("More opens as a dialog") { metrics in metrics["modalOpen"] as? Bool == true }
             let poppedBeforeSwipe = try XCTUnwrap(state()["historyPops"] as? Int)
@@ -2013,16 +2046,14 @@ final class PresentationUITests: XCTestCase {
                            "a left-edge swipe under an open dialog leaves the screen behind it unchanged")
             let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
             XCTAssertTrue(close.waitForExistence(timeout: 30))
+            XCTAssertTrue(close.isHittable, "the More sheet's Close is reachable")
             close.tap()
             try waitForState("More closes without navigating") { metrics in
                 metrics["modalOpen"] as? Bool == false && metrics["href"] as? String == dataHref
                     && metrics["historyPops"] as? Int == poppedBeforeSwipe
             }
             swipeBack()
-            let swipeResult = try waitForHome(pops: initialPops + 2)
-            XCTAssertEqual(try XCTUnwrap(swipeResult["scrollY"] as? Double),
-                           try XCTUnwrap(buttonResult["scrollY"] as? Double),
-                           accuracy: 1)
+            let swipeResult = try waitForHome(pops: initialPops + 2, leftAt: homeAgain)
             swipeBack()
             try waitForState("the next left-edge swipe returns to Search, not another Home entry") { metrics in
                 let position = metrics["readingPosition"] as? [String: Any]
@@ -2079,7 +2110,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(XCTWaiter.wait(for: [rootChanged], timeout: 2), .completed,
                            "swiping at the first app entry does not leave the app or synthesize history")
             try record("hash-history-\(category.rawValue)", [
-                "start": start, "before": home, "button": buttonResult, "leftEdgeSwipe": swipeResult,
+                "start": start, "before": home, "beforeSwipe": homeAgain, "button": buttonResult, "leftEdgeSwipe": swipeResult,
                 "previousLibraryEntry": libraryResult, "root": try state(),
             ])
             app.terminate()
