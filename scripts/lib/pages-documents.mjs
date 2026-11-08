@@ -331,7 +331,7 @@ export function renderSitePage(document, { title, html }) {
 
     <header class="masthead">
       <div class="shell">
-        <p class="site-name"><a href="./index.html">Recap Page</a></p>
+        <p class="site-name"><a href="./index.html"><img src="./assets/wordmark.png" alt="Recap Page" width="1642" height="238" /><span class="site-name-text" aria-hidden="true">Recap Page</span></a></p>
         <nav class="section-nav" aria-label="Site">
           <ul>
 ${navigation}

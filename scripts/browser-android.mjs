@@ -2513,7 +2513,7 @@ async function alignmentGeometry(page, selectors) {
       };
       const words = [], clipped = [], broken = [];
       const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
-      const textTarget = node.matches('#home-h, .home-action, #hero-title, #hero-by, #hero-facts, .rail-hint, label, .sub');
+      const textTarget = node.matches('#hero-title, #hero-by, #hero-facts, .rail-hint, label, .sub');
       while (textTarget && walker.nextNode()) {
         const text = walker.currentNode;
         if (!text.parentElement.getClientRects().length || text.parentElement.closest('[hidden], .visually-hidden')) continue;
@@ -2555,7 +2555,6 @@ async function alignmentGeometry(page, selectors) {
 
 async function alignmentCheck(page, profile) {
   const { id } = profile;
-  const compactHome = !profile.desktop && profile.width <= 880;
   const snapshots = {};
   const baseline = alignmentBaseline ? null
     : JSON.parse(await readFile(join(process.env.MRT_ALIGNMENT_BASELINE, `${id}.json`), 'utf8'));
@@ -2574,9 +2573,6 @@ async function alignmentCheck(page, profile) {
     }
     for (const node of value.nodes) {
       if (absoluteFit) check(node.clipped.length === 0, `${id} ${name} ${node.selector}: no clipped words ${node.clipped}`);
-      if (node.selector === '#home-h' || node.selector === '.home-action') {
-        check(node.words > 0 && !node.broken.length, `${id} ${node.selector}: visible whole words`);
-      }
       if (baseline) {
         const previous = baseline.snapshots[name].nodes.find((entry) => entry.selector === node.selector);
         assert.ok(previous, `${id}: baseline node ${name} ${node.selector}`);
@@ -2584,7 +2580,7 @@ async function alignmentCheck(page, profile) {
         for (const key of ['text', 'font', 'family', 'weight', 'transform', 'align', 'display', 'name', 'current']) {
           check(node[key] === previous[key], `${id} ${name} ${node.selector}: unchanged ${key}`);
         }
-        const moving = name === 'home' && ['.home-lockup', '#home-h', '.home-action'].includes(node.selector)
+        const moving = name === 'home' && ['.home-lockup', '#home-h'].includes(node.selector)
           && profile.width <= 880 && !profile.desktop;
         for (const key of moving ? ['top', 'bottom', 'width', 'height'] : Object.keys(node.box)) {
           check(Math.abs(node.box[key] - previous.box[key]) <= (name === 'about' ? 0 : 1), `${id} ${name} ${node.selector}: unchanged ${key}`);
@@ -2609,14 +2605,14 @@ async function alignmentCheck(page, profile) {
       .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
     `${id}: the closure notice stays first on a Home without Continue reading`);
   }
-  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', ...(compactHome ? [] : ['.home-action']),
+  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', '.home-wordmark',
     '#home-categories', '.brand[data-view="home"]']);
   const [head, lockup, logo] = home.nodes;
   const gutters = { left: lockup.box.left - head.content.left, right: head.content.right - lockup.box.right };
   const centerError = Math.abs((lockup.box.left + lockup.box.right - head.content.left - head.content.right) / 2);
-  check(logo.text === 'RECAP PAGE!'
-    && (compactHome || home.nodes.find((node) => node.selector === '.home-action').text === 'Browse. Choose. Read.'),
-  `${id}: exact Home heading copy for the platform`);
+  check(logo.text === 'Recap Page' && await page.$('.home-action') === null,
+    `${id}: exact Home heading copy for the platform`);
+  await homeWordmarkCheck(page, id, profile);
   check(home.body === `${(profile.desktop ? 14 : 16) * (profile.textScale || 1)}px`, `${id}: retained body scale`);
   check(Math.abs(parseFloat(logo.font) - profile.logoBase * (profile.textScale || 1)) < 0.1,
     `${id}: effective logo font grows with text stress`);
@@ -2704,18 +2700,11 @@ async function alignmentCheck(page, profile) {
   console.log(`ALIGNMENT ${id}: center error ${centerError}; gutters ${JSON.stringify(gutters)}; ${Object.keys(snapshots).length} states`);
 }
 
-// #870 replaced the compact tagline heading with the Windows masthead at 6.5% of the screen's
-// shorter side. That is the size decision recorded on the Issue: it gives the wordmark the footprint,
-// width times capital height, of the reference the owner chose, 118 by 28px on a 412px phone.
-const WORDMARK_SHARE = 0.065;
-const WORDMARK_FOOTPRINT = 118 * 28 / 412 ** 2;
-
 async function homeWordmark(page) {
   return page.evaluate(() => {
     const view = document.querySelector('#view-home');
     const heading = document.querySelector('#home-h');
     const head = view.querySelector(':scope > .head');
-    const style = getComputedStyle(heading);
     const rect = (node) => {
       const { left, right, top, bottom } = node.getBoundingClientRect();
       return { left, right, top, bottom };
@@ -2725,25 +2714,26 @@ async function homeWordmark(page) {
     const headStyle = getComputedStyle(head);
     const center = (headBox.left + parseFloat(headStyle.paddingLeft)
       + headBox.right - parseFloat(headStyle.paddingRight)) / 2;
-    const text = document.createRange();
-    text.selectNodeContents(heading);
-    // The canvas reports the glyphs' own height, which the line box does not.
-    const context = document.createElement('canvas').getContext('2d');
-    context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const artwork = heading.querySelector('.home-wordmark');
+    const fallback = heading.querySelector('.home-brand-text');
+    const toggle = document.querySelector('#home-updates-toggle');
+    const toggleText = document.createRange();
+    toggleText.selectNodeContents(toggle);
+    const toggleRects = [...toggleText.getClientRects()].filter((line) => line.width && line.height);
     const nearby = [...view.querySelectorAll('#home-updates-toggle, :scope > :not(.head)')]
       .filter((node) => node.checkVisibility());
     return {
       headings: [...view.querySelectorAll('h1')].filter((node) => node.checkVisibility()).map((node) => node.id),
       labelledBy: view.getAttribute('aria-labelledby'),
       text: heading.textContent,
-      tagline: !!document.querySelector('.home-action').getClientRects().length,
-      family: style.fontFamily, upper: style.textTransform, transform: style.transform,
-      stroke: style.webkitTextStrokeWidth, paint: style.paintOrder, shadow: style.textShadow,
-      font: parseFloat(style.fontSize), width: heading.offsetWidth,
-      cap: context.measureText(heading.textContent).actualBoundingBoxAscent,
-      lines: [...text.getClientRects()].filter((line) => line.width && line.height).length,
+      tagline: !!document.querySelector('.home-action'),
+      imageLoaded: artwork.complete && artwork.naturalWidth > 0,
+      imageShown: getComputedStyle(artwork).display !== 'none',
+      fallbackShown: getComputedStyle(fallback).position === 'static',
+      image: rect(artwork), fallbackColor: getComputedStyle(fallback).color,
+      toggleLines: Math.max(...toggleRects.map((line) => line.top)) < Math.min(...toggleRects.map((line) => line.bottom)) ? 1 : 2, toggleRects: toggleRects.map((line) => line.toJSON()),
       box, top: box.top - view.getBoundingClientRect().top, offCenter: Math.abs((box.left + box.right) / 2 - center),
-      screen: document.documentElement.clientWidth,
+      screen: document.documentElement.clientWidth, grid: headStyle.gridTemplateColumns, headWidth: headBox.width, toggle: rect(toggle),
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       overlapping: nearby.filter((node) => {
         const other = rect(node);
@@ -2755,50 +2745,21 @@ async function homeWordmark(page) {
 
 async function homeWordmarkCheck(page, label, viewport) {
   await page.waitForSelector('#view-home:not([hidden])');
-  if (viewport.desktop || viewport.width > 880) {
-    const masthead = await homeWordmark(page);
-    check(masthead.text === 'RECAP PAGE!' && masthead.tagline && masthead.font >= 48,
-      `${label}: wider Home keeps the full masthead and its tagline ${JSON.stringify(masthead)}`);
-    return;
-  }
-  // WebView multiplies every font size by the system font scale, viewport units included, and the
-  // token stress reaches only token sizes, so large text scales the wordmark here the same way.
-  const scale = viewport.textScale || 1;
-  if (scale !== 1) {
-    await page.$eval('#home-h', (node, factor) => {
-      node.style.fontSize = `${parseFloat(getComputedStyle(node).fontSize) * factor}px`;
-    }, scale);
-    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
-  }
-  const shorter = Math.min(viewport.width, viewport.height);
   const shown = await homeWordmark(page);
-  const shadow = shown.shadow.match(/\) (-?[\d.]+)px (-?[\d.]+)px/);
-  const footprint = shown.width * shown.cap / (shorter * scale) ** 2 / WORDMARK_FOOTPRINT;
   const misses = [
     JSON.stringify(shown.headings) !== '["home-h"]' && `page headings ${JSON.stringify(shown.headings)}`,
     shown.labelledBy !== 'home-h' && `Home named by ${shown.labelledBy}`,
-    shown.text !== 'RECAP PAGE!' && `text ${JSON.stringify(shown.text)}`,
-    shown.tagline && 'tagline shown',
-    !/^Impact,/.test(shown.family) && `family ${shown.family}`,
-    shown.upper !== 'uppercase' && `case ${shown.upper}`,
-    shown.transform === 'none' && 'no skew',
-    shown.stroke !== '1px' && `stroke ${shown.stroke}`,
-    // Edge draws Impact, whose letters have no overlapping outlines for the stroke to trace, so the
-    // white lines this order keeps out of Android's fallback can only be guarded by the order itself.
-    !/^stroke/.test(shown.paint) && `paint order ${shown.paint}`,
-    !(shadow && [1, 2].every((index) => Math.abs(Number(shadow[index]) - shown.font * 0.0625) < 0.01))
-      && `shadow ${shown.shadow}`,
-    Math.abs(shown.font - WORDMARK_SHARE * shorter * scale) > 0.05 && `font ${shown.font}px`,
-    Math.abs(footprint - 1) > 0.15 && `footprint ${footprint.toFixed(2)} of the reference`,
-    shown.lines !== 1 && `${shown.lines} lines`,
+    shown.text !== 'Recap Page' && `text ${JSON.stringify(shown.text)}`,
+    shown.tagline && 'tagline retained',
+    (!shown.imageLoaded || !shown.imageShown || shown.fallbackShown) && 'artwork missing or fallback exposed',
+    shown.toggleLines !== 1 && `What's new has ${shown.toggleLines} lines ${JSON.stringify(shown)}`,
     (shown.box.left < 0 || shown.box.right > shown.screen || shown.overflow) && 'outside the screen',
     shown.offCenter > 1 && `${shown.offCenter.toFixed(1)}px off center`,
-    (shown.top < -1 || shown.top > 16) && `${shown.top.toFixed(1)}px below the top of Home`,
+    Math.abs((shown.image.left + shown.image.right - shown.box.left - shown.box.right) / 2) > 1 && 'artwork off center inside heading',
     shown.overlapping.length && `overlaps ${shown.overlapping.join(', ')}`,
   ].filter(Boolean);
-  check(!misses.length, `${label}: Home opens with the masthead as one centered wordmark line of the decided size (${misses.join('; ')})`);
+  check(!misses.length, `${label}: Home opens with centered artwork, its heading name and one-line What's new (${misses.join('; ')})`);
   await screenshot(page, label, 'home-wordmark');
-  if (scale !== 1) await page.$eval('#home-h', (node) => node.style.removeProperty('font-size'));
   if (viewport.forced) {
     const cdp = await page.createCDPSession();
     await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
@@ -2810,15 +2771,16 @@ async function homeWordmarkCheck(page, label, viewport) {
       probe.remove();
       const style = getComputedStyle(node);
       return { active: matchMedia('(forced-colors: active)').matches, color: style.color, system,
-        stroke: style.webkitTextStrokeWidth, shadow: style.textShadow };
+        imageHidden: getComputedStyle(node.querySelector('.home-wordmark')).display === 'none',
+        textShown: getComputedStyle(node.querySelector('.home-brand-text')).position === 'static' };
     });
     await screenshot(page, label, 'home-wordmark-forced');
     await cdp.send('Emulation.setEmulatedMedia', { features: [] });
     await cdp.detach();
-    check(forced.active && forced.color === forced.system && forced.stroke === '0px' && forced.shadow === 'none',
-      `${label}: forced colors draw the wordmark in CanvasText without its stroke or shadow ${JSON.stringify(forced)}`);
+    check(forced.active && forced.color === forced.system && forced.imageHidden && forced.textShown,
+      `${label}: forced colors replace the artwork with CanvasText ${JSON.stringify(forced)}`);
   }
-  console.log(`WORDMARK ${label}: ${shown.width}x${shown.cap.toFixed(1)}px at ${shown.font}px, footprint ${footprint.toFixed(2)} of the reference`);
+  console.log(`WORDMARK ${label}: ${JSON.stringify(shown.image)}`);
 }
 
 // #831: at 200% text the five-item bar cut its labels to "Ho", "Libr" and "Bro". Each visible label is one
@@ -2972,22 +2934,10 @@ async function phoneHeaderCheck(page, label, viewport) {
   check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
     `${label}: header navigation leaves saved reading data unchanged`);
   if (!viewport.desktop && narrow) {
-    const masthead = () => page.evaluate(() => {
-      const heading = document.querySelector('#home-h');
-      return { text: heading.textContent, font: parseFloat(getComputedStyle(heading).fontSize),
-        tagline: !!document.querySelector('.home-action').getClientRects().length };
-    });
     await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
-    await page.waitForFunction(() => !!document.querySelector('.home-action').getClientRects().length);
-    const wide = await masthead();
-    check(wide.text === 'RECAP PAGE!' && wide.tagline && wide.font >= 48,
-      `${label}: widening restores the full Home masthead and tagline ${JSON.stringify(wide)}`);
+    await homeWordmarkCheck(page, `${label} widened`, { ...viewport, width: 1280, height: 900 });
     await page.setViewport({ width: viewport.width, height: viewport.height, isMobile: true, hasTouch: true });
-    await page.waitForFunction(() => !document.querySelector('.home-action').getClientRects().length);
-    const narrowed = await masthead();
-    check(narrowed.text === 'RECAP PAGE!' && !narrowed.tagline
-      && Math.abs(narrowed.font - WORDMARK_SHARE * Math.min(viewport.width, viewport.height)) <= 0.05,
-    `${label}: narrowing returns to the wordmark without the tagline ${JSON.stringify(narrowed)}`);
+    await homeWordmarkCheck(page, `${label} narrowed`, viewport);
   }
 }
 
@@ -4150,7 +4100,7 @@ async function homeContinueCheck(page, label, viewport) {
   const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
   const noticeAt = tree.findIndex((node) => node.name === notice.text);
   check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
-    && notice.className === 'notice notice-warn' && notice.text.startsWith('Marvel Unlimited reading ends'),
+    && notice.className === 'notice notice-warn' && notice.text.startsWith('Marvel Unlimited ends'),
   `${name}: the accessibility tree reads ${viewport.desktop ? 'the closure notice, then Continue reading' : 'Continue reading, then the closure notice'} ${JSON.stringify({ cardAt, noticeAt, ...notice })}`);
   // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
   // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The
@@ -4171,14 +4121,8 @@ async function homeContinueCheck(page, label, viewport) {
   }
   if (!viewport.desktop) {
     const sameRow = opened.toggle.top < opened.heading.bottom && opened.toggle.bottom > opened.heading.top;
-    if (viewport.oneRow) {
-      check(sameRow && opened.offCenter <= 1 && opened.toggle.left >= opened.heading.right
-        && opened.toggle.right <= opened.width && !opened.overflow,
-      `${name}: on a short screen What's new shares the centered wordmark's row ${JSON.stringify(opened)}`);
-    } else {
-      check(!sameRow && opened.toggle.top >= opened.heading.bottom && opened.offCenter <= 1,
-        `${name}: a taller screen keeps What's new on its own row under the centered wordmark ${JSON.stringify(opened)}`);
-    }
+    check((viewport.oneRow ? sameRow : !sameRow && opened.toggle.top >= opened.heading.bottom) && opened.offCenter <= 1,
+      `${name}: What's new stays ${viewport.oneRow ? 'beside' : 'under'} the centered wordmark ${JSON.stringify(opened)}`);
   }
   if (viewport.oneRow) {
     // What's new opens where it is, as the Windows panel below it, instead of jumping to a row of its
@@ -4225,7 +4169,7 @@ async function homeContinueCheck(page, label, viewport) {
   await settle();
   const path = [];
   for (const id of ['btn-chero-read', 'btn-chero-done']) {
-    for (let step = 0; step < 4 && await page.evaluate(() => document.activeElement?.id) !== id; step += 1) {
+    for (let step = 0; step < 5 && await page.evaluate(() => document.activeElement?.id) !== id; step += 1) {
       await page.keyboard.press('Tab');
       path.push(await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
     }
@@ -5732,7 +5676,8 @@ try {
           readShown: !document.querySelector('#view-read').hidden,
         },
         heading: heading.textContent, transform: getComputedStyle(heading).transform,
-        taglineDisplay: getComputedStyle(tagline).display,
+        taglinePresent: !!tagline,
+        homeName: brand.getAttribute('aria-label'),
         marker: getComputedStyle(brand, '::before').content,
         iconLoaded: mark.complete && mark.naturalWidth > 0 && mark.naturalHeight > 0,
         iconWidth: bounds.width, iconHeight: bounds.height,
@@ -5750,9 +5695,9 @@ try {
     // is that resuming the fixture's list is the only reason Home is hidden, so a mode that lands
     // anywhere else still fails here.
     if (homeBranding.homeShown) {
-      check(homeBranding.heading === 'RECAP PAGE!' && homeBranding.transform !== 'none'
-        && (compactHome ? homeBranding.taglineDisplay === 'none' : homeBranding.taglineDisplay !== 'none'),
-      `${label}: Home keeps the skewed masthead text at every width, without the tagline on compact Android (${JSON.stringify(homeBranding)})`);
+      check(homeBranding.heading === 'Recap Page' && homeBranding.transform === 'none'
+        && !homeBranding.taglinePresent && homeBranding.homeName === 'Home',
+      `${label}: Home keeps its heading name and Home link without the retired tagline (${JSON.stringify(homeBranding)})`);
     } else {
       const route = parseRoute(homeBranding.resumed.hash);
       check(homeBranding.resumed.saved && homeBranding.resumed.readShown

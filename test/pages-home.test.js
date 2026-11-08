@@ -91,6 +91,7 @@ const EXPECTED_HREFS = [
   './data-sources.html',
   '#getting-started',
   '#android',
+  'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited',
   PLAY_LISTING,
   `${REPOSITORY}/blob/main/docs/ANDROID.md`,
   './assets/android-library-preview.png',
@@ -226,6 +227,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
   assert.deepEqual(links(overview), [
     { href: '#getting-started', button: true, name: 'Get started' },
     { href: '#android', button: false, name: 'See the Android app' },
+    { href: 'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited', button: false, name: "Marvel's FAQ" },
   ]);
 
   const android = section('android');
@@ -312,7 +314,8 @@ test('Get started offers both app stores and says iPhone and iPad is in App Stor
 });
 
 test('the showcase includes the supplied artwork and current phone previews', () => {
-  const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]));
+  const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]))
+    .filter(({ src }) => src !== './assets/wordmark.png');
   assert.deepEqual(images.slice(0, 3).map(({ src, width, height }) => ({ src, width, height })), [
     { src: './assets/android-feature-graphic.png', width: '1024', height: '500' },
     { src: './assets/android-library-preview.png', width: '1080', height: '1920' },
@@ -343,12 +346,22 @@ test('the showcase includes the supplied artwork and current phone previews', ()
   }
 });
 
+test('home and generated mastheads use separate wordmark artwork with a forced-colors text fallback', () => {
+  for (const page of [html, releaseHtml]) {
+    assert.match(page, /<p class="site-name">(?:<a href="\.\/index\.html">)?<img src="\.\/assets\/wordmark\.png" alt="Recap Page" width="1642" height="238" \/><span class="site-name-text" aria-hidden="true">Recap Page<\/span>/);
+  }
+  assert.match(css, /\.site-name img \{[^}]*height: 2\.25rem;/);
+  assert.match(css, /@media \(max-width: 42rem\) \{ \.site-name img \{ height: 1\.75rem;/);
+  assert.match(css, /@media \(forced-colors: active\) \{[\s\S]*?\.site-name-text \{ display: inline; color: CanvasText;/);
+});
+
 test('the source inventory and generated contract stay exact', async () => {
   assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'being-built.md', 'data-sources.md', 'index.html', 'site.css']);
   assert.deepEqual((await readdir(join(ROOT, 'pages', 'assets'))).sort(), [
     'android-feature-graphic.png',
     'android-library-preview.png',
     'android-reading-preview.png',
+    'wordmark.png',
   ]);
   assert.deepEqual(PAGE_OUTPUTS, [
     'assets/android-feature-graphic.png',
@@ -356,6 +369,7 @@ test('the source inventory and generated contract stay exact', async () => {
     'assets/android-reading-preview.png',
     'assets/avengers-disassembled-reading-960.png',
     'assets/home-960.png',
+    'assets/wordmark.png',
     'being-built.html',
     'data-sources.html',
     'index.html',
@@ -383,6 +397,7 @@ test('the source inventory and generated contract stay exact', async () => {
       'pages/assets/android-feature-graphic.png',
       'pages/assets/android-library-preview.png',
       'pages/assets/android-reading-preview.png',
+      'pages/assets/wordmark.png',
     ],
   );
 });
@@ -535,7 +550,8 @@ test('the exact-origin warning appears before the only local-app link', () => {
 });
 
 test('all five showcase images have accurate dimensions and useful alternatives', () => {
-  const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]));
+  const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]))
+    .filter(({ src }) => src !== './assets/wordmark.png');
   assert.deepEqual(
     images.map(({ src }) => src),
     [

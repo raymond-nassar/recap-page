@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
 
 export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
@@ -26,6 +27,18 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   t.check('screen-reader tree names one button without speaking the decorative glyph',
     nodes.filter((node) => !node.ignored && node.role?.value === 'button'
       && node.name?.value === 'Dismiss the Marvel Unlimited notice').length === 1);
+  const faq = '#reader-closure-faq';
+  const faqHref = 'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited';
+  t.check('the short notice keeps one descriptive external FAQ link in the screen-reader tree',
+    nodes.filter((node) => !node.ignored && node.role?.value === 'link' && node.name?.value === "Marvel's FAQ").length === 1
+    && await page.$eval(faq, (node, href) => node.href === href && node.target === '_blank'
+      && node.rel === 'noopener noreferrer', faqHref));
+  t.check('the short pre-cutoff sentence is announced without the retired detail',
+    nodes.some((node) => !node.ignored && node.role?.value === 'StaticText'
+      && node.name?.value === 'Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.'));
+  await page.focus(faq);
+  await page.keyboard.press('Tab');
+  t.check('the FAQ precedes Dismiss in keyboard order', await page.$eval(button, (node) => node === document.activeElement));
   for (const theme of ['light', 'dark', 'system']) {
     for (const width of [1280, 320]) {
       await page.setViewport({ width, height: 900 });
@@ -38,9 +51,11 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
           const box = node.getBoundingClientRect(), notice = node.parentElement.getBoundingClientRect();
           const prose = document.createRange();
           prose.selectNodeContents(document.querySelector('#reader-closure-text'));
+          const faq = document.querySelector('#reader-closure-faq');
           return box.left >= notice.left && box.right <= notice.right && box.top >= notice.top
             && box.bottom <= notice.bottom && box.width >= 44 && box.height >= 44
-            && [...prose.getClientRects()].every((rect) => rect.right <= box.left || rect.top >= box.bottom)
+            && [...prose.getClientRects(), ...faq.getClientRects()].every((rect) =>
+              rect.right <= box.left || rect.top >= box.bottom || rect.bottom <= box.top)
             && document.documentElement.scrollWidth <= innerWidth;
         }));
     }
@@ -68,12 +83,13 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   t.check('a pre-cutoff dismissal is remembered under its own phase',
     await page.evaluate((key) => localStorage.getItem(key), key) === identity);
   const shown = () => page.$eval('#reader-closure-notice', (node) => !node.hidden
-    && node.querySelector('#reader-closure-text').textContent.startsWith('Reading in Marvel Unlimited ended'));
+    && node.querySelector('#reader-closure-text').textContent === 'Marvel Unlimited has ended, so Read opens the Marvel Comics website.');
   await page.evaluate(() => {
     window.__marvelClock = new Date(2026, 11, 7).getTime();
     dispatchEvent(new Event('focus'));
   });
   t.check('a page left open across the cutoff shows the new notice without a reload', await shown());
+  t.check('the phase refresh retains the FAQ link', await page.$eval(faq, (node, href) => node.href === href, faqHref));
   await page.evaluate(() => sessionStorage.setItem('marvel-clock', String(new Date(2026, 11, 7).getTime())));
   await page.reload({ waitUntil: 'load' });
   t.check('a pre-cutoff dismissal does not hide the post-cutoff notice after reload', await shown());
@@ -163,9 +179,76 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
     } finally { await faulty.close(); }
   }
   await page.evaluate((key) => localStorage.removeItem(key), key);
+  await iosClosureTargets(page, t);
   await route(page, '#/about', '#view-about:not([hidden])');
   t.check('About keeps the cutoff explanation independently', await page.$eval('#view-about',
     (node) => node.textContent.includes('December 7, 2026') && node.textContent.includes('not a single-comic link')));
+}
+
+async function iosClosureTargets(page, t) {
+  const mobile = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+  const overlay = await readFile(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8');
+  const controller = await readFile(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
+  const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)[1];
+  const ios = await page.browserContext().newPage();
+  try {
+    for (const [width, height, largest, theme] of [
+      [390, 844, false, 'light'], [390, 844, false, 'dark'],
+      [812, 375, true, 'dark'], [844, 390, true, 'light'],
+      [844, 390, true, 'dark'], [880, 390, true, 'light'],
+    ]) {
+      await ios.setViewport({ width, height });
+      await ios.goto(new URL('/#/home', page.url()).href, { waitUntil: 'load' });
+      await ios.waitForSelector('#reader-closure-faq', { visible: true });
+      await ios.evaluate((styles) => {
+        document.adoptedStyleSheets = styles.map((text) => {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(text);
+          return sheet;
+        });
+      }, [mobile, overlay]);
+      await ios.evaluate(({ largest, theme }) => {
+        document.documentElement.dataset.iosLargestText = String(largest);
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.setProperty('--ios-text-scale', largest ? String(53 / 17) : '1');
+      }, { largest, theme });
+      await ios.evaluate(adapter);
+      await ios.evaluate(() => {
+        document.activeElement.blur();
+        scrollTo(0, 0);
+      });
+      const observed = await ios.evaluate(() => {
+        const faq = document.querySelector('#reader-closure-faq');
+        const image = document.querySelector('.home-wordmark').getBoundingClientRect();
+        const toggle = document.querySelector('#home-updates-toggle').getBoundingClientRect();
+        const hit = document.elementFromPoint((image.left + image.right) / 2, (image.top + image.bottom) / 2);
+        return {
+          adapted: faq.dataset.iosAccessibleTarget === 'true',
+          name: faq.getAttribute('aria-label'),
+          hiddenText: [...faq.children].every((child) => child.getAttribute('aria-hidden') === 'true'),
+          targetHeight: faq.getBoundingClientRect().height,
+          lineHeight: parseFloat(getComputedStyle(faq).lineHeight),
+          noOverlap: toggle.top >= image.bottom,
+          imageHit: Boolean(hit?.closest('#home-h')),
+          hit: hit?.id || hit?.tagName,
+          scrollY,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        };
+      });
+      const label = `iOS overlay ${width}x${height} ${largest ? 'largest' : 'default'} ${theme}`;
+      t.check(`${label} exposes one named FAQ target with a 44pt text line`,
+        observed.adapted && observed.name === "Marvel's FAQ" && observed.hiddenText
+        && observed.targetHeight >= 44 && observed.lineHeight >= 44, JSON.stringify(observed));
+      t.check(`${label} stacks updates clear of the wordmark without horizontal overflow`,
+        observed.noOverlap && observed.imageHit && !observed.overflow, JSON.stringify(observed));
+      await ios.focus('#reader-closure-faq');
+      await ios.keyboard.press('Tab');
+      t.check(`${label} retains FAQ-to-Dismiss keyboard order`,
+        await ios.$eval('#reader-closure-dismiss', (node) => node === document.activeElement));
+    }
+  } finally {
+    await ios.close();
+  }
 }
 
 async function localClock(page) {
@@ -241,8 +324,11 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
     }
     await route(page, '#/home', '#view-home:not([hidden])');
     await read('#btn-chero-read', mode);
-    t.check('Home explains the closure and preserves the data promise', await page.$eval('#reader-closure-notice',
-      (node) => node.textContent.includes('December 7, 2026') && node.textContent.includes('backups stay unchanged')));
+    t.check('Home shows the concise phase-appropriate notice and Marvel FAQ', await page.$eval('#reader-closure-notice',
+      (node, mode) => node.querySelector('#reader-closure-text').textContent === (mode === 'unlimited'
+        ? 'Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.'
+        : 'Marvel Unlimited has ended, so Read opens the Marvel Comics website.')
+        && node.querySelector('#reader-closure-faq').href === 'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited', mode));
     await route(page, '#/read/fixture', '#view-read:not([hidden])');
     await read('#btn-hero-read', mode);
     await openFullOrder(page);

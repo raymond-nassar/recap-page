@@ -43,9 +43,9 @@
             <span class="rail-toggle-label">More</span>
           </button>
 
-          <a href="#/home" class="brand" data-view="home">
+          <a href="#/home" class="brand" data-view="home" aria-label="Home">
             <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
-            <b class="lbl">Recap&nbsp;Page</b>
+            <b class="lbl">Home</b>
             <span class="mobile-home-label">Home</span>
           </a>
           <a href="#/library" class="mobile-link" data-view="library">
@@ -158,12 +158,11 @@
           <section id="view-home" class="view view-wide" hidden aria-labelledby="home-h">
             <div class="head">
               <div class="head-left home-lockup">
-                <h1 id="home-h" class="home-brand">RECAP PAGE!</h1>
-                <p class="home-action">Browse. Choose. Read.</p>
+                <h1 id="home-h" class="home-brand"><img class="home-wordmark" src="./icons/wordmark.png" alt="" aria-hidden="true" width="1642" height="238" /><span class="home-brand-text">Recap Page</span></h1>
               </div>
               <details id="home-updates">
                 <summary id="home-updates-toggle" aria-controls="home-updates-panel">
-                  What's new <span id="home-updates-new" aria-hidden="true" hidden>New</span>
+                  <span class="home-updates-label">What's new</span> <span id="home-updates-new" aria-hidden="true" hidden>New</span>
                 </summary>
                 <section id="home-updates-panel" aria-labelledby="home-updates-title">
                   <div class="home-updates-head">
@@ -177,7 +176,7 @@
               </details>
             </div>
 
-            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.</span><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
+            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
 
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">

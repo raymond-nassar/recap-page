@@ -25,7 +25,7 @@ func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, precise
         usableBottom = toggle.frame.minY
         let barLinks = webView.links.matching(NSPredicate(
             format: "label IN %@ OR label CONTAINS[c] %@ OR label == %@",
-            ["Library", "Search"], "Recap Page", "Home"))
+            ["Library", "Search"], "Home", "Home"))
         // Only the row directly above More is the bar; a same-named content link further up is not.
         let barBand = toggle.frame.minY - toggle.frame.height - 16
         for link in barLinks.allElementsBoundByIndex where link.exists {
@@ -1909,7 +1909,7 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(key) opens \(destination)")
                 if key == "modern-timeline" {
                     let home = app.links.matching(
-                        NSPredicate(format: "label CONTAINS[c] %@ OR label == %@", "Recap Page", "Home")).firstMatch
+                        NSPredicate(format: "label == %@", "Home")).firstMatch
                     XCTAssertTrue(home.waitForExistence(timeout: 30), "Home remains reachable")
                     home.tap()
                 }
@@ -2062,7 +2062,7 @@ final class PresentationUITests: XCTestCase {
             let probe = try probeResult(of: app)
             let screens = try XCTUnwrap(probe["screens"] as? [[String: Any]])
             for (name, headingLabel, view, route, nextLink, nextHeadingLabel, nextView, nextRoute) in [
-                ("home", "RECAP PAGE!", "view-home", "home", "Library", "Library", "view-library", "library"),
+                ("home", "Recap Page", "view-home", "home", "Library", "Library", "view-library", "library"),
                 ("library", "Library", "view-library", "library", "Search", "Search", "view-add", "add"),
                 ("search", "Search", "view-add", "add", "Backup & settings", "Backup & settings", "view-data", "data"),
                 ("data", "Backup & settings", "view-data", "data", nil, nil, nil, nil),
@@ -2072,10 +2072,9 @@ final class PresentationUITests: XCTestCase {
                     NSPredicate(format: "label == %@", headingLabel)).firstMatch
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
                 if name == "home" {
-                    let brandLink = app.links.matching(
-                        NSPredicate(format: "label CONTAINS[c] %@ OR label == %@", "Recap Page", "Home")).firstMatch
+                    let brandLink = app.links["Home"].firstMatch
                     XCTAssertTrue(brandLink.waitForExistence(timeout: 30), "the brand is one accessible home link")
-                    XCTAssertFalse(app.staticTexts["Recap Page"].exists, "the brand has no separate text target")
+                    XCTAssertFalse(app.staticTexts["Home"].exists, "the brand has no separate text target")
                     XCTAssertGreaterThanOrEqual(brandLink.frame.height, 44, "the brand link target is at least 44 points high")
 
                     let updatesToggle = app.descendants(matching: .any).matching(

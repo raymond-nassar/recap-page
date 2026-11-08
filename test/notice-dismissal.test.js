@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import { createNoticeDismissal, NOTICE_DISMISSAL_KEY, readerClosureNoticeId } from '../src/js/lib/noticeDismissal.js';
+import { readerClosureNotice } from '../src/js/lib/readerDestination.js';
 
 const BEFORE = new Date(2026, 11, 6, 23, 59, 59, 999);
 const AFTER = new Date(2026, 11, 7);
@@ -19,6 +20,15 @@ function fixture(raw = null) {
   };
   return { map, storage };
 }
+
+test('the shorter notices retain both phases and their existing dismissal identities', () => {
+  assert.equal(readerClosureNotice(BEFORE),
+    'Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.');
+  assert.equal(readerClosureNotice(AFTER),
+    'Marvel Unlimited has ended, so Read opens the Marvel Comics website.');
+  assert.equal(readerClosureNoticeId(BEFORE), 'marvel-unlimited-closure-unlimited');
+  assert.equal(readerClosureNoticeId(AFTER), 'marvel-unlimited-closure-comics');
+});
 
 test('only an exact valid notice identity is dismissed on load', () => {
   for (const raw of [null, '', 'true', '1', '{}', 'null', `"${READER_CLOSURE_NOTICE}"`,
