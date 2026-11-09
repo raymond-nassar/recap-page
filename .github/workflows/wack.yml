@@ -767,7 +767,7 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true && inputs.diagnostic_target != 'ordinary-browser' && inputs.diagnostic_target != 'ordinary-browser-context-isolation' && inputs.diagnostic_target != 'ordinary-browser-download-completion' && inputs.diagnostic_target != 'ordinary-browser-export-acceptance' && inputs.diagnostic_target != 'ordinary-browser-recovery-completion' && inputs.diagnostic_target != 'ordinary-browser-ratings-acceptance' && inputs.diagnostic_target != 'ordinary-browser-interaction-acceptance' }}
     environment: microsoft-store-production
     runs-on: windows-2022
-    timeout-minutes: 120
+    timeout-minutes: 124
     steps:
       - name: Check out the exact candidate and upgrade history
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -813,7 +813,7 @@ jobs:
           $javaBin >> $env:GITHUB_PATH
           "JAVA_HOME=$env:JAVA_HOME_17_X64" >> $env:GITHUB_ENV
       - name: Run the bare test suite
-        timeout-minutes: 6
+        timeout-minutes: 10 # 351 s on 7 November 2026, and stopped at 360 s twice on 8 November with no failures (#1187)
         run: npm test
       - name: Check counts
         timeout-minutes: 2
