@@ -1,7 +1,7 @@
 // The restore engine for a complete backup, and the guard that keeps every other writer away from saved
 // data while a restore runs or waits to be recovered.
 //
-// A complete restore replaces four kinds of data with eight writes, so an interruption can leave any
+// A complete restore replaces four kinds of data with seven writes, so an interruption can leave any
 // mixture of old and new. The engine journals the exact prior and prepared bytes of every component in
 // IndexedDB, reads the journal back, and only then sets a marker in localStorage and writes. Startup
 // reads only that marker, synchronously, so a start with nothing pending never waits for IndexedDB or
@@ -29,7 +29,7 @@
 // can write. A tab opened meanwhile waits, then reloads, so nothing it held from before can be written
 // back. Tabs still running a version without this lock cannot be seen, which the confirmation says.
 
-import { RESTORE_MARKER_KEY, RESTORE_LOCK, RESTORE_DATABASE } from '../storage.js';
+import { RESTORE_MARKER_KEY, RESTORE_LOCK, RESTORE_DATABASE, compactText } from '../storage.js';
 import {
   CAPTURE_KEYS, CompleteBackupError, RESTORE_KEYS, canonical, captureCompleteBackup, classifyComponent,
   imageOf, parseCompleteBackup, prepareCompleteRestore, restorePlan,
@@ -761,8 +761,10 @@ export class CompleteRestore {
     }
     let failure = null;
     try {
+      // compactText changes no character. It rebuilds a value that came back from the journal in the
+      // narrow form WebKit charges one byte per character for, which a structured-clone read may not keep.
       if (value === null) this.raw.removeItem(effect.key);
-      else this.raw.setItem(effect.key, value);
+      else this.raw.setItem(effect.key, compactText(value));
     } catch (error) { failure = error; }
     const held = imageOf(this.raw, component.keys);
     if (same(held, target)) return true;

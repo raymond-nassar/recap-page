@@ -324,11 +324,12 @@ test('preparation freezes every owner\'s exact bytes, keeps the metadata service
   assert.deepEqual([...f.map], before);
   assert.equal(f.writes(), 0);
   const [readerOwner, historyOwner, settingsOwner, draftOwner] = prepared.owners;
-  assert.deepEqual(readerOwner.effects.map(({ key }) => key), ['mrt.state.restore.tmp', PRERESTORE_KEY, KEY, 'mrt.state.restore.tmp']);
+  assert.deepEqual(readerOwner.effects.map(({ key }) => key), ['mrt.state.restore.tmp', PRERESTORE_KEY, KEY],
+    'three writes: clear a leftover stage, keep the saved copy, swap; nothing is staged');
   assert.equal(readerOwner.effects[0].before, 'EXACT_PRIOR_STAGE');
+  assert.equal(readerOwner.effects[0].value, null);
   assert.equal(readerOwner.effects[1].before, 'EXACT_PRIOR_SAVED_COPY');
   assert.equal(readerOwner.effects[1].value, f.map.get(KEY), 'the replaced reading data becomes the saved copy');
-  assert.equal(readerOwner.effects[3].value, null);
   const restoredReader = JSON.parse(readerOwner.value);
   assert.equal(restoredReader.notes[2], 'Keep this note');
   assert.notEqual(restoredReader.writeToken, reader.writeToken);
@@ -348,7 +349,7 @@ test('preparation freezes every owner\'s exact bytes, keeps the metadata service
   assert.ok(draft.previousSources.includes('UNSAVED_SOURCE'), 'unsaved source this tab holds is kept too');
   assert.deepEqual(JSON.parse(JSON.stringify(prepared)), prepared, 'the journal can hold the exact bytes');
   const plan = restorePlan(prepared, backup);
-  assert.deepEqual(plan.components.map((c) => c.effects.length), [4, 1, 2, 1]);
+  assert.deepEqual(plan.components.map((c) => c.effects.length), [3, 1, 2, 1]);
   assert.deepEqual(plan.components.map((c) => classifyComponent(f.storage, c).status), ['prior', 'prior', 'prior', 'prior']);
 });
 

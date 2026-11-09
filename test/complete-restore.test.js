@@ -14,12 +14,12 @@ import {
   recoveryTextForPlatform, restoreMessagesForPlatform,
 } from '../src/js/lib/completeRestore.js';
 import {
-  captureCompleteBackup, createCompleteBackup, prepareCompleteRestore, restorePlan, canonical, RESTORE_KEYS,
+  captureCompleteBackup, createCompleteBackup, parseCompleteBackup, prepareCompleteRestore, restorePlan, canonical, RESTORE_KEYS,
 } from '../src/js/lib/completeBackup.js';
 import { keepCurrentQuestion, keptNotice } from '../src/js/views/data.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue } from '../src/js/lib/model.js';
 import {
-  KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_MARKER_KEY, CLOUD_SYNC_PENDING_KEY,
+  Store, KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_MARKER_KEY, CLOUD_SYNC_PENDING_KEY,
 } from '../src/js/storage.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT } from '../src/js/lib/listHistory.js';
 import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences } from '../src/js/lib/importDraft.js';
@@ -780,7 +780,7 @@ test('a restore journals and reads back before its marker, writes in order, and 
   const markerWrites = env.storage.history.map((snapshot) => snapshot.get(RESTORE_MARKER_KEY) ?? null);
   assert.deepEqual([...new Set(markerWrites)], [null, `active:${record.id}`, `done:${record.id}`]);
   assert.equal(record.phase, 'done');
-  assert.equal(record.writes, 8, 'eight writes, each checkpointed');
+  assert.equal(record.writes, 6, 'six writes, each checkpointed; the empty stage needed no clearing');
   assert.equal(record.finishedAt, env.now);
   assert.deepEqual(record.prepared.before, prior, 'the exact prior values are kept');
   const plan = restorePlan(record.prepared, (await fileBackup()).backup);
@@ -947,8 +947,8 @@ test('a tab whose start overlaps the end of another tab\'s restore reloads befor
 
 // ------------------------------------------------------------------ interruptions
 
-test('every one of the eight writes, interrupted before its checkpoint, is recovered from its bytes after a reload', async () => {
-  for (let effect = 0; effect < 8; effect += 1) {
+test('every one of the six writes, interrupted before its checkpoint, is recovered from its bytes after a reload', async () => {
+  for (let effect = 0; effect < 6; effect += 1) {
     const env = environment();
     const prior = priorOf(env);
     const tab = await env.open();
@@ -980,7 +980,7 @@ test('every one of the eight writes, interrupted before its checkpoint, is recov
 });
 
 test('a kill that loses recent localStorage writes is still recovered, because the bytes decide and not the checkpoint', async () => {
-  for (const kept of [0, 1, 3, 6, 9]) {
+  for (const kept of [0, 1, 3, 5, 7]) {
     const env = environment();
     const prior = priorOf(env);
     const tab = await env.open();
@@ -1345,7 +1345,7 @@ test('a guarded restore refuses a foreign write before the final checkpoint', as
   const progress = env.journal.progress;
   env.journal.progress = async (record) => {
     await progress(record);
-    if (!injected && record.phase === 'applying' && record.writes === 8) {
+    if (!injected && record.phase === 'applying' && record.writes === 6) {
       injected = true;
       env.storage.setItem(SETTINGS_KEY, JSON.stringify({ theme: 'light' }));
     }
@@ -1929,5 +1929,233 @@ test('iOS complete restore quota failure names app storage', async () => {
   } finally {
     if (previous === undefined) delete globalThis.document;
     else globalThis.document = previous;
+  }
+});
+
+// ------------------------------------------------------------------ iOS capacity (#960)
+
+// WebKit's localStorage on iOS: 5 MiB an origin, a string charged one byte per character when the
+// engine holds it in its one-byte form and two otherwise, and a replacement charged as the new value
+// less the old (docs/IOS.md, "Storage capacity"). Which form the engine holds is not visible from
+// JavaScript, so this charges the cheap rate only to text that compactText() rebuilt through a Latin-1
+// decoder and every other value, keys included, at two bytes per character, as the app's saved data
+// was measured on iOS. `wide` seeds stored as it would be after a relaunch or by 4.5.0: two bytes per
+// character, whatever their characters.
+const IOS_QUOTA = 5 * 1024 * 1024;
+const OWNER_READER_CHARS = 1_361_156;
+const CAPACITY_TARGET_CHARS = 1_633_400;
+
+function iosStorage(entries, { wide = true } = {}) {
+  const map = new Map();
+  const cost = new Map();
+  const oneByte = new Set();
+  let total = 0;
+  const charge = (key, value) => 2 * key.length
+    + (oneByte.has(value) ? value.length : 2 * value.length);
+  for (const [key, value] of entries) {
+    const bytes = wide ? 2 * key.length + 2 * value.length : charge(key, value);
+    map.set(key, value);
+    cost.set(key, bytes);
+    total += bytes;
+  }
+  const storage = {
+    map, oneByte, peak: total, refusals: 0,
+    get total() { return total; },
+    get length() { return map.size; },
+    key: (index) => [...map.keys()][index] ?? null,
+    getItem: (key) => map.get(key) ?? null,
+    setItem(key, raw) {
+      const value = String(raw);
+      const bytes = charge(key, value);
+      const next = total - (cost.get(key) ?? 0) + bytes;
+      if (next > IOS_QUOTA) {
+        storage.refusals += 1;
+        const error = new Error('The quota has been exceeded.');
+        error.name = 'QuotaExceededError';
+        throw error;
+      }
+      map.set(key, value);
+      cost.set(key, bytes);
+      total = next;
+      storage.peak = Math.max(storage.peak, total);
+    },
+    removeItem(key) {
+      total -= cost.get(key) ?? 0;
+      cost.delete(key);
+      map.delete(key);
+    },
+  };
+  return storage;
+}
+
+// Marks every string the Latin-1 decoder builds, so the storage above can charge it one byte.
+async function withOneByteStrings(storage, run) {
+  const Decoder = globalThis.TextDecoder;
+  globalThis.TextDecoder = class extends Decoder {
+    decode(...args) {
+      const text = super.decode(...args);
+      if (this.encoding === 'windows-1252') storage.oneByte.add(text);
+      return text;
+    }
+  };
+  try { return await run(); } finally { globalThis.TextDecoder = Decoder; }
+}
+
+function seeded(seed) {
+  let value = seed >>> 0;
+  return () => {
+    value = (Math.imul(value, 1664525) + 1013904223) >>> 0;
+    return value / 4294967296;
+  };
+}
+
+// Reading data of a chosen size, built the way the owner's is: almost all of it cached issue metadata
+// in ASCII, a title in forty with a typographic apostrophe, and notes for the rest. The `wide` mix also
+// writes about two percent of every character as CJK notes. Generated, never copied from anyone's data.
+const generatedReaders = new Map();
+function readerOfSize(target, { wide = false, seed = 1 } = {}) {
+  const memo = `${target}:${wide}:${seed}`;
+  if (generatedReaders.has(memo)) return generatedReaders.get(memo);
+  const next = seeded(seed);
+  let state = createEmptyState();
+  const size = () => JSON.stringify(exportBackup(state)).length;
+  const issue = (issueId) => {
+    const series = `Generated Series ${issueId % 97} (${2000 + (issueId % 25)})`;
+    return {
+      issueId, number: String(issueId % 500), seriesId: 1000 + (issueId % 97), seriesName: series,
+      title: `${series} #${issueId % 500}${issueId % 40 === 0 ? ' It\u2019s a caf\u00e9' : ''}`,
+      onSale: `20${10 + (issueId % 15)}-0${1 + (issueId % 9)}-1${issueId % 10}`, digitalId: 40000 + issueId,
+      cover: { path: `https://i.annihil.us/u/prod/marvel/i/mg/${issueId % 10}/${issueId % 90}/${Math.floor(next() * 0xffffff).toString(16)}`, ext: 'jpg' },
+      pageCount: 20 + Math.floor(next() * 30),
+      creators: ['writer', 'penciler', 'inker', 'colorist', 'letterer'].map((role) => ({ name: `Creator ${Math.floor(next() * 5000)}`, role })),
+    };
+  };
+  let issueId = seed * 1_000_000;
+  const bulk = target * (wide ? 0.97 : 0.985);
+  for (let list = 0; size() < bulk; list += 1) {
+    const id = `generated-${seed}-${list}`;
+    const count = size() < bulk - 120_000 ? 150 : 10;
+    state = createList(state, { id, name: `Generated list ${list}` });
+    state = addIssuesToList(state, id, Array.from({ length: count }, () => issue(++issueId))).state;
+  }
+  const ids = Object.keys(state.issues);
+  for (let index = 0, current = size(); current < target; index += 1, current = size()) {
+    const length = Math.min(2000, target - current);
+    state.notes[ids[index]] = Array.from({ length }, (_, at) => (wide && at % 3
+      ? String.fromCharCode(0x4e00 + Math.floor(next() * 2000))
+      : 'note text '[at % 10])).join('');
+  }
+  generatedReaders.set(memo, state);
+  return state;
+}
+
+async function readerBackup(state) {
+  const source = memoryStorage([[KEY, JSON.stringify({ writeToken: 'generated', ...exportBackup(state) })]]);
+  return captureCompleteBackup({ storage: source, cryptoProvider: webcrypto });
+}
+
+// The three things an iPhone or iPad can hold before a restore: nothing, data this version saved, and
+// data saved by 4.5.0 or reopened after a relaunch, which is charged in full at two bytes per character.
+async function iosEnvironment(prior, priorState) {
+  const others = localEntries().filter(([key]) => key !== KEY);
+  const env = environment([]);
+  if (prior === 'empty') env.storage = iosStorage([]);
+  else if (prior === 'wide') {
+    env.storage = iosStorage([...others, [KEY, JSON.stringify({ writeToken: 'prior', ...exportBackup(priorState) })]]);
+  } else {
+    env.storage = iosStorage(others);
+    await withOneByteStrings(env.storage, async () => {
+      const store = new Store({ storage: env.storage });
+      store.load();
+      store.update(() => structuredClone(priorState));
+      assert.equal(store.lastUpdateOk, true, 'the prior data is saved');
+    });
+  }
+  return env;
+}
+
+test('on iOS a complete restore of reading data 1.2 times the owner\'s fits, into an empty app and over data of that size', async () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    for (const target of [OWNER_READER_CHARS, CAPACITY_TARGET_CHARS]) {
+      for (const wide of [false, true]) {
+        const incoming = await readerBackup(readerOfSize(target, { wide, seed: 1 }));
+        const priorState = readerOfSize(target, { wide, seed: 2 });
+        for (const prior of ['empty', 'saved', 'wide']) {
+          const label = `${target} characters, ${wide ? 'with CJK notes' : 'mostly ASCII'}, into ${prior}`;
+          const env = await iosEnvironment(prior, priorState);
+          const priorMain = env.storage.getItem(KEY);
+          const result = await withOneByteStrings(env.storage, async () => {
+            const tab = await env.open();
+            return tab.restore(incoming.text, { importDraft: emptyImportDraft() });
+          });
+          assert.equal(result.ok, true, `${label}: ${result.error}`);
+          assert.equal(env.storage.refusals, 0, label);
+          assert.ok(env.storage.peak <= IOS_QUOTA, label);
+          assert.equal(env.journal.record.phase, 'done', label);
+          const saved = env.storage.getItem(KEY);
+          assert.deepEqual(JSON.parse(saved).lists, JSON.parse(JSON.stringify(incoming.backup.components.reader.lists)), label);
+          assert.ok(env.storage.oneByte.has(saved), `${label}: the restored data is one byte per character`);
+          if (priorMain !== null) assert.deepEqual(JSON.parse(env.storage.getItem(PRERESTORE_KEY)), JSON.parse(priorMain), `${label}: Undo keeps the prior data`);
+        }
+      }
+    }
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('on iOS a restore that cannot fit still stops with today\'s recovery and pauses saving', async () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const env = await iosEnvironment('wide', readerOfSize(Math.round(OWNER_READER_CHARS * 1.6), { seed: 3 }));
+    const prior = Object.fromEntries(RESTORE_KEYS.map((key) => [key, env.storage.map.get(key) ?? null]));
+    const incoming = await readerBackup(readerOfSize(OWNER_READER_CHARS, { seed: 1 }));
+    const tab = await withOneByteStrings(env.storage, () => env.open());
+    const result = await withOneByteStrings(env.storage, () => tab.restore(incoming.text, { importDraft: emptyImportDraft() }));
+    assert.equal(result.ok, false);
+    assert.match(result.error, /App storage is full/);
+    assert.ok(env.storage.refusals > 0);
+    assert.equal(tab.state.recovery?.kind, 'interrupted');
+    assert.throws(() => tab.storage.setItem(SETTINGS_KEY, '{}'), /did not finish/);
+    assert.equal(tab.state.recovery.canKeep, true);
+    assertImage(env, prior, 'nothing was replaced');
+    assert.equal((await withOneByteStrings(env.storage, () => tab.keepCurrent())).ok, true);
+    assertImage(env, prior, 'kept');
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+// ------------------------------------------------------------------ journals written by 4.5.0
+
+test('a restore journal 4.5.0 wrote, interrupted after any of its eight writes, still recovers either way', async () => {
+  const { readFileSync } = await import('node:fs');
+  const fixture = JSON.parse(readFileSync(new URL('./fixtures/complete-restore-4.5.0-journal.json', import.meta.url)));
+  const backup = await parseCompleteBackup(fixture.record.backup, { cryptoProvider: webcrypto });
+  const plan = restorePlan(fixture.record.prepared, backup);
+  const effects = plan.components.flatMap((component) => component.effects);
+  assert.equal(effects.length, 8, 'the 4.5.0 shape: four reader writes, then history, settings, sidebar and draft');
+  const prior = fixture.prior;
+  for (let steps = 0; steps <= effects.length; steps += 1) {
+    const env = environment(Object.entries(prior).filter(([, value]) => value !== null));
+    env.journal.plant({ ...fixture.record, writes: steps });
+    for (const effect of effects.slice(0, steps)) {
+      if (effect.value === null) env.storage.map.delete(effect.key);
+      else env.storage.map.set(effect.key, effect.value);
+    }
+    env.storage.map.set(RESTORE_MARKER_KEY, `active:${fixture.record.id}`);
+    const tab = await env.open();
+    assert.ok(tab.state.recovery, `after ${steps} writes: recovery is offered`);
+    assert.equal(tab.state.recovery.canFinish, true, `after ${steps} writes`);
+    const direction = steps % 2 ? 'prior' : 'forward';
+    const result = await tab.recover(direction);
+    assert.equal(result.ok, true, `${direction} after ${steps} writes: ${result.error}`);
+    assertImage(env, direction === 'prior' ? prior : preparedImage(plan), `${direction} after ${steps} writes`);
+    assert.equal(readMarker(env.storage).raw, `done:${fixture.record.id}`);
   }
 });

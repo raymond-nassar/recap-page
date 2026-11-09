@@ -5,9 +5,10 @@
 // character by the form the engine holds it in. A string with any character above U+00FF is held in
 // the two-byte form, and on the iOS 26.5 and 18.5 Simulators the app's saved reading data was held in
 // it even when every character was Latin-1, which is why this probe measures the width as well. A
-// reading-data restore holds up to three copies of that data at once: the saved data, the restore's
-// staged copy, and the copy kept for Undo. The owner's complete backup is 1,183 KB, so whether a
-// restore fits is the question this answers, on whatever engine runs it.
+// complete restore holds two copies of reading data at once, the restored data and the copy kept for
+// Undo, and before 4.5.1 it held a third, staged copy. This sweep measures where each kind of data
+// stops fitting; restore-target.js beside it checks that a restore 1.2 times the owner's November
+// 2026 size fits (#960).
 //
 // It runs inside the app's own page and leaves localStorage empty when it finishes. Nothing here
 // ships in the app: the iOS unit tests load it from the repository, and so can any WebKit browser.
@@ -75,7 +76,7 @@ window.recapCapacityProbe = async function recapCapacityProbe({
   };
 
   // Whether a Latin-1 value still costs one byte per character once it is stored. The iOS 26.5
-  // Simulator refused a Latin-1 restore whose three copies come to well under the quota at one byte
+  // Simulator refused a Latin-1 restore whose copies came to well under the quota at one byte
   // each, so the room left beside a held 1 MiB value is measured three ways: at once, after a pause
   // long enough for the engine to commit it, and when the held value is a string read back from
   // storage, as the copy a restore keeps for Undo is. Beside a value counted at one byte per
@@ -286,7 +287,7 @@ window.recapCapacityProbe = async function recapCapacityProbe({
     };
     const ownerReadingBackupBytes = readingBytes(stateA);
     const inputs = [
-      1, 1.1, 1.2, 1.3, 1.5, 1.75, 2, 2.25, 2.5, 3, 3.5, 4, 4.5,
+      1, 1.1, 1.2, 1.3, 1.5, 1.75, 2, 2.25, 2.5, 3, 3.5, 4, 4.5, 5, 6,
     ].map((factor) => Math.round(ownerReadingBackupBytes * factor));
     const attempts = [];
     const largestPassingBytes = {
@@ -397,13 +398,16 @@ window.recapCapacityProbe = async function recapCapacityProbe({
       completeBackupError,
       reached: completeBackupBytes !== null && completeBackupBytes >= targetBytes,
       readerChars: savedRaw.length,
-      readerWide: wide(savedRaw),
+      // The kind of text the data holds. Since 4.5.1 the stored form can escape it to ASCII (#960),
+      // so the stored form is reported separately.
+      readerWide: savedRaw ? wide(JSON.stringify(JSON.parse(savedRaw))) : false,
+      readerStoredWide: wide(savedRaw),
       readerStoredBytes,
       readerChargedBytes,
       lists: lists.length,
       issues: issueIds.length,
       // Arithmetic, not a measurement: how many copies of this reading data the measured quota
-      // holds at the charged width, against the three a populated restore needs at its peak.
+      // holds at the charged width, against the two a populated complete restore needs at its peak.
       copiesThatFit: readerChargedBytes ? Math.floor(quota.latin1Bytes / readerChargedBytes) : null,
     },
     save,

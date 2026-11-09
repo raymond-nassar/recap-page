@@ -59,6 +59,65 @@ function tokenOf(raw) {
   return found ? found[1] : null;
 }
 
+// Reading data is stored as JSON, which may spell any character as \uXXXX, and on iOS that spelling
+// decides whether a complete restore fits. WebKit charges a one-byte string one byte per character and
+// any other string two, and the app's saved reading data was held in the two-byte form even when every
+// character was Latin-1 (docs/IOS.md, "Storage capacity"). Measured from the owner's backups on
+// 8 November 2026, 98.9 percent of 1,361,156 characters of reading data is cached issue metadata,
+// almost all ASCII, and restoring it needed 5,444,624 of the 5,242,880 bytes WebKit allows (#960).
+//
+// Only the iOS app uses this spelling: WebKit can charge L characters L bytes when none is above
+// U+00FF and 2L otherwise; escaping m code units costs L + 5m. Escapes are used only when some
+// character is above U+00FF and 5m < L, so text that is mostly CJK keeps exactly today's form.
+// Chromium and Firefox charge UTF-16 code units regardless of string width, so escaping would grow
+// their quota usage. Other platforms keep the ordinary serialization.
+//
+// TextDecoder('latin1') is windows-1252, the identity only on 0x00-0x7F and 0xA0-0xFF, so where escapes
+// are used U+0080 to U+009F are escaped with the rest, and a rebuild that does not reproduce its input
+// is discarded.
+const ESCAPED_UNIT = /[\u0080-\u009f\u0100-\uffff]/g;
+
+// The same characters, as a one-byte string where the engine can hold one, else the input itself.
+export function compactText(text) {
+  if (typeof text !== 'string' || typeof TextDecoder !== 'function') return text;
+  const bytes = new Uint8Array(text.length);
+  for (let index = 0; index < text.length; index += 1) {
+    const unit = text.charCodeAt(index);
+    if (unit > 0xff || (unit >= 0x80 && unit < 0xa0)) return text;
+    bytes[index] = unit;
+  }
+  let rebuilt;
+  try { rebuilt = new TextDecoder('latin1').decode(bytes); } catch { return text; }
+  return rebuilt === text ? rebuilt : text;
+}
+
+function narrowed(text, isJson) {
+  if (typeof text !== 'string' || !isIosApp()) return text;
+  let above = 0;
+  let escaped = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    const unit = text.charCodeAt(index);
+    if (unit > 0xff) { above += 1; escaped += 1; } else if (unit >= 0x80 && unit < 0xa0) escaped += 1;
+  }
+  if (above === 0) return compactText(text);
+  if (5 * escaped >= text.length || !isJson()) return text;
+  // Outside its strings, JSON is ASCII, so every unit escaped here is inside a string and parses back
+  // to itself, surrogate halves included.
+  return compactText(text.replace(ESCAPED_UNIT, (unit) => `\\u${unit.charCodeAt(0).toString(16).padStart(4, '0')}`));
+}
+
+// For text JSON.stringify has just produced.
+export function narrowJson(text) {
+  return narrowed(text, () => true);
+}
+
+// For saved bytes of unknown shape: escapes only what parses, so unreadable bytes keep every character.
+export function narrowCopy(text) {
+  return narrowed(text, () => {
+    try { JSON.parse(text); return true; } catch { return false; }
+  });
+}
+
 export class ImportDraftStore {
   constructor({ reader, storage = reader.storage, locks = globalThis.navigator?.locks, onChange = () => {} }) {
     this.reader = reader;
@@ -813,7 +872,7 @@ export class Store {
     }
     const token = newToken();
     try {
-      this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));
+      this.storage.setItem(KEY, narrowJson(JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) })));
       this.seenToken = token;
       return true;
     } catch (err) {
@@ -935,7 +994,7 @@ export class Store {
     // dialog. Any change after that capture refuses the replacement. Calls without a capture retain
     // the legacy deliberate-overwrite behavior and preserve the current durable bytes, not this
     // tab's stale in-memory view.
-    const serialized = JSON.stringify({ [WRITE_TOKEN]: newToken(), ...exportBackup(state) });
+    const serialized = narrowJson(JSON.stringify({ [WRITE_TOKEN]: newToken(), ...exportBackup(state) }));
     // Read before anything is written, because a restore that turns out not to have happened has
     // to put this slot back as it found it, and a slot cannot be put back to a value nobody read.
     // undefined is that third answer, "this storage would not say", and rewindSnapshot() declines
@@ -1238,9 +1297,15 @@ function preparedText(value, label, limit = MAX_BACKUP_BYTES) {
   return value;
 }
 
-// The four writes Store.restore() makes, in its order: stage, keep the replaced value as the saved
-// reading-data copy, swap, clear the stage. So the copy a complete restore leaves behind is the one the
-// reading-data card already offers, and nothing about it is new.
+// Three writes: clear any stage an interrupted reading-data restore left, keep the replaced value as the
+// saved reading-data copy the reading-data card already offers, and swap. Store.restore() stages its
+// value under the temporary key first, and 4.5.0 prepared that same stage here, but a complete
+// restore's journal already holds the prepared value and checkpoints every write, so the stage was a
+// second whole copy whose only effect on iOS was to make the owner's restore too large to fit (#960).
+// Journals that 4.5.0 wrote in its four-write shape are still verified and finished as written.
+//
+// The saved copy keeps the replaced data's content in its narrower spelling where that is cheaper,
+// not its exact bytes; the journal keeps the exact bytes, and recovery writes those.
 export function prepareReaderRestore(candidate, before) {
   if (!before || Object.keys(before).sort().join(',') !== 'main,snapshot,temporary') {
     throw new TypeError('Reader preparation needs the exact prior main, snapshot and temporary values.');
@@ -1250,16 +1315,15 @@ export function prepareReaderRestore(candidate, before) {
   const raw = preparedText(typeof candidate === 'string' ? candidate : JSON.stringify(candidate), 'Restored reading data');
   const checked = validateBackup(JSON.parse(raw));
   if (!checked.ok) throw new Error(checked.errors.join(' '));
-  const value = preparedText(JSON.stringify({
+  const value = narrowJson(preparedText(JSON.stringify({
     [WRITE_TOKEN]: newToken(), ...exportBackup(checked.state),
-  }), 'Prepared reading data');
+  }), 'Prepared reading data'));
   return {
     owner: 'reader', before: prior, value,
     effects: [
-      { key: TEMP_KEY, before: prior.temporary, value },
-      { key: PRERESTORE_KEY, before: prior.snapshot, value: prior.main ?? '' },
+      { key: TEMP_KEY, before: prior.temporary, value: null },
+      { key: PRERESTORE_KEY, before: prior.snapshot, value: prior.main === null ? '' : narrowCopy(prior.main) },
       { key: KEY, before: prior.main, value },
-      { key: TEMP_KEY, before: value, value: null },
     ],
   };
 }

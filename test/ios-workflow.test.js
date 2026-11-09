@@ -121,8 +121,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 4, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
-  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 10,
-    'the two unit tests, newest UI, minimum launch and presentation, iPad and SE presentation, CORS, fault-disabled mutation and the App Store capture run separately');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 11,
+    'the two unit tests, newest UI, minimum launch and presentation, iPad presentation and restore capacity, SE presentation, CORS, fault-disabled mutation and the App Store capture run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.equal(block('concurrency').trim(),
@@ -340,10 +340,13 @@ test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs
   assert.equal(jobs.find(({ name }) => name === 'ipad').runsOn, 'macos-26');
   assert.equal(ipad.match(/xcodebuild build-for-testing/g)?.length, 1);
   assert.match(ipad, /-only-testing:RecapPageUITests\/PresentationUITests/);
+  assert.match(ipad, /-only-testing:RecapPageUITests\/LaunchUITests\/testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch \\/);
   assert.doesNotMatch(ipad, /-only-testing:RecapPageUITests\s|-only-testing:RecapPageTests|live_cors/);
   assert.match(ipad, /name: iPad presentation on the newest runtime/);
-  assert.match(ipad, /timeout-minutes: 96/);
-  assert.match(ipad, /timeout-minutes: 45\n {8}run: \|/);
+  assert.match(ipad, /timeout-minutes: 111/);
+  assert.match(ipad, /- name: Run presentation UI tests on iPad\n {8}timeout-minutes: 45\n {8}run: \|/);
+  assert.match(ipad, /- name: Measure restore capacity on iPad\n {8}timeout-minutes: 15\n {8}run: \|/);
+  assert.ok(ipad.indexOf('name: Run presentation UI tests on iPad') < ipad.indexOf('name: Measure restore capacity on iPad'));
   assert.match(ipad, /ios-results-ipad-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
 });
 
@@ -780,11 +783,14 @@ ${scenario.teeFailure ? 'tee() { command tee "$@"; return 23; }\n' : ''}`;
   }
 });
 
-test('the separate presentation suites retry only the recognized UI infrastructure failures', async (t) => {
-  for (const [job, label, bundle, log, destination] of [
-    ['ipad', 'Run presentation UI tests on iPad', 'ipad-ui', 'ui-ipad', 'chosen-ipad'],
+test('the separate presentation and capacity suites retry only the recognized UI infrastructure failures', async (t) => {
+  const presentations = /-only-testing:RecapPageUITests\/PresentationUITests/;
+  for (const [job, label, bundle, log, destination, only] of [
+    ['ipad', 'Run presentation UI tests on iPad', 'ipad-ui', 'ui-ipad', 'chosen-ipad', presentations],
+    ['ipad', 'Measure restore capacity on iPad', 'ipad-capacity', 'ui-ipad-capacity', 'chosen-ipad',
+      /-only-testing:RecapPageUITests\/LaunchUITests\/testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch /],
     ['minimum', 'Run presentation UI tests on the minimum iPhone',
-      'minimum-presentation', 'ui-minimum-presentation', 'chosen-device'],
+      'minimum-presentation', 'ui-minimum-presentation', 'chosen-device', presentations],
   ]) {
     const recognized = job === 'minimum' ? minimumInfrastructure : infrastructure;
     const scenarios = [
@@ -831,7 +837,7 @@ test('the separate presentation suites retry only the recognized UI infrastructu
           assert.equal(calls.length, scenario.calls);
           for (const [index, call] of calls.entries()) {
             assert.match(call, /^test-without-building /);
-            assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
+            assert.match(call, only);
             assert.ok(call.includes(`-destination platform=iOS Simulator,id=${destination}`));
             assert.ok(call.includes(`RecapPage-${bundle}-${index + 1}.xcresult`));
             assert.equal(await readFile(join(root, `${log}-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');

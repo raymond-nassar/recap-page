@@ -69,10 +69,10 @@ jobs:
     # A screenshot capture is a separate errand; it does not need the test jobs' macOS runners.
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 137 minutes between them, and
+    # The backstop for time outside any step. The steps below declare 142 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
     # step that ran long rather than cancelled on the job.
-    timeout-minutes: 140
+    timeout-minutes: 145
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
@@ -150,8 +150,9 @@ jobs:
             -resultBundlePath "$RUNNER_TEMP/RecapPage-newest-unit.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
 
+      # 32 minutes on main's last run before the restore capacity test joined the suite (#960).
       - name: Run the UI tests
-        timeout-minutes: 40
+        timeout-minutes: 45
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
@@ -278,8 +279,8 @@ jobs:
     needs: docs_check
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
-    # These steps declare 93 minutes; leave the deadline to the individual step that overruns.
-    timeout-minutes: 96
+    # These steps declare 108 minutes; leave the deadline to the individual step that overruns.
+    timeout-minutes: 111
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       SIMULATOR_RUNTIME: latest
@@ -370,12 +371,43 @@ jobs:
             echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
           done
 
+      # A complete restore at the capacity target, measured on iPad as well as both iPhones (#960).
+      - name: Measure restore capacity on iPad
+        timeout-minutes: 15
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
+          expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-ipad-capacity-$attempt.log"
+            if xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "$IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests/LaunchUITests/testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-ipad-capacity-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" |
+                grep -Ev "$infrastructure|$expected"; then
+              exit 1
+            fi
+            matched=$(grep -Em1 "$infrastructure" "$log")
+            echo "::warning::XCTest iPad restore capacity infrastructure failure on attempt $attempt; retrying the capacity test once on the same Simulator. Matched: $matched"
+          done
+
       - name: Summarize the probe results
         if: ${{ !cancelled() }}
         timeout-minutes: 2
         run: |
           {
-            echo '### Presentation results on the 13-inch iPad'
+            echo '### Presentation and restore capacity results on the 13-inch iPad'
             echo '```'
             grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP"/ui-ipad-*.log | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
             echo '```'
