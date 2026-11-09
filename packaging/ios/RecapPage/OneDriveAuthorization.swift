@@ -53,8 +53,11 @@ struct OneDriveAuthorization {
         if let fragment = received.firstIndex(of: "#") { received = String(received[..<fragment]) }
         let mark = received.firstIndex(of: "?")
         let target = mark.map { String(received[..<$0]) } ?? received
+        // Microsoft adds a slash to a redirect that has no path: a real sign-in on 8 November 2026 answered
+        // at msauth.io.github.raymondnassar.recappage://auth/, which an exact match refused (#1189).
         guard let given = OneDriveRules.decode(target, plusIsSpace: false),
-              given == OneDriveRules.decode(Self.redirectUri, plusIsSpace: false) else { return nil }
+              let expected = OneDriveRules.decode(Self.redirectUri, plusIsSpace: false),
+              given == expected || given == expected + "/" else { return nil }
         var params: [String: String] = [:]
         if let mark {
             let query = received[received.index(after: mark)...]
