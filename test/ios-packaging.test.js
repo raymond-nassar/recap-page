@@ -2100,6 +2100,19 @@ test('the capacity probe lives where the unit test that runs it looks', () => {
   assert.match(testSource, /ownerBytes = 1183 \* 1024/);
 });
 
+test('the restore target probe lives where the UI test that runs it looks', () => {
+  const testSource = read('packaging/ios/RecapPageUITests/LaunchUITests.swift');
+  assert.match(testSource, /appendingPathComponent\("probes\/restore-target\.js"\)/);
+  assert.match(testSource, /func testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch\(\)/);
+  for (const phase of ['in-place', 'seed', 'relaunched']) {
+    assert.match(testSource, new RegExp(`phase: '${phase}'`), phase);
+  }
+  const probe = read('packaging/ios/probes/restore-target.js');
+  assert.match(probe, /^window\.recapRestoreTargetProbe = \(\(\) => \{$/m);
+  assert.match(probe, /^ {2}return async function recapRestoreTargetProbe\(/m);
+  assert.match(probe, /^ {2}const TARGET_CHARS = 1_633_400;/m);
+});
+
 test('iOS export validation mirrors Android for bounded text files and basenames', () => {
   const file = { filename: 'backup.json', type: 'application/json', text: 'saved bytes' };
   assert.doesNotThrow(() => validateIosExport(file));

@@ -284,19 +284,26 @@ On a Mac, run `npm run ios:prepare` and open `packaging/ios/RecapPage.xcodeproj`
 
 WebKit gives each origin 5 MiB of storage for saved reading data, and charges a stored string by the
 form the engine holds it in: one byte per character for a string held in its one-byte form, two for one
-held in its two-byte form. On iOS the app's saved reading data is held in the two-byte form even when
-every character is Latin-1, so it costs two bytes per character either way. Restoring a reading-data
+held in its two-byte form. On iOS the app's saved reading data was held in the two-byte form even when
+every character was Latin-1, so it cost two bytes per character either way. Restoring a reading-data
 backup briefly holds up to three copies: the saved data, the restore's staged copy and the copy kept
 for Undo.
 
+Since 4.5.1 (#960) the app stores reading data in a form WebKit holds at one byte per character:
+characters above Latin-1 are written as JSON escapes when that is shorter in storage, and the string
+is rebuilt so the engine keeps its one-byte form. A complete restore, which both restoring a OneDrive
+backup and choosing another device's progress use, no longer stages a third copy, because its journal
+already holds the restored value. A restore of a single reading-data file still stages one.
+
 The capacity probe in `packaging/ios/probes/capacity.js` measures this through the app's own storage
 and restore code. It fills the app with reading lists from the bundled files until a complete backup
-is the size of the owner's, 1,183 KB, then saves, restores into an empty app, restores into the app
-that already holds data, and restores once more. It does this twice, once with text above Latin-1 and
-once without. Each run also records the page's origin, whether WebKit agrees, when asked, to keep the
-app's data, and the width WebKit charges for the saved data.
+is the size of the owner's in October 2026, 1,183 KB, then saves, restores into an empty app, restores
+into the app that already holds data, and restores once more. It does this twice, once with text above
+Latin-1 and once without. Each run also records the page's origin, whether WebKit agrees, when asked,
+to keep the app's data, and the width WebKit charges for the saved data.
 
-Measured on the iOS 26.5 and iOS 18.5 Simulators, with the same result on both, at that size:
+Measured on the iOS 26.5 and iOS 18.5 Simulators before 4.5.1, with the same result on both, at that
+size:
 
 | Step | Text above Latin-1 | Latin-1 only |
 |---|---|---|
@@ -306,18 +313,37 @@ Measured on the iOS 26.5 and iOS 18.5 Simulators, with the same result on both, 
 | Restoring again | Refused | Refused |
 
 A refused restore changes nothing and says so. At two bytes per character, three copies of reading
-data the owner's size come to about 7.5 MB and two to about 5.0 MB, against 5.24 MB, which is why only
-the restore into an empty app fits. Until reading data is stored at one byte per character (#960), a
-restore of data this size on iOS has to go into an empty app: export, erase, then restore. Playwright's
+data the owner's size came to about 7.5 MB and two to about 5.0 MB, against 5.24 MB, which is why only
+the restore into an empty app fitted. By November 2026 the owner's reading data had grown to about
+1.36 million characters, and two copies of it no longer fitted even into an empty app. Playwright's
 WebKit build on Windows, measured first as a stand-in, holds Latin-1 data in its one-byte form, so it
 refused only the restore with text above Latin-1. The measurements are recorded on #949.
+
+### Restore capacity target
+
+The target is reading data of 1,633,400 characters, 1.2 times the owner's 1,361,156 in November 2026,
+in two mixes: mostly ASCII like the owner's, and the same data with CJK notes. The probe in
+`packaging/ios/probes/restore-target.js` generates data of that size, never the owner's, and runs a
+complete restore through the app's own restore engine in three cases: into an empty app, into an app
+holding saved data of the same size, and after the app has ended and opened again between saving that
+data and restoring, which is how the owner restores. Each case must finish, leave the restored lists in
+place, and keep the earlier data for Undo. It also times an ordinary save and marking a comic Done at
+that size, in the stored form before and after 4.5.1. The UI test that runs it is in every iOS job,
+on both iPhones and the 13-inch iPad.
+
+Measured in Edge at the owner's size, the narrowed save took about 16 ms against 12 ms before, and
+marking a comic Done about 15 ms, with CJK notes about 19 ms against 12 ms. The Simulator results are
+recorded on the pull request that delivered #960.
 
 ### Capacity sweep and interrupted writes
 
 The P02 size sweep grows valid notes containing text above Latin-1. The newest-runtime and iOS 18.5
 jobs in hosted run
 [40980346397](https://github.com/raymond-nassar/recap-page/actions/runs/40980346397)
-recorded the same thresholds. These are UTF-8 backup-file bytes, not WebKit's charged storage bytes.
+recorded the same thresholds, before 4.5.1 narrowed the stored form and dropped the complete restore's
+staged copy. Since then the restore thresholds sit higher, and the sweep samples up to six times the
+owner-size baseline so that every operation still reaches a refusal. These are UTF-8 backup-file bytes,
+not WebKit's charged storage bytes.
 They are the largest passing and first failing **sampled** sizes, not an exact binary-search limit.
 
 | Operation | Largest sampled pass (bytes) | First sampled refusal (bytes) |

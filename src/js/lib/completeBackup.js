@@ -16,7 +16,7 @@
 
 import {
   KEY, IMPORT_DRAFT_KEY, SETTINGS_KEY, SIDEBAR_KEY, READER_RESTORE_KEYS,
-  prepareReaderRestore, prepareImportDraftRestore,
+  prepareReaderRestore, prepareImportDraftRestore, narrowJson, narrowCopy,
 } from '../storage.js';
 import {
   createEmptyState, exportBackup, validateBackup, normalizeIssue, SCHEMA_VERSION, MAX_BACKUP_BYTES,
@@ -46,7 +46,7 @@ export const CAPTURE_KEYS = Object.freeze([KEY, LIST_HISTORY_KEY, SETTINGS_KEY, 
 const HEX = /^[a-f0-9]{64}$/;
 
 // Each component's keys, in the order its writes are made. The reader's stage and saved-copy keys are
-// part of it because its four writes touch them.
+// part of it because its writes touch them: 4.5.0's four, and the three it prepares now.
 export const COMPONENT_KEYS = Object.freeze({
   reader: Object.freeze([READER_RESTORE_KEYS.temporary, READER_RESTORE_KEYS.snapshot, READER_RESTORE_KEYS.main]),
   history: Object.freeze([LIST_HISTORY_KEY]),
@@ -453,13 +453,27 @@ function verifyReader(owner, backup, before) {
   if (!checked.ok) invalid();
   const content = exportBackup(checked.state);
   content.exportedAt = parsed.exportedAt;
-  if (owner.value !== JSON.stringify({ writeToken: parsed.writeToken, ...content })) invalid();
-  const expected = [
-    { key: READER_RESTORE_KEYS.temporary, before: prior.temporary, value: owner.value },
-    { key: READER_RESTORE_KEYS.snapshot, before: prior.snapshot, value: prior.main ?? '' },
-    { key: READER_RESTORE_KEYS.main, before: prior.main, value: owner.value },
-    { key: READER_RESTORE_KEYS.temporary, before: owner.value, value: null },
-  ];
+  const plain = JSON.stringify({ writeToken: parsed.writeToken, ...content });
+  const { main, snapshot, temporary } = READER_RESTORE_KEYS;
+  let expected;
+  if (Array.isArray(owner.effects) && owner.effects.length === 4) {
+    // The four writes 4.5.0 prepared, with the stage and the value as JSON.stringify spelled it. A
+    // journal it left is finished or reversed after an upgrade exactly as it was written.
+    if (owner.value !== plain) invalid();
+    expected = [
+      { key: temporary, before: prior.temporary, value: owner.value },
+      { key: snapshot, before: prior.snapshot, value: prior.main ?? '' },
+      { key: main, before: prior.main, value: owner.value },
+      { key: temporary, before: owner.value, value: null },
+    ];
+  } else {
+    if (owner.value !== narrowJson(plain)) invalid();
+    expected = [
+      { key: temporary, before: prior.temporary, value: null },
+      { key: snapshot, before: prior.snapshot, value: prior.main === null ? '' : narrowCopy(prior.main) },
+      { key: main, before: prior.main, value: owner.value },
+    ];
+  }
   if (!sameEffects(owner.effects, expected)) invalid();
   return expected;
 }

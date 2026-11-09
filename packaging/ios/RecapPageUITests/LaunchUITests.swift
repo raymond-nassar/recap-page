@@ -291,6 +291,71 @@ final class LaunchUITests: XCTestCase {
         add(screenshot)
     }
 
+    /// The repository's restore target probe, followed by the call a launch makes.
+    private static func restoreTargetProbe(_ options: String) throws -> String {
+        let source = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("probes/restore-target.js")
+        return try String(contentsOf: source, encoding: .utf8)
+            + "\nreturn await window.recapRestoreTargetProbe(\(options));"
+    }
+
+    private func assertRestored(_ restored: [String: Any], _ label: String, priorSaved: Bool) {
+        XCTAssertEqual(restored["ok"] as? Bool, true, "\(label): \(restored["error"] ?? "no error")")
+        XCTAssertEqual(restored["restoredMatches"] as? Bool, true, "\(label): the restored lists are the backup's")
+        if priorSaved {
+            XCTAssertEqual(restored["undoKept"] as? Bool, true, "\(label): Undo keeps the prior data")
+        } else {
+            XCTAssertTrue(restored["undoKept"] is NSNull, "\(label): there was no prior data to keep")
+        }
+    }
+
+    /// A complete restore of reading data 1.2 times the owner's fits into an empty app, over data of
+    /// that size saved in the same launch, and over data saved before the app ended and opened again,
+    /// which is how the owner restores. Each in mostly ASCII and with CJK notes (#960).
+    @MainActor
+    func testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch() throws {
+        let inPlace = launch(
+            probe: try Self.restoreTargetProbe("{ phase: 'in-place' }"),
+            resetDataLossState: true,
+            clearReadingData: true)
+        let measured = try probeResult(of: inPlace, timeout: 600)
+        try record("restore-target-in-place", measured)
+        let cases = try XCTUnwrap(measured["cases"] as? [[String: Any]])
+        XCTAssertEqual(cases.count, 4)
+        for restored in cases {
+            let prior = try XCTUnwrap(restored["prior"] as? String)
+            let mix = try XCTUnwrap(restored["mix"] as? String)
+            assertRestored(restored, "\(mix) into \(prior)", priorSaved: prior == "saved")
+        }
+        let timing = try XCTUnwrap(measured["timing"] as? [[String: Any]])
+        XCTAssertEqual(timing.count, 2)
+        for saved in timing {
+            XCTAssertEqual(saved["ok"] as? Bool, true, "every timed save was written")
+        }
+        inPlace.terminate()
+
+        for mix in ["ascii", "cjk"] {
+            let cjk = mix == "cjk" ? "true" : "false"
+            let seed = launch(
+                probe: try Self.restoreTargetProbe("{ phase: 'seed', cjk: \(cjk) }"),
+                resetDataLossState: true,
+                clearReadingData: true)
+            let seeded = try probeResult(of: seed, timeout: 300)
+            XCTAssertGreaterThan(seeded["seededChars"] as? Int ?? 0, 1_633_400, "\(mix): the prior data is saved")
+            seed.terminate()
+
+            let reopened = launch(probe: try Self.restoreTargetProbe("{ phase: 'relaunched', cjk: \(cjk) }"))
+            let result = try probeResult(of: reopened, timeout: 300)
+            try record("restore-target-relaunched-\(mix)", result)
+            let restored = try XCTUnwrap(result["relaunched"] as? [String: Any])
+            XCTAssertEqual(restored["priorChars"] as? Int, seeded["seededChars"] as? Int, "\(mix): the saved data survived the relaunch")
+            assertRestored(restored, "\(mix) after a relaunch", priorSaved: true)
+            reopened.terminate()
+        }
+    }
+
     @MainActor
     func testSavedDataSurvivesTheAppEndingAndOpeningAgain() throws {
         let token = UUID().uuidString

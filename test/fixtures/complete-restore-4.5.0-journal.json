@@ -1,0 +1,112 @@
+{
+  "sourceCommit": "bb6e5c2d61a0cfe639ac6a75382c4b115d55f0a5",
+  "prior": {
+    "mrt.state.restore.tmp": null,
+    "mrt.state.prerestore": null,
+    "mrt.state.v2": "{\"writeToken\":\"prior-token\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.807Z\",\"app\":\"recap-page\",\"issues\":{\"1\":{\"issueId\":1,\"title\":\"One\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/1/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"2\":{\"issueId\":2,\"title\":\"Café ’Two’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/2/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"1\":111},\"overrides\":{},\"notes\":{\"2\":\"世界 😀 note\"},\"ratings\":{},\"lists\":{\"here\":{\"id\":\"here\",\"name\":\"Reader’s list\",\"description\":\"\",\"note\":\"\",\"created\":1794199224807,\"catalogId\":null,\"itemIds\":[1,2],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"here\"],\"active\":\"here\"}",
+    "mrt.list-history.v1": "{\"format\":\"recap-page-list-history\",\"version\":1,\"writeToken\":\"prior-history\",\"records\":[]}",
+    "mrt.settings": "{\"covers\":true,\"theme\":\"light\",\"filter\":\"all\",\"readingShortcut\":true,\"hideDescriptions\":false}",
+    "sidebar.collapsed": "false",
+    "mrt.import.draft.v1": null
+  },
+  "record": {
+    "version": 1,
+    "id": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "backup": "{\"components\":{\"draft\":null,\"history\":{\"format\":\"recap-page-list-history\",\"records\":[],\"version\":1},\"reader\":{\"active\":\"there\",\"app\":\"recap-page\",\"issues\":{\"7\":{\"cover\":null,\"creators\":null,\"detailsRefused\":false,\"digitalId\":null,\"hydrated\":false,\"issueId\":7,\"mu\":null,\"number\":null,\"onSale\":null,\"pageCount\":null,\"seriesId\":null,\"seriesName\":null,\"source\":\"api\",\"title\":\"Seven ’quoted’\",\"url\":\"https://www.marvel.com/comics/issue/7/\"},\"8\":{\"cover\":null,\"creators\":null,\"detailsRefused\":false,\"digitalId\":null,\"hydrated\":false,\"issueId\":8,\"mu\":null,\"number\":null,\"onSale\":null,\"pageCount\":null,\"seriesId\":null,\"seriesName\":null,\"source\":\"api\",\"title\":\"日本 Eight\",\"url\":\"https://www.marvel.com/comics/issue/8/\"}},\"listOrder\":[\"there\"],\"lists\":{\"there\":{\"catalogId\":null,\"collectedIn\":{},\"created\":1794199224808,\"deferredIssueIds\":[],\"description\":\"\",\"id\":\"there\",\"itemIds\":[7,8],\"name\":\"From another device\",\"note\":\"\"}},\"notes\":{\"8\":\"Restored ’note’ 📚\"},\"overrides\":{},\"ratings\":{},\"read\":{\"7\":777},\"schemaVersion\":4},\"settings\":{\"covers\":false,\"filter\":\"unread\",\"hideDescriptions\":false,\"readingShortcut\":false,\"sidebarCollapsed\":true,\"theme\":\"dark\"}},\"digest\":\"4fa63ef643a8ed887cfc067a00c32c4786714a8771a6b3ca3581fa281df2e304\",\"format\":\"recap-page-complete-backup\",\"version\":1}",
+    "prepared": {
+      "format": "recap-page-complete-restore-prepared",
+      "version": 1,
+      "digest": "4fa63ef643a8ed887cfc067a00c32c4786714a8771a6b3ca3581fa281df2e304",
+      "before": {
+        "mrt.state.restore.tmp": null,
+        "mrt.state.prerestore": null,
+        "mrt.state.v2": "{\"writeToken\":\"prior-token\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.807Z\",\"app\":\"recap-page\",\"issues\":{\"1\":{\"issueId\":1,\"title\":\"One\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/1/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"2\":{\"issueId\":2,\"title\":\"Café ’Two’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/2/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"1\":111},\"overrides\":{},\"notes\":{\"2\":\"世界 😀 note\"},\"ratings\":{},\"lists\":{\"here\":{\"id\":\"here\",\"name\":\"Reader’s list\",\"description\":\"\",\"note\":\"\",\"created\":1794199224807,\"catalogId\":null,\"itemIds\":[1,2],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"here\"],\"active\":\"here\"}",
+        "mrt.list-history.v1": "{\"format\":\"recap-page-list-history\",\"version\":1,\"writeToken\":\"prior-history\",\"records\":[]}",
+        "mrt.settings": "{\"covers\":true,\"theme\":\"light\",\"filter\":\"all\",\"readingShortcut\":true,\"hideDescriptions\":false}",
+        "sidebar.collapsed": "false",
+        "mrt.import.draft.v1": null
+      },
+      "owners": [
+        {
+          "owner": "reader",
+          "before": {
+            "main": "{\"writeToken\":\"prior-token\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.807Z\",\"app\":\"recap-page\",\"issues\":{\"1\":{\"issueId\":1,\"title\":\"One\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/1/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"2\":{\"issueId\":2,\"title\":\"Café ’Two’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/2/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"1\":111},\"overrides\":{},\"notes\":{\"2\":\"世界 😀 note\"},\"ratings\":{},\"lists\":{\"here\":{\"id\":\"here\",\"name\":\"Reader’s list\",\"description\":\"\",\"note\":\"\",\"created\":1794199224807,\"catalogId\":null,\"itemIds\":[1,2],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"here\"],\"active\":\"here\"}",
+            "snapshot": null,
+            "temporary": null
+          },
+          "value": "{\"writeToken\":\"fixture-write-token-0960\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.811Z\",\"app\":\"recap-page\",\"issues\":{\"7\":{\"issueId\":7,\"title\":\"Seven ’quoted’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/7/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"8\":{\"issueId\":8,\"title\":\"日本 Eight\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/8/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"7\":777},\"overrides\":{},\"notes\":{\"8\":\"Restored ’note’ 📚\"},\"ratings\":{},\"lists\":{\"there\":{\"id\":\"there\",\"name\":\"From another device\",\"description\":\"\",\"note\":\"\",\"created\":1794199224808,\"catalogId\":null,\"itemIds\":[7,8],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"there\"],\"active\":\"there\"}",
+          "effects": [
+            {
+              "key": "mrt.state.restore.tmp",
+              "before": null,
+              "value": "{\"writeToken\":\"fixture-write-token-0960\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.811Z\",\"app\":\"recap-page\",\"issues\":{\"7\":{\"issueId\":7,\"title\":\"Seven ’quoted’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/7/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"8\":{\"issueId\":8,\"title\":\"日本 Eight\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/8/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"7\":777},\"overrides\":{},\"notes\":{\"8\":\"Restored ’note’ 📚\"},\"ratings\":{},\"lists\":{\"there\":{\"id\":\"there\",\"name\":\"From another device\",\"description\":\"\",\"note\":\"\",\"created\":1794199224808,\"catalogId\":null,\"itemIds\":[7,8],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"there\"],\"active\":\"there\"}"
+            },
+            {
+              "key": "mrt.state.prerestore",
+              "before": null,
+              "value": "{\"writeToken\":\"prior-token\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.807Z\",\"app\":\"recap-page\",\"issues\":{\"1\":{\"issueId\":1,\"title\":\"One\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/1/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"2\":{\"issueId\":2,\"title\":\"Café ’Two’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/2/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"1\":111},\"overrides\":{},\"notes\":{\"2\":\"世界 😀 note\"},\"ratings\":{},\"lists\":{\"here\":{\"id\":\"here\",\"name\":\"Reader’s list\",\"description\":\"\",\"note\":\"\",\"created\":1794199224807,\"catalogId\":null,\"itemIds\":[1,2],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"here\"],\"active\":\"here\"}"
+            },
+            {
+              "key": "mrt.state.v2",
+              "before": "{\"writeToken\":\"prior-token\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.807Z\",\"app\":\"recap-page\",\"issues\":{\"1\":{\"issueId\":1,\"title\":\"One\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/1/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"2\":{\"issueId\":2,\"title\":\"Café ’Two’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/2/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"1\":111},\"overrides\":{},\"notes\":{\"2\":\"世界 😀 note\"},\"ratings\":{},\"lists\":{\"here\":{\"id\":\"here\",\"name\":\"Reader’s list\",\"description\":\"\",\"note\":\"\",\"created\":1794199224807,\"catalogId\":null,\"itemIds\":[1,2],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"here\"],\"active\":\"here\"}",
+              "value": "{\"writeToken\":\"fixture-write-token-0960\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.811Z\",\"app\":\"recap-page\",\"issues\":{\"7\":{\"issueId\":7,\"title\":\"Seven ’quoted’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/7/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"8\":{\"issueId\":8,\"title\":\"日本 Eight\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/8/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"7\":777},\"overrides\":{},\"notes\":{\"8\":\"Restored ’note’ 📚\"},\"ratings\":{},\"lists\":{\"there\":{\"id\":\"there\",\"name\":\"From another device\",\"description\":\"\",\"note\":\"\",\"created\":1794199224808,\"catalogId\":null,\"itemIds\":[7,8],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"there\"],\"active\":\"there\"}"
+            },
+            {
+              "key": "mrt.state.restore.tmp",
+              "before": "{\"writeToken\":\"fixture-write-token-0960\",\"schemaVersion\":4,\"exportedAt\":\"2026-11-09T04:40:24.811Z\",\"app\":\"recap-page\",\"issues\":{\"7\":{\"issueId\":7,\"title\":\"Seven ’quoted’\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/7/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false},\"8\":{\"issueId\":8,\"title\":\"日本 Eight\",\"number\":null,\"url\":\"https://www.marvel.com/comics/issue/8/\",\"seriesId\":null,\"seriesName\":null,\"onSale\":null,\"mu\":null,\"digitalId\":null,\"cover\":null,\"pageCount\":null,\"creators\":null,\"source\":\"api\",\"hydrated\":false,\"detailsRefused\":false}},\"read\":{\"7\":777},\"overrides\":{},\"notes\":{\"8\":\"Restored ’note’ 📚\"},\"ratings\":{},\"lists\":{\"there\":{\"id\":\"there\",\"name\":\"From another device\",\"description\":\"\",\"note\":\"\",\"created\":1794199224808,\"catalogId\":null,\"itemIds\":[7,8],\"collectedIn\":{},\"deferredIssueIds\":[]}},\"listOrder\":[\"there\"],\"active\":\"there\"}",
+              "value": null
+            }
+          ]
+        },
+        {
+          "owner": "history",
+          "before": "{\"format\":\"recap-page-list-history\",\"version\":1,\"writeToken\":\"prior-history\",\"records\":[]}",
+          "value": "{\"writeToken\":\"history-mw8rw63v-rn7c58\",\"format\":\"recap-page-list-history\",\"version\":1,\"records\":[]}",
+          "effects": [
+            {
+              "key": "mrt.list-history.v1",
+              "before": "{\"format\":\"recap-page-list-history\",\"version\":1,\"writeToken\":\"prior-history\",\"records\":[]}",
+              "value": "{\"writeToken\":\"history-mw8rw63v-rn7c58\",\"format\":\"recap-page-list-history\",\"version\":1,\"records\":[]}"
+            }
+          ]
+        },
+        {
+          "owner": "settings",
+          "before": {
+            "settings": "{\"covers\":true,\"theme\":\"light\",\"filter\":\"all\",\"readingShortcut\":true,\"hideDescriptions\":false}",
+            "sidebar": "false"
+          },
+          "effects": [
+            {
+              "key": "mrt.settings",
+              "before": "{\"covers\":true,\"theme\":\"light\",\"filter\":\"all\",\"readingShortcut\":true,\"hideDescriptions\":false}",
+              "value": "{\"covers\":false,\"theme\":\"dark\",\"filter\":\"unread\",\"readingShortcut\":false,\"hideDescriptions\":false}"
+            },
+            {
+              "key": "sidebar.collapsed",
+              "before": "false",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "owner": "draft",
+          "before": null,
+          "value": null,
+          "retainedSources": [],
+          "effects": [
+            {
+              "key": "mrt.import.draft.v1",
+              "before": null,
+              "value": null
+            }
+          ]
+        }
+      ]
+    },
+    "writes": 0,
+    "direction": "forward",
+    "phase": "applying",
+    "finishedAt": null
+  }
+}

@@ -1,4 +1,4 @@
-import { KEY as READER_KEY } from '../storage.js';
+import { KEY as READER_KEY, narrowJson } from '../storage.js';
 import {
   MAX_BACKUP_BYTES, MAX_LISTS, MAX_NAME, SCHEMA_VERSION,
   createEmptyState, exportBackup, newId, setActive,
@@ -128,7 +128,10 @@ export function canonicalReaderValue(raw, state, token) {
   if (!Number.isFinite(date.getTime()) || date.toISOString() !== input.exportedAt) return false;
   // The reader writer generates this stamp internally; every data field and its token still match.
   const expected = { ...exportBackup(state), exportedAt: input.exportedAt };
-  return raw === JSON.stringify({ writeToken: token, ...expected });
+  const plain = JSON.stringify({ writeToken: token, ...expected });
+  // The reader writer spells text above Latin-1 as escapes where that is cheaper (#960), and older
+  // versions wrote it as is; both are the same writer's bytes for the same content.
+  return raw === plain || raw === narrowJson(plain);
 }
 
 export class ListHistoryStore {

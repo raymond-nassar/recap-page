@@ -1604,13 +1604,13 @@
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:473-505|0": {
-    "anchor": "docs/IOS.md:473-505",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:499-531|0": {
+    "anchor": "docs/IOS.md:499-531",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:493-497|0": {
-    "anchor": "docs/IOS.md:493-497",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:519-523|0": {
+    "anchor": "docs/IOS.md:519-523",
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
@@ -1669,13 +1669,13 @@
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:432-441|0": {
-    "anchor": "docs/IOS.md:432-441",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:458-467|0": {
+    "anchor": "docs/IOS.md:458-467",
     "fp": "fa779b8e01b8f8c9",
     "head": "## Signing and internal TestFlight"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:473-505|0": {
-    "anchor": "docs/IOS.md:473-505",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:499-531|0": {
+    "anchor": "docs/IOS.md:499-531",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
@@ -1784,8 +1784,8 @@
     "fp": "c551965afe6556d6",
     "head": "async cleanUp(id, { journal = true, offered = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:926-933|0": {
-    "anchor": "src/js/lib/completeRestore.js:926-933",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:928-935|0": {
+    "anchor": "src/js/lib/completeRestore.js:928-935",
     "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
@@ -1839,24 +1839,24 @@
     "fp": "7362f2fdd079e04b",
     "head": "if (store.lastUpdateOk) announce(msg);"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:1073-1081|0": {
-    "anchor": "src/js/storage.js:1073-1081",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:1132-1140|0": {
+    "anchor": "src/js/storage.js:1132-1140",
     "fp": "c10d8af0b6ad7801",
     "head": "// A successful restore is a deliberate overwrite, so it also clears the block."
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:416-448|0": {
-    "anchor": "src/js/storage.js:416-448",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:475-507|0": {
+    "anchor": "src/js/storage.js:475-507",
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:724-751|0": {
-    "anchor": "src/js/storage.js:724-751",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:783-810|0": {
+    "anchor": "src/js/storage.js:783-810",
     "fp": "b7d36f9e697421d1",
     "head": "update(fn) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:920-1004|0": {
-    "anchor": "src/js/storage.js:920-1004",
-    "fp": "eda54b5863c96712",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:979-1063|0": {
+    "anchor": "src/js/storage.js:979-1063",
+    "fp": "e55d5f0d99c89517",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1146-1150|0": {
@@ -1934,8 +1934,8 @@
     "fp": "4151342a7f145254",
     "head": "function paintTimelinePosition(root, position, {"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:475-485|0": {
-    "anchor": "src/js/storage.js:475-485",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:534-544|0": {
+    "anchor": "src/js/storage.js:534-544",
     "fp": "8a51ad8622832a60",
     "head": "// The main slot is asked directly rather than through the walk, so that a storage which"
   },
@@ -2104,13 +2104,13 @@
     "fp": "cee382686897cf30",
     "head": "storage = globalThis.localStorage,"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:937|0": {
-    "anchor": "src/js/lib/completeRestore.js:937",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:939|0": {
+    "anchor": "src/js/lib/completeRestore.js:939",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-list-history-v1|src/js/lib/listHistory.js:371-402|0": {
-    "anchor": "src/js/lib/listHistory.js:371-402",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-list-history-v1|src/js/lib/listHistory.js:374-405|0": {
+    "anchor": "src/js/lib/listHistory.js:374-405",
     "fp": "2180bcb59f08dea5",
     "head": "saveRecords(records) {"
   },
@@ -2124,30 +2124,30 @@
     "fp": "7a2f5f2530eb5b8d",
     "head": "apiBase,"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1102-1119|0": {
-    "anchor": "src/js/storage.js:1102-1119",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1161-1178|0": {
+    "anchor": "src/js/storage.js:1161-1178",
     "fp": "6a45bb40e47d2dfa",
     "head": "rewindSnapshot(held) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1121-1138|0": {
-    "anchor": "src/js/storage.js:1121-1138",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1180-1197|0": {
+    "anchor": "src/js/storage.js:1180-1197",
     "fp": "6c7b045c5fd6f21c",
     "head": "undoRestore(expected) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:959-971|0": {
-    "anchor": "src/js/storage.js:959-971",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:1018-1030|0": {
+    "anchor": "src/js/storage.js:1018-1030",
     "fp": "b3fd908f89413bfd",
     "head": "this.storage?.setItem(TEMP_KEY, serialized);"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:506-512|0": {
-    "anchor": "src/js/storage.js:506-512",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:565-571|0": {
+    "anchor": "src/js/storage.js:565-571",
     "fp": "b429c9cf55d87586",
     "head": "freeArchiveKey() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:816|0": {
-    "anchor": "src/js/storage.js:816",
-    "fp": "3b87d88ca5723d1d",
-    "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:875|0": {
+    "anchor": "src/js/storage.js:875",
+    "fp": "6f5b53c08e00b5f0",
+    "head": "this.storage.setItem(KEY, narrowJson(JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1086-1092|0": {
     "anchor": "src/js/main.js:1086-1092",
@@ -2189,8 +2189,8 @@
     "fp": "215b776d62ddf598",
     "head": "export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:1208-1217|0": {
-    "anchor": "src/js/storage.js:1208-1217",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:1267-1276|0": {
+    "anchor": "src/js/storage.js:1267-1276",
     "fp": "a2caa4caf14defd5",
     "head": "export const SETTINGS_KEY = 'mrt.settings';"
   },
@@ -2199,8 +2199,8 @@
     "fp": "28ca251f3ab3db02",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:650-673|0": {
-    "anchor": "src/js/storage.js:650-673",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:709-732|0": {
+    "anchor": "src/js/storage.js:709-732",
     "fp": "a217fd173d10b27a",
     "head": "salvageCopies() {"
   },
@@ -6614,8 +6614,8 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "src/js/views/data.js|preamble|src/js/storage.js:688-691|0": {
-    "anchor": "src/js/storage.js:688-691",
+  "src/js/views/data.js|preamble|src/js/storage.js:747-750|0": {
+    "anchor": "src/js/storage.js:747-750",
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
