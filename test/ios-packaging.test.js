@@ -623,6 +623,16 @@ test('iOS OneDrive claims the callback and cancels expiry before exchanging its 
   assert.match(native, /func testAClaimedCallbackSurvivesExpiryDuringTokenExchange/);
 });
 
+test('iOS OneDrive reads an answer at its redirect with the slash Microsoft adds, and at no other address', () => {
+  const source = appSource('OneDriveAuthorization');
+  const check = source.slice(source.indexOf('func answer('), source.indexOf('var params'));
+  assert.match(check, /given == expected \|\| given == expected \+ "\/" else \{ return nil \}/);
+  const native = read('packaging/ios/RecapPageTests/OneDriveBackupTests.swift');
+  assert.match(native, /func testMicrosoftsSlashedAnswerConnects/);
+  assert.match(native, /XCTAssertNil\(authorization\.answer\("\\\(redirect\)\/x\?code=abc&state=\\\(state\)"\)\)/);
+  assert.match(native, /XCTAssertNil\(authorization\.answer\("\\\(redirect\)x\?code=abc&state=\\\(state\)"\)\)/);
+});
+
 test('the iOS page loads the phone layer and the iOS overlay after the shared styles, at the cover viewport', async () => {
   const page = await readFile(join(output, 'index.html'), 'utf8');
   assert.equal(page.split('viewport-fit=cover').length, 2);

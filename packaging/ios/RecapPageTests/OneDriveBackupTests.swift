@@ -78,6 +78,13 @@ final class OneDriveAuthorizationTests: XCTestCase {
         XCTAssertNil(authorization.answer("\(redirect)?code=abc&code=def&state=\(state)"))
         XCTAssertNil(authorization.answer("msauth.io.github.raymondnassar.recappage://other?code=abc&state=\(state)"))
         XCTAssertNil(authorization.answer("\(redirect)?code=%zz&state=\(state)"))
+        // Microsoft answers a redirect with no path at the same address plus a slash (#1189).
+        XCTAssertEqual(authorization.answer("\(redirect)/?code=abc&state=\(state)"), .code("abc"))
+        XCTAssertEqual(authorization.answer("\(redirect)/?error=access_denied&state=\(state)"), .ended("declined"))
+        XCTAssertNil(authorization.answer("\(redirect)//?code=abc&state=\(state)"))
+        XCTAssertNil(authorization.answer("\(redirect)/x?code=abc&state=\(state)"))
+        XCTAssertNil(authorization.answer("\(redirect)x?code=abc&state=\(state)"))
+        XCTAssertNil(authorization.answer("\(redirect)/?code=abc&state=other"))
     }
 
     func testTheSignInAddressAsksForTheAppFolderWithPKCE() throws {
@@ -256,6 +263,22 @@ final class OneDriveBackupHandlerTests: XCTestCase {
         XCTAssertEqual(credentials.record?.refreshToken, "refresh-1")
         XCTAssertEqual(transport.requests.filter { $0.url.absoluteString.hasSuffix("/oauth2/v2.0/token") }.count, 1)
         XCTAssertEqual(launcher.cancelled, 0)
+    }
+
+    func testMicrosoftsSlashedAnswerConnects() async throws {
+        transport.answer = { [unowned self] request in
+            self.microsoft(request) ?? OneDriveResponse(status: 500, headers: [:], body: Data())
+        }
+        _ = make()
+        let started = try await status("connect")
+        XCTAssertEqual(started["state"] as? String, "signing-in")
+        let state = try XCTUnwrap(launcher.parameter("state"))
+        // The form a real sign-in answered with on 8 November 2026: the redirect plus a slash (#1189).
+        let answer = try XCTUnwrap(URL(string: "\(OneDriveAuthorization.redirectUri)/?code=code-1&state=\(state)"))
+        launcher.completion?(.success(answer))
+        let connected = try await settled()
+        XCTAssertEqual(connected["state"] as? String, "connected")
+        XCTAssertEqual(credentials.record?.refreshToken, "refresh-1")
     }
 
     func testASignInConnectsTheAppFolderAndTheTokenGoesOnlyToGraph() async throws {
