@@ -66,11 +66,11 @@ function tokenOf(raw) {
 // 8 November 2026, 98.9 percent of 1,361,156 characters of reading data is cached issue metadata,
 // almost all ASCII, and restoring it needed 5,444,624 of the 5,242,880 bytes WebKit allows (#960).
 //
-// So a value is rebuilt as a one-byte string, spelling as an escape any character that cannot be one
-// byte, but only where that is never dearer. Today a value of L characters costs L bytes when none is
-// above U+00FF and 2L otherwise; escaping m code units costs L + 5m. Escapes are used only when some
-// character is above U+00FF and 5m < L, so no mix of characters costs more than it does today, and
-// text that is mostly CJK keeps exactly today's form.
+// Only the iOS app uses this spelling: WebKit can charge L characters L bytes when none is above
+// U+00FF and 2L otherwise; escaping m code units costs L + 5m. Escapes are used only when some
+// character is above U+00FF and 5m < L, so text that is mostly CJK keeps exactly today's form.
+// Chromium and Firefox charge UTF-16 code units regardless of string width, so escaping would grow
+// their quota usage. Other platforms keep the ordinary serialization.
 //
 // TextDecoder('latin1') is windows-1252, the identity only on 0x00-0x7F and 0xA0-0xFF, so where escapes
 // are used U+0080 to U+009F are escaped with the rest, and a rebuild that does not reproduce its input
@@ -92,7 +92,7 @@ export function compactText(text) {
 }
 
 function narrowed(text, isJson) {
-  if (typeof text !== 'string') return text;
+  if (typeof text !== 'string' || !isIosApp()) return text;
   let above = 0;
   let escaped = 0;
   for (let index = 0; index < text.length; index += 1) {

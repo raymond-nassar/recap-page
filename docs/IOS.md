@@ -324,16 +324,17 @@ refused only the restore with text above Latin-1. The measurements are recorded 
 The target is reading data of 1,633,400 characters, 1.2 times the owner's 1,361,156 in November 2026,
 in two mixes: mostly ASCII like the owner's, and the same data with CJK notes. The probe in
 `packaging/ios/probes/restore-target.js` generates data of that size, never the owner's, and runs a
-complete restore through the app's own restore engine in three cases: into an empty app, into an app
-holding saved data of the same size, and after the app has ended and opened again between saving that
-data and restoring, which is how the owner restores. Each case must finish, leave the restored lists in
-place, and keep the earlier data for Undo. It also times an ordinary save and marking a comic Done at
-that size, in the stored form before and after 4.5.1. The UI test that runs it is in every iOS job,
-on both iPhones and the 13-inch iPad.
+complete restore through the app's own restore engine in four cases: into an empty app, over data
+of the same size saved by this version, over a two-byte prior written directly as 4.5.0 serialized it
+in the same launch, and over this version's data after the app has ended and opened again. The
+legacy-wide prior contains U+2019 and measures the first restore after upgrading; relaunching the new
+serializer's data does not make it wide. Each case must finish, leave the restored lists in place,
+and keep the earlier data for Undo. It also times an ordinary save and marking a comic Done at the
+owner's size, before and after 4.5.1. The UI test runs in every iOS job, on both iPhones and the iPad.
 
-Measured in Edge at the owner's size, the narrowed save took about 16 ms against 12 ms before, and
-marking a comic Done about 15 ms, with CJK notes about 19 ms against 12 ms. The Simulator results are
-recorded on the pull request that delivered #960.
+Escaping is limited to the iOS app. Chromium and Firefox count UTF-16 code units rather than string
+width, so other platforms retain the ordinary serializer. The Simulator capacity results and iOS
+save timings are recorded on the pull request that delivered #960.
 
 ### Capacity sweep and interrupted writes
 

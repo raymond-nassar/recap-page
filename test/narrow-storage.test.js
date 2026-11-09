@@ -1,21 +1,30 @@
-// Reading data stored at one byte per character where that is never dearer (#960). These tests hold
+// iOS reading data stored at one byte per character where never dearer (#960). These tests hold
 // the cost bound for every mix of characters, the round trip through every writer that narrows, and
 // the identity rule: data saved by 4.5.0's serializer and by the narrowed one is the same data to
 // every digest and comparison that decides a backup or a cross-device offer.
 
-import test from 'node:test';
+import test, { beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import { Store, KEY, compactText, narrowJson, narrowCopy } from '../src/js/storage.js';
 import { createEmptyState, createList, addIssuesToList, markRead, exportBackup } from '../src/js/lib/model.js';
-import { captureCompleteBackup } from '../src/js/lib/completeBackup.js';
+import { captureCompleteBackup, prepareCompleteRestore, restorePlan } from '../src/js/lib/completeBackup.js';
 import { personalDigest, materialDigest, compareCloudBackups } from '../src/js/lib/cloudSync.js';
 import { canonicalReaderValue } from '../src/js/lib/listHistory.js';
 
-// What WebKit and Chromium charge for a stored string: one byte per character when every code unit
-// fits in one byte, two otherwise. This is the cheapest that today's spelling can ever be charged, so
-// it is the bound narrowing must never exceed.
-function charged(text) {
+const originalDocument = globalThis.document;
+beforeEach(() => {
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+});
+afterEach(() => {
+  if (originalDocument === undefined) delete globalThis.document;
+  else globalThis.document = originalDocument;
+});
+
+// WebKit can charge string width. Chromium charges two bytes per UTF-16 code unit, and Firefox
+// counts UTF-16 code units; the byte-equivalent comparison below holds the same bound for both.
+function charged(text, engine = 'webkit') {
+  if (engine !== 'webkit') return 2 * text.length;
   for (let index = 0; index < text.length; index += 1) if (text.charCodeAt(index) > 0xff) return 2 * text.length;
   return text.length;
 }
@@ -62,9 +71,9 @@ function readerText(notes, { issues = 40 } = {}) {
   return JSON.stringify({ writeToken: 'token', ...exportBackup(state) });
 }
 
-function assertNeverDearer(text, label) {
+function assertNeverDearer(text, label, engine = 'webkit') {
   const narrow = narrowJson(text);
-  assert.ok(charged(narrow) <= charged(text), `${label}: ${charged(narrow)} bytes against ${charged(text)} today`);
+  assert.ok(charged(narrow, engine) <= charged(text, engine), `${label}: ${charged(narrow, engine)} bytes against ${charged(text, engine)} today`);
   assert.deepEqual(JSON.parse(narrow), JSON.parse(text), `${label}: the same content`);
   assert.equal(narrowJson(narrow), narrow, `${label}: narrowing twice changes nothing`);
   return narrow;
@@ -125,6 +134,42 @@ test('no mix of characters is ever stored in more bytes than today, from mostly 
     const notes = Array.from({ length: 1 + Math.floor(next() * 6) }, () =>
       Array.from({ length: Math.floor(next() * 400) }, pick).join(''));
     assertNeverDearer(readerText(notes, { issues: 1 + Math.floor(next() * 30) }), `seed ${seed}`);
+  }
+});
+
+test('outside the iOS app Chromium and Firefox quota usage never grows, in helpers or reader writers and journals', async () => {
+  for (const [platform, engine] of [
+    ['windows', 'chromium'], ['android', 'chromium'], [undefined, 'chromium'], [undefined, 'firefox'],
+  ]) {
+    globalThis.document.documentElement.dataset = platform === undefined ? {} : { platform };
+    const label = `${engine}, ${platform ?? 'browser'}`;
+    for (const share of [0, 0.01, 0.15, 0.19, 0.2, 0.5, 1]) {
+      const text = JSON.stringify({ note: 'a'.repeat(Math.round(4000 * (1 - share))) + '\u4e2d'.repeat(Math.round(4000 * share)) });
+      assertNeverDearer(text, `${label}, ${share * 100} percent CJK`, engine);
+      assert.equal(narrowCopy(text), text, `${label}: the prior copy retains its spelling`);
+    }
+
+    const storage = mapStorage();
+    const store = new Store({ storage });
+    store.load();
+    store.update(() => stateWithText());
+    const saved = storage.getItem(KEY);
+    assert.equal(store.lastUpdateOk, true, label);
+    assert.match(saved, /\u2019/, `${label}: persist keeps ordinary serialization`);
+    assert.doesNotMatch(saved, /\\u2019/, label);
+    assert.equal(canonicalReaderValue(saved, store.state, JSON.parse(saved).writeToken), true, label);
+
+    const restoring = new Store({ storage: mapStorage() });
+    restoring.load();
+    assert.equal(restoring.restore(JSON.stringify(exportBackup(stateWithText()))).ok, true, label);
+    assert.match(restoring.storage.getItem(KEY), /\u2019/, `${label}: file restore keeps ordinary serialization`);
+
+    const captured = await captureCompleteBackup({ storage, cryptoProvider: webcrypto });
+    const prepared = prepareCompleteRestore({ backup: captured.backup, storage, isExclusive: () => true });
+    const plan = restorePlan(prepared, captured.backup);
+    const reader = plan.components.find((component) => component.name === 'reader');
+    assert.equal(reader.effects[1].value, saved, `${label}: the verifier accepts the exact prior copy`);
+    assert.match(reader.effects[2].value, /\u2019/, `${label}: complete restore keeps ordinary serialization`);
   }
 });
 

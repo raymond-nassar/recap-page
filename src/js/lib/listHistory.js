@@ -129,7 +129,7 @@ export function canonicalReaderValue(raw, state, token) {
   // The reader writer generates this stamp internally; every data field and its token still match.
   const expected = { ...exportBackup(state), exportedAt: input.exportedAt };
   const plain = JSON.stringify({ writeToken: token, ...expected });
-  // The reader writer spells text above Latin-1 as escapes where that is cheaper (#960), and older
+  // The iOS reader writer spells text above Latin-1 as escapes where cheaper (#960), and older
   // versions wrote it as is; both are the same writer's bytes for the same content.
   return raw === plain || raw === narrowJson(plain);
 }

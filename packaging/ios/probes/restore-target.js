@@ -2,11 +2,10 @@
 // measured through the app's own storage and restore code on the engine that runs it (#960).
 //
 // The target is 1.2 times the owner's reading data, which measured 1,361,156 characters on
-// 8 November 2026, almost all of it cached issue metadata in ASCII. It is measured three ways: into
-// an empty app, into an app holding data of the same size that this version saved, and, in two
-// launches of the app, into data saved before the app was ended and opened again, which is the
-// owner's situation. Each runs in two mixes: mostly ASCII like the owner's data, and the same with
-// CJK notes. The data is generated, never copied from anyone's.
+// 8 November 2026, almost all of it cached issue metadata in ASCII. It is measured into an empty app,
+// over data of the same size saved by this version, over a two-byte prior written as 4.5.0 did in the
+// same launch, and over this version's data after a relaunch. The legacy-wide prior measures the first
+// restore after upgrading. Each runs in mostly ASCII and with CJK notes, generated not copied.
 //
 // It runs inside the app's own page. A phase that restores leaves localStorage empty; the seed phase
 // leaves the prior data saved for the launch after it. Nothing here ships in the app: the iOS UI tests
@@ -223,9 +222,15 @@ window.recapRestoreTargetProbe = (() => {
     }
     const cases = [];
     for (const mix of [false, true]) {
-      for (const prior of ['empty', 'saved']) {
+      for (const prior of ['empty', 'saved', 'legacy-wide']) {
         localStorage.clear();
         if (prior === 'saved') save(storage, readerOfSize(model, targetChars, { cjk: mix, seed: 2 }));
+        if (prior === 'legacy-wide') {
+          const state = readerOfSize(model, targetChars, { cjk: mix, seed: 2 });
+          const raw = JSON.stringify({ writeToken: 'generated-legacy', ...model.exportBackup(state) });
+          if (!raw.includes('\u2019')) throw new Error('The legacy prior must contain text above Latin-1.');
+          localStorage.setItem(storage.KEY, raw);
+        }
         cases.push({ prior, ...await completeRestore(loaded, { targetChars, cjk: mix }) });
       }
     }

@@ -312,8 +312,8 @@ final class LaunchUITests: XCTestCase {
     }
 
     /// A complete restore of reading data 1.2 times the owner's fits into an empty app, over data of
-    /// that size saved in the same launch, and over data saved before the app ended and opened again,
-    /// which is how the owner restores. Each in mostly ASCII and with CJK notes (#960).
+    /// that size saved in the same launch (both this version and a legacy two-byte prior), and over
+    /// this version's data after a relaunch. Each in mostly ASCII and with CJK notes (#960).
     @MainActor
     func testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch() throws {
         let inPlace = launch(
@@ -323,11 +323,19 @@ final class LaunchUITests: XCTestCase {
         let measured = try probeResult(of: inPlace, timeout: 600)
         try record("restore-target-in-place", measured)
         let cases = try XCTUnwrap(measured["cases"] as? [[String: Any]])
-        XCTAssertEqual(cases.count, 4)
+        XCTAssertEqual(cases.count, 6)
+        for mix in ["ascii", "cjk"] {
+            let priors = cases.filter { $0["mix"] as? String == mix }.compactMap { $0["prior"] as? String }
+            XCTAssertEqual(priors.count, 3, "\(mix): all three in-place cases ran")
+            XCTAssertEqual(Set(priors), Set(["empty", "saved", "legacy-wide"]))
+        }
         for restored in cases {
             let prior = try XCTUnwrap(restored["prior"] as? String)
             let mix = try XCTUnwrap(restored["mix"] as? String)
-            assertRestored(restored, "\(mix) into \(prior)", priorSaved: prior == "saved")
+            assertRestored(restored, "\(mix) into \(prior)", priorSaved: prior != "empty")
+            if prior == "legacy-wide" {
+                XCTAssertGreaterThan(restored["priorChars"] as? Int ?? 0, 1_633_400, "\(mix): the legacy prior meets the target")
+            }
         }
         let timing = try XCTUnwrap(measured["timing"] as? [[String: Any]])
         XCTAssertEqual(timing.count, 2)

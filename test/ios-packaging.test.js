@@ -2111,6 +2111,12 @@ test('the restore target probe lives where the UI test that runs it looks', () =
   assert.match(probe, /^window\.recapRestoreTargetProbe = \(\(\) => \{$/m);
   assert.match(probe, /^ {2}return async function recapRestoreTargetProbe\(/m);
   assert.match(probe, /^ {2}const TARGET_CHARS = 1_633_400;/m);
+  assert.match(probe, /for \(const prior of \['empty', 'saved', 'legacy-wide'\]\)/);
+  assert.match(probe, /JSON\.stringify\(\{ writeToken: 'generated-legacy', \.\.\.model\.exportBackup\(state\) \}\)/);
+  assert.match(probe, /if \(!raw\.includes\('\\u2019'\)\)/);
+  assert.match(probe, /localStorage\.setItem\(storage\.KEY, raw\)/);
+  assert.match(testSource, /XCTAssertEqual\(cases\.count, 6\)/);
+  assert.match(testSource, /priorSaved: prior != "empty"/);
 });
 
 test('iOS export validation mirrors Android for bounded text files and basenames', () => {
