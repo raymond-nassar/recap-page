@@ -294,6 +294,9 @@ characters above Latin-1 are written as JSON escapes when that is shorter in sto
 is rebuilt so the engine keeps its one-byte form. A complete restore, which both restoring a OneDrive
 backup and choosing another device's progress use, no longer stages a third copy, because its journal
 already holds the restored value. A restore of a single reading-data file still stages one.
+Checking a complete restore's journal, `verifyReader` recomputes that stored form with today's
+`isIosApp()` and `narrowed()` rule rather than reading it from the journal, so any later change to
+that rule must still verify the journals this version wrote.
 
 The capacity probe in `packaging/ios/probes/capacity.js` measures this through the app's own storage
 and restore code. It fills the app with reading lists from the bundled files until a complete backup
