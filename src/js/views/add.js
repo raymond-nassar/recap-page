@@ -249,10 +249,10 @@ export function createAddView({
   const searches = [
     {
       prefix: 'search', kind: 'issue', input: '#search-q', form: '#form-search', results: '#search-results',
-      runSearch: (query, options) => ($('#search-mode').value === 'series'
+      runSearch: (query, options) => (searches[0].kind === 'series'
         ? search.series(query, options) : search.creators(query, options)),
       load: (item, options) => {
-        const mode = $('#search-mode').value;
+        const mode = searches[0].kind;
         if (mode === 'series') return search.seriesIssues(item.id, options);
         if (mode === 'creator') return search.creatorIssues(item.id, options);
         return search.issues(item.name, { ...options, limit: ISSUE_SEARCH_LIMIT });
@@ -1117,6 +1117,7 @@ export function createAddView({
       if (config.kind === 'issue') {
         const submitName = wireNameSearch(config, false);
         $(config.form).addEventListener('submit', (event) => {
+          syncSearchMode();
           if (config.kind !== 'issue') {
             void submitName(event);
             return;
@@ -1132,18 +1133,23 @@ export function createAddView({
         wireNameSearch(config);
       }
     }
-    $('#search-mode').addEventListener('change', () => {
+    function syncSearchMode(event) {
       const config = searches[0];
-      beginSearch(config);
-      config.revealResults = false;
-      $(config.results).replaceChildren();
-      config.kind = $('#search-mode').value;
+      if (config.kind !== $('#search-mode').value) {
+        beginSearch(config);
+        config.revealResults = false;
+        $(config.results).replaceChildren();
+        config.kind = $('#search-mode').value;
+      }
       const label = config.kind === 'issue' ? 'Search comic titles'
         : config.kind === 'series' ? 'Find a series' : 'Find a creator';
       $(`${config.form} button[type="submit"]`).setAttribute('aria-label', label);
       if (config.kind !== 'issue') void warmNameIndex(config.kind === 'series' ? 'series' : 'creators');
-      announce(`${label}. Your query and selected comics are kept.`);
-    });
+      if (event?.type === 'change') announce(`${label}. Your query and selected comics are kept.`);
+    }
+    $('#search-mode').addEventListener('change', syncSearchMode);
+    globalThis.addEventListener('pageshow', syncSearchMode);
+    syncSearchMode();
     refreshBuilders();
     // Published for the bar, which is fixed to the window and so cannot take the width of the card
     // it sits in, and for the page's scroll padding, which is what keeps a control that takes

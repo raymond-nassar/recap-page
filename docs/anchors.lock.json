@@ -1859,8 +1859,8 @@
     "fp": "e55d5f0d99c89517",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1172-1176|0": {
-    "anchor": "src/js/views/add.js:1172-1176",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1178-1182|0": {
+    "anchor": "src/js/views/add.js:1178-1182",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },

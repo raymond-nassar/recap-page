@@ -11000,6 +11000,34 @@ const SCENARIOS = [
           return state.lists[state.active].name === 'Unified search picks'
             && JSON.stringify(state.lists[state.active].itemIds) === '[97601,97201]';
         }));
+      const restoredModeStart = await page.evaluate(() => window.__mrtListSearchFetches.length);
+      for (const [mode, query, expected] of [
+        ['series', 'House of M', 'Browse comics in House of M (2015)'],
+        ['creator', 'Hickman', 'Browse comics by Jonathan Hickman'],
+      ]) {
+        await page.$eval('#search-mode', (node, value) => { node.value = value; }, mode);
+        await field('#search-q', query, 'input');
+        await page.$eval('#form-search', (node) => node.requestSubmit());
+        await page.waitForFunction(() => {
+          const text = document.querySelector('#search-results').textContent.trim();
+          return text && !text.includes('Searching') && !text.includes('Loading');
+        });
+        const restored = await page.evaluate((label, start) => ({
+          choice: Boolean([...document.querySelectorAll('#search-results button')].find((node) => node.getAttribute('aria-label') === label)),
+          action: document.querySelector('#form-search button[type="submit"]').getAttribute('aria-label'),
+          urls: window.__mrtListSearchFetches.slice(start),
+        }), expected, restoredModeStart);
+        t.check(`silently restored ${mode} submits a name lookup with matching action and no invalid comic endpoint`,
+          restored.choice && restored.action === (mode === 'series' ? 'Find a series' : 'Find a creator')
+            && restored.urls.every((url) => !url.includes('/NaN/') && !url.includes('/search/issues')),
+          JSON.stringify(restored));
+      }
+      await page.$eval('#search-mode', (node) => { node.value = 'series'; });
+      await page.evaluate(() => { dispatchEvent(new PageTransitionEvent('pageshow', { persisted: false })); });
+      t.check('pageshow synchronizes a restored mode and retires old choices',
+        await page.evaluate(() => document.querySelector('#form-search button[type="submit"]').getAttribute('aria-label') === 'Find a series'
+          && !document.querySelector('#search-results').textContent.trim()));
+      await field('#search-mode', 'issue');
       await field('#search-q', 'Fixture Event', 'input');
       await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
       await click(page, '#search-list-filters > summary');

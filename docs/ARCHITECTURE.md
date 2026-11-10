@@ -334,7 +334,7 @@ and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/v
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
 starts hydration, at `src/js/views/add.js:344-387`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1172-1176`. Manual entry keeps its existing path.
+selection, at `src/js/views/add.js:1178-1182`. Manual entry keeps its existing path.
 
 **Pasted imports have a separate durable source journal.** The storage-owned import draft keeps
 verbatim source (including original full-paste line endings), recognized physical positions,
