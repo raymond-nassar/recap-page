@@ -2284,6 +2284,10 @@ async function readingSemantics(page) {
   const nextIssue = readingOrder.items[READING_ISSUE_POSITION];
   const followingIssue = readingOrder.items[READING_ISSUE_POSITION + 1];
   const saved = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  check(await page.$eval('#order-desc', (node) => node.open
+    && node.querySelector('summary').textContent === 'About this list'), 'M01: About this list starts expanded');
+  await click(page, '#order-desc > summary');
+  check(!await page.$eval('#order-desc', (node) => node.open), 'M01: About collapses normally');
   await click(page, '#order-desc > summary');
   check(await page.$eval('#order-desc', (node) => node.open), 'M01: About expands normally');
   await click(page, '#order-desc > summary');

@@ -1659,7 +1659,10 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
   if (next === 'library-rated') ratedView.renderBrowser();
-  if (next === 'read') readingView.renderHero();
+  if (next === 'read') {
+    readingView.renderHero();
+    readingView.enterAbout();
+  }
   completionView.render();
   readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
@@ -3506,6 +3509,8 @@ const readingView = createReadingView({
   detailUrl,
   el,
   fact,
+  loadCatalog,
+  listAttribution: (list) => catalogPresentation.attributionLine(list),
   focusCurrentView: () => {
     focusViewHeading(view);
     document.activeElement?.scrollIntoView({ block: 'nearest' });
@@ -3999,6 +4004,7 @@ const previewView = createPreviewView({
     body: $('#preview-body'),
     close: $('#preview-close'),
     description: $('#preview-desc'),
+    about: $('#preview-about'),
     dialog: $('#preview'),
     heading: $('#preview-h'),
     meta: $('#preview-meta'),

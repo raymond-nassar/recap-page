@@ -2086,6 +2086,174 @@ async function checkOfflineSelectedList(browser, origin, t) {
 // state behind is not evidence either.
 const SCENARIOS = [
   {
+    id: 'about-this-list',
+    title: 'list context opens with exact private curator destinations on desktop and phone',
+    async run(page, t) {
+      let state = createList(createEmptyState(), {
+        id: 'source-list', name: 'Saved custom title', description: '', catalogId: 'browser-check',
+      });
+      state = addIssuesToList(state, 'source-list', ORDER.items).state;
+      state = createList(state, { id: 'custom-list', name: 'My own list', description: '' });
+      state.active = 'source-list';
+      await page.evaluateOnNewDocument((saved) => {
+        if (!sessionStorage.getItem('about.fixture')) {
+          sessionStorage.setItem('about.fixture', '1');
+          localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+          localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        }
+        const fetch = window.fetch;
+        window.fetch = (input, options) => {
+          if (String(input).endsWith('data/catalog.json')) {
+            if (sessionStorage.getItem('about.fail') === '1') {
+              sessionStorage.removeItem('about.fail');
+              return Promise.reject(new Error('fixture offline'));
+            }
+            if (sessionStorage.getItem('about.hold') === '1') {
+              return new Promise((resolve) => {
+                window.__releaseAboutSource = () => {
+                  sessionStorage.removeItem('about.hold');
+                  resolve(fetch(input, options));
+                };
+              });
+            }
+          }
+          return fetch(input, options);
+        };
+      }, state);
+      await page.setViewport({ width: 1280, height: 900 });
+      await open(page, '/#/read/source-list');
+      await page.waitForSelector('#order-source .list-source-link');
+      const readAbout = (selector) => page.$eval(selector, (about) => {
+        const link = about.querySelector('.list-source-link');
+        const rect = link?.getBoundingClientRect();
+        return {
+          open: about.open, hidden: about.hidden,
+          summary: about.querySelector('summary')?.textContent,
+          text: about.textContent,
+          label: link?.textContent,
+          name: link?.getAttribute('aria-label'),
+          href: link?.getAttribute('href'),
+          target: link?.target, rel: link?.rel,
+          radius: link ? parseFloat(getComputedStyle(link).borderRadius) : 0,
+          width: rect?.width, height: rect?.height,
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        };
+      });
+      const saved = await readAbout('#order-desc');
+      t.check('a cold saved source-only list opens About and resolves its exact catalog credit',
+        saved.open && !saved.hidden && saved.summary === 'About this list'
+        && saved.href === CATALOG.lists[0].source && saved.text.includes('Fixture section')
+        && saved.text.includes('Snapshot taken') && saved.label === 'Visit example.com'
+        && saved.name.includes(CATALOG.lists[0].name) && saved.name.includes(saved.label)
+        && saved.target === '_blank' && saved.rel === 'noopener noreferrer',
+        JSON.stringify(saved));
+      t.check('the curator pill is secondary, rounded and at least 24 by 24 pixels',
+        saved.width >= 24 && saved.height >= 24 && saved.radius >= saved.height / 2 && !saved.overflow,
+        JSON.stringify(saved));
+      await page.focus('#order-desc > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => !document.querySelector('#order-desc').open);
+      const beforeHero = await page.$eval('#hero-title', (node) => node.textContent);
+      await page.evaluate(() => document.querySelector('#btn-hero-done').click());
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent !== title, {}, beforeHero);
+      t.check('a progress redraw does not undo a keyboard collapse',
+        !(await page.$eval('#order-desc', (node) => node.open)));
+      await page.setViewport({ width: 390, height: 844 });
+      t.check('phone reflow preserves the same collapsed disclosure',
+        !(await page.$eval('#order-desc', (node) => node.open)));
+      await page.focus('#order-desc > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#order-desc').open);
+      await page.focus('#order-source .list-source-link');
+      const keyboard = await page.evaluate(() => ({
+        focused: document.activeElement.matches('#order-source .list-source-link'),
+        visible: document.activeElement.getClientRects().length > 0,
+      }));
+      t.check('the open phone disclosure exposes a keyboard-focusable native source destination',
+        keyboard.focused && keyboard.visible, JSON.stringify(keyboard));
+      for (const width of [320, 390, 1280]) {
+        await page.setViewport({ width, height: 900 });
+        for (const theme of ['light', 'dark']) {
+          await page.emulateMediaFeatures([
+            { name: 'prefers-color-scheme', value: theme },
+            { name: 'prefers-reduced-motion', value: 'reduce' },
+          ]);
+          const layout = await readAbout('#order-desc');
+          t.check(`saved About retains its destination without clipping at ${width}px in ${theme}`,
+            layout.open && !layout.overflow && layout.width >= 24 && layout.height >= 24,
+            JSON.stringify(layout));
+        }
+      }
+      await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]);
+      t.check('forced colors retains a visible focusable source destination',
+        await page.$eval('#order-source .list-source-link', (link) =>
+          getComputedStyle(link).visibility === 'visible' && link.getClientRects().length > 0));
+      await page.emulateMediaFeatures([]);
+      await page.evaluate(() => { location.hash = '#/home'; });
+      await page.waitForSelector('#view-home:not([hidden])');
+      await page.evaluate(() => { location.hash = '#/read/source-list'; });
+      await page.waitForSelector('#order-source .list-source-link');
+      t.check('returning to the same saved list resets About to expanded',
+        await page.$eval('#order-desc', (node) => node.open));
+      await page.evaluate(() => { location.hash = '#/preview/browser-check'; });
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      const preview = await readAbout('#preview-about');
+      t.check('Preview has the same expanded About, exact curator destination and full credit',
+        preview.open && preview.summary === 'About this list' && preview.href === saved.href
+        && preview.text.includes('Fixture section') && preview.rel === saved.rel,
+        JSON.stringify(preview));
+      for (const width of [320, 390, 1280]) {
+        await page.setViewport({ width, height: 900 });
+        const layout = await readAbout('#preview-about');
+        t.check(`Preview About wraps without clipping at ${width}px`,
+          layout.open && !layout.overflow && layout.width >= 24 && layout.height >= 24,
+          JSON.stringify(layout));
+      }
+      await page.focus('#preview-about > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => !document.querySelector('#preview-about').open);
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview').open
+        && !location.hash.startsWith('#/preview/'));
+      await page.evaluate(() => { location.hash = '#/preview/browser-check'; });
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('Preview reopens expanded after being collapsed and closed',
+        await page.$eval('#preview-about', (node) => node.open));
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview').open
+        && !location.hash.startsWith('#/preview/'));
+      await page.evaluate(() => { location.hash = '#/read/custom-list'; });
+      await page.waitForSelector('#view-read:not([hidden])');
+      t.check('a custom list with neither description nor source has no invented destination or empty About',
+        await page.evaluate(() => document.querySelector('#order-desc').hidden
+          && !document.querySelector('#order-source a')));
+      await page.evaluate(() => {
+        sessionStorage.setItem('about.fail', '1');
+        sessionStorage.setItem('about.hold', '1');
+      });
+      await open(page, '/#/read/source-list');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#order-source button');
+      const beforeRetry = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('failed source loading leaves an expanded, explicit, retryable About',
+        await page.$eval('#order-desc', (node) => !node.hidden && node.open
+          && node.textContent.includes('fixture offline') && node.textContent.includes('Retry source credit')));
+      await page.focus('#order-source button');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => typeof window.__releaseAboutSource === 'function');
+      t.check('keyboard Retry retains focus and blocks duplicate activation while pending',
+        await page.$eval('#order-source button', (button) => document.activeElement === button
+          && button.getAttribute('aria-disabled') === 'true'));
+      await page.keyboard.press('Enter');
+      await page.evaluate(() => window.__releaseAboutSource());
+      await page.waitForSelector('#order-source .list-source-link');
+      t.check('source retry restores exact credit and logical focus without changing saved bytes',
+        await page.evaluate((before) => document.activeElement.matches('#order-source .list-source-link')
+          && document.activeElement.getAttribute('href') === 'https://example.com/shared-page'
+          && localStorage.getItem('mrt.state.v2') === before, beforeRetry));
+    },
+  },
+  {
     id: 'notice-dismissal',
     title: 'Home notice dismisses locally with version, failure and keyboard safety',
     run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click }),

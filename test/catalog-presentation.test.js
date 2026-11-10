@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
+import { createCatalogPresentation, sourceButton } from '../src/js/views/shared/catalog-presentation.js';
 import { updatedLabel } from '../src/js/lib/catalog.js';
 
 function el(tag, props = {}, children = []) {
@@ -42,6 +42,35 @@ const list = {
 
 const controls = (card) => descendants(card)
   .filter((node) => node.tag === 'button' || (node.tag === 'a' && node.href));
+
+test('list source pills name the curator and keep the exact private new-tab destination', () => {
+  for (const [source, site] of [
+    [list.source, 'Comic Book Herald'],
+    ['https://comicbookreadingorders.com/marvel/events/house-of-m/', 'Comic Book Reading Orders'],
+    ['https://github.com/emreparker/marvel-comics/blob/main/order.md', 'emreparker/marvel-comics'],
+    ['https://www.example.org/guide/?chapter=2#reading', 'example.org'],
+  ]) {
+    const link = sourceButton(el, { ...list, source });
+    assert.equal(link.tag, 'a');
+    assert.equal(link.href, source);
+    assert.equal(link.class, 'btn btn-g list-source-link');
+    assert.equal(link.target, '_blank');
+    assert.equal(link.rel, 'noopener noreferrer');
+    assert.equal(text(link), `Visit ${site}`);
+    assert.equal(link['aria-label'], `Visit ${site}, source of ${list.name} (opens in a new tab)`);
+    assert.equal(link.onclick, undefined, 'native link activation is not intercepted');
+  }
+});
+
+test('missing, unsafe and project-owned sources do not invent a curator pill', () => {
+  for (const source of [null, '', 'not a URL', 'javascript:alert(1)', 'http://example.org/',
+    'https://github.com/raymond-nassar/recap-page/issues/759']) {
+    assert.equal(sourceButton(el, { ...list, source }), null);
+  }
+  const mixed = { ...list, sourceOrigin: `${list.sourceOrigin}, with owner-selected additions` };
+  assert.ok(text(presentation.attributionLine(mixed)).includes(mixed.sourceOrigin));
+  assert.ok(sourceButton(el, mixed));
+});
 
 // UX-11 (#830): one prominent action per card. The title opens Preview, named by the title it shows
 // and then by what it does, and Add is the card's one action, a compact secondary button.

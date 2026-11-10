@@ -7,6 +7,7 @@ import {
 import { labelledName } from '../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
 import { isIosApp } from '../lib/platform.js';
+import { sourceButton } from './shared/catalog-presentation.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -350,7 +351,13 @@ export function createPreviewView({
       depthLabel(list.depth),
     ].filter(Boolean).join(' · ');
     nodes.description.textContent = list.description || '';
-    nodes.source.replaceChildren(...[presentation.attributionLine(list)].filter(Boolean));
+    nodes.description.hidden = !list.description;
+    const source = [
+      presentation.attributionLine(list),
+      sourceButton(el, list),
+    ].filter(Boolean);
+    nodes.source.replaceChildren(...source);
+    if (nodes.about) nodes.about.hidden = !list.description && !source.length;
     paintAdd(list);
     const offline = elements().offline;
     if (offline) {
@@ -429,6 +436,7 @@ export function createPreviewView({
       notificationToken: null,
     };
     const nodes = elements();
+    if (nodes.about) nodes.about.open = true;
     nodes.paths.replaceChildren();
     nodes.paths.hidden = true;
     paint(list);
