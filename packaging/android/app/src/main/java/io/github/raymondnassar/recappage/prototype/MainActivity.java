@@ -421,6 +421,8 @@ public final class MainActivity extends Activity {
         discovery.addCategory(Intent.CATEGORY_DEFAULT);
         ResolveInfo preferred = manager.resolveActivity(discovery, PackageManager.MATCH_DEFAULT_ONLY);
         if (preferred == null || preferred.activityInfo == null) return null;
+        // The system chooser and work-profile forwarders both belong to "android"; neither is a default.
+        if ("android".equals(preferred.activityInfo.packageName)) return null;
         for (ResolveInfo browser : browsers) {
             if (browser.activityInfo.packageName.equals(preferred.activityInfo.packageName)) return browser;
         }

@@ -368,6 +368,9 @@ test('Android reader uses only a vetted hostless default before asking for a bro
   assert.match(selection, /addCategory\(Intent\.CATEGORY_DEFAULT\)/);
   assert.match(selection, /resolveActivity\(discovery, PackageManager\.MATCH_DEFAULT_ONLY\)/);
   assert.match(selection, /preferred == null \|\| preferred\.activityInfo == null/);
+  assert.match(selection, /if \("android"\.equals\(preferred\.activityInfo\.packageName\)\) return null;/);
+  assert.ok(selection.indexOf('"android".equals') < selection.indexOf('for (ResolveInfo browser'),
+    'The system chooser and cross-profile forwarders are rejected before any list match');
   assert.match(selection, /for \(ResolveInfo browser : browsers\)/);
   assert.match(selection, /browser\.activityInfo\.packageName\.equals\(preferred\.activityInfo\.packageName\)/);
   assert.match(selection, /return browser;/);
