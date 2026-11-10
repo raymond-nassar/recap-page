@@ -2191,9 +2191,10 @@ const SCENARIOS = [
       await page.emulateMediaFeatures([]);
       // Back and Forward restore a pixel scroll position, so About must come back at the height it
       // had when that position was measured, or the reader lands off by About's height.
-      const filtersTop = () => page.$eval('#reading-filters', (node) => Math.round(node.getBoundingClientRect().top));
+      const rowSelector = '#full .row:has(.cb[aria-pressed="false"])';
+      const rowTop = () => page.$eval(rowSelector, (node) => Math.round(node.getBoundingClientRect().top));
       const settle = (top) => page.waitForFunction((want) => Math.abs(Math.round(
-        document.querySelector('#reading-filters').getBoundingClientRect().top) - want) <= 1,
+        document.querySelector('#full .row:has(.cb[aria-pressed="false"])').getBoundingClientRect().top) - want) <= 1,
       { timeout: 3000 }, top).catch(() => {});
       for (const width of [1280, 390]) {
         await page.setViewport({ width, height: 900 });
@@ -2212,24 +2213,80 @@ const SCENARIOS = [
         await page.evaluate(() => document.querySelector('#reading-filters').scrollIntoView({ block: 'start' }));
         // The app records a scroll position 500 ms after scrolling stops.
         await new Promise((resolve) => setTimeout(resolve, 700));
-        const before = await filtersTop();
+        const before = await rowTop();
         await page.evaluate(() => document.querySelector('#reading-filters input[value="unread"]').click());
         await page.waitForFunction(() => location.hash.includes('filter=unread'));
         await page.evaluate(() => history.back());
         await page.waitForFunction(() => !location.hash.includes('filter=unread'));
         await settle(before);
-        const filtered = { open: await page.$eval('#order-desc', (node) => node.open), before, after: await filtersTop() };
+        const filtered = { open: await page.$eval('#order-desc', (node) => node.open), before, after: await rowTop() };
         t.check(`Back from a filter choice keeps a collapsed About and the reader's place at ${width}px`,
           !filtered.open && Math.abs(filtered.after - filtered.before) <= 1, JSON.stringify(filtered));
-        const left = await filtersTop();
+        const left = await rowTop();
         await click(page, '.brand[data-view="home"]');
         await page.waitForSelector('#view-home:not([hidden])');
         await page.evaluate(() => history.back());
         await page.waitForSelector('#view-read:not([hidden])');
         await settle(left);
-        const returned = { open: await page.$eval('#order-desc', (node) => node.open), left, after: await filtersTop() };
+        const returned = { open: await page.$eval('#order-desc', (node) => node.open), left, after: await rowTop() };
         t.check(`Back from Home keeps a collapsed About and the reader's place at ${width}px`,
           !returned.open && Math.abs(returned.after - returned.left) <= 1, JSON.stringify(returned));
+
+        await page.reload({ waitUntil: 'networkidle0' });
+        await page.waitForSelector('#order-source .list-source-link');
+        const reloaded = await page.$eval('#order-desc', (node) => ({
+          open: node.open, recorded: history.state?.aboutOpen,
+        }));
+        await page.evaluate(() => window.scrollTo(0, 250));
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const reloadTop = await rowTop();
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await page.evaluate(() => history.back());
+        await page.waitForSelector('#view-read:not([hidden])');
+        await settle(reloadTop);
+        const reloadBack = { open: await page.$eval('#order-desc', (node) => node.open), after: await rowTop() };
+        t.check(`collapsed reload then Home/Back preserves About and a non-sticky row at ${width}px`,
+          !reloaded.open && reloaded.recorded === false && !reloadBack.open
+          && Math.abs(reloadBack.after - reloadTop) <= 1, JSON.stringify({ reloaded, reloadTop, reloadBack }));
+
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await page.evaluate(() => { location.hash = '#/read/source-list?full=1'; });
+        await page.waitForSelector('#view-read:not([hidden]) #full[open] .row');
+        await new Promise((resolve) => setTimeout(resolve, 2100));
+        const deep = await page.$eval('#order-desc', (node) => ({
+          open: node.open, recorded: history.state?.aboutOpen,
+        }));
+        await page.evaluate(() => window.scrollTo(0, 250));
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const deepTop = await rowTop();
+        await page.evaluate(() => document.querySelector('#reading-filters input[value="unread"]').click());
+        await page.waitForFunction(() => location.hash.includes('filter=unread'));
+        await page.evaluate(() => { document.querySelector('#order-desc').open = false; });
+        await page.waitForFunction(() => history.state?.aboutOpen === false);
+        await page.evaluate(() => history.back());
+        await page.waitForFunction(() => !location.hash.includes('filter=unread'));
+        await settle(deepTop);
+        const deepBack = { open: await page.$eval('#order-desc', (node) => node.open), after: await rowTop() };
+        t.check(`deep link then filter/collapse/Back restores About and a non-sticky row at ${width}px`,
+          deep.open && deep.recorded === true && deepBack.open
+          && Math.abs(deepBack.after - deepTop) <= 1, JSON.stringify({ deep, deepTop, deepBack }));
+
+        await new Promise((resolve) => setTimeout(resolve, 2100));
+        await page.evaluate(() => { document.querySelector('#order-desc').open = true; });
+        await page.waitForFunction(() => history.state?.aboutOpen === true);
+        await page.evaluate(() => { document.querySelector('#order-desc').open = false; });
+        await page.waitForFunction(() => history.state?.aboutOpen === false);
+        await click(page, '#full .row-focus-title');
+        await page.waitForSelector('#view-issue:not([hidden]) .breadcrumb a[href="#/read/source-list"]');
+        await click(page, '#view-issue .breadcrumb a[href="#/read/source-list"]');
+        await page.waitForSelector('#view-read:not([hidden])');
+        const breadcrumb = await page.$eval('#order-desc', (node) => ({
+          open: node.open, recorded: history.state?.aboutOpen,
+        }));
+        t.check(`issue breadcrumb is a forward About arrival at ${width}px`,
+          breadcrumb.open && breadcrumb.recorded === true, JSON.stringify(breadcrumb));
       }
       await page.setViewport({ width: 1280, height: 900 });
       await click(page, '.brand[data-view="home"]');

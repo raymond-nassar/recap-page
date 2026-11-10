@@ -25,7 +25,7 @@ const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to fin
 test('main.js preserves synchronous route updates and animates only an arriving focused view', () => {
   const main = read('src/js/main.js');
   lacks(main, /startViewTransition|runViewTransition|showViewNow/, 'the deferred View Transitions wrapper');
-  has(main, /function showView\(next, \{ focus = true, push = false, at = null, capturePosition = true \} = \{\}\)/,
+  has(main, /function showView\(next, \{ focus = true, push = false, at = null, capturePosition = true, aboutTraversal = false \} = \{\}\)/,
     'the original synchronous route update');
   has(main, /const shouldAnimateArrival = focus && next !== view;/, 'the changed destination and focus gate');
   has(main, /panel\.classList\.toggle\('view-entering', name === next && shouldAnimateArrival\)/,
@@ -640,7 +640,7 @@ test('main.js listens for hashchange and acts on the route it reads', () => {
   const main = read('src/js/main.js');
   has(
     main,
-    /addEventListener\('hashchange',[^)]*\(\) => \{\s*acknowledgedHash = location\.hash;\s*const route = parseRoute\(location\.hash\);\s*if \(route\) \{\s*navigationPosition\.beginRestore\(\);\s*applyRoute\(route, \{ focus: true,/,
+    /addEventListener\('hashchange',[^)]*\(\) => \{\s*const aboutTraversal = aboutTraversalHash === location\.hash;\s*aboutTraversalHash = null;\s*acknowledgedHash = location\.hash;\s*const route = parseRoute\(location\.hash\);\s*if \(route\) \{\s*navigationPosition\.beginRestore\(\);\s*applyRoute\(route, \{ focus: true,/,
     'a hashchange handler that reads the route and applies it with focus',
   );
   has(main, /const bootRoute = parseRoute\(location\.hash\)/, 'the boot read of location.hash');
@@ -787,8 +787,8 @@ test('main.js pushes with pushState rather than by assigning the hash', () => {
 // before any of this shipped, where absent means nothing at all and the stored setting stands.
 test('main.js reads an absent filter as All on Back but as the stored one at boot', () => {
   const main = read('src/js/main.js');
-  has(main, /applyRoute\(bootRoute, \{ focus: false, filterIfAbsent: readingView\.currentFilter\(\) \}\)/, 'boot falling back to the restored filter');
-  has(main, /applyRoute\(route, \{ focus: true, filterIfAbsent: DEFAULT_FILTER \}\)/, 'hashchange falling back to the default');
+  has(main, /applyRoute\(bootRoute, \{ focus: false, filterIfAbsent: readingView\.currentFilter\(\), aboutTraversal \}\)/, 'boot falling back to the restored filter');
+  has(main, /applyRoute\(route, \{ focus: true, filterIfAbsent: DEFAULT_FILTER, aboutTraversal \}\)/, 'hashchange falling back to the default');
 });
 
 test('route application separates explicit disclosure intent from restored filter state', () => {

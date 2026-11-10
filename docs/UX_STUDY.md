@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:3176-3202`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:120-128`, `src/js/main.js:3177-3203`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2212`, `src/js/views/reading.js:511-519`, `src/js/views/reading.js:536-550`, against
+Evidence: `src/js/main.js:2213`, `src/js/views/reading.js:511-519`, `src/js/views/reading.js:536-550`, against
 `src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -746,7 +746,7 @@ Evidence: `src/index.html:62-97`, `src/js/lib/route.js:23-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:95-195`,
-`src/js/main.js:1713-1770`, `test/ux-completion.test.js:87-100`.
+`src/js/main.js:1714-1771`, `test/ux-completion.test.js:87-100`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
