@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -525,38 +526,35 @@ public final class NativeIntegrationTest {
             return null;
         });
         assertEquals("Valid URI is rejected from every disallowed caller context", 0, countIntents(Intent.ACTION_VIEW));
+        device.executeShellCommand("cmd role clear-role-holders --user 0 android.app.role.BROWSER");
+        assertTrue("No browser default is configured", browserRoleHolders().isEmpty());
+        assertNull("A resolver is not a vetted browser default", onMain(() ->
+                MainActivity.defaultReaderBrowser(activity.getPackageManager(),
+                        MainActivity.readerBrowsers(activity.getPackageManager()))));
         server.releaseLookup.countDown();
         UiObject2 firstChoices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
-        assertNotNull("Read asks for an installed browser, without dispatching the MU app", firstChoices);
+        assertNotNull("Without a default, Read asks for an installed browser", firstChoices);
+        assertNotNull("The second browser is present", firstChoices.findObject(By.text("Recap browser fixture")));
         assertEquals("No Bifrost lookup", 0, appLookups.get());
         assertEquals("No outgoing intent before the browser choice", 0, countIntents(Intent.ACTION_VIEW));
         device.pressBack();
         waitFor("Cancel returns a visible browser failure and usable fallback", WAIT_MS,
                 () -> truth(popup, "document.querySelector('#p').textContent.includes('browser was not opened')"));
         assertEquals("Cancelled browser choice retains popup", 1, popupViews().size());
+        device.executeShellCommand("cmd role add-role-holder --user 0 android.app.role.BROWSER com.android.chrome");
+        assertEquals("Chrome is restored as the default browser",
+                Collections.singletonList("com.android.chrome"), browserRoleHolders());
         intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://read.marvel.com/#/book/900000099")))
                 .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
         tap(popup, "#fallback");
-        UiObject2 choices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
-        assertNotNull("Multiple browsers remain selectable despite the default and domain approval", choices);
-        assertNotNull("The second browser is present", choices.findObject(By.text("Recap browser fixture")));
-        String chromeLabel = onMain(() -> {
-            for (ResolveInfo match : MainActivity.readerBrowsers(activity.getPackageManager())) {
-                if (match.activityInfo.packageName.equals("com.android.chrome")) {
-                    return match.loadLabel(activity.getPackageManager()).toString();
-                }
-            }
-            throw new AssertionError("The native test device must include Chrome");
-        });
-        UiObject2 chrome = choices.findObject(By.text(chromeLabel));
-        assertNotNull("Default browser remains an explicit choice", chrome);
-        chrome.click();
-        waitFor("Selected browser handoff closes popup", WAIT_MS, () -> popupViews().isEmpty());
+        waitFor("Default browser handoff closes popup without another choice", WAIT_MS, () -> popupViews().isEmpty());
+        assertNull("The app does not show a browser picker for a verified default",
+                device.findObject(By.text("Open in browser")));
         Intent browserIntent = Intents.getIntents().stream()
                 .filter(intent -> "https://read.marvel.com/#/book/900000099".equals(intent.getDataString()))
                 .findFirst().orElseThrow();
         assertNotNull("Fallback explicitly targets a browser package", browserIntent.getPackage());
-        assertEquals("The actual comic goes to the selected browser, not its domain handler",
+        assertEquals("The actual comic goes to the default browser, not its domain handler",
                 "com.android.chrome", browserIntent.getPackage());
         assertTrue("Selected package is a general web browser", onMain(() ->
                 MainActivity.readerBrowsers(activity.getPackageManager()).stream()
@@ -577,16 +575,16 @@ public final class NativeIntegrationTest {
         intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://marvel.webtoon.com/")))
                 .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
         tap(web, "#btn-hero-read");
-        UiObject2 afterChoices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
-        assertNotNull("After local December 7 Read still asks for an installed browser", afterChoices);
-        UiObject2 afterChrome = afterChoices.findObject(By.text(chromeLabel));
-        assertNotNull("The same browser is available after the cutoff", afterChrome);
-        afterChrome.click();
+        waitFor("Post-cutoff Read dispatches the new destination", WAIT_MS, () ->
+                Intents.getIntents().stream().anyMatch(intent ->
+                        "https://marvel.webtoon.com/".equals(intent.getDataString())));
         waitFor("Post-cutoff browser handoff closes popup", WAIT_MS, () -> popupViews().isEmpty());
+        assertNull("The default also bypasses the picker after the cutoff",
+                device.findObject(By.text("Open in browser")));
         Intent generalIntent = Intents.getIntents().stream()
                 .filter(intent -> "https://marvel.webtoon.com/".equals(intent.getDataString()))
                 .findFirst().orElseThrow();
-        assertEquals("The general website goes only to the chosen browser",
+        assertEquals("The general website goes only to the default browser",
                 "com.android.chrome", generalIntent.getPackage());
         assertEquals("No metadata lookup after the cutoff", 1, server.issueRequests.get());
         assertEquals("No Bifrost lookup on either side", 0, appLookups.get());
@@ -632,6 +630,15 @@ public final class NativeIntegrationTest {
                         && browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals("com.android.chrome")));
         assertTrue("Domain-only activity is never a browser choice",
                 browsers.stream().noneMatch(info -> info.activityInfo.name.equals(DomainFixture.class.getName())));
+        assertEquals("Hostless default resolution selects Chrome despite domain approval", "com.android.chrome",
+                onMain(() -> MainActivity.defaultReaderBrowser(activity.getPackageManager(),
+                        MainActivity.readerBrowsers(activity.getPackageManager())).activityInfo.packageName));
+        assertNull("An empty vetted list cannot select a default", onMain(() ->
+                MainActivity.defaultReaderBrowser(activity.getPackageManager(), new ArrayList<>())));
+        ArrayList<ResolveInfo> withoutDefault = new ArrayList<>(browsers);
+        withoutDefault.removeIf(info -> info.activityInfo.packageName.equals("com.android.chrome"));
+        assertNull("A preferred package missing from the vetted list is never selected", onMain(() ->
+                MainActivity.defaultReaderBrowser(activity.getPackageManager(), withoutDefault)));
         measurements.put("browserDefault", "com.android.chrome").put("approvedDomainFixture", true)
                 .put("browserChoicesDespitePreferences", browsers.size());
     }

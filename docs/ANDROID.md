@@ -681,9 +681,18 @@ read on 2026-09-30.
 
 The reader scenario registers test-only browser and domain-handler activities. On the isolated
 emulator, it temporarily makes Chrome the default browser and approves the synthetic handler for
-the reader domain. It then checks that browser escape offers both browsers and opens the selected
-package. Teardown restores browser-role and domain settings, even after a failed assertion.
+the reader domain. Hostless discovery must still find both browsers and exclude the domain-only
+activity. The scenario clears the default to check picker cancellation, then restores Chrome and
+checks direct default-browser handoff without another picker, before and after the cutoff.
+An empty vetted list or one missing the preferred package must not select a default.
+Teardown restores browser-role and domain settings, even after a failed assertion.
 These fixture activities are absent from the app APK.
+
+Reader links use the device's default browser only after matching it against that hostless,
+filtered browser list. The exact comic URL is then sent to the browser's explicit package,
+not resolved against domain-app preferences. With no verified default, a single installed browser
+opens directly; multiple browsers retain the picker. A failed launch leaves the launcher usable
+with a visible failure rather than trying an unrelated app.
 
 The job keeps test results, synthetic screenshots and emulator/WebView versions in a seven-day
 Actions artifact. An installable APK is included only after all positive checks pass, never the
@@ -750,6 +759,10 @@ somebody performs them on a physical device:
 - [ ] With a real subscription, confirm the correct comic opens and returning to Recap Page
   keeps the current reading place. Check **Open in browser** after a cancelled browser choice;
   confirm an installed browser, not a domain app-link handler, receives the exact comic.
+- [ ] With two browsers installed and a default selected, open Avengers (2012) #8 and #9.
+  Confirm the default browser opens without Recap Page's picker, including when a different app
+  handles reader-domain links. Change the default and repeat. With no default, cancel the picker
+  and retry from **Open in browser**. Record actual comic rendering separately from handoff.
 - [ ] Inject both sides of local December 7 in tests. After cutoff, confirm the general Marvel
   Comics website, no metadata lookup and an honest no-single-comic label.
 - [ ] With no browser or a failed browser launch, confirm a visible failure and working retry.
