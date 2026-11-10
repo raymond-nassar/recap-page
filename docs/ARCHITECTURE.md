@@ -278,7 +278,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1157-1175` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1163-1181` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:738-740`. The write, result, and notification are handled together at
 `src/js/storage.js:783-810`.
@@ -294,7 +294,7 @@ The UI restores the row and shows a notice rather than making an unsaved change 
 offered only after the mark is saved. The next Done, a change of view, and ten seconds
 (`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
 offer records the view it was made in, the list's membership and deferral arrays by reference, the
-comic's read timestamp and the list's queue, at `src/js/views/reading.js:1495-1509`. The first
+comic's read timestamp and the list's queue, at `src/js/views/reading.js:1501-1515`. The first
 repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
 or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
 transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
@@ -309,9 +309,9 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:817`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:819`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
-`src/js/views/reading.js:39-47`.
+`src/js/views/reading.js:41-49`.
 
 **Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
 Not every state replacement goes through that method, though: boot loads state at
@@ -480,7 +480,7 @@ older tab blocks it. IndexedDB restrictions and the separate `file://`, `localho
 including the warmed app shell and later requested bundled payloads. The worker rejects other
 origins before opening that cache, at `src/sw.js:61-74`, so Marvel covers and metadata responses
 cannot enter it. Network is always tried first, and each cacheable successful response replaces its cached
-copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:77-168`.
+copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:77-169`.
 Requests marked `no-store` bypass the worker, and responses marked `no-store` are not stored.
 Worker registration also opts out of HTTP caching for update checks, defensively: the default already
 does so for this import-free worker. App files remain network first:

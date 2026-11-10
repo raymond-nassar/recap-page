@@ -444,6 +444,11 @@ test('the iOS page names Google only inside the cloud backup card, which offers 
 test('the iOS manifest lists every bundled file once with its exact digest', async () => {
   const listed = prepared.manifest.files.map(({ path }) => path);
   assert.equal(new Set(listed).size, listed.length);
+  for (const name of ['data/collectedEditionCatalog.js', 'data/collectedEditionEvidence.js',
+    'js/lib/collectedEditions.js', 'js/views/shared/collected-editions.js']) {
+    assert.ok(listed.includes(name), name);
+    assert.deepEqual(await readFile(join(output, name)), await readFile(new URL(`../src/${name}`, import.meta.url)), name);
+  }
   const onDisk = (await filesUnder(output)).filter((path) => !['ios-assets.json', '.recap-ios-assets'].includes(path));
   assert.deepEqual([...listed].sort(), onDisk);
   for (const entry of prepared.manifest.files) {

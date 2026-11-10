@@ -2289,6 +2289,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-list .preview-group { border-bottom: 0; padding: var(--space-5) 0 var(--space-1); }
 .preview-list .preview-group:first-child { padding-top: 0; }
 .preview-list .preview-group h4 { margin: 0; font-size: var(--t-body); font-weight: 600; }
+.preview-issue-info { min-width: 0; overflow-wrap: anywhere; }
+.collected-editions { margin-top: var(--space-1); font-size: var(--t-caption); color: var(--muted); }
+.collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
+.collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
+.edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+.edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }

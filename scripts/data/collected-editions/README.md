@@ -2,8 +2,8 @@
 
 This folder is a pilot of a provider-neutral record of collected editions: which printed or
 digital book holds which comics. It covers five Comic Book Herald reading lists and nothing else.
-The app does not load or package anything here. Nothing in it says where a reader can buy, borrow
-or read a book, and nothing in it may be used to claim that.
+The app does not load or package this folder. It loads small generated name/policy and verified
+relation modules in `src/data/`. Nothing claims where a reader can buy, borrow or read a book.
 
 ## Files
 
@@ -65,6 +65,13 @@ that link comes from the database. A book with no curated contents raises no fin
 pairs with another, since nothing is known to compare.
 
 ## Running it
+
+The same build projects curated MIT names into `src/data/collectedEditionCatalog.js` and GCD-derived
+relations into `src/data/collectedEditionEvidence.js` under CC BY-SA 4.0. Only full, verified,
+conflict-free relations are displayed. The latter retains credit, sources, checked dates and a
+modification notice; both Preview and saved lists show a shared credit and licence link.
+Hoopla is pending and no title address or identifier is bundled. Provider links require separately
+recorded granted permission and a verified destination; permission is never inferred from contents.
 
 ```
 npm run editions:pilot             # check that the generated files are current and valid
