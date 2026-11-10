@@ -53,7 +53,7 @@ test('current shipped identity and short attribution use Recap Page', () => {
   assert.match(html, /<title>Recap Page<\/title>/);
   assert.match(html, /<a href="#\/home" class="brand" data-view="home" aria-label="Home">/);
   assert.match(html, /<b class="lbl">Home<\/b>/);
-  assert.match(html, /<h1 id="home-h" class="home-brand"><img class="home-wordmark"[^>]+alt="" aria-hidden="true"[^>]*\/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
+  assert.match(html, /<h1 id="home-h" class="home-brand"><img class="home-wordmark home-wordmark--light"[^>]+alt="" aria-hidden="true"[^>]*\/><img class="home-wordmark home-wordmark--dark"[^>]+alt="" aria-hidden="true"[^>]*\/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
   assert.doesNotMatch(html, /class="home-action"|Browse\. Choose\. Read\./);
   assert.match(html, /<h1 id="order-name">Recap Page<\/h1>/);
   assert.equal(manifest.name, 'Recap Page');

@@ -5,7 +5,7 @@ govern use of the designer's guide. Keep the original three-panel icon across th
 favicon, installed apps and store icons, not the proposed lightning-bolt symbol or its combined
 lockup. The separate RECAP PAGE wordmark uses outlined SVG lettering: Deep Purple on light
 surfaces and White on dark surfaces, with its original Hot Pink outline and no background.
-Its embedded color-scheme follows the surrounding page, including an explicit app theme.
+Fixed purple and white assets are selected by the page's theme rules, including an explicit app theme.
 
 Keep clear space around each asset, assessed separately rather than copied from the rejected
 lockup's diagram. Resize proportionally; do not stretch, skew, rotate, blur, recolor or add shadows

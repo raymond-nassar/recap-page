@@ -4,18 +4,28 @@ import { readFileSync } from 'node:fs';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 
-test('the app and website ship the same transparent adaptive wordmark without a font', () => {
-  const svg = read('src/icons/wordmark.svg');
-  assert.equal(svg, read('pages/assets/wordmark.svg'));
-  assert.match(svg, /width="1000" height="168" viewBox="0 0 1000 167\.86"/);
-  assert.match(svg, /\.st1\{fill:#6D28D9;stroke:#EE0874;stroke-width:3;/);
-  assert.match(svg, /@media \(prefers-color-scheme: dark\) \{ \.st1\{fill:#FFFFFF;\} \}/);
-  assert.equal((svg.match(/<path\b/g) ?? []).length, 9);
-  assert.doesNotMatch(svg, /<rect|class="st0"|<text|<image|<script|href=|@font-face|@import/);
+test('the app and website ship identical fixed colorways without embedded theme media or a font', () => {
+  const purple = read('src/icons/wordmark.svg');
+  assert.doesNotMatch(purple, /@media/);
+  for (const [file, fill] of [['wordmark.svg', '#6D28D9'], ['wordmark-white.svg', '#FFFFFF']]) {
+    const svg = read(`src/icons/${file}`);
+    assert.deepEqual(readFileSync(new URL(`../src/icons/${file}`, import.meta.url)),
+      readFileSync(new URL(`../pages/assets/${file}`, import.meta.url)));
+    assert.equal(svg, read(`pages/assets/${file}`));
+    assert.equal(svg, purple.replace('fill:#6D28D9;', `fill:${fill};`));
+    assert.match(svg, /width="1000" height="168" viewBox="0 0 1000 167\.86"/);
+    assert.ok(svg.includes(`.st1{fill:${fill};stroke:#EE0874;stroke-width:3;`));
+    assert.equal((svg.match(/<path\b/g) ?? []).length, 9);
+    assert.doesNotMatch(svg, /@media|<rect|class="st0"|<text|<image|<script|href=|@font-face|@import/);
+  }
 });
 
 test('the app uses the SVG with its original accessible heading and forced-colors text', () => {
-  assert.match(read('src/index.html'), /<h1 id="home-h" class="home-brand"><img class="home-wordmark" src="\.\/icons\/wordmark\.svg" alt="" aria-hidden="true" width="1000" height="168" \/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
+  const html = read('src/index.html');
+  for (const [color, file] of [['light', 'wordmark.svg'], ['dark', 'wordmark-white.svg']]) {
+    assert.ok(html.includes(`<img class="home-wordmark home-wordmark--${color}" src="./icons/${file}" alt="" aria-hidden="true" width="1000" height="168" />`));
+  }
+  assert.match(html, /<span class="home-brand-text">Recap Page<\/span><\/h1>/);
   const css = read('src/styles.css');
   assert.match(css, /:root, :root\[data-theme="dark"\] \{\s*color-scheme: dark;/);
   assert.match(css, /:root\[data-theme="light"\] \{\s*color-scheme: light;/);

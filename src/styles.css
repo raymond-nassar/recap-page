@@ -1892,6 +1892,13 @@ progress { accent-color: var(--accent); height: 6px; }
   font-size: var(--t-title-lg); line-height: 1.2;
 }
 .home-wordmark { display: block; width: 100%; height: auto; margin-inline: auto; }
+:root { --wordmark-light: none; --wordmark-dark: block; }
+:root[data-theme="light"] { --wordmark-light: block; --wordmark-dark: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --wordmark-light: block; --wordmark-dark: none; }
+}
+.home-wordmark--light { display: var(--wordmark-light); }
+.home-wordmark--dark { display: var(--wordmark-dark); }
 .home-brand-text {
   position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
 }
