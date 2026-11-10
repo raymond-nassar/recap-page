@@ -1,0 +1,537 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1546524/?format=json",
+  "retrievedAt": "2026-11-10T19:35:00.875Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1546524/?format=json",
+    "series_name": "Secret Wars (2016 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2016",
+    "key_date": "2016-03-16",
+    "page_count": "312.000",
+    "isbn": "978-0-7851-9884-0",
+    "notes": "Collects Secret Wars (Marvel, 2015 series) #1-9 and material from Free Comic Book Day 2015 (Secret Wars) (Marvel, 2015 series) #0",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/98470/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "The End Times",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "39.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Doom Messiah",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "45.000",
+        "notes": ""
+      },
+      {
+        "type": "illustration",
+        "title": "Secret Wars Battleworld",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "The Eye of Doom",
+        "feature": "",
+        "sequence_number": 4,
+        "page_count": "26.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "All the Angels Sing, All the Devils Dance",
+        "feature": "",
+        "sequence_number": 5,
+        "page_count": "24.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Owen Reece Died for Our Sins",
+        "feature": "",
+        "sequence_number": 6,
+        "page_count": "23.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "We Raise Them Up... Just So We Can Pull Them Down",
+        "feature": "",
+        "sequence_number": 7,
+        "page_count": "29.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "King of the Dead",
+        "feature": "",
+        "sequence_number": 8,
+        "page_count": "23.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Under Siege",
+        "feature": "",
+        "sequence_number": 9,
+        "page_count": "25.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Beyond",
+        "feature": "",
+        "sequence_number": 10,
+        "page_count": "34.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 17,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 20,
+        "page_count": "0.500",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 21,
+        "page_count": "0.500",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#1-8 Combined Variants",
+        "feature": "",
+        "sequence_number": 22,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 23,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 24,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 25,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 26,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Doctor Doom",
+        "sequence_number": 27,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as a toddler."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 28,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 29,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 30,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 31,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 32,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 33,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 34,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 35,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 36,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 37,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 38,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 39,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 40,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 41,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 42,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 43,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 44,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 45,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 46,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 47,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 48,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 49,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Secret Wars",
+        "sequence_number": 50,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 51,
+        "page_count": "0.250",
+        "notes": "Characters on this variant cover depicted as a toddlers."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 52,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Guest-Starring the Beyonder!",
+        "feature": "",
+        "sequence_number": 53,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 54,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvel Super Heroes Secret Wars",
+        "feature": "",
+        "sequence_number": 55,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvel Super Heroes Secret Wars",
+        "feature": "",
+        "sequence_number": 56,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvel Super Heroes Secret Wars",
+        "feature": "",
+        "sequence_number": 57,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvel Super Heroes Secret Wars",
+        "feature": "",
+        "sequence_number": 58,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvel Super Heroes Secret Wars",
+        "feature": "",
+        "sequence_number": 59,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 60,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 61,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 62,
+        "page_count": "0.250",
+        "notes": "Character on this variant cover depicted as an action figure."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 63,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "",
+        "sequence_number": 64,
+        "page_count": "10.000",
+        "notes": ""
+      }
+    ]
+  }
+}

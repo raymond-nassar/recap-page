@@ -3572,3 +3572,33 @@ The lists retain `creator-run`, `complete` and no single timeline year, and are 
 newcomer guide rather than assigned a genre or era. Source issue facts and provider metadata,
 including cover addresses, are stored; source commentary, comic image bytes and a license grant
 are not. No availability is promised, and existing saved data and backup formats are unchanged.
+
+## Collected-edition pilot
+
+Issue #1203 asked whether the Comic Book Herald guides' references to collected editions were kept,
+so that reading lists could later be linked to the books that collect them. They were kept only as
+a list-local grouping: of the 159 catalog choices linked to that site, 68 carry collection labels,
+covering 19,357 of 28,369 rows. No list records an edition as a book, with an identifier or exact
+contents. A pilot now records five of those lists against real books, in the folder
+`scripts/data/collected-editions/`, which the app neither loads nor packages.
+
+The owner decided three things on 2026-11-10, recorded on the Issue. Comic Book Herald's index of
+collected editions may be used as a source of facts about which book holds which comics. Its
+affiliate and store links are not used anywhere, in data, tools, documents or destinations. And the
+Grand Comics Database is approved as a second, separately credited source under its CC BY-SA 4.0
+licence. In practice the index is the collection headings inside each guide, which the lists
+already retain; the pilot read no new guide prose and copied none.
+
+The two sources are kept apart because their terms differ. Facts recovered from the guides, and the
+provider-neutral edition records, sit in MIT-licensed files. Facts from the database's public API sit
+only in `gcd-editions.json` and the per-edition fixtures, which carry the licence and the credit, and
+the neutral records refer to them by id. Each edition's contents are checked against the database:
+indexer notes or matching story titles verify a comic, a matching count is only consistent, and a
+disagreement is recorded with its evidence rather than settled. Of the 68 grouped rows in the pilot,
+63 are claimed by an edition, 37 are verified and one is partial, and seven findings are recorded.
+
+Nothing taken is an image or a claim about reading. No cover image is fetched or stored, and the
+database's cover fields are dropped before anything is written. No record says that a reader can
+read, buy or borrow an edition anywhere. Digital editions are a recorded gap, because the database
+indexes print books. The database's bulk download needs an account and none was created; the pilot
+needed only 23 anonymous API reads. Existing saved data and backup formats are unchanged.

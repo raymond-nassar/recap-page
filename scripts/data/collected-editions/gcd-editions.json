@@ -1,0 +1,712 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "schemaVersion": 1,
+  "editions": [
+    {
+      "edition": "civil-war-2007-tpb",
+      "gcdIssueId": 604949,
+      "url": "https://www.comics.org/api/issue/604949/?format=json",
+      "retrievedAt": "2026-11-10T19:33:07.305Z",
+      "seriesName": "Civil War (2007 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "0-7851-2179-X",
+      "publicationDate": "2007",
+      "pageCount": "212.000",
+      "variantOf": null,
+      "notes": "Later printings have cover price of 24.99 USD, 27.99 CAD, but not clear which printing it switched with.",
+      "comicStories": [
+        {
+          "sequence": 3,
+          "title": "Civil War Part One of Seven",
+          "pages": "33.000"
+        },
+        {
+          "sequence": 7,
+          "title": "Civil War Part Two of Seven",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 11,
+          "title": "Civil War Part Three of Seven",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 14,
+          "title": "Civil War Part Four of Seven",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 18,
+          "title": "Civil War Part Five of Seven",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 22,
+          "title": "Civil War Part Six of Seven",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 25,
+          "title": "Civil War Part Seven of Seven",
+          "pages": "28.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-story-titles",
+        "status": "verified",
+        "verifiedComics": [
+          "1067:1",
+          "1067:2",
+          "1067:3",
+          "1067:4",
+          "1067:5",
+          "1067:6",
+          "1067:7"
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "thunderbolts-ellis-v1-faith-in-monsters",
+      "gcdIssueId": 854274,
+      "url": "https://www.comics.org/api/issue/854274/?format=json",
+      "retrievedAt": "2026-11-10T19:33:38.953Z",
+      "seriesName": "Thunderbolts by Warren Ellis (2007 series)",
+      "number": "1",
+      "descriptor": "1 - Faith in Monsters",
+      "isbn": "9780785125686",
+      "publicationDate": "[October] 2007",
+      "pageCount": "200.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [
+        {
+          "sequence": 5,
+          "title": "Faith in Monsters Part 1",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 9,
+          "title": "Faith in Monsters Part 2",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 12,
+          "title": "Faith in Monsters Part 3",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 16,
+          "title": "Faith in Monsters Part 4",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 19,
+          "title": "Faith in Monsters Part 5",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 22,
+          "title": "Faith in Monsters Part 6",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 24,
+          "title": "Desperate Measures",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 26,
+          "title": "Switching Sides",
+          "pages": "8.000"
+        },
+        {
+          "sequence": 28,
+          "title": null,
+          "pages": "9.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-story-titles",
+        "status": "verified",
+        "verifiedComics": [
+          "18527:110",
+          "18527:111",
+          "18527:112",
+          "18527:113",
+          "18527:114",
+          "18527:115"
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "thunderbolts-ellis-v2-caged-angels",
+      "gcdIssueId": 854273,
+      "url": "https://www.comics.org/api/issue/854273/?format=json",
+      "retrievedAt": "2026-11-10T19:33:43.539Z",
+      "seriesName": "Thunderbolts by Warren Ellis (2007 series)",
+      "number": "2",
+      "descriptor": "2 - Caged Angels",
+      "isbn": "9780785126355",
+      "publicationDate": "2008",
+      "pageCount": "152.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [
+        {
+          "sequence": 5,
+          "title": "Caged Angels Part I",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 7,
+          "title": "Caged Angels Part II",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 9,
+          "title": "Caged Angels Part III",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 11,
+          "title": "Caged Angels Part IV",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 14,
+          "title": "Caged Angels Part V",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 16,
+          "title": "Caged Angels Part VI",
+          "pages": "23.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-story-titles",
+        "status": "verified",
+        "verifiedComics": [
+          "18527:116",
+          "18527:117",
+          "18527:118",
+          "18527:119",
+          "18527:120"
+        ],
+        "conflicts": [
+          {
+            "kind": "evidence-weak",
+            "detail": "#121: The database reprints interior covers for #116 to #120 only; #121 rests on the sixth story part alone.",
+            "evidence": {
+              "gcdIssueId": 854273,
+              "url": "https://www.comics.org/api/issue/854273/?format=json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "thanos-2016-v1-thanos-returns",
+      "gcdIssueId": 1718731,
+      "url": "https://www.comics.org/api/issue/1718731/?format=json",
+      "retrievedAt": "2026-11-10T19:36:44.877Z",
+      "seriesName": "Thanos (2017 series)",
+      "number": "1",
+      "descriptor": "1 - Thanos Returns",
+      "isbn": "978-1-302-90557-6",
+      "publicationDate": "2017",
+      "pageCount": "140.000",
+      "variantOf": null,
+      "notes": "There is a credit at the beginning of the book that states \"Mike Deodato Jr. & Frank Martin - Color Art\". Presumably this is a typo for \"Cover Art\".",
+      "comicStories": [
+        {
+          "sequence": 2,
+          "title": "Thanos Returns",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 5,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 8,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 11,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 13,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 15,
+          "title": null,
+          "pages": "20.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-count-only",
+        "status": "consistent",
+        "verifiedComics": [],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "thanos-2016-v2-the-god-quarry",
+      "gcdIssueId": 1771218,
+      "url": "https://www.comics.org/api/issue/1771218/?format=json",
+      "retrievedAt": "2026-11-10T19:35:05.819Z",
+      "seriesName": "Thanos (2017 series)",
+      "number": "2",
+      "descriptor": "2 - The God Quarry",
+      "isbn": "978-1-302-90558-3",
+      "publicationDate": "2017",
+      "pageCount": "140.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [
+        {
+          "sequence": 2,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 4,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 6,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 8,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 10,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 12,
+          "title": null,
+          "pages": "20.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-count-only",
+        "status": "consistent",
+        "verifiedComics": [],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "asgardians-v1-the-infinity-armada",
+      "gcdIssueId": 1941743,
+      "url": "https://www.comics.org/api/issue/1941743/?format=json",
+      "retrievedAt": "2026-11-10T19:35:10.125Z",
+      "seriesName": "Asgardians of the Galaxy (2019 series)",
+      "number": "1",
+      "descriptor": "1 - The Infinity Armada",
+      "isbn": "978-1-302-91471-4",
+      "publicationDate": "2019",
+      "pageCount": "116.000",
+      "variantOf": null,
+      "notes": "Collects Asgardians of the Galaxy (Marvel, 2018 series) #1-5.",
+      "comicStories": [],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "25996:1",
+          "25996:2",
+          "25996:3",
+          "25996:4",
+          "25996:5"
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "asgardians-v2-war-of-the-realms",
+      "gcdIssueId": 2009606,
+      "url": "https://www.comics.org/api/issue/2009606/?format=json",
+      "retrievedAt": "2026-11-10T19:36:49.532Z",
+      "seriesName": "Asgardians of the Galaxy (2019 series)",
+      "number": "2",
+      "descriptor": "2 - War of the Realms",
+      "isbn": "978-1-302-91692-3",
+      "publicationDate": "2019",
+      "pageCount": "116.000",
+      "variantOf": null,
+      "notes": "Collects Asgardians of the Galaxy (Marvel, 2018 series) #6-10.",
+      "comicStories": [],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "25996:6",
+          "25996:7",
+          "25996:8",
+          "25996:9",
+          "25996:10"
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "time-runs-out-v1",
+      "gcdIssueId": 1454936,
+      "url": "https://www.comics.org/api/issue/1454936/?format=json",
+      "retrievedAt": "2026-11-10T19:34:50.770Z",
+      "seriesName": "Avengers: Time Runs Out (2015 series)",
+      "number": "1",
+      "descriptor": "1",
+      "isbn": "978-0-7851-8923-7",
+      "publicationDate": "2015",
+      "pageCount": "148.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [
+        {
+          "sequence": 1,
+          "title": "The Three Avengers",
+          "pages": "32.000"
+        },
+        {
+          "sequence": 4,
+          "title": "The Cabal",
+          "pages": "31.000"
+        },
+        {
+          "sequence": 5,
+          "title": "Eight Months Later",
+          "pages": "1.000"
+        },
+        {
+          "sequence": 7,
+          "title": "Universal Avengers",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 9,
+          "title": "What Happened When the World Woke Up",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 11,
+          "title": "Archangel",
+          "pages": "24.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-count-only",
+        "status": "conflict",
+        "verifiedComics": [],
+        "conflicts": [
+          {
+            "kind": "evidence-weak",
+            "detail": "The curated contents name 5 comics; the database lists 6 comic stories after excluding sequences marked as extra material. The count alone cannot say which is right.",
+            "evidence": {
+              "gcdIssueId": 1454936,
+              "url": "https://www.comics.org/api/issue/1454936/?format=json",
+              "sequences": [
+                1,
+                4,
+                5,
+                7,
+                9,
+                11
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "time-runs-out-v2",
+      "gcdIssueId": 1484980,
+      "url": "https://www.comics.org/api/issue/1484980/?format=json",
+      "retrievedAt": "2026-11-10T19:36:53.868Z",
+      "seriesName": "Avengers: Time Runs Out (2015 series)",
+      "number": "2",
+      "descriptor": "2",
+      "isbn": "978-0-7851-9373-9",
+      "publicationDate": "2015",
+      "pageCount": "140.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [],
+      "check": {
+        "tier": "gcd-unindexed",
+        "status": "conflict",
+        "verifiedComics": [],
+        "conflicts": [
+          {
+            "kind": "unindexed",
+            "detail": "The database has no contents indexed for this book, so its range is unverified.",
+            "evidence": {
+              "gcdIssueId": 1484980,
+              "url": "https://www.comics.org/api/issue/1484980/?format=json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "secret-wars-2015-hc",
+      "gcdIssueId": 1546524,
+      "url": "https://www.comics.org/api/issue/1546524/?format=json",
+      "retrievedAt": "2026-11-10T19:35:00.875Z",
+      "seriesName": "Secret Wars (2016 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "978-0-7851-9884-0",
+      "publicationDate": "2016",
+      "pageCount": "312.000",
+      "variantOf": null,
+      "notes": "Collects Secret Wars (Marvel, 2015 series) #1-9 and material from Free Comic Book Day 2015 (Secret Wars) (Marvel, 2015 series) #0",
+      "comicStories": [
+        {
+          "sequence": 1,
+          "title": "The End Times",
+          "pages": "39.000"
+        },
+        {
+          "sequence": 2,
+          "title": "Doom Messiah",
+          "pages": "45.000"
+        },
+        {
+          "sequence": 4,
+          "title": "The Eye of Doom",
+          "pages": "26.000"
+        },
+        {
+          "sequence": 5,
+          "title": "All the Angels Sing, All the Devils Dance",
+          "pages": "24.000"
+        },
+        {
+          "sequence": 6,
+          "title": "Owen Reece Died for Our Sins",
+          "pages": "23.000"
+        },
+        {
+          "sequence": 7,
+          "title": "We Raise Them Up... Just So We Can Pull Them Down",
+          "pages": "29.000"
+        },
+        {
+          "sequence": 8,
+          "title": "King of the Dead",
+          "pages": "23.000"
+        },
+        {
+          "sequence": 9,
+          "title": "Under Siege",
+          "pages": "25.000"
+        },
+        {
+          "sequence": 10,
+          "title": "Beyond",
+          "pages": "34.000"
+        },
+        {
+          "sequence": 64,
+          "title": null,
+          "pages": "10.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "19648:1",
+          "19648:2",
+          "19648:3",
+          "19648:4",
+          "19648:5",
+          "19648:6",
+          "19648:7",
+          "19648:8",
+          "19648:9"
+        ],
+        "conflicts": [
+          {
+            "kind": "material-from",
+            "detail": "Holds only material from Free Comic Book Day 2015 (Secret Wars) (Marvel, 2015 series) #0.",
+            "evidence": {
+              "gcdIssueId": 1546524,
+              "url": "https://www.comics.org/api/issue/1546524/?format=json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "secret-wars-2015-tpb",
+      "gcdIssueId": 1620515,
+      "url": "https://www.comics.org/api/issue/1620515/?format=json",
+      "retrievedAt": "2026-11-10T19:34:55.435Z",
+      "seriesName": "Secret Wars (2016 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "978-0-7851-9895-6",
+      "publicationDate": "2016",
+      "pageCount": "316.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [],
+      "check": {
+        "tier": "gcd-unindexed",
+        "status": "conflict",
+        "verifiedComics": [],
+        "conflicts": [
+          {
+            "kind": "unindexed",
+            "detail": "The database has no contents indexed for this book, so its range is unverified.",
+            "evidence": {
+              "gcdIssueId": 1620515,
+              "url": "https://www.comics.org/api/issue/1620515/?format=json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "realm-of-kings-2010-tpb",
+      "gcdIssueId": 1099254,
+      "url": "https://www.comics.org/api/issue/1099254/?format=json",
+      "retrievedAt": "2026-11-10T19:33:33.590Z",
+      "seriesName": "Realm of Kings (2010 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "978-0-7851-4597-4",
+      "publicationDate": "2010",
+      "pageCount": "372.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [],
+      "check": {
+        "tier": "gcd-unindexed",
+        "status": "conflict",
+        "verifiedComics": [],
+        "conflicts": [
+          {
+            "kind": "unindexed",
+            "detail": "The database has no contents indexed for this book, so its range is unverified.",
+            "evidence": {
+              "gcdIssueId": 1099254,
+              "url": "https://www.comics.org/api/issue/1099254/?format=json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "realm-of-kings-2014-tpb-second-printing",
+      "gcdIssueId": 2601361,
+      "url": "https://www.comics.org/api/issue/2601361/?format=json",
+      "retrievedAt": "2026-11-10T19:36:58.722Z",
+      "seriesName": "Realm of Kings (2010 series)",
+      "number": "[nn]",
+      "descriptor": "[Second Edition]",
+      "isbn": "978-0-7851-9062-2",
+      "publicationDate": "2014",
+      "pageCount": "372.000",
+      "variantOf": "https://www.comics.org/api/issue/1099254/?format=json",
+      "notes": null,
+      "comicStories": [],
+      "check": {
+        "tier": "gcd-unindexed",
+        "status": "conflict",
+        "verifiedComics": [],
+        "conflicts": [
+          {
+            "kind": "variant-printing",
+            "detail": "The database records this book as a variant of https://www.comics.org/api/issue/1099254/?format=json.",
+            "evidence": {
+              "gcdIssueId": 2601361,
+              "url": "https://www.comics.org/api/issue/2601361/?format=json"
+            }
+          },
+          {
+            "kind": "unindexed",
+            "detail": "The database has no contents indexed for this book, so its range is unverified.",
+            "evidence": {
+              "gcdIssueId": 2601361,
+              "url": "https://www.comics.org/api/issue/2601361/?format=json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "edition": "squirrel-girl-2015-v1-squirrel-power",
+      "gcdIssueId": 1449195,
+      "url": "https://www.comics.org/api/issue/1449195/?format=json",
+      "retrievedAt": "2026-11-10T19:33:48.876Z",
+      "seriesName": "The Unbeatable Squirrel Girl (2015 series)",
+      "number": "1",
+      "descriptor": "1 - Squirrel Power",
+      "isbn": "978-0-7851-9702-7",
+      "publicationDate": "2015",
+      "pageCount": "132.000",
+      "variantOf": null,
+      "notes": null,
+      "comicStories": [
+        {
+          "sequence": 3,
+          "title": "The Unbeatable Squirrel Girl",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 6,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 10,
+          "title": null,
+          "pages": "20.000"
+        },
+        {
+          "sequence": 15,
+          "title": null,
+          "pages": "19.000"
+        },
+        {
+          "sequence": 18,
+          "title": "Epilogue",
+          "pages": "1.000"
+        },
+        {
+          "sequence": 20,
+          "title": "The Coming of ... Squirrel Girl!",
+          "pages": "22.000"
+        }
+      ],
+      "check": {
+        "tier": "gcd-count-only",
+        "status": "consistent",
+        "verifiedComics": [],
+        "conflicts": []
+      }
+    }
+  ]
+}
