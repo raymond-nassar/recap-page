@@ -403,7 +403,7 @@ export function sourceButton(el, list) {
     href,
     target: '_blank',
     rel: 'noopener noreferrer',
-    'aria-label': `${label}, source of ${list.name} (opens in a new tab)`,
+    'aria-label': `${label}, source of ${list.name} (opens in your browser)`,
   }, label);
 }
 

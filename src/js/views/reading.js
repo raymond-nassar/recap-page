@@ -184,7 +184,7 @@ export function createReadingView({
   let aboutRequest = null;
   let aboutHasSource = false;
 
-  function renderAbout({ arrival = false } = {}) {
+  function renderAbout({ arrival = false, open } = {}) {
     const lists = getState().lists;
     const id = activeListId();
     const list = Object.hasOwn(lists, id ?? '') ? lists[id] : null;
@@ -201,7 +201,8 @@ export function createReadingView({
       aboutHasSource = false;
       source.replaceChildren();
     }
-    if (changed || arrival) disclosure.open = true;
+    if (typeof open === 'boolean') disclosure.open = open;
+    else if (changed || arrival) disclosure.open = true;
     disclosure.hidden = !list?.description && !aboutHasSource;
     if (!list?.catalogId || !loadCatalog || (!changed && !arrival)) return;
     if (aboutRequest?.pending) return;
@@ -1768,6 +1769,10 @@ export function createReadingView({
 
   return {
     enterAbout: () => renderAbout({ arrival: true }),
+    // Back and Forward return the disclosure to how this history entry left it, because the scroll
+    // position the entry restores was measured with About at that height.
+    restoreAbout: (open) => renderAbout({ open }),
+    aboutOpen: () => $('#order-desc').open,
     retireDoneResult,
     markReadFromHome: () => markCurrentRead('home'),
     toggleSavedRead,

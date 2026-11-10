@@ -2189,11 +2189,54 @@ const SCENARIOS = [
         await page.$eval('#order-source .list-source-link', (link) =>
           getComputedStyle(link).visibility === 'visible' && link.getClientRects().length > 0));
       await page.emulateMediaFeatures([]);
-      await page.evaluate(() => { location.hash = '#/home'; });
+      // Back and Forward restore a pixel scroll position, so About must come back at the height it
+      // had when that position was measured, or the reader lands off by About's height.
+      const filtersTop = () => page.$eval('#reading-filters', (node) => Math.round(node.getBoundingClientRect().top));
+      const settle = (top) => page.waitForFunction((want) => Math.abs(Math.round(
+        document.querySelector('#reading-filters').getBoundingClientRect().top) - want) <= 1,
+      { timeout: 3000 }, top).catch(() => {});
+      for (const width of [1280, 390]) {
+        await page.setViewport({ width, height: 900 });
+        // A preceding Back keeps restoring for two seconds unless real input cancels it.
+        // End that restoration before measuring a new viewport's scroll position.
+        await new Promise((resolve) => setTimeout(resolve, 2100));
+        if (await page.$eval('#order-desc', (node) => node.open)) {
+          await page.focus('#order-desc > summary');
+          await page.keyboard.press('Enter');
+          await page.waitForFunction(() => !document.querySelector('#order-desc').open);
+        }
+        await page.evaluate(() => {
+          if (!document.querySelector('#full').open) document.querySelector('#full > summary').click();
+        });
+        await page.waitForSelector('#full[open] #reading-filters input[value="unread"]');
+        await page.evaluate(() => document.querySelector('#reading-filters').scrollIntoView({ block: 'start' }));
+        // The app records a scroll position 500 ms after scrolling stops.
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const before = await filtersTop();
+        await page.evaluate(() => document.querySelector('#reading-filters input[value="unread"]').click());
+        await page.waitForFunction(() => location.hash.includes('filter=unread'));
+        await page.evaluate(() => history.back());
+        await page.waitForFunction(() => !location.hash.includes('filter=unread'));
+        await settle(before);
+        const filtered = { open: await page.$eval('#order-desc', (node) => node.open), before, after: await filtersTop() };
+        t.check(`Back from a filter choice keeps a collapsed About and the reader's place at ${width}px`,
+          !filtered.open && Math.abs(filtered.after - filtered.before) <= 1, JSON.stringify(filtered));
+        const left = await filtersTop();
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await page.evaluate(() => history.back());
+        await page.waitForSelector('#view-read:not([hidden])');
+        await settle(left);
+        const returned = { open: await page.$eval('#order-desc', (node) => node.open), left, after: await filtersTop() };
+        t.check(`Back from Home keeps a collapsed About and the reader's place at ${width}px`,
+          !returned.open && Math.abs(returned.after - returned.left) <= 1, JSON.stringify(returned));
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '.brand[data-view="home"]');
       await page.waitForSelector('#view-home:not([hidden])');
-      await page.evaluate(() => { location.hash = '#/read/source-list'; });
-      await page.waitForSelector('#order-source .list-source-link');
-      t.check('returning to the same saved list resets About to expanded',
+      await click(page, '#home-yours-list a[href="#/read/source-list"]');
+      await page.waitForSelector('#view-read:not([hidden]) #order-source .list-source-link');
+      t.check('returning to the same saved list through Home resets About to expanded',
         await page.$eval('#order-desc', (node) => node.open));
       await page.evaluate(() => { location.hash = '#/preview/browser-check'; });
       await page.waitForSelector('#preview[open] .preview-issue-link');

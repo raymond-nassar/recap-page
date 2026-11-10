@@ -1486,7 +1486,17 @@ function syncHash({ push = false } = {}) {
     navigationPosition.push(next);
   }
   else navigationPosition.replace(next);
+  rememberAbout();
   acknowledgedHash = location.hash;
+}
+
+// The reading entry records whether About was open, so Back and Forward can return it to the
+// height at which the entry's scroll position was measured.
+function rememberAbout() {
+  if (view !== 'read') return;
+  const open = readingView.aboutOpen();
+  if (history.state?.aboutOpen === open) return;
+  history.replaceState({ ...history.state, aboutOpen: open }, '', location.href);
 }
 
 // Adopting the list first means the redirect inside showView sees the list the URL asked for
@@ -1615,6 +1625,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
   const shouldAnimateArrival = focus && next !== view;
+  const arriving = next !== view && !navigationPosition?.restoring;
   if (next !== view) {
     $(`#view-${view}`)?.classList.remove('view-entering');
     retireRoutineNotices(notices);
@@ -1661,7 +1672,13 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next === 'library-rated') ratedView.renderBrowser();
   if (next === 'read') {
     readingView.renderHero();
-    readingView.enterAbout();
+    // Only a forward arrival from another screen opens About again. A filter choice or Review
+    // deferred adds a history entry without leaving the list, and Back or Forward restores a scroll
+    // position measured at whatever height About had then, so both keep the reader's choice.
+    const remembered = history.state?.aboutOpen;
+    if (navigationPosition?.restoring) {
+      if (typeof remembered === 'boolean') readingView.restoreAbout(remembered);
+    } else if (arriving) readingView.enterAbout();
   }
   completionView.render();
   readingView.renderReview();
@@ -3232,6 +3249,7 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
+  $('#order-desc').addEventListener('toggle', rememberAbout);
   for (const shelf of CATALOG_SHELVES) {
     if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
   }

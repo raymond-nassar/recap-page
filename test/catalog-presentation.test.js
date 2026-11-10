@@ -57,7 +57,7 @@ test('list source pills name the curator and keep the exact private new-tab dest
     assert.equal(link.target, '_blank');
     assert.equal(link.rel, 'noopener noreferrer');
     assert.equal(text(link), `Visit ${site}`);
-    assert.equal(link['aria-label'], `Visit ${site}, source of ${list.name} (opens in a new tab)`);
+    assert.equal(link['aria-label'], `Visit ${site}, source of ${list.name} (opens in your browser)`);
     assert.equal(link.onclick, undefined, 'native link activation is not intercepted');
   }
 });

@@ -1001,7 +1001,7 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:760` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:761` and the issue-details view at
 `src/js/views/issue.js:102`. The function behind both already answers for the absence at
 `src/js/views/reading.js:92-103`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
