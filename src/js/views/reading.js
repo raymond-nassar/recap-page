@@ -895,10 +895,10 @@ export function createReadingView({
           }
         }
 
-        const rowKey = `${rowCacheKey(item, currentId, today, getSettings().covers)}|${list.catalogId || ''}`;
+        const rowKey = rowCacheKey(item, currentId, today, getSettings().covers);
         const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
         const entry = rowCache.get(item.issueId);
-        const cached = entry?.readerKey === readerKey ? entry : null;
+        const cached = entry?.readerKey === readerKey && entry.catalogId === list.catalogId ? entry : null;
         if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
 
         const override = item.override;
@@ -973,7 +973,7 @@ export function createReadingView({
           ]),
           issueRowActions(item, id, expanded),
         ]);
-        rowCache.set(item.issueId, { key: rowKey, readerKey, node });
+        rowCache.set(item.issueId, { key: rowKey, readerKey, catalogId: list.catalogId, node });
         desired.push(node);
       }
       if (items.length !== all.length) {
