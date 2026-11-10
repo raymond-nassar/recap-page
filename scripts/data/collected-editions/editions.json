@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "note": "Provider-neutral collected-edition pilot. A record says what a book holds, never where a reader can read it. Database facts and checks live in gcd-editions.json under their own license.",
+  "note": "Provider-neutral collected-edition pilot. A record says what a book holds, never where a reader can read it. Every database fact, range, check and verified count lives in gcd-editions.json under its own license, so the coverage here counts curated contents only.",
   "editions": [
     {
       "id": "civil-war-2007-tpb",
@@ -17,8 +17,7 @@
           "to": 7,
           "assertedBy": "cbh-heading"
         }
-      ],
-      "checkStatus": "verified"
+      ]
     },
     {
       "id": "thunderbolts-ellis-v1-faith-in-monsters",
@@ -35,8 +34,7 @@
           "to": 115,
           "assertedBy": "owner-curated"
         }
-      ],
-      "checkStatus": "verified"
+      ]
     },
     {
       "id": "thunderbolts-ellis-v2-caged-angels",
@@ -53,8 +51,7 @@
           "to": 121,
           "assertedBy": "owner-curated"
         }
-      ],
-      "checkStatus": "verified"
+      ]
     },
     {
       "id": "thanos-2016-v1-thanos-returns",
@@ -71,8 +68,7 @@
           "to": 6,
           "assertedBy": "cbh-ledger"
         }
-      ],
-      "checkStatus": "consistent"
+      ]
     },
     {
       "id": "thanos-2016-v2-the-god-quarry",
@@ -89,8 +85,7 @@
           "to": 12,
           "assertedBy": "cbh-ledger"
         }
-      ],
-      "checkStatus": "consistent"
+      ]
     },
     {
       "id": "asgardians-v1-the-infinity-armada",
@@ -107,8 +102,7 @@
           "to": 5,
           "assertedBy": "cbh-ledger"
         }
-      ],
-      "checkStatus": "verified"
+      ]
     },
     {
       "id": "asgardians-v2-war-of-the-realms",
@@ -125,8 +119,7 @@
           "to": 10,
           "assertedBy": "cbh-ledger"
         }
-      ],
-      "checkStatus": "verified"
+      ]
     },
     {
       "id": "time-runs-out-v1",
@@ -149,8 +142,7 @@
           "to": 25,
           "assertedBy": "cbh-heading"
         }
-      ],
-      "checkStatus": "conflict"
+      ]
     },
     {
       "id": "time-runs-out-v2",
@@ -173,8 +165,7 @@
           "to": 28,
           "assertedBy": "cbh-heading"
         }
-      ],
-      "checkStatus": "conflict"
+      ]
     },
     {
       "id": "secret-wars-2015-hc",
@@ -184,22 +175,7 @@
       "identifiers": {
         "gcdIssueId": 1546524
       },
-      "contents": [
-        {
-          "seriesId": 19648,
-          "from": 1,
-          "to": 9,
-          "assertedBy": "gcd-notes"
-        },
-        {
-          "seriesId": 19821,
-          "from": 0,
-          "to": 0,
-          "portion": "partial",
-          "assertedBy": "gcd-notes"
-        }
-      ],
-      "checkStatus": "verified"
+      "contents": []
     },
     {
       "id": "secret-wars-2015-tpb",
@@ -216,8 +192,7 @@
           "to": 9,
           "assertedBy": "owner-curated"
         }
-      ],
-      "checkStatus": "conflict"
+      ]
     },
     {
       "id": "realm-of-kings-2010-tpb",
@@ -234,15 +209,13 @@
           "to": 1,
           "assertedBy": "owner-curated"
         }
-      ],
-      "checkStatus": "conflict"
+      ]
     },
     {
       "id": "realm-of-kings-2014-tpb-second-printing",
       "title": "Realm of Kings",
       "format": "trade paperback",
       "medium": "print",
-      "printingOf": "realm-of-kings-2010-tpb",
       "identifiers": {
         "gcdIssueId": 2601361
       },
@@ -253,8 +226,7 @@
           "to": 1,
           "assertedBy": "owner-curated"
         }
-      ],
-      "checkStatus": "conflict"
+      ]
     },
     {
       "id": "squirrel-girl-2015-v1-squirrel-power",
@@ -271,8 +243,7 @@
           "to": 4,
           "assertedBy": "owner-curated"
         }
-      ],
-      "checkStatus": "consistent"
+      ]
     }
   ],
   "lists": [
@@ -281,7 +252,6 @@
       "rows": 83,
       "groupedRows": 19,
       "claimedRows": 19,
-      "verifiedRows": 18,
       "partialRows": 0,
       "claimedBySource": {
         "cbh-ledger": 0,
@@ -302,7 +272,6 @@
       "rows": 69,
       "groupedRows": 20,
       "claimedRows": 20,
-      "verifiedRows": 10,
       "partialRows": 0,
       "claimedBySource": {
         "cbh-ledger": 20,
@@ -324,19 +293,23 @@
       "rows": 69,
       "groupedRows": 20,
       "claimedRows": 19,
-      "verifiedRows": 9,
-      "partialRows": 1,
+      "partialRows": 0,
       "claimedBySource": {
         "cbh-ledger": 0,
         "cbh-heading": 10,
-        "gcd-notes": 9,
+        "gcd-notes": 0,
         "owner-curated": 9
       },
       "findings": [
         {
-          "kind": "overlap",
+          "kind": "group-wider-than-edition",
           "group": "Secret Wars (2015) #0-9",
-          "detail": "secret-wars-2015-hc and secret-wars-2015-tpb both hold 9 of this group's comics."
+          "detail": "No curated book holds 19821:0."
+        },
+        {
+          "kind": "group-spans-editions",
+          "group": "Secret Wars (2015) #0-9",
+          "detail": "secret-wars-2015-hc and secret-wars-2015-tpb split this group."
         }
       ]
     },
@@ -345,7 +318,6 @@
       "rows": 28,
       "groupedRows": 1,
       "claimedRows": 1,
-      "verifiedRows": 0,
       "partialRows": 0,
       "claimedBySource": {
         "cbh-ledger": 0,
@@ -360,7 +332,7 @@
           "detail": "The guide heading names a reading block, not one book."
         },
         {
-          "kind": "variant-printing",
+          "kind": "overlap",
           "group": "Realm of Kings Trade Reading List",
           "detail": "realm-of-kings-2010-tpb and realm-of-kings-2014-tpb-second-printing both hold 1 of this group's comics."
         }
@@ -371,7 +343,6 @@
       "rows": 58,
       "groupedRows": 8,
       "claimedRows": 4,
-      "verifiedRows": 0,
       "partialRows": 0,
       "claimedBySource": {
         "cbh-ledger": 0,

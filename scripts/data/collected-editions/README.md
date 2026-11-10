@@ -9,18 +9,21 @@ or read a book, and nothing in it may be used to claim that.
 
 | File | What it holds | Licence |
 |---|---|---|
-| `pilot.json` | The curated input: the five lists, the collection groups chosen from them, and each edition's contents with who asserted them | MIT, with the repository |
+| `pilot.json` | The curated input: the five lists, the collection groups chosen from them, each edition's curated contents with who asserted them, and the tier each edition is checked at | MIT, with the repository |
+| `gcd-check-inputs.json` | Curated input taken from the database: story titles, series names, sequences set aside with reasons, contents stated in indexer notes, and printing links | CC BY-SA 4.0 |
 | `cbh-edition-facts.json` | Generated. The collection groups already recorded in each list, with the comics in each group | MIT, with the repository |
 | `editions.json` | Generated. The provider-neutral edition records and coverage for each list | MIT, with the repository |
 | `gcd-editions.json` | Generated. Facts from the Grand Comics Database and the result of checking each edition against them | CC BY-SA 4.0 |
 | `gcd-fixtures/<id>.json` | One minimised database record per edition, as read on the date it carries | CC BY-SA 4.0 |
 
-`gcd-editions.json` and every file in `gcd-fixtures/` contain data from the
+`gcd-check-inputs.json`, `gcd-editions.json` and every file in `gcd-fixtures/` contain data from the
 [Grand Comics Database](https://www.comics.org/), used under
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). They are minimised and reorganised
 for this project, and cover images are never recorded. Anything derived from them stays under that
-licence and keeps this credit. The other files hold no database facts: an edition in `editions.json`
-names its database record by id only.
+licence and keeps this credit. The three MIT files hold no database facts: an edition in
+`editions.json` names its database record by id only, and the check fails if a database-only field,
+a contents range asserted by the indexer notes, or a series named in the database's own form appears
+in any of them.
 
 ## Model
 
@@ -33,15 +36,26 @@ An edition has an id, a title, a format, a `medium` of `print` or `digital`, ide
 - `owner-curated`: chosen for this pilot and recorded here.
 
 An entry marked `portion: "partial"` holds only part of an issue. `printingOf` links a later printing
-to the edition it reprints.
+to the edition it reprints; it comes from the database, so it lives in `gcd-check-inputs.json` and
+appears only in `gcd-editions.json`. Contents asserted by `gcd-notes` live there too.
 
 Each edition is checked against its database record at one of four tiers. Only `gcd-notes` and
-`gcd-story-titles` can verify a comic. `gcd-count-only` can show a book is consistent, never which
-comics it holds, and `gcd-unindexed` records that the database has not indexed the contents. A
+`gcd-story-titles` can verify a comic, and the notes must state the series and the exact issue span,
+so `#1-5` never matches `#1-50`. `gcd-count-only` can show a book is consistent, never which comics
+it holds, and `gcd-unindexed` records that the database has not indexed the contents. Every
+database sequence left out of a count is listed in `check.excludedSequences` with its reason; a
+count that differs is consistent only when recorded exclusions explain the whole difference. A
 disagreement is recorded as a conflict with its evidence and left for a person to settle.
 
-Coverage for each list counts the grouped rows, the rows some edition claims (split by who claimed
-them), the rows the database verified, and partial rows. Findings name the hard cases: a group that
+An edition's status is `verified` only when every comic it claims is verified and nothing conflicts,
+`partly-verified` when only some are verified and nothing conflicts, `verified-with-conflicts` when
+some comics are verified but a conflict is recorded, `consistent` when
+nothing is verified and nothing conflicts, and `conflict` otherwise.
+
+Coverage in `editions.json` counts only the curated facts: grouped rows, the rows some edition claims
+(split by who claimed them), and partial rows. Full coverage, with the rows verified by a book with
+no conflict and the rows confirmed only by a book that carries one, is in `gcd-editions.json`
+because it rests on database facts. Findings name the hard cases: a group that
 spans several books, a book that holds more than the list takes, two books that overlap, a heading
 that is a reading block rather than a book, and a later printing.
 
@@ -49,7 +63,7 @@ that is a reading block rather than a book, and a later printing.
 
 ```
 npm run editions:pilot             # check that the generated files are current and valid
-npm run editions:pilot -- --write  # regenerate them from pilot.json, the lists and the fixtures
+npm run editions:pilot -- --write  # regenerate them from the two inputs, the lists and the fixtures
 npm run editions:pilot -- --live <id>
 ```
 

@@ -3590,12 +3590,17 @@ licence. In practice the index is the collection headings inside each guide, whi
 already retain; the pilot read no new guide prose and copied none.
 
 The two sources are kept apart because their terms differ. Facts recovered from the guides, and the
-provider-neutral edition records, sit in MIT-licensed files. Facts from the database's public API sit
-only in `gcd-editions.json` and the per-edition fixtures, which carry the licence and the credit, and
-the neutral records refer to them by id. Each edition's contents are checked against the database:
-indexer notes or matching story titles verify a comic, a matching count is only consistent, and a
-disagreement is recorded with its evidence rather than settled. Of the 68 grouped rows in the pilot,
-63 are claimed by an edition, 37 are verified and one is partial, and seven findings are recorded.
+provider-neutral edition records, sit in MIT-licensed files. Every fact taken from the database's
+public API, including story titles, its series names, the contents its indexer notes state, which
+book is a later printing of which, and the sequences set aside when counting, sits only in
+`gcd-check-inputs.json`, `gcd-editions.json` and the per-edition fixtures, which carry the licence
+and the credit. The neutral records refer to them by id, and the check rejects a database field
+found in an MIT-licensed file. Each edition's contents are checked against the database: indexer
+notes or matching story titles verify a comic, a matching count is only consistent, every sequence
+left out of a count is recorded with its reason, and a disagreement is recorded with its evidence
+rather than settled. A book with any conflict is never called verified. Of the 68 grouped rows in
+the pilot, 63 are claimed by an edition, 23 are verified, 14 more are confirmed only by a book that
+also carries a conflict, one is partial, and seven findings are recorded.
 
 Nothing taken is an image or a claim about reading. No cover image is fetched or stored, and the
 database's cover fields are dropped before anything is written. No record says that a reader can

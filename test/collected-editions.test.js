@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 import {
-  DATA_DIR, build, checkEdition, fetchLive, loadInputs, minimiseGcdIssue, render, run, validate,
+  DATA_DIR, build, checkEdition, databaseLeaks, fetchLive, loadInputs, minimiseGcdIssue, notesStateRange, render, run, validate,
 } from '../scripts/collected-editions.mjs';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -45,6 +45,30 @@ test('database-derived facts stay in the share-alike file', () => {
   assert.equal(outputs['gcd-editions.json'].license, 'CC BY-SA 4.0');
   const neutral = JSON.stringify(outputs['editions.json']) + JSON.stringify(outputs['cbh-edition-facts.json']);
   for (const leak of ['story_set', 'isbn', 'publicationDate', 'comics.org']) assert.ok(!neutral.includes(leak), leak);
+  const data = inputs();
+  for (const [name, value] of [['pilot.json', data.curated], ['editions.json', outputs['editions.json']],
+    ['cbh-edition-facts.json', outputs['cbh-edition-facts.json']]]) {
+    assert.deepEqual(databaseLeaks(value, name), []);
+  }
+});
+
+test('validation rejects a database fact placed in an MIT-licensed file', () => {
+  const data = inputs();
+  const outputs = build(data);
+  const leaky = clone(data);
+  leaky.curated.editions[0].gcdCheck.storyTitles = { 1: 'A' };
+  leaky.curated.editions[1].contents.push({ seriesId: 1, from: 1, to: 1, assertedBy: 'gcd-notes', basis: 'x' });
+  leaky.curated.editions[2].title = 'Secret Wars (Marvel, 2015 series)';
+  const errors = validate(leaky, outputs).filter((error) => error.includes('MIT-licensed'));
+  assert.equal(errors.length, 3, errors.join('\n'));
+});
+
+test('a printing link and notes ranges come only from the share-alike inputs', () => {
+  const { curated, gcdInputs, pilot } = inputs();
+  const merged = Object.fromEntries(pilot.editions.map((edition) => [edition.id, edition]));
+  assert.ok(!curated.editions.some((edition) => 'printingOf' in edition));
+  assert.equal(merged['realm-of-kings-2014-tpb-second-printing'].printingOf, gcdInputs.editions['realm-of-kings-2014-tpb-second-printing'].printingOf);
+  assert.ok(merged['secret-wars-2015-hc'].contents.every((range) => range.assertedBy === 'gcd-notes'));
 });
 
 test('minimising a database record drops covers and keeps credit', () => {
@@ -92,6 +116,52 @@ test('a matching story count is consistent but never verified', () => {
   assert.equal(result.verified.size, 0);
 });
 
+test('a count differs only by sequences recorded as exclusions, each with its reason', () => {
+  const stories = [1, 2, 3, 4, 5, 6].map((sequence_number) => ({ type: 'comic story', sequence_number }));
+  const edition = (uncountedSequences) => editionWith({ tier: 'gcd-count-only', expectedComicStories: 4, uncountedSequences },
+    [{ seriesId: 7, from: 1, to: 4, assertedBy: 'owner-curated', basis: 'x' }]);
+  const explained = checkEdition(edition({ 5: 'Back-up story.', 6: 'Reprint.' }), fixtureWith(stories), {});
+  assert.equal(explained.status, 'consistent');
+  assert.deepEqual(explained.excluded.map((entry) => [entry.sequence, entry.reason]), [[5, 'Back-up story.'], [6, 'Reprint.']]);
+  const unexplained = checkEdition(edition({}), fixtureWith(stories), {});
+  assert.equal(unexplained.status, 'conflict');
+  const stale = checkEdition(edition({ 5: 'Back-up story.', 6: 'Reprint.', 9: 'Gone.' }), fixtureWith(stories), {});
+  assert.ok(stale.conflicts.some((conflict) => conflict.kind === 'exclusion-missing'));
+  assert.notEqual(stale.status, 'consistent');
+});
+
+test('the indexer-notes match is exact, so #1-5 never matches #1-50', () => {
+  const series = 'X (Marvel, 2015 series)';
+  assert.ok(notesStateRange(`Collects ${series} #1-5.`, series, '#1-5', false));
+  assert.ok(!notesStateRange(`Collects ${series} #1-50.`, series, '#1-5', false));
+  assert.ok(!notesStateRange(`Collects ${series} #10.`, series, '#1', false));
+  assert.ok(!notesStateRange(`Collects ${series} #1-5-6.`, series, '#1-5', false));
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series }, [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-50` }), {});
+  assert.equal(result.verified.size, 0);
+  assert.equal(result.status, 'conflict');
+});
+
+test('an edition with any conflict is never labelled verified', () => {
+  const series = 'X (Marvel, 2015 series)';
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series, weakNumbers: { 2: 'Disputed.' } },
+    [{ seriesId: 7, from: 1, to: 2, assertedBy: 'gcd-notes', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2` }), {});
+  assert.equal(result.status, 'verified-with-conflicts');
+  const statuses = Object.fromEntries(build(inputs())['gcd-editions.json'].editions.map((entry) => [entry.edition, entry.check]));
+  for (const check of Object.values(statuses)) if (check.conflicts.length) assert.notEqual(check.status, 'verified');
+  assert.equal(statuses['secret-wars-2015-hc'].status, 'verified-with-conflicts');
+  assert.equal(statuses['thunderbolts-ellis-v2-caged-angels'].status, 'verified-with-conflicts');
+  const partly = editionWith({ tier: 'gcd-story-titles', storyTitles: { 1: 'A' } },
+    [{ seriesId: 7, from: 1, to: 2, assertedBy: 'owner-curated', basis: 'x' }]);
+  const partlyResult = checkEdition(partly, fixtureWith([
+    { type: 'comic story', sequence_number: 1, title: 'A' },
+    { type: 'comic story', sequence_number: 2, title: 'B' },
+  ]), {});
+  assert.equal(partlyResult.conflicts.length, 0);
+  assert.equal(partlyResult.status, 'partly-verified');
+});
+
 test('a count mismatch is recorded with its evidence, not resolved', () => {
   const result = checkEdition(editionWith({ tier: 'gcd-count-only', expectedComicStories: 2 }), fixtureWith([
     { type: 'comic story', sequence_number: 1 },
@@ -117,9 +187,11 @@ test('indexer notes verify full ranges and flag partial material', () => {
 });
 
 test('pilot coverage records the hard cases', () => {
-  const lists = Object.fromEntries(build(inputs())['editions.json'].lists.map((list) => [list.listId, list]));
+  const lists = Object.fromEntries(build(inputs())['gcd-editions.json'].coverage.map((list) => [list.listId, list]));
   const kinds = (id) => lists[id].findings.map((finding) => finding.kind);
-  assert.equal(lists.civil_war_avengers.verifiedRows, 18);
+  assert.equal(lists.civil_war_avengers.verifiedRows, 13);
+  assert.equal(lists.civil_war_avengers.verifiedWithConflictsRows, 5);
+  assert.equal(lists.avengers_doomsday_secret_wars.verifiedRows, 0);
   assert.ok(kinds('nebula_reading_order').includes('partial-selection'));
   assert.ok(kinds('avengers_doomsday_secret_wars').includes('overlap'));
   assert.equal(lists.avengers_doomsday_secret_wars.partialRows, 1);

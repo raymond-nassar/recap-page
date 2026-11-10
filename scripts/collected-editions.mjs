@@ -59,8 +59,53 @@ function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
+// Every value read from a database record, including a range taken from its indexer notes, lives
+// in gcd-check-inputs.json under CC BY-SA 4.0. These keys, the gcd-notes source and the
+// database's own series naming must never appear in an MIT-licensed file. The printing link comes
+// from the database's variant record, so it is database-only too; the record id is a reference.
+export const DATABASE_ONLY_KEYS = Object.freeze(['storyTitles', 'uncountedSequences', 'weakNumbers', 'gcdSeries',
+  'partialSeries', 'printingOf']);
+const DATABASE_SOURCE = 'gcd-notes';
+const DATABASE_SERIES_NAME = /\([^()]*, \d{4} series\)/;
+
+export function mergeGcdInputs(curated, gcdInputs) {
+  return {
+    ...curated,
+    editions: curated.editions.map((edition) => {
+      const { contents = [], printingOf, ...check } = gcdInputs.editions?.[edition.id] || {};
+      return {
+        ...edition,
+        ...(printingOf ? { printingOf } : {}),
+        contents: [...(edition.contents || []), ...contents],
+        gcdCheck: { ...edition.gcdCheck, ...check },
+      };
+    }),
+  };
+}
+
+// Lists every place an MIT-licensed value carries a database-derived fact.
+export function databaseLeaks(value, where) {
+  const leaks = [];
+  const walk = (item, at, key) => {
+    if (Array.isArray(item)) item.forEach((entry, i) => walk(entry, `${at}[${i}]`, key));
+    else if (item && typeof item === 'object') {
+      for (const [name, entry] of Object.entries(item)) {
+        if (DATABASE_ONLY_KEYS.includes(name)) leaks.push(`${at}.${name}`);
+        walk(entry, `${at}.${name}`, name);
+      }
+    } else if (typeof item === 'string'
+      && ((key === 'assertedBy' && item === DATABASE_SOURCE) || DATABASE_SERIES_NAME.test(item))) {
+      leaks.push(`${at}: ${item}`);
+    }
+  };
+  walk(value, where);
+  return leaks;
+}
+
 export function loadInputs(dir = DATA_DIR, repoRoot = root) {
-  const pilot = readJson(path.join(dir, 'pilot.json'));
+  const curated = readJson(path.join(dir, 'pilot.json'));
+  const gcdInputs = readJson(path.join(dir, 'gcd-check-inputs.json'));
+  const pilot = mergeGcdInputs(curated, gcdInputs);
   const lists = {};
   const ledgers = {};
   for (const list of pilot.lists) {
@@ -72,7 +117,7 @@ export function loadInputs(dir = DATA_DIR, repoRoot = root) {
     const file = path.join(dir, 'gcd-fixtures', `${edition.gcdIssueId}.json`);
     if (fs.existsSync(file)) fixtures[edition.gcdIssueId] = readJson(file);
   }
-  return { pilot, lists, ledgers, fixtures };
+  return { pilot, curated, gcdInputs, lists, ledgers, fixtures };
 }
 
 function editionKeys(edition) {
@@ -124,10 +169,39 @@ function seriesStartYear(text) {
   return match ? Number(match[1]) : null;
 }
 
+// Splits the record's sequences into the comic stories a check counts and the ones it leaves out,
+// each exclusion with its reason, so a count that differs from the record is always explained.
+// Cover sequences never reach a fixture (constraint 1), so they are not listed here.
 function comicStories(fixture, edition) {
   const uncounted = edition.gcdCheck.uncountedSequences || {};
-  return fixture.issue.story_set
-    .filter((story) => story.type === 'comic story' && !(String(story.sequence_number) in uncounted));
+  const stories = [];
+  const excluded = [];
+  const missing = [];
+  for (const story of fixture.issue.story_set) {
+    const sequence = String(story.sequence_number);
+    if (story.type !== 'comic story') {
+      excluded.push({ sequence: story.sequence_number, title: story.title || null, reason: `Not a comic story: ${story.type}.` });
+    } else if (sequence in uncounted) {
+      excluded.push({ sequence: story.sequence_number, title: story.title || null, reason: uncounted[sequence] });
+    } else {
+      stories.push(story);
+    }
+  }
+  for (const sequence of Object.keys(uncounted)) {
+    if (!fixture.issue.story_set.some((story) => String(story.sequence_number) === sequence && story.type === 'comic story')) {
+      missing.push(sequence);
+    }
+  }
+  return { stories, excluded, missing };
+}
+
+const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Matches a series and an exact issue span in indexer notes. The trailing guard stops #1-5 from
+// matching inside #1-50 or #1-5x, and a full range never matches text that names only material.
+export function notesStateRange(notes, series, span, partial) {
+  const lead = partial ? 'material from ' : '(?<!material from )';
+  return new RegExp(`${lead}${escapeRegExp(series)} ${escapeRegExp(span)}(?![\\d-])`).test(notes);
 }
 
 // Compares one edition with its database record. Disagreement is reported as a conflict with the
@@ -139,11 +213,18 @@ export function checkEdition(edition, fixture, seriesNames) {
   const weak = new Set(Object.keys(check.weakNumbers || {}));
   const { full } = editionKeys(edition);
   const evidence = { gcdIssueId: edition.gcdIssueId, url: fixture.url };
-  const stories = comicStories(fixture, edition);
+  const { stories, excluded, missing } = comicStories(fixture, edition);
   const expected = full.size;
 
   if (fixture.issue.variant_of) {
     conflicts.push({ kind: 'variant-printing', detail: `The database records this book as a variant of ${fixture.issue.variant_of}.`, evidence });
+  }
+  for (const sequence of missing) {
+    conflicts.push({
+      kind: 'exclusion-missing',
+      detail: `Sequence ${sequence} is listed as extra material, but the record has no comic story with that sequence.`,
+      evidence,
+    });
   }
   if (check.tier === 'gcd-unindexed') {
     const indexed = stories.length > 0 || Boolean(fixture.issue.notes);
@@ -158,9 +239,7 @@ export function checkEdition(edition, fixture, seriesNames) {
     for (const range of edition.contents) {
       const series = range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
       const span = range.from === range.to ? `#${range.from}` : `#${range.from}-${range.to}`;
-      const said = range.portion === 'partial' ? notes.includes(`material from ${series} ${span}`)
-        : notes.includes(`${series} ${span}`);
-      if (!said) {
+      if (!notesStateRange(notes, series, span, range.portion === 'partial')) {
         conflicts.push({ kind: 'evidence-weak', detail: `The indexer notes do not state ${series} ${span}.`, evidence: { ...evidence, notes } });
         continue;
       }
@@ -200,7 +279,7 @@ export function checkEdition(edition, fixture, seriesNames) {
       conflicts.push({
         kind: 'evidence-weak',
         detail: `The curated contents name ${expected} comics; the database lists ${stories.length} comic stories`
-          + ' after excluding sequences marked as extra material. The count alone cannot say which is right.',
+          + ` after ${excluded.length} recorded exclusions. The count alone cannot say which is right.`,
         evidence: { ...evidence, sequences: stories.map((story) => story.sequence_number) },
       });
     }
@@ -208,7 +287,13 @@ export function checkEdition(edition, fixture, seriesNames) {
   for (const [number, reason] of Object.entries(check.weakNumbers || {})) {
     conflicts.push({ kind: 'evidence-weak', detail: `#${number}: ${reason}`, evidence });
   }
-  return { status: verified.size ? 'verified' : conflicts.length ? 'conflict' : 'consistent', verified, conflicts };
+  // An edition with any conflict is never labelled verified, even when some of its comics are.
+  const allVerified = verified.size > 0 && [...full].every((key) => verified.has(key));
+  let status = 'consistent';
+  if (verified.size && !conflicts.length) status = allVerified ? 'verified' : 'partly-verified';
+  else if (verified.size) status = 'verified-with-conflicts';
+  else if (conflicts.length) status = 'conflict';
+  return { status, verified, conflicts, excluded };
 }
 
 function sortedKeys(set) {
@@ -229,6 +314,7 @@ export function buildCoverage({ pilot, lists, ledgers }, checks) {
     const findings = [];
     const claimed = new Set();
     const verified = new Set();
+    const conflicted = new Set();
     const partial = new Set();
     const bySource = Object.fromEntries(ASSERTION_SOURCES.map((source) => [source, new Set()]));
     let groupedRows = 0;
@@ -253,7 +339,7 @@ export function buildCoverage({ pilot, lists, ledgers }, checks) {
         for (const key of keys) {
           if (full.has(key)) claimed.add(key);
           if (part.has(key)) partial.add(key);
-          if (checks[id].verified.has(key)) verified.add(key);
+          if (checks[id].verified.has(key)) (checks[id].conflicts.length ? conflicted : verified).add(key);
         }
         const outside = sortedKeys(new Set([...full].filter((key) => !keys.has(key))));
         if (outside.length) {
@@ -293,6 +379,8 @@ export function buildCoverage({ pilot, lists, ledgers }, checks) {
       groupedRows,
       claimedRows: claimed.size,
       verifiedRows: verified.size,
+      // Confirmed by a book whose record also carries a conflict, so never counted as verified.
+      verifiedWithConflictsRows: [...conflicted].filter((key) => !verified.has(key)).length,
       partialRows: partial.size,
       claimedBySource: Object.fromEntries(ASSERTION_SOURCES.map((source) => [source, bySource[source].size])),
       findings,
@@ -353,6 +441,12 @@ export function validate(inputs, outputs) {
   for (const [name, value] of Object.entries(outputs)) walk(value, name);
   for (const [id, fixture] of Object.entries(fixtures)) walk(fixture, `gcd-fixtures/${id}.json`);
   walk(pilot, 'pilot.json');
+  if (inputs.gcdInputs) walk(inputs.gcdInputs, 'gcd-check-inputs.json');
+  const mit = [['pilot.json', inputs.curated], ['editions.json', outputs['editions.json']],
+    ['cbh-edition-facts.json', outputs['cbh-edition-facts.json']]];
+  for (const [name, value] of mit) {
+    for (const leak of databaseLeaks(value, name)) errors.push(`database-derived fact in an MIT-licensed file: ${leak}`);
+  }
   return errors;
 }
 
@@ -364,7 +458,7 @@ export function build(inputs) {
   for (const edition of pilot.editions) {
     checks[edition.id] = fixtures[edition.gcdIssueId]
       ? checkEdition(edition, fixtures[edition.gcdIssueId], seriesNames)
-      : { status: 'conflict', verified: new Set(), conflicts: [{ kind: 'unindexed', detail: 'No fixture.' }] };
+      : { status: 'conflict', verified: new Set(), excluded: [], conflicts: [{ kind: 'unindexed', detail: 'No fixture.' }] };
   }
   const gcdEditions = {
     ...GCD_LICENSE,
@@ -387,26 +481,47 @@ export function build(inputs) {
         notes: issue.notes || null,
         comicStories: (issue.story_set || []).filter((story) => story.type === 'comic story')
           .map((story) => ({ sequence: story.sequence_number, title: story.title || null, pages: story.page_count })),
+        ...(edition.printingOf ? { printingOf: edition.printingOf } : {}),
+        assertedContents: edition.contents.filter((range) => range.assertedBy === DATABASE_SOURCE),
         check: {
           tier: edition.gcdCheck.tier,
           status: checks[edition.id].status,
           verifiedComics: sortedKeys(checks[edition.id].verified),
+          excludedSequences: checks[edition.id].excluded || [],
           conflicts: checks[edition.id].conflicts,
         },
       };
     }),
   };
   const coverage = buildCoverage(inputs, checks);
+  // The MIT-licensed view is built from curated contents alone, with nothing verified: every
+  // database range, printing link, check status and verified count stays in gcd-editions.json.
+  const curated = {
+    ...pilot,
+    editions: pilot.editions.map((edition) => {
+      const copy = { ...edition, contents: edition.contents.filter((range) => range.assertedBy !== DATABASE_SOURCE) };
+      delete copy.printingOf;
+      return copy;
+    }),
+  };
+  const unchecked = Object.fromEntries(pilot.editions.map((edition) => [edition.id, { verified: new Set() }]));
+  const curatedCoverage = buildCoverage({ ...inputs, pilot: curated }, unchecked).map((list) => {
+    const copy = { ...list };
+    delete copy.verifiedRows;
+    delete copy.verifiedWithConflictsRows;
+    return copy;
+  });
+  gcdEditions.coverage = coverage;
   const editions = {
     schemaVersion: 1,
     note: 'Provider-neutral collected-edition pilot. A record says what a book holds, never where a reader '
-      + 'can read it. Database facts and checks live in gcd-editions.json under their own license.',
-    editions: pilot.editions.map((edition) => ({
+      + 'can read it. Every database fact, range, check and verified count lives in gcd-editions.json under '
+      + 'its own license, so the coverage here counts curated contents only.',
+    editions: curated.editions.map((edition) => ({
       id: edition.id,
       title: edition.title,
       format: edition.format,
       medium: edition.medium,
-      ...(edition.printingOf ? { printingOf: edition.printingOf } : {}),
       identifiers: { gcdIssueId: edition.gcdIssueId },
       contents: edition.contents.map((range) => ({
         seriesId: range.seriesId,
@@ -415,9 +530,8 @@ export function build(inputs) {
         ...(range.portion ? { portion: range.portion } : {}),
         assertedBy: range.assertedBy,
       })),
-      checkStatus: checks[edition.id].status,
     })),
-    lists: coverage,
+    lists: curatedCoverage,
   };
   return { 'cbh-edition-facts.json': recoverCbhFacts(inputs), 'gcd-editions.json': gcdEditions, 'editions.json': editions };
 }
@@ -434,9 +548,10 @@ export function run({ write = false, dir = DATA_DIR, repoRoot = root, log = cons
     if (write) fs.writeFileSync(file, text);
     else if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== text) errors.push(`${name} is stale; run with --write`);
   }
-  for (const list of outputs['editions.json'].lists) {
+  for (const list of outputs['gcd-editions.json'].coverage) {
     log(`${list.listId}: ${list.groupedRows}/${list.rows} rows grouped, ${list.claimedRows} claimed, `
-      + `${list.verifiedRows} verified, ${list.partialRows} partial, ${list.findings.length} findings`);
+      + `${list.verifiedRows} verified, ${list.verifiedWithConflictsRows} verified with conflicts, `
+      + `${list.partialRows} partial, ${list.findings.length} findings`);
   }
   for (const error of errors) log(`ERROR ${error}`);
   return errors;

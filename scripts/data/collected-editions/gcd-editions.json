@@ -54,6 +54,7 @@
           "pages": "28.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-story-titles",
         "status": "verified",
@@ -65,6 +66,138 @@
           "1067:5",
           "1067:6",
           "1067:7"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": "Civil War #1 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 2,
+            "title": "Civil War #1 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 4,
+            "title": "Civil War #1 Aspen Variant Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 5,
+            "title": "Civil War #2 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": "Civil War #2 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 8,
+            "title": "Civil War #3 Ed McGuinness cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 9,
+            "title": "Civil War #3 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 10,
+            "title": "Civil War #3 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": "Civil War #4 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 13,
+            "title": "Civil War #4 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 15,
+            "title": "Wizard #176 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 16,
+            "title": "Civil War #5 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": "Civil War #5 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 19,
+            "title": "Comics Buyer's Guide #1619",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 20,
+            "title": "Civil War #6 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 21,
+            "title": "Civil War #6 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 23,
+            "title": "Civil War #7 Michael Turner cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 24,
+            "title": "Civil War #7 Wrap-around cover",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 26,
+            "title": "\"Whose Side Are You On?\" promotional poster",
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 27,
+            "title": "Civil War #1 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 28,
+            "title": "Civil War #2 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 29,
+            "title": "Civil War #3 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 30,
+            "title": "Civil War #4 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 31,
+            "title": "Civil War #5 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 32,
+            "title": "Civil War #6 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 33,
+            "title": "Civil War #7 Sketch variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          }
         ],
         "conflicts": []
       }
@@ -129,6 +262,7 @@
           "pages": "9.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-story-titles",
         "status": "verified",
@@ -139,6 +273,123 @@
           "18527:113",
           "18527:114",
           "18527:115"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": null,
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 2,
+            "title": "#110",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 3,
+            "title": "#110 2nd Printing Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 4,
+            "title": "#110 Young Guns Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": "Combined Young Guns Variants",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 7,
+            "title": "#111",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 8,
+            "title": "#111 Young Guns Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 10,
+            "title": "#112",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 11,
+            "title": "#112 Young Guns Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 13,
+            "title": null,
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 14,
+            "title": "#113",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 15,
+            "title": "#113 Young Guns Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": "#114",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 18,
+            "title": "#114 Young Guns Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 20,
+            "title": "#115",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 21,
+            "title": "#115 Young Guns Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 23,
+            "title": "Thunderbolts: Desperate Measures",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 24,
+            "title": "Desperate Measures",
+            "reason": "Extra material: the Desperate Measures one-shot."
+          },
+          {
+            "sequence": 25,
+            "title": "Whose Side Are You On?",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 26,
+            "title": "Switching Sides",
+            "reason": "Extra material: the Switching Sides story."
+          },
+          {
+            "sequence": 27,
+            "title": "Civil War: The Initiative",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 28,
+            "title": null,
+            "reason": "Extra material: an untitled story reprinted with the Civil War: The Initiative cover."
+          },
+          {
+            "sequence": 29,
+            "title": "Being Bad Has Never Been So Good!",
+            "reason": "Not a comic story: promo (ad from the publisher)."
+          }
         ],
         "conflicts": []
       }
@@ -188,15 +439,73 @@
           "pages": "23.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-story-titles",
-        "status": "verified",
+        "status": "verified-with-conflicts",
         "verifiedComics": [
           "18527:116",
           "18527:117",
           "18527:118",
           "18527:119",
           "18527:120"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": null,
+            "reason": "Not a comic story: blank page(s)."
+          },
+          {
+            "sequence": 2,
+            "title": null,
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 3,
+            "title": "Previously",
+            "reason": "Not a comic story: recap."
+          },
+          {
+            "sequence": 4,
+            "title": "#116",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": "#117",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 8,
+            "title": "#118",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 10,
+            "title": "#119",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": null,
+            "reason": "Not a comic story: blank page(s)."
+          },
+          {
+            "sequence": 13,
+            "title": "#120",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": null,
+            "reason": "Not a comic story: blank page(s)."
+          },
+          {
+            "sequence": 18,
+            "title": "Mind Over Murder!",
+            "reason": "Not a comic story: promo (ad from the publisher)."
+          }
         ],
         "conflicts": [
           {
@@ -255,10 +564,88 @@
           "pages": "20.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-count-only",
         "status": "consistent",
         "verifiedComics": [],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": "1",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 3,
+            "title": "Jeff Dekal No. 1 Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 4,
+            "title": "2",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": "Ron Lim & Rachelle Rosenberg No. 1 Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 7,
+            "title": "3",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 9,
+            "title": "Alexander Kropinak No. 1 Toy Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 10,
+            "title": "4",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": "5",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 14,
+            "title": "6",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 16,
+            "title": "Dustin Nguyen No. 2 Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": "Pat Broderick & Chris Sotomayor No. 3 Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 18,
+            "title": "Joe Jusko No. 4 Corner Box Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 19,
+            "title": "Mike Del Mundo No. 1 Hip-Hop Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 20,
+            "title": "Rob Guillory No. 5 Venomized Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 21,
+            "title": "He's Out for Vengeance!",
+            "reason": "Not a comic story: promo (ad from the publisher)."
+          }
+        ],
         "conflicts": []
       }
     },
@@ -307,10 +694,48 @@
           "pages": "20.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-count-only",
         "status": "consistent",
         "verifiedComics": [],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 3,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 5,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 7,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 9,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 11,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 13,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          }
+        ],
         "conflicts": []
       }
     },
@@ -328,6 +753,7 @@
       "variantOf": null,
       "notes": "Collects Asgardians of the Galaxy (Marvel, 2018 series) #1-5.",
       "comicStories": [],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-notes",
         "status": "verified",
@@ -338,6 +764,7 @@
           "25996:4",
           "25996:5"
         ],
+        "excludedSequences": [],
         "conflicts": []
       }
     },
@@ -355,6 +782,7 @@
       "variantOf": null,
       "notes": "Collects Asgardians of the Galaxy (Marvel, 2018 series) #6-10.",
       "comicStories": [],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-notes",
         "status": "verified",
@@ -365,6 +793,7 @@
           "25996:9",
           "25996:10"
         ],
+        "excludedSequences": [],
         "conflicts": []
       }
     },
@@ -413,14 +842,72 @@
           "pages": "24.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-count-only",
         "status": "conflict",
         "verifiedComics": [],
+        "excludedSequences": [
+          {
+            "sequence": 2,
+            "title": null,
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 3,
+            "title": "Previously in New Avengers",
+            "reason": "Not a comic story: recap."
+          },
+          {
+            "sequence": 6,
+            "title": "Avengers",
+            "reason": "Not a comic story: character profile."
+          },
+          {
+            "sequence": 8,
+            "title": null,
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 10,
+            "title": null,
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 12,
+            "title": "Avengers #35",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 13,
+            "title": "Avengers #36",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 14,
+            "title": "Avengers #37",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 15,
+            "title": "New Avengers #24",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 16,
+            "title": "New Avengers #25",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": "Avengers #35 & New Avengers #24 Combined Variants",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          }
+        ],
         "conflicts": [
           {
             "kind": "evidence-weak",
-            "detail": "The curated contents name 5 comics; the database lists 6 comic stories after excluding sequences marked as extra material. The count alone cannot say which is right.",
+            "detail": "The curated contents name 5 comics; the database lists 6 comic stories after 11 recorded exclusions. The count alone cannot say which is right.",
             "evidence": {
               "gcdIssueId": 1454936,
               "url": "https://www.comics.org/api/issue/1454936/?format=json",
@@ -451,10 +938,12 @@
       "variantOf": null,
       "notes": null,
       "comicStories": [],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-unindexed",
         "status": "conflict",
         "verifiedComics": [],
+        "excludedSequences": [],
         "conflicts": [
           {
             "kind": "unindexed",
@@ -532,9 +1021,26 @@
           "pages": "10.000"
         }
       ],
+      "assertedContents": [
+        {
+          "seriesId": 19648,
+          "from": 1,
+          "to": 9,
+          "assertedBy": "gcd-notes",
+          "basis": "The database's indexer notes list Secret Wars #1-9."
+        },
+        {
+          "seriesId": 19821,
+          "from": 0,
+          "to": 0,
+          "portion": "partial",
+          "assertedBy": "gcd-notes",
+          "basis": "The database's indexer notes say the book holds material from the Free Comic Book Day issue, not the whole issue."
+        }
+      ],
       "check": {
         "tier": "gcd-notes",
-        "status": "verified",
+        "status": "verified-with-conflicts",
         "verifiedComics": [
           "19648:1",
           "19648:2",
@@ -545,6 +1051,278 @@
           "19648:7",
           "19648:8",
           "19648:9"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 3,
+            "title": "Secret Wars Battleworld",
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 11,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 13,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 14,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 15,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 16,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 18,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 19,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 20,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 21,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 22,
+            "title": "#1-8 Combined Variants",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 23,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 24,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 25,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 26,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 27,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 28,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 29,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 30,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 31,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 32,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 33,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 34,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 35,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 36,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 37,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 38,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 39,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 40,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 41,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 42,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 43,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 44,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 45,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 46,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 47,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 48,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 49,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 50,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 51,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 52,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 53,
+            "title": "Guest-Starring the Beyonder!",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 54,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 55,
+            "title": "Marvel Super Heroes Secret Wars",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 56,
+            "title": "Marvel Super Heroes Secret Wars",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 57,
+            "title": "Marvel Super Heroes Secret Wars",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 58,
+            "title": "Marvel Super Heroes Secret Wars",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 59,
+            "title": "Marvel Super Heroes Secret Wars",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 60,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 61,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 62,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 63,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          }
         ],
         "conflicts": [
           {
@@ -572,10 +1350,12 @@
       "variantOf": null,
       "notes": null,
       "comicStories": [],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-unindexed",
         "status": "conflict",
         "verifiedComics": [],
+        "excludedSequences": [],
         "conflicts": [
           {
             "kind": "unindexed",
@@ -602,10 +1382,12 @@
       "variantOf": null,
       "notes": null,
       "comicStories": [],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-unindexed",
         "status": "conflict",
         "verifiedComics": [],
+        "excludedSequences": [],
         "conflicts": [
           {
             "kind": "unindexed",
@@ -632,10 +1414,13 @@
       "variantOf": "https://www.comics.org/api/issue/1099254/?format=json",
       "notes": null,
       "comicStories": [],
+      "printingOf": "realm-of-kings-2010-tpb",
+      "assertedContents": [],
       "check": {
         "tier": "gcd-unindexed",
         "status": "conflict",
         "verifiedComics": [],
+        "excludedSequences": [],
         "conflicts": [
           {
             "kind": "variant-printing",
@@ -701,12 +1486,268 @@
           "pages": "22.000"
         }
       ],
+      "assertedContents": [],
       "check": {
         "tier": "gcd-count-only",
         "status": "consistent",
         "verifiedComics": [],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": "Title Page & Credits",
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 2,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 4,
+            "title": null,
+            "reason": "Not a comic story: letters page."
+          },
+          {
+            "sequence": 5,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 7,
+            "title": null,
+            "reason": "Not a comic story: letters page."
+          },
+          {
+            "sequence": 8,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 9,
+            "title": null,
+            "reason": "Not a comic story: recap."
+          },
+          {
+            "sequence": 11,
+            "title": null,
+            "reason": "Not a comic story: letters page."
+          },
+          {
+            "sequence": 12,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 13,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 14,
+            "title": null,
+            "reason": "Not a comic story: recap."
+          },
+          {
+            "sequence": 16,
+            "title": null,
+            "reason": "Not a comic story: letters page."
+          },
+          {
+            "sequence": 17,
+            "title": null,
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 18,
+            "title": "Epilogue",
+            "reason": "Indexed as its own story but follows the credits page for #4, so it is read as part of #4."
+          },
+          {
+            "sequence": 19,
+            "title": "Marvel Super-Heroes #8",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 20,
+            "title": "The Coming of ... Squirrel Girl!",
+            "reason": "Extra material: a reprint of a 1992 Marvel Super-Heroes story."
+          },
+          {
+            "sequence": 21,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 22,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 23,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 24,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 25,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 26,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 27,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 28,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 29,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 30,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          }
+        ],
         "conflicts": []
       }
+    }
+  ],
+  "coverage": [
+    {
+      "listId": "civil_war_avengers",
+      "rows": 83,
+      "groupedRows": 19,
+      "claimedRows": 19,
+      "verifiedRows": 13,
+      "verifiedWithConflictsRows": 5,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 7,
+        "gcd-notes": 0,
+        "owner-curated": 12
+      },
+      "findings": [
+        {
+          "kind": "group-spans-editions",
+          "group": "Thunderbolts by Warren Ellis and Mike Deodato",
+          "detail": "thunderbolts-ellis-v1-faith-in-monsters and thunderbolts-ellis-v2-caged-angels split this group."
+        }
+      ]
+    },
+    {
+      "listId": "nebula_reading_order",
+      "rows": 69,
+      "groupedRows": 20,
+      "claimedRows": 20,
+      "verifiedRows": 10,
+      "verifiedWithConflictsRows": 0,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 20,
+        "cbh-heading": 0,
+        "gcd-notes": 0,
+        "owner-curated": 0
+      },
+      "findings": [
+        {
+          "kind": "partial-selection",
+          "group": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+          "edition": "thanos-2016-v1-thanos-returns",
+          "detail": "The book also holds 22653:1, 22653:3, which this group does not list."
+        }
+      ]
+    },
+    {
+      "listId": "avengers_doomsday_secret_wars",
+      "rows": 69,
+      "groupedRows": 20,
+      "claimedRows": 19,
+      "verifiedRows": 0,
+      "verifiedWithConflictsRows": 9,
+      "partialRows": 1,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 10,
+        "gcd-notes": 9,
+        "owner-curated": 9
+      },
+      "findings": [
+        {
+          "kind": "overlap",
+          "group": "Secret Wars (2015) #0-9",
+          "detail": "secret-wars-2015-hc and secret-wars-2015-tpb both hold 9 of this group's comics."
+        }
+      ]
+    },
+    {
+      "listId": "realm_of_kings",
+      "rows": 28,
+      "groupedRows": 1,
+      "claimedRows": 1,
+      "verifiedRows": 0,
+      "verifiedWithConflictsRows": 0,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 0,
+        "gcd-notes": 0,
+        "owner-curated": 1
+      },
+      "findings": [
+        {
+          "kind": "heading-not-edition",
+          "group": "Realm of Kings Trade Reading List",
+          "detail": "The guide heading names a reading block, not one book."
+        },
+        {
+          "kind": "variant-printing",
+          "group": "Realm of Kings Trade Reading List",
+          "detail": "realm-of-kings-2010-tpb and realm-of-kings-2014-tpb-second-printing both hold 1 of this group's comics."
+        }
+      ]
+    },
+    {
+      "listId": "the_unbeatable_squirrel_girl",
+      "rows": 58,
+      "groupedRows": 8,
+      "claimedRows": 4,
+      "verifiedRows": 0,
+      "verifiedWithConflictsRows": 0,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 0,
+        "gcd-notes": 0,
+        "owner-curated": 4
+      },
+      "findings": [
+        {
+          "kind": "heading-not-edition",
+          "group": "Volume 1 (2015)",
+          "detail": "The guide heading names a reading block, not one book."
+        },
+        {
+          "kind": "group-wider-than-edition",
+          "group": "Volume 1 (2015)",
+          "detail": "No curated book holds 19750:5, 19750:6, 19750:7, 19750:8."
+        }
+      ]
     }
   ]
 }

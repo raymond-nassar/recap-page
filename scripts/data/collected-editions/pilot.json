@@ -73,18 +73,7 @@
           "basis": "The guide's collection heading for this group names the book, and the group holds issues #1 to #7."
         }
       ],
-      "gcdCheck": {
-        "tier": "gcd-story-titles",
-        "storyTitles": {
-          "1": "Civil War Part One of Seven",
-          "2": "Civil War Part Two of Seven",
-          "3": "Civil War Part Three of Seven",
-          "4": "Civil War Part Four of Seven",
-          "5": "Civil War Part Five of Seven",
-          "6": "Civil War Part Six of Seven",
-          "7": "Civil War Part Seven of Seven"
-        }
-      }
+      "gcdCheck": { "tier": "gcd-story-titles" }
     },
     {
       "id": "thunderbolts-ellis-v1-faith-in-monsters",
@@ -101,22 +90,7 @@
           "basis": "The guide's heading names the creative run across two books; the split at #115 is curated here and checked against the database's story titles."
         }
       ],
-      "gcdCheck": {
-        "tier": "gcd-story-titles",
-        "storyTitles": {
-          "110": "Faith in Monsters Part 1",
-          "111": "Faith in Monsters Part 2",
-          "112": "Faith in Monsters Part 3",
-          "113": "Faith in Monsters Part 4",
-          "114": "Faith in Monsters Part 5",
-          "115": "Faith in Monsters Part 6"
-        },
-        "uncountedSequences": {
-          "24": "Extra material: the Desperate Measures one-shot.",
-          "26": "Extra material: the Switching Sides story.",
-          "28": "Extra material: an untitled story reprinted with the Civil War: The Initiative cover."
-        }
-      }
+      "gcdCheck": { "tier": "gcd-story-titles" }
     },
     {
       "id": "thunderbolts-ellis-v2-caged-angels",
@@ -133,20 +107,7 @@
           "basis": "The guide's heading names the creative run across two books; the split at #116 is curated here and checked against the database's story titles."
         }
       ],
-      "gcdCheck": {
-        "tier": "gcd-story-titles",
-        "storyTitles": {
-          "116": "Caged Angels Part I",
-          "117": "Caged Angels Part II",
-          "118": "Caged Angels Part III",
-          "119": "Caged Angels Part IV",
-          "120": "Caged Angels Part V",
-          "121": "Caged Angels Part VI"
-        },
-        "weakNumbers": {
-          "121": "The database reprints interior covers for #116 to #120 only; #121 rests on the sixth story part alone."
-        }
-      }
+      "gcdCheck": { "tier": "gcd-story-titles" }
     },
     {
       "id": "thanos-2016-v1-thanos-returns",
@@ -197,7 +158,7 @@
           "basis": "The committed source ledger records this book as collecting Asgardians of the Galaxy #1-5."
         }
       ],
-      "gcdCheck": { "tier": "gcd-notes", "gcdSeries": "Asgardians of the Galaxy (Marvel, 2018 series)" }
+      "gcdCheck": { "tier": "gcd-notes" }
     },
     {
       "id": "asgardians-v2-war-of-the-realms",
@@ -214,7 +175,7 @@
           "basis": "The committed source ledger records this book as collecting Asgardians of the Galaxy #6-10."
         }
       ],
-      "gcdCheck": { "tier": "gcd-notes", "gcdSeries": "Asgardians of the Galaxy (Marvel, 2018 series)" }
+      "gcdCheck": { "tier": "gcd-notes" }
     },
     {
       "id": "time-runs-out-v1",
@@ -270,28 +231,7 @@
       "format": "hardcover",
       "medium": "print",
       "gcdIssueId": 1546524,
-      "contents": [
-        {
-          "seriesId": 19648,
-          "from": 1,
-          "to": 9,
-          "assertedBy": "gcd-notes",
-          "basis": "The database's indexer notes list Secret Wars #1-9."
-        },
-        {
-          "seriesId": 19821,
-          "from": 0,
-          "to": 0,
-          "portion": "partial",
-          "assertedBy": "gcd-notes",
-          "basis": "The database's indexer notes say the book holds material from the Free Comic Book Day issue, not the whole issue."
-        }
-      ],
-      "gcdCheck": {
-        "tier": "gcd-notes",
-        "gcdSeries": "Secret Wars (Marvel, 2015 series)",
-        "partialSeries": "Free Comic Book Day 2015 (Secret Wars) (Marvel, 2015 series)"
-      }
+      "gcdCheck": { "tier": "gcd-notes" }
     },
     {
       "id": "secret-wars-2015-tpb",
@@ -333,14 +273,13 @@
       "format": "trade paperback",
       "medium": "print",
       "gcdIssueId": 2601361,
-      "printingOf": "realm-of-kings-2010-tpb",
       "contents": [
         {
           "seriesId": 9088,
           "from": 1,
           "to": 1,
           "assertedBy": "owner-curated",
-          "basis": "A later printing the database records as a variant of the 2010 book; contents are assumed to follow that book and are unverified."
+          "basis": "Curated as a later printing of the 2010 book; contents are assumed to follow that book and are unverified."
         }
       ],
       "gcdCheck": { "tier": "gcd-unindexed" }
@@ -360,14 +299,7 @@
           "basis": "Curated as the first four issues; the guide's heading names the whole first series volume, #1 to #8."
         }
       ],
-      "gcdCheck": {
-        "tier": "gcd-count-only",
-        "expectedComicStories": 4,
-        "uncountedSequences": {
-          "18": "Indexed as its own story but follows the credits page for #4, so it is read as part of #4.",
-          "20": "Extra material: a reprint of a 1992 Marvel Super-Heroes story."
-        }
-      }
+      "gcdCheck": { "tier": "gcd-count-only", "expectedComicStories": 4 }
     }
   ]
 }
