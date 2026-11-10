@@ -15425,6 +15425,7 @@ const SCENARIOS = [
               && getComputedStyle(document.body).backgroundColor === (name === 'wordmark.svg'
                 ? 'rgb(250, 250, 255)' : 'rgb(17, 17, 23)'), file));
         }
+        await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: '' }]);
       };
 
       try {
