@@ -201,12 +201,12 @@ function comicStories(fixture, edition) {
 
 const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-// Matches a series and an exact issue span in indexer notes. The trailing guard stops #1-5 from
-// matching inside #1-50, #1-5a, #1-5.1, #1-5/6 or #1-5-6, while a sentence's closing period still
-// ends the span. A full range never matches text that names only material.
+// A word boundary alone would match a series at the end of a longer title. Require the start of
+// the notes, a collection lead-in, or a separator after a previous issue range instead.
 export function notesStateRange(notes, series, span, partial) {
-  const lead = partial ? 'material from ' : '(?<!material from )';
-  return new RegExp(`${lead}${escapeRegExp(series)} ${escapeRegExp(span)}(?![\\w/-]|\\.\\w)`).test(notes);
+  const boundary = '(?:^\\s*|\\b[Cc]ollects\\s+|#[\\w./-]+(?:\\s*[,;]\\s*(?:and\\s+)?|\\s+and\\s+))';
+  const material = partial ? 'material from ' : '(?!material from )';
+  return new RegExp(`${boundary}${material}${escapeRegExp(series)} ${escapeRegExp(span)}(?![\\w/-]|\\.\\w)`).test(notes);
 }
 
 // Compares one edition with its database record. Disagreement is reported as a conflict with the

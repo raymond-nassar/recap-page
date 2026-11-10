@@ -23,7 +23,8 @@ for this project, and cover images are never recorded. Anything derived from the
 licence and keeps this credit. The three MIT files hold no database facts: an edition in
 `editions.json` names its database record by id only, and the check fails if a database-only field,
 a contents range asserted by the indexer notes, a series named in the database's own form, or wording
-that says one book is a printing or edition of another appears in any of them.
+matching `printing` or `printings` as whole words, or containing `second edition` or `variant of`,
+appears in any of them. The wording check is case-insensitive and treats hyphens as spaces.
 
 ## Model
 
@@ -41,8 +42,10 @@ appears only in `gcd-editions.json`. Contents asserted by `gcd-notes` live there
 
 Each edition is checked against its database record at one of four tiers. Only `gcd-notes` and
 `gcd-story-titles` can verify a comic, and the notes must state the series and the exact issue span,
-so `#1-5` never matches `#1-50`. `gcd-count-only` can show a book is consistent, never which comics
-it holds, and `gcd-unindexed` records that the database has not indexed the contents. Every
+so `#1-5` never matches `#1-50`. A series must follow the start of the notes, "Collects", or a
+separator after a previous issue range; ambiguous wording is a conflict, not a verification.
+`gcd-count-only` can show a book is consistent, never which comics it holds, and `gcd-unindexed`
+records that the database has not indexed the contents. Every
 database sequence left out of a count is listed in `check.excludedSequences` with its reason; a
 count that differs is consistent only when recorded exclusions explain the whole difference. A
 disagreement is recorded as a conflict with its evidence and left for a person to settle.

@@ -159,6 +159,49 @@ test('the indexer-notes match is exact, so #1-5 never matches #1-50', () => {
   assert.equal(result.status, 'conflict');
 });
 
+test('indexer notes do not match a longer series ending in the target name', () => {
+  const series = 'Avengers (Marvel, 2010 series)';
+  const span = '#1-5';
+  for (const notes of [
+    `Collects Secret ${series} ${span}.`,
+    `Collects Secret and ${series} ${span}.`,
+    `Collects X (Marvel, 2015 series) #1-2 and Secret ${series} ${span}.`,
+  ]) {
+    assert.equal(notesStateRange(notes, series, span, false), false, notes);
+  }
+  assert.equal(notesStateRange(`Collects ${series} ${span}.`, series, span, false), true);
+  assert.equal(notesStateRange(`Collects X (Marvel, 2015 series) #1-2, and ${series} ${span}.`, series, span, false), true);
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
+    [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects Secret ${series} ${span}.` }), {});
+  assert.equal(result.status, 'conflict');
+  assert.equal(result.verified.size, 0);
+  const control = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} ${span}.` }), {});
+  assert.equal(control.status, 'verified');
+  assert.deepEqual([...control.verified], ['7:1', '7:2', '7:3', '7:4', '7:5']);
+});
+
+test('indexer notes distinguish partial material before the exact series', () => {
+  const series = 'Avengers (Marvel, 2010 series)';
+  const span = '#1-5';
+  const longer = `Collects material from New ${series} ${span}.`;
+  const partial = `Collects material from ${series} ${span}.`;
+  assert.equal(notesStateRange(longer, series, span, false), false);
+  assert.equal(notesStateRange(longer, series, span, true), false);
+  assert.equal(notesStateRange(longer, `New ${series}`, span, false), false);
+  assert.equal(notesStateRange(longer, `New ${series}`, span, true), true);
+  assert.equal(notesStateRange(partial, series, span, false), false);
+  assert.equal(notesStateRange(partial, series, span, true), true);
+  assert.equal(notesStateRange(`Collects ${series} ${span}.`, series, span, true), false);
+  assert.equal(notesStateRange(`Collects X (Marvel, 2015 series) #1-2 and material from ${series} ${span}.`,
+    series, span, true), true);
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
+    [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([], { notes: longer }), {});
+  assert.equal(result.status, 'conflict');
+  assert.equal(result.verified.size, 0);
+});
+
 test('an edition with any conflict is never labelled verified', () => {
   const series = 'X (Marvel, 2015 series)';
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series, weakNumbers: { 2: 'Disputed.' } },
