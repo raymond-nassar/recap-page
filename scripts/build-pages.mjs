@@ -41,8 +41,8 @@ export const PAGE_SOURCES = Object.freeze([
     destination: 'assets/android-reading-preview.png',
   }),
   Object.freeze({
-    source: 'pages/assets/wordmark.png',
-    destination: 'assets/wordmark.png',
+    source: 'pages/assets/wordmark.svg',
+    destination: 'assets/wordmark.svg',
   }),
 ]);
 

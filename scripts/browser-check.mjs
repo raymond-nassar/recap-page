@@ -26632,6 +26632,59 @@ SCENARIOS.push({
   },
 });
 
+SCENARIOS.push({
+  id: 'brand-wordmark',
+  title: 'The transparent wordmark follows explicit and system themes without changing its accessible name',
+  async run(page, t) {
+    const { decodePng } = await import('./lib/painted-contrast.mjs');
+    await page.setViewport({ width: 1280, height: 900 });
+    await open(page, '/#/home');
+    await page.waitForFunction(() => {
+      const image = document.querySelector('.home-wordmark');
+      return image?.complete && image.naturalWidth > 0;
+    });
+    for (const [system, explicit, expected] of [
+      ['dark', 'light', [109, 40, 217]],
+      ['light', 'dark', [255, 255, 255]],
+      ['light', null, [109, 40, 217]],
+      ['dark', null, [255, 255, 255]],
+    ]) {
+      await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: system }]);
+      await page.evaluate((theme) => {
+        if (theme) document.documentElement.dataset.theme = theme;
+        else delete document.documentElement.dataset.theme;
+      }, explicit);
+      const image = await page.$('.home-wordmark');
+      const painted = decodePng(Buffer.from(await image.screenshot()));
+      const counts = new Map();
+      for (let y = 0; y < painted.height; y += 1) {
+        for (let x = 0; x < painted.width; x += 1) {
+          const color = painted.pixel(x, y).join(',');
+          counts.set(color, (counts.get(color) ?? 0) + 1);
+        }
+      }
+      const background = await page.$eval('#view-home', (node) => {
+        const rgb = getComputedStyle(node).backgroundColor;
+        return rgb === 'rgba(0, 0, 0, 0)' ? getComputedStyle(document.body).backgroundColor : rgb;
+      });
+      const corner = painted.pixel(0, 0).join(',');
+      t.check(`${explicit ?? 'system'} with ${system} preference paints the approved letters and outline`,
+        (counts.get(expected.join(',')) ?? 0) > 100 && (counts.get('238,8,116') ?? 0) > 10,
+        JSON.stringify({ expected, fill: counts.get(expected.join(',')), pink: counts.get('238,8,116') }));
+      t.check('the background remains transparent and Home keeps one accessible heading',
+        `rgb(${corner.split(',').join(', ')})` === background
+        && await page.$eval('#home-h', (node) => node.textContent === 'Recap Page'
+          && node.querySelector('img').getAttribute('aria-hidden') === 'true'
+          && document.querySelectorAll('#view-home h1').length === 1),
+        JSON.stringify({ corner, background }));
+    }
+    await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]);
+    t.check('forced colors show the plain-text brand instead of artwork',
+      await page.$eval('#home-h', (node) => getComputedStyle(node.querySelector('img')).display === 'none'
+        && getComputedStyle(node.querySelector('.home-brand-text')).position === 'static'));
+  },
+});
+
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.

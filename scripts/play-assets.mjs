@@ -125,7 +125,7 @@ export function shellPath(path) {
   return path === 'index.html' || path === 'styles.css' || path === 'manifest.webmanifest'
     || /^js\/[a-zA-Z0-9_./-]+\.js$/.test(path)
     || /^android\/(?:app|bridge|mobile-ui|cloud|cloudPort)\.js$/.test(path) || path === 'android/mobile.css'
-    || /^icons\/icon(?:-(?:192|512)\.png|\.svg)$/.test(path) || path === 'icons/ui.svg' || path === 'icons/wordmark.png'
+    || /^icons\/icon(?:-(?:192|512)\.png|\.svg)$/.test(path) || path === 'icons/ui.svg' || path === 'icons/wordmark.svg'
     || path === 'brands/ms-symbollockup_mssymbol_19.svg' || path === 'brands/g-logo.png' || path === 'data/catalog.json';
 }
 
