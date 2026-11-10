@@ -18,6 +18,10 @@ const exists = (relative) => existsSync(fileURLToPath(new URL(relative, root)));
 
 const documents = [
   'CONTRIBUTING.md',
+  'docs/ARCHITECTURE.md',
+  'docs/ARCHITECTURE_REFERENCE.md',
+  'docs/CONTRIBUTOR_REFERENCE.md',
+  'docs/REPOSITORY_LAYOUT_PROPOSALS.md',
   'CODE_OF_CONDUCT.md',
   'SUPPORT.md',
   'GOVERNANCE.md',
@@ -105,6 +109,58 @@ test('every command the guides tell you to run is a script this repository has',
     }
   }
   assert.ok(checked > 0, 'no commands found, so this check would pass vacuously');
+});
+
+test('entry guides preserve established section addresses and route to their full contracts', () => {
+  const sections = {
+    'CONTRIBUTING.md': [
+      'what-this-project-is-trying-to-be', 'what-will-be-declined-and-why',
+      'before-you-write-anything', 'how-a-change-is-judged', 'writing', 'interface-design',
+      'controls-and-transitions', 'layout-tokens-and-preferences', 'accepted-patterns-and-check-owners',
+      'the-checks', 'historical-evidence-anchors', 'tests', 'the-fault-harness-destroys-data-on-purpose',
+      'adding-or-correcting-data', 'dependencies', 'reporting-problems', 'conduct', 'who-decides',
+      'on-demand-workflow-skills',
+    ],
+    'docs/ARCHITECTURE.md': [
+      'the-three-entry-points', 'the-module-graph-drawn-as-ownership', 'routes-and-generated-views',
+      'how-reading-content-reaches-the-browser', 'marking-one-issue-read', 'where-a-readers-data-lives',
+      'one-thing-the-drawing-found', 'complete-backups', 'cloud-backup', 'what-is-intentionally-centralized',
+      'reading-paths-are-a-catalog-projection', 'modern-timeline-position-is-a-store-projection',
+      'completion-is-independent-history-not-a-reader-migration', 'where-to-read-next',
+      'the-windows-package-is-a-launch-envelope', 'the-public-project-home-is-not-an-app-entry-point',
+      'the-ios-app-serves-the-same-pages-from-its-own-origin', 'icloud-drive-backup',
+      'onedrive-on-iphone-and-ipad', 'small-screen-navigation-and-readable-feedback',
+    ],
+  };
+  for (const [name, required] of Object.entries(sections)) {
+    const actual = headings(text[name]);
+    for (const section of required) assert.ok(actual.has(section), `${name} lost #${section}`);
+  }
+  for (const section of [
+    'interface-design', 'controls-and-transitions', 'layout-tokens-and-preferences',
+    'accepted-patterns-and-check-owners', 'historical-evidence-anchors',
+  ]) {
+    assert.ok(
+      text['CONTRIBUTING.md'].includes(`(docs/CONTRIBUTOR_REFERENCE.md#${section})`),
+      `the contributor entry must route #${section} to its full contract`,
+    );
+  }
+});
+
+test('newcomer guides stay bounded and retain the contributor citation target', () => {
+  for (const [name, maxLines, maxWords] of [
+    ['CONTRIBUTING.md', 180, 1500],
+    ['docs/ARCHITECTURE.md', 220, 1800],
+  ]) {
+    assert.ok(text[name].trimEnd().split(/\r?\n/).length <= maxLines, `${name} needs a shorter entry`);
+    assert.ok(text[name].trim().split(/\s+/).length <= maxWords, `${name} needs fewer entry words`);
+    assert.doesNotMatch(text[name], /[\u2013\u2014]/u);
+  }
+  assert.equal(
+    text['CONTRIBUTING.md'].split(/\r?\n/)[3],
+    'The repository has been public since 2026-08-16 and accepts issues and pull requests.',
+    'the publication runbook cites this exact line',
+  );
 });
 
 test('the maintainer browser instructions match the runner interface', () => {

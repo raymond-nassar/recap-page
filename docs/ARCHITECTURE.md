@@ -1,1319 +1,159 @@
 # How the app is put together
 
-How the browser core owns state, updates screens, and saves reading progress. These diagrams describe
-the current implementation, not a proposed redesign. See [Android](ANDROID.md) for the native wrapper.
+Recap Page is a reading tracker, not a comic reader. It shows reading orders, saves your place
+on your device, and opens an external reader when you press Read.
 
-GitHub renders the Mermaid diagrams directly. They need no build step or dependency, and their
-source can be reviewed alongside the prose.
+The browser loads ordinary HTML, CSS and JavaScript modules directly. There is no browser
+framework, build step or runtime package dependency. Desktop uses a local Node.js server at
+`http://127.0.0.1:8787`; the Android and iOS wrappers serve the shared pages inside their apps.
+
+## Find the part you need
+
+| If you are changing... | Start here |
+|---|---|
+| App startup and coordination between screens | `src/js/app.js`, then `src/js/main.js` |
+| A screen or its interactions | `src/js/views/`; shared controls in `src/js/ask.js` and `src/js/views/shared/` |
+| Page structure or appearance | `src/index.html` and `src/styles.css` |
+| Saved reading data and recovery | `src/js/storage.js`; data transformations in `src/js/lib/model.js` |
+| Navigation | `src/js/lib/route.js`; addresses after `#/` select screens |
+| Comic details from the metadata service | `src/js/api.js`, `src/js/hydrate.js` and `src/js/cache.js` |
+| Reader launch behavior | `src/js/reader.js`, `src/open.html` and `src/open.js` |
+| Bundled reading orders and their sources | `src/data/`, `scripts/data/` and `scripts/vendor-orders.mjs` |
+| Shared backup rules | `src/js/lib/completeBackup.js`, `completeRestore.js` and `cloudProtocol.js` in that same folder |
+| Cloud account access on desktop | `host/`; browser code never receives provider tokens |
+| Windows, Android or iOS wrappers | `packaging/windows/`, `packaging/android/` and `packaging/ios/` |
+| The public project website, not the tracker | `pages/` and `scripts/build-pages.mjs` |
+| Automated checks | `test/`, `scripts/check-*.mjs` and `.github/workflows/` |
+| Design studies and maintainer procedures | `design/` and `docs/` |
+
+For your first change, follow [Contributing](../CONTRIBUTING.md). The sections below explain the
+main boundaries and link to the [detailed architecture reference](ARCHITECTURE_REFERENCE.md).
+Those contracts still apply; read the affected section before changing its behavior.
+Folder names in this map describe the current tree. [Layout proposals](REPOSITORY_LAYOUT_PROPOSALS.md)
+are recommendations only.
 
 ## The three entry points
 
-The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1570`, the reader launch tab at `src/open.html:24`, and the development-only fault
-harness at `src/dev-faults.html:137`.
-
-The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
-at `src/js/app.js:12-32`.
-Separating startup lets tests import view functions without booting the app. The external module
-also satisfies `script-src 'self'`; inline startup code would require a content security policy change.
-
-The browser loads ES modules directly from `src/`, without bundling or transpilation.
-The existing standalone manifest retains its root identity, launch address, scope and app icons.
-Installation uses the browser's deferred prompt only after a deliberate button press in Connectivity
-settings, and only at `http://127.0.0.1:8787`, the origin that owns saved progress. Unsupported
-browsers, other addresses and installed standalone windows have no install offer.
-No account, storage migration or native wrapper is introduced.
+`src/index.html` starts the tracker. `src/open.html` handles an external-reader launch in a new tab.
+`src/dev-faults.html` is a development tool that deliberately damages saved data.
+See [startup details](ARCHITECTURE_REFERENCE.md#the-three-entry-points).
 
 ## The module graph, drawn as ownership
 
-Most modules expose stateless functions and contracts. The controller constructs the core services
-at `src/js/main.js:111-154` and keeps application-wide bookkeeping at module scope. Constructed views
-own their screen-local state. That block shows service wiring, not every value held in memory.
-
-```mermaid
-flowchart TD
-  idx["index.html"] --> app["app.js: the entry, calls boot()"]
-  app --> view["View layer: every screen and every event handler"]
-  app --> offline["offline.js: registers and warms the app shell"]
-  offline --> worker["sw.js: network first, same-origin cache fallback"]
-  opn["open.html"] --> launch["Launch page: resolves the reader link in the new tab"]
-  dev["dev-faults.html"] --> harness["Fault harness: development only"]
-
-  subgraph owned["Core service objects the view layer constructs and holds"]
-    store["Store: the only writer of reading progress"]
-    history["ListHistoryStore: completion and enjoyment"]
-    recommendations["Recommendation resolver: bounded bundled metadata"]
-    limiter["RateLimiter: queue, rolling windows, pause"]
-    cache["ResponseCache: the IndexedDB handle"]
-    api["MarvelApi: the metadata client"]
-    hydrator["Hydrator: fills in issue details in the background"]
-    education["Save education: one-way browser preference"]
-    synopses["SessionSynopsis: tab-memory prose"]
-    synopsisRunner["SynopsisRunner: cancellable memory-only fetches"]
-    restore["CompleteRestore: the restore journal, its marker, and the guard every saved-data write passes"]
-  end
-
-  view ==> store
-  view ==> history
-  view ==> recommendations
-  view ==> limiter
-  view ==> cache
-  view ==> api
-  view ==> hydrator
-  view ==> education
-  view ==> synopses
-  view ==> synopsisRunner
-  view ==> restore
-
-  api --> limiter
-  api --> cache
-  hydrator --> api
-  hydrator --> store
-  history --> store
-  store --> restore
-  synopsisRunner --> api
-  synopsisRunner --> store
-  synopsisRunner --> synopses
-
-  subgraph lib["Browser library: contracts, transforms and policies"]
-    model["model: the state shape and every transform of it"]
-    discovery["catalog, route, library, librarySummary, issueFocus"]
-    policy["availability, sort, markdown, filters, shortcuts, theme, API and cover policy"]
-    integrations["name index, wiki parsing, offline registration, version"]
-    backup["completeBackup: the complete file and the exact bytes a restore writes"]
-  end
-
-  view -.-> lib
-  store -.-> model
-  hydrator -.-> model
-  restore -.-> backup
-  api -.-> lib
-  cache -.-> lib
-  launch -.-> lib
-
-  manifest["curated-list manifest"] --> curated["curated.js: Node-only validation"]
-  curated --> vendor["vendor-orders.mjs"]
-```
-
-A thick arrow means constructs and owns; a thin arrow means holds a reference; a dotted arrow means
-calls without ownership.
-
-**The view layer owns state; the library has no mutable singleton service.** Each rate limiter owns
-its queue and two rolling windows at `src/js/lib/limiter.js:11-20`, so separate instances have
-independent budgets. Save education and session synopsis state are instance-owned too.
-
-**Changing the API base replaces the client and cache.** The replacement goes to the Hydrator and
-SynopsisRunner at `src/js/main.js:2447-2461`. In-flight synopsis work is cancelled and its memory
-cleared. The Store stays in place, as does the rate limiter: its budget belongs to the reader's
-connection, not the configured service.
-
-**The app supplies one limiter and cache.** `MarvelApi` can construct its own at `src/js/api.js:68-69`,
-but that fallback is for tests and other callers. The app supplies them to keep one request budget.
-
-**Synopsis state is intentionally separate from saved metadata.** `SessionSynopsis` is a tab-memory
-map and `SynopsisRunner` is a cancellable fetch owner. Neither writes through the Store or the
-response cache. The three independent refusal points are recorded at `src/js/synopsis.js:8-15`:
-normalization drops prose, API cache writes strip it, and the request uses `no-store`.
-
-**Curated authoring is Node-only.** `src/js/lib/curated.js` parses the manifest for
-`scripts/vendor-orders.mjs:31` and `scripts/author-cbh-packet.mjs:6`. These never run in the browser.
-The Node-only `scripts/lib/chapter-orders.mjs` turns a noncatalog source order into ordinary child
-payloads, catalog entries, a reading path, and overlap evidence. The browser needs no partition
-model. Every other module under `src/js/lib/` is browser-reachable.
+`main.js` connects services and screens. Views handle a screen's controls and temporary state.
+Library modules in `src/js/lib/` provide shared rules and transformations.
+The [ownership diagram](ARCHITECTURE_REFERENCE.md#the-module-graph-drawn-as-ownership)
+shows which part creates and holds each service.
 
 ## Routes and generated views
 
-The hash after `#/` holds navigation state. The parser accepts only registered routes at
-`src/js/lib/route.js:24-31`. Publishing and custom Home-category routes share definitions with their
-generated screens. Static panels and buttons use separate markup; keep that markup and the registry
-in sync when adding a panel. Passive address syncs leave hashes awaiting hashchange untouched, so a redraw cannot undo Back or a changed address.
-
-```mermaid
-flowchart LR
-  hash["location.hash"] --> parser["route.js: parse and validate"]
-  parser --> apply["main.js: apply route"]
-  apply --> static["static panels in index.html"]
-  apply --> generated["publishing panels generated from catalog registries"]
-  apply --> state["active list, filter, issue context"]
-  static --> crumbs["breadcrumb hierarchy"]
-  generated --> crumbs
-  state --> crumbs
-```
-
-Most panels exist in `index.html`. Publication-age leaves are the exception: `boot()` calls
-`ensurePublishingViews()` before wiring navigation, so every configured publishing route gets a
-panel from the same registry that made it routable. Issue addresses may also carry validated list
-or bundled-order context, which lets Back and the breadcrumb return to the surface that opened the
-details without guessing at browser history.
-
-Hash routing keeps the address on the same static file and storage origin. Path routes would request
-missing files; changing the origin would select different storage. See `src/js/lib/route.js:1-6`.
-
-Completed lists is a registered Library child route. Its All completed/Enjoyed selection is
-view-local, not a setting or a reader-state field. A completed list remains addressable through
-its ordinary reading route, with real read and deferred counts.
+Navigation uses the hash, the part of the address after `#`, so it does not change the app's
+storage address. Some catalog screens are generated from shared definitions rather than copied
+markup. See [routing contracts](ARCHITECTURE_REFERENCE.md#routes-and-generated-views).
 
 ## How reading content reaches the browser
 
-Curated content and live metadata can meet in Preview, issue details, and issue-focus results, but
-only the Store saves reader data. The catalog is built before release with reviewed sources and
-gaps; browsing it needs no metadata service. On desktop, stopping the server leaves only previously
-cached same-origin resources available, so unvisited content is not guaranteed offline. Live metadata
-is optional. Synopsis prose follows a separate, memory-only path.
-
-```mermaid
-flowchart TD
-  subgraph build["Build time"]
-    sources["source guides and Marvel series facts"] --> evidence["reviewed mappings, ledgers and checklists"]
-    evidence --> vendor["vendor scripts"]
-    vendor --> payloads["pinned order payloads"]
-    vendor --> catalog["catalog.json and reading paths"]
-  end
-
-  subgraph browser["Browser runtime"]
-    catalog --> browse["Home, Preview and paths on Modern Timeline"]
-    payloads --> preview["selected bundled Reading List"]
-    browse --> preview
-    preview --> screen["Preview, issue details and reading screen"]
-    preview -->|"Add Reading List"| store["Store and mrt.state.v2"]
-
-    indexes["vendored series and creator indexes"] --> add["local name search"]
-    add --> api["Marvel metadata API"]
-    api --> responseCache["IndexedDB response cache, synopsis stripped"]
-    api --> comicResults["read-only comic search results"]
-    comicResults --> selected["in-memory selection"]
-    selected -->|"explicit save"| addWriter["atomic list creation and selected merge"]
-    addWriter --> store
-    api --> hydrator["Hydrator"]
-    hydrator --> store
-    api --> details["transient issue detail"]
-    details --> screen
-
-    api --> synopsisRunner["SynopsisRunner"]
-    synopsisRunner --> memory["SessionSynopsis in tab memory"]
-    memory --> screen
-
-    covers["Marvel image host"] --> screen
-    read["Read action"] --> launch["same-origin open.html tab"]
-    launch --> reader["Marvel Unlimited web reader before local December 7, 2026"]
-    launch --> comics["General Marvel Comics website from local December 7, 2026"]
-    launch --> issuePage["marvel.com issue page fallback"]
-  end
-```
-
-Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
-the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:695-757`. Runtime loads and parses that same-origin catalog once at
-`src/js/main.js:2121-2132`, independently of the metadata service.
-
-Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
-from the API into a read-only preview. Issue, series, and creator results share an in-memory selection;
-only an explicit save creates or fills the chosen Reading List. API responses use `no-store`, and
-cache writes remove synopsis prose before IndexedDB sees them, at `src/js/api.js:81-120`. Hydration
-sends normalized factual metadata through the same Store boundary as a reader edit; synopsis requests
-instead end in the tab-memory map and disappear when the tab closes.
-
-A Read press opens the same-origin launch page synchronously so popup permission is not lost,
-at `src/js/reader.js:84-108`. The synchronous device-local date choice is carried into that tab.
-Before December 7, 2026, a known digital ID redirects straight to the Marvel Unlimited web reader.
-Without one, a pinned exact issue page and an already refused metadata lookup open that page
-directly; the same strict HTTPS same-issue validator runs before and after opening the tab.
-Other unknown references retain the configured metadata lookup and use the pinned issue page
-when the lookup cannot resolve a reader ID, at `src/open.js:134-175`. The launch page never
-reads or writes reading progress. From local December 7, it opens the general Marvel Comics website
-without a reader-link lookup. Android uses the same choice and validation in its generated launcher,
-then asks an installed browser to open the destination. It never calls Bifrost or opens the
-Marvel Unlimited app.
-
-The launch tab reads display settings without saving them and follows explicit or system theme.
-It distinguishes a pending lookup, a resolved link, missing metadata, lookup errors, an actual
-timeout and unusable settings. Only pending normal-motion feedback pulses. A missing reference
-offers a same-origin return instead of a generic external link. The shared app keeps conditional
-no-tab guidance visible after a valid dispatch, even when `noopener` returns a null handle:
-that handle does not establish that a popup was blocked. Refusals use their existing exact
-message, and a subsequent valid dispatch replaces it without moving focus or marking a comic read.
+Reviewed reading orders ship as local JSON files. Browsing them does not need the metadata API.
+Optional live requests fill in comic details; summaries stay temporary. Cover images load from
+external addresses and are never stored by the app.
+See [content and reader-launch flow](ARCHITECTURE_REFERENCE.md#how-reading-content-reaches-the-browser).
 
 ## Marking one issue read
 
-Deferral uses this same Store transaction, but belongs to the saved list rather than the shared
-read map. Schema 3 stores each list's `deferredIssueIds` as a bounded, deduplicated subset in
-membership order. Older schemas migrate with no choices. The existing future-schema and stale
-write guards protect the same storage key when a reader returns to an older build.
-
-`queuedIssueIds` supplies both next selection and Coming up, excluding read and deferred comics.
-`listProgress` still reports actual read/total only; `listReadingProgress` adds queued and deferred
-unread counts. Read status takes precedence without clearing stored intent. Membership Undo
-merges only the removed member's captured choice, never another member's later intent or current
-global read timestamps.
-
-List edits, imports, reordering, and background metadata updates use the same Store transaction:
-
-```mermaid
-sequenceDiagram
-    actor Reader
-    participant View as View layer
-    participant Store
-    participant Model as Model transform
-    participant LS as localStorage
-
-    Reader->>View: presses the read button on a row
-    View->>Store: update, passing a transform
-    Store->>Model: transform applied to the current state
-    Model-->>Store: a new state object, or the same one back
-
-    alt the transform returned the same object
-        Store-->>View: nothing is written, nothing repaints
-    else a new state object
-        Store->>LS: write the whole state under one key
-        alt the write succeeded
-            Store->>View: change callback, carrying the new state
-            View->>View: repaint every surface
-            View-->>Reader: announce the change
-        else the write failed
-            Store->>Store: put the previous state back
-            Store->>View: change callback, carrying the previous state and a reason
-            View->>View: repaint every surface
-            View-->>Reader: report why it was not saved, and claim no success
-        end
-    end
-```
-
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1157-1175` passes
-a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:738-740`. The write, result, and notification are handled together at
-`src/js/storage.js:783-810`.
-
-**The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
-Announcements at `src/js/main.js:347-348` depend on save success, so a screen reader does not hear
-"marked read" after a rollback.
-
-**Failed writes repaint too.** The callback receives the previous state and failure reason.
-The UI restores the row and shows a notice rather than making an unsaved change look saved.
-
-**Done's Undo reverses one saved mark, and only while nothing it depends on has changed.** It is
-offered only after the mark is saved. The next Done, a change of view, and ten seconds
-(`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
-offer records the view it was made in, the list's membership and deferral arrays by reference, the
-comic's read timestamp and the list's queue, at `src/js/views/reading.js:1495-1509`. The first
-repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
-or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
-transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
-about the offer is saved. Home's Continue reading has a Done of its own for the list its card shows,
-and it shares the same single offer: the result goes under the card's commands, and that offer
-stands only while Home is the view, so leaving Home or using Done in the reading view ends it.
-
-**Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:3156-3182`, including the rail, reading view, Home, Library hub
-and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
-synchronization. Catalog and generated publishing panels render when their routes need them. Inside
-the reading view, each row is compared against a cache key built from the whole item and its node is
-reused when nothing changed, while the full order is skipped entirely when its container is closed.
-Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:817`, which is what keeps the keyboard where the reader left it. The row list is
-committed by moving nodes rather than replacing the container, at
-`src/js/views/reading.js:39-47`.
-
-**Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
-Not every state replacement goes through that method, though: boot loads state at
-`src/js/storage.js:475-507`, while restore and starting fresh replace it. Restore writes the key
-directly at `src/js/storage.js:979-1063`, bypassing the failed-read latch because it is a chosen
-overwrite, as explained at `src/js/storage.js:1132-1140`. A guard inside `update` does not cover these
-replacement paths.
-
-**Comic searches preview first and save once.** The API delivers each normalized page before it
-requests the next one, at `src/js/api.js:193-230`. Each search owns a read-only run that accumulates
-comics in memory, rejects invalid issue identities, and reports incomplete loads against the API's
-total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
-late responses cannot replace a newer preview. Received partial results remain selectable, with
-an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:629-653`.
-
-The shared selection survives searches and issue-detail navigation, but not a document reload.
-A named new list is the default destination. The explicit save composes creation, selected membership,
-and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/views/add.js:70-93`.
-An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
-A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:337-380`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1146-1150`. Manual entry keeps its existing path.
-
-**Pasted imports have a separate durable source journal.** The storage-owned import draft keeps
-verbatim source (including original full-paste line endings), recognized physical positions,
-explicit match choices and duplicate occurrences. Its pure importDraft helper shares the existing
-checklist parser grammar. Draft-owned membership is projected by earliest resolved source occurrence
-after an unchanged destination prefix; gaps never become reader placeholders. Existing members keep
-their order and editions. Only newly consumed checked occurrences affect shared read markers.
-
-Checked source/pending intent precedes one reader transform; a verified checkpoint follows it.
-The draft key uses its own lock, exact raw freshness check and readback. Reader writers retain their
-existing token/expectedRaw contract, not a shared import lock or two-key transaction. Interrupted
-exact-before retry additionally needs the captured reader token unchanged (absence only for a truly
-empty tokenless before state); exact-after is checkpoint-only and requires explicit acknowledgement.
-Changed-token return-to-before is uncertain, not permission to replay a completed checkbox.
-
-Every draft-file restore mints a new local incarnation, retains prior serialized source snapshots
-inside the same bounded envelope and starts paused. Exported identity never revives a late lookup.
-Destination id/creation/order/edition/deferral checks prohibit retargeting to an edited or replacement
-list. Source and backup ceilings are 8 MiB and 250,000 recognized occurrences, not a quota guarantee.
-Reader schema and reading/history backups stay unchanged. Complete transfer includes the separately
-labeled draft file when present. Unverifiable writes are surfaced and retain guarded source; no
-rollback overwrites a newer draft. Current loaded modules use existing resource-derived offline warming.
-
-Field corrections identify the invalid field, associate its inline report and focus it. An invalid
-optional reader address opens its disclosure before focus moves. Whitespace-only names stay in the
-naming dialog for correction. Explicit series and creator browsing focuses the resulting heading;
-the next Tab reaches the result filter. Selecting wiki details fills the title, focuses it and
-states that the entry is still unsaved. Once a guide is saved, Preview makes Open list its one
-primary action and reports library membership separately, in a status inside the dialog, because
-the page's announcer sits behind the modal; interior dialog padding is not a backdrop dismissal.
+A screen asks the Store, the object responsible for saving reading progress, to apply a data
+change. It saves first, then the screens show the result. A failed save restores the previous
+state and reports the failure instead of claiming success.
+See [saving, Undo and import contracts](ARCHITECTURE_REFERENCE.md#marking-one-issue-read).
 
 ## Where a reader's data lives
 
-Storage declares five key names at `src/js/storage.js:17-21`, and at `src/js/storage.js:1267-1276`
-the settings and sidebar names and the complete restore's own names, so a complete backup can use
-them without importing the controller. The controller still owns settings and the sidebar
-preference, and declares the cache-cleanup key at `src/js/main.js:94`; save education owns another key
-at `src/js/lib/saveEducation.js:1`. The companion history store owns completion and enjoyment at
-`src/js/lib/listHistory.js:8`. Home highlights viewing belongs to `src/js/lib/homeUpdatesSeen.js`.
-Metadata uses IndexedDB, a complete restore's journal uses a second IndexedDB database and cloud
-backup's record a third, offline app files use the Cache API, and synopsis prose stays in memory.
-
-Backup staging and undo are separate from failed-read salvage. They serve different recovery paths:
-
-```mermaid
-flowchart TD
-  subgraph ordinary["Ordinary saving"]
-    change["reading-data edits"] --> live["mrt.state.v2"]
-    completion["intentional completion and optional enjoyment"] --> historyKey["mrt.list-history.v1"]
-    prefs["cover art, theme, D shortcut, API base, chosen filter"] --> settings["mrt.settings"]
-    purge["completed cache cleanup generation"] --> marker["mrt.cache-purge.v1"]
-    rail["desktop collapse or expand toggle"] --> sidebar["sidebar.collapsed"]
-    education["save-location explanation completed"] --> educationKey["mrt.saveEducation.v1"]
-    news["Home highlights explicitly opened"] --> newsKey["mrt.homeUpdates.seen.v1"]
-    meta["metadata fetched from the API"] --> idb["IndexedDB database mrt-cache-v2, store responses"]
-    old["metadata cached by older code"] --> legacy["legacy IndexedDB database mrt-cache, retired when no old tab keeps it open"]
-    shell["successful same-origin GET responses handled by the worker"] --> offlineCache["Cache API cache mrt-offline-v2"]
-    synopsis["synopsis requested by the reader"] --> sessionMemory["SessionSynopsis, tab memory only"]
-  end
-
-  subgraph bootpath["Boot, and the one path where something has gone wrong"]
-    boot["read mrt.state.v2"] --> readable{"readable?"}
-    readable -->|"yes"| running["app runs, saving allowed"]
-    readable -->|"no"| aside["the unreadable bytes must be kept safe"]
-    aside --> slot{"does a salvage copy already hold these exact bytes?"}
-    slot -->|"yes"| adopt["adopt the copy already on disk; write nothing"]
-    slot -->|"no, and the plain slot is free"| s1["mrt.state.salvage"]
-    slot -->|"no, an older incident is in it"| s2["mrt.state.salvage.TIMESTAMP"]
-    adopt --> paused["saving paused; the banner offers a download and a fresh start"]
-    s1 --> paused
-    s2 --> paused
-  end
-
-  subgraph restorepath["Restoring a backup, where nothing has gone wrong"]
-    file["a backup file the reader chose"] --> valid{"valid?"}
-    valid -->|"no"| refused["nothing is written at all"]
-    valid -->|"yes"| staged["mrt.state.restore.tmp"]
-    staged --> snapshot["mrt.state.prerestore"]
-    snapshot --> swapped["mrt.state.v2 replaced"]
-    swapped --> cleared["mrt.state.restore.tmp removed"]
-    cleared --> undo["One-shot Undo or explicit saved-copy restore validates through the same path"]
-  end
-```
-
-Every `localStorage` name the tracker writes, and why it exists:
-
-| Key | Written by | Cleared by | Why it exists |
-|---|---|---|---|
-| `mrt.state.v2` | every saved change, at `src/js/storage.js:875`, and a complete restore | erasing everything, which writes an empty state rather than removing the key | The lists, reading progress, notes, issue ratings and availability overrides. This is the reader's data. Since 4.5.1 the iOS app stores each character above U+00FF, and each C1 control, as a JSON `\uXXXX` escape so WebKit can hold it at one byte per character, but only when that uses less storage than the plain text; text heavy in other scripts is stored as before. Other platforms keep ordinary serialization: Chromium and Firefox count UTF-16 code units regardless of string width, so escaping would use more quota there. Every reader parses either form to the same content (#960). |
-| `mrt.list-history.v1` | the companion history store, with read-back verified writes at `src/js/lib/listHistory.js:374-405`, and a complete restore | verified reader erase followed by checked history cleanup | Exact saved-list identities, completion dates, and optional enjoyment. It has a separate backup and no automatic expiry or orphan pruning. |
-| `mrt.import.draft.v1` | checked source, choices and checkpoints through ImportDraftStore, and a complete restore of a file holding a draft | confirmed draft discard, verified reader erase plus unchanged captured draft/reader cleanup, or a complete restore of a file holding no draft, which its question names | Exact pasted source and positions, explicit matches, pending outcome evidence and retained previous source snapshots. Separate versioned backup; no automatic expiry. Start fresh/cache cleanup preserve it. Reading restore/Undo pause rather than replay it. |
-| `mrt.state.restore.tmp` | a restore from a reading-data file, before anything is swapped, at `src/js/storage.js:1018-1030`. A complete restore staged it the same way until 4.5.1; it now removes any staged copy instead, because its journal already holds the new value and staging it as well put a third copy of the reading data in storage (#960) | the same restore, on the line after the swap, and again if the write throws; any later restore, which overwrites it and then removes it; and the reader's erase | Staging, so the swap cannot half happen. It exists only for the moment between validating a backup and installing it. A removal that itself throws leaves the key behind holding a whole tracker, which nothing reads and nothing offers, so it sits there until the next restore or an erase clears it. Erasing discards it because that dialog says this browser has nothing left, and it is the only route that clears one without a restore. |
-| `mrt.state.prerestore` | the same restore, after staging, verified before reader replacement; a complete restore writes it too | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:1161-1178`, in two of its four routes | Exact prior reader bytes, including legacy raw copies, from a reading-data file restore. Since 4.5.1 a complete restore in the iOS app keeps the prior data in the stored form `mrt.state.v2` describes, which can differ from its exact bytes: it parses to the same content and is compared only with the copy that restore wrote (#960). Everywhere else a complete restore keeps the exact prior bytes. The copy outlives reload and Start fresh. A tab identifies one Undo by the exact snapshot it created; Undo consumes that identity without deleting recovery bytes. After Undo, reload or snapshot replacement, restoration is neutrally labeled as a saved-copy replacement. Both actions confirm replacement and reject changed captured reader/snapshot values. The replaced data becomes the next raw copy, not an automatic Redo. Download preserves raw bytes even if validation refuses them. `undoRestore()` at `src/js/storage.js:1180-1197` validates promotion and refuses an identical live copy. Failed swaps rewind the earlier snapshot when possible; existing rewind withdrawal applies when no earlier copy exists or repair fails, while an unreadable earlier slot is not guessed. Erasing is the deliberate removal route. No persistent direction metadata, combined backup envelope or new reader schema is introduced. |
-| `mrt.state.salvage` | a failed read, and only when the slot is empty or already holds the same bytes | the reader, from Backup and settings | A copy of data that could not be read, kept because saving is paused and the original must not be overwritten. |
-| `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:565-571` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
-| `mrt.settings` | the settings form, cover art, theme, D shortcut and reading filter controls, at `src/js/main.js:518-530`, and a complete restore, which replaces the portable settings and keeps every other stored field | nothing | Preferences, not data, and excluded from reading-progress backups and restores. A complete backup carries cover art, theme, reading filter, D shortcut and description hiding, never the API base, and its restore keeps the saved API base. The current interface ignores description hiding; settings saves and new backups write it as false so older versions restore the same visible summaries. Deliberately outside the state so a settings write can never fail a progress write. The D shortcut defaults on; failed saves apply to this tab with a visible reload warning. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
-| `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:473-492` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
-| `sidebar.collapsed` | deliberate desktop sidebar toggles, inside the persist guard at `src/js/main.js:1086-1092`, and a complete restore of a file that set it | a complete restore of a file made while it was unset | Whether the desktop rail is compact. Narrow open and closed state is ephemeral and never writes this key. Wrapped in its own try, because losing it is not worth an error. |
-| `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
-| `mrt.homeUpdates.seen.v1` | explicit opening of Home highlights, through `src/js/lib/homeUpdatesSeen.js` | actual browser app-storage or owned-key deletion | The highest viewed release batch on this device, held outside reading data and backups. Key-specific locking merges the durable maximum and verifies readback. Failed viewing writes clear New for this visit with a local warning, not a reading-save error. Reading erase, Start fresh, restore and undo keep this preference. Actual absence retires queued viewing requests; only another explicit opening can recreate it. |
-| `mrt.readerClosure.dismissed.v1` | explicit dismissal of Home's Marvel Unlimited notice, through `src/js/lib/noticeDismissal.js` | actual browser app-storage or owned-key deletion | Exact notice identity acknowledged on this device, one per reader phase, so a dismissal before December 7 does not hide the post-cutoff notice, which shows without a reload when the day changes. Like Home highlights, excluded from reading, complete and cloud backups. Reading erase, Start fresh, salvage, pre-restore, complete restore and undo leave it unchanged. Missing, malformed, different or unreadable values show the notice. Failed saves hide it for this page only without a reading-save warning. A materially new notice uses a new identity. |
-| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:939` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
-| `mrt.cloud-backup.sync-pending.v1` | the elected OneDrive check before arming its database hold | a confirmed check or choice, a later successful check, or a successful erase | A device-local election token that blocks other tabs' uploads while a cloud check is unresolved. It contains no reading data and is not included in portable backups or restores. Older builds ignore it. |
-
-Fifteen rows in all: fourteen fixed names, and one family whose suffix is the moment it was written.
-The storage module declares nine of the fixed names: its own five, the settings, sidebar and
-complete-restore marker names it holds for the complete backup, and the cloud-check marker. The
-other five are declared by their owners, which is why an enumeration taken from the storage module
-alone misses them. One route
-crosses every row a complete restore writes: Restore prior data, offered when a complete restore is
-interrupted, puts each key back exactly as it was, so it removes a key that did not exist before.
-
-Only the reader removes salvage copies, one at a time in Backup and settings. The app cannot decide
-that unreadable data is no longer wanted. A copy protecting an active saving block remains listed
-but cannot be removed: downloading or starting fresh still needs it. Removal becomes available after
-the block is resolved.
-
-The erase names itself in seven rows, and that is a different kind of naming. Its reader write must
-be verified as the exact empty payload with this erase's token before history cleanup is allowed.
-Cleanup checks the captured reader and history values again; a later tab's data is not erased.
-Partial or unconfirmed cleanup is reported explicitly. **It does not reach the salvage copies.** Measuring that needs
-a run where the erase actually lands, because a blocked store refuses the write and nothing behind
-that guard runs, so a copy would survive either way and the reading would prove nothing: after
-starting fresh to clear the block and then erasing, `salvageCopies()` answers 1 both before and
-after, and `salvagedRaw()` still returns the bytes that could not be read. Whether that is right is
-filed as `BL-113` rather than settled here, because the copies are listed on the same screen as the
-erase button, each with its own remove control, and so survive in plain sight, which is a different
-thing from the undo snapshot that survived behind a button claiming it had gone.
-
-Protection compares the copy with the main storage slot at `src/js/storage.js:709-732`, not with
-one tab's blocked flags. Another tab may have opened before the corruption and still consider
-itself writable; it must not be allowed to remove the copy protecting the unreadable data.
-
-**Metadata has separate storage.** IndexedDB database `mrt-cache-v2`, at `src/js/cache.js:9-12`,
-keeps its quota separate from reading progress. Older code writes only to legacy `mrt-cache`.
-Startup and manual clearing request that database's deletion and report partial cleanup while an
-older tab blocks it. IndexedDB restrictions and the separate `file://`, `localhost`, and
-`127.0.0.1` storage buckets are documented at `src/js/cache.js:3-5`. The server fixes the origin at
-`server.mjs:21-23`.
-
-**The offline shell uses a different browser store for a different job.** Cache API cache
-`mrt-offline-v2` stores successful 200 responses to same-origin GET requests the worker handles,
-including the warmed app shell and later requested bundled payloads. The worker rejects other
-origins before opening that cache, at `src/sw.js:61-74`, so Marvel covers and metadata responses
-cannot enter it. Network is always tried first, and each cacheable successful response replaces its cached
-copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:77-168`.
-Requests marked `no-store` bypass the worker, and responses marked `no-store` are not stored.
-Worker registration also opts out of HTTP caching for update checks, defensively: the default already
-does so for this import-free worker. App files remain network first:
-reload or relaunch adopts updated served files without forcibly interrupting an open document.
-There is no in-app control that clears this cache. Activation removes older `mrt-offline-*`
-generations but leaves the current one in place, at `src/sw.js:46-58`.
-
-**Synopsis prose is deliberately in no browser store.** `SessionSynopsis` keeps it in a Map that
-dies with the tab. The API request uses `no-store`, the response cache strips the field, and saved
-state normalization refuses it. The separate boundaries mean clearing metadata, exporting a backup,
-and reloading all agree that the prose was temporary.
-
-**The launch page writes nothing.** It reads `mrt.settings` at `src/open.js:62-84` and validates
-the configured API base at `src/open.js:123-132`, without touching reading progress.
-
-**The fault harness has separate keys.** Its backup and quota-filling keys at `src/dev-faults.js:5-6`
-are not written by the tracker.
+Reading data uses `mrt.state.v2` in localStorage. Completion history, preferences, recovery copies,
+cached metadata and offline app files have separate owners and lifetimes. Do not treat clearing
+a cache as permission to erase progress. Changing the desktop address or browser profile selects
+different saved data, not a fresh view of the same data.
+See the [complete storage map](ARCHITECTURE_REFERENCE.md#where-a-readers-data-lives).
 
 ### One thing the drawing found
 
-Drawing the salvage path surfaced a defect that reading it did not. When a second incident is
-salvaged, the copy goes under a dated name because the plain slot still holds the first incident's
-bytes. That decision was remade from scratch on every boot, and the date is taken at the time of the
-write, so reloading the page while still blocked wrote another dated copy of the same bytes. Three
-boots attempted three writes, measured against the module as it then stood. Under a fake storage
-only two keys survive, since all three land in one millisecond and collide on the same dated name;
-three distinct copies is what the browser leaves, where the boots are milliseconds apart.
-
-It cost nothing on a first incident. There is a test for a second, unrelated incident, at
-`test/storage.test.js:444-470`, so the dated key itself was covered; what no test did was load twice
-inside one incident, which is why the repeat was untested rather than tolerated. It cost a copy of
-the reader's whole state per reload on a second one, in exactly the near-quota situation the
-salvage code was written to survive.
-
-It was filed as BL-076 and fixed there rather than here, because this document changes no code. A
-salvage slot already holding these exact bytes is now adopted rather than written again, at
-`src/js/storage.js:534-544`, so the drawing above shows a branch that did not exist when it was first
-drawn. Implementing it found two things this section had understated. The repeat was not only per
-reload, because `startFresh()` salvages before it clears, so the button the banner points at wrote
-one more inside a single boot. And the cost was not only space: near the quota the duplicates
-consumed the room the next copy needed, so a later boot reported that nothing had been set aside
-while the previous boot's copy sat on disk, and the escape hatch refused on that false report.
-
-Pressing the fix turned up a third, worse fault that reading had also missed. Because
-`startFresh()` salvages inside the same boot, two archived copies could take the same timestamped
-name and the second overwrote the first, destroying a copy the reader had already been promised.
-The archived name is now checked to be free before it is used. The lesson is the one this section
-was drawn to make: the fault was found by attacking a claim, not by re-reading the code that made
-it.
+Recovery can lose data too. The [salvage-copy case study](ARCHITECTURE_REFERENCE.md#one-thing-the-drawing-found)
+explains why repeated recovery and failed recovery need explicit checks.
 
 ## Complete backups
 
-A complete backup is one file holding everything a person would move to a new device: reading data,
-completion history, the five portable settings at `src/js/lib/completeBackup.js:39` with the
-sidebar choice, and the import draft or an explicit null. The metadata service address is never in
-it, so a file from anyone cannot redirect the app's metadata requests. The file is canonical JSON with
-no timestamp and a SHA-256 digest of its contents, so the same data always makes the same bytes, and
-it is refused above 32 MiB before it is read. Each component still passes its own single-kind
-validator. Every single-kind restore refuses the complete file with nothing written, which is also all
-an earlier version of the app can do with one.
-
-Import drafts saved before reader-link intake was withdrawn retain their original source positions,
-including unresolved reader URLs, and their selections through complete backup, capture and restore.
-This compatibility path does not admit reader links in a new paste and changes no saved-data format.
-
-Restoring one replaces seven keys belonging to four owners, in seven writes, and a browser can stop
-between any two writes. So a restore takes an exclusive Web Lock that every tab holds shared while it
-can save, prepares every owner's exact bytes first, generated tokens included, and then runs in this
-order:
-
-1. Save a journal holding the backup, every prior value and every prepared value in IndexedDB, and
-   read it back whole, at `src/js/lib/completeRestore.js:928-935`.
-2. Set the marker to `active:` and the restore's id.
-3. Write each component, recording progress in the journal after every write.
-4. Check that every component holds its prepared bytes, record the journal as finished, set the
-   marker to `done:`, and reload, so every owner reads the restored data afresh.
-
-If the active marker cannot be read back, the journal stays unless the marker is confirmed absent.
-The restore reports that nothing was replaced and asks for a restart to check the recovery copy.
-
-Cleanup runs the other way round, and every path that ends a restore's record takes it: the marker
-says `cleaning:`, the journal is removed and checked gone, then the marker is cleared, at
-`src/js/lib/completeRestore.js:684-688`. Over a journal that cannot be read, keeping the current data
-and erase leave the journal for a later start to offer again, and clear only an `active:` or
-unrecognized marker, directly rather than through `cleaning:`, which would tell a later start to remove
-that journal. A `done:` or `cleaning:` marker stays, so a later start that can read the journal
-applies its rows.
-
-**Why a finished restore keeps its journal.** Chromium's storage service holds localStorage writes in
-memory and commits them as one batch at least five seconds later. Only a normal exit, the last page
-using them closing, or an explicit flush commits sooner, and a killed browser loses the batch. An
-IndexedDB transaction's complete event fires after its commit, and strict durability, which every
-journal write asks for at `src/js/lib/completeRestore.js:220`, also flushes it to disk. Both were
-read on 2026-10-28 in Chromium's
-[storage_area_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/storage_area_impl.cc),
-[local_storage_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/local_storage_impl.cc)
-and
-[transaction.cc](https://raw.githubusercontent.com/chromium/chromium/main/content/browser/indexed_db/instance/transaction.cc).
-So the journal reaches disk before the marker that relies on it, but a restore's own writes can be
-lost after the reader was told it finished. The journal is therefore kept under a `done:` marker
-until a start at least a day after the restore finished, with no other Recap Page tab open, cleans
-it up, at `src/js/lib/completeRestore.js:48`, unless the next complete restore, keeping the current
-data, or erase removes it sooner. What survives a kill is localStorage as it stood at its last
-commit, so each component is judged by its bytes against every state the restore passes it through,
-never by the journal's progress. The desktop browser check watches this happen: after a real Edge
-process kill part way through a restore, the marker was gone and the journal was not, and Finish
-restore completed the restore exactly.
-
-The marker, the journal and the stored bytes decide what the next start does, at
-`src/js/lib/completeRestore.js:356`. The first row that matches applies. Rows describe a restore
-toward the backup; Restore prior data runs the same rows toward the earlier data. Finish restore and
-Restore prior data each run only when the recovery shown offers that choice and, decided again under
-the lock, still offers it for the same copy; otherwise nothing is written, and any choices that hold
-now are shown instead.
-
-| Marker | Journal | Stored data | At the next start |
-|---|---|---|---|
-| none, `done:` or `cleaning:` | IndexedDB cannot be read | any | Normal start, because each follows data the reader already accepted. Complete restore is off until the page is reloaded, and its card says the check could not be made; a reload checks again. The marker stays for a start that can read the journal |
-| any other | IndexedDB cannot be read | any | Saving paused: the recovery copy could not be checked. Reload to try again, or keep the current data, which leaves the copy for a later start to offer again |
-| none | none | any | Normal start |
-| none | never advanced | no restore write in it | Normal start; the journal is discarded |
-| none | finished | every kind restored | Normal start, because only the marker was lost; the journal is cleaned up a day after it finished |
-| none or `active:` | matching | some kind in no state the restore passes through | Saving paused: changed outside the restore and never overwritten. The exact prior copy, then keep the current data |
-| none or `active:` | matching | anything else | Saving paused. Finish restore, the exact prior copy, and Restore prior data, or keeping the current data when every kind is already as it was. With no marker, the browser lost the restore's last writes |
-| none or `done:` | a record that fails its checks | any | Saving paused. The raw record, then keep the current data |
-| `active:` | none, failing its checks, or another restore's | any | Saving paused: the recovery copy is missing. Any readable record, then keep the current data |
-| `cleaning:` | none or matching | any | The cleanup finishes, then a normal start. A recovery copy that can be read but not removed, as on a full disk, including one the day-old cleanup after a `done:` marker could not remove, stays with this marker for a later start, and this start is normal with complete restore off until then. The cleanup waits for other tabs, as every cleanup does, so while that copy stays, a tab opened beside another pauses saving until the others close and then opens the same way. A cleanup that cannot save its marker pauses saving and says so as a cleanup |
-| `cleaning:` | failing its checks or another restore's | any | The marker is cleared, then the rows without a marker apply. So a copy that fails its checks, and that keeping or erase could not remove, is offered again at the next start |
-| `done:` | matching | any | Normal start; the journal is cleaned up a day after it finished |
-| `done:` | none | any | The stale marker is cleared, then a normal start |
-| `done:` | another restore's | any | The rows without a marker apply |
-| unrecognized | any other | any | Saving paused: the recovery copy is missing. Keep the current data |
-
-Saving starts paused only when the marker says a restore was running or being cleaned up, or cannot
-be read, so a start with nothing pending renders without waiting for IndexedDB or the lock. Writes to
-the keys a restore replaces wait for the lock's answer instead. With no marker the journal is read
-after the first render; if it then calls for recovery, saving pauses, and anything saved in that
-moment is judged like any other change outside the restore. If IndexedDB or Web Locks is missing,
-only complete restore is unavailable, and its card says why. A journal read that fails once is not
-that: IndexedDB can time out, abort or fail and then succeed, so such a copy is said as one that
-could not be checked, never as missing.
-
-**Keeping the current data, and the exact prior copy.** Keeping the current data decides again under
-the lock, from what it reads then. It removes only the copy that was offered, and only when keeping
-was offered; a copy that can be read again, or any other change, is shown again instead and nothing
-is removed. Where nothing waits for a choice any more, keeping finishes the upkeep that is left, such
-as a cleanup; if that upkeep fails, or clears a `cleaning:` marker and so uncovers another restore's
-journal, saving stays paused and the choices are shown again. A recovery copy that can be read but not
-removed is the exception, for keeping and erase alike: the pause ends, and the copy waits with its
-`cleaning:` marker for a later start, with complete restore off until then. Every recovery action
-ends in a reload, so a pause here would come back at every start for as long as the disk stayed full.
-A copy that fails its checks gets no such wait: keeping and erase end this pause and leave the
-`cleaning:` marker, but the next start, which after keeping is the reload that follows, clears that
-marker and offers the copy again, so every start pauses on it for as long as it cannot be removed
-(#954).
-A journal that cannot be read is never removed or written over: keeping leaves it for a later start to
-offer again, and a new restore refuses to begin over it. The exact prior copy can be downloaded but not restored by this version, which says
-so before the copy is deleted; it is for recovering the earlier data by hand or with help, and #946
-tracks a way to restore it.
-
-**Other tabs.** A restore refuses, with nothing replaced, while another tab of this version is open,
-because that tab holds the lock shared. A tab opened during a restore pauses its saving and reloads
-when the restore lets go, and a page restored from the back-forward cache reloads if the marker
-changed while it was away, so neither writes back what it held before. A tab whose start overlaps
-the end of another tab's restore reloads too. Its lock is requested just after it reads the marker,
-and its settings are read even earlier, so another tab can finish in between and leave nothing
-pending. So when the first lock answer arrives, and again before the deferred journal read, the tab
-compares the marker with what it last knew, counting its own writes, and reloads before it saves
-anything if another tab changed it. A tab still running an earlier version holds no lock and cannot
-see a restore, so the restore question asks for every other tab, including older ones, to be closed
-first. That is a documented limit. A write such a tab makes while a restore or recovery runs is found
-as a change outside it, unless it races a restore write to the same key, in which case it can be
-lost; one made afterwards replaces restored data with what that tab held. Closing older tabs, which
-the question asks for, is the mitigation.
-
-**Known limits.** The `done:` guarantee rests on how Chromium commits localStorage and is verified
-for Chromium only. Chromium does not retry a commit that fails on disk: its commit-completion handler
-only changes how the area is cached, as read in
-[storage_area_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/storage_area_impl.cc)
-on 2026-10-28. So after a disk error a `done:` marker could be saved while an earlier component
-write was not, and the kept journal would be cleaned up a day later with nobody told. Chromium also
-caps localStorage at 10 MiB for each origin, in
-[dom_storage_constants.h](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/dom_storage_constants.h),
-and during a restore the reading-data component holds two copies at once, the saved copy and the
-live value; until 4.5.1 it also held a staged value. So a complete restore of reading data above
-roughly half that cap probably stops part way with storage full and goes into recovery, rather than
-losing data; this is inferred, not measured.
+A complete backup combines reading data, completion history, portable preferences and a saved
+import draft. Restoring it coordinates the separate stores and keeps a recovery journal in case
+the app stops part way through. Read the
+[restore and interruption contracts](ARCHITECTURE_REFERENCE.md#complete-backups) before changing this path.
 
 ## Cloud backup
 
-Cloud backup copies the complete backup to the person's own OneDrive, Google Drive or iCloud Drive
-when the build supports it. A connection alone does not turn it on; the person must agree on each device (#810).
-The page's backup, protocol and comparison logic never sees a provider credential or token; the part
-that puts backup in front of the person is described under The page below.
-
-**When.** Every owner of saved data writes through the guarded storage object main.js makes, and an
-observer around it reports each accepted write of a key a complete backup holds, at
-`src/js/main.js:104`. The coordinator in `src/js/lib/cloudCoordinator.js` decides whether a backup is
-due by content alone: the SHA-256 of the complete backup with the active list left out, compared with
-the newest backup this browser verified. Changes made offline, in another tab or by a complete restore
-are covered that way without special cases. It waits ten quiet seconds, normally runs no more than
-once every five minutes and at most ten minutes after a change, at `src/js/lib/cloudCoordinator.js:28-34`.
-It can also run immediately after a progress check, as described below, or when the page is hidden.
-
-**How.** The protocol in `src/js/lib/cloudProtocol.js` never overwrites anything. Each browser has a
-random stream id and a generation counter, and every backup creates a new file named for both, so a
-lost reply or a request that lands late can only add an older generation. The counter lives in
-IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
-backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
-committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:1966-1977`, because a browser that is killed can roll localStorage back,
-as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
-naming its stream, generation, device label and time, compressed with gzip, and its name declares the
-format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
-create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
-only then does the generation count as made. Each backup can delete up to two of this stream's ordinary
-backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:2242-2244`:
-one delete keeps pace
-with one new file, and a second removes a file that a lost reply or a closed page left behind.
-
-**Sync check and choices.** OneDrive checks the other devices' newest validated backups at launch,
-after a minute away and after sign-in. Google Drive and iCloud retain their existing backup and manual
-restore behavior; they do not yet enable this check. The existing sync key in the cloud database
-stores the last shared match, a legacy declined digest and a kept-copy reference under their
-connection, consent and stream. A separate consent-scoped record stores declined digests per remote
-stream, so choosing Keep for one device cannot erase a choice made for another.
-Comparison explicitly recognizes another device's latest copy of this device's last upload as an
-echo, without suppressing a different device's divergent copy. A declined copy is a kept choice,
-not evidence that this device is ahead. A no-offer result without an echo or a shared match is
-likewise not evidence that the device is ahead. Since #1176 an offer compares a material digest:
-SHA-256 over a `recap-material-v1` prefix and the comics marked read, each list's identity, name,
-order, deferrals and collected-in choices, rating values, and which history records were finished or
-rated. Times, the sidebar order, notes, overrides, saved comic details, settings and the import draft
-are left out. Discovery computes it from the backups it already downloads, so listings and uploads
-are unchanged. New matched, declined and kept-choice values store it; a stored reference is honored
-when it equals either digest, so records written by earlier builds still count. The personal digest,
-which excludes only the active list, still drives upload dedupe, echo recognition, the kept-copy
-reference and its verification.
-Erase removes the record, sync state, per-stream choices, kept-copy ledger and pending recovery
-reference together.
-Context-changing writes inspect the old record and sync state in the same transaction, so an
-older version that erased and recreated the record cannot revive an orphaned reference.
-
-The protocol can independently keep the exact verified bytes of a current backup under a new
-`recap-page-kept-v1-` name. It reserves that exact name, byte length and digest before creation,
-records a returned provider identity before verification, and reads the file back before making it
-the current reference. Its complete content digest includes the active list; its personal digest
-does not. Ordinary pruning cannot remove the independently named file, even in an older tab.
-Uncertain creates remain in the ledger. An unknown identity is adopted only after one exact-name
-match reads back with the reserved byte digest. A later check may reserve a replacement after the
-create deadline if the first is still absent, but it keeps looking for the first. At most three
-unknown-ID creates per connection count toward the reservation cap. A successful exact-name check
-at least an hour after an attempt can exclude an absent reservation from that cap; the reservation
-stays recorded, reported and eligible for later reconciliation.
-
-Only a verified, durably recorded replacement permits automatic cleanup of older kept copies.
-The cleanup aims to keep the newest three recorded copies per connection, never the current or
-either reference in a pending go-back operation, even if this device changes streams or renews
-consent. It uses exact recorded identities rather than filename patterns. One listing
-counts only unique exact-name, exact-ID matches of the recorded size. Before each deletion it
-durably records the intent, then reads the exact file and checks its byte digest. A later attempt
-reconciles that identity, removing the intent only after a confirmed delete or a not-found response.
-Automatic cleanup leaves changed, missing or unreadable copies recorded for attention without
-counting them toward the three. Provider calls use their ordinary deadlines; each local cleanup
-record wait is bounded separately, so accumulated network latency does not expire the whole pass.
-Recorded unverified identities are checked under the ordinary deadlines before a replacement is
-created. A replacement between the last byte check and the provider
-delete can still be removed; the provider contract has no conditional content check.
-Earlier-connection copies are never automatically acted on under the current connection and may
-require manual deletion. A separate durable history witness is written and verified before creating
-a kept copy. Missing history is unknown, not proof that no earlier copies exist; only exact recorded
-entries are eligible for cleanup.
-
-The launch check elects one tab under a separate offer lock, then writes a device-only pending-check
-marker before arming the durable upload hold under the worker lock. Workers refuse uploads while
-either hold remains. Before releasing a confirmed choice, the leader clears the marker while the
-database hold is still set, then releases that hold. A later check replaces an abandoned marker.
-Erase removes the marker along with the cloud records, but portable backup and restore do not carry
-it; older builds ignore it. If the marker and database hold both cannot be written, the card warns
-that the hold is unconfirmed and says to turn automatic backup off. If the checking tab then closes,
-an older tab may upload; issue #1161 tracks this remaining case. Other tabs follow a confirmed shared
-hold; no worker waits for the person's answer while holding its upload lock. When a hold is confirmed,
-failed or inconclusive checks leave uploads paused until a later check succeeds or the person confirms
-the warned override.
-A late check is quiet, and closing the question leaves the offer available. The banner's dismiss
-control records the same choice as Keep for the offer it shows, once per device that check found
-different, and a withdrawn offer is announced only to someone who had its question open. A choice is bound to the
-connection, consent, election, local content and selected remote identity and bytes, and is rechecked
-before it is applied. While a choice waits, the watcher lists identities and sizes without downloading
-unchanged files, backing off from five seconds to five minutes. Since a same-size in-place change is
-not visible in a listing, the final choice still downloads and checks the exact bytes. An unreadable,
-ambiguous or unsupported newest stream, or more than 16 other streams, makes the check inconclusive
-and leaves uploads paused; issue #1164 tracks a recoverable partial-result design.
-
-Before Load, a local snapshot with data or settings to preserve, or an earlier kept reference, is
-independently kept and verified without publishing it as a new ordinary backup. The protocol reuses
-an exact verified copy when available. It stages the kept reference without activating it or pruning
-history until the complete restore succeeds; the restore also creates its existing local journal and
-recovery copy. Before restore begins, a connection-scoped pending reference, the earlier reference,
-an operation identity and the expected restored-content digests are verified and recorded under the
-backup worker lock. The expected content includes the restore's retained import-draft sources. After
-recovery finishes, a later check compares the current content with both the restored result and the
-kept pre-restore copy. It compares exact digests first and, if the two personal digests differ, also
-accepts a personal match that ignores only the active list.
-When the restored content is present, one transaction activates the staged reference and clears the
-pending record. When the pre-restore content remains, the check clears the pending record and preserves
-the earlier reference. A restore that wrote nothing clears only its own staged operation, unless an
-unchecked restore marker may still let its journal finish after reload.
-
-If the result or its cloud copy cannot be confirmed, Go back is unavailable rather than pointing to
-an older copy, and a new Load is disabled. Missing or changed kept files do not make an otherwise
-conclusive cloud check fail. Keep remains available for an offer, and the card offers a confirmed
-Continue without Go back action. That action clears the current connection's pending and Go back
-references without changing local progress or deleting cloud files; later retention may remove older
-copies. Another account's pending reference is kept separately and cannot block this one. Deleting
-this device's cloud backups clears its pending reference only after deletion is confirmed. Portable
-backups and restores do not include these local records, and older builds ignore them.
-A genuinely empty device with default settings and no earlier kept reference skips the cloud safety
-copy and omits the copy promise. An empty device with an earlier kept reference preserves the empty
-state so Go back remains accurate. The offered choice is withdrawn if either reference changes.
-Go back similarly protects the current data before consuming the exact verified kept reference.
-Once the loaded data passes its next check,
-an ordinary backup is due immediately rather than waiting for the normal spacing. A later check also
-backs up immediately when a kept recovery copy exists and this device differs from its last verified
-upload. This keeps Go back from leaving the replaced progress as the newest ordinary backup; it can
-also bypass the usual spacing for subsequent local changes when a check runs. Network and visibility
-events are queued while restore writes are underway; local invalidation can still stop them. If
-connectivity is lost after verification and the choice remains locally valid, the staged reference
-can still be activated, and cloud cleanup waits for a later kept-copy operation. The card exposes only
-the current kept reference, not a list of older retained files. The provider cannot atomically prevent
-a different device writing after the final check, so a later remote change is not globally serialized
-with restore. Ordinary discovery counts kept-looking files as other files without reading them.
-
-A connection belongs to the Windows host, the Android app or the iOS app; the Windows host shares it
-between browser profiles, while consent belongs to each browser. So every list, read, create and delete names the
-connection this browser agreed to, and the host refuses any other: after another profile reconnects,
-perhaps to another account, backups stop until this browser has seen what that account holds and
-agreed again, and nothing it verified before counts as backed up there. Consent given again, even for
-the same connection, is a new consent with its own random id, and a backup counts only under the
-consent it was made under.
-
-The upload hold, comparison state and kept-copy history are local cloud-database records, not new
-fields in backup files. An older build does not read or enforce the hold and can upload without this
-check, so it must not be relied on to participate safely in the new choice. Existing saved-data and
-backup-format compatibility rules still apply.
-
-**Copies of the record.** A device or system backup can bring the stream record back: an iPhone
-restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
-or Android profile restored the same way. Such a record holds a counter behind the files its stream
-already has, and nothing on any platform says so. So every backup lists before it creates, at
-`src/js/lib/cloudProtocol.js:2182-2183`: a file of this stream at or above the number just taken, or a
-create refused because its name is taken, means another copy of the record is in use, and the browser
-starts a new stream, committed with strict durability and read back, rather than use that number. The
-old stream's files are left alone, because the other copy may still be making them, and discovery
-shows them as another device's under the same label. The Windows host asks OneDrive to refuse a taken
-name in the create's request body, where Microsoft's upload-session reference puts that request and
-documents a 409 for a name already taken. Asked only in the request's address, OneDrive replaced the
-existing file when the owner tried it on 2026-10-29, which would let the second of two copies that take
-one number at the same moment replace the first one's backup without either knowing. Google Drive
-allows one name twice, so there two copies that take the same number at the same moment can both
-create it, and discovery, which shows a number once, could offer only one of them. So with such a
-provider every backup lists again after its create: a copy that finds another file of its own stream
-and number removes its own, starts a new stream, and makes the backup again within seconds, when its
-coordinator retries, so each copy's data stays one discovery offers, without waiting for that data to
-change.
-
-**The transport.** Below the protocol is one transport per page, the only way the engine reaches a
-provider, and no token ever crosses it. It is installed through one registration point in the page's
-wiring, at `src/js/main.js:2609`: the Windows host's fetch transport, or the bridge the Android app or
-the iOS app (#949) supplies. Its four operations act on the app's own area of one account, and each
-names the connection the page's consent was for:
-
-- `list` resolves to every item as an id, a name, a size and a creation time. An area not made yet
-  lists as empty.
-- `read` resolves to an item's bytes. It refuses an item whose stored bytes exceed 32 MiB without
-  returning them; the upload cap, by contrast, applies to the envelope before compression.
-- `create` makes a new item and resolves to it. It never knowingly replaces one and refuses a name it can
-  tell is taken. A lost reply can leave an uncertain create even when reported as a connection failure.
-  A transport whose
-  provider keeps two items under one name, as Google Drive does, says so with `duplicateNames: true`.
-- `delete` removes an item, and one already gone counts as removed.
-
-Item ids are opaque and may equal file names, as the iCloud Drive transport's do. A connection id is opaque too,
-and the provider mints one at each connect: the Windows host 32 random hexadecimal digits, kept only
-when the same account signs in again after its sign-in expired, so its backups resume, and the iOS
-provider one it binds natively to the device's iCloud identity. The engine takes any string of 1 to 128
-characters without control characters and compares it exactly. Each operation settles within the
-deadline the engine states at `src/js/lib/cloudProtocol.js:43`: two minutes for a list, ten for a
-read or a create, and thirty seconds for a delete. The engine waits fifteen seconds more for the
-reply, then counts the operation as timed out. The Windows host holds each to five seconds less, from
-its token store through every request. A request whose page closed, or that was given up on,
-settles on the provider's side with no reply to the page that loads next, and the list before the
-next create shows whatever it left. Refusals carry a code, and may carry the wait a provider asked
-for:
-
-| Code | Meaning | What happens |
-|---|---|---|
-| `needs-consent` | The provider holds another connection than the one named, or the person deleted the app's area in the account | Backups stop until the person sees what the account holds and agrees again, and a deletion stops |
-| `not-connected` | There is no connection | As `needs-consent` |
-| `needs-sign-in` | The connection stays, but its sign-in has to be made again | Backups stop in a visible sign-in-again state, never silently |
-| `unavailable` | The provider is busy, throttled or unreachable | Retried with backoff, never sooner than the wait asked for |
-| `timeout` | No answer within the deadline | Retried, and a create's number stays spent |
-| `too-large` | An item's stored bytes exceed 32 MiB | A read counts the item as failing its checks; a create stops backups until the data changes or the person retries |
-| `exists` | A create's name is already taken | The browser starts a new stream, and the next backup is its first |
-| `not-found` | The item is gone | A read skips it, a restore says it is gone, and a delete counts it as done |
-| `quota` | The account is full | Backups stop until the data changes or the person retries |
-| `refused` | Refused for a reason no wait fixes | Backups stop until the data changes or the person retries |
-| `invalid` | A request or an answer this version does not expect | Backups stop until the data changes or the person retries |
-
-Status answers in one of three ways: the account's state as the provider holds it; not enabled, for a
-build without cloud backup; or transient, when nothing answered, the server failed or the provider was
-too busy to say. A transient status says nothing lasting, so the backups a browser agreed to keep
-running, or start, and their own backoff carries the outage. Only a definite answer stops them, such as
-another connection, none at all, or a sign-in to make again.
-
-**The Windows host.** On Windows the local server answers the transport itself, under one prefix on
-the app's own origin, so the page needs no cross-origin access. The host's six modules in `host/` load
-at the first request there, and only in a build that carries a file in the client configuration's
-format, which the host then checks in full; any other build answers 404 there, as for an unknown path,
-and loads nothing new. A file the host refuses is said once in the server's log, and answered 404 for
-the rest of the server's life, and a file over 4 KiB, or anything but a file, is never read. A packaged
-build, one carrying `src/build-info.json`, reads only the configuration its packager put beside the
-server, and a checkout only the path in `MRT_CLOUD_CLIENT_CONFIG`, which the MSIX launcher leaves out of
-what it hands the server. The host answers only POSTs from the app's origin made by a process in the
-same Windows session, and keeps every token to itself. A request's body has five seconds to arrive once
-the host starts reading it, inside the five seconds each operation's deadline keeps in hand, and one that
-has not arrived by then is answered 408 and its connection closed. It takes at most 16 requests at once
-and 1,200 in any minute, from every browser profile together, and turns the rest away unread with 429,
-with the time to wait once the minute's limit is reached; the page reads either as the host being busy,
-and tries again no sooner. The startup contract binds the six modules'
-bytes as startup files, allows the server exactly one dynamic import of the host, and pins every
-startup source's imports to an exact list, Node's built-ins included, so the host's modules import
-nothing but one another and the built-ins listed for each. A built-in that loads code from elsewhere,
-such as `node:module` for `createRequire`, cannot be added without changing that list, and the two ways
-to load code without an import, `process.getBuiltinModule` and `process.dlopen`, are refused by name.
-
-**The page.** `src/js/lib/cloudBackup.js` holds the transport, the protocol and the coordinator
-together for the Cloud backup card in Backup & settings, which `src/js/views/cloud.js` draws. The card
-stays hidden until the page learns the build has cloud backup: opening Backup & settings asks the
-transport for the account's status once, and a build without it answers 404, so it shows nothing. At
-startup nothing is asked at all unless this browser's record exists, which `indexedDB.databases()` says
-without creating it, and holds consent. Backups run only while the host holds the connection
-this browser agreed to, and the switch that agrees comes after the card has shown what the account
-holds. A sign-in happens in the browser, and the card asks the host every two seconds until it ends.
-Turning backups on or off in one tab reaches the others through a broadcast channel. Before its first
-write, an erase stops this page's backups, takes the worker lock, after any backup another tab has under
-way, and sets this browser's consent aside in its record, so no tab backs up the erased state, not even
-one where backups are turned on meanwhile. The lock ends with the page that holds it, so an erase that
-cannot take it, or cannot confirm consent set aside, erases nothing and says why. One that goes ahead
-then forgets the record, so the next consent starts a new stream, or, having erased nothing, puts the
-same consent back, and only then lets go of the lock; and it disconnects the host for every browser
-profile, as its question says. A page that dies during an erase leaves consent set aside, which nothing
-puts back by itself, and the card says backups stopped until the person turns them on again. A record
-that fails its checks also stops backups and is said on the card, and turning backups on then starts a
-new stream, so discovery shows the old stream's files as another device's. A record the browser could not
-read at all is not reported that way, because it may still be intact, and a later turn-on would keep it.
-
-**Discovery and restore.** Before a browser's first upload it lists what is already in the account:
-for each stream, the newest file that passes every check and the one before it. Discovery only lists
-and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:2064-2069`, so a small file that expands without end costs no more than the
-cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
-there is read and checked again, then restored through the complete restore engine above.
-
-**Deleting.** Deleting this browser's cloud backups withdraws its consent first, then deletes its
-ordinary backup generations and its recorded kept copies for the exact current connection, once any
-backup another tab has under way is done. It rechecks each kept identity and byte digest before
-deletion, preserves and reports any that cannot be checked, and leaves earlier-connection entries
-alone. An unreadable kept-copy ledger does not stop regular generations being deleted; the report
-states that kept copies could not be handled. An exact identity already absent is removed from the
-ledger without claiming another deletion. An absent create reservation remains recorded and is
-reported as attention, not as an undeleted file. The card and question report recorded earlier
-copies when known and warn that other copies
-may need deletion in their cloud folders. On OneDrive every file this app deletes goes to the person's recycle bin for up to 30 days unless it is
-emptied, because the access the app asks for cannot delete permanently. A person who deletes the app's
-folder there has withdrawn consent in the contract's terms: the Windows host knows the folder by its id,
-so its next list or create finds it gone, gives the connection a new id, and every browser sees what the
-account holds and agrees again before a backup makes the folder anew. Until the host restarts, its
-status gives that reason, so those browsers' cards say the folder was deleted rather than that OneDrive
-was connected again.
-
-**Providers.** A host offers one or more providers and holds at most one connection, to one of them, at
-a time. Its status lists the providers it offers, OneDrive first, and names the one it holds; a connect
-names the provider it wants, and one naming none means OneDrive, so a page written before Google Drive
-keeps working. The card offers a choice only when a build offers more than one, and Google Drive never
-appears in the iPhone and iPad app. Google Drive is offered on Windows alone so far, and only by a build
-whose client configuration carries Google's desktop client, so every Windows and Android build today
-offers OneDrive alone. The iPhone and iPad app offers iCloud Drive, and OneDrive beside it only in a
-build whose release supplies the OneDrive client; its status lists iCloud first.
-Android has Google Drive's operations built and tested but no way to sign in to Google yet, because
-Google no longer accepts an app's own address scheme on Android, so nothing there makes one. Google
-Drive asks for the `drive.file` scope and nothing wider, which reaches only the files this app made or
-the person opened with it, and keeps the backups in a visible Recap Page folder at the top of the
-person's Drive, the oldest such folder if two devices made one at the same moment. Windows signs in as
-a desktop app through a loopback address with PKCE. A delete puts the file in Google Drive's trash,
-where Google keeps it for 30 days. Google Drive keeps two files under one name, so its transport
-declares `duplicateNames: true`. An upload whose reply was lost is settled by asking Google's upload
-session what it holds, and one that cannot be asked is asked again before the next list, so a create
-never reports a file that did not land. A folder put in the trash or deleted counts as consent
-withdrawn, as on OneDrive. Disconnecting forgets the sign-in on that device alone and never revokes the
-grant at Google, because a revocation ends the tokens of every client in the project, so it would sign
-out the person's other devices too. Removing the app everywhere is done from the third-party access
-page of the person's Google Account.
+Cloud backup is optional and requires consent on each device. Shared browser code validates
+backups; platform code signs in and accesses the person's own cloud storage. No project-run
+storage service is involved. See [backup, consent and provider contracts](ARCHITECTURE_REFERENCE.md#cloud-backup).
 
 ## What is intentionally centralized
 
-The controller owns routes, shared events and rendering, and long-lived services. Constructed views
-own local rendering, interactions, and temporary state. Propose architecture changes in an Issue,
-stating which contracts remain and which change.
-
-The stable boundaries in this document are behavioral:
-
-- The Store remains the only ordinary writer of reading progress.
-- Completion and enjoyment belong to an independent history store, not the reader schema.
-- Routes and panels derive from shared registries rather than duplicate lists.
-- Vendoring finishes before release and writes one atomic generated output set.
-- Cached factual metadata, the offline shell, temporary synopsis prose and reader data remain in
-  separate stores with separate lifetimes.
-- A Read press opens its same-origin launch tab before any asynchronous lookup.
-
-A future file split that preserves those contracts changes the ownership diagram's boxes, not the
-data flow. A change that introduces scheduling between a Store update and its repaint, moves
-synopsis prose into durable storage, or makes a reader lookup precede `window.open` changes the
-architecture and must rewrite the relevant section rather than merely re-aim its citations.
+Keep shared coordination in the controller, screen-local work in views, and ordinary reading
+writes in the Store. A Read press must open its new tab before waiting for a metadata lookup.
+See [the boundaries to preserve](ARCHITECTURE_REFERENCE.md#what-is-intentionally-centralized).
 
 ## Reading Paths are a catalog projection
 
-Reading Paths add no second content or persistence model. Build-time authoring emits path
-descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
-parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1637-1690`, including paths
-emitted from a partition ledger rather than declared in the ordinary curated manifest, at
-`scripts/lib/chapter-orders.mjs:406-416`.
-
-That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:773-791`.
-The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
-paths remains a separate stop in each sequence.
-
-Modern Timeline follows a path rather than a page of its own, since #897 retired the Reading paths
-page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
-stops in the path's own order, each led by the reading the path names, at
-`src/js/views/catalog.js:98-110`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:3959-3965` and
-`src/js/main.js:3985-3986`. The followed id lives only in the validated `path` query of the
-Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:311-313`. The retired
-page's addresses parse to the Timeline following the path they name, with the first path as the
-page's own fallback, at `src/js/lib/route.js:358-364`.
-
-The catalog view owns the followed path with the rest of its narrowing, under the async generation
-that rejects stale or hidden continuations at `src/js/views/catalog.js:417-420`. It lets a path that
-no longer resolves go, follows the first path for a retired address naming none, and asks the
-controller to canonically replace that route at `src/js/views/catalog.js:461-475`. A deliberate
-choice instead asks the controller to push history, at `src/js/views/catalog.js:652-662`.
-
-Progress is a projection of reader state and completion onto each stop, by the Timeline's own rule:
-a stop is finished when the saved copy it is counted by is marked completed or read in full, so
-unread or deferred comics never finish one. Each stop is counted and drawn by the imported list
-whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
-the reading the path names, at `src/js/views/catalog.js:40-54` and `src/js/views/catalog.js:74-96`. The
-place and the path's own progress are repainted in place by the Timeline's position-only refresh,
-which every Store-driven render calls at `src/js/main.js:3165`, preserving the selector, the stops
-and their DOM identities.
-
-Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
-retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
-**You are here**, at `src/js/views/catalog.js:378-402`; a jump opens, saves and marks nothing.
-Opening or previewing a stop records the path and that control in the current history entry, after
-any selection has settled, while its source address is retained, at `src/js/main.js:3841-3860`. After Back renders that path,
-focus returns to the control and brings it into view at `src/js/views/catalog.js:404-415`; there is
-no scroll position in saved reading data. Shared history-entry positions yield to this explicit
-opener so the focused control remains in view.
-
-Catalog shelves, Preview and generated publishing pages share one constructed presentation
-contract for individually titled cards, exact-list inspection and source attribution.
-That internal module imports neither the controller nor another concrete view; the controller injects
-navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3862-4072`.
-
-Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
-the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
-library revision and Preview session; navigation or a newer Preview cancels stale loading,
-rendering and focus work.
+A Reading Path is an ordered set of bundled reading lists, not another saved-data format.
+Modern Timeline shows it using the catalog and existing reading progress.
+See [path resolution and navigation](ARCHITECTURE_REFERENCE.md#reading-paths-are-a-catalog-projection).
 
 ## Modern Timeline position is a Store projection
 
-Modern Timeline stores no cursor. Its catalog view builds one first-match index from the saved
-Reading Lists' catalog identities, walks the canonical unfiltered story order and stops at the first
-representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:29-71`. Grouped
-stories retain their shallowest-owned representative for logical stop completion, but each
-alternative has its own card and the marker belongs to that specific list. A catalog with a
-dropped entry reports the position as unavailable because the parser no longer has enough identity
-or order information to place that gap.
-
-Filtering changes only the visible list keys. The view retains canonical stories and visible keys
-from the current successful render, derives position from live Store state, and rejects marker
-refresh while a newer catalog render is pending, at `src/js/views/catalog.js:209-265`. A hidden
-current story is named rather than replaced, full completion sits after the unfiltered spine, and
-filtered completion is stated before the narrowed results.
-
-The shared presentation contract removes the previous positional state and paints exactly one
-current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:167-218`. Only the visible current list receives
-`aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3945-3987`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:3156-3182`. That refresh leaves cards, controls, focus and scroll
-intact across same-tab and cross-tab state changes.
+The current place is calculated from saved progress, not stored as a separate cursor.
+Filtering does not change that progress.
+See [position and refresh rules](ARCHITECTURE_REFERENCE.md#modern-timeline-position-is-a-store-projection).
 
 ## Completion is independent history, not a reader migration
 
-Issue ratings are a sparse map in the primary reader state, with one numeric value from 0.5 to
-5 per issue ID. They do not require a read marker, list membership or saved issue metadata.
-Clearing removes the entry; read/unread changes and list removal retain it. The Issue editor
-discloses its full controls only on request, keeps unsuccessful drafts, and withdraws Save when
-the saved score or saved comic identity changes.
-
-Schema 4 adds ratings to the existing primary persistence, backup, restore/Undo and erase
-contract. Schemas 1 through 3 migrate with no ratings; schema-3 deferrals remain intact.
-Malformed schema-4 ratings are refused rather than silently dropped. Older builds cannot read
-schema 4 and preserve it through their existing unsupported-schema recovery path. No second
-ratings store, backup file or cloud service is introduced.
-
-The Library's Top-rated shelf and the `#/library-rated` browser are derived views over that same
-map, so they add no key, schema change or migration. Filters are route state only. Character guide
-filtering reads `src/data/rated-guide-index.json`, which the vendor writes in the same atomic batch
-as the catalog. It records which guides contain each issue and those guides' editorial character
-labels, so a match is a guide association rather than a verified appearance. The index loads on
-entry to the browser; while it is pending or has failed, the character filter is reported as not
-applied rather than silently ignored.
-
-The reader uses schema 4 under its existing key. Issue ratings join its primary backup; list
-completion and enjoyment stay in the companion history. Ordinary completion, list enjoyment and
-reopening do not rewrite valid current reader bytes, including the write token. Supported older
-reader data remains accepted by history normalization.
-
-History matches the existing list ID, creation value, and catalog identity exactly. Removed-list
-records remain for matching Undo or reader restore; duplicates and recreated identities do not
-inherit them. Reopening clears completion while retaining an optional rating. Counts stay actual
-comic progress, and the active shelves derive their selection without changing the reader's saved
-active list merely because completion changed.
-
-History mutations capture their current stored value before waiting for a native browser lock,
-then compare full values and verify the write by reading it back. Stale operations adopt current
-data and refuse the old action. Unsupported locking is visibly read-only, and unreadable or newer
-history is retained rather than treated as an empty collection. Legacy lists with ephemeral IDs
-use only the existing canonical reader normalization, guarded by exact reader bytes and durable
-identity verification before history can be attached.
-Changed and idempotent list actions return that verified identity as transient result metadata.
-The controller matches it against the current view and list before announcing success or moving
-focus. Same-ID normalization is accepted; subsequent identity replacement is not.
-
-Reading backups, restores, and restore Undo remain independent. History export and confirmed
-replacement have their own controls. A differently labelled saved-value copy preserves unreadable
-history for troubleshooting, but is not accepted as a normal backup. Reader erase and history
-cleanup verify exact current witnesses, with partial cleanup reported rather than hidden.
-Verified reader erasure synchronously withdraws the old removal buffer and temporary reader
-links before waiting for history or cache cleanup. Its exact empty-reader bytes are a transient
-witness, not a saved field. After the waits, the callback adopts current history, queries the
-current restore snapshot, and compares/adopts reader data against that witness without withdrawing
-newer offers. Snapshot reads can opt into error reporting while ordinary rendering retains its
-no-argument behavior. Explicit cache false or throw and unknown final reads are warnings, not
-empty-state success; the cache owner's existing default unavailable-access policy is unchanged.
-
-The wrap-up resolver uses the catalog's actual Reading Path and Modern Timeline sequences,
-verified writer-role credits, and exact series identities with strictly later publication spans.
-Keywords only shortlist candidates; missing evidence never becomes a displayed relationship.
-It excludes source siblings, completed or wholly read stories, and known wholly globally read
-candidate rosters even without saved membership. Work is bounded to six cards, six candidate
-files plus at most one source file, and a cache of at most 12 files or 4,096 issue records.
-
-Saved suggestions open their existing copy; other suggestions open Preview without importing.
-Request identity, cancellation, reader-state identity, list identity, and completion revision
-reject stale results after navigation or reopening. Feedback links are static, with no private
-values in their query. A thumbs choice never submits a report; public list corrections and private
-data-loss/security reporting are separate opt-in routes.
+List completion and enjoyment live in a companion history store. Individual comic ratings live
+in the primary reading data. Keep those different identities and backups intact.
+See [history, ratings and recommendations](ARCHITECTURE_REFERENCE.md#completion-is-independent-history-not-a-reader-migration).
 
 ## Where to read next
 
-[Why this is a browser app and not an Android emulator](WHY_A_BROWSER_APP.md) records why the app
-sits beside Marvel Unlimited rather than replacing it. [Data provenance](DATA_PROVENANCE.md)
-continues the build-time side of the content flow, and [Maintaining Recap Page](MAINTAINING.md)
-owns the procedures that generate and release it.
-
-The [historical-documents index](HISTORICAL_DOCUMENTS.md) distinguishes the original UX study and
-dated design records from current guidance. Earlier recommendations are evidence, not requirements;
-the current contribution contract, running guide and tested routes own the behavior expected now.
+Use [the running guide](RUNNING.md) to start the app, [data provenance](DATA_PROVENANCE.md) for
+content sources, and [the maintainer guide](MAINTAINING.md) for checks and releases.
+[Why a browser app](WHY_A_BROWSER_APP.md) explains the platform choice.
+The [historical-documents index](HISTORICAL_DOCUMENTS.md) separates old design records from current rules.
 
 ## The Windows package is a launch envelope
 
-The x64 and ARM64 MSIX packages add a small JavaScript coordinator around the existing browser
-companion. They do not add another application runtime or persistence model. Start launches the
-architecture-matched packaged Node executable with `Launcher.mjs`. The coordinator removes every
-casing of the two environment values that can change the origin or suppress browser opening, starts
-the same Node executable with `server.mjs` as a hidden detached process, and waits for a cache-proof
-health response naming the digest of the exact package inputs. It also verifies that the listener is
-the current package's Node executable running the current packaged server command. Only then does it
-open the external browser. Another activation applies the same checks before reuse. A foreign or
-older listener, launch failure, or readiness timeout remains visible with corrective guidance.
-
-Direct manifest activation of Node was measured first. It started the right command and served the
-right origin, but its console closed immediately when Node refused an occupied port. Package Support
-Framework kept the command wrapper visible, but Microsoft's distributed binaries may send
-usage telemetry when Windows diagnostic collection is enabled. An x64 C# launcher proved the
-installed behavior, but the Windows inbox compiler cannot emit ARM64. The selected coordinator uses
-the official Node runtime already in each package, so both entry processes are native to their slice
-without a second runtime or a higher Windows version floor.
-
-The background server normally lasts until the Windows session ends, the package is updated or
-removed, or the reader explicitly ends it in Task Manager. Closing the browser does not stop it.
-This is intentional: the first Store certification run proved that tying the server to a visible
-console can leave the service worker showing a cached shell after the server has died. The shell
-cannot safely imply that uncached local data remains available, so its cache-proof health probe also
-drives recovery guidance for catalog, Reading List, creator-index, and series-index failures.
-
-Package files remain read-only. Browser state remains under `mrt.state.v2` and the other stores
-described above, in the external browser's exact origin and profile. The package never reads or
-writes those stores. [The Microsoft Store package guide](MICROSOFT_STORE.md) owns build, proof,
-identity, cleanup, and remaining publication gates.
+Windows packages start the same local server and open an external browser. They check the server
+before reusing it and do not hold the browser's saved progress.
+See [Windows startup details](ARCHITECTURE_REFERENCE.md#the-windows-package-is-a-launch-envelope)
+and [packaging procedures](MICROSOFT_STORE.md).
 
 ## The public project home is not an app entry point
 
-GitHub Pages serves a separate information site. A deterministic builder copies approved HTML, CSS,
-and showcase images into ignored staging. Deployment uploads only that allowlist, never `src` files,
-a manifest, a worker, or a launch page.
-
-The page has no script or form. Ordinary links lead to maintained documentation, releases, and issues,
-where the detailed guidance stays.
-
-The question form is also hosted by GitHub. Before linking, the page explains that posting requires
-sign-in and makes the Issue and replies public. The tracker calls neither surface. The form receives
-only what a visitor types, and neither surface can read storage at `http://127.0.0.1:8787`.
-
-```mermaid
-flowchart LR
-  source["pages source and approved showcase images"] --> builder["allowlisted Pages builder"]
-  builder --> artifact["approved static deployment artifact"]
-  artifact --> pages["GitHub Pages project home"]
-  pages --> docs["maintained repository documents"]
-  pages --> questions["public project-question Issue form"]
-  tracker["local tracker at 127.0.0.1:8787"] -. "no data path" .-> pages
-  tracker -. "no data path" .-> questions
-```
-
-[Maintaining Recap Page](MAINTAINING.md) owns the exact form contract, deployment settings, hosted
-verification and rollback order. Removing source files alone does not unpublish an existing Page,
-and removing the form cannot recall an Issue or reply that GitHub has already published.
+GitHub Pages hosts information, not the tracker. Its approved file list excludes app pages and
+saved data. See [the website boundary](ARCHITECTURE_REFERENCE.md#the-public-project-home-is-not-an-app-entry-point).
 
 ## The iOS app serves the same pages from its own origin
 
-The [iOS app](IOS.md), in development, loads the same generated pages as the Android app from its own
-bundle, at `recappage://localhost` rather than `http://127.0.0.1:8787`, because iOS cannot hand http
-to an app. A native scheme handler does what the Android app's request interception does: it serves
-only the files its manifest lists, with the Windows server's security headers and, as on Android,
-`frame-src 'none'` and `worker-src 'none'` added to the content security policy. Reading data is stored
-under that origin in WebKit's storage, which allows each origin 5 MiB;
-[Storage capacity](IOS.md#storage-capacity) records what that holds.
+iPhone and iPad use the shared pages in WebKit with app-local storage and a native file handler.
+Their storage address is separate from desktop. See
+[iOS serving and storage](ARCHITECTURE_REFERENCE.md#the-ios-app-serves-the-same-pages-from-its-own-origin)
+and [the iOS guide](IOS.md).
 
 ### iCloud Drive backup
 
-The iOS transport answers the shared cloud backup contract through the app's existing script-message
-handler. The provider is `icloud`, the first entry in its `providers`, and `connect({provider:'icloud'})`
-records a connection against the device's current iCloud identity. The page sees no identity token.
-Disconnect forgets that connection, not the device's iCloud sign-in. Files live in Documents in the
-app's ubiquity container, which the Files app shows as **Recap Page**, not in CloudKit.
-Every native file operation carries its validated account identity into the store. The store checks it
-again after the off-main container lookup and before coordinated file I/O, so a change of account
-while lookup is suspended refuses the operation instead of using the other account's folder.
-
-The native store coordinates file reads and writes and refuses a create whose name already exists.
-A read requests a download if needed and returns a retryable refusal if it is still downloading.
-A locally published file cannot pass read-back until iOS confirms its upload. The engine states why it
-reads each file, and only its read-back of a file it has just created may wait for that confirmation;
-any other read of a waiting file, discovery and restore included, is refused at once as retryable.
-Status carries
-optional `waitingForUpload: true` until iOS confirms, and the card appends the upload wait to its
-connected feedback. A failed upload inspection is unavailable, not an uploaded result. iCloud uses
-the transport's second list after create as an additional concurrent-write check, but live
-cross-device visibility and conflict behavior still need the signed-device acceptance.
-
-No uploaded backup is deleted by automatic retention until its replacement has uploaded. Pending
-files remain in listings for collision checks, but only successful read-back adds a generation to
-the verified record. Every ordinary-backup prune follows that acknowledgement and uses the record's
-second-newest verified generation, not a count of listed files. Kept-copy cleanup instead requires
-its own verified, durably recorded replacement and the exact-identity checks described above.
-An ordinary upload can also discard its newly created item after a malformed reply, collision or failed digest. Discovery and
-startup do not prune. The separate command to delete this device's backups is an explicit user
-deletion and intentionally does not need a replacement. A stale waiting line may remain until
-the next status refresh; an unconfirmed file never counts as a completed backup.
-
-Only the iOS adapter supplies `transport.device`, choosing **Recap Page on iPhone** or
-**Recap Page on iPad**. The backup engine uses that label when supplied, otherwise its existing
-browser label, including the Android app's label. No new transport scope or backup format is needed.
-The card offers **Connect iCloud** and does not promise a recovery bin for programmatic deletion.
-
-The native code compiles only with `RECAP_ICLOUD` or Debug; the page adapter is outside the folder
-copied into every iOS build. The app's Debug and Release configurations set `RECAP_ICLOUD` and sign
-with the iCloud Documents entitlements, and `iCloudBackup` bundles the adapter and card.
-[iCloud backup](IOS.md#icloud-backup) records the signed-device acceptance still required.
+Native code coordinates cloud files; shared code checks their contents and confirms uploads.
+See [iCloud contracts](ARCHITECTURE_REFERENCE.md#icloud-drive-backup).
 
 ### OneDrive on iPhone and iPad
 
-A build whose release supplies the protected OneDrive client also offers OneDrive (#1113). A router in
-front of the iCloud handler lists both providers and holds at most one connection: connecting either
-is refused while the other is connected, and data operations go to the one in use. Sign-in mirrors
-Android's own PKCE flow against Microsoft's consumers authority, with no Microsoft library, through
-`ASWebAuthenticationSession` and the registered redirect `msauth.io.github.raymondnassar.recappage://auth`.
-The ID token's audience, nonce and expiry are checked, and a grant without app-folder access is refused.
-Tokens live in the Keychain, readable after first unlock on this device only, and the access token is
-sent to Microsoft Graph alone; upload-session `PUT`s carry no Authorization header. Because Keychain
-items outlive the app, the first launch after an install forgets any earlier sign-in.
-
-The store keeps the OneDrive contract the other hosts keep: a create refuses a taken name in its
-request body, every create is read back and its digest compared, deletes go to the recycle bin, a
-deleted app folder counts as consent withdrawn, and disconnect forgets the sign-in on this device only.
-The native code sits under the same `RECAP_ICLOUD` boundary as iCloud, and the page sees OneDrive only
-when the build's configuration carries a valid client ID; ordinary pull request and CI builds carry none.
+Only a build with release-supplied configuration offers OneDrive. Credentials stay in native
+storage. See [OneDrive contracts](ARCHITECTURE_REFERENCE.md#onedrive-on-iphone-and-ipad).
 
 ## Small-screen navigation and readable feedback
 
-Secondary screens put Back at the leading edge. Home, Library and Search do not offer it, and More
-remains a navigation sheet rather than a new history screen. Desktop rail destinations are roots too.
-The control uses the existing hash-history position and scroll restoration. Android keeps system Back;
-iPhone and iPad rely on that Back control, with no edge-swipe gesture. Neither changes the storage origin or
-saved data.
-
-At 620px and below, Home's Continue card puts its cover above Read and Done, with the remaining actions
-as wrapping links. Wider screens, phones in landscape included, keep the cover beside the buttons.
-Action notices give their message a complete row above wrapping actions. The phone Done notice bounds
-its scrollable message to 30% of the content height above the bottom bar, keeping Undo visible; an
-overflowing message becomes keyboard-focusable without changing its announcement.
-
-Preview retains its ordinary held title and actions when they fit. If that chrome exceeds half of the
-available dialog height, the title, secondary actions and offline controls join the dialog's existing
-scrolling content, leaving Close and the primary action held. The same nodes, accessible names, focus
-and scroll position survive the switch. A stable input signature prevents its own resized edges from
-restarting the budget calculation.
+Phones use the shared screens with responsive navigation, wrapping controls and dialogs that
+keep essential actions reachable. See
+[small-screen behavior](ARCHITECTURE_REFERENCE.md#small-screen-navigation-and-readable-feedback)
+and the mandatory [interface contract](../CONTRIBUTING.md#interface-design).
