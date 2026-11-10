@@ -1,4 +1,4 @@
-import { listSearchTerms, rankLists } from '../lib/listSearch.js';
+import { filterSearchLists, listFilterOptions, listSearchTerms, LIST_FILTERS } from '../lib/listSearch.js';
 
 export const LIST_RESULTS_INITIAL = 6;
 const ANNOUNCE_DELAY_MS = 500;
@@ -17,6 +17,8 @@ export function createSearchListsView({
   let found = [];
   let expanded = false;
   let timer = null;
+  let filters = {};
+  const initialized = new WeakSet();
 
   function quiet() {
     clearTimer(timer);
@@ -49,15 +51,28 @@ export function createSearchListsView({
     return nodes;
   }
 
-  async function update(next) {
-    if (next !== query) expanded = false;
+  async function update(next, nextFilters = filters) {
+    const changed = next !== query || LIST_FILTERS.some(({ key }) => nextFilters[key] !== filters[key]);
+    if (changed) expanded = false;
     query = next;
+    filters = { ...nextFilters };
     const mine = ++generation;
-    if (!listSearchTerms(query).length) {
+    const nodes = elements();
+    const active = LIST_FILTERS.some(({ key }) => filters[key]);
+    const hasQuery = listSearchTerms(query).length > 0;
+    quiet();
+    if (changed) {
       found = [];
-      quiet();
-      elements().section.hidden = true;
-      return;
+      nodes.grid.replaceChildren();
+      nodes.more.hidden = true;
+      nodes.count.textContent = 'Loading Reading Lists...';
+    }
+    if (!hasQuery && !active) {
+      found = [];
+      nodes.section.hidden = true;
+      if (!nodes.filters) return;
+    } else {
+      nodes.section.hidden = false;
     }
     let catalog;
     let guides;
@@ -72,7 +87,23 @@ export function createSearchListsView({
       return;
     }
     if (mine !== generation) return;
-    found = rankLists(catalog.lists, query, { guides });
+    if (nodes.filters) {
+      const options = listFilterOptions(catalog.lists);
+      for (const select of nodes.filters) {
+        if (initialized.has(select)) continue;
+        const { key } = select.dataset;
+        for (const option of options[key] ?? []) {
+          const node = select.ownerDocument.createElement('option');
+          node.value = option.value;
+          node.textContent = option.label;
+          select.append(node);
+        }
+        select.value = filters[key] ?? '';
+        initialized.add(select);
+      }
+    }
+    if (!hasQuery && !active) return;
+    found = filterSearchLists(catalog.lists, query, filters, { guides });
     say(render().count.textContent);
   }
 

@@ -239,10 +239,10 @@ try {
 
     if (selectedCases.includes('adding')) {
       await load('add');
-      await capture('add', ['#add-primary-methods [data-view="add-search"]', '#add-primary-methods [data-view="add-series"]', '#add-other-methods > summary']);
+      await capture('add', ['#form-search button', '#search-mode', '#search-list-filters > summary', '#add-other-methods > summary']);
       check(await page.$eval('#add-other-methods', (node) => !node.open), prefix('other adding methods start closed'));
       await click(page, '#add-other-methods > summary');
-      check(await page.$$eval('#add-other-methods [data-view]', (nodes) => nodes.length === 3
+      check(await page.$$eval('#add-other-methods [data-view]', (nodes) => nodes.length === 5
         && nodes.every((node) => node.getClientRects().length)), prefix('all secondary adding methods remain visible when requested'));
       await load('add-search');
       await capture('add-search', ['#form-search button', '#search-alternatives > summary']);

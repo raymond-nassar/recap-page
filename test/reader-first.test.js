@@ -275,16 +275,20 @@ test('a completed list has a Browse action without replacing deferred continuati
   assert.match(reading, /id="all-deferred"[\s\S]*?id="btn-review-deferred">Review deferred/);
 });
 
-test('Add leads with search and series while retaining the other three routes in a disclosure', () => {
+test('Search leads with its shared field and retains every add route in a disclosure', () => {
   const adding = view('add');
   const primary = adding.match(/<div class="search-hub-grid add-hub-grid" id="add-primary-methods">[\s\S]*?<\/div>/)?.[0];
   assert.ok(primary, 'Primary Add choices are missing');
   assert.deepEqual([...primary.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]), ['add-search', 'add-series']);
   const other = disclosure(adding, 'add-other-methods');
-  assert.match(other, /<summary>More ways to add<\/summary>/);
-  for (const route of ['add-creator', 'add-import', 'add-manual']) {
+  assert.match(other, /<summary>Other ways to add<\/summary>/);
+  for (const route of ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']) {
     assert.ok(other.includes(`data-view="${route}"`), `${route} must remain reachable`);
   }
+  const search = view('add-search');
+  assert.match(search, /id="search-q"/);
+  assert.match(search, /id="search-mode"/);
+  assert.match(search, /id="search-list-filters"/);
 });
 
 test('search results precede a closed alternatives group with every existing destination', () => {

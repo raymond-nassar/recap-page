@@ -10645,10 +10645,27 @@ const SCENARIOS = [
         window.__mrtComicSearch = true;
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
         window.__mrtListSearchFetches = [];
+        const realSet = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (window.__mrtRejectUnifiedSave && key === 'mrt.state.v2') {
+            throw new DOMException('Fixture full storage', 'QuotaExceededError');
+          }
+          return realSet.call(this, key, value);
+        };
         const stubbed = window.fetch;
         window.fetch = function (input, init) {
           const url = typeof input === 'string' ? input : input?.url ?? String(input);
           window.__mrtListSearchFetches.push(url);
+          if (window.__mrtHoldUnifiedNames && url.endsWith('data/creators-index.json')) {
+            return new Promise((resolve, reject) => {
+              window.__mrtReleaseUnifiedNames = () => stubbed.call(this, input, init).then(resolve, reject);
+            });
+          }
+          if (window.__mrtHoldUnifiedPage && url.includes('/creators/367/issues') && url.includes('offset=200')) {
+            return new Promise((resolve, reject) => {
+              window.__mrtReleaseUnifiedPage = () => stubbed.call(this, input, init).then(resolve, reject);
+            });
+          }
           if (window.__mrtListImportOffline) return Promise.reject(new TypeError('Failed to fetch'));
           if (window.__mrtHoldListComicSearch && url.includes('/search/issues')) {
             return new Promise((resolve, reject) => {
@@ -10869,6 +10886,124 @@ const SCENARIOS = [
         added.rows[0] === 'open' && added.rows[1] === 'open' && added.rows.slice(2).every((act) => act === 'import')
           && added.focus && added.saved === 1, JSON.stringify(added));
 
+      const field = async (selector, value, event = 'change') => page.$eval(selector, (node, text, type) => {
+        node.value = text;
+        node.dispatchEvent(new Event(type, { bubbles: true }));
+      }, value, event);
+      await click(page, '#search-list-filters > summary');
+      await page.waitForFunction(() => document.querySelector('#search-year').options.length > 1);
+      const beforeFilters = await snapshot();
+      await field('#search-year', '2008');
+      await page.waitForFunction(() => document.querySelector('#search-lists-count').textContent === '8 Reading Lists match');
+      await field('#search-genre', 'science-fiction');
+      await page.waitForFunction(() => document.querySelector('#search-lists-count').textContent === '8 Reading Lists match');
+      await field('#search-q', '', 'input');
+      await page.waitForFunction(() => document.querySelector('#search-lists-count').textContent === '8 Reading Lists match');
+      await field('#search-kind', 'creator-run');
+      await page.waitForFunction(() => document.querySelector('#search-lists-count').textContent === 'No Reading Lists match');
+      await click(page, '#search-filters-clear');
+      await page.waitForFunction(() => document.querySelector('#search-lists').hidden);
+      await field('#search-q', 'Fixture Event', 'input');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await field('#search-mode', 'series');
+      await field('#search-mode', 'issue');
+      const afterFilters = await snapshot();
+      t.check('facets combine, work without typing, expose empty results and clear without recording searches or calling the metadata service',
+        beforeFilters.local === afterFilters.local && beforeFilters.session === afterFilters.session
+          && beforeFilters.history === afterFilters.history && beforeFilters.hash === afterFilters.hash
+          && beforeFilters.api.join('|') === afterFilters.api.join('|')
+          && await page.$eval('#search-q', (node) => node.value === 'Fixture Event'),
+        JSON.stringify({ beforeFilters, afterFilters }));
+
+      for (const [width, zoom] of [[1280, 1], [390, 1], [320, 1], [640, 2]]) {
+        await page.setViewport({ width, height: 900 });
+        await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
+        const geometry = await page.evaluate(() => ({
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          controls: [...document.querySelectorAll('#search-list-filters select, #search-mode')].map((node) => {
+            const rect = node.getBoundingClientRect();
+            return { width: rect.width, height: rect.height, right: rect.right,
+              labelled: [...node.labels].some((label) => label.textContent.trim()) };
+          }),
+        }));
+        t.check(`Search metadata controls fit at ${width}px and ${zoom * 100}% with labelled minimum targets`,
+          !geometry.overflow && geometry.controls.length === 8
+            && geometry.controls.every((control) => control.width >= 24 && control.height >= 24 && control.labelled),
+          JSON.stringify(geometry));
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => { document.documentElement.style.zoom = ''; window.__mrtHoldUnifiedNames = true; });
+      await field('#search-q', 'Hickman', 'input');
+      await field('#search-mode', 'creator');
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForFunction(() => typeof window.__mrtReleaseUnifiedNames === 'function');
+      await field('#search-mode', 'issue');
+      const retiredNames = await page.evaluate(() => ({ scroll: scrollY, focus: document.activeElement?.id }));
+      await page.evaluate(() => { window.__mrtHoldUnifiedNames = false; window.__mrtReleaseUnifiedNames(); });
+      await page.evaluate(() => new Promise((resolve) => setTimeout(resolve, 600)));
+      t.check('a retired name-index lookup cannot restore choices, errors or focus after a mode switch',
+        await page.evaluate((before) => !document.querySelector('#search-results').textContent.trim()
+          && document.querySelector('#search-q').value === 'Hickman'
+          && scrollY === before.scroll && document.activeElement?.id === before.focus, retiredNames));
+
+      await field('#search-q', 'Unified title request', 'input');
+      await field('#search-genre', 'science-fiction');
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForSelector('#search-results input[data-comic-id="97601"]');
+      t.check('explicit comic submission sends the query to the existing service without Reading List facets',
+        await page.evaluate(() => {
+          const urls = window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues'));
+          const url = new URL(urls.at(-1), location.href);
+          return url.searchParams.get('q') === 'Unified title request'
+            && [...url.searchParams.keys()].sort().join('|') === 'limit|q';
+        }));
+      await click(page, '#search-filters-clear');
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await page.evaluate(() => { window.__mrtHoldUnifiedPage = true; });
+      await field('#search-q', 'Brubaker', 'input');
+      await field('#search-mode', 'creator');
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForFunction(() => typeof window.__mrtReleaseUnifiedPage === 'function');
+      t.check('creator lookup reports the first page before the held next page',
+        await page.$eval('#search-results', (node) => node.textContent.includes('200')));
+      await field('#search-mode', 'series');
+      const retiredPage = await page.evaluate(() => ({ scroll: scrollY, focus: document.activeElement?.id }));
+      await page.evaluate(() => { window.__mrtHoldUnifiedPage = false; window.__mrtReleaseUnifiedPage(); });
+      await page.evaluate(() => new Promise((resolve) => setTimeout(resolve, 600)));
+      t.check('retiring a partial comic lookup keeps selection and query without restoring old rows, errors or focus',
+        await page.evaluate((before) => !document.querySelector('#search-results').textContent.trim()
+          && document.querySelector('#search-q').value === 'Brubaker'
+          && document.querySelector('#search-selection-form .comic-selection-count').textContent === '1 comic selected'
+          && scrollY === before.scroll && document.activeElement?.id === before.focus, retiredPage));
+      await field('#search-q', 'House of M', 'input');
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForSelector('#search-results button[aria-label="Browse comics in House of M (2015)"]');
+      await click(page, '#search-results button[aria-label="Browse comics in House of M (2015)"]');
+      await page.waitForSelector('#search-results input[data-comic-id="97201"]');
+      await click(page, '#search-results input[data-comic-id="97201"]');
+      await field('#search-mode', 'issue');
+      await click(page, '#search-selection-form .comic-save-toggle');
+      await field('#search-list-name', 'Unified search picks', 'input');
+      const beforeUnifiedSave = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => { window.__mrtRejectUnifiedSave = true; });
+      await click(page, '#search-selection-form button[type="submit"]');
+      t.check('a refused save after mode switches keeps both selected comics without a phantom list',
+        await page.evaluate((stored) => localStorage.getItem('mrt.state.v2') === stored
+          && document.querySelector('#search-selection-form .comic-selection-count').textContent === '2 comics selected'
+          && document.querySelector('#search-selection-report').textContent.includes('Nothing was saved'), beforeUnifiedSave));
+      await page.evaluate(() => { window.__mrtRejectUnifiedSave = false; });
+      await click(page, '#search-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Created'));
+      t.check('the unified modes save exactly the selected title and series comics through the existing publisher',
+        await page.evaluate(() => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return state.lists[state.active].name === 'Unified search picks'
+            && JSON.stringify(state.lists[state.active].itemIds) === '[97601,97201]';
+        }));
+      await field('#search-q', 'Fixture Event', 'input');
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await click(page, '#search-list-filters > summary');
+
       const layout = async (width, height) => {
         await page.setViewport({ width, height });
         return page.evaluate(() => {
@@ -10937,7 +11072,7 @@ const SCENARIOS = [
         }));
         t.check(`the iOS Search label is one full-sized active target at ${width}px and ${scale}x text`,
           labelTarget.focused && keyboardFocus && labelTarget.height >= 44 && labelTarget.role === 'button'
-            && labelTarget.name === 'Search Reading Lists and comic titles'
+            && labelTarget.name === 'Search Reading Lists and comics'
             && labelAX?.role === 'button' && labelAX.name === labelTarget.name && !labelAX.children?.length,
           JSON.stringify({ labelTarget, labelAX }));
         t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,

@@ -3220,7 +3220,22 @@ export function boot() {
   readerLinkView.wire();
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
-  $('#search-q').addEventListener('input', (event) => void searchListsView.update(event.target.value));
+  $('#search-q').addEventListener('input', (event) => {
+    $('#search-lists-report').replaceChildren();
+    void searchListsView.update(event.target.value);
+  });
+  const listFilters = [...document.querySelectorAll('[data-list-filter]')];
+  const updateListFilters = () => {
+    $('#search-lists-report').replaceChildren();
+    void searchListsView.update($('#search-q').value, Object.fromEntries(
+      listFilters.map((field) => [field.dataset.key, field.value]),
+    ));
+  };
+  for (const field of listFilters) field.addEventListener('change', updateListFilters);
+  $('#search-filters-clear').addEventListener('click', () => {
+    for (const field of listFilters) field.value = '';
+    updateListFilters();
+  });
   $('#search-lists-more').addEventListener('click', () => void searchListsView.showAll());
   dataView.wire();
   completeBackupView.wire();
@@ -3924,6 +3939,7 @@ const searchListsView = createSearchListsView({
     count: $('#search-lists-count'),
     grid: $('#search-lists-results'),
     more: $('#search-lists-more'),
+    filters: [...document.querySelectorAll('[data-list-filter]')],
   }),
   loadCatalog,
   loadGuides: loadMcuGuides,

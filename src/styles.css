@@ -1427,7 +1427,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    a file input are drawn by the platform in a style that belongs to no part of this app, and the
    file input in particular announces itself as "Choose File / No file chosen" in the middle of a
    surface where every other control is a labelled button. */
-#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select {
+#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select, #form-search select, #search-list-filters select {
   appearance: none;
   background-color: var(--card-2);
   background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%),
@@ -1439,6 +1439,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
+#form-search select, #search-list-filters select { min-width: 0; min-height: var(--target-touch); }
 #view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);

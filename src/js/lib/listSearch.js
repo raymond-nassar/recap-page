@@ -7,6 +7,38 @@ import {
 // alone found 31, only where a description happened to say it.
 export const MCU_PREP_ALIAS = 'MCU Prep';
 
+export const LIST_FILTERS = Object.freeze([
+  { key: 'storyTypes', label: 'Genre', labels: STORY_TYPES },
+  { key: 'tones', label: 'Tone', labels: STORY_TONES },
+  { key: 'characters', label: 'Character or team' },
+  { key: 'writers', label: 'Writer' },
+  { key: 'type', label: 'List kind', labelFor: typeLabel },
+  { key: 'timeline', label: 'Story year' },
+  { key: 'sourceOrigin', label: 'Source guide' },
+]);
+
+function filterValues(list, key) {
+  const value = list[key];
+  return (Array.isArray(value) ? value : [value])
+    .filter((entry) => entry != null && entry !== '').map(String);
+}
+
+export function listFilterOptions(lists) {
+  return Object.fromEntries(LIST_FILTERS.map(({ key, labels, labelFor }) => [
+    key,
+    [...new Set(lists.flatMap((list) => filterValues(list, key)))]
+      .map((value) => ({ value, label: labels?.[value] ?? labelFor?.(value) ?? value }))
+      .sort((a, b) => a.label.localeCompare(b.label, undefined, { numeric: true })),
+  ]));
+}
+
+export function filterSearchLists(lists, query, filters = {}, options = {}) {
+  const active = LIST_FILTERS.filter(({ key }) => filters[key]);
+  const matches = lists.filter((list) => active.every(({ key }) => filterValues(list, key).includes(filters[key])));
+  if (listSearchTerms(query).length) return rankLists(matches, query, options);
+  return active.length ? matches.slice().sort((a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id)) : [];
+}
+
 export function listSearchTerms(query) {
   return foldSearchText(query).split(' ').filter(Boolean);
 }

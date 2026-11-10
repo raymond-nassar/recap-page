@@ -66,7 +66,12 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 ### Build a list from search
 
-In **Search**, look up an issue title, series, or creator. A single matching series or creator
+In **Search**, type in one box and choose whether to look up comic titles, series or creators.
+Reading Lists match on the device as you type. Open **Filter Reading Lists** to narrow them by
+genre, tone, character or team, writer, list kind, story year or source guide, even without typing
+a query. Those filters apply only to lists with the recorded details, not to individual comics.
+Clear list filters keeps the query. Other browse screens keep their own focused search boxes.
+A single matching series or creator
 opens its comics; when several names match, choose **Browse comics** beside the one you want.
 Searching and browsing never add comics to your saved lists.
 

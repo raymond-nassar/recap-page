@@ -647,8 +647,19 @@ export const phoneSearchReflow = {
         node.dispatchEvent(new Event('input', { bubbles: true }));
       });
       await page.waitForSelector('#search-lists-results [data-story="list:house-of-m-essential"] > .btn');
+      await click(page, '#search-list-filters > summary');
       for (const size of ['ordinary', 'largest']) {
         if (size === 'largest') await largeText(page, profile);
+        const filters = await page.$$eval('#search-list-filters select, #search-mode', (nodes) => nodes.map((node) => {
+          const box = node.getBoundingClientRect();
+          return {
+            left: box.left, right: box.right, height: box.height,
+            options: node.options.length, labelled: [...node.labels].some((label) => label.textContent.trim()),
+          };
+        }));
+        checked(t, `${label} ${size}: Search lookup and recorded-detail filters keep labelled touch targets without overflow`,
+          filters.length === 8 && filters.every((node) => node.labelled && node.options > 0
+            && node.left >= 0 && node.right <= profile.width + 0.5 && node.height >= 44), filters);
         const viewport = await phoneViewport(page);
         const rows = await page.$$eval('#search-lists-results .catalog-row', (nodes) => nodes.map((row) => {
           const action = row.querySelector(':scope > .btn');

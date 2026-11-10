@@ -2640,7 +2640,7 @@ final class PresentationUITests: XCTestCase {
             let app = launch(category: category, route: "search")
             _ = try probeResult(of: app)
             let summary = app.webViews.firstMatch.buttons.matching(
-                NSPredicate(format: "label == %@", "More ways to add")).firstMatch
+                NSPredicate(format: "label == %@", "Other ways to add")).firstMatch
             XCTAssertTrue(summary.waitForExistence(timeout: 30))
             let monitor = layoutMonitor(of: app)
             let initial = try XCTUnwrap(layoutMetrics(from: monitor.label))
@@ -2787,7 +2787,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.searchFields["Search Reading Lists and comic titles"].firstMatch
+        let searchField = app.searchFields["Search Reading Lists and comics"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")

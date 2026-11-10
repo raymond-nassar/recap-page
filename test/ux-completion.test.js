@@ -252,7 +252,7 @@ test('Home headings are not explained twice', () => {
   assert.match(styles, /#view-home > \.head\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(0,\s*auto\);/);
   assert.match(styles, /\.home-lockup\s*\{[^}]*grid-column:\s*1 \/ -1;[^}]*justify-items:\s*center;/);
   assert.doesNotMatch(main, /\$\('#home-h'\)\.textContent/);
-  assert.doesNotMatch(html, /Featured journey|A place to start|Filter Reading Lists/);
+  assert.doesNotMatch(between(html, 'id="view-home"', '\n          <section id="view-'), /Featured journey|A place to start|Filter Reading Lists/);
   assert.match(catalogPresentation, /if \(blurb\) children\.push\(/);
 });
 

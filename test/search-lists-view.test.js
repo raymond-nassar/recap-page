@@ -155,6 +155,43 @@ test('a slower earlier load cannot overwrite a later query', async () => {
   assert.deepEqual(h.cards(), latest);
 });
 
+test('facets browse without a query, combine with typed text and reset without losing the query', async () => {
+  const h = harness();
+  await h.view.update('', { characters: 'X-Men' });
+  assert.ok(h.cards().length > 0);
+  assert.ok(h.cards().every((list) => list.characters.includes('X-Men')));
+  await h.view.showAll();
+  await h.view.update('House of M', { characters: 'X-Men' });
+  assert.equal(h.cards()[0].id, 'house-of-m');
+  await h.view.update('House of M', {});
+  assert.equal(h.cards()[0].id, 'house-of-m');
+  await h.view.update('', {});
+  assert.equal(h.nodes.section.hidden, true);
+});
+
+test('changing a facet retires visible results and the old announcement before replacement loads settle', async () => {
+  let release;
+  let held = false;
+  const gate = new Promise((resolve) => { release = resolve; });
+  const h = harness({ loadCatalog: () => (held ? gate : Promise.resolve(catalog)) });
+  await h.view.update('House of M');
+  held = true;
+  const pending = h.view.update('House of M', { tones: 'not recorded' });
+  assert.deepEqual(h.cards(), []);
+  assert.equal(h.nodes.more.hidden, true);
+  assert.equal(h.nodes.count.textContent, 'Loading Reading Lists...');
+  h.flush();
+  assert.deepEqual(h.announced, []);
+  held = false;
+  await h.view.update('House of M', {});
+  release(catalog);
+  await pending;
+  assert.equal(h.cards()[0].id, 'house-of-m');
+  h.flush();
+  assert.equal(h.announced.length, 1);
+  assert.notEqual(h.announced[0], 'No Reading Lists match');
+});
+
 test('a catalog failure shows a notice in the group only, and a guide failure keeps lists findable', async () => {
   const failed = harness({ loadCatalog: async () => { throw new Error('HTTP 500'); } });
   await failed.view.update('mcu prep');
@@ -185,9 +222,12 @@ test('typing makes no network request and writes no cache, storage or history en
     for (const query of ['s', 'sp', 'spi', 'spider', 'spider-man', 'spider-man 2099', '']) await h.view.update(query);
     await h.view.update('mcu prep');
     await h.view.showAll();
+    await h.view.update('', { characters: 'X-Men' });
+    await h.view.update('House of M', { characters: 'X-Men', tones: 'dark' });
+    await h.view.update('House of M', {});
     h.flush();
     assert.deepEqual(calls, []);
-    assert.deepEqual(h.loads, { catalog: 7, guides: 7 }, 'only a query with terms reads the on-device loaders');
+    assert.deepEqual(h.loads, { catalog: 10, guides: 10 }, 'queries and active facets read only the on-device loaders');
   } finally {
     for (const [key, value] of Object.entries(originals)) {
       if (value === undefined) delete globalThis[key];

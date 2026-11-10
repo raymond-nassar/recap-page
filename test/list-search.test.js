@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 import { parseCatalog, STORY_TONES, STORY_TYPES } from '../src/js/lib/catalog.js';
 import { parseMcuPrep } from '../src/js/lib/mcuPrep.js';
-import { rankLists, listSearchTerms } from '../src/js/lib/listSearch.js';
+import { filterSearchLists, listFilterOptions, rankLists, listSearchTerms } from '../src/js/lib/listSearch.js';
 
 const json = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), 'utf8'));
 const { lists } = parseCatalog(await json('../src/data/catalog.json'));
@@ -12,6 +12,30 @@ const metadata = parseMcuPrep(await json('../src/data/mcu-prep.json'));
 const ids = (found) => found.map((list) => list.id);
 const entry = (id, extra = {}) => ({
   id, name: id, description: '', type: 'event', characters: [], keywords: [], ...extra,
+});
+
+test('list facets use recorded values only, label genres and years, and combine every choice with query', () => {
+  const sample = [
+    entry('a', { name: 'X Story', storyTypes: ['science-fiction'], tones: ['dark'], timeline: 2001, writers: ['Writer A'], sourceOrigin: 'Guide A', characters: ['X-Men'] }),
+    entry('b', { name: 'X Other', storyTypes: ['science-fiction'], characters: ['X-Men'] }),
+    entry('c', { name: 'Other', tones: ['dark'], timeline: 2002 }),
+  ];
+  const options = listFilterOptions(sample);
+  assert.deepEqual(options.storyTypes, [{ value: 'science-fiction', label: 'Science fiction' }]);
+  assert.deepEqual(options.timeline.map((option) => option.value), ['2001', '2002']);
+  assert.deepEqual(options.writers, [{ value: 'Writer A', label: 'Writer A' }]);
+  assert.deepEqual(ids(filterSearchLists(sample, '', { storyTypes: 'science-fiction' })), ['b', 'a']);
+  const filters = {
+    storyTypes: 'science-fiction', tones: 'dark', timeline: '2001',
+    writers: 'Writer A', sourceOrigin: 'Guide A', characters: 'X-Men', type: 'event',
+  };
+  assert.deepEqual(ids(filterSearchLists(sample, 'X', filters)), ['a']);
+  for (const key of Object.keys(filters)) {
+    assert.deepEqual(filterSearchLists(sample, 'X', { ...filters, [key]: 'not recorded' }), [], key);
+  }
+  assert.deepEqual(filterSearchLists(sample, '', {}), []);
+  assert.deepEqual(filterSearchLists(sample, 'not found', filters), []);
+  assert.deepEqual(filterSearchLists(sample, 'X', {}), rankLists(sample, 'X'));
 });
 
 test('every bundled Reading List is found by its own name and ranked first', () => {

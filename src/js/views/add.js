@@ -249,7 +249,14 @@ export function createAddView({
   const searches = [
     {
       prefix: 'search', kind: 'issue', input: '#search-q', form: '#form-search', results: '#search-results',
-      load: (item, options) => search.issues(item.name, { ...options, limit: ISSUE_SEARCH_LIMIT }),
+      runSearch: (query, options) => ($('#search-mode').value === 'series'
+        ? search.series(query, options) : search.creators(query, options)),
+      load: (item, options) => {
+        const mode = $('#search-mode').value;
+        if (mode === 'series') return search.seriesIssues(item.id, options);
+        if (mode === 'creator') return search.creatorIssues(item.id, options);
+        return search.issues(item.name, { ...options, limit: ISSUE_SEARCH_LIMIT });
+      },
     },
     {
       prefix: 'series', kind: 'series', input: '#series-q', form: '#form-series', results: '#series-results',
@@ -662,12 +669,12 @@ export function createAddView({
     return config.epoch;
   }
 
-  function wireNameSearch(config) {
-    const {
-      form, input, results, kind, runSearch,
-    } = config;
-    const many = kind === 'series' ? 'series' : 'creators';
-    $(form).addEventListener('submit', async (event) => {
+  function wireNameSearch(config, wire = true) {
+    const submit = async (event) => {
+      const {
+        form, input, results, kind, runSearch,
+      } = config;
+      const many = kind === 'series' ? 'series' : 'creators';
       event.preventDefault();
       const query = $(input).value.trim();
       if (!query) return;
@@ -732,7 +739,9 @@ export function createAddView({
           isCurrent: () => config.epoch === epoch && $(form).closest('.view')?.hidden === false,
         });
       }
-    });
+    };
+    if (wire) $(config.form).addEventListener('submit', submit);
+    return submit;
   }
 
   function addDestination() {
@@ -1106,7 +1115,12 @@ export function createAddView({
     for (const config of searches) {
       createBuilder(config);
       if (config.kind === 'issue') {
+        const submitName = wireNameSearch(config, false);
         $(config.form).addEventListener('submit', (event) => {
+          if (config.kind !== 'issue') {
+            void submitName(event);
+            return;
+          }
           event.preventDefault();
           const query = $(config.input).value.trim();
           if (!query) return;
@@ -1118,6 +1132,18 @@ export function createAddView({
         wireNameSearch(config);
       }
     }
+    $('#search-mode').addEventListener('change', () => {
+      const config = searches[0];
+      beginSearch(config);
+      config.revealResults = false;
+      $(config.results).replaceChildren();
+      config.kind = $('#search-mode').value;
+      const label = config.kind === 'issue' ? 'Search comic titles'
+        : config.kind === 'series' ? 'Find a series' : 'Find a creator';
+      $(`${config.form} button[type="submit"]`).setAttribute('aria-label', label);
+      if (config.kind !== 'issue') void warmNameIndex(config.kind === 'series' ? 'series' : 'creators');
+      announce(`${label}. Your query and selected comics are kept.`);
+    });
     refreshBuilders();
     // Published for the bar, which is fixed to the window and so cannot take the width of the card
     // it sits in, and for the page's scroll padding, which is what keeps a control that takes
