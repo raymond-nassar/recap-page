@@ -2606,7 +2606,8 @@ async function alignmentCheck(page, profile) {
       .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
     `${id}: the closure notice stays first on a Home without Continue reading`);
   }
-  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', '.home-wordmark',
+  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h',
+    profile.theme === 'dark' ? '.home-wordmark--dark' : '.home-wordmark--light',
     '#home-categories', '.brand[data-view="home"]']);
   const [head, lockup, logo] = home.nodes;
   const gutters = { left: lockup.box.left - head.content.left, right: head.content.right - lockup.box.right };
