@@ -378,3 +378,32 @@ permissions, and approval rules remain authoritative.
 
 For reading-list delivery, use [New reading list](../.github/skills/new-reading-list/SKILL.md). For
 release preparation, use [Prepare release](../.github/skills/prepare-release/SKILL.md).
+
+## Claiming a labeled Issue
+
+Follow [the short contributor guide](../CONTRIBUTING.md#before-you-write-anything) to find
+unassigned Issues labeled **good first issue** or **help wanted**. Comment `/take` by itself.
+The workflow accepts new comments from human accounts on open Issues, not pull requests.
+It checks the current labels and assignees before assigning the commenter. If an Issue is
+already taken, it does nothing. Edited comments do not trigger it. Check **Assignees** before
+starting, and leave progress and handoffs on the Issue. For other work, discuss scope first.
+
+The maintainer selects the labels and still decides what merges. The bot has Issue write
+permission only, checks out no code and runs no comment text. Claims are serialized per Issue;
+GitHub may replace a waiting run with a newer claim, so assignment is not guaranteed in comment
+order. GitHub does not offer an atomic check-and-assign operation: a maintainer assignment made
+between the check and the write can race with the bot. Coordinate if two assignees appear.
+API errors fail the run without an automatic retry; the maintainer should inspect the Issue
+and failed run before asking someone to try again.
+
+### Maintainer check after merge
+
+This workflow cannot be exercised on a feature branch. After it reaches the default branch:
+
+1. Choose a disposable open Issue and add one of the eligible labels. Leave it unassigned.
+2. Have a human contributor without repository write access comment `/take`. Confirm the
+   **Claim a labeled Issue** run succeeds and that **Assignees** contains that commenter.
+3. Have a different person comment `/take` on the same Issue. Confirm the assignee is unchanged.
+4. On disposable unlabeled and closed Issues, confirm `/take` does not assign anyone. Confirm
+   a pull-request comment, a bot comment and an edited comment do not cause assignment.
+5. Remove the test assignments and labels or close the disposable Issue after checking.

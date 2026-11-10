@@ -5,11 +5,12 @@ The repository has been public since 2026-08-16 and accepts issues and pull requ
 
 ## Before you write anything
 
-1. Find an [open Issue](https://github.com/raymond-nassar/recap-page/issues).
+1. Find an [open Issue](https://github.com/raymond-nassar/recap-page/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee+label%3A%22good+first+issue%22%2C%22help+wanted%22)
+   labeled **good first issue** or **help wanted**, with nobody assigned.
    Read its scope, acceptance criteria, dependencies and discussion. Search before proposing new work.
-2. Comment on the Issue with what you want to take on. Ask the maintainer to confirm the scope
-   and coordinate with anyone already working on it before starting overlapping changes.
-   No write access or self-assignment is required to offer help.
+2. Comment `/take` by itself. A bot assigns you if the Issue is still open, labeled and unassigned.
+   Check **Assignees** before starting. If someone is assigned, coordinate with them instead.
+   For other Issues, discuss scope with the maintainer first. You do not need write access.
 3. Use your fork and a branch for one change. Link the Issue in your pull request.
    Keep progress, questions and handoffs on that Issue so others can pick up where you stop.
 4. Read the [app map](docs/ARCHITECTURE.md), then the reference for the part you will change.
