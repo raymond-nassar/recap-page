@@ -1401,7 +1401,7 @@
       }
     },
     {
-      "edition": "realm-of-kings-2014-tpb-second-printing",
+      "edition": "realm-of-kings-tpb-2601361",
       "gcdIssueId": 2601361,
       "url": "https://www.comics.org/api/issue/2601361/?format=json",
       "retrievedAt": "2026-11-10T19:36:58.722Z",
@@ -1718,7 +1718,7 @@
         {
           "kind": "variant-printing",
           "group": "Realm of Kings Trade Reading List",
-          "detail": "realm-of-kings-2010-tpb and realm-of-kings-2014-tpb-second-printing both hold 1 of this group's comics."
+          "detail": "realm-of-kings-2010-tpb and realm-of-kings-tpb-2601361 both hold 1 of this group's comics."
         }
       ]
     },

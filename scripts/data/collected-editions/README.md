@@ -22,8 +22,8 @@ or read a book, and nothing in it may be used to claim that.
 for this project, and cover images are never recorded. Anything derived from them stays under that
 licence and keeps this credit. The three MIT files hold no database facts: an edition in
 `editions.json` names its database record by id only, and the check fails if a database-only field,
-a contents range asserted by the indexer notes, or a series named in the database's own form appears
-in any of them.
+a contents range asserted by the indexer notes, a series named in the database's own form, or wording
+that says one book is a printing or edition of another appears in any of them.
 
 ## Model
 
@@ -56,8 +56,10 @@ Coverage in `editions.json` counts only the curated facts: grouped rows, the row
 (split by who claimed them), and partial rows. Full coverage, with the rows verified by a book with
 no conflict and the rows confirmed only by a book that carries one, is in `gcd-editions.json`
 because it rests on database facts. Findings name the hard cases: a group that
-spans several books, a book that holds more than the list takes, two books that overlap, a heading
-that is a reading block rather than a book, and a later printing.
+spans several books, a book that holds more than the list takes, two books that overlap, and a heading
+that is a reading block rather than a book. Only `gcd-editions.json` can name a later printing, because
+that link comes from the database. A book with no curated contents raises no finding about how it
+pairs with another, since nothing is known to compare.
 
 ## Running it
 

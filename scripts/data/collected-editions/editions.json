@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "realm-of-kings-2014-tpb-second-printing",
+      "id": "realm-of-kings-tpb-2601361",
       "title": "Realm of Kings",
       "format": "trade paperback",
       "medium": "print",
@@ -305,11 +305,6 @@
           "kind": "group-wider-than-edition",
           "group": "Secret Wars (2015) #0-9",
           "detail": "No curated book holds 19821:0."
-        },
-        {
-          "kind": "group-spans-editions",
-          "group": "Secret Wars (2015) #0-9",
-          "detail": "secret-wars-2015-hc and secret-wars-2015-tpb split this group."
         }
       ]
     },
@@ -334,7 +329,7 @@
         {
           "kind": "overlap",
           "group": "Realm of Kings Trade Reading List",
-          "detail": "realm-of-kings-2010-tpb and realm-of-kings-2014-tpb-second-printing both hold 1 of this group's comics."
+          "detail": "realm-of-kings-2010-tpb and realm-of-kings-tpb-2601361 both hold 1 of this group's comics."
         }
       ]
     },

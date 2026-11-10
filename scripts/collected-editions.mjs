@@ -67,6 +67,9 @@ export const DATABASE_ONLY_KEYS = Object.freeze(['storyTitles', 'uncountedSequen
   'partialSeries', 'printingOf']);
 const DATABASE_SOURCE = 'gcd-notes';
 const DATABASE_SERIES_NAME = /\([^()]*, \d{4} series\)/;
+// Which book is a printing or variant of which is read from the database, so MIT prose and ids
+// must not state it in words either.
+const PRINTING_WORDING = /\bprintings?\b|second edition|variant of/i;
 
 export function mergeGcdInputs(curated, gcdInputs) {
   return {
@@ -94,7 +97,8 @@ export function databaseLeaks(value, where) {
         walk(entry, `${at}.${name}`, name);
       }
     } else if (typeof item === 'string'
-      && ((key === 'assertedBy' && item === DATABASE_SOURCE) || DATABASE_SERIES_NAME.test(item))) {
+      && ((key === 'assertedBy' && item === DATABASE_SOURCE) || DATABASE_SERIES_NAME.test(item)
+        || PRINTING_WORDING.test(item.replace(/-/g, ' ')))) {
       leaks.push(`${at}: ${item}`);
     }
   };
@@ -198,10 +202,11 @@ function comicStories(fixture, edition) {
 const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // Matches a series and an exact issue span in indexer notes. The trailing guard stops #1-5 from
-// matching inside #1-50 or #1-5x, and a full range never matches text that names only material.
+// matching inside #1-50, #1-5a, #1-5.1, #1-5/6 or #1-5-6, while a sentence's closing period still
+// ends the span. A full range never matches text that names only material.
 export function notesStateRange(notes, series, span, partial) {
   const lead = partial ? 'material from ' : '(?<!material from )';
-  return new RegExp(`${lead}${escapeRegExp(series)} ${escapeRegExp(span)}(?![\\d-])`).test(notes);
+  return new RegExp(`${lead}${escapeRegExp(series)} ${escapeRegExp(span)}(?![\\w/-]|\\.\\w)`).test(notes);
 }
 
 // Compares one edition with its database record. Disagreement is reported as a conflict with the
@@ -357,18 +362,24 @@ export function buildCoverage({ pilot, lists, ledgers }, checks) {
       if (uncovered.length) {
         findings.push({ kind: 'group-wider-than-edition', group: group.label, detail: `No curated book holds ${uncovered.join(', ')}.` });
       }
-      for (let i = 0; i < held.length; i += 1) {
-        for (let j = i + 1; j < held.length; j += 1) {
-          const shared = [...held[i].full].filter((key) => held[j].full.has(key) && keys.has(key));
-          const printing = byId[held[j].id].printingOf === held[i].id || byId[held[i].id].printingOf === held[j].id;
+      // A book with no contents in this view says nothing about how the group divides, so pairing
+      // it would call two overlapping books a split. The MIT view hits this when a book's only
+      // range came from the database and was left out.
+      const pairable = held.filter((h) => h.full.size > 0);
+      for (let i = 0; i < pairable.length; i += 1) {
+        for (let j = i + 1; j < pairable.length; j += 1) {
+          const a = pairable[i];
+          const b = pairable[j];
+          const shared = [...a.full].filter((key) => b.full.has(key) && keys.has(key));
+          const printing = byId[b.id].printingOf === a.id || byId[a.id].printingOf === b.id;
           if (shared.length) {
             findings.push({
               kind: printing ? 'variant-printing' : 'overlap',
               group: group.label,
-              detail: `${held[i].id} and ${held[j].id} both hold ${shared.length} of this group's comics.`,
+              detail: `${a.id} and ${b.id} both hold ${shared.length} of this group's comics.`,
             });
           } else if (!printing) {
-            findings.push({ kind: 'group-spans-editions', group: group.label, detail: `${held[i].id} and ${held[j].id} split this group.` });
+            findings.push({ kind: 'group-spans-editions', group: group.label, detail: `${a.id} and ${b.id} split this group.` });
           }
         }
       }

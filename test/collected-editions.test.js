@@ -63,11 +63,23 @@ test('validation rejects a database fact placed in an MIT-licensed file', () => 
   assert.equal(errors.length, 3, errors.join('\n'));
 });
 
+test('MIT-licensed files never state which book is a printing of which', () => {
+  const data = inputs();
+  const outputs = build(data);
+  const ids = data.curated.editions.map((edition) => edition.id);
+  assert.ok(!ids.some((id) => /printing/.test(id)), ids.join(', '));
+  for (const text of ['Curated as a later printing of the 2010 book.', 'x-2014-tpb-second-printing', 'A Second Edition.']) {
+    const leaky = clone(data);
+    leaky.curated.editions[0].contents[0].basis = text;
+    assert.equal(validate(leaky, outputs).filter((error) => error.includes('MIT-licensed')).length, 1, text);
+  }
+});
+
 test('a printing link and notes ranges come only from the share-alike inputs', () => {
   const { curated, gcdInputs, pilot } = inputs();
   const merged = Object.fromEntries(pilot.editions.map((edition) => [edition.id, edition]));
   assert.ok(!curated.editions.some((edition) => 'printingOf' in edition));
-  assert.equal(merged['realm-of-kings-2014-tpb-second-printing'].printingOf, gcdInputs.editions['realm-of-kings-2014-tpb-second-printing'].printingOf);
+  assert.equal(merged['realm-of-kings-tpb-2601361'].printingOf, gcdInputs.editions['realm-of-kings-tpb-2601361'].printingOf);
   assert.ok(merged['secret-wars-2015-hc'].contents.every((range) => range.assertedBy === 'gcd-notes'));
 });
 
@@ -136,6 +148,11 @@ test('the indexer-notes match is exact, so #1-5 never matches #1-50', () => {
   assert.ok(!notesStateRange(`Collects ${series} #1-50.`, series, '#1-5', false));
   assert.ok(!notesStateRange(`Collects ${series} #10.`, series, '#1', false));
   assert.ok(!notesStateRange(`Collects ${series} #1-5-6.`, series, '#1-5', false));
+  for (const near of ['#1-5a', '#1-5.1', '#1-5/6']) {
+    assert.ok(!notesStateRange(`Collects ${series} ${near}.`, series, '#1-5', false), near);
+  }
+  assert.ok(notesStateRange(`Collects ${series} #1-5, and more.`, series, '#1-5', false));
+  assert.ok(notesStateRange(`Collects ${series} #1-5`, series, '#1-5', false));
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series }, [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
   const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-50` }), {});
   assert.equal(result.verified.size, 0);
@@ -197,6 +214,14 @@ test('pilot coverage records the hard cases', () => {
   assert.equal(lists.avengers_doomsday_secret_wars.partialRows, 1);
   assert.ok(kinds('realm_of_kings').includes('variant-printing'));
   assert.ok(kinds('the_unbeatable_squirrel_girl').includes('group-wider-than-edition'));
+});
+
+test('a book with no curated contents raises no pair finding', () => {
+  const lists = Object.fromEntries(build(inputs())['editions.json'].lists.map((list) => [list.listId, list]));
+  const findings = (id) => lists[id].findings.map((finding) => finding.kind);
+  assert.ok(!findings('avengers_doomsday_secret_wars').includes('group-spans-editions'));
+  assert.ok(!lists.avengers_doomsday_secret_wars.findings.some((finding) => /secret-wars-2015-hc/.test(finding.detail)));
+  assert.ok(findings('avengers_doomsday_secret_wars').includes('group-wider-than-edition'));
 });
 
 test('validation rejects store links, covers and unresolved references', () => {

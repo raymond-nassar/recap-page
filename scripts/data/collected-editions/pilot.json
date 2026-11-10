@@ -39,12 +39,12 @@
     {
       "listId": "realm_of_kings",
       "file": "src/data/realm_of_kings.json",
-      "case": "A collection heading that names a reading block rather than a book, and two printings of one book.",
+      "case": "A collection heading that names a reading block rather than a book, and two books of the same title that both hold the title issue.",
       "groups": [
         {
           "label": "Realm of Kings Trade Reading List",
           "headingIsReadingBlock": true,
-          "editions": ["realm-of-kings-2010-tpb", "realm-of-kings-2014-tpb-second-printing"]
+          "editions": ["realm-of-kings-2010-tpb", "realm-of-kings-tpb-2601361"]
         }
       ]
     },
@@ -268,7 +268,7 @@
       "gcdCheck": { "tier": "gcd-unindexed" }
     },
     {
-      "id": "realm-of-kings-2014-tpb-second-printing",
+      "id": "realm-of-kings-tpb-2601361",
       "title": "Realm of Kings",
       "format": "trade paperback",
       "medium": "print",
@@ -279,7 +279,7 @@
           "from": 1,
           "to": 1,
           "assertedBy": "owner-curated",
-          "basis": "Curated as a later printing of the 2010 book; contents are assumed to follow that book and are unverified."
+          "basis": "Curated as the title issue only; the book's other contents are not established and the database has none indexed."
         }
       ],
       "gcdCheck": { "tier": "gcd-unindexed" }

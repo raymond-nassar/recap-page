@@ -5,7 +5,7 @@
   "schemaVersion": 1,
   "note": "Curated inputs for checking pilot editions against the Grand Comics Database. Every value here was read from a database record, so it stays under that licence and out of the MIT-licensed files.",
   "editions": {
-    "realm-of-kings-2014-tpb-second-printing": { "printingOf": "realm-of-kings-2010-tpb" },
+    "realm-of-kings-tpb-2601361": { "printingOf": "realm-of-kings-2010-tpb" },
     "civil-war-2007-tpb": {
       "storyTitles": {
         "1": "Civil War Part One of Seven",
