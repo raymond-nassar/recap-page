@@ -109,6 +109,10 @@ Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/we
 and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),
 checked on 2026-10-03. This is an app-wide standard, not a convention limited to Search.
 
+### Brand
+
+Follow the [brand guidelines](docs/BRAND_GUIDELINES.md) for the retained icon, wordmark and colors.
+
 ### Controls and transitions
 
 - **Destinations and actions.** Use native anchors with meaningful `href` values for

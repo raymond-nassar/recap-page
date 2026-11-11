@@ -15412,6 +15412,21 @@ const SCENARIOS = [
       page.on('console', (message) => {
         if (message.type() === 'error') browserErrors.push(message.text());
       });
+      const checkWordmark = async (label) => {
+        for (const theme of ['dark', 'light']) {
+          await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
+          const file = theme === 'light' ? 'wordmark.svg' : 'wordmark-white.svg';
+          await page.waitForFunction((name) => {
+            const image = document.querySelector('.site-name img');
+            return image?.complete && image.naturalWidth === 1000 && image.currentSrc.endsWith(`/assets/${name}`);
+          }, {}, file);
+          t.check(`${label} selects the fixed ${theme}-surface wordmark`,
+            await page.$eval('.site-name img', (image, name) => image.currentSrc.endsWith(`/assets/${name}`)
+              && getComputedStyle(document.body).backgroundColor === (name === 'wordmark.svg'
+                ? 'rgb(250, 250, 255)' : 'rgb(17, 17, 23)'), file));
+        }
+        await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: '' }]);
+      };
 
       try {
         const { destination } = await buildPages({ destination: join(temporary, 'site') });
@@ -15419,6 +15434,7 @@ const SCENARIOS = [
 
         await page.setViewport({ width: 1280, height: 900 });
         await page.goto(url, { waitUntil: 'load' });
+        await checkWordmark('Home');
         await page.keyboard.press('Tab');
         const skip = await page.$eval('.skip-link', (link) => {
           const style = getComputedStyle(link);
@@ -15526,6 +15542,7 @@ const SCENARIOS = [
         await page.$eval('#features a[href="./being-built.html"]', (link) => link.focus());
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.pathname.endsWith('/being-built.html'));
+        await checkWordmark('Generated masthead');
         t.check('the feature teaser opens the generated page by keyboard without a network lookup',
           await page.$eval('h1', (heading) => heading.textContent === "What's being built")
           && webRequests.length === 0);
@@ -26629,6 +26646,66 @@ SCENARIOS.push({
     } finally {
       await reportCloudHoldTrace(page, fixture, evidence);
     }
+  },
+});
+
+SCENARIOS.push({
+  id: 'brand-wordmark',
+  title: 'The transparent wordmark follows explicit and system themes without changing its accessible name',
+  async run(page, t) {
+    const { decodePng } = await import('./lib/painted-contrast.mjs');
+    await page.setViewport({ width: 1280, height: 900 });
+    await open(page, '/#/home');
+    for (const [system, explicit, expected] of [
+      ['dark', 'light', [109, 40, 217]],
+      ['dark', 'dark', [255, 255, 255]],
+      ['light', 'dark', [255, 255, 255]],
+      ['light', 'light', [109, 40, 217]],
+      ['light', null, [109, 40, 217]],
+      ['dark', null, [255, 255, 255]],
+    ]) {
+      await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: system }]);
+      await click(page, '.ri[data-view="data"]');
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.select('#opt-theme', explicit ?? 'system');
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home:not([hidden])');
+      await page.waitForFunction(() => [...document.querySelectorAll('.home-wordmark')]
+        .every((image) => image.complete && image.naturalWidth > 0));
+      await page.$eval('#view-home', async (node) => {
+        await Promise.all(node.getAnimations().map((animation) => animation.finished));
+      });
+      const selector = expected[0] === 255 ? '.home-wordmark--dark' : '.home-wordmark--light';
+      const image = await page.$(selector);
+      const painted = decodePng(Buffer.from(await image.screenshot()));
+      const counts = new Map();
+      for (let y = 0; y < painted.height; y += 1) {
+        for (let x = 0; x < painted.width; x += 1) {
+          const color = painted.pixel(x, y).join(',');
+          counts.set(color, (counts.get(color) ?? 0) + 1);
+        }
+      }
+      const background = await page.$eval('#view-home', (node) => {
+        const rgb = getComputedStyle(node).backgroundColor;
+        return rgb === 'rgba(0, 0, 0, 0)' ? getComputedStyle(document.body).backgroundColor : rgb;
+      });
+      const corner = painted.pixel(6, 6).join(',');
+      t.check(`${explicit ?? 'system'} with ${system} preference paints the approved letters and outline`,
+        (counts.get(expected.join(',')) ?? 0) > 100 && (counts.get('238,8,116') ?? 0) > 10,
+        JSON.stringify({ expected, fill: counts.get(expected.join(',')), pink: counts.get('238,8,116') }));
+      t.check('the background remains transparent and Home keeps one accessible heading',
+        `rgb(${corner.split(',').join(', ')})` === background
+        && await page.$eval('#home-h', (node) => node.textContent === 'Recap Page'
+          && [...node.querySelectorAll('img')].every((image) => image.alt === ''
+            && image.getAttribute('aria-hidden') === 'true')
+          && [...node.querySelectorAll('img')].filter((image) => getComputedStyle(image).display !== 'none').length === 1
+          && document.querySelectorAll('#view-home h1').length === 1),
+        JSON.stringify({ corner, background }));
+    }
+    await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]);
+    t.check('forced colors show the plain-text brand instead of artwork',
+      await page.$eval('#home-h', (node) => [...node.querySelectorAll('img')].every((image) => getComputedStyle(image).display === 'none')
+        && getComputedStyle(node.querySelector('.home-brand-text')).position === 'static'));
   },
 });
 
