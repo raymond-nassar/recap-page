@@ -3589,9 +3589,11 @@ issues or snapshot dates. Historical approval checks first verify the published 
 reconstruct the exact original attribution for comparison with the frozen approval. An absent
 published section is omitted, not represented by null or an invented heading.
 
-The owner approved credit for One World Under Doom, the Siege and Dark Reign prelude, the
-Shang-Chi MCU selection and the 2016 Doctor Strange MCU selection in
-[Issue #1217](https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248).
+The owner approved credit for One World Under Doom, the Siege and Dark Reign prelude and the
+Shang-Chi MCU selection in
+[Issue #1217](https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248),
+and for the 2016 Doctor Strange MCU selection, by name, in a
+[later decision on the same Issue](https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6784814234).
 The Siege card links to the Siege guide and retains Dark Reign in its origin. The Shang-Chi and
 Doctor Strange selections remain owner-selected cuts, not claims to reproduce complete guides.
 The Doctor Strange page supports a partial ordered match but does not establish the identity

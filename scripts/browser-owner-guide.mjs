@@ -93,6 +93,17 @@ export function hasDedicatedCbhOwnerScenario(guide, scenarioIds) {
   return true;
 }
 
+// A list can be revised more than once, so the approval names the chain's first credit and the card
+// shows its last one.
+export function ownerGuideSource(contract, card, payload, revisions = sourceCreditRevisions) {
+  const chain = revisions.entries.filter((entry) => entry.id === contract.id);
+  if (!chain.length) return contract.sourceUrl;
+  assert.equal(contract.sourceUrl, chain[0].before.source);
+  revisions.assertLatest(card, card.file);
+  revisions.assertLatest(payload, card.file);
+  return chain.at(-1).after.source;
+}
+
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   // The accepted copy predates the recorded description revisions, so the preview is held to the
   // revised side of that record rather than to a second hand-typed copy of it.
@@ -109,13 +120,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const card = catalog.lists.find((entry) => entry.id === contract.id);
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
   const payload = json(`../src/data/${card.file}`);
-  const credit = sourceCreditRevisions.entries.find((entry) => entry.id === contract.id);
-  if (credit) {
-    assert.equal(contract.sourceUrl, credit.before.source);
-    sourceCreditRevisions.assertLatest(card, card.file);
-    sourceCreditRevisions.assertLatest(payload, card.file);
-  }
-  const expectedSource = credit?.after.source ?? contract.sourceUrl;
+  const expectedSource = ownerGuideSource(contract, card, payload);
   const expected = contract.rows.map((row, index) => ({
     position: index + 1, issueId: row[1], title: row[2],
     group: row[3] == null ? null : contract.groups[row[3]],

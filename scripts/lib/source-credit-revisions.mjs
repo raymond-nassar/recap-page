@@ -7,7 +7,7 @@ export const REVIEWED_CREDIT_DIGESTS = Object.freeze([
   'fab0f614f22e876910386a1baf26ea44c22a3c95568119849a5164d443c462b0',
   'f3fd0ecac4ef51e38fbb27187cf2e70a6c6b582b069696998c4743d080ad8ff6',
   '7b41f67b2db1af02ca15f201cd0fbea3d3a40668d597879debd2cd2ce42e38d7',
-  'ab989e672fd357bf4a4ff36cb4080ce20a10376803347b5735775697da42dddc',
+  'ab988659f374ab74ffb0d0e1df58bf794e25bbd8992fb60cb59b6b81cd3dc9e6',
 ]);
 
 const keys = (value, expected, label) => {
@@ -134,16 +134,11 @@ export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CRED
     return value;
   }
 
-  function undo(value, file, { historical = false } = {}) {
+  function undo(value, file) {
     const chain = revisionFor(value, file);
     if (!chain) return value;
     const current = readPublished(value, chain);
-    if (historical) {
-      assert.ok([chain[0].before, ...chain.map((entry) => entry.after)].some((state) => same(state, current)),
-        `${value.id}: unrecorded historical source credit`);
-    } else {
-      assert.ok(same(current, chain.at(-1).after), `${value.id}: published credit is not latest`);
-    }
+    assert.ok(same(current, chain.at(-1).after), `${value.id}: published credit is not latest`);
     return same(current, chain[0].before) ? value : replaceCredit(value, chain[0].before);
   }
 
