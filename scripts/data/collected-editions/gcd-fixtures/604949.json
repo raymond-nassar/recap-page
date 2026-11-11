@@ -1,0 +1,289 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/604949/?format=json",
+  "retrievedAt": "2026-11-10T19:33:07.305Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/604949/?format=json",
+    "series_name": "Civil War (2007 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2007",
+    "key_date": "2007-04-11",
+    "page_count": "212.000",
+    "isbn": "0-7851-2179-X",
+    "notes": "Later printings have cover price of 24.99 USD, 27.99 CAD, but not clear which printing it switched with.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/35570/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #1 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #1 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part One of Seven",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "33.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #1 Aspen Variant Michael Turner cover",
+        "feature": "",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #2 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #2 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 6,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part Two of Seven",
+        "feature": "",
+        "sequence_number": 7,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #3 Ed McGuinness cover",
+        "feature": "",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #3 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #3 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 10,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part Three of Seven",
+        "feature": "",
+        "sequence_number": 11,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #4 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 12,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #4 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part Four of Seven",
+        "feature": "",
+        "sequence_number": 14,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Wizard #176 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #5 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 16,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #5 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 17,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part Five of Seven",
+        "feature": "",
+        "sequence_number": 18,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Comics Buyer's Guide #1619",
+        "feature": "",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #6 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 20,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #6 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 21,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part Six of Seven",
+        "feature": "",
+        "sequence_number": 22,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #7 Michael Turner cover",
+        "feature": "",
+        "sequence_number": 23,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #7 Wrap-around cover",
+        "feature": "",
+        "sequence_number": 24,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Civil War Part Seven of Seven",
+        "feature": "",
+        "sequence_number": 25,
+        "page_count": "28.000",
+        "notes": ""
+      },
+      {
+        "type": "illustration",
+        "title": "\"Whose Side Are You On?\" promotional poster",
+        "feature": "",
+        "sequence_number": 26,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #1 Sketch variant",
+        "feature": "",
+        "sequence_number": 27,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #2 Sketch variant",
+        "feature": "",
+        "sequence_number": 28,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #3 Sketch variant",
+        "feature": "",
+        "sequence_number": 29,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #4 Sketch variant",
+        "feature": "",
+        "sequence_number": 30,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #5 Sketch variant",
+        "feature": "",
+        "sequence_number": 31,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #6 Sketch variant",
+        "feature": "",
+        "sequence_number": 32,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War #7 Sketch variant",
+        "feature": "",
+        "sequence_number": 33,
+        "page_count": "1.000",
+        "notes": ""
+      }
+    ]
+  }
+}

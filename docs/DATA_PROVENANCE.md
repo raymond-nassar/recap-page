@@ -996,9 +996,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:694` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:696` and the issue-details view at
 `src/js/views/issue.js:102`. The function behind both already answers for the absence at
-`src/js/views/reading.js:91-102`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:93-104`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -3053,7 +3053,7 @@ shape (`test/helpers/owner-delivery-contract.mjs:111-139`).
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:243-252`,
-`src/js/views/reading.js:55-57`, `src/js/views/reading.js:64-73`). It keeps `metadataSourceKind` the
+`src/js/views/reading.js:57-59`, `src/js/views/reading.js:66-75`). It keeps `metadataSourceKind` the
 same way, only as the closed value and only beside an owner-confirmed identity, so a supplemented
 comic's badge hint, gap sentence and catalog label credit marvel.com and the Marvel Fandom wiki
 instead of claiming it has no cover. The actor, date, URL and confirmation
@@ -3598,3 +3598,64 @@ The Siege card links to the Siege guide and retains Dark Reign in its origin. Th
 Doctor Strange selections remain owner-selected cuts, not claims to reproduce complete guides.
 The Doctor Strange page supports a partial ordered match but does not establish the identity
 boundary of a later same-titled recommendation, so no section heading is claimed.
+
+## Collected-edition pilot
+
+Issue #1203 asked whether the Comic Book Herald guides' references to collected editions were kept,
+so that reading lists could later be linked to the books that collect them. They were kept only as
+a list-local grouping: of the 159 catalog choices linked to that site, 68 carry collection labels,
+covering 19,357 of 28,369 rows. No list records an edition as a book, with an identifier or exact
+contents. A pilot now records five of those lists against real books, in the folder
+`scripts/data/collected-editions/`. The app packages only two small generated projections in
+`src/data/collectedEditionCatalog.js` and `src/data/collectedEditionEvidence.js`, not the fixtures.
+
+The owner decided three things on 2026-11-10, recorded on the Issue. Comic Book Herald's index of
+collected editions may be used as a source of facts about which book holds which comics. Its
+affiliate and store links are not used anywhere, in data, tools, documents or destinations. And the
+Grand Comics Database is approved as a second, separately credited source under its CC BY-SA 4.0
+licence. In practice the index is the collection headings inside each guide, which the lists
+already retain; the pilot read no new guide prose and copied none.
+
+The two sources are kept apart because their terms differ. Facts recovered from the guides, and the
+provider-neutral edition records, sit in MIT-licensed files. Every fact taken from the database's
+public API, including story titles, its series names, the contents its indexer notes state, which
+book is a later printing of which, and the sequences set aside when counting, sits only in
+`gcd-check-inputs.json`, `gcd-editions.json`, the per-edition fixtures and the generated runtime
+`collectedEditionEvidence.js`, which carry the licence
+and the credit. The neutral records refer to them by id, and the check rejects a database field
+found in an MIT-licensed file. Each edition's contents are checked against the database: indexer
+notes or matching story titles verify a comic, a matching count is only consistent, every sequence
+left out of a count is recorded with its reason, and a disagreement is recorded with its evidence
+rather than settled. A book with any conflict is never called verified. Of the 68 grouped rows in
+the pilot, 63 are claimed by an edition, 23 are verified, 14 more are confirmed only by a book that
+also carries a conflict, one is partial, and seven findings are recorded.
+
+Nothing taken is an image or a claim about reading. No cover image is fetched or stored, and the
+database's cover fields are dropped before anything is written. No record says that a reader can
+read, buy or borrow an edition anywhere. Digital editions are a recorded gap, because the database
+indexes print books. The database's own bulk download needs an account and none was created; the pilot
+needed only 23 anonymous API reads. Existing saved data and backup formats are unchanged.
+
+The Library of Congress also republishes a licensed snapshot. Its
+[item record](https://www.loc.gov/item/2018487926/?fo=json), checked by the coordinator on
+2026-11-10, reports unrestricted access and CC BY-SA 4.0; the 2026-04-15 resource reports that
+downloading is unrestricted. This is permitted redistribution under the same licence, not a way
+around the database site's sign-in. The Library's rights statement leaves the legal judgment
+with the user. Later indexing is absent from that snapshot. The API did not state a file size;
+the research estimate is about 2.7 GB. If chosen, download once outside the repository, never
+commit it, and record its snapshot date and SHA-256. The owner has not chosen this mirror or a
+database account.
+
+The owner's later decision on 2026-11-10, recorded in
+[the scope decision](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6781298403),
+makes verified relations visible in Preview and saved reading-list issue rows. The display uses
+curated MIT book names, not database titles. The exact issue-to-edition relations are derived from
+the database and remain CC BY-SA 4.0, with source addresses, checked dates and an adaptation notice.
+Each labeled sequence credits the Grand Comics Database and links its licence. Only full,
+verified, conflict-free relations display; this is not a statement of reading availability.
+Existing collection headings remain editorial or user-customized grouping, not verification.
+
+The provider policy ships Hoopla as pending, with no title identifier or address. A future link
+requires recorded granted permission and a verified HTTPS book destination. It says "View this
+book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
+No live provider lookup, account, credential, cover image or affiliate/store destination is added.

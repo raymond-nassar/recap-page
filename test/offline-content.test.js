@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 
 import {
   CONTENT_CACHE_PREFIX,
@@ -148,6 +150,33 @@ function makeWorld({ catalog = CATALOG, order = ORDER, caches = makeCaches() } =
 function controller(world) {
   return createOfflineContent({ scope: world.scope, caches: world.caches });
 }
+
+test('collected-edition modules survive selected-list offline preparation and worker fallback', async () => {
+  const world = makeWorld();
+  const files = ['/data/collectedEditionCatalog.js', '/data/collectedEditionEvidence.js'];
+  const entries = world.scope.performance.getEntriesByType();
+  world.scope.performance.getEntriesByType = () => [...entries, ...files.map((file) => ({ name: `${ORIGIN}${file}` }))];
+  for (const file of files) world.scope.bodies.set(`${ORIGIN}${file}`, ['export const fixture = {};', 'text/javascript']);
+  const result = await controller(world).prepare(LIST_ID);
+  assert.equal(result.ok, true, result.error);
+  for (const file of files) assert.ok(result.manifest.resources.some((entry) => entry.path === file && entry.kind === 'shell'), file);
+  assert.equal((await controller(world).readiness(LIST_ID)).state, 'ready');
+  const listeners = new Map();
+  runInNewContext(readFileSync(new URL('../src/sw.js', import.meta.url), 'utf8'), {
+    URL,
+    self: {
+      location: { origin: ORIGIN }, caches: world.caches,
+      addEventListener: (name, handler) => listeners.set(name, handler),
+      fetch: async () => { throw new Error('offline'); },
+    },
+  });
+  for (const file of files) {
+    let response;
+    listeners.get('fetch')({ request: { url: `${ORIGIN}${file}`, method: 'GET' },
+      respondWith: (promise) => { response = promise; } });
+    assert.equal((await response).status, 200, file);
+  }
+});
 
 test('preparation commits the selected list and actual shell only after verified writes', async () => {
   const world = makeWorld();
