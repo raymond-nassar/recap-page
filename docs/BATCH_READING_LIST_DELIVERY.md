@@ -135,7 +135,7 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:9-103` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:243-269` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:249-275` require registered contracts, current approval
 evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
 registration without a frozen whole-library peer-approval digest. A new Reading Path changes every
 reconstructed review library that keeps today's paths, so the shared history helpers drop any path
@@ -306,7 +306,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Selected-list vendoring failed; stop shared in
 
 The cache must contain genuine request-bound responses, not hand-built metadata projections;
 follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-only vending accepts
-exactly one source order (`scripts/vendor-orders.mjs:457-478`). Live `--only=id1,id2` can select
+exactly one source order (`scripts/vendor-orders.mjs:462-483`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 

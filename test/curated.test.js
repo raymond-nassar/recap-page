@@ -6,6 +6,7 @@ import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { curatedLedgerDigestFor, curatedRelationshipReportDigestFor } from '../scripts/lib/owner-guide.mjs';
 import { approvalDigestFor } from '../scripts/lib/cbh-inventory.mjs';
+import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mjs';
 
 const valid = {
   id: 'civil-war',
@@ -413,6 +414,7 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
   const { entries, errors } = parseManifest(manifest);
   assert.deepEqual(errors, []);
   assert.ok(entries.length > 0);
+  sourceCreditRevisions.validateOrders(entries);
 
   const catalogRaw = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
   const { lists } = parseCatalog(catalogRaw);
@@ -443,10 +445,12 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
       assert.equal(Object.hasOwn(rawList, 'spotlightKind'), false, `${entry.id} generated a forbidden taxonomy field`);
       assert.equal(list.spotlightKind, null);
     }
-    assert.equal(list.source, entry.sourcePage);
-    assert.equal(list.sourceSection, entry.sourceSection);
-    assert.equal(list.sourceOrigin, entry.sourceOrigin, `${entry.id} origin drifted from the manifest`);
-    assert.equal(list.sourceLicense, entry.sourceLicense);
+    sourceCreditRevisions.assertLatest(rawList, entry.out);
+    const historicalCredit = sourceCreditRevisions.undo(rawList, entry.out);
+    assert.equal(historicalCredit.source, entry.sourcePage);
+    assert.equal(historicalCredit.sourceSection ?? null, entry.sourceSection);
+    assert.equal(historicalCredit.sourceOrigin, entry.sourceOrigin, `${entry.id} origin drifted from the manifest`);
+    assert.equal(historicalCredit.sourceLicense, entry.sourceLicense);
     assert.deepEqual(list.characters, entry.characters);
     assert.deepEqual(list.keywords, entry.keywords);
     assert.equal(list.group, entry.group, `${entry.id} group drifted from the manifest`);
@@ -463,9 +467,8 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
 });
 
 // BL-099. The catalog is rebuilt from the pinned files rather than from the manifest, so a
-// pinned file that keeps a stale origin puts a claim in front of a reader that the manifest no
-// longer makes. The two are checked against each other rather than each against a copy of the
-// expected text, which somebody would then have to keep up to date.
+// pinned file that keeps a stale credit puts a claim in front of a reader that the manifest or
+// reviewed revision no longer makes. Check the latest credit before reconstructing the original.
 test('every pinned order file states the same origin and licence as the manifest', async () => {
   const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
   const { entries } = parseManifest(manifest);
@@ -473,9 +476,12 @@ test('every pinned order file states the same origin and licence as the manifest
 
   for (const entry of entries) {
     const pinned = JSON.parse(await readFile(new URL(`../src/data/${entry.out}`, import.meta.url), 'utf8'));
-    assert.equal(pinned.sourceSection ?? null, entry.sourceSection, `${entry.id}: pinned section disagrees with the manifest`);
-    assert.equal(pinned.sourceOrigin, entry.sourceOrigin, `${entry.id}: pinned origin disagrees with the manifest`);
-    assert.equal(pinned.sourceLicense ?? null, entry.sourceLicense, `${entry.id}: pinned licence disagrees with the manifest`);
+    sourceCreditRevisions.assertLatest(pinned, entry.out);
+    const historicalCredit = sourceCreditRevisions.undo(pinned, entry.out);
+    assert.equal(historicalCredit.source, entry.sourcePage, `${entry.id}: pinned source disagrees with the manifest`);
+    assert.equal(historicalCredit.sourceSection ?? null, entry.sourceSection, `${entry.id}: pinned section disagrees with the manifest`);
+    assert.equal(historicalCredit.sourceOrigin, entry.sourceOrigin, `${entry.id}: pinned origin disagrees with the manifest`);
+    assert.equal(historicalCredit.sourceLicense ?? null, entry.sourceLicense, `${entry.id}: pinned licence disagrees with the manifest`);
     // A pinned file is the copy the reader is actually served, so the shape is checked here too
     // rather than only where the manifest is parsed.
     if (pinned.sourceLicense != null) {
