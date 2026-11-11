@@ -47,7 +47,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
 
 // The test above reads only files named by the catalog, so it misses the noncatalog parent and
 // the design mockups. That is the shape of the miss it was written to prevent: the first strip left 41
-// descriptions in design/mockups/mock-data.js, a generated projection of a reading order that no
+// descriptions in docs/archive/mockups/mock-data.js, a generated projection of a reading order that no
 // catalog lists and no gate walked. A boundary defined by an enumeration is a boundary someone has
 // to keep complete, so this one is defined by the tree instead.
 //

@@ -81,7 +81,7 @@ export default [
       // Generated from src/data/hickman_full.json and consumed only by the static design
       // mockups. It is embedded JSON, so normalising its quotes would be undone the next
       // time it is regenerated.
-      'design/mockups/mock-data.js',
+      'docs/archive/mockups/mock-data.js',
     ],
   },
   js.configs.recommended,

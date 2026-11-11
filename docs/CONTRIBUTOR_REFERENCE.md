@@ -286,6 +286,12 @@ missing or noncommit object, nonancestor source, missing or binary path, invalid
 content or claim mismatch, malformed or duplicate entry, orphan entry, or incomplete sealed target.
 Fix the evidence; do not weaken the check.
 
+An unchanged frozen document move uses the separately approved
+[archive migration procedure](MAINTAINING.md#move-the-frozen-backlog-and-mockups).
+Version 2 of the registry explicitly binds the old and new document paths to the pre-move
+commit and exact blob. This authorizes only the citing-document path change, never a renamed
+immutable target or a search for similar historical content.
+
 ```
 npm run contract
 ```

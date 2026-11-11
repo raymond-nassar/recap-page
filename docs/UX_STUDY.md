@@ -556,21 +556,21 @@ distinct and none of them asserts that an issue is available.
 
 ## Step 3: Shipped versus intended design
 
-`design/mockups/` holds five named directions, `1-longbox.html` through `5-longbox-focus.html`,
-alongside a `design/mockups/index.html` contact sheet and `mock-data.js`.
+`docs/archive/mockups/` holds five named directions, `1-longbox.html` through `5-longbox-focus.html`,
+alongside a `docs/archive/mockups/index.html` contact sheet and `mock-data.js`.
 
 ### Which direction was adopted
 
 Direction 5, Longbox Focus, was adopted. Two independent pieces of evidence agree. The shipped
 stylesheet names it in its own header comment, and the mockup contact sheet marks that direction as
-the one to build. Evidence: `src/styles.css:1-4`, `design/mockups/index.html:51-62`.
+the one to build. Evidence: `src/styles.css:1-4`, `docs/archive/mockups/index.html:51-62`.
 
 ### The generated data file carries no unshipped intent
 
-`design/mockups/mock-data.js` opens by stating it was generated from `src/data/hickman_full.json`.
+`docs/archive/mockups/mock-data.js` opens by stating it was generated from `src/data/hickman_full.json`.
 Reading its fields for unbuilt features is therefore not applicable, because a file generated from
 shipped data is a projection of the shipped model and can only contain fields the shipped model
-already has. Evidence: `design/mockups/mock-data.js:1`.
+already has. Evidence: `docs/archive/mockups/mock-data.js:1`.
 
 ### Gaps between the mockups and the shipped UI
 
@@ -604,7 +604,7 @@ Severity: 2, single-rater estimate
 Rationale: affects findability of two whole classes of the reader's own data, but there are
 workarounds through the existing list views
 Confidence: Observed
-Evidence: `design/mockups/5-longbox-focus.html:169-172`
+Evidence: `docs/archive/mockups/5-longbox-focus.html:169-172`
 Resolution evidence: the current Library hub includes both views at `src/index.html:570-616`
 Source: Step 3 comparison of the adopted direction against the shipped rail
 Impact: the adopted direction's rail offers Everything read and Added by hand alongside Progress by
@@ -822,7 +822,7 @@ evidence value and the cheapest question that would confirm or kill it.
 | Primary device while reading | Desktop or laptop, with the tracker beside the reader | Moderate. The reflow and rail defects would be intolerable if a phone were the main device, and they shipped. `docs/ux-artifacts/viewport-sweep-reading.json` | On the last five reading sessions, what was the tracker open on? |
 | Reading style | Follows a long curated order end to end rather than dipping in | Strong. The product is built around order, resume and next-unread rather than around browsing. `src/index.html:329-405` | When a list is abandoned partway, what caused it? |
 | Tolerance for missing metadata | High, provided the app admits what it does not know | Strong. Pending and by-hand states are surfaced rather than hidden, and this was a deliberate decision. `src/js/views/reading.js:1029-1030` | Would you rather see a guess or a clearly marked gap? |
-| Attitude to cloud services | Actively prefers local-only and treats that as the point | Strong. Recorded as a product constraint and stated in the backlog's own out-of-scope list. `PRODUCT_BACKLOG.md:454-456` | If sync existed and was opt-in, would you turn it on? |
+| Attitude to cloud services | Actively prefers local-only and treats that as the point | Strong. Recorded as a product constraint and stated in the backlog's own out-of-scope list. `docs/archive/PRODUCT_BACKLOG.md:454-456` | If sync existed and was opt-in, would you turn it on? |
 | Accessibility needs | None known, and unasked | Weak. This is an assumption by absence. No accessibility requirement appears anywhere in the repository, and the shipped contrast and target sizes are consistent with nobody having needed otherwise. | Do you use any system accessibility setting, including text size, contrast or reduced motion? |
 
 Any other user type is speculative: a second reader would most plausibly be someone handed a

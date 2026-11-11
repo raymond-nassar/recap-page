@@ -243,7 +243,7 @@ test('the governance record gives active planning one owner for each concern', (
   assert.match(governance, /built-in status is a planning view, not a second completion record/);
   assert.match(
     governance,
-    /frozen \[historical backlog\]\(PRODUCT_BACKLOG\.md\) preserves the original rationale/,
+    /frozen \[historical backlog\]\(docs\/archive\/PRODUCT_BACKLOG\.md\) preserves the original rationale/,
   );
   assert.doesNotMatch(governance, /items with a detail block.*carry that check/);
 });

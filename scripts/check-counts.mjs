@@ -26,7 +26,7 @@ import { execSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-export const DOC = 'PRODUCT_BACKLOG.md';
+export const DOC = 'docs/archive/PRODUCT_BACKLOG.md';
 
 // A claim about a past state cites a count that is expected to disagree, exactly as
 // a historical `path:line` citation does, and Appendix B carries one: BL-028's rank
@@ -68,7 +68,7 @@ const ORDINAL_TENS = {
 //
 // The band above ninety-nine reads "a hundred and ninety-three" rather than "one hundred and
 // ninety-three" because that is how the backlog already writes a figure of that size, at
-// `PRODUCT_BACKLOG.md:2660`. Both are correct English and only one of them matches the
+// `docs/archive/PRODUCT_BACKLOG.md:2660`. Both are correct English and only one of them matches the
 // document, which is the only thing these words are for. The ceiling stops below two hundred
 // because no document here writes a figure that large, so its wording would be guessed
 // rather than matched, and a guess is what the null is here to prevent.
