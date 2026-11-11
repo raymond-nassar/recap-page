@@ -3981,6 +3981,7 @@ const searchListsView = createSearchListsView({
     });
     return {
       card: $('#search-q').closest('.search-page'),
+      input: $('#search-q'),
       browse: $('#search-browse'),
       scopes: $('#search-scopes'),
       count: $('#search-count'),

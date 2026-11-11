@@ -1914,8 +1914,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4017-4059|0": {
-    "anchor": "src/js/main.js:4017-4059",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4018-4060|0": {
+    "anchor": "src/js/main.js:4018-4060",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1979,18 +1979,18 @@
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3910-4145|0": {
-    "anchor": "src/js/main.js:3910-4145",
-    "fp": "f73ec81a4da50127",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3910-4146|0": {
+    "anchor": "src/js/main.js:3910-4146",
+    "fp": "74e3e5496c4a5d43",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4031-4037|0": {
-    "anchor": "src/js/main.js:4031-4037",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4032-4038|0": {
+    "anchor": "src/js/main.js:4032-4038",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4057-4058|0": {
-    "anchor": "src/js/main.js:4057-4058",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4058-4059|0": {
+    "anchor": "src/js/main.js:4058-4059",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },

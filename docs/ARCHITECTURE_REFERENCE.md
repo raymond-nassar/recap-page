@@ -1024,8 +1024,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:98-110`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:4031-4037` and
-`src/js/main.js:4057-4058`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:4032-4038` and
+`src/js/main.js:4058-4059`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:311-313`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:358-364`.
@@ -1058,7 +1058,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3910-4145`.
+`src/js/main.js:3910-4146`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1085,7 +1085,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:169-220`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:4017-4059`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:4018-4060`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3177-3203`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 

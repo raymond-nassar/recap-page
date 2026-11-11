@@ -45,8 +45,10 @@ function harness({
   };
   const scopeButton = (scope) => el('button', { dataset: { scope } });
   const group = () => ({ section: el('section', { hidden: true }), grid: el('div'), more: el('button', { hidden: true }) });
+  const input = el('input');
   const nodes = {
     card: el('section', { dataset: { scope: 'top' } }),
+    input,
     browse: el('section'),
     scopes: el('div', { hidden: true }, ['top', 'lists', 'series', 'creators', 'comics'].map(scopeButton)),
     count: el('p', { hidden: true }),
@@ -61,7 +63,6 @@ function harness({
   const announced = [];
   const lookups = [];
   const opened = [];
-  const input = el('input');
   const view = createSearchListsView({
     el,
     elements: () => nodes,
@@ -168,6 +169,7 @@ test('Comics is looked up once per query: on first opening the scope or on Enter
   await h.view.update('spider ');
   h.view.setScope('comics');
   assert.deepEqual(h.lookups, [{ query: 'spider' }]);
+  assert.deepEqual(h.announced, [], 'the lookup speaks its own busy notice, so the switch says nothing over it');
   h.comicStatus('running', 'spider');
   assert.equal(h.nodes.count.textContent, 'Looking up comics…');
   h.comicStatus('complete', 'spider', 50);
@@ -214,6 +216,10 @@ test('a Browse tile presses its scope, gives the reader the box and shows a hint
   assert.equal(h.nodes.browse.hidden, true);
   assert.equal(h.nodes.count.textContent, 'Type a series name to find it.');
   assert.deepEqual(h.announced, []);
+  h.view.setScope('top');
+  assert.equal(h.nodes.scopes.hidden, true, 'Top with an empty box returns to Browse by');
+  assert.equal(h.focused(), h.input, 'focus goes to the box, not to the hidden Top button');
+  h.view.startScope('series', h.input);
   await h.view.update('spi');
   assert.equal(h.nodes.count.textContent, '12 series');
 });

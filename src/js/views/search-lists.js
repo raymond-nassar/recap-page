@@ -235,11 +235,18 @@ export function createSearchListsView({
   function setScope(next, { focus = true } = {}) {
     if (!SCOPES.includes(next)) return;
     scope = next;
-    if (scope === 'comics' && terms() && !comicsHere() && isOnline()) comics.lookup(query.trim());
+    const started = scope === 'comics' && terms() && !comicsHere() && isOnline();
+    if (started) comics.lookup(query.trim());
     const nodes = render();
-    if (focus) nodes.scopes.querySelector(`[data-scope="${scope}"]`)?.focus({ preventScroll: true });
+    // Top with an empty box hides the scope buttons, so the pressed one cannot keep focus and the
+    // box takes it rather than letting it fall to the page.
+    if (focus) {
+      const target = nodes.scopes.hidden ? nodes.input : nodes.scopes.querySelector(`[data-scope="${scope}"]`);
+      target?.focus({ preventScroll: true });
+    }
     quiet();
-    if (terms()) announce(announcement());
+    // A lookup this switch started speaks its own busy notice, so the count line would say it twice.
+    if (terms() && !started) announce(announcement());
   }
 
   // Enter in the box. Offline sends nothing and says so; the local groups are already showing.
