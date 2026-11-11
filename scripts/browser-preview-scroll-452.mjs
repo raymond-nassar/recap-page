@@ -202,6 +202,9 @@ export const previewScroll452 = {
       await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
+      // Lists with collected-edition evidence credit that source above the issues; Tab past its links.
+      const creditLinks = await page.$$eval('#preview-body .edition-credit a', (a) => a.length);
+      for (let i = 0; i < creditLinks; i += 1) await page.keyboard.press('Tab');
       await checkFocusedControl(page, t, `${cfg.name}: first issue boundary focus`,
         '#preview-body .preview-issue-link');
       const links = await page.$$('#preview-body .preview-issue-link');
