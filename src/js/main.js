@@ -68,7 +68,7 @@ import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
-import { createSearchListsView } from './views/search-lists.js';
+import { createSearchListsView, searchThumb } from './views/search-lists.js';
 import { parseMcuPrep } from './lib/mcuPrep.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
@@ -3242,7 +3242,20 @@ export function boot() {
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
   $('#search-q').addEventListener('input', (event) => void searchListsView.update(event.target.value));
-  $('#search-lists-more').addEventListener('click', () => void searchListsView.showAll());
+  $('#form-search').addEventListener('submit', (event) => {
+    event.preventDefault();
+    searchListsView.submit($('#search-q').value);
+  });
+  for (const button of document.querySelectorAll('#search-scopes [data-scope]')) {
+    button.addEventListener('click', () => searchListsView.setScope(button.dataset.scope));
+  }
+  for (const tile of document.querySelectorAll('#search-browse [data-scope-tile]')) {
+    tile.addEventListener('click', () => searchListsView.startScope(tile.dataset.scopeTile, $('#search-q')));
+  }
+  $('#search-lists-more').addEventListener('click', () => void searchListsView.showMore('lists'));
+  $('#search-series-more').addEventListener('click', () => void searchListsView.showMore('series'));
+  $('#search-creators-more').addEventListener('click', () => void searchListsView.showMore('creators'));
+  $('#search-comics-more').addEventListener('click', () => searchListsView.setScope('comics'));
   dataView.wire();
   completeBackupView.wire();
   cloudBackupView.wire();
@@ -3503,6 +3516,8 @@ const addView = createAddView({
   warmNameIndex: (kind) => api.warmNameIndex(kind),
   withSaveEducation,
   ymd,
+  comicThumb: (issue) => searchCover(coverUrl(issue, 'portrait_medium')),
+  onComicStatus: (status) => searchListsView.comicStatus(status),
 });
 
 const bulkReadView = createBulkReadView({
@@ -3951,16 +3966,40 @@ function loadMcuGuides() {
   return mcuGuides;
 }
 
+// Search row covers honour the covers setting here, where the request would be made.
+function searchCover(url) {
+  return searchThumb(el, settings.covers ? url : null);
+}
+
 const searchListsView = createSearchListsView({
-  elements: () => ({
-    section: $('#search-lists'),
-    count: $('#search-lists-count'),
-    grid: $('#search-lists-results'),
-    more: $('#search-lists-more'),
-  }),
+  el,
+  elements: () => {
+    const group = (kind) => ({
+      section: $(`#search-${kind}`),
+      grid: $(`#search-${kind}-results`),
+      more: $(`#search-${kind}-more`),
+    });
+    return {
+      card: $('#search-q').closest('.search-page'),
+      browse: $('#search-browse'),
+      scopes: $('#search-scopes'),
+      count: $('#search-count'),
+      panes: $('#search-panes'),
+      lists: group('lists'),
+      series: group('series'),
+      creators: group('creators'),
+      comics: { section: $('#search-comics'), more: $('#search-comics-more') },
+    };
+  },
   loadCatalog,
   loadGuides: loadMcuGuides,
+  searchNames: (kind, query, options) => (kind === 'series'
+    ? api.searchSeries(query, options)
+    : api.searchCreators(query, options)),
   presentation: catalogPresentation,
+  thumb: searchCover,
+  comics: { lookup: (query, options) => addView.lookupComics(query, options) },
+  openNamed: (kind, item) => addView.openNamed(kind, item),
   announce,
 });
 

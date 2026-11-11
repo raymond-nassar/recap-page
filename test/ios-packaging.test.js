@@ -1416,7 +1416,7 @@ test('first-run tile uses a precise native reveal without changing shared helper
     presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'),
     presentationTests.indexOf('private func assertNoSeparateTextTarget('));
   assert.match(firstRun, /revealNativeTarget\(link, in: app, precise: true\)/);
-  assert.match(presentationTests, /revealNativeTarget\(summary, in: app\)/);
+  assert.match(presentationTests, /revealNativeTarget\(button, in: app\)/);
   assert.match(launchTests, /revealNativeTarget\(finish, in: reader\)/);
 });
 
@@ -2029,20 +2029,26 @@ test('iOS Search reuses the named label target and retains its visible field des
   assert.match(controller, /for \(const id of \[[^\]]*'search-hint'[^\]]*\]\)[\s\S]*?describedBy\.split\(\/\\s\+\/\)\.includes\(id\)\) hint\.setAttribute\('aria-hidden', 'true'\)/);
   assert.match(css, /:root #form-search label\[for="search-q"\]\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
   assert.match(html, /id="search-q"[^>]*aria-describedby="search-hint search-help"/);
-  assert.match(html, /<p id="search-hint" class="rail-hint">Reading Lists appear as you type\./);
+  assert.match(html, /<p id="search-hint" class="rail-hint">Lists, series and creators match as you type\. Press Enter to look up comics online\./);
+  for (const selector of ['#search-scopes .search-scope', '.search-quiet-links a']) {
+    assert.ok(controller.includes(selector), `${selector} is a named iOS target`);
+  }
 });
 
-test('native expanded More disclosure records actual open and closed geometry at both text sizes', () => {
-  assert.match(presentationTests, /func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes/);
-  assert.match(presentationTests, /moreMethods: \(\(\) =>/);
-  assert.match(presentationTests, /disclosure\.open/);
-  assert.match(presentationTests, /summary\.tap\(\)/);
-  assert.match(presentationTests, /for expectedOpen in \[true, false\]/);
-  assert.match(presentationTests, /"expanded More has no sideways overflow"/);
-  assert.match(presentationTests, /XCTAssertEqual\(document, viewport,/);
-  assert.match(presentationTests, /"summaryOverflow": summaryScroll - summaryWidth/);
-  assert.doesNotMatch(presentationTests, /XCTAssertLessThanOrEqual\(summaryScroll, summaryWidth/);
-  assert.match(presentationTests, /"t03-more-methods-/);
+test('native Search test measures the box label and every scope at 44 points and audits both text sizes', () => {
+  assert.doesNotMatch(presentationTests, /add-other-methods|moreMethods/);
+  const body = presentationTests.slice(
+    presentationTests.indexOf('func testSearchLabelAndScopesMeetTargetsAndPassAuditAtDefaultAndLargestTextSizes'),
+    presentationTests.indexOf('func testReadSheetPassesAccessibilityAuditAtDefaultAndLargestTextSizes'),
+  );
+  assert.ok(body.length > 0);
+  assert.match(body, /for category in \[UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge\]/);
+  assert.match(body, /for scope in \["Top", "Reading Lists", "Series", "Creators", "Comics"\]/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.width, 44/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.height, 44/);
+  assert.match(body, /try performAccessibilityAudit\(of: app\)/);
+  assert.match(body, /"t03-search-scopes-/);
 });
 
 test('native passive fixtures establish hidden and ambiguous geometry under the real CSP', () => {

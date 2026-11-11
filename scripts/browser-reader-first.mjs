@@ -239,15 +239,16 @@ try {
 
     if (selectedCases.includes('adding')) {
       await load('add');
-      await capture('add', ['#add-primary-methods [data-view="add-search"]', '#add-primary-methods [data-view="add-series"]', '#add-other-methods > summary']);
-      check(await page.$eval('#add-other-methods', (node) => !node.open), prefix('other adding methods start closed'));
-      await click(page, '#add-other-methods > summary');
-      check(await page.$$eval('#add-other-methods [data-view]', (nodes) => nodes.length === 3
-        && nodes.every((node) => node.getClientRects().length)), prefix('all secondary adding methods remain visible when requested'));
+      await capture('add', ['#form-search button', '#search-browse [data-scope-tile="series"]', '#search-browse [data-view="catalog"]']);
+      check(await page.$$eval('#search-browse .search-hub-card, #search-browse .search-quiet-links a', (nodes) => nodes.length === 8
+        && nodes.every((node) => node.getClientRects().length)), prefix('every Browse destination and both quieter adding routes show without opening anything'));
       await load('add-search');
-      await capture('add-search', ['#form-search button', '#search-alternatives > summary']);
+      await capture('add-search', ['#form-search button']);
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-      await page.$eval('#search-q', (node) => { node.value = 'Reader-first no-match fixture'; });
+      await page.$eval('#search-q', (node) => {
+        node.value = 'Reader-first no-match fixture';
+        node.dispatchEvent(new Event('input', { bubbles: true }));
+      });
       await click(page, '#form-search button');
       await page.waitForFunction(() => [...document.querySelectorAll('#search-results .notice-act button')]
         .some((node) => node.textContent === 'Add a comic by hand'));

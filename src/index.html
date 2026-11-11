@@ -783,105 +783,95 @@
             <div id="young-readers-results" class="results"></div>
           </section>
 
-          <!-- ---------------------------------------- add hub -->
+          <!-- ---------------------------------------- search -->
           <section id="view-add" class="view" hidden aria-labelledby="add-h">
             <div class="head"><div class="head-left"><h1 id="add-h">Search</h1></div></div>
-            <div class="search-hub-grid add-hub-grid" id="add-primary-methods">
-              <a href="#/add-search" class="search-hub-card" data-view="add-search">
-                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search comics</span>
-              </a>
-              <a href="#/add-series" class="search-hub-card" data-view="add-series">
-                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#series"/></svg><span>Find a series</span>
-              </a>
-            </div>
-            <details class="field-disclosure action-disclosure add-other-methods" id="add-other-methods">
-              <summary>More ways to add</summary>
-              <div class="search-hub-grid">
-                <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#creator"/></svg><span>Browse a creator</span>
-                </a>
-                <a href="#/add-import" class="search-hub-card" data-view="add-import">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
-                </a>
-                <a href="#/add-manual" class="search-hub-card" data-view="add-manual">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add a comic by hand</span>
-                </a>
+
+            <section class="card card-static addpri add-page search-page" data-scope="top">
+              <p id="search-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
+              <form id="form-search" class="stack">
+                <label for="search-q">Search Reading Lists, series, creators and comics</label>
+                <div class="field-row">
+                  <input type="search" id="search-q" name="issue-query" placeholder="e.g. Avengers…" autocomplete="off" aria-describedby="search-hint search-help" />
+                  <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Look up comics" aria-describedby="search-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
+                </div>
+                <p id="search-hint" class="rail-hint">Lists, series and creators match as you type. Press Enter to look up comics online.</p>
+              </form>
+              <!--
+                Pressed-state buttons rather than tabs (#1204): each scope shows or hides result
+                groups that are already built, so a switch never rebuilds the comics or their
+                checkboxes and never sends a request. The count for the pressed scope is the one
+                announcement, sent through #announcer.
+              -->
+              <div id="search-scopes" class="search-scopes" role="group" aria-label="Show results for" hidden>
+                <button type="button" class="search-scope" data-scope="top" aria-pressed="true">Top</button>
+                <button type="button" class="search-scope" data-scope="lists" aria-pressed="false">Reading Lists</button>
+                <button type="button" class="search-scope" data-scope="series" aria-pressed="false">Series</button>
+                <button type="button" class="search-scope" data-scope="creators" aria-pressed="false">Creators</button>
+                <button type="button" class="search-scope" data-scope="comics" aria-pressed="false">Comics</button>
               </div>
-            </details>
+              <p id="search-count" class="search-count" hidden></p>
+              <!--
+                These panes are deliberately not live regions. Each one receives a whole result
+                list at once, so announcing the container meant reading every row aloud, on top
+                of the count the app already sends to #announcer. See the note on isLive() in
+                js/views/shared/feedback.js.
+              -->
+              <div id="search-panes" class="search-panes" hidden>
+                <div class="search-local">
+                  <section id="search-lists" class="search-group" aria-labelledby="search-lists-h" hidden>
+                    <h2 id="search-lists-h">Reading Lists</h2>
+                    <div id="search-lists-report" class="report"></div>
+                    <div id="search-lists-results" class="results"></div>
+                    <button type="button" id="search-lists-more" class="btn btn-g search-more" hidden>Show all Reading Lists</button>
+                  </section>
+                  <section id="search-series" class="search-group" aria-labelledby="search-series-h" hidden>
+                    <h2 id="search-series-h">Series</h2>
+                    <div id="search-series-results" class="results"></div>
+                    <button type="button" id="search-series-more" class="btn btn-g search-more" hidden>Show more series</button>
+                  </section>
+                  <section id="search-creators" class="search-group" aria-labelledby="search-creators-h" hidden>
+                    <h2 id="search-creators-h">Creators</h2>
+                    <div id="search-creators-results" class="results"></div>
+                    <button type="button" id="search-creators-more" class="btn btn-g search-more" hidden>Show more creators</button>
+                  </section>
+                </div>
+                <section id="search-comics" class="search-group search-comics" aria-label="Comics" hidden>
+                  <div id="search-results" class="results"></div>
+                  <button type="button" id="search-comics-more" class="btn btn-g search-more" hidden>See all comics</button>
+                  <p class="rail-hint search-boundary">The comic snapshot ends in 2025, so add newer comics by hand. <a href="#/add-manual" data-view="add-manual">Add a comic by hand</a></p>
+                </section>
+              </div>
+              <section id="search-browse" class="search-hub" aria-labelledby="search-browse-h">
+                <h2 id="search-browse-h">Browse by</h2>
+                <div class="search-hub-grid">
+                  <a href="#/catalog" class="search-hub-card" data-view="catalog">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#timeline"/></svg><span>Reading guides</span>
+                  </a>
+                  <a href="#/spotlights" class="search-hub-card" data-view="spotlights">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg><span>Characters</span>
+                  </a>
+                  <button type="button" class="search-hub-card" data-scope-tile="series">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#series"/></svg><span>Series</span>
+                  </button>
+                  <button type="button" class="search-hub-card" data-scope-tile="creators">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#creator"/></svg><span>Creators</span>
+                  </button>
+                  <a href="#/genres" class="search-hub-card" data-view="genres">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#story-types"/></svg><span>Genres</span>
+                  </a>
+                  <a href="#/marvel-ages" class="search-hub-card" data-view="marvel-ages">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#ages"/></svg><span>Marvel Ages</span>
+                  </a>
+                </div>
+                <p class="search-quiet-links"><a href="#/add-import" data-view="add-import">Paste a Reading List</a><a href="#/add-manual" data-view="add-manual">Add a comic by hand</a></p>
+              </section>
+            </section>
           </section>
 
           <!-- ---------------------------------------- add child views -->
           <section id="view-add-search" class="view" hidden aria-labelledby="add-search-h">
             <div class="head"><div class="head-left"><h1 id="add-search-h">Search comics</h1></div></div>
-
-            <section class="card card-static addpri add-page">
-              <p id="search-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
-              <form id="form-search" class="stack">
-                <label for="search-q">Search Reading Lists and comic titles</label>
-                <div class="field-row">
-                  <input type="search" id="search-q" name="issue-query" placeholder="e.g. Secret Wars…" autocomplete="off" aria-describedby="search-hint search-help" />
-                  <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Search comic titles" aria-describedby="search-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
-                </div>
-                <p id="search-hint" class="rail-hint">Reading Lists appear as you type. Press Enter or the search button to look up comics online.</p>
-              </form>
-              <!--
-                Reading Lists are matched on this device as the reader types, so they stay
-                available offline and above whatever the online comic search returns. The
-                count is announced through #announcer once typing pauses, for the same reason
-                the result panes below are not live regions.
-              -->
-              <section id="search-lists" class="search-lists" aria-labelledby="search-lists-h" hidden>
-                <h2 id="search-lists-h">Reading Lists</h2>
-                <p id="search-lists-count" class="rail-hint"></p>
-                <div id="search-lists-report" class="report"></div>
-                <div id="search-lists-results" class="results"></div>
-                <button type="button" id="search-lists-more" class="btn btn-g search-lists-more" hidden>Show all Reading Lists</button>
-              </section>
-              <!--
-                These report panes are deliberately not live regions. Each one receives a
-                whole result list at once, so announcing the container meant reading every
-                row aloud, on top of the summary the app already sends to #announcer. The
-                summary is the one channel. See the note on isLive() in js/views/shared/feedback.js.
-              -->
-              <div id="search-results" class="results"></div>
-            </section>
-            <details class="field-disclosure action-disclosure search-alternatives" id="search-alternatives">
-              <summary>Other ways to find comics</summary>
-              <section class="search-hub" aria-labelledby="search-browse-h">
-                <h2 id="search-browse-h">Browse by</h2>
-                <div class="search-hub-grid">
-                  <a href="#/add-series" class="search-hub-card" data-view="add-series">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#series"/></svg>
-                    <span>Series</span>
-                  </a>
-                  <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#creator"/></svg>
-                    <span>Creators</span>
-                  </a>
-                  <a href="#/spotlights" class="search-hub-card" data-view="spotlights">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
-                    <span>Characters</span>
-                  </a>
-                  <a href="#/catalog" class="search-hub-card" data-view="catalog">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#timeline"/></svg>
-                    <span>Reading guides</span>
-                  </a>
-                </div>
-              </section>
-              <section class="search-hub search-hub-other" aria-labelledby="search-other-h">
-                <h2 id="search-other-h">Other ways to add</h2>
-                <div class="search-hub-grid">
-                  <a href="#/add-import" class="search-hub-card" data-view="add-import">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
-                    <span>Paste a Reading List</span>
-                  </a>
-                  <a href="#/add-manual" class="search-hub-card" data-view="add-manual">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
-                    <span>Add a comic by hand</span>
-                  </a>
-                </div>
-              </section>
-            </details>
           </section>
 
           <section id="view-add-series" class="view" hidden aria-labelledby="add-series-h">

@@ -21,16 +21,16 @@ this table, so reusing a glyph for something else fails it.
 |---|---|---|
 | menu | More | The navigation toggle |
 | books | Library | `#/library` in the side menu and on the phone bar |
-| search | Searching | Search, `#/add`, in the side menu and on the phone bar; Search comics, `#/add-search`; the three search submit buttons |
-| series | A series | Find a series and Series, both `#/add-series` |
-| creator | A creator | Browse a creator and Creators, both `#/add-creator` |
+| search | Searching | Search, `#/add`, in the side menu and on the phone bar; the three search submit buttons |
+| series | A series | The Series tile on Search, which presses the Series scope |
+| creator | A creator | The Creators tile on Search, which presses the Creators scope |
 | settings | Backup & settings | `#/data` |
 | info | About | About this app, `#/about`, and About these results |
 | check | Everything read | `#/library-read` |
 | progress | Progress by series | `#/progress` |
 | edit | Added by hand | `#/library-manual` |
-| paste | Paste a Reading List | `#/add-import`, on Search and under Other ways to find comics |
-| issue-add | Add a comic by hand | `#/add-manual`, on Search and under Other ways to find comics |
+| paste | Archived symbol | Retained for older artifacts; Search now links Paste a Reading List as text |
+| issue-add | Archived symbol | Retained for older artifacts; Search now links Add a comic by hand as text |
 | characters | Characters | Characters and the Character spotlights card, both `#/spotlights` |
 | timeline | Modern Timeline | Reading guides and the Modern Timeline card, both `#/catalog` |
 | storylines | Archived symbol | Retained for older artifacts; the Storylines screen has been replaced by Genres |
@@ -44,7 +44,7 @@ this table, so reusing a glyph for something else fails it.
 | thumb-down | Did not enjoy | Rating a completed Reading List |
 | star | Rating | Your ratings, `#/library-rated`, Rate this comic, and the rating dialog's five stars |
 
-This is 24 symbols. Static markup draws them 25 times in navigation, Library, Search and its search
+This is 24 symbols. Static markup draws them 20 times in navigation, Library, Search and its search
 controls, and draws the star six more times: beside Rate this comic and on the rating dialog's five
 buttons. The completed-list rating adds the two thumbs. Each of Home's seven category cards has an
 icon and a destination arrow, adding 14 SVG instances. The seven category icons all differ, and each

@@ -332,9 +332,11 @@ in the main view. **Trouble opening this comic?** contains the full Unlimited av
 temporary-link editor and optional correction-report tools. A temporary-link warning stays visible near Read even when help
 is closed. A reader link still does not establish availability or subscription access.
 
-Add starts with **Search issues** and **Find a series**. **More ways to add** contains creator,
-paste and manual-entry choices. Search keeps its alternatives in **Other ways to find comics**,
-and an empty result offers **Add an issue by hand** directly.
+Search has one box. Reading Lists, series and creators match as you type, and Enter looks up
+comics online. **Top**, **Reading Lists**, **Series**, **Creators** and **Comics** show one kind of
+result at a time without searching again, so selected comics stay selected. **Browse by** links
+reading guides, characters, series, creators, genres and Marvel Ages, with **Paste a Reading List**
+and **Add a comic by hand** beneath it.
 
 Under **Backup & settings**, **Data safety** opens with a short **Moving to another device**
 summary, then a **Complete backup** group, then gives reading data, completion history and the

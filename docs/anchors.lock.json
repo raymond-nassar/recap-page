@@ -1604,13 +1604,13 @@
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:503-535|0": {
-    "anchor": "docs/IOS.md:503-535",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:502-534|0": {
+    "anchor": "docs/IOS.md:502-534",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:523-527|0": {
-    "anchor": "docs/IOS.md:523-527",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:522-526|0": {
+    "anchor": "docs/IOS.md:522-526",
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
@@ -1669,13 +1669,13 @@
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:462-471|0": {
-    "anchor": "docs/IOS.md:462-471",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:461-470|0": {
+    "anchor": "docs/IOS.md:461-470",
     "fp": "fa779b8e01b8f8c9",
     "head": "## Signing and internal TestFlight"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:503-535|0": {
-    "anchor": "docs/IOS.md:503-535",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:502-534|0": {
+    "anchor": "docs/IOS.md:502-534",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
@@ -1859,8 +1859,8 @@
     "fp": "e55d5f0d99c89517",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:1146-1150|0": {
-    "anchor": "src/js/views/add.js:1146-1150",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:1176-1180|0": {
+    "anchor": "src/js/views/add.js:1176-1180",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
@@ -1869,14 +1869,14 @@
     "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:337-380|0": {
-    "anchor": "src/js/views/add.js:337-380",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:342-385|0": {
+    "anchor": "src/js/views/add.js:342-385",
     "fp": "db2a727c16a4b4f7",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:629-653|0": {
-    "anchor": "src/js/views/add.js:629-653",
-    "fp": "e144bb5aecf41505",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:638-663|0": {
+    "anchor": "src/js/views/add.js:638-663",
+    "fp": "754b2c9ce4fa6046",
     "head": "for (const config of searches) {"
   },
   "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:70-93|0": {
@@ -1914,8 +1914,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3978-4020|0": {
-    "anchor": "src/js/main.js:3978-4020",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4017-4059|0": {
+    "anchor": "src/js/main.js:4017-4059",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1929,8 +1929,8 @@
     "fp": "da02c5953a2ee9c2",
     "head": "// One index preserves listForCatalogId's first-listOrder answer without repeating its linear scan"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:167-218|0": {
-    "anchor": "src/js/views/shared/catalog-presentation.js:167-218",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:169-220|0": {
+    "anchor": "src/js/views/shared/catalog-presentation.js:169-220",
     "fp": "4151342a7f145254",
     "head": "function paintTimelinePosition(root, position, {"
   },
@@ -1974,23 +1974,23 @@
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3874-3893|0": {
-    "anchor": "src/js/main.js:3874-3893",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3889-3908|0": {
+    "anchor": "src/js/main.js:3889-3908",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3895-4106|0": {
-    "anchor": "src/js/main.js:3895-4106",
-    "fp": "2cfd890433b0cfb6",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3910-4145|0": {
+    "anchor": "src/js/main.js:3910-4145",
+    "fp": "f73ec81a4da50127",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3992-3998|0": {
-    "anchor": "src/js/main.js:3992-3998",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4031-4037|0": {
+    "anchor": "src/js/main.js:4031-4037",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4018-4019|0": {
-    "anchor": "src/js/main.js:4018-4019",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4057-4058|0": {
+    "anchor": "src/js/main.js:4057-4058",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2084,8 +2084,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1574|0": {
-    "anchor": "src/index.html:1574",
+  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1564|0": {
+    "anchor": "src/index.html:1564",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2349,8 +2349,8 @@
     "fp": "4fae061e31c80e37",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1266-1270|0": {
-    "anchor": "src/index.html:1266-1270",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1256-1260|0": {
+    "anchor": "src/index.html:1256-1260",
     "fp": "fcca1b9ce2478dad",
     "head": "Comic, series, and creator metadata comes from the community"
   },
@@ -2494,13 +2494,13 @@
     "fp": "db046a4ee4a55494",
     "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:405|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:405",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:406|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:406",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:419|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:419",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:420|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:420",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -2529,13 +2529,13 @@
     "fp": "244f4f24bf6d281b",
     "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:405|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:405",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:406|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:406",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:419|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:419",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:420|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:420",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -2694,8 +2694,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2397-2399|0": {
-    "anchor": "src/styles.css:2397-2399",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2428-2430|0": {
+    "anchor": "src/styles.css:2428-2430",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2719,8 +2719,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2397-2399|0": {
-    "anchor": "src/styles.css:2397-2399",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2428-2430|0": {
+    "anchor": "src/styles.css:2428-2430",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2774,8 +2774,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2853-2854|0": {
-    "anchor": "src/styles.css:2853-2854",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2886-2887|0": {
+    "anchor": "src/styles.css:2886-2887",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2804,8 +2804,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:846|0": {
-    "anchor": "src/index.html:846",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:840|0": {
+    "anchor": "src/index.html:840",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2844,8 +2844,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2397-2399|0": {
-    "anchor": "src/styles.css:2397-2399",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2428-2430|0": {
+    "anchor": "src/styles.css:2428-2430",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2924,8 +2924,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1283-1294|0": {
-    "anchor": "src/index.html:1283-1294",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1273-1284|0": {
+    "anchor": "src/index.html:1273-1284",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
@@ -6534,23 +6534,23 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2078-2080|0": {
-    "anchor": "src/styles.css:2078-2080",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2109-2111|0": {
+    "anchor": "src/styles.css:2109-2111",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2096-2098|0": {
-    "anchor": "src/styles.css:2096-2098",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2127-2129|0": {
+    "anchor": "src/styles.css:2127-2129",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2438|0": {
-    "anchor": "src/styles.css:2438",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2469|0": {
+    "anchor": "src/styles.css:2469",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2462|0": {
-    "anchor": "src/styles.css:2462",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2493|0": {
+    "anchor": "src/styles.css:2493",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6634,8 +6634,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:370-379|0": {
-    "anchor": "src/js/views/add.js:370-379",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:375-384|0": {
+    "anchor": "src/js/views/add.js:375-384",
     "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },

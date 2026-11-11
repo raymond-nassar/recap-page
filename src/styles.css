@@ -1500,12 +1500,48 @@ input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 
 .checkbox { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--t-body); color: var(--dim); min-height: var(--target-min); }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-compact); padding: var(--space-1) var(--space-2); font-size: .85em; }
 .add-page { max-width: 48rem; }
-.search-lists { margin: var(--space-6) 0; }
-.search-lists h2 { font-size: var(--t-body); margin: 0 0 var(--space-2); }
-.search-lists > .rail-hint { margin: 0 0 var(--space-5); }
-.search-lists-more { margin-top: var(--space-5); }
+/* Search design B (#1204). A pressed scope is an act, so it takes the purple accent like a checked
+   filter pill, with a heavier label so it is not told apart by colour alone; focus stays the shared
+   ring. Each scope is a full 44 pixel target. */
+.search-page { max-width: 64rem; }
+.search-scopes { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-6) 0 var(--space-4); }
+.search-scope {
+  min-height: var(--target); padding: var(--space-2) var(--space-6); border: var(--stroke-1) solid var(--line-2);
+  border-radius: var(--radius-pill); background: var(--card); color: var(--dim); font: inherit; font-weight: 600; cursor: pointer;
+}
+.search-scope:hover { color: var(--text); border-color: var(--accent-text); }
+.search-scope[aria-pressed="true"] {
+  background: rgb(var(--accent-line) / 10%); color: var(--accent-text); border-color: var(--accent-text); font-weight: 700;
+}
+.search-count { margin: 0 0 var(--space-4); color: var(--dim); font-size: var(--t-body); font-variant-numeric: tabular-nums; }
+.search-panes { display: grid; gap: var(--space-6); }
+.search-local { display: grid; gap: var(--space-6); align-content: start; }
+.search-local:not(:has(> :not([hidden]))) { display: none; }
+.search-group h2 { font-size: var(--t-body); margin: 0; }
+.search-group .results { margin-top: var(--space-3); }
+.search-more { margin-top: var(--space-4); }
+.search-boundary { margin: var(--space-5) 0 0; }
+.search-row { align-items: center; }
+.search-thumb {
+  position: relative; flex: 0 0 auto; width: 40px; aspect-ratio: 2 / 3; overflow: hidden;
+  border-radius: var(--radius-compact); background: var(--card-2);
+}
+.search-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.search-thumb .search-thumb-icon { inset: 25%; width: 50%; height: 50%; object-fit: contain; }
+.search-quiet-links { display: flex; flex-wrap: wrap; gap: var(--space-6); margin: var(--space-6) 0 0; }
+.search-quiet-links a { display: inline-flex; align-items: center; min-height: var(--target); }
+/* Top shows the first three comics. The rest, the filter and Select all stay built and only hide,
+   so a scope switch never rebuilds a row or drops a pick. */
+.search-page[data-scope="top"] .comic-results > .comic-choice:nth-child(n+4),
+.search-page[data-scope="top"] #search-results .comic-filter,
+.search-page[data-scope="top"] #search-results .comic-result-tools,
+.search-page[data-scope="top"] #search-results [data-act="more-comics"],
+.search-page[data-scope="top"] #search-results .comic-filter ~ .rail-hint { display: none; }
+@media (min-width: 1000px) {
+  .search-panes.has-comics { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+}
 @media (max-width: 700px) {
-  .search-lists-more { width: 100%; }
+  .search-more { width: 100%; }
 }
 .add-destination {
   display: inline-flex; margin: 0 0 var(--space-5); padding: var(--space-2) var(--space-4);
@@ -1535,7 +1571,6 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    shortening the line box instead moved the ordinary painted glyph by about 0.6 pixels. */
 .action-disclosure > summary::after { --disclosure-chevron-bearing: max(0px, calc(1lh - var(--space-9))); content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); margin-right: var(--disclosure-chevron-bearing); }
 .action-disclosure[open] > summary::after { transform: rotate(90deg); }
-.action-disclosure > .search-hub-grid { padding-bottom: var(--space-5); }
 .progress-method { margin: 0 0 var(--space-6); }
 .library-sort {
   margin: 0 0 var(--space-5); color: var(--muted); font-size: var(--t-caption); font-weight: 600;
@@ -1550,12 +1585,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 }
 .search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
 .search-hub-card:hover { border-color: var(--accent-text); background: var(--card-2); }
-.search-hub-other { margin-top: var(--space-7); }
 .library-tools { margin-top: var(--space-9); }
-.add-hub-grid { max-width: 48rem; }
-.add-other-methods, .search-alternatives { max-width: 48rem; margin-top: var(--space-6); }
-.search-alternatives .search-hub { margin-top: var(--space-5); }
-.search-alternatives .search-hub:last-child { margin-bottom: var(--space-5); }
+#search-browse { margin-top: var(--space-6); }
 @media (max-width: 560px) {
   .search-hub-grid { grid-template-columns: 1fr; }
 }
@@ -2605,6 +2636,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #reading-filters { background: Canvas; }
   details.full, details.full > summary { border-color: CanvasText; background: Canvas; }
   .availability-choice[aria-pressed="true"] { border-color: Highlight; }
+  .search-scope { border-color: ButtonText; }
+  .search-scope[aria-pressed="true"] { border: var(--stroke-2) solid Highlight; }
 }
 
 /* ============================================================ library and progress shape

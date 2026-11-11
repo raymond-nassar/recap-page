@@ -1826,6 +1826,7 @@ test('installed proof opens external search through the app navigation controls'
   const proof = read(PROOF);
   assert.match(proof, /external\.\$eval\('\.ri\[data-view="add"\]', \(button\) => button\.click\(\)\)/);
   assert.match(proof, /external\.waitForFunction\(\(\) => !document\.querySelector\('#view-add'\)\.hidden\)/);
-  assert.match(proof, /external\.\$eval\('\.search-hub-card\[data-view="add-search"\]', \(button\) => button\.click\(\)\)/);
+  // #1204: the box sits on the Search tab itself, so the proof types into it there with no hub link.
+  assert.match(proof, /external\.\$eval\('#search-q', \(field\) => \{[^}]*dispatchEvent\(new Event\('input'/);
   assert.doesNotMatch(proof, /setRoute\(external, '#\/add-search'\)/);
 });

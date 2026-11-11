@@ -275,24 +275,18 @@ test('a completed list has a Browse action without replacing deferred continuati
   assert.match(reading, /id="all-deferred"[\s\S]*?id="btn-review-deferred">Review deferred/);
 });
 
-test('Add leads with search and series while retaining the other three routes in a disclosure', () => {
+test('Search leads with one box while Browse by and two quiet links keep every other route reachable', () => {
   const adding = view('add');
-  const primary = adding.match(/<div class="search-hub-grid add-hub-grid" id="add-primary-methods">[\s\S]*?<\/div>/)?.[0];
-  assert.ok(primary, 'Primary Add choices are missing');
-  assert.deepEqual([...primary.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]), ['add-search', 'add-series']);
-  const other = disclosure(adding, 'add-other-methods');
-  assert.match(other, /<summary>More ways to add<\/summary>/);
-  for (const route of ['add-creator', 'add-import', 'add-manual']) {
-    assert.ok(other.includes(`data-view="${route}"`), `${route} must remain reachable`);
+  assert.doesNotMatch(adding, /<details\b/, 'design B (#1204) folds nothing behind a disclosure');
+  const box = adding.indexOf('id="search-q"');
+  const browse = adding.indexOf('id="search-browse"');
+  assert.ok(box >= 0 && box < adding.indexOf('id="search-results"') && adding.indexOf('id="search-results"') < browse);
+  const tiles = adding.slice(browse);
+  for (const route of ['catalog', 'spotlights', 'genres', 'marvel-ages', 'add-import', 'add-manual']) {
+    assert.ok(tiles.includes(`data-view="${route}"`), `${route} must remain reachable`);
   }
-});
-
-test('search results precede a closed alternatives group with every existing destination', () => {
-  const searching = view('add-search');
-  const other = disclosure(searching, 'search-alternatives');
-  assert.ok(searching.indexOf('id="search-results"') < searching.indexOf('id="search-alternatives"'));
-  for (const route of ['add-series', 'add-creator', 'spotlights', 'catalog', 'add-import', 'add-manual']) {
-    assert.ok(other.includes(`data-view="${route}"`), `${route} must remain reachable`);
+  for (const scope of ['series', 'creators']) {
+    assert.ok(tiles.includes(`data-scope-tile="${scope}"`), `the ${scope} tile must press its scope`);
   }
 });
 
