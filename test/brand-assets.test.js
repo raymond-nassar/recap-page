@@ -7,7 +7,7 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf
 test('the app and website ship identical fixed colorways without embedded theme media or a font', () => {
   const purple = read('src/icons/wordmark.svg');
   assert.doesNotMatch(purple, /@media/);
-  for (const [file, fill] of [['wordmark.svg', '#6D28D9'], ['wordmark-white.svg', '#FFFFFF']]) {
+  for (const [file, fill] of [['wordmark.svg', '#6D28D9'], ['wordmark-dark.svg', '#9E71E6']]) {
     const svg = read(`src/icons/${file}`);
     assert.deepEqual(readFileSync(new URL(`../src/icons/${file}`, import.meta.url)),
       readFileSync(new URL(`../pages/assets/${file}`, import.meta.url)));
@@ -22,7 +22,7 @@ test('the app and website ship identical fixed colorways without embedded theme 
 
 test('the app uses the SVG with its original accessible heading and forced-colors text', () => {
   const html = read('src/index.html');
-  for (const [color, file] of [['light', 'wordmark.svg'], ['dark', 'wordmark-white.svg']]) {
+  for (const [color, file] of [['light', 'wordmark.svg'], ['dark', 'wordmark-dark.svg']]) {
     assert.ok(html.includes(`<img class="home-wordmark home-wordmark--${color}" src="./icons/${file}" alt="" aria-hidden="true" width="1000" height="168" />`));
   }
   assert.match(html, /<span class="home-brand-text">Recap Page<\/span><\/h1>/);

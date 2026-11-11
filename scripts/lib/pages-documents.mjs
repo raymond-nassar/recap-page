@@ -331,7 +331,7 @@ export function renderSitePage(document, { title, html }) {
 
     <header class="masthead">
       <div class="shell">
-        <p class="site-name"><a href="./index.html"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/wordmark.svg" /><img src="./assets/wordmark-white.svg" alt="Recap Page" width="1000" height="168" /></picture><span class="site-name-text" aria-hidden="true">Recap Page</span></a></p>
+        <p class="site-name"><a href="./index.html"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/wordmark.svg" /><img src="./assets/wordmark-dark.svg" alt="Recap Page" width="1000" height="168" /></picture><span class="site-name-text" aria-hidden="true">Recap Page</span></a></p>
         <nav class="section-nav" aria-label="Site">
           <ul>
 ${navigation}
