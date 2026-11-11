@@ -413,6 +413,22 @@ public final class MainActivity extends Activity {
         return new ArrayList<>(browsers.values());
     }
 
+    @SuppressWarnings("deprecation")
+    static ResolveInfo defaultReaderBrowser(PackageManager manager, ArrayList<ResolveInfo> browsers) {
+        // Resolve without a host so a verified domain app cannot masquerade as the default browser.
+        Intent discovery = new Intent(Intent.ACTION_VIEW, Uri.parse("https:"));
+        discovery.addCategory(Intent.CATEGORY_BROWSABLE);
+        discovery.addCategory(Intent.CATEGORY_DEFAULT);
+        ResolveInfo preferred = manager.resolveActivity(discovery, PackageManager.MATCH_DEFAULT_ONLY);
+        if (preferred == null || preferred.activityInfo == null) return null;
+        // The system chooser and work-profile forwarders both belong to "android"; neither is a default.
+        if ("android".equals(preferred.activityInfo.packageName)) return null;
+        for (ResolveInfo browser : browsers) {
+            if (browser.activityInfo.packageName.equals(preferred.activityInfo.packageName)) return browser;
+        }
+        return null;
+    }
+
     private void openReaderBrowser(String url, WebView popup) {
         ArrayList<ResolveInfo> choices = readerBrowsers(getPackageManager());
         if (choices.isEmpty()) {
@@ -422,6 +438,11 @@ public final class MainActivity extends Activity {
         }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        ResolveInfo preferred = defaultReaderBrowser(getPackageManager(), choices);
+        if (preferred != null) {
+            openReaderBrowser(intent, preferred, popup);
+            return;
+        }
         if (choices.size() == 1) {
             openReaderBrowser(intent, choices.get(0), popup);
             return;

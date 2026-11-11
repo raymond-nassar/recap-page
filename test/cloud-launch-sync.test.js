@@ -124,6 +124,18 @@ function fixture() {
   return { data, protocol, make };
 }
 
+// The work these waits cover includes webcrypto digests on the libuv thread pool, so it is
+// bounded in time rather than in event-loop turns. A fixed 30 turns failed in CI (#1169) and
+// failed 50 of 50 runs with that pool kept busy, so wait on the condition against a deadline
+// kept below the tests' 1000 ms timeout, which leaves this message as the one reported.
+async function waitFor(condition, message, ms = 500) {
+  const deadline = Date.now() + ms;
+  while (!condition()) {
+    if (Date.now() >= deadline) assert.fail(`still waiting after ${ms} ms: ${message}`);
+    await new Promise((resolve) => { setImmediate(resolve); });
+  }
+}
+
 test('a conclusive launch check holds first and releases the shared gate only after checking', async () => {
   const env = fixture();
   const { sync, calls } = env.make();
@@ -566,9 +578,7 @@ test('a stalled re-arm after an unverified release cannot hold the worker lock f
     assert.equal(sync.state.phase, 'failed');
     let result;
     const retry = sync.overrideFailure().then((value) => { result = value; });
-    for (let count = 0; count < 30 && !result; count += 1) {
-      await new Promise((resolve) => { setImmediate(resolve); });
-    }
+    await waitFor(() => result, 'repair can retry after the first re-arm timed out');
     assert.equal(result?.ok, true, 'repair can retry after the first re-arm timed out');
     await retry;
     release();
@@ -751,9 +761,7 @@ test('a new check after Keep commits waits for the choice and checks again', { t
   release();
   assert.equal((await keeping).ok, true);
   await checking;
-  for (let count = 0; count < 30 && env.data.seen.length === before; count += 1) {
-    await new Promise((resolve) => { setImmediate(resolve); });
-  }
+  await waitFor(() => env.data.seen.length !== before, 'the return check discovers again after the committed choice');
   assert.equal(env.data.seen.length, before + 1, 'the return check discovers again after the committed choice');
   sync.stop();
 });
@@ -970,9 +978,7 @@ test('retrying a stalled initial hold releases the worker lock before an explici
     const overriding = sync.overrideFailure().then((value) => { result = value; });
     assert.equal(sync.state.phase, 'working', 'the failed controls are withdrawn while the hold is repaired');
     const duplicate = sync.overrideFailure();
-    for (let count = 0; count < 30 && !result; count += 1) {
-      await new Promise((resolve) => { setImmediate(resolve); });
-    }
+    await waitFor(() => result, 'the reader can retry and explicitly back up without waiting for the old read');
     assert.equal(result?.ok, true, 'the reader can retry and explicitly back up without waiting for the old read');
     await overriding;
     assert.equal((await duplicate).ok, false, 'a repeated click cannot start a second override');

@@ -96,13 +96,13 @@ helper so a separately verified future update can use new comic links without ch
 The clock is not checked over the network. Marvel Unlimited app dispatch and Bifrost requests
 have been removed.
 
-Both destinations use an installed browser, with a choice when several are available. It does not
-send the fallback to an arbitrary app-link handler. Cancellation, a missing browser or a failed
-launch leaves the launcher usable. Choosing a browser during lookup cancels the lookup and
-prevents a delayed browser launch.
+Both destinations use the device's default browser when it is a verified browser, and ask only
+when there is no verified default and several are installed. It does not send the fallback to an
+arbitrary app-link handler. Cancellation, a missing browser or a failed launch leaves the launcher
+usable. Choosing a browser during lookup cancels the lookup and prevents a delayed browser launch.
 
 Browser discovery requests all choices with a hostless HTTPS query, not the comic's domain.
-An approved app-link handler or default browser therefore cannot hide other browsers. The comic
+An approved app-link handler therefore cannot hide or replace browsers. The comic
 URL is attached only when launching the selected browser.
 
 Recap Page does not sign in to Marvel, embed comic pages or verify what the external site displays.
@@ -681,9 +681,21 @@ read on 2026-09-30.
 
 The reader scenario registers test-only browser and domain-handler activities. On the isolated
 emulator, it temporarily makes Chrome the default browser and approves the synthetic handler for
-the reader domain. It then checks that browser escape offers both browsers and opens the selected
-package. Teardown restores browser-role and domain settings, even after a failed assertion.
+the reader domain. Hostless discovery must still find both browsers and exclude the domain-only
+activity. The scenario then clears the default. Android restores a fallback holder when exactly
+one browser, or exactly one system browser, qualifies, so the cleared role may come back at once.
+With no holder it checks picker cancellation, then restores Chrome; with a restored holder it
+requires that holder to be the vetted default. Either way it checks direct default-browser
+handoff without another picker, before and after the cutoff.
+An empty vetted list or one missing the preferred package must not select a default.
+Teardown restores browser-role and domain settings, even after a failed assertion.
 These fixture activities are absent from the app APK.
+
+Reader links use the device's default browser only after matching it against that hostless,
+filtered browser list. The exact comic URL is then sent to the browser's explicit package,
+not resolved against domain-app preferences. With no verified default, a single installed browser
+opens directly; multiple browsers retain the picker. A failed launch leaves the launcher usable
+with a visible failure rather than trying an unrelated app.
 
 The job keeps test results, synthetic screenshots and emulator/WebView versions in a seven-day
 Actions artifact. An installable APK is included only after all positive checks pass, never the
@@ -750,6 +762,13 @@ somebody performs them on a physical device:
 - [ ] With a real subscription, confirm the correct comic opens and returning to Recap Page
   keeps the current reading place. Check **Open in browser** after a cancelled browser choice;
   confirm an installed browser, not a domain app-link handler, receives the exact comic.
+- [ ] With two browsers installed and a default selected, open Avengers (2012) #8 and #9.
+  Confirm the default browser opens without Recap Page's picker, including when a different app
+  handles reader-domain links. Change the default and repeat. Android normally restores a default
+  browser when one is cleared, and the Default apps screen may offer no None option, so the no-default
+  picker may be unreachable on a device. If the picker does appear, cancel it and retry from
+  **Open in browser**; if not, record that it could not be reached. Record actual comic
+  rendering separately from handoff.
 - [ ] Inject both sides of local December 7 in tests. After cutoff, confirm the general Marvel
   Comics website, no metadata lookup and an honest no-single-comic label.
 - [ ] With no browser or a failed browser launch, confirm a visible failure and working retry.
