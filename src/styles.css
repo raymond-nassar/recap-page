@@ -3078,13 +3078,19 @@ select, input[type="search"], input[type="text"], input[type="url"] {
    in CanvasText, and nothing here moves. */
 
 /* Section headings carry a short bar under the words: purple where the page is about your reading,
-   blue on the Library, which is a place to find things. Painted as a background rather than a
-   pseudo-element, because a block ::after inside the flex row of `.sec-h` wrapped the heading. */
+   blue on the Library, which is a place to find things. The bar is a border on an absolutely placed
+   ::after inside the heading, which stays out of the flex row of `.sec-h`. A gradient would be
+   simpler, but measured in Edge 157 under --force-high-contrast it computes to none and the bar
+   vanishes, while this border is repainted in the system text color. */
 #view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
 #view-library .sec-h > h2, #view-library .library-tools > h2 {
   --heading-bar: var(--accent);
-  padding-bottom: var(--space-4);
-  background: linear-gradient(var(--heading-bar), var(--heading-bar)) no-repeat left bottom / 48px 3px;
+  position: relative; padding-bottom: var(--space-4);
+}
+:is(#view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
+#view-library .sec-h > h2, #view-library .library-tools > h2)::after {
+  content: ""; position: absolute; inset-inline-start: 0; bottom: 0; width: 48px;
+  border-top: var(--stroke-3) solid var(--heading-bar);
 }
 #view-library .sec-h > h2, #view-library .library-tools > h2 { --heading-bar: var(--brand-blue); }
 
@@ -3150,7 +3156,9 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .empty-state { border-color: CanvasText; }
   .empty-state .empty-glyph { color: CanvasText; }
   :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head { background: none; }
-  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before,
-  #list-wrap-up::before { background: CanvasText; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before { background: CanvasText; }
+  /* The full selector, because a shorter one loses to the band's own rule and leaves its gradient,
+     which forced colors compute to none. */
+  #list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before { background: CanvasText; }
   .about-wm { display: none !important; }
 }

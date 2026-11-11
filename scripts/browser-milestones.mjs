@@ -276,10 +276,16 @@ export const milestonePreferences = {
           probe.style.color = 'CanvasText'; return getComputedStyle(probe).color;
         })() };
         probe.remove();
+        // Both are drawn so that forced colors keep them: the heading bar as a border, the band as a
+        // background color, since a gradient computes to none there.
+        const bar = getComputedStyle(document.querySelector('#shelf-h'), '::after');
+        const band = getComputedStyle(document.querySelector('#list-wrap-up'), '::before');
         return {
           cheer: cheer && { color: cheer.color, stroke: cheer.webkitTextStrokeWidth, shadow: cheer.textShadow },
           badge: badge && { color: badge.color, border: badge.borderTopStyle, borderWidth: badge.borderTopWidth },
           scheme: root.colorScheme, tokens,
+          bar: { width: bar.borderTopWidth, color: bar.borderTopColor },
+          band: { image: band.backgroundImage, color: band.backgroundColor },
         };
       });
       const moved = sectionMoment.length + listMoment.length;
@@ -297,6 +303,12 @@ export const milestonePreferences = {
           && paint.badge.border === 'solid' && paint.badge.borderWidth === '1px'
         : paint.cheer.color === paint.tokens.cheer && paint.badge.color === paint.tokens.teal && paint.cheer.shadow !== 'none'),
       JSON.stringify(paint));
+      if (pass.forced) {
+        t.check(`${label}: the heading bar and the finished-list band stay as system text color bars`,
+          paint.bar.width === '3px' && paint.bar.color === paint.tokens.canvasText
+          && paint.band.image === 'none' && paint.band.color === paint.tokens.canvasText,
+          JSON.stringify({ bar: paint.bar, band: paint.band }));
+      }
       await undo();
     }
     t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
