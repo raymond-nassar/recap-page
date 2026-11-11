@@ -57,6 +57,18 @@ export const collectedEditions = {
         await page.$$eval('#rows .collected-edition', (nodes) => nodes.length) === expected.length);
       t.check(`${list.id}: saved list has one shared credit, not a row of repeated links`,
         await page.$$eval('#rows .edition-credit', (nodes) => nodes.length) === (expected.length ? 1 : 0));
+      if (expected.length) {
+        for (const index of [0, 1]) {
+          const retained = await page.evaluate((index) => {
+            const link = document.querySelectorAll('#rows .edition-credit a')[index];
+            link.focus();
+            const focused = document.activeElement === link;
+            window.dispatchEvent(new Event('focus'));
+            return focused && link.isConnected && document.activeElement === link;
+          }, index);
+          t.check(`${list.id}: credit link ${index + 1} retains the same focused element after window focus`, retained);
+        }
+      }
       // Route traversal may change the active list, but rendering must not change its contents.
       const changed = await page.evaluate((snapshot) => {
         const a = JSON.parse(snapshot), b = JSON.parse(localStorage.getItem('mrt.state.v2'));

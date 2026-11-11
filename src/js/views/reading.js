@@ -845,7 +845,10 @@ export function createReadingView({
       const today = localDayString();
       const items = all.filter((item) => matchesReadingFilter(filter, item));
       if (items.some((item) => editionRelations(list.catalogId, item).length)) {
-        desired.push(el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]));
+        if (!rowCache.has('edition-credit')) {
+          rowCache.set('edition-credit', { node: el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]) });
+        }
+        desired.push(rowCache.get('edition-credit').node);
       }
 
       // Edition progress is computed from the full list, not the filtered subset, so the same book
