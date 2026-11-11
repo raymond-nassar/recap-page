@@ -1,0 +1,72 @@
+name: Claim a labeled Issue
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  claim:
+    if: >-
+      github.event.comment.body == '/take' &&
+      github.event.comment.user.type == 'User' &&
+      !github.event.issue.pull_request &&
+      github.event.issue.state == 'open' &&
+      !github.event.issue.assignees[0] &&
+      (contains(github.event.issue.labels.*.name, 'good first issue') ||
+       contains(github.event.issue.labels.*.name, 'help wanted'))
+    concurrency:
+      group: take-issue-${{ github.repository }}-${{ github.event.issue.number }}
+      queue: max
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check current eligibility and assign the commenter
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          node --input-type=commonjs <<'NODE'
+          const { readFileSync } = require('node:fs');
+          const { execFileSync } = require('node:child_process');
+
+          function eligible(issue) {
+            return !issue.pull_request && issue.state === 'open' &&
+              issue.assignees.length === 0 &&
+              issue.labels.some(label => ['good first issue', 'help wanted'].includes(label.name));
+          }
+
+          function main() {
+            const event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+            if (event.action !== 'created' || event.comment.body !== '/take' ||
+                event.comment.user.type !== 'User' || !eligible(event.issue)) {
+              console.log('Skipped: this comment is not an eligible claim.');
+              return;
+            }
+            const endpoint = `repos/${process.env.GITHUB_REPOSITORY}/issues/${event.issue.number}`;
+            function api(method, path, body) {
+              const args = ['api', '--method', method, path, '-H', 'X-GitHub-Api-Version: 2022-11-28'];
+              if (body) args.push('--input', '-');
+              return JSON.parse(execFileSync('gh', args, {
+                encoding: 'utf8',
+                ...(body ? { input: JSON.stringify(body) } : {}),
+              }));
+            }
+            const current = api('GET', endpoint);
+            if (!eligible(current)) {
+              console.log('Skipped: the Issue is closed, unlabeled, a pull request, or already taken.');
+              return;
+            }
+            const login = event.comment.user.login;
+            const assigned = api('POST', `${endpoint}/assignees`, { assignees: [login] });
+            if (!assigned.assignees.some(user => user.login === login)) {
+              throw new Error('GitHub did not assign the commenter. Check the Issue before trying again.');
+            }
+            console.log('The commenter is assigned to the Issue.');
+          }
+          main();
+          NODE
