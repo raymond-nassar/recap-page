@@ -5,6 +5,7 @@ import { RateLimiter, abortError } from './lib/limiter.js';
 import { ResponseCache } from './cache.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
 import { DEFAULT_LIMIT, parseNameIndex, searchNames } from './lib/nameIndex.js';
+import { suggestNames } from './lib/searchSpelling.js';
 
 export const DEFAULT_BASE = 'https://marvel.emreparker.com/v1';
 export const MAX_LIMIT = 200; // limit=500 returns HTTP 422
@@ -155,10 +156,13 @@ export class MarvelApi {
   // Unlike searchIssues these return an envelope rather than a bare array, because a local
   // search knows how many names actually matched and when its snapshot was taken, and the view
   // has to be able to say "40 of 312" rather than implying the other 272 do not exist.
-  async searchNameIndex(kind, q, { limit = DEFAULT_LIMIT } = {}) {
+  async searchNameIndex(kind, q, { limit = DEFAULT_LIMIT, suggest = false } = {}) {
     const index = await this.nameIndex(kind);
     const { items, matched } = searchNames(index.entries, q, { limit });
-    return { items, matched, limit, generatedAt: index.generatedAt, total: index.total };
+    return {
+      items, matched, limit, generatedAt: index.generatedAt, total: index.total,
+      ...(suggest ? { suggestions: matched ? [] : suggestNames(index.entries, q, { series: kind === 'series' }) } : {}),
+    };
   }
 
   searchSeries(q, opts) {

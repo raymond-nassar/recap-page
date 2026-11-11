@@ -25,6 +25,7 @@ function matches(node, selector) {
 
 function harness({
   loadCatalog = async () => catalog, online = true, seriesCount = 12, creatorCount = 2,
+  nameResults = null,
 } = {}) {
   let focused = null;
   const el = (tag, props = {}, children = []) => {
@@ -52,6 +53,7 @@ function harness({
     browse: el('section'),
     scopes: el('div', { hidden: true }, ['top', 'lists', 'series', 'creators', 'comics'].map(scopeButton)),
     count: el('p', { hidden: true }),
+    suggestions: el('div', { hidden: true }),
     panes: el('div', { hidden: true }),
     lists: group(),
     series: group(),
@@ -69,6 +71,7 @@ function harness({
     loadCatalog,
     loadGuides: async () => null,
     searchNames: async (kind, query, { limit }) => {
+      if (nameResults) return nameResults(kind, query);
       const all = names(kind, kind === 'series' ? seriesCount : creatorCount);
       return { items: all.slice(0, limit), matched: all.length };
     },
@@ -83,6 +86,7 @@ function harness({
     setTimer: (fn, delay) => { const timer = { fn, delay, live: true }; timers.push(timer); return timer; },
     clearTimer: (timer) => { if (timer) timer.live = false; },
   });
+
   const comicStatus = (phase, query, count = 0) => view.comicStatus({
     phase, item: { name: query }, items: Array.from({ length: count }, () => ({})),
   });
@@ -97,6 +101,124 @@ function harness({
   };
 }
 
+const emptyCatalog = async () => ({ lists: [] });
+const emptyNames = (kind, query) => ({
+  items: [], matched: 0,
+  suggestions: kind === 'series' && query === 'avengres' ? ['Avengers'] : [],
+});
+
+test('empty local scopes offer optional names once and an online Top choice stays local with input focus', async () => {
+  const h = harness({ loadCatalog: emptyCatalog, nameResults: emptyNames });
+  await h.view.update('avengres');
+  assert.equal(h.nodes.suggestions.hidden, false);
+  const button = h.nodes.suggestions.children[1];
+  assert.equal(button['aria-label'], 'Search for Avengers');
+  button.focus();
+  h.comicStatus('complete', 'avengres', 0);
+  assert.equal(h.nodes.suggestions.children[1], button, 'comic completion keeps the focused suggestion node');
+  assert.equal(h.focused(), button);
+  h.flush();
+  assert.equal(h.announced.length, 1);
+  assert.match(h.announced[0], /Did you mean Avengers\?$/);
+  await button.onclick();
+  assert.equal(h.input.value, 'Avengers');
+  assert.equal(h.focused(), h.input);
+  assert.equal(h.view.scope, 'top');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  assert.deepEqual(h.lookups, [], 'choosing a name is not an implicit comic lookup, even online in Top');
+});
+
+test('suggestions require zero matches in the selected scope, all local scopes for Top, and never Comics', async () => {
+  const h = harness({
+    loadCatalog: emptyCatalog,
+    nameResults: (kind) => ({
+      items: [], matched: kind === 'creators' ? 1 : 0,
+      suggestions: kind === 'series' ? ['Avengers Assemble', 'Avengers Academy'] : [],
+    }),
+  });
+  await h.view.update('avengres');
+  assert.equal(h.nodes.suggestions.hidden, true, 'a successful Top match suppresses suggestions');
+  h.view.setScope('series');
+  assert.equal(h.nodes.suggestions.hidden, false);
+  assert.deepEqual(h.nodes.suggestions.children.slice(1).map((button) => button.children.join('')),
+    ['Avengers Assemble', 'Avengers Academy'], 'retain matcher ranking rather than sorting names again');
+  assert.match(h.announced.at(-1), /^No series match\. Did you mean Avengers Assemble, Avengers Academy\?$/);
+  h.view.setScope('creators');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  h.view.setScope('comics');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  h.view.setScope('series');
+  await h.nodes.suggestions.children[1].onclick();
+  assert.equal(h.view.scope, 'series', 'a choice keeps its local scope');
+});
+
+test('a failed local index suppresses Top suggestions but not another successfully loaded empty scope', async () => {
+  const h = harness({
+    loadCatalog: emptyCatalog,
+    nameResults: (kind, query) => {
+      if (kind === 'creators') throw new Error('offline index');
+      return emptyNames(kind, query);
+    },
+  });
+  await h.view.update('avengres');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  h.view.setScope('series');
+  assert.equal(h.nodes.suggestions.hidden, false);
+  h.view.setScope('creators');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  assert.match(h.nodes.count.textContent, /offline index/);
+});
+
+test('replacement input cancels stale suggestions and speech before a slow new load or scope switch', async () => {
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  const h = harness({
+    loadCatalog: emptyCatalog,
+    nameResults: async (kind, query) => {
+      if (query === 'hickamn') {
+        await gate;
+        return { items: [], matched: 0, suggestions: kind === 'creators' ? ['Jonathan Hickman'] : [] };
+      }
+      return emptyNames(kind, query);
+    },
+  });
+  await h.view.update('avengres');
+  const pending = h.view.update('hickamn');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  h.flush();
+  assert.deepEqual(h.announced, []);
+  h.view.setScope('series');
+  h.view.setScope('top');
+  assert.equal(h.nodes.suggestions.hidden, true);
+  assert.deepEqual(h.announced, []);
+  release();
+  await pending;
+  h.flush();
+  assert.equal(h.announced.length, 1);
+  assert.match(h.announced[0], /hickamn.*Did you mean Jonathan Hickman\?$/);
+  await h.view.update('');
+  assert.equal(h.nodes.suggestions.hidden, true);
+});
+
+test('bundled Reading List suggestions work offline and Top deduplicates and caps names', async () => {
+  const h = harness({
+    online: false,
+    nameResults: () => ({ items: [], matched: 0, suggestions: ['Civil War III', 'Civil War II', 'Civil War'] }),
+  });
+  await h.view.update('civl war');
+  assert.equal(h.nodes.suggestions.children.length, 4, 'prompt and at most three unique buttons');
+  assert.equal(h.nodes.suggestions.children[1].children.join(''), 'Civil War',
+    'Top offers the shortest full name before longer alternatives from any group');
+  h.view.setScope('lists');
+  assert.equal(h.nodes.suggestions.hidden, false);
+  const button = h.nodes.suggestions.children[1];
+  const chosen = button.children.join('');
+  await button.onclick();
+  assert.equal(h.input.value, chosen);
+  assert.ok(h.rows('lists').length > 0);
+  assert.equal(h.nodes.suggestions.hidden, true);
+  assert.deepEqual(h.lookups, []);
+});
 test('the count lines name an exact count, and comics only ever a count shown', () => {
   assert.equal(listsLine(1), '1 Reading List');
   assert.equal(listsLine(12), '12 Reading Lists');
@@ -315,6 +437,10 @@ test('typing and switching make no network request and write no storage or histo
     const h = harness();
     for (const query of ['s', 'sp', 'spider', 'spider-man 2099', '', 'mcu prep']) await h.view.update(query);
     for (const scope of ['lists', 'series', 'creators', 'top']) h.view.setScope(scope);
+    const spelling = harness({ loadCatalog: emptyCatalog, nameResults: emptyNames });
+    await spelling.view.update('avengres');
+    await spelling.nodes.suggestions.children[1].onclick();
+    assert.deepEqual(spelling.lookups, []);
     h.flush();
     assert.deepEqual(calls, []);
     assert.deepEqual(h.lookups, []);

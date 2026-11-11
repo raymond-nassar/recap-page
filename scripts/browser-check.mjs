@@ -11330,6 +11330,82 @@ const SCENARIOS = [
           hint.visible && hint.hiddenAX && hint.described && fieldAX?.description?.includes(hint.text),
           JSON.stringify({ hint, fieldAX }));
       }
+
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty('--ios-text-scale', '1');
+        window.__mrtAnnounced = [];
+      });
+      await click(page, '#search-scopes [data-scope="top"]');
+      const beforeSpelling = await comicRequests();
+      const selectedBefore = await page.$eval('#search-selection-form .comic-selection-count', (node) => node.textContent);
+      await type('Fixture Evnet');
+      await page.waitForFunction(() => !document.querySelector('#search-suggestions').hidden);
+      await new Promise((resolve) => setTimeout(resolve, 650));
+      const spelling = await page.evaluate(() => ({
+        names: [...document.querySelectorAll('#search-suggestions button')].map((node) => node.textContent),
+        speech: window.__mrtAnnounced,
+        live: document.querySelector('#search-suggestions').hasAttribute('aria-live'),
+      }));
+      t.check('an empty local query offers three bundled names through the same single paused announcement',
+        spelling.names.length === 3 && spelling.names.every((name) => name.startsWith('Fixture Event'))
+          && spelling.speech.filter((text) => text.includes('Did you mean')).length === 1 && !spelling.live,
+        JSON.stringify(spelling));
+      for (const theme of ['light', 'dark']) {
+        await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+        for (const width of [390, 1280]) {
+          await page.setViewport({ width, height: width === 390 ? 844 : 900 });
+          await page.focus('#search-q');
+          await page.keyboard.press('Tab');
+          const fit = await page.$eval('#search-suggestions', (node) => {
+            const box = node.getBoundingClientRect();
+            return {
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+              buttons: [...node.querySelectorAll('button')].map((button) => {
+                const rect = button.getBoundingClientRect();
+                return rect.width >= 44 && rect.height >= 44 && rect.left >= box.left - 1 && rect.right <= box.right + 1;
+              }),
+            };
+          });
+          t.check(`${theme} spelling suggestions fit ${width}px with shared phone CSS and 44px targets`,
+            !fit.overflow && fit.buttons.length === 3 && fit.buttons.every(Boolean), JSON.stringify(fit));
+        }
+      }
+      await page.focus('#search-suggestions button');
+      const suggestion = await page.$('#search-suggestions button');
+      const suggestionAX = await page.accessibility.snapshot({ root: suggestion });
+      await suggestion.dispose();
+      t.check('the optional suggestion is a named native button, not a tab or forced correction',
+        suggestionAX?.role === 'button' && suggestionAX.name === `Search for ${spelling.names[0]}`, JSON.stringify(suggestionAX));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#search-suggestions').hidden);
+      t.check('keyboard choice keeps Top, focuses the filled box, preserves comic picks and makes no lookup',
+        await page.evaluate((name) => document.activeElement?.id === 'search-q'
+          && document.querySelector('#search-q').value === name
+          && document.querySelector('#search-scopes [data-scope="top"]').getAttribute('aria-pressed') === 'true',
+        spelling.names[0]) && await comicRequests() === beforeSpelling
+          && await page.$eval('#search-selection-form .comic-selection-count', (node) => node.textContent) === selectedBefore);
+
+      await page.evaluate(() => Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }));
+      await click(page, '#search-scopes [data-scope="creators"]');
+      await type('hickamn');
+      await page.waitForFunction(() => !document.querySelector('#search-suggestions').hidden);
+      await page.emulateMediaFeatures([
+        { name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' },
+      ]);
+      await page.focus('#search-suggestions button');
+      const forced = await page.$eval('#search-suggestions button', (button) => ({
+        visible: button.checkVisibility(), focus: button.matches(':focus-visible'),
+        outline: getComputedStyle(button).outlineStyle,
+      }));
+      t.check('offline creator suggestions remain visible and keyboard-focused in forced colors and reduced motion',
+        forced.visible && forced.focus && forced.outline !== 'none', JSON.stringify(forced));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelectorAll('#search-creators-results article').length > 0);
+      t.check('offline choice shows the creator in its retained scope without a comic request',
+        await page.$eval('#search-scopes [data-scope="creators"]', (button) => button.getAttribute('aria-pressed') === 'true')
+          && await comicRequests() === beforeSpelling);
+      await type('');
+      t.check('clearing the query withdraws suggestions', await page.$eval('#search-suggestions', (node) => node.hidden));
     },
   },
   {

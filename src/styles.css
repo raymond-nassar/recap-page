@@ -1587,6 +1587,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
 .search-hub-card:hover { border-color: var(--accent-text); background: var(--card-2); }
 .library-tools { margin-top: var(--space-9); }
+.search-suggestions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); }
+.search-suggestions[hidden] { display: none; }
+.search-suggestions .btn { max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-align: left; }
 #search-browse { margin-top: var(--space-6); }
 @media (max-width: 560px) {
   .search-hub-grid { grid-template-columns: 1fr; }

@@ -338,6 +338,12 @@ result at a time without searching again, so selected comics stay selected. **Br
 reading guides, characters, series, creators, genres and Marvel Ages, with **Paste a Reading List**
 and **Add a comic by hand** beneath it.
 
+When a local scope finds nothing, **Did you mean** can offer up to three similar bundled names.
+Choose one to search for it in the same scope. Suggestions allow one mistyped, missing, extra or
+swapped letter in a word of at least four characters; numbers and shorter words are not corrected.
+They work offline, do not record searches and never look up comics automatically. **Top** offers
+them only when all three local groups find nothing. **Comics** keeps using the title you type.
+
 Under **Backup & settings**, **Data safety** opens with a short **Moving to another device**
 summary, then a **Complete backup** group, then gives reading data, completion history and the
 import draft one group each, with its download beside its labelled restore, above exceptional

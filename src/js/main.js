@@ -3987,6 +3987,7 @@ const searchListsView = createSearchListsView({
       browse: $('#search-browse'),
       scopes: $('#search-scopes'),
       count: $('#search-count'),
+      suggestions: $('#search-suggestions'),
       panes: $('#search-panes'),
       lists: group('lists'),
       series: group('series'),
