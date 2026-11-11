@@ -91,7 +91,7 @@ test('one shared renderer integrates Back with breadcrumbs without adding it to 
   assert.match(main, /if \(existing\?\.dataset\.trail === trailKey\) return;/);
   assert.match(main, /if \(!existing\) head\.before\(breadcrumb\);/);
   assert.match(main, /const backAvailable = navigationPosition\.canGoBack && !isRoot;/);
-  assert.match(main, /syncHash\(\{ push \}\);\s*renderBreadcrumbs\(\);/);
+  assert.match(main, /syncHash\(\{ push \}\);\s*if \(next === 'read'\) rememberAbout\(\);\s*renderBreadcrumbs\(\);/);
   assert.match(main, /if \(\(!trail\.length && !backAvailable\) \|\| \(isRoot && isNarrow\)\)/);
   assert.match(main, /const issueView = createIssueView\(\{[\s\S]*?\n\s*renderBreadcrumbs,[\s\S]*?\n\}\);/);
   assert.doesNotMatch(html, /<dialog[^>]*>[\s\S]*?class="breadcrumb"/);
@@ -247,7 +247,7 @@ test('the continue-reading panel uses the same bounded measure', () => {
 
 test('Home headings are not explained twice', () => {
   assert.doesNotMatch(html, /id="home-sub"/);
-  assert.match(html, /id="home-h" class="home-brand"><img class="home-wordmark"[^>]*\/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
+  assert.match(html, /id="home-h" class="home-brand"><img class="home-wordmark home-wordmark--light"[^>]*\/><img class="home-wordmark home-wordmark--dark"[^>]*\/><span class="home-brand-text">Recap Page<\/span><\/h1>/);
   assert.doesNotMatch(html, /class="home-action"|Browse\. Choose\. Read\./);
   assert.match(styles, /#view-home > \.head\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\) minmax\(0,\s*auto\);/);
   assert.match(styles, /\.home-lockup\s*\{[^}]*grid-column:\s*1 \/ -1;[^}]*justify-items:\s*center;/);

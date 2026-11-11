@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1099254/?format=json",
+  "retrievedAt": "2026-11-10T19:33:33.590Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1099254/?format=json",
+    "series_name": "Realm of Kings (2010 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2010",
+    "key_date": "2010-11-17",
+    "page_count": "372.000",
+    "isbn": "978-0-7851-4597-4",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/73440/?format=json",
+    "story_set": []
+  }
+}

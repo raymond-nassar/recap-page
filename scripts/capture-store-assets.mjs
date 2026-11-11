@@ -134,7 +134,7 @@ async function auditAndCapture(page, origin, screenshot, output) {
       coversOff: JSON.parse(localStorage.getItem('mrt.settings')).covers === false,
       safeImages: [...document.images].every((image) => !image.getAttribute('src') || (
         new URL(image.src).origin === location.origin
-          && ['/icons/icon.svg', '/icons/wordmark.png', '/brands/ms-symbollockup_mssymbol_19.svg', '/brands/g-logo.png'].includes(new URL(image.src).pathname)
+          && ['/icons/icon.svg', '/icons/wordmark.svg', '/icons/wordmark-dark.svg', '/brands/ms-symbollockup_mssymbol_19.svg', '/brands/g-logo.png'].includes(new URL(image.src).pathname)
       )),
       horizontalOverflow: document.documentElement.scrollWidth > innerWidth,
       headingVisible: Boolean(visible?.querySelector(headingSelector ?? 'h1')?.getBoundingClientRect().top >= 0

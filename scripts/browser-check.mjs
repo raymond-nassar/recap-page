@@ -2086,6 +2086,274 @@ async function checkOfflineSelectedList(browser, origin, t) {
 // state behind is not evidence either.
 const SCENARIOS = [
   {
+    id: 'about-this-list',
+    title: 'list context opens with exact private curator destinations on desktop and phone',
+    async run(page, t) {
+      let state = createList(createEmptyState(), {
+        id: 'source-list', name: 'Saved custom title', description: '', catalogId: 'browser-check',
+      });
+      state = addIssuesToList(state, 'source-list', ORDER.items).state;
+      state = createList(state, { id: 'custom-list', name: 'My own list', description: '' });
+      state.active = 'source-list';
+      await page.evaluateOnNewDocument((saved) => {
+        if (!sessionStorage.getItem('about.fixture')) {
+          sessionStorage.setItem('about.fixture', '1');
+          localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+          localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        }
+        const fetch = window.fetch;
+        window.fetch = (input, options) => {
+          if (String(input).endsWith('data/catalog.json')) {
+            if (sessionStorage.getItem('about.fail') === '1') {
+              sessionStorage.removeItem('about.fail');
+              return Promise.reject(new Error('fixture offline'));
+            }
+            if (sessionStorage.getItem('about.hold') === '1') {
+              return new Promise((resolve) => {
+                window.__releaseAboutSource = () => {
+                  sessionStorage.removeItem('about.hold');
+                  resolve(fetch(input, options));
+                };
+              });
+            }
+          }
+          return fetch(input, options);
+        };
+      }, state);
+      await page.setViewport({ width: 1280, height: 900 });
+      await open(page, '/#/read/source-list');
+      await page.waitForSelector('#order-source .list-source-link');
+      const readAbout = (selector) => page.$eval(selector, (about) => {
+        const link = about.querySelector('.list-source-link');
+        const rect = link?.getBoundingClientRect();
+        return {
+          open: about.open, hidden: about.hidden,
+          summary: about.querySelector('summary')?.textContent,
+          text: about.textContent,
+          label: link?.textContent,
+          name: link?.getAttribute('aria-label'),
+          href: link?.getAttribute('href'),
+          target: link?.target, rel: link?.rel,
+          radius: link ? parseFloat(getComputedStyle(link).borderRadius) : 0,
+          width: rect?.width, height: rect?.height,
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        };
+      });
+      const saved = await readAbout('#order-desc');
+      t.check('a cold saved source-only list opens About and resolves its exact catalog credit',
+        saved.open && !saved.hidden && saved.summary === 'About this list'
+        && saved.href === CATALOG.lists[0].source && saved.text.includes('Fixture section')
+        && saved.text.includes('Snapshot taken') && saved.label === 'Visit example.com'
+        && saved.name.includes(CATALOG.lists[0].name) && saved.name.includes(saved.label)
+        && saved.target === '_blank' && saved.rel === 'noopener noreferrer',
+        JSON.stringify(saved));
+      t.check('the curator pill is secondary, rounded and at least 24 by 24 pixels',
+        saved.width >= 24 && saved.height >= 24 && saved.radius >= saved.height / 2 && !saved.overflow,
+        JSON.stringify(saved));
+      await page.focus('#order-desc > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => !document.querySelector('#order-desc').open);
+      const beforeHero = await page.$eval('#hero-title', (node) => node.textContent);
+      await page.evaluate(() => document.querySelector('#btn-hero-done').click());
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent !== title, {}, beforeHero);
+      t.check('a progress redraw does not undo a keyboard collapse',
+        !(await page.$eval('#order-desc', (node) => node.open)));
+      await page.setViewport({ width: 390, height: 844 });
+      t.check('phone reflow preserves the same collapsed disclosure',
+        !(await page.$eval('#order-desc', (node) => node.open)));
+      await page.focus('#order-desc > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#order-desc').open);
+      await page.focus('#order-source .list-source-link');
+      const keyboard = await page.evaluate(() => ({
+        focused: document.activeElement.matches('#order-source .list-source-link'),
+        visible: document.activeElement.getClientRects().length > 0,
+      }));
+      t.check('the open phone disclosure exposes a keyboard-focusable native source destination',
+        keyboard.focused && keyboard.visible, JSON.stringify(keyboard));
+      for (const width of [320, 390, 1280]) {
+        await page.setViewport({ width, height: 900 });
+        for (const theme of ['light', 'dark']) {
+          await page.emulateMediaFeatures([
+            { name: 'prefers-color-scheme', value: theme },
+            { name: 'prefers-reduced-motion', value: 'reduce' },
+          ]);
+          const layout = await readAbout('#order-desc');
+          t.check(`saved About retains its destination without clipping at ${width}px in ${theme}`,
+            layout.open && !layout.overflow && layout.width >= 24 && layout.height >= 24,
+            JSON.stringify(layout));
+        }
+      }
+      await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]);
+      t.check('forced colors retains a visible focusable source destination',
+        await page.$eval('#order-source .list-source-link', (link) =>
+          getComputedStyle(link).visibility === 'visible' && link.getClientRects().length > 0));
+      await page.emulateMediaFeatures([]);
+      // Back and Forward restore a pixel scroll position, so About must come back at the height it
+      // had when that position was measured, or the reader lands off by About's height.
+      const rowSelector = '#full .row:has(.cb[aria-pressed="false"])';
+      const rowTop = () => page.$eval(rowSelector, (node) => Math.round(node.getBoundingClientRect().top));
+      const settle = (top) => page.waitForFunction((want) => Math.abs(Math.round(
+        document.querySelector('#full .row:has(.cb[aria-pressed="false"])').getBoundingClientRect().top) - want) <= 1,
+      { timeout: 3000 }, top).catch(() => {});
+      for (const width of [1280, 390]) {
+        await page.setViewport({ width, height: 900 });
+        // A preceding Back keeps restoring for two seconds unless real input cancels it.
+        // End that restoration before measuring a new viewport's scroll position.
+        await new Promise((resolve) => setTimeout(resolve, 2100));
+        if (await page.$eval('#order-desc', (node) => node.open)) {
+          await page.focus('#order-desc > summary');
+          await page.keyboard.press('Enter');
+          await page.waitForFunction(() => !document.querySelector('#order-desc').open);
+        }
+        await page.evaluate(() => {
+          if (!document.querySelector('#full').open) document.querySelector('#full > summary').click();
+        });
+        await page.waitForSelector('#full[open] #reading-filters input[value="unread"]');
+        await page.evaluate(() => document.querySelector('#reading-filters').scrollIntoView({ block: 'start' }));
+        // The app records a scroll position 500 ms after scrolling stops.
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const before = await rowTop();
+        await page.evaluate(() => document.querySelector('#reading-filters input[value="unread"]').click());
+        await page.waitForFunction(() => location.hash.includes('filter=unread'));
+        await page.evaluate(() => history.back());
+        await page.waitForFunction(() => !location.hash.includes('filter=unread'));
+        await settle(before);
+        const filtered = { open: await page.$eval('#order-desc', (node) => node.open), before, after: await rowTop() };
+        t.check(`Back from a filter choice keeps a collapsed About and the reader's place at ${width}px`,
+          !filtered.open && Math.abs(filtered.after - filtered.before) <= 1, JSON.stringify(filtered));
+        const left = await rowTop();
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await page.evaluate(() => history.back());
+        await page.waitForSelector('#view-read:not([hidden])');
+        await settle(left);
+        const returned = { open: await page.$eval('#order-desc', (node) => node.open), left, after: await rowTop() };
+        t.check(`Back from Home keeps a collapsed About and the reader's place at ${width}px`,
+          !returned.open && Math.abs(returned.after - returned.left) <= 1, JSON.stringify(returned));
+
+        await page.reload({ waitUntil: 'networkidle0' });
+        await page.waitForSelector('#order-source .list-source-link');
+        const reloaded = await page.$eval('#order-desc', (node) => ({
+          open: node.open, recorded: history.state?.aboutOpen,
+        }));
+        await page.evaluate(() => window.scrollTo(0, 250));
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const reloadTop = await rowTop();
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await page.evaluate(() => history.back());
+        await page.waitForSelector('#view-read:not([hidden])');
+        await settle(reloadTop);
+        const reloadBack = { open: await page.$eval('#order-desc', (node) => node.open), after: await rowTop() };
+        t.check(`collapsed reload then Home/Back preserves About and a non-sticky row at ${width}px`,
+          !reloaded.open && reloaded.recorded === false && !reloadBack.open
+          && Math.abs(reloadBack.after - reloadTop) <= 1, JSON.stringify({ reloaded, reloadTop, reloadBack }));
+
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await page.evaluate(() => { location.hash = '#/read/source-list?full=1'; });
+        await page.waitForSelector('#view-read:not([hidden]) #full[open] .row');
+        await new Promise((resolve) => setTimeout(resolve, 2100));
+        const deep = await page.$eval('#order-desc', (node) => ({
+          open: node.open, recorded: history.state?.aboutOpen,
+        }));
+        await page.evaluate(() => window.scrollTo(0, 250));
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const deepTop = await rowTop();
+        await page.evaluate(() => document.querySelector('#reading-filters input[value="unread"]').click());
+        await page.waitForFunction(() => location.hash.includes('filter=unread'));
+        await page.evaluate(() => { document.querySelector('#order-desc').open = false; });
+        await page.waitForFunction(() => history.state?.aboutOpen === false);
+        await page.evaluate(() => history.back());
+        await page.waitForFunction(() => !location.hash.includes('filter=unread'));
+        await settle(deepTop);
+        const deepBack = { open: await page.$eval('#order-desc', (node) => node.open), after: await rowTop() };
+        t.check(`deep link then filter/collapse/Back restores About and a non-sticky row at ${width}px`,
+          deep.open && deep.recorded === true && deepBack.open
+          && Math.abs(deepBack.after - deepTop) <= 1, JSON.stringify({ deep, deepTop, deepBack }));
+
+        await new Promise((resolve) => setTimeout(resolve, 2100));
+        await page.evaluate(() => { document.querySelector('#order-desc').open = true; });
+        await page.waitForFunction(() => history.state?.aboutOpen === true);
+        await page.evaluate(() => { document.querySelector('#order-desc').open = false; });
+        await page.waitForFunction(() => history.state?.aboutOpen === false);
+        await click(page, '#full .row-focus-title');
+        await page.waitForSelector('#view-issue:not([hidden]) .breadcrumb a[href="#/read/source-list"]');
+        await click(page, '#view-issue .breadcrumb a[href="#/read/source-list"]');
+        await page.waitForSelector('#view-read:not([hidden])');
+        const breadcrumb = await page.$eval('#order-desc', (node) => ({
+          open: node.open, recorded: history.state?.aboutOpen,
+        }));
+        t.check(`issue breadcrumb is a forward About arrival at ${width}px`,
+          breadcrumb.open && breadcrumb.recorded === true, JSON.stringify(breadcrumb));
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home:not([hidden])');
+      await click(page, '#home-yours-list a[href="#/read/source-list"]');
+      await page.waitForSelector('#view-read:not([hidden]) #order-source .list-source-link');
+      t.check('returning to the same saved list through Home resets About to expanded',
+        await page.$eval('#order-desc', (node) => node.open));
+      await page.evaluate(() => { location.hash = '#/preview/browser-check'; });
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      const preview = await readAbout('#preview-about');
+      t.check('Preview has the same expanded About, exact curator destination and full credit',
+        preview.open && preview.summary === 'About this list' && preview.href === saved.href
+        && preview.text.includes('Fixture section') && preview.rel === saved.rel,
+        JSON.stringify(preview));
+      for (const width of [320, 390, 1280]) {
+        await page.setViewport({ width, height: 900 });
+        const layout = await readAbout('#preview-about');
+        t.check(`Preview About wraps without clipping at ${width}px`,
+          layout.open && !layout.overflow && layout.width >= 24 && layout.height >= 24,
+          JSON.stringify(layout));
+      }
+      await page.focus('#preview-about > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => !document.querySelector('#preview-about').open);
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview').open
+        && !location.hash.startsWith('#/preview/'));
+      await page.evaluate(() => { location.hash = '#/preview/browser-check'; });
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('Preview reopens expanded after being collapsed and closed',
+        await page.$eval('#preview-about', (node) => node.open));
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview').open
+        && !location.hash.startsWith('#/preview/'));
+      await page.evaluate(() => { location.hash = '#/read/custom-list'; });
+      await page.waitForSelector('#view-read:not([hidden])');
+      t.check('a custom list with neither description nor source has no invented destination or empty About',
+        await page.evaluate(() => document.querySelector('#order-desc').hidden
+          && !document.querySelector('#order-source a')));
+      await page.evaluate(() => {
+        sessionStorage.setItem('about.fail', '1');
+        sessionStorage.setItem('about.hold', '1');
+      });
+      await open(page, '/#/read/source-list');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#order-source button');
+      const beforeRetry = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('failed source loading leaves an expanded, explicit, retryable About',
+        await page.$eval('#order-desc', (node) => !node.hidden && node.open
+          && node.textContent.includes('fixture offline') && node.textContent.includes('Retry source credit')));
+      await page.focus('#order-source button');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => typeof window.__releaseAboutSource === 'function');
+      t.check('keyboard Retry retains focus and blocks duplicate activation while pending',
+        await page.$eval('#order-source button', (button) => document.activeElement === button
+          && button.getAttribute('aria-disabled') === 'true'));
+      await page.keyboard.press('Enter');
+      await page.evaluate(() => window.__releaseAboutSource());
+      await page.waitForSelector('#order-source .list-source-link');
+      t.check('source retry restores exact credit and logical focus without changing saved bytes',
+        await page.evaluate((before) => document.activeElement.matches('#order-source .list-source-link')
+          && document.activeElement.getAttribute('href') === 'https://example.com/shared-page'
+          && localStorage.getItem('mrt.state.v2') === before, beforeRetry));
+    },
+  },
+  {
     id: 'notice-dismissal',
     title: 'Home notice dismisses locally with version, failure and keyboard safety',
     run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click }),
@@ -15412,6 +15680,21 @@ const SCENARIOS = [
       page.on('console', (message) => {
         if (message.type() === 'error') browserErrors.push(message.text());
       });
+      const checkWordmark = async (label) => {
+        for (const theme of ['dark', 'light']) {
+          await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
+          const file = theme === 'light' ? 'wordmark.svg' : 'wordmark-dark.svg';
+          await page.waitForFunction((name) => {
+            const image = document.querySelector('.site-name img');
+            return image?.complete && image.naturalWidth === 1000 && image.currentSrc.endsWith(`/assets/${name}`);
+          }, {}, file);
+          t.check(`${label} selects the fixed ${theme}-surface wordmark`,
+            await page.$eval('.site-name img', (image, name) => image.currentSrc.endsWith(`/assets/${name}`)
+              && getComputedStyle(document.body).backgroundColor === (name === 'wordmark.svg'
+                ? 'rgb(250, 250, 255)' : 'rgb(17, 17, 23)'), file));
+        }
+        await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: '' }]);
+      };
 
       try {
         const { destination } = await buildPages({ destination: join(temporary, 'site') });
@@ -15419,6 +15702,7 @@ const SCENARIOS = [
 
         await page.setViewport({ width: 1280, height: 900 });
         await page.goto(url, { waitUntil: 'load' });
+        await checkWordmark('Home');
         await page.keyboard.press('Tab');
         const skip = await page.$eval('.skip-link', (link) => {
           const style = getComputedStyle(link);
@@ -15526,6 +15810,7 @@ const SCENARIOS = [
         await page.$eval('#features a[href="./being-built.html"]', (link) => link.focus());
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.pathname.endsWith('/being-built.html'));
+        await checkWordmark('Generated masthead');
         t.check('the feature teaser opens the generated page by keyboard without a network lookup',
           await page.$eval('h1', (heading) => heading.textContent === "What's being built")
           && webRequests.length === 0);
@@ -23635,6 +23920,7 @@ MUTATIONS.push({
 
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
+SCENARIOS.push((await import('./browser-collected-editions.mjs')).collectedEditions);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
 const orderedImport = await import('./browser-ordered-import.mjs');
@@ -26629,6 +26915,66 @@ SCENARIOS.push({
     } finally {
       await reportCloudHoldTrace(page, fixture, evidence);
     }
+  },
+});
+
+SCENARIOS.push({
+  id: 'brand-wordmark',
+  title: 'The transparent wordmark follows explicit and system themes without changing its accessible name',
+  async run(page, t) {
+    const { decodePng } = await import('./lib/painted-contrast.mjs');
+    await page.setViewport({ width: 1280, height: 900 });
+    await open(page, '/#/home');
+    for (const [system, explicit, expected] of [
+      ['dark', 'light', [109, 40, 217]],
+      ['dark', 'dark', [158, 113, 230]],
+      ['light', 'dark', [158, 113, 230]],
+      ['light', 'light', [109, 40, 217]],
+      ['light', null, [109, 40, 217]],
+      ['dark', null, [158, 113, 230]],
+    ]) {
+      await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: system }]);
+      await click(page, '.ri[data-view="data"]');
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.select('#opt-theme', explicit ?? 'system');
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home:not([hidden])');
+      await page.waitForFunction(() => [...document.querySelectorAll('.home-wordmark')]
+        .every((image) => image.complete && image.naturalWidth > 0));
+      await page.$eval('#view-home', async (node) => {
+        await Promise.all(node.getAnimations().map((animation) => animation.finished));
+      });
+      const selector = expected[0] === 158 ? '.home-wordmark--dark' : '.home-wordmark--light';
+      const image = await page.$(selector);
+      const painted = decodePng(Buffer.from(await image.screenshot()));
+      const counts = new Map();
+      for (let y = 0; y < painted.height; y += 1) {
+        for (let x = 0; x < painted.width; x += 1) {
+          const color = painted.pixel(x, y).join(',');
+          counts.set(color, (counts.get(color) ?? 0) + 1);
+        }
+      }
+      const background = await page.$eval('#view-home', (node) => {
+        const rgb = getComputedStyle(node).backgroundColor;
+        return rgb === 'rgba(0, 0, 0, 0)' ? getComputedStyle(document.body).backgroundColor : rgb;
+      });
+      const corner = painted.pixel(6, 6).join(',');
+      t.check(`${explicit ?? 'system'} with ${system} preference paints the approved letters and outline`,
+        (counts.get(expected.join(',')) ?? 0) > 100 && (counts.get('238,8,116') ?? 0) > 10,
+        JSON.stringify({ expected, fill: counts.get(expected.join(',')), pink: counts.get('238,8,116') }));
+      t.check('the background remains transparent and Home keeps one accessible heading',
+        `rgb(${corner.split(',').join(', ')})` === background
+        && await page.$eval('#home-h', (node) => node.textContent === 'Recap Page'
+          && [...node.querySelectorAll('img')].every((image) => image.alt === ''
+            && image.getAttribute('aria-hidden') === 'true')
+          && [...node.querySelectorAll('img')].filter((image) => getComputedStyle(image).display !== 'none').length === 1
+          && document.querySelectorAll('#view-home h1').length === 1),
+        JSON.stringify({ corner, background }));
+    }
+    await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]);
+    t.check('forced colors show the plain-text brand instead of artwork',
+      await page.$eval('#home-h', (node) => [...node.querySelectorAll('img')].every((image) => getComputedStyle(image).display === 'none')
+        && getComputedStyle(node.querySelector('.home-brand-text')).position === 'static'));
   },
 });
 

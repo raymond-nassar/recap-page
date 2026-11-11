@@ -2284,6 +2284,10 @@ async function readingSemantics(page) {
   const nextIssue = readingOrder.items[READING_ISSUE_POSITION];
   const followingIssue = readingOrder.items[READING_ISSUE_POSITION + 1];
   const saved = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  check(await page.$eval('#order-desc', (node) => node.open
+    && node.querySelector('summary').textContent === 'About this list'), 'M01: About this list starts expanded');
+  await click(page, '#order-desc > summary');
+  check(!await page.$eval('#order-desc', (node) => node.open), 'M01: About collapses normally');
   await click(page, '#order-desc > summary');
   check(await page.$eval('#order-desc', (node) => node.open), 'M01: About expands normally');
   await click(page, '#order-desc > summary');
@@ -2606,7 +2610,8 @@ async function alignmentCheck(page, profile) {
       .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
     `${id}: the closure notice stays first on a Home without Continue reading`);
   }
-  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', '.home-wordmark',
+  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h',
+    profile.theme === 'dark' ? '.home-wordmark--dark' : '.home-wordmark--light',
     '#home-categories', '.brand[data-view="home"]']);
   const [head, lockup, logo] = home.nodes;
   const gutters = { left: lockup.box.left - head.content.left, right: head.content.right - lockup.box.right };
@@ -2715,7 +2720,7 @@ async function homeWordmark(page) {
     const headStyle = getComputedStyle(head);
     const center = (headBox.left + parseFloat(headStyle.paddingLeft)
       + headBox.right - parseFloat(headStyle.paddingRight)) / 2;
-    const artwork = heading.querySelector('.home-wordmark');
+    const artwork = [...heading.querySelectorAll('.home-wordmark')].find((node) => node.checkVisibility());
     const fallback = heading.querySelector('.home-brand-text');
     const toggle = document.querySelector('#home-updates-toggle');
     const toggleText = document.createRange();
@@ -2730,6 +2735,7 @@ async function homeWordmark(page) {
       tagline: !!document.querySelector('.home-action'),
       imageLoaded: artwork.complete && artwork.naturalWidth > 0,
       imageShown: getComputedStyle(artwork).display !== 'none',
+      visibleImages: [...heading.querySelectorAll('.home-wordmark')].filter((node) => node.checkVisibility()).length,
       fallbackShown: getComputedStyle(fallback).position === 'static',
       image: rect(artwork), fallbackColor: getComputedStyle(fallback).color,
       toggleLines: Math.max(...toggleRects.map((line) => line.top)) < Math.min(...toggleRects.map((line) => line.bottom)) ? 1 : 2, toggleRects: toggleRects.map((line) => line.toJSON()),
@@ -2752,7 +2758,7 @@ async function homeWordmarkCheck(page, label, viewport) {
     shown.labelledBy !== 'home-h' && `Home named by ${shown.labelledBy}`,
     shown.text !== 'Recap Page' && `text ${JSON.stringify(shown.text)}`,
     shown.tagline && 'tagline retained',
-    (!shown.imageLoaded || !shown.imageShown || shown.fallbackShown) && 'artwork missing or fallback exposed',
+    (!shown.imageLoaded || !shown.imageShown || shown.visibleImages !== 1 || shown.fallbackShown) && 'artwork missing, duplicated or fallback exposed',
     shown.toggleLines !== 1 && `What's new has ${shown.toggleLines} lines ${JSON.stringify(shown)}`,
     (shown.box.left < 0 || shown.box.right > shown.screen || shown.overflow) && 'outside the screen',
     shown.offCenter > 1 && `${shown.offCenter.toFixed(1)}px off center`,
@@ -2772,7 +2778,7 @@ async function homeWordmarkCheck(page, label, viewport) {
       probe.remove();
       const style = getComputedStyle(node);
       return { active: matchMedia('(forced-colors: active)').matches, color: style.color, system,
-        imageHidden: getComputedStyle(node.querySelector('.home-wordmark')).display === 'none',
+        imageHidden: [...node.querySelectorAll('.home-wordmark')].every((image) => getComputedStyle(image).display === 'none'),
         textShown: getComputedStyle(node.querySelector('.home-brand-text')).position === 'static' };
     });
     await screenshot(page, label, 'home-wordmark-forced');

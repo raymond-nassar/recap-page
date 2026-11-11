@@ -10,6 +10,7 @@ import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
 import { registeredOwnerAdditionIds } from '../../scripts/lib/owner-guide-registry.mjs';
 import { libraryDigestFor, withoutDiscoveryTags } from '../../scripts/lib/cbh-inventory.mjs';
+import { sourceCreditRevisions } from '../../scripts/lib/source-credit-revisions.mjs';
 import {
   beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
 } from '../../scripts/lib/mcu-editorial.mjs';
@@ -105,6 +106,9 @@ export function historicalMcuDescriptionManifest(manifest) {
 }
 
 export function historicalMcuDescriptionPayloadText(file, text) {
+  const current = JSON.parse(text);
+  sourceCreditRevisions.assertLatest(current, file);
+  text = `${JSON.stringify(sourceCreditRevisions.undo(current, file), null, 2)}\n`;
   text = `${JSON.stringify(beforeIdentityPayload(file, JSON.parse(text)), null, 2)}\n`;
   text = beforeMcuEditorialPayloadText(file, text);
   const revision = descriptionFiles.get(file);

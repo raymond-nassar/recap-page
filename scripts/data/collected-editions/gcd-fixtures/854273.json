@@ -1,0 +1,161 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/854273/?format=json",
+  "retrievedAt": "2026-11-10T19:33:43.539Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/854273/?format=json",
+    "series_name": "Thunderbolts by Warren Ellis (2007 series)",
+    "descriptor": "2 - Caged Angels",
+    "number": "2",
+    "volume": "2",
+    "variant_name": "",
+    "title": "Caged Angels",
+    "publication_date": "2008",
+    "key_date": "2008-08-13",
+    "page_count": "152.000",
+    "isbn": "9780785126355",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/59731/?format=json",
+    "story_set": [
+      {
+        "type": "blank page(s)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "3.000",
+        "notes": ""
+      },
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "3.000",
+        "notes": ""
+      },
+      {
+        "type": "recap",
+        "title": "Previously",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#116",
+        "feature": "Thunderbolts",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Caged Angels Part I",
+        "feature": "Thunderbolts",
+        "sequence_number": 5,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#117",
+        "feature": "Thunderbolts",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Caged Angels Part II",
+        "feature": "Thunderbolts",
+        "sequence_number": 7,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#118",
+        "feature": "Thunderbolts",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Caged Angels Part III",
+        "feature": "Thunderbolts",
+        "sequence_number": 9,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#119",
+        "feature": "Thunderbolts",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Caged Angels Part IV",
+        "feature": "Thunderbolts",
+        "sequence_number": 11,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "blank page(s)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "Filler page with industrial design"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#120",
+        "feature": "Thunderbolts",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Caged Angels Part V",
+        "feature": "Thunderbolts",
+        "sequence_number": 14,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Caged Angels Part VI",
+        "feature": "Thunderbolts",
+        "sequence_number": 16,
+        "page_count": "23.000",
+        "notes": "Includes one additional filler page to maintain page spreads."
+      },
+      {
+        "type": "blank page(s)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 17,
+        "page_count": "3.000",
+        "notes": ""
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Mind Over Murder!",
+        "feature": "Thunderbolts",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": "Features art from the cover of Thunderbolts (Marvel, 2006 series) #116"
+      }
+    ]
+  }
+}

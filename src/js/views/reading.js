@@ -31,6 +31,9 @@ import { shortcutAllowed } from '../lib/shortcuts.js';
 import { earlierIssueIds } from '../lib/reorientation.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 import { paintGlance } from '../lib/progressGlance.js';
+import { sourceButton } from './shared/catalog-presentation.js';
+import { editionRelations } from '../lib/collectedEditions.js';
+import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -127,6 +130,8 @@ export function createReadingView({
   isSynopsisActive,
   issueFocusAnchor,
   launch: launchSaved,
+  loadCatalog = null,
+  listAttribution = () => null,
   noSynopsisMarker,
   notify,
   onCancelHydrate,
@@ -176,6 +181,74 @@ export function createReadingView({
   let arrowing = false;
   let review = null;
   let phoneOverview = null;
+  let aboutListId = null;
+  let aboutCatalogId = null;
+  let aboutRequest = null;
+  let aboutHasSource = false;
+
+  function renderAbout({ arrival = false, open } = {}) {
+    const lists = getState().lists;
+    const id = activeListId();
+    const list = Object.hasOwn(lists, id ?? '') ? lists[id] : null;
+    const disclosure = $('#order-desc');
+    const description = $('#order-desc-text');
+    const source = $('#order-source');
+    const changed = aboutListId !== list?.id || aboutCatalogId !== list?.catalogId;
+    description.textContent = list?.description || '';
+    description.hidden = !list?.description;
+    if (changed) {
+      aboutListId = list?.id ?? null;
+      aboutCatalogId = list?.catalogId ?? null;
+      aboutRequest = null;
+      aboutHasSource = false;
+      source.replaceChildren();
+    }
+    if (typeof open === 'boolean') disclosure.open = open;
+    else if (changed || arrival) disclosure.open = true;
+    disclosure.hidden = !list?.description && !aboutHasSource;
+    if (!list?.catalogId || !loadCatalog || (!changed && !arrival)) return;
+    if (aboutRequest?.pending) return;
+
+    const request = { pending: false };
+    aboutRequest = request;
+    const status = el('p', { class: 'rail-hint', role: 'status' });
+    const retry = el('button', { type: 'button', class: 'btn btn-g', onclick: () => { void load(); } }, 'Retry source credit');
+    source.replaceChildren(status);
+    aboutHasSource = true;
+    disclosure.hidden = false;
+    const current = () => aboutRequest === request && activeListId() === list.id
+      && getState().lists[list.id]?.catalogId === list.catalogId;
+    async function load() {
+      if (!current() || request.pending) return;
+      request.pending = true;
+      retry.setAttribute('aria-disabled', 'true');
+      status.textContent = 'Loading source credit...';
+      let catalog;
+      try {
+        catalog = await loadCatalog();
+      } catch (error) {
+        if (!current()) return;
+        request.pending = false;
+        retry.removeAttribute('aria-disabled');
+        status.textContent = `Source credit could not be loaded: ${error.message}. Your saved list is unchanged.`;
+        if (!source.contains(retry)) source.append(retry);
+        return;
+      }
+      if (!current()) return;
+      request.pending = false;
+      const held = document.activeElement === retry;
+      const entry = catalog.lists.find((candidate) => candidate.id === list.catalogId);
+      const content = entry ? [listAttribution(entry), sourceButton(el, entry)].filter(Boolean) : [];
+      source.replaceChildren(...content);
+      aboutHasSource = content.length > 0;
+      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
+      if (held) {
+        if (disclosure.hidden) focusCurrentView();
+        else (source.querySelector('.list-source-link') ?? source.querySelector('a') ?? disclosure.querySelector('summary')).focus();
+      }
+    }
+    void load();
+  }
 
   function placeListOptions(anchor) {
     const options = $('#reading-list-options');
@@ -640,11 +713,7 @@ export function createReadingView({
       `${total} comic${total === 1 ? '' : 's'}`,
       seriesCount ? `${seriesCount} series` : null,
     ].filter(Boolean).join(' · ');
-    const desc = $('#order-desc');
-    const descText = $('#order-desc-text');
-    descText.textContent = list.description || '';
-    desc.hidden = !list.description;
-    if (!list.description) desc.open = false;
+    renderAbout();
 
     const pct = total ? read / total : 0;
     const listNote = $('#list-note');
@@ -842,6 +911,12 @@ export function createReadingView({
       // Read the local day once so every row in this pass is judged against one cacheable value.
       const today = localDayString();
       const items = all.filter((item) => matchesReadingFilter(filter, item));
+      if (items.some((item) => editionRelations(list.catalogId, item).length)) {
+        if (!rowCache.has('edition-credit')) {
+          rowCache.set('edition-credit', { node: el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]) });
+        }
+        desired.push(rowCache.get('edition-credit').node);
+      }
 
       // Edition progress is computed from the full list, not the filtered subset, so the same book
       // does not report a different total when the reader changes filters.
@@ -893,7 +968,7 @@ export function createReadingView({
         const rowKey = rowCacheKey(item, currentId, today, getSettings().covers);
         const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
         const entry = rowCache.get(item.issueId);
-        const cached = entry?.readerKey === readerKey ? entry : null;
+        const cached = entry?.readerKey === readerKey && entry.catalogId === list.catalogId ? entry : null;
         if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
 
         const override = item.override;
@@ -955,6 +1030,7 @@ export function createReadingView({
               item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,
               ymd(item.onSale) ? el('span', { text: ymd(item.onSale) }) : null,
             ]),
+            collectedEditionLabels(el, list.catalogId, item),
             el('button', {
               type: 'button',
               class: `rnote${item.note ? ' has-note' : ''}`,
@@ -967,7 +1043,7 @@ export function createReadingView({
           ]),
           issueRowActions(item, id, expanded),
         ]);
-        rowCache.set(item.issueId, { key: rowKey, readerKey, node });
+        rowCache.set(item.issueId, { key: rowKey, readerKey, catalogId: list.catalogId, node });
         desired.push(node);
       }
       if (items.length !== all.length) {
@@ -1701,6 +1777,11 @@ export function createReadingView({
   }
 
   return {
+    enterAbout: () => renderAbout({ arrival: true }),
+    // Back and Forward return the disclosure to how this history entry left it, because the scroll
+    // position the entry restores was measured with About at that height.
+    restoreAbout: (open) => renderAbout({ open }),
+    aboutOpen: () => $('#order-desc').open,
     retireDoneResult,
     markReadFromHome: () => markCurrentRead('home'),
     toggleSavedRead,

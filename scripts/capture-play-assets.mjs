@@ -119,7 +119,7 @@ async function captureScreen(page, screen, output) {
       coversOff: settings.covers === false,
       sameData,
       safeImages: [...document.images].every((image) => !image.getAttribute('src') || (
-        new URL(image.src).origin === location.origin && ['/icons/icon.svg', '/icons/wordmark.png', '/brands/ms-symbollockup_mssymbol_19.svg', '/brands/g-logo.png'].includes(new URL(image.src).pathname)
+        new URL(image.src).origin === location.origin && ['/icons/icon.svg', '/icons/wordmark.svg', '/icons/wordmark-dark.svg', '/brands/ms-symbollockup_mssymbol_19.svg', '/brands/g-logo.png'].includes(new URL(image.src).pathname)
       )),
       privateTextAbsent: !/[A-Za-z]:[\\/]+Users[\\/]+|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b/i.test(text),
       noBlockedRequests: window.__playPreviewViolations.length === 0,

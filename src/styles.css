@@ -1892,6 +1892,13 @@ progress { accent-color: var(--accent); height: 6px; }
   font-size: var(--t-title-lg); line-height: 1.2;
 }
 .home-wordmark { display: block; width: 100%; height: auto; margin-inline: auto; }
+:root { --wordmark-light: none; --wordmark-dark: block; }
+:root[data-theme="light"] { --wordmark-light: block; --wordmark-dark: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --wordmark-light: block; --wordmark-dark: none; }
+}
+.home-wordmark--light { display: var(--wordmark-light); }
+.home-wordmark--dark { display: var(--wordmark-dark); }
 .home-brand-text {
   position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
 }
@@ -2289,6 +2296,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-list .preview-group { border-bottom: 0; padding: var(--space-5) 0 var(--space-1); }
 .preview-list .preview-group:first-child { padding-top: 0; }
 .preview-list .preview-group h4 { margin: 0; font-size: var(--t-body); font-weight: 600; }
+.preview-issue-info { min-width: 0; overflow-wrap: anywhere; }
+.collected-editions { margin-top: var(--space-1); font-size: var(--t-caption); color: var(--muted); }
+.collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
+.collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
+.edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+.edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
@@ -3025,6 +3038,8 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
 #view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }
+
+.btn.list-source-link { border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere; }
 
 /* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
    Keep native tap highlights and selection. */

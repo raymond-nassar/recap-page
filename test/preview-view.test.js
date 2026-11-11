@@ -28,6 +28,7 @@ const list = (id) => ({
 test('Preview rejects an older issue response after a newer selection opens', async () => {
   globalThis.document = { activeElement: null, body: {} };
   const nodes = {
+    about: node(),
     add: node(),
     secondary: node(),
     body: node(),
@@ -66,7 +67,10 @@ test('Preview rejects an older issue response after a newer selection opens', as
   });
 
   const first = view.open({ ...list('one'), file: 'one.json' });
+  assert.equal(nodes.about.open, true);
+  nodes.about.open = false;
   const second = view.open({ ...list('two'), file: 'two.json' });
+  assert.equal(nodes.about.open, true, 'each Preview arrival resets expansion');
   pending.get('two.json')({ items: [{ issueId: 2, title: 'Two' }] });
   await second;
   pending.get('one.json')({ items: [{ issueId: 1, title: 'One' }] });
@@ -75,6 +79,29 @@ test('Preview rejects an older issue response after a newer selection opens', as
   assert.deepEqual(focused, [2]);
   assert.equal(nodes.heading.textContent, 'List two');
   assert.equal(nodes.source.children[0].textContent, 'Source of two');
+});
+
+test('Preview shows a source-only About and its curator pill, but hides a genuinely empty About', async () => {
+  const nodes = Object.fromEntries([
+    'about', 'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+  ].map((key) => [key, node()]));
+  const view = createPreviewView({
+    captureFocus: () => null, el: element, elements: () => nodes,
+    getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+    issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
+    onClose: async () => {}, onIssueLoadFailure: ({ error }) => { throw error; },
+    presentation: { attributionLine: () => null }, restoreFocus: () => {},
+  });
+  await view.open({ ...list('source-only'), source: 'https://comicbookreadingorders.com/guide/' });
+  assert.equal(nodes.about.hidden, false);
+  assert.equal(nodes.description.hidden, true);
+  assert.equal(nodes.source.children[0].href, 'https://comicbookreadingorders.com/guide/');
+  nodes.about.open = false;
+  view.syncAdd();
+  assert.equal(nodes.about.open, false);
+  await view.open(list('empty'));
+  assert.equal(nodes.about.hidden, true);
+  assert.equal(nodes.source.children.length, 0);
 });
 
 test('Preview separates individual issues after an edition without changing original order', async () => {

@@ -1,0 +1,161 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1454936/?format=json",
+  "retrievedAt": "2026-11-10T19:34:50.770Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1454936/?format=json",
+    "series_name": "Avengers: Time Runs Out (2015 series)",
+    "descriptor": "1",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2015",
+    "key_date": "2015-09-09",
+    "page_count": "148.000",
+    "isbn": "978-0-7851-8923-7",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/92245/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "The Three Avengers",
+        "feature": "The Avengers",
+        "sequence_number": 1,
+        "page_count": "32.000",
+        "notes": ""
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "recap",
+        "title": "Previously in New Avengers",
+        "feature": "The Avengers",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "The Cabal",
+        "feature": "The Avengers",
+        "sequence_number": 4,
+        "page_count": "31.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Eight Months Later",
+        "feature": "The Avengers",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "character profile",
+        "title": "Avengers",
+        "feature": "The Avengers",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Universal Avengers",
+        "feature": "The Avengers",
+        "sequence_number": 7,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "What Happened When the World Woke Up",
+        "feature": "The Avengers",
+        "sequence_number": 9,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Archangel",
+        "feature": "The Avengers",
+        "sequence_number": 11,
+        "page_count": "24.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Avengers #35",
+        "feature": "The Avengers",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Avengers #36",
+        "feature": "The Avengers",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Avengers #37",
+        "feature": "The Avengers",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "New Avengers #24",
+        "feature": "The Avengers",
+        "sequence_number": 15,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "New Avengers #25",
+        "feature": "The Avengers",
+        "sequence_number": 16,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Avengers #35 & New Avengers #24 Combined Variants",
+        "feature": "The Avengers",
+        "sequence_number": 17,
+        "page_count": "0.500",
+        "notes": ""
+      }
+    ]
+  }
+}
