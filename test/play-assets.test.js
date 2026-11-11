@@ -195,17 +195,20 @@ test('capture allowlist serves only the generated shell and named local fixtures
 });
 
 test('store captures accept the local wordmark without admitting cover or external images', () => {
-  const artwork = readFileSync(new URL('../src/icons/wordmark.png', import.meta.url));
-  const assets = new Map([['icons/wordmark.png', artwork]]);
-  const response = previewResponse(`${ORIGIN}/icons/wordmark.png`, 'GET', assets);
-  assert.equal(response.contentType, 'image/png');
-  assert.equal(response.body, artwork);
+  for (const file of ['wordmark.svg', 'wordmark-white.svg']) {
+    const artwork = readFileSync(new URL(`../src/icons/${file}`, import.meta.url));
+    const assets = new Map([[`icons/${file}`, artwork]]);
+    const response = previewResponse(`${ORIGIN}/icons/${file}`, 'GET', assets);
+    assert.equal(response.contentType, 'image/svg+xml');
+    assert.equal(response.body, artwork);
+  }
   for (const script of ['capture-store-assets.mjs', 'capture-play-assets.mjs']) {
     const source = readFileSync(new URL(`../scripts/${script}`, import.meta.url), 'utf8');
     const expression = source.match(/safeImages:\s*([\s\S]*?),\r?\n\s*(?:horizontalOverflow|privateTextAbsent):/)[1];
     for (const [path, expected] of [
-      ['/icons/wordmark.png', true], ['/icons/icon.svg', true], ['/covers/comic.png', false],
-      ['/icons/unreviewed.png', false], ['https://example.com/icons/wordmark.png', false],
+      ['/icons/wordmark.svg', true], ['/icons/icon.svg', true], ['/covers/comic.png', false],
+      ['/icons/wordmark-white.svg', true],
+      ['/icons/unreviewed.svg', false], ['https://example.com/icons/wordmark.svg', false],
     ]) {
       const url = new URL(path, ORIGIN).href;
       const document = { images: [{ src: url, getAttribute: () => url }] };

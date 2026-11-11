@@ -222,7 +222,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
   const overview = section('overview');
   assert.match(
     overview,
-    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p class="platform-status">Available for Windows and Android\. In App Store review for iPhone and iPad\.<\/p>\s*<p class="action-row">/,
+    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p>\s*Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story\.\s*<\/p>\s*<p class="platform-status">Available for Windows and Android\. In App Store review for iPhone and iPad\.<\/p>\s*<p class="action-row">/,
   );
   assert.deepEqual(links(overview), [
     { href: '#getting-started', button: true, name: 'Get started' },
@@ -315,7 +315,7 @@ test('Get started offers both app stores and says iPhone and iPad is in App Stor
 
 test('the showcase includes the supplied artwork and current phone previews', () => {
   const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]))
-    .filter(({ src }) => src !== './assets/wordmark.png');
+    .filter(({ src }) => src !== './assets/wordmark-white.svg');
   assert.deepEqual(images.slice(0, 3).map(({ src, width, height }) => ({ src, width, height })), [
     { src: './assets/android-feature-graphic.png', width: '1024', height: '500' },
     { src: './assets/android-library-preview.png', width: '1080', height: '1920' },
@@ -348,8 +348,9 @@ test('the showcase includes the supplied artwork and current phone previews', ()
 
 test('home and generated mastheads use separate wordmark artwork with a forced-colors text fallback', () => {
   for (const page of [html, releaseHtml]) {
-    assert.match(page, /<p class="site-name">(?:<a href="\.\/index\.html">)?<img src="\.\/assets\/wordmark\.png" alt="Recap Page" width="1642" height="238" \/><span class="site-name-text" aria-hidden="true">Recap Page<\/span>/);
+    assert.match(page, /<p class="site-name">(?:<a href="\.\/index\.html">)?<picture><source media="\(prefers-color-scheme: light\)" srcset="\.\/assets\/wordmark\.svg" \/><img src="\.\/assets\/wordmark-white\.svg" alt="Recap Page" width="1000" height="168" \/><\/picture><span class="site-name-text" aria-hidden="true">Recap Page<\/span>/);
   }
+  assert.match(css, /@media \(prefers-color-scheme: light\) \{\s*:root \{\s*--page: #fafaff;/);
   assert.match(css, /\.site-name img \{[^}]*height: 2\.25rem;/);
   assert.match(css, /@media \(max-width: 42rem\) \{ \.site-name img \{ height: 1\.75rem;/);
   assert.match(css, /@media \(forced-colors: active\) \{[\s\S]*?\.site-name-text \{ display: inline; color: CanvasText;/);
@@ -361,7 +362,8 @@ test('the source inventory and generated contract stay exact', async () => {
     'android-feature-graphic.png',
     'android-library-preview.png',
     'android-reading-preview.png',
-    'wordmark.png',
+    'wordmark-white.svg',
+    'wordmark.svg',
   ]);
   assert.deepEqual(PAGE_OUTPUTS, [
     'assets/android-feature-graphic.png',
@@ -369,7 +371,8 @@ test('the source inventory and generated contract stay exact', async () => {
     'assets/android-reading-preview.png',
     'assets/avengers-disassembled-reading-960.png',
     'assets/home-960.png',
-    'assets/wordmark.png',
+    'assets/wordmark-white.svg',
+    'assets/wordmark.svg',
     'being-built.html',
     'data-sources.html',
     'index.html',
@@ -397,7 +400,8 @@ test('the source inventory and generated contract stay exact', async () => {
       'pages/assets/android-feature-graphic.png',
       'pages/assets/android-library-preview.png',
       'pages/assets/android-reading-preview.png',
-      'pages/assets/wordmark.png',
+      'pages/assets/wordmark.svg',
+      'pages/assets/wordmark-white.svg',
     ],
   );
 });
@@ -551,7 +555,7 @@ test('the exact-origin warning appears before the only local-app link', () => {
 
 test('all five showcase images have accurate dimensions and useful alternatives', () => {
   const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]))
-    .filter(({ src }) => src !== './assets/wordmark.png');
+    .filter(({ src }) => src !== './assets/wordmark-white.svg');
   assert.deepEqual(
     images.map(({ src }) => src),
     [

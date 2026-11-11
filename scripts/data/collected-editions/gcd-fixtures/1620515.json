@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1620515/?format=json",
+  "retrievedAt": "2026-11-10T19:34:55.435Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1620515/?format=json",
+    "series_name": "Secret Wars (2016 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2016",
+    "key_date": "2016-09-07",
+    "page_count": "316.000",
+    "isbn": "978-0-7851-9895-6",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/106163/?format=json",
+    "story_set": []
+  }
+}

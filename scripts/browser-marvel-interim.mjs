@@ -219,7 +219,7 @@ async function iosClosureTargets(page, t) {
       });
       const observed = await ios.evaluate(() => {
         const faq = document.querySelector('#reader-closure-faq');
-        const image = document.querySelector('.home-wordmark').getBoundingClientRect();
+        const image = [...document.querySelectorAll('.home-wordmark')].find((node) => node.checkVisibility()).getBoundingClientRect();
         const toggle = document.querySelector('#home-updates-toggle').getBoundingClientRect();
         const hit = document.elementFromPoint((image.left + image.right) / 2, (image.top + image.bottom) / 2);
         return {

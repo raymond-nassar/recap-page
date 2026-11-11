@@ -1,0 +1,78 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "schemaVersion": 1,
+  "note": "Curated inputs for checking pilot editions against the Grand Comics Database. Every value here was read from a database record, so it stays under that licence and out of the MIT-licensed files.",
+  "editions": {
+    "realm-of-kings-tpb-2601361": { "printingOf": "realm-of-kings-2010-tpb" },
+    "civil-war-2007-tpb": {
+      "storyTitles": {
+        "1": "Civil War Part One of Seven",
+        "2": "Civil War Part Two of Seven",
+        "3": "Civil War Part Three of Seven",
+        "4": "Civil War Part Four of Seven",
+        "5": "Civil War Part Five of Seven",
+        "6": "Civil War Part Six of Seven",
+        "7": "Civil War Part Seven of Seven"
+      }
+    },
+    "thunderbolts-ellis-v1-faith-in-monsters": {
+      "storyTitles": {
+        "110": "Faith in Monsters Part 1",
+        "111": "Faith in Monsters Part 2",
+        "112": "Faith in Monsters Part 3",
+        "113": "Faith in Monsters Part 4",
+        "114": "Faith in Monsters Part 5",
+        "115": "Faith in Monsters Part 6"
+      },
+      "uncountedSequences": {
+        "24": "Extra material: the Desperate Measures one-shot.",
+        "26": "Extra material: the Switching Sides story.",
+        "28": "Extra material: an untitled story reprinted with the Civil War: The Initiative cover."
+      }
+    },
+    "thunderbolts-ellis-v2-caged-angels": {
+      "storyTitles": {
+        "116": "Caged Angels Part I",
+        "117": "Caged Angels Part II",
+        "118": "Caged Angels Part III",
+        "119": "Caged Angels Part IV",
+        "120": "Caged Angels Part V",
+        "121": "Caged Angels Part VI"
+      },
+      "weakNumbers": {
+        "121": "The database reprints interior covers for #116 to #120 only; #121 rests on the sixth story part alone."
+      }
+    },
+    "asgardians-v1-the-infinity-armada": { "gcdSeries": "Asgardians of the Galaxy (Marvel, 2018 series)" },
+    "asgardians-v2-war-of-the-realms": { "gcdSeries": "Asgardians of the Galaxy (Marvel, 2018 series)" },
+    "secret-wars-2015-hc": {
+      "gcdSeries": "Secret Wars (Marvel, 2015 series)",
+      "partialSeries": "Free Comic Book Day 2015 (Secret Wars) (Marvel, 2015 series)",
+      "contents": [
+        {
+          "seriesId": 19648,
+          "from": 1,
+          "to": 9,
+          "assertedBy": "gcd-notes",
+          "basis": "The database's indexer notes list Secret Wars #1-9."
+        },
+        {
+          "seriesId": 19821,
+          "from": 0,
+          "to": 0,
+          "portion": "partial",
+          "assertedBy": "gcd-notes",
+          "basis": "The database's indexer notes say the book holds material from the Free Comic Book Day issue, not the whole issue."
+        }
+      ]
+    },
+    "squirrel-girl-2015-v1-squirrel-power": {
+      "uncountedSequences": {
+        "18": "Indexed as its own story but follows the credits page for #4, so it is read as part of #4.",
+        "20": "Extra material: a reprint of a 1992 Marvel Super-Heroes story."
+      }
+    }
+  }
+}

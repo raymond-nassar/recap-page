@@ -1,0 +1,129 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1771218/?format=json",
+  "retrievedAt": "2026-11-10T19:35:05.819Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1771218/?format=json",
+    "series_name": "Thanos (2017 series)",
+    "descriptor": "2 - The God Quarry",
+    "number": "2",
+    "volume": "2",
+    "variant_name": "",
+    "title": "The God Quarry",
+    "publication_date": "2017",
+    "key_date": "2017-12-27",
+    "page_count": "140.000",
+    "isbn": "978-1-302-90558-3",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/115148/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 4,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 6,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 8,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 10,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 12,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/854274/?format=json",
+  "retrievedAt": "2026-11-10T19:33:38.953Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/854274/?format=json",
+    "series_name": "Thunderbolts by Warren Ellis (2007 series)",
+    "descriptor": "1 - Faith in Monsters",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "Faith in Monsters",
+    "publication_date": "[October] 2007",
+    "key_date": "2007-10-03",
+    "page_count": "200.000",
+    "isbn": "9780785125686",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/59731/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "3.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#110",
+        "feature": "Thunderbolts",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#110 2nd Printing Variant",
+        "feature": "Thunderbolts",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#110 Young Guns Variant",
+        "feature": "Venom",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Faith in Monsters Part 1",
+        "feature": "Thunderbolts",
+        "sequence_number": 5,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Combined Young Guns Variants",
+        "feature": "Thunderbolts",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#111",
+        "feature": "Thunderbolts",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#111 Young Guns Variant",
+        "feature": "Bullseye",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Faith in Monsters Part 2",
+        "feature": "Thunderbolts",
+        "sequence_number": 9,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#112",
+        "feature": "Thunderbolts",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#112 Young Guns Variant",
+        "feature": "Penance",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Faith in Monsters Part 3",
+        "feature": "Thunderbolts",
+        "sequence_number": 12,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#113",
+        "feature": "Thunderbolts",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#113 Young Guns Variant",
+        "feature": "Swordsman; Songbird",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Faith in Monsters Part 4",
+        "feature": "Thunderbolts",
+        "sequence_number": 16,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#114",
+        "feature": "Thunderbolts",
+        "sequence_number": 17,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#114 Young Guns Variant",
+        "feature": "Radioactive Man",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Faith in Monsters Part 5",
+        "feature": "Thunderbolts",
+        "sequence_number": 19,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#115",
+        "feature": "Thunderbolts",
+        "sequence_number": 20,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "#115 Young Guns Variant",
+        "feature": "Green Goblin; Moonstone",
+        "sequence_number": 21,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Faith in Monsters Part 6",
+        "feature": "Thunderbolts",
+        "sequence_number": 22,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Thunderbolts: Desperate Measures",
+        "feature": "Thunderbolts",
+        "sequence_number": 23,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Desperate Measures",
+        "feature": "Thunderbolts",
+        "sequence_number": 24,
+        "page_count": "22.000",
+        "notes": "This story takes place before Thunderbolts (Marvel, 2006 series) #113."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Whose Side Are You On?",
+        "feature": "Ant-Man; Howard the Duck; Iron Fist; U.S.Agent; Venom",
+        "sequence_number": 25,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Switching Sides",
+        "feature": "Venom",
+        "sequence_number": 26,
+        "page_count": "8.000",
+        "notes": "This story takes place before Thunderbolts (Marvel, 2006 series) #110."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Civil War: The Initiative",
+        "feature": "Iron Man",
+        "sequence_number": 27,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thunderbolts",
+        "sequence_number": 28,
+        "page_count": "9.000",
+        "notes": "This story takes place before Thunderbolts (Marvel, 2006 series) #110."
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Being Bad Has Never Been So Good!",
+        "feature": "Thunderbolts",
+        "sequence_number": 29,
+        "page_count": "1.000",
+        "notes": "Backcover."
+      }
+    ]
+  }
+}

@@ -80,6 +80,10 @@ truthful save feedback. Before changing app markup, styles or interaction, read 
 [full interface contract](docs/CONTRIBUTOR_REFERENCE.md#interface-design) and
 [UI workflow](.github/instructions/ui.instructions.md).
 
+### Brand
+
+Follow the [brand guidelines](docs/BRAND_GUIDELINES.md) for the retained icon, wordmark and colors.
+
 ### Controls and transitions
 
 Use the [control, focus and feedback rules](docs/CONTRIBUTOR_REFERENCE.md#controls-and-transitions).

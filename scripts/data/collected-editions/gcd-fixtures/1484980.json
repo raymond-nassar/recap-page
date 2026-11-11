@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1484980/?format=json",
+  "retrievedAt": "2026-11-10T19:36:53.868Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1484980/?format=json",
+    "series_name": "Avengers: Time Runs Out (2015 series)",
+    "descriptor": "2",
+    "number": "2",
+    "volume": "2",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2015",
+    "key_date": "2015-10-28",
+    "page_count": "140.000",
+    "isbn": "978-0-7851-9373-9",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/92245/?format=json",
+    "story_set": []
+  }
+}

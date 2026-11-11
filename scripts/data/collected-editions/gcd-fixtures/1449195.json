@@ -1,0 +1,265 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1449195/?format=json",
+  "retrievedAt": "2026-11-10T19:33:48.876Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1449195/?format=json",
+    "series_name": "The Unbeatable Squirrel Girl (2015 series)",
+    "descriptor": "1 - Squirrel Power",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "Squirrel Power",
+    "publication_date": "2015",
+    "key_date": "2015-08-19",
+    "page_count": "132.000",
+    "isbn": "978-0-7851-9702-7",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/91828/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Title Page & Credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "2.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "comic story",
+        "title": "The Unbeatable Squirrel Girl",
+        "feature": "Squirrel Girl",
+        "sequence_number": 3,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "Letters from Nuts",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Reader submitted letters with responses from the artists."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 6,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "Letters from Nuts",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "Letters from readers with responses from the artists."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "Squirrel Girl in a Nutshell",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 10,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "Letters from Nuts",
+        "sequence_number": 11,
+        "page_count": "3.000",
+        "notes": "Letters from readers with responses from the artists."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "Squirrel Girl in a Nutshell",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 15,
+        "page_count": "19.000",
+        "notes": "The story is broken up into two sections with the letter column following the second page."
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "Letters from Nuts",
+        "sequence_number": 16,
+        "page_count": "2.000",
+        "notes": "Letters from readers with responses from the artists."
+      },
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 17,
+        "page_count": "1.000",
+        "notes": "Credits page for issue #4."
+      },
+      {
+        "type": "comic story",
+        "title": "Epilogue",
+        "feature": "Squirrel Girl",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvel Super-Heroes #8",
+        "feature": "",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "The Coming of ... Squirrel Girl!",
+        "feature": "Iron Man; Squirrel Girl",
+        "sequence_number": 20,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 21,
+        "page_count": "0.250",
+        "notes": "First cover in a series of five issue reprints that combined to spell out \"Eats nuts kicks butts !!!\" Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 22,
+        "page_count": "0.250",
+        "notes": "Second cover in a series of five issue reprints that combined to spell out \"Eats nuts kicks butts !!!\" Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 23,
+        "page_count": "0.250",
+        "notes": "Third cover in a series of five issue reprints that combined to spell out \"Eats nuts kicks butts !!!\" Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 24,
+        "page_count": "0.250",
+        "notes": "Fourth cover in a series of five issue reprints that combined to spell out \"Eats nuts kicks butts !!!\" Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 25,
+        "page_count": "0.250",
+        "notes": "Fifth cover in a series of five issue reprints that combined to spell out \"Eats nuts kicks butts !!!\" Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 26,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 27,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 28,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 29,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Squirrel Girl",
+        "sequence_number": 30,
+        "page_count": "1.000",
+        "notes": "Reprinted without trade dress."
+      }
+    ]
+  }
+}
