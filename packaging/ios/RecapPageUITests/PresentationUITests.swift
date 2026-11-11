@@ -2656,12 +2656,22 @@ final class PresentationUITests: XCTestCase {
                 return scopes["hidden"] as? Bool == false && scopes["pressed"] as? String == "top"
             }, object: monitor)
             XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 30), .completed, "typing shows the scopes with Top pressed")
+            // iPhone's web input accessory offers Done; iPad shows no accessory and puts its own
+            // hide key on the keyboard. Blurring through the page heading covers either if both move.
             let done = app.toolbars.buttons["Done"].firstMatch
-            XCTAssertTrue(done.waitForExistence(timeout: 5), "the web input accessory offers Done")
-            done.tap()
+            let hide = app.keyboards.buttons["Hide keyboard"].firstMatch
+            let heading = app.webViews.firstMatch.staticTexts["Search"].firstMatch
+            if done.waitForExistence(timeout: 3) {
+                done.tap()
+            } else if hide.exists {
+                hide.tap()
+            } else {
+                XCTAssertTrue(heading.waitForExistence(timeout: 5), "the Search heading is available to blur the box")
+                heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            }
             let keyboardHidden = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
-            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 5), .completed, "Done dismisses the keyboard before target measurements and the audit")
+            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 5), .completed, "the keyboard is dismissed before target measurements and the audit")
             let labelTarget = target(label, in: app)
             XCTAssertTrue(labelTarget.waitForExistence(timeout: 30), "the box label is a named native target")
             revealNativeTarget(labelTarget, in: app)

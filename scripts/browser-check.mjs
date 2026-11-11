@@ -11150,6 +11150,9 @@ const SCENARIOS = [
         await page.focus('#search-q');
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => typeof window.__mrtReleaseListComicSearch === 'function');
+        // The fetch is held synchronously on Enter, but the announcer writes 30ms later, so without
+        // this wait the Enter's own busy notice lands after the record below is cleared. Seen twice.
+        await new Promise((resolve) => setTimeout(resolve, 150));
         if (action === 'typing') {
           await page.keyboard.type('!');
         } else if (action === 'row focus') {
