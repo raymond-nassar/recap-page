@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
 import { descriptionRevisions } from './lib/description-revisions.mjs';
+import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -92,6 +93,17 @@ export function hasDedicatedCbhOwnerScenario(guide, scenarioIds) {
   return true;
 }
 
+// A list can be revised more than once, so the approval names the chain's first credit and the card
+// shows its last one.
+export function ownerGuideSource(contract, card, payload, revisions = sourceCreditRevisions) {
+  const chain = revisions.entries.filter((entry) => entry.id === contract.id);
+  if (!chain.length) return contract.sourceUrl;
+  assert.equal(contract.sourceUrl, chain[0].before.source);
+  revisions.assertLatest(card, card.file);
+  revisions.assertLatest(payload, card.file);
+  return chain.at(-1).after.source;
+}
+
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   // The accepted copy predates the recorded description revisions, so the preview is held to the
   // revised side of that record rather than to a second hand-typed copy of it.
@@ -108,6 +120,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const card = catalog.lists.find((entry) => entry.id === contract.id);
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
   const payload = json(`../src/data/${card.file}`);
+  const expectedSource = ownerGuideSource(contract, card, payload);
   const expected = contract.rows.map((row, index) => ({
     position: index + 1, issueId: row[1], title: row[2],
     group: row[3] == null ? null : contract.groups[row[3]],
@@ -273,9 +286,9 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         const cardFacts = await page.$eval(selector, (node, url) => ({
           name: node.querySelector('.catalog-card-title')?.textContent.trim(),
           source: [...node.querySelectorAll('a')].find((link) => link.href === url)?.href,
-        }), contract.sourceUrl);
+        }), expectedSource);
         t.check(`Browse retains the independent name and owner source at ${width}px`,
-          cardFacts.name === contract.name && cardFacts.source === contract.sourceUrl, JSON.stringify(cardFacts));
+          cardFacts.name === contract.name && cardFacts.source === expectedSource, JSON.stringify(cardFacts));
         if (contract.screenReleases) {
           const releaseFacts = await page.$eval(selector, (node) => ({
             phase: node.closest('.mcu-prep-phase')?.dataset.phase,
@@ -320,7 +333,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
           width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
         }));
         t.check(`Preview preserves approved copy, source and narrow layout at ${width}px`,
-          preview.description === expectedDescription && preview.source === contract.sourceUrl
+          preview.description === expectedDescription && preview.source === expectedSource
           && preview.scrollWidth <= preview.width, JSON.stringify(preview));
         const after = await readSaved(page);
         t.check(`Preview does not write reader or completion history at ${width}px`,

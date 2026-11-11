@@ -392,6 +392,21 @@ export function createCatalogPresentation({
   };
 }
 
+export function sourceButton(el, list) {
+  const href = sourceLink(list);
+  if (!href) return null;
+  const site = sourceSiteName(href);
+  if (site === 'Recap Page') return null;
+  const label = `Visit ${site}`;
+  return el('a', {
+    class: 'btn btn-g list-source-link',
+    href,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    'aria-label': `${label}, source of ${list.name} (opens in your browser)`,
+  }, label);
+}
+
 function sourceSiteName(href) {
   const url = new URL(href);
   const host = url.hostname.replace(/^www\./, '');

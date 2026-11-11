@@ -57,6 +57,7 @@ function queryAll(root, selector) {
   const found = [];
   walk(root, (node) => {
     if (selector === 'summary' && node.tag === 'summary') found.push(node);
+    if (selector === 'a' && node.tag === 'a') found.push(node);
     if (selector === '#reading-filters' && node.id === 'reading-filters') found.push(node);
     if (selector === '.order-strip' && node.className.split(/\s+/).includes('order-strip')) found.push(node);
     if (selector === '.row-actions' && node.classList.contains('row-actions')) found.push(node);
@@ -303,6 +304,7 @@ function harness(overrides = {}) {
     orderSub: node({ id: 'order-sub' }),
     orderDesc: node({ id: 'order-desc', open: true }),
     orderDescText: node({ id: 'order-desc-text' }),
+    orderSource: node({ id: 'order-source' }),
     listNote: node({ id: 'list-note' }),
     similarHint: node({ id: 'list-similar-hint' }),
     ringArc: node({ id: 'ring-arc' }),
@@ -407,6 +409,7 @@ function harness(overrides = {}) {
     ['#order-sub', nodes.orderSub],
     ['#order-desc', nodes.orderDesc],
     ['#order-desc-text', nodes.orderDescText],
+    ['#order-source', nodes.orderSource],
     ['#list-note', nodes.listNote],
     ['#list-similar-hint', nodes.similarHint],
     ['#ring-arc', nodes.ringArc],
@@ -505,6 +508,8 @@ function harness(overrides = {}) {
     detailUrl: (item) => item.url ?? `https://example.test/${item.issueId}`,
     el: element,
     fact: (key, value, className) => ({ key, value, className }),
+    loadCatalog: overrides.loadCatalog,
+    listAttribution: overrides.listAttribution,
     focusCurrentView: () => { calls.focusCurrentView += 1; nodes.orderName.focus(); },
     getSettings: () => settings,
     getState: () => state,
@@ -650,6 +655,128 @@ function harness(overrides = {}) {
     },
   };
 }
+
+test('About starts open on arrival, preserves collapse on redraw and resets on return or list switch', () => {
+  const h = harness();
+  try {
+    h.view.render();
+    assert.equal(h.nodes.orderDesc.open, true);
+    h.nodes.orderDesc.open = false;
+    h.view.render();
+    assert.equal(h.nodes.orderDesc.open, false);
+    h.view.enterAbout();
+    assert.equal(h.nodes.orderDesc.open, true);
+    h.nodes.orderDesc.open = false;
+    h.setActive('list-b');
+    h.view.render();
+    assert.equal(h.nodes.orderDesc.open, true);
+  } finally { h.restore(); }
+});
+
+test('About ignores inherited list records', () => {
+  const state = seededState();
+  Object.setPrototypeOf(state.lists, { inherited: { id: 'inherited', description: 'Not a saved list' } });
+  const h = harness({ state });
+  try {
+    h.setActive('inherited');
+    h.view.enterAbout();
+    assert.equal(h.nodes.orderDesc.hidden, true);
+    assert.equal(h.nodes.orderDescText.textContent, '');
+  } finally { h.restore(); }
+});
+
+test('About resolves exact catalog identity for source-only lists without changing saved data', async () => {
+  const state = seededState();
+  state.lists['list-a'].description = '';
+  let resolve;
+  const h = harness({
+    state,
+    loadCatalog: () => new Promise((done) => { resolve = done; }),
+    listAttribution: (entry) => element('p', { text: entry.sourceOrigin }),
+  });
+  try {
+    const before = JSON.stringify(h.state());
+    h.view.render();
+    assert.equal(h.nodes.orderDesc.hidden, false);
+    assert.match(h.nodes.orderSource.childNodes[0].textContent, /Loading source credit/);
+    h.nodes.orderDesc.open = false;
+    resolve({ lists: [
+      { id: 'wrong', name: 'List A', source: 'https://wrong.test/' },
+      { id: 'cat-a', name: 'Catalog original name', source: 'https://comicbookherald.com/guide/', sourceOrigin: 'Full credit' },
+    ] });
+    await new Promise(setImmediate);
+    assert.equal(h.nodes.orderDesc.hidden, false);
+    assert.equal(h.nodes.orderDesc.open, false, 'async completion preserves collapse');
+    assert.equal(h.nodes.orderSource.childNodes[0].textContent, 'Full credit');
+    assert.equal(h.nodes.orderSource.querySelector('a').href, 'https://comicbookherald.com/guide/');
+    assert.equal(JSON.stringify(h.state()), before);
+    h.setActive('list-b');
+    h.view.render();
+    assert.equal(h.nodes.orderSource.childNodes.length, 1, 'old source clears immediately');
+    resolve({ lists: [] });
+    await new Promise(setImmediate);
+    assert.equal(h.nodes.orderSource.childNodes.length, 0);
+  } finally { h.restore(); }
+});
+
+test('source retry is latched, remains actionable after failure and settles keyboard focus', async () => {
+  const pending = [];
+  const h = harness({
+    loadCatalog: () => new Promise((resolve, reject) => pending.push({ resolve, reject })),
+    listAttribution: () => element('p', { text: 'Full credit' }),
+  });
+  try {
+    h.view.render();
+    pending[0].reject(new Error('offline'));
+    await new Promise(setImmediate);
+    const retry = h.nodes.orderSource.childNodes[1];
+    assert.match(h.nodes.orderSource.childNodes[0].textContent, /could not be loaded: offline/);
+    retry.focus();
+    retry.fire('click');
+    retry.fire('click');
+    assert.equal(pending.length, 2);
+    assert.equal(retry.getAttribute('aria-disabled'), 'true');
+    assert.equal(globalThis.document.activeElement, retry);
+    pending[1].reject(new Error('still offline'));
+    await new Promise(setImmediate);
+    assert.equal(h.nodes.orderSource.childNodes[1], retry);
+    assert.equal(retry.getAttribute('aria-disabled'), undefined);
+    retry.fire('click');
+    pending[2].resolve({ lists: [{ id: 'cat-a', name: 'Source list', source: 'https://example.org/guide/' }] });
+    await new Promise(setImmediate);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderSource.querySelector('a'));
+    assert.equal(globalThis.document.activeElement.href, 'https://example.org/guide/');
+    h.view.enterAbout();
+    h.nodes.orderName.focus();
+    pending[3].resolve({ lists: [{ id: 'cat-a', name: 'Source list', source: 'https://example.org/guide/' }] });
+    await new Promise(setImmediate);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderName, 'settlement never steals focus after moving away');
+  } finally { h.restore(); }
+});
+
+test('stale source results and failures cannot paint or focus a different list; empty custom lists stay quiet', async () => {
+  const state = seededState();
+  state.lists['list-b'].catalogId = null;
+  state.lists['list-b'].description = '';
+  for (const fail of [false, true]) {
+    let settle;
+    const h = harness({ state, loadCatalog: () => new Promise((resolve, reject) => {
+      settle = () => fail ? reject(new Error('late failure'))
+        : resolve({ lists: [{ id: 'cat-a', name: 'Stale credit', source: 'https://example.org/' }] });
+    }) });
+    try {
+      h.view.render();
+      h.setActive('list-b');
+      h.view.render();
+      h.nodes.orderName.focus();
+      settle();
+      await new Promise(setImmediate);
+      assert.equal(h.nodes.orderSource.childNodes.length, 0);
+      assert.equal(h.nodes.orderDesc.hidden, true);
+      assert.equal(globalThis.document.activeElement, h.nodes.orderName);
+    } finally { h.restore(); }
+  }
+});
 
 function heldText(entry) {
   if (typeof entry === 'string') return entry;

@@ -1486,7 +1486,17 @@ function syncHash({ push = false } = {}) {
     navigationPosition.push(next);
   }
   else navigationPosition.replace(next);
+  rememberAbout();
   acknowledgedHash = location.hash;
+}
+
+// The reading entry records whether About was open, so Back and Forward can return it to the
+// height at which the entry's scroll position was measured.
+function rememberAbout() {
+  if (view !== 'read') return;
+  const open = readingView.aboutOpen();
+  if (history.state?.aboutOpen === open) return;
+  history.replaceState({ ...history.state, aboutOpen: open }, '', location.href);
 }
 
 // Adopting the list first means the redirect inside showView sees the list the URL asked for
@@ -1510,7 +1520,7 @@ function syncHash({ push = false } = {}) {
 // during module evaluation, which left the hashchange listener unregistered. `Object.hasOwn` asks
 // the question the guard means. BL-068 has since given the map a null prototype, so this now holds
 // twice over, and it stays because it states the question rather than relying on the map's type.
-function applyRoute(route, { focus, filterIfAbsent }) {
+function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
   const departedPreviewId = routedPreviewId;
   applyingRoute = true;
   try {
@@ -1580,7 +1590,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       readingView.setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
-    showView(route.view, { focus, at: route.at ?? null });
+    showView(route.view, { focus, at: route.at ?? null, aboutTraversal });
   } finally {
     applyingRoute = false;
   }
@@ -1593,7 +1603,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
-function showView(next, { focus = true, push = false, at = null, capturePosition = true } = {}) {
+function showView(next, { focus = true, push = false, at = null, capturePosition = true, aboutTraversal = false } = {}) {
   if (push) {
     navigationPosition.cancel();
     if (capturePosition) navigationPosition.capture();
@@ -1615,6 +1625,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
   const shouldAnimateArrival = focus && next !== view;
+  const arriving = next !== view && !aboutTraversal;
   if (next !== view) {
     $(`#view-${view}`)?.classList.remove('view-entering');
     retireRoutineNotices(notices);
@@ -1659,7 +1670,16 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
   if (next === 'library-rated') ratedView.renderBrowser();
-  if (next === 'read') readingView.renderHero();
+  if (next === 'read') {
+    readingView.renderHero();
+    // Only a forward arrival from another screen opens About again. A filter choice or Review
+    // deferred adds a history entry without leaving the list, and Back or Forward restores a scroll
+    // position measured at whatever height About had then, so both keep the reader's choice.
+    const remembered = history.state?.aboutOpen;
+    if (aboutTraversal) {
+      if (typeof remembered === 'boolean') readingView.restoreAbout(remembered);
+    } else if (arriving) readingView.enterAbout();
+  }
   completionView.render();
   readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
@@ -1683,6 +1703,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   // Above the focus-free early return, or every call that passes focus:false would leave the
   // address bar behind. Boot is one such call.
   syncHash({ push });
+  if (next === 'read') rememberAbout();
   renderBreadcrumbs();
 
   if (!focus) return;
@@ -3229,6 +3250,7 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
+  $('#order-desc').addEventListener('toggle', rememberAbout);
   for (const shelf of CATALOG_SHELVES) {
     if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
   }
@@ -3279,8 +3301,9 @@ export function boot() {
     // an ungated sync inside it would have overwritten the incoming hash before it was read.
     routeReady = true;
     acknowledgedHash = location.hash;
-    if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter() });
-    else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false });
+    const aboutTraversal = typeof history.state?.aboutOpen === 'boolean';
+    if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter(), aboutTraversal });
+    else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false, aboutTraversal });
   };
   // An address naming a list other than the active one saves that choice, so it waits for the tab
   // lock's answer like every other write, with the address left exactly as it arrived until then.
@@ -3304,17 +3327,25 @@ export function boot() {
   //
   // Focus does move here, unlike at boot, because a Back press is a navigation the reader made. A
   // screen reader that is told nothing after it has no way to know the page changed under it.
+  let aboutTraversalHash = null;
   window.addEventListener('hashchange', () => {
+    const aboutTraversal = aboutTraversalHash === location.hash;
+    aboutTraversalHash = null;
     acknowledgedHash = location.hash;
     const route = parseRoute(location.hash);
     if (route) {
       navigationPosition.beginRestore();
-      applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER });
+      applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER, aboutTraversal });
       if (history.state?.readingPosition && !history.state?.issueFocusOpener && !history.state?.pathStopOpener) navigationPosition.restore();
       else navigationPosition.cancel();
     } else navigationPosition.cancel();
   });
-  window.addEventListener('popstate', () => navigationPosition.beginRestore());
+  window.addEventListener('popstate', (event) => {
+    // New fragment destinations have no About metadata. Only a recorded history entry
+    // restores its disclosure; global scroll restoration keeps its existing behavior.
+    aboutTraversalHash = typeof event.state?.aboutOpen === 'boolean' ? location.hash : null;
+    navigationPosition.beginRestore();
+  });
   let scrollCapture = null;
   window.addEventListener('scroll', () => {
     window.clearTimeout(scrollCapture);
@@ -3506,6 +3537,8 @@ const readingView = createReadingView({
   detailUrl,
   el,
   fact,
+  loadCatalog,
+  listAttribution: (list) => catalogPresentation.attributionLine(list),
   focusCurrentView: () => {
     focusViewHeading(view);
     document.activeElement?.scrollIntoView({ block: 'nearest' });
@@ -3999,6 +4032,7 @@ const previewView = createPreviewView({
     body: $('#preview-body'),
     close: $('#preview-close'),
     description: $('#preview-desc'),
+    about: $('#preview-about'),
     dialog: $('#preview'),
     heading: $('#preview-h'),
     meta: $('#preview-meta'),

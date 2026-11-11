@@ -3039,6 +3039,8 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
 #view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }
 
+.btn.list-source-link { border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere; }
+
 /* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
    Keep native tap highlights and selection. */
 :is(button, summary, a.btn, a.mini, a.ri, a.brand, a.mobile-link, a.home-path, a.home-guide-link):not(:disabled):not([aria-disabled="true"]):is(:active, [data-pressing]) {
