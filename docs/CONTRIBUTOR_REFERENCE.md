@@ -389,12 +389,15 @@ already taken, it does nothing. Edited comments do not trigger it. Check **Assig
 starting, and leave progress and handoffs on the Issue. For other work, discuss scope first.
 
 The maintainer selects the labels and still decides what merges. The bot has Issue write
-permission only, checks out no code and runs no comment text. Claims are serialized per Issue;
-GitHub may replace a waiting run with a newer claim, so assignment is not guaranteed in comment
-order. GitHub does not offer an atomic check-and-assign operation: a maintainer assignment made
+permission only, checks out no code and runs no comment text. Claim jobs wait in order, with up
+to 100 queued per Issue. The first claim that finds the Issue unassigned wins.
+GitHub does not offer an atomic check-and-assign operation: a maintainer assignment made
 between the check and the write can race with the bot. Coordinate if two assignees appear.
 API errors fail the run without an automatic retry; the maintainer should inspect the Issue
 and failed run before asking someone to try again.
+
+There is no per-person claim limit: one account can claim every eligible Issue. The maintainer
+can unassign them and remove the label, or block an abusive account.
 
 ### Maintainer check after merge
 

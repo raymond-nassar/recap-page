@@ -121,3 +121,6 @@ Anyone with a human GitHub account may claim one by commenting `/take` on the op
 The assignment workflow has Issue write permission only and assigns the commenter only if
 nobody is assigned yet. It does not grant repository write access or change who decides scope,
 reviews work or merges pull requests. See [how to contribute](CONTRIBUTING.md#before-you-write-anything).
+
+There is no per-person claim limit: one account can claim every eligible Issue. The maintainer
+can unassign them and remove the label, or block an abusive account.

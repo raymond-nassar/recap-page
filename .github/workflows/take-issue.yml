@@ -7,10 +7,6 @@ on:
 permissions:
   issues: write
 
-concurrency:
-  group: take-issue-${{ github.repository }}-${{ github.event.issue.number }}
-  cancel-in-progress: false
-
 jobs:
   claim:
     if: >-
@@ -21,6 +17,10 @@ jobs:
       !github.event.issue.assignees[0] &&
       (contains(github.event.issue.labels.*.name, 'good first issue') ||
        contains(github.event.issue.labels.*.name, 'help wanted'))
+    concurrency:
+      group: take-issue-${{ github.repository }}-${{ github.event.issue.number }}
+      queue: max
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

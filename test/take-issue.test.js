@@ -11,11 +11,9 @@ const script = workflow.match(/ {10}node --input-type=commonjs <<'NODE'\r?\n([\s
 test('Issue claiming grants only Issue write permission and handles created comments without checkout', () => {
   assert.equal(workflow.match(/^on:\r?\n([\s\S]*?)\r?\npermissions:/m)?.[1].trim(),
     'issue_comment:\n    types: [created]');
-  assert.equal(workflow.match(/^permissions:\r?\n([\s\S]*?)\r?\nconcurrency:/m)?.[1].trim(), 'issues: write');
+  assert.equal(workflow.match(/^permissions:\r?\n([\s\S]*?)\r?\njobs:/m)?.[1].trim(), 'issues: write');
   assert.equal((workflow.match(/^\s*permissions:/gm) ?? []).length, 1);
   assert.doesNotMatch(workflow, /^\s*(?:-\s*)?uses:|checkout|pull_request_target|workflow_dispatch/m);
-  assert.match(workflow, /group: take-issue-\$\{\{ github\.repository \}\}-\$\{\{ github\.event\.issue\.number \}\}/);
-  assert.match(workflow, /cancel-in-progress: false/);
   assert.match(workflow, /GH_TOKEN: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
   assert.match(workflow, /github\.event\.comment\.body == '\/take'/);
   assert.match(workflow, /github\.event\.comment\.user\.type == 'User'/);
@@ -25,6 +23,16 @@ test('Issue claiming grants only Issue write permission and handles created comm
   for (const label of ['good first issue', 'help wanted']) {
     assert.ok(workflow.includes(`contains(github.event.issue.labels.*.name, '${label}')`));
   }
+});
+
+test('eligible claim jobs queue in order without replacing pending claims', () => {
+  assert.doesNotMatch(workflow, /^concurrency:/m);
+  const claim = workflow.match(/^ {2}claim:\n((?: {4}[^\n]*\n|\n)*)/m)?.[1];
+  assert.ok(claim, 'claim job must exist');
+  assert.equal(claim.match(/^ {4}concurrency:\n((?: {6}.+\n)+)/m)?.[1],
+    '      group: take-issue-${{ github.repository }}-${{ github.event.issue.number }}\n' +
+    '      queue: max\n' +
+    '      cancel-in-progress: false\n');
 });
 
 test('the claim run block contains no Actions expressions or downloaded code', () => {
