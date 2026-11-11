@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/2009606/?format=json",
+  "retrievedAt": "2026-11-10T19:36:49.532Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/2009606/?format=json",
+    "series_name": "Asgardians of the Galaxy (2019 series)",
+    "descriptor": "2 - War of the Realms",
+    "number": "2",
+    "volume": "",
+    "variant_name": "",
+    "title": "War of the Realms",
+    "publication_date": "2019",
+    "key_date": "2019-08-14",
+    "page_count": "116.000",
+    "isbn": "978-1-302-91692-3",
+    "notes": "Collects Asgardians of the Galaxy (Marvel, 2018 series) #6-10.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/142951/?format=json",
+    "story_set": []
+  }
+}

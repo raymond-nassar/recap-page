@@ -10,7 +10,7 @@ database.
 
 The browser app has no runtime dependencies. The Android app includes Google Play services auth and
 its transitive libraries for Google Drive sign-in, even when Google Drive is disabled. Browser
-development dependencies are lint tooling: the four packages listed at `package.json:63-67` run on
+development dependencies are lint tooling: the four packages listed at `package.json:64-68` run on
 a maintainer's machine or in CI, not in the browser.
 
 Silent loss or corruption of saved reading progress is the highest-severity security issue here.

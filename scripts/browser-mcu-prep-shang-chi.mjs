@@ -4,7 +4,7 @@ const fixture = JSON.parse(readFileSync(new URL(
   '../test/fixtures/mcu-prep-shang-chi-vector.json', import.meta.url,
 ), 'utf8'));
 const { id, name } = fixture;
-const source = 'https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989';
+const source = 'https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/';
 const titles = fixture.series.flatMap((series) => Array.from(
   { length: series.last - series.first + 1 },
   (_, index) => `${series.title} (${series.year}) #${series.first + index}`,

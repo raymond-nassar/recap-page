@@ -4,6 +4,7 @@ import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mcuEditorial } from './lib/mcu-editorial.mjs';
 import { digestCanonicalJson } from './lib/cbh-inventory.mjs';
+import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { writeOutputsAtomically } from './vendor-orders.mjs';
@@ -30,10 +31,14 @@ export async function refreshMcuDescriptions({ root = fileURLToPath(new URL('..'
     const file = payloadFiles[index];
     const text = await readFile(file, 'utf8');
     const payload = inputs.json(file);
-    const { description, ...rest } = payload;
+    sourceCreditRevisions.assertLatest(payload, edit.file);
+    const { description, ...current } = payload;
+    const { description: originalDescription, ...original } = sourceCreditRevisions.undo(payload, edit.file);
     assert.equal(payload.id, edit.id);
     assert.ok([edit.before, edit.after].includes(description), `${edit.id}: unknown payload copy.`);
-    assert.equal(digestCanonicalJson(rest), edit.nonDescriptionSha256, `${edit.id}: non-description payload changed.`);
+    assert.equal(originalDescription, description);
+    assert.ok([digestCanonicalJson(current), digestCanonicalJson(original)].includes(edit.nonDescriptionSha256),
+      `${edit.id}: non-description payload changed.`);
     const header = `  "description": ${JSON.stringify(description)},`;
     assert.equal((text.match(/^ {2}"description": .+,\r?$/gm) ?? []).length, 1);
     assert.ok(text.includes(header));

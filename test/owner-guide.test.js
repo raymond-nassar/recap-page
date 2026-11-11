@@ -276,7 +276,8 @@ test('emission requires exact source, insertion and non-none authority and prese
   const registry = await readJson(path.join(root, 'scripts', 'data', 'owner-deliveries.json'));
   assert.deepEqual(registry.guides, [{ id: request.id, contract: proposal.paths.contract }]);
   const payload = {
-    id: request.id, description: request.description, sourceOrigin: artifacts.packet.proposedManifest.sourceOrigin,
+    id: request.id, description: request.description, source: request.sourceUrl,
+    sourceOrigin: artifacts.packet.proposedManifest.sourceOrigin,
     sourceLicense: null, count: 2, placeholders: 0, unresolved: [],
     items: artifacts.mapping.rows.map((row) => ({
       issueId: row.selectedIssueId, title: row.resolvedIssueTitle, collectedIn: row.sourceRangeReference,

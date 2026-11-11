@@ -91,6 +91,11 @@ test('the archive holds what the app runs and the licences, derived from git rat
   assert.ok(files.includes('LICENSE'), 'this project\'s own licence is missing');
   assert.ok(files.filter((path) => path.startsWith('src/')).length > 50, 'the app itself is missing');
   assert.ok(files.includes('src/icons/icon.svg'), 'the shared SVG icon is missing');
+  for (const name of ['data/collectedEditionCatalog.js', 'data/collectedEditionEvidence.js',
+    'js/lib/collectedEditions.js', 'js/views/shared/collected-editions.js']) {
+    assert.ok(files.includes(`src/${name}`), `collected-edition runtime asset missing: ${name}`);
+  }
+  assert.match(read('LICENSE'), /MIT grant above does not cover Grand Comics Database-derived data/);
 
   for (const unwanted of ['test/', 'scripts/', 'docs/', '.github/', 'design/']) {
     assert.deepEqual(

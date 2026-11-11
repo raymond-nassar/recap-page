@@ -7,6 +7,7 @@ import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 
 import { assertComparisonCoverage } from '../scripts/author-cbh-packet.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
+import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mjs';
 import { digestCanonicalJson, libraryDigestFor, reportDigestFor, validateSourceIdentities } from '../scripts/lib/cbh-inventory.mjs';
 import { validateMcuCompanionInventory } from '../scripts/lib/cbh-mcu-companion.mjs';
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
@@ -161,9 +162,16 @@ test('Shang-Chi MCU Prep reaches its gateway and retains its internal fallback c
   catalog.lists.filter((row) => row.type === 'screen-companion').map((row) => row.id));
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
-  assert.equal(card.source, input);
+  const rawCard = rawCatalog.lists.find((item) => item.id === id);
+  sourceCreditRevisions.assertLatest(rawCard, entry.out);
+  sourceCreditRevisions.assertLatest(payload, entry.out);
+  assert.equal(card.source, ledger.externalSource.url);
+  assert.equal(rawCard.sourceSection, ledger.externalSource.section);
+  assert.equal(sourceCreditRevisions.undo(rawCard, entry.out).source, input);
   assert.equal(card.sourceOrigin, origin);
-  assert.equal(payload.source, input);
+  assert.equal(payload.source, ledger.externalSource.url);
+  assert.equal(payload.sourceSection, ledger.externalSource.section);
+  assert.equal(sourceCreditRevisions.undo(payload, entry.out).source, input);
   assert.equal(payload.sourceOrigin, origin);
   assert.equal(payload.sourceLicense, null);
   assert.equal(card.count, 37);

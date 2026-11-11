@@ -43,9 +43,9 @@ import {
   buildChapterFamily,
   buildChildOverlapEvidence,
   validateChapterLedger,
-  validateStorylinesChildren,
+  validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
-
+import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
@@ -226,7 +226,7 @@ async function restoreOutput(output) {
   }
 }
 
-export async function writeOutputsAtomically(outputs, { replaceFile = rename } = {}) {
+export async function writeOutputsAtomically(outputs, { replaceFile = rename, restoreFile = restoreOutput, cleanup = cleanupArtifacts } = {}) {
   const staged = outputs.map((output) => ({
     ...output,
     tempPath: `${output.path}.tmp-${process.pid}-${randomUUID()}`,
@@ -262,7 +262,7 @@ export async function writeOutputsAtomically(outputs, { replaceFile = rename } =
     }
   } catch (error) {
     const restores = await Promise.allSettled(
-      [...staged].reverse().map((output) => restoreOutput(output)),
+      [...staged].reverse().map((output) => restoreFile(output)),
     );
     const restoreErrors = restores
       .filter((result) => result.status === 'rejected')
@@ -280,7 +280,7 @@ export async function writeOutputsAtomically(outputs, { replaceFile = rename } =
   }
   const artifacts = staged.map((output) => output.tempPath);
   if (!retainBackups) artifacts.push(...staged.map((output) => output.backupPath));
-  const cleanupErrors = await cleanupArtifacts(artifacts);
+  const cleanupErrors = await cleanup(artifacts);
   if (cleanupErrors.length) {
     const cause = outcomeError ?? cleanupErrors[0];
     const message = outcomeError
@@ -442,6 +442,11 @@ async function main() {
   const only = parseOnly(args);
   const metadataCacheDir = parseMetadataCache(args);
   const partitionLedgers = await loadPartitionLedgers(orders);
+  const generatedFiles = [...partitionLedgers].flatMap(([parentId, ledger]) => {
+    const parent = orders.find((order) => order.id === parentId);
+    return ledger.chapters.map((_, index) => chapterFile(parent.out, index + 1));
+  });
+  sourceCreditRevisions.validateOrders(orders, [...generatedFiles, 'catalog.json', RATED_GUIDE_INDEX_FILE]);
   const childParents = new Map();
   for (const [parentId, ledger] of partitionLedgers) {
     for (const chapter of ledger.chapters) childParents.set(chapter.id, parentId);
@@ -519,6 +524,7 @@ async function main() {
   const payloadByCatalogId = new Map();
   const families = new Map();
   const outputs = [];
+  const derivedPaths = new Set([join(DATA_DIR, RATED_GUIDE_INDEX_FILE)]);
   const addCatalogOutputs = (order, parsedOrder, payload, { writeChildren = true } = {}) => {
     const ledger = partitionLedgers.get(order.id);
     if (!ledger) {
@@ -536,6 +542,7 @@ async function main() {
     families.set(order.id, family);
     for (const child of family.children) {
       if (writeChildren) {
+        derivedPaths.add(join(DATA_DIR, child.order.out));
         outputs.push({
           path: join(DATA_DIR, child.order.out),
           content: `${JSON.stringify(child.payload, null, 2)}\n`,
@@ -659,7 +666,7 @@ async function main() {
       console.warn(`  ! ${order.id}: ${dupes.size} duplicate issue id(s) in the order; importing will collapse them: ${[...dupes].join(', ')}`);
     }
 
-    const payload = {
+    const payload = sourceCreditRevisions.apply({
       id: order.id,
       name: order.name,
       description: order.description,
@@ -675,7 +682,7 @@ async function main() {
       placeholders: placeholderItems.length,
       unresolved,
       items,
-    };
+    }, order.out);
 
     outputs.push({
       path: join(DATA_DIR, order.out),
@@ -703,6 +710,11 @@ async function main() {
     } catch (err) {
       throw new Error(`${order.id} was skipped but has no pinned ${order.out} to reuse (${err.message}); run without --only`, { cause: err });
     }
+    const revised = sourceCreditRevisions.apply(payload, order.out);
+    if (revised !== payload) {
+      outputs.push({ path, content: `${JSON.stringify(revised, null, 2)}\n` });
+      payload = revised;
+    }
     const parsedOrder = order.partitionFile
       ? parseChecklist(await loadOrderText(order))
       : null;
@@ -729,6 +741,7 @@ async function main() {
   for (const family of families.values()) {
     const peers = [...payloadByCatalogId].map(([id, payload]) => ({ id, payload }));
     const overlap = buildChildOverlapEvidence({ family, peers, generatedAt: outputGeneratedAt });
+    derivedPaths.add(join(SCRIPT_DATA_DIR, family.ledger.overlapFile));
     outputs.push({
       path: join(SCRIPT_DATA_DIR, family.ledger.overlapFile),
       content: `${JSON.stringify(overlap, null, 2)}\n`,
@@ -751,6 +764,31 @@ async function main() {
   const outputPaths = outputs.map((output) => output.path);
   if (new Set(outputPaths).size !== outputPaths.length) {
     throw new Error('Vendor outputs contain duplicate file paths');
+  }
+  // Keep platform line endings and historical timestamps when derived content did not change.
+  for (const output of outputs) {
+    if (!derivedPaths.has(output.path)) continue;
+    let existing;
+    try {
+      existing = await readFile(output.path, 'utf8');
+    } catch (error) {
+      if (error.code === 'ENOENT') continue;
+      throw error;
+    }
+    let oldValue;
+    try {
+      oldValue = JSON.parse(existing);
+    } catch (error) {
+      if (!(error instanceof SyntaxError)) throw error;
+      console.warn(`Replacing invalid derived output ${output.path}: ${error.message}`);
+      continue;
+    }
+    const newValue = JSON.parse(output.content);
+    if (output.path.startsWith(`${SCRIPT_DATA_DIR}`)) {
+      delete oldValue.generatedAt;
+      delete newValue.generatedAt;
+    }
+    if (JSON.stringify(oldValue) === JSON.stringify(newValue)) output.content = existing;
   }
   await mkdir(DATA_DIR, { recursive: true });
   await mkdir(SCRIPT_DATA_DIR, { recursive: true });

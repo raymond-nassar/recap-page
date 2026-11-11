@@ -2175,8 +2175,8 @@
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/67ab71bd04cda",
         "ext": "jpg"
       },
-      "source": "https://github.com/raymond-nassar/recap-page/issues/773",
-      "sourceSection": "One World Under Doom",
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/one-world-under-doom/",
+      "sourceSection": "One World Under Doom Reading Order Checklist",
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
       "updatedAt": "2026-10-22T12:00:00.000Z"
@@ -4185,7 +4185,7 @@
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/517ad22da11c8",
         "ext": "jpg"
       },
-      "source": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "source": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
       "updatedAt": "2026-10-22T12:00:00.000Z"
@@ -4475,7 +4475,8 @@
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5f735c7849c7f",
         "ext": "jpg"
       },
-      "source": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+      "source": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+      "sourceSection": "Latest Additions:",
       "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
       "sourceLicense": null,
       "updatedAt": "2026-10-03T18:48:28.130Z"
@@ -14414,7 +14415,8 @@
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/59c2d0c4a857a",
         "ext": "jpg"
       },
-      "source": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-13-siege-checklist/",
+      "sourceSection": "The Complete Issue by Issue Reading Order List",
       "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
       "sourceLicense": null,
       "updatedAt": "2026-11-07T02:45:33.118Z"

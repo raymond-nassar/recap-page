@@ -1,0 +1,193 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1718731/?format=json",
+  "retrievedAt": "2026-11-10T19:36:44.877Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1718731/?format=json",
+    "series_name": "Thanos (2017 series)",
+    "descriptor": "1 - Thanos Returns",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "Thanos Returns",
+    "publication_date": "2017",
+    "key_date": "2017-06-28",
+    "page_count": "140.000",
+    "isbn": "978-1-302-90557-6",
+    "notes": "There is a credit at the beginning of the book that states \"Mike Deodato Jr. & Frank Martin - Color Art\". Presumably this is a typo for \"Cover Art\".",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/115148/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "1",
+        "feature": "Thanos",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "Thanos Returns",
+        "feature": "Thanos",
+        "sequence_number": 2,
+        "page_count": "22.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Jeff Dekal No. 1 Variant",
+        "feature": "Thanos",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "2",
+        "feature": "Thanos",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 5,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Ron Lim & Rachelle Rosenberg No. 1 Variant",
+        "feature": "Thanos",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "3",
+        "feature": "Thanos",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 8,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Alexander Kropinak No. 1 Toy Variant",
+        "feature": "Thanos",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "Characters on this variant cover depicted as action figures."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "4",
+        "feature": "Thanos",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 11,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "5",
+        "feature": "Thanos",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 13,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "6",
+        "feature": "Thanos",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": ""
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Thanos",
+        "sequence_number": 15,
+        "page_count": "20.000",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Dustin Nguyen No. 2 Variant",
+        "feature": "Thanos",
+        "sequence_number": 16,
+        "page_count": "0.250",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Pat Broderick & Chris Sotomayor No. 3 Variant",
+        "feature": "Thanos",
+        "sequence_number": 17,
+        "page_count": "0.250",
+        "notes": "1 in 25 Retailer Incentive Variant Cover."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Joe Jusko No. 4 Corner Box Variant",
+        "feature": "Thanos",
+        "sequence_number": 18,
+        "page_count": "0.250",
+        "notes": "Signed \"Jusko -after- Starlin\"."
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Mike Del Mundo No. 1 Hip-Hop Variant",
+        "feature": "Thanos",
+        "sequence_number": 19,
+        "page_count": "0.500",
+        "notes": ""
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Rob Guillory No. 5 Venomized Variant",
+        "feature": "Thanos",
+        "sequence_number": 20,
+        "page_count": "0.500",
+        "notes": ""
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "He's Out for Vengeance!",
+        "feature": "Thanos",
+        "sequence_number": 21,
+        "page_count": "1.000",
+        "notes": "Back cover."
+      }
+    ]
+  }
+}
