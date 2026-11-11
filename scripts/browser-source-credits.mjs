@@ -7,6 +7,18 @@ const cases = [
   ['spotlights', 'spotlights', 'agents-of-atlas-reading-order', 'Comic Book Herald'],
   ['marvel-on-screen', 'marvel-on-screen', 'doctor-strange-multiverse-of-madness', 'Comic Book Herald'],
   ['age-early-modern', 'age-early-modern', 'muir-island-saga', 'Comic Book Reading Orders'],
+  ['catalog', 'catalog', 'one-world-under-doom', 'Comic Book Herald',
+    'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/one-world-under-doom/',
+    'One World Under Doom Reading Order Checklist', 'Selected by raymond-nassar for Modern Timeline'],
+  ['catalog', 'catalog', 'siege-dark-reign-prelude', 'Comic Book Herald',
+    'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-13-siege-checklist/',
+    'The Complete Issue by Issue Reading Order List', "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides"],
+  ['marvel-on-screen', 'marvel-on-screen', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'Comic Book Herald',
+    'https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/',
+    'Latest Additions:', "Compiled for this project from the owner's selected Comic Book Herald excerpt"],
+  ['marvel-on-screen', 'marvel-on-screen', 'mcu-prep-doctor-strange-2016', 'Comic Book Herald',
+    'https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/',
+    null, 'Selected by raymond-nassar for MCU Prep'],
 ];
 const lists = cases.map(([, , id]) => {
   const list = catalog.lists.find((entry) => entry.id === id);
@@ -37,7 +49,7 @@ export const sourceCredits = {
       };
     }, lists, orders);
 
-    for (const [route, surface, id, site] of cases) {
+    for (const [route, surface, id, site, expectedUrl, expectedSection, expectedOrigin] of cases) {
       await page.goto(`${page.__origin}/#/${route}`, { waitUntil: 'load' });
       const card = `#${surface}-results [data-story="list:${id}"]`;
       await page.waitForSelector(card, { visible: true });
@@ -49,7 +61,7 @@ export const sourceCredits = {
       }));
       const list = lists.find((entry) => entry.id === id);
       t.check(`${surface}: concise source is visible without expanding, with the snapshot left to Preview`,
-        source.visible && !source.disclosed && source.href === list.source
+        source.visible && !source.disclosed && source.href === (expectedUrl ?? list.source)
         && source.text === `Source: ${site}`, JSON.stringify(source));
       await page.focus(`${card} .result-source a`);
       t.check(`${surface}: source is keyboard reachable`,
@@ -62,8 +74,10 @@ export const sourceCredits = {
         visible: node.querySelector('a')?.checkVisibility(),
       }));
       t.check(`${surface}: Preview keeps full attribution, section and snapshot visible`,
-        preview.visible && preview.href === list.source && preview.text.includes(list.sourceOrigin)
-        && (!list.sourceSection || preview.text.includes(`Section: ${list.sourceSection}`))
+        preview.visible && preview.href === (expectedUrl ?? list.source)
+        && preview.text.includes(expectedOrigin ?? list.sourceOrigin)
+        && (!(expectedSection ?? list.sourceSection) || preview.text.includes(`Section: ${expectedSection ?? list.sourceSection}`))
+        && (expectedUrl == null || expectedSection !== null || !preview.text.includes('Section:'))
         && preview.text.includes(`Snapshot taken ${updatedLabel(list)}`), JSON.stringify(preview));
       await page.keyboard.press('Escape');
     }

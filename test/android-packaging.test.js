@@ -524,6 +524,10 @@ test('Android preparation copies and evaluates the immutable highlights with exa
       ['js', 'lib', 'homeUpdatesContent.js'],
       ['js', 'lib', 'homeUpdatesSeen.js'],
       ['js', 'views', 'home-updates.js'],
+      ['data', 'collectedEditionCatalog.js'],
+      ['data', 'collectedEditionEvidence.js'],
+      ['js', 'lib', 'collectedEditions.js'],
+      ['js', 'views', 'shared', 'collected-editions.js'],
     ]) {
       const source = await readFile(join('src', ...parts));
       const bytes = await readFile(join(directory, ...parts));

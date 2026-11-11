@@ -24,6 +24,7 @@ import {
 import { historicalSpiderManSelectionLibraryDigest, pathsWithinLists } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
+import { sourceCreditRevisions } from '../../scripts/lib/source-credit-revisions.mjs';
 import { recordedEditorialDigest, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
@@ -68,7 +69,11 @@ export async function assertOwnerDeliveryContract(contract, {
     json('src/data/curated-lists.json'), json('src/data/catalog.json'), text(`src/data/orders/${id}.md`),
   ]);
   const source = JSON.parse(sourceText);
-  const payload = descriptionRevisions.undoEntry(await json(`src/data/${packet.proposedManifest.out}`));
+  const currentPayload = await json(`src/data/${packet.proposedManifest.out}`);
+  const currentCatalog = catalog.lists.find((row) => row.id === id);
+  sourceCreditRevisions.assertLatest(currentPayload, packet.proposedManifest.out);
+  sourceCreditRevisions.assertLatest(currentCatalog, packet.proposedManifest.out);
+  const payload = descriptionRevisions.undoEntry(sourceCreditRevisions.undo(currentPayload, packet.proposedManifest.out));
   const expectedIds = contract.rows.map((row) => row[1]);
   const expectedPositions = contract.rows.map((row) => row[0]);
   const expectedGroups = contract.rows.map((row) => row[3] == null ? null : contract.groups[row[3]]);
@@ -150,6 +155,7 @@ export async function assertOwnerDeliveryContract(contract, {
     ? payload.description : beforeMcuEditorialEntry(payload).description, contract.description);
   assert.equal(payload.sourceOrigin, contract.sourceOrigin ?? provider.sourceOrigin);
   assert.equal(payload.sourceLicense, null);
+  assert.equal(payload.source, contract.sourceUrl);
   if (event) {
     const entry = manifest.lists.find((row) => row.id === id);
     assert.equal(entry.type, 'event');
@@ -161,7 +167,7 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.deepEqual(currentEntry.description === packet.proposedManifest.description
     ? currentEntry : beforeMcuEditorialEntry(currentEntry), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
-  assert.equal(catalog.lists.find((row) => row.id === id).source, contract.sourceUrl);
+  assert.equal(sourceCreditRevisions.undo(currentCatalog, packet.proposedManifest.out).source, contract.sourceUrl);
   assert.equal(
     catalog.lists.find((row) => row.id === id).ownerConfirmedIdentityCount ?? 0,
     mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length,

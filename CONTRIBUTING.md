@@ -1,113 +1,84 @@
 # Contributing
 
-Help improve Recap Page while protecting the reader's data and keeping the app simple.
+Help improve Recap Page while protecting saved reading progress.
 The repository has been public since 2026-08-16 and accepts issues and pull requests.
-
-To use the app, start with [the running guide](docs/RUNNING.md).
-
-## What this project is trying to be
-
-A local-first Marvel Unlimited companion that keeps your place in reading orders. There are no Recap
-Page accounts, hosted backends or analytics, and saved reading data is uploaded only by cloud backup,
-which a reader turns on for their own cloud storage account (#810). Desktop uses a local server and
-browser storage; Android has separate app storage. Readers can export their own backups. Silent loss
-or corruption of saved reading progress is treated as a security issue.
-
-## What will be declined, and why
-
-Check these constraints before starting. Changes that break them will be declined.
-
-- **Reading-data uploads, accounts, or new services.** Saved data stays local unless the reader
-  explicitly exports it or turns on cloud backup, the one exception, which sends it only to a cloud
-  storage account of the reader's own (#810). The project runs no service and holds no account or
-  copy of anyone's data.
-- **Comic artwork in app-controlled storage.** Store cover URLs, never image bytes. Do not host,
-  proxy, or cache comic artwork.
-- **Scraping Marvel's sites.** Link to them; get details from the third-party metadata service.
-- **Packages loaded by the browser.** Browser runtime dependencies stay at zero. Development and CI tools
-  may be added when justified.
-- **A different loopback address or port.** Each address has separate browser storage. Changing it
-  makes saved progress look missing; the address is not a configurable default.
-- **Yes-or-no availability.** Keep unknown, scheduled, expected, explicitly available, and
-  explicitly unavailable distinct. Unreliable upstream dates do not justify a claim of access.
-- **Emulating the Marvel Unlimited app.** That was measured and closed, and
-  [the reasons](docs/WHY_A_BROWSER_APP.md) are hardware findings rather than preferences.
-
-The bundled metadata snapshot ends in 2025. Newer comics start without bundled covers or details.
-Readers can add them by hand or request a Marvel Fandom lookup. Pasted Marvel Unlimited reader
-links are no longer accepted. The snapshot boundary is not a defect.
 
 ## Before you write anything
 
-Describe your proposal in an issue first and check the
-[planning Project](https://github.com/users/raymond-nassar/projects/1) for existing work and priorities.
+1. Find an [open Issue](https://github.com/raymond-nassar/recap-page/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee+label%3A%22good+first+issue%22%2C%22help+wanted%22)
+   labeled **good first issue** or **help wanted**, with nobody assigned.
+   Read its scope, acceptance criteria, dependencies and discussion. Search before proposing new work.
+2. Comment `/take` by itself. A bot assigns you if the Issue is still open, labeled and unassigned.
+   Check **Assignees** before starting. If someone is assigned, coordinate with them instead.
+   For other Issues, discuss scope with the maintainer first. You do not need write access.
+3. Use your fork and a branch for one change. Link the Issue in your pull request.
+   Keep progress, questions and handoffs on that Issue so others can pick up where you stop.
+4. Read the [app map](docs/ARCHITECTURE.md), then the reference for the part you will change.
+   Use [the running guide](docs/RUNNING.md) for platform setup.
 
-Read the README, [architecture guide](docs/ARCHITECTURE.md), and
-[maintainer guide](docs/MAINTAINING.md) before changing code. Use the
-[historical-documents index](docs/HISTORICAL_DOCUMENTS.md) to distinguish old records from current guidance.
+The [planning Project](https://github.com/users/raymond-nassar/projects/1) holds priorities.
+You do not need access to it to discuss an Issue. The sole maintainer decides scope and what merges;
+see [governance](GOVERNANCE.md). Do not edit the frozen historical backlog.
 
-Follow [release bookkeeping](GOVERNANCE.md#release-bookkeeping) when preparing a feature PR or
-a final version release PR.
+## Run a checkout
+
+Install Node.js 20 or newer. From the repository root:
+
+```text
+npm ci
+npm start
+```
+
+Open `http://127.0.0.1:8787`. Use that exact address: a different address has different saved data.
+There is no build step. The installed packages are development tools, not browser dependencies.
+Use a separate browser profile for testing, not your personal reading data.
+
+## What this project is trying to be
+
+Recap Page keeps your place in Marvel reading orders. Reading progress stays on the device.
+Optional cloud backup sends saved data only to the reader's own storage account after consent.
+There are no Recap Page accounts, hosted backends or analytics.
+
+## What will be declined, and why
+
+Do not add project-run services, store comic image bytes, add browser runtime packages, change the
+desktop address, or claim a comic is available from unreliable dates. Keep all five availability
+states distinct. Marvel scraping is prohibited except for the narrow owner-approved cover-address
+lookup in [data provenance](docs/DATA_PROVENANCE.md). Android emulation is closed.
+
+The [full product constraints](docs/CONTRIBUTOR_REFERENCE.md#what-will-be-declined-and-why)
+and [dependency rules](#dependencies) apply to every change. The bundled metadata ending in 2025
+is a known limit, with manual entry available, not a bug.
 
 ## How a change is judged
 
-Three rules do most of the work.
+Keep one purpose per pull request. Agree on shared-file ownership when work overlaps; leave unrelated
+improvements for another Issue. Describe what changed, why, and how you checked it.
+Do not overwrite another contributor's work when resolving conflicts.
 
-**One thing per pull request, unless the maintainer explicitly combines a delivery.** File unrelated
-work as a repository Issue, not another commit on the branch. This keeps changes independently
-revertible. The maintainer-approved combined UX delivery on 2026-08-22 is an exception, not a precedent
-contributors should infer.
-
-**Claims carry evidence.** Cite the file and line for codebase claims. For external claims, give the
-URL and retrieval date. Use evidence you checked, not recollection.
-
-The anchors check fingerprints cited content, not just line numbers. After an edit, re-aim each
-affected citation and read every claim-and-line pairing before blessing it. Never bless a mismatch
-just to clear a failed check. The [citation helpers](docs/MAINTAINING.md#relocate-citations-and-resolve-renumber-only-conflicts) assist active deliveries without replacing that check.
-
-**Recompute counts.** Verify counts in the part of a document you change. An old number is not
-evidence, and the automated gates do not check every count.
+Use the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Include the Issue, exact check
+results and any missing evidence. Follow [release bookkeeping](GOVERNANCE.md#release-bookkeeping)
+for release notes and saved-data compatibility. The maintainer reviews and merges; opening a
+pull request does not authorize a release.
 
 ## Writing
 
-Write for the reader's task. Use familiar words, direct verbs, and short paragraphs. Put the action
-or outcome before implementation details, and remove repetition rather than useful information.
-Keep exact commands, control names, limits, and safety warnings. Avoid commentary about the document
-itself when you can simply give the information.
+Use plain American English, short paragraphs and concrete verbs. Explain unfamiliar terms.
+Use no em or en dashes. Comments explain why, not what the code already says.
+Begin pull requests with the template's **In plain English** summary: why the change matters and
+what a reader would notice, without file names or code terms. Keep technical evidence below it.
 
-Code comments explain why, with evidence where needed. Do not restate the code.
-
-No em dashes anywhere in anything a reader sees. Commas, colons and full stops instead.
-
-Start each pull request with `## In plain English`. In at most four short paragraphs, explain why
-the change matters and what a reader will notice, including when nothing changes for them. Use no
-file names, identifiers, commands, or backlog IDs; describe what those things do instead.
-Give the reason before the mechanism. Keep the technical sections after this summary.
+Code claims need checked file-and-line evidence; external claims need a URL and retrieval date.
+Recompute counts you change. Follow the
+[citation workflow](docs/MAINTAINING.md#relocate-citations-and-resolve-renumber-only-conflicts)
+before accepting moved or retired citations.
 
 ## Interface design
 
-This is the local UI contract: make the action clear and keep the screen quiet across the app.
-Use concise labels and one prominent primary action per task group, not one for the whole page.
-Give secondary and repeated row actions less visual weight, and avoid explanatory paragraphs
-after controls or repeated information.
-
-Reading-list administration starts behind Reading List options on desktop and touch. Row commands use
-an explicit More actions disclosure, not a hover-only panel that reserves empty space. Preserve
-the reader's expanded/collapsed choice and focus when the viewport changes.
-
-Put supplementary guidance in concise tooltips available on both hover and keyboard focus.
-Connect nonredundant descriptions to their controls for screen readers. Keep required labels,
-meaningful status, errors, save confirmation and safety warnings visible; tooltips do not replace
-essential information or system feedback. Nor do they cover it: mark such feedback that appears
-near a control with a tooltip `data-keep-uncovered`, and a tooltip whose place would overlap it
-is not shown. Commands whose tooltips could land on each other, such as Read and Done stacked on a
-narrow screen, share a `data-tooltip-group`: a tooltip whose place would cover another command in
-its group moves to the first other side where it fits as wide and covers neither, and otherwise is
-not shown.
-
-Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/web/react/core/button/usage)
-and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),
-checked on 2026-10-03. This is an app-wide standard, not a convention limited to Search.
+Make the main action clear, keep optional detail out of the way, and preserve keyboard focus and
+truthful save feedback. Before changing app markup, styles or interaction, read the mandatory
+[full interface contract](docs/CONTRIBUTOR_REFERENCE.md#interface-design) and
+[UI workflow](.github/instructions/ui.instructions.md).
 
 ### Brand
 
@@ -115,137 +86,24 @@ Follow the [brand guidelines](docs/BRAND_GUIDELINES.md) for the retained icon, w
 
 ### Controls and transitions
 
-- **Destinations and actions.** Use native anchors with meaningful `href` values for
-  destinations, including app hash routes. Intercept only plain primary activation; preserve
-  middle-click, modifier keys, browser Back and open-in-new-tab behavior. Use buttons for
-  commands, submissions and opening dialogs, with an explicit appropriate `type`. A clickable
-  container is not a substitute for either.
-- **Names.** Include the visible label text in the accessible name. Add context to repeated
-  controls, for example `Remove <list name>`, without changing the visible action's meaning.
-  Give icon-only buttons a meaningful name; keep decorative local icons out of the name.
-- **Dialogs and focus.** Reuse the shared in-page questions rather than browser-native
-  `alert`, `confirm` or `prompt`. Name the purpose and the confirmation action. Choose initial
-  focus for the task: the field for typing, a safe choice for destructive confirmation, or a
-focusable heading when readers need to inspect structured content first. Give an answer that
-cannot be taken back, with no Undo and no kept copy, the danger appearance through
-`askConfirm({ danger: true })`, and only such an answer. Keep modal focus
-  contained and provide Escape and a visible cancel/close control. Cancel leaves the action
-  unapplied. Restore a usable opener, or choose a logical successor when it is gone or the
-  task has advanced. Do not leave focus inside a hidden disclosure or stack modal questions.
-  A dialog that asks or shows something wears the shared shell, the `ask` or `preview` class
-  with its actions in one `dialog-foot` measured by `holdDialogEdges`, so the dialog is the one
-  thing that scrolls and its actions stay in view with focus scrolled clear of them. Keep only
-  actions in that foot: it is held on screen, so notes in it cost every reader the space. A
-  dialog whose only close control sits at its top holds that too, in a `dialog-head`.
-  Route headings retain focus for orientation, but pointer navigation must not force a focus box
-  around a page title. Keep normal `:focus-visible` indicators for keyboard navigation.
-- **Cloud progress choices.** Use the shared question for the two progress choices without
-  stacking it on another dialog. Focus Keep when progress differs or an offer arrives after
-  the reader starts using the app. A dismissed offer remains available as a quiet action while
-  uploads stay paused. Withdraw a choice when its checked data or connection changes.
-- **Fields and errors.** Associate a visible label with each visible field. A placeholder is not a
-  label. Associate actionable error text with the field while preserving its hint; mark the
-  invalid state, reveal any containing disclosure and focus the field needing correction.
-  Clear stale invalid state as the reader edits. Explain what to correct, not just "invalid".
-- **State and feedback.** Define the affected idle, hover, focus, selected and disabled
-  states plus pending, success, error, empty, cancel and failed-save outcomes where relevant.
-  Pending work needs visible progress and duplicate-submit protection; restore usable controls
-  when it settles. Empty results need a next step. Failure needs an actionable explanation
-  and retained input or a safe recovery path. Retire stale feedback when its task changes;
-  announce updates through the existing feedback/live-region pattern without relying on colour.
-- **Truthful outcomes.** Show saved, added or completed only after the corresponding saved
-  state succeeds; distinguish a refused save from success and keep recovery available. A reader
-  handoff is not proof of availability or completed reading. Preserve the existing fresh-tab
-  user-activation path and keep help conditional when no tab appears. Report observed
-  validation or dispatch failures; a null `window.open` result with `noopener` does not prove
-  a popup was blocked. Keep the five availability distinctions required above.
-  External-reader success needs evidence from that environment.
+Use the [control, focus and feedback rules](docs/CONTRIBUTOR_REFERENCE.md#controls-and-transitions).
+They cover links versus buttons, dialogs, field errors, pending work and failed saves.
 
 ### Layout, tokens and preferences
 
-- Put optional detail and advanced controls behind the existing native disclosure pattern.
-  Use a meaningful `summary`, preserve draft state on expansion/collapse, and keep the task's
-  required controls and essential feedback reachable without guessing where they went.
-- Reuse the palette, spacing and type tokens and native-field styles in `src/styles.css`, and its
-  radius, stroke, elevation, motion, focus and target-size tokens. `npm run spacing` rejects a raw
-  corner radius, border or outline width, shadow, duration, easing other than `ease`, outline
-  offset or 24, 44 or 48 pixel minimum size in either stylesheet; a value off a scale needs a
-  token of its own, named for what wears it and listed in `scripts/check-spacing.mjs`.
-  Use the existing checker owners for any new paint or geometry; do not bypass a gate or lower
-  a threshold to accept it. Selection, disabled and error states need a non-colour cue.
-- Check light, dark and system themes, keyboard focus, reduced motion and forced colours for
-  affected components. Preserve browser zoom and visible focus indicators. Use the current
-  responsive navigation and wrapping patterns so narrow or zoomed views retain labels,
-  controls, feedback and focus without clipping or avoidable horizontal page scrolling.
-- Preserve the existing larger hit targets. For changed pointer targets, meet the
-  [WCAG 2.2 AA minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
-  of 24 by 24 CSS pixels or record the specifically applicable exception and its evidence.
-  A larger preferred target is not the AA minimum.
+Use the [layout and preference rules](docs/CONTRIBUTOR_REFERENCE.md#layout-tokens-and-preferences)
+for shared design values, themes, small screens and accessible pointer targets.
 
 ### Accepted patterns and check owners
 
-Use these starting points rather than inventing another control/helper system. Select the
-owners for the changed contract; extend missing coverage with observable behavior assertions.
-
-| Contract | Local pattern to reuse | Existing check owners |
-|---|---|---|
-| Destinations and route intent | `formatRoute` and `isPlainNavigation` in `src/js/lib/route.js` | `test/route.test.js`; `semantic-destinations`, `narrow-navigation` |
-| Questions, cancellation and focus | `askConfirm`, `askText` and `askNote` in `src/js/ask.js` | `test/ask.test.js`; `responsive-controls`, `danger-confirmations` |
-| Cloud progress choice | `askSyncChoice` in `src/js/ask.js` and the cloud prompt in `src/js/views/cloud.js` | `test/ask.test.js`, `test/data-view.test.js`; `cloud-launch-sync` |
-| Dialog shell | The `ask` or `preview` class, a `dialog-foot`, and `holdDialogEdges` in `src/js/lib/dialogShell.js` | `test/dialog-shell.test.js`; `dialog-shell` |
-| Field validation | `wireFieldValidation` in `src/js/views/shared/field-validation.js` | `test/add-view.test.js`; `responsive-controls` |
-| Decorative icons | `uiIcon` in `src/js/lib/uiIcon.js` and the local SVG symbols | `test/portable-icons.test.js` |
-| Action hierarchy and disclosures | Native `details`/`summary` and the existing Add view action groups | `test/add-view.test.js`; `copy-density` |
-| Theme and reflow | Tokens and native controls in `src/styles.css` | `test/theme.test.js`, `scripts/check-palette.mjs`; `responsive-reflow`, `responsive-controls` |
-| Held-input feedback | `wirePressFeedback` in `src/js/lib/pressFeedback.js` observes touch/pen without taking over actions or scrolling; shared CSS retains native tap highlights | `touch-feedback` in the desktop and Android browser runners |
-| Spacing | `--space-*` and classified geometry in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
-| Design tokens | `--radius-*`, `--stroke-*`, `--elev-*`, `--text-shadow-*`, `--motion-*`, `--ease-*`, `--focus-*` and `--target*` in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
-
-The browser owner names in this table belong to [scripts/browser-check.mjs](scripts/browser-check.mjs).
-They are focused regression checks, not a claim that every screen or accessibility requirement
-is covered. Preserve the distinction between these evidence types:
-
-- **Enforced lint, unit and static gates:** `npm run lint` includes built-in `no-alert` for
-  production `src` JavaScript; only `src/dev-faults.js` is exempt from that rule for its
-  deliberate native fault-harness dialogs. Unit owners, `npm run palette` and `npm run spacing`
-  check their declared behavior and source contracts. They do not prove rendered interactions.
-- **Real-browser evidence:** exercise applicable owners with installed Edge as described in
-  [the checks](#the-checks). Record the surface, state/transition, expected and observed
-  result, exact command, checked revision and evidence location. A UI pull request records the
-  result of every desktop and Android owner the change can affect, including the ones CI runs.
-  A screenshot alone does not prove keyboard operation, dialog focus, cancellation, zoom or a
-  saved-state result.
-- **Manual, native and subjective evidence:** for each affected task, check label clarity
-  and action hierarchy; for changed semantics or focus, record the relevant native assistive-
-  technology observation; for changed handoff, record the external reader/subscription
-  outcome. Identify the surface, action/state, expected and observed result and environment.
-  Browser emulation and agent simulation are not those observations. If access or a reviewer
-  is unavailable, record the missing evidence, reason and rerun condition as unverified.
-
-Record justified exceptions for maintainer disposition with the affected rule, reason and
-evidence; do not silently weaken tests or mark human checks complete. Fill all UI entries in
-the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Non-UI changes may state
-`Not applicable` with a reason. Instructions and checks reduce risk; neither guarantees that
-future changes are free of UX defects.
-
-These requirements use the applicable interaction principles, not React-specific APIs, from
-[Fluent 2 dialog](https://fluent2.microsoft.design/components/web/react/core/dialog/usage),
-[field](https://fluent2.microsoft.design/components/web/react/core/field/usage),
-and [accessibility](https://fluent2.microsoft.design/accessibility). Context-dependent focus and naming also follow
-[WAI-ARIA modal dialog guidance](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) and
-[WCAG label in name](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html).
-These references and the target-size guidance were retrieved on 2026-10-07.
+Start with the [existing helpers and their checks](docs/CONTRIBUTOR_REFERENCE.md#accepted-patterns-and-check-owners).
+Record real browser results and identify any human or device checks still unverified.
 
 ## The checks
 
-```
-npm ci
-```
+Run these from the root before handing off a change:
 
-This installs lint tooling only; none of it reaches the browser. With Node.js installed,
-`npm start` and `npm test` work in a fresh checkout without installing packages.
-
-```
+```text
 npm test
 npm run lint
 npm run anchors
@@ -256,129 +114,59 @@ npm run palette
 npm run publication
 ```
 
-All eight run in CI on every pull request. They check unit behavior, lint, evidence anchors, backlog
-counts, stated file sizes, spacing and the design tokens, colour contrast, and publication safety.
-The publication check covers tracked files and Git history.
+All eight run in CI on every pull request. They check behavior, code, documentation evidence,
+counts, sizes, visual rules and publication safety. A failed check needs investigation, not a
+weaker rule. New files must be staged before the anchors check can see them.
+
+The live API check (`npm run contract`) stays outside CI; run it before a release.
+UI changes also need the relevant installed-browser checks and explicit missing-human-evidence
+records in [the full check requirements](docs/CONTRIBUTOR_REFERENCE.md#the-checks).
+The [maintainer guide](docs/MAINTAINING.md#run-the-complete-local-check-set) explains each command.
 
 ### Historical evidence anchors
 
-Ordinary citations describe the tree being checked. Frozen claims use the required historical
-registry, which binds each existing citation and occurrence key to a full commit id, literal path,
-line range, content SHA-256, and normalized claim SHA-256. The checker never fetches, follows renames,
-searches for similar text, uses the lock as provenance, or falls back to current content.
-
-Normal blessing cannot change the canonical JSON registry. Prepare a sealed target only after all
-source, test, and documentation edits are final:
-
-```text
-npm run anchors -- --prepare-history <target-path> --output <absolute-path-outside-worktree>
-npm run anchors -- --apply-history <candidate-path> --approved-sha256 <candidate-sha256>
-```
-
-Generate the candidate twice from the unchanged tree and require byte-identical files. Read every
-claim against its immutable line, record the digest, and apply those exact bytes. Any tracked-file
-or occurrence change requires a new candidate. Apply atomically replaces only the registry.
-Then inspect and bless ordinary anchors. The final check must show zero drifted, zero new, and zero
-removed.
-
-Historical checks require full local Git history. Check and bless both fail on a shallow clone,
-missing or noncommit object, nonancestor source, missing or binary path, invalid or blank-edged range,
-content or claim mismatch, malformed or duplicate entry, orphan entry, or incomplete sealed target.
-Fix the evidence; do not weaken the check.
-
-```
-npm run contract
-```
-
-Run this by hand before a release. It stays outside CI because a live third-party API outage should
-not fail an otherwise valid build.
-
-```
-npm run browser
-```
-
-This also runs outside CI, using installed Edge. Require zero failed assertions for changes to
-routes, rendering, or interaction. Install its driver in a scratch directory outside the repository,
-never as a project dependency.
-
-CI's UI owners job runs four owners on a Windows runner with installed Edge for every pull request:
-`responsive-reflow` and `narrow-navigation` from this suite, and the Android `catalog-cards` and
-`alignment` owners. It also records the accessibility rules pass, `npm run browser -- --axe`, and
-lists each watched Android element that moved against the pull request's base. Explain each move it
-lists. The [maintainer guide](docs/MAINTAINING.md#the-ui-owners-job) describes both records.
+Frozen claims use a separate registry that ordinary blessing cannot change.
+Follow the mandatory [historical evidence procedure](docs/CONTRIBUTOR_REFERENCE.md#historical-evidence-anchors),
+including its review and digest checks. Never rewrite a historical record to make a check pass.
 
 ## Tests
 
-Prove each new check fails without the fix. Stash the smallest relevant change, run the check,
-restore the fix, and record the result in the pull request. A targeted failure shows which behavior
-the test protects; reverting a whole module proves less.
+Prove a new check fails without the fix, then restore the fix and see it pass.
+Use the [failure-before-fix procedure](docs/CONTRIBUTOR_REFERENCE.md#tests).
+Test the smallest affected behavior while iterating, then run all required final checks.
 
 ## The fault harness destroys data on purpose
 
-The fault harness at `src/dev-faults.html` deliberately damages saved reading data to exercise
-recovery paths. It is served alongside the app and shares its storage.
-
-**Take both backups before using a fault button:** a downloaded file and the in-browser snapshot.
-The snapshot supports one-click restore, but the fault that removes all tracker data deletes it too.
-After that fault, the downloaded file is the only backup left. Keep it outside browser storage.
-
-Expected damage from a fault button is not a bug. Unexpected damage, or a recovery result that
-differs from what the app reports, is serious.
-
-Review recovery code especially carefully. Check what happens when recovery fails, is offered
-twice, points to data that no longer exists, or follows another route to the same state.
+The development fault page shares the app's saved data. Before using it, take both a downloaded
+backup and the in-browser snapshot. Read the
+[fault harness warnings](docs/CONTRIBUTOR_REFERENCE.md#the-fault-harness-destroys-data-on-purpose).
 
 ## Adding or correcting data
 
-For changes under `src/data/`, state the source and permission to use it in the pull request.
-Follow [the data provenance record](docs/DATA_PROVENANCE.md), which documents each file and field.
-
-Covers are URLs, never bytes. Link to Marvel's pages; never scrape them. Every reading order needs
-a source trail someone else can follow.
-
-For manifest fields and scripts, see
-[Add a curated reading order](docs/MAINTAINING.md#add-a-curated-reading-order).
+Record sources and permissions. Keep cover addresses, never image bytes.
+Follow [data provenance](docs/DATA_PROVENANCE.md) and
+[reading-order authoring](docs/MAINTAINING.md#add-a-curated-reading-order).
 
 ## Dependencies
 
-Browser runtime dependencies stay at zero. The owner approved an Android-only exception for Google
-Play services auth and its transitive libraries for Google Drive sign-in (#810). To propose a
-development tool, explain what it checks and why automating that check is useful.
-
-Pin workflow actions to full commit revisions, not movable tags. Follow
-[Review pinned GitHub Actions](docs/MAINTAINING.md#review-pinned-github-actions) before updating one.
+Browser runtime dependencies stay at zero. Development tools need a reason; the Android-only
+Google sign-in exception does not apply to the browser. Pin workflow actions to full commits.
+Follow the [full dependency policy](docs/CONTRIBUTOR_REFERENCE.md#dependencies) before an update.
 
 ## Reporting problems
 
-A suspected security problem never goes in a public issue. Follow
-[the security policy](SECURITY.md), including for silent loss or corruption of reading progress.
-
-For other questions and problems, see [the support guide](SUPPORT.md).
+Report suspected security problems or silent data loss through [the security policy](SECURITY.md),
+never a public Issue. Use [support](SUPPORT.md) for other problems.
 
 ## Conduct
 
-[The code of conduct](CODE_OF_CONDUCT.md) applies throughout the repository.
+Follow the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## Who decides
 
-The sole maintainer makes roadmap, release, and moderation decisions.
-[The governance guide](GOVERNANCE.md) explains the process and where decisions are recorded.
+The sole maintainer decides. [Governance](GOVERNANCE.md) explains how decisions are recorded.
 
 ## On-demand workflow skills
 
-Use these focused skills when their task matches. They guide a bounded workflow; repository gates,
-permissions, and approval rules remain authoritative.
-
-- [Diagnose CI](.github/skills/diagnose-ci/SKILL.md): "Use diagnose-ci to explain why this pull
-  request run was cancelled."
-- [Verify UI change](.github/skills/verify-ui-change/SKILL.md): "Use verify-ui-change to check the
-  affected desktop and Android owners for this dialog change."
-- [Deliver pull request](.github/skills/deliver-pr/SKILL.md): "Use deliver-pr to prepare this
-  completed change for review without merging it."
-- [Refresh store assets](.github/skills/refresh-store-assets/SKILL.md): "Use refresh-store-assets
-  to prepare the Windows listing screenshots for review."
-- [Update dependencies](.github/skills/update-dependencies/SKILL.md): "Use update-dependencies to
-  update this requested action pin with its release evidence."
-
-For reading-list delivery, use [New reading list](.github/skills/new-reading-list/SKILL.md). For
-release preparation, use [Prepare release](.github/skills/prepare-release/SKILL.md).
+Coding agents can use the [task-specific workflow skills](docs/CONTRIBUTOR_REFERENCE.md#on-demand-workflow-skills).
+They do not replace the repository's checks or the maintainer's approval.

@@ -31,6 +31,8 @@ import { shortcutAllowed } from '../lib/shortcuts.js';
 import { earlierIssueIds } from '../lib/reorientation.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 import { paintGlance } from '../lib/progressGlance.js';
+import { editionRelations } from '../lib/collectedEditions.js';
+import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -842,6 +844,12 @@ export function createReadingView({
       // Read the local day once so every row in this pass is judged against one cacheable value.
       const today = localDayString();
       const items = all.filter((item) => matchesReadingFilter(filter, item));
+      if (items.some((item) => editionRelations(list.catalogId, item).length)) {
+        if (!rowCache.has('edition-credit')) {
+          rowCache.set('edition-credit', { node: el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]) });
+        }
+        desired.push(rowCache.get('edition-credit').node);
+      }
 
       // Edition progress is computed from the full list, not the filtered subset, so the same book
       // does not report a different total when the reader changes filters.
@@ -893,7 +901,7 @@ export function createReadingView({
         const rowKey = rowCacheKey(item, currentId, today, getSettings().covers);
         const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
         const entry = rowCache.get(item.issueId);
-        const cached = entry?.readerKey === readerKey ? entry : null;
+        const cached = entry?.readerKey === readerKey && entry.catalogId === list.catalogId ? entry : null;
         if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
 
         const override = item.override;
@@ -955,6 +963,7 @@ export function createReadingView({
               item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,
               ymd(item.onSale) ? el('span', { text: ymd(item.onSale) }) : null,
             ]),
+            collectedEditionLabels(el, list.catalogId, item),
             el('button', {
               type: 'button',
               class: `rnote${item.note ? ' has-note' : ''}`,
@@ -967,7 +976,7 @@ export function createReadingView({
           ]),
           issueRowActions(item, id, expanded),
         ]);
-        rowCache.set(item.issueId, { key: rowKey, readerKey, node });
+        rowCache.set(item.issueId, { key: rowKey, readerKey, catalogId: list.catalogId, node });
         desired.push(node);
       }
       if (items.length !== all.length) {

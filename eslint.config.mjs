@@ -152,6 +152,7 @@ export default [
       'scripts/browser-preview-scroll-452.mjs',
       'scripts/browser-reading-list-choices.mjs',
       'scripts/browser-source-credits.mjs',
+      'scripts/browser-collected-editions.mjs',
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
       'scripts/browser-ultimate-spider-man.mjs',

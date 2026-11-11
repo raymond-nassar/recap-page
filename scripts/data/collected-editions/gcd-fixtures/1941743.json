@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1941743/?format=json",
+  "retrievedAt": "2026-11-10T19:35:10.125Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1941743/?format=json",
+    "series_name": "Asgardians of the Galaxy (2019 series)",
+    "descriptor": "1 - The Infinity Armada",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "The Infinity Armada",
+    "publication_date": "2019",
+    "key_date": "2019-03-27",
+    "page_count": "116.000",
+    "isbn": "978-1-302-91471-4",
+    "notes": "Collects Asgardians of the Galaxy (Marvel, 2018 series) #1-5.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/142951/?format=json",
+    "story_set": []
+  }
+}

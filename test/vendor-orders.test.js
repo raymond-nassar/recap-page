@@ -11,7 +11,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { digestJson } from '../scripts/lib/chapter-orders.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { packetDigestFor, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
+import { digestCanonicalJson, packetDigestFor, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { writeOutputsAtomically } from '../scripts/vendor-orders.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
@@ -20,6 +20,18 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 function writeFixture(rootPath) {
   cpSync(path.join(root, 'scripts'), path.join(rootPath, 'scripts'), { recursive: true });
   cpSync(path.join(root, 'src', 'js'), path.join(rootPath, 'src', 'js'), { recursive: true });
+  const creditModule = path.join(rootPath, 'scripts', 'lib', 'source-credit-revisions.mjs');
+  const moduleText = readFileSync(creditModule, 'utf8');
+  const fixtureText = moduleText.replace(
+    /export const REVIEWED_CREDIT_DIGESTS = Object\.freeze\(\[[\s\S]*?\]\);/,
+    'export const REVIEWED_CREDIT_DIGESTS = Object.freeze([]);',
+  );
+  assert.notEqual(fixtureText, moduleText, 'Fixture must replace the reviewed credit history.');
+  writeFileSync(creditModule, fixtureText);
+  writeFileSync(path.join(rootPath, 'scripts', 'data', 'source-credit-revisions.json'),
+    JSON.stringify({ schemaVersion: 1, entries: [] }));
+  writeFileSync(path.join(rootPath, 'scripts', 'data', 'source-credit-revisions.lock.json'),
+    JSON.stringify({ schemaVersion: 1, digests: [] }));
   writeFileSync(path.join(rootPath, 'package.json'), '{"type":"module"}\n');
   const data = path.join(rootPath, 'src', 'data');
   const orders = path.join(data, 'orders');
@@ -74,6 +86,38 @@ function writeMetadataCache(rootPath, records) {
     }));
   }
   return cache;
+}
+
+function addFixtureCredit(rootPath) {
+  const credit = {
+    id: 'atomic-order',
+    file: 'atomic_order.json',
+    before: { source: 'https://example.test/atomic-order', section: null },
+    after: { source: 'https://example.test/reviewed', section: 'Reviewed section' },
+    sourceOrigin: 'Fixture source',
+    sourceLicense: null,
+    evidence: [{
+      url: 'https://example.test/reviewed',
+      section: 'Reviewed section',
+      method: 'A reviewed fixture sequence.',
+      retrieved: '2026-11-10',
+      record: 'scripts/data/owner-selections/atomic-order.json',
+    }],
+    approval: 'https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248',
+  };
+  const digests = [digestCanonicalJson(credit)];
+  const modulePath = path.join(rootPath, 'scripts', 'lib', 'source-credit-revisions.mjs');
+  const source = readFileSync(modulePath, 'utf8');
+  assert.ok(source.includes('export const REVIEWED_CREDIT_DIGESTS = Object.freeze([]);'));
+  writeFileSync(modulePath, source.replace(
+    'export const REVIEWED_CREDIT_DIGESTS = Object.freeze([]);',
+    `export const REVIEWED_CREDIT_DIGESTS = Object.freeze(${JSON.stringify(digests)});`,
+  ));
+  writeFileSync(path.join(rootPath, 'scripts', 'data', 'source-credit-revisions.json'),
+    JSON.stringify({ schemaVersion: 1, entries: [credit] }));
+  writeFileSync(path.join(rootPath, 'scripts', 'data', 'source-credit-revisions.lock.json'),
+    JSON.stringify({ schemaVersion: 1, digests }));
+  return credit;
 }
 
 function writeRefusedCacheRecord(cache, id, overrides = {}) {
@@ -614,6 +658,127 @@ test('a later vendor commit rename restores every final output', async (t) => {
     readdirSync(fixture).filter((name) => /\.(?:tmp|backup)-/.test(name)),
     [],
   );
+});
+
+test('a revised batch reports incomplete recovery and preserves its backups', async (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-recovery-failure-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  const files = ['first.json', 'second.json', 'catalog.json'].map((name) => path.join(fixture, name));
+  for (const file of files) writeFileSync(file, 'original');
+  let count = 0;
+  await assert.rejects(writeOutputsAtomically(files.map((file) => ({ path: file, content: 'revised' })), {
+    replaceFile: async (source, destination) => {
+      if (++count === 3) throw new Error('forced commit failure');
+      renameSync(source, destination);
+    },
+    restoreFile: async () => { throw new Error('forced recovery failure'); },
+  }), /recovery was incomplete/);
+  assert.equal(readdirSync(fixture).filter((name) => name.includes('.backup-')).length, 3);
+});
+
+test('a revised batch reports cleanup failure as a committed result', async (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cleanup-failure-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  const files = ['first.json', 'second.json', 'catalog.json'].map((name) => path.join(fixture, name));
+  for (const file of files) writeFileSync(file, 'original');
+  await assert.rejects(writeOutputsAtomically(files.map((file) => ({ path: file, content: 'revised' })), {
+    cleanup: async () => [new Error('forced cleanup failure')],
+  }), /commit succeeded but temporary cleanup failed/);
+  for (const file of files) assert.equal(readFileSync(file, 'utf8'), 'revised');
+});
+
+test('catalog-only applies revised credit atomically and is byte-stable', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-credit-catalog-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeCatalogGapFixture(fixture);
+  const credit = addFixtureCredit(fixture);
+  const data = path.join(fixture, 'src', 'data');
+  const before = JSON.parse(readFileSync(path.join(data, credit.file), 'utf8'));
+  const run = () => spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--catalog-only'], {
+    cwd: fixture, encoding: 'utf8',
+  });
+  const first = run();
+  assert.equal(first.status, 0, first.stderr);
+  const files = [credit.file, 'catalog.json', 'rated-guide-index.json'];
+  const bytes = files.map((file) => readFileSync(path.join(data, file)));
+  const revised = JSON.parse(bytes[0]);
+  const card = JSON.parse(bytes[1]).lists.find(({ id }) => id === credit.id);
+  assert.deepEqual(revised.items, before.items);
+  assert.equal(revised.generatedAt, before.generatedAt);
+  for (const value of [revised, card]) {
+    assert.equal(value.source, credit.after.source);
+    assert.equal(value.sourceSection, credit.after.section);
+    assert.equal(value.sourceOrigin, credit.sourceOrigin);
+  }
+  const second = run();
+  assert.equal(second.status, 0, second.stderr);
+  files.forEach((file, index) => assert.deepEqual(readFileSync(path.join(data, file)), bytes[index]));
+  writeFileSync(path.join(data, 'rated-guide-index.json'), '{invalid');
+  const repair = run();
+  assert.equal(repair.status, 0, repair.stderr);
+  assert.match(repair.stderr, /Replacing invalid derived output/);
+  assert.deepEqual(readFileSync(path.join(data, 'rated-guide-index.json')), bytes[2]);
+  const bad = JSON.parse(bytes[0]);
+  bad.sourceSection = null;
+  writeFileSync(path.join(data, credit.file), JSON.stringify(bad));
+  const invalidBytes = files.map((file) => readFileSync(path.join(data, file)));
+  const invalid = run();
+  assert.notEqual(invalid.status, 0);
+  assert.match(invalid.stderr, /published section/);
+  files.forEach((file, index) => assert.deepEqual(readFileSync(path.join(data, file)), invalidBytes[index]));
+});
+
+test('selected metadata-cache vendoring applies a reviewed credit without fetching', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-credit-cache-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  setFixtureCoverIssue(fixture, 1);
+  const credit = addFixtureCredit(fixture);
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  const hook = path.join(fixture, 'no-fetch.mjs');
+  writeFileSync(hook, "globalThis.fetch = () => { throw new Error('unexpected network request'); };\n");
+  const result = spawnSync(process.execPath,
+    ['--import', pathToFileURL(hook).href, 'scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+    { cwd: fixture, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const data = path.join(fixture, 'src', 'data');
+  for (const value of [
+    JSON.parse(readFileSync(path.join(data, credit.file), 'utf8')),
+    JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8')).lists[0],
+  ]) {
+    assert.equal(value.source, credit.after.source);
+    assert.equal(value.sourceSection, credit.after.section);
+  }
+});
+
+test('a skipped order receives its reviewed credit during a different selected build', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-credit-skipped-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeCatalogGapFixture(fixture);
+  const credit = addFixtureCredit(fixture);
+  const data = path.join(fixture, 'src', 'data');
+  const manifestPath = path.join(data, 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  manifest.lists.push({
+    ...manifest.lists[0],
+    id: 'selected-peer', name: 'Selected Peer', sourceFile: 'selected-peer.md',
+    sourcePage: 'https://example.test/selected-peer', out: 'selected_peer.json', coverIssueId: 1,
+  });
+  writeFileSync(manifestPath, JSON.stringify(manifest));
+  writeFileSync(path.join(data, 'orders', 'selected-peer.md'),
+    '- [ ] [Atomic Order #1](https://www.marvel.com/comics/issue/1/atomic_order_1)\n');
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  const result = spawnSync(process.execPath,
+    ['scripts/vendor-orders.mjs', '--only=selected-peer', `--metadata-cache=${cache}`],
+    { cwd: fixture, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const payload = JSON.parse(readFileSync(path.join(data, credit.file), 'utf8'));
+  const card = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8')).lists
+    .find(({ id }) => id === credit.id);
+  assert.equal(payload.source, credit.after.source);
+  assert.equal(payload.sourceSection, credit.after.section);
+  assert.equal(card.source, credit.after.source);
+  assert.equal(card.sourceSection, credit.after.section);
 });
 
 test('catalog-only expands a noncatalog parent into ordinary children, a path, and overlaps', (t) => {

@@ -113,3 +113,14 @@ that a new feature would be useful.
 There is no succession plan, backing organisation, or second maintainer. If work stops, the code
 and decision records remain available. Anyone taking it on should read
 [the license](LICENSE) and [data provenance](docs/DATA_PROVENANCE.md) to understand what can be reused.
+
+## Claiming labeled work
+
+The maintainer chooses which Issues get **good first issue** or **help wanted**.
+Anyone with a human GitHub account may claim one by commenting `/take` on the open Issue.
+The assignment workflow has Issue write permission only and assigns the commenter only if
+nobody is assigned yet. It does not grant repository write access or change who decides scope,
+reviews work or merges pull requests. See [how to contribute](CONTRIBUTING.md#before-you-write-anything).
+
+There is no per-person claim limit: one account can claim every eligible Issue. The maintainer
+can unassign them and remove the label, or block an abusive account.

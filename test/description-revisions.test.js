@@ -8,6 +8,8 @@ import {
 } from '../scripts/lib/description-revisions.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { digestJson } from '../scripts/lib/chapter-orders.mjs';
+import { digestCanonicalJson } from '../scripts/lib/cbh-inventory.mjs';
+import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mjs';
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
@@ -70,6 +72,28 @@ test('planning stops on unknown copy or changed comics instead of overwriting th
   assert.throws(() => planDescriptionRevisions({
     revisions, manifest, payloadTexts: new Map([[FILE, `${JSON.stringify(payload, null, 2)}\n`]]),
   }), /non-description payload changed/);
+});
+
+test('historical description digests accept only the recorded current credit inverse', async () => {
+  const id = 'mcu-prep-doctor-strange-2016';
+  const file = 'mcu_prep_doctor_strange_2016.json';
+  const manifest = await json('src/data/curated-lists.json');
+  const payload = await json(`src/data/${file}`);
+  const { description: originalDescription, ...original } = sourceCreditRevisions.undo(payload, file);
+  const edit = describeDescriptionRevision({
+    id, file, before: payload.description, after: AFTER, support: 'Fixture support line.',
+  }, payload);
+  assert.equal(originalDescription, payload.description);
+  edit.nonDescriptionSha256 = digestCanonicalJson(original);
+  const revisions = createDescriptionRevisions(sealDescriptionRevisions({ issue: 1075, entries: [edit] }));
+  const plan = (value) => planDescriptionRevisions({
+    revisions, manifest, payloadTexts: new Map([[file, `${JSON.stringify(value, null, 2)}\n`]]),
+  });
+  const output = plan(payload).payloads[0].content;
+  assert.equal(JSON.parse(output).source, payload.source);
+  assert.equal(JSON.parse(output).description, AFTER);
+  assert.throws(() => plan({ ...payload, source: 'https://example.test/other' }), /published credit is not latest/);
+  assert.throws(() => plan({ ...payload, items: [] }), /non-description payload changed/);
 });
 
 test('historical checks replay only the exact recorded inverse', async () => {

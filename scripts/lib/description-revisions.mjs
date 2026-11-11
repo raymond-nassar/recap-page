@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { digestCanonicalJson } from './cbh-inventory.mjs';
 import { firstSentence } from '../../src/js/lib/catalog.js';
 import { digestJson } from './chapter-orders.mjs';
+import { sourceCreditRevisions } from './source-credit-revisions.mjs';
 
 const ENTRY_KEYS = ['after', 'before', 'file', 'id', 'nonDescriptionSha256', 'sources', 'support'];
 const HEADER = /^ {2}"description": .+,\r?$/gm;
@@ -224,6 +225,7 @@ export const descriptionRevisions = createDescriptionRevisions(
 );
 
 export function describeDescriptionRevision({ id, file, before, after, support, sources = [] }, payload) {
+  sourceCreditRevisions.assertLatest(payload, file);
   const { description, ...rest } = payload;
   assert.equal(payload.id, id);
   assert.equal(description, before, `${id}: the revision must start from the current copy.`);
@@ -248,10 +250,14 @@ export function planDescriptionRevisions({ revisions, manifest, payloadTexts }) 
     const text = payloadTexts.get(edit.file);
     assert.equal(typeof text, 'string', `${edit.file}: payload text is missing.`);
     const payload = JSON.parse(text);
-    const { description, ...rest } = payload;
+    sourceCreditRevisions.assertLatest(payload, edit.file);
+    const { description, ...current } = payload;
+    const { description: originalDescription, ...original } = sourceCreditRevisions.undo(payload, edit.file);
     assert.equal(payload.id, edit.id);
     assert.ok([edit.before, edit.after].includes(description), `${edit.id}: unknown payload copy.`);
-    assert.equal(digestCanonicalJson(rest), edit.nonDescriptionSha256, `${edit.id}: non-description payload changed.`);
+    assert.equal(originalDescription, description);
+    assert.ok([digestCanonicalJson(current), digestCanonicalJson(original)].includes(edit.nonDescriptionSha256),
+      `${edit.id}: non-description payload changed.`);
     const header = `  "description": ${JSON.stringify(description)},`;
     assert.equal((text.match(HEADER) ?? []).length, 1, `${edit.file}: expected one top-level description.`);
     assert.ok(text.includes(header), `${edit.file}: description header is not in canonical form.`);

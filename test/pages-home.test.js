@@ -598,6 +598,7 @@ test('the public question disclosure is complete before the form link', () => {
     ['PRIVACY.md', readFileSync(join(ROOT, 'PRIVACY.md'), 'utf8')],
     ['SECURITY.md', readFileSync(join(ROOT, 'SECURITY.md'), 'utf8')],
     ['docs/ARCHITECTURE.md', readFileSync(join(ROOT, 'docs', 'ARCHITECTURE.md'), 'utf8')],
+    ['docs/ARCHITECTURE_REFERENCE.md', readFileSync(join(ROOT, 'docs', 'ARCHITECTURE_REFERENCE.md'), 'utf8')],
     ['docs/MAINTAINING.md', readFileSync(join(ROOT, 'docs', 'MAINTAINING.md'), 'utf8')],
     ['CHANGELOG.md', readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8')],
   ];
