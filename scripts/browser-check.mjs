@@ -11069,7 +11069,7 @@ const SCENARIOS = [
         readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'),
       ]);
       await page.evaluate(adapter);
-      for (const [width, scale] of [[1280, 1], [412, 2]]) {
+      for (const [width, scale] of [[1032, 1], [1032, 53 / 17], [412, 2]]) {
         await page.setViewport({ width, height: 915 });
         await page.evaluate((value) => document.documentElement.style.setProperty('--ios-text-scale', value), String(scale));
         await page.$eval('#form-search label[for="search-q"]', (label) => label.click());
@@ -11106,6 +11106,40 @@ const SCENARIOS = [
         t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,
           hint.visible && hint.hiddenAX && hint.described && fieldAX?.description?.includes(hint.text),
           JSON.stringify({ hint, fieldAX }));
+        await page.$eval('#search-list-filters', (node) => { node.open = true; });
+        const selectLabels = [];
+        for (const id of ['search-mode', 'search-genre', 'search-tone', 'search-character',
+          'search-writer', 'search-kind', 'search-year', 'search-source']) {
+          const selector = `label[for="${id}"]`;
+          const before = await page.$eval(`#${id}`, (node) => node.value);
+          await page.$eval(selector, (node) => node.click());
+          let focusesControl = await page.evaluate((id) => document.activeElement?.id === id, id);
+          const target = await page.$eval(selector, (node) => ({
+            role: node.getAttribute('role'), name: node.getAttribute('aria-label'),
+            width: node.getBoundingClientRect().width, height: node.getBoundingClientRect().height,
+          }));
+          if (target.role === 'button') {
+            for (const key of ['Enter', 'Space']) {
+              await page.focus(selector);
+              await page.keyboard.press(key);
+              focusesControl = focusesControl && await page.evaluate((id) => document.activeElement?.id === id, id);
+            }
+          }
+          const handle = await page.$(selector);
+          const ax = await page.accessibility.snapshot({ root: handle });
+          await handle.dispose();
+          const field = await page.$(`#${id}`);
+          const fieldAX = await page.accessibility.snapshot({ root: field });
+          await field.dispose();
+          selectLabels.push({ id, target, ax, fieldAX, focusesControl,
+            unchanged: before === await page.$eval(`#${id}`, (node) => node.value) });
+        }
+        t.check(`all eight iOS Search select labels are full-sized named actions at ${width}px and ${scale}x text`,
+          selectLabels.every(({ target, ax, fieldAX, focusesControl, unchanged }) =>
+            target.width >= 44 && target.height >= 44 && target.role === 'button'
+              && ax?.role === 'button' && ax.name === target.name && !ax.children?.length
+              && fieldAX?.name === target.name && focusesControl && unchanged),
+          JSON.stringify(selectLabels));
       }
     },
   },

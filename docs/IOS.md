@@ -200,8 +200,8 @@ The iOS overlay exposes each as one named button, with Enter and Space activatio
 and minimum height using the shared `--target` token rather than treating the text as passive.
 The associated restore warnings stay visibly unchanged and become descriptions of those buttons,
 not separate native text targets. The original file inputs keep their descriptions as well.
-Text that labels a control, or describes a rendered or accessibility-exposed control, cannot
-enter the passive guard.
+Search's query, mode and list-filter labels use the same full-sized named buttons; activation focuses the field without changing its value.
+Text that labels a control, or describes a rendered or accessibility-exposed control, cannot enter the passive guard.
 Breadcrumb links also use the shared `--target`
 token for their minimum width in the iOS overlay: the shared 24-pixel contract permits a narrow
 breadcrumb, while the native target needs 44 points. The overlay preserves the existing height.

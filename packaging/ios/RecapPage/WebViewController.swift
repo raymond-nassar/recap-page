@@ -166,7 +166,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '.app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
         + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label, '
-        + '#form-search label[for="search-q"], .mobile-link[data-view="add"], .home-guide-link, #reader-closure-faq';
+        + '#form-search label[for], #search-list-filters label[for], .mobile-link[data-view="add"], .home-guide-link, #reader-closure-faq';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-review, #btn-chero-deferred, '
@@ -187,7 +187,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
             const exposedChild = [...target.children].some(child => child.getAttribute('aria-hidden') !== 'true');
             if (!namedAction || (!unwrappedText && !exposedChild)) continue;
           }
-          if (target.matches('.backup-restore-label') || target.matches('#form-search label[for="search-q"]')) {
+          if (target.matches('.backup-restore-label') || target.matches('#form-search label[for], #search-list-filters label[for]')) {
             target.setAttribute('role', 'button');
             target.setAttribute('tabindex', '0');
             const input = document.getElementById(target.htmlFor);

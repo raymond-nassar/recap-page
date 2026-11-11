@@ -90,7 +90,7 @@
   line-height: max(var(--target), 1.5em);
 }
 
-:root #form-search label[for="search-q"] {
+:root #form-search label[for], :root #search-list-filters label[for] {
   min-height: var(--target);
   line-height: max(var(--target), 1.5em);
 }
