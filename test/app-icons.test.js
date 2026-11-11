@@ -148,12 +148,15 @@ test('the committed icons are what the generator draws', () => {
   }
 });
 
-test('the generated SVG is the favicon and rail mark, from the same source as the PNGs', () => {
+test('the generated SVG is the favicon, rail mark, About lockup and launcher mark, from the same source as the PNGs', () => {
   const html = readFileSync(join(SRC, 'index.html'), 'utf8');
+  const launcher = readFileSync(join(SRC, 'open.html'), 'utf8');
   assert.equal(readFileSync(svgPath, 'utf8').replace(/\r\n/g, '\n'), SVG_CONTENT);
   assert.match(html, /<link rel="icon" href="\.\/icons\/icon\.svg" type="image\/svg\+xml"/);
   assert.match(html, /<img class="mark" src="\.\/icons\/icon\.svg" alt="" aria-hidden="true"/);
-  assert.equal([...html.matchAll(/\.\/icons\/icon\.svg/g)].length, 2);
+  assert.match(html, /<img class="about-icon" src="\.\/icons\/icon\.svg" alt="" aria-hidden="true"/);
+  assert.equal([...html.matchAll(/\.\/icons\/icon\.svg/g)].length, 3);
+  assert.match(launcher, /<img class="mark" src="\.\/icons\/icon\.svg" alt="" aria-hidden="true"/);
   assert.match(SVG_CONTENT, /<rect x="8" y="5\.5" width="16" height="7\.5" rx="1\.625" fill="#ffffff"/);
   assert.match(SVG_CONTENT, /<polygon points="8,15\.5 16,15\.5 13\.25,26\.5 8,26\.5" fill="#ffffff"/);
   assert.match(SVG_CONTENT, /<polygon points="18,15\.5 24,15\.5 24,26\.5 15\.75,26\.5" fill="#9e71e6"/);

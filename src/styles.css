@@ -48,6 +48,7 @@
   --stroke-checkbox: 1.5px;
   --stroke-node: 4px;
   --stroke-node-halo: 5px;
+  --stroke-accent: 4px;
   /* Elevation. A role token exists only where a surface already plays that role with a shadow scaled
      by `--shadow-alpha`, which today is the rail's tooltip alone. Every other shadow keeps a token
      named for its surface until a later change gives that surface a role's scaled value. */
@@ -200,7 +201,17 @@
   --teal: #3fcfbb;
   --amber: #eab654;
   --blue: #7fb3ff;
+  /* The brand's decorative blue and red (#1208), the two colors the purple was mixed from. They decorate
+     and never report: `--blue` stays the color of links, focus and the current place, and the status
+     colors stay the only ones that say something went well or wrong. */
+  --brand-blue: #4d8dff;
+  --brand-red: #ff4d5a;
   --logo-fill: #7fb3ff;
+  /* The All read line (#874). Light mode takes the wordmark's own colors at the owner's request (#1208):
+     its Deep Purple lettering and Hot Pink outline. Dark mode keeps the masthead blue under a white outline,
+     because the purple measures about 2.4:1 on the dark card, under the 3:1 floor for large text. */
+  --cheer-fill: #7fb3ff;
+  --cheer-stroke: #fff;
   /* Channels for the Discover More cards (#872), one hue each beside the top row's purple, amber and
      teal: MCU Prep azure, Marvel Ages magenta and Young readers green. Unlike those three they are set
      per theme, because one value has to be a dim mid-tone to clear 3:1 on both themes' cards, and the
@@ -264,7 +275,11 @@
   --teal: #12695f;
   --amber: #6d4e08;
   --blue: #17509c;
+  --brand-blue: #1d4ed8;
+  --brand-red: #c8102e;
   --logo-fill: #0878e8;
+  --cheer-fill: #6d28d9;
+  --cheer-stroke: #ee0874;
   --azure-line: 31 108 176;
   --magenta-line: 189 36 123;
   --green-line: 59 123 31;
@@ -309,7 +324,11 @@
     --teal: #12695f;
     --amber: #6d4e08;
     --blue: #17509c;
+    --brand-blue: #1d4ed8;
+    --brand-red: #c8102e;
     --logo-fill: #0878e8;
+    --cheer-fill: #6d28d9;
+    --cheer-stroke: #ee0874;
     --azure-line: 31 108 176;
     --magenta-line: 189 36 123;
     --green-line: 59 123 31;
@@ -1519,7 +1538,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); background: var(--card-2);
 }
 .import-guide pre code { padding: 0; background: none; }
-.import-guide pre:focus-visible { outline: var(--focus-width) solid var(--accent-text); outline-offset: var(--focus-offset-code); }
+.import-guide pre:focus-visible { outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset-code); }
 #about-build { overflow-wrap: anywhere; }
 #view-about a, #hero-title { overflow-wrap: anywhere; }
 .field-disclosure { border-top: var(--stroke-1) solid var(--line); border-bottom: var(--stroke-1) solid var(--line); }
@@ -1758,7 +1777,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card);
 }
 .catalog-card[aria-current="step"] {
-  outline: var(--focus-width) solid var(--accent-text); outline-offset: var(--focus-offset);
+  outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset);
 }
 .catalog-card-main { display: flex; align-items: flex-start; gap: var(--space-5); padding: var(--space-5); }
 .catalog-card-text { min-width: 0; }
@@ -2236,7 +2255,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain;
   scroll-padding-top: calc(var(--dialog-head-height, 0px) + var(--space-4));
   scroll-padding-bottom: calc(var(--dialog-foot-height, 0px) + var(--space-4));
-  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2);
+  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2); border-top: var(--stroke-accent) solid var(--accent);
   border-radius: var(--radius-xl); padding: var(--space-7) var(--space-8);
 }
 .ask { width: min(30rem, calc(100vw - 2rem)); }
@@ -2940,11 +2959,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
    seams the masthead met there (#870), so it is twice the masthead's width to show as much outside. */
 .rg-done { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 600; }
 .wrapup-cheer {
-  margin: 0 0 var(--space-5); color: var(--logo-fill);
+  margin: 0 0 var(--space-5); color: var(--cheer-fill);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: var(--t-title-lg); font-weight: 900; letter-spacing: .035em; line-height: 1;
   text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: left center;
-  -webkit-text-stroke: 2px var(--on-accent); paint-order: stroke fill;
+  -webkit-text-stroke: 2px var(--cheer-stroke); paint-order: stroke fill;
   text-shadow: var(--text-shadow-offset); overflow-wrap: normal;
 }
 @media (forced-colors: active) {
@@ -3051,4 +3070,87 @@ select, input[type="search"], input[type="text"], input[type="url"] {
     outline: var(--focus-width) solid currentColor;
     outline-offset: calc(-1 * var(--focus-width));
   }
+}
+/* Brand accents (#1208). One accent color per component, and each color keeps one job: purple marks
+   what you act on and how far you have come, blue helps you find your way, and the brand red only
+   decorates a moment. The owner chose each placement from captures in both themes; the decision log
+   on #1208 holds every answer. All of it is decoration, so forced colors either drop it or draw it
+   in CanvasText, and nothing here moves. */
+
+/* Section headings carry a short bar under the words: purple where the page is about your reading,
+   blue on the Library, which is a place to find things. Painted as a background rather than a
+   pseudo-element, because a block ::after inside the flex row of `.sec-h` wrapped the heading. */
+#view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
+#view-library .sec-h > h2, #view-library .library-tools > h2 {
+  --heading-bar: var(--accent);
+  padding-bottom: var(--space-4);
+  background: linear-gradient(var(--heading-bar), var(--heading-bar)) no-repeat left bottom / 48px 3px;
+}
+#view-library .sec-h > h2, #view-library .library-tools > h2 { --heading-bar: var(--brand-blue); }
+
+/* The Data page's groups and the About page's topics are signposts, so they take a blue edge. The
+   danger zone's heading sits inside its own card rather than directly under a group, so it keeps
+   its red and never meets the blue. */
+#view-data .setgroup > h2, #view-about .card-static h3 {
+  border-inline-start: var(--stroke-3) solid var(--brand-blue); padding-inline-start: var(--space-4) !important;
+}
+
+/* Empty states point somewhere else, so the whole notice is blue: its glyph and a softened border. */
+.empty-state { border-color: rgb(from var(--brand-blue) r g b / 55%); }
+.empty-state .empty-glyph { color: var(--brand-blue); }
+
+/* Each Discover More category's own page takes its Home card's color as a top bar over a soft
+   wash, so the page is recognisably the one the card opened. The title keeps the text color: the
+   owner declined tinted titles. Other pages keep a plain header. */
+#view-catalog { --page-line: var(--accent-line); }
+#view-genres { --page-line: var(--amber-line); }
+#view-spotlights { --page-line: var(--teal-line); }
+#view-marvel-on-screen { --page-line: var(--azure-line); }
+#view-marvel-ages { --page-line: var(--magenta-line); }
+#view-young-readers { --page-line: var(--green-line); }
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head {
+  position: relative; padding: var(--space-6) var(--space-6) var(--space-5); border-radius: var(--radius-feature);
+  /* Bleeds into the page gutter, never narrower than this padding, so the title keeps the left
+     edge every other view's heading starts at (UX-21). */
+  margin-inline: calc(-1 * var(--space-6));
+  background: linear-gradient(145deg, rgb(var(--page-line) / 13%), transparent 10rem);
+}
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 4px;
+  border-radius: var(--radius-feature) var(--radius-feature) 0 0; background: rgb(var(--page-line));
+}
+
+/* Finishing a whole list is the one place the three brand colors meet: blue, purple and red across
+   the top of the wrap-up, only while the All read line shows and no completion-history problem is
+   being reported in the same card. */
+.completion-wrapup { position: relative; }
+#list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 4px;
+  border-top-left-radius: inherit; border-top-right-radius: inherit;
+  background: linear-gradient(90deg, var(--brand-blue), var(--accent), var(--brand-red));
+}
+
+/* The About page opens with the app's own icon, its wordmark in the theme's colorway and the
+   mission. The heading above it still names the page in text, so the images are decoration. */
+.about-lockup { display: grid; justify-items: center; text-align: center; gap: var(--space-4); padding: var(--space-4) 0 var(--space-7) !important; }
+.about-lockup .about-icon { width: 72px; height: 72px; }
+.about-lockup .about-wm { width: min(100%, 22rem); height: auto; }
+.about-lockup .about-wm--light { display: var(--wordmark-light); }
+.about-lockup .about-wm--dark { display: var(--wordmark-dark); }
+.about-lockup .about-mission { margin: 0; max-width: 34rem; color: var(--muted); font-size: var(--t-body); }
+@media (max-width: 600px) {
+  .about-lockup .about-wm { width: min(100%, 200px); }
+  .about-lockup .about-icon { width: 56px; height: 56px; }
+}
+
+@media (forced-colors: active) {
+  #view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
+  #view-library .sec-h > h2, #view-library .library-tools > h2 { --heading-bar: CanvasText; }
+  #view-data .setgroup > h2, #view-about .card-static h3 { border-inline-start-color: CanvasText; }
+  .empty-state { border-color: CanvasText; }
+  .empty-state .empty-glyph { color: CanvasText; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head { background: none; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before,
+  #list-wrap-up::before { background: CanvasText; }
+  .about-wm { display: none !important; }
 }

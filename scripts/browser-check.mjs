@@ -24907,7 +24907,7 @@ async function ux11Snapshot(page) {
       scheme: paint(document.documentElement, 'colorScheme'),
       paints: [paint(document.body, 'backgroundColor'), paint(document.body, 'color'),
         paint(p, 'color'), paint(fallback, 'color'), paint(document.querySelector('.mark'), 'backgroundColor'),
-        paint(document.querySelector('.mark'), 'color')],
+        (({ tagName, src } = {}) => (src ? `${tagName}:${new URL(src).pathname}` : null))(document.querySelector('.mark') ?? undefined)],
       animation: paint(document.querySelector('.mark'), 'animationName'),
       oldNodes: Boolean(h?.isConnected && p?.isConnected && fallback?.isConnected),
       main: { count: document.querySelectorAll('main').length,
@@ -25214,9 +25214,9 @@ async function runReaderLauncherFeedback(page, t) {
         measurePresentation(snapshot, 'missing-reference');
         const light = f.theme === 'light' || (!['dark', 'light'].includes(f.theme) && f.system !== 'dark');
         const paints = light ? ['rgb(250, 250, 255)', 'rgb(19, 19, 27)', 'rgb(92, 92, 110)',
-          'rgb(23, 80, 156)', 'rgb(109, 40, 217)', 'rgb(255, 255, 255)']
+          'rgb(23, 80, 156)', 'rgba(0, 0, 0, 0)', 'IMG:/icons/icon.svg']
           : ['rgb(17, 17, 23)', 'rgb(242, 242, 248)', 'rgb(145, 145, 164)',
-            'rgb(127, 179, 255)', 'rgb(138, 83, 225)', 'rgb(255, 255, 255)'];
+            'rgb(127, 179, 255)', 'rgba(0, 0, 0, 0)', 'IMG:/icons/icon.svg'];
         const expectedTheme = ['light', 'dark'].includes(f.theme) ? f.theme : null;
         ux11Receipt(page, t, `${f.id}:theme-and-missing`, { theme: expectedTheme, paints, scheme: light ? 'light' : 'dark',
           noReference: true, limitation: f.id === 'L05' }, snapshot,

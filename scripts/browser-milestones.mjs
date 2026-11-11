@@ -272,7 +272,7 @@ export const milestonePreferences = {
         const probe = document.createElement('i');
         document.body.append(probe);
         const resolve = (name) => { probe.style.color = `var(${name})`; return getComputedStyle(probe).color; };
-        const tokens = { logo: resolve('--logo-fill'), teal: resolve('--teal'), canvasText: (() => {
+        const tokens = { cheer: resolve('--cheer-fill'), teal: resolve('--teal'), canvasText: (() => {
           probe.style.color = 'CanvasText'; return getComputedStyle(probe).color;
         })() };
         probe.remove();
@@ -291,11 +291,11 @@ export const milestonePreferences = {
       t.check(`${label}: ${pass.reduce ? 'nothing moves' : 'each milestone has its moment'}`,
         pass.reduce ? moved === 0 : moved === 3, JSON.stringify({ sectionMoment, listMoment }));
       t.check(`${label}: ${pass.forced ? 'system colors, with no stroke or shadow, and the badge keeps its border'
-        : 'the line in the masthead color and the badge in the positive color'}`,
+        : 'the line in its own color and the badge in the positive color'}`,
       !!paint.cheer && !!paint.badge && (pass.forced
         ? paint.cheer.color === paint.tokens.canvasText && paint.cheer.stroke === '0px' && paint.cheer.shadow === 'none'
           && paint.badge.border === 'solid' && paint.badge.borderWidth === '1px'
-        : paint.cheer.color === paint.tokens.logo && paint.badge.color === paint.tokens.teal && paint.cheer.shadow !== 'none'),
+        : paint.cheer.color === paint.tokens.cheer && paint.badge.color === paint.tokens.teal && paint.cheer.shadow !== 'none'),
       JSON.stringify(paint));
       await undo();
     }
