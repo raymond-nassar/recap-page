@@ -45,8 +45,8 @@ export const PAGE_SOURCES = Object.freeze([
     destination: 'assets/wordmark.svg',
   }),
   Object.freeze({
-    source: 'pages/assets/wordmark-white.svg',
-    destination: 'assets/wordmark-white.svg',
+    source: 'pages/assets/wordmark-dark.svg',
+    destination: 'assets/wordmark-dark.svg',
   }),
 ]);
 

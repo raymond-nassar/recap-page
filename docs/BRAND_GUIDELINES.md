@@ -4,8 +4,8 @@ The [owner's adoption decisions](https://github.com/raymond-nassar/recap-page/is
 govern use of the designer's guide. Keep the original three-panel icon across the app, website
 favicon, installed apps and store icons, not the proposed lightning-bolt symbol or its combined
 lockup. The separate RECAP PAGE wordmark uses outlined SVG lettering: Deep Purple on light
-surfaces and White on dark surfaces, with its original Hot Pink outline and no background.
-Fixed purple and white assets are selected by the page's theme rules, including an explicit app theme.
+surfaces and Light Purple on dark surfaces, with its original Hot Pink outline and no background.
+Fixed Deep Purple and Light Purple assets are selected by the page's theme rules, including an explicit app theme.
 
 Keep clear space around each asset, assessed separately rather than copied from the rejected
 lockup's diagram. Resize proportionally; do not stretch, skew, rotate, blur, recolor or add shadows
@@ -16,8 +16,8 @@ would become illegible. Preserve plain-text names and the forced-colors text fal
 | Brand color | Value | Use |
 |---|---|---|
 | Deep Purple | `#6D28D9` | Original icon and light-surface wordmark lettering |
-| Light Purple | `#9E71E6` | Original icon detail |
-| White | `#FFFFFF` | Original icon detail and dark-surface wordmark lettering |
+| Light Purple | `#9E71E6` | Original icon detail and dark-surface wordmark lettering |
+| White | `#FFFFFF` | Original icon detail |
 | Hot Pink | `#EE0874` | Wordmark outline only |
 
 Never use Hot Pink for interface text, accents, buttons, links, focus rings, badges or backgrounds.

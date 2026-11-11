@@ -15683,7 +15683,7 @@ const SCENARIOS = [
       const checkWordmark = async (label) => {
         for (const theme of ['dark', 'light']) {
           await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
-          const file = theme === 'light' ? 'wordmark.svg' : 'wordmark-white.svg';
+          const file = theme === 'light' ? 'wordmark.svg' : 'wordmark-dark.svg';
           await page.waitForFunction((name) => {
             const image = document.querySelector('.site-name img');
             return image?.complete && image.naturalWidth === 1000 && image.currentSrc.endsWith(`/assets/${name}`);
@@ -26927,11 +26927,11 @@ SCENARIOS.push({
     await open(page, '/#/home');
     for (const [system, explicit, expected] of [
       ['dark', 'light', [109, 40, 217]],
-      ['dark', 'dark', [255, 255, 255]],
-      ['light', 'dark', [255, 255, 255]],
+      ['dark', 'dark', [158, 113, 230]],
+      ['light', 'dark', [158, 113, 230]],
       ['light', 'light', [109, 40, 217]],
       ['light', null, [109, 40, 217]],
-      ['dark', null, [255, 255, 255]],
+      ['dark', null, [158, 113, 230]],
     ]) {
       await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: system }]);
       await click(page, '.ri[data-view="data"]');
@@ -26944,7 +26944,7 @@ SCENARIOS.push({
       await page.$eval('#view-home', async (node) => {
         await Promise.all(node.getAnimations().map((animation) => animation.finished));
       });
-      const selector = expected[0] === 255 ? '.home-wordmark--dark' : '.home-wordmark--light';
+      const selector = expected[0] === 158 ? '.home-wordmark--dark' : '.home-wordmark--light';
       const image = await page.$(selector);
       const painted = decodePng(Buffer.from(await image.screenshot()));
       const counts = new Map();
