@@ -291,7 +291,7 @@ test('Search leads with one box while Browse by and two quiet links keep every o
 });
 
 test('an empty search offers deliberate manual entry through navigation without adding or fetching', () => {
-  const start = add.indexOf('  function renderResults(');
+  const start = add.indexOf('  const reportable =');
   const end = add.indexOf('\n  for (const config of searches)', start);
   assert.ok(start >= 0 && end > start);
   const notices = [];
@@ -300,6 +300,7 @@ test('an empty search offers deliberate manual entry through navigation without 
     $: () => ({ replaceChildren() {}, append() {} }),
     el: () => ({}),
     announce() {},
+    canReportComicStatus: () => true,
     refreshBuilders() {},
     selected: new Map(),
     nameEdited: false,
