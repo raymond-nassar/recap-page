@@ -2,11 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { digestCanonicalJson, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mjs';
+import { refreshMcuDescriptions } from '../scripts/refresh-mcu-descriptions.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import {
@@ -25,6 +28,7 @@ const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
 const root = fileURLToPath(new URL('..', import.meta.url));
 const hash = (value) => createHash('sha256').update(value.replace(/\r\n/g, '\n')).digest('hex');
+const serialized = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const expectedIds = [
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again', 'mcu-prep-thunderbolts',
   'mcu-prep-fantastic-four-first-steps', 'avengers-doomsday-secret-wars',
@@ -157,6 +161,74 @@ test('all thirty recommendations identify the reading benefit with exact current
     assert.equal(digestCanonicalJson(payload), edit.nonDescriptionSha256, edit.id);
     assert.ok(firstSentence(edit.after).length >= 90 && firstSentence(edit.after).length <= 140, edit.id);
     assert.doesNotMatch(edit.after, /[\u2013\u2014]/);
+  }
+});
+
+test('MCU description emitter preserves reviewed credits and rejects changed payloads', async (t) => {
+  const fixture = await mkdtemp(path.join(tmpdir(), 'mcu-description-credit-'));
+  t.after(() => rm(fixture, { recursive: true, force: true }));
+  const data = path.join(fixture, 'src', 'data');
+  await mkdir(data, { recursive: true });
+  const manifest = await json('src/data/curated-lists.json');
+  const discovery = await text('src/data/mcu-prep.json');
+  const targets = [
+    'mcu-prep-doctor-strange-2016',
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+  ];
+  const expectedPayloads = new Map();
+  for (const edit of mcuEditorial.entries) {
+    const entry = manifest.lists.find(({ id }) => id === edit.id);
+    assert.ok(entry, edit.id);
+    entry.description = edit.before;
+    const published = await json(`src/data/${edit.file}`);
+    sourceCreditRevisions.assertLatest(published, edit.file);
+    const historical = beforeIdentityPayload(edit.file, descriptionRevisions.undoEntry(
+      sourceCreditRevisions.undo(published, edit.file),
+    ));
+    const original = { ...historical };
+    delete original.description;
+    assert.equal(digestCanonicalJson(original), edit.nonDescriptionSha256, edit.id);
+    const current = sourceCreditRevisions.apply({ ...historical, description: edit.before }, edit.file);
+    if (targets.includes(edit.id)) {
+      const { description: currentDescription, ...currentData } = current;
+      assert.equal(currentDescription, edit.before);
+      assert.notEqual(edit.before, edit.after);
+      assert.notEqual(digestCanonicalJson(currentData), edit.nonDescriptionSha256, edit.id);
+      expectedPayloads.set(edit.id, { ...current, description: edit.after });
+    }
+    await writeFile(path.join(data, edit.file), serialized(current));
+  }
+  assert.equal(expectedPayloads.size, targets.length);
+  const manifestFile = path.join(data, 'curated-lists.json');
+  const discoveryFile = path.join(data, 'mcu-prep.json');
+  await writeFile(manifestFile, serialized(manifest));
+  await writeFile(discoveryFile, discovery);
+  const outputs = [manifestFile, discoveryFile, ...mcuEditorial.entries.map(({ file }) => path.join(data, file))];
+
+  const result = await refreshMcuDescriptions({ root: fixture });
+  assert.equal(result.descriptions, mcuEditorial.entries.length);
+  for (const id of targets) {
+    const edit = mcuEditorial.entries.find((candidate) => candidate.id === id);
+    const output = JSON.parse(await readFile(path.join(data, edit.file), 'utf8'));
+    assert.deepEqual(output, expectedPayloads.get(id), `${id}: only the description may change`);
+  }
+
+  for (const id of targets) {
+    const edit = mcuEditorial.entries.find((candidate) => candidate.id === id);
+    const file = path.join(data, edit.file);
+    const original = await readFile(file, 'utf8');
+    for (const [field, value, reason] of [
+      ['source', 'https://example.test/unapproved', /published credit is not latest/],
+      ['generatedAt', '2099-01-01T00:00:00.000Z', /non-description payload changed/],
+    ]) {
+      const changed = { ...JSON.parse(original), [field]: value };
+      await writeFile(file, serialized(changed));
+      const before = await Promise.all(outputs.map((output) => readFile(output)));
+      await assert.rejects(() => refreshMcuDescriptions({ root: fixture }), reason, `${id}: ${field}`);
+      const after = await Promise.all(outputs.map((output) => readFile(output)));
+      assert.deepEqual(after, before, `${id}: rejected ${field} must not write any output`);
+    }
+    await writeFile(file, original);
   }
 });
 
