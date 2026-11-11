@@ -951,7 +951,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1265-1269`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1266-1270`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -996,9 +996,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:696` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:763` and the issue-details view at
 `src/js/views/issue.js:102`. The function behind both already answers for the absence at
-`src/js/views/reading.js:93-104`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:94-105`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -3053,7 +3053,7 @@ shape (`test/helpers/owner-delivery-contract.mjs:111-139`).
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:243-252`,
-`src/js/views/reading.js:57-59`, `src/js/views/reading.js:66-75`). It keeps `metadataSourceKind` the
+`src/js/views/reading.js:58-60`, `src/js/views/reading.js:67-76`). It keeps `metadataSourceKind` the
 same way, only as the closed value and only beside an owner-confirmed identity, so a supplemented
 comic's badge hint, gap sentence and catalog label credit marvel.com and the Marvel Fandom wiki
 instead of claiming it has no cover. The actor, date, URL and confirmation

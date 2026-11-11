@@ -91,7 +91,7 @@ test('one shared renderer integrates Back with breadcrumbs without adding it to 
   assert.match(main, /if \(existing\?\.dataset\.trail === trailKey\) return;/);
   assert.match(main, /if \(!existing\) head\.before\(breadcrumb\);/);
   assert.match(main, /const backAvailable = navigationPosition\.canGoBack && !isRoot;/);
-  assert.match(main, /syncHash\(\{ push \}\);\s*renderBreadcrumbs\(\);/);
+  assert.match(main, /syncHash\(\{ push \}\);\s*if \(next === 'read'\) rememberAbout\(\);\s*renderBreadcrumbs\(\);/);
   assert.match(main, /if \(\(!trail\.length && !backAvailable\) \|\| \(isRoot && isNarrow\)\)/);
   assert.match(main, /const issueView = createIssueView\(\{[\s\S]*?\n\s*renderBreadcrumbs,[\s\S]*?\n\}\);/);
   assert.doesNotMatch(html, /<dialog[^>]*>[\s\S]*?class="breadcrumb"/);

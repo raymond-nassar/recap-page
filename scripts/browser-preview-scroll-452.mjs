@@ -54,14 +54,15 @@ async function stationaryControl(page) {
   });
 }
 
-async function checkFocusedControl(page, t, name) {
-  const state = await page.evaluate(() => {
+async function checkFocusedControl(page, t, name, selector = null) {
+  const state = await page.evaluate((expected) => {
     const e = document.activeElement;
     const r = e.getBoundingClientRect();
     const d = document.querySelector('#preview').getBoundingClientRect();
     const b = e.closest('#preview-body')?.getBoundingClientRect();
     return {
       key: e.dataset.key, act: e.dataset.act, id: e.id, tag: e.tagName,
+      expected: !expected || e.matches(expected),
       focus: e.matches(':focus-visible'), outline: getComputedStyle(e).outlineStyle,
       visible: r.width > 0 && r.height > 0
         && r.left >= Math.max(0, d.left, b?.left ?? 0) - 1
@@ -69,8 +70,8 @@ async function checkFocusedControl(page, t, name) {
         && r.right <= Math.min(innerWidth, d.right, b?.right ?? innerWidth) + 1
         && r.bottom <= Math.min(innerHeight, d.bottom, b?.bottom ?? innerHeight) + 1,
     };
-  });
-  t.check(name, state.focus && state.outline !== 'none' && state.visible, JSON.stringify(state));
+  }, selector);
+  t.check(name, state.expected && state.focus && state.outline !== 'none' && state.visible, JSON.stringify(state));
 }
 
 async function openPreview(page) {
@@ -171,9 +172,15 @@ export const previewScroll452 = {
       }
       await page.focus('#preview-close');
       await page.keyboard.press('Tab');
-      t.check(`${cfg.name}: Source precedes the issue list or Add action`,
-        await page.evaluate(() => document.activeElement.matches('#preview-source a')));
+      t.check(`${cfg.name}: About is expanded and its summary comes before the sources`,
+        await page.evaluate(() => document.querySelector('#preview-about').open
+          && document.activeElement.matches('#preview-about > summary')));
       await page.keyboard.press('Tab');
+      t.check(`${cfg.name}: Source precedes the issue list or Add action`,
+        await page.evaluate(() => document.activeElement.matches('#preview-source a:not(.list-source-link)')));
+      await page.keyboard.press('Tab');
+      t.check(`${cfg.name}: the curator pill follows full credit before the issue list`,
+        await page.evaluate(() => document.activeElement.matches('#preview-source .list-source-link')));
       const stationary = await stationaryControl(page);
       t.check(`${cfg.name}: the next Preview control settles with its full focus outline visible`,
         stationary.settled && stationary.last.same && stationary.last.focusVisible
@@ -193,7 +200,13 @@ export const previewScroll452 = {
       await page.focus('#preview-close');
       await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
-      await checkFocusedControl(page, t, `${cfg.name}: first issue boundary focus`);
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+      // Lists with collected-edition evidence credit that source above the issues; Tab past its links.
+      const creditLinks = await page.$$eval('#preview-body .edition-credit a', (a) => a.length);
+      for (let i = 0; i < creditLinks; i += 1) await page.keyboard.press('Tab');
+      await checkFocusedControl(page, t, `${cfg.name}: first issue boundary focus`,
+        '#preview-body .preview-issue-link');
       const links = await page.$$('#preview-body .preview-issue-link');
       await links.at(-1).focus();
       await checkFocusedControl(page, t, `${cfg.name}: last issue boundary focus`);

@@ -293,9 +293,10 @@
                 <div class="sub" id="order-sub">Curated Reading Lists, tracked locally.</div>
                 <!-- The order's own blurb. It used to be welded onto the end of the subtitle above,
                      which is a line with room for a fact and not for three sentences. -->
-                <details class="setting-more order-desc" id="order-desc" hidden>
-                  <summary>About this order</summary>
+                <details class="setting-more order-desc" id="order-desc" open hidden>
+                  <summary>About this list</summary>
                   <p class="rail-hint" id="order-desc-text"></p>
+                  <div id="order-source"></div>
                 </details>
               </div>
               <div class="headright">
@@ -1439,8 +1440,11 @@
         <button type="button" class="quiet" id="preview-close">Close</button>
       </div>
       <p class="result-meta" id="preview-meta"></p>
-      <p class="rail-hint" id="preview-desc"></p>
-      <div id="preview-source"></div>
+      <details class="setting-more order-desc" id="preview-about" open>
+        <summary>About this list</summary>
+        <p class="rail-hint" id="preview-desc"></p>
+        <div id="preview-source"></div>
+      </details>
       <!-- Where a story can be read more than one way, the choice between its paths lives here
            rather than on the shelf card. Measured at 1280x900: the chooser cost 123px on a 277px
            card and took the grid from 1149px to 1458px, and the labels are authored prose that
