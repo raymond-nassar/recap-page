@@ -128,6 +128,14 @@ test('empty local scopes offer optional names once and an online Top choice stay
   assert.deepEqual(h.lookups, [], 'choosing a name is not an implicit comic lookup, even online in Top');
 });
 
+test('comics found for the typed title withdraw a Top suggestion', async () => {
+  const h = harness({ loadCatalog: emptyCatalog, nameResults: emptyNames });
+  await h.view.update('avengres');
+  assert.equal(h.nodes.suggestions.hidden, false);
+  h.comicStatus('complete', 'avengres', 2);
+  assert.equal(h.nodes.suggestions.hidden, true);
+});
+
 test('suggestions require zero matches in the selected scope, all local scopes for Top, and never Comics', async () => {
   const h = harness({
     loadCatalog: emptyCatalog,

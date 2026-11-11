@@ -132,6 +132,8 @@ export function createSearchListsView({
 
   function suggestions() {
     if (!settled || !terms() || scope === 'comics') return [];
+    // Comics found for the typed title show the spelling was a real one, so Top stops doubting it.
+    if (scope === 'top' && comicsHere() && comic.phase === 'complete' && comic.count > 0) return [];
     const kinds = scope === 'top' ? ['lists', 'series', 'creators'] : [scope];
     if (kinds.some((kind) => found.error[kind] || total(kind) > 0)) return [];
     const unique = new Map();
