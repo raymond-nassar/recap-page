@@ -6,6 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { digestCanonicalJson, withoutDiscoveryTags } from '../scripts/lib/cbh-inventory.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
+import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import {
@@ -96,7 +97,8 @@ test('MCU description history inverts only exact current copy and preserves ever
     assert.equal(hash(originalText), edit.payloadLfSha256, `${edit.id}: complete original payload bytes`);
     assert.equal(digestCanonicalJson(JSON.parse(originalText)), edit.payloadSha256, edit.id);
     assert.deepEqual(JSON.parse(originalText), {
-      ...beforeIdentityPayload(edit.file, JSON.parse(payloadText)), description: edit.before,
+      ...beforeIdentityPayload(edit.file, sourceCreditRevisions.undo(JSON.parse(payloadText), edit.file)),
+      description: edit.before,
     });
     assert.equal(hash(historicalMcuDescriptionPayloadText(
       edit.file, payloadText.replace(/\r\n/g, '\n').replace(/\n/g, '\r\n'),
@@ -142,7 +144,9 @@ test('all thirty recommendations identify the reading benefit with exact current
   for (const edit of mcuEditorial.entries) {
     const entry = descriptionRevisions.undoEntry(manifest.lists.find(({ id }) => id === edit.id));
     const card = descriptionRevisions.undoEntry(catalog.lists.find(({ id }) => id === edit.id));
-    const currentPayload = descriptionRevisions.undoEntry(await json(`src/data/${edit.file}`));
+    const rawPayload = await json(`src/data/${edit.file}`);
+    sourceCreditRevisions.assertLatest(rawPayload, edit.file);
+    const currentPayload = descriptionRevisions.undoEntry(sourceCreditRevisions.undo(rawPayload, edit.file));
     const { description, ...payload } = beforeIdentityPayload(edit.file, currentPayload);
     const identity = identityRevisions.guides.find(({ id }) => id === edit.id);
     const publishedDescription = identity?.publishedDescription ?? identity?.description ?? edit.after;

@@ -203,7 +203,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:695-757`. Runtime loads and parses that same-origin catalog once at
+at `scripts/vendor-orders.mjs:702-795`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:2121-2132`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics

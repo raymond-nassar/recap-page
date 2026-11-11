@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "one-world-under-doom",
+      "file": "one_world_under_doom.json",
+      "before": {
+        "source": "https://github.com/raymond-nassar/recap-page/issues/773",
+        "section": "One World Under Doom"
+      },
+      "after": {
+        "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/one-world-under-doom/",
+        "section": "One World Under Doom Reading Order Checklist"
+      },
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "evidence": [
+        {
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/one-world-under-doom/",
+          "section": "One World Under Doom Reading Order Checklist",
+          "method": "The owner's 86 source positions match the checklist in order, including optional entries, the repeat and unresolved positions.",
+          "retrieved": "2026-11-10",
+          "record": "scripts/data/owner-selections/one-world-under-doom.json"
+        }
+      ],
+      "approval": "https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248"
+    },
+    {
+      "id": "siege-dark-reign-prelude",
+      "file": "siege_dark_reign_prelude.json",
+      "before": {
+        "source": "https://github.com/raymond-nassar/recap-page/blob/main/src/data/orders/siege-dark-reign-prelude.md",
+        "section": null
+      },
+      "after": {
+        "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-13-siege-checklist/",
+        "section": "The Complete Issue by Issue Reading Order List"
+      },
+      "sourceOrigin": "Project-curated selection from Comic Book Herald's Dark Reign and Siege guides",
+      "sourceLicense": null,
+      "evidence": [
+        {
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-13-siege-checklist/",
+          "section": "The Complete Issue by Issue Reading Order List",
+          "method": "The approved factual ledger identifies the selected Siege issue rows and the Thor: Siege trade entry; the owner chose this guide as the public link.",
+          "retrieved": "2026-11-06",
+          "record": "scripts/data/curated-source-ledgers/siege-dark-reign-prelude.json"
+        },
+        {
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/dark-reign-reading-order-list/",
+          "section": "The Complete Issue by Issue Reading Order List",
+          "method": "The same approved ledger identifies the selected Dark Reign prelude rows; the retained origin credits both guides.",
+          "retrieved": "2026-11-06",
+          "record": "scripts/data/curated-source-ledgers/siege-dark-reign-prelude.json"
+        }
+      ],
+      "approval": "https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248"
+    },
+    {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "file": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "before": {
+        "source": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+        "section": null
+      },
+      "after": {
+        "source": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+        "section": "Latest Additions:"
+      },
+      "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+      "sourceLicense": null,
+      "evidence": [
+        {
+          "url": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+          "section": "Latest Additions:",
+          "method": "The approved source ledger identifies this page and section as the factual source for the owner's seven selected blocks, with Atlantis Attacks excluded.",
+          "retrieved": "2026-10-03",
+          "record": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json"
+        }
+      ],
+      "approval": "https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248"
+    },
+    {
+      "id": "mcu-prep-doctor-strange-2016",
+      "file": "mcu_prep_doctor_strange_2016.json",
+      "before": {
+        "source": "https://github.com/raymond-nassar/recap-page/issues/766",
+        "section": null
+      },
+      "after": {
+        "source": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
+        "section": null
+      },
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "evidence": [
+        {
+          "url": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
+          "section": null,
+          "method": "The page's Doctor Strange (2015) #1-10 matches owner positions 7-16, followed in both by a recommendation with the same distinctive title. The page does not establish the latter's original issue boundary.",
+          "retrieved": "2026-11-10",
+          "record": "scripts/data/owner-selections/mcu-prep-doctor-strange-2016.json"
+        }
+      ],
+      "approval": "https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6781730248"
+    }
+  ]
+}

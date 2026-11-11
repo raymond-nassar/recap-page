@@ -1789,9 +1789,9 @@
     "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:695-757|0": {
-    "anchor": "scripts/vendor-orders.mjs:695-757",
-    "fp": "675ccdc0604887c9",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:702-795|0": {
+    "anchor": "scripts/vendor-orders.mjs:702-795",
+    "fp": "aaa2d5e8eabc1354",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
   "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/api.js:81-120|0": {
@@ -2244,13 +2244,13 @@
     "fp": "87984facefd884b1",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:243-269|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:243-269",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:249-275|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:249-275",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:457-478|0": {
-    "anchor": "scripts/vendor-orders.mjs:457-478",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:462-483|0": {
+    "anchor": "scripts/vendor-orders.mjs:462-483",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
@@ -2279,28 +2279,28 @@
     "fp": "b98925c3837030c2",
     "head": "'owner-confirmed': {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:102-134|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:102-134",
-    "fp": "617b9b0f08249cf8",
-    "head": "if (Object.hasOwn(row, 'externalMetadataSupplement')) {"
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:111-139|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:111-139",
+    "fp": "43d0b140db456174",
+    "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
   "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:849-871|0": {
     "anchor": "scripts/lib/owner-guide.mjs:849-871",
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:491-495|0": {
-    "anchor": "scripts/vendor-orders.mjs:491-495",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:496-500|0": {
+    "anchor": "scripts/vendor-orders.mjs:496-500",
     "fp": "b5164475feb84ad2",
     "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:559-560|0": {
-    "anchor": "scripts/vendor-orders.mjs:559-560",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:566-567|0": {
+    "anchor": "scripts/vendor-orders.mjs:566-567",
     "fp": "c089d2cbfead089a",
     "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:604-605|0": {
-    "anchor": "scripts/vendor-orders.mjs:604-605",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:611-612|0": {
+    "anchor": "scripts/vendor-orders.mjs:611-612",
     "fp": "7b74eea9291f2eae",
     "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
   },
@@ -2324,8 +2324,8 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16699-16836|0": {
-    "anchor": "src/data/catalog.json:16699-16836",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16701-16838|0": {
+    "anchor": "src/data/catalog.json:16701-16838",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
