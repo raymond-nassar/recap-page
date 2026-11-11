@@ -23652,6 +23652,7 @@ MUTATIONS.push({
 
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
+SCENARIOS.push((await import('./browser-collected-editions.mjs')).collectedEditions);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
 const orderedImport = await import('./browser-ordered-import.mjs');

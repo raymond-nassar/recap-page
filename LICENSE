@@ -19,3 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Separately licensed data
+
+The MIT grant above does not cover Grand Comics Database-derived data in
+src/data/collectedEditionEvidence.js, scripts/data/collected-editions/gcd-check-inputs.json,
+scripts/data/collected-editions/gcd-editions.json, or
+scripts/data/collected-editions/gcd-fixtures/. Those files are adaptations of
+Grand Comics Database data (https://www.comics.org/) licensed under Creative Commons
+Attribution-ShareAlike 4.0 International:
+https://creativecommons.org/licenses/by-sa/4.0/
+Their attribution, source records and modification notices accompany the data.

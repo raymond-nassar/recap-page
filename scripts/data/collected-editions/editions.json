@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "note": "Provider-neutral collected-edition pilot. A record says what a book holds, never where a reader can read it. Every database fact, range, check and verified count lives in gcd-editions.json under its own license, so the coverage here counts curated contents only.",
+  "editions": [
+    {
+      "id": "civil-war-2007-tpb",
+      "title": "Civil War",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 604949
+      },
+      "contents": [
+        {
+          "seriesId": 1067,
+          "from": 1,
+          "to": 7,
+          "assertedBy": "cbh-heading"
+        }
+      ]
+    },
+    {
+      "id": "thunderbolts-ellis-v1-faith-in-monsters",
+      "title": "Thunderbolts Vol. 1: Faith in Monsters",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 854274
+      },
+      "contents": [
+        {
+          "seriesId": 18527,
+          "from": 110,
+          "to": 115,
+          "assertedBy": "owner-curated"
+        }
+      ]
+    },
+    {
+      "id": "thunderbolts-ellis-v2-caged-angels",
+      "title": "Thunderbolts Vol. 2: Caged Angels",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 854273
+      },
+      "contents": [
+        {
+          "seriesId": 18527,
+          "from": 116,
+          "to": 121,
+          "assertedBy": "owner-curated"
+        }
+      ]
+    },
+    {
+      "id": "thanos-2016-v1-thanos-returns",
+      "title": "Thanos Vol. 1: Thanos Returns",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1718731
+      },
+      "contents": [
+        {
+          "seriesId": 22653,
+          "from": 1,
+          "to": 6,
+          "assertedBy": "cbh-ledger"
+        }
+      ]
+    },
+    {
+      "id": "thanos-2016-v2-the-god-quarry",
+      "title": "Thanos Vol. 2: The God Quarry",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1771218
+      },
+      "contents": [
+        {
+          "seriesId": 22653,
+          "from": 7,
+          "to": 12,
+          "assertedBy": "cbh-ledger"
+        }
+      ]
+    },
+    {
+      "id": "asgardians-v1-the-infinity-armada",
+      "title": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1941743
+      },
+      "contents": [
+        {
+          "seriesId": 25996,
+          "from": 1,
+          "to": 5,
+          "assertedBy": "cbh-ledger"
+        }
+      ]
+    },
+    {
+      "id": "asgardians-v2-war-of-the-realms",
+      "title": "Asgardians of the Galaxy Vol. 2: War of the Realms",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 2009606
+      },
+      "contents": [
+        {
+          "seriesId": 25996,
+          "from": 6,
+          "to": 10,
+          "assertedBy": "cbh-ledger"
+        }
+      ]
+    },
+    {
+      "id": "time-runs-out-v1",
+      "title": "Avengers: Time Runs Out Vol. 1",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1454936
+      },
+      "contents": [
+        {
+          "seriesId": 16452,
+          "from": 35,
+          "to": 37,
+          "assertedBy": "cbh-heading"
+        },
+        {
+          "seriesId": 16451,
+          "from": 24,
+          "to": 25,
+          "assertedBy": "cbh-heading"
+        }
+      ]
+    },
+    {
+      "id": "time-runs-out-v2",
+      "title": "Avengers: Time Runs Out Vol. 2",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1484980
+      },
+      "contents": [
+        {
+          "seriesId": 16452,
+          "from": 38,
+          "to": 39,
+          "assertedBy": "cbh-heading"
+        },
+        {
+          "seriesId": 16451,
+          "from": 26,
+          "to": 28,
+          "assertedBy": "cbh-heading"
+        }
+      ]
+    },
+    {
+      "id": "secret-wars-2015-hc",
+      "title": "Secret Wars",
+      "format": "hardcover",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1546524
+      },
+      "contents": []
+    },
+    {
+      "id": "secret-wars-2015-tpb",
+      "title": "Secret Wars",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1620515
+      },
+      "contents": [
+        {
+          "seriesId": 19648,
+          "from": 1,
+          "to": 9,
+          "assertedBy": "owner-curated"
+        }
+      ]
+    },
+    {
+      "id": "realm-of-kings-2010-tpb",
+      "title": "Realm of Kings",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1099254
+      },
+      "contents": [
+        {
+          "seriesId": 9088,
+          "from": 1,
+          "to": 1,
+          "assertedBy": "owner-curated"
+        }
+      ]
+    },
+    {
+      "id": "realm-of-kings-tpb-2601361",
+      "title": "Realm of Kings",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 2601361
+      },
+      "contents": [
+        {
+          "seriesId": 9088,
+          "from": 1,
+          "to": 1,
+          "assertedBy": "owner-curated"
+        }
+      ]
+    },
+    {
+      "id": "squirrel-girl-2015-v1-squirrel-power",
+      "title": "The Unbeatable Squirrel Girl Vol. 1: Squirrel Power",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1449195
+      },
+      "contents": [
+        {
+          "seriesId": 19750,
+          "from": 1,
+          "to": 4,
+          "assertedBy": "owner-curated"
+        }
+      ]
+    }
+  ],
+  "lists": [
+    {
+      "listId": "civil_war_avengers",
+      "rows": 83,
+      "groupedRows": 19,
+      "claimedRows": 19,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 7,
+        "gcd-notes": 0,
+        "owner-curated": 12
+      },
+      "findings": [
+        {
+          "kind": "group-spans-editions",
+          "group": "Thunderbolts by Warren Ellis and Mike Deodato",
+          "detail": "thunderbolts-ellis-v1-faith-in-monsters and thunderbolts-ellis-v2-caged-angels split this group."
+        }
+      ]
+    },
+    {
+      "listId": "nebula_reading_order",
+      "rows": 69,
+      "groupedRows": 20,
+      "claimedRows": 20,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 20,
+        "cbh-heading": 0,
+        "gcd-notes": 0,
+        "owner-curated": 0
+      },
+      "findings": [
+        {
+          "kind": "partial-selection",
+          "group": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+          "edition": "thanos-2016-v1-thanos-returns",
+          "detail": "The book also holds 22653:1, 22653:3, which this group does not list."
+        }
+      ]
+    },
+    {
+      "listId": "avengers_doomsday_secret_wars",
+      "rows": 69,
+      "groupedRows": 20,
+      "claimedRows": 19,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 10,
+        "gcd-notes": 0,
+        "owner-curated": 9
+      },
+      "findings": [
+        {
+          "kind": "group-wider-than-edition",
+          "group": "Secret Wars (2015) #0-9",
+          "detail": "No curated book holds 19821:0."
+        }
+      ]
+    },
+    {
+      "listId": "realm_of_kings",
+      "rows": 28,
+      "groupedRows": 1,
+      "claimedRows": 1,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 0,
+        "gcd-notes": 0,
+        "owner-curated": 1
+      },
+      "findings": [
+        {
+          "kind": "heading-not-edition",
+          "group": "Realm of Kings Trade Reading List",
+          "detail": "The guide heading names a reading block, not one book."
+        },
+        {
+          "kind": "overlap",
+          "group": "Realm of Kings Trade Reading List",
+          "detail": "realm-of-kings-2010-tpb and realm-of-kings-tpb-2601361 both hold 1 of this group's comics."
+        }
+      ]
+    },
+    {
+      "listId": "the_unbeatable_squirrel_girl",
+      "rows": 58,
+      "groupedRows": 8,
+      "claimedRows": 4,
+      "partialRows": 0,
+      "claimedBySource": {
+        "cbh-ledger": 0,
+        "cbh-heading": 0,
+        "gcd-notes": 0,
+        "owner-curated": 4
+      },
+      "findings": [
+        {
+          "kind": "heading-not-edition",
+          "group": "Volume 1 (2015)",
+          "detail": "The guide heading names a reading block, not one book."
+        },
+        {
+          "kind": "group-wider-than-edition",
+          "group": "Volume 1 (2015)",
+          "detail": "No curated book holds 19750:5, 19750:6, 19750:7, 19750:8."
+        }
+      ]
+    }
+  ]
+}

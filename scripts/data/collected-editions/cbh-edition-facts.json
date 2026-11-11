@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "source": "Comic Book Herald reading guides, as already recorded in this repository's reading lists and source ledgers. Facts only: no prose, no images, and no affiliate or store links.",
+  "lists": [
+    {
+      "listId": "civil_war_avengers",
+      "guideUrl": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+      "groups": [
+        {
+          "label": "Civil War",
+          "rows": [
+            {
+              "issueId": 4216,
+              "seriesId": 1067,
+              "number": "1"
+            },
+            {
+              "issueId": 4313,
+              "seriesId": 1067,
+              "number": "2"
+            },
+            {
+              "issueId": 4468,
+              "seriesId": 1067,
+              "number": "3"
+            },
+            {
+              "issueId": 4786,
+              "seriesId": 1067,
+              "number": "4"
+            },
+            {
+              "issueId": 5075,
+              "seriesId": 1067,
+              "number": "5"
+            },
+            {
+              "issueId": 5227,
+              "seriesId": 1067,
+              "number": "6"
+            },
+            {
+              "issueId": 5793,
+              "seriesId": 1067,
+              "number": "7"
+            }
+          ]
+        },
+        {
+          "label": "Thunderbolts by Warren Ellis and Mike Deodato",
+          "rows": [
+            {
+              "issueId": 5812,
+              "seriesId": 18527,
+              "number": "110"
+            },
+            {
+              "issueId": 5965,
+              "seriesId": 18527,
+              "number": "111"
+            },
+            {
+              "issueId": 6121,
+              "seriesId": 18527,
+              "number": "112"
+            },
+            {
+              "issueId": 6262,
+              "seriesId": 18527,
+              "number": "113"
+            },
+            {
+              "issueId": 13439,
+              "seriesId": 18527,
+              "number": "114"
+            },
+            {
+              "issueId": 15820,
+              "seriesId": 18527,
+              "number": "115"
+            },
+            {
+              "issueId": 16123,
+              "seriesId": 18527,
+              "number": "116"
+            },
+            {
+              "issueId": 16472,
+              "seriesId": 18527,
+              "number": "117"
+            },
+            {
+              "issueId": 16473,
+              "seriesId": 18527,
+              "number": "118"
+            },
+            {
+              "issueId": 17597,
+              "seriesId": 18527,
+              "number": "119"
+            },
+            {
+              "issueId": 20839,
+              "seriesId": 18527,
+              "number": "120"
+            },
+            {
+              "issueId": 21335,
+              "seriesId": 18527,
+              "number": "121"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "listId": "nebula_reading_order",
+      "guideUrl": "https://www.comicbookherald.com/nebula-reading-order/",
+      "groups": [
+        {
+          "label": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+          "rows": [
+            {
+              "issueId": 61698,
+              "seriesId": 22653,
+              "number": "2"
+            },
+            {
+              "issueId": 61700,
+              "seriesId": 22653,
+              "number": "4"
+            },
+            {
+              "issueId": 61701,
+              "seriesId": 22653,
+              "number": "5"
+            },
+            {
+              "issueId": 61702,
+              "seriesId": 22653,
+              "number": "6"
+            }
+          ],
+          "ledgerBlocks": [
+            {
+              "collection": "Thanos Vol. 1: Thanos Returns",
+              "collectedContents": "Thanos (2016) #1-6",
+              "selectionKind": "explicit-cut",
+              "selectedIssueReferences": [
+                "Thanos (2016) #2",
+                "Thanos (2016) #4-6"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Thanos Vol. 2: The God Quarry",
+          "rows": [
+            {
+              "issueId": 61703,
+              "seriesId": 22653,
+              "number": "7"
+            },
+            {
+              "issueId": 61704,
+              "seriesId": 22653,
+              "number": "8"
+            },
+            {
+              "issueId": 61705,
+              "seriesId": 22653,
+              "number": "9"
+            },
+            {
+              "issueId": 61706,
+              "seriesId": 22653,
+              "number": "10"
+            },
+            {
+              "issueId": 61707,
+              "seriesId": 22653,
+              "number": "11"
+            },
+            {
+              "issueId": 61708,
+              "seriesId": 22653,
+              "number": "12"
+            }
+          ],
+          "ledgerBlocks": [
+            {
+              "collection": "Thanos Vol. 2: The God Quarry",
+              "collectedContents": "Thanos (2016) #7-12",
+              "selectionKind": "complete-collection",
+              "selectedIssueReferences": [
+                "Thanos (2016) #7-12"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+          "rows": [
+            {
+              "issueId": 71308,
+              "seriesId": 25996,
+              "number": "1"
+            },
+            {
+              "issueId": 71310,
+              "seriesId": 25996,
+              "number": "2"
+            },
+            {
+              "issueId": 71311,
+              "seriesId": 25996,
+              "number": "3"
+            },
+            {
+              "issueId": 71312,
+              "seriesId": 25996,
+              "number": "4"
+            },
+            {
+              "issueId": 71313,
+              "seriesId": 25996,
+              "number": "5"
+            }
+          ],
+          "ledgerBlocks": [
+            {
+              "collection": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+              "collectedContents": "Asgardians of the Galaxy #1-5",
+              "selectionKind": "complete-collection",
+              "selectedIssueReferences": [
+                "Asgardians of the Galaxy #1-5"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Collects: Asgardians of the Galaxy #6-10",
+          "rows": [
+            {
+              "issueId": 73994,
+              "seriesId": 25996,
+              "number": "6"
+            },
+            {
+              "issueId": 73995,
+              "seriesId": 25996,
+              "number": "7"
+            },
+            {
+              "issueId": 73996,
+              "seriesId": 25996,
+              "number": "8"
+            },
+            {
+              "issueId": 73997,
+              "seriesId": 25996,
+              "number": "9"
+            },
+            {
+              "issueId": 73998,
+              "seriesId": 25996,
+              "number": "10"
+            }
+          ],
+          "ledgerBlocks": [
+            {
+              "collection": "Asgardians of the Galaxy Vol. 2: War of the Realms",
+              "collectedContents": "Asgardians of the Galaxy #6-10",
+              "selectionKind": "complete-collection",
+              "selectedIssueReferences": [
+                "Asgardians of the Galaxy #6-10"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "listId": "avengers_doomsday_secret_wars",
+      "guideUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars0",
+      "groups": [
+        {
+          "label": "Avengers: Time Runs Out Volume 1",
+          "rows": [
+            {
+              "issueId": 48389,
+              "seriesId": 16452,
+              "number": "35"
+            },
+            {
+              "issueId": 50096,
+              "seriesId": 16451,
+              "number": "24"
+            },
+            {
+              "issueId": 48390,
+              "seriesId": 16452,
+              "number": "36"
+            },
+            {
+              "issueId": 50973,
+              "seriesId": 16451,
+              "number": "25"
+            },
+            {
+              "issueId": 48391,
+              "seriesId": 16452,
+              "number": "37"
+            }
+          ]
+        },
+        {
+          "label": "Avengers: Time Runs Out Volume 2",
+          "rows": [
+            {
+              "issueId": 52257,
+              "seriesId": 16451,
+              "number": "26"
+            },
+            {
+              "issueId": 48392,
+              "seriesId": 16452,
+              "number": "38"
+            },
+            {
+              "issueId": 52259,
+              "seriesId": 16451,
+              "number": "27"
+            },
+            {
+              "issueId": 48393,
+              "seriesId": 16452,
+              "number": "39"
+            },
+            {
+              "issueId": 51172,
+              "seriesId": 16451,
+              "number": "28"
+            }
+          ]
+        },
+        {
+          "label": "Secret Wars (2015) #0-9",
+          "rows": [
+            {
+              "issueId": 52986,
+              "seriesId": 19821,
+              "number": "0"
+            },
+            {
+              "issueId": 52447,
+              "seriesId": 19648,
+              "number": "1"
+            },
+            {
+              "issueId": 52450,
+              "seriesId": 19648,
+              "number": "2"
+            },
+            {
+              "issueId": 52451,
+              "seriesId": 19648,
+              "number": "3"
+            },
+            {
+              "issueId": 52452,
+              "seriesId": 19648,
+              "number": "4"
+            },
+            {
+              "issueId": 52453,
+              "seriesId": 19648,
+              "number": "5"
+            },
+            {
+              "issueId": 52454,
+              "seriesId": 19648,
+              "number": "6"
+            },
+            {
+              "issueId": 52455,
+              "seriesId": 19648,
+              "number": "7"
+            },
+            {
+              "issueId": 52456,
+              "seriesId": 19648,
+              "number": "8"
+            },
+            {
+              "issueId": 57620,
+              "seriesId": 19648,
+              "number": "9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "listId": "realm_of_kings",
+      "guideUrl": "https://www.comicbookherald.com/marvel-cosmic-reading-order/realm-of-kings/",
+      "groups": [
+        {
+          "label": "Realm of Kings Trade Reading List",
+          "rows": [
+            {
+              "issueId": 29292,
+              "seriesId": 9088,
+              "number": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "listId": "the_unbeatable_squirrel_girl",
+      "guideUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "groups": [
+        {
+          "label": "Volume 1 (2015)",
+          "rows": [
+            {
+              "issueId": 52780,
+              "seriesId": 19750,
+              "number": "1"
+            },
+            {
+              "issueId": 52785,
+              "seriesId": 19750,
+              "number": "2"
+            },
+            {
+              "issueId": 52788,
+              "seriesId": 19750,
+              "number": "3"
+            },
+            {
+              "issueId": 52789,
+              "seriesId": 19750,
+              "number": "4"
+            },
+            {
+              "issueId": 52790,
+              "seriesId": 19750,
+              "number": "5"
+            },
+            {
+              "issueId": 52791,
+              "seriesId": 19750,
+              "number": "6"
+            },
+            {
+              "issueId": 52792,
+              "seriesId": 19750,
+              "number": "7"
+            },
+            {
+              "issueId": 52793,
+              "seriesId": 19750,
+              "number": "8"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1889,23 +1889,23 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1157-1175|0": {
-    "anchor": "src/js/views/reading.js:1157-1175",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1166-1184|0": {
+    "anchor": "src/js/views/reading.js:1166-1184",
     "fp": "836cd067a6aef5d3",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1495-1509|0": {
-    "anchor": "src/js/views/reading.js:1495-1509",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1504-1518|0": {
+    "anchor": "src/js/views/reading.js:1504-1518",
     "fp": "c25557f274159486",
     "head": "function doneContext(listId, issueId, state = getState(), surface = 'hero') {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:39-47|0": {
-    "anchor": "src/js/views/reading.js:39-47",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:41-49|0": {
+    "anchor": "src/js/views/reading.js:41-49",
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:817|0": {
-    "anchor": "src/js/views/reading.js:817",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:819|0": {
+    "anchor": "src/js/views/reading.js:819",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -2224,9 +2224,9 @@
     "fp": "e967f1f041a97dc5",
     "head": "self.addEventListener('fetch', (event) => {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:77-168|0": {
-    "anchor": "src/sw.js:77-168",
-    "fp": "9c4a55814397835e",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:77-169|0": {
+    "anchor": "src/sw.js:77-169",
+    "fp": "576b083e27fba704",
     "head": "async function networkThenCache(event) {"
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:279-285|0": {
@@ -2269,13 +2269,13 @@
     "fp": "72aabf0717545b52",
     "head": "...(input.identityEvidenceKind === 'owner-confirmed-identity'"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|src/js/views/reading.js:55-57|0": {
-    "anchor": "src/js/views/reading.js:55-57",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|src/js/views/reading.js:57-59|0": {
+    "anchor": "src/js/views/reading.js:57-59",
     "fp": "500ab34fb97083fa",
     "head": "if (item?.detailsRefused && item?.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|src/js/views/reading.js:64-73|0": {
-    "anchor": "src/js/views/reading.js:64-73",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|src/js/views/reading.js:66-75|0": {
+    "anchor": "src/js/views/reading.js:66-75",
     "fp": "b98925c3837030c2",
     "head": "'owner-confirmed': {"
   },
@@ -2339,13 +2339,13 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:694|0": {
-    "anchor": "src/js/views/reading.js:694",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:696|0": {
+    "anchor": "src/js/views/reading.js:696",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:91-102|0": {
-    "anchor": "src/js/views/reading.js:91-102",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:93-104|0": {
+    "anchor": "src/js/views/reading.js:93-104",
     "fp": "4fae061e31c80e37",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
@@ -2614,8 +2614,8 @@
     "fp": "ec402d5548694459",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:341-362|0": {
-    "anchor": "src/js/views/preview.js:341-362",
+  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:343-364|0": {
+    "anchor": "src/js/views/preview.js:343-364",
     "fp": "79c71c48d1fbf748",
     "head": "function paint(list) {"
   },
@@ -2624,13 +2624,13 @@
     "fp": "215f5b1a4ede1790",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:954-955|0": {
-    "anchor": "src/js/views/reading.js:954-955",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:962-963|0": {
+    "anchor": "src/js/views/reading.js:962-963",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:369-372|0": {
-    "anchor": "src/js/views/reading.js:369-372",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:371-374|0": {
+    "anchor": "src/js/views/reading.js:371-374",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
@@ -2654,8 +2654,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:954-955|0": {
-    "anchor": "src/js/views/reading.js:954-955",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:962-963|0": {
+    "anchor": "src/js/views/reading.js:962-963",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2664,8 +2664,8 @@
     "fp": "3377f80fe0c004ac",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:951-953|0": {
-    "anchor": "src/js/views/reading.js:951-953",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:959-961|0": {
+    "anchor": "src/js/views/reading.js:959-961",
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
@@ -2694,8 +2694,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2391-2393|0": {
-    "anchor": "src/styles.css:2391-2393",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2397-2399|0": {
+    "anchor": "src/styles.css:2397-2399",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2719,8 +2719,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2391-2393|0": {
-    "anchor": "src/styles.css:2391-2393",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2397-2399|0": {
+    "anchor": "src/styles.css:2397-2399",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2774,8 +2774,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2847-2848|0": {
-    "anchor": "src/styles.css:2847-2848",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2853-2854|0": {
+    "anchor": "src/styles.css:2853-2854",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2784,8 +2784,8 @@
     "fp": "c2ca4aa4ff10907b",
     "head": "--target-min: 24px;"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:1022-1154|0": {
-    "anchor": "src/js/views/reading.js:1022-1154",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:1031-1163|0": {
+    "anchor": "src/js/views/reading.js:1031-1163",
     "fp": "3c66740b177d162f",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
@@ -2844,13 +2844,13 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2391-2393|0": {
-    "anchor": "src/styles.css:2391-2393",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2397-2399|0": {
+    "anchor": "src/styles.css:2397-2399",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:951-953|0": {
-    "anchor": "src/js/views/reading.js:951-953",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:959-961|0": {
+    "anchor": "src/js/views/reading.js:959-961",
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
@@ -2874,8 +2874,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1207-1227|0": {
-    "anchor": "src/js/views/reading.js:1207-1227",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1216-1236|0": {
+    "anchor": "src/js/views/reading.js:1216-1236",
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
@@ -2899,13 +2899,13 @@
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:440-448|0": {
-    "anchor": "src/js/views/reading.js:440-448",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:442-450|0": {
+    "anchor": "src/js/views/reading.js:442-450",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:465-479|0": {
-    "anchor": "src/js/views/reading.js:465-479",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:467-481|0": {
+    "anchor": "src/js/views/reading.js:467-481",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2919,8 +2919,8 @@
     "fp": "3b6c0c221341c6b6",
     "head": "nodes.undoRestore.addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:465-479|0": {
-    "anchor": "src/js/views/reading.js:465-479",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:467-481|0": {
+    "anchor": "src/js/views/reading.js:467-481",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2934,8 +2934,8 @@
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1207-1227|0": {
-    "anchor": "src/js/views/reading.js:1207-1227",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1216-1236|0": {
+    "anchor": "src/js/views/reading.js:1216-1236",
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
@@ -2949,8 +2949,8 @@
     "fp": "4819ad07f3bbcaa3",
     "head": "export const READING_FILTERS = ["
   },
-  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:165|0": {
-    "anchor": "src/js/views/reading.js:165",
+  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:167|0": {
+    "anchor": "src/js/views/reading.js:167",
     "fp": "b7554b1d675a5f56",
     "head": "let filter = DEFAULT_FILTER;"
   },
@@ -2964,8 +2964,8 @@
     "fp": "4bf6e9f8eefa237d",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:955|0": {
-    "anchor": "src/js/views/reading.js:955",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:963|0": {
+    "anchor": "src/js/views/reading.js:963",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -6544,13 +6544,13 @@
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2432|0": {
-    "anchor": "src/styles.css:2432",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2438|0": {
+    "anchor": "src/styles.css:2438",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2456|0": {
-    "anchor": "src/styles.css:2456",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2462|0": {
+    "anchor": "src/styles.css:2462",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6574,8 +6574,8 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "SECURITY.md|about-the-app|package.json:63-67|0": {
-    "anchor": "package.json:63-67",
+  "SECURITY.md|about-the-app|package.json:64-68|0": {
+    "anchor": "package.json:64-68",
     "fp": "8d565e435f89864e",
     "head": "\"devDependencies\": {"
   },
