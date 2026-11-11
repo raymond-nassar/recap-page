@@ -222,6 +222,7 @@ export function createAddView({
   importDraft,
   lookupManual,
   notify,
+  noticeEl,
   onNonEmptyListSave,
   reportBundledLoadFailure,
   saveSelection,
@@ -233,6 +234,7 @@ export function createAddView({
   ymd,
   comicThumb = null,
   onComicStatus = () => {},
+  canReportComicStatus = () => true,
 }) {
   let manualMatch = null;
   const selected = new Map();
@@ -470,6 +472,11 @@ export function createAddView({
     };
   }
 
+  const reportable = (config, status) => config.kind !== 'issue' || canReportComicStatus(status);
+  function resultNotice(config, status, message, kind, action) {
+    if (reportable(config, status)) notify(config.results, message, kind, config.results, action);
+    else $(config.results).replaceChildren(noticeEl({ msg: message, kind, action }));
+  }
   function renderResults(config, status) {
     const box = $(config.results);
     const items = status.items;
@@ -491,11 +498,11 @@ export function createAddView({
         class: `notice notice-${status.phase === 'failed' ? 'error' : 'warn'}`,
         text: `${message} Search again to load the rest, or choose from the comics below.`,
       }));
-      announce(message);
+      if (reportable(config, status)) announce(message);
     }
     if (!items.length) {
       if (status.phase === 'complete') {
-        notify(config.results, 'Nothing matched that search. You can add the comic by hand.', 'warn', config.results, {
+        resultNotice(config, status, 'Nothing matched that search. You can add the comic by hand.', 'warn', {
           label: 'Add a comic by hand',
           onClick: () => showView('add-manual', { push: true }),
         });
@@ -514,7 +521,7 @@ export function createAddView({
       ? `${comics(items.length)} shown, ${held} already in your library.`
       : `${comics(items.length)}, ${held} already in your library.`;
     box.append(el('p', { class: 'res-head', text: summary }));
-    if (status.phase === 'complete') announce(summary);
+    if (status.phase === 'complete' && reportable(config, status)) announce(summary);
     if (config.kind === 'issue' && items.length === ISSUE_SEARCH_LIMIT) {
       box.append(el('p', {
         class: 'rail-hint',
@@ -625,7 +632,7 @@ export function createAddView({
   // them pushed the first comic below a 900px window. Scrolling, rather than focusing, brings the
   // comics the reader asked for into view while focus stays in the field they typed in.
   function revealResults(config, status, heading, target) {
-    if (!config.revealResults || status.phase === 'cancelled') return;
+    if (!config.revealResults || status.phase === 'cancelled' || !reportable(config, status)) return;
     config.revealResults = false;
     if ($(config.input).value.trim() !== status.item.name) return;
     if (document.activeElement !== document.body && !$(config.form).contains(document.activeElement)) return;
@@ -640,17 +647,17 @@ export function createAddView({
     config.runner = new ComicSearchRunner({
       load: config.load,
       onStatus: (status) => {
+        if (config.kind === 'issue') onComicStatus(status);
         const box = $(config.results);
         const focusedCancel = box.querySelector('.notice-act button') === document.activeElement;
         if (status.running) {
           const loaded = status.total == null
             ? comics(status.received)
             : `${comics(status.received)} of ${count(status.total)}`;
-          notify(
-            config.results,
+          resultNotice(
+            config, status,
             status.received ? `Loading ${status.item.name}: ${loaded} loaded…` : `Loading comics for ${status.item.name}…`,
             'busy',
-            config.results,
             { label: `Cancel ${config.kind} search`, onClick: () => config.runner.cancel() },
           );
           if (focusedCancel) box.querySelector('.notice-act button')?.focus({ preventScroll: true });
@@ -658,7 +665,6 @@ export function createAddView({
           renderResults(config, status);
           if (focusedCancel) $(config.input).focus({ preventScroll: true });
         }
-        if (config.kind === 'issue') onComicStatus(status);
       },
     });
   }

@@ -1515,6 +1515,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 }
 .search-count { margin: 0 0 var(--space-4); color: var(--dim); font-size: var(--t-body); font-variant-numeric: tabular-nums; }
 .search-panes { display: grid; gap: var(--space-6); }
+.search-scopes[hidden], .search-panes[hidden] { display: none; }
 .search-local { display: grid; gap: var(--space-6); align-content: start; }
 .search-local:not(:has(> :not([hidden]))) { display: none; }
 .search-group h2 { font-size: var(--t-body); margin: 0; }

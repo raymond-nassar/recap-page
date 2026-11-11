@@ -3518,6 +3518,8 @@ const addView = createAddView({
   ymd,
   comicThumb: (issue) => searchCover(coverUrl(issue, 'portrait_medium')),
   onComicStatus: (status) => searchListsView.comicStatus(status),
+  canReportComicStatus: (status) => ['add', 'add-search'].includes(view) && searchListsView.canReportComicStatus(status),
+  noticeEl,
 });
 
 const bulkReadView = createBulkReadView({

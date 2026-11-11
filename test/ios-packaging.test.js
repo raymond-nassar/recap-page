@@ -38,6 +38,30 @@ const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
 const initialIosLedger = () => ({ schemaVersion: 1, retiredThrough: 1, reservations: [] });
 const iosSource = { productVersion: '4.2.0', sourceRevision: 'a'.repeat(40), sourceTree: 'b'.repeat(40) };
 
+test('presentation probe routes open through existing navigation or a current hash destination', async () => {
+  const html = read('src/index.html');
+  const start = presentationTests.indexOf('const issueSearchRoute = {');
+  const end = presentationTests.indexOf('const tokenNames = ', start);
+  assert.ok(start >= 0 && end > start);
+  const hashes = [];
+  const probe = presentationTests.slice(start, end);
+  await runInNewContext(`${probe}\n(async () => {
+    for (const route of [...routes, issueSearchRoute]) await openRoute(route);
+  })()`, {
+    document: {
+      querySelector: (selector) => {
+        const view = /^\[data-view="([^"]+)"\]$/.exec(selector);
+        return view && html.includes(`data-view="${view[1]}"`) ? { click() {} } : null;
+      },
+      getElementById: (id) => (html.includes(`id="${id}"`) ? { hidden: false } : null),
+    },
+    location: { set hash(value) { hashes.push(value); } },
+    requestAnimationFrame: (fn) => fn(),
+    setTimeout,
+  });
+  assert.deepEqual(hashes, ['#/add-search']);
+});
+
 test('iOS allocations reject reused, skipped, invalid and exhausted build numbers', () => {
   const first = reserveIosBuild(initialIosLedger(), iosSource);
   const second = reserveIosBuild(first, iosSource);

@@ -206,6 +206,28 @@ test('offline, the local scopes still work and Comics says it needs a connection
   assert.equal(h.nodes.count.textContent, '2 creators');
 });
 
+test('local scopes keep Enter local, and only the visible current comic query may speak', async () => {
+  const h = harness();
+  await h.view.update('spider');
+  const status = { item: { name: 'spider' } };
+  assert.equal(h.view.canReportComicStatus(status), true);
+  for (const scope of ['lists', 'series', 'creators']) {
+    h.view.setScope(scope);
+    h.flush();
+    const before = [...h.announced];
+    h.view.submit();
+    assert.deepEqual(h.lookups, [], scope);
+    assert.deepEqual(h.announced, before, scope);
+    assert.equal(h.view.scope, scope);
+    assert.equal(h.view.canReportComicStatus(status), false);
+  }
+  h.view.setScope('top');
+  assert.equal(h.view.canReportComicStatus(status), true);
+  await h.view.update('spider-man');
+  assert.equal(h.view.canReportComicStatus(status), false);
+  assert.equal(h.view.canReportComicStatus({ item: { name: 'spider-man' } }), true);
+});
+
 test('a Browse tile presses its scope, gives the reader the box and shows a hint rather than nothing', async () => {
   const h = harness();
   await h.view.update('');

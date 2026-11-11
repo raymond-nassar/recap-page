@@ -254,7 +254,7 @@ export function createSearchListsView({
   function submit(value = query) {
     if (value !== query) void update(value);
     const q = query.trim();
-    if (!terms()) return;
+    if (!terms() || !['top', 'comics'].includes(scope)) return;
     if (!isOnline()) {
       render();
       quiet();
@@ -298,13 +298,17 @@ export function createSearchListsView({
     render({ rebuild: false });
   }
 
+  function canReportComicStatus(status) {
+    return ['top', 'comics'].includes(scope) && terms() && status.item?.name === query.trim();
+  }
+
   // After Preview adds a list its row has to turn from Add into Open without losing the group.
   async function refresh() {
     if (terms()) render();
   }
 
   return {
-    update, setScope, submit, startScope, showMore, comicStatus, refresh,
+    update, setScope, submit, startScope, showMore, comicStatus, canReportComicStatus, refresh,
     get scope() { return scope; },
   };
 }

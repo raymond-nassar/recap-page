@@ -10798,9 +10798,8 @@ const SCENARIOS = [
           t.check(`${prefix} at ${width}px: zero selection stays compact and results lead`,
             !compact.destination && !compact.name && compact.height <= 140
               && !compact.overflow && compact.first.top >= 0
-              // The scope row wraps to two lines at 320px, so the first comic starts about 760px down
-              // and is required to start above the fold rather than to end above it.
-              && (prefix === 'search' && width === 320 ? compact.first.top < 900 : compact.first.bottom <= 900),
+              // At 320px the scope row wraps and the first comic starts about 760px down.
+              && (prefix === 'search' && width === 320 ? compact.first.top <= 780 : compact.first.bottom <= 900),
             JSON.stringify(compact));
         }
       }
@@ -10961,7 +10960,8 @@ const SCENARIOS = [
       const comicRequests = () => page.evaluate(() => window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues')).length);
       const state = () => page.evaluate(() => ({
         pressed: [...document.querySelectorAll('#search-scopes [aria-pressed="true"]')].map((node) => node.dataset.scope),
-        scopes: !document.querySelector('#search-scopes').hidden,
+        scopes: document.querySelector('#search-scopes').checkVisibility(),
+        panes: document.querySelector('#search-panes').checkVisibility(),
         count: document.querySelector('#search-count').textContent,
         countShown: !document.querySelector('#search-count').hidden,
         browse: document.querySelector('#search-browse').checkVisibility(),
@@ -10984,7 +10984,7 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('#view-add:not([hidden]) #search-q'));
       const resting = await state();
       t.check('an empty Search shows the box and Browse by with no scopes, count or results',
-        resting.browse && !resting.scopes && !resting.countShown && !resting.lists && !resting.comics, JSON.stringify(resting));
+        resting.browse && !resting.scopes && !resting.panes && !resting.countShown && !resting.lists && !resting.comics, JSON.stringify(resting));
 
       // Load the catalog and both name indexes first, so what typing does is measured alone.
       await type('F');
@@ -11122,7 +11122,24 @@ const SCENARIOS = [
           && creatorsTile.count === 'Type a creator’s name to find them.', JSON.stringify(creatorsTile));
       await click(page, '#search-scopes [data-scope="top"]');
 
-      for (const [index, action] of ['typing', 'row focus', 'Preview'].entries()) {
+      for (const scope of ['lists', 'series', 'creators']) {
+        await click(page, `#search-scopes [data-scope="${scope}"]`);
+        await type(`Fixture Event local ${scope}`);
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const beforeEnter = await comicRequests();
+        await page.evaluate(() => { window.__mrtAnnounced = []; });
+        await page.focus('#search-q');
+        await page.keyboard.press('Enter');
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        const afterEnter = await state();
+        const spoken = await page.evaluate(() => window.__mrtAnnounced);
+        t.check(`Enter in ${scope} stays local and announces no hidden comic controls or counts`,
+          await comicRequests() === beforeEnter && afterEnter.pressed.join() === scope && spoken.length === 0,
+          JSON.stringify({ beforeEnter, after: await comicRequests(), afterEnter, spoken }));
+      }
+
+      for (const [index, action] of ['typing', 'row focus', 'Preview', 'local scope'].entries()) {
+        await click(page, '#search-scopes [data-scope="top"]');
         await type(`Fixture Event${'!'.repeat(index + 1)}`);
         await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 3);
         await page.evaluate(() => {
@@ -11137,6 +11154,8 @@ const SCENARIOS = [
           await page.keyboard.type('!');
         } else if (action === 'row focus') {
           await page.focus('#search-lists-results .catalog-row [data-act="import"]');
+        } else if (action === 'local scope') {
+          await click(page, '#search-scopes [data-scope="lists"]');
         } else {
           await page.focus('#search-lists-results .catalog-row .catalog-card-preview');
           await page.keyboard.press('Enter');
@@ -11144,11 +11163,17 @@ const SCENARIOS = [
         }
         const scrollBefore = await page.evaluate(() => window.scrollY);
         await page.evaluate(() => {
+          window.__mrtAnnounced = [];
           window.__mrtHoldListComicSearch = false;
           window.__mrtReleaseListComicSearch();
         });
         await new Promise((resolve) => setTimeout(resolve, 300));
         const scrollAfter = await page.evaluate(() => window.scrollY);
+        if (action === 'typing' || action === 'local scope') {
+          const spoken = await page.evaluate(() => window.__mrtAnnounced);
+          t.check(`a comic response after ${action} is not announced`,
+            spoken.every((text) => !/comics? shown|Cancel issue search/.test(text)), JSON.stringify(spoken));
+        }
         if (action === 'Preview') {
           await page.keyboard.press('Escape');
           await page.waitForFunction(() => !document.querySelector('#preview').open);
@@ -11156,15 +11181,18 @@ const SCENARIOS = [
         const focus = await page.evaluate(() => {
           const rect = document.activeElement.getBoundingClientRect();
           return { top: rect.top, bottom: rect.bottom, id: document.activeElement.id,
+            scope: document.activeElement.dataset.scope,
             preview: document.activeElement.classList.contains('catalog-card-preview'),
             import: document.activeElement.dataset.act === 'import' };
         });
         t.check(`a pending comic search does not scroll after ${action}`,
           scrollAfter === scrollBefore && focus.top >= 0 && focus.bottom <= 900
-            && (action === 'typing' ? focus.id === 'search-q' : action === 'Preview' ? focus.preview : focus.import),
+            && (action === 'typing' ? focus.id === 'search-q' : action === 'Preview' ? focus.preview
+              : action === 'local scope' ? focus.scope === 'lists' : focus.import),
           JSON.stringify({ scrollBefore, scrollAfter, focus }));
       }
 
+      await click(page, '#search-scopes [data-scope="top"]');
       await type('Fixture Event');
       await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 3);
       await page.evaluate(() => { window.scrollTo(0, 0); window.__mrtListImportOffline = true; });

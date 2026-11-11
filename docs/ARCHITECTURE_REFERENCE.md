@@ -326,15 +326,16 @@ comics in memory, rejects invalid issue identities, and reports incomplete loads
 total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:638-663`.
+receives focus, at `src/js/views/add.js:645-669`. Search announces comic progress only while the
+query still matches its box and Top or Comics is pressed; Enter in a local scope stays local.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
 and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/views/add.js:70-93`.
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:342-385`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1176-1180`. Manual entry keeps its existing path.
+starts hydration, at `src/js/views/add.js:344-387`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:1182-1186`. Manual entry keeps its existing path.
 
 **Pasted imports have a separate durable source journal.** The storage-owned import draft keeps
 verbatim source (including original full-paste line endings), recognized physical positions,
@@ -1024,8 +1025,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:98-110`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:4032-4038` and
-`src/js/main.js:4058-4059`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:4034-4040` and
+`src/js/main.js:4060-4061`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:311-313`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:358-364`.
@@ -1049,7 +1050,7 @@ Each stop is the Timeline's own card, with its Preview and its Add or Open. A fo
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
 **You are here**, at `src/js/views/catalog.js:378-402`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
-any selection has settled, while its source address is retained, at `src/js/main.js:3889-3908`. After Back renders that path,
+any selection has settled, while its source address is retained, at `src/js/main.js:3891-3910`. After Back renders that path,
 focus returns to the control and brings it into view at `src/js/views/catalog.js:404-415`; there is
 no scroll position in saved reading data. Shared history-entry positions yield to this explicit
 opener so the focused control remains in view.
@@ -1058,7 +1059,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3910-4146`.
+`src/js/main.js:3912-4148`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1085,7 +1086,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:169-220`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:4018-4060`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:4020-4062`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3177-3203`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 

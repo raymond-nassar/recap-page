@@ -178,7 +178,7 @@ final class PresentationUITests: XCTestCase {
         }
         return """
         const issueSearchRoute = {
-          name: 'issue-search', id: 'view-add-search', selector: '[data-view="add-search"]'
+          name: 'issue-search', id: 'view-add-search', hash: '#/add-search'
         };
         const routes = [
           { name: 'home', id: 'view-home', selector: '[data-view="home"]' },
@@ -198,9 +198,12 @@ final class PresentationUITests: XCTestCase {
         const nextFrame = () => new Promise((resolve) => requestAnimationFrame(() =>
           requestAnimationFrame(resolve)));
         const openRoute = async (route) => {
-          const link = document.querySelector(route.selector);
-          if (!link) throw new Error(`Missing navigation link for ${route.name}`);
-          link.click();
+          if (route.hash) location.hash = route.hash;
+          else {
+            const link = document.querySelector(route.selector);
+            if (!link) throw new Error(`Missing navigation link for ${route.name}`);
+            link.click();
+          }
           await waitFor(() => !document.getElementById(route.id)?.hidden, route.name);
           await nextFrame();
         };
@@ -2653,11 +2656,12 @@ final class PresentationUITests: XCTestCase {
                 return scopes["hidden"] as? Bool == false && scopes["pressed"] as? String == "top"
             }, object: monitor)
             XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 30), .completed, "typing shows the scopes with Top pressed")
-            let quiet = app.webViews.firstMatch.staticTexts["Browse by"].firstMatch
-            if quiet.waitForExistence(timeout: 5) {
-                revealNativeTarget(quiet, in: app)
-                quiet.tap()
-            }
+            let done = app.toolbars.buttons["Done"].firstMatch
+            XCTAssertTrue(done.waitForExistence(timeout: 5), "the web input accessory offers Done")
+            done.tap()
+            let keyboardHidden = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
+            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 5), .completed, "Done dismisses the keyboard before target measurements and the audit")
             let labelTarget = target(label, in: app)
             XCTAssertTrue(labelTarget.waitForExistence(timeout: 30), "the box label is a named native target")
             revealNativeTarget(labelTarget, in: app)
