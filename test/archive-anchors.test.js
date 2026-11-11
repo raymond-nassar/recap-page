@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
 import {
-  cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync,
+  cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync,
 } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +13,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const hash = (raw) => createHash('sha256').update(raw).digest('hex');
 const cite = (text) => String.fromCharCode(96) + text + String.fromCharCode(96);
 
-function fixture() {
+function fixture({ existingArchive = false } = {}) {
   const root = mkdtempSync(join(process.env.TEMP ?? process.env.TMPDIR ?? '/tmp', 'archive-anchors-'));
   const outside = mkdtempSync(join(dirname(root), 'archive-candidate-'));
   const git = (...args) => execFileSync('git', [
@@ -36,9 +36,13 @@ function fixture() {
   write('.gitattributes', '* -text\n');
   write('target.js', 'first\nsecond\nthird\n');
   write('PRODUCT_BACKLOG.md', '# Frozen\nOld record\n');
+  if (existingArchive) write('docs/archive/PRODUCT_BACKLOG.md', '# Frozen\nOld record\n');
   write('CURRENT.md', `Backlog ${cite('PRODUCT_BACKLOG.md:1')}\n\nSame claim ${cite('target.js:2')}\n\nSame claim ${cite('target.js:2')}\n`);
   const source = commit();
   write('PRODUCT_BACKLOG.md', `# Frozen\n<!-- anchors:source=${source} -->\nFrozen claim ${cite('target.js:1')}\n\nSelf ${cite('PRODUCT_BACKLOG.md:1')}\n`);
+  if (existingArchive) {
+    write('docs/archive/PRODUCT_BACKLOG.md', readFileSync(join(root, 'PRODUCT_BACKLOG.md')));
+  }
   write('docs/anchors.history.json', historyRegistryBytes({
     version: 1, migrationBaseline: source, corpusSha256: '0'.repeat(64),
     sealedTargets: ['sealed.js'], expectedCount: 0, entries: [],
@@ -52,7 +56,7 @@ function fixture() {
   const base = commit();
   const oldBlob = readFileSync(join(root, 'PRODUCT_BACKLOG.md'));
   mkdirSync(join(root, 'docs', 'archive'), { recursive: true });
-  git('mv', 'PRODUCT_BACKLOG.md', 'docs/archive/PRODUCT_BACKLOG.md');
+  git('mv', '-f', 'PRODUCT_BACKLOG.md', 'docs/archive/PRODUCT_BACKLOG.md');
   write('target.js', 'inserted\nfirst\nsecond\nthird\n');
   write('CURRENT.md', `Backlog ${cite('docs/archive/PRODUCT_BACKLOG.md:1')}\n\nSame claim ${cite('target.js:3')}\n\nSame claim ${cite('target.js:3')}\n`);
   git('add', '-A');
@@ -176,8 +180,85 @@ test('archive range proof refuses edited evidence and ambiguous content search',
   const f = fixture();
   try {
     f.write('target.js', 'inserted\nfirst\nchanged second\nthird\n');
-    assert.match(f.prepare().stderr, /changed range boundary|changed cited content|disagree/);
+    assert.equal(f.prepare().stderr, 'FATAL: changed range boundary: CURRENT.md|preamble|target.js:2|0\n');
     f.write('target.js', 'inserted\nfirst\nsecond\nthird\nsecond\n');
-    assert.match(f.prepare().stderr, /content search and diff arithmetic disagree/);
+    assert.equal(f.prepare().stderr, 'FATAL: content search and diff arithmetic disagree: CURRENT.md|preamble|target.js:2|0\n');
+  } finally { f.clean(); }
+});
+
+test('archive candidates can be applied through a linked parent directory', () => {
+  const f = fixture();
+  try {
+    const directory = join(f.outside, 'physical');
+    const link = join(f.outside, 'linked');
+    mkdirSync(directory);
+    symlinkSync(directory, link, process.platform === 'win32' ? 'junction' : 'dir');
+    const candidate = join(link, 'candidate.json');
+    f.good(f.prepare(candidate));
+    f.good(f.run('archive-anchors', [
+      '--apply', candidate, '--approved-sha256', hash(readFileSync(candidate)),
+    ]));
+  } finally { f.clean(); }
+});
+
+test('archive occurrence ledger refuses a new occurrence', () => {
+  const f = fixture();
+  try {
+    f.write('NEW.md', `New claim ${cite('target.js:3')}\n`);
+    f.git('add', 'NEW.md');
+    const result = f.prepare();
+    assert.equal(result.status, 2);
+    assert.equal(result.stderr, 'FATAL: new occurrences or changed exemptions in archive migration\n');
+  } finally { f.clean(); }
+});
+
+test('archive occurrence ledger refuses two documents collapsing onto one occurrence', () => {
+  const f = fixture({ existingArchive: true });
+  try {
+    const result = f.prepare();
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /^FATAL: lost or collapsed occurrence: docs\/archive\/PRODUCT_BACKLOG\.md\|/);
+  } finally { f.clean(); }
+});
+
+test('archive authority refuses a non-ancestor move baseline', () => {
+  const f = fixture();
+  try {
+    f.good(f.prepare());
+    f.good(f.apply());
+    const registry = JSON.parse(readFileSync(join(f.root, 'docs/anchors.history.json')));
+    const unrelated = f.git('commit-tree', `${f.base}^{tree}`, '-m', 'unrelated root');
+    registry.documentMoves[0].baseline = unrelated;
+    f.write('docs/anchors.history.json', historyRegistryBytes(registry));
+    const result = f.run('check-anchors');
+    assert.equal(result.status, 2);
+    assert.equal(result.stderr, `FATAL: document move baseline ${unrelated} is not an ancestor of HEAD\n`);
+  } finally { f.clean(); }
+});
+
+test('archive authority refuses the old path reappearing', () => {
+  const f = fixture();
+  try {
+    f.good(f.prepare());
+    f.good(f.apply());
+    f.write('PRODUCT_BACKLOG.md', f.oldBlob);
+    f.git('add', 'PRODUCT_BACKLOG.md');
+    const result = f.run('check-anchors');
+    assert.equal(result.status, 2);
+    assert.equal(result.stderr, 'FATAL: document move source still exists\n');
+  } finally { f.clean(); }
+});
+
+test('version-1 history cannot carry document move authority', () => {
+  const f = fixture();
+  try {
+    f.good(f.prepare());
+    f.good(f.apply());
+    const registry = JSON.parse(readFileSync(join(f.root, 'docs/anchors.history.json')));
+    registry.version = 1;
+    f.write('docs/anchors.history.json', `${JSON.stringify(registry)}\n`);
+    const result = f.run('check-anchors');
+    assert.equal(result.status, 2);
+    assert.equal(result.stderr, 'FATAL: historical registry must contain exactly version, migrationBaseline, corpusSha256, sealedTargets, expectedCount, entries\n');
   } finally { f.clean(); }
 });

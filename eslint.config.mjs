@@ -120,7 +120,7 @@ export default [
     languageOptions: { globals: globals.node },
   },
   {
-    files: ['design/**/*.js'],
+    files: ['docs/archive/mockups/**/*.js'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   {

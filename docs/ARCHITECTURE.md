@@ -24,7 +24,7 @@ framework, build step or runtime package dependency. Desktop uses a local Node.j
 | Windows, Android or iOS wrappers | `packaging/windows/`, `packaging/android/` and `packaging/ios/` |
 | The public project website, not the tracker | `pages/` and `scripts/build-pages.mjs` |
 | Automated checks | `test/`, `scripts/check-*.mjs` and `.github/workflows/` |
-| Design studies and maintainer procedures | `design/` and `docs/` |
+| Design studies and maintainer procedures | `docs/archive/mockups/` and `docs/` |
 
 For your first change, follow [Contributing](../CONTRIBUTING.md). The sections below explain the
 main boundaries and link to the [detailed architecture reference](ARCHITECTURE_REFERENCE.md).

@@ -40,7 +40,7 @@ function external(path) {
   if (rel === '' || (rel !== '..' && !rel.startsWith(`..${sep}`) && !isAbsolute(rel))) {
     throw new Error('candidate must be outside the worktree');
   }
-  if (existsSync(path) && realpathSync(path) !== resolve(path)) {
+  if (existsSync(path) && lstatSync(path).isSymbolicLink()) {
     throw new Error('candidate must not be a symbolic link');
   }
   return resolve(path);

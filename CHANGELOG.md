@@ -6419,7 +6419,7 @@ link to the wrong page.
 
 - **The evidence-anchor gate now has the backlog entry it shipped without.** `BL-050` built the
   check that fails the build when a `path:line` citation stops naming the code it claims, and it was
-  the only row in `docs/archive/PRODUCT_BACKLOG.md` with no detail block of its own. Two sentences at the top of
+  the only row in `PRODUCT_BACKLOG.md` with no detail block of its own. Two sentences at the top of
   that document promised a block for every delivered item, so both had been given an exception clause
   naming the gap. The research found the account was not missing but misfiled: it had been written as
   a continuation of the block above it, because the gate grew out of that item's digression about
@@ -6507,7 +6507,7 @@ link to the wrong page.
   lose nothing. Restoring is also slightly faster than before, since counting is cheaper than
   drawing. Nothing you have already saved is affected, and no identifier already stored changes.
 
-- **The audited figures in `docs/archive/PRODUCT_BACKLOG.md` no longer go stale in silence.** The
+- **The audited figures in `PRODUCT_BACKLOG.md` no longer go stale in silence.** The
   reconciliation record measured `src/js/main.js` at 1,566 lines and the test suite at 224 tests.
   Both were true when audited and neither is true now. The line count had no drift clause at all,
   and the test count's clause had itself gone stale, written as 235 when nine items had shipped and
@@ -6609,7 +6609,7 @@ link to the wrong page.
   carry reading lists, so the small-screen job is served first-party and building a second, worse
   one here would not help anyone. The tracker's posture is now stated rather than implied: it is a
   desktop companion to the Marvel Unlimited **web** reader, which is the platform where no list
-  feature exists. BL-028 moves to the parked table in `docs/archive/PRODUCT_BACKLOG.md` with its score left in
+  feature exists. BL-028 moves to the parked table in `PRODUCT_BACKLOG.md` with its score left in
   place as the record of what was given up, and the four UX findings behind it are marked accepted
   rather than open. No interface or behaviour changed, so nothing you have saved is affected. This
   is the largest Cost of Delay in the backlog being retired by a scope decision rather than by
