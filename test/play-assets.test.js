@@ -159,7 +159,10 @@ test('demonstration state is deterministic, schema-compatible and wholly fiction
   assert.deepEqual(state.overrides, {});
   for (const issue of Object.values(state.issues)) {
     assert.ok(issue.issueId < 0 && issue.title.startsWith('Fictional: '));
-    for (const field of ['cover', 'url', 'digitalId', 'mu', 'creators']) assert.equal(issue[field], null);
+    for (const field of ['cover', 'url', 'digitalId', 'mu']) assert.equal(issue[field], null);
+    assert.deepEqual(issue.creators, [
+      { name: 'Fictional Writer', role: 'writer' }, { name: 'Fictional Artist', role: 'penciler' },
+    ]);
   }
   for (const list of Object.values(state.lists)) {
     assert.equal(list.note, '');

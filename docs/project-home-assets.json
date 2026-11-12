@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Informational project-home artwork and Android development previews, not a Google Play submission.",
-  "capturedOn": "2026-10-29",
+  "capturedOn": "2026-11-11",
   "featureArtwork": {
     "file": "pages/assets/android-feature-graphic.png",
     "source": "Owner-supplied Recap Page feature graphic requested for this project-home update.",
@@ -11,13 +11,13 @@
   },
   "androidPreviews": {
     "command": "npm run play:assets",
-    "sourceRevision": "2673c8e39325edb7bb403113e702c99538f7b503",
-    "sourceTree": "1b0c95ee37bbee186c7e1ab51d9b291f5afcd158",
+    "sourceRevision": "74cbe876e4d54f935ad2114d2fcc92a0e9a898bd",
+    "sourceTree": "387c1056b17b98a089d5467a9b4e75f2e961d332",
     "sourceDirty": false,
-    "androidManifestSha256": "235f059daaaae51d43862c448c2db782f1b227357d12c2936f9206adee228a37",
+    "androidManifestSha256": "b6c39d2359782b9fbfb7842e984e188e1b1f40c4be0d2607207236fc92ff1551",
     "renderer": {
       "name": "Microsoft Edge",
-      "version": "Edg/156.0.4314.42",
+      "version": "Edg/157.0.4341.46",
       "method": "Desktop Edge rendering generated Android web assets with an emulated phone viewport.",
       "viewport": {
         "width": 360,
@@ -28,8 +28,8 @@
       "nativeBridge": false
     },
     "data": {
-      "method": "Wholly fictional negative-ID issue records, synthetic progress, empty catalog, covers off, no notes.",
-      "sha256": "41a71aeee307fb6447700eb9e133b62532b6b6ed2dfb8e1660f9e92023296e73"
+      "method": "Wholly fictional negative-ID saved issues and progress; bundled public catalog for discovery, covers off, no notes.",
+      "sha256": "ec0da86363c98e299afb27f45f6fd2913a6127b90cc3b8a8f73896b1d05f1288"
     },
     "network": "Every page request fulfilled locally from an allowlist or aborted; no request continued to the network.",
     "releaseAcceptance": false,
@@ -42,8 +42,8 @@
         "scrollTarget": "top",
         "width": 1080,
         "height": 1920,
-        "bytes": 133329,
-        "sha256": "6dff740b23c02e638bce0af2da10c7b6578b568d516dfe351bca413a5c94536c"
+        "bytes": 133829,
+        "sha256": "2ef743eade98547a0a8845e00bcf29d1dd986acc7b6a6ac8eb762e4933ad29ca"
       },
       {
         "file": "pages/assets/android-reading-preview.png",
@@ -52,8 +52,8 @@
         "scrollTarget": "#hero",
         "width": 1080,
         "height": 1920,
-        "bytes": 194373,
-        "sha256": "5ae3481bcd6b26e106e51144ce0a6458618fe66f97402ce037d0e4fb55ae307b"
+        "bytes": 178201,
+        "sha256": "c93321d0ec248c3673b0d3e3ed0a0a66e30428e84f1ad3f9f37aa99e2770a339"
       }
     ]
   }

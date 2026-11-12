@@ -77,10 +77,13 @@ async function captureScreen(page, screen, output) {
     const frames = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
     await document.fonts.ready;
     if (scroll) {
-      document.querySelector(scroll).scrollIntoView({ block: 'start' });
+      const anchor = document.querySelector(scroll);
+      anchor.scrollIntoView({ block: 'start' });
       // A reader brings the hidden navigation back by scrolling up a little, so go just past the
       // card and return to it, a frame apart so the app sees each move as a scroll of its own.
-      const target = scrollY;
+      // Scroll offsets are whole pixels, so a heading at 1,946.6px landed at 1,947 and sat 0.4px
+      // above the frame, failing the heading audit; rounding down keeps all of it in view.
+      const target = Math.floor(anchor.getBoundingClientRect().top + scrollY);
       await frames();
       scrollTo(0, target + 24);
       await frames();

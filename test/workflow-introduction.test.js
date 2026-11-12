@@ -10,6 +10,8 @@ const listing = packet.split('### Long description')[1].split('### Feature field
 const guide = JSON.parse(read('../src/data/civil_war_avengers.json'));
 const text = (source) => source.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 const introductionSurfaces = [['project home', page], ['README', readme]];
+const APP_STORE_LISTING = 'https://apps.apple.com/us/app/recap-page/id6828494712';
+const PLAY_LISTING = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
 
 test('the introduction walks through a real cross-series transition with synthetic progress', () => {
   assert.equal(guide.items[6].title, 'Civil War (2006) #7');
@@ -45,9 +47,18 @@ test('the project home and README distinguish shared progress and manual reading
   }
   for (const source of [page, readme]) {
     const copy = text(source);
-    assert.match(copy, /In App Store review for iPhone and iPad/);
+    const targets = new Set([
+      ...source.matchAll(/\]\(([^)\s]+)\)/g),
+      ...source.matchAll(/\bhref="([^"]*)"/g),
+    ].map((match) => match[1]));
+    assert.match(copy, /iPhone,? and iPad/);
+    assert.doesNotMatch(copy, /App Store review/);
     assert.ok(
-      source.includes('https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage'),
+      targets.has(APP_STORE_LISTING),
+      'must link the App Store listing',
+    );
+    assert.ok(
+      targets.has(PLAY_LISTING),
       'must link the Google Play listing',
     );
     assert.doesNotMatch(copy, /Not available on Google Play|earlier beta|Try the beta/);

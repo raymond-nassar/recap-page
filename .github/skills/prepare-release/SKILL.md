@@ -27,7 +27,7 @@ Do not turn these routes into one universal command sequence:
 
 | Platform or channel | Authoritative route |
 |---|---|
-| Android build allocation or candidate | [Android release contract](../../../docs/RELEASING.md#android-allocation-and-exact-artifact-contract) and [Android candidate procedure](../../../docs/ANDROID.md#protected-app-bundle-candidates). `docs/RELEASING.md:35-60`; `docs/ANDROID.md:239-246` |
+| Android build allocation or candidate | [Android release contract](../../../docs/RELEASING.md#android-allocation-and-exact-artifact-contract) and [Android candidate procedure](../../../docs/ANDROID.md#protected-app-bundle-candidates). `docs/RELEASING.md:35-60`; `docs/ANDROID.md:241-248` |
 | Google Play testing or promotion | [Protected Google Play publication](../../../docs/GOOGLE_PLAY_PUBLISHING.md). `docs/RELEASING.md:206-216`; `docs/GOOGLE_PLAY_PUBLISHING.md:1-20` `docs/GOOGLE_PLAY_PUBLISHING.md:256-295` |
 | iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:258-285`; `docs/IOS.md:461-470` `docs/IOS.md:502-534` |
 | Windows portable or MSIX proof | [Windows package proof](../../../docs/MICROSOFT_STORE.md#build-controlled-proof-packages). `docs/MICROSOFT_STORE.md:245-304` |

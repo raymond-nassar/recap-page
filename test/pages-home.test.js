@@ -68,6 +68,7 @@ const releaseHtml = renderSitePage(RELEASE_PAGE, releaseContent);
 const APP_ORIGIN = 'http://127.0.0.1:8787/';
 const REPOSITORY = 'https://github.com/raymond-nassar/recap-page';
 const PLAY_LISTING = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
+const APP_STORE_LISTING = 'https://apps.apple.com/us/app/recap-page/id6828494712';
 const QUESTION_FORM_URL = `${REPOSITORY}/issues/new?template=project-question.yml`;
 const QUESTION_CONTEXT_LINKS = [
   `${REPOSITORY}#readme`,
@@ -110,6 +111,7 @@ const EXPECTED_HREFS = [
   PLAY_LISTING,
   `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
+  APP_STORE_LISTING,
   APP_ORIGIN,
   `${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`,
   './support.html',
@@ -222,7 +224,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
   const overview = section('overview');
   assert.match(
     overview,
-    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p>\s*Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story\.\s*<\/p>\s*<p class="platform-status">Available for Windows and Android\. In App Store review for iPhone and iPad\.<\/p>\s*<p class="action-row">/,
+    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p>\s*Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story\.\s*<\/p>\s*<p class="platform-status">Available for Windows, Android, iPhone, and iPad\.<\/p>\s*<p class="action-row">/,
   );
   assert.deepEqual(links(overview), [
     { href: '#getting-started', button: true, name: 'Get started' },
@@ -253,15 +255,18 @@ test('the project home sends Android readers to Google Play and keeps the previe
   );
 
   const features = section('features');
-  assert.match(features, /<p>On desktop and Android\.<\/p>/);
+  assert.match(features, /<p>In every app\.<\/p>/);
   for (const feature of [
     'Reading Paths', 'Modern Timeline', 'Character spotlights', 'MCU Prep',
     'Defer for later', 'notes', 'descriptions', 'Marvel Unlimited record',
     'historical record, not availability in Marvel Comics', 'JSON backups', 'Markdown checklists', 'Share an order',
   ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
+  const featureCopy = plain(features);
+  assert.match(featureCopy, /Search Reading Lists, series, creators, and comics\./);
+  assert.match(featureCopy, /Store apps can back up to your own OneDrive, or iCloud Drive on iPhone and iPad/);
 });
 
-test('Get started offers both app stores and says iPhone and iPad is in App Store review', () => {
+test('Get started offers all three app stores', () => {
   const start = section('getting-started');
   const cards = [...start.matchAll(/<article class="card route-card">([\s\S]*?)<\/article>/g)]
     .map((match) => ({
@@ -294,7 +299,11 @@ test('Get started offers both app stores and says iPhone and iPad is in App Stor
       copy: 'Requires Node.js 20 or newer.',
       links: [{ href: `${REPOSITORY}/blob/main/docs/RUNNING.md`, button: false, name: 'Source setup guide' }],
     },
-    { name: 'iPhone and iPad', copy: 'In App Store review. Not available yet.', links: [] },
+    {
+      name: 'iPhone and iPad',
+      copy: 'Install and update through the App Store.',
+      links: [{ href: APP_STORE_LISTING, button: true, name: 'Open the App Store' }],
+    },
   ]);
   assert.match(
     plain(start.slice(start.indexOf('<p class="platform-note">'))),
@@ -456,7 +465,7 @@ test('the page exposes every task through semantic no-script structure', () => {
 test('the project home keeps its copy concise and its navigation focused', () => {
   const visibleCopy = html.slice(html.indexOf('<body>')).replace(/<[^>]+>/g, ' ');
   const words = visibleCopy.match(/\S+/g) ?? [];
-  assert.ok(words.length <= 810, `${words.length} words exceed the 810-word feature-tour budget`);
+  assert.ok(words.length <= 830, `${words.length} words exceed the 830-word feature-tour budget`);
   const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
   assert.deepEqual(links(navigation).map(({ href }) => href), [
     '#android', '#features', '#getting-started', '#documentation', '#feedback',
