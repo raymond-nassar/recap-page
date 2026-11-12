@@ -3328,28 +3328,33 @@ async function mobileLayout(page, label, narrow) {
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;
+  // #1243: the options left the card for the space between it and Coming up.
   const placement = await page.evaluate((onPhone) => {
+    const hero = document.querySelector('#hero');
     const row = document.querySelector('#hero-primary-actions');
     const control = document.querySelector(onPhone ? '#android-list-options' : '#list-actions > summary');
-    const rowBox = row.getBoundingClientRect();
+    const card = hero.getBoundingClientRect();
     const box = control.getBoundingClientRect();
     const style = getComputedStyle(control);
     return {
-      afterRow: !!row.nextElementSibling?.contains(control), name: control.textContent.trim(),
-      row: [rowBox.left, rowBox.right, rowBox.bottom], control: [box.left, box.right, box.top, box.height],
+      outsideHero: !hero.contains(control),
+      beforeShelf: document.querySelector('#reading-list-options').nextElementSibling?.id === 'shelf-sec',
+      name: control.textContent.trim(),
+      card: [card.left, card.right, card.bottom], control: [box.left, box.right, box.top, box.height],
       gap: parseFloat(getComputedStyle(row).columnGap), background: style.backgroundColor,
       border: style.borderColor, colour: style.color, dim: getComputedStyle(document.querySelector('#hero-by')).color,
     };
   }, narrow);
-  check(placement.afterRow, `${label}: Reading List options follow Read and Done ${JSON.stringify(placement)}`);
+  check(placement.outsideHero && placement.beforeShelf,
+    `${label}: Reading List options sit below the card, just before Coming up ${JSON.stringify(placement)}`);
   check(placement.name === 'Reading List options',
     `${label}: list options have their distinct visible name ${JSON.stringify(placement)}`);
-  check(Math.abs(placement.control[0] - placement.row[0]) <= 1
-    && Math.abs(placement.control[1] - placement.row[1]) <= 1
-    && placement.control[2] - placement.row[2] > placement.gap && placement.control[3] >= 48
+  check(Math.abs(placement.control[0] - placement.card[0]) <= 1
+    && Math.abs(placement.control[1] - placement.card[1]) <= 1
+    && placement.control[2] - placement.card[2] > placement.gap && placement.control[3] >= 48
     && placement.background === 'rgba(0, 0, 0, 0)' && placement.border === 'rgba(0, 0, 0, 0)'
     && placement.colour === placement.dim,
-  `${label}: the quieter Reading List options group aligns with the action row and has a larger gap ${JSON.stringify(placement)}`);
+  `${label}: the quieter Reading List options group aligns with the card's edges and has a larger gap ${JSON.stringify(placement)}`);
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
