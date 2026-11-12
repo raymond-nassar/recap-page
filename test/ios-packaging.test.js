@@ -1137,7 +1137,9 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
     .map(([, token, size]) => [token, Number(size)]);
   assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
   assert.match(css, /--ios-text-scale:\s*1\s*;/);
-  assert.doesNotMatch(css, /\b(?:font-size|zoom)\s*:/, 'root rem dimensions and page zoom stay unchanged');
+  const withoutSearchFloor = css.replace(/:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/, '');
+  assert.doesNotMatch(withoutSearchFloor, /\b(?:font-size|zoom)\s*:/,
+    'only Search has a field-size floor; root rem dimensions and page zoom stay unchanged');
   const controller = appSource('WebViewController');
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
@@ -2059,6 +2061,14 @@ test('iOS Search reuses the named label target and retains its visible field des
   }
 });
 
+test('iOS Search prevents focus zoom without shrinking larger text or changing shared fields', () => {
+  const css = read('packaging/ios/web/ios.css');
+  assert.match(css, /:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/);
+  for (const path of ['src/styles.css', 'packaging/android/web/mobile.css']) {
+    assert.doesNotMatch(read(path), /#search-q\s*\{[^}]*font-size:\s*max\(16px,/s);
+  }
+});
+
 test('native Search test measures the box label and every scope at 44 points and audits both text sizes', () => {
   assert.doesNotMatch(presentationTests, /add-other-methods|moreMethods/);
   const body = presentationTests.slice(
@@ -2091,6 +2101,8 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 5\)/);
   assert.match(body, /let beforeProof = try freshPassiveState\(of: app\)[\s\S]*?beforeProof\["searchAuditPrepared"\] as\? Bool, true[\s\S]*?XCTAssertEqual\(removalResult, \.completed[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
   assert.match(presentationTests, /searchAuditPrepared: window\.__recapSearchAuditPrepared === true/);
+  assert.match(presentationTests, /visual:\s*visualViewport && \{[^}]*scale:\s*visualViewport\.scale/s);
+  assert.match(body, /beforeProof\["guard"\][\s\S]*?guardState\["viewport"\][\s\S]*?viewportState\["visual"\][\s\S]*?visual\["scale"\][\s\S]*?XCTAssertEqual\(scale, 1, accuracy: 0\.001,[\s\S]*?verifyPassiveAuditTexts/);
   assert.match(body, /"t03-search-scopes-/);
 });
 

@@ -2737,6 +2737,12 @@ final class PresentationUITests: XCTestCase {
                            "the page handled preparation but the accessibility tree still exposes its removed target")
             XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
                            "passive-text proofs do not begin with a focused input or control")
+            let guardState = try XCTUnwrap(beforeProof["guard"] as? [String: Any])
+            let viewportState = try XCTUnwrap(guardState["viewport"] as? [String: Any])
+            let visual = try XCTUnwrap(viewportState["visual"] as? [String: Any])
+            let scale = try XCTUnwrap((visual["scale"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(scale, 1, accuracy: 0.001,
+                           "Search does not leave the page zoomed after typing and dismissing the keyboard")
             let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: false)
             try performAccessibilityAudit(of: app, allowsPassiveGuard: true)
             try record("t03-search-scopes-\(category.rawValue)", [
