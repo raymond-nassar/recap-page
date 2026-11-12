@@ -111,7 +111,7 @@ final class PresentationUITests: XCTestCase {
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(
             route: route, positionsDataAudit: positionsDataAudit)
-        if route == "all" || route == "history" || route.hasPrefix("guard-") {
+        if route == "all" || route == "search" || route == "history" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
         if emptyHomeTest {
@@ -470,7 +470,7 @@ final class PresentationUITests: XCTestCase {
         let dataAuditGeometry = null;
         let dataAuditSynchronize = null;
         \(positionsDataAudit ? Self.dataAuditPositioner : "")
-        \(route == "all" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
+        \(route == "all" || route == "search" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
         const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
         return JSON.stringify({
           scale: Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ios-text-scale')),
@@ -2689,10 +2689,26 @@ final class PresentationUITests: XCTestCase {
             let viewport = try XCTUnwrap((metrics["viewportWidth"] as? NSNumber)?.doubleValue)
             let document = try XCTUnwrap((metrics["documentWidth"] as? NSNumber)?.doubleValue)
             XCTAssertEqual(document, viewport, "Search with scopes has no sideways overflow")
-            try performAccessibilityAudit(of: app)
+            let sources = app.webViews.firstMatch.links.matching(
+                NSPredicate(format: "label BEGINSWITH %@", "Source of "))
+            XCTAssertEqual(sources.count, 3, "the three Top Reading Lists retain their source links")
+            for source in sources.allElementsBoundByIndex {
+                revealNativeTarget(source, in: app)
+                XCTAssertEqual(app.staticTexts.matching(NSPredicate(format: "label == %@", source.label)).count, 0,
+                               "a source link has no separate text target")
+                XCTAssertGreaterThanOrEqual(source.frame.width, 44, "the source link is at least 44 points wide")
+                XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
+            }
+            revealNativeTarget(heading, in: app)
+            heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            let beforeProof = try freshPassiveState(of: app)
+            XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
+                           "passive-text proofs do not begin with a focused input or control")
+            let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: false)
+            try performAccessibilityAudit(of: app, allowsPassiveGuard: true)
             try record("t03-search-scopes-\(category.rawValue)", [
                 "metrics": metrics, "label": NSCoder.string(for: labelTarget.frame), "scopes": frames,
-                "audit": "passed",
+                "audit": "passed", "reviewedPassiveCases": acceptedTexts.map(\.label),
             ])
             capture(app, named: "t03-search-scopes-\(category.rawValue)")
             app.terminate()

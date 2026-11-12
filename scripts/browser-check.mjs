@@ -11278,6 +11278,8 @@ const SCENARIOS = [
 
       // Exercise the shipping native adaptation, not a duplicate of its DOM transformations.
       // Apple's hit-region audit still has to verify the resulting WebKit native targets in CI.
+      await type('Browser Check Order');
+      await page.waitForSelector('#search-lists-results .result-source a');
       const controller = readFileSync(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
       const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)?.[1];
       if (!adapter) throw new Error('Missing iOS accessible target adaptation');
@@ -11329,6 +11331,18 @@ const SCENARIOS = [
         t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,
           hint.visible && hint.hiddenAX && hint.described && fieldAX?.description?.includes(hint.text),
           JSON.stringify({ hint, fieldAX }));
+        const sources = await page.$$eval('#search-lists-results .result-source a', (links) => links.map((link) => ({
+          name: link.getAttribute('aria-label'), text: link.textContent,
+          width: link.getBoundingClientRect().width, height: link.getBoundingClientRect().height,
+          hiddenChildren: [...link.childNodes].every((node) =>
+            node.nodeType === Node.ELEMENT_NODE && node.getAttribute('aria-hidden') === 'true'),
+          prefix: link.previousElementSibling?.textContent,
+        })));
+        t.check(`iOS source links keep their contextual name as one 44px target and their passive prefix at ${width}px`,
+          sources.length === 1 && sources.every((source) => source.name.startsWith('Source of ')
+            && source.name.endsWith(source.text) && source.width >= 44 && source.height >= 44
+            && source.hiddenChildren && source.prefix === 'Source: '),
+          JSON.stringify(sources));
       }
 
       await page.evaluate(() => {

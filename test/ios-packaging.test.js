@@ -2071,7 +2071,18 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.height, 44/);
-  assert.match(body, /try performAccessibilityAudit\(of: app\)/);
+  for (const setup of [
+    'if route == "all" || route == "search" || route == "history" || route.hasPrefix("guard-")',
+    'route == "all" || route == "search" || route.hasPrefix("guard-") ? Self.passiveAuditProbe',
+  ]) {
+    assert.ok(presentationTests.includes(setup), `Search runs the full passive guard: ${setup}`);
+  }
+  assert.match(body, /verifyPassiveAuditTexts\(in: app, homeVisible: false\)[\s\S]*?performAccessibilityAudit\(of: app, allowsPassiveGuard: true\)/);
+  assert.match(body, /"reviewedPassiveCases": acceptedTexts\.map\(\\\.label\)/);
+  assert.match(body, /app\.staticTexts\.matching\(NSPredicate\(format: "label == %@", source\.label\)\)\.count, 0/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.width, 44/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
+  assert.match(body, /revealNativeTarget\(heading, in: app\)[\s\S]*?heading\.coordinate[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
   assert.match(body, /"t03-search-scopes-/);
 });
 

@@ -77,7 +77,7 @@ export function createCatalogPresentation({
 
     const parts = [];
     if (label) {
-      parts.push('Source: ');
+      parts.push(el('span', {}, 'Source: '));
       parts.push(href
         ? el('a', {
           href,
