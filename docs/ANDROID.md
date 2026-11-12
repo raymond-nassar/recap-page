@@ -46,7 +46,7 @@ The link above a page title opens its immediate parent, such as **Home** or **Li
 It replaces the full breadcrumb trail and current title. Android Back follows your history;
 the parent link goes to its named destination.
 
-On a Reading List, open **Reading List options** after Read and Done to rename, edit notes, duplicate,
+On a Reading List, open **Reading List options** below the comic up next to rename, edit notes, duplicate,
 export, manage metadata or delete. Every command shows at once in the bottom sheet, grouped, with **Mark as Completed**
 apart and first while comics are queued and **Remove from library** apart and last, so each is one
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,

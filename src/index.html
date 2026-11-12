@@ -207,7 +207,6 @@
                       <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Mark as read and continue.</span>
                     </div>
                     <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
-                    <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier comics</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
                   </div>
                 </div>
@@ -353,33 +352,6 @@
                         Done
                       </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
                     </div>
-                    <div id="reading-list-options" data-keep-uncovered>
-                      <div class="list-tools">
-                        <details id="list-actions" class="list-actions action-disclosure">
-                          <summary>Reading List options</summary>
-                          <div class="list-actions-body">
-                            <span class="tool-sep" aria-hidden="true"></span>
-                            <button type="button" class="quiet" id="btn-rename-list">Rename</button>
-                            <button type="button" class="quiet" id="btn-list-note">Note</button>
-                            <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
-                            <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
-                            <details id="list-export">
-                              <summary class="quiet">Export</summary>
-                              <div class="field-row">
-                                <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
-                                <button type="button" class="quiet" id="btn-export-order">Export order only</button>
-                              </div>
-                            </details>
-                            <span class="grow"></span>
-                            <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
-                            <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
-                            <!-- Removal keeps comic progress but removes the reader's own order and note. -->
-                            <span class="tool-sep" aria-hidden="true"></span>
-                            <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
-                          </div>
-                        </details>
-                      </div>
-                    </div>
                     <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <!-- The ring reads progress once. This visual row moves with it on a phone. -->
                     <div class="glance" id="hero-progress" aria-hidden="true">
@@ -450,20 +422,36 @@
                 </div>
               </section>
 
-              <button type="button" class="btn btn-g" id="btn-review-earlier" aria-expanded="false" aria-controls="review-earlier">Review earlier comics</button>
-              <section id="review-earlier" class="review-earlier" hidden aria-labelledby="review-h">
-                <h2 id="review-h" tabindex="-1">Review earlier comics</h2>
-                <p id="review-context"></p>
-                <p class="rail-hint">Choose a comic to open its details and load its story summary if you want one. This is the current order, not a record of your last reading session.</p>
-                <p id="review-position" role="status"></p>
-                <div id="review-candidate"></div>
-                <div class="cta">
-                  <button type="button" class="btn btn-g" id="review-earlier-button" aria-disabled="true">Earlier</button>
-                  <button type="button" class="btn btn-g" id="review-later-button" aria-disabled="true">Later</button>
-                  <button type="button" class="btn btn-g" id="review-full-order">Open full Reading List</button>
-                  <button type="button" class="btn btn-g" id="review-close">Close review</button>
+              <!-- Reading List options sit below the comic up next and above Coming up, so the card holds
+                   only that comic. renderHero keeps them here, below the card even when Coming up is
+                   hidden, and moves them into the list context when nothing is up next (#1243). -->
+              <div id="reading-list-options">
+                <div class="list-tools">
+                  <details id="list-actions" class="list-actions action-disclosure">
+                    <summary>Reading List options</summary>
+                    <div class="list-actions-body">
+                      <span class="tool-sep" aria-hidden="true"></span>
+                      <button type="button" class="quiet" id="btn-rename-list">Rename</button>
+                      <button type="button" class="quiet" id="btn-list-note">Note</button>
+                      <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
+                      <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
+                      <details id="list-export">
+                        <summary class="quiet">Export</summary>
+                        <div class="field-row">
+                          <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
+                          <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                        </div>
+                      </details>
+                      <span class="grow"></span>
+                      <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
+                      <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
+                      <!-- Removal keeps comic progress but removes the reader's own order and note. -->
+                      <span class="tool-sep" aria-hidden="true"></span>
+                      <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
+                    </div>
+                  </details>
                 </div>
-              </section>
+              </div>
               <!-- coming up -->
               <section class="sec" id="shelf-sec" aria-labelledby="shelf-h">
                 <div class="sec-h">

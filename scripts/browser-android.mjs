@@ -3620,16 +3620,22 @@ async function doneHintGeometry(page, label) {
   await page.evaluate(() => { location.hash = '#/read/hint'; });
   await page.waitForSelector('#view-read:not([hidden]) #btn-hero-done');
   await settle();
+  // #1243: Reading List options sit below the comic card, so near the top Done's hint has room beneath it.
   const clear = await focusAtTop();
-  check(clear.result === null && clear.done?.top <= 20 && clear.options && clear.optionsHit
-    && !clear.optionsCovered && !clear.tips.some((tip) => tip.id === 'action-tip'),
-  `${label}: Done's hint gives way to Reading List options at the top ${JSON.stringify(clear)}`);
-  await page.touchscreen.tap(clear.edge.x, clear.edge.y);
+  check(clear.result === null && clear.done?.top <= 20 && !clear.optionsCovered
+    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom'),
+  `${label}: at the top Done's hint shows below it, clear of Reading List options ${JSON.stringify(clear)}`);
+  await page.$eval('#android-list-options', (node) => node.scrollIntoView({ block: 'center' }));
+  await settle();
+  const below = await look();
+  check(below.options && below.optionsHit && below.done && below.options.top >= below.done.bottom,
+    `${label}: Reading List options sit below Done and its edge is reachable ${JSON.stringify(below)}`);
+  await page.touchscreen.tap(below.edge.x, below.edge.y);
   await settle();
   const openedOptions = await page.$eval('#android-list-sheet', (sheet) => sheet.open);
   check(openedOptions, `${label}: a tap on the edge of Reading List options opens its sheet`);
   if (openedOptions) await backDialog(page);
-  console.log(`CHECKED ${label}: Done and Reading List options ${JSON.stringify({ done: clear.done, options: clear.options })}`);
+  console.log(`CHECKED ${label}: Done and Reading List options ${JSON.stringify({ done: clear.done, options: below.options })}`);
 
   const rows = [];
   await page.evaluate(() => scrollTo(0, 0));
@@ -3716,9 +3722,9 @@ async function doneHintGeometry(page, label) {
         options: await pair(trigger, '#android-list-options') });
     }
   }
-  const expected = { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'top', 'Done top': 'none' };
+  const expected = { 'Read natural': 'top', 'Read top': 'bottom', 'Done natural': 'top', 'Done top': 'bottom' };
   const misplaced = pairRows.filter((row) => row.covers || row.taken > 0 || row.options.covers || row.options.taken > 0
-    || row.side !== expected[row.step] || (row.step.endsWith('top') && row.options.points === 0)
+    || row.side !== expected[row.step]
     || (row.step.endsWith('top') && !(row.box.top <= 20)) || (row.step.endsWith('natural') && row.points === 0));
   check(retired && pairRows.length === 4 && !misplaced.length,
     `${label}: neither hint covers or takes taps from the other button or Reading List options ${JSON.stringify(misplaced.length ? misplaced : pairRows)}`);

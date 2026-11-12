@@ -92,6 +92,11 @@ function node(props = {}, children = []) {
       const siblings = this.parentNode.childNodes;
       return siblings[siblings.indexOf(this) + 1] ?? null;
     },
+    get previousElementSibling() {
+      if (!this.parentNode) return null;
+      const siblings = this.parentNode.childNodes;
+      return siblings[siblings.indexOf(this) - 1] ?? null;
+    },
     role: props.role,
     style: { setProperty(name, value) { this[name] = value; } },
     tag: props.tag ?? 'div',
@@ -122,6 +127,16 @@ function node(props = {}, children = []) {
         if (child?.parentNode && child.contains?.(globalThis.document?.activeElement)) globalThis.document.activeElement = null;
         child.parentNode?.childNodes.splice(child.parentNode.childNodes.indexOf(child), 1);
         parent.childNodes.splice(parent.childNodes.indexOf(this) + 1 + offset, 0, attach(parent, child));
+        child.isConnected = true;
+      }
+    },
+    before(...next) {
+      const parent = this.parentNode;
+      if (!parent) return;
+      for (const child of next) {
+        if (child?.parentNode && child.contains?.(globalThis.document?.activeElement)) globalThis.document.activeElement = null;
+        child.parentNode?.childNodes.splice(child.parentNode.childNodes.indexOf(child), 1);
+        parent.childNodes.splice(parent.childNodes.indexOf(this), 0, attach(parent, child));
         child.isConnected = true;
       }
     },
@@ -374,7 +389,6 @@ function harness(overrides = {}) {
   ]);
   nodes.listTools = node({ class: 'list-tools' }, [nodes.listActions]);
   nodes.readingListOptions = node({ id: 'reading-list-options' }, [nodes.listTools]);
-  nodes.readingListOptions.setAttribute('data-keep-uncovered', '');
   nodes.listWork = node({ class: 'list-work' }, [
     nodes.hydrationStatus, nodes.btnCancelHydrate, nodes.synopsisStatus, nodes.btnCancelSynopsis,
   ]);
@@ -439,18 +453,16 @@ function harness(overrides = {}) {
     ['#list-wrap-up-cheer', nodes.cheer],
     ['dialog[open]', null],
   ]);
-  for (const id of ['review-earlier', 'btn-review-earlier', 'review-h', 'review-context',
-    'review-position', 'review-candidate', 'review-earlier-button', 'review-later-button',
-    'review-close', 'review-full-order', 'all-deferred', 'all-deferred-h', 'all-deferred-count',
+  for (const id of ['all-deferred', 'all-deferred-h', 'all-deferred-count',
     'btn-review-deferred', 'btn-hero-defer']) {
-    nodes[id] = node({ id, hidden: id === 'review-earlier' });
+    nodes[id] = node({ id });
     selectorMap.set(`#${id}`, nodes[id]);
   }
   // The document nests each end-state heading in its section and the hero's two commands in one
   // group, which is what Done's result is placed against and what hiding a section hides.
   nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
   nodes.heroProgress.append(nodes.heroProgressCount, node({ class: 'glance-bar' }, [nodes.heroProgressFill]));
-  nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.readingListOptions,
+  nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions,
     nodes.heroReaderTemporary, nodes.heroProgress, nodes.heroFacts]);
   nodes.hero.append(nodes.heroBody);
   nodes.orderDescSummary = node({ tag: 'summary', text: 'About this order' });
@@ -460,7 +472,8 @@ function harness(overrides = {}) {
   nodes.headingRight = node({ class: 'headright' }, [nodes.ringWrap]);
   nodes.heading = node({ class: 'head' }, [nodes.headingLeft, nodes.headingRight]);
   nodes.readingOverview = node({ id: 'reading-overview' });
-  nodes.readingBody.append(nodes.listWork, nodes.listNote, nodes.similarHint, nodes.hero, nodes.readingOverview);
+  nodes.readingBody.append(nodes.listWork, nodes.listNote, nodes.similarHint, nodes.hero, nodes.readingOverview,
+    nodes.readingListOptions, nodes.shelfSec);
   nodes.viewRead.append(nodes.heading, nodes.readingBody);
   nodes.wrapup.append(nodes.allReadHeading);
   nodes.viewRead.append(nodes.wrapup);
@@ -1068,7 +1081,6 @@ test('UX05 empty lists retain Search without review filters or no-match results'
   try {
     h.view.render();
     assert.equal(h.nodes.readingEmpty.hidden, false);
-    assert.equal(h.nodes['btn-review-earlier'].hidden, true);
     assert.equal(h.nodes.full.hidden, true);
     assert.equal(h.nodes.readingFilters.hidden, true);
     assert.equal(h.nodes.rows.childNodes.length, 0);
@@ -1157,63 +1169,6 @@ test('reading view exports helpers and keeps forbidden dependencies out of the m
   assert.doesNotMatch(source, /\bfrom\s+['"].*(?:main|storage|api|cache|hydrate|synopsis|reader)\.js['"]/);
   assert.doesNotMatch(source, /\bfrom\s+['"]\.\/(?:issue|home|library|add|data|catalog|progress|recovery)\.js['"]/);
   assert.doesNotMatch(source, /new Store|new MarvelApi|new ResponseCache|new RateLimiter|new Hydrator|new SynopsisRunner/);
-});
-
-test('445 picker preserves exact candidate, traversal and full-order escape without writes or requests', () => {
-  const h = harness();
-  try {
-    h.view.wire();
-    h.view.openReview();
-    const before = structuredClone(h.state());
-    assert.equal(h.view.restoreReview({ issueId: 1, contextId: h.state().active }), true);
-    h.nodes['review-earlier-button'].fire('click');
-    h.nodes['review-later-button'].fire('click');
-    assert.equal(h.view.restoreReview({ issueId: 1, contextId: h.state().active }), true);
-    h.nodes['review-full-order'].fire('click');
-    assert.equal(h.nodes.full.open, true);
-    assert.deepEqual(structuredClone(h.state()), before);
-    assert.deepEqual(h.calls.launch, []);
-    assert.deepEqual(h.calls.synopsis, []);
-    h.nodes['review-close'].fire('click');
-    assert.equal(h.nodes['review-earlier'].hidden, true);
-  } finally { h.restore(); }
-});
-
-test('445 picker withdraws reordered or removed candidates and never resurrects a different list on Back', () => {
-  const h = harness();
-  try {
-    h.view.wire();
-    h.view.openReview();
-    const id = h.state().active;
-    h.state().lists[id].itemIds = [2, 1, 3];
-    h.view.renderReview();
-    assert.equal(h.view.restoreReview({ issueId: 1, contextId: id }), false);
-    assert.match(h.nodes['review-position'].textContent, /no longer valid/);
-    h.state().lists.b = { id: 'b', name: 'Other', itemIds: [1] };
-    h.setActive('b');
-    h.view.renderReview();
-    h.setActive(id);
-    assert.equal(h.view.restoreReview({ issueId: 1, contextId: id }), false);
-  } finally { h.restore(); }
-});
-
-test('445 picker handles completion, empty ranges and missing identity metadata', () => {
-  const h = harness();
-  try {
-    h.view.wire();
-    const list = h.state().lists[h.state().active];
-    for (const id of list.itemIds) h.state().read[id] = 1;
-    delete h.state().issues[list.itemIds.at(-1)];
-    h.view.openReview();
-    assert.equal(h.view.restoreReview({ issueId: list.itemIds.at(-1), contextId: list.id }), true);
-    list.itemIds = [];
-    h.view.renderReview();
-    assert.equal(h.nodes['review-earlier'].hidden, true);
-    assert.equal(h.nodes['btn-review-earlier'].hidden, true);
-    list.itemIds = [20];
-    h.view.openReview();
-    assert.match(h.nodes['review-position'].textContent, /no comics before/);
-  } finally { h.restore(); }
 });
 
 test('#1061 hero shows each loaded summary in full and follows the next comic through Done', () => {
@@ -1802,28 +1757,44 @@ function removalOffer(h) {
   return notice;
 }
 
-test('Reading List options protect hints only while inside the queued comic card', () => {
+test('#1243 Reading List options sit above Coming up only while a comic is up next', () => {
   const h = removalHarness();
   try {
     const options = h.nodes.readingListOptions;
-    const protectedInCard = () => h.nodes.hero.contains(options)
-      && options.getAttribute('data-keep-uncovered') === '';
-    const outsideUnprotected = () => !h.nodes.hero.contains(options)
-      && options.getAttribute('data-keep-uncovered') === undefined;
-    assert.ok(protectedInCard(), 'queued comic keeps the options protected');
+    const body = h.nodes.readingBody.childNodes;
+    const aboveShelf = () => !h.nodes.hero.contains(options) && h.nodes.shelfSec.previousElementSibling === options
+      && body.indexOf(h.nodes.hero) < body.indexOf(options);
+    assert.ok(aboveShelf(), 'queued comic puts the options between its card and Coming up');
+    assert.equal(options.getAttribute('data-keep-uncovered'), undefined);
     h.nodes['btn-hero-defer'].fire('click');
     h.nodes['btn-hero-defer'].fire('click');
     assert.equal(h.nodes['all-deferred'].hidden, false);
-    assert.ok(outsideUnprotected(), 'all-deferred options no longer suppress sidebar labels');
+    assert.equal(h.nodes.listNote.nextElementSibling, options, 'with nothing up next the options join the list note');
     h.setPhone(true);
-    assert.ok(outsideUnprotected(), 'phone overview keeps the relocated options unprotected');
+    assert.equal(h.nodes.readingOverview.nextElementSibling, options, 'phone keeps them after the overview');
     h.setPhone(false);
-    assert.ok(outsideUnprotected(), 'desktop relocation keeps the options unprotected');
+    assert.equal(h.nodes.listNote.nextElementSibling, options);
     h.store.update((state) => setDeferred(state, 'list-a', 2, false));
-    assert.ok(protectedInCard(), 'resuming a comic restores protection');
+    assert.ok(aboveShelf(), 'resuming a comic returns the options above Coming up');
+    h.nodes.shelfSec.hidden = true;
+    h.setPhone(true);
+    h.setPhone(false);
+    assert.ok(aboveShelf(), 'a hidden Coming up still leaves the options directly under the card');
     h.store.update((state) => setActive(createList(state, { id: 'empty', name: 'Empty list' }), 'empty'));
     assert.equal(h.nodes.readingEmpty.hidden, false);
-    assert.ok(outsideUnprotected(), 'empty list leaves sidebar labels available');
+    assert.equal(h.nodes.listNote.nextElementSibling, options, 'empty list keeps the list-context placement');
+    assert.equal(options.getAttribute('data-keep-uncovered'), undefined);
+  } finally { h.restore(); }
+});
+
+test('#1243 rendering the hero alone keeps an empty Coming up hidden under the last comic', () => {
+  const h = removalHarness({ state: markRead(markRead(seededState(), 1, true), 2, true) });
+  try {
+    assert.equal(h.nodes.heroTitle.textContent, h.state().issues[3].title);
+    assert.equal(h.nodes.shelfSec.hidden, true, 'nothing follows the last comic');
+    h.view.renderHero();
+    assert.equal(h.nodes.shelfSec.hidden, true, 'a route arrival does not bring back an empty Coming up');
+    assert.equal(h.nodes.shelfSec.previousElementSibling, h.nodes.readingListOptions);
   } finally { h.restore(); }
 });
 

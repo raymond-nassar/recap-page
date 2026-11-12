@@ -34,7 +34,6 @@ export function createHomeView({
   onNavigateCategory,
   onOpen,
   onRead,
-  onReview,
   onReviewDeferred,
   paintCover,
   paintCoverUrl,
@@ -65,7 +64,6 @@ export function createHomeView({
       event?.preventDefault();
       onOpen();
     });
-    nodes.continueReview.addEventListener('click', onReview);
     nodes.continueDeferred.addEventListener('click', onReviewDeferred);
   }
 
@@ -92,7 +90,6 @@ export function createHomeView({
       ` of ${total} comic${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`);
     nodes.continueBar.hidden = total === 0;
     nodes.continueDeferred.hidden = deferred === 0;
-    nodes.continueReview.hidden = total === 0;
 
     if (issue) {
       const reader = readerPresentation(issue, 'saved');
