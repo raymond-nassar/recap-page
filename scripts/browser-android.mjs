@@ -5124,6 +5124,8 @@ async function selectionBarCheck(page, label, viewport) {
   await route(page, 'add-search');
   await page.type('#search-q', 'Selection');
   await page.$eval('#form-search', (form) => form.requestSubmit());
+  // #1204: Top shows the comic count; the list itself is under the pressed Comics scope.
+  await page.$eval('#search-scopes [data-scope="comics"]', (button) => button.click());
   await page.waitForFunction(() => document.querySelectorAll('#search-results input[data-comic-id]').length === 50);
   check(await page.$eval(BAR, (bar) => bar.hidden), `${label}: no bar before anything is selected`);
   await tap('#search-results input[data-comic-id="900445"]');

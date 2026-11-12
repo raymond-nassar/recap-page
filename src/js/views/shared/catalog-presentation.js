@@ -77,7 +77,7 @@ export function createCatalogPresentation({
 
     const parts = [];
     if (label) {
-      parts.push('Source: ');
+      parts.push(el('span', {}, 'Source: '));
       parts.push(href
         ? el('a', {
           href,
@@ -143,9 +143,11 @@ export function createCatalogPresentation({
 
   // Search answers with rows rather than cards, so six matching lists still leave the comics a
   // reader asked for within one phone screen (#1083). The row keeps the card's title Preview, its
-  // credit line and its one action, and drops only the cover and description, which Preview shows.
-  function catalogRow(list, { report, level = 'h3' }) {
-    return el('article', { class: 'result catalog-row', dataset: { story: `list:${list.id}` } }, [
+  // credit line and its one action, and drops only the description, which Preview shows. The cover
+  // is a small thumbnail so a list lines up with the series, creators and comics around it (#1204).
+  function catalogRow(list, { report, level = 'h3', cover = null }) {
+    return el('article', { class: 'result catalog-row search-row', dataset: { story: `list:${list.id}` } }, [
+      ...(cover ? [cover(catalogCoverUrl(list, 'portrait_medium'))] : []),
       el('div', { class: 'result-main' }, [
         el(level, { class: 'catalog-card-title result-title' }, el('button', {
           class: 'catalog-card-preview',

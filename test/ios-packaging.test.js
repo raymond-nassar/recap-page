@@ -38,6 +38,30 @@ const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
 const initialIosLedger = () => ({ schemaVersion: 1, retiredThrough: 1, reservations: [] });
 const iosSource = { productVersion: '4.2.0', sourceRevision: 'a'.repeat(40), sourceTree: 'b'.repeat(40) };
 
+test('presentation probe routes open through existing navigation or a current hash destination', async () => {
+  const html = read('src/index.html');
+  const start = presentationTests.indexOf('const issueSearchRoute = {');
+  const end = presentationTests.indexOf('const tokenNames = ', start);
+  assert.ok(start >= 0 && end > start);
+  const hashes = [];
+  const probe = presentationTests.slice(start, end);
+  await runInNewContext(`${probe}\n(async () => {
+    for (const route of [...routes, issueSearchRoute]) await openRoute(route);
+  })()`, {
+    document: {
+      querySelector: (selector) => {
+        const view = /^\[data-view="([^"]+)"\]$/.exec(selector);
+        return view && html.includes(`data-view="${view[1]}"`) ? { click() {} } : null;
+      },
+      getElementById: (id) => (html.includes(`id="${id}"`) ? { hidden: false } : null),
+    },
+    location: { set hash(value) { hashes.push(value); } },
+    requestAnimationFrame: (fn) => fn(),
+    setTimeout,
+  });
+  assert.deepEqual(hashes, ['#/add-search']);
+});
+
 test('iOS allocations reject reused, skipped, invalid and exhausted build numbers', () => {
   const first = reserveIosBuild(initialIosLedger(), iosSource);
   const second = reserveIosBuild(first, iosSource);
@@ -1113,7 +1137,9 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
     .map(([, token, size]) => [token, Number(size)]);
   assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
   assert.match(css, /--ios-text-scale:\s*1\s*;/);
-  assert.doesNotMatch(css, /\b(?:font-size|zoom)\s*:/, 'root rem dimensions and page zoom stay unchanged');
+  const withoutSearchFloor = css.replace(/:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/, '');
+  assert.doesNotMatch(withoutSearchFloor, /\b(?:font-size|zoom)\s*:/,
+    'only Search has a field-size floor; root rem dimensions and page zoom stay unchanged');
   const controller = appSource('WebViewController');
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
@@ -1416,7 +1442,7 @@ test('first-run tile uses a precise native reveal without changing shared helper
     presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'),
     presentationTests.indexOf('private func assertNoSeparateTextTarget('));
   assert.match(firstRun, /revealNativeTarget\(link, in: app, precise: true\)/);
-  assert.match(presentationTests, /revealNativeTarget\(summary, in: app\)/);
+  assert.match(presentationTests, /revealNativeTarget\(button, in: app\)/);
   assert.match(launchTests, /revealNativeTarget\(finish, in: reader\)/);
 });
 
@@ -2029,20 +2055,106 @@ test('iOS Search reuses the named label target and retains its visible field des
   assert.match(controller, /for \(const id of \[[^\]]*'search-hint'[^\]]*\]\)[\s\S]*?describedBy\.split\(\/\\s\+\/\)\.includes\(id\)\) hint\.setAttribute\('aria-hidden', 'true'\)/);
   assert.match(css, /:root #form-search label\[for="search-q"\]\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
   assert.match(html, /id="search-q"[^>]*aria-describedby="search-hint search-help"/);
-  assert.match(html, /<p id="search-hint" class="rail-hint">Reading Lists appear as you type\./);
+  assert.match(html, /<p id="search-hint" class="rail-hint">Lists, series and creators match as you type\. Press Enter to look up comics online\./);
+  for (const selector of ['#search-scopes .search-scope', '.search-quiet-links a']) {
+    assert.ok(controller.includes(selector), `${selector} is a named iOS target`);
+  }
 });
 
-test('native expanded More disclosure records actual open and closed geometry at both text sizes', () => {
-  assert.match(presentationTests, /func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes/);
-  assert.match(presentationTests, /moreMethods: \(\(\) =>/);
-  assert.match(presentationTests, /disclosure\.open/);
-  assert.match(presentationTests, /summary\.tap\(\)/);
-  assert.match(presentationTests, /for expectedOpen in \[true, false\]/);
-  assert.match(presentationTests, /"expanded More has no sideways overflow"/);
-  assert.match(presentationTests, /XCTAssertEqual\(document, viewport,/);
-  assert.match(presentationTests, /"summaryOverflow": summaryScroll - summaryWidth/);
-  assert.doesNotMatch(presentationTests, /XCTAssertLessThanOrEqual\(summaryScroll, summaryWidth/);
-  assert.match(presentationTests, /"t03-more-methods-/);
+test('iOS Search prevents focus zoom without shrinking larger text or changing shared fields', () => {
+  const css = read('packaging/ios/web/ios.css');
+  assert.match(css, /:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/);
+  for (const path of ['src/styles.css', 'packaging/android/web/mobile.css']) {
+    assert.doesNotMatch(read(path), /#search-q\s*\{[^}]*font-size:\s*max\(16px,/s);
+  }
+});
+
+test('native Search test measures the box label and every scope at 44 points and audits both text sizes', () => {
+  assert.doesNotMatch(presentationTests, /add-other-methods|moreMethods/);
+  const body = presentationTests.slice(
+    presentationTests.indexOf('func testSearchLabelAndScopesMeetTargetsAndPassAuditAtDefaultAndLargestTextSizes'),
+    presentationTests.indexOf('func testReadSheetPassesAccessibilityAuditAtDefaultAndLargestTextSizes'),
+  );
+  assert.ok(body.length > 0);
+  const searchProbe = presentationTests.match(/else if route == "search" \{([\s\S]*?)\} else if route == "all"/)?.[1];
+  assert.ok(searchProbe, 'Search has its own probe setup');
+  assert.match(searchProbe, /await openRoute\(routes\[0\]\);[\s\S]*await openRoute\(routes\.find\(\(\{ name \}\) => name === 'search'\)\);/,
+    'Search renders Home first so every reviewed passive DOM node exists');
+  assert.match(searchProbe, /screens\.push\(snapshot\('view-add'\)\)/);
+  assert.ok(searchProbe.includes('\\(Self.searchAuditPreparation)'), 'the Search probe installs its focus-release target');
+  assert.match(body, /for category in \[UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge\]/);
+  assert.match(body, /for scope in \["Top", "Reading Lists", "Series", "Creators", "Comics"\]/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.width, 44/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.height, 44/);
+  for (const setup of [
+    'if route == "all" || route == "search" || route == "history" || route.hasPrefix("guard-")',
+    'route == "all" || route == "search" || route.hasPrefix("guard-") ? Self.passiveAuditProbe',
+  ]) {
+    assert.ok(presentationTests.includes(setup), `Search runs the full passive guard: ${setup}`);
+  }
+  assert.match(body, /verifyPassiveAuditTexts\(in: app, homeVisible: false\)[\s\S]*?performAccessibilityAudit\(of: app, allowsPassiveGuard: true\)/);
+  assert.match(body, /"reviewedPassiveCases": acceptedTexts\.map\(\\\.label\)/);
+  assert.match(body, /app\.staticTexts\.matching\(NSPredicate\(format: "label == %@", source\.label\)\)\.count, 0/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.width, 44/);
+  assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
+  assert.doesNotMatch(body, /revealNativeTarget\(heading, in: app\)/,
+    'the fixed preparation target does not need a capped scroll back from the last source');
+  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 15\)/);
+  assert.match(body, /let beforeProof = try freshPassiveState\(of: app\)[\s\S]*?beforeProof\["searchAuditPrepared"\] as\? Bool, true[\s\S]*?XCTAssertEqual\(removalResult, \.completed[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
+  assert.match(presentationTests, /searchAuditPrepared: window\.__recapSearchAuditPrepared === true/);
+  assert.match(presentationTests, /visual:\s*visualViewport && \{[^}]*scale:\s*visualViewport\.scale/s);
+  assert.match(body, /beforeProof\["guard"\][\s\S]*?guardState\["viewport"\][\s\S]*?viewportState\["visual"\][\s\S]*?visual\["scale"\][\s\S]*?XCTAssertEqual\(scale, 1, accuracy: 0\.001,[\s\S]*?verifyPassiveAuditTexts/);
+  assert.match(body, /guardState\["scrollY"\][\s\S]*?XCTAssertEqual\(scrollY, 0,[\s\S]*?verifyPassiveAuditTexts/,
+    'the fresh passive sample proves that preparation returned the document to the top');
+  assert.match(body, /visual\["offsetTop"\][\s\S]*?XCTAssertEqual\(offsetTop, 0,[\s\S]*?verifyPassiveAuditTexts/,
+    'the fresh passive sample proves that the visual viewport is also at the top');
+  assert.match(body, /"t03-search-scopes-/);
+});
+
+test('Search audit preparation blurs, returns to the top and removes its own target', () => {
+  const script = presentationTests.match(/private static let searchAuditPreparation = #"""([\s\S]*?)"""#/)?.[1];
+  assert.ok(script, 'Search has explicit test-only audit preparation');
+  const listeners = new Map();
+  let attached = false;
+  const button = {
+    style: {},
+    setAttribute() {},
+    addEventListener(type, handler) { listeners.set(type, handler); },
+    remove() { attached = false; },
+  };
+  const document = {
+    activeElement: null,
+    createElement() { return button; },
+    body: { append(node) { assert.equal(node, button); attached = true; } },
+  };
+  const window = {
+    scrollY: 0,
+    scrollTo(x, y) {
+      assert.equal(document.activeElement, document.body, 'focus is released before scrolling');
+      assert.equal(window.__recapSearchAuditPrepared, false, 'scrolling precedes the completion marker');
+      assert.equal(x, 0);
+      assert.equal(y, 0);
+      window.scrollY = y;
+    },
+  };
+  runInNewContext(script, { document, window });
+  assert.equal(attached, true);
+  assert.equal(window.__recapSearchAuditPrepared, false, 'preparation is not claimed before the click');
+  for (const focused of [button, {}]) {
+    attached = true;
+    window.scrollY = 2048;
+    window.__recapSearchAuditPrepared = false;
+    document.activeElement = {
+      ...focused,
+      blur() { document.activeElement = document.body; },
+    };
+    listeners.get('click')();
+    assert.equal(window.__recapSearchAuditPrepared, true, 'the page records that its click handler ran');
+    assert.equal(document.activeElement, document.body, 'neither the preparer nor another control retains focus');
+    assert.equal(window.scrollY, 0, 'preparation returns from deep large-text results without native drags');
+    assert.equal(attached, false, 'no test-only target remains during the audit');
+  }
 });
 
 test('native passive fixtures establish hidden and ambiguous geometry under the real CSP', () => {

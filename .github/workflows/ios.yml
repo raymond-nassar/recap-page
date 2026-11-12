@@ -69,10 +69,10 @@ jobs:
     # A screenshot capture is a separate errand; it does not need the test jobs' macOS runners.
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 142 minutes between them, and
+    # The backstop for time outside any step. The steps below declare 152 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
     # step that ran long rather than cancelled on the job.
-    timeout-minutes: 145
+    timeout-minutes: 155
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
@@ -152,7 +152,8 @@ jobs:
 
       # 32 minutes on main's last run before the restore capacity test joined the suite (#960).
       - name: Run the UI tests
-        timeout-minutes: 45
+        # The green brand run took 32.9 minutes before the populated Search proofs added 3 to 5.
+        timeout-minutes: 55
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
@@ -279,8 +280,8 @@ jobs:
     needs: docs_check
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
-    # These steps declare 108 minutes; leave the deadline to the individual step that overruns.
-    timeout-minutes: 111
+    # These steps declare 123 minutes; leave the deadline to the individual step that overruns.
+    timeout-minutes: 126
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       SIMULATOR_RUNTIME: latest
@@ -340,7 +341,8 @@ jobs:
           fi
 
       - name: Run presentation UI tests on iPad
-        timeout-minutes: 45
+        # The green brand run took 35.4 minutes; Search added 787.9 seconds and the next test hit 45.
+        timeout-minutes: 60
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'

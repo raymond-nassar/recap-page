@@ -107,7 +107,11 @@ function page(view) {
   return html.slice(start, next);
 }
 
-const pages = new Map(ADD_VIEWS.map((view) => [view, page(view)]));
+// The search card is written into the Search tab and moved under whichever of #/add and
+// #/add-search is shown, so the older address is checked as the page a reader sees there.
+const pages = new Map(ADD_VIEWS.map((view) => [
+  view, view === 'add-search' ? `${page(view)}\n${page('add')}` : page(view),
+]));
 const allPages = [...pages.values()].join('\n');
 
 function controlledPages() {
@@ -478,8 +482,10 @@ test('search saving opens from the selection bar without moving checkbox focus',
 test('the selection bar keeps the page order: results, then count, Clear, Save and the form', () => {
   assert.match(add, /el\('div', \{ class: 'field-row comic-selection-tools' \}, \[selectionCount, clear, toggle\]\),\s*panel,/);
   assert.match(add, /class: 'btn comic-clear has-tooltip'/);
-  assert.match(add, /\$\(config\.results\)\.after\(host\)/);
-  assert.doesNotMatch(add, /\$\(config\.results\)\.before\(host\)/);
+  assert.match(add, /\$\(config\.barAfter \?\? config\.results\)\.after\(host\)/);
+  assert.doesNotMatch(add, /\.before\(host\)/);
+  // On Search the bar follows every scope's results rather than the comics pane alone (#1204).
+  assert.match(add, /barAfter: '#search-panes'/);
   // A failed name reveals the form before focusing its field, as the Add view's other fields do.
   const save = add.slice(add.indexOf('  function saveSelected'), add.indexOf('  function createBuilder'));
   assert.match(save, /setSaveOpen\(builder, true\);\s*builder\.validation\.fail/);
@@ -515,7 +521,14 @@ test('the Add hub groups five routes with five dedicated pages', () => {
   for (const view of ADD_VIEWS) {
     assert.ok(VIEWS.includes(view), `${view} is showable but not routable`);
     assert.match(pages.get(view), new RegExp(`<h1 id="${view}-h">`), `${view} has no page heading`);
-    assert.match(hub, new RegExp(`data-view="${view}"`), `${view} has no Add hub choice`);
+  }
+  // Search carries the search card itself (#1204): its Series and Creators tiles press a scope
+  // and a chosen name opens that page, so only the two pages the box cannot reach are linked.
+  for (const view of ['add-import', 'add-manual']) {
+    assert.match(hub, new RegExp(`data-view="${view}"`), `${view} has no Search link`);
+  }
+  for (const scope of ['series', 'creators']) {
+    assert.match(hub, new RegExp(`data-scope-tile="${scope}"`), `the ${scope} tile no longer presses its scope`);
   }
   assert.match(html, /class="ri" data-view="add"/, 'the rail has no Add hub entry');
   assert.match(html, /class="ri" data-view="add"[\s\S]*?<span class="lbl">Search<\/span>/);
@@ -727,7 +740,7 @@ test('composition constructs one Add boundary and delegates its lifecycle', () =
   });
   assert.deepEqual(
     Object.keys(view).sort(),
-    ['enter', 'renderDestination', 'wire'],
+    ['enter', 'lookupComics', 'openNamed', 'renderDestination', 'wire'],
   );
   view.enter('add-series');
   view.enter('add-creator');

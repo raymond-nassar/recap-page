@@ -944,8 +944,10 @@ async function certificationFunctionality(architecture, source) {
       );
       await external.$eval('.ri[data-view="add"]', (button) => button.click());
       await external.waitForFunction(() => !document.querySelector('#view-add').hidden);
-      await external.$eval('.search-hub-card[data-view="add-search"]', (button) => button.click());
-      await external.$eval('#search-q', (field) => { field.value = 'Secret Wars'; });
+      await external.$eval('#search-q', (field) => {
+        field.value = 'Secret Wars';
+        field.dispatchEvent(new Event('input', { bubbles: true }));
+      });
       await external.$eval('#form-search', (form) => form.requestSubmit());
       await external.waitForFunction(
         () => document.querySelector('#search-results')?.textContent

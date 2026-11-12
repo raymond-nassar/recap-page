@@ -122,6 +122,8 @@ test('product labels use Reading List while authored guide titles retain their o
   const labels = guides.reduce((copy, { name }) => copy.split(name).join(''), productCopy);
   const terms = labels
     .replace(/Comic Book Reading Orders/g, '')
+    // The owner-approved mission in docs/BRAND_GUIDELINES.md is quoted verbatim on About.
+    .replace(/Our mission is to make Marvel reading orders easier to follow/g, '')
     .match(/\breading (?:orders?|lists?)\b/gi) ?? [];
   assert.ok(terms.length > 0, 'the product no longer contains any Reading List labels to check');
   assert.deepEqual([...new Set(terms)].sort(),   ['Reading List', 'Reading Lists', 'reading order']);
@@ -135,11 +137,10 @@ test('product labels use Reading List while authored guide titles retain their o
   assert.match(add, /ensureList\(DEFAULT_LIST_NAME\)/);
 });
 
-test('Search comics groups the destinations the app can actually open', () => {
-  const page = between(html, 'id="view-add-search"', 'id="view-add-series"');
+test('Search groups the destinations the app can actually open', () => {
+  const page = between(html, 'id="view-add"', 'id="view-add-search"');
   assert.match(page, /<h2 id="search-browse-h">Browse by<\/h2>/);
-  assert.match(page, /<h2 id="search-other-h">Other ways to add<\/h2>/);
-  for (const view of ['add-series', 'add-creator', 'spotlights', 'catalog', 'add-import', 'add-manual']) {
+  for (const view of ['spotlights', 'catalog', 'genres', 'marvel-ages', 'add-import', 'add-manual']) {
     assert.ok(VIEWS.includes(view), `${view} is grouped on Search but is not a route`);
     assert.match(page, new RegExp(`data-view="${view}"`), `${view} is missing from the Search groups`);
   }

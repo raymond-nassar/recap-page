@@ -65,8 +65,8 @@ Marvel Unlimited record and the comic's position in the list appear in its detai
 reading card. An active temporary-link warning stays
 visible outside that disclosure, and editing still requires a matching saved comic.
 
-Add leads with search and series, with other methods under **More ways to add**. An empty search
-offers **Add an issue by hand** directly. Settings put **Download backup** and restore first,
+Search leads with one box and its result scopes, with **Paste a Reading List** and **Add a comic by
+hand** beneath **Browse by**. An empty search offers **Add an issue by hand** directly. Settings put **Download backup** and restore first,
 with optional exports under **Checklist and sharing options** and metadata configuration under
 **Advanced**. Recovery copies, undo and error reports remain available.
 
@@ -122,7 +122,7 @@ Marvel's service.
 
 ## Build and install
 
-The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.0's built-in Kotlin
+The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.1's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
 application DEX checks admit the exact approved Play services runtime class inventory and reject

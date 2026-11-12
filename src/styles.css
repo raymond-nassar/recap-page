@@ -48,6 +48,7 @@
   --stroke-checkbox: 1.5px;
   --stroke-node: 4px;
   --stroke-node-halo: 5px;
+  --stroke-accent: 4px;
   /* Elevation. A role token exists only where a surface already plays that role with a shadow scaled
      by `--shadow-alpha`, which today is the rail's tooltip alone. Every other shadow keeps a token
      named for its surface until a later change gives that surface a role's scaled value. */
@@ -200,7 +201,17 @@
   --teal: #3fcfbb;
   --amber: #eab654;
   --blue: #7fb3ff;
+  /* The brand's decorative blue and red (#1208), the two colors the purple was mixed from. They decorate
+     and never report: `--blue` stays the color of links, focus and the current place, and the status
+     colors stay the only ones that say something went well or wrong. */
+  --brand-blue: #4d8dff;
+  --brand-red: #ff4d5a;
   --logo-fill: #7fb3ff;
+  /* The All read line (#874). Light mode takes the wordmark's own colors at the owner's request (#1208):
+     its Deep Purple lettering and Hot Pink outline. Dark mode keeps the masthead blue under a white outline,
+     because the purple measures about 2.4:1 on the dark card, under the 3:1 floor for large text. */
+  --cheer-fill: #7fb3ff;
+  --cheer-stroke: #fff;
   /* Channels for the Discover More cards (#872), one hue each beside the top row's purple, amber and
      teal: MCU Prep azure, Marvel Ages magenta and Young readers green. Unlike those three they are set
      per theme, because one value has to be a dim mid-tone to clear 3:1 on both themes' cards, and the
@@ -264,7 +275,11 @@
   --teal: #12695f;
   --amber: #6d4e08;
   --blue: #17509c;
+  --brand-blue: #1d4ed8;
+  --brand-red: #c8102e;
   --logo-fill: #0878e8;
+  --cheer-fill: #6d28d9;
+  --cheer-stroke: #ee0874;
   --azure-line: 31 108 176;
   --magenta-line: 189 36 123;
   --green-line: 59 123 31;
@@ -309,7 +324,11 @@
     --teal: #12695f;
     --amber: #6d4e08;
     --blue: #17509c;
+    --brand-blue: #1d4ed8;
+    --brand-red: #c8102e;
     --logo-fill: #0878e8;
+    --cheer-fill: #6d28d9;
+    --cheer-stroke: #ee0874;
     --azure-line: 31 108 176;
     --magenta-line: 189 36 123;
     --green-line: 59 123 31;
@@ -1500,12 +1519,49 @@ input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 
 .checkbox { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--t-body); color: var(--dim); min-height: var(--target-min); }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-compact); padding: var(--space-1) var(--space-2); font-size: .85em; }
 .add-page { max-width: 48rem; }
-.search-lists { margin: var(--space-6) 0; }
-.search-lists h2 { font-size: var(--t-body); margin: 0 0 var(--space-2); }
-.search-lists > .rail-hint { margin: 0 0 var(--space-5); }
-.search-lists-more { margin-top: var(--space-5); }
+/* Search design B (#1204). A pressed scope is an act, so it takes the purple accent like a checked
+   filter pill, with a heavier label so it is not told apart by colour alone; focus stays the shared
+   ring. Each scope is a full 44 pixel target. */
+.search-page { max-width: 64rem; }
+.search-scopes { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-6) 0 var(--space-4); }
+.search-scope {
+  min-height: var(--target); padding: var(--space-2) var(--space-6); border: var(--stroke-1) solid var(--line-2);
+  border-radius: var(--radius-pill); background: var(--card); color: var(--dim); font: inherit; font-weight: 600; cursor: pointer;
+}
+.search-scope:hover { color: var(--text); border-color: var(--accent-text); }
+.search-scope[aria-pressed="true"] {
+  background: rgb(var(--accent-line) / 10%); color: var(--accent-text); border-color: var(--accent-text); font-weight: 700;
+}
+.search-count { margin: 0 0 var(--space-4); color: var(--dim); font-size: var(--t-body); font-variant-numeric: tabular-nums; }
+.search-panes { display: grid; gap: var(--space-6); }
+.search-scopes[hidden], .search-panes[hidden] { display: none; }
+.search-local { display: grid; gap: var(--space-6); align-content: start; }
+.search-local:not(:has(> :not([hidden]))) { display: none; }
+.search-group h2 { font-size: var(--t-body); margin: 0; }
+.search-group .results { margin-top: var(--space-3); }
+.search-more { margin-top: var(--space-4); }
+.search-boundary { margin: var(--space-5) 0 0; }
+.search-row { align-items: center; }
+.search-thumb {
+  position: relative; flex: 0 0 auto; width: 40px; aspect-ratio: 2 / 3; overflow: hidden;
+  border-radius: var(--radius-compact); background: var(--card-2);
+}
+.search-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.search-thumb .search-thumb-icon { inset: 25%; width: 50%; height: 50%; object-fit: contain; }
+.search-quiet-links { display: flex; flex-wrap: wrap; gap: var(--space-6); margin: var(--space-6) 0 0; }
+.search-quiet-links a { display: inline-flex; align-items: center; min-height: var(--target); }
+/* Top shows the first three comics. The rest, the filter and Select all stay built and only hide,
+   so a scope switch never rebuilds a row or drops a pick. */
+.search-page[data-scope="top"] .comic-results > .comic-choice:nth-child(n+4),
+.search-page[data-scope="top"] #search-results .comic-filter,
+.search-page[data-scope="top"] #search-results .comic-result-tools,
+.search-page[data-scope="top"] #search-results [data-act="more-comics"],
+.search-page[data-scope="top"] #search-results .comic-filter ~ .rail-hint { display: none; }
+@media (min-width: 1000px) {
+  .search-panes.has-comics { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+}
 @media (max-width: 700px) {
-  .search-lists-more { width: 100%; }
+  .search-more { width: 100%; }
 }
 .add-destination {
   display: inline-flex; margin: 0 0 var(--space-5); padding: var(--space-2) var(--space-4);
@@ -1519,7 +1575,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); background: var(--card-2);
 }
 .import-guide pre code { padding: 0; background: none; }
-.import-guide pre:focus-visible { outline: var(--focus-width) solid var(--accent-text); outline-offset: var(--focus-offset-code); }
+.import-guide pre:focus-visible { outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset-code); }
 #about-build { overflow-wrap: anywhere; }
 #view-about a, #hero-title { overflow-wrap: anywhere; }
 .field-disclosure { border-top: var(--stroke-1) solid var(--line); border-bottom: var(--stroke-1) solid var(--line); }
@@ -1535,7 +1591,6 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    shortening the line box instead moved the ordinary painted glyph by about 0.6 pixels. */
 .action-disclosure > summary::after { --disclosure-chevron-bearing: max(0px, calc(1lh - var(--space-9))); content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); margin-right: var(--disclosure-chevron-bearing); }
 .action-disclosure[open] > summary::after { transform: rotate(90deg); }
-.action-disclosure > .search-hub-grid { padding-bottom: var(--space-5); }
 .progress-method { margin: 0 0 var(--space-6); }
 .library-sort {
   margin: 0 0 var(--space-5); color: var(--muted); font-size: var(--t-caption); font-weight: 600;
@@ -1550,12 +1605,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 }
 .search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
 .search-hub-card:hover { border-color: var(--accent-text); background: var(--card-2); }
-.search-hub-other { margin-top: var(--space-7); }
 .library-tools { margin-top: var(--space-9); }
-.add-hub-grid { max-width: 48rem; }
-.add-other-methods, .search-alternatives { max-width: 48rem; margin-top: var(--space-6); }
-.search-alternatives .search-hub { margin-top: var(--space-5); }
-.search-alternatives .search-hub:last-child { margin-bottom: var(--space-5); }
+#search-browse { margin-top: var(--space-6); }
 @media (max-width: 560px) {
   .search-hub-grid { grid-template-columns: 1fr; }
 }
@@ -1643,6 +1694,16 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .comic-choice { flex-wrap: wrap; content-visibility: auto; contain-intrinsic-size: auto 80px; }
 .comic-choice .result-title, .comic-choice .result-meta { overflow-wrap: anywhere; }
 .comic-choice .pill-held { max-width: 100%; white-space: normal; }
+/* Series and creator rows in Search set a name, its count and Open on one flex line that could not
+   wrap. At the largest iOS text a long name outgrew the pane, the grid track widened to fit it and
+   the page scrolled sideways: 391 to 535 CSS pixels wide on a 390 wide phone, and 364 to 435 on a
+   360 wide Android phone at 200 per cent. The phone overlay lets every button break anywhere, so at
+   default text a long name also split Open across as many as four lines. These rows now wrap like
+   the comic rows above, and Open keeps its word whole. */
+.search-row:not(.catalog-row) { flex-wrap: wrap; }
+.search-row:not(.catalog-row) .result-main { flex: 1 1 8em; }
+.search-row:not(.catalog-row) .result-title, .search-row:not(.catalog-row) .result-meta { overflow-wrap: anywhere; }
+.search-row:not(.catalog-row) > .btn { flex: 0 0 auto; max-width: 100%; overflow-wrap: normal; }
 .comic-select {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: var(--target); min-height: var(--target); flex: none; cursor: pointer;
@@ -1758,7 +1819,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card);
 }
 .catalog-card[aria-current="step"] {
-  outline: var(--focus-width) solid var(--accent-text); outline-offset: var(--focus-offset);
+  outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset);
 }
 .catalog-card-main { display: flex; align-items: flex-start; gap: var(--space-5); padding: var(--space-5); }
 .catalog-card-text { min-width: 0; }
@@ -2236,7 +2297,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain;
   scroll-padding-top: calc(var(--dialog-head-height, 0px) + var(--space-4));
   scroll-padding-bottom: calc(var(--dialog-foot-height, 0px) + var(--space-4));
-  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2);
+  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2); border-top: var(--stroke-accent) solid var(--accent);
   border-radius: var(--radius-xl); padding: var(--space-7) var(--space-8);
 }
 .ask { width: min(30rem, calc(100vw - 2rem)); }
@@ -2605,6 +2666,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #reading-filters { background: Canvas; }
   details.full, details.full > summary { border-color: CanvasText; background: Canvas; }
   .availability-choice[aria-pressed="true"] { border-color: Highlight; }
+  .search-scope { border-color: ButtonText; }
+  .search-scope[aria-pressed="true"] { border: var(--stroke-2) solid Highlight; }
 }
 
 /* ============================================================ library and progress shape
@@ -2940,11 +3003,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
    seams the masthead met there (#870), so it is twice the masthead's width to show as much outside. */
 .rg-done { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 600; }
 .wrapup-cheer {
-  margin: 0 0 var(--space-5); color: var(--logo-fill);
+  margin: 0 0 var(--space-5); color: var(--cheer-fill);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: var(--t-title-lg); font-weight: 900; letter-spacing: .035em; line-height: 1;
   text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: left center;
-  -webkit-text-stroke: 2px var(--on-accent); paint-order: stroke fill;
+  -webkit-text-stroke: 2px var(--cheer-stroke); paint-order: stroke fill;
   text-shadow: var(--text-shadow-offset); overflow-wrap: normal;
 }
 @media (forced-colors: active) {
@@ -3051,4 +3114,95 @@ select, input[type="search"], input[type="text"], input[type="url"] {
     outline: var(--focus-width) solid currentColor;
     outline-offset: calc(-1 * var(--focus-width));
   }
+}
+/* Brand accents (#1208). One accent color per component, and each color keeps one job: purple marks
+   what you act on and how far you have come, blue helps you find your way, and the brand red only
+   decorates a moment. The owner chose each placement from captures in both themes; the decision log
+   on #1208 holds every answer. All of it is decoration, so forced colors either drop it or draw it
+   in CanvasText, and nothing here moves. */
+
+/* Section headings carry a short bar under the words: purple where the page is about your reading,
+   blue on the Library, which is a place to find things. The bar is a border on an absolutely placed
+   ::after inside the heading, which stays out of the flex row of `.sec-h`. A gradient would be
+   simpler, but measured in Edge 157 under --force-high-contrast it computes to none and the bar
+   vanishes, while this border is repainted in the system text color. */
+#view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
+#view-library .sec-h > h2, #view-library .library-tools > h2 {
+  --heading-bar: var(--accent);
+  position: relative; padding-bottom: var(--space-4);
+}
+:is(#view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
+#view-library .sec-h > h2, #view-library .library-tools > h2)::after {
+  content: ""; position: absolute; inset-inline-start: 0; bottom: 0; width: 48px;
+  border-top: var(--stroke-3) solid var(--heading-bar);
+}
+#view-library .sec-h > h2, #view-library .library-tools > h2 { --heading-bar: var(--brand-blue); }
+
+/* The Data page's groups and the About page's topics are signposts, so they take a blue edge. The
+   danger zone's heading sits inside its own card rather than directly under a group, so it keeps
+   its red and never meets the blue. */
+#view-data .setgroup > h2, #view-about .card-static h3 {
+  border-inline-start: var(--stroke-3) solid var(--brand-blue); padding-inline-start: var(--space-4) !important;
+}
+
+/* Empty states point somewhere else, so the whole notice is blue: its glyph and a softened border. */
+.empty-state { border-color: rgb(from var(--brand-blue) r g b / 55%); }
+.empty-state .empty-glyph { color: var(--brand-blue); }
+
+/* Each Discover More category's own page takes its Home card's color as a top bar over a soft
+   wash, so the page is recognisably the one the card opened. The title keeps the text color: the
+   owner declined tinted titles. Other pages keep a plain header. */
+#view-catalog { --page-line: var(--accent-line); }
+#view-genres { --page-line: var(--amber-line); }
+#view-spotlights { --page-line: var(--teal-line); }
+#view-marvel-on-screen { --page-line: var(--azure-line); }
+#view-marvel-ages { --page-line: var(--magenta-line); }
+#view-young-readers { --page-line: var(--green-line); }
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head {
+  position: relative; padding: var(--space-6) var(--space-6) var(--space-5); border-radius: var(--radius-feature);
+  /* Bleeds into the page gutter, never narrower than this padding, so the title keeps the left
+     edge every other view's heading starts at (UX-21). */
+  margin-inline: calc(-1 * var(--space-6));
+  background: linear-gradient(145deg, rgb(var(--page-line) / 13%), transparent 10rem);
+}
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 4px;
+  border-radius: var(--radius-feature) var(--radius-feature) 0 0; background: rgb(var(--page-line));
+}
+
+/* Finishing a whole list is the one place the three brand colors meet: blue, purple and red across
+   the top of the wrap-up, only while the All read line shows and no completion-history problem is
+   being reported in the same card. */
+.completion-wrapup { position: relative; }
+#list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 4px;
+  border-top-left-radius: inherit; border-top-right-radius: inherit;
+  background: linear-gradient(90deg, var(--brand-blue), var(--accent), var(--brand-red));
+}
+
+/* The About page opens with the app's own icon, its wordmark in the theme's colorway and the
+   mission. The heading above it still names the page in text, so the images are decoration. */
+.about-lockup { display: grid; justify-items: center; text-align: center; gap: var(--space-4); padding: var(--space-4) 0 var(--space-7) !important; }
+.about-lockup .about-icon { width: 72px; height: 72px; }
+.about-lockup .about-wm { width: min(100%, 22rem); height: auto; }
+.about-lockup .about-wm--light { display: var(--wordmark-light); }
+.about-lockup .about-wm--dark { display: var(--wordmark-dark); }
+.about-lockup .about-mission { margin: 0; max-width: 34rem; color: var(--muted); font-size: var(--t-body); }
+@media (max-width: 600px) {
+  .about-lockup .about-wm { width: min(100%, 200px); }
+  .about-lockup .about-icon { width: 56px; height: 56px; }
+}
+
+@media (forced-colors: active) {
+  #view-home .sec-h > :is(h2, h3), #view-read .sec-h > h2, #issue-focus-h,
+  #view-library .sec-h > h2, #view-library .library-tools > h2 { --heading-bar: CanvasText; }
+  #view-data .setgroup > h2, #view-about .card-static h3 { border-inline-start-color: CanvasText; }
+  .empty-state { border-color: CanvasText; }
+  .empty-state .empty-glyph { color: CanvasText; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head { background: none; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before { background: CanvasText; }
+  /* The full selector, because a shorter one loses to the band's own rule and leaves its gradient,
+     which forced colors compute to none. */
+  #list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before { background: CanvasText; }
+  .about-wm { display: none !important; }
 }

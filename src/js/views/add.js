@@ -222,6 +222,7 @@ export function createAddView({
   importDraft,
   lookupManual,
   notify,
+  noticeEl,
   onNonEmptyListSave,
   reportBundledLoadFailure,
   saveSelection,
@@ -231,6 +232,9 @@ export function createAddView({
   warmNameIndex,
   withSaveEducation,
   ymd,
+  comicThumb = null,
+  onComicStatus = () => {},
+  canReportComicStatus = () => true,
 }) {
   let manualMatch = null;
   const selected = new Map();
@@ -249,6 +253,9 @@ export function createAddView({
   const searches = [
     {
       prefix: 'search', kind: 'issue', input: '#search-q', form: '#form-search', results: '#search-results',
+      // After every result pane rather than the comics alone, so the bar's parent stays the card
+      // whose width it takes, and the keyboard reaches it after whichever scope is showing.
+      barAfter: '#search-panes',
       load: (item, options) => search.issues(item.name, { ...options, limit: ISSUE_SEARCH_LIMIT }),
     },
     {
@@ -459,12 +466,17 @@ export function createAddView({
     });
     // After the results it acts on, so the keyboard reaches the bar after the comics it saves, in
     // the order they are seen: it is drawn at the bottom of the window.
-    $(config.results).after(host);
+    $(config.barAfter ?? config.results).after(host);
     config.builder = {
       host, destination, name, nameRow, count: selectionCount, save, clear, toggle, panel, missing, report, validation,
     };
   }
 
+  const reportable = (config, status) => config.kind !== 'issue' || canReportComicStatus(status);
+  function resultNotice(config, status, message, kind, action) {
+    if (reportable(config, status)) notify(config.results, message, kind, config.results, action);
+    else $(config.results).replaceChildren(noticeEl({ msg: message, kind, action }));
+  }
   function renderResults(config, status) {
     const box = $(config.results);
     const items = status.items;
@@ -486,11 +498,11 @@ export function createAddView({
         class: `notice notice-${status.phase === 'failed' ? 'error' : 'warn'}`,
         text: `${message} Search again to load the rest, or choose from the comics below.`,
       }));
-      announce(message);
+      if (reportable(config, status)) announce(message);
     }
     if (!items.length) {
       if (status.phase === 'complete') {
-        notify(config.results, 'Nothing matched that search. You can add the comic by hand.', 'warn', config.results, {
+        resultNotice(config, status, 'Nothing matched that search. You can add the comic by hand.', 'warn', {
           label: 'Add a comic by hand',
           onClick: () => showView('add-manual', { push: true }),
         });
@@ -504,9 +516,12 @@ export function createAddView({
       return;
     }
 
-    const summary = `${comics(items.length)}, ${count(heldCount(getState(), items))} already in your library.`;
+    const held = count(heldCount(getState(), items));
+    const summary = config.kind === 'issue'
+      ? `${comics(items.length)} shown, ${held} already in your library.`
+      : `${comics(items.length)}, ${held} already in your library.`;
     box.append(el('p', { class: 'res-head', text: summary }));
-    if (status.phase === 'complete') announce(summary);
+    if (status.phase === 'complete' && reportable(config, status)) announce(summary);
     if (config.kind === 'issue' && items.length === ISSUE_SEARCH_LIMIT) {
       box.append(el('p', {
         class: 'rail-hint',
@@ -517,7 +532,7 @@ export function createAddView({
       type: 'search', id: `${config.prefix}-comic-filter`, name: 'comic-filter',
       placeholder: 'Series or comic title…', autocomplete: 'off',
     });
-    box.append(el('div', { class: 'stack' }, [
+    box.append(el('div', { class: 'stack comic-filter' }, [
       el('label', { for: `${config.prefix}-comic-filter`, text: 'Filter these comics' }),
       filter,
     ]));
@@ -573,6 +588,7 @@ export function createAddView({
         }
         rows.append(el('div', { class: 'result comic-choice' }, [
           el('label', { class: 'comic-select' }, [checkbox]),
+          ...(comicThumb && config.kind === 'issue' ? [comicThumb(item)] : []),
           el('div', { class: 'result-main' }, [
             title,
             ...(metadata ? [el('span', { id: metadataId, class: 'visually-hidden', text: metadata })] : []),
@@ -616,7 +632,7 @@ export function createAddView({
   // them pushed the first comic below a 900px window. Scrolling, rather than focusing, brings the
   // comics the reader asked for into view while focus stays in the field they typed in.
   function revealResults(config, status, heading, target) {
-    if (!config.revealResults || status.phase === 'cancelled') return;
+    if (!config.revealResults || status.phase === 'cancelled' || !reportable(config, status)) return;
     config.revealResults = false;
     if ($(config.input).value.trim() !== status.item.name) return;
     if (document.activeElement !== document.body && !$(config.form).contains(document.activeElement)) return;
@@ -631,17 +647,17 @@ export function createAddView({
     config.runner = new ComicSearchRunner({
       load: config.load,
       onStatus: (status) => {
+        if (config.kind === 'issue') onComicStatus(status);
         const box = $(config.results);
         const focusedCancel = box.querySelector('.notice-act button') === document.activeElement;
         if (status.running) {
           const loaded = status.total == null
             ? comics(status.received)
             : `${comics(status.received)} of ${count(status.total)}`;
-          notify(
-            config.results,
+          resultNotice(
+            config, status,
             status.received ? `Loading ${status.item.name}: ${loaded} loaded…` : `Loading comics for ${status.item.name}…`,
             'busy',
-            config.results,
             { label: `Cancel ${config.kind} search`, onClick: () => config.runner.cancel() },
           );
           if (focusedCancel) box.querySelector('.notice-act button')?.focus({ preventScroll: true });
@@ -660,6 +676,37 @@ export function createAddView({
     config.runner.cancel();
     refreshBuilders();
     return config.epoch;
+  }
+
+  // One comic request per query (#1204). Search calls this on Enter and on first opening the
+  // Comics scope; a query already running or answered is not asked again, and one that failed or
+  // was stopped can be.
+  function lookupComics(query, { reveal = false } = {}) {
+    const config = searches[0];
+    const name = String(query ?? '').trim();
+    if (!name) return false;
+    const last = config.lastLookup;
+    if (last && last.name === name && (last.phase === 'running' || last.phase === 'complete')) return false;
+    beginSearch(config);
+    config.revealResults = reveal;
+    const item = { name };
+    config.lastLookup = { name, item, phase: 'running' };
+    void config.runner.start(item).then((status) => {
+      if (config.lastLookup?.item === item && status) config.lastLookup.phase = status.phase;
+    });
+    return true;
+  }
+
+  // A series or creator chosen on Search opens today's series or creator screen with that name's
+  // comics, so Search gains no second copy of those screens.
+  function openNamed(kind, item) {
+    const config = searches.find((candidate) => candidate.kind === kind);
+    if (!config) return;
+    showView(kind === 'series' ? 'add-series' : 'add-creator', { push: true });
+    $(config.input).value = item.name;
+    beginSearch(config);
+    config.focusResults = true;
+    void config.runner.start(item);
   }
 
   function wireNameSearch(config) {
@@ -1105,18 +1152,7 @@ export function createAddView({
     });
     for (const config of searches) {
       createBuilder(config);
-      if (config.kind === 'issue') {
-        $(config.form).addEventListener('submit', (event) => {
-          event.preventDefault();
-          const query = $(config.input).value.trim();
-          if (!query) return;
-          beginSearch(config);
-          config.revealResults = true;
-          void config.runner.start({ name: query });
-        });
-      } else {
-        wireNameSearch(config);
-      }
+      if (config.kind !== 'issue') wireNameSearch(config);
     }
     refreshBuilders();
     // Published for the bar, which is fixed to the window and so cannot take the width of the card
@@ -1205,5 +1241,7 @@ export function createAddView({
     renderImportDraft();
   }
 
-  return { enter, renderDestination, wire };
+  return {
+    enter, lookupComics, openNamed, renderDestination, wire,
+  };
 }

@@ -273,6 +273,7 @@ export const TOKENS = new Map([
   ['--stroke-checkbox', kept('stroke', '1.5px', 'the read checkbox')],
   ['--stroke-node', kept('stroke', '4px', 'the ring of a timeline era node')],
   ['--stroke-node-halo', kept('stroke', '5px', 'the halo around a timeline era node')],
+  ['--stroke-accent', kept('stroke', '4px', 'the brand edge on dialogs and sheets')],
   ['--elev-tooltip', onScale('elevation', '0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)))')],
   ['--elev-action-tip', kept('elevation', '0 6px 18px rgb(var(--shadow-rgb) / 22%)', 'the action tip')],
   ['--elev-row-actions', kept('elevation', '0 8px 24px rgb(var(--shadow-rgb) / 28%)', 'the open row actions menu')],

@@ -94,6 +94,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   padding: var(--space-6);
   padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
   border: var(--stroke-1) solid var(--line-2);
+  border-top: var(--stroke-accent) solid var(--accent);
   border-radius: var(--radius-feature) var(--radius-feature) 0 0;
   background: var(--card);
   color: var(--text);
@@ -233,6 +234,10 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     flex: 1 1 0; min-width: min-content; max-width: 100%; margin-bottom: var(--space-4);
     overflow-wrap: normal;
   }
+  /* Search shows a list as a row beside a 40px thumbnail rather than as a card, which leaves a title
+     kept whole by the rule above a narrower column. At the largest iOS text on a 375 wide phone,
+     Annihilation: Conquest ran 12.8px past it, so in Search the title breaks a word instead. */
+  .search-row .catalog-card-title { min-width: 0; overflow-wrap: anywhere; }
   .catalog-card-text > :not(.catalog-card-title) { flex: 0 0 100%; min-width: 0; }
   .catalog-card-text > .timeline-position-current { order: -1; }
 

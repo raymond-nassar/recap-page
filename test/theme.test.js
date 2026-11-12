@@ -25,13 +25,13 @@ const LIGHT_MEDIA = ':root:not([data-theme="dark"])';
 
 test('launcher standalone palette follows every explicit and system theme without weakening paint ownership', () => {
   const source = read('src/open.css');
-  const tokens = ['--bg', '--text', '--muted', '--blue', '--accent', '--on-accent'];
+  const tokens = ['--bg', '--text', '--muted', '--blue'];
   const rows = [];
   for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
     const local = tokensIn(source, selector);
     const shared = tokensIn(css, selector);
     for (const token of tokens) {
-      const expected = token === '--on-accent' ? '#fff' : shared.get(token);
+      const expected = shared.get(token);
       const actual = local.get(token) ?? null;
       const ok = expected === actual;
       console.log(`UX11-UNIT ${JSON.stringify({ owner: 'theme', selector, token, expected, actual, ok })}`);
@@ -39,7 +39,7 @@ test('launcher standalone palette follows every explicit and system theme withou
     }
   }
   assert.ok(rows.every(Boolean), 'Every standalone token must match its explicit or system palette');
-  assert.equal(STANDALONE_PAIRS.length, 15);
+  assert.equal(STANDALONE_PAIRS.length, 12);
   assert.deepEqual(standaloneFindings(source), []);
 });
 
@@ -327,8 +327,8 @@ test('every standalone launch-page literal is measured in an actual contrast pai
   const measured = STANDALONE_PAIRS.map(([foreground, background]) => (
     ratio(parseHex(foreground), parseHex(background)).toFixed(2)
   ));
-  assert.deepEqual(measured.slice(0, 5), ['16.87', '6.08', '8.77', '4.77', '8.77']);
-  assert.equal(measured.length, 15);
+  assert.deepEqual(measured.slice(0, 5), ['16.87', '6.08', '8.77', '8.77', '17.76']);
+  assert.equal(measured.length, 12);
   STANDALONE_PAIRS.forEach(([foreground, background, floor, where], index) => {
     const actual = ratio(parseHex(foreground), parseHex(background));
     console.log(`UX11-PALETTE ${JSON.stringify({ where, floor, actual, ok: actual >= floor })}`);
@@ -841,6 +841,8 @@ test('a control boundary is measured against every surface it is drawn on, not j
   // `--logo-fill` gained `--card` when the wrap-up card began opening with a line in the masthead's
   // treatment once every comic in a list is read (#874): the same colour, drawn on a card rather than
   // on the page.
+  // That line then moved to its own --cheer-fill (#1208), so --logo-fill is back to the page alone:
+  // the light theme draws the line in the wordmark's purple, which is not the masthead colour.
   // `--line-2` gained `--rail` when the narrow More sheet (#836) was drawn on the rail's own surface:
   // its Close button is a bordered ghost button there, and no pair had measured that boundary on the
   // rail before.
@@ -850,7 +852,8 @@ test('a control boundary is measured against every surface it is drawn on, not j
   assert.deepEqual(surfaces('--rail-bar-line'), ['--rail', 'the selected rail item']);
   assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2', 'the Character spotlights card', 'the Character spotlights card on hover']);
   assert.deepEqual(surfaces('--red-fg'), ['--bg', '--card', '--card-2']);
-  assert.deepEqual(surfaces('--logo-fill'), ['--bg', '--card']);
+  assert.deepEqual(surfaces('--logo-fill'), ['--bg']);
+  assert.deepEqual(surfaces('--cheer-fill'), ['--card']);
   assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', 'the selected rail item', 'the unreadable-data banner']);
   assert.deepEqual(surfaces('--track-2'), ['--bg']);
   assert.deepEqual(surfaces('--on-accent'), ['--accent', '--track-2']);
