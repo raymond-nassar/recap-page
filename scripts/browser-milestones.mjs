@@ -272,14 +272,20 @@ export const milestonePreferences = {
         const probe = document.createElement('i');
         document.body.append(probe);
         const resolve = (name) => { probe.style.color = `var(${name})`; return getComputedStyle(probe).color; };
-        const tokens = { logo: resolve('--logo-fill'), teal: resolve('--teal'), canvasText: (() => {
+        const tokens = { cheer: resolve('--cheer-fill'), teal: resolve('--teal'), canvasText: (() => {
           probe.style.color = 'CanvasText'; return getComputedStyle(probe).color;
         })() };
         probe.remove();
+        // Both are drawn so that forced colors keep them: the heading bar as a border, the band as a
+        // background color, since a gradient computes to none there.
+        const bar = getComputedStyle(document.querySelector('#shelf-h'), '::after');
+        const band = getComputedStyle(document.querySelector('#list-wrap-up'), '::before');
         return {
           cheer: cheer && { color: cheer.color, stroke: cheer.webkitTextStrokeWidth, shadow: cheer.textShadow },
           badge: badge && { color: badge.color, border: badge.borderTopStyle, borderWidth: badge.borderTopWidth },
           scheme: root.colorScheme, tokens,
+          bar: { width: bar.borderTopWidth, color: bar.borderTopColor },
+          band: { image: band.backgroundImage, color: band.backgroundColor },
         };
       });
       const moved = sectionMoment.length + listMoment.length;
@@ -291,12 +297,18 @@ export const milestonePreferences = {
       t.check(`${label}: ${pass.reduce ? 'nothing moves' : 'each milestone has its moment'}`,
         pass.reduce ? moved === 0 : moved === 3, JSON.stringify({ sectionMoment, listMoment }));
       t.check(`${label}: ${pass.forced ? 'system colors, with no stroke or shadow, and the badge keeps its border'
-        : 'the line in the masthead color and the badge in the positive color'}`,
+        : 'the line in its own color and the badge in the positive color'}`,
       !!paint.cheer && !!paint.badge && (pass.forced
         ? paint.cheer.color === paint.tokens.canvasText && paint.cheer.stroke === '0px' && paint.cheer.shadow === 'none'
           && paint.badge.border === 'solid' && paint.badge.borderWidth === '1px'
-        : paint.cheer.color === paint.tokens.logo && paint.badge.color === paint.tokens.teal && paint.cheer.shadow !== 'none'),
+        : paint.cheer.color === paint.tokens.cheer && paint.badge.color === paint.tokens.teal && paint.cheer.shadow !== 'none'),
       JSON.stringify(paint));
+      if (pass.forced) {
+        t.check(`${label}: the heading bar and the finished-list band stay as system text color bars`,
+          paint.bar.width === '3px' && paint.bar.color === paint.tokens.canvasText
+          && paint.band.image === 'none' && paint.band.color === paint.tokens.canvasText,
+          JSON.stringify({ bar: paint.bar, band: paint.band }));
+      }
       await undo();
     }
     t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
