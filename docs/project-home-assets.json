@@ -11,10 +11,10 @@
   },
   "androidPreviews": {
     "command": "npm run play:assets",
-    "sourceRevision": "72b3a2aafa06a1422fba743af9649bab4565ce8d",
-    "sourceTree": "15c91440350b9b7dc2bd65f2b9b844de5cf3fa06",
+    "sourceRevision": "74cbe876e4d54f935ad2114d2fcc92a0e9a898bd",
+    "sourceTree": "387c1056b17b98a089d5467a9b4e75f2e961d332",
     "sourceDirty": false,
-    "androidManifestSha256": "189fb1c1562239c29a4f3a8f6e2e13d13d141d664b41c9185c6ef201230c780b",
+    "androidManifestSha256": "b6c39d2359782b9fbfb7842e984e188e1b1f40c4be0d2607207236fc92ff1551",
     "renderer": {
       "name": "Microsoft Edge",
       "version": "Edg/157.0.4341.46",
