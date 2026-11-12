@@ -94,6 +94,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   padding: var(--space-6);
   padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
   border: var(--stroke-1) solid var(--line-2);
+  border-top: var(--stroke-accent) solid var(--accent);
   border-radius: var(--radius-feature) var(--radius-feature) 0 0;
   background: var(--card);
   color: var(--text);

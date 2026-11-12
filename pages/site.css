@@ -18,7 +18,9 @@
   --accent-fill: #6d28d9;
   --accent-ink: #ffffff;
   --line: #6a6a7e;
-  --focus: #eab654;
+  --brand-blue: #4d8dff;
+  --brand-red: #ff4d5a;
+  --warning: #eab654;
   --danger: #ff9d9d;
   --content: 64rem;
   font-family:
@@ -37,7 +39,9 @@
     --accent-fill: #6d28d9;
     --accent-ink: #ffffff;
     --line: #77778a;
-    --focus: #7a4c00;
+    --brand-blue: #1d4ed8;
+    --brand-red: #c8102e;
+    --warning: #7a4c00;
     --danger: #8f1e1a;
   }
 }
@@ -64,8 +68,10 @@ img {
   height: auto;
 }
 
+/* Blue means find your way (#1208, X2): links, focus and the current page. Purple stays on
+   actions, and amber is left to the one warning it still marks. */
 a {
-  color: var(--accent);
+  color: var(--brand-blue);
   text-underline-offset: 0.2em;
   text-decoration-thickness: 0.1em;
 }
@@ -75,7 +81,7 @@ a:hover {
 }
 
 a:focus-visible {
-  outline: 0.2rem solid var(--focus);
+  outline: 0.2rem solid var(--brand-blue);
   outline-offset: 0.2rem;
   border-radius: var(--space-1);
 }
@@ -138,7 +144,7 @@ code {
   top: var(--space-3);
   left: var(--space-3);
   padding: var(--space-2) var(--space-4);
-  border: 0.15rem solid var(--focus);
+  border: 0.15rem solid var(--brand-blue);
   border-radius: var(--radius-1);
   background: var(--page);
   color: var(--text);
@@ -215,6 +221,10 @@ code {
   margin-bottom: 0;
 }
 
+.disclosure {
+  border-top: 0.25rem solid var(--accent);
+}
+
 .section-nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -243,9 +253,10 @@ code {
 }
 
 .section-nav a[aria-current="page"] {
-  border-color: var(--line);
+  border-color: var(--brand-blue);
   background: var(--surface);
   text-decoration: underline;
+  text-decoration-color: var(--brand-blue);
 }
 
 .document h1 {
@@ -255,6 +266,28 @@ code {
 
 .document h2 {
   margin-top: var(--space-6);
+}
+
+/* The heading bars are decoration and cycle blue, purple, red (#1208, P1, X1, WD1). They are a
+   border rather than a background because forced colors repaint every background as Canvas,
+   which would erase the bar, while a border is repainted in the text color. */
+.section-heading h2::after,
+.document h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  margin-top: var(--space-2);
+  border-top: 0.1875rem solid var(--bar, var(--accent));
+}
+
+.document h2:nth-of-type(3n + 1),
+main > section:nth-of-type(3n + 2) .section-heading h2 {
+  --bar: var(--brand-blue);
+}
+
+.document h2:nth-of-type(3n),
+main > section:nth-of-type(3n + 1) .section-heading h2 {
+  --bar: var(--brand-red);
 }
 
 .document ul {
@@ -512,7 +545,7 @@ code {
 .origin-warning {
   margin-top: var(--space-6);
   margin-bottom: 0;
-  border-color: var(--focus);
+  border-color: var(--warning);
 }
 
 .origin-warning code {
@@ -570,7 +603,7 @@ code {
 
 .footer {
   padding-block: var(--space-6);
-  border-top: 0.1rem solid var(--line);
+  border-top: 0.2rem solid var(--brand-blue);
   background: var(--page);
   color: var(--muted);
 }
@@ -663,6 +696,13 @@ code {
   .button:focus-visible,
   a:focus-visible {
     outline-color: Highlight;
+  }
+
+  .section-heading h2::after,
+  .document h2::after,
+  .disclosure,
+  .footer {
+    border-top-color: CanvasText;
   }
 
   .security-route {

@@ -130,7 +130,7 @@ test('Android package identity comes from the shared reserved-build contract', a
     readFile(new URL('../packaging/android/build.gradle', import.meta.url), 'utf8'),
     readFile(new URL('../packaging/android/gradle.properties', import.meta.url), 'utf8'),
   ]);
-  assert.match(rootBuild, /id 'com\.android\.application' version '9\.5\.0'/);
+  assert.match(rootBuild, /id 'com\.android\.application' version '9\.5\.1'/);
   assert.match(build, /android \{\s+enableKotlin = false/);
   assert.doesNotMatch(properties, /^\s*android\.builtInKotlin\s*=/m);
   assert.match(build, /commandLine 'node', 'scripts\/android-release.mjs', 'version'/);
