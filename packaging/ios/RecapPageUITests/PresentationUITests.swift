@@ -504,6 +504,7 @@ final class PresentationUITests: XCTestCase {
     searchAuditPreparation.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden';
     searchAuditPreparation.addEventListener('click', () => {
       document.activeElement?.blur();
+      window.scrollTo(0, 0);
       searchAuditPreparation.remove();
       window.__recapSearchAuditPrepared = true;
     });
@@ -2723,7 +2724,6 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(source.frame.width, 44, "the source link is at least 44 points wide")
                 XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
             }
-            revealNativeTarget(heading, in: app)
             let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
             XCTAssertTrue(prepareAudit.waitForExistence(timeout: 5), "the test-only focus release is available")
             prepareAudit.tap()
@@ -2738,8 +2738,14 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
                            "passive-text proofs do not begin with a focused input or control")
             let guardState = try XCTUnwrap(beforeProof["guard"] as? [String: Any])
+            let scrollY = try XCTUnwrap((guardState["scrollY"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(scrollY, 0,
+                           "Search audit preparation returns the document to the top")
             let viewportState = try XCTUnwrap(guardState["viewport"] as? [String: Any])
             let visual = try XCTUnwrap(viewportState["visual"] as? [String: Any])
+            let offsetTop = try XCTUnwrap((visual["offsetTop"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(offsetTop, 0,
+                           "Search audit preparation leaves no visual viewport offset")
             let scale = try XCTUnwrap((visual["scale"] as? NSNumber)?.doubleValue)
             XCTAssertEqual(scale, 1, accuracy: 0.001,
                            "Search does not leave the page zoomed after typing and dismissing the keyboard")
