@@ -343,8 +343,8 @@ test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs
   assert.match(ipad, /-only-testing:RecapPageUITests\/LaunchUITests\/testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch \\/);
   assert.doesNotMatch(ipad, /-only-testing:RecapPageUITests\s|-only-testing:RecapPageTests|live_cors/);
   assert.match(ipad, /name: iPad presentation on the newest runtime/);
-  assert.match(ipad, /timeout-minutes: 111/);
-  assert.match(ipad, /- name: Run presentation UI tests on iPad\n {8}timeout-minutes: 45\n {8}run: \|/);
+  assert.match(ipad, /timeout-minutes: 126/);
+  assert.match(ipad, /- name: Run presentation UI tests on iPad\n {8}#[^\n]*\n {8}timeout-minutes: 60\n {8}run: \|/);
   assert.match(ipad, /- name: Measure restore capacity on iPad\n {8}timeout-minutes: 15\n {8}run: \|/);
   assert.ok(ipad.indexOf('name: Run presentation UI tests on iPad') < ipad.indexOf('name: Measure restore capacity on iPad'));
   assert.match(ipad, /ios-results-ipad-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
@@ -892,6 +892,11 @@ test('each iOS job deadline stays out of the way until every step has used its o
     const declared = job.steps.reduce((total, step) => total + (Number.isInteger(step.timeout) ? step.timeout : 0), 0);
     assert.ok(job.timeout >= declared + RUNNER_OVERHEAD_MINUTES,
       `job ${job.name} allows ${job.timeout} minutes but its steps allow ${declared}`);
+    if (job.name === 'newest' || job.name === 'ipad') {
+      assert.equal(declared, job.name === 'newest' ? 152 : 123,
+        `${job.name} includes the populated Search audit budget`);
+      assert.equal(job.timeout, job.name === 'newest' ? 155 : 126);
+    }
   }
 });
 

@@ -5729,17 +5729,17 @@ const SCENARIOS = [
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash === '#/add' && document.activeElement?.id === 'add-h');
       const addDestination = await page.evaluate(() => ({
-        choices: [...document.querySelectorAll('#view-add .search-hub-card')]
-          .map((button) => button.dataset.view),
+        choices: [...document.querySelectorAll('#search-browse .search-hub-card')]
+          .map((button) => button.dataset.view ?? button.dataset.scopeTile),
         navigationExpanded: document.querySelector('#btn-rail-toggle')?.getAttribute('aria-expanded'),
         viewport: innerWidth,
         panelHidden: document.querySelector('#sidebar-panel')?.hidden,
         toggleLabel: document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label'),
         narrowMedia: matchMedia('(max-width: 880px)').matches,
       }));
-      t.check('bottom-bar Search opens the existing five-choice hub and closes narrow Navigation',
+      t.check('bottom-bar Search opens the box with its six Browse tiles and closes narrow Navigation',
         JSON.stringify(addDestination.choices)
-          === JSON.stringify(['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'])
+          === JSON.stringify(['catalog', 'spotlights', 'series', 'creators', 'genres', 'marvel-ages'])
         && addDestination.navigationExpanded === 'false', JSON.stringify(addDestination));
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
@@ -7867,7 +7867,8 @@ const SCENARIOS = [
 
       const destinations = [];
       for (const view of ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']) {
-        await click(page, `[data-view="${view}"]`);
+        await page.evaluate((route) => { location.hash = route; }, `#/${view}`);
+        await page.waitForSelector(`#view-${view}:not([hidden])`);
         destinations.push(await page.$eval(`#view-${view}`, (section) => ({
           view: section.id,
           header: section.querySelector('.head .add-target')?.textContent.trim() ?? null,
@@ -8223,16 +8224,15 @@ const SCENARIOS = [
 
       await click(page, '.ri[data-view="add"]');
       await page.waitForFunction(() => document.querySelector('#view-add')?.hidden === false);
-      const addChoices = await page.$$eval('#view-add .search-hub-card', (buttons) => (
-        buttons.map((button) => button.dataset.view)
+      const addChoices = await page.$$eval('#search-browse .search-hub-card, #search-browse .search-quiet-links a', (nodes) => (
+        nodes.map((node) => node.dataset.view ?? node.dataset.scopeTile)
       ));
-      t.check('Add groups the five add methods on one hub',
+      t.check('Search browses six destinations and keeps the two quieter add routes beneath them',
         JSON.stringify(addChoices) === JSON.stringify([
-          'add-search', 'add-series', 'add-creator', 'add-import', 'add-manual',
+          'catalog', 'spotlights', 'series', 'creators', 'genres', 'marvel-ages', 'add-import', 'add-manual',
         ]),
         JSON.stringify(addChoices));
-      await click(page, '#add-other-methods > summary');
-      await click(page, '#view-add [data-view="add-manual"]');
+      await click(page, '#search-browse [data-view="add-manual"]');
       const addChild = await page.evaluate(() => ({
         hash: location.hash,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
@@ -10779,8 +10779,11 @@ const SCENARIOS = [
         for (const [prefix, value] of [
           ['search', 'Fixture'], ['series', 'House of M (2015)'], ['creator', 'Brubaker'],
         ]) {
-          await click(page, `[data-view="add-${prefix === 'search' ? 'search' : prefix}"]`);
+          await page.evaluate((route) => { location.hash = route; }, `#/add-${prefix}`);
+          await page.waitForSelector(`#view-add-${prefix}:not([hidden])`);
           await query(prefix, value);
+          // Top stacks comics under the local groups, so the comic layout is measured in its own scope.
+          if (prefix === 'search') await click(page, '#search-scopes [data-scope="comics"]');
           const compact = await page.evaluate((mode) => {
             const form = document.querySelector(`#${mode}-selection-form`);
             const first = document.querySelector(`#${mode}-results .comic-choice`).getBoundingClientRect();
@@ -10794,24 +10797,29 @@ const SCENARIOS = [
           }, prefix);
           t.check(`${prefix} at ${width}px: zero selection stays compact and results lead`,
             !compact.destination && !compact.name && compact.height <= 140
-              && !compact.overflow && compact.first.top >= 0 && compact.first.bottom <= 900,
+              && !compact.overflow && compact.first.top >= 0
+              // At 320px the scope row wraps and the first comic starts about 760px down.
+              && (prefix === 'search' && width === 320 ? compact.first.top <= 780 : compact.first.bottom <= 900),
             JSON.stringify(compact));
         }
       }
       await page.setViewport({ width: 1280, height: 900 });
-      await click(page, '[data-view="add-series"]');
+      await page.evaluate(() => { location.hash = '#/add-series'; });
+      await page.waitForSelector('#view-add-series:not([hidden])');
       await query('series', 'House of M', 'button[aria-label^="Browse comics"]');
       const seriesCounts = await page.$$eval('#series-results .result-meta', (rows) => rows.map((row) => row.textContent));
       t.check('series name choices use one comic and plural comics',
         seriesCounts.includes('1 comic') && seriesCounts.includes('4 comics'), JSON.stringify(seriesCounts));
-      await click(page, '[data-view="add-creator"]');
+      await page.evaluate(() => { location.hash = '#/add-creator'; });
+      await page.waitForSelector('#view-add-creator:not([hidden])');
       await query('creator', 'Count Fixture', 'button[aria-label^="Browse comics"]');
       const creatorCounts = await page.$$eval('#creator-results .result-meta', (rows) => rows.map((row) => row.textContent));
       t.check('creator name choices preserve zero, one and unknown counts',
         creatorCounts.includes('0 comics') && creatorCounts.includes('1 comic')
           && creatorCounts.includes('An unknown number of comics'), JSON.stringify(creatorCounts));
 
-      await click(page, '[data-view="add-search"]');
+      await page.evaluate(() => { location.hash = '#/add-search'; });
+      await page.waitForSelector('#view-add-search:not([hidden])');
       await query('search', 'Fixture');
       await page.focus('#search-results input[data-comic-id="97601"]');
       await page.keyboard.press('Space');
@@ -10838,7 +10846,8 @@ const SCENARIOS = [
       for (const width of [1280, 320, 390]) {
         await page.setViewport({ width, height: 900 });
         for (const [prefix, value] of [['series', 'House of M (2015)'], ['creator', 'Brubaker'], ['search', 'Fixture']]) {
-          await click(page, `[data-view="add-${prefix}"]`);
+          await page.evaluate((route) => { location.hash = route; }, `#/add-${prefix}`);
+          await page.waitForSelector(`#view-add-${prefix}:not([hidden])`);
           await query(prefix, value);
           await openSave(prefix);
           const controls = await page.evaluate((mode) => ({
@@ -10907,12 +10916,13 @@ const SCENARIOS = [
   },
   {
     id: 'search-reading-lists',
-    title: 'the Search tab finds bundled Reading Lists on the device, offline, beside the comic search (#1083)',
+    title: 'Search design B scopes local results and comics without rebuilding picks or sending a request on a switch (#1204)',
     async run(page, t) {
       await page.evaluateOnNewDocument(() => {
         window.__mrtComicSearch = true;
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
         window.__mrtListSearchFetches = [];
+        window.__mrtAnnounced = [];
         const stubbed = window.fetch;
         window.fetch = function (input, init) {
           const url = typeof input === 'string' ? input : input?.url ?? String(input);
@@ -10925,6 +10935,13 @@ const SCENARIOS = [
           }
           return stubbed.call(this, input, init);
         };
+        addEventListener('DOMContentLoaded', () => {
+          const announcer = document.querySelector('#announcer');
+          new MutationObserver(() => {
+            const text = announcer.textContent.trim();
+            if (text) window.__mrtAnnounced.push(text);
+          }).observe(announcer, { childList: true, characterData: true, subtree: true });
+        });
       });
       await page.setViewport({ width: 1280, height: 900 });
       await open(page, '/#/add');
@@ -10933,118 +10950,198 @@ const SCENARIOS = [
         act: row.querySelector('[data-act="import"], [data-act="open"]')?.dataset.act,
       })));
       const type = async (text) => {
-        for (let i = 1; i <= text.length; i += 1) {
+        for (let i = text ? 1 : 0; i <= text.length; i += 1) {
           await page.$eval('#search-q', (input, value) => {
             input.value = value;
             input.dispatchEvent(new Event('input', { bubbles: true }));
           }, text.slice(0, i));
         }
       };
+      const comicRequests = () => page.evaluate(() => window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues')).length);
+      const state = () => page.evaluate(() => ({
+        pressed: [...document.querySelectorAll('#search-scopes [aria-pressed="true"]')].map((node) => node.dataset.scope),
+        scopes: document.querySelector('#search-scopes').checkVisibility(),
+        panes: document.querySelector('#search-panes').checkVisibility(),
+        count: document.querySelector('#search-count').textContent,
+        countShown: !document.querySelector('#search-count').hidden,
+        browse: document.querySelector('#search-browse').checkVisibility(),
+        lists: document.querySelector('#search-lists').checkVisibility(),
+        series: document.querySelector('#search-series').checkVisibility(),
+        creators: document.querySelector('#search-creators').checkVisibility(),
+        comics: document.querySelector('#search-comics').checkVisibility(),
+        listRows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+        shownComics: [...document.querySelectorAll('#search-results .comic-choice')].filter((row) => row.checkVisibility()).length,
+        focus: document.activeElement?.id || document.activeElement?.dataset?.scope || document.activeElement?.tagName,
+      }));
       const snapshot = () => page.evaluate(() => ({
         local: JSON.stringify(Object.entries(localStorage).sort()),
         session: JSON.stringify(Object.entries(sessionStorage).sort()),
         history: history.length,
         hash: location.hash,
         api: window.__mrtListSearchFetches.filter((url) => new URL(url, location.href).origin !== location.origin),
-        fetches: window.__mrtListSearchFetches.length,
       }));
-      // Wait for the catalog the hub already asked for, so what typing does is measured alone.
+
       await page.waitForFunction(() => document.querySelector('#view-add:not([hidden]) #search-q'));
+      const resting = await state();
+      t.check('an empty Search shows the box and Browse by with no scopes, count or results',
+        resting.browse && !resting.scopes && !resting.panes && !resting.countShown && !resting.lists && !resting.comics, JSON.stringify(resting));
+
+      // Load the catalog and both name indexes first, so what typing does is measured alone.
       await type('F');
       await page.waitForFunction(() => !document.querySelector('#search-lists').hidden);
+      await new Promise((resolve) => setTimeout(resolve, 700));
       const before = await snapshot();
+      await page.evaluate(() => { window.__mrtAnnounced = []; });
       await type('Fixture Event');
-      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
-      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent.includes('14 Reading Lists match'));
+      await page.waitForFunction(() => window.__mrtAnnounced.length > 0);
+      await new Promise((resolve) => setTimeout(resolve, 700));
       const typed = await snapshot();
+      const top = await state();
+      const topAnnounced = await page.evaluate(() => window.__mrtAnnounced);
       const first = await rows();
-      const group = await page.evaluate(() => ({
-        count: document.querySelector('#search-lists-count').textContent,
-        more: document.querySelector('#search-lists-more').checkVisibility()
-          && document.querySelector('#search-lists-more').textContent,
-        home: document.querySelector('#search-lists').closest('.view')?.id,
-        listsFirst: document.querySelector('#search-lists').compareDocumentPosition(document.querySelector('#search-results'))
-          === Node.DOCUMENT_POSITION_FOLLOWING,
-        heading: document.querySelector('#search-lists-results .catalog-row h3') !== null,
-      }));
-      t.check('typing on the Search tab ranks the nine name matches first and shows six of 14, lists first, with a count and Show all',
-        group.home === 'view-add' && group.listsFirst && group.heading
-          && group.count === '14 Reading Lists match' && group.more === 'Show all 14 Reading Lists'
-          && first.map((row) => row.name).join('|') === Array.from({ length: 6 }, (_, i) => `Fixture Event ${i + 1}`).join('|')
-          && first.every((row) => row.act === 'import'),
-        JSON.stringify({ group, first }));
-      t.check('typing a list search sends nothing off the device and writes no storage or history',
-        typed.api.join('|') === before.api.join('|') && typed.fetches === before.fetches && typed.local === before.local
+      const more = await page.$eval('#search-lists-more', (node) => node.checkVisibility() && node.textContent);
+      t.check('typing shows Top with three Reading Lists, a See all action and a heading count, and hides Browse by',
+        top.pressed.join() === 'top' && top.scopes && top.countShown && !top.browse
+          && top.count === 'Top results for “Fixture Event”' && top.listRows === 3
+          && more === 'See all 14 Reading Lists' && !top.comics
+          && first.map((row) => row.name).join('|') === ['Fixture Event 1', 'Fixture Event 2', 'Fixture Event 3'].join('|'),
+        JSON.stringify({ top, more, first }));
+      t.check('typing announces one line, after the pause, naming every local group',
+        topAnnounced.length === 1 && topAnnounced[0].startsWith('Top results for “Fixture Event”. 14 Reading Lists, '),
+        JSON.stringify(topAnnounced));
+      t.check('typing sends nothing off the device and writes no storage or history',
+        typed.api.join('|') === before.api.join('|') && typed.local === before.local
           && typed.session === before.session && typed.history === before.history && typed.hash === before.hash,
         JSON.stringify({ before, typed }));
 
+      await page.evaluate(() => { window.__mrtAnnounced = []; });
       await click(page, '#search-lists-more');
-      const all = await page.evaluate(() => ({
-        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
-        more: document.querySelector('#search-lists-more').hidden,
-        focus: document.activeElement?.closest('.catalog-row')?.querySelector('.catalog-card-preview')?.textContent.trim(),
-        button: document.activeElement?.classList.contains('catalog-card-preview'),
-      }));
-      t.check('Show all reveals every match and moves focus to the first newly shown title',
-        all.rows === 14 && all.more && all.button && all.focus === 'Fixture Event 7', JSON.stringify(all));
+      await page.waitForFunction(() => document.querySelector('#search-scopes [data-scope="lists"]').getAttribute('aria-pressed') === 'true');
+      await page.waitForFunction(() => window.__mrtAnnounced.length > 0);
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      const lists = await state();
+      const listsAnnounced = await page.evaluate(() => window.__mrtAnnounced);
+      t.check('See all presses the Reading Lists scope, shows all 14 with its count, and keeps focus on that scope',
+        lists.pressed.join() === 'lists' && lists.listRows === 14 && lists.count === '14 Reading Lists'
+          && !lists.series && !lists.creators && !lists.comics && lists.focus === 'lists'
+          && listsAnnounced.join('|') === '14 Reading Lists', JSON.stringify({ lists, listsAnnounced }));
 
-      await click(page, '[data-view="add-search"]');
-      await page.waitForSelector('#view-add-search:not([hidden]) #search-lists:not([hidden])');
-      const moved = await page.evaluate(() => ({
-        value: document.querySelector('#search-q').value,
-        home: document.querySelector('#search-q').closest('.view')?.id,
-        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
-      }));
-      t.check('Search comics keeps the same field, query and list results',
-        moved.value === 'Fixture Event' && moved.home === 'view-add-search' && moved.rows === 14, JSON.stringify(moved));
-
-      await page.evaluate(() => { window.__mrtListSearchOffline = true; });
-      await click(page, '#form-search button[type="submit"]');
-      await page.waitForFunction(() => {
-        const text = document.querySelector('#search-results').textContent.trim();
-        return text && !text.includes('Searching') && !text.includes('Loading');
-      });
-      const offline = await page.evaluate(() => ({
-        section: !document.querySelector('#search-lists').hidden,
-        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
-        count: document.querySelector('#search-lists-count').textContent,
-        more: !document.querySelector('#search-lists-more').hidden && document.querySelector('#search-lists-more').textContent,
-        comics: document.querySelector('#search-results').textContent.trim(),
-        api: window.__mrtListSearchFetches.filter((url) => url.includes('/search/issues')).length,
-      }));
-      t.check('a failed comic search leaves every matching list in place',
-        offline.section && offline.rows === 14 && offline.count === '14 Reading Lists match'
-          && offline.more === false && offline.comics.length > 0 && offline.api === 1,
-        JSON.stringify(offline));
-
-      await page.evaluate(() => { window.__mrtListSearchOffline = false; });
+      const requestsBeforeOffline = await comicRequests();
+      await page.setOfflineMode(true);
       await type('Fixture Even');
+      await page.waitForFunction(() => document.querySelector('#search-count').textContent === '14 Reading Lists');
+      await page.focus('#search-q');
+      await page.keyboard.press('Enter');
+      await click(page, '#search-scopes [data-scope="comics"]');
+      const offline = await state();
+      await click(page, '#search-scopes [data-scope="lists"]');
+      const offlineLists = await state();
+      const offlineRequests = await comicRequests();
+      await page.setOfflineMode(false);
+      t.check('offline, Reading Lists still match, and Enter or the Comics scope sends nothing and says comics need a connection',
+        offline.count === 'Comics need a connection. Lists, series and creators still work offline.'
+          && offlineLists.listRows === 14 && offlineRequests === requestsBeforeOffline,
+        JSON.stringify({ offline, offlineLists, offlineRequests, requestsBeforeOffline }));
+
       await type('Fixture Event');
-      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await click(page, '#search-scopes [data-scope="top"]');
+      await page.evaluate(() => window.scrollTo(0, 0));
+      const requestsBefore = await comicRequests();
       await page.focus('#search-q');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#search-results .comic-choice');
-      const comics = await page.evaluate(() => {
-        const first = document.querySelector('#search-results .comic-choice').getBoundingClientRect();
-        return {
-          rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
-          more: document.querySelector('#search-lists-more').checkVisibility()
-            && document.querySelector('#search-lists-more').textContent,
-          below: document.querySelector('#search-lists').compareDocumentPosition(document.querySelector('#search-results .comic-choice'))
-            === Node.DOCUMENT_POSITION_FOLLOWING,
-          inView: first.top >= 0 && first.bottom <= window.innerHeight,
-          focus: document.activeElement?.id,
-        };
+      await page.waitForFunction(() => document.querySelector('#search-count').textContent.startsWith('Top results'));
+      const lookedUp = await state();
+      const reveal = await page.evaluate(() => {
+        const row = document.querySelector('#search-results .comic-choice').getBoundingClientRect();
+        return { inView: row.top >= 0 && row.bottom <= innerHeight, focus: document.activeElement?.id };
       });
-      t.check('a comic search keeps six list rows and Show all, with the comics below them',
-        comics.rows === 6 && comics.more === 'Show all 14 Reading Lists' && comics.below, JSON.stringify(comics));
-      t.check('Enter brings the first comic into view and leaves focus in the field',
-        comics.inView && comics.focus === 'search-q', JSON.stringify(comics));
-      await page.evaluate(() => window.scrollTo(0, 0));
+      t.check('Enter looks comics up once, shows at most three beside the lists in Top and leaves focus in the box',
+        await comicRequests() === requestsBefore + 1 && lookedUp.comics && lookedUp.shownComics > 0 && lookedUp.shownComics <= 3
+          && lookedUp.listRows === 3 && reveal.inView && reveal.focus === 'search-q', JSON.stringify({ lookedUp, reveal }));
 
-      for (const [index, action] of ['typing', 'row focus', 'Preview'].entries()) {
+      await page.evaluate(() => {
+        const box = document.querySelector('#search-results input[type="checkbox"]');
+        box.click();
+        window.__mrtPicked = box;
+      });
+      const requestsAfterLookup = await comicRequests();
+      const switches = [];
+      for (const scope of ['lists', 'series', 'creators', 'comics', 'top']) {
+        await click(page, `#search-scopes [data-scope="${scope}"]`);
+        switches.push({ scope, ...await page.evaluate(() => ({
+          same: document.querySelector('#search-results input[type="checkbox"]') === window.__mrtPicked,
+          checked: window.__mrtPicked.checked,
+          count: document.querySelector('#search-count').textContent,
+        })) });
+      }
+      t.check('a pick survives every scope switch on the same checkbox, and no switch sends a request',
+        switches.every((row) => row.same && row.checked) && await comicRequests() === requestsAfterLookup,
+        JSON.stringify(switches));
+      const comicsLine = switches.find((row) => row.scope === 'comics').count;
+      t.check('the Comics scope counts comics shown rather than claiming a total',
+        /^\d+ comics? shown\./.test(comicsLine), comicsLine);
+
+      await page.evaluate(() => document.querySelector('#search-results input[type="checkbox"]').click());
+      await type('Fixture Events');
+      const requestsNewQuery = await comicRequests();
+      await click(page, '#search-scopes [data-scope="comics"]');
+      await page.waitForFunction(() => /comics? shown|No comics match/.test(document.querySelector('#search-count').textContent));
+      await page.focus('#search-q');
+      await page.keyboard.press('Enter');
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      t.check('opening Comics for a new query looks it up once, and Enter afterwards does not repeat it',
+        await comicRequests() === requestsNewQuery + 1, String(await comicRequests() - requestsNewQuery));
+
+      await click(page, '#search-scopes [data-scope="top"]');
+      await type('');
+      await page.waitForFunction(() => document.querySelector('#search-browse').checkVisibility());
+      await click(page, '#search-browse [data-scope-tile="series"]');
+      const seriesTile = await state();
+      t.check('the Series tile presses the Series scope, focuses the box and shows a short hint',
+        seriesTile.pressed.join() === 'series' && seriesTile.focus === 'search-q' && seriesTile.scopes
+          && seriesTile.count === 'Type a series name to find it.' && !seriesTile.browse, JSON.stringify(seriesTile));
+      await type('House');
+      await page.waitForFunction(() => document.querySelector('#search-series-results [data-act="open-named"]'));
+      const seriesFound = await state();
+      await click(page, '#search-series-results [data-act="open-named"]');
+      await page.waitForSelector('#view-add-series:not([hidden])');
+      const opened = await page.evaluate(() => location.hash);
+      t.check('a series result opens the series comics screen',
+        seriesFound.series && !seriesFound.lists && /^\d[\d,]* series$/.test(seriesFound.count) && opened.startsWith('#/add-series'),
+        JSON.stringify({ seriesFound, opened }));
+
+      await click(page, '[data-view="add"]');
+      await page.waitForSelector('#view-add:not([hidden])');
+      await click(page, '#search-scopes [data-scope="top"]');
+      await type('');
+      await click(page, '#search-browse [data-scope-tile="creators"]');
+      const creatorsTile = await state();
+      t.check('the Creators tile presses the Creators scope, focuses the box and shows a short hint',
+        creatorsTile.pressed.join() === 'creators' && creatorsTile.focus === 'search-q'
+          && creatorsTile.count === 'Type a creator’s name to find them.', JSON.stringify(creatorsTile));
+      await click(page, '#search-scopes [data-scope="top"]');
+
+      for (const scope of ['lists', 'series', 'creators']) {
+        await click(page, `#search-scopes [data-scope="${scope}"]`);
+        await type(`Fixture Event local ${scope}`);
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        const beforeEnter = await comicRequests();
+        await page.evaluate(() => { window.__mrtAnnounced = []; });
+        await page.focus('#search-q');
+        await page.keyboard.press('Enter');
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        const afterEnter = await state();
+        const spoken = await page.evaluate(() => window.__mrtAnnounced);
+        t.check(`Enter in ${scope} stays local and announces no hidden comic controls or counts`,
+          await comicRequests() === beforeEnter && afterEnter.pressed.join() === scope && spoken.length === 0,
+          JSON.stringify({ beforeEnter, after: await comicRequests(), afterEnter, spoken }));
+      }
+
+      for (const [index, action] of ['typing', 'row focus', 'Preview', 'local scope'].entries()) {
+        await click(page, '#search-scopes [data-scope="top"]');
         await type(`Fixture Event${'!'.repeat(index + 1)}`);
-        await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+        await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 3);
         await page.evaluate(() => {
           window.scrollTo(0, 0);
           window.__mrtHoldListComicSearch = true;
@@ -11053,10 +11150,15 @@ const SCENARIOS = [
         await page.focus('#search-q');
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => typeof window.__mrtReleaseListComicSearch === 'function');
+        // The fetch is held synchronously on Enter, but the announcer writes 30ms later, so without
+        // this wait the Enter's own busy notice lands after the record below is cleared. Seen twice.
+        await new Promise((resolve) => setTimeout(resolve, 150));
         if (action === 'typing') {
           await page.keyboard.type('!');
         } else if (action === 'row focus') {
           await page.focus('#search-lists-results .catalog-row [data-act="import"]');
+        } else if (action === 'local scope') {
+          await click(page, '#search-scopes [data-scope="lists"]');
         } else {
           await page.focus('#search-lists-results .catalog-row .catalog-card-preview');
           await page.keyboard.press('Enter');
@@ -11064,11 +11166,17 @@ const SCENARIOS = [
         }
         const scrollBefore = await page.evaluate(() => window.scrollY);
         await page.evaluate(() => {
+          window.__mrtAnnounced = [];
           window.__mrtHoldListComicSearch = false;
           window.__mrtReleaseListComicSearch();
         });
-        await page.waitForSelector('#search-results .comic-choice');
+        await new Promise((resolve) => setTimeout(resolve, 300));
         const scrollAfter = await page.evaluate(() => window.scrollY);
+        if (action === 'typing' || action === 'local scope') {
+          const spoken = await page.evaluate(() => window.__mrtAnnounced);
+          t.check(`a comic response after ${action} is not announced`,
+            spoken.every((text) => !/comics? shown|Cancel issue search/.test(text)), JSON.stringify(spoken));
+        }
         if (action === 'Preview') {
           await page.keyboard.press('Escape');
           await page.waitForFunction(() => !document.querySelector('#preview').open);
@@ -11076,20 +11184,22 @@ const SCENARIOS = [
         const focus = await page.evaluate(() => {
           const rect = document.activeElement.getBoundingClientRect();
           return { top: rect.top, bottom: rect.bottom, id: document.activeElement.id,
+            scope: document.activeElement.dataset.scope,
             preview: document.activeElement.classList.contains('catalog-card-preview'),
             import: document.activeElement.dataset.act === 'import' };
         });
         t.check(`a pending comic search does not scroll after ${action}`,
           scrollAfter === scrollBefore && focus.top >= 0 && focus.bottom <= 900
-            && (action === 'typing' ? focus.id === 'search-q' : action === 'Preview' ? focus.preview : focus.import),
+            && (action === 'typing' ? focus.id === 'search-q' : action === 'Preview' ? focus.preview
+              : action === 'local scope' ? focus.scope === 'lists' : focus.import),
           JSON.stringify({ scrollBefore, scrollAfter, focus }));
       }
 
+      await click(page, '#search-scopes [data-scope="top"]');
       await type('Fixture Event');
-      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 3);
       await page.evaluate(() => { window.scrollTo(0, 0); window.__mrtListImportOffline = true; });
       await click(page, '#search-lists-results .catalog-row [data-act="import"]');
-      await page.waitForFunction(() => document.querySelector('#search-lists-report').textContent.trim());
       await page.waitForFunction(() => document.querySelector('#search-lists-report button')?.textContent === 'Try again');
       await page.evaluate(() => { window.__mrtListImportOffline = false; });
       await click(page, '#search-lists-report button');
@@ -11105,10 +11215,6 @@ const SCENARIOS = [
         stale?.click();
         return { registered: report.classList.contains('report'), stale: Boolean(stale), text: report.textContent.trim() };
       });
-      if (retry.stale) {
-        await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
-          .filter((list) => list.catalogId === 'browser-check-extra-1').length === 2);
-      }
       const copies = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
         .filter((list) => list.catalogId === 'browser-check-extra-1').length);
       t.check('a failed list-row Add retires its retry after success and saves exactly one copy',
@@ -11116,7 +11222,7 @@ const SCENARIOS = [
 
       await type('Fixture Even');
       await type('Fixture Event');
-      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 6);
+      await page.waitForFunction(() => document.querySelectorAll('#search-lists-results .catalog-row').length === 3);
       await page.focus('#search-lists-results .catalog-row:nth-child(2) [data-act="preview"]');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#preview[open] #preview-add [data-act="main"]');
@@ -11134,8 +11240,18 @@ const SCENARIOS = [
           .filter((list) => list.catalogId === 'browser-check-extra-2').length,
       }));
       t.check('adding a list from its Preview turns its row into Open and keeps focus',
-        added.rows[0] === 'open' && added.rows[1] === 'open' && added.rows.slice(2).every((act) => act === 'import')
-          && added.focus && added.saved === 1, JSON.stringify(added));
+        added.rows.join() === 'open,open,import' && added.focus && added.saved === 1, JSON.stringify(added));
+
+      await page.evaluate(() => { location.hash = '#/add-search'; });
+      await page.waitForSelector('#view-add-search:not([hidden]) #search-q');
+      const moved = await page.evaluate(() => ({
+        value: document.querySelector('#search-q').value,
+        rows: document.querySelectorAll('#search-lists-results .catalog-row').length,
+      }));
+      t.check('the older comic search address shows the same box, query and results',
+        moved.value === 'Fixture Event' && moved.rows === 3, JSON.stringify(moved));
+      await click(page, '[data-view="add"]');
+      await page.waitForSelector('#view-add:not([hidden]) #search-q');
 
       const layout = async (width, height) => {
         await page.setViewport({ width, height });
@@ -11144,22 +11260,26 @@ const SCENARIOS = [
           const box = document.querySelector('#search-lists').getBoundingClientRect();
           const row = document.querySelector('#search-lists-results .catalog-row');
           const action = row.querySelector('.btn').getBoundingClientRect();
+          const scopes = [...document.querySelectorAll('#search-scopes .search-scope')].map((node) => node.getBoundingClientRect());
           return {
             overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
             full: Math.abs(more.width - box.width) < 1,
             action: action.right <= row.getBoundingClientRect().right + 0.5 && action.height >= 24,
+            scopes: scopes.every((rect) => rect.height >= 44 && rect.width >= 44),
           };
         });
       };
-      const phone = await layout(412, 915);
+      const phone = await layout(390, 844);
       const narrow = await layout(700, 900);
       const wide = await layout(701, 900);
-      t.check('at 412 and 700px the rows fit and Show all spans the group; at 701px it sizes to its words',
-        !phone.overflow && phone.full && phone.action && !narrow.overflow && narrow.full && narrow.action
-          && !wide.overflow && !wide.full && wide.action, JSON.stringify({ phone, narrow, wide }));
+      t.check('at 390 and 700px the rows fit and See all spans the group; at 701px it sizes to its words; every scope is 44px',
+        !phone.overflow && phone.full && phone.action && phone.scopes && !narrow.overflow && narrow.full && narrow.action
+          && !wide.overflow && !wide.full && wide.action && wide.scopes, JSON.stringify({ phone, narrow, wide }));
 
       // Exercise the shipping native adaptation, not a duplicate of its DOM transformations.
       // Apple's hit-region audit still has to verify the resulting WebKit native targets in CI.
+      await type('Browser Check Order');
+      await page.waitForSelector('#search-lists-results .result-source a');
       const controller = readFileSync(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
       const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)?.[1];
       if (!adapter) throw new Error('Missing iOS accessible target adaptation');
@@ -11205,12 +11325,24 @@ const SCENARIOS = [
         }));
         t.check(`the iOS Search label is one full-sized active target at ${width}px and ${scale}x text`,
           labelTarget.focused && keyboardFocus && labelTarget.height >= 44 && labelTarget.role === 'button'
-            && labelTarget.name === 'Search Reading Lists and comic titles'
+            && labelTarget.name === 'Search Reading Lists, series, creators and comics'
             && labelAX?.role === 'button' && labelAX.name === labelTarget.name && !labelAX.children?.length,
           JSON.stringify({ labelTarget, labelAX }));
         t.check(`the iOS Search hint stays visible and describes the field without duplicate native text at ${width}px`,
           hint.visible && hint.hiddenAX && hint.described && fieldAX?.description?.includes(hint.text),
           JSON.stringify({ hint, fieldAX }));
+        const sources = await page.$$eval('#search-lists-results .result-source a', (links) => links.map((link) => ({
+          name: link.getAttribute('aria-label'), text: link.textContent,
+          width: link.getBoundingClientRect().width, height: link.getBoundingClientRect().height,
+          hiddenChildren: [...link.childNodes].every((node) =>
+            node.nodeType === Node.ELEMENT_NODE && node.getAttribute('aria-hidden') === 'true'),
+          prefix: link.previousElementSibling?.textContent,
+        })));
+        t.check(`iOS source links keep their contextual name as one 44px target and their passive prefix at ${width}px`,
+          sources.length === 1 && sources.every((source) => source.name.startsWith('Source of ')
+            && source.name.endsWith(source.text) && source.width >= 44 && source.height >= 44
+            && source.hiddenChildren && source.prefix === 'Source: '),
+          JSON.stringify(sources));
       }
     },
   },
@@ -11298,12 +11430,14 @@ const SCENARIOS = [
       t.check('filtering supports a smaller deliberate selection',
         await selectedCount('creator') === '2 comics selected', await selectedCount('creator'));
 
-      await click(page, '[data-view="add-series"]');
+      await page.evaluate(() => { location.hash = '#/add-series'; });
+      await page.waitForSelector('#view-add-series:not([hidden])');
       await query('series', 'House of M (2015)');
       await click(page, '#series-results input[data-comic-id="97201"]');
       t.check('series browsing extends the same selection',
         await selectedCount('series') === '3 comics selected', await selectedCount('series'));
-      await click(page, '[data-view="add-search"]');
+      await page.evaluate(() => { location.hash = '#/add-search'; });
+      await page.waitForSelector('#view-add-search:not([hidden])');
       await query('search', 'Fixture');
       await page.focus('#search-results input[data-comic-id="97601"]');
       const checkbox = await page.$('#search-results input[data-comic-id="97601"]');
@@ -11449,7 +11583,8 @@ const SCENARIOS = [
       for (const [view, prefix] of [
         ['add-search', 'search'], ['add-creator', 'creator'], ['add-series', 'series'],
       ]) {
-        await click(page, `[data-view="${view}"]`);
+        await page.evaluate((route) => { location.hash = route; }, `#/${view}`);
+        await page.waitForSelector(`#view-${view}:not([hidden])`);
         const selector = `#form-${prefix} button[type="submit"]`;
         await page.focus(selector);
         await page.waitForFunction(() => document.querySelector('#action-tip')?.hidden === false);
@@ -11475,7 +11610,8 @@ const SCENARIOS = [
           hover.visible && hover.text === guidance.tip && /Select comics/.test(hover.text), JSON.stringify(hover));
       }
 
-      await click(page, '[data-view="add-search"]');
+      await page.evaluate(() => { location.hash = '#/add-search'; });
+      await page.waitForSelector('#view-add-search:not([hidden])');
       await setField('#search-q', 'Fixture');
       await click(page, '#form-search button[type="submit"]');
       await page.waitForSelector('#search-results input[data-comic-id="97601"]', { timeout: 15000 });
@@ -11488,7 +11624,8 @@ const SCENARIOS = [
           && await page.$$eval('#search-results .result-meta', (nodes) => nodes.length === 0),
         JSON.stringify(titleAccessible));
       await click(page, '#search-results input[data-comic-id="97601"]');
-      await click(page, '[data-view="add-creator"]');
+      await page.evaluate(() => { location.hash = '#/add-creator'; });
+      await page.waitForSelector('#view-add-creator:not([hidden])');
       await setField('#creator-q', 'Brubaker');
       await click(page, '#form-creator button[type="submit"]');
       await page.waitForSelector('#creator-results [data-act="select-all"]', { timeout: 15000 });
@@ -11496,7 +11633,8 @@ const SCENARIOS = [
       t.check('overlapping bulk results form one deduplicated draft',
         await page.$eval('#creator-selection-form .comic-selection-count', (node) => node.textContent) === '240 comics selected');
 
-      await click(page, '[data-view="add-series"]');
+      await page.evaluate(() => { location.hash = '#/add-series'; });
+      await page.waitForSelector('#view-add-series:not([hidden])');
       t.check('an unsearched route can save the shared draft',
         await page.$$eval('#series-results input[data-comic-id]', (nodes) => nodes.length === 0)
           && await page.$eval('#series-selection-form button[type="submit"]', (button) => !button.disabled));
@@ -11555,7 +11693,8 @@ const SCENARIOS = [
         deleted && await page.$eval('#series-selection-report', (report) => !report.querySelector('a')
           && document.activeElement === report));
 
-      await click(page, '[data-view="add-search"]');
+      await page.evaluate(() => { location.hash = '#/add-search'; });
+      await page.waitForSelector('#view-add-search:not([hidden])');
       await click(page, '#search-results input[data-comic-id="97601"]');
       await click(page, '#search-selection-form .comic-save-toggle');
       await setField('#search-destination', 'existing', 'change');
@@ -11572,7 +11711,8 @@ const SCENARIOS = [
       t.check('keyboard navigation skips the unused name field',
         await page.evaluate(() => document.activeElement === document.querySelector('#search-selection-form button[type="submit"]')));
 
-      await click(page, '[data-view="add-creator"]');
+      await page.evaluate(() => { location.hash = '#/add-creator'; });
+      await page.waitForSelector('#view-add-creator:not([hidden])');
       await setField('#creator-q', 'Hickman');
       await click(page, '#form-creator button[type="submit"]');
       const infoSelector = '#creator-results button[aria-label="About these results"]';
@@ -12770,8 +12910,7 @@ const SCENARIOS = [
       t.check('the empty-state Search action opens the Search page with heading focus',
         await page.$eval('#add-h', (heading) => heading === document.activeElement && heading.textContent.trim() === 'Search')
         && (await readState(page)).active === listId);
-      await click(page, '#add-other-methods > summary');
-      await click(page, '#view-add [data-view="add-manual"]');
+      await click(page, '#search-browse [data-view="add-manual"]');
       const destination = await page.$eval('#view-add-manual .add-target', (node) => node.textContent);
       t.check('the existing add form names the intended saved list', destination.includes('Empty list 441'), destination);
       await addByHand(page, 'First manual issue 441', '');
@@ -14838,9 +14977,7 @@ const SCENARIOS = [
       await page.waitForFunction(() => !document.querySelector('#more-sheet').open, { timeout: 15000 });
 
       await activateByKeyboard('.mobile-link[data-view="add"]', 'view-add');
-      await page.focus('#add-other-methods > summary');
-      await page.keyboard.press('Enter');
-      await page.$eval('#view-add [data-view="add-manual"]', (button) => button.focus());
+      await page.$eval('#search-browse [data-view="add-manual"]', (link) => link.focus());
       await page.keyboard.press('Enter');
       await page.waitForSelector('#manual-title', { timeout: 15000 });
       await page.$eval('#manual-title', (input) => input.focus());
@@ -14932,7 +15069,7 @@ const SCENARIOS = [
         JSON.stringify(timelineChild));
 
       await activateByKeyboard('.mobile-link[data-view="add"]', 'view-add');
-      await click(page, '#view-add [data-view="add-series"]');
+      await click(page, '#search-browse [data-view="add-manual"]');
       const addChild = await page.evaluate(() => ({
         view: document.querySelector('.view:not([hidden])')?.id ?? null,
         parentCurrent: Boolean(document.querySelector('.ri[data-view="add"][aria-current="page"]')),
@@ -17654,16 +17791,14 @@ SCENARIOS.push({
     };
     await read(['#list-actions > summary', '#hero-more-actions > summary']);
     for (const [view, selectors] of [
-      ['add', ['#add-other-methods > summary']],
-      ['add-search', ['#search-alternatives > summary']],
       ['data', ['#view-data .setting-more > summary', '#backup-export-options > summary']],
     ]) {
       await page.evaluate((hash) => { location.hash = hash; }, `#/${view}`);
       await page.waitForSelector(`#view-${view}:not([hidden])`);
       await read(selectors);
     }
-    t.check('six disclosures are named by their words alone, without the chevron they still show',
-      seen.length === 6 && seen.every((entry) => !entry.missing && entry.chevron
+    t.check('four disclosures are named by their words alone, without the chevron they still show',
+      seen.length === 4 && seen.every((entry) => !entry.missing && entry.chevron
         && entry.name === entry.text && !entry.name.includes('›')),
       JSON.stringify(seen));
   },
@@ -18163,7 +18298,7 @@ SCENARIOS.push({
       const selectors = ['.brand[data-view="home"]', '.ri[data-view="library"]',
         '#list-wrap-up a[href="#/browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
         '.ri[data-view="about"]', '#home-primary-paths .home-path', '#home-yours-list li > *',
-        '#btn-chero-open', '#view-add [data-view="add-search"]', 'footer [data-view="about"]'];
+        '#btn-chero-open', '#search-browse [data-view="catalog"]', 'footer [data-view="about"]'];
       return selectors.map((selector) => {
         const node = document.querySelector(selector);
         return { selector, tag: node?.tagName, href: node?.getAttribute('href'),
@@ -18349,17 +18484,16 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 25 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 20 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
         'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app',
         'Enjoyed', 'Did not enjoy',
-        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Search comics', 'Find a series',
-        'Browse a creator', 'Paste a Reading List', 'Add a comic by hand', 'Search comic titles',
-        'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
-        'Add a comic by hand', 'Find a series', 'Find a creator',
+        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Look up comics',
+        'Reading guides', 'Characters', 'Series', 'Creators', 'Genres', 'Marvel Ages',
+        'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 37 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 37 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('all 32 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 32 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('the one gateway preserves six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
@@ -18402,7 +18536,7 @@ SCENARIOS.push({
         geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
         JSON.stringify(geometry));
     }
-    t.check('all 20 navigation and search symbol shapes were rendered', seen.size === 20, [...seen].join(', '));
+    t.check('all 18 navigation and search symbol shapes were rendered', seen.size === 18, [...seen].join(', '));
 
     await page.evaluate(() => { location.hash = '#/add-search'; });
     await page.waitForSelector('#view-add-search:not([hidden])');
@@ -23908,7 +24042,8 @@ SCENARIOS.push({
     await settle();
     t.check('navigation removes the old hint rather than reviving it at the new heading',
       await page.evaluate(() => document.querySelector('#rail-tip').hidden && document.querySelector('#action-tip').hidden));
-    await click(page, '.search-hub-card[data-view="add-search"]');
+    await page.evaluate(() => { location.hash = '#/add-search'; });
+    await page.waitForSelector('#view-add-search:not([hidden])');
     await page.focus('#form-search button[type="submit"]');
     await page.$eval('#form-search button[type="submit"]', (node) => node.remove());
     await settle();
@@ -25365,7 +25500,7 @@ MUTATIONS.push(
 
 SCENARIOS.push({
   id: 'disclosure-chevron-reflow',
-  title: 'Search disclosure keeps its rotating chevron inside the row at accessibility text sizes',
+  title: 'an action disclosure keeps its rotating chevron inside the row at accessibility text sizes',
   async run(page, t) {
     const client = await page.createCDPSession();
     await page.evaluateOnNewDocument(() => {
@@ -25374,8 +25509,8 @@ SCENARIOS.push({
     try {
       for (const width of [375, 1032]) {
         await page.setViewport({ width, height: width === 375 ? 667 : 1376 });
-        await open(page, `/?chevron-width=${width}#/add`);
-        await page.waitForSelector('#add-other-methods > summary');
+        await open(page, `/?chevron-width=${width}#/catalog`);
+        await page.waitForSelector('.setup-guide-about > summary');
         for (const scale of [1, 3.117647]) {
           await page.evaluate((factor) => {
             const root = document.documentElement;
@@ -25390,19 +25525,19 @@ SCENARIOS.push({
             ] });
             await page.evaluate((theme) => { document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark'; }, mode);
             for (const expanded of [false, true]) {
-              await page.focus('#add-other-methods > summary');
-              if (await page.$eval('#add-other-methods', (node) => node.open) !== expanded) await page.keyboard.press('Enter');
+              await page.focus('.setup-guide-about > summary');
+              if (await page.$eval('.setup-guide-about', (node) => node.open) !== expanded) await page.keyboard.press('Enter');
               await responsiveFrames(page);
               const { root } = await client.send('DOM.getDocument');
-              const { nodeId } = await client.send('DOM.querySelector', { nodeId: root.nodeId, selector: '#add-other-methods > summary' });
+              const { nodeId } = await client.send('DOM.querySelector', { nodeId: root.nodeId, selector: '.setup-guide-about > summary' });
               const { node } = await client.send('DOM.describeNode', { nodeId });
               const marker = node.pseudoElements.find((element) => element.pseudoType === 'after');
               const { model } = await client.send('DOM.getBoxModel', { backendNodeId: marker.backendNodeId });
-              const geometry = await page.$eval('#add-other-methods > summary', (summary) => {
+              const geometry = await page.$eval('.setup-guide-about > summary', (summary) => {
                 const rect = summary.getBoundingClientRect();
                 const style = getComputedStyle(summary, '::after');
-                // CDP's quad is viewport-relative. At 375px the taller Search form scrolls 119px
-                // on focus, so adding scrollY only to the summary falsely puts its chevron outside.
+                // CDP's quad is viewport-relative, and focusing the summary can scroll the page,
+                // so adding scrollY only to the summary falsely puts its chevron outside.
                 return {
                   summary: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom },
                   document: document.documentElement.scrollWidth, viewport: innerWidth, scrollY,

@@ -121,6 +121,17 @@ test('cards keep the linked site credit and leave the snapshot and section to Pr
   assert.ok(link['aria-label'].includes(list.name));
 });
 
+test('source prefixes remain passive text separately from the source link', () => {
+  const line = presentation.attributionLine(list, { compact: true });
+  const [prefix, link] = line.children;
+  assert.equal(prefix.tag, 'span');
+  assert.equal(text(prefix), 'Source: ');
+  assert.equal(controls(prefix).length, 0);
+  assert.equal(link.tag, 'a');
+  assert.equal(link.href, list.source);
+  assert.equal(text(line), 'Source: Comic Book Herald');
+});
+
 test('mixed-source cards and search rows credit owner-selected additions separately', () => {
   const mixed = { ...list, sourceOrigin: `${list.sourceOrigin}, with owner-selected additions` };
   for (const surface of [

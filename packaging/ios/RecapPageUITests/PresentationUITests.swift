@@ -111,7 +111,7 @@ final class PresentationUITests: XCTestCase {
         app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.layoutProbe(
             route: route, positionsDataAudit: positionsDataAudit)
-        if route == "all" || route == "history" || route.hasPrefix("guard-") {
+        if route == "all" || route == "search" || route == "history" || route.hasPrefix("guard-") {
             app.launchEnvironment["RECAP_IOS_PRESENTATION_TEST_SEED"] = "1"
         }
         if emptyHomeTest {
@@ -160,6 +160,14 @@ final class PresentationUITests: XCTestCase {
             const fixtureMode = '\(route)';
             \(Self.passiveGuardFixtures)
             """
+        } else if route == "search" {
+            routeScript = """
+            // The passive guard requires Home's lazily rendered reviewed nodes even on Search.
+            await openRoute(routes[0]);
+            await openRoute(routes.find(({ name }) => name === 'search'));
+            screens.push(snapshot('view-add'));
+            \(Self.searchAuditPreparation)
+            """
         } else if route == "all" {
             routeScript = """
             for (const route of routes) {
@@ -178,7 +186,7 @@ final class PresentationUITests: XCTestCase {
         }
         return """
         const issueSearchRoute = {
-          name: 'issue-search', id: 'view-add-search', selector: '[data-view="add-search"]'
+          name: 'issue-search', id: 'view-add-search', hash: '#/add-search'
         };
         const routes = [
           { name: 'home', id: 'view-home', selector: '[data-view="home"]' },
@@ -198,9 +206,12 @@ final class PresentationUITests: XCTestCase {
         const nextFrame = () => new Promise((resolve) => requestAnimationFrame(() =>
           requestAnimationFrame(resolve)));
         const openRoute = async (route) => {
-          const link = document.querySelector(route.selector);
-          if (!link) throw new Error(`Missing navigation link for ${route.name}`);
-          link.click();
+          if (route.hash) location.hash = route.hash;
+          else {
+            const link = document.querySelector(route.selector);
+            if (!link) throw new Error(`Missing navigation link for ${route.name}`);
+            link.click();
+          }
           await waitFor(() => !document.getElementById(route.id)?.hidden, route.name);
           await nextFrame();
         };
@@ -267,17 +278,11 @@ final class PresentationUITests: XCTestCase {
               chevronContent: getComputedStyle(control, '::before').content,
             };
           })(),
-          moreMethods: (() => {
-            const disclosure = document.getElementById('add-other-methods');
-            const summary = disclosure.querySelector('summary');
-            const rect = summary.getBoundingClientRect();
+          searchScopes: (() => {
+            const group = document.getElementById('search-scopes');
             return {
-              open: disclosure.open,
-              summaryWidth: rect.width,
-              summaryHeight: rect.height,
-              summaryScrollWidth: summary.scrollWidth,
-              summaryClientWidth: summary.clientWidth,
-              chevronContent: getComputedStyle(summary, '::after').content,
+              hidden: group.hidden,
+              pressed: group.querySelector('[aria-pressed="true"]')?.dataset.scope ?? null,
             };
           })(),
           viewportWidth: document.documentElement.clientWidth,
@@ -459,7 +464,8 @@ final class PresentationUITests: XCTestCase {
           monitor.setAttribute('aria-label', `recap-layout-probe ${monitor.textContent}`);
         };
         window.addEventListener('resize', refreshMonitor);
-        document.getElementById('add-other-methods').addEventListener('toggle', refreshMonitor);
+        document.getElementById('search-q').addEventListener('input', () => requestAnimationFrame(refreshMonitor));
+        document.getElementById('search-scopes').addEventListener('click', () => requestAnimationFrame(refreshMonitor));
         window.visualViewport?.addEventListener('resize', refreshMonitor);
         new ResizeObserver(refreshMonitor).observe(document.documentElement);
         refreshMonitor();
@@ -472,7 +478,7 @@ final class PresentationUITests: XCTestCase {
         let dataAuditGeometry = null;
         let dataAuditSynchronize = null;
         \(positionsDataAudit ? Self.dataAuditPositioner : "")
-        \(route == "all" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
+        \(route == "all" || route == "search" || route.hasPrefix("guard-") ? Self.passiveAuditProbe : "")
         const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
         return JSON.stringify({
           scale: Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ios-text-scale')),
@@ -488,6 +494,22 @@ final class PresentationUITests: XCTestCase {
         });
         """
     }
+
+    private static let searchAuditPreparation = #"""
+    window.__recapSearchAuditPrepared = false;
+    const searchAuditPreparation = document.createElement('button');
+    searchAuditPreparation.type = 'button';
+    searchAuditPreparation.textContent = 'Prepare Search audit';
+    searchAuditPreparation.setAttribute('aria-label', 'Prepare Search audit');
+    searchAuditPreparation.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden';
+    searchAuditPreparation.addEventListener('click', () => {
+      document.activeElement?.blur();
+      window.scrollTo(0, 0);
+      searchAuditPreparation.remove();
+      window.__recapSearchAuditPrepared = true;
+    });
+    document.body.append(searchAuditPreparation);
+    """#
 
     private static let dataAuditPositioner = #"""
     const dataAuditScrollDistance = (navigation, heading, button, fixed, viewportHeight) => {
@@ -956,6 +978,7 @@ final class PresentationUITests: XCTestCase {
         dataAuditPosition: dataAuditPosition && { ...dataAuditPosition, settled: dataAuditGeometry() },
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
+        searchAuditPrepared: window.__recapSearchAuditPrepared === true,
         guard: window.__recapPassiveGuard ? {
           valid: window.__recapPassiveGuard.globalInventoryValid(),
           inventory: window.__recapPassiveGuard.inventory(),
@@ -2635,48 +2658,110 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
-    func testExpandedMoreMethodsFitsAtDefaultAndLargestTextSizes() throws {
+    func testSearchLabelAndScopesMeetTargetsAndPassAuditAtDefaultAndLargestTextSizes() throws {
+        let label = "Search Reading Lists, series, creators and comics"
+        let targetTypes = [XCUIElement.ElementType.button, .toggle, .switch].map(\.rawValue)
+        func target(_ name: String, in app: XCUIApplication) -> XCUIElement {
+            app.webViews.firstMatch.descendants(matching: .any).matching(NSPredicate(
+                format: "label == %@ AND elementType IN %@", name, targetTypes)).firstMatch
+        }
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category, route: "search")
             _ = try probeResult(of: app)
-            let summary = app.webViews.firstMatch.buttons.matching(
-                NSPredicate(format: "label == %@", "More ways to add")).firstMatch
-            XCTAssertTrue(summary.waitForExistence(timeout: 30))
+            let field = app.searchFields[label].firstMatch
+            XCTAssertTrue(field.waitForExistence(timeout: 30), "Search has a labeled field")
+            revealNativeTarget(field, in: app)
+            field.tap()
+            field.typeText("Secret")
             let monitor = layoutMonitor(of: app)
-            let initial = try XCTUnwrap(layoutMetrics(from: monitor.label))
-            XCTAssertEqual(initial["activeView"] as? String, "view-add")
-            let initialMore = try XCTUnwrap(initial["moreMethods"] as? [String: Any])
-            XCTAssertEqual(initialMore["open"] as? Bool, false)
-            for expectedOpen in [true, false] {
-                revealNativeTarget(summary, in: app)
-                XCTAssertGreaterThanOrEqual(summary.frame.width, 44)
-                XCTAssertGreaterThanOrEqual(summary.frame.height, 44)
-                summary.tap()
-                let changed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
-                    guard let monitor = object as? XCUIElement,
-                          let state = layoutMetrics(from: monitor.label),
-                          state["activeView"] as? String == "view-add",
-                          let href = state["href"] as? String,
-                          URL(string: href)?.fragment?.split(separator: "/").first == "add",
-                          let more = state["moreMethods"] as? [String: Any] else { return false }
-                    return more["open"] as? Bool == expectedOpen
-                }, object: monitor)
-                XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 30), .completed)
-                let metrics = try XCTUnwrap(layoutMetrics(from: monitor.label))
-                let more = try XCTUnwrap(metrics["moreMethods"] as? [String: Any])
-                XCTAssertEqual(more["open"] as? Bool, expectedOpen)
-                let viewport = try XCTUnwrap((metrics["viewportWidth"] as? NSNumber)?.doubleValue)
-                let document = try XCTUnwrap((metrics["documentWidth"] as? NSNumber)?.doubleValue)
-                XCTAssertGreaterThan(viewport, 0)
-                XCTAssertEqual(document, viewport, "expanded More has no sideways overflow")
-                let summaryWidth = try XCTUnwrap((more["summaryClientWidth"] as? NSNumber)?.doubleValue)
-                let summaryScroll = try XCTUnwrap((more["summaryScrollWidth"] as? NSNumber)?.doubleValue)
-                XCTAssertGreaterThan(summaryWidth, 0)
-                try record("t03-more-methods-\(category.rawValue)-\(expectedOpen)", [
-                    "metrics": metrics, "summaryOverflow": summaryScroll - summaryWidth,
-                ])
-                capture(app, named: "t03-more-methods-\(category.rawValue)-\(expectedOpen)")
+            let shown = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+                guard let monitor = object as? XCUIElement,
+                      let state = layoutMetrics(from: monitor.label),
+                      let scopes = state["searchScopes"] as? [String: Any] else { return false }
+                return scopes["hidden"] as? Bool == false && scopes["pressed"] as? String == "top"
+            }, object: monitor)
+            XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 30), .completed, "typing shows the scopes with Top pressed")
+            // iPhone's web input accessory offers Done; iPad shows no accessory and puts its own
+            // hide key on the keyboard. Blurring through the page heading covers either if both move.
+            let done = app.toolbars.buttons["Done"].firstMatch
+            let hide = app.keyboards.buttons["Hide keyboard"].firstMatch
+            let heading = app.webViews.firstMatch.staticTexts["Search"].firstMatch
+            if done.waitForExistence(timeout: 3) {
+                done.tap()
+            } else if hide.exists {
+                hide.tap()
+            } else {
+                XCTAssertTrue(heading.waitForExistence(timeout: 5), "the Search heading is available to blur the box")
+                heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
             }
+            // Measured on iPad: at 1b8500cc the hide-key existence check took 0.1 s and the first
+            // keyboard check 0.15 s. At d15fcb1f, on a slower runner whose core screens test took
+            // 1571 s against 1343 s, they took 12.5 s and 4.2 s with two retries, and a 5-second
+            // ceiling expired on that single keyboard check. This wait and the two preparation waits
+            // below return as soon as their condition holds, so 15 seconds costs a passing run
+            // nothing.
+            let keyboardHidden = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
+            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 15), .completed, "the keyboard is dismissed before target measurements and the audit")
+            let labelTarget = target(label, in: app)
+            XCTAssertTrue(labelTarget.waitForExistence(timeout: 30), "the box label is a named native target")
+            revealNativeTarget(labelTarget, in: app)
+            XCTAssertGreaterThanOrEqual(labelTarget.frame.height, 44, "the box label is at least 44 points high")
+            var frames: [String: String] = [:]
+            for scope in ["Top", "Reading Lists", "Series", "Creators", "Comics"] {
+                let button = target(scope, in: app)
+                XCTAssertTrue(button.waitForExistence(timeout: 30), "the \(scope) scope is a native target")
+                revealNativeTarget(button, in: app)
+                XCTAssertGreaterThanOrEqual(button.frame.width, 44, "the \(scope) scope is at least 44 points wide")
+                XCTAssertGreaterThanOrEqual(button.frame.height, 44, "the \(scope) scope is at least 44 points high")
+                frames[scope] = NSCoder.string(for: button.frame)
+            }
+            let metrics = try XCTUnwrap(layoutMetrics(from: monitor.label))
+            let viewport = try XCTUnwrap((metrics["viewportWidth"] as? NSNumber)?.doubleValue)
+            let document = try XCTUnwrap((metrics["documentWidth"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(document, viewport, "Search with scopes has no sideways overflow")
+            let sources = app.webViews.firstMatch.links.matching(
+                NSPredicate(format: "label BEGINSWITH %@", "Source of "))
+            XCTAssertEqual(sources.count, 3, "the three Top Reading Lists retain their source links")
+            for source in sources.allElementsBoundByIndex {
+                revealNativeTarget(source, in: app)
+                XCTAssertEqual(app.staticTexts.matching(NSPredicate(format: "label == %@", source.label)).count, 0,
+                               "a source link has no separate text target")
+                XCTAssertGreaterThanOrEqual(source.frame.width, 44, "the source link is at least 44 points wide")
+                XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
+            }
+            let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
+            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 15), "the test-only focus release is available")
+            prepareAudit.tap()
+            let preparationRemoved = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: prepareAudit)
+            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 15)
+            let beforeProof = try freshPassiveState(of: app)
+            XCTAssertEqual(beforeProof["searchAuditPrepared"] as? Bool, true,
+                           "the page-side preparation click handler ran")
+            XCTAssertEqual(removalResult, .completed,
+                           "the page handled preparation but the accessibility tree still exposes its removed target")
+            XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
+                           "passive-text proofs do not begin with a focused input or control")
+            let guardState = try XCTUnwrap(beforeProof["guard"] as? [String: Any])
+            let scrollY = try XCTUnwrap((guardState["scrollY"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(scrollY, 0,
+                           "Search audit preparation returns the document to the top")
+            let viewportState = try XCTUnwrap(guardState["viewport"] as? [String: Any])
+            let visual = try XCTUnwrap(viewportState["visual"] as? [String: Any])
+            let offsetTop = try XCTUnwrap((visual["offsetTop"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(offsetTop, 0,
+                           "Search audit preparation leaves no visual viewport offset")
+            let scale = try XCTUnwrap((visual["scale"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(scale, 1, accuracy: 0.001,
+                           "Search does not leave the page zoomed after typing and dismissing the keyboard")
+            let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: false)
+            try performAccessibilityAudit(of: app, allowsPassiveGuard: true)
+            try record("t03-search-scopes-\(category.rawValue)", [
+                "metrics": metrics, "label": NSCoder.string(for: labelTarget.frame), "scopes": frames,
+                "audit": "passed", "reviewedPassiveCases": acceptedTexts.map(\.label),
+            ])
+            capture(app, named: "t03-search-scopes-\(category.rawValue)")
             app.terminate()
         }
     }
@@ -2787,7 +2872,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.searchFields["Search Reading Lists and comic titles"].firstMatch
+        let searchField = app.searchFields["Search Reading Lists, series, creators and comics"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")

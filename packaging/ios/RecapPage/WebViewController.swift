@@ -166,7 +166,8 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '.app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
         + '#view-add .search-hub-card, #view-add summary, #view-data summary, #view-data .backup-restore-label, '
-        + '#form-search label[for="search-q"], .mobile-link[data-view="add"], .home-guide-link, #reader-closure-faq';
+        + '#form-search label[for="search-q"], #search-scopes .search-scope, #search-browse .search-quiet-links a, #search-lists-results .result-source a, '
+        + '.mobile-link[data-view="add"], .home-guide-link, #reader-closure-faq';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
           '#btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-review, #btn-chero-deferred, '
@@ -176,7 +177,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         }
         for (const target of document.querySelectorAll(`${selector}, ${additionalTargets}`)) {
           const namedAction = target.matches(
-            '.app-back, #chero-actions button, #chero-actions a, #preview-secondary button, #preview-secondary a');
+            '.app-back, #chero-actions button, #chero-actions a, #preview-secondary button, #preview-secondary a, #search-lists-results .result-source a');
           const label = (namedAction ? target.getAttribute('aria-label') : null)
             || (target.innerText || target.textContent).trim().replace(/\s+/g, ' ');
           if (!label) continue;

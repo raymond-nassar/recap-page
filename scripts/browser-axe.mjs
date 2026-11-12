@@ -63,7 +63,7 @@ export const AXE_ROUTES = [
   { id: 'library', label: 'Library', view: 'library', hash: formatRoute({ view: 'library' }), seeded: true, ready: '#library-yours-list > li' },
   { id: 'library-first-run', label: 'Library, first run', view: 'library', hash: formatRoute({ view: 'library' }), seeded: false, ready: '#library-empty:not([hidden]) a[href="#/new-to-comics"]' },
   { id: 'new-to-comics', label: 'New to comics?', view: 'new-to-comics', hash: formatRoute({ view: 'new-to-comics' }), seeded: true, ready: '#new-to-comics-h' },
-  { id: 'add', label: 'Search', view: 'add', hash: formatRoute({ view: 'add' }), seeded: true, ready: '#add-primary-methods' },
+  { id: 'add', label: 'Search', view: 'add', hash: formatRoute({ view: 'add' }), seeded: true, ready: '#search-browse' },
   { id: 'data', label: 'Backup & settings', view: 'data', hash: formatRoute({ view: 'data' }), seeded: true, ready: '#view-data .setgroup' },
   { id: 'about', label: 'About this app', view: 'about', hash: formatRoute({ view: 'about' }), seeded: true, ready: '#view-about .card' },
 ];

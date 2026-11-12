@@ -194,7 +194,7 @@ parent-target treatment, preserving their names and actions rather than exemptin
 The footer's About link also uses that treatment and the shared `--target` token for its minimum
 width and height. The notice FAQ uses the same parent treatment and token-sized line box, only on iOS.
 The same parent-target treatment covers breadcrumb links, Library's ratings and tool links,
-Search's tool links and More ways to add summary, and Backup & settings' disclosure summaries.
+Search's box label, scope buttons and quiet links, and Backup & settings' disclosure summaries.
 The backup-file labels retain their label-to-file-input association and file-picker activation.
 The iOS overlay exposes each as one named button, with Enter and Space activation, and line boxes
 and minimum height using the shared `--target` token rather than treating the text as passive.
@@ -212,12 +212,11 @@ showing an action removes that extra accessibility hiding. Native tests require 
 contain no button nodes, with hosted confirmation pending. Generated-bundle checks exercise hiding
 and showing each action.
 
-A separate native More ways to add scenario opens and closes the disclosure with actual taps at
-default and largest text sizes. It records the active Search route, open state, summary geometry,
-viewport and document widths, and screenshots. Document width must equal viewport width in both
-states and sizes, including iPhone SE and iPad. Summary scroll width is recorded, not asserted:
-WebKit includes the rotated chevron's unpainted line box, about ten extra pixels at default text.
-The Edge `disclosure-chevron-reflow` check owns painted containment at the largest text scale.
+A separate native Search scopes scenario types into the box with actual taps at default and largest
+text sizes, waits for the scopes to appear with Top pressed, and requires the box label and each of
+the five scope buttons to be named native targets at least 44 points in each direction. It records
+their frames, viewport and document widths, and screenshots, requires document width to equal
+viewport width, and runs the accessibility audit with the scopes showing.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current

@@ -11,8 +11,8 @@ const css = read('../src/styles.css');
 const sprite = read('../src/icons/ui.svg');
 const expected = [
   'menu', 'books', 'search', 'settings', 'info',
-  'check', 'progress', 'edit', 'star', 'search', 'series', 'creator', 'paste', 'issue-add',
-  'search', 'series', 'creator', 'characters', 'timeline', 'paste', 'issue-add', 'search', 'search',
+  'check', 'progress', 'edit', 'star', 'search',
+  'timeline', 'characters', 'series', 'creator', 'story-types', 'ages', 'search', 'search',
 ];
 
 test('all navigation/search glyphs use the selected local symbols, not font characters', () => {
@@ -20,7 +20,7 @@ test('all navigation/search glyphs use the selected local symbols, not font char
   const mobile = [...html.matchAll(/<a href="#\/(?:library|add)" class="mobile-link"[^>]*>[\s\S]*?<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>/g)]
     .map(([, name]) => name);
   assert.deepEqual(mobile, ['books', 'search']);
-  assert.equal(icons.length, 25);
+  assert.equal(icons.length, 20);
   assert.deepEqual(icons.map(([, , content]) => {
     const match = /^<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>$/.exec(content);
     assert.ok(match, 'each icon contains only a local symbol reference');
@@ -40,7 +40,7 @@ test('the authored symbol set has exactly the used names and no remote or active
     .map(([, id]) => id);
   assert.deepEqual(ids.sort(), [...new Set([
     ...expected, 'storylines', 'screen', 'ages', 'reader', 'arrow-left', 'arrow-right', 'thumb-up', 'thumb-down', 'star',
-    'story-types',
+    'story-types', 'paste', 'issue-add',
   ])].sort());
   assert.equal(ids.length, 24);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);

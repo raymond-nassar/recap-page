@@ -137,11 +137,10 @@ test('product labels use Reading List while authored guide titles retain their o
   assert.match(add, /ensureList\(DEFAULT_LIST_NAME\)/);
 });
 
-test('Search comics groups the destinations the app can actually open', () => {
-  const page = between(html, 'id="view-add-search"', 'id="view-add-series"');
+test('Search groups the destinations the app can actually open', () => {
+  const page = between(html, 'id="view-add"', 'id="view-add-search"');
   assert.match(page, /<h2 id="search-browse-h">Browse by<\/h2>/);
-  assert.match(page, /<h2 id="search-other-h">Other ways to add<\/h2>/);
-  for (const view of ['add-series', 'add-creator', 'spotlights', 'catalog', 'add-import', 'add-manual']) {
+  for (const view of ['spotlights', 'catalog', 'genres', 'marvel-ages', 'add-import', 'add-manual']) {
     assert.ok(VIEWS.includes(view), `${view} is grouped on Search but is not a route`);
     assert.match(page, new RegExp(`data-view="${view}"`), `${view} is missing from the Search groups`);
   }
