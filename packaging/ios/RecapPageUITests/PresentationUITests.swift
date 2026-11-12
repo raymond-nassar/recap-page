@@ -160,6 +160,14 @@ final class PresentationUITests: XCTestCase {
             const fixtureMode = '\(route)';
             \(Self.passiveGuardFixtures)
             """
+        } else if route == "search" {
+            routeScript = """
+            // The passive guard requires Home's lazily rendered reviewed nodes even on Search.
+            await openRoute(routes[0]);
+            await openRoute(routes.find(({ name }) => name === 'search'));
+            screens.push(snapshot('view-add'));
+            \(Self.searchAuditPreparation)
+            """
         } else if route == "all" {
             routeScript = """
             for (const route of routes) {
@@ -486,6 +494,19 @@ final class PresentationUITests: XCTestCase {
         });
         """
     }
+
+    private static let searchAuditPreparation = #"""
+    const searchAuditPreparation = document.createElement('button');
+    searchAuditPreparation.type = 'button';
+    searchAuditPreparation.textContent = 'Prepare Search audit';
+    searchAuditPreparation.setAttribute('aria-label', 'Prepare Search audit');
+    searchAuditPreparation.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden';
+    searchAuditPreparation.addEventListener('click', () => {
+      document.activeElement?.blur();
+      searchAuditPreparation.remove();
+    });
+    document.body.append(searchAuditPreparation);
+    """#
 
     private static let dataAuditPositioner = #"""
     const dataAuditScrollDistance = (navigation, heading, button, fixed, viewportHeight) => {
@@ -2700,7 +2721,10 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
             }
             revealNativeTarget(heading, in: app)
-            heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
+            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 5), "the test-only focus release is available")
+            prepareAudit.tap()
+            XCTAssertFalse(prepareAudit.exists, "the preparation target is removed before the audit")
             let beforeProof = try freshPassiveState(of: app)
             XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
                            "passive-text proofs do not begin with a focused input or control")

@@ -2066,6 +2066,12 @@ test('native Search test measures the box label and every scope at 44 points and
     presentationTests.indexOf('func testReadSheetPassesAccessibilityAuditAtDefaultAndLargestTextSizes'),
   );
   assert.ok(body.length > 0);
+  const searchProbe = presentationTests.match(/else if route == "search" \{([\s\S]*?)\} else if route == "all"/)?.[1];
+  assert.ok(searchProbe, 'Search has its own probe setup');
+  assert.match(searchProbe, /await openRoute\(routes\[0\]\);[\s\S]*await openRoute\(routes\.find\(\(\{ name \}\) => name === 'search'\)\);/,
+    'Search renders Home first so every reviewed passive DOM node exists');
+  assert.match(searchProbe, /screens\.push\(snapshot\('view-add'\)\)/);
+  assert.ok(searchProbe.includes('\\(Self.searchAuditPreparation)'), 'the Search probe installs its focus-release target');
   assert.match(body, /for category in \[UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge\]/);
   assert.match(body, /for scope in \["Top", "Reading Lists", "Series", "Creators", "Comics"\]/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
@@ -2082,8 +2088,38 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /app\.staticTexts\.matching\(NSPredicate\(format: "label == %@", source\.label\)\)\.count, 0/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
-  assert.match(body, /revealNativeTarget\(heading, in: app\)[\s\S]*?heading\.coordinate[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
+  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?XCTAssertFalse\(prepareAudit\.exists[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
   assert.match(body, /"t03-search-scopes-/);
+});
+
+test('Search audit preparation blurs the focused control and removes its own target', () => {
+  const script = presentationTests.match(/private static let searchAuditPreparation = #"""([\s\S]*?)"""#/)?.[1];
+  assert.ok(script, 'Search has explicit test-only audit preparation');
+  const listeners = new Map();
+  let attached = false;
+  const button = {
+    style: {},
+    setAttribute() {},
+    addEventListener(type, handler) { listeners.set(type, handler); },
+    remove() { attached = false; },
+  };
+  const document = {
+    activeElement: null,
+    createElement() { return button; },
+    body: { append(node) { assert.equal(node, button); attached = true; } },
+  };
+  runInNewContext(script, { document });
+  assert.equal(attached, true);
+  for (const focused of [button, {}]) {
+    attached = true;
+    document.activeElement = {
+      ...focused,
+      blur() { document.activeElement = document.body; },
+    };
+    listeners.get('click')();
+    assert.equal(document.activeElement, document.body, 'neither the preparer nor another control retains focus');
+    assert.equal(attached, false, 'no test-only target remains during the audit');
+  }
 });
 
 test('native passive fixtures establish hidden and ambiguous geometry under the real CSP', () => {
