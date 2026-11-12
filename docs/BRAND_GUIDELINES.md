@@ -15,12 +15,42 @@ would become illegible. Preserve plain-text names and the forced-colors text fal
 
 | Brand color | Value | Use |
 |---|---|---|
-| Deep Purple | `#6D28D9` | Original icon and light-surface wordmark lettering |
+| Deep Purple | `#6D28D9` | Original icon, light-surface wordmark lettering and the light-theme All read line |
 | Light Purple | `#9E71E6` | Original icon detail and dark-surface wordmark lettering |
 | White | `#FFFFFF` | Original icon detail |
-| Hot Pink | `#EE0874` | Wordmark outline only |
+| Hot Pink | `#EE0874` | Wordmark outline, and the outline of the light-theme All read line |
 
 Never use Hot Pink for interface text, accents, buttons, links, focus rings, badges or backgrounds.
+The one exception is the All read line that opens a finished list's wrap-up: in the light theme the
+owner chose to give it the wordmark's own Deep Purple lettering and Hot Pink outline (#1208). The
+dark theme keeps its masthead blue under a white outline, because Deep Purple fails the 3:1 large
+text floor on the dark card.
+
+The owner chose purple as a blend of red and blue, so the interface may use those two as decorative
+brand accents (#1208). Brand Blue is `#1D4ED8` on light surfaces and `#4D8DFF` on dark ones; Brand
+Red is `#C8102E` and `#FF4D5A`. In the app both are decoration only, never text, links or status.
+Each color keeps one job there:
+
+- Purple marks what you act on and how far you have come: buttons, progress, the bars under
+  section headings about your reading, and the top edge of dialogs and sheets.
+- Blue helps you find your way. Links, focus and the current place keep the app's contrast-tested
+  interface blue; Brand Blue draws the bars under Library headings, the edge beside the Data page's
+  groups and the About page's topics, and empty states, whose glyph and border are both blue.
+- In the app, red only marks a moment. The blue, purple and red blend is reserved for finishing a
+  whole list, as the band across the top of its wrap-up.
+- Hot Pink stays with the wordmark and the All read exception above.
+- Teal, amber and the error red keep their status meanings everywhere except the category colors
+  below.
+
+The project website uses Brand Blue more widely (#1208). It is the color of the website's links,
+focus ring, current page and footer rule, at 6.4:1 in the light theme and 5.9:1 in the dark one.
+The bars under its section and document headings cycle blue, purple and red, and a purple rule
+tops its "Before you post" box.
+
+Use one accent color per component. Each page opened from a Home category card takes that card's
+color for its page header only, as a top bar over a soft wash; titles keep the text color, and
+pages outside those categories keep a plain header.
+
 Keep the current contrast-tested interface tokens and light/dark surfaces rather than replace them
 with literal brand colors. Status and focus rules, including all five availability distinctions,
 still govern the interface.

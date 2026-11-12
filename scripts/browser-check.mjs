@@ -16087,12 +16087,16 @@ const SCENARIOS = [
         await page.$eval('.section-nav a[href="#feedback"]', (link) => link.focus());
         const forced = await page.$eval('.section-nav a[href="#feedback"]', (link) => {
           const style = getComputedStyle(link);
+          const bar = getComputedStyle(document.querySelector('#feedback-title'), '::after');
           return {
             active: matchMedia('(forced-colors: active)').matches,
             borderWidth: Number.parseFloat(style.borderTopWidth),
             borderColor: style.borderTopColor,
             outlineWidth: Number.parseFloat(style.outlineWidth),
             outlineColor: style.outlineColor,
+            barWidth: Number.parseFloat(bar.borderTopWidth),
+            barColor: bar.borderTopColor,
+            text: getComputedStyle(document.querySelector('#feedback-title')).color,
           };
         });
         t.check('the forced-colour launch preserves route and focus boundaries',
@@ -16102,6 +16106,8 @@ const SCENARIOS = [
             && forced.borderColor !== 'rgba(0, 0, 0, 0)'
             && forced.outlineWidth > 0
             && forced.outlineColor !== 'rgba(0, 0, 0, 0)'
+            && forced.barWidth > 0
+            && forced.barColor === forced.text
           ),
           JSON.stringify(forced));
         await client.detach();
@@ -16155,6 +16161,73 @@ const SCENARIOS = [
             && item.navigation.every(Boolean)
           )),
           JSON.stringify(documents));
+
+        // The brand accents of #1208 (P1, P2, WD1, WL1, WF1), read from computed style in each
+        // theme so a token that silently resolved to nothing would show as a missing bar.
+        const accents = [];
+        for (const theme of ['dark', 'light']) {
+          await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
+          for (const file of ['index.html', 'data-sources.html']) {
+            await page.goto(pathToFileURL(join(destination, file)).href, { waitUntil: 'load' });
+            const link = await page.$('main a:not(.button)');
+            await link.focus();
+            await page.keyboard.down('Shift');
+            await page.keyboard.press('Tab');
+            await page.keyboard.up('Shift');
+            await page.keyboard.press('Tab');
+            accents.push(await page.evaluate((name) => {
+              const bar = (heading) => {
+                const style = getComputedStyle(heading, '::after');
+                return `${style.borderTopColor} ${Number.parseFloat(style.borderTopWidth)} ${style.width}`;
+              };
+              const token = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+              const focused = getComputedStyle(document.activeElement);
+              const footer = getComputedStyle(document.querySelector('.footer'));
+              const disclosure = document.querySelector('.disclosure');
+              const current = document.querySelector('[aria-current="page"]');
+              return {
+                theme: name,
+                file: location.pathname.split('/').pop(),
+                tokens: ['--brand-blue', '--accent', '--brand-red'].map(token),
+                bars: [...document.querySelectorAll('.section-heading h2, .document h2')].map(bar),
+                link: focused.color,
+                focus: `${focused.outlineStyle} ${focused.outlineColor}`,
+                footer: `${Number.parseFloat(footer.borderTopWidth)} ${footer.borderTopColor}`,
+                disclosure: disclosure
+                  ? `${Number.parseFloat(getComputedStyle(disclosure).borderTopWidth)} ${getComputedStyle(disclosure).borderTopColor}`
+                  : null,
+                warning: document.querySelector('.origin-warning')
+                  ? getComputedStyle(document.querySelector('.origin-warning')).borderTopColor
+                  : null,
+                current: current ? getComputedStyle(current).borderTopColor : null,
+              };
+            }, theme));
+          }
+        }
+        await page.emulateMediaFeatures();
+        const rgb = (hex) => `rgb(${[1, 3, 5].map((index) => Number.parseInt(hex.slice(index, index + 2), 16)).join(', ')})`;
+        const expectedAccents = {
+          dark: { blue: rgb('#4d8dff'), purple: rgb('#b694ec'), red: rgb('#ff4d5a'), amber: rgb('#eab654') },
+          light: { blue: rgb('#1d4ed8'), purple: rgb('#5c22b8'), red: rgb('#c8102e'), amber: rgb('#7a4c00') },
+        };
+        t.check('section and document heading bars cycle blue, purple, red, links and focus are blue, the footer rule is blue and the disclosure rule purple, in both themes',
+          forcedColorsRequested || (accents.length === 4
+          && accents.every((item) => {
+            const colors = expectedAccents[item.theme];
+            const cycle = [colors.blue, colors.purple, colors.red];
+            return item.bars.length >= 3
+              && item.bars.every((value, index) => value === `${cycle[index % 3]} 3 48px`)
+              && item.link === colors.blue
+              && item.focus === `solid ${colors.blue}`
+              && item.footer === `3 ${colors.blue}`
+              && (item.file === 'index.html'
+                ? item.bars.length === 10
+                  && item.disclosure === `4 ${colors.purple}`
+                  && item.warning === colors.amber
+                  && item.current === null
+                : item.current === colors.blue && item.disclosure === null);
+          })),
+          JSON.stringify(accents));
 
         await page.setViewport({ width: 1280, height: 900 });
         await page.goto(`${pathToFileURL(join(destination, 'privacy.html')).href}#deleting-your-data`, {
@@ -25028,7 +25101,7 @@ async function ux11Snapshot(page) {
       scheme: paint(document.documentElement, 'colorScheme'),
       paints: [paint(document.body, 'backgroundColor'), paint(document.body, 'color'),
         paint(p, 'color'), paint(fallback, 'color'), paint(document.querySelector('.mark'), 'backgroundColor'),
-        paint(document.querySelector('.mark'), 'color')],
+        (({ tagName, src } = {}) => (src ? `${tagName}:${new URL(src).pathname}` : null))(document.querySelector('.mark') ?? undefined)],
       animation: paint(document.querySelector('.mark'), 'animationName'),
       oldNodes: Boolean(h?.isConnected && p?.isConnected && fallback?.isConnected),
       main: { count: document.querySelectorAll('main').length,
@@ -25335,9 +25408,9 @@ async function runReaderLauncherFeedback(page, t) {
         measurePresentation(snapshot, 'missing-reference');
         const light = f.theme === 'light' || (!['dark', 'light'].includes(f.theme) && f.system !== 'dark');
         const paints = light ? ['rgb(250, 250, 255)', 'rgb(19, 19, 27)', 'rgb(92, 92, 110)',
-          'rgb(23, 80, 156)', 'rgb(109, 40, 217)', 'rgb(255, 255, 255)']
+          'rgb(23, 80, 156)', 'rgba(0, 0, 0, 0)', 'IMG:/icons/icon.svg']
           : ['rgb(17, 17, 23)', 'rgb(242, 242, 248)', 'rgb(145, 145, 164)',
-            'rgb(127, 179, 255)', 'rgb(138, 83, 225)', 'rgb(255, 255, 255)'];
+            'rgb(127, 179, 255)', 'rgba(0, 0, 0, 0)', 'IMG:/icons/icon.svg'];
         const expectedTheme = ['light', 'dark'].includes(f.theme) ? f.theme : null;
         ux11Receipt(page, t, `${f.id}:theme-and-missing`, { theme: expectedTheme, paints, scheme: light ? 'light' : 'dark',
           noReference: true, limitation: f.id === 'L05' }, snapshot,

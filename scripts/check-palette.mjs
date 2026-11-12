@@ -84,8 +84,10 @@ export const PAIRS = [
   ['--read-fg', '--card', BODY, 'a read row inside a card'],
   ['--blue', '--bg', BODY, 'a link, and the focus ring against the page'],
   ['--blue', '--card', BODY, 'a link inside a card'],
+  ['--brand-blue', '--bg', LARGE, 'the glyph of an empty state, the edge of a Data page group heading and the bar under a Library heading (#1208)'],
+  ['--brand-blue', '--card', LARGE, 'the edge of an About page topic heading and the glyph of an empty state inside a card (#1208)'],
   ['--logo-fill', '--bg', LARGE, 'the large Home masthead against the page'],
-  ['--logo-fill', '--card', LARGE, 'the All read line that opens the wrap-up card, in the masthead treatment (#874)'],
+  ['--cheer-fill', '--card', LARGE, 'the All read line that opens the wrap-up card, in the masthead treatment (#874) and, in light mode, the wordmark colors (#1208)'],
   ['--accent-text', '--bg', BODY, 'the brand as text on the page: an eyebrow, the progress ring'],
   ['--accent-text', '--card', BODY, 'the brand as text on a card, the selected filter pill, and the read figure of progress at a glance (#876)'],
   ['--accent-text', '--card-2', LARGE, 'the edge of the availability choice in force in a row\'s open actions, which sit on a raised panel (UX-13)'],
@@ -147,8 +149,8 @@ export const PAIRS = [
   // own fixed palette, leaving this pair to describe the skip link alone.
   //
   // The accent bar is deliberately not on that entry. `.ri[aria-current]`
-  // sets its own background at `src/styles.css:570`, a tint over the rail, and the bar at
-  // `src/styles.css:574` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
+  // sets its own background at `src/styles.css:589`, a tint over the rail, and the bar at
+  // `src/styles.css:593` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
   // 5.35. Putting it on `--rail` with the other two would have read 4.09 and 6.37, overstating it
   // by 0.65 in the dark theme and 1.02 in the light one, which is the mistake hit testing was for.
   ['--accent', '--rail', LARGE, 'the skip link when focused on the rail'],
@@ -161,7 +163,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2494`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2513`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -181,14 +183,13 @@ export const PAIRS = [
 ];
 
 export const STANDALONE_PAIRS = [
-  [':root, :root[data-theme="dark"]', '#111117', '#f2f2f8', '#9191a4', '#7fb3ff', '#8a53e1'],
-  [':root[data-theme="light"]', '#fafaff', '#13131b', '#5c5c6e', '#17509c', '#6d28d9'],
-  [':root:not([data-theme="dark"])', '#fafaff', '#13131b', '#5c5c6e', '#17509c', '#6d28d9'],
-].flatMap(([selector, bg, text, muted, blue, accent]) => [
+  [':root, :root[data-theme="dark"]', '#111117', '#f2f2f8', '#9191a4', '#7fb3ff'],
+  [':root[data-theme="light"]', '#fafaff', '#13131b', '#5c5c6e', '#17509c'],
+  [':root:not([data-theme="dark"])', '#fafaff', '#13131b', '#5c5c6e', '#17509c'],
+].flatMap(([selector, bg, text, muted, blue]) => [
   [text, bg, BODY, `${selector} body text`, `${selector}::--text`, `${selector}::--bg`],
   [muted, bg, BODY, `${selector} status text`, `${selector}::--muted`, `${selector}::--bg`],
   [blue, bg, BODY, `${selector} fallback and return links`, `${selector}::--blue`, `${selector}::--bg`],
-  ['#fff', accent, BODY, `${selector} letter inside the mark`, `${selector}::--on-accent`, `${selector}::--accent`],
   [blue, bg, LARGE, `${selector} anchor focus outline`, `${selector}::--blue`, `${selector}::--bg`],
 ]);
 
@@ -218,13 +219,13 @@ export const SURFACES = {
     // 228 in blue. The ghost button below already carries the same correction.
     fraction: 20 / 255,
     on: '--rail',
-    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:570`',
+    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:589`',
   },
   'the unreadable-data banner': {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2470`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2489`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -234,12 +235,12 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:981`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1000`',
   },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:2110-2112`) and 19% over the raised card on hover
-  // (`src/styles.css:2128-2130`).
+  // card at rest (`src/styles.css:2129-2131`) and 19% over the raised card on hover
+  // (`src/styles.css:2147-2149`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
@@ -281,7 +282,9 @@ const THEME_SELECTORS = new Set([
 const INTENTIONAL_THEME_TOKENS = new Map([
   ['--accent-line', 'channel source for translucent selection paints'],
   ['--amber-line', 'channel source for translucent scheduled-state paints'],
+  ['--brand-red', 'decorative end of the finished-list band, never a status or a danger paint'],
   ['--card-line', 'channel source for translucent card boundaries'],
+  ['--cheer-stroke', 'decorative outline on the All read line, whose fill carries the large text floor'],
   ['--line', 'decorative hairlines with no contrast floor'],
   ['--red-line', 'channel source for translucent danger paints'],
   ['--shadow-rgb', 'channel source for decorative shadows'],
@@ -584,7 +587,6 @@ export function standaloneFindings(source, pairs = STANDALONE_PAIRS) {
   for (const [selector, property, expected] of [
     ['body', 'background', 'var(--bg)'], ['body', 'color', 'var(--text)'],
     ['#p, #settings-status', 'color', 'var(--muted)'], ['a', 'color', 'var(--blue)'],
-    ['.mark', 'background', 'var(--accent)'], ['.mark', 'color', 'var(--on-accent)'],
     ['a:focus-visible', 'outline', '3px solid var(--blue)'],
     [':root, :root[data-theme="dark"]', 'color-scheme', 'dark'],
     [':root[data-theme="light"]', 'color-scheme', 'light'],
