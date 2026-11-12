@@ -1787,3 +1787,39 @@ changes to the factual vector or overlap report need fresh digest-bound authorit
 Use the named vendor route with genuine request-bound metadata cache evidence, never fabricated
 responses. A curated event explicitly registered with `"surface": "modern-timeline"` contributes
 to the current reading census without changing the immutable baseline or owner contracts.
+
+## Move the frozen backlog and mockups
+
+The archive move in [Issue #1235](https://github.com/raymond-nassar/recap-page/issues/1235)
+uses `scripts/archive-anchors.mjs`, not a hand-edited lock or registry. Select an exact
+pre-move commit whose lock is blessed. After integrating other deliveries, use their integrated
+main commit as the new baseline, never the older generated lock or history files.
+
+Reconcile ordinary code-line changes with the citation relocation helper before moving the
+backlog. Then stage the unchanged backlog and mockup renames, live path updates and final source
+edits. The script maps each baseline occurrence to its final document, target, range and ordinal;
+changed live ranges require exact content search and diff arithmetic to agree. Frozen target
+tokens remain literal at their original commits. Every archive blob must match its baseline.
+
+```text
+node scripts/archive-anchors.mjs --base <pre-move-commit> --output <external-candidate-a>
+node scripts/archive-anchors.mjs --base <pre-move-commit> --output <external-candidate-b>
+node scripts/archive-anchors.mjs --apply <external-candidate-a> --approved-sha256 <approved-digest>
+```
+
+Generate twice without edits and compare the candidate bytes. Read every ledger claim against
+its immutable target or final live line, and review each old/new occurrence identity. Obtain
+maintainer approval of the exact printed SHA-256 before apply. Source or occurrence changes
+invalidate it and require fresh generation and review. Preview uses candidate move authority only
+in memory; normal check and bless still refuse the unapproved move.
+
+Apply atomically replaces only the registry. The old lock remains until the normal
+`npm run anchors`, `npm run anchors:bless`, `npm run anchors` sequence; inspect every pairing.
+This intermediate state is intentional, not a transaction across two files. Repeating the same
+approved application is a no-op only for an identical registry and unchanged corpus. An
+unrelated registry or lock edit is refused, not overwritten.
+
+The final check must retain every occurrence with zero drifted, new or removed. Compare archive
+blob hashes with the baseline and run lint, counts, sizes and the bare unit suite. The script
+binds a moved frozen document to its pre-move blob through explicit version-2 registry authority;
+it never follows historical renames or changes the literal paths inside historical targets.

@@ -13,6 +13,8 @@ packaging/android/gradlew text eol=lf
 packaging/android/gradlew.bat text eol=crlf
 scripts/android-emulator-ci.sh text eol=lf
 docs/anchors.history.json -text
+docs/archive/PRODUCT_BACKLOG.md text eol=lf
+docs/archive/mockups/* text eol=lf
 
 # Native artifacts bind raw source bytes across x64 and ARM64 checkouts.
 packaging/windows/native/* text eol=lf
