@@ -105,6 +105,7 @@ export function demonstrationState() {
       itemIds.push(issueId);
       state.issues[issueId] = normalizeIssue({
         issueId, title: `${name} #${number}`, number, seriesName: name,
+        creators: [{ name: 'Fictional Writer', role: 'writer' }, { name: 'Fictional Artist', role: 'penciler' }],
         source: 'manual', hydrated: true,
       });
     }

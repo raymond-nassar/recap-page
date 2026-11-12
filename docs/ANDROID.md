@@ -33,9 +33,9 @@ bar with Continue reading, **Backup & settings**, **About this app** and the con
 nothing the bar already shows. **Close**, Android Back, Escape or a tap outside it closes it, and
 focus returns to **More**. The navigation bar shows the full app icon at
 the size of its other icons, with no selected-page stripe. Home's visible, focusable heading is the
-Windows **RECAP PAGE!** masthead scaled down to a centered wordmark, at 6.5% of the screen's shorter
-side and without the tagline. Android has none of the masthead's display fonts, so the wordmark is
-drawn in Android's own sans-serif, which is Roboto on stock Android.
+Recap Page wordmark, centered and using the artwork for the current light or dark theme.
+It is an image rather than text drawn in Android's system font, with an accessible text heading
+for assistive technology and forced colors.
 
 Home's **Explore** group marks **Modern Timeline** as the recommended place to start, beside
 **Genres** and **Character spotlights**, with a **New to Marvel Comics?** link below and a
