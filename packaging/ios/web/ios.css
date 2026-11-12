@@ -1,5 +1,5 @@
 /* The iOS overlay, loaded after styles.css and the shared phone layer in mobile/mobile.css.
-   The native scale may adjust shared text tokens, but does not introduce independent design values. */
+   The native scale adjusts shared text tokens; Search alone has a minimum to avoid iPhone focus zoom. */
 
 /* WebKit on iOS enlarges text on its own when an iPhone turns to landscape, so the same screen
    would read at two sizes. This keeps the size the page sets in both orientations. */
@@ -138,4 +138,9 @@
   min-height: var(--target);
   max-width: 100%;
   line-height: max(var(--target), 1.5em);
+}
+
+/* At 14px, iPhone WebKit kept Search at 16/14 zoom after the keyboard closed in #1240. */
+:root #search-q {
+  font-size: max(16px, var(--t-body));
 }
