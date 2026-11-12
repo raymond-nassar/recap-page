@@ -262,7 +262,7 @@ test('the project home sends Android readers to Google Play and keeps the previe
     'historical record, not availability in Marvel Comics', 'JSON backups', 'Markdown checklists', 'Share an order',
   ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
   const featureCopy = plain(features);
-  assert.match(featureCopy, /Search Reading Lists, series, creators, and comics, with spelling suggestions/);
+  assert.match(featureCopy, /Search Reading Lists, series, creators, and comics\./);
   assert.match(featureCopy, /Store apps can back up to your own OneDrive, or iCloud Drive on iPhone and iPad/);
 });
 
