@@ -504,6 +504,7 @@ final class PresentationUITests: XCTestCase {
     searchAuditPreparation.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden';
     searchAuditPreparation.addEventListener('click', () => {
       document.activeElement?.blur();
+      window.scrollTo(0, 0);
       searchAuditPreparation.remove();
       window.__recapSearchAuditPrepared = true;
     });
@@ -2693,9 +2694,15 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertTrue(heading.waitForExistence(timeout: 5), "the Search heading is available to blur the box")
                 heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
             }
+            // Measured on iPad: at 1b8500cc the hide-key existence check took 0.1 s and the first
+            // keyboard check 0.15 s. At d15fcb1f, on a slower runner whose core screens test took
+            // 1571 s against 1343 s, they took 12.5 s and 4.2 s with two retries, and a 5-second
+            // ceiling expired on that single keyboard check. This wait and the two preparation waits
+            // below return as soon as their condition holds, so 15 seconds costs a passing run
+            // nothing.
             let keyboardHidden = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
-            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 5), .completed, "the keyboard is dismissed before target measurements and the audit")
+            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 15), .completed, "the keyboard is dismissed before target measurements and the audit")
             let labelTarget = target(label, in: app)
             XCTAssertTrue(labelTarget.waitForExistence(timeout: 30), "the box label is a named native target")
             revealNativeTarget(labelTarget, in: app)
@@ -2723,13 +2730,12 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(source.frame.width, 44, "the source link is at least 44 points wide")
                 XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
             }
-            revealNativeTarget(heading, in: app)
             let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
-            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 5), "the test-only focus release is available")
+            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 15), "the test-only focus release is available")
             prepareAudit.tap()
             let preparationRemoved = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: prepareAudit)
-            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 5)
+            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 15)
             let beforeProof = try freshPassiveState(of: app)
             XCTAssertEqual(beforeProof["searchAuditPrepared"] as? Bool, true,
                            "the page-side preparation click handler ran")
@@ -2738,8 +2744,14 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
                            "passive-text proofs do not begin with a focused input or control")
             let guardState = try XCTUnwrap(beforeProof["guard"] as? [String: Any])
+            let scrollY = try XCTUnwrap((guardState["scrollY"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(scrollY, 0,
+                           "Search audit preparation returns the document to the top")
             let viewportState = try XCTUnwrap(guardState["viewport"] as? [String: Any])
             let visual = try XCTUnwrap(viewportState["visual"] as? [String: Any])
+            let offsetTop = try XCTUnwrap((visual["offsetTop"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(offsetTop, 0,
+                           "Search audit preparation leaves no visual viewport offset")
             let scale = try XCTUnwrap((visual["scale"] as? NSNumber)?.doubleValue)
             XCTAssertEqual(scale, 1, accuracy: 0.001,
                            "Search does not leave the page zoomed after typing and dismissing the keyboard")

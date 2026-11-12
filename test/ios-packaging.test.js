@@ -2098,15 +2098,21 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /app\.staticTexts\.matching\(NSPredicate\(format: "label == %@", source\.label\)\)\.count, 0/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
-  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 5\)/);
+  assert.doesNotMatch(body, /revealNativeTarget\(heading, in: app\)/,
+    'the fixed preparation target does not need a capped scroll back from the last source');
+  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 15\)/);
   assert.match(body, /let beforeProof = try freshPassiveState\(of: app\)[\s\S]*?beforeProof\["searchAuditPrepared"\] as\? Bool, true[\s\S]*?XCTAssertEqual\(removalResult, \.completed[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
   assert.match(presentationTests, /searchAuditPrepared: window\.__recapSearchAuditPrepared === true/);
   assert.match(presentationTests, /visual:\s*visualViewport && \{[^}]*scale:\s*visualViewport\.scale/s);
   assert.match(body, /beforeProof\["guard"\][\s\S]*?guardState\["viewport"\][\s\S]*?viewportState\["visual"\][\s\S]*?visual\["scale"\][\s\S]*?XCTAssertEqual\(scale, 1, accuracy: 0\.001,[\s\S]*?verifyPassiveAuditTexts/);
+  assert.match(body, /guardState\["scrollY"\][\s\S]*?XCTAssertEqual\(scrollY, 0,[\s\S]*?verifyPassiveAuditTexts/,
+    'the fresh passive sample proves that preparation returned the document to the top');
+  assert.match(body, /visual\["offsetTop"\][\s\S]*?XCTAssertEqual\(offsetTop, 0,[\s\S]*?verifyPassiveAuditTexts/,
+    'the fresh passive sample proves that the visual viewport is also at the top');
   assert.match(body, /"t03-search-scopes-/);
 });
 
-test('Search audit preparation blurs the focused control and removes its own target', () => {
+test('Search audit preparation blurs, returns to the top and removes its own target', () => {
   const script = presentationTests.match(/private static let searchAuditPreparation = #"""([\s\S]*?)"""#/)?.[1];
   assert.ok(script, 'Search has explicit test-only audit preparation');
   const listeners = new Map();
@@ -2122,12 +2128,22 @@ test('Search audit preparation blurs the focused control and removes its own tar
     createElement() { return button; },
     body: { append(node) { assert.equal(node, button); attached = true; } },
   };
-  const window = {};
+  const window = {
+    scrollY: 0,
+    scrollTo(x, y) {
+      assert.equal(document.activeElement, document.body, 'focus is released before scrolling');
+      assert.equal(window.__recapSearchAuditPrepared, false, 'scrolling precedes the completion marker');
+      assert.equal(x, 0);
+      assert.equal(y, 0);
+      window.scrollY = y;
+    },
+  };
   runInNewContext(script, { document, window });
   assert.equal(attached, true);
   assert.equal(window.__recapSearchAuditPrepared, false, 'preparation is not claimed before the click');
   for (const focused of [button, {}]) {
     attached = true;
+    window.scrollY = 2048;
     window.__recapSearchAuditPrepared = false;
     document.activeElement = {
       ...focused,
@@ -2136,6 +2152,7 @@ test('Search audit preparation blurs the focused control and removes its own tar
     listeners.get('click')();
     assert.equal(window.__recapSearchAuditPrepared, true, 'the page records that its click handler ran');
     assert.equal(document.activeElement, document.body, 'neither the preparer nor another control retains focus');
+    assert.equal(window.scrollY, 0, 'preparation returns from deep large-text results without native drags');
     assert.equal(attached, false, 'no test-only target remains during the audit');
   }
 });
