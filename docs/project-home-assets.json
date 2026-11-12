@@ -11,10 +11,10 @@
   },
   "androidPreviews": {
     "command": "npm run play:assets",
-    "sourceRevision": "601bee53f0cdf1f0c99ff74512ab07fecd4a1968",
-    "sourceTree": "2f1bd6fb50a7e502f563001d0cadd3dbc6205f12",
+    "sourceRevision": "72b3a2aafa06a1422fba743af9649bab4565ce8d",
+    "sourceTree": "15c91440350b9b7dc2bd65f2b9b844de5cf3fa06",
     "sourceDirty": false,
-    "androidManifestSha256": "bc582ea4d53e631cc9d01545dc5f7d7f865fcfd13daad8297c89e5981b66d26d",
+    "androidManifestSha256": "189fb1c1562239c29a4f3a8f6e2e13d13d141d664b41c9185c6ef201230c780b",
     "renderer": {
       "name": "Microsoft Edge",
       "version": "Edg/157.0.4341.46",
@@ -29,7 +29,7 @@
     },
     "data": {
       "method": "Wholly fictional negative-ID saved issues and progress; bundled public catalog for discovery, covers off, no notes.",
-      "sha256": "41a71aeee307fb6447700eb9e133b62532b6b6ed2dfb8e1660f9e92023296e73"
+      "sha256": "ec0da86363c98e299afb27f45f6fd2913a6127b90cc3b8a8f73896b1d05f1288"
     },
     "network": "Every page request fulfilled locally from an allowlist or aborted; no request continued to the network.",
     "releaseAcceptance": false,
@@ -52,8 +52,8 @@
         "scrollTarget": "#hero",
         "width": 1080,
         "height": 1920,
-        "bytes": 175285,
-        "sha256": "1d8b61f289f93632e8720156df4417329a983b80cd105ba84e116ac8c5724376"
+        "bytes": 178201,
+        "sha256": "c93321d0ec248c3673b0d3e3ed0a0a66e30428e84f1ad3f9f37aa99e2770a339"
       }
     ]
   }
