@@ -122,7 +122,7 @@ Marvel's service.
 
 ## Build and install
 
-The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.0's built-in Kotlin
+The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.1's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
 application DEX checks admit the exact approved Play services runtime class inventory and reject
