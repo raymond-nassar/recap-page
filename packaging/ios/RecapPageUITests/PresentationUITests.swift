@@ -160,6 +160,14 @@ final class PresentationUITests: XCTestCase {
             const fixtureMode = '\(route)';
             \(Self.passiveGuardFixtures)
             """
+        } else if route == "search" {
+            routeScript = """
+            // The passive guard requires Home's lazily rendered reviewed nodes even on Search.
+            await openRoute(routes[0]);
+            await openRoute(routes.find(({ name }) => name === 'search'));
+            screens.push(snapshot('view-add'));
+            \(Self.searchAuditPreparation)
+            """
         } else if route == "all" {
             routeScript = """
             for (const route of routes) {
@@ -486,6 +494,21 @@ final class PresentationUITests: XCTestCase {
         });
         """
     }
+
+    private static let searchAuditPreparation = #"""
+    window.__recapSearchAuditPrepared = false;
+    const searchAuditPreparation = document.createElement('button');
+    searchAuditPreparation.type = 'button';
+    searchAuditPreparation.textContent = 'Prepare Search audit';
+    searchAuditPreparation.setAttribute('aria-label', 'Prepare Search audit');
+    searchAuditPreparation.style.cssText = 'position:fixed;top:1px;right:1px;z-index:2147483647;width:44px;height:44px;overflow:hidden';
+    searchAuditPreparation.addEventListener('click', () => {
+      document.activeElement?.blur();
+      searchAuditPreparation.remove();
+      window.__recapSearchAuditPrepared = true;
+    });
+    document.body.append(searchAuditPreparation);
+    """#
 
     private static let dataAuditPositioner = #"""
     const dataAuditScrollDistance = (navigation, heading, button, fixed, viewportHeight) => {
@@ -954,6 +977,7 @@ final class PresentationUITests: XCTestCase {
         dataAuditPosition: dataAuditPosition && { ...dataAuditPosition, settled: dataAuditGeometry() },
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
+        searchAuditPrepared: window.__recapSearchAuditPrepared === true,
         guard: window.__recapPassiveGuard ? {
           valid: window.__recapPassiveGuard.globalInventoryValid(),
           inventory: window.__recapPassiveGuard.inventory(),
@@ -2700,10 +2724,25 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
             }
             revealNativeTarget(heading, in: app)
-            heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
+            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 5), "the test-only focus release is available")
+            prepareAudit.tap()
+            let preparationRemoved = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: prepareAudit)
+            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 5)
             let beforeProof = try freshPassiveState(of: app)
+            XCTAssertEqual(beforeProof["searchAuditPrepared"] as? Bool, true,
+                           "the page-side preparation click handler ran")
+            XCTAssertEqual(removalResult, .completed,
+                           "the page handled preparation but the accessibility tree still exposes its removed target")
             XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
                            "passive-text proofs do not begin with a focused input or control")
+            let guardState = try XCTUnwrap(beforeProof["guard"] as? [String: Any])
+            let viewportState = try XCTUnwrap(guardState["viewport"] as? [String: Any])
+            let visual = try XCTUnwrap(viewportState["visual"] as? [String: Any])
+            let scale = try XCTUnwrap((visual["scale"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(scale, 1, accuracy: 0.001,
+                           "Search does not leave the page zoomed after typing and dismissing the keyboard")
             let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: false)
             try performAccessibilityAudit(of: app, allowsPassiveGuard: true)
             try record("t03-search-scopes-\(category.rawValue)", [

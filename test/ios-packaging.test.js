@@ -1137,7 +1137,9 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
     .map(([, token, size]) => [token, Number(size)]);
   assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
   assert.match(css, /--ios-text-scale:\s*1\s*;/);
-  assert.doesNotMatch(css, /\b(?:font-size|zoom)\s*:/, 'root rem dimensions and page zoom stay unchanged');
+  const withoutSearchFloor = css.replace(/:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/, '');
+  assert.doesNotMatch(withoutSearchFloor, /\b(?:font-size|zoom)\s*:/,
+    'only Search has a field-size floor; root rem dimensions and page zoom stay unchanged');
   const controller = appSource('WebViewController');
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
@@ -2058,6 +2060,14 @@ test('iOS Search reuses the named label target and retains its visible field des
   }
 });
 
+test('iOS Search prevents focus zoom without shrinking larger text or changing shared fields', () => {
+  const css = read('packaging/ios/web/ios.css');
+  assert.match(css, /:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/);
+  for (const path of ['src/styles.css', 'packaging/android/web/mobile.css']) {
+    assert.doesNotMatch(read(path), /#search-q\s*\{[^}]*font-size:\s*max\(16px,/s);
+  }
+});
+
 test('native Search test measures the box label and every scope at 44 points and audits both text sizes', () => {
   assert.doesNotMatch(presentationTests, /add-other-methods|moreMethods/);
   const body = presentationTests.slice(
@@ -2065,6 +2075,12 @@ test('native Search test measures the box label and every scope at 44 points and
     presentationTests.indexOf('func testReadSheetPassesAccessibilityAuditAtDefaultAndLargestTextSizes'),
   );
   assert.ok(body.length > 0);
+  const searchProbe = presentationTests.match(/else if route == "search" \{([\s\S]*?)\} else if route == "all"/)?.[1];
+  assert.ok(searchProbe, 'Search has its own probe setup');
+  assert.match(searchProbe, /await openRoute\(routes\[0\]\);[\s\S]*await openRoute\(routes\.find\(\(\{ name \}\) => name === 'search'\)\);/,
+    'Search renders Home first so every reviewed passive DOM node exists');
+  assert.match(searchProbe, /screens\.push\(snapshot\('view-add'\)\)/);
+  assert.ok(searchProbe.includes('\\(Self.searchAuditPreparation)'), 'the Search probe installs its focus-release target');
   assert.match(body, /for category in \[UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge\]/);
   assert.match(body, /for scope in \["Top", "Reading Lists", "Series", "Creators", "Comics"\]/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
@@ -2081,8 +2097,46 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /app\.staticTexts\.matching\(NSPredicate\(format: "label == %@", source\.label\)\)\.count, 0/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
-  assert.match(body, /revealNativeTarget\(heading, in: app\)[\s\S]*?heading\.coordinate[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
+  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 5\)/);
+  assert.match(body, /let beforeProof = try freshPassiveState\(of: app\)[\s\S]*?beforeProof\["searchAuditPrepared"\] as\? Bool, true[\s\S]*?XCTAssertEqual\(removalResult, \.completed[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
+  assert.match(presentationTests, /searchAuditPrepared: window\.__recapSearchAuditPrepared === true/);
+  assert.match(presentationTests, /visual:\s*visualViewport && \{[^}]*scale:\s*visualViewport\.scale/s);
+  assert.match(body, /beforeProof\["guard"\][\s\S]*?guardState\["viewport"\][\s\S]*?viewportState\["visual"\][\s\S]*?visual\["scale"\][\s\S]*?XCTAssertEqual\(scale, 1, accuracy: 0\.001,[\s\S]*?verifyPassiveAuditTexts/);
   assert.match(body, /"t03-search-scopes-/);
+});
+
+test('Search audit preparation blurs the focused control and removes its own target', () => {
+  const script = presentationTests.match(/private static let searchAuditPreparation = #"""([\s\S]*?)"""#/)?.[1];
+  assert.ok(script, 'Search has explicit test-only audit preparation');
+  const listeners = new Map();
+  let attached = false;
+  const button = {
+    style: {},
+    setAttribute() {},
+    addEventListener(type, handler) { listeners.set(type, handler); },
+    remove() { attached = false; },
+  };
+  const document = {
+    activeElement: null,
+    createElement() { return button; },
+    body: { append(node) { assert.equal(node, button); attached = true; } },
+  };
+  const window = {};
+  runInNewContext(script, { document, window });
+  assert.equal(attached, true);
+  assert.equal(window.__recapSearchAuditPrepared, false, 'preparation is not claimed before the click');
+  for (const focused of [button, {}]) {
+    attached = true;
+    window.__recapSearchAuditPrepared = false;
+    document.activeElement = {
+      ...focused,
+      blur() { document.activeElement = document.body; },
+    };
+    listeners.get('click')();
+    assert.equal(window.__recapSearchAuditPrepared, true, 'the page records that its click handler ran');
+    assert.equal(document.activeElement, document.body, 'neither the preparer nor another control retains focus');
+    assert.equal(attached, false, 'no test-only target remains during the audit');
+  }
 });
 
 test('native passive fixtures establish hidden and ambiguous geometry under the real CSP', () => {
