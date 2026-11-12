@@ -131,3 +131,11 @@
 :root[data-ios-largest-text="true"] #view-data #opt-theme {
   white-space: normal;
 }
+
+:root #search-lists-results .result-source a {
+  display: inline-block;
+  min-width: var(--target);
+  min-height: var(--target);
+  max-width: 100%;
+  line-height: max(var(--target), 1.5em);
+}
