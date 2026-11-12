@@ -700,9 +700,13 @@ test('Page colour pairs clear their text and boundary floors', () => {
     ['--muted', '--surface', BODY],
     ['--accent', '--surface', BODY],
     ['--accent-ink', '--accent-fill', BODY],
+    ['--brand-blue', '--page', BODY],
+    ['--brand-blue', '--surface', BODY],
+    ['--brand-red', '--page', LARGE],
+    ['--brand-red', '--surface', LARGE],
     ['--line', '--page', LARGE],
     ['--line', '--surface', LARGE],
-    ['--focus', '--page', LARGE],
+    ['--warning', '--page', LARGE],
     ['--danger', '--surface', BODY],
   ];
 
@@ -724,6 +728,30 @@ test('motion, focus, narrow layout and forced colours have explicit contracts', 
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*scroll-behavior: auto !important/);
   assert.match(css, /@media \(forced-colors: active\)\s*\{[\s\S]*border-color: CanvasText/);
   assert.match(css, /@media \(forced-colors: active\)\s*\{[\s\S]*outline-color: Highlight/);
+});
+
+test('brand accents give each color one job on the project site', () => {
+  const source = css.replace(/\r\n/g, '\n');
+  const rule = (selector) => {
+    const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const bodies = [...source.matchAll(new RegExp(`(?:^|\\n)${escaped}\\s*\\{([^}]*)\\}`, 'g'))].map((match) => match[1]);
+    assert.ok(bodies.length > 0, `${selector} has a rule`);
+    return bodies.join('\n');
+  };
+  assert.match(rule('a'), /color: var\(--brand-blue\)/);
+  assert.match(rule('a:focus-visible'), /outline: 0\.2rem solid var\(--brand-blue\)/);
+  assert.match(rule('.section-nav a[aria-current="page"]'), /border-color: var\(--brand-blue\)/);
+  assert.match(rule('.footer'), /border-top: 0\.2rem solid var\(--brand-blue\)/);
+  assert.match(rule('.disclosure'), /border-top: 0\.25rem solid var\(--accent\)/);
+  assert.match(rule('.origin-warning'), /border-color: var\(--warning\)/);
+  assert.match(rule('.section-heading h2::after,\n.document h2::after'),
+    /width: 3rem;[\s\S]*border-top: 0\.1875rem solid var\(--bar, var\(--accent\)\)/);
+  assert.match(rule('.document h2:nth-of-type(3n + 1),\nmain > section:nth-of-type(3n + 2) .section-heading h2'),
+    /--bar: var\(--brand-blue\)/);
+  assert.match(rule('.document h2:nth-of-type(3n),\nmain > section:nth-of-type(3n + 1) .section-heading h2'),
+    /--bar: var\(--brand-red\)/);
+  assert.match(source, /@media \(forced-colors: active\)\s*\{[\s\S]*\.section-heading h2::after,\s*\.document h2::after,\s*\.disclosure,\s*\.footer\s*\{\s*border-top-color: CanvasText;/);
+  assert.doesNotMatch(source, /--focus\b/);
 });
 
 test('the builder copies only approved bytes and leaves no staging residue', async () => {
