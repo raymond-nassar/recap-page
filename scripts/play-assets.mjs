@@ -10,7 +10,7 @@ export const ORIGIN = `http://${HOST}:${DEFAULT_PORT}`;
 export const FIXTURE_API = `${ORIGIN}/__play_preview_api__`;
 export const VIEWPORT = Object.freeze({ width: 360, height: 640, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
 export const SCREENS = Object.freeze([
-  { file: 'dark-01-home.png', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty', dismissNotice: true, text: ['Where do you want to start?', 'Start with Modern Timeline'] },
+  { file: 'dark-01-home.png', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty', dismissNotice: true, text: ['Explore', 'New to Marvel Comics?', 'Modern Timeline'] },
   { file: 'dark-02-genres.png', route: '#/genres', view: 'view-genres', theme: 'dark', text: ['Browse Genres', 'Popular places to start'] },
   { file: 'dark-03-modern-timeline.png', route: '#/catalog?path=modern-avengers', view: 'view-catalog', theme: 'dark', text: ['Modern Timeline', 'Follow a path', 'Jump to stop'] },
   { file: 'dark-04-reading-progress.png', route: '#/read/play-lantern', view: 'view-read', theme: 'dark', scroll: '#reading-overview', heading: '#hero-progress', text: ['3 of 8 read', 'Coming up'],
