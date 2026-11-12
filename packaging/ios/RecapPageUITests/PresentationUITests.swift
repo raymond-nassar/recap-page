@@ -496,6 +496,7 @@ final class PresentationUITests: XCTestCase {
     }
 
     private static let searchAuditPreparation = #"""
+    window.__recapSearchAuditPrepared = false;
     const searchAuditPreparation = document.createElement('button');
     searchAuditPreparation.type = 'button';
     searchAuditPreparation.textContent = 'Prepare Search audit';
@@ -504,6 +505,7 @@ final class PresentationUITests: XCTestCase {
     searchAuditPreparation.addEventListener('click', () => {
       document.activeElement?.blur();
       searchAuditPreparation.remove();
+      window.__recapSearchAuditPrepared = true;
     });
     document.body.append(searchAuditPreparation);
     """#
@@ -975,6 +977,7 @@ final class PresentationUITests: XCTestCase {
         dataAuditPosition: dataAuditPosition && { ...dataAuditPosition, settled: dataAuditGeometry() },
         focus: active ? describe(active) : null,
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
+        searchAuditPrepared: window.__recapSearchAuditPrepared === true,
         guard: window.__recapPassiveGuard ? {
           valid: window.__recapPassiveGuard.globalInventoryValid(),
           inventory: window.__recapPassiveGuard.inventory(),
@@ -2724,8 +2727,14 @@ final class PresentationUITests: XCTestCase {
             let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
             XCTAssertTrue(prepareAudit.waitForExistence(timeout: 5), "the test-only focus release is available")
             prepareAudit.tap()
-            XCTAssertFalse(prepareAudit.exists, "the preparation target is removed before the audit")
+            let preparationRemoved = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: prepareAudit)
+            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 5)
             let beforeProof = try freshPassiveState(of: app)
+            XCTAssertEqual(beforeProof["searchAuditPrepared"] as? Bool, true,
+                           "the page-side preparation click handler ran")
+            XCTAssertEqual(removalResult, .completed,
+                           "the page handled preparation but the accessibility tree still exposes its removed target")
             XCTAssertEqual(beforeProof["focusIsControl"] as? Bool, false,
                            "passive-text proofs do not begin with a focused input or control")
             let acceptedTexts = try verifyPassiveAuditTexts(in: app, homeVisible: false)

@@ -2088,7 +2088,9 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /app\.staticTexts\.matching\(NSPredicate\(format: "label == %@", source\.label\)\)\.count, 0/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
-  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?XCTAssertFalse\(prepareAudit\.exists[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
+  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 5\)/);
+  assert.match(body, /let beforeProof = try freshPassiveState\(of: app\)[\s\S]*?beforeProof\["searchAuditPrepared"\] as\? Bool, true[\s\S]*?XCTAssertEqual\(removalResult, \.completed[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
+  assert.match(presentationTests, /searchAuditPrepared: window\.__recapSearchAuditPrepared === true/);
   assert.match(body, /"t03-search-scopes-/);
 });
 
@@ -2108,15 +2110,19 @@ test('Search audit preparation blurs the focused control and removes its own tar
     createElement() { return button; },
     body: { append(node) { assert.equal(node, button); attached = true; } },
   };
-  runInNewContext(script, { document });
+  const window = {};
+  runInNewContext(script, { document, window });
   assert.equal(attached, true);
+  assert.equal(window.__recapSearchAuditPrepared, false, 'preparation is not claimed before the click');
   for (const focused of [button, {}]) {
     attached = true;
+    window.__recapSearchAuditPrepared = false;
     document.activeElement = {
       ...focused,
       blur() { document.activeElement = document.body; },
     };
     listeners.get('click')();
+    assert.equal(window.__recapSearchAuditPrepared, true, 'the page records that its click handler ran');
     assert.equal(document.activeElement, document.body, 'neither the preparer nor another control retains focus');
     assert.equal(attached, false, 'no test-only target remains during the audit');
   }
