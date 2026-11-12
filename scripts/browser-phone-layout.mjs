@@ -692,6 +692,125 @@ export const phoneSearchReflow = {
   },
 };
 
+// At the largest iOS text a long series or creator name could not wrap past Open, so Search widened
+// a 390 wide page to as much as 535 CSS pixels (#1240), and every query here went past the edge on
+// the prepared iOS bundle. Aaron is the one that reaches the creator rows. At ordinary text many of
+// these rows squeezed Open onto two lines or more on every phone, and onto four on Android 360.
+// Removing both rules failed 92 of these 136 checks on iOS 390 and 375, with the phone stylesheets
+// injected into the web page, and 82 of 136 on the prepared Android build at 360 and 412. Removing
+// only the phone list row rule still failed 2, Annihilation: Conquest running 12.8 pixels too wide
+// for its row at the largest text on the 375 wide iPhone.
+const searchRowCases = [
+  { query: 'Secret', scope: 'series' },
+  { query: 'Extraordinary', scope: 'series' },
+  { query: 'Annihilation', scope: 'series' },
+  { query: 'Aaron', scope: 'creators' },
+];
+
+async function searchRows(page) {
+  return page.evaluate(() => {
+    const shown = (node) => node.getClientRects().length > 0;
+    const reach = (rects) => Math.max(-Infinity, ...[...rects].filter((rect) => rect.width > 0).map((rect) => rect.right));
+    const lines = (range) => new Set([...range.getClientRects()].filter((rect) => rect.width > 0)
+      .map((rect) => Math.round(rect.top))).size;
+    const texts = (node) => {
+      const found = [];
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      for (let text = walker.nextNode(); text; text = walker.nextNode()) found.push(text);
+      return found;
+    };
+    const textReach = (node) => Math.max(-Infinity, ...texts(node).map((text) => {
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      return reach(range.getClientRects());
+    }));
+    // A word is a run of letters or digits, so a line break after a hyphen or a colon is not a split.
+    const split = (node) => texts(node).flatMap((text) => [...text.data.matchAll(/[\p{L}\p{N}]+/gu)]
+      .filter((match) => {
+        const range = document.createRange();
+        range.setStart(text, match.index);
+        range.setEnd(text, match.index + match[0].length);
+        return lines(range) > 1;
+      }).map((match) => match[0]));
+    const round = (value) => Math.round(value * 10) / 10;
+    const rows = [];
+    for (const group of document.querySelectorAll('#search-panes .search-group')) {
+      if (group.hidden || !shown(group)) continue;
+      const pane = group.getBoundingClientRect();
+      for (const row of group.querySelectorAll('.search-row')) {
+        if (!shown(row)) continue;
+        const box = row.getBoundingClientRect();
+        const style = getComputedStyle(row);
+        const inner = box.right - parseFloat(style.paddingRight) - parseFloat(style.borderRightWidth);
+        const main = row.querySelector('.result-main');
+        const title = row.querySelector('.result-title');
+        const action = row.querySelector(':scope > .btn');
+        const words = document.createRange();
+        if (action) words.selectNodeContents(action);
+        rows.push({
+          group: group.id.replace('search-', ''), list: row.classList.contains('catalog-row'),
+          title: title?.textContent.trim(), pane: round(box.right - pane.right),
+          elements: round(Math.max(-Infinity, ...[...row.querySelectorAll('*')].map((node) => reach(node.getClientRects()))) - inner),
+          text: main ? round(textReach(main) - main.getBoundingClientRect().right) : null,
+          scroll: row.scrollWidth - row.clientWidth,
+          action: action?.textContent.trim(), actionLines: action ? lines(words) : 0,
+          actionClipped: !action || action.scrollWidth > action.clientWidth + 1,
+          actionSplit: action ? split(action) : [], titleSplit: title ? split(title) : [],
+        });
+      }
+    }
+    return rows;
+  });
+}
+
+export const phoneSearchRowsFit = {
+  id: 'phone-search-rows-fit',
+  title: 'Search list, series and creator rows fit the phone at ordinary and largest text',
+  async run(page, t, selected) {
+    await forProfiles(page, t, async (profile, theme) => {
+      const label = `${profile.platform} ${profile.width} ${theme}`;
+      await open(page, 'add-search');
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        let lists = 0;
+        for (const { query, scope } of searchRowCases) {
+          await page.$eval('#search-q', (node, value) => {
+            node.value = value;
+            node.dispatchEvent(new Event('input', { bubbles: true }));
+          }, query);
+          await page.waitForFunction((value) =>
+            document.querySelector('#search-count').textContent === `Top results for \u201c${value}\u201d`, {}, query);
+          await settle(page);
+          for (const shownScope of ['top', scope]) {
+            if (shownScope !== 'top') {
+              await click(page, `#search-scopes [data-scope="${shownScope}"]`);
+              await settle(page);
+            }
+            const viewport = await phoneViewport(page);
+            const rows = await searchRows(page);
+            if (shownScope === 'top') lists += rows.filter((row) => row.list).length;
+            const named = rows.filter((row) => !row.list).length;
+            const outside = rows.filter((row) => row.pane > 0.5 || row.elements > 0.5 || row.text > 0.5
+              || row.scroll > 1 || row.actionClipped);
+            const name = `${label} ${size}, ${shownScope} for ${query}`;
+            checked(t, `${name}: every row and its text stay inside the pane and the page does not scroll sideways`,
+              phoneViewportFits(viewport) && rows.length > 0 && (shownScope === 'top' || named > 0) && outside.length === 0,
+              { viewport, rows: rows.length, named, outside });
+            const broken = rows.filter((row) => row.actionSplit.length > 0
+              || (!row.list && (row.action !== 'Open' || row.actionLines !== 1))
+              || (size === 'ordinary' && row.titleSplit.length > 0));
+            checked(t, `${name}: Open stays whole on one line and no action${size === 'ordinary' ? ' or title' : ''} splits a word`,
+              broken.length === 0, broken);
+          }
+          await click(page, '#search-scopes [data-scope="top"]');
+          await settle(page);
+        }
+        checked(t, `${label} ${size}: Top showed Reading List rows for at least one query`, lists > 0, { lists });
+      }
+    }, selected ?? [{ width: 390, height: 844, platform: 'ios' }, profiles[1]], actualCatalog);
+  },
+};
+
 export const phoneCatalogReflow = {
   id: 'phone-catalog-reflow',
   title: 'the catalog description fits the phone viewport at ordinary and largest text',
@@ -1087,7 +1206,7 @@ export const guideLinkPill = {
   },
 };
 
-export const phoneLayoutScenarios = [phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneCatalogReflow];
+export const phoneLayoutScenarios = [phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',

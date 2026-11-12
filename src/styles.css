@@ -1697,6 +1697,16 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .comic-choice { flex-wrap: wrap; content-visibility: auto; contain-intrinsic-size: auto 80px; }
 .comic-choice .result-title, .comic-choice .result-meta { overflow-wrap: anywhere; }
 .comic-choice .pill-held { max-width: 100%; white-space: normal; }
+/* Series and creator rows in Search set a name, its count and Open on one flex line that could not
+   wrap. At the largest iOS text a long name outgrew the pane, the grid track widened to fit it and
+   the page scrolled sideways: 391 to 535 CSS pixels wide on a 390 wide phone, and 364 to 435 on a
+   360 wide Android phone at 200 per cent. The phone overlay lets every button break anywhere, so at
+   default text a long name also split Open across as many as four lines. These rows now wrap like
+   the comic rows above, and Open keeps its word whole. */
+.search-row:not(.catalog-row) { flex-wrap: wrap; }
+.search-row:not(.catalog-row) .result-main { flex: 1 1 8em; }
+.search-row:not(.catalog-row) .result-title, .search-row:not(.catalog-row) .result-meta { overflow-wrap: anywhere; }
+.search-row:not(.catalog-row) > .btn { flex: 0 0 auto; max-width: 100%; overflow-wrap: normal; }
 .comic-select {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: var(--target); min-height: var(--target); flex: none; cursor: pointer;
