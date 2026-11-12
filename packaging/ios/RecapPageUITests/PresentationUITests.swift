@@ -2694,9 +2694,15 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertTrue(heading.waitForExistence(timeout: 5), "the Search heading is available to blur the box")
                 heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
             }
+            // Measured on iPad: at 1b8500cc the hide-key existence check took 0.1 s and the first
+            // keyboard check 0.15 s. At d15fcb1f, on a slower runner whose core screens test took
+            // 1571 s against 1343 s, they took 12.5 s and 4.2 s with two retries, and a 5-second
+            // ceiling expired on that single keyboard check. This wait and the two preparation waits
+            // below return as soon as their condition holds, so 15 seconds costs a passing run
+            // nothing.
             let keyboardHidden = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
-            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 5), .completed, "the keyboard is dismissed before target measurements and the audit")
+            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 15), .completed, "the keyboard is dismissed before target measurements and the audit")
             let labelTarget = target(label, in: app)
             XCTAssertTrue(labelTarget.waitForExistence(timeout: 30), "the box label is a named native target")
             revealNativeTarget(labelTarget, in: app)
@@ -2725,11 +2731,11 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertGreaterThanOrEqual(source.frame.height, 44, "the source link is at least 44 points high")
             }
             let prepareAudit = app.webViews.firstMatch.buttons["Prepare Search audit"].firstMatch
-            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 5), "the test-only focus release is available")
+            XCTAssertTrue(prepareAudit.waitForExistence(timeout: 15), "the test-only focus release is available")
             prepareAudit.tap()
             let preparationRemoved = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: prepareAudit)
-            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 5)
+            let removalResult = XCTWaiter.wait(for: [preparationRemoved], timeout: 15)
             let beforeProof = try freshPassiveState(of: app)
             XCTAssertEqual(beforeProof["searchAuditPrepared"] as? Bool, true,
                            "the page-side preparation click handler ran")

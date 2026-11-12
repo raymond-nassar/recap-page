@@ -2100,7 +2100,7 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(body, /XCTAssertGreaterThanOrEqual\(source\.frame\.height, 44/);
   assert.doesNotMatch(body, /revealNativeTarget\(heading, in: app\)/,
     'the fixed preparation target does not need a capped scroll back from the last source');
-  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 5\)/);
+  assert.match(body, /prepareAudit\.tap\(\)[\s\S]*?NSPredicate\(format: "exists == false"\)[\s\S]*?XCTWaiter\.wait\(for: \[preparationRemoved\], timeout: 15\)/);
   assert.match(body, /let beforeProof = try freshPassiveState\(of: app\)[\s\S]*?beforeProof\["searchAuditPrepared"\] as\? Bool, true[\s\S]*?XCTAssertEqual\(removalResult, \.completed[\s\S]*?beforeProof\["focusIsControl"\] as\? Bool, false/);
   assert.match(presentationTests, /searchAuditPrepared: window\.__recapSearchAuditPrepared === true/);
   assert.match(presentationTests, /visual:\s*visualViewport && \{[^}]*scale:\s*visualViewport\.scale/s);
