@@ -3328,25 +3328,33 @@ async function mobileLayout(page, label, narrow) {
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;
-  // #1243: the options left the card for the space between it and Coming up.
+  // #1243: the options left the card. They sit just before Coming up, or directly under the card and
+  // its list context when Coming up is hidden.
   const placement = await page.evaluate((onPhone) => {
     const hero = document.querySelector('#hero');
     const row = document.querySelector('#hero-primary-actions');
     const control = document.querySelector(onPhone ? '#android-list-options' : '#list-actions > summary');
+    const group = document.querySelector('#reading-list-options'), shelf = document.querySelector('#shelf-sec');
+    const rendered = (node) => !!node && !node.hidden && node.getClientRects().length > 0;
+    const step = (node, key) => { let at = node[key]; while (at && !rendered(at)) at = at[key]; return at; };
+    const before = step(group, 'previousElementSibling');
+    const comingUp = rendered(shelf);
     const card = hero.getBoundingClientRect();
     const box = control.getBoundingClientRect();
     const style = getComputedStyle(control);
     return {
-      outsideHero: !hero.contains(control),
-      beforeShelf: document.querySelector('#reading-list-options').nextElementSibling?.id === 'shelf-sec',
+      outsideHero: !hero.contains(control) && group.contains(control),
+      comingUp,
+      placed: comingUp ? step(group, 'nextElementSibling') === shelf
+        : before === hero || (before?.id === 'reading-overview' && step(before, 'previousElementSibling') === hero),
       name: control.textContent.trim(),
       card: [card.left, card.right, card.bottom], control: [box.left, box.right, box.top, box.height],
       gap: parseFloat(getComputedStyle(row).columnGap), background: style.backgroundColor,
       border: style.borderColor, colour: style.color, dim: getComputedStyle(document.querySelector('#hero-by')).color,
     };
   }, narrow);
-  check(placement.outsideHero && placement.beforeShelf,
-    `${label}: Reading List options sit below the card, just before Coming up ${JSON.stringify(placement)}`);
+  check(placement.outsideHero && placement.placed,
+    `${label}: Reading List options sit below the card, just before Coming up when it shows ${JSON.stringify(placement)}`);
   check(placement.name === 'Reading List options',
     `${label}: list options have their distinct visible name ${JSON.stringify(placement)}`);
   check(Math.abs(placement.control[0] - placement.card[0]) <= 1

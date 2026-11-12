@@ -97,21 +97,44 @@ export const readingCardFocus = {
     ]) {
       const undo = await setup(page, pass);
       const rest = await measure(page);
-      // #1243: the options left the card for the space between it and Coming up.
+      // #1243: the options left the card. They sit just before Coming up, or directly under the card
+      // when Coming up is hidden. The app hides it in place without moving the options, so the check
+      // does the same to hold the second state too.
       const options = await page.evaluate(() => {
         const hero = document.querySelector('#hero');
         const group = document.querySelector('#reading-list-options');
+        const shelf = document.querySelector('#shelf-sec');
         const summary = document.querySelector('#list-actions > summary');
+        const rendered = (node) => !!node && !node.hidden && node.getClientRects().length > 0;
+        const step = (node, key) => { let at = node[key]; while (at && !rendered(at)) at = at[key]; return at; };
+        const placement = () => {
+          const comingUp = rendered(shelf);
+          const before = step(group, 'previousElementSibling');
+          return {
+            comingUp,
+            placed: comingUp ? step(group, 'nextElementSibling') === shelf
+              : before === hero || (before?.id === 'reading-overview' && step(before, 'previousElementSibling') === hero),
+            belowCard: summary.getBoundingClientRect().top >= hero.getBoundingClientRect().bottom,
+          };
+        };
+        const shown = placement();
+        const wasHidden = shelf.hidden;
+        shelf.hidden = true;
+        const withoutComingUp = placement();
+        shelf.hidden = wasHidden;
         return {
           outsideHero: !hero.contains(summary) && group.contains(summary),
-          beforeShelf: group.nextElementSibling?.id === 'shelf-sec',
-          belowCard: summary.getBoundingClientRect().top >= hero.getBoundingClientRect().bottom,
+          shown, withoutComingUp,
           label: summary.textContent.trim(),
           comicLabel: document.querySelector('#hero-more-actions > summary').textContent.trim(),
         };
       });
       t.check(`${pass.name}: Reading List options sit below the card, just before Coming up`,
-        options.outsideHero && options.beforeShelf && options.belowCard, JSON.stringify(options));
+        options.outsideHero && options.shown.comingUp && options.shown.placed && options.shown.belowCard,
+        JSON.stringify(options));
+      t.check(`${pass.name}: with Coming up hidden, Reading List options sit directly under the card`,
+        options.outsideHero && !options.withoutComingUp.comingUp && options.withoutComingUp.placed
+          && options.withoutComingUp.belowCard, JSON.stringify(options));
       t.check(`${pass.name}: Reading List options and More comic actions have distinct names`,
         options.label === 'Reading List options' && options.comicLabel === 'More comic actions', JSON.stringify(options));
       if (pass.width === 1280) {
@@ -243,6 +266,12 @@ export const readingCardPhoneOverview = {
         const cardBox = hero.getBoundingClientRect(), optionsBox = options.getBoundingClientRect();
         const rowStyle = getComputedStyle(row), optionStyle = getComputedStyle(options), doneStyle = getComputedStyle(done);
         const readBox = read.getBoundingClientRect(), doneBox = done.getBoundingClientRect();
+        // #1243: just before Coming up, or directly under the card and its list context when it is hidden.
+        const group = document.querySelector('#reading-list-options'), shelf = document.querySelector('#shelf-sec');
+        const rendered = (node) => !!node && !node.hidden && node.getClientRects().length > 0;
+        const step = (node, key) => { let at = node[key]; while (at && !rendered(at)) at = at[key]; return at; };
+        const before = step(group, 'previousElementSibling');
+        const comingUp = rendered(shelf);
         return {
           dom: nodes.every((node, at) => at === 0 || !!(nodes[at - 1].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)),
           visual: boxes.every((box, at) => at === 0 || boxes[at - 1][0] <= box[0]),
@@ -250,7 +279,9 @@ export const readingCardPhoneOverview = {
           afterCard: boxes[2][0] >= boxes[1][1],
           optionGroup: {
             outsideHero: !hero.contains(options),
-            beforeShelf: document.querySelector('#reading-list-options').nextElementSibling?.id === 'shelf-sec',
+            comingUp,
+            placed: comingUp ? step(group, 'nextElementSibling') === shelf
+              : before === hero || (before?.id === 'reading-overview' && step(before, 'previousElementSibling') === hero),
             gap: optionsBox.top - cardBox.bottom,
             rowGap: readBox.right <= doneBox.left ? doneBox.left - readBox.right : parseFloat(rowStyle.columnGap),
             edges: [cardBox.left, cardBox.right, optionsBox.left, optionsBox.right],
@@ -263,7 +294,7 @@ export const readingCardPhoneOverview = {
         layout.dom && layout.visual && layout.afterCard, JSON.stringify(layout));
       const group = layout.optionGroup;
       t.check(`${theme}: Reading List options form a quieter group below the card, aligned with its edges`,
-        group.outsideHero && group.beforeShelf
+        group.outsideHero && group.placed
           && group.gap > group.rowGap && Math.abs(group.edges[0] - group.edges[2]) <= 1
           && Math.abs(group.edges[1] - group.edges[3]) <= 1
           && group.optionBackground !== group.doneBackground && group.optionBorder !== group.doneBorder,
