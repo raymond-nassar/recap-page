@@ -1644,8 +1644,8 @@
     "fp": "0b24286fc02a7373",
     "head": "Upload and track promotion need separate owner approval. First recheck the latest sealed ledger,"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#android-build-allocation-or-candidate|docs/ANDROID.md:239-246|0": {
-    "anchor": "docs/ANDROID.md:239-246",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#android-build-allocation-or-candidate|docs/ANDROID.md:241-248|0": {
+    "anchor": "docs/ANDROID.md:241-248",
     "fp": "d0f6e1e0e12e6c93",
     "head": "## Protected App Bundle candidates"
   },
