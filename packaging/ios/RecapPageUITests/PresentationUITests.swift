@@ -170,7 +170,9 @@ final class PresentationUITests: XCTestCase {
               ? { name: 'manual', id: 'view-add-manual', hash: '#/add-manual' }
               : fieldRoute === 'field-import'
                 ? { name: 'import', id: 'view-add-import', hash: '#/add-import' }
-                : routes[0]);
+                : fieldRoute === 'field-select'
+                  ? routes.find(({ name }) => name === 'data')
+                  : routes[0]);
             if (fieldRoute === 'field-manual') document.getElementById('manual-url').closest('details').open = true;
             if (fieldRoute === 'field-name' || fieldRoute === 'field-note') {
               const ask = await import(new URL('js/ask.js', document.baseURI).href);
@@ -2792,32 +2794,48 @@ final class PresentationUITests: XCTestCase {
 
     func testEditableFieldsLeaveNoFocusZoomAfterTypingAndDismissal() throws {
         // At 14px, iPhone WebKit zoomed the page to 16/14 on focus and kept it after the keyboard
-        // closed (#1240, #1244). One launch per field, covering a textarea, a url field and both
-        // fields of the shared question dialog.
+        // closed (#1240, #1244). One launch per field, covering a textarea, a url field, both
+        // fields of the shared question dialog, and a select, which keeps the shared 14px size and
+        // is measured here rather than assumed not to zoom.
         let fieldTypes = [XCUIElement.ElementType.textField, .textView, .searchField, .secureTextField].map(\.rawValue)
+        let selectTypes = [XCUIElement.ElementType.popUpButton, .button, .comboBox, .menuButton].map(\.rawValue)
         let cases = [
             ("field-import", "Reading List"),
             ("field-manual", "marvel.com comic details address"),
             ("field-name", "List name"),
             ("field-note", "Note"),
+            ("field-select", "Colour theme"),
         ]
         for (route, label) in cases {
             let app = launch(route: route)
             _ = try probeResult(of: app)
+            let isSelect = route == "field-select"
             let field = app.webViews.firstMatch.descendants(matching: .any).matching(NSPredicate(
-                format: "label == %@ AND elementType IN %@", label, fieldTypes)).firstMatch
-            XCTAssertTrue(field.waitForExistence(timeout: 30), "\(route) has an editable field labeled \(label)")
+                format: "label == %@ AND elementType IN %@", label, isSelect ? selectTypes : fieldTypes)).firstMatch
+            XCTAssertTrue(field.waitForExistence(timeout: 30), "\(route) has a control labeled \(label)")
             revealNativeTarget(field, in: app)
             field.tap()
-            field.typeText("Secret")
             let done = app.toolbars.buttons["Done"].firstMatch
             let hide = app.keyboards.buttons["Hide keyboard"].firstMatch
-            // iPhone's input accessory offers Done and iPad's keyboard has its own hide key; a
-            // simulator using a hardware keyboard shows neither and has nothing to dismiss.
-            if done.waitForExistence(timeout: 3) {
-                done.tap()
-            } else if hide.exists {
-                hide.tap()
+            if isSelect {
+                // A picker wheel has Done; a menu closes on a tap outside it, here the setting's own
+                // heading, without choosing an option.
+                if done.waitForExistence(timeout: 3) {
+                    done.tap()
+                } else {
+                    let heading = app.webViews.firstMatch.staticTexts["Theme"].firstMatch
+                    XCTAssertTrue(heading.waitForExistence(timeout: 5), "the Theme heading is available to close the menu")
+                    heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+                }
+            } else {
+                field.typeText("Secret")
+                // iPhone's input accessory offers Done and iPad's keyboard has its own hide key; a
+                // simulator using a hardware keyboard shows neither and has nothing to dismiss.
+                if done.waitForExistence(timeout: 3) {
+                    done.tap()
+                } else if hide.exists {
+                    hide.tap()
+                }
             }
             let keyboardHidden = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
