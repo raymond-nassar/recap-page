@@ -617,7 +617,7 @@ public final class NativeIntegrationTest {
         };
         assertTrue("The real collected-edition renderer exposes both synthetic provider links",
                 (Boolean) asyncJs(web,
-                        "const {collectedEditionLabels}=await import('/js/views/shared/collected-editions.js');"
+                        "const {collectedEditionLabels}=await import(location.origin+'/js/views/shared/collected-editions.js');"
                         + "const make=(tag,props,children=[])=>{const e=document.createElement(tag);"
                         + "for(const [k,v] of Object.entries(props)){"
                         + "if(k==='text')e.textContent=v;else if(k==='class')e.className=v;else e.setAttribute(k,v);}"
