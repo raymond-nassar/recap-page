@@ -141,9 +141,12 @@ test('row renderer uses text, hedged link wording, and only accepted links add r
   assert.equal(link.rel, 'noopener noreferrer');
   assert.equal(link.referrerPolicy, 'no-referrer');
   assert.equal(link.text, 'Look for this book on Hoopla');
-  assert.equal(link['aria-label'], 'Look for <Curated book> on Hoopla (opens outside Recap Page)');
+  assert.equal(link['aria-label'], 'Look for this book on Hoopla: <Curated book> (opens outside Recap Page)');
   assert.equal(rendered.children[0].children[2].text, 'Look for this book in Libby');
   for (const anchor of rendered.children[0].children.slice(1)) {
+    // SC 2.5.3: the shown words, reduced as speech input reduces them, must run unbroken in the name.
+    const words = (s) => s.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean).join(' ');
+    assert.ok(words(anchor['aria-label']).includes(words(anchor.text)), `${anchor['aria-label']} lacks ${anchor.text}`);
     assert.doesNotMatch(`${anchor.text} ${anchor['aria-label']}`, /borrow|available|free|read now/i);
   }
   const credit = collectedEditionCredit(el);

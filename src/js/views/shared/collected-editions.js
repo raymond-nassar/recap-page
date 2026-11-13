@@ -1,3 +1,4 @@
+import { labelledName } from '../../lib/accname.js';
 import { editionEvidence, editionRelations } from '../../lib/collectedEditions.js';
 
 export function collectedEditionLabels(el, catalogId, item, catalog, evidence) {
@@ -7,11 +8,14 @@ export function collectedEditionLabels(el, catalogId, item, catalog, evidence) {
     class: 'collected-edition',
   }, [
     el('span', { text: `Collected in ${edition.title}` }),
-    ...edition.links.map((link) => el('a', {
-      href: link.url, target: '_blank', rel: 'noopener noreferrer', referrerPolicy: 'no-referrer',
-      'aria-label': `Look for ${edition.title} ${link.preposition} ${link.name} (opens outside Recap Page)`,
-      text: `Look for this book ${link.preposition} ${link.name}`,
-    })),
+    ...edition.links.map((link) => {
+      const text = `Look for this book ${link.preposition} ${link.name}`;
+      return el('a', {
+        href: link.url, target: '_blank', rel: 'noopener noreferrer', referrerPolicy: 'no-referrer',
+        'aria-label': labelledName(text, `${edition.title} (opens outside Recap Page)`),
+        text,
+      });
+    }),
   ])));
 }
 
