@@ -2041,7 +2041,7 @@ async function readingGeometry(page) {
       && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
     const intersects = (a, b) => a.left < b.right - 1 && a.right > b.left + 1
       && a.top < b.bottom - 1 && a.bottom > b.top + 1;
-    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary)')];
+    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary), #reading-list-options :is(#android-list-options, #list-actions > summary)')];
     const clipped = [], overlaps = [];
     let ranges = 0;
     for (const node of parts.filter(visible)) {
@@ -2072,6 +2072,14 @@ async function readingGeometry(page) {
       primary: !!node.closest('#hero-primary-actions'), text: node.textContent.trim(), box: box(node),
       font: parseFloat(getComputedStyle(node).fontSize),
     }));
+    const optionsGroup = document.querySelector('#reading-list-options');
+    const options = [...document.querySelectorAll('#android-list-options, #list-actions > summary')].filter(visible);
+    const listOptions = options.map((node) => ({
+      selector: node.id ? `#${node.id}` : '#list-actions > summary',
+      text: node.textContent.trim(), box: box(node),
+      placed: !hero.contains(optionsGroup) && optionsGroup.contains(node)
+        && optionsGroup.nextElementSibling?.id === 'shelf-sec' && box(optionsGroup).top >= box(hero).bottom - 1,
+    }));
     for (const [index, control] of controls.entries()) {
       if (controls.slice(index + 1).some((other) => intersects(control.box, other.box))) overlaps.push(control.selector);
     }
@@ -2090,7 +2098,7 @@ async function readingGeometry(page) {
       android: !!document.querySelector('link[href="./android/mobile.css"]'),
       header: box(document.querySelector('#view-read > .head')), hero: box(hero), art: box(art),
       issueBox: box(document.querySelector('#hero-title')), factsBox: box(document.querySelector('#hero-facts')),
-      controls, read: box(read), readVisible: visible(read), readDisabled: read.disabled,
+      controls, listOptions, read: box(read), readVisible: visible(read), readDisabled: read.disabled,
       readCount: document.querySelectorAll('#btn-hero-read').length,
       ranges, clipped, overlaps, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       image: { shown: visible(document.querySelector('#hero-img')), loaded: document.querySelector('#hero-img').naturalWidth > 0 },
@@ -2137,11 +2145,17 @@ async function readingEvidence(page, profile, id = profile.id) {
   `${id}: actual platform and text scale, including the compact short-screen heading`);
   check(result.ranges > 15 && !result.clipped.length && !result.overlaps.length && !result.overflow,
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
-  // Read, Done, Reading List options, About this comic, the More comic actions summary and its two actions.
+  // Reading List options moved below the card in #1250; the comic's six controls remain inside it.
   // M05 loads a summary, which before #1061 also brought a Hide button.
-  check(result.controls.length === 7
+  check(JSON.stringify(result.controls.map(({ selector }) => selector)) === JSON.stringify([
+    '#btn-hero-read', '#btn-hero-done', '#btn-hero-inspect', '#hero-more-actions > summary',
+    '#btn-hero-defer', '#btn-hero-info',
+  ])
     && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
   `${id}: all existing action hit rectangles`);
+  check(result.listOptions.length === 1 && result.listOptions.every(({ text, box, placed }) => placed
+    && text === 'Reading List options' && box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
+  `${id}: Reading List options retain their hit rectangle below the card, before Coming up`);
   if (['M01', 'M02'].includes(id)) {
     check(result.scroll === 0 && result.read.left >= 0 && result.read.right <= 360 && result.read.top >= 0
       && result.read.bottom <= 800, `${id}: complete primary Read bottom <=800 (actual ${result.read.bottom})`);
@@ -2207,9 +2221,8 @@ async function readingAccessibility(page, result, id) {
     assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
     previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
     assert.ok(previous >= 0, `${id}: exact byline precedes facts`);
-    // Read, Done and Reading List options precede the facts.
-    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary
-      || entry.selector === '#android-list-options')) {
+    // Only the comic's primary actions precede its facts.
+    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary)) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(control.text));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${control.text}`);
       previous = index;
@@ -2241,8 +2254,7 @@ async function readingAccessibility(page, result, id) {
       previous = definition;
     }
     if (readingFactsAx) return;
-    for (const { text: name } of result.controls.filter((control) => !control.primary
-      && control.selector !== '#android-list-options')) {
+    for (const { text: name } of result.controls.filter((control) => !control.primary)) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(name));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${name}`);
       previous = index;
@@ -2254,7 +2266,8 @@ async function readingAccessibility(page, result, id) {
   await page.focus('#order-name');
   const controls = result.controls.map((control) => control.selector);
   const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
-  const expected = phone ? [...controls, '#order-desc > summary'] : ['#order-desc > summary', ...controls];
+  const expected = [...(phone ? [...controls, '#order-desc > summary'] : ['#order-desc > summary', ...controls]),
+    ...result.listOptions.map((control) => control.selector)];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
     check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
