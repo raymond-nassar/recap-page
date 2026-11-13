@@ -1131,7 +1131,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:11188-11239`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16701-16838`.
+`src/data/catalog.json:16703-16840`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3054,7 +3054,7 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:111-139`).
+shape (`test/helpers/owner-delivery-contract.mjs:114-142`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing

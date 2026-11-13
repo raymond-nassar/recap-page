@@ -5759,8 +5759,8 @@
     "fp": "87984facefd884b1",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:249-275|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:249-275",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:256-282|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:256-282",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
@@ -5794,8 +5794,8 @@
     "fp": "b98925c3837030c2",
     "head": "'owner-confirmed': {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:111-139|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:111-139",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:114-142|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:114-142",
     "fp": "43d0b140db456174",
     "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
@@ -5839,8 +5839,8 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16701-16838|0": {
-    "anchor": "src/data/catalog.json:16701-16838",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16703-16840|0": {
+    "anchor": "src/data/catalog.json:16703-16840",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
