@@ -56,7 +56,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
   **You are here** and the path's own progress.
 - **Keep finished lists.** Mark a list as completed, record whether you enjoyed it, and find it
   again in **Completed lists** without losing notes or comic progress.
-- **Find comics.** Filter curated lists by category, or find issues, series, and creators in Search.
+- **Find comics.** Filter curated lists by category, or find issues, series, and creators in
+  Search, with spelling suggestions.
 - **Marvel Unlimited record**
   This is a historical record, not availability in Marvel Comics.
 - **Back up your progress.** Move reading data, completion history and preferences with a complete
