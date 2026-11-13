@@ -25522,6 +25522,65 @@ MUTATIONS.push({
   }),
 });
 
+// #1231: at 375 px and the largest text size, "Personalization" and "Connectivity" were wider than
+// their headings' boxes, and the Data page measured 445 px wide in Edge. The chevron check above
+// measures the Catalog page and never saw it, so this one measures every Data page group heading.
+SCENARIOS.push({
+  id: 'data-heading-reflow',
+  title: 'Data page group headings wrap inside a phone viewport at the largest text size',
+  async run(page, t) {
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+    });
+    await page.setViewport({ width: 375, height: 667 });
+    await open(page, '/?data-heading-reflow=1#/data');
+    await page.waitForSelector('#view-data .setgroup > h2');
+    const base = await page.$eval('#view-data .setgroup > h2', (h2) => parseFloat(getComputedStyle(h2).fontSize));
+    await page.evaluate(() => {
+      const root = document.documentElement;
+      for (const token of ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']) {
+        root.style.setProperty(token, `${parseFloat(getComputedStyle(root).getPropertyValue(token)) * 3.117647}px`);
+      }
+    });
+    await responsiveFrames(page);
+    const geometry = await page.evaluate(() => ({
+      document: document.documentElement.scrollWidth, viewport: innerWidth,
+      headings: [...document.querySelectorAll('#view-data .setgroup > h2')].map((h2) => {
+        const range = document.createRange();
+        range.selectNodeContents(h2);
+        const text = range.getBoundingClientRect();
+        const box = h2.getBoundingClientRect();
+        const style = getComputedStyle(h2);
+        return {
+          text: h2.textContent.trim(), fontSize: parseFloat(style.fontSize), overflow: style.overflowX,
+          box: { left: box.left, right: box.right }, ink: { left: text.left, right: text.right },
+          scrollWidth: h2.scrollWidth, clientWidth: h2.clientWidth,
+        };
+      }),
+    }));
+    console.log(`DATA-HEADINGS ${JSON.stringify(geometry)}`);
+    t.check('the Data page has several group headings to measure', geometry.headings.length >= 3, JSON.stringify(geometry));
+    t.check('no sideways page scrolling', geometry.document === 375 && geometry.viewport === 375, JSON.stringify(geometry));
+    for (const heading of geometry.headings) {
+      t.check(`${heading.text}: keeps the enlarged size rather than shrinking`,
+        Math.abs(heading.fontSize - base * 3.117647) < 0.5, JSON.stringify({ base, heading }));
+      t.check(`${heading.text}: its words stay inside its own box, unclipped`,
+        heading.overflow === 'visible' && heading.scrollWidth <= heading.clientWidth
+        && heading.ink.left >= heading.box.left - 1 && heading.ink.right <= heading.box.right + 1, JSON.stringify(heading));
+    }
+  },
+});
+
+MUTATIONS.push({
+  id: 'data-heading-no-wrap',
+  breaks: 'data-heading-reflow',
+  why: 'restoring the default word wrapping lets a long single word push the Data page sideways again',
+  script: () => addEventListener('load', () => {
+    const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+    sheet.insertRule('#view-data .setgroup > h2 { overflow-wrap: normal !important; hyphens: manual !important; }', sheet.cssRules.length);
+  }),
+});
+
 // Runs in the page before any app code, so the purge it watches is the one the page boots into. Every
 // wrapper records a stage and passes the call through unchanged, and the request listeners are added
 // beside the app's own handlers rather than replacing them.

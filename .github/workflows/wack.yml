@@ -979,10 +979,11 @@ jobs:
             const reference = join(scratch, 'official.zip');
             await writeFile(reference, await fetchRuntime(NODE_ARCH));
             const literal = (value) => "'" + value.replaceAll("'", "''") + "'";
+            const { powershell } =
+              await import(pathToFileURL(join(root, 'scripts', 'lib', 'windows-powershell.mjs')));
             const unpack = (file, destination) => {
-              execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command',
-                `$ErrorActionPreference = 'Stop'; Expand-Archive -LiteralPath ${literal(file)} -DestinationPath ${literal(destination)}`],
-              { encoding: 'utf8', timeout: 120000 });
+              powershell(`Expand-Archive -LiteralPath ${literal(file)} -DestinationPath ${literal(destination)}`,
+                { timeout: 120000 });
             };
             unpack(reference, join(scratch, 'official'));
             const official = join(scratch, 'official', `node-${NODE_VERSION}-${NODE_ARCH}`);

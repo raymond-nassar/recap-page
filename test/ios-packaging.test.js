@@ -1144,12 +1144,27 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
   assert.match(controller, /root\.style\.setProperty\('--ios-text-scale'/);
-  assert.match(controller, /removeAllUserScripts\(\)[\s\S]*?installPageScripts\(in:\s*webView\.configuration\.userContentController\)/,
+  assert.match(controller, /removeAllUserScripts\(\)\s*installPageScripts\(in:\s*controller\)/,
     'the persistent app scripts are restored after the restart-only flag is removed');
   assert.match(controller, /webView\.topAnchor\.constraint\(equalTo:\s*guide\.topAnchor\)/);
   assert.match(controller, /webView\.leadingAnchor\.constraint\(equalTo:\s*guide\.leadingAnchor\)/);
   assert.match(controller, /webView\.trailingAnchor\.constraint\(equalTo:\s*guide\.trailingAnchor\)/);
   assert.match(controller, /contentInsetAdjustmentBehavior = \.never/);
+});
+
+test('iOS reinstalls its page scripts when the text size changes, so later loads keep it (#1030)', () => {
+  const controller = appSource('WebViewController');
+  const handler = controller.match(/func preferredContentSizeCategoryDidChange\(\) \{([\s\S]*?)\n {4}\}/);
+  assert.ok(handler, 'the text size handler exists');
+  assert.match(handler[1], /reinstallPageScripts\(in:\s*webView\)/);
+  const helper = controller.match(/private func reinstallPageScripts\(in webView: WKWebView\) \{([\s\S]*?)\n {4}\}/);
+  assert.ok(helper, 'the shared reinstall exists');
+  assert.match(helper[1], /if restartNoticePending \{\s*controller\.addUserScript\(WKUserScript\(\s*source: "window\.recapIosRestarted = true;"/,
+    'a text size change during a restart keeps the one-load restart flag');
+  const native = read('packaging/ios/RecapPageTests/DynamicTypeReloadTests.swift');
+  assert.match(native, /traitOverrides\.preferredContentSizeCategory = largest/);
+  assert.match(native, /webView\.reload\(\)/);
+  assert.match(native, /XCTAssertEqual\(page\["largest"\] as\? String, "true"/);
 });
 
 test('iOS largest-text Home reflow is scoped, observable and documented', () => {
