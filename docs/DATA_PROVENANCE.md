@@ -3016,7 +3016,7 @@ Issue #6 is the same identity One World Under Doom already confirms, so the two 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:496-500`, `scripts/vendor-orders.mjs:566-567`, `scripts/vendor-orders.mjs:611-612`).
+(`scripts/vendor-orders.mjs:497-501`, `scripts/vendor-orders.mjs:567-568`, `scripts/vendor-orders.mjs:612-613`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no

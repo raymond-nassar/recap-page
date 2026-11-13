@@ -1789,8 +1789,8 @@
     "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:702-795|0": {
-    "anchor": "scripts/vendor-orders.mjs:702-795",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:703-796|0": {
+    "anchor": "scripts/vendor-orders.mjs:703-796",
     "fp": "aaa2d5e8eabc1354",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -5764,8 +5764,8 @@
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:462-483|0": {
-    "anchor": "scripts/vendor-orders.mjs:462-483",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:463-484|0": {
+    "anchor": "scripts/vendor-orders.mjs:463-484",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
@@ -5804,18 +5804,18 @@
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:496-500|0": {
-    "anchor": "scripts/vendor-orders.mjs:496-500",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:497-501|0": {
+    "anchor": "scripts/vendor-orders.mjs:497-501",
     "fp": "b5164475feb84ad2",
     "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:566-567|0": {
-    "anchor": "scripts/vendor-orders.mjs:566-567",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:567-568|0": {
+    "anchor": "scripts/vendor-orders.mjs:567-568",
     "fp": "c089d2cbfead089a",
     "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:611-612|0": {
-    "anchor": "scripts/vendor-orders.mjs:611-612",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:612-613|0": {
+    "anchor": "scripts/vendor-orders.mjs:612-613",
     "fp": "7b74eea9291f2eae",
     "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
   },
