@@ -166,22 +166,22 @@ final class PresentationUITests: XCTestCase {
             // tree, so the monitor moves into the dialog while it is open.
             routeScript = """
             const fieldRoute = '\(route)';
+            const fieldId = {
+              'field-import': 'import-text', 'field-manual': 'manual-url',
+              'field-name': 'ask-input', 'field-note': 'ask-area',
+            }[fieldRoute];
+            monitor.dataset.focusCount = '0';
+            document.addEventListener('focus', (event) => {
+              if (event.target.id === fieldId) {
+                monitor.dataset.focusCount = String(Number(monitor.dataset.focusCount) + 1);
+              }
+            }, true);
             await openRoute(fieldRoute === 'field-manual'
               ? { name: 'manual', id: 'view-add-manual', hash: '#/add-manual' }
               : fieldRoute === 'field-import'
                 ? { name: 'import', id: 'view-add-import', hash: '#/add-import' }
-                : fieldRoute === 'field-select'
-                  ? routes.find(({ name }) => name === 'data')
-                  : routes[0]);
+                : routes[0]);
             if (fieldRoute === 'field-manual') document.getElementById('manual-url').closest('details').open = true;
-            if (fieldRoute === 'field-select') {
-              const select = document.getElementById('opt-theme');
-              select.dataset.focusCount = '0';
-              select.addEventListener('focus', () => {
-                select.dataset.focusCount = String(Number(select.dataset.focusCount) + 1);
-              });
-              select.scrollIntoView({ block: 'center' });
-            }
             if (fieldRoute === 'field-name' || fieldRoute === 'field-note') {
               const ask = await import(new URL('js/ask.js', document.baseURI).href);
               if (fieldRoute === 'field-name') ask.askText({ title: 'Name this list', label: 'List name' });
@@ -290,6 +290,7 @@ final class PresentationUITests: XCTestCase {
           initialEntry,
           modalOpen: Boolean(document.querySelector('dialog[open]')),
           visualScale: window.visualViewport?.scale ?? null,
+          focusCount: Number(monitor.dataset.focusCount ?? 0),
           scrollX, scrollY,
           readingPosition: history.state?.readingPosition,
           documentToken: window.__recapProbeDocument,
@@ -365,7 +366,6 @@ final class PresentationUITests: XCTestCase {
             const select = document.getElementById('opt-theme');
             const style = getComputedStyle(select);
             return {
-              focusCount: Number(select.dataset.focusCount ?? 0),
               whiteSpace: style.whiteSpace,
               scrollWidth: select.scrollWidth,
               clientWidth: select.clientWidth,
@@ -2803,48 +2803,32 @@ final class PresentationUITests: XCTestCase {
 
     func testEditableFieldsLeaveNoFocusZoomAfterTypingAndDismissal() throws {
         // At 14px, iPhone WebKit zoomed the page to 16/14 on focus and kept it after the keyboard
-        // closed (#1240, #1244). One launch per field, covering a textarea, a url field, both
-        // fields of the shared question dialog, and a select, which keeps the shared 14px size and
-        // is measured here rather than assumed not to zoom.
+        // closed (#1240, #1244). One launch per field covers a textarea, a URL field and both
+        // fields of the shared question dialog. The unmeasured select is tracked separately in #1259.
         let fieldTypes = [XCUIElement.ElementType.textField, .textView, .searchField, .secureTextField].map(\.rawValue)
         let cases = [
             ("field-import", "Reading List"),
             ("field-manual", "marvel.com comic details address"),
             ("field-name", "List name"),
             ("field-note", "Note"),
-            ("field-select", "Colour theme"),
         ]
         for (route, label) in cases {
             let app = launch(route: route)
             _ = try probeResult(of: app)
-            let isSelect = route == "field-select"
-            let field = app.webViews.firstMatch.descendants(matching: .any).matching(isSelect
-                ? NSPredicate(format: "identifier == %@", "opt-theme")
-                : NSPredicate(format: "label == %@ AND elementType IN %@", label, fieldTypes)).firstMatch
+            let field = app.webViews.firstMatch.descendants(matching: .any).matching(
+                NSPredicate(format: "label == %@ AND elementType IN %@", label, fieldTypes)).firstMatch
             XCTAssertTrue(field.waitForExistence(timeout: 30), "\(route) has a control labeled \(label)")
             revealNativeTarget(field, in: app)
             field.tap()
             let done = app.toolbars.buttons["Done"].firstMatch
             let hide = app.keyboards.buttons["Hide keyboard"].firstMatch
-            if isSelect {
-                // A picker wheel has Done; a menu closes on a tap outside it, here the setting's own
-                // heading, without choosing an option.
-                if done.waitForExistence(timeout: 3) {
-                    done.tap()
-                } else {
-                    let heading = app.webViews.firstMatch.staticTexts["Theme"].firstMatch
-                    XCTAssertTrue(heading.waitForExistence(timeout: 5), "the Theme heading is available to close the menu")
-                    heading.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
-                }
-            } else {
-                field.typeText("Secret")
-                // iPhone's input accessory offers Done and iPad's keyboard has its own hide key; a
-                // simulator using a hardware keyboard shows neither and has nothing to dismiss.
-                if done.waitForExistence(timeout: 3) {
-                    done.tap()
-                } else if hide.exists {
-                    hide.tap()
-                }
+            field.typeText("Secret")
+            // iPhone's input accessory offers Done and iPad's keyboard has its own hide key; a
+            // simulator using a hardware keyboard shows neither and has nothing to dismiss.
+            if done.waitForExistence(timeout: 3) {
+                done.tap()
+            } else if hide.exists {
+                hide.tap()
             }
             let keyboardHidden = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
@@ -2855,22 +2839,16 @@ final class PresentationUITests: XCTestCase {
             let unzoomed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
                 guard let monitor = object as? XCUIElement,
                       let state = layoutMetrics(from: monitor.label),
-                      let scale = (state["visualScale"] as? NSNumber)?.doubleValue else { return false }
-                if isSelect {
-                    guard let select = state["themeSelect"] as? [String: Any],
-                          let count = (select["focusCount"] as? NSNumber)?.intValue,
-                          count > 0 else { return false }
-                }
+                      let scale = (state["visualScale"] as? NSNumber)?.doubleValue,
+                      let count = (state["focusCount"] as? NSNumber)?.intValue,
+                      count > 0 else { return false }
                 return abs(scale - 1) < 0.001
             }, object: monitor)
             let settled = XCTWaiter.wait(for: [unzoomed], timeout: 15)
             let metrics = try XCTUnwrap(layoutMetrics(from: monitor.label))
             let scale = try XCTUnwrap((metrics["visualScale"] as? NSNumber)?.doubleValue)
-            if isSelect {
-                let select = try XCTUnwrap(metrics["themeSelect"] as? [String: Any])
-                let count = try XCTUnwrap((select["focusCount"] as? NSNumber)?.intValue)
-                XCTAssertGreaterThan(count, 0, "the native tap actually focused opt-theme")
-            }
+            let count = try XCTUnwrap((metrics["focusCount"] as? NSNumber)?.intValue)
+            XCTAssertGreaterThan(count, 0, "\(route) actually received focus")
             XCTAssertEqual(settled, .completed, "\(route) waited for an unzoomed sample")
             XCTAssertEqual(scale, 1, accuracy: 0.001,
                            "\(route) does not leave the page zoomed after typing and dismissing the keyboard")

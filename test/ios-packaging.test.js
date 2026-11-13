@@ -2073,17 +2073,16 @@ test('iOS text fields prevent focus zoom without shrinking larger text or changi
   }
 });
 
-test('native select zoom proof targets the DOM identifier and requires a real focus event', () => {
+test('native typing zoom proof requires a real focus event and leaves selects unmeasured', () => {
   const body = presentationTests.slice(
     presentationTests.indexOf('func testEditableFieldsLeaveNoFocusZoomAfterTypingAndDismissal'),
     presentationTests.indexOf('func testReadSheetPassesAccessibilityAuditAtDefaultAndLargestTextSizes'),
   );
-  assert.match(body, /isSelect\s*\?\s*NSPredicate\(format: "identifier == %@", "opt-theme"\)/);
-  assert.doesNotMatch(body, /selectTypes/);
-  assert.match(presentationTests, /if \(fieldRoute === 'field-select'\) \{\s*const select = document\.getElementById\('opt-theme'\);[\s\S]*?select\.dataset\.focusCount = '0';[\s\S]*?select\.addEventListener\('focus',[\s\S]*?select\.scrollIntoView\(\{ block: 'center' \}\);/);
-  assert.match(presentationTests, /focusCount: Number\(select\.dataset\.focusCount \?\? 0\)/);
-  assert.match(body, /field\.tap\(\)[\s\S]*?state\["themeSelect"\][\s\S]*?select\["focusCount"\][\s\S]*?count > 0 else \{ return false \}/);
-  assert.match(body, /XCTAssertGreaterThan\(count, 0, "the native tap actually focused opt-theme"\)/);
+  assert.doesNotMatch(presentationTests, /field-select/);
+  assert.match(presentationTests, /monitor\.dataset\.focusCount = '0';[\s\S]*?document\.addEventListener\('focus',[\s\S]*?event\.target\.id === fieldId[\s\S]*?monitor\.dataset\.focusCount = String\(Number\(monitor\.dataset\.focusCount\) \+ 1\);[\s\S]*?\}, true\);/);
+  assert.match(presentationTests, /focusCount: Number\(monitor\.dataset\.focusCount \?\? 0\)/);
+  assert.match(body, /field\.tap\(\)[\s\S]*?field\.typeText\("Secret"\)[\s\S]*?state\["focusCount"\][\s\S]*?count > 0 else \{ return false \}/);
+  assert.match(body, /XCTAssertGreaterThan\(count, 0, "\\\(route\) actually received focus"\)/);
 });
 
 test('native Search test measures the box label and every scope at 44 points and audits both text sizes', () => {
