@@ -712,8 +712,8 @@ canonical issues. Its settled metadata ledger records the nine historical failed
 from all thirteen owner-supplied identities. Crimson Dynamo #5-6 ids 309 and 293 are verified
 provenance outside the accepted source boundary and are not added to the guide.
 
-Wolverine preserves all 1,328 frozen source occurrences as 451 exact rows, 71 later occurrences of
-an earlier exact identity, 50 explicit exclusions, and 756 provider-unavailable source identities
+Wolverine preserves all 1,328 frozen source occurrences as 516 exact rows, 19 later occurrences of
+an earlier exact identity, 37 explicit exclusions, and 756 provider-unavailable source identities
 that remain visible provenance. The 60-row owner settlement records 15 exact identities, 3
 source-level repeats, 27 availability-only rows, 10 source-semantic rows, and 5 later-source rows
 outside the frozen boundary. The availability result does not authorize a substitute: only the two
@@ -721,6 +721,12 @@ named Avengers vs. X-Men: Infinite issues are omitted by owner policy, and all o
 in-boundary identities remain visible. Retained placeholders continue to use their original
 title-derived identifiers, so deleting and importing the guide again does not disconnect progress,
 notes, or availability overrides.
+
+The [series-volume correction ledger](../scripts/data/cbh-source-ledgers/wolverine-reading-order-series-correction.json)
+records the prior publication and all 95 corrected source positions, including 65 distinct issues
+previously collapsed into repeats or exclusions. The earlier settlement counts remain historical.
+Existing saved lists keep their issue identities and progress; newly added lists use the correction.
+Title repairs and additional gap resolutions are tracked separately in #1256 and #1257.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and
@@ -1125,7 +1131,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:11188-11239`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16701-16838`.
+`src/data/catalog.json:16703-16840`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3048,7 +3054,7 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:111-139`).
+shape (`test/helpers/owner-delivery-contract.mjs:114-142`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
