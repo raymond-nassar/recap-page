@@ -32,6 +32,7 @@ import android.graphics.Insets;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.os.SystemClock;
 import android.view.InputDevice;
 import android.view.KeyEvent;
@@ -41,6 +42,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.inspector.WindowInspector;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -609,11 +611,70 @@ public final class NativeIntegrationTest {
         assertEquals("No Bifrost lookup on either side", 0, appLookups.get());
         assertSame("Both handoffs preserve the main native endpoint", nativeEndpoint, nativePort());
         assertFixture();
+        String[] providers = {
+                "https://www.hoopladigital.com/title/123456789",
+                "https://share.libbyapp.com/title/123456",
+        };
+        assertTrue("The real collected-edition renderer exposes both synthetic provider links",
+                (Boolean) asyncJs(web,
+                        "const {collectedEditionLabels}=await import('/js/views/shared/collected-editions.js');"
+                        + "const make=(tag,props,children=[])=>{const e=document.createElement(tag);"
+                        + "for(const [k,v] of Object.entries(props)){"
+                        + "if(k==='text')e.textContent=v;else if(k==='class')e.className=v;else e.setAttribute(k,v);}"
+                        + "e.append(...children);return e;};"
+                        + "const item={issueId:7,seriesId:8,number:'1'};"
+                        + "const evidence={relations:[{...item,catalogId:'native',editionId:'book',"
+                        + "status:'verified',portion:'full',conflicts:[],source:'fixture',checkedAt:'2026-11-12'}]};"
+                        + "const basis={basis:'owner-approval',basisEvidence:"
+                        + "'https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560'};"
+                        + "const catalog={providers:{hoopla:{...basis,name:'Hoopla'},libby:{...basis,name:'Libby'}},"
+                        + "editions:{book:{title:'Stand-in book',destinations:["
+                        + "{provider:'hoopla',url:" + quote(providers[0]) + ",confirmedBy:'owner',checkedAt:'2026-11-12'},"
+                        + "{provider:'libby',url:" + quote(providers[1]) + ",confirmedBy:'owner',checkedAt:'2026-11-12'}]}}};"
+                        + "const fixture=collectedEditionLabels(make,'native',item,catalog,evidence);"
+                        + "if(!fixture)return false;fixture.id='native-book-link-fixture';"
+                        + "Object.assign(fixture.style,{position:'fixed',top:'20px',left:'20px',right:'20px',"
+                        + "padding:'8px',background:'white',zIndex:'10000'});"
+                        + "document.body.append(fixture);return fixture.querySelectorAll('a').length===2;"));
+        onMain(() -> {
+            WebChromeClient delegate = web.getWebChromeClient();
+            assertNotNull("Provider gestures use the app's original window policy", delegate);
+            web.getSettings().setBlockNetworkLoads(true);
+            web.setWebChromeClient(new WebChromeClient() {
+                @Override
+                public boolean onCreateWindow(WebView opener, boolean isDialog, boolean isUserGesture, Message result) {
+                    boolean created = delegate.onCreateWindow(opener, isDialog, isUserGesture, result);
+                    if (created) {
+                        assertTrue("A new window supplies a WebView transport", result.obj instanceof WebView.WebViewTransport);
+                        WebView child = ((WebView.WebViewTransport) result.obj).getWebView();
+                        assertNotNull("The app attaches its child WebView", child);
+                        child.getSettings().setBlockNetworkLoads(true);
+                    }
+                    return created;
+                }
+            });
+            return null;
+        });
+        for (int index = 0; index < providers.length; index++) {
+            String destination = providers[index];
+            tap(web, "#native-book-link-fixture a:nth-of-type(" + (index + 1) + ")");
+            waitFor("Provider link dispatches its exact external destination", WAIT_MS, () ->
+                    Intents.getIntents().stream().anyMatch(intent ->
+                            Intent.ACTION_VIEW.equals(intent.getAction())
+                                    && destination.equals(intent.getDataString())));
+            intended(allOf(hasAction(Intent.ACTION_VIEW), hasData(destination)));
+            assertEquals("Each provider gesture dispatches exactly one intent", 1L,
+                    Intents.getIntents().stream().filter(intent -> Intent.ACTION_VIEW.equals(intent.getAction())
+                            && destination.equals(intent.getDataString())).count());
+        }
+        assertSame("Provider handoffs preserve the main native endpoint", nativeEndpoint, nativePort());
+        assertFixture();
         measurements.put("popupCount", 1).put("syntheticMetadataLookups", server.issueRequests.get())
                 .put("syntheticAppLookups", appLookups.get()).put("appDispatchAttempts", 0)
                 .put("browserFallbackAttempts", 1).put("externalBrowserRendered", false)
                 .put("destination", browserIntent.getDataString()).put("afterCutoffDestination", generalIntent.getDataString())
                 .put("browserPackage", browserIntent.getPackage())
+                .put("providerHandoffs", providers.length)
                 .put("popupOpenerNull", true).put("nativeEndpointUnchanged", true)
                 .put("popupBridgeAssetStatus", 403);
     }
