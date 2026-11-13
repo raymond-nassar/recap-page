@@ -1342,7 +1342,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 #view-data .backup-restore-label + .rail-hint { margin: 0 0 var(--space-4); max-width: 62ch; }
 .setgroup { margin-bottom: var(--space-8); }
 #view-data .setgroup > h2 {
-  font-size: var(--t-subtitle); font-weight: 600; margin: var(--space-8) var(--space-1) var(--space-5); padding-bottom: var(--space-3);
+  font-size: var(--t-subtitle); font-weight: 600; margin: var(--space-8) var(--space-1) var(--space-5); padding-bottom: var(--space-3); overflow-wrap: anywhere; hyphens: auto;
 }
 #view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
