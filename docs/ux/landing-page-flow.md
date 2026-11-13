@@ -30,8 +30,7 @@ App launch, or selecting the brand lockup in the sidebar.
 
 ## State B: Library Has Lists
 1. **Continue reading** names the active Reading List, progress, next issue and direct actions.
-   An empty saved list retains a compact **Open the list** action without cover art or
-   **Review earlier issues**.
+   An empty saved list retains a compact **Open the list** action without cover art.
 2. **Your Reading Lists** shows every saved list as a compact progress tile.
 3. **Explore** offers the same content-backed category gateway as State A.
 4. Marvel attribution remains at the end of the surface.
