@@ -1335,8 +1335,10 @@ date, so a release PR must pass it before its first post-tag Pages deployment.
 The two 960 by 900 images use a clean demo profile, cover art off, and the collapsed sidebar.
 Keep them byte-identical to their namesakes under `docs/screenshots/`.
 
-The three Android images live under `pages/assets/`. The feature graphic is owner-supplied;
-the two phone layouts are selected, inspected copies from `npm run play:assets`, generated from
+The three Android images live under `pages/assets/`. The feature graphic is owner-supplied art
+whose wordmark was redrawn from the app's dark wordmark when the wordmark changed. It is also the
+Google Play feature graphic, so replace the two together. The two phone layouts are selected,
+inspected copies from `npm run play:assets`, generated from
 the source revision recorded in [the asset provenance](project-home-assets.json). That record
 binds the source, renderer, fictional fixture and image hashes; it is not deployed with the site.
 The page labels these as desktop-rendered development previews, not native-device screenshots
