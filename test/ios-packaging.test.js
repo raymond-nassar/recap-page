@@ -1820,7 +1820,6 @@ test('iOS Back, Continue and Preview actions expose their named parent and track
     makeControl('btn-chero-read', 'Read', true),
     makeControl('btn-chero-done', 'Done', true),
     makeControl('btn-chero-open', 'Open the list: fixture'),
-    makeControl('btn-chero-review', 'Review read comics', true),
     makeControl('btn-chero-deferred', 'Deferred comics', true),
     makeControl('preview-copy', 'Use updated copy', true),
     makeControl('preview-link', 'Open Reading List'),
@@ -1955,7 +1954,7 @@ test('iOS web controls expose one accessible target without changing visible lay
 
 test('iOS hidden Continue actions leave the native tree and return when shown', () => {
   const controller = appSource('WebViewController');
-  for (const id of ['btn-chero-read', 'btn-chero-done', 'btn-chero-review', 'btn-chero-deferred']) {
+  for (const id of ['btn-chero-read', 'btn-chero-done', 'btn-chero-deferred']) {
     assert.ok(controller.includes(`#${id}`));
   }
   assert.match(controller, /if \(control\.hidden\) control\.setAttribute\('aria-hidden', 'true'\)/);

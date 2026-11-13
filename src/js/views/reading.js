@@ -28,7 +28,6 @@ import { isPlainNavigation } from '../lib/route.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
-import { earlierIssueIds } from '../lib/reorientation.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 import { paintGlance } from '../lib/progressGlance.js';
 import { sourceButton } from './shared/catalog-presentation.js';
@@ -179,7 +178,6 @@ export function createReadingView({
   let rowCacheListId = null;
   let rowsPending = false;
   let arrowing = false;
-  let review = null;
   let phoneOverview = null;
   let aboutListId = null;
   let aboutCatalogId = null;
@@ -250,12 +248,16 @@ export function createReadingView({
     void load();
   }
 
-  function placeListOptions(anchor) {
+  // #1243: with a comic up next the options sit just above Coming up rather than inside the card,
+  // where they split Read and Done from the comic's own details. With none they join the list context.
+  function placeListOptions() {
     const options = $('#reading-list-options');
-    if (anchor.nextElementSibling === options) return;
+    const shelf = $('#shelf-sec');
+    const anchor = $('#hero').hidden ? (phoneOverview?.matches ? $('#reading-overview') : $('#list-note')) : null;
+    if (anchor ? anchor.nextElementSibling === options : shelf.previousElementSibling === options) return;
     const focused = options.contains(document.activeElement) ? document.activeElement : null;
-    anchor.after(options);
-    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));
+    if (anchor) anchor.after(options);
+    else shelf.before(options);
     const target = focused?.getClientRects().length ? focused : (focused ? $('#android-list-options') : null);
     if (target?.getClientRects().length) target.focus({ preventScroll: true });
   }
@@ -292,91 +294,9 @@ export function createReadingView({
       $('#reading-body > .list-work').after(note);
       note.after(similarHint);
     }
-    if ($('#hero').hidden) placeListOptions(phoneOverview.matches ? overview : note);
+    placeListOptions();
     syncReadingProgress();
     if (focused?.getClientRects().length) focused.focus({ preventScroll: true });
-  }
-
-  function openReview() {
-    const id = activeListId();
-    if (!getState().lists[id]) {
-      announce('That Reading List is no longer available.');
-      return;
-    }
-    if (getState().lists[id].itemIds.length === 0) {
-      announce('There are no comics to review yet. Add comics to this Reading List.');
-      return;
-    }
-    const ids = earlierIssueIds(getState(), id);
-    review = { listId: id, issueId: ids.at(-1) ?? null, position: ids.length - 1 };
-    renderReview();
-    $('#review-h').focus();
-  }
-
-  function renderReview() {
-    const region = $('#review-earlier');
-    const empty = listItems(getState(), activeListId()).length === 0;
-    $('#btn-review-earlier').hidden = empty;
-    if (review && (review.listId !== activeListId() || empty)) {
-      review = null;
-      if (region.contains(document.activeElement)) focusCurrentView();
-    }
-    region.hidden = !review;
-    $('#btn-review-earlier').setAttribute('aria-expanded', String(!!review));
-    if (!review) return;
-    const list = getState().lists[review.listId];
-    const ids = earlierIssueIds(getState(), review.listId);
-    if (!review.withdrawn && (!list || (review.issueId != null && ids[review.position] !== review.issueId))) {
-      review.issueId = null;
-      review.position = -1;
-      review.withdrawn = true;
-      announce('The Reading List changed. Choose Review earlier comics again to start from its current order.');
-    }
-    const item = review.issueId == null ? null : getState().issues[review.issueId]
-      ?? { issueId: review.issueId, title: `Issue ${review.issueId}` };
-    $('#review-context').textContent = list ? `Earlier in ${list.name}'s current order.` : 'This Reading List is no longer available.';
-    $('#review-position').textContent = item
-      ? `Position ${review.position + 1} of ${list.itemIds.length}. ${isRead(getState(), item.issueId) ? 'Marked read' : 'Not marked read'}.`
-      : review.withdrawn ? 'This selection is no longer valid. Open the picker again to choose from the current order.'
-        : list?.itemIds.length ? 'There are no comics before the next unread comic in this order.'
-          : 'There are no comics in this Reading List yet.';
-    preservingFocus($('#review-candidate'), () => {
-      const candidate = item ? issueFocusAnchor(item, {
-        context: { kind: 'list', id: review.listId },
-        surface: 'reorientation',
-        className: 'btn btn-g',
-        ariaLabel: `Open details for ${item.title}`,
-        children: `Open details for ${item.title}`,
-      }) : null;
-      if (candidate) {
-        candidate.dataset.act = 'review';
-        candidate.dataset.key = `${review.listId}:${item.issueId}`;
-      }
-      $('#review-candidate').replaceChildren(...(candidate ? [candidate] : []));
-    }, { fallback: () => $('#review-h') });
-    for (const [selector, blocked] of [
-      ['#review-earlier-button', !item || review.position === 0],
-      ['#review-later-button', !item || review.position === ids.length - 1],
-    ]) {
-      $(selector).setAttribute('aria-disabled', String(blocked));
-    }
-  }
-
-  function moveReview(delta) {
-    renderReview();
-    if (!review || review.issueId == null) return;
-    const ids = earlierIssueIds(getState(), review.listId);
-    const position = review.position + delta;
-    if (position < 0 || position >= ids.length) return;
-    review.position = position;
-    review.issueId = ids[position];
-    renderReview();
-  }
-
-  function restoreReview(opener) {
-    renderReview();
-    return !!review && review.issueId != null && review.issueId === Number(opener.issueId)
-      && review.listId === opener.contextId;
   }
 
   const dismissUndoDelete = { label: 'Dismiss', onClick: forgetDeleted };
@@ -416,20 +336,6 @@ export function createReadingView({
       event.preventDefault();
       summary.focus();
       details.open = false;
-    });
-    $('#btn-review-earlier').addEventListener('click', openReview);
-    $('#review-earlier-button').addEventListener('click', () => moveReview(-1));
-    $('#review-later-button').addEventListener('click', () => moveReview(1));
-    $('#review-close').addEventListener('click', () => {
-      review = null;
-      renderReview();
-      $('#btn-review-earlier').focus();
-    });
-    $('#review-full-order').addEventListener('click', () => {
-      setFullOrderFromRoute(true);
-      renderRows();
-      syncHash();
-      $('#full > summary').focus();
     });
     // Build this group once from the shared filter definitions. Rebuilding it with the rows would
     // destroy the active radio and drop keyboard focus, while accepting authored radios would let
@@ -682,7 +588,6 @@ export function createReadingView({
 
   function render() {
     renderBulkRead();
-    renderReview();
     if (lastRemoved && !removalContextMatches(lastRemoved)) forgetRemoved(lastRemoved);
     if (doneResult && !doneResult.settling && !doneResultHolds(doneResult)) withdrawDoneResult(doneResult);
     const id = activeListId();
@@ -738,19 +643,16 @@ export function createReadingView({
     const empty = getState().lists[id]?.itemIds.length === 0;
     const { deferred } = listReadingProgress(getState(), id);
 
-    const hero = $('#hero');
-    const options = $('#reading-list-options');
-    if (issue) hero.hidden = false;
-    if (hero.contains(options) !== !!issue) {
-      placeListOptions(issue ? $('#hero-primary-actions') : (phoneOverview?.matches ? $('#reading-overview') : $('#list-note')));
-    }
-    hero.hidden = !issue;
+    $('#hero').hidden = !issue;
+    placeListOptions();
     syncReadingProgress();
     $('#reading-empty').hidden = !empty;
     $('#all-read').hidden = true;
     $('#all-deferred').hidden = completed || !!issue || deferred === 0;
     $('#all-deferred-count').textContent = `${deferred} unread comic${deferred === 1 ? ' is' : 's are'} deferred in this Reading List.`;
-    $('#shelf-sec').hidden = !issue;
+    // Arriving at a list renders the hero alone, so it may only hide Coming up. Showing it is
+    // renderShelf's call, or an empty "0 comics" heading returns under the last comic (#1243).
+    if (!issue) $('#shelf-sec').hidden = true;
     if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
       resetSynopsis();
@@ -1800,9 +1702,6 @@ export function createReadingView({
     renderHydration,
     renderRows,
     renderSynopsis,
-    openReview,
-    renderReview,
-    restoreReview,
     resetSynopsis,
     setFilter,
     setFilterAddressed: (value) => { filterAddressed = value; },

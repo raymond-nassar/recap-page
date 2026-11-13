@@ -58,10 +58,9 @@ async function deferredReview(page, t, trigger, label) {
     keys: [...document.querySelectorAll('#rows [data-act="read"]')].map((e) => Number(e.dataset.key)),
     focus: document.activeElement.matches('input[name="filter"][value="deferred"]')
       && document.activeElement.checkVisibility(),
-    earlier: document.querySelector('#review-earlier').hidden,
   }));
   t.check(`${label}: actual Deferred rows, one history entry and visible filter focus`,
-    result.history === history + 1 && result.focus && result.earlier
+    result.history === history + 1 && result.focus
     && result.hash.includes('filter=deferred') && result.keys.join() === `${ids[0]},${ids[2]}`,
     JSON.stringify(result));
 }

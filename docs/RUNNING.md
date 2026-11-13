@@ -401,23 +401,6 @@ cross-story references may still contain spoilers.
 Earlier versions had a setting to hide summaries until revealed. A saved choice from that setting,
 in this browser or in a backup, is ignored.
 
-### Reviewing earlier comics
-
-Choose **Review earlier issues** on Home or Reading to start just before the next unread comic
-in the selected list's current order. Move through the earlier portion with **Earlier** and
-**Later**, one comic at a time. A completed list starts at its final comic. Empty lists and lists
-whose first comic is unread have no earlier candidate; use **Open full Reading List** instead.
-
-The picker does not fetch or reveal descriptions. Open a comic's details for description
-controls, then go Back to the picker.
-Return to Reading's **Read next issue** to continue the order. The reader button in Details opens
-the comic you are inspecting.
-
-The picker follows current list order, not your previous reading session. If the list or position
-changes, an invalid selection is withdrawn, not replaced with another comic. Provider descriptions
-may be missing or insufficient to recap the story. The app does not generate replacements, collect
-wiki summaries or guarantee an issue-specific spoiler cutoff.
-
 ### Reading progress has disappeared
 
 Check all three parts of the storage location:

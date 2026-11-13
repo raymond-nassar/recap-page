@@ -608,10 +608,11 @@ async function heroHints(page, t, width) {
   await raise(page, '#btn-hero-done', 'focus');
   const clear = await hints(page);
   const options = await pairHints(page, '#btn-hero-done', '#list-actions > summary');
-  t.check(`${width}px: at the top, Done's hint gives way to Reading List options even before a result exists`,
+  // #1243: Reading List options sit below the card now, so near the top Done's hint has room beneath it.
+  t.check(`${width}px: at the top, before a result exists, Done's hint shows below it, clear of Reading List options`,
     clear.result === null && clear.anchor?.top <= 20
-    && !clear.tips.some((tip) => tip.id === 'action-tip')
-    && options.points > 0 && !options.covers && options.taken === 0, JSON.stringify({ clear, options }));
+    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom')
+    && !options.covers && options.taken === 0, JSON.stringify({ clear, options }));
 
   // Each pass starts wherever the last left the list, so Done is followed by the hero changing
   // rather than by a particular comic.
@@ -814,12 +815,12 @@ export const readDoneHints = {
 
       const stacked = rows[0].box.bottom <= rows[0].other.top;
       const expected = stacked
-        ? { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'none', 'Done top': 'none' }
-        : { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'top', 'Done top': 'none' };
+        ? { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'none', 'Done top': 'bottom' }
+        : { 'Read natural': 'top', 'Read top': 'bottom', 'Done natural': 'top', 'Done top': 'bottom' };
       const sides = rows.map((row) => [row.step, row.tips.find((tip) => tip.id === 'action-tip')?.side ?? 'none']);
       t.check(stacked
         ? `${width}px stacked: hints give way when their only room is over another action`
-        : `${width}px side by side: hints show above at rest and give way to Reading List options near the top`,
+        : `${width}px side by side: hints show above at rest and below near the top`,
       sides.every(([step, side]) => expected[step.replace(/ (focus|pointer)$/, '')] === side), JSON.stringify(sides));
 
       if (width === 390) {
@@ -860,7 +861,7 @@ export const readDoneHints = {
           moved.box.top < moved.other.bottom && moved.other.top < moved.box.bottom
           && tip?.side === 'top' && tip.ariaHidden === 'true'
           && moved.points > 0 && !moved.covers && moved.taken === 0
-          && options.points > 0 && !options.covers && options.taken === 0 && gap && over
+          && !options.covers && options.taken === 0 && gap && over
           && after.hidden && after.focus === 'btn-hero-done' && after.described === 'hero-done-help',
           JSON.stringify({ moved, options, room, gap, over, after }));
       }
@@ -913,20 +914,11 @@ export const readDoneHintsMutations = [
       "    $('#hero-primary-actions').removeAttribute('data-tooltip-group');\n    $('#btn-hero-read').addEventListener('click', (e) => {",
     ),
   },
-  {
-    id: 'read-done-hints-options-unprotected', breaks: 'read-done-hints',
-    why: 'without the protection the stacked Done hint takes clicks meant for Reading List options',
-    script: () => {
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('#reading-list-options').removeAttribute('data-keep-uncovered');
-      });
-    },
-  },
 ];
 
 export const sidebarOptionsHints = {
   id: 'sidebar-options-hints',
-  title: 'Collapsed sidebar labels remain available when Reading List options leave the comic card',
+  title: 'Reading List options sit below the comic card, and collapsed sidebar labels show beside them',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -940,10 +932,13 @@ export const sidebarOptionsHints = {
     const placement = () => page.evaluate(() => {
       const options = document.querySelector('#reading-list-options');
       return { inside: document.querySelector('#hero').contains(options),
-        protected: options.hasAttribute('data-keep-uncovered') };
+        protected: options.hasAttribute('data-keep-uncovered'),
+        aboveShelf: options.nextElementSibling === document.querySelector('#shelf-sec') };
     });
+    // #1243: the options left the card, so they never ask a hint to yield.
     const queued = await placement();
-    t.check('queued comic keeps Reading List options protected', queued.inside && queued.protected, JSON.stringify(queued));
+    t.check('a queued comic has Reading List options below its card, directly above Coming up and unprotected',
+      !queued.inside && !queued.protected && queued.aboveShelf, JSON.stringify(queued));
     await full(page);
     for (const id of ids) await rowAction(page, id, 'defer');
     await page.waitForFunction(() => !document.querySelector('#all-deferred').hidden);
@@ -1006,8 +1001,8 @@ export const sidebarOptionsHints = {
     await rowAction(page, ids[0], 'defer');
     await heroIs(page, 1);
     const resumed = await placement();
-    t.check('resuming a comic returns options to the card and restores protection',
-      resumed.inside && resumed.protected, JSON.stringify(resumed));
+    t.check('resuming a comic returns options above Coming up, still outside the card and unprotected',
+      !resumed.inside && !resumed.protected && resumed.aboveShelf, JSON.stringify(resumed));
     t.check('the checks raise no page errors', errors.length === 0, errors.join(' / '));
   },
 };
@@ -1015,9 +1010,15 @@ export const sidebarOptionsHints = {
 export const sidebarOptionsHintsMutations = [{
   id: 'sidebar-options-always-protected',
   breaks: 'sidebar-options-hints',
-  why: 'protecting the relocated full-width row hides collapsed sidebar labels',
-  rewriteReading: (source) => source.replace(
-    "    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));",
-    "    options.setAttribute('data-keep-uncovered', '');",
-  ),
+  why: 'protecting the full-width options row hides collapsed sidebar labels',
+  script: () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#reading-list-options').setAttribute('data-keep-uncovered', '');
+    });
+  },
+}, {
+  id: 'sidebar-options-in-card-1243',
+  breaks: 'sidebar-options-hints',
+  why: 'Reading List options return inside the comic card instead of sitting above Coming up',
+  rewriteReading: (source) => source.replace('    else shelf.before(options);', "    else $('#hero').append(options);"),
 }];
