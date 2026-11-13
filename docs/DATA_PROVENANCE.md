@@ -3655,7 +3655,14 @@ Each labeled sequence credits the Grand Comics Database and links its licence. O
 verified, conflict-free relations display; this is not a statement of reading availability.
 Existing collection headings remain editorial or user-customized grouping, not verification.
 
-The provider policy ships Hoopla as pending, with no title identifier or address. A future link
-requires recorded granted permission and a verified HTTPS book destination. It says "View this
-book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
-No live provider lookup, account, credential, cover image or affiliate/store destination is added.
+On 2026-11-12 the owner approved linking to a book's Hoopla page as fair use, since only a link is
+offered and no Hoopla metadata is taken, in
+[the link approval](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560).
+Hoopla's product team had not replied, so no permission from Hoopla is recorded or claimed. The owner
+added Libby on the same basis, as a link only that opens the book in the reader's own library, in
+[the follow-up answers](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839422429).
+Each address is confirmed by the owner with the date it was checked, and must match one accepted
+form per service; anything else is refused at build time and dropped by the app. A link reads "Look
+for this book on Hoopla" or "in Libby", never that borrowing is possible, and opens outside the app
+with referrer isolation. No live provider lookup, availability, account, credential, cover image,
+description or affiliate/store destination is added.

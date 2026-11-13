@@ -140,36 +140,52 @@ export const collectedEditions = {
           const issue = { issueId: 7, seriesId: 8, number: '1' };
           const evidence = { relations: [{ ...issue, catalogId: 'fixture', editionId: 'book',
             status: 'verified', portion: 'full', conflicts: [], source: 'fixture', checkedAt: '2026-11-10' }] };
-          const catalog = { providers: { hoopla: { name: 'Hoopla', permission: 'pending', permissionEvidence: 'Fixture only' } },
-            editions: { book: { title: 'Stand-in book', destinations: [{ provider: 'hoopla',
-              status: 'verified', checkedAt: '2026-11-10', url: 'https://www.hoopladigital.com/title/123456789' }] } } };
-          const pending = collectedEditionLabels(make, 'fixture', issue, catalog, evidence);
-          const hidden = pending.querySelectorAll('a').length === 0;
-          catalog.providers.hoopla.permission = 'granted';
+          const catalog = { providers: {
+            hoopla: { name: 'Hoopla', basis: 'owner-approval',
+              basisEvidence: 'https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560' },
+            libby: { name: 'Libby', basis: 'owner-approval',
+              basisEvidence: 'https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560' } },
+          editions: { book: { title: 'Stand-in book', destinations: [
+            { provider: 'hoopla', checkedAt: '2026-11-12', url: 'https://www.hoopladigital.com/title/123456789' },
+            { provider: 'libby', checkedAt: '2026-11-12', url: 'https://share.libbyapp.com/title/123456' }] } } };
+          const unconfirmed = collectedEditionLabels(make, 'fixture', issue, catalog, evidence);
+          const hidden = unconfirmed.querySelectorAll('a').length === 0;
+          for (const destination of catalog.editions.book.destinations) destination.confirmedBy = 'owner';
           const shown = collectedEditionLabels(make, 'fixture', issue, catalog, evidence);
           const host = document.querySelector(`${root} .collected-editions`);
           host.append(shown);
-          const link = shown.querySelector('a');
-          link.focus();
-          const rect = link.getBoundingClientRect();
-          const result = { hidden, focused: document.activeElement === link, target: link.target, rel: link.rel,
-            text: link.textContent, name: link.getAttribute('aria-label'), href: link.href,
-            fits: rect.width <= host.clientWidth + 1, height: rect.height };
+          const links = [...shown.querySelectorAll('a')];
+          links[1].focus();
+          const rects = links.map((link) => link.getBoundingClientRect());
+          const result = { hidden, count: links.length, focused: document.activeElement === links[1],
+            targets: links.map((link) => link.target), rels: links.map((link) => link.rel),
+            texts: links.map((link) => link.textContent), names: links.map((link) => link.getAttribute('aria-label')),
+            fits: rects.every((rect) => rect.width <= host.clientWidth + 1),
+            height: Math.min(...rects.map((rect) => rect.height)) };
           shown.remove();
           return result;
         }, root);
-        t.check(`${name}: only granted stand-in permission exposes an accessible safe book link`,
-          policyResult.hidden && policyResult.focused && policyResult.target === '_blank'
-          && policyResult.rel === 'noopener noreferrer' && policyResult.text === 'View this book at Hoopla'
-          && policyResult.name.includes('Stand-in book') && policyResult.fits && policyResult.height >= 24,
+        t.check(`${name}: only owner-confirmed stand-in destinations expose accessible hedged book links`,
+          policyResult.hidden && policyResult.count === 2 && policyResult.focused
+          && policyResult.targets.every((target) => target === '_blank')
+          && policyResult.rels.every((rel) => rel === 'noopener noreferrer')
+          && policyResult.texts.join('|') === 'Look for this book on Hoopla|Look for this book in Libby'
+          && policyResult.names.every((label) => label.includes('Stand-in book') && label.includes('opens outside'))
+          && policyResult.fits && policyResult.height >= 24,
           JSON.stringify(policyResult));
         if (surface === 'preview') await page.keyboard.press('Escape');
       }
       await cdp.detach();
     }
     t.check('edition display makes no external network requests', external.length === 0, JSON.stringify(external));
-    t.check('no pending Hoopla title address appears in production DOM',
-      await page.$$eval('a[href*="hoopladigital"]', (nodes) => nodes.length) === 0);
+    t.check('production DOM shows only owner-confirmed provider addresses from the bundled catalog',
+      await page.evaluate(async () => {
+        const { editionCatalog } = await import('./data/collectedEditionCatalog.js');
+        const allowed = new Set(Object.values(editionCatalog.editions).flatMap((book) => book.destinations)
+          .filter((destination) => destination.confirmedBy === 'owner').map((destination) => destination.url));
+        return [...document.querySelectorAll('a[href*="hoopladigital"], a[href*="libbyapp"]')]
+          .every((link) => allowed.has(link.href));
+      }));
     await click(page, '.brand[data-view="home"]');
   },
 };

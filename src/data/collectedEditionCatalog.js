@@ -4,7 +4,15 @@ export const editionCatalog = {
   "providers": {
     "hoopla": {
       "name": "Hoopla",
-      "permission": "pending"
+      "basis": "owner-approval",
+      "basisEvidence": "https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560",
+      "providerPermission": "not-received"
+    },
+    "libby": {
+      "name": "Libby",
+      "basis": "owner-approval",
+      "basisEvidence": "https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560",
+      "providerPermission": "not-requested"
     }
   },
   "editions": {

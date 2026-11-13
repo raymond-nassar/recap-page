@@ -18,6 +18,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { DESTINATION_PROVIDERS, acceptedLink, destinationUrl, isCheckedDate, providerAccepted }
+  from '../src/js/lib/editionDestinations.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const DATA_DIR = path.join(root, 'scripts', 'data', 'collected-editions');
@@ -123,7 +125,47 @@ export function loadInputs(dir = DATA_DIR, repoRoot = root) {
     if (fs.existsSync(file)) fixtures[edition.gcdIssueId] = readJson(file);
   }
   const catalog = readJson(path.join(repoRoot, 'src', 'data', 'catalog.json'));
-  return { pilot, curated, gcdInputs, lists, ledgers, fixtures, catalog };
+  const destinations = readJson(path.join(dir, 'destinations.json'));
+  return { pilot, curated, gcdInputs, lists, ledgers, fixtures, catalog, destinations };
+}
+
+const PROVIDER_PERMISSIONS = new Set(['granted', 'not-received', 'not-requested']);
+
+// The owner's confirmed addresses go through the app's own gate, so the build refuses exactly what
+// the app would silently drop and a bad address is a build error rather than a missing link.
+export function validateDestinations(destinations, editionIds) {
+  const errors = [];
+  if (!destinations || destinations.schemaVersion !== 1) return ['destinations.json: schemaVersion must be 1'];
+  const providers = destinations.providers || {};
+  for (const [key, provider] of Object.entries(providers)) {
+    if (!DESTINATION_PROVIDERS.includes(key)) errors.push(`destinations.json: unknown provider ${key}`);
+    if (!providerAccepted(provider)) errors.push(`destinations.json: ${key} needs a name, a basis and the comment recording it`);
+    if (!PROVIDER_PERMISSIONS.has(provider?.providerPermission)) {
+      errors.push(`destinations.json: ${key} must record whether the provider itself gave permission`);
+    }
+  }
+  for (const [id, list] of Object.entries(destinations.destinations || {})) {
+    if (!editionIds.has(id)) errors.push(`destinations.json: unknown edition ${id}`);
+    if (!Array.isArray(list) || !list.length) {
+      errors.push(`destinations.json: ${id} needs a list of destinations`);
+      continue;
+    }
+    const seen = new Set();
+    for (const destination of list) {
+      const where = `destinations.json: ${id} ${destination?.provider}`;
+      const before = errors.length;
+      const extra = Object.keys(destination || {}).filter((key) => !['provider', 'url', 'checkedAt', 'confirmedBy', 'source'].includes(key));
+      if (extra.length) errors.push(`${where}: only an address is recorded, not ${extra.join(', ')}`);
+      if (!destinationUrl(destination?.provider, destination?.url)) errors.push(`${where}: address ${destination?.url} is not an accepted form`);
+      if (destination?.confirmedBy !== 'owner') errors.push(`${where}: the owner has not confirmed it`);
+      if (!isCheckedDate(destination?.checkedAt)) errors.push(`${where}: checkedAt must be a real date`);
+      if (typeof destination?.source !== 'string' || !destination.source) errors.push(`${where}: source is required`);
+      if (seen.has(destination?.provider)) errors.push(`${where}: one destination per provider`);
+      seen.add(destination?.provider);
+      if (errors.length === before && !acceptedLink(providers, destination)) errors.push(`${where}: refused by the display gate`);
+    }
+  }
+  return errors;
 }
 
 function editionKeys(edition) {
@@ -455,6 +497,10 @@ export function validate(inputs, outputs) {
   for (const [id, fixture] of Object.entries(fixtures)) walk(fixture, `gcd-fixtures/${id}.json`);
   walk(pilot, 'pilot.json');
   if (inputs.gcdInputs) walk(inputs.gcdInputs, 'gcd-check-inputs.json');
+  if (inputs.destinations) {
+    walk(inputs.destinations, 'destinations.json');
+    errors.push(...validateDestinations(inputs.destinations, ids));
+  }
   const mit = [['pilot.json', inputs.curated], ['editions.json', outputs['editions.json']],
     ['cbh-edition-facts.json', outputs['cbh-edition-facts.json']]];
   for (const [name, value] of mit) {
@@ -551,6 +597,21 @@ export function build(inputs) {
 
 export const render = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
+function projectProviders(destinations) {
+  return Object.fromEntries(Object.entries(destinations?.providers || {}).map(([key, provider]) => [key, {
+    name: provider.name, basis: provider.basis, basisEvidence: provider.basisEvidence,
+    providerPermission: provider.providerPermission,
+  }]));
+}
+
+// Only addresses the display gate accepts are bundled, so an invalid input cannot ship even when the
+// check is bypassed; the source note stays in the curated input.
+function destinationsFor(destinations, id) {
+  const providers = destinations?.providers || {};
+  return (destinations?.destinations?.[id] || []).filter((entry) => acceptedLink(providers, entry))
+    .map(({ provider, url, checkedAt, confirmedBy }) => ({ provider, url, checkedAt, confirmedBy }));
+}
+
 export function buildAppData(inputs, outputs = build(inputs)) {
   const editions = {};
   const relations = [];
@@ -567,7 +628,7 @@ export function buildAppData(inputs, outputs = build(inputs)) {
         const keys = new Set(evidence.check.verifiedComics);
         for (const item of inputs.lists[list.listId].items) {
           if (item.collectedIn !== group.label || !keys.has(rowKey(item.seriesId, item.number))) continue;
-          editions[id] = { title: curated.title, destinations: [] };
+          editions[id] = { title: curated.title, destinations: destinationsFor(inputs.destinations, id) };
           relations.push({
             catalogId: catalogList.id, editionId: id, issueId: item.issueId,
             seriesId: item.seriesId, number: String(item.number),
@@ -578,7 +639,7 @@ export function buildAppData(inputs, outputs = build(inputs)) {
       }
     }
   }
-  const names = { schemaVersion: 1, providers: { hoopla: { name: 'Hoopla', permission: 'pending' } }, editions };
+  const names = { schemaVersion: 1, providers: projectProviders(inputs.destinations), editions };
   const evidence = {
     ...GCD_LICENSE, schemaVersion: 1,
     modification: 'Adapted into exact issue-to-edition relations for this pilot. Edition names are curated separately.',

@@ -10,6 +10,7 @@ relation modules in `src/data/`. Nothing claims where a reader can buy, borrow o
 | File | What it holds | Licence |
 |---|---|---|
 | `pilot.json` | The curated input: the five lists, the collection groups chosen from them, each edition's curated contents with who asserted them, and the tier each edition is checked at | MIT, with the repository |
+| `destinations.json` | The curated input: each provider's recorded basis, and the owner-confirmed address of a book's page on Hoopla or in Libby, with the date it was checked | MIT, with the repository |
 | `gcd-check-inputs.json` | Curated input taken from the database: story titles, series names, sequences set aside with reasons, contents stated in indexer notes, and printing links | CC BY-SA 4.0 |
 | `cbh-edition-facts.json` | Generated. The collection groups already recorded in each list, with the comics in each group | MIT, with the repository |
 | `editions.json` | Generated. The provider-neutral edition records and coverage for each list | MIT, with the repository |
@@ -70,12 +71,18 @@ The same build projects curated MIT names into `src/data/collectedEditionCatalog
 relations into `src/data/collectedEditionEvidence.js` under CC BY-SA 4.0. Only full, verified,
 conflict-free relations are displayed. The latter retains credit, sources, checked dates and a
 modification notice; both Preview and saved lists show a shared credit and licence link.
-Hoopla is pending and no title address or identifier is bundled. Provider links require separately
-recorded granted permission and a verified destination; permission is never inferred from contents.
+Links to a book's page on Hoopla or in Libby come from `destinations.json`. Each provider records its
+basis, the owner's approval on Issue #1203, with the comment that holds it, and says that the provider
+itself gave no permission. Each address must be confirmed by the owner, carry the date it was
+checked, and match its provider's one accepted form: `https://www.hoopladigital.com/title/<id>` (or
+`/comic/<slug>/<id>`) and `https://share.libbyapp.com/title/<id>`. The build refuses anything the
+app's own gate in `src/js/lib/editionDestinations.js` would drop, and bundles the address alone: no
+description, cover, availability or live lookup. A link says where to look for a book, never that it
+can be borrowed.
 
 ```
 npm run editions:pilot             # check that the generated files are current and valid
-npm run editions:pilot -- --write  # regenerate them from the two inputs, the lists and the fixtures
+npm run editions:pilot -- --write  # regenerate them from the curated inputs, the lists and the fixtures
 npm run editions:pilot -- --live <id>
 ```
 

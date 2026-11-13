@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "note": "Owner-confirmed provider destinations for collected editions. Addresses only: no description, cover, availability or identifier beyond the address is recorded. A link says where a reader can look for a book, never that it can be borrowed.",
+  "providers": {
+    "hoopla": {
+      "name": "Hoopla",
+      "basis": "owner-approval",
+      "basisEvidence": "https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560",
+      "providerPermission": "not-received"
+    },
+    "libby": {
+      "name": "Libby",
+      "basis": "owner-approval",
+      "basisEvidence": "https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560",
+      "providerPermission": "not-requested"
+    }
+  },
+  "destinations": {}
+}
