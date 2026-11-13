@@ -1,19 +1,19 @@
 {
   "candidateId": "wolverine-reading-order",
-  "packetDigest": "18ed5e17e5c91c2ca2e4c127a38f140b4395f0c354e1cec93128fdb260d4941d",
-  "mappingDigest": "6aecf023efcc7c2ef686d316a44e0e797901a9f10049f52dc0cf74009d443f91",
-  "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
+  "packetDigest": "00e47fc9b54b7ac2a094510a8f5941cef722cce548dbb74913dfdd33ebd1d06a",
+  "mappingDigest": "7ed2c42ad06d16aeccbded4377c449294379002a79c6fa577c778fc5945d2ff1",
+  "libraryDigest": "deda313fec283eece4e9d6c38c45f80389d872844ec464c0687ba5952023ca15",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1328,
-    "sourceIdentityCount": 1207,
-    "includedIssueCount": 451,
+    "sourceIdentityCount": 1272,
+    "includedIssueCount": 516,
     "sourceGapCount": 756,
-    "repeatedSourceReferenceCount": 71,
-    "excludedSourceRowCount": 50
+    "repeatedSourceReferenceCount": 19,
+    "excludedSourceRowCount": 37
   },
-  "candidateCount": 451,
-  "comparisonCount": 138,
+  "candidateCount": 516,
+  "comparisonCount": 155,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -76,6 +76,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "avengers-doomsday-secret-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "avengers-enemy-within",
       "sharedCount": 0,
       "sharedIds": [],
@@ -107,6 +113,12 @@
         "68656"
       ],
       "relationship": "partial"
+    },
+    {
+      "orderId": "blood-and-thunder",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "bloodties",
@@ -267,6 +279,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "fall-of-the-hulks",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "fall-of-the-mutants",
       "sharedCount": 3,
       "sharedIds": [
@@ -288,6 +306,12 @@
         "8656"
       ],
       "relationship": "existing-subset"
+    },
+    {
+      "orderId": "franklin-richards-one-shots",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "generations",
@@ -354,6 +378,12 @@
     },
     {
       "orderId": "hickman-minimal",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "history-of-the-marvel-universe-2019",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -513,13 +543,19 @@
       "relationship": "none"
     },
     {
-      "orderId": "marvel-fresh-start-avengers",
+      "orderId": "marvel-1602",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
-      "orderId": "marvel-multiverse",
+      "orderId": "marvel-adventures-the-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-fresh-start-avengers",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -532,6 +568,12 @@
     },
     {
       "orderId": "marvel-what-if",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvels-1994",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -556,6 +598,12 @@
     },
     {
       "orderId": "maximum-security",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mc2",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -599,6 +647,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "miles-morales-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "minimum-carnage",
       "sharedCount": 0,
       "sharedIds": [],
@@ -606,6 +660,12 @@
     },
     {
       "orderId": "monsters-unleashed",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "moon-girl-and-devil-dinosaur",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -713,6 +773,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "power-pack-pack-attack-and-team-ups",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "realm-of-kings",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "reckoning-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -744,6 +816,12 @@
     },
     {
       "orderId": "scarlet-witch-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "second-clone-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -796,6 +874,12 @@
     },
     {
       "orderId": "shadowland",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "siege-dark-reign-prelude",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -868,6 +952,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "spidey",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "star-lord-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
@@ -898,7 +988,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "the-unbeatable-squirrel-girl",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thor-the-mighty-avenger",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1001,12 +1103,8 @@
     },
     {
       "orderId": "x-men-divided-we-stand",
-      "sharedCount": 16,
+      "sharedCount": 12,
       "sharedIds": [
-        "20642",
-        "20833",
-        "20971",
-        "21180",
         "20704",
         "20895",
         "21028",
@@ -1198,5 +1296,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "eb5b48178a8e1e2ed3e5127fd23b0e7df21416b654d91697954427772d046b6c"
+  "reportDigest": "51af7a75b0dd78ef6b77518164ad307e6743ab3a2e958ec73a0054ee6b89e9f2"
 }

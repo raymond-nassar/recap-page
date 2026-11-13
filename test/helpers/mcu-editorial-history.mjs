@@ -7,6 +7,9 @@ import { beforeIdentityEntry, beforeIdentityOrders } from './owner-identity-hist
 import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
 } from './amazing-spider-man-history.mjs';
+import {
+  beforeWolverineCorrectionManifest, beforeWolverineCorrectionOrders,
+} from './wolverine-correction-history.mjs';
 
 const archived = JSON.parse(readFileSync(new URL('../../src/data/marvel_multiverse.json', import.meta.url), 'utf8'));
 const retiredId = mcuEditorial.withdrawal.manifestEntry.id;
@@ -28,6 +31,8 @@ export function withRetiredComparisons(comparisons, candidateIds, report) {
 }
 
 export function recordedEditorialDigest(manifest, orders) {
+  manifest = beforeWolverineCorrectionManifest(manifest);
+  orders = beforeWolverineCorrectionOrders(orders);
   const beforeSupplement = beforeAmazingSpiderManSupplementManifest(manifest);
   const original = beforeMcuEditorialManifest({
     ...beforeSupplement, lists: beforeSupplement.lists.map((entry) => beforeIdentityEntry(entry)),
