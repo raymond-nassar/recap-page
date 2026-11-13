@@ -538,3 +538,22 @@ negative controls also require their own complete, bound host-completion record.
 A passing startup capture covers only its completed resources. All five installed journey commands
 must separately finish their remaining behavior and outer cleanup before command success is
 published. Native-only runs and earlier captures never substitute for that delivery evidence.
+
+## Windows archive subprocesses
+
+The MSIX and portable ZIP packers, and WACK's portable-content verification, share a Windows
+PowerShell subprocess boundary. It removes the inherited `PSModulePath` from the child's environment
+so Windows PowerShell rebuilds its own compatible module paths, and sets `ErrorActionPreference`
+to `Stop`. Both extraction and portable ZIP compression use that boundary. An archive error now
+stops there rather than continuing to a later missing-runtime copy.
+
+This addresses [#1272](https://github.com/raymond-nassar/recap-page/issues/1272): the updated
+Windows runner loaded PowerShell 7's Archive module in Windows PowerShell's .NET Framework host.
+The shared helper preserves the parent environment, archive commands and package layout.
+
+The other `Expand-Archive` sites do not cross that host boundary. WACK's diagnostic and two
+certification tool-install steps explicitly use `pwsh`, as does the Microsoft Store release
+tool-install step. The bundle handoff, draft handoff and existing-draft recovery workflows inherit
+`pwsh` from their job defaults. Those seven sites execute the module in its matching PowerShell 7
+host and need no change for this failure. The four protected Store workflows were inspected only,
+not executed to verify this correction.

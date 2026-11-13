@@ -13,6 +13,7 @@ import {
 import { NATIVE_NAME, VERIFIER_NAME, verifyNativeArtifact } from './lib/native-launcher.mjs';
 import { artifactRecord, assertSourceUnchanged, buildIdentity, writeBuildIdentity } from './lib/release-identity.mjs';
 import { cloudClientInjection } from './lib/cloud-client.mjs';
+import { powershell } from './lib/windows-powershell.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
@@ -69,10 +70,6 @@ function run(command, args, options = {}) {
 export function winAppCliVersion(output) {
   const lines = String(output).split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
   return lines.find((line) => /^\d+\.\d+\.\d+$/.test(line)) ?? null;
-}
-
-function powershell(script) {
-  return run('powershell', ['-NoProfile', '-NonInteractive', '-Command', script]);
 }
 
 function psLiteral(value) {
