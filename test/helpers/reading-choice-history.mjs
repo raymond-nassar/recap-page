@@ -373,6 +373,24 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
   return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };
 }
 
+export async function loadBeforeWolverineCorrectionLibrary() {
+  const live = JSON.parse(await readFile(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
+  const manifest = beforeWolverineCorrectionManifest(live);
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'wolverine-history-'));
+  tempDirs.add(dir);
+  const payloadDir = path.join(dir, 'payloads');
+  await mkdir(payloadDir);
+  await Promise.all(manifest.lists.map(async (entry) => {
+    const file = entry.out || `${entry.id}.json`;
+    if (path.basename(file) !== file) throw new Error(`Unsafe historical payload filename: ${file}`);
+    const payload = JSON.parse(await readFile(path.join(root, 'src', 'data', file), 'utf8'));
+    const ids = issueIdsFromValue(payload);
+    const issueIds = entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids) : ids;
+    await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
+  }));
+  return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };
+}
+
 export async function buildHistoricalReadingChoiceReport(mappingPath, peerPaths = [], options = {}) {
   const library = await loadHistoricalReadingChoiceLibrary(options);
   return buildReportForMapping(mappingPath, peerPaths, {

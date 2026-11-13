@@ -32,7 +32,7 @@ import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
 } from './amazing-spider-man-history.mjs';
 import {
-  beforeWolverineCorrectionManifest, beforeWolverineCorrectionOrders,
+  beforeWolverineCorrectionOrders, wolverineLibraryAtReview,
 } from './wolverine-correction-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -198,11 +198,13 @@ export async function assertOwnerDeliveryContract(contract, {
     }
     return peer;
   }));
-  const liveRecordedOrders = beforeWolverineCorrectionOrders(withRetiredOrders(library.orders.filter((row) =>
-    recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds));
-  const liveRecordedManifest = beforeWolverineCorrectionManifest(
+  const wolverineLibrary = wolverineLibraryAtReview(
     recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds }),
+    withRetiredOrders(library.orders.filter((row) =>
+      recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds),
+    report.libraryDigest,
   );
+  const { manifest: liveRecordedManifest, orders: liveRecordedOrders } = wolverineLibrary;
   const vectorsFor = (orders) => orders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
   const liveRecordedDigest = libraryDigestFor(liveRecordedManifest, vectorsFor(liveRecordedOrders));
   const descriptionRecordedManifest = descriptionRevisions.undoManifest(liveRecordedManifest);
@@ -231,9 +233,11 @@ export async function assertOwnerDeliveryContract(contract, {
       : (contract.libraryDigest != null && contract.libraryDigest === plainRecordedDigest
         ? plainRecordedDigest : digestLibrary(recordedManifest, recordedVectors, { presentIds: [id, ...peerIds] })));
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
-  const comparisonOrders = beforeWolverineCorrectionOrders(
-    withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds),
+  const currentComparisonOrders = withRetiredOrders(
+    library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds,
   );
+  const comparisonOrders = wolverineLibrary.current ? currentComparisonOrders
+    : beforeWolverineCorrectionOrders(currentComparisonOrders);
   assert.deepEqual(buildComparisonReport({
     candidateIds: expectedIds,
     orders: expandedReview ? comparisonOrders : beforeAmazingSpiderManSupplementOrders(comparisonOrders),
@@ -329,9 +333,10 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   // The recorded report covers the library this guide was reviewed against. Anything published
   // since is held to the same registered-later-peer rule as an ordinary owner guide.
   const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
-  const liveRecordedOrders = beforeWolverineCorrectionOrders(allOrders.filter((entry) => recordedIds.has(entry.orderId)));
-  const liveRecordedManifest = beforeWolverineCorrectionManifest(
+  const { manifest: liveRecordedManifest, orders: liveRecordedOrders } = wolverineLibraryAtReview(
     recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id }),
+    allOrders.filter((entry) => recordedIds.has(entry.orderId)),
+    report.libraryDigest,
   );
   const liveVectors = liveRecordedOrders.map((entry) => ({ id: entry.orderId, issueIds: entry.issueIds.map(String) }));
   const liveDigest = libraryDigestFor(liveRecordedManifest, liveVectors);

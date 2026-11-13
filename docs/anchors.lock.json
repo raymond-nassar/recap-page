@@ -5754,13 +5754,13 @@
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:9-103|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:9-103",
-    "fp": "87984facefd884b1",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:10-105|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:10-105",
+    "fp": "3a0decdb11c72ff9",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:256-282|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:256-282",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:260-286|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:260-286",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },

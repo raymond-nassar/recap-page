@@ -4,7 +4,8 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { sourcePositionsForPacket } from '../../scripts/lib/cbh-inventory.mjs';
+import { libraryDigestFor, sourcePositionsForPacket } from '../../scripts/lib/cbh-inventory.mjs';
+import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
@@ -29,6 +30,9 @@ const currentIds = [...rows, ...gaps.map((gap, index) => ({
   position: gap.sourcePosition, id: String(placeholders[index].issueId),
 }))].sort((a, b) => a.position - b.position).map(({ id }) => id);
 assert.equal(currentIds.length, ledger.correctionReview.sourceCounts.sourceIdentityCount);
+export const wolverineCorrectionItemDelta = ledger.correctionReview.corrections
+  .filter(({ before, after }) => before.representation !== 'row' && after.representation === 'row').length;
+assert.equal(currentIds.length - originalIds.length, wolverineCorrectionItemDelta);
 
 export function beforeWolverineCorrectionEntry(entry) {
   if (entry.id !== ledger.id) return entry;
@@ -53,6 +57,19 @@ export function beforeWolverineCorrectionOrders(orders) {
     ? { ...order, issueIds: beforeWolverineCorrectionIssueIds(order.issueIds) } : order);
 }
 
+export function wolverineLibraryAtReview(manifest, orders, expectedDigest) {
+  const vectors = orders.map((order) => ({
+    id: order.id ?? order.orderId, issueIds: order.issueIds.map(String),
+  }));
+  const current = [manifest, descriptionRevisions.undoManifest(manifest)]
+    .some((value) => libraryDigestFor(value, vectors) === expectedDigest);
+  return {
+    manifest: current ? manifest : beforeWolverineCorrectionManifest(manifest),
+    orders: current ? orders : beforeWolverineCorrectionOrders(orders),
+    current,
+  };
+}
+
 export function beforeWolverineCorrectionPayloadText(file, text) {
   if (path.basename(file) !== path.basename(prior.files.payload)) return text;
   beforeWolverineCorrectionIssueIds(JSON.parse(text).items.map(({ issueId }) => issueId));
@@ -65,4 +82,41 @@ export function beforeWolverineCorrectionCatalogEntry(entry) {
   const baseline = catalog.lists.find(({ id }) => id === ledger.id);
   assert.ok([originalIds.length, currentIds.length].includes(entry.count));
   return { ...entry, count: baseline.count, contains: baseline.contains, updatedAt: baseline.updatedAt };
+}
+
+export function beforeWolverineCorrectionChapterOverlaps(report) {
+  const baseline = JSON.parse(show('scripts/data/marvel-knights-to-planet-x-overlaps.json'));
+  const knownIds = new Set(currentIds);
+  const catalog = read('src/data/catalog.json');
+  const pairs = baseline.pairs.filter(({ existingListId }) => existingListId !== ledger.id);
+  for (const chapter of catalog.lists.filter(({ id }) => id.startsWith(`${baseline.parentId}-`))) {
+    const sharedIssueIds = read(`src/data/${chapter.file}`).items
+      .map(({ issueId }) => issueId).filter((id) => knownIds.has(String(id)));
+    if (sharedIssueIds.length) pairs.push({
+      chapterId: chapter.id, existingListId: ledger.id,
+      sharedCount: sharedIssueIds.length, sharedIssueIds,
+    });
+  }
+  pairs.sort((a, b) => a.chapterId.localeCompare(b.chapterId)
+    || a.existingListId.localeCompare(b.existingListId));
+  const existingLists = [...new Set(pairs.map(({ existingListId }) => existingListId))]
+    .sort().map((id) => ({
+      id, sharedCount: pairs.filter(({ existingListId }) => existingListId === id)
+        .reduce((sum, { sharedCount }) => sum + sharedCount, 0),
+    }));
+  const expected = {
+    ...baseline,
+    generatedAt: report.generatedAt,
+    pairCount: pairs.length,
+    chapterCountWithOverlap: new Set(pairs.map(({ chapterId }) => chapterId)).size,
+    existingListCount: existingLists.length,
+    sharedOccurrenceCount: pairs.reduce((sum, { sharedCount }) => sum + sharedCount, 0),
+    matrixSha256: createHash('sha256').update(JSON.stringify(pairs.map((pair) => [
+      pair.chapterId, pair.existingListId, pair.sharedCount, pair.sharedIssueIds,
+    ]))).digest('hex'),
+    existingLists,
+    pairs,
+  };
+  assert.deepEqual(report, expected, 'Only the reviewed Wolverine identities may change chapter overlaps.');
+  return baseline;
 }
