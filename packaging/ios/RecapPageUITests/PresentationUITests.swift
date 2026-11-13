@@ -174,6 +174,14 @@ final class PresentationUITests: XCTestCase {
                   ? routes.find(({ name }) => name === 'data')
                   : routes[0]);
             if (fieldRoute === 'field-manual') document.getElementById('manual-url').closest('details').open = true;
+            if (fieldRoute === 'field-select') {
+              const select = document.getElementById('opt-theme');
+              select.dataset.focusCount = '0';
+              select.addEventListener('focus', () => {
+                select.dataset.focusCount = String(Number(select.dataset.focusCount) + 1);
+              });
+              select.scrollIntoView({ block: 'center' });
+            }
             if (fieldRoute === 'field-name' || fieldRoute === 'field-note') {
               const ask = await import(new URL('js/ask.js', document.baseURI).href);
               if (fieldRoute === 'field-name') ask.askText({ title: 'Name this list', label: 'List name' });
@@ -357,6 +365,7 @@ final class PresentationUITests: XCTestCase {
             const select = document.getElementById('opt-theme');
             const style = getComputedStyle(select);
             return {
+              focusCount: Number(select.dataset.focusCount ?? 0),
               whiteSpace: style.whiteSpace,
               scrollWidth: select.scrollWidth,
               clientWidth: select.clientWidth,
@@ -2798,7 +2807,6 @@ final class PresentationUITests: XCTestCase {
         // fields of the shared question dialog, and a select, which keeps the shared 14px size and
         // is measured here rather than assumed not to zoom.
         let fieldTypes = [XCUIElement.ElementType.textField, .textView, .searchField, .secureTextField].map(\.rawValue)
-        let selectTypes = [XCUIElement.ElementType.popUpButton, .button, .comboBox, .menuButton].map(\.rawValue)
         let cases = [
             ("field-import", "Reading List"),
             ("field-manual", "marvel.com comic details address"),
@@ -2810,8 +2818,9 @@ final class PresentationUITests: XCTestCase {
             let app = launch(route: route)
             _ = try probeResult(of: app)
             let isSelect = route == "field-select"
-            let field = app.webViews.firstMatch.descendants(matching: .any).matching(NSPredicate(
-                format: "label == %@ AND elementType IN %@", label, isSelect ? selectTypes : fieldTypes)).firstMatch
+            let field = app.webViews.firstMatch.descendants(matching: .any).matching(isSelect
+                ? NSPredicate(format: "identifier == %@", "opt-theme")
+                : NSPredicate(format: "label == %@ AND elementType IN %@", label, fieldTypes)).firstMatch
             XCTAssertTrue(field.waitForExistence(timeout: 30), "\(route) has a control labeled \(label)")
             revealNativeTarget(field, in: app)
             field.tap()
@@ -2847,11 +2856,21 @@ final class PresentationUITests: XCTestCase {
                 guard let monitor = object as? XCUIElement,
                       let state = layoutMetrics(from: monitor.label),
                       let scale = (state["visualScale"] as? NSNumber)?.doubleValue else { return false }
+                if isSelect {
+                    guard let select = state["themeSelect"] as? [String: Any],
+                          let count = (select["focusCount"] as? NSNumber)?.intValue,
+                          count > 0 else { return false }
+                }
                 return abs(scale - 1) < 0.001
             }, object: monitor)
             let settled = XCTWaiter.wait(for: [unzoomed], timeout: 15)
             let metrics = try XCTUnwrap(layoutMetrics(from: monitor.label))
             let scale = try XCTUnwrap((metrics["visualScale"] as? NSNumber)?.doubleValue)
+            if isSelect {
+                let select = try XCTUnwrap(metrics["themeSelect"] as? [String: Any])
+                let count = try XCTUnwrap((select["focusCount"] as? NSNumber)?.intValue)
+                XCTAssertGreaterThan(count, 0, "the native tap actually focused opt-theme")
+            }
             XCTAssertEqual(settled, .completed, "\(route) waited for an unzoomed sample")
             XCTAssertEqual(scale, 1, accuracy: 0.001,
                            "\(route) does not leave the page zoomed after typing and dismissing the keyboard")

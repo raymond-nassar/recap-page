@@ -2073,6 +2073,19 @@ test('iOS text fields prevent focus zoom without shrinking larger text or changi
   }
 });
 
+test('native select zoom proof targets the DOM identifier and requires a real focus event', () => {
+  const body = presentationTests.slice(
+    presentationTests.indexOf('func testEditableFieldsLeaveNoFocusZoomAfterTypingAndDismissal'),
+    presentationTests.indexOf('func testReadSheetPassesAccessibilityAuditAtDefaultAndLargestTextSizes'),
+  );
+  assert.match(body, /isSelect\s*\?\s*NSPredicate\(format: "identifier == %@", "opt-theme"\)/);
+  assert.doesNotMatch(body, /selectTypes/);
+  assert.match(presentationTests, /if \(fieldRoute === 'field-select'\) \{\s*const select = document\.getElementById\('opt-theme'\);[\s\S]*?select\.dataset\.focusCount = '0';[\s\S]*?select\.addEventListener\('focus',[\s\S]*?select\.scrollIntoView\(\{ block: 'center' \}\);/);
+  assert.match(presentationTests, /focusCount: Number\(select\.dataset\.focusCount \?\? 0\)/);
+  assert.match(body, /field\.tap\(\)[\s\S]*?state\["themeSelect"\][\s\S]*?select\["focusCount"\][\s\S]*?count > 0 else \{ return false \}/);
+  assert.match(body, /XCTAssertGreaterThan\(count, 0, "the native tap actually focused opt-theme"\)/);
+});
+
 test('native Search test measures the box label and every scope at 44 points and audits both text sizes', () => {
   assert.doesNotMatch(presentationTests, /add-other-methods|moreMethods/);
   const body = presentationTests.slice(
