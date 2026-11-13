@@ -4,10 +4,10 @@
   "capturedOn": "2026-11-11",
   "featureArtwork": {
     "file": "pages/assets/android-feature-graphic.png",
-    "source": "Owner-supplied Recap Page feature graphic requested for this project-home update.",
+    "source": "Owner-supplied Recap Page feature graphic, with its original two-line wordmark replaced by the app's one-line dark wordmark (src/icons/wordmark-dark.svg) for #1219.",
     "width": 1024,
     "height": 500,
-    "sha256": "c79a879ff95d7d9bef82176c452d56852497000dc20acc9380be8d0bfd8eaeb6"
+    "sha256": "6d5c827249c7460816e96163529344a42c026b99235be762913432763a3b359e"
   },
   "androidPreviews": {
     "command": "npm run play:assets",

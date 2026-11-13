@@ -28,7 +28,7 @@ export const SCREENSHOTS = [
     route: '#/home',
     view: 'view-home',
     wait: '#home-primary-paths .home-path',
-    text: ['RECAP PAGE!', 'Browse. Choose. Read.', 'Start with Modern Timeline', 'Young readers'],
+    text: ['Explore', 'New to Marvel Comics?', 'Modern Timeline', 'Young readers'],
     state: 'empty',
     dismissNotice: true,
   },
