@@ -97,37 +97,65 @@ export const readingCardFocus = {
     ]) {
       const undo = await setup(page, pass);
       const rest = await measure(page);
+      // #1243: the options left the card. They sit just before Coming up, or directly under the card
+      // when Coming up is hidden. The app hides it in place without moving the options, so the check
+      // does the same to hold the second state too.
       const options = await page.evaluate(() => {
-        const row = document.querySelector('#hero-primary-actions');
+        const hero = document.querySelector('#hero');
+        const group = document.querySelector('#reading-list-options');
+        const shelf = document.querySelector('#shelf-sec');
         const summary = document.querySelector('#list-actions > summary');
+        const rendered = (node) => !!node && !node.hidden && node.getClientRects().length > 0;
+        const step = (node, key) => { let at = node[key]; while (at && !rendered(at)) at = at[key]; return at; };
+        const placement = () => {
+          const comingUp = rendered(shelf);
+          const before = step(group, 'previousElementSibling');
+          return {
+            comingUp,
+            placed: comingUp ? step(group, 'nextElementSibling') === shelf
+              : before === hero || (before?.id === 'reading-overview' && step(before, 'previousElementSibling') === hero),
+            belowCard: summary.getBoundingClientRect().top >= hero.getBoundingClientRect().bottom,
+          };
+        };
+        const shown = placement();
+        const wasHidden = shelf.hidden;
+        shelf.hidden = true;
+        const withoutComingUp = placement();
+        shelf.hidden = wasHidden;
         return {
-          afterRow: !!row.nextElementSibling?.contains(summary),
+          outsideHero: !hero.contains(summary) && group.contains(summary),
+          shown, withoutComingUp,
           label: summary.textContent.trim(),
           comicLabel: document.querySelector('#hero-more-actions > summary').textContent.trim(),
         };
       });
-      t.check(`${pass.name}: Reading List options follow Read and Done`, options.afterRow, JSON.stringify(options));
+      t.check(`${pass.name}: Reading List options sit below the card, just before Coming up`,
+        options.outsideHero && options.shown.comingUp && options.shown.placed && options.shown.belowCard,
+        JSON.stringify(options));
+      t.check(`${pass.name}: with Coming up hidden, Reading List options sit directly under the card`,
+        options.outsideHero && !options.withoutComingUp.comingUp && options.withoutComingUp.placed
+          && options.withoutComingUp.belowCard, JSON.stringify(options));
       t.check(`${pass.name}: Reading List options and More comic actions have distinct names`,
         options.label === 'Reading List options' && options.comicLabel === 'More comic actions', JSON.stringify(options));
       if (pass.width === 1280) {
         const openOptions = await page.evaluate(() => {
           const details = document.querySelector('#list-actions');
           details.open = true;
-          const column = document.querySelector('#hero .hero-body').getBoundingClientRect();
+          const card = document.querySelector('#hero').getBoundingClientRect();
           const body = details.querySelector('.list-actions-body').getBoundingClientRect();
           const result = {
-            inColumn: document.querySelector('#hero .hero-body').contains(details),
-            column: [column.left, column.right], body: [body.left, body.right],
+            outsideHero: !document.querySelector('#hero').contains(details),
+            card: [card.left, card.right], body: [body.left, body.right],
             visible: details.querySelector('#btn-rename-list').checkVisibility(),
             overflow: document.documentElement.scrollWidth > innerWidth,
           };
           details.open = false;
           return result;
         });
-        t.check(`${pass.name}: open Reading List options fit the hero text column`,
-          openOptions.inColumn && openOptions.visible && !openOptions.overflow
-            && openOptions.body[0] >= openOptions.column[0] - 1
-            && openOptions.body[1] <= openOptions.column[1] + 1, JSON.stringify(openOptions));
+        t.check(`${pass.name}: open Reading List options fit within the card's width`,
+          openOptions.outsideHero && openOptions.visible && !openOptions.overflow
+            && openOptions.body[0] >= openOptions.card[0] - 1
+            && openOptions.body[1] <= openOptions.card[1] + 1, JSON.stringify(openOptions));
       }
       // Tab from Read through every control the card holds, opening More comic actions on the way
       // where the pass asks, as the Issue's keyboard pass did, until focus leaves the card.
@@ -230,22 +258,33 @@ export const readingCardPhoneOverview = {
           const { top, bottom } = node.getBoundingClientRect();
           return [top, bottom];
         });
-        const row = document.querySelector('#hero-primary-actions');
+        const hero = document.querySelector('#hero');
         const options = document.querySelector('#list-actions > summary');
         const done = document.querySelector('#btn-hero-done');
         const read = document.querySelector('#btn-hero-read');
-        const rowBox = row.getBoundingClientRect(), optionsBox = options.getBoundingClientRect();
+        const row = document.querySelector('#hero-primary-actions');
+        const cardBox = hero.getBoundingClientRect(), optionsBox = options.getBoundingClientRect();
         const rowStyle = getComputedStyle(row), optionStyle = getComputedStyle(options), doneStyle = getComputedStyle(done);
         const readBox = read.getBoundingClientRect(), doneBox = done.getBoundingClientRect();
+        // #1243: just before Coming up, or directly under the card and its list context when it is hidden.
+        const group = document.querySelector('#reading-list-options'), shelf = document.querySelector('#shelf-sec');
+        const rendered = (node) => !!node && !node.hidden && node.getClientRects().length > 0;
+        const step = (node, key) => { let at = node[key]; while (at && !rendered(at)) at = at[key]; return at; };
+        const before = step(group, 'previousElementSibling');
+        const comingUp = rendered(shelf);
         return {
           dom: nodes.every((node, at) => at === 0 || !!(nodes[at - 1].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)),
           visual: boxes.every((box, at) => at === 0 || boxes[at - 1][0] <= box[0]),
           boxes,
           afterCard: boxes[2][0] >= boxes[1][1],
           optionGroup: {
-            gap: optionsBox.top - rowBox.bottom,
+            outsideHero: !hero.contains(options),
+            comingUp,
+            placed: comingUp ? step(group, 'nextElementSibling') === shelf
+              : before === hero || (before?.id === 'reading-overview' && step(before, 'previousElementSibling') === hero),
+            gap: optionsBox.top - cardBox.bottom,
             rowGap: readBox.right <= doneBox.left ? doneBox.left - readBox.right : parseFloat(rowStyle.columnGap),
-            edges: [rowBox.left, rowBox.right, optionsBox.left, optionsBox.right],
+            edges: [cardBox.left, cardBox.right, optionsBox.left, optionsBox.right],
             optionBackground: optionStyle.backgroundColor, doneBackground: doneStyle.backgroundColor,
             optionBorder: optionStyle.borderTopColor, doneBorder: doneStyle.borderTopColor,
           },
@@ -254,8 +293,9 @@ export const readingCardPhoneOverview = {
       t.check(`${theme}: the phone's title, comic and moved list context share DOM and visual order`,
         layout.dom && layout.visual && layout.afterCard, JSON.stringify(layout));
       const group = layout.optionGroup;
-      t.check(`${theme}: Reading List options form a quieter, edge-aligned group with a larger gap`,
-        group.gap > group.rowGap && Math.abs(group.edges[0] - group.edges[2]) <= 1
+      t.check(`${theme}: Reading List options form a quieter group below the card, aligned with its edges`,
+        group.outsideHero && group.placed
+          && group.gap > group.rowGap && Math.abs(group.edges[0] - group.edges[2]) <= 1
           && Math.abs(group.edges[1] - group.edges[3]) <= 1
           && group.optionBackground !== group.doneBackground && group.optionBorder !== group.doneBorder,
         JSON.stringify(group));
@@ -325,8 +365,9 @@ export const readingCardPhoneOverview = {
 // it, a phone showed the cover floated left at 96px. The owner's 2026-11-02 choices then put Read and
 // Done side by side on phones and made the list's heading compact on short screens, so at default text
 // both open above the bottom bar on every phone here, 375x667 and 360x800 included, where before #1061
-// Done opened 171px and 38px under it. Placing Reading List options after the buttons also clears them
-// at 375x667 with a list note and the cover at its 96px floor. The covers are held to no smaller than
+// Done opened 171px and 38px under it. Reading List options no longer sit in the card at all (#1243),
+// so they cannot push Read and Done down, even at 375x667 with a list note and the cover at its 96px
+// floor. The covers are held to no smaller than
 // this branch measured before those choices. Read and Done are then checked with the card scrolled to
 // its top, as the owner's screenshot shows it.
 const posterCoverBefore = {

@@ -1681,7 +1681,6 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
     } else if (arriving) readingView.enterAbout();
   }
   completionView.render();
-  readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
@@ -1859,10 +1858,6 @@ async function loadGuidePreview(previewId, token) {
 async function restoreIssueFocusOpener(sourceView) {
   const opener = history.state?.issueFocusOpener;
   if (!opener || opener.view !== sourceView) return;
-  if (opener.surface === 'reorientation' && !readingView.restoreReview(opener)) {
-    focusViewHeading(sourceView);
-    return;
-  }
   if (opener.surface === 'full-order') {
     readingView.setFullOrderFromRoute(true);
     readingView.renderRows();
@@ -3757,7 +3752,6 @@ const homeView = createHomeView({
     continueNumber: $('#chero-fn'),
     continueRead: $('#btn-chero-read'), continueDone: $('#btn-chero-done'),
     continueOpen: $('#btn-chero-open'),
-    continueReview: $('#btn-chero-review'),
     continueDeferred: $('#btn-chero-deferred'),
     yoursSection: $('#home-yours'),
     yoursList: $('#home-yours-list'),
@@ -3792,9 +3786,6 @@ const homeView = createHomeView({
   onDone: () => { if (selectSavedList(continuingListId())) readingView.markReadFromHome(); }, onOpen: () => openSavedList(continuingListId()),
   onRead: (issue, event, source) => {
     if (selectSavedList(continuingListId())) openInReader(issue, event, source);
-  },
-  onReview: () => {
-    if (openSavedList(continuingListId())) readingView.openReview();
   },
   onReviewDeferred: () => {
     if (selectSavedList(continuingListId())) readingView.openDeferred();
